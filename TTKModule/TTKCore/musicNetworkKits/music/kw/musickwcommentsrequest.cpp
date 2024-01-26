@@ -71,13 +71,13 @@ void MusicKWSongCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_count = value["like_num"].toString();
-                    result.m_updateTime = TTKDateTime::format(value["time"].toString(), TTK_YEAR_TIMEZ_FORMAT);
-                    result.m_description = value["msg"].toString();
-                    result.m_nickName = QUrl::fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
-                    result.m_coverUrl = value["u_pic"].toString();
-                    Q_EMIT createCommentItem(result);
+                    MusicResultDataItem item;
+                    item.m_count = value["like_num"].toString();
+                    item.m_updateTime = TTKDateTime::format(value["time"].toString(), TTK_YEAR_TIMEZ_FORMAT);
+                    item.m_description = value["msg"].toString();
+                    item.m_nickName = QUrl::fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
+                    item.m_coverUrl = value["u_pic"].toString();
+                    Q_EMIT createCommentItem(item);
                 }
             }
         }
@@ -140,13 +140,13 @@ void MusicKWPlaylistCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_count = value["like_num"].toString();
-                    result.m_updateTime = TTKDateTime::format(value["time"].toString(), TTK_YEAR_TIMEZ_FORMAT);
-                    result.m_description = value["msg"].toString();
-                    result.m_nickName = QUrl::fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
-                    result.m_coverUrl = value["u_pic"].toString();
-                    Q_EMIT createCommentItem(result);
+                    MusicResultDataItem item;
+                    item.m_count = value["like_num"].toString();
+                    item.m_updateTime = TTKDateTime::format(value["time"].toString(), TTK_YEAR_TIMEZ_FORMAT);
+                    item.m_description = value["msg"].toString();
+                    item.m_nickName = QUrl::fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
+                    item.m_coverUrl = value["u_pic"].toString();
+                    Q_EMIT createCommentItem(item);
                 }
             }
         }

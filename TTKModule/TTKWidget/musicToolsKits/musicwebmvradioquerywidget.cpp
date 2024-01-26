@@ -166,7 +166,7 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
         m_container->addWidget(scrollArea);
 
         m_initialized = true;
-        QVBoxLayout *mainlayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
+        QVBoxLayout *mainLayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
@@ -185,11 +185,10 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
         m_gridLayout->setVerticalSpacing(35);
         containWidget->setLayout(m_gridLayout);
 
-        mainlayout->addWidget(containTopWidget);
-        mainlayout->addWidget(line);
-        mainlayout->addWidget(containWidget);
-
-        mainlayout->addStretch(1);
+        mainLayout->addWidget(containTopWidget);
+        mainLayout->addWidget(line);
+        mainLayout->addWidget(containWidget);
+        mainLayout->addStretch(1);
     }
 
     MusicWebMVRadioQueryItemWidget *label = new MusicWebMVRadioQueryItemWidget(this);
@@ -232,6 +231,7 @@ void MusicWebMVRadioQueryWidget::categoryChanged(const MusicResultsCategoryItem 
             m_gridLayout->removeWidget(w);
             delete w;
         }
+
         m_networkRequest->startToSearch(category.m_key);
     }
 }

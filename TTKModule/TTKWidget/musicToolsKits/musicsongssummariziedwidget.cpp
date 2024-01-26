@@ -723,24 +723,24 @@ void MusicSongsSummariziedWidget::addSongToLovestList(bool state, int row)
     }
 }
 
-void MusicSongsSummariziedWidget::addSongBufferToPlaylist(const MusicResultDataItem &songItem)
+void MusicSongsSummariziedWidget::addSongBufferToPlaylist(const MusicResultDataItem &item)
 {
-    MusicSongItem *item = &m_containerItems[MUSIC_NETWORK_LIST];
-    const QByteArray &md5 = TTK::Algorithm::md5(songItem.m_id.toUtf8());
-    MusicSong song(songItem.m_nickName + "#" + md5 + "." + songItem.m_description, songItem.m_updateTime, songItem.m_name);
-    song.setFormat(songItem.m_description);
-    song.setSizeStr(songItem.m_count);
+    MusicSongItem *songItem = &m_containerItems[MUSIC_NETWORK_LIST];
+    const QByteArray &md5 = TTK::Algorithm::md5(item.m_id.toUtf8());
+    MusicSong song(item.m_nickName + "#" + md5 + "." + item.m_description, item.m_updateTime, item.m_name);
+    song.setFormat(item.m_description);
+    song.setSizeStr(item.m_count);
 
-    int index = item->m_songs.indexOf(song);
+    int index = songItem->m_songs.indexOf(song);
     if(index == -1)
     {
-        item->m_songs << song;
-        item->m_itemObject->updateSongsList(item->m_songs);
-        setItemTitle(item);
-        index = item->m_songs.count() - 1;
+        songItem->m_songs << song;
+        songItem->m_itemObject->updateSongsList(songItem->m_songs);
+        setItemTitle(songItem);
+        index = songItem->m_songs.count() - 1;
     }
 
-    if(songItem.m_category == MUSIC_PLAY_NOW)
+    if(item.m_category == MUSIC_PLAY_NOW)
     {
         ///when download finished just play it at once
         setCurrentIndex(MUSIC_NETWORK_LIST);

@@ -101,6 +101,11 @@ void MusicWYQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
                 item.m_category.append(var.toString() + "|");
             }
 
+            if(!item.m_category.isEmpty())
+            {
+                item.m_category.insert(0, "|");
+            }
+
             value = value["creator"].toMap();
             item.m_nickName = value["nickname"].toString();
         }
@@ -135,14 +140,14 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_coverUrl = value["coverImgUrl"].toString();
-                    result.m_id = value["id"].toString();
-                    result.m_name = value["name"].toString();
-                    result.m_count = value["playCount"].toString();
-                    result.m_description = value["description"].toString();
-                    result.m_updateTime = TTKDateTime::format(value["updateTime"].toULongLong(), TTK_YEAR_FORMAT);
-                    result.m_category.clear();
+                    MusicResultDataItem item;
+                    item.m_coverUrl = value["coverImgUrl"].toString();
+                    item.m_id = value["id"].toString();
+                    item.m_name = value["name"].toString();
+                    item.m_count = value["playCount"].toString();
+                    item.m_description = value["description"].toString();
+                    item.m_updateTime = TTKDateTime::format(value["updateTime"].toULongLong(), TTK_YEAR_FORMAT);
+                    item.m_category.clear();
 
                     const QVariantList &tags = value["tags"].toList();
                     for(const QVariant &var : qAsConst(tags))
@@ -151,12 +156,18 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
                         {
                             continue;
                         }
-                        result.m_category.append(var.toString() + "|");
+
+                        item.m_category.append(var.toString() + "|");
+                    }
+
+                    if(!item.m_category.isEmpty())
+                    {
+                        item.m_category.insert(0, "|");
                     }
 
                     value = value["creator"].toMap();
-                    result.m_nickName = value["nickname"].toString();
-                    Q_EMIT createPlaylistItem(result);
+                    item.m_nickName = value["nickname"].toString();
+                    Q_EMIT createPlaylistItem(item);
                 }
             }
         }

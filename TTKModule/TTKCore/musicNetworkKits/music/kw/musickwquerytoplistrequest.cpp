@@ -152,13 +152,13 @@ void MusicKWQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
                         continue;
                     }
 
-                    MusicResultDataItem result;
-                    result.m_name = value["name"].toString();
-                    result.m_coverUrl = value["pic"].toString();
-                    result.m_count = value["id"].toString();
-                    result.m_description = value["intro"].toString();
-                    result.m_updateTime = value["pub"].toString();
-                    Q_EMIT createToplistItem(result);
+                    MusicResultDataItem item;
+                    item.m_name = value["name"].toString();
+                    item.m_coverUrl = value["pic"].toString();
+                    item.m_count = value["id"].toString();
+                    item.m_description = value["intro"].toString();
+                    item.m_updateTime = value["pub"].toString();
+                    Q_EMIT createToplistItem(item);
                     return;
                 }
             }

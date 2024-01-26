@@ -47,16 +47,16 @@ void MusicDJRadioProgramRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_name = value["name"].toString();
-                    result.m_id = value["id"].toString();
-                    result.m_coverUrl = value["picUrl"].toString();
-                    result.m_category = value["category"].toString();
-                    result.m_nickName = value["categoryId"].toString();
-                    result.m_updateTime = TTKDateTime::format(value["createTime"].toULongLong(), TTK_YEAR_FORMAT);
-                    result.m_count = value["subCount"].toString();
-                    Q_EMIT createProgramItem(result);
-                    m_items << result;
+                    MusicResultDataItem item;
+                    item.m_name = value["name"].toString();
+                    item.m_id = value["id"].toString();
+                    item.m_coverUrl = value["picUrl"].toString();
+                    item.m_category = value["category"].toString();
+                    item.m_nickName = value["categoryId"].toString();
+                    item.m_updateTime = TTKDateTime::format(value["createTime"].toULongLong(), TTK_YEAR_FORMAT);
+                    item.m_count = value["subCount"].toString();
+                    Q_EMIT createProgramItem(item);
+                    m_items << item;
                 }
             }
         }

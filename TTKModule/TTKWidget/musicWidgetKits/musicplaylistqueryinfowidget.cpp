@@ -30,8 +30,7 @@ void MusicPlaylistQueryInfoWidget::resizeWidget()
 
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN;
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 200 + width));
@@ -175,25 +174,25 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     //
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
-    QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
+    QHBoxLayout *hLayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
-    hlayout->addWidget(m_songButton);
+    hLayout->addWidget(m_songButton);
     QPushButton *infoButton = new QPushButton(functionWidget);
     infoButton->setText(tr("Info"));
     infoButton->setFixedSize(100, 25);
     infoButton->setCursor(QCursor(Qt::PointingHandCursor));
-    hlayout->addWidget(infoButton);
-    functionWidget->setLayout(hlayout);
+    hLayout->addWidget(infoButton);
+    functionWidget->setLayout(hLayout);
     QPushButton *commentsButton = new QPushButton(functionWidget);
     commentsButton->setText(tr("Comments"));
     commentsButton->setFixedSize(100, 25);
     commentsButton->setCursor(QCursor(Qt::PointingHandCursor));
-    hlayout->addWidget(commentsButton);
-    hlayout->addStretch(1);
-    functionWidget->setLayout(hlayout);
+    hLayout->addWidget(commentsButton);
+    hLayout->addStretch(1);
+    functionWidget->setLayout(hLayout);
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_songButton, 0);

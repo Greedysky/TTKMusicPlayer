@@ -4,7 +4,7 @@
 #include "ttkclickedgroup.h"
 #include "ttkclickedlabel.h"
 
-static constexpr int PAGE_SIZE = 10;
+static constexpr int MAX_PAGE_SIZE = 10;
 
 MusicPageQueryWidget::MusicPageQueryWidget(QObject *parent)
     : QObject(parent),
@@ -27,7 +27,7 @@ QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
     layout->setContentsMargins(0, 20, 0, 20);
     layout->setSpacing(12);
 
-    for(int i = 1; i <= PAGE_SIZE; ++i)
+    for(int i = 1; i <= MAX_PAGE_SIZE; ++i)
     {
         m_pageItems << (new TTKClickedLabel(QString::number(i), m_pageWidget));
     }
@@ -36,36 +36,40 @@ QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
     TTKClickedGroup *group = new TTKClickedGroup(this);
     connect(group, SIGNAL(clicked(int)), SIGNAL(clicked(int)));
 
-    for(TTKClickedLabel *w : qAsConst(m_pageItems))
+    for(TTKClickedLabel *label : qAsConst(m_pageItems))
     {
-        QFont font(w->font());
+        QFont font(label->font());
         font.setPixelSize(14);
-        w->setFont(font);
-        w->setStyleSheet(TTK::UI::ColorStyle04);
-        w->setFixedWidth(TTK::Widget::fontTextWidth(font, w->text()));
-        group->mapped(w);
+        label->setFont(font);
+        label->setStyleSheet(TTK::UI::ColorStyle04);
+        label->setFixedWidth(TTK::Widget::fontTextWidth(font, label->text()));
+        group->mapped(label);
     }
 
-    m_pageItems[PAGE_SIZE]->hide();
-    if(total <= PAGE_SIZE)
+    m_pageItems[MAX_PAGE_SIZE]->hide();
+    if(total <= MAX_PAGE_SIZE)
     {
-        m_pageItems[PAGE_SIZE + 1]->hide();
-        for(int i = PAGE_SIZE - 1; i >= total; --i)
+        m_pageItems[MAX_PAGE_SIZE + 1]->hide();
+
+        for(int i = MAX_PAGE_SIZE - 1; i >= total; --i)
         {
             m_pageItems[i]->hide();
         }
     }
-    m_pageItems[0]->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle01);
 
+    m_pageItems[0]->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle01);
     layout->addStretch(1);
+
     if(total != 0)
     {
-        layout->addWidget(m_pageItems[PAGE_SIZE]);
-        for(int i = 0; i < PAGE_SIZE; ++i)
+        layout->addWidget(m_pageItems[MAX_PAGE_SIZE]);
+
+        for(int i = 0; i < MAX_PAGE_SIZE; ++i)
         {
             layout->addWidget(m_pageItems[i]);
         }
-        layout->addWidget(m_pageItems[PAGE_SIZE + 1]);
+
+        layout->addWidget(m_pageItems[MAX_PAGE_SIZE + 1]);
     }
     else
     {
@@ -83,8 +87,8 @@ QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
         func->setLayout(funcLayout);
         layout->addWidget(func);
     }
-    layout->addStretch(1);
 
+    layout->addStretch(1);
     m_pageWidget->setLayout(layout);
     return m_pageWidget;
 }
@@ -96,16 +100,16 @@ void MusicPageQueryWidget::reset(int total)
         return;
     }
 
+    m_currentPage = 0;
     for(TTKClickedLabel *label : qAsConst(m_pageItems))
     {
         label->hide();
     }
-    m_currentPage = 0;
 
-    if(total > PAGE_SIZE)
+    if(total > MAX_PAGE_SIZE)
     {
-        total = PAGE_SIZE;
-        m_pageItems[PAGE_SIZE + 1]->show();
+        total = MAX_PAGE_SIZE;
+        m_pageItems[MAX_PAGE_SIZE + 1]->show();
     }
 
     for(int i = 0; i < total; ++i)
@@ -113,20 +117,18 @@ void MusicPageQueryWidget::reset(int total)
         m_pageItems[i]->setText(QString::number(i + 1));
         m_pageItems[i]->show();
     }
+
+    updateStatus();
 }
 
 void MusicPageQueryWidget::page(int index, int total)
 {
-    if(total <= 0)
+    if(total <= 0 || m_pageItems.isEmpty())
     {
         return;
     }
 
     int page = m_pageItems[0]->text().toInt();
-    for(int i = 0; i < m_pageItems.count() - 2; ++i)
-    {
-        m_pageItems[i]->setStyleSheet(TTK::UI::ColorStyle04);
-    }
 
     switch(index)
     {
@@ -146,71 +148,79 @@ void MusicPageQueryWidget::page(int index, int total)
         }
         case 10:
         {
-            page -= PAGE_SIZE;
-            TTKClickedLabel *w = m_pageItems[PAGE_SIZE];
+            page -= MAX_PAGE_SIZE;
+            TTKClickedLabel *label = m_pageItems[MAX_PAGE_SIZE];
 
-            if(total <= PAGE_SIZE)
+            if(total <= MAX_PAGE_SIZE)
             {
-                w->hide();
+                label->hide();
             }
             else
             {
-                for(int i = 0; i < PAGE_SIZE; ++i)
+                for(int i = 0; i < MAX_PAGE_SIZE; ++i)
                 {
                     m_pageItems[i]->setText(QString::number(page + i));
                     m_pageItems[i]->show();
                 }
-                (m_pageItems[0]->text().toInt() < PAGE_SIZE) ? w->hide() : w->show();
+
+                m_pageItems[0]->text().toInt() < MAX_PAGE_SIZE ? label->hide() : label->show();
             }
 
             m_currentPage = 0;
-            m_pageItems[PAGE_SIZE + 1]->show();
+            m_pageItems[MAX_PAGE_SIZE + 1]->show();
             break;
         }
         case 11:
         {
-            page += PAGE_SIZE;
-            TTKClickedLabel *w = m_pageItems[PAGE_SIZE + 1];
+            page += MAX_PAGE_SIZE;
+            TTKClickedLabel *label = m_pageItems[MAX_PAGE_SIZE + 1];
             int boundary = total - page + 1;
-                boundary = boundary < PAGE_SIZE ? boundary : PAGE_SIZE;
+                boundary = boundary < MAX_PAGE_SIZE ? boundary : MAX_PAGE_SIZE;
 
             for(int i = 0; i < boundary; ++i)
             {
                 m_pageItems[i]->setText(QString::number(page + i));
             }
 
-            if(total - page >= PAGE_SIZE)
+            if(total - page >= MAX_PAGE_SIZE)
             {
-                w->show();
+                label->show();
             }
             else
             {
-                w->hide();
-                for(int i = PAGE_SIZE - 1; i > total - page; --i)
+                label->hide();
+                //
+                for(int i = MAX_PAGE_SIZE - 1; i > total - page; --i)
                 {
                     m_pageItems[i]->hide();
                 }
             }
 
             m_currentPage = 0;
-            m_pageItems[PAGE_SIZE]->show();
+            m_pageItems[MAX_PAGE_SIZE]->show();
             break;
         }
         default: break;
     }
 
-    for(int i = 0; i < m_pageItems.count() - 2; ++i)
-    {
-        TTKClickedLabel *w = m_pageItems[i];
-        w->setFixedWidth(TTK::Widget::fontTextWidth(w->font(), w->text()));
-    }
-
-    TTKClickedLabel *w = m_pageItems[m_currentPage];
-    w->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle01);
-    w->setFixedWidth(w->width() + 5);
+    updateStatus();
 }
 
 int MusicPageQueryWidget::currentIndex() const
 {
     return m_pageItems[m_currentPage]->text().toInt();
+}
+
+void MusicPageQueryWidget::updateStatus()
+{
+    for(int i = 0; i < m_pageItems.count() - 2; ++i)
+    {
+        TTKClickedLabel *label = m_pageItems[i];
+        label->setStyleSheet(TTK::UI::ColorStyle04);
+        label->setFixedWidth(TTK::Widget::fontTextWidth(label->font(), label->text()));
+    }
+
+    TTKClickedLabel *label = m_pageItems[m_currentPage];
+    label->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle01);
+    label->setFixedWidth(label->width() + 5);
 }

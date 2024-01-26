@@ -56,6 +56,7 @@ public:
      * Get the window is popup or not.
      */
     bool isPopupMode() const;
+
     /*!
      * Resize window bound by resize called.
      */
@@ -68,10 +69,6 @@ public:
      * Resize geometry bound by resize called.
      */
     void resizeGeometry(int width, int height);
-    /*!
-     * Get search text in search line.
-     */
-    QString searchText() const;
 
 Q_SIGNALS:
     /*!

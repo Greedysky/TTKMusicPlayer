@@ -24,23 +24,23 @@ void MusicArtistListQueryCategoryItem::setCategory(const MusicResultsCategory &c
     layout->addWidget(label, 0, Qt::AlignTop);
 
     QWidget *item = new QWidget(this);
-    QGridLayout *itemlayout = new QGridLayout(item);
-    itemlayout->setContentsMargins(0, 0, 0, 0);
+    QGridLayout *itemLayout = new QGridLayout(item);
+    itemLayout->setContentsMargins(0, 0, 0, 0);
 
     TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
     for(int i = 0; i < m_category.m_items.count(); ++i)
     {
-        TTKClickedLabel *l = new TTKClickedLabel(m_category.m_items[i].m_value, item);
-        l->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle07));
-        l->setFixedSize(200, ITEM_LABEL_WIDTH);
+        TTKClickedLabel *label = new TTKClickedLabel(m_category.m_items[i].m_value, item);
+        label->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle07));
+        label->setFixedSize(200, ITEM_LABEL_WIDTH);
 
-        clickedGroup->mapped(l);
-        itemlayout->addWidget(l, i / ITEM_MAX_COLUMN, i % ITEM_MAX_COLUMN, Qt::AlignLeft);
+        clickedGroup->mapped(label);
+        itemLayout->addWidget(label, i / ITEM_MAX_COLUMN, i % ITEM_MAX_COLUMN, Qt::AlignLeft);
     }
-    item->setLayout(itemlayout);
 
+    item->setLayout(itemLayout);
     layout->addWidget(item, 0, Qt::AlignTop);
     setLayout(layout);
 }

@@ -130,8 +130,8 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                 QVariantMap value = var.toMap();
                 TTK_NETWORK_QUERY_CHECK();
 
-                MusicResultDataItem result;
-                result.m_nickName = value["className"].toString();
+                MusicResultDataItem item;
+                item.m_nickName = value["className"].toString();
 
                 for(const QVariant &var : value["fm_list"].toList())
                 {
@@ -146,10 +146,10 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                     if(!contains && value["fmId"].toString() == m_queryValue)
                     {
                         contains = true;
-                        result.m_name = value["fmName"].toString();
-                        result.m_id = value["fmId"].toString();
-                        result.m_coverUrl = value["imgUrlMv"].toString();
-                        Q_EMIT createMVRadioItem(result);
+                        item.m_name = value["fmName"].toString();
+                        item.m_id = value["fmId"].toString();
+                        item.m_coverUrl = value["imgUrlMv"].toString();
+                        Q_EMIT createMVRadioItem(item);
 
                         for(const QVariant &var : value["mvs"].toList())
                         {

@@ -41,7 +41,7 @@ void ReqKGInterface::parseFromSongAlbumLrc(TTK::MusicSongInformation *info)
             value = value["data"].toMap();
             info->m_songName = TTK::String::charactersReplace(value["songname"].toString());
             info->m_artistId = value["singerid"].toString();
-            info->m_artistName = TTK::String::charactersReplace(value["singername"].toString());
+            info->m_artistName = ReqKGInterface::makeSongArtist(value["singername"].toString());
             info->m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
             info->m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(value["songname"].toString(), info->m_songId).arg(value["duration"].toInt() * TTK_DN_S2MS);
         }
@@ -55,14 +55,14 @@ void ReqKGInterface::parseFromSongAlbumInfo(TTK::MusicSongInformation *info, con
         return;
     }
 
-    MusicResultDataItem result;
-    parseFromSongAlbumInfo(&result, info->m_songId, album);
+    MusicResultDataItem item;
+    parseFromSongAlbumInfo(&item, info->m_songId, album);
 
-    info->m_albumId = result.m_id;
-    info->m_albumName = result.m_name;
+    info->m_albumId = item.m_id;
+    info->m_albumName = item.m_name;
 }
 
-void ReqKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &hash, const QString &album)
+void ReqKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *item, const QString &hash, const QString &album)
 {
     if(hash.isEmpty() || album.isEmpty())
     {
@@ -103,11 +103,11 @@ void ReqKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, const QSt
                     }
 
                     value = al.toMap();
-                    info->m_id = value["album_id"].toString();
-                    info->m_name = TTK::String::charactersReplace(value["album_name"].toString());
-                    info->m_description = value["publish_company"].toString();
-                    info->m_updateTime = value["publish_date"].toString();
-                    info->m_category = value["language"].toString();
+                    item->m_id = value["album_id"].toString();
+                    item->m_name = TTK::String::charactersReplace(value["album_name"].toString());
+                    item->m_description = value["publish_company"].toString();
+                    item->m_updateTime = value["publish_date"].toString();
+                    item->m_category = value["language"].toString();
                     break;
                 }
             }

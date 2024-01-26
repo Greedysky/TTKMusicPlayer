@@ -163,7 +163,7 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
                     info.m_songName = TTK::String::charactersReplace(value["name"].toString());
 
                     info.m_artistId = value["artistid"].toString();
-                    info.m_artistName = TTK::String::charactersReplace(value["artist"].toString());
+                    info.m_artistName = ReqKWInterface::makeSongArtist(value["artist"].toString());
 
                     info.m_albumId = value["albumid"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["album"].toString());
@@ -203,16 +203,24 @@ void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
             const QVariantMap &value = data.toMap();
             if(value["result"].toString() == "ok")
             {
-                MusicResultDataItem result;
-                result.m_category = value["tag"].toString().replace(",", "|");
-                result.m_coverUrl = value["pic"].toString();
-                result.m_id = value["id"].toString();
-                result.m_name = value["title"].toString();
-                result.m_count = value["playnum"].toString();
-                result.m_description = value["info"].toString();
-                result.m_updateTime = TTKDateTime::format(value["ctime"].toULongLong() * TTK_DN_S2MS, TTK_YEAR_FORMAT);
-                result.m_nickName = value["uname"].toString();
-                Q_EMIT createPlaylistItem(result);
+                MusicResultDataItem item;
+                item.m_coverUrl = value["pic"].toString();
+                item.m_id = value["id"].toString();
+                item.m_name = value["title"].toString();
+                item.m_count = value["playnum"].toString();
+                item.m_description = value["info"].toString();
+                item.m_updateTime = TTKDateTime::format(value["ctime"].toULongLong() * TTK_DN_S2MS, TTK_YEAR_FORMAT);
+                item.m_nickName = value["uname"].toString();
+                item.m_category = value["tag"].toString();
+
+                if(!item.m_category.isEmpty())
+                {
+                    item.m_category.replace(",", "|");
+                    item.m_category.insert(0, "|");
+                    item.m_category.append("|");
+                }
+
+                Q_EMIT createPlaylistItem(item);
             }
         }
     }

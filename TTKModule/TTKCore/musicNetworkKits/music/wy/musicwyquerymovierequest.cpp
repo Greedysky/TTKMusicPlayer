@@ -205,7 +205,7 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
             info.m_songId = QString::number(id);
             info.m_songName = TTK::String::charactersReplace(value["name"].toString());
 
-            info.m_artistName = TTK::String::charactersReplace(value["artistName"].toString());
+            info.m_artistName = ReqWYInterface::makeSongArtist(info.m_artistName, value["artistName"].toString());
 
             info.m_coverUrl = value["cover"].toString();
             info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
@@ -283,7 +283,7 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
             info.m_songName = TTK::String::charactersReplace(value["title"].toString());
 
             const QVariantMap &artistObject = value["creator"].toMap();
-            info.m_artistName = TTK::String::charactersReplace(artistObject["nickname"].toString());
+            info.m_artistName = ReqWYInterface::makeSongArtist(info.m_artistName, artistObject["nickname"].toString());
 
             info.m_coverUrl = value["cover"].toString();
             info.m_duration = TTKTime::formatDuration(value["durationms"].toInt());
@@ -399,12 +399,12 @@ void MusicWYQueryArtistMovieRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_id = value["id"].toString();
-                    result.m_coverUrl = value["imgurl"].toString();
-                    result.m_name = value["name"].toString();
-                    result.m_updateTime.clear();
-                    Q_EMIT createMovieItem(result);
+                    MusicResultDataItem item;
+                    item.m_id = value["id"].toString();
+                    item.m_coverUrl = value["imgurl"].toString();
+                    item.m_name = value["name"].toString();
+                    item.m_updateTime.clear();
+                    Q_EMIT createMovieItem(item);
                 }
             }
         }

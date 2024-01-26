@@ -72,14 +72,14 @@ void MusicWYSongCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
+                    MusicResultDataItem item;
                     const QVariantMap &user = value["user"].toMap();
-                    result.m_nickName = user["nickname"].toString();
-                    result.m_coverUrl = user["avatarUrl"].toString();
-                    result.m_count = value["likedCount"].toString();
-                    result.m_updateTime = value["time"].toString();
-                    result.m_description = value["content"].toString();
-                    Q_EMIT createCommentItem(result);
+                    item.m_nickName = user["nickname"].toString();
+                    item.m_coverUrl = user["avatarUrl"].toString();
+                    item.m_count = value["likedCount"].toString();
+                    item.m_updateTime = value["time"].toString();
+                    item.m_description = value["content"].toString();
+                    Q_EMIT createCommentItem(item);
                 }
             }
         }
@@ -143,14 +143,14 @@ void MusicWYPlaylistCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
+                    MusicResultDataItem item;
                     const QVariantMap &user = value["user"].toMap();
-                    result.m_nickName = user["nickname"].toString();
-                    result.m_coverUrl = user["avatarUrl"].toString();
-                    result.m_count = value["likedCount"].toString();
-                    result.m_updateTime = value["time"].toString();
-                    result.m_description = value["content"].toString();
-                    Q_EMIT createCommentItem(result);
+                    item.m_nickName = user["nickname"].toString();
+                    item.m_coverUrl = user["avatarUrl"].toString();
+                    item.m_count = value["likedCount"].toString();
+                    item.m_updateTime = value["time"].toString();
+                    item.m_description = value["content"].toString();
+                    Q_EMIT createCommentItem(item);
                 }
             }
         }

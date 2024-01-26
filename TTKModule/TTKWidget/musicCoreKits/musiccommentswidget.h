@@ -45,7 +45,7 @@ public:
     /*!
      * Create cell item by input data.
      */
-    void addCellItem(const MusicResultDataItem &comments);
+    void addCellItem(const MusicResultDataItem &item);
 
 private Q_SLOTS:
     /*!
@@ -91,7 +91,7 @@ public Q_SLOTS:
     /*!
      * Create the current song comment.
      */
-    void createCommentItem(const MusicResultDataItem &comments);
+    void createCommentItem(const MusicResultDataItem &item);
     /*!
      * Page widget button has changed.
      */

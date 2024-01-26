@@ -71,13 +71,13 @@ void MusicKGSongCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_count = value["like"].toMap()["count"].toString();
-                    result.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_YEAR_TIMEZ_FORMAT);
-                    result.m_description = value["content"].toString();
-                    result.m_nickName = value["user_name"].toString();
-                    result.m_coverUrl = value["user_pic"].toString();
-                    Q_EMIT createCommentItem(result);
+                    MusicResultDataItem item;
+                    item.m_count = value["like"].toMap()["count"].toString();
+                    item.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_YEAR_TIMEZ_FORMAT);
+                    item.m_description = value["content"].toString();
+                    item.m_nickName = value["user_name"].toString();
+                    item.m_coverUrl = value["user_pic"].toString();
+                    Q_EMIT createCommentItem(item);
                 }
             }
         }
@@ -140,13 +140,13 @@ void MusicKGPlaylistCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_count = value["like"].toMap()["count"].toString();
-                    result.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_YEAR_TIMEZ_FORMAT);
-                    result.m_description = value["content"].toString();
-                    result.m_nickName = value["user_name"].toString();
-                    result.m_coverUrl = value["user_pic"].toString();
-                    Q_EMIT createCommentItem(result);
+                    MusicResultDataItem item;
+                    item.m_count = value["like"].toMap()["count"].toString();
+                    item.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_YEAR_TIMEZ_FORMAT);
+                    item.m_description = value["content"].toString();
+                    item.m_nickName = value["user_name"].toString();
+                    item.m_coverUrl = value["user_pic"].toString();
+                    Q_EMIT createCommentItem(item);
                 }
             }
         }

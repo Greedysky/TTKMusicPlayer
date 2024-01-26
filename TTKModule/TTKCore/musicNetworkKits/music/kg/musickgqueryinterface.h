@@ -83,7 +83,7 @@ namespace ReqKGInterface
     /*!
      * Read tags(album info) from query results.
      */
-    void parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &hash, const QString &album);
+    void parseFromSongAlbumInfo(MusicResultDataItem *item, const QString &hash, const QString &album);
 
     /*!
      * Read tags(size\bitrate\url) from query results.

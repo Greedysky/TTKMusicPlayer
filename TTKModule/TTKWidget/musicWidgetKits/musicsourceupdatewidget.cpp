@@ -22,34 +22,34 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     setGeometry(windowSize.width() - 240, windowSize.height() - 150, 220, 100);
 
-    QVBoxLayout *vlayout = new QVBoxLayout(m_container);
-    vlayout->setContentsMargins(5, 5, 5, 5);
+    QVBoxLayout *vLayout = new QVBoxLayout(m_container);
+    vLayout->setContentsMargins(5, 5, 5, 5);
 
     m_textLabel = new QLabel(this);
     m_textLabel->setStyleSheet(TTK::UI::ColorStyle03);
     m_textLabel->setAlignment(Qt::AlignCenter);
 
     QWidget *contain = new QWidget(this);
-    QHBoxLayout *hlayout = new QHBoxLayout(contain);
-    hlayout->setContentsMargins(0, 0, 0, 0);
+    QHBoxLayout *hLayout = new QHBoxLayout(contain);
+    hLayout->setContentsMargins(0, 0, 0, 0);
     QPushButton *updateButton = new QPushButton(tr("Update"), contain);
     QPushButton *nextTimeButton = new QPushButton(tr("Close"), contain);
     updateButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     nextTimeButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     updateButton->setFixedSize(85, 27);
     nextTimeButton->setFixedSize(85, 27);
-    hlayout->addWidget(updateButton);
-    hlayout->addWidget(nextTimeButton);
-    contain->setLayout(hlayout);
+    hLayout->addWidget(updateButton);
+    hLayout->addWidget(nextTimeButton);
+    contain->setLayout(hLayout);
 
 #ifdef Q_OS_UNIX
     updateButton->setFocusPolicy(Qt::NoFocus);
     nextTimeButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    vlayout->addWidget(m_textLabel);
-    vlayout->addWidget(contain);
-    m_container->setLayout(vlayout);
+    vLayout->addWidget(m_textLabel);
+    vLayout->addWidget(contain);
+    m_container->setLayout(vLayout);
 
     connect(updateButton, SIGNAL(clicked()), SLOT(updateSourceClicked()));
     connect(nextTimeButton, SIGNAL(clicked()), SLOT(close()));

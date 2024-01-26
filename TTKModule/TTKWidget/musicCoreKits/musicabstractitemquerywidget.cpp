@@ -144,9 +144,9 @@ void MusicAbstractItemQueryWidget::mouseReleaseEvent(QMouseEvent *event)
 void MusicAbstractItemQueryWidget::initFirstWidget()
 {
     QWidget *songWidget = new QWidget(this);
-    QVBoxLayout *vlayout = new QVBoxLayout(songWidget);
-    vlayout->setSpacing(0);
-    vlayout->setContentsMargins(0, 0, 0, 0);
+    QVBoxLayout *vLayout = new QVBoxLayout(songWidget);
+    vLayout->setSpacing(0);
+    vLayout->setContentsMargins(0, 0, 0, 0);
 
     QWidget *middleFuncWidget = new QWidget(songWidget);
     middleFuncWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
@@ -186,11 +186,10 @@ void MusicAbstractItemQueryWidget::initFirstWidget()
     connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
     connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
 
-    vlayout->addWidget(middleFuncWidget);
-    //
-    vlayout->addWidget(m_queryTableWidget);
-    vlayout->addStretch(1);
-    songWidget->setLayout(vlayout);
+    vLayout->addWidget(middleFuncWidget);
+    vLayout->addWidget(m_queryTableWidget);
+    vLayout->addStretch(1);
+    songWidget->setLayout(vLayout);
 
     m_queryTableWidget->show();
     m_container->addWidget(songWidget);
@@ -199,15 +198,15 @@ void MusicAbstractItemQueryWidget::initFirstWidget()
 void MusicAbstractItemQueryWidget::initSecondWidget()
 {
     QWidget *songWidget = new QWidget(m_container);
-    QVBoxLayout *vlayout = new QVBoxLayout(songWidget);
-    vlayout->setSpacing(0);
-    vlayout->setContentsMargins(0, 0, 0, 0);
+    QVBoxLayout *vLayout = new QVBoxLayout(songWidget);
+    vLayout->setSpacing(0);
+    vLayout->setContentsMargins(0, 0, 0, 0);
     m_infoLabel = new QLabel(this);
     m_infoLabel->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     m_infoLabel->setWordWrap(true);
     m_infoLabel->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle03);
-    vlayout->addWidget(m_infoLabel);
-    songWidget->setLayout(vlayout);
+    vLayout->addWidget(m_infoLabel);
+    songWidget->setLayout(vLayout);
     m_container->addWidget(songWidget);
 }
 

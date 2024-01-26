@@ -99,7 +99,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         m_container->addWidget(scrollArea);
 
         m_initialized = true;
-        QVBoxLayout *mainlayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
+        QVBoxLayout *mainLayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QVBoxLayout *containTopLayout = new QVBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
@@ -117,24 +117,24 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
 
         for(int i = -1; i < 27; ++i)
         {
-            TTKClickedLabel *l = new TTKClickedLabel(QString(TTKStaticCast(char, i + 65)), containNumberWidget);
-            l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(TTK::UI::ColorStyle07, TTK::UI::ColorStyle08));
+            TTKClickedLabel *label = new TTKClickedLabel(QString(TTKStaticCast(char, i + 65)), containNumberWidget);
+            label->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(TTK::UI::ColorStyle07, TTK::UI::ColorStyle08));
 
             if(i == -1)
             {
-                l->setText(tr("Hot"));
+                label->setText(tr("Hot"));
             }
             else if(i == 26)
             {
-                l->setText(tr("#"));
+                label->setText(tr("#"));
             }
 
-            clickedGroup->mapped(l);
-            containNumberLayout->addWidget(l);
+            clickedGroup->mapped(label);
+            containNumberLayout->addWidget(label);
         }
+
         containNumberWidget->setLayout(containNumberLayout);
         containTopLayout->addWidget(containNumberWidget);
-        //
         containTopWidget->setLayout(containTopLayout);
 
         QFrame *line = new QFrame(m_mainWindow);
@@ -146,15 +146,15 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         m_gridLayout->setVerticalSpacing(15);
         containWidget->setLayout(m_gridLayout);
 
-        mainlayout->addWidget(containTopWidget);
-        mainlayout->addWidget(line);
-        mainlayout->addWidget(containWidget);
+        mainLayout->addWidget(containTopWidget);
+        mainLayout->addWidget(line);
+        mainLayout->addWidget(containWidget);
 
         m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
         connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, m_networkRequest->pageTotalSize()));
-        mainlayout->addStretch(1);
+        mainLayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, m_networkRequest->pageTotalSize()));
+        mainLayout->addStretch(1);
     }
 
     if(m_categoryChanged && m_pageQueryWidget)
@@ -182,8 +182,8 @@ void MusicArtistListQueryWidget::categoryChanged(const MusicResultsCategoryItem 
 {
     if(m_categoryButton)
     {
-        m_categoryId = category.m_key;
         m_value.clear();
+        m_categoryId = category.m_key;
 
         m_categoryButton->setText(category.m_value);
         m_categoryButton->closeMenu();
@@ -213,8 +213,7 @@ void MusicArtistListQueryWidget::numberButtonClicked(int index)
         m_gridLayout->removeWidget(w);
         delete w;
     }
-    m_categoryChanged = true;
 
-    const QString &v = QString("%1%2%3").arg(m_categoryId, TTK_SPLITER).arg(index);
-    m_networkRequest->startToSearch(v);
+    m_categoryChanged = true;
+    m_networkRequest->startToSearch(QString("%1%2%3").arg(m_categoryId, TTK_SPLITER).arg(index));
 }

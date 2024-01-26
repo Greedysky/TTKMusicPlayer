@@ -90,10 +90,10 @@ void MusicKGQueryArtistListRequest::downLoadFinished()
                             value = sg.toMap();
                             TTK_NETWORK_QUERY_CHECK();
 
-                            MusicResultDataItem result;
-                            result.m_id = value["singerid"].toString();
-                            result.m_name = value["singername"].toString();
-                            Q_EMIT createArtistListItem(result);
+                            MusicResultDataItem item;
+                            item.m_id = value["singerid"].toString();
+                            item.m_name = value["singername"].toString();
+                            Q_EMIT createArtistListItem(item);
                         }
                         break;
                     }

@@ -332,12 +332,12 @@ void MusicKGQueryArtistMovieRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_id = value["hash"].toString();
-                    result.m_coverUrl = value["imgurl"].toString();
-                    result.m_name = value["filename"].toString();
-                    result.m_updateTime.clear();
-                    Q_EMIT createMovieItem(result);
+                    MusicResultDataItem item;
+                    item.m_id = value["hash"].toString();
+                    item.m_coverUrl = value["imgurl"].toString();
+                    item.m_name = value["filename"].toString();
+                    item.m_updateTime.clear();
+                    Q_EMIT createMovieItem(item);
                 }
             }
         }

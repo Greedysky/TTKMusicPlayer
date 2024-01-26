@@ -92,9 +92,13 @@ void MusicKGQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
                 }
 
                 value = var.toMap();
-                TTK_NETWORK_QUERY_CHECK();
 
                 item.m_category.append(value["tagname"].toString() + "|");
+            }
+
+            if(!item.m_category.isEmpty())
+            {
+                item.m_category.insert(0, "|");
             }
         }
     }
@@ -129,15 +133,15 @@ void MusicKGQueryPlaylistRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
-                    result.m_id = value["specialid"].toString();
-                    result.m_name = value["specialname"].toString();
-                    result.m_count = value["playcount"].toString();
-                    result.m_description = value["intro"].toString();
-                    result.m_updateTime = value["publishtime"].toString();
-                    result.m_nickName = value["username"].toString();
-                    Q_EMIT createPlaylistItem(result);
+                    MusicResultDataItem item;
+                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
+                    item.m_id = value["specialid"].toString();
+                    item.m_name = value["specialname"].toString();
+                    item.m_count = value["playcount"].toString();
+                    item.m_description = value["intro"].toString();
+                    item.m_updateTime = value["publishtime"].toString();
+                    item.m_nickName = value["username"].toString();
+                    Q_EMIT createPlaylistItem(item);
                 }
             }
         }

@@ -101,12 +101,12 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                     if(!m_artistFound)
                     {
                         m_artistFound = true;
-                        MusicResultDataItem result;
+                        MusicResultDataItem item;
                         TTK_NETWORK_QUERY_CHECK();
-                        queryArtistIntro(&result);
+                        queryArtistIntro(&item);
                         TTK_NETWORK_QUERY_CHECK();
 
-                        result.m_nickName.clear();
+                        item.m_nickName.clear();
                         const QVariantList &aliasArray = artistObject["alias"].toList();
                         for(const QVariant &aliasValue : qAsConst(aliasArray))
                         {
@@ -115,23 +115,23 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                                 continue;
                             }
 
-                            result.m_nickName += aliasValue.toString() + ",";
+                            item.m_nickName += aliasValue.toString() + ",";
                         }
 
-                        if(!result.m_nickName.isEmpty())
+                        if(!item.m_nickName.isEmpty())
                         {
-                            result.m_nickName.chop(1);
+                            item.m_nickName.chop(1);
                         }
                         else
                         {
-                            result.m_nickName = TTK_DEFAULT_STR;
+                            item.m_nickName = TTK_DEFAULT_STR;
                         }
 
-                        result.m_id = info.m_artistId;
-                        result.m_name = info.m_artistName;
-                        result.m_coverUrl = info.m_coverUrl;
-                        result.m_updateTime = TTKDateTime::format(artistObject["publishTime"].toLongLong(), TTK_YEAR_FORMAT);
-                        Q_EMIT createArtistItem(result);
+                        item.m_id = info.m_artistId;
+                        item.m_name = info.m_artistName;
+                        item.m_coverUrl = info.m_coverUrl;
+                        item.m_updateTime = TTKDateTime::format(artistObject["publishTime"].toLongLong(), TTK_YEAR_FORMAT);
+                        Q_EMIT createArtistItem(item);
                     }
 
                     Q_EMIT createResultItem({info, serverToString()});

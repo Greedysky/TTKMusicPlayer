@@ -63,7 +63,13 @@ Q_SIGNALS:
      */
     void clicked(int index);
 
-protected:
+private:
+    /*!
+     * Update button status.
+     */
+    void updateStatus();
+
+private:
     int m_currentPage;
     QWidget *m_pageWidget;
     QList<TTKClickedLabel*> m_pageItems;

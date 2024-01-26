@@ -85,15 +85,15 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                     if(!m_artistFound)
                     {
                         m_artistFound = true;
-                        MusicResultDataItem result;
+                        MusicResultDataItem item;
                         TTK_NETWORK_QUERY_CHECK();
-                        queryArtistIntro(&result);
+                        queryArtistIntro(&item);
                         TTK_NETWORK_QUERY_CHECK();
 
-                        result.m_id = info.m_artistId;
-                        result.m_name = info.m_artistName;
-                        result.m_coverUrl = info.m_coverUrl;
-                        Q_EMIT createArtistItem(result);
+                        item.m_id = info.m_artistId;
+                        item.m_name = info.m_artistName;
+                        item.m_coverUrl = info.m_coverUrl;
+                        Q_EMIT createArtistItem(item);
                     }
 
                     Q_EMIT createResultItem({info, serverToString()});

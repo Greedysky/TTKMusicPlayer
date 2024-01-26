@@ -60,8 +60,7 @@ void MusicAlbumQueryWidget::resizeWidget()
 
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN + 180;
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
 
         TTKResizeWidget *data = &m_resizeWidgets[1];
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width + 30));
@@ -150,8 +149,7 @@ void MusicAlbumQueryWidget::createAlbumItem(const MusicResultDataItem &item)
             }
         }
 
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN + 180;
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setText(tr("<font color=#158FE1> Alubm > %1 </font>").arg(list[0]));
@@ -291,14 +289,14 @@ void MusicAlbumQueryWidget::createLabels()
 
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
-    QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
+    QHBoxLayout *hLayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
-    hlayout->addWidget(m_songButton);
-    hlayout->addStretch(1);
-    functionWidget->setLayout(hlayout);
+    hLayout->addWidget(m_songButton);
+    hLayout->addStretch(1);
+    functionWidget->setLayout(hLayout);
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_songButton, 0);

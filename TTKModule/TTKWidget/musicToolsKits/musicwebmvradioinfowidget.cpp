@@ -136,8 +136,7 @@ void MusicWebMVRadioInfoWidget::resizeWidget()
 
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN + 390;
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
@@ -167,8 +166,7 @@ void MusicWebMVRadioInfoWidget::createMVRadioProgramItem(const MusicResultDataIt
             d->startToRequest(item.m_coverUrl);
         }
 
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN + 390;
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setToolTip(item.m_name);
@@ -247,14 +245,14 @@ void MusicWebMVRadioInfoWidget::createLabels()
 
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
-    QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
+    QHBoxLayout *hLayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
-    hlayout->addWidget(m_songButton);
-    hlayout->addStretch(1);
-    functionWidget->setLayout(hlayout);
+    hLayout->addWidget(m_songButton);
+    hLayout->addStretch(1);
+    functionWidget->setLayout(hLayout);
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_songButton, 0);
@@ -279,9 +277,9 @@ void MusicWebMVRadioInfoWidget::createLabels()
 void MusicWebMVRadioInfoWidget::initThirdWidget()
 {
     QWidget *songWidget = new QWidget(this);
-    QVBoxLayout *vlayout = new QVBoxLayout(songWidget);
-    vlayout->setSpacing(0);
-    vlayout->setContentsMargins(0, 0, 0, 0);
+    QVBoxLayout *vLayout = new QVBoxLayout(songWidget);
+    vLayout->setSpacing(0);
+    vLayout->setContentsMargins(0, 0, 0, 0);
 
     QWidget *middleFuncWidget = new QWidget(songWidget);
     middleFuncWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
@@ -306,11 +304,10 @@ void MusicWebMVRadioInfoWidget::initThirdWidget()
     connect(allCheckBox, SIGNAL(clicked(bool)), m_queryTableWidget, SLOT(checkedItemsState(bool)));
     connect(downloadButton, SIGNAL(clicked()), SLOT(downloadMVsButtonClicked()));
 
-    vlayout->addWidget(middleFuncWidget);
-    //
-    vlayout->addWidget(m_queryTableWidget);
-    vlayout->addStretch(1);
-    songWidget->setLayout(vlayout);
+    vLayout->addWidget(middleFuncWidget);
+    vLayout->addWidget(m_queryTableWidget);
+    vLayout->addStretch(1);
+    songWidget->setLayout(vLayout);
 
     m_queryTableWidget->show();
     m_container->addWidget(songWidget);

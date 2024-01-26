@@ -79,10 +79,10 @@ void MusicWYQueryArtistListRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_id = value["id"].toString();
-                    result.m_name = value["name"].toString();
-                    Q_EMIT createArtistListItem(result);
+                    MusicResultDataItem item;
+                    item.m_id = value["id"].toString();
+                    item.m_name = value["name"].toString();
+                    Q_EMIT createArtistListItem(item);
                 }
             }
         }

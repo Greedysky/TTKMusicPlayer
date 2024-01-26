@@ -44,11 +44,11 @@ void MusicMVRadioCategoryRequest::downLoadFinished()
                         value = var.toMap();
                         TTK_NETWORK_QUERY_CHECK();
 
-                        MusicResultDataItem result;
-                        result.m_name = value["fmName"].toString();
-                        result.m_id = value["fmId"].toString();
-                        result.m_coverUrl = value["imgUrlMv"].toString();
-                        Q_EMIT createMVRadioItem(result);
+                        MusicResultDataItem item;
+                        item.m_name = value["fmName"].toString();
+                        item.m_id = value["fmId"].toString();
+                        item.m_coverUrl = value["imgUrlMv"].toString();
+                        Q_EMIT createMVRadioItem(item);
                     }
                 }
             }

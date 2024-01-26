@@ -122,8 +122,8 @@ void MusicKGQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
         if(value.contains("data"))
         {
             value = value["data"].toMap();
-            MusicResultDataItem result;
-            result.m_updateTime = TTKDateTime::format(value["timestamp"].toLongLong() * TTK_DN_S2MS, TTK_YEAR_FORMAT);
+            MusicResultDataItem item;
+            item.m_updateTime = TTKDateTime::format(value["timestamp"].toLongLong() * TTK_DN_S2MS, TTK_YEAR_FORMAT);
 
             const QVariantList &datas = value["info"].toList();
             for(const QVariant &var : qAsConst(datas))
@@ -141,11 +141,11 @@ void MusicKGQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
                     continue;
                 }
 
-                result.m_name = value["rankname"].toString();
-                result.m_coverUrl = value["banner7url"].toString().replace("{size}", "400");
-                result.m_count = value["play_times"].toString();
-                result.m_description = value["intro"].toString();
-                Q_EMIT createToplistItem(result);
+                item.m_name = value["rankname"].toString();
+                item.m_coverUrl = value["banner7url"].toString().replace("{size}", "400");
+                item.m_count = value["play_times"].toString();
+                item.m_description = value["intro"].toString();
+                Q_EMIT createToplistItem(item);
                 return;
             }
         }

@@ -71,7 +71,7 @@ Q_SIGNALS:
     /*!
      * Add current network music buffer to playlist.
      */
-    void songBufferToPlaylist(const MusicResultDataItem &songItem);
+    void songBufferToPlaylist(const MusicResultDataItem &item);
 
 public Q_SLOTS:
     /*!

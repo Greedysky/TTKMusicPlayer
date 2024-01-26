@@ -53,8 +53,7 @@ void MusicWebDJRadioInfoWidget::resizeWidget()
 
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN + 390;
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
@@ -90,8 +89,7 @@ void MusicWebDJRadioInfoWidget::createProgramCategoryItem(const MusicResultDataI
             d->startToRequest(item.m_coverUrl);
         }
 
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN + 390;
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setToolTip(item.m_name);
@@ -178,14 +176,14 @@ void MusicWebDJRadioInfoWidget::createLabels()
     //
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
-    QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
+    QHBoxLayout *hLayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
-    hlayout->addWidget(m_songButton);
-    hlayout->addStretch(1);
-    functionWidget->setLayout(hlayout);
+    hLayout->addWidget(m_songButton);
+    hLayout->addStretch(1);
+    functionWidget->setLayout(hLayout);
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_songButton, 0);

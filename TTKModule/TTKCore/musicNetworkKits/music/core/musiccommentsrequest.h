@@ -43,7 +43,7 @@ Q_SIGNALS:
     /*!
      * Create the current song comment.
      */
-    void createCommentItem(const MusicResultDataItem &comments);
+    void createCommentItem(const MusicResultDataItem &item);
 
 protected:
     QString m_id;

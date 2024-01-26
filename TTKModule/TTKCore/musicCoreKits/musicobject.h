@@ -227,23 +227,23 @@ namespace TTK
         QString m_url;
         QString m_size;
 
-        MusicSongProperty()
+        MusicSongProperty() noexcept
             : m_bitrate(-1)
         {
 
         }
 
-        inline bool isEmpty() const
+        inline bool isEmpty() const noexcept
         {
             return m_url.isEmpty();
         }
 
-        inline bool operator< (const MusicSongProperty &other) const
+        inline bool operator< (const MusicSongProperty &other) const noexcept
         {
             return m_bitrate < other.m_bitrate;
         }
 
-        inline bool operator== (const MusicSongProperty &other) const
+        inline bool operator== (const MusicSongProperty &other) const noexcept
         {
             return m_bitrate == other.m_bitrate || m_url == other.m_url;
         }
@@ -260,11 +260,16 @@ namespace TTK
         QString m_name;
 
         MusicArtistProperty() = default;
-        MusicArtistProperty(const QString &id, const QString &name)
+        MusicArtistProperty(const QString &id, const QString &name) noexcept
             : m_id(id),
               m_name(name)
         {
 
+        }
+
+        inline bool isEmpty() const noexcept
+        {
+            return m_id.isEmpty() || m_name.isEmpty();
         }
     };
     TTK_DECLARE_LIST(MusicArtistProperty);

@@ -51,13 +51,13 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("album"))
             {
-                MusicResultDataItem result;
+                MusicResultDataItem item;
                 const QVariantMap &albumValue = value["album"].toMap();
-                result.m_coverUrl = albumValue["picUrl"].toString();
-                result.m_count = albumValue["name"].toString();
-                result.m_description = albumValue["company"].toString();
-                result.m_updateTime = TTKDateTime::format(albumValue["publishTime"].toULongLong(), TTK_YEAR_FORMAT);
-                result.m_category = albumValue["language"].toString();
+                item.m_coverUrl = albumValue["picUrl"].toString();
+                item.m_count = albumValue["name"].toString();
+                item.m_description = albumValue["company"].toString();
+                item.m_updateTime = TTKDateTime::format(albumValue["publishTime"].toULongLong(), TTK_YEAR_FORMAT);
+                item.m_category = albumValue["language"].toString();
 
                 const QVariantList &datas = value["songs"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -108,9 +108,9 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                     if(!m_albumFound)
                     {
                         m_albumFound = true;
-                        result.m_id = info.m_albumId;
-                        result.m_name = info.m_artistName;
-                        Q_EMIT createAlbumItem(result);
+                        item.m_id = info.m_albumId;
+                        item.m_name = info.m_artistName;
+                        Q_EMIT createAlbumItem(item);
                     }
 
                     Q_EMIT createResultItem({info, serverToString()});
@@ -180,12 +180,12 @@ void MusicWYQueryArtistAlbumRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_id = value["id"].toString();
-                    result.m_coverUrl = ReqWYInterface::makeCoverPixmapUrl(value["picUrl"].toString());
-                    result.m_name = value["name"].toString();
-                    result.m_updateTime = TTKDateTime::format(value["publishTime"].toULongLong(), TTK_YEARD_FORMAT);
-                    Q_EMIT createAlbumItem(result);
+                    MusicResultDataItem item;
+                    item.m_id = value["id"].toString();
+                    item.m_coverUrl = ReqWYInterface::makeCoverPixmapUrl(value["picUrl"].toString());
+                    item.m_name = value["name"].toString();
+                    item.m_updateTime = TTKDateTime::format(value["publishTime"].toULongLong(), TTK_YEARD_FORMAT);
+                    Q_EMIT createAlbumItem(item);
                 }
             }
         }

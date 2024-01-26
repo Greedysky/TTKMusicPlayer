@@ -50,7 +50,7 @@ void MusicDownloadBackgroundRequest::findAllPlugins()
         case 1: d = new MusicKWDownloadBackgroundRequest(m_name, m_path, this); break;
         case 2: d = new MusicTXDownloadBackgroundRequest(m_name, m_path, this); break;
         case 3: d = new MusicBPDownloadBackgroundRequest(m_name, m_path, this); break;
-        default: deleteLater(); break;
+        default: break;
     }
 
     if(d)

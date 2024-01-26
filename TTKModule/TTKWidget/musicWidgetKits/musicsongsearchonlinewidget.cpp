@@ -264,20 +264,20 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
     {
         const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
 
-        MusicResultDataItem result;
-        result.m_name = TTK::generateSongName(item(row, 1)->toolTip(), item(row, 2)->toolTip());
-        result.m_updateTime = songInfo.m_duration;
-        result.m_id = songInfo.m_songId;
-        result.m_nickName = prop.m_url;
-        result.m_description = prop.m_format;
-        result.m_count = prop.m_size;
-        result.m_category = play ? MUSIC_PLAY_NOW : MUSIC_PLAY_LATER;
+        MusicResultDataItem item;
+        item.m_name = TTK::generateSongName(this->item(row, 1)->toolTip(), this->item(row, 2)->toolTip());
+        item.m_updateTime = songInfo.m_duration;
+        item.m_id = songInfo.m_songId;
+        item.m_nickName = prop.m_url;
+        item.m_description = prop.m_format;
+        item.m_count = prop.m_size;
+        item.m_category = play ? MUSIC_PLAY_NOW : MUSIC_PLAY_LATER;
 
         if(m_networkRequest)
         {
-            result.m_id = m_networkRequest->queryServer() + result.m_id;
+            item.m_id = m_networkRequest->queryServer() + item.m_id;
         }
-        Q_EMIT songBufferToPlaylist(result);
+        Q_EMIT songBufferToPlaylist(item);
     }
 }
 

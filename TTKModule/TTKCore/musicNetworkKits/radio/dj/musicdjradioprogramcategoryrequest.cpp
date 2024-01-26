@@ -89,13 +89,14 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultDataItem result;
-                    result.m_id = value["id"].toString();
-                    result.m_coverUrl = value["picUrl"].toString();
-                    result.m_name = value["name"].toString();
+                    MusicResultDataItem item;
+                    item.m_id = value["id"].toString();
+                    item.m_coverUrl = value["picUrl"].toString();
+                    item.m_name = value["name"].toString();
+
                     value = value["dj"].toMap();
-                    result.m_nickName = value["nickname"].toString();
-                    Q_EMIT createProgramItem(result);
+                    item.m_nickName = value["nickname"].toString();
+                    Q_EMIT createProgramItem(item);
                 }
             }
         }
@@ -141,7 +142,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
 
                     const QVariantMap &radioObject = value["radio"].toMap();
                     info.m_artistId = radioObject["id"].toString();
-                    info.m_artistName = TTK::String::charactersReplace(radioObject["name"].toString());
+                    info.m_artistName = ReqWYInterface::makeSongArtist(info.m_artistName, radioObject["name"].toString());
 
                     info.m_coverUrl = radioObject["picUrl"].toString();
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
@@ -153,13 +154,13 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                     if(!categoryFound)
                     {
                         categoryFound = true;
-                        MusicResultDataItem result;
-                        result.m_name = info.m_songName;
-                        result.m_nickName = info.m_artistName;
-                        result.m_coverUrl = info.m_coverUrl;
-                        result.m_count = radioObject["subCount"].toString();
-                        result.m_updateTime = TTKDateTime::format(value["createTime"].toULongLong(), TTK_YEAR_FORMAT);
-                        Q_EMIT createCategoryItem(result);
+                        MusicResultDataItem item;
+                        item.m_name = info.m_songName;
+                        item.m_nickName = info.m_artistName;
+                        item.m_coverUrl = info.m_coverUrl;
+                        item.m_count = radioObject["subCount"].toString();
+                        item.m_updateTime = TTKDateTime::format(value["createTime"].toULongLong(), TTK_YEAR_FORMAT);
+                        Q_EMIT createCategoryItem(item);
                     }
 
                     Q_EMIT createResultItem({info, serverToString()});

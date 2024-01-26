@@ -209,11 +209,6 @@ void MusicVideoPlayWidget::resizeGeometry(int width, int height)
     m_videoFloatWidget->resizeGeometry(width, height);
 }
 
-QString MusicVideoPlayWidget::searchText() const
-{
-    return m_searchEdit->editor()->text();
-}
-
 void MusicVideoPlayWidget::switchToSearchTable()
 {
     QHBoxLayout *topLayout = TTKObjectCast(QHBoxLayout*, m_topWidget->layout());

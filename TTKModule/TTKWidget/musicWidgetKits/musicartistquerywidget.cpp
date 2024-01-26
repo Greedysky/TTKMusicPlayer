@@ -344,8 +344,7 @@ void MusicArtistQueryWidget::resizeWidget()
 
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN + 180;
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
 
         TTKResizeWidget *data = &m_resizeWidgets[1];
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
@@ -471,8 +470,7 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
             d->startToRequest(item.m_coverUrl);
         }
 
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN + 180;
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setText(tr("<font color=#158FE1> Artist > %1 </font>").arg(item.m_name));
@@ -600,29 +598,29 @@ void MusicArtistQueryWidget::createLabels()
     //
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
-    QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
+    QHBoxLayout *hLayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
-    hlayout->addWidget(m_songButton);
+    hLayout->addWidget(m_songButton);
     QPushButton *infoButton = new QPushButton(functionWidget);
     infoButton->setText(tr("Info"));
     infoButton->setFixedSize(100, 25);
     infoButton->setCursor(QCursor(Qt::PointingHandCursor));
-    hlayout->addWidget(infoButton);
+    hLayout->addWidget(infoButton);
     QPushButton *albumsButton = new QPushButton(functionWidget);
     albumsButton->setText(tr("Albums"));
     albumsButton->setFixedSize(100, 25);
     albumsButton->setCursor(QCursor(Qt::PointingHandCursor));
-    hlayout->addWidget(albumsButton);
+    hLayout->addWidget(albumsButton);
     QPushButton *mvsButton = new QPushButton(functionWidget);
     mvsButton->setText(tr("Movies"));
     mvsButton->setFixedSize(100, 25);
     mvsButton->setCursor(QCursor(Qt::PointingHandCursor));
-    hlayout->addWidget(mvsButton);
-    hlayout->addStretch(1);
-    functionWidget->setLayout(hlayout);
+    hLayout->addWidget(mvsButton);
+    hLayout->addStretch(1);
+    functionWidget->setLayout(hLayout);
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_songButton, 0);

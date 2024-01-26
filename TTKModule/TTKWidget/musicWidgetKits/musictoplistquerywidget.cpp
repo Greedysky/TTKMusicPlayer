@@ -46,8 +46,7 @@ MusicToplistQueryWidget::~MusicToplistQueryWidget()
 void MusicToplistQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
-    d->startToSearch({});
+    m_queryTableWidget->queryInput()->startToSearch({});
     createLabels();
 }
 
@@ -57,8 +56,7 @@ void MusicToplistQueryWidget::resizeWidget()
 
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN + 410;
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 410;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
@@ -138,23 +136,21 @@ void MusicToplistQueryWidget::createLabels()
     topLineLayout->addWidget(descriptionLabel);
     topLineWidget->setLayout(topLineLayout);
 
-    //
     topFuncLayout->addWidget(m_iconLabel);
     topFuncLayout->addWidget(topLineWidget);
     topFuncWidget->setLayout(topFuncLayout);
     grid->addWidget(topFuncWidget);
-    //
 
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
-    QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
+    QHBoxLayout *hLayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
-    hlayout->addWidget(m_songButton);
-    hlayout->addStretch(1);
-    functionWidget->setLayout(hlayout);
+    hLayout->addWidget(m_songButton);
+    hLayout->addStretch(1);
+    functionWidget->setLayout(hLayout);
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_songButton, 0);
     QtButtonGroupConnect(buttonGroup, m_container, setCurrentIndex, TTK_SLOT);
@@ -180,8 +176,7 @@ void MusicToplistQueryWidget::createToplistItem(const MusicResultDataItem &item)
 {
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN + 410;
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 410;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setToolTip(item.m_name);
@@ -216,7 +211,6 @@ void MusicToplistQueryWidget::categoryChanged(const MusicResultsCategoryItem &ca
         m_categoryButton->closeMenu();
 
         m_songButton->setText(tr("SongItems"));
-        MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
-        d->startToSearch(category.m_key);
+        m_queryTableWidget->queryInput()->startToSearch(category.m_key);
     }
 }

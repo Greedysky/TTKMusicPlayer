@@ -120,18 +120,18 @@ MusicCommentsItem::~MusicCommentsItem()
     delete m_starLabel;
 }
 
-void MusicCommentsItem::addCellItem(const MusicResultDataItem &comments)
+void MusicCommentsItem::addCellItem(const MusicResultDataItem &item)
 {
-    m_userName->setText(comments.m_nickName + ":");
+    m_userName->setText(item.m_nickName + ":");
     m_userName->setFixedWidth(TTK::Widget::fontTextWidth(m_userName->font(), m_userName->text()));
-    m_timerLabel->setText(TTKDateTime::format(comments.m_updateTime.toULongLong(), TTK_YEAR_TIMEZ_FORMAT));
+    m_timerLabel->setText(TTKDateTime::format(item.m_updateTime.toULongLong(), TTK_YEAR_TIMEZ_FORMAT));
     m_timerLabel->setFixedWidth(TTK::Widget::fontTextWidth(m_timerLabel->font(), m_timerLabel->text()));
-    m_starLabel->setText(QString("(%1)").arg(comments.m_count));
-    m_userCommit->setText(comments.m_description);
+    m_starLabel->setText(QString("(%1)").arg(item.m_count));
+    m_userCommit->setText(item.m_description);
 
     MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startToRequest(comments.m_coverUrl);
+    d->startToRequest(item.m_coverUrl);
 }
 
 void MusicCommentsItem::downLoadFinished(const QByteArray &bytes)
@@ -312,18 +312,18 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     initLabel(name, m_networkRequest->totalSize());
 }
 
-void MusicCommentsWidget::createCommentItem(const MusicResultDataItem &comments)
+void MusicCommentsWidget::createCommentItem(const MusicResultDataItem &item)
 {
-    MusicCommentsItem *item = new MusicCommentsItem(m_messageComments);
-    item->addCellItem(comments);
-    m_commentsItems << item;
+    MusicCommentsItem *comment = new MusicCommentsItem(m_messageComments);
+    comment->addCellItem(item);
+    m_commentsItems << comment;
 
     QVBoxLayout *layout = TTKObjectCast(QVBoxLayout*, m_messageComments->layout());
-    layout->insertWidget(layout->count() - 1, item);
+    layout->insertWidget(layout->count() - 1, comment);
 
     if(!m_isPain)
     {
-        setFixedHeight(height() + item->height());
+        setFixedHeight(height() + comment->height());
     }
 }
 

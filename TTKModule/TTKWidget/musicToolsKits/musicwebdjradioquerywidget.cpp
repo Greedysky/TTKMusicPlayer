@@ -121,9 +121,9 @@ void MusicWebDJRadioQueryWidget::setCurrentValue(const QString &value)
 void MusicWebDJRadioQueryWidget::setCurrentID(const QString &id)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(id);
-    MusicResultDataItem result;
-    result.m_id = id;
-    currentRadioClicked(result);
+    MusicResultDataItem item;
+    item.m_id = id;
+    currentRadioClicked(item);
 }
 
 void MusicWebDJRadioQueryWidget::resizeWidget()
@@ -161,7 +161,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
         m_container->addWidget(scrollArea);
 
         m_initialized = true;
-        QVBoxLayout *mainlayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
+        QVBoxLayout *mainLayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
@@ -187,15 +187,15 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
         m_gridLayout->setVerticalSpacing(35);
         containWidget->setLayout(m_gridLayout);
 
-        mainlayout->addWidget(containTopWidget);
-        mainlayout->addWidget(line);
-        mainlayout->addWidget(containWidget);
+        mainLayout->addWidget(containTopWidget);
+        mainLayout->addWidget(line);
+        mainLayout->addWidget(containWidget);
 
         m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
         connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, m_networkRequest->pageTotalSize()));
-        mainlayout->addStretch(1);
+        mainLayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, m_networkRequest->pageTotalSize()));
+        mainLayout->addStretch(1);
     }
 
     if(m_pageQueryWidget)

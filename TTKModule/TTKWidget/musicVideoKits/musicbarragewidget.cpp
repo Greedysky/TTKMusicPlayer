@@ -93,9 +93,9 @@ void MusicBarrageWidget::stop()
 void MusicBarrageWidget::setSize(const QSize &size)
 {
     m_parentSize = size;
-    for(MusicBarrageAnimation *anima : qAsConst(m_animations))
+    for(MusicBarrageAnimation *animation : qAsConst(m_animations))
     {
-        anima->setSize(size);
+        animation->setSize(size);
     }
 }
 

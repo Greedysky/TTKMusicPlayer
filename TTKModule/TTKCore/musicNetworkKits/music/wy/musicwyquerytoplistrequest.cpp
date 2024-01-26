@@ -120,11 +120,11 @@ void MusicWYQueryToplistRequest::downLoadFinished()
 
 void MusicWYQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
 {
-    MusicResultDataItem result;
-    result.m_name = input["name"].toString();
-    result.m_coverUrl = input["coverImgUrl"].toString();
-    result.m_count = input["playCount"].toString();
-    result.m_description = input["description"].toString();
-    result.m_updateTime = TTKDateTime::format(input["updateTime"].toULongLong(), TTK_YEAR_FORMAT);
-    Q_EMIT createToplistItem(result);
+    MusicResultDataItem item;
+    item.m_name = input["name"].toString();
+    item.m_coverUrl = input["coverImgUrl"].toString();
+    item.m_count = input["playCount"].toString();
+    item.m_description = input["description"].toString();
+    item.m_updateTime = TTKDateTime::format(input["updateTime"].toULongLong(), TTK_YEAR_FORMAT);
+    Q_EMIT createToplistItem(item);
 }
