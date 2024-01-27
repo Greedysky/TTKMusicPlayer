@@ -34,13 +34,13 @@ namespace TTK
     namespace Widget
     {
         /*!
-         * Set widget label font.
+         * Set widget font.
          */
-        TTK_MODULE_EXPORT void setLabelFontSize(QWidget *widget, int size);
+        TTK_MODULE_EXPORT void setFontSize(QWidget *widget, int size);
         /*!
-         * Set widget label font.
+         * Set widget font style.
          */
-        TTK_MODULE_EXPORT void setLabelFontStyle(QWidget *widget, TTK::FontStyleMode type);
+        TTK_MODULE_EXPORT void setFontStyle(QWidget *widget, TTK::FontStyleMode type);
 
         /*!
          * Set text elided text by font.

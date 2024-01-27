@@ -224,7 +224,7 @@ QLabel *MusicBarrageWidget::createLabel(const MusicBarrageRecord &record)
     label->setStyleSheet(QString("QLabel{ color:%1; }").arg(record.m_color));
     label->setText(record.m_value);
 
-    TTK::Widget::setLabelFontSize(label, record.m_size);
+    TTK::Widget::setFontSize(label, record.m_size);
     label->resize(TTK::Widget::fontTextWidth(label->font(), label->text()), TTK::Widget::fontTextHeight(label->font()));
     label->hide();
     m_labels << label;

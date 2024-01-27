@@ -682,8 +682,8 @@ void MusicLrcContainerForInterior::revertTimeSpeed(qint64 pos)
 void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
 {
     m_noLrcCurrentInfo = new TTKClickedLabel(this);
-    TTK::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
-    TTK::Widget::setLabelFontStyle(m_noLrcCurrentInfo, TTK::FontStyleMode::Underline);
+    TTK::Widget::setFontSize(m_noLrcCurrentInfo, 15);
+    TTK::Widget::setFontStyle(m_noLrcCurrentInfo, TTK::FontStyleMode::Underline);
     m_noLrcCurrentInfo->setStyleSheet(TTK::UI::ColorStyle12);
     m_noLrcCurrentInfo->setText(tr("Lrc Make"));
 

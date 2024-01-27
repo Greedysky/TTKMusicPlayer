@@ -14,7 +14,7 @@ MusicOpenFileWidget::MusicOpenFileWidget(QWidget *parent)
     TTKClickedLabel *uploadFile = new TTKClickedLabel(this);
     uploadFile->setText(tr("Open File"));
     uploadFile->setStyleSheet(TTK::UI::ColorStyle02);
-    TTK::Widget::setLabelFontStyle(uploadFile, TTK::FontStyleMode::Underline);
+    TTK::Widget::setFontStyle(uploadFile, TTK::FontStyleMode::Underline);
     connect(uploadFile, SIGNAL(clicked()), SIGNAL(uploadFileClicked()));
 
     QLabel *uploadDirIcon = new QLabel(this);
@@ -22,7 +22,7 @@ MusicOpenFileWidget::MusicOpenFileWidget(QWidget *parent)
     TTKClickedLabel *uploadDir = new TTKClickedLabel(this);
     uploadDir->setText(tr("Open Dir"));
     uploadDir->setStyleSheet(TTK::UI::ColorStyle02);
-    TTK::Widget::setLabelFontStyle(uploadDir, TTK::FontStyleMode::Underline);
+    TTK::Widget::setFontStyle(uploadDir, TTK::FontStyleMode::Underline);
     connect(uploadDir, SIGNAL(clicked()), SIGNAL(uploadDirClicked()));
 
     layout->addWidget(uploadFileIcon, 0, 0, Qt::AlignRight);

@@ -7,14 +7,14 @@
 #include <QScrollArea>
 #include <QStyledItemDelegate>
 
-void TTK::Widget::setLabelFontSize(QWidget *widget, int size)
+void TTK::Widget::setFontSize(QWidget *widget, int size)
 {
     QFont font = widget->font();
     font.setPointSize(size);
     widget->setFont(font);
 }
 
-void TTK::Widget::setLabelFontStyle(QWidget *widget, TTK::FontStyleMode type)
+void TTK::Widget::setFontStyle(QWidget *widget, TTK::FontStyleMode type)
 {
     QFont font = widget->font();
     switch(type)

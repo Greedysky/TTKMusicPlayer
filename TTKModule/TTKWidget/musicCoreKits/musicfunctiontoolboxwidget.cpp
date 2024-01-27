@@ -30,7 +30,7 @@ MusicFunctionToolBoxTopWidget::MusicFunctionToolBoxTopWidget(int index, const QS
     m_labelText = new QLabel(this);
     m_labelText->setStyleSheet(TTK::UI::ColorStyle02);
     m_labelText->setText(text);
-    TTK::Widget::setLabelFontStyle(m_labelText, TTK::FontStyleMode::Bold);
+    TTK::Widget::setFontStyle(m_labelText, TTK::FontStyleMode::Bold);
 
     topLayout->addWidget(m_labelIcon);
     topLayout->addWidget(m_labelText);

@@ -148,17 +148,17 @@ void MusicEqualizerDialog::initialize()
     m_ui->resetButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
-    TTK::Widget::setLabelFontSize(m_ui->showPerArea_21, 9);
-    TTK::Widget::setLabelFontSize(m_ui->showPerArea_22, 9);
-    TTK::Widget::setLabelFontSize(m_ui->showPerArea_23, 9);
-    TTK::Widget::setLabelFontSize(m_ui->showPerArea_24, 9);
-    TTK::Widget::setLabelFontSize(m_ui->showPerArea_25, 9);
-    TTK::Widget::setLabelFontSize(m_ui->showPerArea_26, 9);
-    TTK::Widget::setLabelFontSize(m_ui->showPerArea_27, 9);
-    TTK::Widget::setLabelFontSize(m_ui->showPerArea_28, 9);
-    TTK::Widget::setLabelFontSize(m_ui->showPerArea_29, 9);
-    TTK::Widget::setLabelFontSize(m_ui->showPerArea_30, 9);
-    TTK::Widget::setLabelFontSize(m_ui->showPerArea_31, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_21, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_22, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_23, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_24, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_25, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_26, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_27, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_28, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_29, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_30, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_31, 9);
 #endif
 }
 
