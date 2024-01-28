@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 #include "musicurlutils.h"
+#include "musiccoreutils.h"
 
 /*! @brief The namespace of the utils file.
  * @author Greedysky <greedysky@163.com>

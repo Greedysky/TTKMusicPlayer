@@ -4,7 +4,6 @@
 #include "musicnetworkthread.h"
 #include "musicqmmputils.h"
 #include "musicfileutils.h"
-#include "musiccoreutils.h"
 #include "musiccodecutils.h"
 #include "ttkversion.h"
 

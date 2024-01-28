@@ -403,6 +403,11 @@ void MusicLocalManagerWidget::refreshItems()
     MusicSongMeta meta;
     for(const QString &file : qAsConst(files))
     {
+        if(TTK::Core::isBreakPointEnabled())
+        {
+            break;
+        }
+
         const bool state = meta.read(file);
 
         MusicSongInfoItem info;
@@ -415,8 +420,8 @@ void MusicLocalManagerWidget::refreshItems()
         info.m_path = file;
         m_containerItems << info;
 
-        m_loadingLabel->setValue(++count * 100.0f / files.size());
         qApp->processEvents();
+        m_loadingLabel->setValue(++count * 100.0f / files.size());
     }
 
     m_songWidget->addCellItems(m_containerItems);

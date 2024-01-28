@@ -3,7 +3,6 @@
 #include "musicplayedlistpopwidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicconfigmanager.h"
-#include "musiccoreutils.h"
 #include "musicplayer.h"
 #include "musicformats.h"
 #include "musicplaylist.h"

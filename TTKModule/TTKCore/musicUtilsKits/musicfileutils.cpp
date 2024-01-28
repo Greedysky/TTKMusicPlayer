@@ -1,7 +1,6 @@
 ﻿#include "musicfileutils.h"
 #include "musicwidgetheaders.h"
 #include "musicsettingmanager.h"
-#include "musiccoreutils.h"
 
 #include <QDirIterator>
 

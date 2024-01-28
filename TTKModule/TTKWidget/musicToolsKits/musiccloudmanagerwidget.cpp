@@ -3,7 +3,6 @@
 #include "musicopenfilewidget.h"
 #include "musicdatasourcerequest.h"
 #include "musicdownloaddatarequest.h"
-#include "musiccoreutils.h"
 #include "musicfileutils.h"
 #include "musicformats.h"
 #include "musictoastlabel.h"

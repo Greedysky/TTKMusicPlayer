@@ -3,7 +3,6 @@
 #include "musicbackgroundmanager.h"
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
-#include "musiccoreutils.h"
 #include "ttktime.h"
 
 MusicLrcPhotoItem::MusicLrcPhotoItem(QWidget *parent)
