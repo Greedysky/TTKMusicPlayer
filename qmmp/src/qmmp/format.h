@@ -30,9 +30,13 @@ class QMMP_EXPORT Format
 {
 public:
     /*!
-     * Check song track is valid or not.
+     * Check song is track valid or not.
      */
-    static bool songTrackValid(const QString &url);
+    static bool isTrack(const QString &url);
+    /*!
+     * Check song is dedirection valid or not.
+     */
+    static bool isRedirection(const QString &url);
 
 public:
     /*!

@@ -11,7 +11,7 @@ QString Qmmp::configFile()
 
 QString Qmmp::configDir()
 {
-    const QString &path = qApp->applicationDirPath() + "/../";
+    const QString &path = QCoreApplication::applicationDirPath() + "/../";
     const bool portable = QFile::exists(path + "ttk_portable");
 #ifdef Q_OS_WIN
     return (portable ? path : QString::fromLocal8Bit(getenv("APPDATA")) + "/") + "ttkmp/";
@@ -41,7 +41,7 @@ QString Qmmp::pluginPath()
         return path;
     }
 		
-    QDir dir(qApp->applicationDirPath() + "/plugins");
+    QDir dir(QCoreApplication::applicationDirPath() + "/plugins");
     return dir.canonicalPath();
 }
 
@@ -58,7 +58,7 @@ QStringList Qmmp::findPlugins(const QString &prefix)
 
 QString Qmmp::ttkPluginPath()
 {
-    QDir dir(qApp->applicationDirPath() + "/GPlugins");
+    QDir dir(QCoreApplication::applicationDirPath() + "/GPlugins");
     return dir.canonicalPath();
 }
 

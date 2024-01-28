@@ -2,7 +2,7 @@
 #include "decoder.h"
 #include "decoderfactory.h"
 
-bool Format::songTrackValid(const QString &url)
+bool Format::isTrack(const QString &url)
 {
     QStringList list;
     list << "ape://";
@@ -18,6 +18,21 @@ bool Format::songTrackValid(const QString &url)
     list << "uade://";
 #endif
     list << "wvpack://";
+
+    for(const QString &path : qAsConst(list))
+    {
+        if(url.startsWith(path))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Format::isRedirection(const QString &url)
+{
+    QStringList list;
+    list << "cue://";
 
     for(const QString &path : qAsConst(list))
     {
