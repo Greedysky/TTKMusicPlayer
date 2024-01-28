@@ -4,6 +4,7 @@
 #include "musicwidgetutils.h"
 #include "musicnumberutils.h"
 #include "musicsongmeta.h"
+#include "musicformats.h"
 
 MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
     : TTKAbstractMoveWidget(parent),
@@ -39,20 +40,34 @@ bool MusicSongsListItemInfoWidget::showArtistPicture(const QString &name)
 
 void MusicSongsListItemInfoWidget::initialize(int index, const MusicSong &song)
 {
-    const QString &musicArtist = song.artist();
+    QString path = song.path();
+    QString type = song.format();
+    QString size = song.sizeStr();
+    const QString &artist = song.artist();
+
     m_ui->songNameValue->setText(song.name().isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), song.name(), Qt::ElideRight, m_ui->songNameValue->width()));
-    m_ui->artlistValue->setText(musicArtist.isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), musicArtist, Qt::ElideRight, m_ui->artlistValue->width()));
-    m_ui->typeValue->setText(song.format().isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), song.format(), Qt::ElideRight, m_ui->typeValue->width()));
+    m_ui->artlistValue->setText(artist.isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), artist, Qt::ElideRight, m_ui->artlistValue->width()));
     m_ui->timeValue->setText(TTK::Widget::elidedText(font(), QString::number(song.playCount()), Qt::ElideRight, m_ui->timeValue->width()));
 
-    QString path = song.path();
-    QString fileSize = song.sizeStr();
     if(index == MUSIC_NETWORK_LIST)
     {
         path = TTK::generateNetworkSongPath(path);
-        fileSize = TTK::Number::sizeByteToLabel(QFileInfo(path).size());
+        size = TTK::Number::sizeByteToLabel(QFileInfo(path).size());
     }
-    m_ui->sizeValue->setText(TTK::Widget::elidedText(font(), fileSize, Qt::ElideRight, m_ui->sizeValue->width()));
+    else if(MusicFormats::isRedirection(path))
+    {
+        MusicSongMeta meta;
+        if(meta.read(path))
+        {
+            path = meta.fileRelatedPath();
+            const QFileInfo fin(path);
+            type = TTK_FILE_SUFFIX(fin);
+            size = TTK::Number::sizeByteToLabel(fin.size());
+        }
+    }
+
+    m_ui->sizeValue->setText(TTK::Widget::elidedText(font(), size, Qt::ElideRight, m_ui->sizeValue->width()));
+    m_ui->typeValue->setText(type.isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), type, Qt::ElideRight, m_ui->typeValue->width()));
 
     if(G_SETTING_PTR->value(MusicSettingManager::OtherReadAlbumCover).toBool())
     {
@@ -68,7 +83,7 @@ void MusicSongsListItemInfoWidget::initialize(int index, const MusicSong &song)
         }
     }
 
-    if(!showArtistPicture(musicArtist) && !showArtistPicture(song.title()))
+    if(!showArtistPicture(artist) && !showArtistPicture(song.title()))
     {
         m_ui->artPicture->setPixmap(QPixmap(":/image/lb_default_art").scaled(60, 60));
     }

@@ -35,7 +35,7 @@ bool MusicSongMeta::read(const QString &url)
 {
     bool track = false;
     QString path(url);
-    if(MusicFormats::songTrackValid(url))
+    if(MusicFormats::isTrack(url))
     {
         path = path.section("://", -1);
         if(path.contains("#"))

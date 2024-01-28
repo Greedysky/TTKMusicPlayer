@@ -98,7 +98,7 @@ bool TTK::playlistRowValid(int index)
 
 QString TTK::trackRelatedPath(const QString &path)
 {
-    if(!MusicFormats::songTrackValid(path))
+    if(!MusicFormats::isTrack(path))
     {
         return path;
     }
@@ -157,7 +157,7 @@ MusicSongList TTK::generateSongList(const QString &path)
         }
 
         const QString &path = meta.fileBasePath();
-        songs << MusicSong(path, meta.duration(), name, MusicFormats::songTrackValid(path));
+        songs << MusicSong(path, meta.duration(), name, MusicFormats::isTrack(path));
     }
 
     if(!songs.isEmpty() && !meta.lyrics().isEmpty())

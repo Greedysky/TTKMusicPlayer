@@ -376,6 +376,8 @@ void MusicLocalManagerWidget::refreshItems()
 {
     if(m_loadingLabel->isRunning())
     {
+        TTK::Core::enableBreakPoint(true);
+        TTK_SIGNLE_SHOT(refreshItems, TTK_SLOT);
         return;
     }
 
@@ -383,6 +385,7 @@ void MusicLocalManagerWidget::refreshItems()
     m_sizeLabel->clear();
     m_songWidget->removeItems();
     m_searchEdit->editor()->clear();
+    TTK::Core::enableBreakPoint(false);
 
     QString path = G_SETTING_PTR->value(MusicSettingManager::MediaLibraryPath).toString();
     if(path.isEmpty())

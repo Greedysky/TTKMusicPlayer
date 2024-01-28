@@ -2,9 +2,14 @@
 
 #include <qmmp/format.h>
 
-bool MusicFormats::songTrackValid(const QString &url)
+bool MusicFormats::isTrack(const QString &url)
 {
-    return Format::songTrackValid(url);
+    return Format::isTrack(url);
+}
+
+bool MusicFormats::isRedirection(const QString &url)
+{
+    return Format::isRedirection(url);
 }
 
 QStringList MusicFormats::supportMusicFormats()
