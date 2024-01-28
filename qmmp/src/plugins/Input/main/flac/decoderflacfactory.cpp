@@ -70,7 +70,11 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
 
     if(filePath.endsWith(".flac", Qt::CaseInsensitive))
     {
+#if TAGLIB_MAJOR_VERSION >= 2
+        flacFile = new TagLib::FLAC::File(&stream);
+#else
         flacFile = new TagLib::FLAC::File(&stream, TagLib::ID3v2::FrameFactory::instance());
+#endif
         tag = flacFile->xiphComment();
         ap = flacFile->audioProperties();
     }

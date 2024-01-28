@@ -264,7 +264,11 @@ bool DecoderFLAC::initialize()
             p.remove("flac://");
             p.remove(RegularExpression("#\\d+$"));
             TagLib::FileStream stream(QStringToFileName(p), true);
+#if TAGLIB_MAJOR_VERSION >= 2
+            TagLib::FLAC::File fileRef(&stream);
+#else
             TagLib::FLAC::File fileRef(&stream, TagLib::ID3v2::FrameFactory::instance());
+#endif
             //looking for cuesheet comment
             TagLib::Ogg::XiphComment *tag = fileRef.xiphComment();
             TagLib::FLAC::Properties *ap = fileRef.audioProperties();

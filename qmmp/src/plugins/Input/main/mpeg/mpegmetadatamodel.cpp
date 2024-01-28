@@ -14,7 +14,11 @@ MPEGMetaDataModel::MPEGMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
 {
     m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
+#if TAGLIB_MAJOR_VERSION >= 2
+    m_file = new TagLib::MPEG::File(m_stream);
+#else
     m_file = new TagLib::MPEG::File(m_stream, TagLib::ID3v2::FrameFactory::instance());
+#endif
     m_tags << new MpegFileTagModel(m_file, TagLib::MPEG::File::ID3v1);
     m_tags << new MpegFileTagModel(m_file, TagLib::MPEG::File::ID3v2);
     m_tags << new MpegFileTagModel(m_file, TagLib::MPEG::File::APE);

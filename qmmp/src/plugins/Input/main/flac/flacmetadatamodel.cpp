@@ -17,7 +17,11 @@ FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
     if(m_path.endsWith(".flac", Qt::CaseInsensitive))
     {
         m_stream = new TagLib::FileStream(QStringToFileName(m_path), readOnly);
+#if TAGLIB_MAJOR_VERSION >= 2
+        TagLib::FLAC::File *f = new TagLib::FLAC::File(&stream);
+#else
         TagLib::FLAC::File *f = new TagLib::FLAC::File(m_stream, TagLib::ID3v2::FrameFactory::instance());
+#endif
         m_tag = f->xiphComment();
         m_file = f;
         setDialogHints(dialogHints() | MetaDataModel::IsCueEditable);
