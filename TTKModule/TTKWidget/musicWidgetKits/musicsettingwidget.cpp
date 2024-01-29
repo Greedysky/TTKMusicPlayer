@@ -43,7 +43,7 @@ MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
     setRowCount(3);
 }
 
-void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionItemList &items)
+void MusicFunctionTableWidget::addCellItems(int index, const MusicFunctionItemList &items)
 {
     m_listIndex = index;
     for(int i = 0; i < items.count(); ++i)
@@ -95,20 +95,20 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
           << MusicFunctionItem(":/contextMenu/btn_spectrum", tr("Ripple"))
           << MusicFunctionItem(":/tiny/btn_more_normal", tr("Other"));
     m_ui->normalFunTableWidget->setRowCount(items.count());
-    m_ui->normalFunTableWidget->addFunctionItems(0, items);
+    m_ui->normalFunTableWidget->addCellItems(0, items);
 
     items.clear();
     items << MusicFunctionItem(":/contextMenu/btn_desktop_lrc", tr("Desktop"))
           << MusicFunctionItem(":/contextMenu/btn_lrc", tr("Interior"));
     m_ui->lrcFunTableWidget->setRowCount(items.count());
-    m_ui->lrcFunTableWidget->addFunctionItems(m_ui->normalFunTableWidget->rowCount(), items);
+    m_ui->lrcFunTableWidget->addCellItems(m_ui->normalFunTableWidget->rowCount(), items);
 
     items.clear();
     items << MusicFunctionItem(":/contextMenu/btn_equalizer", tr("Equalizer"))
           << MusicFunctionItem(":/contextMenu/btn_kmicro", tr("Audio"))
           << MusicFunctionItem(":/contextMenu/btn_network", tr("NetWork"));
     m_ui->supperFunTableWidget->setRowCount(items.count());
-    m_ui->supperFunTableWidget->addFunctionItems(m_ui->normalFunTableWidget->rowCount() + m_ui->lrcFunTableWidget->rowCount(), items);
+    m_ui->supperFunTableWidget->addCellItems(m_ui->normalFunTableWidget->rowCount() + m_ui->lrcFunTableWidget->rowCount(), items);
 
     m_ui->confirmButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->cancelButton->setStyleSheet(TTK::UI::PushButtonStyle04);

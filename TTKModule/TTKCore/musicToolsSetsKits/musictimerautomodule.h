@@ -20,30 +20,7 @@
  ***************************************************************************/
 
 #include <QTimer>
-
 #include "musicglobaldefine.h"
-
-/*! @brief The class of the time check object.
- * @author Greedysky <greedysky@163.com>
- */
-struct TTK_MODULE_EXPORT MusicTimeData
-{
-    int m_index;
-    int m_hour;
-    int m_minute;
-    bool m_state;
-
-    MusicTimeData()
-        : m_index(-1),
-          m_hour(-1),
-          m_minute(-1),
-          m_state(false)
-    {
-
-    }
-};
-TTK_DECLARE_LIST(MusicTimeData);
-
 
 /*! @brief The class of the time auto run.
  * @author Greedysky <greedysky@163.com>
@@ -79,6 +56,26 @@ private:
      */
     void setShutdown();
 
+private:
+    struct MusicTimeData
+    {
+        int m_index;
+        int m_hour;
+        int m_minute;
+        bool m_state;
+
+        MusicTimeData()
+            : m_index(-1),
+              m_hour(-1),
+              m_minute(-1),
+              m_state(false)
+        {
+
+        }
+    };
+    TTK_DECLARE_LIST(MusicTimeData);
+
+private:
     QTimer m_timer;
     MusicTimeDataList m_timeDatas;
 

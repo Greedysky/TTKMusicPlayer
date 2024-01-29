@@ -62,7 +62,7 @@ public:
     /*!
      * Add table list items by index and icons and paths.
      */
-    void addFunctionItems(int index, const MusicFunctionItemList &items);
+    void addCellItems(int index, const MusicFunctionItemList &items);
 
 Q_SIGNALS:
     /*!

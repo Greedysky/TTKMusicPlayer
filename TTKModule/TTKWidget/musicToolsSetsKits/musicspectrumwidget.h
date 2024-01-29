@@ -25,27 +25,6 @@ namespace Ui {
 class MusicSpectrumWidget;
 }
 
-/*! @brief The class of the music spectrum object.
- * @author Greedysky <greedysky@163.com>
- */
-struct TTK_MODULE_EXPORT MusicSpectrum
-{
-    enum class Module
-    {
-        Normal,
-        Plus,
-        Wave,
-        Flow,
-        Florid,
-        Light
-    };
-
-    QString m_module;
-    QWidget *m_object;
-    Module m_type;
-};
-TTK_DECLARE_LIST(MusicSpectrum);
-
 /*! @brief The class of the music spectrum widget all.
  * @author Greedysky <greedysky@163.com>
  */
@@ -98,6 +77,25 @@ public Q_SLOTS:
     void fullscreenByUser(QWidget *widget, bool state);
 
 private:
+    struct MusicSpectrum
+    {
+        enum class Module
+        {
+            Normal,
+            Plus,
+            Wave,
+            Flow,
+            Florid,
+            Light
+        };
+
+        QString m_module;
+        QWidget *m_object;
+        Module m_type;
+    };
+    TTK_DECLARE_LIST(MusicSpectrum);
+
+private:
     /*!
      * Override the widget event.
      */
@@ -132,6 +130,7 @@ private:
      */
     void showMessageBoxWidget();
 
+private:
     Ui::MusicSpectrumWidget *m_ui;
     QLayout *m_spectrumLayout;
     QString m_lastFlowName;

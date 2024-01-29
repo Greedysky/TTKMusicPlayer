@@ -404,23 +404,26 @@ void MusicLocalManagerWidget::refreshItems()
 
     int count = 0;
     MusicSongMeta meta;
-    for(const QString &file : qAsConst(files))
+    for(const QString &path : qAsConst(files))
     {
         if(TTK::Core::isBreakPointEnabled())
         {
             break;
         }
 
-        const bool state = meta.read(file);
+        if(!meta.read(path))
+        {
+            continue;
+        }
 
         MusicSongInfoItem info;
-        info.m_title = state ? TTK::generateSongName(meta.title(), meta.artist()) : TTK_DEFAULT_STR;
-        info.m_artist = state ? TTK::generateArtist(meta.artist()) : TTK_DEFAULT_STR;
-        info.m_album = state ? TTK::generateAlbum(meta.album()) : TTK_DEFAULT_STR;
-        info.m_track = state ? meta.trackNum() : TTK_DEFAULT_STR;
-        info.m_year = state ? TTK::generateYear(meta.year()) : TTK_DEFAULT_STR;
-        info.m_genre = state ? TTK::generateGenre(meta.genre()) : TTK_DEFAULT_STR;
-        info.m_path = file;
+        info.m_title = TTK::generateSongName(meta.title(), meta.artist());
+        info.m_artist = TTK::generateArtist(meta.artist());
+        info.m_album = TTK::generateAlbum(meta.album());
+        info.m_track = meta.trackNum();
+        info.m_year = TTK::generateYear(meta.year());
+        info.m_genre = TTK::generateGenre(meta.genre());
+        info.m_path = path;
         m_containerItems << info;
 
         qApp->processEvents();

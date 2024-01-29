@@ -30,9 +30,9 @@ struct TTK_MODULE_EXPORT MusicSongInfoItem
     QString m_title;
     QString m_artist;
     QString m_album;
-    QString m_track;
     QString m_year;
     QString m_genre;
+    QString m_track;
     QString m_path;
 };
 TTK_DECLARE_LIST(MusicSongInfoItem);

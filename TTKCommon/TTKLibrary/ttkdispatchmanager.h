@@ -23,7 +23,6 @@
 #include "ttksingleton.h"
 
 class QTimer;
-struct TTKDispatchItem;
 
 /*! @brief The class of the functions dispatch manager.
  * @author Greedysky <greedysky@163.com>
@@ -71,40 +70,38 @@ private:
      */
     ~TTKDispatchManager();
 
+private:
+    struct TTKDispatchItem
+    {
+        int m_times;
+        TTKDispatchManager::Module m_type;
+        TTKVariantList m_args;
+
+        TTKDispatchItem()
+            : m_times(0),
+              m_type(TTKDispatchManager::Module::Null)
+        {
+
+        }
+
+        inline bool isEmpty() const
+        {
+            return m_args.isEmpty();
+        }
+
+        inline bool isValid() const
+        {
+            return m_times <= 5;
+        }
+    };
+
+private:
     QMutex m_mutex;
     QTimer *m_timer;
     QList<TTKDispatchItem*> m_observer;
 
     TTK_DECLARE_SINGLETON_CLASS(TTKDispatchManager)
 
-};
-
-
-/*! @brief The class of the functions dispatch item.
- * @author Greedysky <greedysky@163.com>
- */
-struct TTK_MODULE_EXPORT TTKDispatchItem
-{
-    int m_times;
-    TTKDispatchManager::Module m_type;
-    TTKVariantList m_args;
-
-    TTKDispatchItem()
-        : m_times(0),
-          m_type(TTKDispatchManager::Module::Null)
-    {
-
-    }
-
-    inline bool isEmpty() const
-    {
-        return m_args.isEmpty();
-    }
-
-    inline bool isValid() const
-    {
-        return m_times <= 5;
-    }
 };
 
 #endif // TTKDISPATCHMANAGER_H
