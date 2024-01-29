@@ -11,8 +11,19 @@ QString Qmmp::configFile()
 
 QString Qmmp::configDir()
 {
-    const QString &path = QCoreApplication::applicationDirPath() + "/../";
-    const bool portable = QFile::exists(path + "ttk_portable");
+    QString path;
+    bool portable = false;
+    const QStringList filters{"./", "../"};
+
+    for(const QString &filter : qAsConst(filters))
+    {
+        if(QFile::exists(filter + "ttk_portable"))
+        {
+            path = filter;
+            portable = true;
+            break;
+        }
+    }
 #ifdef Q_OS_WIN
     return (portable ? path : QString::fromLocal8Bit(getenv("APPDATA")) + "/") + "ttkmp/";
 #else
