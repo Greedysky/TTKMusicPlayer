@@ -17,7 +17,8 @@
 #include "musicimageutils.h"
 #include "musicgiflabelwidget.h"
 #include "musicfileutils.h"
-#include "musiccounterpvrequest.h"
+#include "musicresourcerequest.h"
+#include "musicpvcounterrequest.h"
 #include "musicsourceupdaterequest.h"
 #include "musicscreensaverwidget.h"
 #include "musicplatformmanager.h"
@@ -61,7 +62,8 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_deviceWatcher->appendEventReceiver(this);
     m_deviceWatcher->start();
 
-    m_counterPVRequest = new MusicCounterPVRequest(this);
+    m_resourceRequest = new MusicResourceRequest(this);
+    m_counterRequest = new MusicPVCounterRequest(this);
     m_sourceUpdateRequest = new MusicSourceUpdateRequest(this);
 
     runTimerAutoModule();
@@ -88,7 +90,8 @@ MusicApplicationModule::~MusicApplicationModule()
     delete m_deviceWatcher;
     delete m_mobileDeviceWidget;
     delete m_quitContainer;
-    delete m_counterPVRequest;
+    delete m_resourceRequest;
+    delete m_counterRequest;
     delete m_sourceUpdateRequest;
 }
 
@@ -122,7 +125,8 @@ void MusicApplicationModule::loadNetWorkSetting()
     // sync host init
     QSyncConfig::HOST = TTK::Algorithm::mdII(SYNC_HOST_URL, false);
     //
-    m_counterPVRequest->startToRequest();
+    m_resourceRequest->startToRequest();
+    m_counterRequest->startToRequest();
     m_sourceUpdateRequest->startToRequest();
 }
 

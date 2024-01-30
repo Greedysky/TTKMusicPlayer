@@ -212,11 +212,11 @@ public:
      */
     explicit MusicLrcPosterThemeListWidget(QWidget *parent = nullptr);
 
-public Q_SLOTS:
+private:
     /*!
      * Add tool sets list into list widget.
      */
-    void addListWidgetItem();
+    void addCelltItems();
 
 };
 

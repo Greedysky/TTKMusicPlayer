@@ -3,7 +3,13 @@
 #include "musiccoverrequest.h"
 
 MusicDownloadMetaDataRequest::MusicDownloadMetaDataRequest(const QString &url, const QString &path, QObject *parent)
-    : MusicDownloadDataRequest(url, path, TTK::Download::Music, parent)
+    : MusicDownloadMetaDataRequest(url, path, TTK::Record::NormalDownload, parent)
+{
+
+}
+
+MusicDownloadMetaDataRequest::MusicDownloadMetaDataRequest(const QString &url, const QString &path, TTK::Record record, QObject *parent)
+    : MusicDownloadDataRequest(url, path, TTK::Download::Music, record, parent)
 {
     m_needUpdate = false;
 }

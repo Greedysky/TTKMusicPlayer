@@ -56,7 +56,7 @@ private:
     /*!
      * Add radio list into list widget.
      */
-    void addListWidgetItem();
+    void addCelltItems();
 
     QWidget *m_radio;
 

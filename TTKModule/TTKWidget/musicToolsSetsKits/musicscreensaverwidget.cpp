@@ -385,25 +385,25 @@ void MusicScreenSaverWidget::initialize()
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
 
     MusicDownloadQueueDataList datas;
-    for(int i = 0; i < OS_COUNT; ++i)
+    for(int index = 0; index < OS_COUNT; ++index)
     {
-        const QString &url = QSyncUtils::makeDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);
-        const QString &path = QString("%1%2/%3/").arg(CACHE_DIR_FULL, OS_SCREEN_DIR).arg(i);
-        QDir().mkpath(path);
+        const QString &url = QSyncUtils::makeDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(index);
+        const QString &prefix = QString("%1%2/%3/").arg(APPCACHE_DIR_FULL, OS_SCREEN_DIR).arg(index);
+        QDir().mkpath(prefix);
 
         MusicDownloadQueueData wallData;
         wallData.m_url = url + OS_WALLPAPER_NAME;
-        wallData.m_path = path + OS_WALLPAPER_NAME;
+        wallData.m_path = prefix + OS_WALLPAPER_NAME;
         datas << wallData;
 
         MusicDownloadQueueData barData;
         barData.m_url = url + OS_WALLBAR_NAME;
-        barData.m_path = path + OS_WALLBAR_NAME;
+        barData.m_path = prefix + OS_WALLBAR_NAME;
         datas << barData;
 
         MusicDownloadQueueData nailData;
         nailData.m_url = url + OS_WALLNAIL_NAME;
-        nailData.m_path = path + OS_WALLNAIL_NAME;
+        nailData.m_path = prefix + OS_WALLNAIL_NAME;
         datas << nailData;
     }
 
@@ -483,18 +483,19 @@ void MusicScreenSaverBackgroundWidget::backgroundTimeout()
 {
     QVector<bool> statusVector(MusicScreenSaverWidget::parseSettingParameter());
     QVector<int> intVector;
-    for(int i = 0; i < OS_COUNT; ++i)
+    for(int index = 0; index < OS_COUNT; ++index)
     {
-        if(statusVector[i])
+        if(statusVector[index])
         {
-            intVector << i;
+            intVector << index;
         }
     }
 
     if(!intVector.isEmpty())
     {
         const int index = intVector[TTK::random(intVector.count())];
-        const QString &prefix = QString("%1%2/%3/").arg(CACHE_DIR_FULL, OS_SCREEN_DIR).arg(index);
+        const QString &prefix = QString("%1%2/%3/").arg(APPCACHE_DIR_FULL, OS_SCREEN_DIR).arg(index);
+
         QPixmap background(prefix + OS_WALLPAPER_NAME);
         const QPixmap bar(prefix + OS_WALLBAR_NAME);
         TTK::Image::fusionPixmap(background, bar, QPoint(100, 900));

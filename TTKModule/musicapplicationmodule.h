@@ -26,7 +26,8 @@ class QDeviceWatcher;
 class MusicBackupModule;
 class MusicTimerAutoModule;
 class MusicMobileDevicesWidget;
-class MusicCounterPVRequest;
+class MusicResourceRequest;
+class MusicPVCounterRequest;
 class MusicSourceUpdateRequest;
 class MusicScreenSaverBackgroundWidget;
 
@@ -179,7 +180,8 @@ private:
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;
 
-    MusicCounterPVRequest *m_counterPVRequest;
+    MusicResourceRequest *m_resourceRequest;
+    MusicPVCounterRequest *m_counterRequest;
     MusicSourceUpdateRequest *m_sourceUpdateRequest;
     MusicScreenSaverBackgroundWidget *m_screenSaverWidget;
 

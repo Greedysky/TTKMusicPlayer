@@ -1,4 +1,5 @@
 #include "musiccategoryconfigmanager.h"
+#include "musicobject.h"
 
 MusicCategoryConfigManager::MusicCategoryConfigManager(const QString &key)
     : TTKAbstractXml(),
@@ -12,10 +13,10 @@ bool MusicCategoryConfigManager::fromFile(Category type)
     QString v;
     switch(type)
     {
-        case Category::PlayList: v = ":/data/playlist"; break;
-        case Category::TopList: v = ":/data/toplist"; break;
-        case Category::ArtistList: v = ":/data/artistlist"; break;
-        case Category::MovieList: v = ":/data/movielist"; break;
+        case Category::PlayList: v = RESOURCE_DIR_FULL + "playlist"; break;
+        case Category::TopList: v = RESOURCE_DIR_FULL + "toplist"; break;
+        case Category::ArtistList: v = RESOURCE_DIR_FULL + "artistlist"; break;
+        case Category::MovieList: v = RESOURCE_DIR_FULL + "movielist"; break;
         default: break;
     }
 

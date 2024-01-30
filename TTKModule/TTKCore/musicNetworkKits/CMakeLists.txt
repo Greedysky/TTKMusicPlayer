@@ -100,7 +100,8 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadqueuerequest.h
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicidentifysongrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicsourceupdaterequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/tools/musiccounterpvrequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/tools/musicresourcerequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/tools/musicpvcounterrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadmanager.h
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicabstracttranslationrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/translation/musictranslationrequest.h
@@ -194,7 +195,8 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadqueuerequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicidentifysongrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicsourceupdaterequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/tools/musiccounterpvrequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/tools/musicresourcerequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/tools/musicpvcounterrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadmanager.cpp
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicabstracttranslationrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/translation/musictranslationrequest.cpp

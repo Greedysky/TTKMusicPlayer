@@ -6,6 +6,11 @@
         <file alias="cdownload.tkf">../TTKResource/_extras/cdownload.tkf</file>
         <file alias="cupload.tkf">../TTKResource/_extras/cupload.tkf</file>
         <file alias="search.tkf">../TTKResource/_extras/search.tkf</file>
+        <file alias="playlist">../TTKResource/_extras/resource/playlist</file>
+        <file alias="toplist">../TTKResource/_extras/resource/toplist</file>
+        <file alias="artistlist">../TTKResource/_extras/resource/artistlist</file>
+        <file alias="movielist">../TTKResource/_extras/resource/movielist</file>
+        <file alias="fmlist">../TTKResource/_extras/resource/fmlist</file>
         <file alias="TTKRoutine.sh">../TTKResource/_extras/TTKRoutine.sh</file>
         <file alias="TTKRoutineCopy.sh">../TTKResource/_extras/TTKRoutineCopy.sh</file>
         <file alias="TTKConsole.sh">../TTKResource/_extras/TTKConsole.sh</file>

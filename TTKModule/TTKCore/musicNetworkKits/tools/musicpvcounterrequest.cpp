@@ -1,22 +1,34 @@
-#include "musiccounterpvrequest.h"
+#include "musicpvcounterrequest.h"
 #include "ttkabstractxml.h"
 
 #include "qsync/qsyncutils.h"
 
-static constexpr const char *OS_COUNTER_URL = "counter";
+static constexpr const char *OS_COUNTER_URL = "resource/counter";
 
-MusicCounterPVRequest::MusicCounterPVRequest(QObject *parent)
+MusicPVCounterRequest::MusicPVCounterRequest(QObject *parent)
     : MusicAbstractNetwork(parent)
 {
 
 }
 
-void MusicCounterPVRequest::startToRequest()
+void MusicPVCounterRequest::startToRequest()
 {
-    QNetworkRequest request;
-    request.setUrl(QSyncUtils::makeDataBucketUrl() + OS_COUNTER_URL);
+    QByteArray bytes;
+    QFile file(APPCACHE_DIR_FULL + OS_COUNTER_URL);
+    if(file.open(QIODevice::ReadOnly))
+    {
+        TTK_ERROR_STREAM("PV counter using local resource config");
+        bytes = file.readAll();
+        file.close();
+    }
+    else
+    {
+        TTK_ERROR_STREAM("PV counter using network resource config");
+        QNetworkRequest request;
+        request.setUrl(QSyncUtils::makeDataBucketUrl() + OS_COUNTER_URL);
+        bytes = TTK::syncNetworkQueryForGet(&request);
+    }
 
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
     {
         TTK_ERROR_STREAM("Counter PV data error");
@@ -24,6 +36,7 @@ void MusicCounterPVRequest::startToRequest()
         return;
     }
 
+    QNetworkRequest request;
     request.setUrl(QString::fromUtf8(bytes));
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
@@ -33,7 +46,7 @@ void MusicCounterPVRequest::startToRequest()
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicCounterPVRequest::downLoadFinished()
+void MusicPVCounterRequest::downLoadFinished()
 {
     bool ok = false;
 
@@ -54,7 +67,7 @@ void MusicCounterPVRequest::downLoadFinished()
 
     if(!ok)
     {
-        TTK_ERROR_STREAM("Counter PV data error");
+        TTK_ERROR_STREAM("PV counter data error");
         Q_EMIT downLoadDataChanged(TTK_DEFAULT_STR);
     }
 

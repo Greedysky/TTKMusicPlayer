@@ -1,6 +1,6 @@
 #include "musicmessageaboutdialog.h"
 #include "ui_musicmessageaboutdialog.h"
-#include "musiccounterpvrequest.h"
+#include "musicpvcounterrequest.h"
 #include "ttkversion.h"
 
 MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
@@ -25,7 +25,7 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
 
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_networkRequest = new MusicCounterPVRequest(this);
+    m_networkRequest = new MusicPVCounterRequest(this);
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadFinished(QString)));
     m_networkRequest->startToRequest();
 

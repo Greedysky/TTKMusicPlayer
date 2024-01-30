@@ -1,5 +1,5 @@
-#ifndef MUSICCOUNTERPVREQUEST_H
-#define MUSICCOUNTERPVREQUEST_H
+#ifndef MUSICPVCOUNTERREQUEST_H
+#define MUSICPVCOUNTERREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -21,21 +21,21 @@
 
 #include "musicabstractnetwork.h"
 
-/*! @brief The class of the counter pv of player.
+/*! @brief The class of the pv counter.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCounterPVRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicPVCounterRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCounterPVRequest)
+    TTK_DECLARE_MODULE(MusicPVCounterRequest)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicCounterPVRequest(QObject *parent = nullptr);
+    explicit MusicPVCounterRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download counte data.
+     * Start to download counter data.
      */
     void startToRequest();
 
@@ -47,4 +47,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICCOUNTERPVREQUEST_H
+#endif // MUSICPVCOUNTERREQUEST_H

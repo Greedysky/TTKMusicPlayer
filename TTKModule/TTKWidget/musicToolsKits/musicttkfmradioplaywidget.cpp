@@ -281,7 +281,7 @@ void MusicTTKFMRadioPlayWidget::initialize()
     MusicFMCategoryList categorys;
     {
         MusicFMConfigManager manager;
-        if(manager.fromFile(":/data/fmlist"))
+        if(manager.fromFile(RESOURCE_DIR_FULL + "fmlist"))
         {
             manager.readBuffer(categorys);
         }

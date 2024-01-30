@@ -1,10 +1,5 @@
 <RCC>
     <qresource prefix="/data">
-        <file alias="playlist">../TTKResource/_extras/resource/playlist</file>
-        <file alias="toplist">../TTKResource/_extras/resource/toplist</file>
-        <file alias="artistlist">../TTKResource/_extras/resource/artistlist</file>
-        <file alias="movielist">../TTKResource/_extras/resource/movielist</file>
-        <file alias="fmlist">../TTKResource/_extras/resource/fmlist</file>
         <file alias="sound">../TTKResource/_extras/resource/sound.wav</file>
     </qresource>
     <qresource prefix="/image">
@@ -120,6 +115,7 @@
         <file alias="lb_dlna">../TTKResource/tools/lb_dlna.png</file>
         <file alias="lb_detect">../TTKResource/tools/lb_detect.png</file>
         <file alias="lb_screen_saver">../TTKResource/tools/lb_screensaver.png</file>
+        <file alias="lb_playlist">../TTKResource/tools/lb_playlist.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
         <file alias="btn_next_normal">../TTKResource/contextMenu/btn_next_normal.png</file>

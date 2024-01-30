@@ -65,6 +65,12 @@ void MusicConfigObject::checkFileNeededExist() const
     copyFile(":/data/cupload.tkf", TTK_CLOUD_UP_PATH_FULL);
     copyFile(":/data/search.tkf", TTK_SEARCH_PATH_FULL);
 
+    copyFile(":/data/playlist", TTK_RESOURCE_DIR_FULL + "playlist");
+    copyFile(":/data/toplist", TTK_RESOURCE_DIR_FULL + "toplist");
+    copyFile(":/data/artistlist", TTK_RESOURCE_DIR_FULL + "artistlist");
+    copyFile(":/data/movielist", TTK_RESOURCE_DIR_FULL + "movielist");
+    copyFile(":/data/fmlist", TTK_RESOURCE_DIR_FULL + "fmlist");
+
 #ifdef Q_OS_UNIX
     if(!QFile::exists(MAIN_DIR_FULL + "ttk_runtime"))
     {

@@ -21,7 +21,7 @@
 
 #include "musicabstractmovedialog.h"
 
-class MusicCounterPVRequest;
+class MusicPVCounterRequest;
 
 namespace Ui {
     class MusicMessageAboutDialog;
@@ -51,7 +51,7 @@ public Q_SLOTS:
 
 private:
     Ui::MusicMessageAboutDialog *m_ui;
-    MusicCounterPVRequest *m_networkRequest;
+    MusicPVCounterRequest *m_networkRequest;
 
 };
 

@@ -31,11 +31,11 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     m_ui->listItemWidget->setIconSize(QSize(60, 60));
     m_ui->listItemWidget->setViewMode(QListView::IconMode);
     m_ui->listItemWidget->setMovement(QListView::Static);
-
     m_ui->listItemWidget->setSpacing(11);
-    addListWidgetItem();
 
     connect(m_ui->listItemWidget, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(currentItemClicked(QListWidgetItem*)));
+
+    addCelltItems();
 }
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
@@ -45,7 +45,7 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
     delete m_ui;
 }
 
-void MusicToolSetsWidget::addListWidgetItem()
+void MusicToolSetsWidget::addCelltItems()
 {
     struct ToolItem
     {
@@ -54,9 +54,10 @@ void MusicToolSetsWidget::addListWidgetItem()
 
         ToolItem() = default;
         ToolItem(const QString &icon, const QString &name)
+            : m_icon(icon),
+              m_name(name)
         {
-            m_icon = icon;
-            m_name = name;
+
         }
     };
     TTK_DECLARE_LIST(ToolItem);
@@ -70,7 +71,8 @@ void MusicToolSetsWidget::addListWidgetItem()
           << ToolItem(":/tools/lb_gain", tr("Gain"))
           << ToolItem(":/tools/lb_dlna", tr("DLNA"))
           << ToolItem(":/tools/lb_detect", tr("Identify"))
-          << ToolItem(":/tools/lb_screen_saver", tr("Saver"));
+          << ToolItem(":/tools/lb_screen_saver", tr("Saver"))
+          << ToolItem(":/tools/lb_playlist", tr("Playlist"));
 
     for(const ToolItem &pair : qAsConst(pairs))
     {

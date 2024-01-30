@@ -2,11 +2,17 @@
 #include "musicdownloadmanager.h"
 
 MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent)
+    : MusicDownloadDataRequest(url, path, type, TTK::Record::Null, parent)
+{
+
+}
+
+MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QString &path, TTK::Download type, TTK::Record record, QObject *parent)
     : MusicAbstractDownLoadRequest(url, path, type, parent),
       m_createTime(-1),
       m_redirection(false),
       m_needUpdate(true),
-      m_recordType(TTK::Record::Null)
+      m_recordType(record)
 {
 
 }
@@ -22,11 +28,6 @@ void MusicDownloadDataRequest::startToRequest()
     }
 
     startToRequest(m_url);
-}
-
-void MusicDownloadDataRequest::setRecordType(TTK::Record type)
-{
-    m_recordType = type;
 }
 
 void MusicDownloadDataRequest::startToRequest(const QString &url)

@@ -22,7 +22,7 @@ MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
 
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
-    addListWidgetItem();
+    addCelltItems();
 }
 
 MusicWebFMRadioWidget::~MusicWebFMRadioWidget()
@@ -99,7 +99,7 @@ void MusicWebFMRadioWidget::itemDoubleClicked(int row, int column)
     }
 }
 
-void MusicWebFMRadioWidget::addListWidgetItem()
+void MusicWebFMRadioWidget::addCelltItems()
 {
     struct ToolItem
     {

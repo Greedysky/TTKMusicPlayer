@@ -269,8 +269,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     const MusicCloudDataItem &data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
     const QString &url = m_syncDownloadData->downloadUrl(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
 
-    MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, TTK::String::musicDirPrefix() + data.m_dataItem.m_name, TTK::Download::Music, this);
-    d->setRecordType(TTK::Record::CloudDownload);
+    MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, TTK::String::musicDirPrefix() + data.m_dataItem.m_name, TTK::Download::Music, TTK::Record::CloudDownload, this);
     d->startToRequest();
 }
 

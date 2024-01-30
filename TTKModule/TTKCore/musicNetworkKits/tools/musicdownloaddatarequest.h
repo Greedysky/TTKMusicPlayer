@@ -33,16 +33,12 @@ public:
      * Object constructor provide download url save local path and download type.
      */
     MusicDownloadDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent = nullptr);
+    MusicDownloadDataRequest(const QString &url, const QString &path, TTK::Download type, TTK::Record record, QObject *parent = nullptr);
 
     /*!
      * Start to download data.
      */
     virtual void startToRequest() override;
-
-    /*!
-     * Set record type.
-     */
-    void setRecordType(TTK::Record type);
 
 Q_SIGNALS:
     /*!

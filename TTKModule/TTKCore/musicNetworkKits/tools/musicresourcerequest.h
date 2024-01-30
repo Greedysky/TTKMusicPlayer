@@ -1,5 +1,5 @@
-#ifndef MUSICTOOLSETSWIDGET_H
-#define MUSICTOOLSETSWIDGET_H
+#ifndef MUSICRESOURCEREQUEST_H
+#define MUSICRESOURCEREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,52 +19,32 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractmovewidget.h"
+#include "musicabstractnetwork.h"
 
-class QListWidgetItem;
-namespace Ui {
-class MusicToolSetsWidget;
-}
-
-/*! @brief The class of the tool sets widget.
+/*! @brief The class of the resource data request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicToolSetsWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicResourceRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicToolSetsWidget)
+    TTK_DECLARE_MODULE(MusicResourceRequest)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicToolSetsWidget(QWidget *parent = nullptr);
+    explicit MusicResourceRequest(QObject *parent = nullptr);
+
     /*!
-     * Object destructor.
+     * Start to download resource data.
      */
-    ~MusicToolSetsWidget();
+    void startToRequest();
 
 public Q_SLOTS:
     /*!
-     * Tool sets list item has clicked.
+     * Download data from net finished.
      */
-    void currentItemClicked(QListWidgetItem *item);
-    /*!
-     * Add tool sets list into list widget.
-     */
-    void addCelltItems();
-
-private:
-    /*!
-     * Clear All Items.
-     */
-    void clear();
-    /*!
-     * Override the widget event.
-     */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
-
-    Ui::MusicToolSetsWidget *m_ui;
+    virtual void downLoadFinished() override final;
 
 };
 
-#endif // MUSICTOOLSETSWIDGET_H
+#endif // MUSICRESOURCEREQUEST_H

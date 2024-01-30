@@ -893,10 +893,10 @@ MusicLrcPosterThemeListWidget::MusicLrcPosterThemeListWidget(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    addListWidgetItem();
+    addCelltItems();
 }
 
-void MusicLrcPosterThemeListWidget::addListWidgetItem()
+void MusicLrcPosterThemeListWidget::addCelltItems()
 {
     QListWidgetItem *item = new QListWidgetItem(QIcon(":/lrc/lb_poster_thumb1") ,tr("Default"), this);
     item->setSizeHint(QSize(70, 80));
