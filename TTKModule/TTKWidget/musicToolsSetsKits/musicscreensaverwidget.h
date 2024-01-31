@@ -180,13 +180,15 @@ public:
      */
     void applyParameter();
     /*!
-     * Parse settings parameters.
-     */
-    static QVector<bool> parseSettingParameter();
-    /*!
      * Resize widget bound by resize called.
      */
     virtual void resizeWidget() override final;
+
+public:
+    /*!
+     * Parse settings parameters.
+     */
+    static QVector<bool> parseSettingParameter();
 
 private Q_SLOTS:
     /*!

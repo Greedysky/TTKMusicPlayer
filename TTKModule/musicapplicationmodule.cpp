@@ -130,52 +130,6 @@ void MusicApplicationModule::loadNetWorkSetting()
     m_sourceUpdateRequest->startToRequest();
 }
 
-void MusicApplicationModule::applyParameter()
-{
-#ifdef Q_OS_WIN
-    MusicPlatformManager manager;
-    manager.windowsStartUpMode(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
-
-    TTKConcurrent(
-    {
-        TTKFileAssociation association;
-        const QStringList &keys = association.keys();
-
-        for(const QString &format : TTK::unsupportAssociations())
-        {
-            const bool exist = keys.contains(format) && association.exist(format);
-            if(exist)
-            {
-                 association.remove(format);
-            }
-        }
-
-        for(const QString &format : TTK::supportAssociations())
-        {
-            const bool exist = keys.contains(format) && association.exist(format);
-            const bool enable = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool();
-
-            if(exist && !enable)
-            {
-                 association.remove(format);
-            }
-            else if(!exist && enable)
-            {
-                 association.append(format);
-            }
-        }
-    });
-#endif
-    //
-    if(!m_screenSaverWidget)
-    {
-        m_screenSaverWidget = new MusicScreenSaverBackgroundWidget;
-    }
-    m_screenSaverWidget->run();
-    //
-    m_backupModule->run();
-}
-
 void MusicApplicationModule::windowCloseAnimation()
 {
     sideAnimationByOff();
@@ -318,6 +272,52 @@ void MusicApplicationModule::sideAnimationByOff()
     }
 
     m_direction = TTK::Direction::No;
+}
+
+void MusicApplicationModule::applyParameter()
+{
+#ifdef Q_OS_WIN
+    MusicPlatformManager manager;
+    manager.windowsStartUpMode(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
+
+    TTKConcurrent(
+    {
+        TTKFileAssociation association;
+        const QStringList &keys = association.keys();
+
+        for(const QString &format : TTK::unsupportAssociations())
+        {
+            const bool exist = keys.contains(format) && association.exist(format);
+            if(exist)
+            {
+                 association.remove(format);
+            }
+        }
+
+        for(const QString &format : TTK::supportAssociations())
+        {
+            const bool exist = keys.contains(format) && association.exist(format);
+            const bool enable = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool();
+
+            if(exist && !enable)
+            {
+                 association.remove(format);
+            }
+            else if(!exist && enable)
+            {
+                 association.append(format);
+            }
+        }
+    });
+#endif
+    //
+    if(!m_screenSaverWidget)
+    {
+        m_screenSaverWidget = new MusicScreenSaverBackgroundWidget;
+    }
+    m_screenSaverWidget->run();
+    //
+    m_backupModule->run();
 }
 
 void MusicApplicationModule::quit()

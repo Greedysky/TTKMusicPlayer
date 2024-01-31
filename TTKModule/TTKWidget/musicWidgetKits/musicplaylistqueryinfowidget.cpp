@@ -68,13 +68,16 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
 
     QWidget *firstTopFuncWidget = new QWidget(function);
     QHBoxLayout *firstTopFuncLayout = new QHBoxLayout(firstTopFuncWidget);
+
     QLabel *firstLabel = new QLabel(function);
     firstLabel->setText(tr("<font color=#158FE1> Playlist > %1 </font>").arg(item.m_name));
+
     QPushButton *backButton = new QPushButton(tr("Back"));
     backButton->setFixedSize(90, 30);
     backButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     backButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(backButton, SIGNAL(clicked()), obj, SLOT(backToPlaylistMenu()));
+
     firstTopFuncLayout->addWidget(firstLabel);
     firstTopFuncLayout->addWidget(backButton);
     grid->addWidget(firstTopFuncWidget);
@@ -96,18 +99,22 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
     topLineLayout->setContentsMargins(10, 5, 5, 0);
+
     QLabel *playlistLabel = new QLabel(topLineWidget);
     QFont playlistFont = playlistLabel->font();
     playlistFont.setPixelSize(20);
     playlistLabel->setFont(playlistFont);
     playlistLabel->setStyleSheet(TTK::UI::FontStyle01);
     playlistLabel->setToolTip(item.m_name);
+
     QLabel *creatorLabel = new QLabel(topLineWidget);
     creatorLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     creatorLabel->setToolTip(tr("Creator: %1").arg(item.m_nickName));
+
     QLabel *tagsLabel = new QLabel(topLineWidget);
     tagsLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     tagsLabel->setToolTip(tr("Tags: %1").arg(item.m_category));
+
     QLabel *updateLabel = new QLabel(topLineWidget);
     updateLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     updateLabel->setToolTip(tr("Update: %1").arg(item.m_updateTime));
@@ -122,19 +129,23 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     topButtonWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *topButtonLayout = new QHBoxLayout(topButtonWidget);
     topButtonLayout->setContentsMargins(0, 0, 0, 0);
+
     QPushButton *playAllButton = new QPushButton(tr("Play All"), topButtonWidget);
     QPushButton *shareButton = new QPushButton(tr("Share"), topButtonWidget);
+
     playAllButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     playAllButton->setIconSize(QSize(14, 14));
     playAllButton->setCursor(QCursor(Qt::PointingHandCursor));
     shareButton->setCursor(QCursor(Qt::PointingHandCursor));
     playAllButton->setFixedSize(90, 30);
     shareButton->setFixedSize(55, 30);
+
     topButtonLayout->addWidget(playAllButton);
     topButtonLayout->addWidget(shareButton);
     topButtonLayout->addStretch(1);
     topButtonWidget->setLayout(topButtonLayout);
     topLineLayout->addWidget(topButtonWidget);
+
     connect(playAllButton, SIGNAL(clicked()), SLOT(playAllButtonClicked()));
     connect(shareButton, SIGNAL(clicked()), SLOT(shareButtonClicked()));
     //
@@ -175,17 +186,20 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *hLayout = new QHBoxLayout(functionWidget);
+
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
     hLayout->addWidget(m_songButton);
+
     QPushButton *infoButton = new QPushButton(functionWidget);
     infoButton->setText(tr("Info"));
     infoButton->setFixedSize(100, 25);
     infoButton->setCursor(QCursor(Qt::PointingHandCursor));
     hLayout->addWidget(infoButton);
     functionWidget->setLayout(hLayout);
+
     QPushButton *commentsButton = new QPushButton(functionWidget);
     commentsButton->setText(tr("Comments"));
     commentsButton->setFixedSize(100, 25);
@@ -200,7 +214,6 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     buttonGroup->addButton(commentsButton, 2);
     QtButtonGroupConnect(buttonGroup, this, setCurrentIndex, TTK_SLOT);
 
-    grid->addWidget(functionWidget);
 #ifdef Q_OS_UNIX
     backButton->setFocusPolicy(Qt::NoFocus);
     playAllButton->setFocusPolicy(Qt::NoFocus);
@@ -209,9 +222,10 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     infoButton->setFocusPolicy(Qt::NoFocus);
     commentsButton->setFocusPolicy(Qt::NoFocus);
 #endif
-
+    grid->addWidget(functionWidget);
     grid->addWidget(m_container);
     grid->addStretch(1);
+
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 

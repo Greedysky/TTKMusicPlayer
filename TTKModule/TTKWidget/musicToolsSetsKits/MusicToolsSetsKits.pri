@@ -33,7 +33,8 @@ HEADERS += \
     $$PWD/musicspectrumwidget.h \
     $$PWD/musicspectrumlayoutwidget.h \
     $$PWD/musicsongdlnatransferwidget.h \
-    $$PWD/musicscreensaverwidget.h
+    $$PWD/musicscreensaverwidget.h \
+    $$PWD/musicplaylistbackupwidget.h
 
 SOURCES += \
     $$PWD/musicmobiledeviceswidget.cpp \
@@ -50,4 +51,5 @@ SOURCES += \
     $$PWD/musicspectrumwidget.cpp \
     $$PWD/musicspectrumlayoutwidget.cpp \
     $$PWD/musicsongdlnatransferwidget.cpp \
-    $$PWD/musicscreensaverwidget.cpp
+    $$PWD/musicscreensaverwidget.cpp \
+    $$PWD/musicplaylistbackupwidget.cpp

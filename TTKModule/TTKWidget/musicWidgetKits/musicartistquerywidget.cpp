@@ -519,19 +519,21 @@ void MusicArtistQueryWidget::createLabels()
     m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
     m_iconLabel->setFixedSize(210, 180);
     //
-
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
     topLineLayout->setContentsMargins(10, 5, 5, 0);
+
     QLabel *artistLabel = new QLabel(topLineWidget);
     QFont artistFont = artistLabel->font();
     artistFont.setPixelSize(20);
     artistLabel->setFont(artistFont);
     artistLabel->setStyleSheet(TTK::UI::FontStyle01);
     artistLabel->setText(TTK_DEFAULT_STR);
+
     QLabel *nickNameLabel = new QLabel(topLineWidget);
     nickNameLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     nickNameLabel->setText(TTK_DEFAULT_STR);
+
     QLabel *birthLabel = new QLabel(topLineWidget);
     birthLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     birthLabel->setText(TTK_DEFAULT_STR);
@@ -545,23 +547,26 @@ void MusicArtistQueryWidget::createLabels()
     topButtonWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *topButtonLayout = new QHBoxLayout(topButtonWidget);
     topButtonLayout->setContentsMargins(0, 0, 0, 0);
+
     QPushButton *playAllButton = new QPushButton(tr("Play All"), topButtonWidget);
     QPushButton *shareButton = new QPushButton(tr("Share"), topButtonWidget);
+
     playAllButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     playAllButton->setIconSize(QSize(14, 14));
     playAllButton->setCursor(QCursor(Qt::PointingHandCursor));
     shareButton->setCursor(QCursor(Qt::PointingHandCursor));
     playAllButton->setFixedSize(90, 30);
     shareButton->setFixedSize(55, 30);
+
     topButtonLayout->addWidget(playAllButton);
     topButtonLayout->addWidget(shareButton);
     topButtonLayout->addStretch(1);
     topButtonWidget->setLayout(topButtonLayout);
     topLineLayout->addWidget(topButtonWidget);
+
     connect(playAllButton, SIGNAL(clicked()), SLOT(playAllButtonClicked()));
     connect(shareButton, SIGNAL(clicked()), SLOT(shareButtonClicked()));
     //
-
     QWidget *topRightWidget = new QWidget(topFuncWidget);
     QGridLayout *topRightLayout = new QGridLayout(topRightWidget);
     topRightLayout->setContentsMargins(0, 0, 0, 0);
@@ -599,25 +604,30 @@ void MusicArtistQueryWidget::createLabels()
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *hLayout = new QHBoxLayout(functionWidget);
+
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
     hLayout->addWidget(m_songButton);
+
     QPushButton *infoButton = new QPushButton(functionWidget);
     infoButton->setText(tr("Info"));
     infoButton->setFixedSize(100, 25);
     infoButton->setCursor(QCursor(Qt::PointingHandCursor));
     hLayout->addWidget(infoButton);
+
     QPushButton *albumsButton = new QPushButton(functionWidget);
     albumsButton->setText(tr("Albums"));
     albumsButton->setFixedSize(100, 25);
     albumsButton->setCursor(QCursor(Qt::PointingHandCursor));
     hLayout->addWidget(albumsButton);
+
     QPushButton *mvsButton = new QPushButton(functionWidget);
     mvsButton->setText(tr("Movies"));
     mvsButton->setFixedSize(100, 25);
     mvsButton->setCursor(QCursor(Qt::PointingHandCursor));
+
     hLayout->addWidget(mvsButton);
     hLayout->addStretch(1);
     functionWidget->setLayout(hLayout);
@@ -638,7 +648,6 @@ void MusicArtistQueryWidget::createLabels()
     mvsButton->setFocusPolicy(Qt::NoFocus);
 #endif
     grid->addWidget(functionWidget);
-    //
     grid->addWidget(m_container);
     grid->addStretch(1);
 

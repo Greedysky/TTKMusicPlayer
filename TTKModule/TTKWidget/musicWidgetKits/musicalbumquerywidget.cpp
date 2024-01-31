@@ -203,25 +203,29 @@ void MusicAlbumQueryWidget::createLabels()
     m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
     m_iconLabel->setFixedSize(210, 180);
     //
-
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
     topLineLayout->setContentsMargins(10, 5, 5, 0);
+
     QLabel *albumLabel = new QLabel(topLineWidget);
     QFont albumFont = albumLabel->font();
     albumFont.setPixelSize(20);
     albumLabel->setFont(albumFont);
     albumLabel->setStyleSheet(TTK::UI::FontStyle01);
     albumLabel->setText(TTK_DEFAULT_STR);
+
     QLabel *singerLabel = new QLabel(topLineWidget);
     singerLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     singerLabel->setText(TTK_DEFAULT_STR);
+
     QLabel *languageLabel = new QLabel(topLineWidget);
     languageLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     languageLabel->setText(TTK_DEFAULT_STR);
+
     QLabel *companyLabel = new QLabel(topLineWidget);
     companyLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     companyLabel->setText(TTK_DEFAULT_STR);
+
     QLabel *yearLabel = new QLabel(topLineWidget);
     yearLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     yearLabel->setText(TTK_DEFAULT_STR);
@@ -236,19 +240,23 @@ void MusicAlbumQueryWidget::createLabels()
     QWidget *topButtonWidget = new QWidget(topFuncWidget);
     QHBoxLayout *topButtonLayout = new QHBoxLayout(topButtonWidget);
     topButtonLayout->setContentsMargins(0, 0, 0, 0);
+
     QPushButton *playAllButton = new QPushButton(tr("Play All"), topButtonWidget);
     QPushButton *shareButton = new QPushButton(tr("Share"), topButtonWidget);
+
     playAllButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     playAllButton->setIconSize(QSize(14, 14));
     playAllButton->setCursor(QCursor(Qt::PointingHandCursor));
     shareButton->setCursor(QCursor(Qt::PointingHandCursor));
     playAllButton->setFixedSize(90, 30);
     shareButton->setFixedSize(55, 30);
+
     topButtonLayout->addWidget(playAllButton);
     topButtonLayout->addWidget(shareButton);
     topButtonLayout->addStretch(1);
     topButtonWidget->setLayout(topButtonLayout);
     topLineLayout->addWidget(topButtonWidget);
+
     connect(playAllButton, SIGNAL(clicked()), SLOT(playAllButtonClicked()));
     connect(shareButton, SIGNAL(clicked()), SLOT(shareButtonClicked()));
     //
@@ -286,10 +294,10 @@ void MusicAlbumQueryWidget::createLabels()
     topFuncWidget->setLayout(topFuncLayout);
     grid->addWidget(topFuncWidget);
     //
-
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *hLayout = new QHBoxLayout(functionWidget);
+
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
@@ -308,7 +316,6 @@ void MusicAlbumQueryWidget::createLabels()
     m_songButton->setFocusPolicy(Qt::NoFocus);
 #endif
     grid->addWidget(functionWidget);
-    //
     grid->addWidget(m_container);
     grid->addStretch(1);
 

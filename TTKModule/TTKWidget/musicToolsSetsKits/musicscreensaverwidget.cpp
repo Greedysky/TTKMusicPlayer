@@ -218,9 +218,9 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     setLayout(layout);
     //
     QWidget *topWidget = new QWidget(this);
-    topWidget->setFixedHeight(50);
+    topWidget->setFixedHeight(60);
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
-    topWidgetLayout->setContentsMargins(10, 10, 10, 10);
+    topWidgetLayout->setContentsMargins(15, 10, 20, 10);
 
     QLabel *pLabel = new QLabel(tr("Screen Saver"), topWidget);
     QFont pLabelFont = pLabel->font();
@@ -265,7 +265,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     frame->setFixedHeight(1);
     frame->setFrameShape(QFrame::HLine);
     frame->setFrameShadow(QFrame::Plain);
-    frame->setStyleSheet(TTK::UI::ColorStyle04);
+    frame->setStyleSheet(TTK::UI::ColorStyle05);
     mainLayout->addWidget(frame);
     //
     QWidget *functionWidget = new QWidget(this);
@@ -304,6 +304,7 @@ QVector<bool> MusicScreenSaverWidget::parseSettingParameter()
 
     const QString &value = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverIndex).toString();
     const QStringList items(value.split(";"));
+
     for(const QString &item : qAsConst(items))
     {
         const QStringList itemStatus(item.split(","));
@@ -375,6 +376,7 @@ void MusicScreenSaverWidget::currentItemClicked(int index, bool status)
     {
         items << QString("%1,%2").arg(i).arg(statusVector[i]);
     }
+
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverIndex, items.join(";"));
     MusicApplicationModule::instance()->applyParameter();
 }

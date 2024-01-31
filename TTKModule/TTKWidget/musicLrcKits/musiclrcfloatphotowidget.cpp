@@ -104,6 +104,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     QWidget *areaWidget = new QWidget(this);
     areaWidget->setObjectName("AreaWidget");
     areaWidget->setStyleSheet(QString("#AreaWidget{%1}").arg(TTK::UI::BackgroundStyle07));
+
     QHBoxLayout *areaLayout = new QHBoxLayout(areaWidget);
     areaLayout->setContentsMargins(9, 18, 9, 9);
     areaWidget->setLayout(areaLayout);
@@ -134,6 +135,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setObjectName("FunctionWidget");
     functionWidget->setStyleSheet(QString("#FunctionWidget{%1}").arg(TTK::UI::BackgroundStyle07));
+
     QHBoxLayout *functionLayout = new QHBoxLayout(functionWidget);
     functionLayout->setContentsMargins(18, 9, 18, 9);
     functionLayout->setSpacing(15);

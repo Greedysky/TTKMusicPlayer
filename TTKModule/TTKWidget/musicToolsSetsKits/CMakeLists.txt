@@ -34,6 +34,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_HEADERS
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumlayoutwidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongdlnatransferwidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicscreensaverwidget.h
+  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicplaylistbackupwidget.h
 )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
@@ -52,4 +53,5 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumlayoutwidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongdlnatransferwidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicscreensaverwidget.cpp
+  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicplaylistbackupwidget.cpp
 )

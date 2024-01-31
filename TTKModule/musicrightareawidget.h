@@ -67,7 +67,8 @@ public:
         WebMVRadioWidget,       /*!< insert web mv radio widget*/
         LocalManagerWidget,     /*!< insert local manager widget*/
         CloudManagerWidget,     /*!< insert cloud manager widget*/
-        ScreenSaverWidget       /*!< insert screen saver widget*/
+        ScreenSaverWidget,      /*!< insert screen saver widget*/
+        PlaylistBackupWidget,   /*!< insert playlist backup widget*/
     };
 
     /*!
@@ -114,10 +115,6 @@ public:
      */
     bool interiorLrcVisible() const;
     /*!
-     * Apply settings parameters.
-     */
-    void applyParameter();
-    /*!
      * Update current lrc by current time\total time and play state.
      */
     void updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const;
@@ -153,10 +150,15 @@ public:
      * Music movie radio search function.
      */
     void movieRadioSearchByID(const QVariant &data);
+
     /*!
      * Resize window bound by resize called.
      */
     void resizeWindow();
+    /*!
+     * Apply settings parameters.
+     */
+    void applyParameter();
 
 Q_SIGNALS:
     /*!

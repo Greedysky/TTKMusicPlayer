@@ -199,13 +199,16 @@ void MusicWebMVRadioInfoWidget::createLabels()
 
     QWidget *firstTopFuncWidget = new QWidget(function);
     QHBoxLayout *firstTopFuncLayout = new QHBoxLayout(firstTopFuncWidget);
+
     QLabel *firstLabel = new QLabel(function);
     firstLabel->setText(tr("<font color=#158FE1> MVRadio > %1 </font>").arg(m_currentPlaylistItem.m_name));
+
     QPushButton *backButton = new QPushButton(tr("Back"));
     backButton->setFixedSize(90, 30);
     backButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     backButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(backButton, SIGNAL(clicked()), this, SIGNAL(backToMainMenu()));
+
     firstTopFuncLayout->addWidget(firstLabel);
     firstTopFuncLayout->addWidget(backButton);
     grid->addWidget(firstTopFuncWidget);
@@ -217,16 +220,17 @@ void MusicWebMVRadioInfoWidget::createLabels()
     m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
     m_iconLabel->setFixedSize(210, 180);
     //
-
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
     topLineLayout->setContentsMargins(10, 5, 5, 0);
+
     QLabel *nameLabel = new QLabel(topLineWidget);
     QFont nameFont = nameLabel->font();
     nameFont.setPixelSize(20);
     nameLabel->setFont(nameFont);
     nameLabel->setStyleSheet(TTK::UI::FontStyle01);
     nameLabel->setText(TTK_DEFAULT_STR);
+
     QLabel *typeLabel = new QLabel(topLineWidget);
     typeLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     typeLabel->setText(TTK_DEFAULT_STR);
@@ -242,14 +246,15 @@ void MusicWebMVRadioInfoWidget::createLabels()
     topFuncWidget->setLayout(topFuncLayout);
     grid->addWidget(topFuncWidget);
     //
-
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *hLayout = new QHBoxLayout(functionWidget);
+
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
+
     hLayout->addWidget(m_songButton);
     hLayout->addStretch(1);
     functionWidget->setLayout(hLayout);
@@ -263,7 +268,6 @@ void MusicWebMVRadioInfoWidget::createLabels()
     m_songButton->setFocusPolicy(Qt::NoFocus);
 #endif
     grid->addWidget(functionWidget);
-    //
     grid->addWidget(m_container);
     grid->addStretch(1);
 
@@ -285,6 +289,7 @@ void MusicWebMVRadioInfoWidget::initThirdWidget()
     middleFuncWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *middleFuncLayout = new QHBoxLayout(middleFuncWidget);
     middleFuncLayout->setContentsMargins(0, 5, 0, 5);
+
     QLabel *marginLabel = new QLabel(middleFuncWidget);
     marginLabel->setFixedWidth(1);
     QCheckBox *allCheckBox = new QCheckBox(" " + tr("All"), middleFuncWidget);

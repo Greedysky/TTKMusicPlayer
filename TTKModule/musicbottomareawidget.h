@@ -96,6 +96,11 @@ public:
      */
     void setWindowConcise();
     /*!
+     * Current is show full container.
+     */
+    bool isLrcWidgetShowFullScreen() const;
+
+    /*!
      * Resize window bound by resize called.
      */
     void resizeWindow();
@@ -103,10 +108,6 @@ public:
      * Apply settings parameters.
      */
     void applyParameter();
-    /*!
-     * Current is show full container.
-     */
-    bool isLrcWidgetShowFullScreen() const;
 
 public Q_SLOTS:
     /*!

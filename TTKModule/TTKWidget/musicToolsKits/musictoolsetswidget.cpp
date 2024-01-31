@@ -138,6 +138,11 @@ void MusicToolSetsWidget::currentItemClicked(QListWidgetItem *item)
             MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::ScreenSaverWidget);
             break;
         }
+        case 9:
+        {
+            MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::PlaylistBackupWidget);
+            break;
+        }
         default: break;
     }
 }

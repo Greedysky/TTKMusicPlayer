@@ -186,6 +186,11 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_platformExtras->disableBlurBehindWindow(!con);
 }
 
+bool MusicBottomAreaWidget::isLrcWidgetShowFullScreen() const
+{
+    return !m_lrcWidgetShowFullScreen;
+}
+
 void MusicBottomAreaWidget::resizeWindow()
 {
     const int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - 155 - m_ui->lrcDisplayAllButton->height() - 40;
@@ -205,11 +210,6 @@ void MusicBottomAreaWidget::applyParameter()
     {
         m_rippleModule->update(false);
     }
-}
-
-bool MusicBottomAreaWidget::isLrcWidgetShowFullScreen() const
-{
-    return !m_lrcWidgetShowFullScreen;
 }
 
 void MusicBottomAreaWidget::lrcWidgetShowFullScreen()

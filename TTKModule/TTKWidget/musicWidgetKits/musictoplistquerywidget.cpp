@@ -100,8 +100,10 @@ void MusicToplistQueryWidget::createLabels()
     //
     QWidget *categoryWidget = new QWidget(function);
     QHBoxLayout *categoryWidgetLayout = new QHBoxLayout(categoryWidget);
+
     m_categoryButton = new MusicToplistQueryCategoryPopWidget(categoryWidget);
     m_categoryButton->setCategory(m_queryTableWidget->queryInput()->queryServer(), this);
+
     categoryWidgetLayout->addWidget(m_categoryButton);
     categoryWidgetLayout->addStretch(1);
     categoryWidget->setLayout(categoryWidgetLayout);
@@ -117,11 +119,13 @@ void MusicToplistQueryWidget::createLabels()
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
     topLineLayout->setContentsMargins(10, 5, 5, 0);
+
     QLabel *nameLabel = new QLabel(topLineWidget);
     QFont toplistFont = nameLabel->font();
     toplistFont.setPixelSize(20);
     nameLabel->setFont(toplistFont);
     nameLabel->setStyleSheet(TTK::UI::FontStyle01);
+
     QLabel *playCountLabel = new QLabel(topLineWidget);
     playCountLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     QLabel *updateTimeLabel = new QLabel(topLineWidget);
@@ -144,13 +148,16 @@ void MusicToplistQueryWidget::createLabels()
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *hLayout = new QHBoxLayout(functionWidget);
+
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
+
     hLayout->addWidget(m_songButton);
     hLayout->addStretch(1);
     functionWidget->setLayout(hLayout);
+
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_songButton, 0);
     QtButtonGroupConnect(buttonGroup, m_container, setCurrentIndex, TTK_SLOT);
@@ -159,7 +166,6 @@ void MusicToplistQueryWidget::createLabels()
     m_songButton->setFocusPolicy(Qt::NoFocus);
 #endif
     grid->addWidget(functionWidget);
-    //
     grid->addWidget(m_container);
     grid->addStretch(1);
 

@@ -182,10 +182,10 @@ QWidget* MusicBackgroundOnlineWidget::createFunctionsWidget(bool revert, QWidget
         hbox->addStretch(1);
 
         m_typeBox = new QComboBox(m_functionsWidget);
-        TTK::Widget::generateComboBoxFormat(m_typeBox);
         m_typeBox->setFixedSize(100, 20);
         m_typeBox->addItem(tr("Select One"));
         m_typeBox->hide();
+        TTK::Widget::generateComboBoxFormat(m_typeBox);
 
         m_allButton = new QPushButton(tr("All"), m_functionsWidget);
         m_allButton->setStyleSheet(TTK::UI::PushButtonStyle02 + QString("QPushButton{%1}").arg(TTK::UI::ColorStyle07));

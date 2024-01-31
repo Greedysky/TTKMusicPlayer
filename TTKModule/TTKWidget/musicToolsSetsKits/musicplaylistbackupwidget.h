@@ -1,0 +1,68 @@
+#ifndef MUSICPLAYLISTBACKUPWIDGET_H
+#define MUSICPLAYLISTBACKUPWIDGET_H
+
+/***************************************************************************
+ * This file is part of the TTK Music Player project
+ * Copyright (C) 2015 - 2024 Greedysky Studio
+
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License along
+ * with this program; If not, see <http://www.gnu.org/licenses/>.
+ ***************************************************************************/
+
+#include <QWidget>
+#include "ttkabstractresizeinterface.h"
+
+class QComboBox;
+class QListWidget;
+
+/*! @brief The class of the playlist backup widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicPlaylistBackupWidget : public QWidget, public TTKAbstractResizeInterface
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSonglistManagerWidget)
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicPlaylistBackupWidget(QWidget *parent = nullptr);
+    ~MusicPlaylistBackupWidget();
+
+    /*!
+     * Resize widget bound by resize called.
+     */
+    virtual void resizeWidget() override final;
+
+private Q_SLOTS:
+    /*!
+     * Remote background type selected by index.
+     */
+    void currentDateChanged(const QString &text);
+    /*!
+     * Remote background type selected by index.
+     */
+    void currentTimeChanged(const QString &text);
+
+private:
+    /*!
+     * Init parameters.
+     */
+    void initialize();
+
+    QComboBox *m_dateBox, *m_timeBox;
+    QListWidget *m_listWidget;
+
+};
+
+#endif // MUSICPLAYLISTBACKUPWIDGET_H

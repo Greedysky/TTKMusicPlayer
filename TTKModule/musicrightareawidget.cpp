@@ -24,6 +24,7 @@
 #include "musicartistlistquerywidget.h"
 #include "musicadvancedsearchedwidget.h"
 #include "musicwebmvradioquerywidget.h"
+#include "musicplaylistbackupwidget.h"
 
 #ifdef Q_OS_WIN
 #  include "musicplatformmanager.h"
@@ -514,6 +515,14 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case ScreenSaverWidget: //insert screen saver widget
         {
             MusicScreenSaverWidget *widget = new MusicScreenSaverWidget(this);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
+            m_ui->functionsContainer->setCurrentWidget(widget);
+            Q_EMIT updateBackgroundTheme();
+            break;
+        }
+        case PlaylistBackupWidget: //insert playlist backup widget
+        {
+            MusicPlaylistBackupWidget *widget = new MusicPlaylistBackupWidget(this);
             m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();

@@ -561,6 +561,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     iLabelFont.setPixelSize(15);
     iLabel->setFont(iLabelFont);
     iLabel->setStyleSheet(TTK::UI::ColorStyle03);
+
     QLabel *sLabel = new QLabel(tr("Size"), topWidget);
 
     m_sizeValueBar = new QProgressBar(topWidget);

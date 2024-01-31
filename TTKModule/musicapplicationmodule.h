@@ -76,10 +76,6 @@ public:
      */
     void loadNetWorkSetting();
     /*!
-     * Apply settings parameters.
-     */
-    void applyParameter();
-    /*!
      * Window close animation.
      */
     void windowCloseAnimation();
@@ -96,6 +92,11 @@ public:
      * Side animation by off.
      */
     void sideAnimationByOff();
+
+    /*!
+     * Apply settings parameters.
+     */
+    void applyParameter();
 
 Q_SIGNALS:
     /*!
