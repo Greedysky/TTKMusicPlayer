@@ -642,29 +642,29 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     labelWidget->setLayout(labelWidgetLayout);
     mainLayout->addWidget(labelWidget);
 
-    m_managerTableWidget = new MusicCloudManagerTableWidget(mainWidget);
+    m_tableWidget = new MusicCloudManagerTableWidget(mainWidget);
 
-    connect(m_managerTableWidget, SIGNAL(updateLabelMessage(QString)), statusLabel, SLOT(setText(QString)));
-    connect(m_managerTableWidget, SIGNAL(updataSizeLabel(qint64)), SLOT(updataSizeLabel(qint64)));
+    connect(m_tableWidget, SIGNAL(updateLabelMessage(QString)), statusLabel, SLOT(setText(QString)));
+    connect(m_tableWidget, SIGNAL(updataSizeLabel(qint64)), SLOT(updataSizeLabel(qint64)));
 
-    mainLayout->addWidget(m_managerTableWidget);
+    mainLayout->addWidget(m_tableWidget);
 }
 
 MusicCloudManagerWidget::~MusicCloudManagerWidget()
 {
     delete m_sizeValueLabel;
     delete m_sizeValueBar;
-    delete m_managerTableWidget;
+    delete m_tableWidget;
 }
 
 void MusicCloudManagerWidget::initialize() const
 {
-    m_managerTableWidget->queryCloudKey();
+    m_tableWidget->queryCloudKey();
 }
 
 void MusicCloudManagerWidget::resizeWidget()
 {
-    m_managerTableWidget->resizeSection();
+    m_tableWidget->resizeSection();
 
     if(!m_resizeWidgets.isEmpty())
     {
@@ -681,17 +681,17 @@ void MusicCloudManagerWidget::updataSizeLabel(qint64 size)
 
 void MusicCloudManagerWidget::downloadFileToServer()
 {
-    m_managerTableWidget->downloadFileToServer();
+    m_tableWidget->downloadFileToServer();
 }
 
 void MusicCloudManagerWidget::deleteFileToServer()
 {
-    m_managerTableWidget->deleteFileToServer();
+    m_tableWidget->deleteFileToServer();
 }
 
 void MusicCloudManagerWidget::uploadFilesToServer()
 {
-    m_managerTableWidget->uploadFilesToServer();
+    m_tableWidget->uploadFilesToServer();
 }
 
 void MusicCloudManagerWidget::resizeEvent(QResizeEvent *event)

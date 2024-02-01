@@ -177,7 +177,7 @@ private:
     MusicPlaylist *m_playlist;
     MusicSongList m_songList;
     QScrollArea *m_scrollArea;
-    MusicSongsListPlayedTableWidget *m_playedListWidget;
+    MusicSongsListPlayedTableWidget *m_tableWidget;
 
     static MusicPlayedListPopWidget *m_instance;
 };

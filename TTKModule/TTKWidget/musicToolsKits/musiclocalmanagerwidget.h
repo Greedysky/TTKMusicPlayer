@@ -175,8 +175,8 @@ private:
     TTKTabButton *m_tabButton;
     MusicItemQueryEdit *m_searchEdit;
     MusicGifLabelValueWidget *m_loadingLabel;
-    MusicLocalManagerSongsTableWidget *m_songWidget;
-    MusicLocalManagerStatisticTableWidget *m_statisticWidget;
+    MusicLocalManagerSongsTableWidget *m_songTableWidget;
+    MusicLocalManagerStatisticTableWidget *m_statisticTableWidget;
 
 };
 

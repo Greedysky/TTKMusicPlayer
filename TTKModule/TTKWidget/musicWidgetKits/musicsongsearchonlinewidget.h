@@ -151,7 +151,7 @@ private:
     QLabel *m_textLabel;
     QPushButton *m_playButton;
     QWidgetList m_resizeWidgets;
-    MusicSongSearchTableWidget *m_searchTableWidget;
+    MusicSongSearchTableWidget *m_tableWidget;
 
 };
 

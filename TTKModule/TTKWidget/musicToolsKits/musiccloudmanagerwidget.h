@@ -243,7 +243,7 @@ private:
     QLabel *m_sizeValueLabel;
     QWidgetList m_resizeWidgets;
     QProgressBar *m_sizeValueBar;
-    MusicCloudManagerTableWidget *m_managerTableWidget;
+    MusicCloudManagerTableWidget *m_tableWidget;
 
 };
 

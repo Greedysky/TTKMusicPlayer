@@ -73,19 +73,19 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_topWidget->raise();
 
     m_videoFloatWidget = new MusicVideoFloatWidget(this);
-    m_videoTable = new MusicVideoSearchTableWidget(this);
+    m_tableWidget = new MusicVideoSearchTableWidget(this);
     m_videoView = new MusicVideoView(this);
 
     m_stackedWidget->addWidget(m_videoView);
 #if TTK_QT_VERSION_CHECK(5,0,0)
-    m_stackedWidget->addWidget(m_videoTable);
+    m_stackedWidget->addWidget(m_tableWidget);
 #else
     QWidget *videoMaskWidget = new QWidget(this);
     videoMaskWidget->setObjectName("videoMaskWidget");
     videoMaskWidget->setStyleSheet(QString("#%1{%2}").arg(videoMaskWidget->objectName(), TTK::UI::BackgroundStyle10));
     QHBoxLayout *videoMaskWidgetLayout = new QHBoxLayout(videoMaskWidget);
     videoMaskWidgetLayout->setContentsMargins(0, 0, 0, 0);
-    videoMaskWidgetLayout->addWidget(m_videoTable);
+    videoMaskWidgetLayout->addWidget(m_tableWidget);
     m_stackedWidget->addWidget(videoMaskWidget);
 #endif
     m_stackedWidget->setCurrentIndex(0);
@@ -98,8 +98,8 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_leaverAnimation->addAnimation(topAnimation);
     m_leaverAnimation->addAnimation(ctrlAnimation);
 
-    connect(m_videoTable, SIGNAL(mediaUrlPathChanged(MusicVideoItem)), SLOT(mediaUrlPathChanged(MusicVideoItem)));
-    connect(m_videoTable, SIGNAL(restartToSearchQuery(QString)), SLOT(videoResearchButtonSearched(QString)));
+    connect(m_tableWidget, SIGNAL(mediaUrlPathChanged(MusicVideoItem)), SLOT(mediaUrlPathChanged(MusicVideoItem)));
+    connect(m_tableWidget, SIGNAL(restartToSearchQuery(QString)), SLOT(videoResearchButtonSearched(QString)));
     connect(m_searchEdit, SIGNAL(trigger(QString)), SLOT(videoResearchButtonSearched(QString)));
 
     connect(m_videoFloatWidget, SIGNAL(searchButtonClicked()), SLOT(switchToSearchTable()));
@@ -204,7 +204,7 @@ void MusicVideoPlayWidget::resizeGeometry(bool resize)
 void MusicVideoPlayWidget::resizeGeometry(int width, int height)
 {
     m_topWidget->setGeometry(0, 0, 680 + width, 35);
-    m_videoTable->resizeSection(width);
+    m_tableWidget->resizeSection(width);
     m_videoView->resizeGeometry(width, height);
     m_videoFloatWidget->resizeGeometry(width, height);
 }
@@ -240,12 +240,12 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
 {
     switchToSearchTable();
     m_searchEdit->editor()->setText(name);
-    m_videoTable->startToSearchByText(name);
+    m_tableWidget->startToSearchByText(name);
 }
 
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
 {
-    m_videoTable->startToSearchByID(data);
+    m_tableWidget->startToSearchByID(data);
 
     const TTK::MusicSongInformation info(data.value<TTK::MusicSongInformation>());
     const TTK::MusicSongPropertyList &props = info.m_songProps;
@@ -265,7 +265,7 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
 void MusicVideoPlayWidget::startToSearchByID(const QString &name)
 {
     switchToSearchTable();
-    m_videoTable->startToSearchByID(name);
+    m_tableWidget->startToSearchByID(name);
 }
 
 void MusicVideoPlayWidget::mediaUrlChanged(const QString &url)
@@ -316,7 +316,7 @@ void MusicVideoPlayWidget::fullscreenButtonClicked()
 
 void MusicVideoPlayWidget::downloadButtonClicked()
 {
-    m_videoTable->downloadLocalFromControl();
+    m_tableWidget->downloadLocalFromControl();
 }
 
 void MusicVideoPlayWidget::shareButtonClicked()

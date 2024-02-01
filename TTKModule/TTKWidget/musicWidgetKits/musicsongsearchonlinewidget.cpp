@@ -297,7 +297,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     toolWidget->setAutoFillBackground(true);
     toolWidget->setPalette(plt);
 
-    m_searchTableWidget = new MusicSongSearchTableWidget(this);
+    m_tableWidget = new MusicSongSearchTableWidget(this);
     boxLayout->addWidget(toolWidget);
 #if !TTK_QT_VERSION_CHECK(5,0,0)
     QWidget *containerWidget = new QWidget(this);
@@ -307,23 +307,23 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(containerWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
-    layout->addWidget(m_searchTableWidget);
+    layout->addWidget(m_tableWidget);
     containerWidget->setLayout(layout);
     boxLayout->addWidget(containerWidget);
 #else
-    boxLayout->addWidget(m_searchTableWidget);
+    boxLayout->addWidget(m_tableWidget);
 #endif
     setLayout(boxLayout);
 
     createToolWidget(toolWidget);
-    connect(m_searchTableWidget, SIGNAL(restartToSearchQuery(QString)), MusicRightAreaWidget::instance(), SLOT(showSongSearchedFound(QString)));
+    connect(m_tableWidget, SIGNAL(restartToSearchQuery(QString)), MusicRightAreaWidget::instance(), SLOT(showSongSearchedFound(QString)));
 }
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
 {
     delete m_playButton;
     delete m_textLabel;
-    delete m_searchTableWidget;
+    delete m_tableWidget;
 }
 
 void MusicSongSearchOnlineWidget::startToSearchByText(const QString &name)
@@ -334,7 +334,7 @@ void MusicSongSearchOnlineWidget::startToSearchByText(const QString &name)
         TTKObjectCast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
     }
 
-    m_searchTableWidget->startToSearchByText(name);
+    m_tableWidget->startToSearchByText(name);
 }
 
 void MusicSongSearchOnlineWidget::startToSearchByID(const QString &name)
@@ -345,19 +345,19 @@ void MusicSongSearchOnlineWidget::startToSearchByID(const QString &name)
         TTKObjectCast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
     }
 
-    m_searchTableWidget->startToSearchByID(name);
+    m_tableWidget->startToSearchByID(name);
 }
 
 void MusicSongSearchOnlineWidget::resizeWindow()
 {
     setResizeLabelText(m_textLabel->toolTip());
-    m_searchTableWidget->resizeSection();
+    m_tableWidget->resizeSection();
 }
 
 void MusicSongSearchOnlineWidget::buttonClicked(int index)
 {
-    TTKIntList list = m_searchTableWidget->checkedIndexList();
-    list.removeOne(m_searchTableWidget->rowCount() - 1);
+    TTKIntList list = m_tableWidget->checkedIndexList();
+    list.removeOne(m_tableWidget->rowCount() - 1);
 
     if(list.isEmpty())
     {
@@ -369,19 +369,19 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
     {
         for(int i = 0; i < list.count(); ++i)
         {
-            m_searchTableWidget->addSearchMusicToPlaylist(list[i], i == 0);
+            m_tableWidget->addSearchMusicToPlaylist(list[i], i == 0);
         }
     }
     else if(index == 1)
     {
         for(int row : qAsConst(list))
         {
-            m_searchTableWidget->addSearchMusicToPlaylist(row, false);
+            m_tableWidget->addSearchMusicToPlaylist(row, false);
         }
     }
     else if(index == 2)
     {
-        MusicAbstractQueryRequest *d = m_searchTableWidget->queryInput();
+        MusicAbstractQueryRequest *d = m_tableWidget->queryInput();
         if(!d)
         {
             return;
@@ -439,7 +439,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     funcWidget->setLayout(funcLayout);
     wLayout->addWidget(funcWidget);
 
-    QHeaderView *headerView = m_searchTableWidget->horizontalHeader();
+    QHeaderView *headerView = m_tableWidget->horizontalHeader();
     //
     QWidget *labelWidget = new QWidget(widget);
     QHBoxLayout *labelLayout = new QHBoxLayout(labelWidget);
@@ -449,7 +449,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 
     QCheckBox *labelCheckBox = new QCheckBox(this);
     labelCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    connect(labelCheckBox, SIGNAL(clicked(bool)), m_searchTableWidget, SLOT(checkedItemsState(bool)));
+    connect(labelCheckBox, SIGNAL(clicked(bool)), m_tableWidget, SLOT(checkedItemsState(bool)));
     labelLayout->addWidget(labelCheckBox, headerView->sectionSize(0));
     m_resizeWidgets << labelCheckBox;
 

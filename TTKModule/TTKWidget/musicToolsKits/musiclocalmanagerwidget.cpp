@@ -317,11 +317,11 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     centerWidget->setLayout(centerWidgetLayout);
     mainLayout->addWidget(centerWidget);
 
-    m_statisticWidget = new MusicLocalManagerStatisticTableWidget(centerWidget);
-    centerWidgetLayout->addWidget(m_statisticWidget, 1);
+    m_statisticTableWidget = new MusicLocalManagerStatisticTableWidget(centerWidget);
+    centerWidgetLayout->addWidget(m_statisticTableWidget, 1);
 
-    m_songWidget = new MusicLocalManagerSongsTableWidget(centerWidget);
-    centerWidgetLayout->addWidget(m_songWidget, 3);
+    m_songTableWidget = new MusicLocalManagerSongsTableWidget(centerWidget);
+    centerWidgetLayout->addWidget(m_songTableWidget, 3);
 
     m_loadingLabel = new MusicGifLabelValueWidget(this);
     m_loadingLabel->setStyleSheet(TTK::UI::BackgroundStyle01);
@@ -330,7 +330,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     TTK_SIGNLE_SHOT(refreshItems, TTK_SLOT);
     connect(refresh, SIGNAL(clicked()), SLOT(refreshItems()));
     connect(button, SIGNAL(clicked()), SLOT(updateMediaLibraryPath()));
-    connect(m_songWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
+    connect(m_songTableWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
     connect(m_searchEdit->editor(), SIGNAL(cursorPositionChanged(int,int)), SLOT(searchResultChanged(int,int)));
 
     G_CONNECTION_PTR->setValue(className(), this);
@@ -343,14 +343,14 @@ MusicLocalManagerWidget::~MusicLocalManagerWidget()
     delete m_sizeLabel;
     delete m_searchEdit;
     delete m_loadingLabel;
-    delete m_songWidget;
-    delete m_statisticWidget;
+    delete m_songTableWidget;
+    delete m_statisticTableWidget;
 }
 
 void MusicLocalManagerWidget::resizeWidget()
 {
-    m_songWidget->resizeSection();
-    m_statisticWidget->resizeSection();
+    m_songTableWidget->resizeSection();
+    m_statisticTableWidget->resizeSection();
     m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() + 120 - m_loadingLabel->height()) / 2);
 }
 
@@ -368,7 +368,7 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
 
     clearSearchResult();
     m_searchEdit->editor()->clear();
-    m_statisticWidget->setVisible(index != 0);
+    m_statisticTableWidget->setVisible(index != 0);
     updateStatisticWidget(index, m_containerItems);
 }
 
@@ -383,7 +383,7 @@ void MusicLocalManagerWidget::refreshItems()
 
     m_containerItems.clear();
     m_sizeLabel->clear();
-    m_songWidget->removeItems();
+    m_songTableWidget->removeItems();
     m_searchEdit->editor()->clear();
     TTK::Core::enableBreakPoint(false);
 
@@ -430,7 +430,7 @@ void MusicLocalManagerWidget::refreshItems()
         m_loadingLabel->setValue(++count * 100.0f / files.size());
     }
 
-    m_songWidget->addCellItems(m_containerItems);
+    m_songTableWidget->addCellItems(m_containerItems);
     updateStatisticWidget(m_tabButton->currentIndex(), m_containerItems);
     m_loadingLabel->run(false);
 }
@@ -476,8 +476,8 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
     m_searchResultLevel = column;
     m_searchResultCache.insert(column, result);
 
-    m_songWidget->removeItems();
-    m_songWidget->addCellItems(data);
+    m_songTableWidget->removeItems();
+    m_songTableWidget->addCellItems(data);
     updateStatisticWidget(m_tabButton->currentIndex(), data);
 }
 
@@ -546,6 +546,6 @@ void MusicLocalManagerWidget::updateStatisticWidget(int index, const MusicSongIn
         }
     }
 
-    m_statisticWidget->addCellItem(statistic);
-    m_statisticWidget->setHorizontalHeaderLabels({label, tr("Count")});
+    m_statisticTableWidget->addCellItem(statistic);
+    m_statisticTableWidget->setHorizontalHeaderLabels({label, tr("Count")});
 }

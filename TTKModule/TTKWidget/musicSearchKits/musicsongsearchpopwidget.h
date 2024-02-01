@@ -130,7 +130,7 @@ private:
 
     QFrame *m_frame;
     QPushButton *m_clearButton;
-    MusicSongSearchPopTableWidget *m_popTableWidget;
+    MusicSongSearchPopTableWidget *m_tableWidget;
 
 };
 

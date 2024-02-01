@@ -173,11 +173,11 @@ struct TTK_MODULE_EXPORT MusicSongItem
     QString m_itemName;
     MusicSongSort m_sort;
     MusicSongList m_songs;
-    MusicAbstractSongsListTableWidget *m_itemObject;
+    MusicAbstractSongsListTableWidget *m_itemWidget;
 
     MusicSongItem()
         : m_itemIndex(-1),
-          m_itemObject(nullptr)
+          m_itemWidget(nullptr)
     {
 
     }

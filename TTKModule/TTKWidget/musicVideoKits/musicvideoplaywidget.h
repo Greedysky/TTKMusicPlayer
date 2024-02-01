@@ -159,7 +159,7 @@ private:
     QStackedWidget *m_stackedWidget;
     MusicVideoItem m_videoItem;
     MusicVideoView *m_videoView;
-    MusicVideoSearchTableWidget *m_videoTable;
+    MusicVideoSearchTableWidget *m_tableWidget;
     MusicItemQueryEdit *m_searchEdit;
     MusicVideoFloatWidget *m_videoFloatWidget;
 

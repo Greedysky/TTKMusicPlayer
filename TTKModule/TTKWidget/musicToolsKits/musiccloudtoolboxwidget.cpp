@@ -20,7 +20,7 @@ MusicCloudToolBoxWidget::~MusicCloudToolBoxWidget()
 {
     while(!m_songItems.isEmpty())
     {
-        delete m_songItems.back().m_itemObject;
+        delete m_songItems.back().m_itemWidget;
         m_songItems.pop_back();
     }
 }
@@ -33,7 +33,7 @@ void MusicCloudToolBoxWidget::updateItemTitle(int index)
     }
 
     const MusicSongItem *item = &m_songItems[index];
-    setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+    setTitle(item->m_itemWidget, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
 void MusicCloudToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidget *widget, const QString &text, int index)
@@ -41,7 +41,7 @@ void MusicCloudToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidget 
     MusicSongItem *item = &m_songItems.back();
     item->m_itemName = text;
     item->m_itemIndex = index;
-    item->m_itemObject = widget;
+    item->m_itemWidget = widget;
     addCellItem(widget, item->m_itemName);
 
     widget->setPlaylistRow(item->m_itemIndex);

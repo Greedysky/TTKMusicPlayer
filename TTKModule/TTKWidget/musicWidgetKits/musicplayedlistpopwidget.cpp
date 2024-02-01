@@ -49,7 +49,7 @@ MusicPlayedListPopWidget::MusicPlayedListPopWidget(QWidget *parent)
 
 MusicPlayedListPopWidget::~MusicPlayedListPopWidget()
 {
-    delete m_playedListWidget;
+    delete m_tableWidget;
     qDeleteAll(m_labels);
 }
 
@@ -66,13 +66,13 @@ void MusicPlayedListPopWidget::setPlaylist(MusicPlaylist *playlist)
 void MusicPlayedListPopWidget::clear()
 {
     m_songList.clear();
-    m_playedListWidget->removeItems();
+    m_tableWidget->removeItems();
     setPlaylistCount(0);
 }
 
 void MusicPlayedListPopWidget::clearQueueState()
 {
-    m_playedListWidget->clearQueueState();
+    m_tableWidget->clearQueueState();
 }
 
 void MusicPlayedListPopWidget::updatePlayedList(const TTK::IndexPropertyList &indexs)
@@ -87,9 +87,9 @@ void MusicPlayedListPopWidget::remove(int index)
         return;
     }
 
-    m_playedListWidget->adjustPlayWidgetRow();
-    m_playedListWidget->removeRow(index);
-    m_playedListWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
+    m_tableWidget->adjustPlayWidgetRow();
+    m_tableWidget->removeRow(index);
+    m_tableWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
 
     m_playlist->remove(index);
     m_songList.removeAt(index);
@@ -100,17 +100,18 @@ void MusicPlayedListPopWidget::remove(int index)
 void MusicPlayedListPopWidget::remove(int playlistRow, const QString &path)
 {
     int index = -1;
-    m_playedListWidget->adjustPlayWidgetRow();
+    m_tableWidget->adjustPlayWidgetRow();
+
     do
     {
         index = m_playlist->remove(playlistRow, path);
         if(index != -1)
         {
             m_songList.removeAt(index);
-            m_playedListWidget->removeRow(index);
+            m_tableWidget->removeRow(index);
         }
     } while(index != -1);
-    m_playedListWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
+    m_tableWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
 
     setPlaylistSongs();
 }
@@ -136,7 +137,7 @@ void MusicPlayedListPopWidget::append(const MusicSongList &song)
 
 void MusicPlayedListPopWidget::insert(int playlistRow, const MusicSong &song)
 {
-    insert(playlistRow, m_playedListWidget->playRowIndex() + 1, song);
+    insert(playlistRow, m_tableWidget->playRowIndex() + 1, song);
 }
 
 void MusicPlayedListPopWidget::insert(int playlistRow, int index, const MusicSong &song)
@@ -149,23 +150,23 @@ void MusicPlayedListPopWidget::insert(int playlistRow, int index, const MusicSon
     (index != m_songList.count()) ? m_songList.insert(index, song) : m_songList.append(song);
     m_playlist->appendQueue(playlistRow, song.path());
 
-    const int row = m_playedListWidget->playRowIndex();
-    m_playedListWidget->removeItems();
+    const int row = m_tableWidget->playRowIndex();
+    m_tableWidget->removeItems();
     setPlaylistSongs();
 
-    m_playedListWidget->setPlayRowIndex(row);
-    m_playedListWidget->selectPlayedRow();
+    m_tableWidget->setPlayRowIndex(row);
+    m_tableWidget->selectPlayedRow();
 
     for(const MusicPlayItem &item : qAsConst(m_playlist->queueList()))
     {
-        m_playedListWidget->setQueueState(item.m_playlistRow);
+        m_tableWidget->setQueueState(item.m_playlistRow);
     }
 }
 
 void MusicPlayedListPopWidget::selectCurrentIndex()
 {
     const int index = m_playlist->currentIndex();
-    m_playedListWidget->selectRow(index);
+    m_tableWidget->selectRow(index);
 }
 
 void MusicPlayedListPopWidget::selectCurrentIndex(int playlistRow, const MusicSong &song)
@@ -180,7 +181,7 @@ void MusicPlayedListPopWidget::popupMenu()
     pos.setY(pos.y() - m_containWidget->height() - 10);
     pos.setX(pos.x() - m_containWidget->width() + width() + 3);
 
-    m_playedListWidget->selectPlayedRow();
+    m_tableWidget->selectPlayedRow();
     m_menu->exec(pos);
 }
 
@@ -193,7 +194,7 @@ void MusicPlayedListPopWidget::removeItemAt(const TTKIntList &index)
 
     clearQueueState();
 
-    const int id = m_playedListWidget->playRowIndex();
+    const int id = m_tableWidget->playRowIndex();
     bool contains = false;
 
     for(int i = index.count() - 1; i >= 0; --i)
@@ -234,7 +235,7 @@ void MusicPlayedListPopWidget::removeItemAt(const TTKIntList &index)
             }
             ++offset;
         }
-        m_playedListWidget->selectRow(id - offset);
+        m_tableWidget->selectRow(id - offset);
     }
 
     setPlaylistCount(m_songList.count());
@@ -247,11 +248,11 @@ void MusicPlayedListPopWidget::clearItems()
         return;
     }
 
-    m_playedListWidget->adjustPlayWidgetRow();
-    const int count = m_playedListWidget->rowCount();
+    m_tableWidget->adjustPlayWidgetRow();
+    const int count = m_tableWidget->rowCount();
     for(int i = 0; i < count; ++i)
     {
-        m_playedListWidget->removeRow(0);
+        m_tableWidget->removeRow(0);
     }
 
     clearPlaylist();
@@ -259,7 +260,7 @@ void MusicPlayedListPopWidget::clearItems()
 
 void MusicPlayedListPopWidget::itemDoubleClicked()
 {
-    const int row = m_playedListWidget->currentRow();
+    const int row = m_tableWidget->currentRow();
     if(row < 0)
     {
         return;
@@ -309,20 +310,20 @@ void MusicPlayedListPopWidget::initialize()
     view->setObjectName("Viewport");
     view->setStyleSheet(QString("#Viewport{%1}").arg(background));
 
-    m_playedListWidget = new MusicSongsListPlayedTableWidget(this);
-    m_playedListWidget->setSongsList(&m_songList);
-    connect(m_playedListWidget, SIGNAL(deleteItemAt(TTKIntList)), SLOT(removeItemAt(TTKIntList)));
-    connect(m_playedListWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
+    m_tableWidget = new MusicSongsListPlayedTableWidget(this);
+    m_tableWidget->setSongsList(&m_songList);
+    connect(m_tableWidget, SIGNAL(deleteItemAt(TTKIntList)), SLOT(removeItemAt(TTKIntList)));
+    connect(m_tableWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
     QWidget *playedListContainer = new QWidget(m_scrollArea);
     QVBoxLayout *playedListLayout = new QVBoxLayout(playedListContainer);
     playedListLayout->setContentsMargins(0, 0, 0, 0);
     playedListLayout->setSpacing(0);
-    playedListLayout->addWidget(m_playedListWidget);
+    playedListLayout->addWidget(m_tableWidget);
     playedListContainer->setLayout(playedListLayout);
 
     TTK::Widget::generateVScrollAreaFormat(m_scrollArea, playedListContainer);
-    m_playedListWidget->setMovedScrollBar(m_scrollArea->verticalScrollBar());
+    m_tableWidget->setMovedScrollBar(m_scrollArea->verticalScrollBar());
 
     containLayout->addWidget(m_scrollArea);
     m_containWidget->setLayout(containLayout);
@@ -378,7 +379,7 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
 void MusicPlayedListPopWidget::setPlaylistSongs()
 {
     setPlaylistCount(m_songList.count());
-    m_playedListWidget->updateSongsList(m_songList);
+    m_tableWidget->updateSongsList(m_songList);
 }
 
 void MusicPlayedListPopWidget::setPlaylistCount(int count)
@@ -402,7 +403,7 @@ void MusicPlayedListPopWidget::setPlaylistCount(int count)
 
 void MusicPlayedListPopWidget::clearPlaylist()
 {
-    m_playedListWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
+    m_tableWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
     m_songList.clear();
     setPlaylistCount(0);
 
