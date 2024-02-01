@@ -75,18 +75,9 @@ void MusicNetworkConnectionItem::stop()
 
 void MusicNetworkConnectionItem::testFinshed(bool state)
 {
-    if(state)
-    {
-        m_stateText->setText(tr("Detected"));
-        m_iconLabel->setPixmap(QPixmap(":/tiny/lb_right"));
-        m_stateText->setStyleSheet(TTK::UI::ColorStyle09);
-    }
-    else
-    {
-        m_stateText->setText(tr("Failed"));
-        m_iconLabel->setPixmap(QPixmap(":/tiny/lb_error"));
-        m_stateText->setStyleSheet(TTK::UI::ColorStyle11);
-    }
+    m_stateText->setText(state ? tr("Detected") : tr("Failed"));
+    m_iconLabel->setPixmap(QPixmap(state ? ":/tiny/lb_right" : ":/tiny/lb_error"));
+    m_stateText->setStyleSheet(state ? TTK::UI::ColorStyle09 : TTK::UI::ColorStyle11);
 
     Q_EMIT networkConnectionTestChanged();
 }

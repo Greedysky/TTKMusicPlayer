@@ -1,7 +1,40 @@
 #include "musicplaylistbackupwidget.h"
 #include "musicwidgetheaders.h"
-#include "musicwidgetutils.h"
 #include "musictkplconfigmanager.h"
+
+MusicPlaylistBackupTableWidget::MusicPlaylistBackupTableWidget(QWidget *parent)
+    : MusicAbstractTableWidget(parent)
+{
+    setColumnCount(2);
+
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 400);
+    headerview->resizeSection(1, 45);
+}
+
+void MusicPlaylistBackupTableWidget::addCellItems(const MusicSongList &items)
+{
+    setRowCount(items.count());
+    QHeaderView *headerview = horizontalHeader();
+
+    for(int i = 0; i < items.count(); ++i)
+    {
+        const MusicSong &v = items[i];
+
+        QTableWidgetItem *item = new QTableWidgetItem;
+        item->setText(TTK::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerview->sectionSize(0) - 10));
+        item->setForeground(QColor(TTK::UI::Color01));
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 0, item);
+
+                          item = new QTableWidgetItem(v.duration());
+        item->setForeground(QColor(TTK::UI::Color01));
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 1, item);
+    }
+}
+
+
 
 MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     : QWidget(parent)
@@ -20,7 +53,7 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     layout->addWidget(mainWidget);
     setLayout(layout);
     //
-    QWidget *topWidget = new QWidget(this);
+    QWidget *topWidget = new QWidget(mainWidget);
     topWidget->setFixedHeight(60);
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setContentsMargins(15, 10, 20, 10);
@@ -53,38 +86,85 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     topWidget->setLayout(topWidgetLayout);
     mainLayout->addWidget(topWidget);
     //
-    QFrame *frame = new QFrame(this);
+    QFrame *frame = new QFrame(mainWidget);
     frame->setFixedHeight(1);
     frame->setFrameShape(QFrame::HLine);
     frame->setFrameShadow(QFrame::Plain);
     frame->setStyleSheet(TTK::UI::ColorStyle05);
     mainLayout->addWidget(frame);
     //
-    QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(TTK::UI::BackgroundStyle01);
+    QWidget *functionWidget = new QWidget(mainWidget);
     QHBoxLayout *functionWidgetLayout = new QHBoxLayout(functionWidget);
-    functionWidgetLayout->setContentsMargins(10, 10, 10, 10);
+    functionWidgetLayout->setContentsMargins(10, 0, 10, 0);
     functionWidget->setLayout(functionWidgetLayout);
     mainLayout->addWidget(functionWidget);
+    //
+    QWidget *listWidget = new QWidget(functionWidget);
+    listWidget->setFixedWidth(200);
+    QHBoxLayout *listWidgetLayout = new QHBoxLayout(listWidget);
+    listWidgetLayout->setContentsMargins(0, 10, 0, 10);
+    listWidget->setLayout(listWidgetLayout);
 
-    m_listWidget = new QListWidget(functionWidget);
-    m_listWidget->setFixedWidth(200);
-    functionWidgetLayout->addWidget(m_listWidget);
+    m_listWidget = new QListWidget(listWidget);
+    m_listWidget->setStyleSheet(TTK::UI::BorderStyle01);
+    listWidgetLayout->addWidget(m_listWidget);
+    //
+    QFrame *hFrame = new QFrame(functionWidget);
+    hFrame->setFixedWidth(1);
+    hFrame->setFrameShape(QFrame::VLine);
+    hFrame->setFrameShadow(QFrame::Plain);
+    hFrame->setStyleSheet(TTK::UI::ColorStyle05);
+    //
+    QWidget *containerWidget = new QWidget(functionWidget);
+    QVBoxLayout *containerWidgetLayout = new QVBoxLayout(containerWidget);
+    containerWidgetLayout->setContentsMargins(10, 10, 10, 10);
+    containerWidget->setLayout(containerWidgetLayout);
 
-    QWidget *widget = new QWidget(functionWidget);
-    functionWidgetLayout->addWidget(widget);
+    functionWidgetLayout->addWidget(listWidget);
+    functionWidgetLayout->addWidget(hFrame);
+    functionWidgetLayout->addWidget(containerWidget);
+    //
+    QWidget *containerTopWidget = new QWidget(containerWidget);
+    containerTopWidget->setFixedHeight(30);
+    m_tableWidget = new MusicPlaylistBackupTableWidget(containerWidget);
+
+    containerWidgetLayout->addWidget(containerTopWidget);
+    containerWidgetLayout->addWidget(m_tableWidget);
+
+    QHBoxLayout *containerTopWidgetLayout = new QHBoxLayout(containerTopWidget);
+    containerTopWidgetLayout->setContentsMargins(0, 0, 0, 0);
+    containerTopWidget->setLayout(containerTopWidgetLayout);
+    //
+    QFrame *blueFrame = new QFrame(containerTopWidget);
+    blueFrame->setFixedWidth(3);
+    blueFrame->setFrameShape(QFrame::VLine);
+    blueFrame->setFrameShadow(QFrame::Plain);
+    blueFrame->setStyleSheet(TTK::UI::ColorStyle08);
+
+    m_titleLabel = new QLabel(containerTopWidget);
+    pLabelFont = m_titleLabel->font();
+    pLabelFont.setPixelSize(16);
+    m_titleLabel->setFont(pLabelFont);
+    //
+    containerTopWidgetLayout->addWidget(blueFrame);
+    containerTopWidgetLayout->addWidget(m_titleLabel);
+    containerTopWidgetLayout->addStretch(1);
+    containerTopWidgetLayout->addWidget(new QPushButton(containerTopWidget));
 
     initialize();
 
     connect(m_dateBox, SIGNAL(currentTextChanged(QString)), SLOT(currentDateChanged(QString)));
     connect(m_timeBox, SIGNAL(currentTextChanged(QString)), SLOT(currentTimeChanged(QString)));
+    connect(m_listWidget, SIGNAL(currentRowChanged(int)), SLOT(currentItemChanged(int)));
 }
 
 MusicPlaylistBackupWidget::~MusicPlaylistBackupWidget()
 {
     delete m_dateBox;
     delete m_timeBox;
+    delete m_titleLabel;
     delete m_listWidget;
+    delete m_tableWidget;
 }
 
 void MusicPlaylistBackupWidget::resizeWidget()
@@ -101,6 +181,8 @@ void MusicPlaylistBackupWidget::currentDateChanged(const QString &text)
     {
         m_timeBox->addItem(fin.baseName());
     }
+
+    currentTimeChanged(m_timeBox->currentText());
 }
 
 void MusicPlaylistBackupWidget::currentTimeChanged(const QString &text)
@@ -114,17 +196,27 @@ void MusicPlaylistBackupWidget::currentTimeChanged(const QString &text)
         return;
     }
 
-    MusicSongItemList items;
-    manager.readBuffer(items);
+    manager.readBuffer(m_items);
 
-    for(const MusicSongItem &item : qAsConst(items))
+    for(const MusicSongItem &item : qAsConst(m_items))
     {
-        m_listWidget->addItem(item.m_itemName);
+        m_listWidget->addItem(QString("%1[%2]").arg(item.m_itemName).arg(item.m_songs.count()));
     }
+
+    currentItemChanged(0);
+}
+
+void MusicPlaylistBackupWidget::currentItemChanged(int index)
+{
+    const MusicSongItem &item = m_items[index];
+    m_titleLabel->setText(QString("%1[%2]").arg(item.m_itemName).arg(item.m_songs.count()));
+    m_tableWidget->addCellItems(item.m_songs);
 }
 
 void MusicPlaylistBackupWidget::initialize()
 {
     QDir dir(TTK_STR_CAT(APPBACKUP_DIR_FULL, "playlist"));
     m_dateBox->addItems(dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Time | QDir::Reversed));
+
+    currentDateChanged(m_dateBox->currentText());
 }

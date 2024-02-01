@@ -546,7 +546,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     layout->addWidget(mainWidget);
     setLayout(layout);
     //
-    QWidget *topWidget = new QWidget(this);
+    QWidget *topWidget = new QWidget(mainWidget);
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     mainLayout->setContentsMargins(10, 10, 10, 10);
 
@@ -580,7 +580,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     topWidget->setLayout(topWidgetLayout);
     mainLayout->addWidget(topWidget);
     //
-    QWidget *functionWidget = new QWidget(this);
+    QWidget *functionWidget = new QWidget(mainWidget);
     QHBoxLayout *functionWidgetLayout = new QHBoxLayout(functionWidget);
     functionWidgetLayout->setContentsMargins(10, 10, 10, 10);
 
@@ -599,7 +599,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     deleteButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    QLabel *statusLabel = new QLabel(this);
+    QLabel *statusLabel = new QLabel(functionWidget);
 
     functionWidgetLayout->addWidget(uploadButton);
     functionWidgetLayout->addWidget(downloadButton);
@@ -617,23 +617,23 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     connect(downloadButton, SIGNAL(clicked(bool)), SLOT(downloadFileToServer()));
     connect(deleteButton, SIGNAL(clicked(bool)), SLOT(deleteFileToServer()));
     //
-    QWidget *labelWidget = new QWidget(this);
+    QWidget *labelWidget = new QWidget(mainWidget);
     labelWidget->setStyleSheet(TTK::UI::BackgroundStyle09);
     QHBoxLayout *labelWidgetLayout = new QHBoxLayout(labelWidget);
     functionWidgetLayout->setContentsMargins(10, 20, 10, 10);
 
-    QLabel *label1 = new QLabel(tr("Song"), this);
+    QLabel *label1 = new QLabel(tr("Song"), labelWidget);
     label1->setAlignment(Qt::AlignCenter);
     label1->setStyleSheet(TTK::UI::FontStyle01);
     labelWidgetLayout->addWidget(label1, 100);
     m_resizeWidgets << label1;
 
-    QLabel *label2 = new QLabel(tr("FileSize"), this);
+    QLabel *label2 = new QLabel(tr("FileSize"), labelWidget);
     label2->setAlignment(Qt::AlignCenter);
     label2->setStyleSheet(TTK::UI::FontStyle01);
     labelWidgetLayout->addWidget(label2, 1);
 
-    QLabel *label3 = new QLabel(tr("UploadTime"), this);
+    QLabel *label3 = new QLabel(tr("UploadTime"), labelWidget);
     label3->setAlignment(Qt::AlignCenter);
     label3->setStyleSheet(TTK::UI::FontStyle01);
     labelWidgetLayout->addWidget(label3, 1);
@@ -642,7 +642,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     labelWidget->setLayout(labelWidgetLayout);
     mainLayout->addWidget(labelWidget);
 
-    m_managerTableWidget = new MusicCloudManagerTableWidget(this);
+    m_managerTableWidget = new MusicCloudManagerTableWidget(mainWidget);
 
     connect(m_managerTableWidget, SIGNAL(updateLabelMessage(QString)), statusLabel, SLOT(setText(QString)));
     connect(m_managerTableWidget, SIGNAL(updataSizeLabel(qint64)), SLOT(updataSizeLabel(qint64)));

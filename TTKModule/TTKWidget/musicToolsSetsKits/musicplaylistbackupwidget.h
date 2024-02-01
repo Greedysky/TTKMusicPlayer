@@ -19,10 +19,31 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QWidget>
+#include "musicsong.h"
+#include "musicabstracttablewidget.h"
 #include "ttkabstractresizeinterface.h"
 
-class QComboBox;
+/*! @brief The class of the rplaylist backup table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicPlaylistBackupTableWidget : public MusicAbstractTableWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlaylistBackupTableWidget)
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicPlaylistBackupTableWidget(QWidget *parent = nullptr);
+
+    /*!
+     * Create cell items by input data.
+     */
+    void addCellItems(const MusicSongList &items);
+
+};
+
+
 class QListWidget;
 
 /*! @brief The class of the playlist backup widget.
@@ -53,6 +74,10 @@ private Q_SLOTS:
      * Remote background type selected by index.
      */
     void currentTimeChanged(const QString &text);
+    /*!
+     * Remote background type selected by index.
+     */
+    void currentItemChanged(int index);
 
 private:
     /*!
@@ -61,7 +86,10 @@ private:
     void initialize();
 
     QComboBox *m_dateBox, *m_timeBox;
+    QLabel *m_titleLabel;
     QListWidget *m_listWidget;
+    MusicSongItemList m_items;
+    MusicPlaylistBackupTableWidget *m_tableWidget;
 
 };
 

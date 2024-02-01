@@ -217,7 +217,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     layout->addWidget(mainWidget);
     setLayout(layout);
     //
-    QWidget *topWidget = new QWidget(this);
+    QWidget *topWidget = new QWidget(mainWidget);
     topWidget->setFixedHeight(60);
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setContentsMargins(15, 10, 20, 10);
@@ -261,21 +261,20 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     topWidget->setLayout(topWidgetLayout);
     mainLayout->addWidget(topWidget);
     //
-    QFrame *frame = new QFrame(this);
+    QFrame *frame = new QFrame(mainWidget);
     frame->setFixedHeight(1);
     frame->setFrameShape(QFrame::HLine);
     frame->setFrameShadow(QFrame::Plain);
     frame->setStyleSheet(TTK::UI::ColorStyle05);
     mainLayout->addWidget(frame);
     //
-    QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(TTK::UI::BackgroundStyle01);
+    QWidget *functionWidget = new QWidget(mainWidget);
     QHBoxLayout *functionWidgetLayout = new QHBoxLayout(functionWidget);
     functionWidgetLayout->setContentsMargins(10, 10, 10, 10);
     functionWidget->setLayout(functionWidgetLayout);
     mainLayout->addWidget(functionWidget);
 
-    m_backgroundList = new MusicScreenSaverListWidget(this);
+    m_backgroundList = new MusicScreenSaverListWidget(functionWidget);
     functionWidgetLayout->addWidget(m_backgroundList);
 
     connect(m_inputEdit, SIGNAL(textChanged(QString)), SLOT(inputDataChanged()));

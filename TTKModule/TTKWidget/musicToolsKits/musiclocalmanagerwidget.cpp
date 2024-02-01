@@ -288,7 +288,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     button->setCursor(QCursor(Qt::PointingHandCursor));
     functionWidgetLayout->addWidget(button);
 
-    m_searchEdit = new MusicItemQueryEdit(this);
+    m_searchEdit = new MusicItemQueryEdit(topWidget);
     m_searchEdit->setFixedHeight(33);
     topLayout->addWidget(functionWidget);
     topLayout->addWidget(m_searchEdit);
@@ -300,7 +300,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     tabWidget->setLayout(tabWidgetLayout);
     mainLayout->addWidget(tabWidget);
 
-    m_tabButton = new TTKTabButton(functionWidget);
+    m_tabButton = new TTKTabButton(tabWidget);
     m_tabButton->addButtons({tr("Song"), tr("Artist"), tr("Album"), tr("Year"), tr("Genre")});
     tabWidgetLayout->addWidget(m_tabButton);
     connect(m_tabButton, SIGNAL(clicked(int)), SLOT(typeIndexChanged(int)));
