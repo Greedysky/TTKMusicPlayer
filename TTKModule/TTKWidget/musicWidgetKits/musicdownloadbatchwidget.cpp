@@ -145,8 +145,8 @@ MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
 {
     setColumnCount(1);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 555);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 555);
 
     setStyleSheet(styleSheet() + TTK::UI::TableWidgetStyle02);
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);

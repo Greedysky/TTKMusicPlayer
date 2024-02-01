@@ -10,12 +10,12 @@ MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *pare
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(5);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 50);
-    headerview->resizeSection(1, 150);
-    headerview->resizeSection(2, 100);
-    headerview->resizeSection(3, 190);
-    headerview->resizeSection(4, 60);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 50);
+    headerView->resizeSection(1, 150);
+    headerView->resizeSection(2, 100);
+    headerView->resizeSection(3, 190);
+    headerView->resizeSection(4, 60);
 
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
 }
@@ -23,7 +23,7 @@ MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *pare
 void MusicLrcDownloadBatchTableWidget::addCellItems(const MusicSongList &items)
 {
     setRowCount(items.count());
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
 
     for(int i = 0; i < items.count(); ++i)
     {
@@ -37,19 +37,19 @@ void MusicLrcDownloadBatchTableWidget::addCellItems(const MusicSongList &items)
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.path());
-        item->setText(TTK::Widget::elidedText(font(), v.title(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setText(TTK::Widget::elidedText(font(), v.title(), Qt::ElideRight, headerView->sectionSize(1) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.path());
-        item->setText(TTK::Widget::elidedText(font(), v.artist(), Qt::ElideRight, headerview->sectionSize(2) - 10));
+        item->setText(TTK::Widget::elidedText(font(), v.artist(), Qt::ElideRight, headerView->sectionSize(2) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.path());
-        item->setText(TTK::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerview->sectionSize(3) - 10));
+        item->setText(TTK::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerView->sectionSize(3) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 3, item);
 

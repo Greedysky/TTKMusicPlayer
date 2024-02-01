@@ -7,11 +7,11 @@ MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
 {
     setColumnCount(4);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 10);
-    headerview->resizeSection(1, 168);
-    headerview->resizeSection(2, 83);
-    headerview->resizeSection(3, 50);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 10);
+    headerView->resizeSection(1, 168);
+    headerView->resizeSection(2, 83);
+    headerView->resizeSection(3, 50);
 
     m_type = TTK::Record::NormalDownload;
     setItemDelegateForColumn(2, m_progressBarDelegate);
@@ -30,13 +30,13 @@ MusicDownloadRecordTableWidget::~MusicDownloadRecordTableWidget()
 
 void MusicDownloadRecordTableWidget::addCellItem(int index, const MusicSong &record)
 {
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(record.name());
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 20));
     item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 1, item);

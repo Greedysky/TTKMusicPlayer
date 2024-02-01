@@ -88,25 +88,25 @@ void MusicVideoSearchTableWidget::startToSearchByID(const QVariant &data)
 
 void MusicVideoSearchTableWidget::resizeSection(int delta)
 {
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 306 + delta * 0.5);
-    headerview->resizeSection(2, 159 + delta * 0.5);
-    headerview->resizeSection(3, 55);
-    headerview->resizeSection(4, 24);
-    headerview->resizeSection(5, 24);
-    headerview->resizeSection(6, 24);
-    headerview->resizeSection(7, 24);
-    headerview->resizeSection(8, 24);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 30);
+    headerView->resizeSection(1, 306 + delta * 0.5);
+    headerView->resizeSection(2, 159 + delta * 0.5);
+    headerView->resizeSection(3, 55);
+    headerView->resizeSection(4, 24);
+    headerView->resizeSection(5, 24);
+    headerView->resizeSection(6, 24);
+    headerView->resizeSection(7, 24);
+    headerView->resizeSection(8, 24);
 
     //resize row
     for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 5));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 5));
 
         it = item(i, 2);
-        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 5));
     }
 }
 
@@ -168,7 +168,7 @@ void MusicVideoSearchTableWidget::createResultItem(const MusicResultInfoItem &so
     const int count = rowCount();
     setRowCount(count + 1);
 
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(TTK_CHECKED_ROLE, Qt::Unchecked);
     item->setBackground(m_backgroundColor);
@@ -176,13 +176,13 @@ void MusicVideoSearchTableWidget::createResultItem(const MusicResultInfoItem &so
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 5));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 5));
     item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_artistName);
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 5));
     item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 2, item);
 

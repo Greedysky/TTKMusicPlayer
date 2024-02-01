@@ -7,22 +7,22 @@ MusicPlaylistBackupTableWidget::MusicPlaylistBackupTableWidget(QWidget *parent)
 {
     setColumnCount(2);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 400);
-    headerview->resizeSection(1, 45);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 350);
+    headerView->resizeSection(1, 45);
 }
 
 void MusicPlaylistBackupTableWidget::addCellItems(const MusicSongList &items)
 {
     setRowCount(items.count());
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
 
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSong &v = items[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setText(TTK::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerview->sectionSize(0) - 10));
+        item->setText(TTK::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerView->sectionSize(0) - 10));
         item->setForeground(QColor(TTK::UI::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 0, item);

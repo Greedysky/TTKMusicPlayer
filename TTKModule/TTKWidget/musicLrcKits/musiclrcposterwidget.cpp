@@ -837,9 +837,9 @@ MusicLrcPosterTableWidget::MusicLrcPosterTableWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(2);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 237);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 30);
+    headerView->resizeSection(1, 237);
 
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
 }

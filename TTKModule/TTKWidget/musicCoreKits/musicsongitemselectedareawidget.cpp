@@ -12,12 +12,12 @@ MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *pare
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(2);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 30);
 #ifdef Q_OS_UNIX
-    headerview->resizeSection(1, 219);
+    headerView->resizeSection(1, 219);
 #else
-    headerview->resizeSection(1, 222);
+    headerView->resizeSection(1, 222);
 #endif
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
 }
@@ -32,7 +32,7 @@ void MusicSongItemSelectedTableWidget::addCellItems(MusicSongItemList *items)
     }
 
     setRowCount(items->count());
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
 
     for(int i = 0; i < items->count(); ++i)
     {
@@ -45,7 +45,7 @@ void MusicSongItemSelectedTableWidget::addCellItems(MusicSongItemList *items)
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.m_itemName);
-        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 30));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 30));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
     }

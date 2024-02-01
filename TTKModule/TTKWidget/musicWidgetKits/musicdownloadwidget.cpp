@@ -48,8 +48,8 @@ MusicDownloadTableWidget::MusicDownloadTableWidget(QWidget *parent)
 {
     setColumnCount(1);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 400);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 400);
 
     TTK::Widget::setTransparent(this, 255);
 }

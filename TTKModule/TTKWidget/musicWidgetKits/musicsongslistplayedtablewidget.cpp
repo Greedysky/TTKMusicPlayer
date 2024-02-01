@@ -12,12 +12,12 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setColumnCount(5);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 20);
-    headerview->resizeSection(1, 197);
-    headerview->resizeSection(2, 25);
-    headerview->resizeSection(3, 25);
-    headerview->resizeSection(4, 45);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 20);
+    headerView->resizeSection(1, 197);
+    headerView->resizeSection(2, 25);
+    headerView->resizeSection(3, 25);
+    headerView->resizeSection(4, 45);
 
     TTK::Widget::setTransparent(this, 255);
 }
@@ -33,7 +33,7 @@ void MusicSongsListPlayedTableWidget::updateSongsList(const MusicSongList &songs
     const int count = rowCount();
     setRowCount(songs.count());
 
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
     for(int i = count; i < songs.count(); ++i)
     {
         const MusicSong &v = songs[i];
@@ -43,7 +43,7 @@ void MusicSongsListPlayedTableWidget::updateSongsList(const MusicSongList &songs
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.name());
-        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));  
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 15));
         item->setForeground(QColor(TTK::UI::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
@@ -139,13 +139,13 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
     delete takeItem(m_playRowIndex, 0);
     clearSpans();
 
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
 
     item = new QTableWidgetItem;
     item->setToolTip(name);
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 15));
     item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
 

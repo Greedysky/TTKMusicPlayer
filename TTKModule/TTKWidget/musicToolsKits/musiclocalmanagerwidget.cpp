@@ -54,10 +54,10 @@ MusicLocalManagerStatisticTableWidget::MusicLocalManagerStatisticTableWidget(QWi
 {
     setColumnCount(2);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->setVisible(true);
-    headerview->resizeSection(0, 100);
-    headerview->resizeSection(1, 55);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->setVisible(true);
+    headerView->resizeSection(0, 100);
+    headerView->resizeSection(1, 55);
 
     setAlternatingRowColors(true);
     setFrameShape(QFrame::Box);
@@ -98,9 +98,9 @@ void MusicLocalManagerStatisticTableWidget::addCellItem(const MusicSongStatistic
 void MusicLocalManagerStatisticTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 100 + (width - WINDOW_WIDTH_MIN) / 2.0 / 3.0);
-    headerview->resizeSection(1, 55 + (width - WINDOW_WIDTH_MIN) / 2.0 / 3.0);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 100 + (width - WINDOW_WIDTH_MIN) / 2.0 / 3.0);
+    headerView->resizeSection(1, 55 + (width - WINDOW_WIDTH_MIN) / 2.0 / 3.0);
 }
 
 
@@ -111,15 +111,15 @@ MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *pa
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(7);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->setVisible(true);
-    headerview->resizeSection(0, 200);
-    headerview->resizeSection(1, 100);
-    headerview->resizeSection(2, 100);
-    headerview->resizeSection(3, 40);
-    headerview->resizeSection(4, 100);
-    headerview->resizeSection(5, 100);
-    headerview->resizeSection(6, 200);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->setVisible(true);
+    headerView->resizeSection(0, 200);
+    headerView->resizeSection(1, 100);
+    headerView->resizeSection(2, 100);
+    headerView->resizeSection(3, 40);
+    headerView->resizeSection(4, 100);
+    headerView->resizeSection(5, 100);
+    headerView->resizeSection(6, 200);
 
     setAlternatingRowColors(true);
     setFrameShape(QFrame::Box);
@@ -196,11 +196,11 @@ void MusicLocalManagerSongsTableWidget::addCellItems(const MusicSongInfoItemList
 void MusicLocalManagerSongsTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 200 + (width - WINDOW_WIDTH_MIN) / 4.0);
-    headerview->resizeSection(1, 100 + (width - WINDOW_WIDTH_MIN) / 4.0);
-    headerview->resizeSection(2, 100 + (width - WINDOW_WIDTH_MIN) / 4.0);
-    headerview->resizeSection(6, 200 + (width - WINDOW_WIDTH_MIN) / 4.0);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 200 + (width - WINDOW_WIDTH_MIN) / 4.0);
+    headerView->resizeSection(1, 100 + (width - WINDOW_WIDTH_MIN) / 4.0);
+    headerView->resizeSection(2, 100 + (width - WINDOW_WIDTH_MIN) / 4.0);
+    headerView->resizeSection(6, 200 + (width - WINDOW_WIDTH_MIN) / 4.0);
 }
 
 void MusicLocalManagerSongsTableWidget::removeItems()

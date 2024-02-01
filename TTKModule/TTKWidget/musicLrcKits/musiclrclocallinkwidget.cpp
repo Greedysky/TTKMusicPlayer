@@ -13,9 +13,9 @@ MusicLrcLocalLinkTableWidget::MusicLrcLocalLinkTableWidget(QWidget *parent)
 {
     setColumnCount(2);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 147);
-    headerview->resizeSection(1, 235);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 147);
+    headerView->resizeSection(1, 235);
 }
 
 bool MusicLrcLocalLinkTableWidget::contains(const QString &string)
@@ -35,20 +35,20 @@ void MusicLrcLocalLinkTableWidget::addCellItems(const MusicLocalDataItemList &it
     const int count = rowCount();
     setRowCount(count + items.count());
 
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicLocalDataItem &v = items[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(v.m_name);
-        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(0) - 20));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 0, item);
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.m_path);
-        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 20));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 1, item);
     }

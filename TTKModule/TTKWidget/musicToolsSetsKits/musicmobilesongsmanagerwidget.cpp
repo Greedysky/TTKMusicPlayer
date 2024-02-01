@@ -11,12 +11,12 @@ MusicMobileSongsTableWidget::MusicMobileSongsTableWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(5);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 460);
-    headerview->resizeSection(1, 85);
-    headerview->resizeSection(2, 105);
-    headerview->resizeSection(3, 26);
-    headerview->resizeSection(4, 26);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 460);
+    headerView->resizeSection(1, 85);
+    headerView->resizeSection(2, 105);
+    headerView->resizeSection(3, 26);
+    headerView->resizeSection(4, 26);
 
     m_songs = new MusicSongList;
     TTK::Widget::setTransparent(this, 150);
@@ -31,7 +31,7 @@ MusicMobileSongsTableWidget::~MusicMobileSongsTableWidget()
 void MusicMobileSongsTableWidget::addCellItems(const QStringList &songs)
 {
     setRowCount(songs.count());
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
 
     for(int i = 0; i < songs.count(); ++i)
     {
@@ -39,13 +39,13 @@ void MusicMobileSongsTableWidget::addCellItems(const QStringList &songs)
 
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(fin.fileName());
-        item->setText(" " + TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
+        item->setText(" " + TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(0) - 20));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 0, item);
 
                          item = new QTableWidgetItem;
         item->setToolTip(TTK::Number::sizeByteToLabel(fin.size()));
-        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 15));
         QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
         setItem(i, 1, item);
 

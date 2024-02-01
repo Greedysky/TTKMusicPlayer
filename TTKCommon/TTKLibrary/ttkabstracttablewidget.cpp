@@ -10,12 +10,12 @@ TTKAbstractTableWidget::TTKAbstractTableWidget(QWidget *parent)
     setColumnCount(3);
     setRowCount(0);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->setMinimumSectionSize(0);
-    headerview->setVisible(false);
-    headerview->resizeSection(0, 20);
-    headerview->resizeSection(1, 247);
-    headerview->resizeSection(2, 45);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->setMinimumSectionSize(0);
+    headerView->setVisible(false);
+    headerView->resizeSection(0, 20);
+    headerView->resizeSection(1, 247);
+    headerView->resizeSection(2, 45);
     verticalHeader()->setVisible(false);
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

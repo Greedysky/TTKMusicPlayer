@@ -15,16 +15,16 @@ MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
 {
     setColumnCount(9);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 273);
-    headerview->resizeSection(2, 105);
-    headerview->resizeSection(3, 105);
-    headerview->resizeSection(4, 55);
-    headerview->resizeSection(5, 23);
-    headerview->resizeSection(6, 26);
-    headerview->resizeSection(7, 26);
-    headerview->resizeSection(8, 26);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 30);
+    headerView->resizeSection(1, 273);
+    headerView->resizeSection(2, 105);
+    headerView->resizeSection(3, 105);
+    headerView->resizeSection(4, 55);
+    headerView->resizeSection(5, 23);
+    headerView->resizeSection(6, 26);
+    headerView->resizeSection(7, 26);
+    headerView->resizeSection(8, 26);
 
     G_CONNECTION_PTR->setValue(MusicQueryTableWidget::className(), this);
 }
@@ -92,21 +92,21 @@ void MusicSongSearchTableWidget::startToSearchByID(const QString &text)
 void MusicSongSearchTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, 273 + (width - WINDOW_WIDTH_MIN) / 3.0);
-    headerview->resizeSection(2, 105 + (width - WINDOW_WIDTH_MIN) / 3.0);
-    headerview->resizeSection(3, 105 + (width - WINDOW_WIDTH_MIN) / 3.0);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(1, 273 + (width - WINDOW_WIDTH_MIN) / 3.0);
+    headerView->resizeSection(2, 105 + (width - WINDOW_WIDTH_MIN) / 3.0);
+    headerView->resizeSection(3, 105 + (width - WINDOW_WIDTH_MIN) / 3.0);
 
     for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 31));
 
         it = item(i, 2);
-        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 31));
 
         it = item(i, 3);
-        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(3) - 31));
     }
 }
 
@@ -155,26 +155,26 @@ void MusicSongSearchTableWidget::createResultItem(const MusicResultInfoItem &son
     const int count = rowCount();
     setRowCount(count + 1);
 
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(TTK_CHECKED_ROLE, Qt::Unchecked);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 15));
     item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_artistName);
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 30));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 30));
     item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_albumName);
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 30));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(3) - 30));
     item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 3, item);
 
@@ -439,7 +439,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     funcWidget->setLayout(funcLayout);
     wLayout->addWidget(funcWidget);
 
-    QHeaderView *headerview = m_searchTableWidget->horizontalHeader();
+    QHeaderView *headerView = m_searchTableWidget->horizontalHeader();
     //
     QWidget *labelWidget = new QWidget(widget);
     QHBoxLayout *labelLayout = new QHBoxLayout(labelWidget);
@@ -450,7 +450,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     QCheckBox *labelCheckBox = new QCheckBox(this);
     labelCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     connect(labelCheckBox, SIGNAL(clicked(bool)), m_searchTableWidget, SLOT(checkedItemsState(bool)));
-    labelLayout->addWidget(labelCheckBox, headerview->sectionSize(0));
+    labelLayout->addWidget(labelCheckBox, headerView->sectionSize(0));
     m_resizeWidgets << labelCheckBox;
 
 #ifdef Q_OS_UNIX
@@ -462,22 +462,22 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 
     QLabel *label1 = new QLabel(tr("Song"), this);
     label1->setStyleSheet(TTK::UI::FontStyle01);
-    labelLayout->addWidget(label1, headerview->sectionSize(1));
+    labelLayout->addWidget(label1, headerView->sectionSize(1));
     m_resizeWidgets << label1;
 
     QLabel *label2 = new QLabel(tr("Artist"), this);
     label2->setStyleSheet(TTK::UI::FontStyle01);
-    labelLayout->addWidget(label2, headerview->sectionSize(2));
+    labelLayout->addWidget(label2, headerView->sectionSize(2));
     m_resizeWidgets << label2;
 
     QLabel *label3 = new QLabel(tr("Album"), this);
     label3->setStyleSheet(TTK::UI::FontStyle01);
-    labelLayout->addWidget(label3, headerview->sectionSize(3));
+    labelLayout->addWidget(label3, headerView->sectionSize(3));
     m_resizeWidgets << label3;
 
     QLabel *label4 = new QLabel(tr("Operator"), this);
     label4->setStyleSheet(TTK::UI::FontStyle01);
-    labelLayout->addWidget(label4, headerview->sectionSize(4) + headerview->sectionSize(5) + headerview->sectionSize(6) * 3);
+    labelLayout->addWidget(label4, headerView->sectionSize(4) + headerView->sectionSize(5) + headerView->sectionSize(6) * 3);
     m_resizeWidgets << label3;
 
     labelWidget->setLayout(labelLayout);

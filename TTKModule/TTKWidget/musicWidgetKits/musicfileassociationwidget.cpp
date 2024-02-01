@@ -10,12 +10,12 @@ MusicFileAssociationTableWidget::MusicFileAssociationTableWidget(QWidget *parent
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(2);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 30);
 #ifdef Q_OS_UNIX
-    headerview->resizeSection(1, 219);
+    headerView->resizeSection(1, 219);
 #else
-    headerview->resizeSection(1, 222);
+    headerView->resizeSection(1, 222);
 #endif
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
 

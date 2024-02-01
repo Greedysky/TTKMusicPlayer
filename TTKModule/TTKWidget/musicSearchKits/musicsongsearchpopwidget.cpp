@@ -9,9 +9,9 @@ MusicSongSearchPopTableWidget::MusicSongSearchPopTableWidget(QWidget *parent)
 {
     setColumnCount(2);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 215);
-    headerview->resizeSection(1, 62);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 215);
+    headerView->resizeSection(1, 62);
 
     TTK::Widget::setTransparent(this, 255);
 }
@@ -55,8 +55,8 @@ void MusicSongSearchPopTableWidget::addCellItem(int index, const QString &name, 
 {
     setRowHeight(index, TTK_ITEM_SIZE_M);
 
-    QHeaderView *headerview = horizontalHeader();
-    QTableWidgetItem *item = new QTableWidgetItem(TTK::Widget::elidedText(font(), "  " + name, Qt::ElideRight, headerview->sectionSize(0) - 20));
+    QHeaderView *headerView = horizontalHeader();
+    QTableWidgetItem *item = new QTableWidgetItem(TTK::Widget::elidedText(font(), "  " + name, Qt::ElideRight, headerView->sectionSize(0) - 20));
     item->setToolTip(name);
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);

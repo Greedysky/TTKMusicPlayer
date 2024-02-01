@@ -11,15 +11,15 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setColumnCount(8);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 342);
-    headerview->resizeSection(2, 110);
-    headerview->resizeSection(3, 47);
-    headerview->resizeSection(4, 26);
-    headerview->resizeSection(5, 26);
-    headerview->resizeSection(6, 26);
-    headerview->resizeSection(7, 26);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 30);
+    headerView->resizeSection(1, 342);
+    headerView->resizeSection(2, 110);
+    headerView->resizeSection(3, 47);
+    headerView->resizeSection(4, 26);
+    headerView->resizeSection(5, 26);
+    headerView->resizeSection(6, 26);
+    headerView->resizeSection(7, 26);
 
     G_CONNECTION_PTR->setValue(MusicQueryTableWidget::className(), this);
     G_CONNECTION_PTR->connect(MusicQueryTableWidget::className(), MusicSongsSummariziedWidget::className());
@@ -101,17 +101,17 @@ void MusicItemQueryTableWidget::downloadBatchData()
 void MusicItemQueryTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, 342 + (width - WINDOW_WIDTH_MIN) / 2.0);
-    headerview->resizeSection(2, 110 + (width - WINDOW_WIDTH_MIN) / 2.0);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(1, 342 + (width - WINDOW_WIDTH_MIN) / 2.0);
+    headerView->resizeSection(2, 110 + (width - WINDOW_WIDTH_MIN) / 2.0);
 
     for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 31));
 
         it = item(i, 2);
-        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 31));
     }
 }
 
@@ -211,21 +211,21 @@ void MusicItemQueryTableWidget::createResultItem(const MusicResultInfoItem &song
     const int count = rowCount();
     setRowCount(count + 1);
 
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(TTK_CHECKED_ROLE, Qt::Unchecked);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(TTK::generateSongName(songItem.m_songName, songItem.m_artistName));
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 31));
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_albumName);
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 31));
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 2, item);

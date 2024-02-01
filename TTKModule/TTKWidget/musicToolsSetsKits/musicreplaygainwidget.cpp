@@ -20,12 +20,12 @@ MusicReplayGainTableWidget::MusicReplayGainTableWidget(QWidget *parent)
 {
     setColumnCount(5);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 332);
-    headerview->resizeSection(1, 60);
-    headerview->resizeSection(2, 60);
-    headerview->resizeSection(3, 60);
-    headerview->resizeSection(4, 60);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 332);
+    headerView->resizeSection(1, 60);
+    headerView->resizeSection(2, 60);
+    headerView->resizeSection(3, 60);
+    headerView->resizeSection(4, 60);
 }
 
 
@@ -144,11 +144,11 @@ void MusicReplayGainWidget::addItemFinished(const QString &track, const QString 
 
     const int row = m_ui->tableWidget->rowCount();
     m_ui->tableWidget->setRowCount(row + 1);
-    QHeaderView *headerview = m_ui->tableWidget->horizontalHeader();
+    QHeaderView *headerView = m_ui->tableWidget->horizontalHeader();
 
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setToolTip(m_paths[m_currentIndex]);
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 15));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(0) - 15));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     m_ui->tableWidget->setItem(row, 0, item);
 

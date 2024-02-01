@@ -11,13 +11,13 @@ MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *pa
     setIconSize(QSize(TTK_ITEM_SIZE_L, TTK_ITEM_SIZE_L));
     setColumnCount(6);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 10);
-    headerview->resizeSection(1, 40);
-    headerview->resizeSection(2, 315);
-    headerview->resizeSection(3, 90);
-    headerview->resizeSection(4, 105);
-    headerview->resizeSection(5, 110);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 10);
+    headerView->resizeSection(1, 40);
+    headerView->resizeSection(2, 315);
+    headerView->resizeSection(3, 90);
+    headerView->resizeSection(4, 105);
+    headerView->resizeSection(5, 110);
 
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
@@ -38,13 +38,13 @@ void MusicWebDJRadioProgramTableWidget::initialize(TTK::Program type)
 void MusicWebDJRadioProgramTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(2, 315 + (width - WINDOW_WIDTH_MIN));
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(2, 315 + (width - WINDOW_WIDTH_MIN));
 
     for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 2);
-        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 31));
     }
 }
 
@@ -85,7 +85,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
     setRowCount(index + 1);
     setRowHeight(index, TTK_ITEM_SIZE_2XL);
 
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(index, 0, item);
 
@@ -95,7 +95,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
 
                       item = new QTableWidgetItem;
     item->setToolTip(data.m_name);
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 31));
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 2, item);

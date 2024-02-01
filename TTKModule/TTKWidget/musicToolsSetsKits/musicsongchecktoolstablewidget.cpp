@@ -17,14 +17,14 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(4);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 290);
-    headerview->resizeSection(2, 290);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 30);
+    headerView->resizeSection(1, 290);
+    headerView->resizeSection(2, 290);
 #ifdef Q_OS_UNIX
-    headerview->resizeSection(3, 51);
+    headerView->resizeSection(3, 51);
 #else
-    headerview->resizeSection(3, 54);
+    headerView->resizeSection(3, 54);
 #endif
 
     setItemDelegateForColumn(3, makeButtonItemDelegate(this));
@@ -33,7 +33,7 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
 void MusicSongCheckToolsRenameTableWidget::addCellItems(const MusicSongCheckToolsRenameList &items)
 {
     setRowCount(items.count());
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
 
     for(int i = 0; i < items.count(); ++i)
     {
@@ -45,13 +45,13 @@ void MusicSongCheckToolsRenameTableWidget::addCellItems(const MusicSongCheckTool
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.m_locaName);
-        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
         item->setToolTip(v.m_recommendName);
-        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 10));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
@@ -89,17 +89,17 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(7);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 290);
-    headerview->resizeSection(2, 65);
-    headerview->resizeSection(3, 65);
-    headerview->resizeSection(4, 80);
-    headerview->resizeSection(5, 80);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 30);
+    headerView->resizeSection(1, 290);
+    headerView->resizeSection(2, 65);
+    headerView->resizeSection(3, 65);
+    headerView->resizeSection(4, 80);
+    headerView->resizeSection(5, 80);
 #ifdef Q_OS_UNIX
-    headerview->resizeSection(6, 51);
+    headerView->resizeSection(6, 51);
 #else
-    headerview->resizeSection(6, 54);
+    headerView->resizeSection(6, 54);
 #endif
 
     setItemDelegateForColumn(5, makeButtonItemDelegate(this));
@@ -117,7 +117,7 @@ MusicSongCheckToolsDuplicateTableWidget::~MusicSongCheckToolsDuplicateTableWidge
 void MusicSongCheckToolsDuplicateTableWidget::addCellItems(const MusicSongCheckToolsDuplicateList &songs)
 {
     setRowCount(songs.count());
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
 
     for(int i = 0; i < songs.count(); ++i)
     {
@@ -129,7 +129,7 @@ void MusicSongCheckToolsDuplicateTableWidget::addCellItems(const MusicSongCheckT
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.m_song.name());
-        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 45));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 45));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
@@ -204,18 +204,18 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(8);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 220);
-    headerview->resizeSection(2, 65);
-    headerview->resizeSection(3, 65);
-    headerview->resizeSection(4, 80);
-    headerview->resizeSection(5, 70);
-    headerview->resizeSection(6, 80);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 30);
+    headerView->resizeSection(1, 220);
+    headerView->resizeSection(2, 65);
+    headerView->resizeSection(3, 65);
+    headerView->resizeSection(4, 80);
+    headerView->resizeSection(5, 70);
+    headerView->resizeSection(6, 80);
 #ifdef Q_OS_UNIX
-    headerview->resizeSection(7, 51);
+    headerView->resizeSection(7, 51);
 #else
-    headerview->resizeSection(7, 54);
+    headerView->resizeSection(7, 54);
 #endif
 
     setItemDelegateForColumn(6, makeButtonItemDelegate(this));
@@ -233,7 +233,7 @@ MusicSongCheckToolsQualityTableWidget::~MusicSongCheckToolsQualityTableWidget()
 void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToolsQualityList &songs)
 {
     setRowCount(songs.count());
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
 
     for(int i = 0; i < songs.count(); ++i)
     {
@@ -245,7 +245,7 @@ void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToo
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.m_song.name());
-        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 

@@ -28,12 +28,12 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
 {
     setColumnCount(5);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 10);
-    headerview->resizeSection(1, 360);
-    headerview->resizeSection(2, 110);
-    headerview->resizeSection(3, 50);
-    headerview->resizeSection(4, 120);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 10);
+    headerView->resizeSection(1, 360);
+    headerView->resizeSection(2, 110);
+    headerView->resizeSection(3, 50);
+    headerView->resizeSection(4, 120);
 
     TTK::Widget::setTransparent(this, 0);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -94,13 +94,13 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
 void MusicCloudManagerTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, 360 + (width - WINDOW_WIDTH_MIN));
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(1, 360 + (width - WINDOW_WIDTH_MIN));
 
     for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 31));
     }
 
     if(m_openFileWidget)
@@ -382,14 +382,14 @@ void MusicCloudManagerTableWidget::addCellItem(const MusicCloudDataItem &data)
     int row = rowCount();
     setRowCount(row + 1);
 
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(TTK_DATA_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
     setItem(row, 0, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(data.m_dataItem.m_name);
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 20));
     item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(row, 1, item);
@@ -400,14 +400,14 @@ void MusicCloudManagerTableWidget::addCellItem(const MusicCloudDataItem &data)
 
                       item = new QTableWidgetItem;
     item->setToolTip(TTK::Number::sizeByteToLabel(data.m_dataItem.m_size));
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 5));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(3) - 5));
     item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
     setItem(row, 3, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(data.m_dataItem.m_putTime);
-    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(4) - 5));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(4) - 5));
     item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
     setItem(row, 4, item);

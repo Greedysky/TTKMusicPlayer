@@ -11,11 +11,11 @@ MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
     setIconSize(QSize(TTK_ITEM_SIZE_XL, TTK_ITEM_SIZE_XL));
     setColumnCount(4);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 10);
-    headerview->resizeSection(1, TTK_ITEM_SIZE_XL + 20);
-    headerview->resizeSection(2, 157);
-    headerview->resizeSection(3, 82);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 10);
+    headerView->resizeSection(1, TTK_ITEM_SIZE_XL + 20);
+    headerView->resizeSection(2, 157);
+    headerView->resizeSection(3, 82);
 
     TTK::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);

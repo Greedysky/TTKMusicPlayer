@@ -34,13 +34,13 @@ MusicSongsListPlayTableWidget::MusicSongsListPlayTableWidget(int index, QWidget 
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setColumnCount(6);
 
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 20);
-    headerview->resizeSection(1, 187);
-    headerview->resizeSection(2, 20);
-    headerview->resizeSection(3, 20);
-    headerview->resizeSection(4, 20);
-    headerview->resizeSection(5, 45);
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 20);
+    headerView->resizeSection(1, 187);
+    headerView->resizeSection(2, 20);
+    headerView->resizeSection(3, 20);
+    headerView->resizeSection(4, 20);
+    headerView->resizeSection(5, 45);
 
     TTK::Widget::setTransparent(this, 0);
 
@@ -67,7 +67,7 @@ void MusicSongsListPlayTableWidget::updateSongsList(const MusicSongList &songs)
 
     const int count = rowCount();
     setRowCount(songs.count());
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
 
     for(int i = count; i < songs.count(); ++i)
     {
@@ -77,7 +77,7 @@ void MusicSongsListPlayTableWidget::updateSongsList(const MusicSongList &songs)
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setText(TTK::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setText(TTK::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerView->sectionSize(1) - 10));
         item->setForeground(QColor(TTK::UI::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
@@ -197,11 +197,11 @@ void MusicSongsListPlayTableWidget::adjustPlayWidgetRow()
     delete takeItem(m_playRowIndex, 0);
     clearSpans();
 
-    QHeaderView *headerview = horizontalHeader();
+    QHeaderView *headerView = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
 
-    item = new QTableWidgetItem(TTK::Widget::elidedText(font(), name, Qt::ElideRight, headerview->sectionSize(1) - 10));
+    item = new QTableWidgetItem(TTK::Widget::elidedText(font(), name, Qt::ElideRight, headerView->sectionSize(1) - 10));
     item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
 
@@ -756,9 +756,9 @@ void MusicSongsListPlayTableWidget::closeRenameItem()
     //the two if function to deal with
     if(m_renameActived)
     {
-        QHeaderView *headerview = horizontalHeader();
+        QHeaderView *headerView = horizontalHeader();
         (*m_songs)[m_renameItem->row()].setName(m_renameItem->text());
-        m_renameItem->setText(TTK::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        m_renameItem->setText(TTK::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, headerView->sectionSize(1) - 10));
 
         m_renameActived = false;
         setItemDelegateForRow(m_renameItem->row(), nullptr);
@@ -809,8 +809,8 @@ void MusicSongsListPlayTableWidget::startToDrag()
                 continue; //skip the current play item index, because the play widget just has one item
             }
 
-            QHeaderView *headerview = horizontalHeader();
-            item(i, 1)->setText(TTK::Widget::elidedText(font(), songs[i].name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+            QHeaderView *headerView = horizontalHeader();
+            item(i, 1)->setText(TTK::Widget::elidedText(font(), songs[i].name(), Qt::ElideRight, headerView->sectionSize(1) - 10));
             item(i, 5)->setText(songs[i].duration());
         }
 

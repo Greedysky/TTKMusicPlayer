@@ -23,7 +23,7 @@
 #include "musicabstracttablewidget.h"
 #include "ttkabstractresizeinterface.h"
 
-/*! @brief The class of the rplaylist backup table widget.
+/*! @brief The class of the playlist backup table widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicPlaylistBackupTableWidget : public MusicAbstractTableWidget
