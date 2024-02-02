@@ -179,7 +179,7 @@ void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     menu.setStyleSheet(TTK::UI::MenuStyle02);
 
-    const bool status = !m_songs->isEmpty();
+    const bool status = !(m_songs->isEmpty() || TTK::String::isNetworkUrl(currentSongPath()));
     menu.addAction(tr("Song Info..."), this, SLOT(showFileInformation()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(openFileDir()))->setEnabled(status);
     menu.addSeparator();

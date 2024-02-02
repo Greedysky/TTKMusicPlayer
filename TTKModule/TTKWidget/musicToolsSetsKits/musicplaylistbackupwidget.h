@@ -19,14 +19,13 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicsong.h"
-#include "musicabstracttablewidget.h"
 #include "ttkabstractresizeinterface.h"
+#include "musicabstractsongslisttablewidget.h"
 
 /*! @brief The class of the playlist backup table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPlaylistBackupTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicPlaylistBackupTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlaylistBackupTableWidget)
@@ -35,11 +34,31 @@ public:
      * Object constructor.
      */
     explicit MusicPlaylistBackupTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicPlaylistBackupTableWidget();
 
     /*!
-     * Create cell items by input data.
+     * Update songs files in table.
      */
-    void addCellItems(const MusicSongList &items);
+    virtual void updateSongsList(const MusicSongList &songs) override final;
+
+private Q_SLOTS:
+    /*!
+     * Add music to played list and play later.
+     */
+    void addToPlayLater();
+    /*!
+     * Add music to played list.
+     */
+    void addToPlayedList();
+
+private:
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
 };
 

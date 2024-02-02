@@ -27,6 +27,7 @@ MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
 {
     setFixedSize(OS_ITEM_SIZE + QSize(8, 8));
     setAttribute(Qt::WA_TranslucentBackground);
+    setStyleSheet(TTK::UI::BackgroundStyle01);
 
     hide();
 

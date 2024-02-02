@@ -141,7 +141,7 @@ void MusicAbstractDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event
 
     createMoreMenu(&menu);
 
-    const bool status = !m_songs->isEmpty();
+    const bool status = !(m_songs->isEmpty() || TTK::String::isNetworkUrl(currentSongPath()));
     menu.addAction(tr("Song Info..."), this, SLOT(showFileInformation()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(openFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(showAlbumQueryWidget()));

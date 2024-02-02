@@ -3,25 +3,31 @@
 #include "musictkplconfigmanager.h"
 
 MusicPlaylistBackupTableWidget::MusicPlaylistBackupTableWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent)
+    : MusicAbstractSongsListTableWidget(parent)
 {
     setColumnCount(2);
 
     QHeaderView *headerView = horizontalHeader();
-    headerView->resizeSection(0, 350);
+    headerView->resizeSection(0, 372);
     headerView->resizeSection(1, 45);
 }
 
-void MusicPlaylistBackupTableWidget::addCellItems(const MusicSongList &items)
+MusicPlaylistBackupTableWidget::~MusicPlaylistBackupTableWidget()
 {
-    setRowCount(items.count());
-    QHeaderView *headerView = horizontalHeader();
+    removeItems();
+}
 
-    for(int i = 0; i < items.count(); ++i)
+void MusicPlaylistBackupTableWidget::updateSongsList(const MusicSongList &songs)
+{
+    setRowCount(songs.count());
+
+    QHeaderView *headerView = horizontalHeader();
+    for(int i = 0; i < songs.count(); ++i)
     {
-        const MusicSong &v = items[i];
+        const MusicSong &v = songs[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
+        item->setToolTip(v.name());
         item->setText(TTK::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerView->sectionSize(0) - 10));
         item->setForeground(QColor(TTK::UI::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
@@ -32,6 +38,50 @@ void MusicPlaylistBackupTableWidget::addCellItems(const MusicSongList &items)
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
     }
+}
+
+void MusicPlaylistBackupTableWidget::addToPlayLater()
+{
+//    const int row = TTKObjectCast(QPushButton*, sender()) ? m_playRowIndex : currentRow();
+//    if(rowCount() == 0 || row < 0)
+//    {
+//        return;
+//    }
+
+//    MusicPlayedListPopWidget::instance()->insert(m_playlistRow, (*m_songs)[row]);
+}
+
+void MusicPlaylistBackupTableWidget::addToPlayedList()
+{
+//    const int row = currentRow();
+//    if(rowCount() == 0 || row < 0)
+//    {
+//        return;
+//    }
+
+//    MusicPlayedListPopWidget::instance()->append(m_playlistRow, (*m_songs)[row]);
+}
+
+void MusicPlaylistBackupTableWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicAbstractSongsListTableWidget::contextMenuEvent(event);
+
+    QMenu menu(this);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
+    menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(playClicked()));
+    menu.addAction(tr("Play Later"), this, SLOT(addToPlayLater()));
+    menu.addAction(tr("Add To Playlist"), this, SLOT(addToPlayedList()));
+    menu.addSeparator();
+
+    createMoreMenu(&menu);
+
+    const bool status = !(m_songs->isEmpty() || TTK::String::isNetworkUrl(currentSongPath()));
+    menu.addAction(tr("Song Info..."), this, SLOT(showFileInformation()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(openFileDir()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(showAlbumQueryWidget()));
+    menu.addSeparator();
+
+    menu.exec(QCursor::pos());
 }
 
 
@@ -149,7 +199,7 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     containerTopWidgetLayout->addWidget(blueFrame);
     containerTopWidgetLayout->addWidget(m_titleLabel);
     containerTopWidgetLayout->addStretch(1);
-    containerTopWidgetLayout->addWidget(new QPushButton(containerTopWidget));
+    containerTopWidgetLayout->addWidget(new QPushButton(tr("还原至该备份"), containerTopWidget));
 
     initialize();
 
@@ -174,7 +224,9 @@ void MusicPlaylistBackupWidget::resizeWidget()
 
 void MusicPlaylistBackupWidget::currentDateChanged(const QString &text)
 {
+    m_timeBox->blockSignals(true);
     m_timeBox->clear();
+    m_timeBox->blockSignals(false);
 
     QDir dir(TTK_STR_CAT(APPBACKUP_DIR_FULL, "playlist/") + text);
     for(const QFileInfo &fin : dir.entryInfoList(QDir::Files, QDir::Time | QDir::Reversed))
@@ -187,7 +239,10 @@ void MusicPlaylistBackupWidget::currentDateChanged(const QString &text)
 
 void MusicPlaylistBackupWidget::currentTimeChanged(const QString &text)
 {
+    m_items.clear();
+    m_listWidget->blockSignals(true);
     m_listWidget->clear();
+    m_listWidget->blockSignals(false);
 
     MusicTKPLConfigManager manager;
     if(!manager.fromFile(TTK_STR_CAT(APPBACKUP_DIR_FULL, "playlist/") + m_dateBox->currentText() + "/" + text + TKF_FILE))
@@ -208,9 +263,9 @@ void MusicPlaylistBackupWidget::currentTimeChanged(const QString &text)
 
 void MusicPlaylistBackupWidget::currentItemChanged(int index)
 {
-    const MusicSongItem &item = m_items[index];
+    MusicSongItem &item = m_items[index];
     m_titleLabel->setText(QString("%1[%2]").arg(item.m_itemName).arg(item.m_songs.count()));
-    m_tableWidget->addCellItems(item.m_songs);
+    m_tableWidget->setSongsList(&item.m_songs);
 }
 
 void MusicPlaylistBackupWidget::initialize()
