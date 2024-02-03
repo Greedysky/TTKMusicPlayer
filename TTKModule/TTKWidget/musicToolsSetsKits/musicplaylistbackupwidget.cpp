@@ -1,6 +1,7 @@
 #include "musicplaylistbackupwidget.h"
 #include "musicwidgetheaders.h"
 #include "musictkplconfigmanager.h"
+#include "musicsettingmanager.h"
 
 MusicPlaylistBackupTableWidget::MusicPlaylistBackupTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
@@ -40,26 +41,11 @@ void MusicPlaylistBackupTableWidget::updateSongsList(const MusicSongList &songs)
     }
 }
 
-void MusicPlaylistBackupTableWidget::addToPlayLater()
+void MusicPlaylistBackupTableWidget::resizeSection() const
 {
-//    const int row = TTKObjectCast(QPushButton*, sender()) ? m_playRowIndex : currentRow();
-//    if(rowCount() == 0 || row < 0)
-//    {
-//        return;
-//    }
-
-//    MusicPlayedListPopWidget::instance()->insert(m_playlistRow, (*m_songs)[row]);
-}
-
-void MusicPlaylistBackupTableWidget::addToPlayedList()
-{
-//    const int row = currentRow();
-//    if(rowCount() == 0 || row < 0)
-//    {
-//        return;
-//    }
-
-//    MusicPlayedListPopWidget::instance()->append(m_playlistRow, (*m_songs)[row]);
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 372 + (width - WINDOW_WIDTH_MIN));
 }
 
 void MusicPlaylistBackupTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -69,8 +55,6 @@ void MusicPlaylistBackupTableWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     menu.setStyleSheet(TTK::UI::MenuStyle02);
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(playClicked()));
-    menu.addAction(tr("Play Later"), this, SLOT(addToPlayLater()));
-    menu.addAction(tr("Add To Playlist"), this, SLOT(addToPlayedList()));
     menu.addSeparator();
 
     createMoreMenu(&menu);
@@ -156,7 +140,8 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     listWidget->setLayout(listWidgetLayout);
 
     m_listWidget = new QListWidget(listWidget);
-    m_listWidget->setStyleSheet(TTK::UI::BorderStyle01);
+    m_listWidget->setStyleSheet(TTK::UI::ListWidgetStyle01);
+    m_listWidget->verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
     listWidgetLayout->addWidget(m_listWidget);
     //
     QFrame *hFrame = new QFrame(functionWidget);
@@ -219,7 +204,7 @@ MusicPlaylistBackupWidget::~MusicPlaylistBackupWidget()
 
 void MusicPlaylistBackupWidget::resizeWidget()
 {
-
+    m_tableWidget->resizeSection();
 }
 
 void MusicPlaylistBackupWidget::currentDateChanged(const QString &text)

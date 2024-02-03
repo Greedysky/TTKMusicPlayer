@@ -89,7 +89,7 @@ void MusicSongSearchTableWidget::startToSearchByID(const QString &text)
     m_networkRequest->startToSearchByID(text);
 }
 
-void MusicSongSearchTableWidget::resizeSection()
+void MusicSongSearchTableWidget::resizeSection() const
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerView = horizontalHeader();

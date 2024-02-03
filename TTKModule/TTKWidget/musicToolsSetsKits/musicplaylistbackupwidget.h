@@ -43,16 +43,10 @@ public:
      * Update songs files in table.
      */
     virtual void updateSongsList(const MusicSongList &songs) override final;
-
-private Q_SLOTS:
     /*!
-     * Add music to played list and play later.
+     * Resize section bound by resize called.
      */
-    void addToPlayLater();
-    /*!
-     * Add music to played list.
-     */
-    void addToPlayedList();
+    void resizeSection() const;
 
 private:
     /*!

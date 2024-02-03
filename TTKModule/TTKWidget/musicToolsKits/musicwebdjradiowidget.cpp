@@ -35,7 +35,7 @@ void MusicWebDJRadioProgramTableWidget::initialize(TTK::Program type)
     m_networkRequest->startToRequest(type);
 }
 
-void MusicWebDJRadioProgramTableWidget::resizeSection()
+void MusicWebDJRadioProgramTableWidget::resizeSection() const
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerView = horizontalHeader();

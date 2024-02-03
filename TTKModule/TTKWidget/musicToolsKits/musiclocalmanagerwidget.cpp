@@ -95,7 +95,7 @@ void MusicLocalManagerStatisticTableWidget::addCellItem(const MusicSongStatistic
     }
 }
 
-void MusicLocalManagerStatisticTableWidget::resizeSection()
+void MusicLocalManagerStatisticTableWidget::resizeSection() const
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerView = horizontalHeader();
@@ -193,7 +193,7 @@ void MusicLocalManagerSongsTableWidget::addCellItems(const MusicSongInfoItemList
     }
 }
 
-void MusicLocalManagerSongsTableWidget::resizeSection()
+void MusicLocalManagerSongsTableWidget::resizeSection() const
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerView = horizontalHeader();

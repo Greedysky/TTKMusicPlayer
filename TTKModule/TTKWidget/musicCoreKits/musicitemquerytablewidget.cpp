@@ -98,7 +98,7 @@ void MusicItemQueryTableWidget::downloadBatchData()
     widget.exec();
 }
 
-void MusicItemQueryTableWidget::resizeSection()
+void MusicItemQueryTableWidget::resizeSection() const
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerView = horizontalHeader();

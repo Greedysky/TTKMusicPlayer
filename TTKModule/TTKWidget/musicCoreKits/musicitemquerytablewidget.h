@@ -58,7 +58,7 @@ public:
     /*!
      * Resize section bound by resize called.
      */
-    void resizeSection();
+    void resizeSection() const;
 
 public Q_SLOTS:
     /*!

@@ -444,6 +444,12 @@ namespace TTK
             QComboBox{ border:none; } \
             QComboBox::hover{ border:none; }";
 
+        ///ListWidget
+        static const QString ListWidgetStyle01 =" \
+            QListWidget{ border:none; } \
+            QListView::item:hover{ background-color: rgba(20, 20, 20, 20); color:#444444; } \
+            QListWidget::item:selected{ background-color: rgba(20, 20, 20, 20); color:#444444; }";
+
         ///TableWidget
         static const QString TableWidgetStyle01 =
 #if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug

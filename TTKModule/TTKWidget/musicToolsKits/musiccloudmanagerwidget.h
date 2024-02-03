@@ -55,7 +55,7 @@ public:
     /*!
      * Resize section bound by resize called.
      */
-    void resizeSection();
+    void resizeSection() const;
 
 Q_SIGNALS:
     /*!
