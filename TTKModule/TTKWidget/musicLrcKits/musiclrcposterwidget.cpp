@@ -887,11 +887,12 @@ MusicLrcPosterThemeListWidget::MusicLrcPosterThemeListWidget(QWidget *parent)
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
     setFlow(QListView::TopToBottom);
-    setSelectionMode(QAbstractItemView::SingleSelection);
     setFocusPolicy(Qt::ClickFocus);
+    setSelectionMode(QAbstractItemView::SingleSelection);
     setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setStyleSheet(TTK::UI::ListWidgetStyle02);
 
     addCelltItems();
 }

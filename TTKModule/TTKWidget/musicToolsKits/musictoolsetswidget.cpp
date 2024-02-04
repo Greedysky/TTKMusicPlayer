@@ -25,13 +25,13 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->listItemWidget->setFrameShape(QFrame::NoFrame);
-    m_ui->listItemWidget->verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
-
+    m_ui->listItemWidget->setSpacing(11);
     m_ui->listItemWidget->setIconSize(QSize(60, 60));
+    m_ui->listItemWidget->setFrameShape(QFrame::NoFrame);
     m_ui->listItemWidget->setViewMode(QListView::IconMode);
     m_ui->listItemWidget->setMovement(QListView::Static);
-    m_ui->listItemWidget->setSpacing(11);
+    m_ui->listItemWidget->setStyleSheet(TTK::UI::ListWidgetStyle02);
+    m_ui->listItemWidget->verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
 
     connect(m_ui->listItemWidget, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(currentItemClicked(QListWidgetItem*)));
 

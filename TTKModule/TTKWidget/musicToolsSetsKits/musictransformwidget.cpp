@@ -38,6 +38,9 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     m_ui->inputLineEdit->setStyleSheet(TTK::UI::LineEditStyle01);
     m_ui->outputLineEdit->setStyleSheet(TTK::UI::LineEditStyle01);
 
+    m_ui->listWidget->setStyleSheet(TTK::UI::ListWidgetStyle01);
+    m_ui->listWidget->verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
+
     m_ui->inputButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->outputButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->transformButton->setCursor(QCursor(Qt::PointingHandCursor));

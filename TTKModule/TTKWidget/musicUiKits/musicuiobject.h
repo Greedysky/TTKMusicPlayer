@@ -445,10 +445,12 @@ namespace TTK
             QComboBox::hover{ border:none; }";
 
         ///ListWidget
-        static const QString ListWidgetStyle01 =" \
-            QListWidget{ border:none; } \
+        static const QString ListWidgetStyle01 = " \
             QListView::item:hover{ background-color: rgba(20, 20, 20, 20); color:#444444; } \
             QListWidget::item:selected{ background-color: rgba(20, 20, 20, 20); color:#444444; }";
+
+        static const QString ListWidgetStyle02 = ListWidgetStyle01 + " \
+            QListWidget{ border:none; }";
 
         ///TableWidget
         static const QString TableWidgetStyle01 =

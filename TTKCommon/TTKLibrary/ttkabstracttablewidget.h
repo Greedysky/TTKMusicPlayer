@@ -42,9 +42,9 @@ public:
     ~TTKAbstractTableWidget();
 
     /*!
-     * Get multi selected item index set.
+     * Get selected item index list.
      */
-    TTKIntList multiSelectedIndexList() const;
+    TTKIntList selectedIndexList() const;
 
 public Q_SLOTS:
     /*!

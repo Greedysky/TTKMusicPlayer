@@ -171,17 +171,11 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
         case MusicAbstractQueryRequest::QueryServer::KW:
         {
             QRegExp regx;
-            if(type == 1)
+            switch(type)
             {
-                regx.setPattern("id=(\\d+)");
-            }
-            else if(type == 3)
-            {
-                regx.setPattern("pid=(\\d+)");
-            }
-            else
-            {
-                regx.setPattern("/(\\d+)");
+                case 1: regx.setPattern("id=(\\d+)"); break;
+                case 3: regx.setPattern("pid=(\\d+)"); break;
+                default: regx.setPattern("/(\\d+)"); break;
             }
 
             key = (regx.indexIn(url) != -1) ? regx.cap(1) : url;
@@ -190,17 +184,11 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
         case MusicAbstractQueryRequest::QueryServer::KG:
         {
             QRegExp regx;
-            if(type == 0)
+            switch(type)
             {
-                regx.setPattern("hash=(\\w+)");
-            }
-            else if(type == 4)
-            {
-                regx.setPattern("/mv_(\\w+)");
-            }
-            else
-            {
-                regx.setPattern("/(\\d+)");
+                case 0: regx.setPattern("hash=(\\w+)"); break;
+                case 4: regx.setPattern("/mv_(\\w+)"); break;
+                default: regx.setPattern("/(\\d+)"); break;
             }
 
             key = (regx.indexIn(url) != -1) ? regx.cap(1) : url;

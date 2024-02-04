@@ -424,8 +424,8 @@ void MusicSongsListPlayTableWidget::removeItemAt()
         return;
     }
 
-    const TTKIntList deleteList(multiSelectedIndexList());
-    if(deleteList.isEmpty())
+    const TTKIntList deletedList(selectedIndexList());
+    if(deletedList.isEmpty())
     {
         return;
     }
@@ -433,9 +433,9 @@ void MusicSongsListPlayTableWidget::removeItemAt()
     MusicProgressWidget progress;
     progress.show();
     progress.setTitle(tr("Delete file mode"));
-    progress.setRange(0, deleteList.count() / 3 * 2);
+    progress.setRange(0, deletedList.count() / 3 * 2);
 
-    for(int i = 0; i < deleteList.count(); ++i)
+    for(int i = 0; i < deletedList.count(); ++i)
     {
         if(i % 3 == 0)
         {
@@ -443,20 +443,20 @@ void MusicSongsListPlayTableWidget::removeItemAt()
         }
     }
 
-    if(deleteList.contains(m_playRowIndex) || deleteList[0] < m_playRowIndex)
+    if(deletedList.contains(m_playRowIndex) || deletedList[0] < m_playRowIndex)
     {
         adjustPlayWidgetRow();
     }
 
-    for(int i = deleteList.count() - 1; i >= 0; --i)
+    for(int i = deletedList.count() - 1; i >= 0; --i)
     {
-        const int index = deleteList[i];
+        const int index = deletedList[i];
         removeRow(index);
-        progress.setValue(deleteList.count() * 2 - i);
+        progress.setValue(deletedList.count() * 2 - i);
     }
 
     setFixedHeight(totalHeight());
-    Q_EMIT deleteItemAt(deleteList, m_deleteItemWithFile);
+    Q_EMIT deleteItemAt(deletedList, m_deleteItemWithFile);
 }
 
 void MusicSongsListPlayTableWidget::removeItemWithFile()

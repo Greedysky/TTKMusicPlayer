@@ -49,10 +49,10 @@ TTKAbstractTableWidget::~TTKAbstractTableWidget()
 
 }
 
-TTKIntList TTKAbstractTableWidget::multiSelectedIndexList() const
+TTKIntList TTKAbstractTableWidget::selectedIndexList() const
 {
     TTKIntSet rows;
-    for(const QModelIndex& index : selectedIndexes())
+    for(const QModelIndex &index : selectedIndexes())
     {
         rows.insert(index.row());
     }

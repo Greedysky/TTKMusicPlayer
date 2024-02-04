@@ -230,11 +230,11 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
     }
 
     selectAll();
-    const TTKIntList deleteList(multiSelectedIndexList());
+    const TTKIntList deletedList(selectedIndexList());
 
-    for(int i = deleteList.count() - 1; i >= 0; --i)
+    for(int i = deletedList.count() - 1; i >= 0; --i)
     {
-        const int index = deleteList[i];
+        const int index = deletedList[i];
         QTableWidgetItem *it = item(index, 0);
         if(it == nullptr)
         {

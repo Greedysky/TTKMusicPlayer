@@ -72,15 +72,15 @@ void MusicAbstractDownloadTableWidget::removeItemAt()
        return;
     }
 
-    const TTKIntList deleteList(multiSelectedIndexList());
-    if(deleteList.isEmpty())
+    const TTKIntList deletedList(selectedIndexList());
+    if(deletedList.isEmpty())
     {
         return;
     }
 
-    for(int i = deleteList.count() - 1; i >= 0; --i)
+    for(int i = deletedList.count() - 1; i >= 0; --i)
     {
-        const int index = deleteList[i];
+        const int index = deletedList[i];
         removeRow(index);
         m_songs->removeAt(index);
     }

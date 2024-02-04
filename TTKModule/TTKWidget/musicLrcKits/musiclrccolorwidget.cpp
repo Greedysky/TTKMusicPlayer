@@ -16,8 +16,8 @@ MusicLrcColorWidget::MusicLrcColorWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->listWidget->setFrameShape(QFrame::NoFrame);
     m_ui->listWidget->setSpacing(1);
+    m_ui->listWidget->setFrameShape(QFrame::NoFrame);
 
     m_ui->addButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->deleteButton->setStyleSheet(TTK::UI::PushButtonStyle04);

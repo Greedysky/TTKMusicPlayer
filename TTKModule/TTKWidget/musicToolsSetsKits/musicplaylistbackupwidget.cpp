@@ -140,7 +140,7 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     listWidget->setLayout(listWidgetLayout);
 
     m_listWidget = new QListWidget(listWidget);
-    m_listWidget->setStyleSheet(TTK::UI::ListWidgetStyle01);
+    m_listWidget->setStyleSheet(TTK::UI::ListWidgetStyle02);
     m_listWidget->verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
     listWidgetLayout->addWidget(m_listWidget);
     //

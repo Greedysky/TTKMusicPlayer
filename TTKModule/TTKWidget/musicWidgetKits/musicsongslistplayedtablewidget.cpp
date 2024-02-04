@@ -257,26 +257,26 @@ void MusicSongsListPlayedTableWidget::removeItems()
 
 void MusicSongsListPlayedTableWidget::removeItemAt()
 {
-    const TTKIntList deleteList(multiSelectedIndexList());
-    if(deleteList.isEmpty())
+    const TTKIntList deletedList(selectedIndexList());
+    if(deletedList.isEmpty())
     {
         return;
     }
 
-    if(deleteList.contains(m_playRowIndex) || deleteList[0] < m_playRowIndex)
+    if(deletedList.contains(m_playRowIndex) || deletedList[0] < m_playRowIndex)
     {
         adjustPlayWidgetRow();
     }
 
-    for(int i = deleteList.count() - 1; i >= 0; --i)
+    for(int i = deletedList.count() - 1; i >= 0; --i)
     {
-        const int index = deleteList[i];
+        const int index = deletedList[i];
         removeRow(index);
         m_songs->removeAt(index);
     }
 
     setFixedHeight(qMax(365, totalHeight()));
-    Q_EMIT deleteItemAt(deleteList);
+    Q_EMIT deleteItemAt(deletedList);
 }
 
 void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)

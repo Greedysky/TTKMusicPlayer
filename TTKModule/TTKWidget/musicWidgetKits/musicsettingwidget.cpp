@@ -1187,13 +1187,11 @@ bool MusicSettingWidget::setNetworkProxyByType(Proxy type)
     proxy.setUser(m_ui->proxyUsernameEdit->text().trimmed());
     proxy.setPassword(m_ui->proxyPwdEdit->text().trimmed());
 
-    if(type == Proxy::Test)
+    switch(type)
     {
-        proxy.testProxy();
-    }
-    else if(type == Proxy::Apply)
-    {
-        proxy.applyProxy();
+        case Proxy::Test: proxy.testProxy(); break;
+        case Proxy::Apply: proxy.applyProxy(); break;
+        default: break;
     }
     return true;
 }
