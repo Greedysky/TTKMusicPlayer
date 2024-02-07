@@ -346,6 +346,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     loveButton->setStyleSheet(TTK::UI::SongsDetectUnloveBtn);
     downButton->setStyleSheet(TTK::UI::SongsDetectDownloadBtn);
     shareButton->setStyleSheet(TTK::UI::SongsDetectShareBtn);
+
     connect(playButton, SIGNAL(clicked()), SLOT(playSong()));
     connect(downButton, SIGNAL(clicked()), SLOT(showDownloadWidget()));
     connect(shareButton, SIGNAL(clicked()), SLOT(showSongShareWidget()));

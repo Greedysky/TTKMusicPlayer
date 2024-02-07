@@ -1,7 +1,8 @@
 #include "musicplaylistbackupwidget.h"
-#include "musicwidgetheaders.h"
+#include "musicsongssummariziedwidget.h"
+#include "musicconnectionpool.h"
 #include "musictkplconfigmanager.h"
-#include "musicsettingmanager.h"
+#include "musicmessagebox.h"
 
 MusicPlaylistBackupTableWidget::MusicPlaylistBackupTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
@@ -11,10 +12,16 @@ MusicPlaylistBackupTableWidget::MusicPlaylistBackupTableWidget(QWidget *parent)
     QHeaderView *headerView = horizontalHeader();
     headerView->resizeSection(0, 372);
     headerView->resizeSection(1, 45);
+
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
+
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicPlaylistBackupTableWidget::~MusicPlaylistBackupTableWidget()
 {
+    G_CONNECTION_PTR->removeValue(this);
     removeItems();
 }
 
@@ -46,6 +53,20 @@ void MusicPlaylistBackupTableWidget::resizeSection() const
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerView = horizontalHeader();
     headerView->resizeSection(0, 372 + (width - WINDOW_WIDTH_MIN));
+}
+
+void MusicPlaylistBackupTableWidget::itemDoubleClicked(int row, int column)
+{
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+
+    if(!isValid())
+    {
+        return;
+    }
+
+    const QString &path = m_songs->at(currentRow()).path();
+    Q_EMIT addSongToPlaylist(QStringList(QFile::exists(path) ? path : QString()));
 }
 
 void MusicPlaylistBackupTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -142,6 +163,7 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     m_listWidget = new QListWidget(listWidget);
     m_listWidget->setStyleSheet(TTK::UI::ListWidgetStyle02);
     m_listWidget->verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
+    m_listWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     listWidgetLayout->addWidget(m_listWidget);
     //
     QFrame *hFrame = new QFrame(functionWidget);
@@ -181,13 +203,22 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     pLabelFont.setPixelSize(16);
     m_titleLabel->setFont(pLabelFont);
     //
+    QPushButton *button = new QPushButton(tr("Restore"), containerTopWidget);
+    button->setStyleSheet(TTK::UI::PushButtonStyle03);
+    button->setCursor(QCursor(Qt::PointingHandCursor));
+    button->setFixedSize(84, 26);
+#ifdef Q_OS_UNIX
+    button->setFocusPolicy(Qt::NoFocus);
+#endif
+    //
     containerTopWidgetLayout->addWidget(blueFrame);
     containerTopWidgetLayout->addWidget(m_titleLabel);
     containerTopWidgetLayout->addStretch(1);
-    containerTopWidgetLayout->addWidget(new QPushButton(tr("还原至该备份"), containerTopWidget));
+    containerTopWidgetLayout->addWidget(button);
 
     initialize();
 
+    connect(button, SIGNAL(clicked()), SLOT(restoreButtonClicked()));
     connect(m_dateBox, SIGNAL(currentTextChanged(QString)), SLOT(currentDateChanged(QString)));
     connect(m_timeBox, SIGNAL(currentTextChanged(QString)), SLOT(currentTimeChanged(QString)));
     connect(m_listWidget, SIGNAL(currentRowChanged(int)), SLOT(currentItemChanged(int)));
@@ -205,6 +236,16 @@ MusicPlaylistBackupWidget::~MusicPlaylistBackupWidget()
 void MusicPlaylistBackupWidget::resizeWidget()
 {
     m_tableWidget->resizeSection();
+}
+
+void MusicPlaylistBackupWidget::restoreButtonClicked()
+{
+    MusicMessageBox message;
+    message.setText(tr("恢复后原列表将被覆盖，是否要恢复列表？"));
+    if(!message.exec())
+    {
+        return;
+    }
 }
 
 void MusicPlaylistBackupWidget::currentDateChanged(const QString &text)

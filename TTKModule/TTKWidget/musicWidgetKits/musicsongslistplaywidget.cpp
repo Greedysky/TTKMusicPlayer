@@ -39,11 +39,11 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_songNameLabel->setStyleSheet(TTK::UI::LabelStyle02);
     m_songNameLabel->setGeometry(85, 5, 200, 25);
 
-    m_timeLabel = new QLabel(this);
-    m_timeLabel->setFixedSize(100, 20);
-    m_timeLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_timeLabel->setStyleSheet(TTK::UI::ColorStyle06);
-    m_timeLabel->setGeometry(85, 37, 100, 20);
+    m_durationLabel = new QLabel(this);
+    m_durationLabel->setFixedSize(100, 20);
+    m_durationLabel->setAttribute(Qt::WA_TranslucentBackground);
+    m_durationLabel->setStyleSheet(TTK::UI::ColorStyle06);
+    m_durationLabel->setGeometry(85, 37, 100, 20);
 
     m_downloadButton = new QPushButton(this);
     m_downloadButton->setGeometry(175, 40, 16, 16);
@@ -105,7 +105,7 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_renameEdit;
     delete m_artistPictureLabel;
     delete m_songNameLabel;
-    delete m_timeLabel;
+    delete m_durationLabel;
     delete m_loveButton;
     delete m_deleteButton;
     delete m_showMVButton;
@@ -113,9 +113,9 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_moreButton;
 }
 
-void MusicSongsListPlayWidget::updateTimeLabel(const QString &current, const QString &total)
+void MusicSongsListPlayWidget::updateDurationLabel(const QString &current, const QString &total)
 {
-    m_timeLabel->setText(current + total);
+    m_durationLabel->setText(current + total);
 }
 
 void MusicSongsListPlayWidget::updateCurrentArtist()
@@ -149,7 +149,7 @@ void MusicSongsListPlayWidget::initialize(const QString &name, const QString &pa
         m_noCover = true;
     }
 
-    m_timeLabel->setText(TTK_STR_CAT(TTK_TIME_INIT, TTK_SEPARATOR) + time);
+    m_durationLabel->setText(TTK_STR_CAT(TTK_TIME_INIT, TTK_SEPARATOR) + time);
 
     if(state && G_SETTING_PTR->value(MusicSettingManager::OtherReadAlbumCover).toBool())
     {

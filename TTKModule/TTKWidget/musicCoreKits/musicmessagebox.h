@@ -52,6 +52,7 @@ public:
      * Get box title.
      */
     QString title() const;
+
     /*!
      * Set context text.
      */

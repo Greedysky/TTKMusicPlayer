@@ -3,7 +3,6 @@
 
 MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
     : QWidget(parent),
-      m_mainWindow(nullptr),
       m_songButton(nullptr),
       m_iconLabel(nullptr),
       m_statusLabel(nullptr),
@@ -16,7 +15,16 @@ MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    initialize();
+    m_mainWindow = new QWidget(this);
+    m_mainWindow->setObjectName("MainWindow");
+    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(TTK::UI::BackgroundStyle10));
+
+    m_statusLabel = new QLabel(tr("Loading now ... "), m_mainWindow);
+    m_statusLabel->setStyleSheet(TTK::UI::FontStyle04 + TTK::UI::FontStyle01);
+
+    QVBoxLayout *mLayout = new QVBoxLayout(m_mainWindow);
+    mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
+    m_mainWindow->setLayout(mLayout);
 
     m_container = new QStackedWidget(this);
     m_container->hide();
@@ -48,20 +56,6 @@ void MusicAbstractItemQueryWidget::setCurrentValue(const QString &value)
 void MusicAbstractItemQueryWidget::setCurrentID(const QString &id)
 {
     Q_UNUSED(id);
-}
-
-void MusicAbstractItemQueryWidget::initialize()
-{
-    m_mainWindow = new QWidget(this);
-    m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(TTK::UI::BackgroundStyle10));
-
-    m_statusLabel = new QLabel(tr("Loading now ... "), m_mainWindow);
-    m_statusLabel->setStyleSheet(TTK::UI::FontStyle04 + TTK::UI::FontStyle01);
-
-    QVBoxLayout *mLayout = new QVBoxLayout(m_mainWindow);
-    mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
-    m_mainWindow->setLayout(mLayout);
 }
 
 void MusicAbstractItemQueryWidget::downLoadFinished(const QByteArray &bytes)

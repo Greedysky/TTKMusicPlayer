@@ -215,11 +215,14 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
         item->m_songs << TTK::generateSongList(path);
     }
 
-    item->m_itemWidget->updateSongsList(item->m_songs);
-    setItemTitle(item);
-    setCurrentIndex(playlistRow);
+    if(i != 0)
+    {
+        item->m_itemWidget->updateSongsList(item->m_songs);
+        setItemTitle(item);
+        setCurrentIndex(playlistRow);
 
-    MusicToastLabel::popup(tr("Import music songs done"));
+        MusicToastLabel::popup(tr("Import music songs done"));
+    }
 }
 
 QStringList MusicSongsSummariziedWidget::musicSongsFileName(int index) const
@@ -343,13 +346,13 @@ void MusicSongsSummariziedWidget::selectRow(int index)
     m_containerItems[m_playRowIndex].m_itemWidget->selectRow(index);
 }
 
-void MusicSongsSummariziedWidget::updateTimeLabel(const QString &current, const QString &total) const
+void MusicSongsSummariziedWidget::updateDurationLabel(const QString &current, const QString &total) const
 {
     if(m_playRowIndex < 0)
     {
         return;
     }
-    TTKObjectCast(MusicSongsListPlayTableWidget*, m_containerItems[m_playRowIndex].m_itemWidget)->updateTimeLabel(current, total);
+    TTKObjectCast(MusicSongsListPlayTableWidget*, m_containerItems[m_playRowIndex].m_itemWidget)->updateDurationLabel(current, total);
 }
 
 void MusicSongsSummariziedWidget::addNewRowItem()
@@ -616,6 +619,7 @@ void MusicSongsSummariziedWidget::searchResultChanged(int, int column)
 
     const QString &text = m_songSearchWidget->text();
     const QStringList searchedSongs(musicSongsFileName(m_currentIndex));
+
     TTKIntList result;
     for(int i = 0; i < searchedSongs.count(); ++i)
     {

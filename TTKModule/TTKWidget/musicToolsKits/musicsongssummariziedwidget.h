@@ -23,10 +23,9 @@
 #include "musicsongstoolboxwidget.h"
 #include "musicsongsearchonlinewidget.h"
 
-class QTableWidgetItem;
+class MusicSongSearchDialog;
 class MusicSongsListWidget;
 class MusicSongsListFunctionWidget;
-class MusicSongSearchDialog;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
@@ -107,9 +106,9 @@ public:
      */
     void selectRow(int index);
     /*!
-     * Update item time label time.
+     * Update item duration label.
      */
-    void updateTimeLabel(const QString &current, const QString &total) const;
+    void updateDurationLabel(const QString &current, const QString &total) const;
 
 public Q_SLOTS:
     /*!

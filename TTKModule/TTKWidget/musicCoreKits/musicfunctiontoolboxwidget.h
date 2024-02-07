@@ -22,7 +22,7 @@
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
 
-static constexpr int RENAME_WIDTH = 220;
+static constexpr int RENAME_WIDTH = 240;
 
 /*! @brief The class of the function tool box top widget.
  * @author Greedysky <greedysky@163.com>

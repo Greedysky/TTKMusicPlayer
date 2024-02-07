@@ -107,7 +107,7 @@ private:
      */
     QWidget *createVideoBarrageWidget();
 
-    QLabel *m_timeLabel;
+    QLabel *m_durationLabel;
     QPushButton *m_playButton;
     MusicMovingLabelSlider *m_timeSlider;
     MusicVolumePopWidget *m_volumeButton;

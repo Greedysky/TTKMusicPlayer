@@ -48,6 +48,18 @@ public:
      */
     void resizeSection() const;
 
+Q_SIGNALS:
+    /*!
+     * Add current selected song to playlist.
+     */
+    void addSongToPlaylist(const QStringList &items);
+
+private Q_SLOTS:
+    /*!
+     * Table widget item cell double clicked.
+     */
+    void itemDoubleClicked(int row, int column);
+
 private:
     /*!
      * Override the widget event.
@@ -79,6 +91,10 @@ public:
     virtual void resizeWidget() override final;
 
 private Q_SLOTS:
+    /*!
+     * Restore button clicked.
+     */
+    void restoreButtonClicked();
     /*!
      * Remote background type selected by index.
      */

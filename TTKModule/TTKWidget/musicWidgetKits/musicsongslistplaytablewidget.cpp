@@ -115,19 +115,19 @@ void MusicSongsListPlayTableWidget::selectRow(int index)
         delete takeItem(index, i);
     }
 
-    QString timeLabel;
+    QString durationLabel;
     const QString &name = !m_songs->isEmpty() ? m_songs->at(index).name() : QString();
     const QString &path = !m_songs->isEmpty() ? m_songs->at(index).path() : QString();
 
     m_songsPlayWidget = new MusicSongsListPlayWidget(index, this);
-    m_songsPlayWidget->initialize(name, path, timeLabel);
+    m_songsPlayWidget->initialize(name, path, durationLabel);
 
     if(!m_songs->isEmpty())
     {
         MusicSong *song = &(*m_songs)[index];
         if(song->duration().isEmpty() || song->duration() == TTK_TIME_INIT)
         {
-            song->setDuration(timeLabel);
+            song->setDuration(durationLabel);
         }
     }
 
@@ -166,11 +166,11 @@ void MusicSongsListPlayTableWidget::updateSearchFileName(MusicSongList *songs, c
     }
 }
 
-void MusicSongsListPlayTableWidget::updateTimeLabel(const QString &current, const QString &total) const
+void MusicSongsListPlayTableWidget::updateDurationLabel(const QString &current, const QString &total) const
 {
     if(m_songsPlayWidget)
     {
-        m_songsPlayWidget->updateTimeLabel(current, total);
+        m_songsPlayWidget->updateDurationLabel(current, total);
     }
 }
 

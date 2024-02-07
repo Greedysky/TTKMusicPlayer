@@ -62,10 +62,6 @@ public Q_SLOTS:
      */
     virtual void removeItemAt() override final;
     /*!
-     * Add selected music song path to list.
-     */
-    void playSong();
-    /*!
      * Table widget item cell double clicked.
      */
     void itemDoubleClicked(int row, int column);

@@ -45,9 +45,9 @@ public:
     ~MusicSongsListPlayWidget();
 
     /*!
-     * Update item time label time.
+     * Update item duration label.
      */
-    void updateTimeLabel(const QString &current, const QString &total);
+    void updateDurationLabel(const QString &current, const QString &total);
     /*!
      * Update current artist when it download finished.
      */
@@ -119,7 +119,7 @@ private:
 
     bool m_noCover;
     int m_currentPlayIndex;
-    QLabel *m_artistPictureLabel, *m_timeLabel;
+    QLabel *m_artistPictureLabel, *m_durationLabel;
     MusicSplitItemClickedLabel *m_songNameLabel;
     QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
     QPushButton *m_downloadButton, *m_moreButton;

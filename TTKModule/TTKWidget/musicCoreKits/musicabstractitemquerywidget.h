@@ -53,11 +53,6 @@ public:
      */
     virtual void setCurrentID(const QString &id);
 
-    /*!
-     * Init widget interface.
-     */
-    void initialize();
-
 public Q_SLOTS:
     /*!
      * Send recieved data from net.

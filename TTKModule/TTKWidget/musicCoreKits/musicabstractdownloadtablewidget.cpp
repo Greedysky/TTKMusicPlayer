@@ -52,17 +52,6 @@ void MusicAbstractDownloadTableWidget::updateSongsList(const MusicSongList &song
     }
 }
 
-void MusicAbstractDownloadTableWidget::playSong()
-{
-    if(!isValid())
-    {
-        return;
-    }
-
-    const QString &path = m_songs->at(currentRow()).path();
-    Q_EMIT addSongToPlaylist(QStringList(QFile::exists(path) ? path : QString()));
-}
-
 void MusicAbstractDownloadTableWidget::removeItemAt()
 {
     MusicMessageBox message;
@@ -93,7 +82,14 @@ void MusicAbstractDownloadTableWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
-    playSong();
+
+    if(!isValid())
+    {
+        return;
+    }
+
+    const QString &path = m_songs->at(currentRow()).path();
+    Q_EMIT addSongToPlaylist(QStringList(QFile::exists(path) ? path : QString()));
 }
 
 void MusicAbstractDownloadTableWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)

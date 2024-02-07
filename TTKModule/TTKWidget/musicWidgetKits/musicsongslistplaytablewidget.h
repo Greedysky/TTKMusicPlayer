@@ -64,9 +64,9 @@ public:
      */
     inline void setSongSort(MusicSongSort *sort) { m_songSort = sort; }
     /*!
-     * Update item time label time.
+     * Update item duration label.
      */
-    void updateTimeLabel(const QString &current, const QString &total) const;
+    void updateDurationLabel(const QString &current, const QString &total) const;
     /*!
      * Update current artist when it download finished.
      */

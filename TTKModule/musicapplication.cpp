@@ -274,7 +274,7 @@ void MusicApplication::positionChanged(qint64 position)
         m_ui->playCurrentTime->setText(TTKTime::formatDuration(position));
     }
     //Show the current play time
-    m_songTreeWidget->updateTimeLabel(m_ui->playCurrentTime->text(), m_ui->playTotalTime->text());
+    m_songTreeWidget->updateDurationLabel(m_ui->playCurrentTime->text(), m_ui->playTotalTime->text());
 }
 
 void MusicApplication::durationChanged(qint64 duration)

@@ -20,6 +20,7 @@
 #include "musiclocalmanagerwidget.h"
 #include "musicsongdlnatransferwidget.h"
 #include "musicsongitemselectedareawidget.h"
+#include "musicplaylistbackupwidget.h"
 
 MusicConnectionPool::MusicConnectionPool()
 {
@@ -60,6 +61,7 @@ void MusicConnectionPool::connect(const QString &from, const QString &to)
             (from == MusicMobileSongsManagerWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicSongCheckToolsDuplicateTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicSongCheckToolsQualityTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
+            (from == MusicPlaylistBackupTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicAbstractDownloadTableWidget::className() && to == MusicSongsSummariziedWidget::className()))
     {
         QObject::connect(first, SIGNAL(addSongToPlaylist(QStringList)), second, SLOT(addSongToPlaylist(QStringList)));

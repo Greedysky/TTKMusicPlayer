@@ -13,7 +13,7 @@ MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
 
     m_timeSlider = new MusicMovingLabelSlider(Qt::Horizontal, this);
     m_playButton = new QPushButton(this);
-    m_timeLabel = new QLabel(QString("%1/%1").arg(TTK_TIME_INIT), this);
+    m_durationLabel = new QLabel(QString("%1/%1").arg(TTK_TIME_INIT), this);
     m_qualityButton = new MusicVideoQualityPopWidget(this);
     m_volumeButton = new MusicVolumePopWidget(this);
 #ifdef Q_OS_UNIX
@@ -24,7 +24,7 @@ MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
     m_volumeButton->setFixedSize(20, 20);
     m_playButton->setFixedSize(34, 34);
 
-    m_timeLabel->setStyleSheet(TTK::UI::ColorStyle03);
+    m_durationLabel->setStyleSheet(TTK::UI::ColorStyle03);
     m_playButton->setStyleSheet(TTK::UI::VideoBtnPlay);
     m_timeSlider->setStyleSheet(TTK::UI::SliderStyle01);
 
@@ -43,7 +43,7 @@ MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
     controlBLayout->setContentsMargins(9, 0, 9, 0);
     controlBLayout->setSpacing(12);
     controlBLayout->addWidget(m_playButton);
-    controlBLayout->addWidget(m_timeLabel);
+    controlBLayout->addWidget(m_durationLabel);
     controlBLayout->addStretch(1);
     controlBLayout->addWidget(createVideoBarrageWidget(), 25);
     controlBLayout->addStretch(1);
@@ -64,7 +64,7 @@ MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
 
 MusicVideoControlWidget::~MusicVideoControlWidget()
 {
-    delete m_timeLabel;
+    delete m_durationLabel;
     delete m_timeSlider;
     delete m_playButton;
     delete m_volumeButton;
@@ -78,14 +78,14 @@ MusicVideoControlWidget::~MusicVideoControlWidget()
 void MusicVideoControlWidget::setValue(qint64 position) const
 {
     m_timeSlider->setValue(position * TTK_DN_S2MS);
-    m_timeLabel->setText(QString("%1/%2").arg(TTKTime::formatDuration(position * TTK_DN_S2MS),
-                                              TTKTime::formatDuration(m_timeSlider->maximum())));
+    m_durationLabel->setText(QString("%1/%2").arg(TTKTime::formatDuration(position * TTK_DN_S2MS),
+                                                  TTKTime::formatDuration(m_timeSlider->maximum())));
 }
 
 void MusicVideoControlWidget::durationChanged(qint64 duration) const
 {
     m_timeSlider->setRange(0, duration * TTK_DN_S2MS);
-    m_timeLabel->setText(QString("%1/%2").arg(TTK_TIME_INIT, TTKTime::formatDuration(duration * TTK_DN_S2MS)));
+    m_durationLabel->setText(QString("%1/%2").arg(TTK_TIME_INIT, TTKTime::formatDuration(duration * TTK_DN_S2MS)));
 }
 
 void MusicVideoControlWidget::setButtonStyle(bool style) const
@@ -181,6 +181,5 @@ QWidget *MusicVideoControlWidget::createVideoBarrageWidget()
     barrageLayout->addWidget(pairWidget);
     barrageLayout->addWidget(m_pushBarrage);
     barrageWidget->setLayout(barrageLayout);
-
     return barrageWidget;
 }
