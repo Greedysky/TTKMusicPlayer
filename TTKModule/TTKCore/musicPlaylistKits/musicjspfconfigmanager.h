@@ -24,7 +24,7 @@
 /*! @brief The class of the jspf playlist config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicJSPFConfigManager : public MusicPlaylistRenderer, private MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicJSPFConfigManager : public MusicPlaylistRenderer, public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicJSPFConfigManager)
 public:

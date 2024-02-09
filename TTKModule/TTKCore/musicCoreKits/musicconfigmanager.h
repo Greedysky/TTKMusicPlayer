@@ -26,7 +26,7 @@
 /*! @brief The class of the xml config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicConfigManager : public TTKAbstractXml, private TTKAbstractReadWriteInterface<int>
+class TTK_MODULE_EXPORT MusicConfigManager : public TTKAbstractXml, public TTKAbstractReadWriteInterface<int>
 {
     TTK_DECLARE_MODULE(MusicConfigManager)
 public:

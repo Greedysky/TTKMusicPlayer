@@ -25,7 +25,7 @@
 /*! @brief The class of the asx playlist config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicASXConfigManager : public TTKAbstractXml, private MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicASXConfigManager : public TTKAbstractXml, public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicASXConfigManager)
 public:

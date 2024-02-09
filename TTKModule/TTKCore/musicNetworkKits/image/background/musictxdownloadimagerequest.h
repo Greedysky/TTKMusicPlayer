@@ -25,7 +25,7 @@
 /*! @brief The class of the tencent query info xml data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKAbstractXml, private TTKAbstractReadInterface<QStringList>
+class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKAbstractXml, public TTKAbstractReadInterface<QStringList>
 {
     TTK_DECLARE_MODULE(MusicTXImageConfigManager)
 public:

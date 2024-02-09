@@ -25,7 +25,7 @@
 /*! @brief The class of the tkpl config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTKPLConfigManager : public TTKAbstractXml, private MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicTKPLConfigManager : public TTKAbstractXml, public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicTKPLConfigManager)
 public:

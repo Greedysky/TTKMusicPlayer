@@ -35,7 +35,7 @@ TTK_DECLARE_LIST(MusicSearchRecord);
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongSearchRecordConfigManager : public TTKAbstractXml, private TTKAbstractReadWriteInterface<MusicSearchRecordList>
+class TTK_MODULE_EXPORT MusicSongSearchRecordConfigManager : public TTKAbstractXml, public TTKAbstractReadWriteInterface<MusicSearchRecordList>
 {
     TTK_DECLARE_MODULE(MusicSongSearchRecordConfigManager)
 public:

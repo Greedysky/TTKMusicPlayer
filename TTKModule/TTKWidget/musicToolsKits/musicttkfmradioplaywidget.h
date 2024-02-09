@@ -57,7 +57,7 @@ TTK_DECLARE_LIST(MusicFMCategory);
 /*! @brief The class of the fm config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicFMConfigManager : public TTKAbstractXml, private TTKAbstractReadWriteInterface<MusicFMCategoryList>
+class TTK_MODULE_EXPORT MusicFMConfigManager : public TTKAbstractXml, public TTKAbstractReadWriteInterface<MusicFMCategoryList>
 {
     TTK_DECLARE_MODULE(MusicFMConfigManager)
 public:

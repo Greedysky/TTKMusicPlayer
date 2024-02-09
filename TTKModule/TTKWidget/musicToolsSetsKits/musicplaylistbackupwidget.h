@@ -43,10 +43,6 @@ public:
      * Update songs files in table.
      */
     virtual void updateSongsList(const MusicSongList &songs) override final;
-    /*!
-     * Resize section bound by resize called.
-     */
-    void resizeSection() const;
 
 Q_SIGNALS:
     /*!
@@ -96,15 +92,15 @@ private Q_SLOTS:
      */
     void restoreButtonClicked();
     /*!
-     * Remote background type selected by index.
+     * Current backup date changed.
      */
     void currentDateChanged(const QString &text);
     /*!
-     * Remote background type selected by index.
+     * Current backup time changed.
      */
     void currentTimeChanged(const QString &text);
     /*!
-     * Remote background type selected by index.
+     * Current backup list item changed.
      */
     void currentItemChanged(int index);
 

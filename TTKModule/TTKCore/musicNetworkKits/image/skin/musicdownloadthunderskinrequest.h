@@ -24,7 +24,7 @@
 /*! @brief The class of the thunder skin XML config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicThunderSkinConfigManager : public TTKAbstractXml, private TTKAbstractReadInterface<MusicSkinRemoteGroupList>
+class TTK_MODULE_EXPORT MusicThunderSkinConfigManager : public TTKAbstractXml, public TTKAbstractReadInterface<MusicSkinRemoteGroupList>
 {
     TTK_DECLARE_MODULE(MusicThunderSkinConfigManager)
 public:

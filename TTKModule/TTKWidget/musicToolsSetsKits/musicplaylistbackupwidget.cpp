@@ -48,13 +48,6 @@ void MusicPlaylistBackupTableWidget::updateSongsList(const MusicSongList &songs)
     }
 }
 
-void MusicPlaylistBackupTableWidget::resizeSection() const
-{
-    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    QHeaderView *headerView = horizontalHeader();
-    headerView->resizeSection(0, 372 + (width - WINDOW_WIDTH_MIN));
-}
-
 void MusicPlaylistBackupTableWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(row);
@@ -235,7 +228,16 @@ MusicPlaylistBackupWidget::~MusicPlaylistBackupWidget()
 
 void MusicPlaylistBackupWidget::resizeWidget()
 {
-    m_tableWidget->resizeSection();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int offset = width - WINDOW_WIDTH_MIN;
+    QHeaderView *headerView = m_tableWidget->horizontalHeader();
+    headerView->resizeSection(0, 372 + offset);
+
+    const QString &text = m_titleLabel->toolTip();
+    if(!text.isEmpty())
+    {
+        m_titleLabel->setText(TTK::Widget::elidedTitleText(m_titleLabel->font(), text, 320 + offset));
+    }
 }
 
 void MusicPlaylistBackupWidget::restoreButtonClicked()
@@ -284,7 +286,7 @@ void MusicPlaylistBackupWidget::currentTimeChanged(const QString &text)
         const QString &text = QString("%1[%2]").arg(item.m_itemName).arg(item.m_songs.count());
         QListWidgetItem *it = new QListWidgetItem(m_listWidget);
         it->setToolTip(text);
-        it->setText(TTK::Widget::elidedTitleText(it->font(), text, 200 - 10));
+        it->setText(TTK::Widget::elidedTitleText(it->font(), text, TTKStaticCast(QWidget*, m_listWidget->parent())->width() - 5));
         m_listWidget->addItem(it);
     }
 
@@ -296,7 +298,7 @@ void MusicPlaylistBackupWidget::currentItemChanged(int index)
     MusicSongItem &item = m_items[index];
     const QString &text = QString("%1[%2]").arg(item.m_itemName).arg(item.m_songs.count());
     m_titleLabel->setToolTip(text);
-    m_titleLabel->setText(TTK::Widget::elidedTitleText(m_titleLabel->font(), text, 300));
+    m_titleLabel->setText(TTK::Widget::elidedTitleText(m_titleLabel->font(), text, 320));
     m_tableWidget->setSongsList(&item.m_songs);
 }
 
