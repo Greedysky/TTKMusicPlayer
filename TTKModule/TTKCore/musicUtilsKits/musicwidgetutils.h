@@ -46,6 +46,10 @@ namespace TTK
          * Set text elided text by font.
          */
         TTK_MODULE_EXPORT QString elidedText(const QFont &font, const QString &text, Qt::TextElideMode mode, int width);
+        /*!
+         * Set title text elided text by font.
+         */
+        TTK_MODULE_EXPORT QString elidedTitleText(const QFont &font, const QString &text, int width);
 
         /*!
          * Get text width by font.
@@ -84,6 +88,10 @@ namespace TTK
         TTK_MODULE_EXPORT void widgetToRound(QWidget *widget, int ratioX, int ratioY);
 
         /*!
+         * Generate combobox format style.
+         */
+        TTK_MODULE_EXPORT void generateComboBoxFormat(QComboBox *widget, const QString &style = {});
+        /*!
          * Generate vertical scrollArea format style.
          */
         TTK_MODULE_EXPORT void generateVScrollAreaFormat(QWidget *widget, QWidget *parent, bool background = true);
@@ -91,10 +99,6 @@ namespace TTK
          * Generate horizontal scrollArea format style.
          */
         TTK_MODULE_EXPORT void generateHScrollAreaFormat(QWidget *widget, QWidget *parent, bool background = true);
-        /*!
-         * Generate combobox format style.
-         */
-        TTK_MODULE_EXPORT void generateComboBoxFormat(QComboBox *widget, const QString &style = {});
 
     }
 }

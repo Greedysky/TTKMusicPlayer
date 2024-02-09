@@ -37,6 +37,15 @@ QString TTK::Widget::elidedText(const QFont &font, const QString &text, Qt::Text
     return ftm.elidedText(text, mode, width);
 }
 
+QString TTK::Widget::elidedTitleText(const QFont &font, const QString &text, int width)
+{
+    const int index = text.lastIndexOf("[");
+    const QString &prefix = text.left(index);
+    const QString &suffix = text.right(text.length() - index);
+    const int offset = TTK::Widget::fontTextWidth(font, suffix);
+    return TTK::Widget::elidedText(font, prefix, Qt::ElideRight, width - offset) + suffix;
+}
+
 int TTK::Widget::fontTextWidth(const QFont &font, const QString &text)
 {
     const QFontMetrics ftm(font);
@@ -86,18 +95,18 @@ void TTK::Widget::setTransparent(QWidget *widget, const QColor &color)
     widget->setPalette(plt);
 }
 
-void TTK::Widget::setComboBoxText(QComboBox *object, const QString &text)
+void TTK::Widget::setComboBoxText(QComboBox *widget, const QString &text)
 {
-    if(object->isEditable())
+    if(widget->isEditable())
     {
-        object->setEditText(text);
+        widget->setEditText(text);
     }
     else
     {
-        const int i = object->findText(text);
-        if(i > -1)
+        const int index = widget->findText(text);
+        if(index > -1)
         {
-            object->setCurrentIndex(i);
+            widget->setCurrentIndex(index);
         }
     }
 }
@@ -105,6 +114,13 @@ void TTK::Widget::setComboBoxText(QComboBox *object, const QString &text)
 void TTK::Widget::widgetToRound(QWidget *widget, int ratioX, int ratioY)
 {
     widget->setMask(TTK::Image::generateMask(widget->rect(), ratioX, ratioY));
+}
+
+void TTK::Widget::generateComboBoxFormat(QComboBox *widget, const QString &style)
+{
+    widget->setItemDelegate(new QStyledItemDelegate(widget));
+    widget->setStyleSheet(style.isEmpty() ? TTK::UI::ComboBoxStyle01 + TTK::UI::ItemView01 : style);
+    widget->view()->setStyleSheet(TTK::UI::ScrollBarStyle01);
 }
 
 void TTK::Widget::generateVScrollAreaFormat(QWidget *widget, QWidget *parent, bool background)
@@ -139,11 +155,4 @@ void TTK::Widget::generateHScrollAreaFormat(QWidget *widget, QWidget *parent, bo
         area->setStyleSheet(style);
         area->horizontalScrollBar()->setStyleSheet(style);
     }
-}
-
-void TTK::Widget::generateComboBoxFormat(QComboBox *widget, const QString &style)
-{
-    widget->setItemDelegate(new QStyledItemDelegate(widget));
-    widget->setStyleSheet(style.isEmpty() ? TTK::UI::ComboBoxStyle01 + TTK::UI::ItemView01 : style);
-    widget->view()->setStyleSheet(TTK::UI::ScrollBarStyle01);
 }

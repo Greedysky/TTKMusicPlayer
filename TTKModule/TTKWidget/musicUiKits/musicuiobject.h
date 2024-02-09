@@ -28,12 +28,10 @@ namespace TTK
 {
     namespace UI
     {
-        ///Color
-        static const QString Color01 = "#444444";
+        ///Color QRgb
+        static constexpr unsigned int Color01 = 4282664004;
 
-        static const QString Color02 = "#646464";
-
-        static const QString Color03 = "#AAAAAA";
+        static constexpr unsigned int Color02 = 4284769380;
 
         ///Color
         static const QString ColorStyle01 = " \

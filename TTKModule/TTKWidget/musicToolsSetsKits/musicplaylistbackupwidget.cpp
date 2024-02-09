@@ -281,7 +281,11 @@ void MusicPlaylistBackupWidget::currentTimeChanged(const QString &text)
 
     for(const MusicSongItem &item : qAsConst(m_items))
     {
-        m_listWidget->addItem(QString("%1[%2]").arg(item.m_itemName).arg(item.m_songs.count()));
+        const QString &text = QString("%1[%2]").arg(item.m_itemName).arg(item.m_songs.count());
+        QListWidgetItem *it = new QListWidgetItem(m_listWidget);
+        it->setToolTip(text);
+        it->setText(TTK::Widget::elidedTitleText(it->font(), text, 200 - 10));
+        m_listWidget->addItem(it);
     }
 
     currentItemChanged(0);
@@ -290,7 +294,9 @@ void MusicPlaylistBackupWidget::currentTimeChanged(const QString &text)
 void MusicPlaylistBackupWidget::currentItemChanged(int index)
 {
     MusicSongItem &item = m_items[index];
-    m_titleLabel->setText(QString("%1[%2]").arg(item.m_itemName).arg(item.m_songs.count()));
+    const QString &text = QString("%1[%2]").arg(item.m_itemName).arg(item.m_songs.count());
+    m_titleLabel->setToolTip(text);
+    m_titleLabel->setText(TTK::Widget::elidedTitleText(m_titleLabel->font(), text, 300));
     m_tableWidget->setSongsList(&item.m_songs);
 }
 

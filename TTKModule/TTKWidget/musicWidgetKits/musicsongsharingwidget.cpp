@@ -190,7 +190,7 @@ void MusicSongSharingWidget::textAreaChanged()
 {
     constexpr int max = 150;
     QString text = m_ui->textEdit->toPlainText();
-    const int length = text.count();
+    const int length = text.length();
 
     if(length > max)
     {

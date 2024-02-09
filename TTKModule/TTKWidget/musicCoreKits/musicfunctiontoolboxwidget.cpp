@@ -65,8 +65,17 @@ bool MusicFunctionToolBoxTopWidget::isExpand() const
 
 void MusicFunctionToolBoxTopWidget::setTitle(const QString &text)
 {
-    m_labelText->setText(TTK::Widget::elidedText(m_labelText->font(), text, Qt::ElideRight, RENAME_WIDTH - 10));
     m_labelText->setToolTip(text);
+    const int index = text.lastIndexOf("[");
+
+    if(index == -1)
+    {
+        m_labelText->setText(TTK::Widget::elidedText(m_labelText->font(), text, Qt::ElideRight, RENAME_WIDTH - 10));
+    }
+    else
+    {
+        m_labelText->setText(TTK::Widget::elidedTitleText(m_labelText->font(), text, RENAME_WIDTH));
+    }
 }
 
 QString MusicFunctionToolBoxTopWidget::title(bool suffix)
@@ -75,7 +84,7 @@ QString MusicFunctionToolBoxTopWidget::title(bool suffix)
     if(!suffix)
     {
         const int index = text.lastIndexOf("[");
-        m_suffixString = text.right(text.count() - index);
+        m_suffixString = text.right(text.length() - index);
         text = text.left(index);
     }
     return text;

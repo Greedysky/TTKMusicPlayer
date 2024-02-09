@@ -507,10 +507,9 @@ qint64 MusicLrcAnalysis::findTime(const QStringList &ts) const
         return -1;
     }
 
-    const QStringList copy(m_currentShowLrcContainer);
-    for(int i = 0; i < copy.count() - ts.count(); ++i)
+    for(int i = 0; i < m_currentShowLrcContainer.count() - ts.count(); ++i)
     {
-        if(copy.mid(i, ts.count()) == ts)
+        if(m_currentShowLrcContainer.mid(i, ts.count()) == ts)
         {
             return findTime(i + lineMiddle());
         }

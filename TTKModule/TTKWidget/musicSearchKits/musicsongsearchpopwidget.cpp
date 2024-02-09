@@ -63,7 +63,7 @@ void MusicSongSearchPopTableWidget::addCellItem(int index, const QString &name, 
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem(time);
-    item->setForeground(QColor(TTK::UI::Color03));
+    item->setForeground(QColor(0xAA, 0xAA, 0xAA));
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(index, 1, item);
 }
