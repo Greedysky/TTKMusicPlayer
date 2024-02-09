@@ -473,7 +473,7 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
     }
 
     m_searchResultLevel = column;
-    m_searchResultCache.insert(column, result);
+    m_searchResultItems.insert(column, result);
 
     m_songTableWidget->removeItems();
     m_songTableWidget->addCellItems(data);

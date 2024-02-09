@@ -255,7 +255,7 @@ void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
     }
 
     m_searchResultLevel = column;
-    m_searchResultCache.insert(column, result);
+    m_searchResultItems.insert(column, result);
 
     clearItems();
     m_ui->songlistTable->addCellItems(data);

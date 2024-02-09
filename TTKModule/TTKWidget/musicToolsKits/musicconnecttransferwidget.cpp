@@ -203,7 +203,7 @@ void MusicConnectTransferWidget::searchResultChanged(int, int column)
     }
 
     m_searchResultLevel = column;
-    m_searchResultCache.insert(column, result);
+    m_searchResultItems.insert(column, result);
 
     addCellItems(data);
 }

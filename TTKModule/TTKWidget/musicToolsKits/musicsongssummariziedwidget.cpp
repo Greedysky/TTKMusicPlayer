@@ -297,7 +297,7 @@ void MusicSongsSummariziedWidget::removeSearchResult(int &row)
         return;
     }
 
-    const TTKIntList &result = m_searchResultCache.value(m_searchResultLevel);
+    const TTKIntList &result = m_searchResultItems.value(m_searchResultLevel);
     if(row >= result.count() || row < 0)
     {
         row = -1;
@@ -630,7 +630,7 @@ void MusicSongsSummariziedWidget::searchResultChanged(int, int column)
     }
 
     m_searchResultLevel = column;
-    m_searchResultCache.insert(column, result);
+    m_searchResultItems.insert(column, result);
 
     MusicSongItem *item = &m_containerItems[m_currentIndex];
     TTKObjectCast(MusicSongsListPlayTableWidget*, item->m_itemWidget)->updateSearchFileName(&item->m_songs, result);

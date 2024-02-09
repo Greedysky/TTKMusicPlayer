@@ -28,7 +28,7 @@ template <typename T>
 class TTK_MODULE_EXPORT MusicItemSearchInterface
 {
 public:
-    using TTKIntListMap = QMap<int, TTKIntList>;
+    using TTKSearchItems = QMap<int, TTKIntList>;
     using MusicItemSearchInterfaceClass = MusicItemSearchInterface<T>;
 
 public:
@@ -38,7 +38,7 @@ public:
     explicit MusicItemSearchInterface()
         : m_containerItems(),
           m_searchResultLevel(0),
-          m_searchResultCache()
+          m_searchResultItems()
     {
 
     }
@@ -48,7 +48,7 @@ public:
      */
     inline bool hasSearchResult() const
     {
-        return !m_searchResultCache.isEmpty();
+        return !m_searchResultItems.isEmpty();
     }
 
     /*!
@@ -57,7 +57,7 @@ public:
     inline void clearSearchResult()
     {
         m_searchResultLevel = 0;
-        m_searchResultCache.clear();
+        m_searchResultItems.clear();
     }
 
     /*!
@@ -67,7 +67,7 @@ public:
     {
         if(hasSearchResult())
         {
-            const TTKIntList &v = m_searchResultCache.value(pos);
+            const TTKIntList &v = m_searchResultItems.value(pos);
             row = !v.isEmpty() ? v[row] : row;
         }
     }
@@ -75,7 +75,7 @@ public:
 protected:
     T m_containerItems;
     int m_searchResultLevel;
-    TTKIntListMap m_searchResultCache;
+    TTKSearchItems m_searchResultItems;
 
 };
 
