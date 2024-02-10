@@ -1012,9 +1012,9 @@ font-weight:bold;</string>
     <widget class="QLineEdit" name="downloadRuleEdit">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>135</x>
        <y>165</y>
-       <width>225</width>
+       <width>220</width>
        <height>20</height>
       </rect>
      </property>

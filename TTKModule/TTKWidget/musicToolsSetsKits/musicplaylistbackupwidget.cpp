@@ -122,11 +122,11 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     iLabel->setStyleSheet(TTK::UI::ColorStyle03);
 
     m_dateBox = new QComboBox(topWidget);
-    m_dateBox->setFixedSize(90, 25);
+    m_dateBox->setFixedSize(95, 25);
     TTK::Widget::generateComboBoxFormat(m_dateBox);
 
     m_timeBox = new QComboBox(topWidget);
-    m_timeBox->setFixedSize(75, 25);
+    m_timeBox->setFixedSize(80, 25);
     TTK::Widget::generateComboBoxFormat(m_timeBox);
 
     topWidgetLayout->addWidget(pLabel);
