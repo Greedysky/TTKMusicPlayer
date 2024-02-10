@@ -287,12 +287,12 @@ private:
     void renderRipple();
 
 private:
-    int* m_orginPixels;
-    int* m_newPixels;
-    short* m_buffer1;
-    short* m_buffer2;
-    int* m_sourcePower;
-    int* m_sourcePosition;
+    int *m_orginPixels;
+    int *m_newPixels;
+    short *m_buffer1;
+    short *m_buffer2;
+    int *m_sourcePower;
+    int *m_sourcePosition;
 
     int m_width;
     int m_height;

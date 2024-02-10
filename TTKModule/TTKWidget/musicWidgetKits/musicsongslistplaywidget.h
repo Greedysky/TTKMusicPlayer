@@ -121,7 +121,7 @@ private:
     int m_currentPlayIndex;
     QLabel *m_artistPictureLabel, *m_durationLabel;
     MusicSplitItemClickedLabel *m_songNameLabel;
-    QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
+    QPushButton *m_loveButton, *m_deleteButton, *m_showMVButton;
     QPushButton *m_downloadButton, *m_moreButton;
     MusicItemRenameEidt *m_renameEdit;
 

@@ -174,7 +174,7 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event) override final;
 
     QVBoxLayout *m_layout;
-    QWidget* m_item;
+    QWidget *m_item;
     MusicFunctionToolBoxTopWidget *m_topWidget;
 
 };
@@ -204,7 +204,7 @@ class QScrollArea;
 struct TTK_MODULE_EXPORT MusicToolBoxWidgetItem
 {
     int m_itemIndex;
-    MusicFunctionToolBoxWidgetItem* m_widgetItem;
+    MusicFunctionToolBoxWidgetItem *m_widgetItem;
 
     MusicToolBoxWidgetItem()
         : m_itemIndex(-1),

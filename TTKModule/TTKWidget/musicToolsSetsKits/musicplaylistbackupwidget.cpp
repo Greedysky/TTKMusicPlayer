@@ -1,8 +1,11 @@
 #include "musicplaylistbackupwidget.h"
 #include "musicsongssummariziedwidget.h"
+#include "musicbackupmodule.h"
 #include "musicconnectionpool.h"
 #include "musictkplconfigmanager.h"
 #include "musicmessagebox.h"
+
+#define ROOT_PATH APPBACKUP_DIR_FULL + "playlist/"
 
 MusicPlaylistBackupTableWidget::MusicPlaylistBackupTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
@@ -123,7 +126,7 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     TTK::Widget::generateComboBoxFormat(m_dateBox);
 
     m_timeBox = new QComboBox(topWidget);
-    m_timeBox->setFixedSize(120, 25);
+    m_timeBox->setFixedSize(75, 25);
     TTK::Widget::generateComboBoxFormat(m_timeBox);
 
     topWidgetLayout->addWidget(pLabel);
@@ -213,7 +216,7 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
 
     connect(button, SIGNAL(clicked()), SLOT(restoreButtonClicked()));
     connect(m_dateBox, SIGNAL(currentTextChanged(QString)), SLOT(currentDateChanged(QString)));
-    connect(m_timeBox, SIGNAL(currentTextChanged(QString)), SLOT(currentTimeChanged(QString)));
+    connect(m_timeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTimeChanged(int)));
     connect(m_listWidget, SIGNAL(currentRowChanged(int)), SLOT(currentItemChanged(int)));
 }
 
@@ -243,7 +246,7 @@ void MusicPlaylistBackupWidget::resizeWidget()
 void MusicPlaylistBackupWidget::restoreButtonClicked()
 {
     MusicMessageBox message;
-    message.setText(tr("恢复后原列表将被覆盖，是否要恢复列表？"));
+    message.setText(tr("Do I want to restore the original list after the restoration is overwritten?"));
     if(!message.exec())
     {
         return;
@@ -256,24 +259,29 @@ void MusicPlaylistBackupWidget::currentDateChanged(const QString &text)
     m_timeBox->clear();
     m_timeBox->blockSignals(false);
 
-    QDir dir(TTK_STR_CAT(APPBACKUP_DIR_FULL, "playlist/") + text);
+    QDir dir(ROOT_PATH + text);
     for(const QFileInfo &fin : dir.entryInfoList(QDir::Files, QDir::Time | QDir::Reversed))
     {
-        m_timeBox->addItem(fin.baseName());
+        m_timeBox->addItem(TTKDateTime::format(fin.baseName().toULongLong(), TTK_TIMEZ_FORMAT), fin.baseName());
     }
 
-    currentTimeChanged(m_timeBox->currentText());
+    currentTimeChanged(0);
 }
 
-void MusicPlaylistBackupWidget::currentTimeChanged(const QString &text)
+void MusicPlaylistBackupWidget::currentTimeChanged(int index)
 {
+    if(index < 0 || index >= m_timeBox->count())
+    {
+        return;
+    }
+
     m_items.clear();
     m_listWidget->blockSignals(true);
     m_listWidget->clear();
     m_listWidget->blockSignals(false);
 
     MusicTKPLConfigManager manager;
-    if(!manager.fromFile(TTK_STR_CAT(APPBACKUP_DIR_FULL, "playlist/") + m_dateBox->currentText() + "/" + text + TKF_FILE))
+    if(!manager.fromFile(ROOT_PATH + m_dateBox->currentText() + "/" + m_timeBox->itemData(index).toString() + TKF_FILE))
     {
         TTK_LOG_STREAM("Backup playlist read error");
         return;
@@ -295,17 +303,29 @@ void MusicPlaylistBackupWidget::currentTimeChanged(const QString &text)
 
 void MusicPlaylistBackupWidget::currentItemChanged(int index)
 {
+    if(index < 0 || index >= m_items.count())
+    {
+        return;
+    }
+
     MusicSongItem &item = m_items[index];
+    m_tableWidget->setSongsList(&item.m_songs);
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     const QString &text = QString("%1[%2]").arg(item.m_itemName).arg(item.m_songs.count());
     m_titleLabel->setToolTip(text);
-    m_titleLabel->setText(TTK::Widget::elidedTitleText(m_titleLabel->font(), text, 320));
-    m_tableWidget->setSongsList(&item.m_songs);
+    m_titleLabel->setText(TTK::Widget::elidedTitleText(m_titleLabel->font(), text, 320 + width - WINDOW_WIDTH_MIN));
 }
 
 void MusicPlaylistBackupWidget::initialize()
 {
-    QDir dir(TTK_STR_CAT(APPBACKUP_DIR_FULL, "playlist"));
-    m_dateBox->addItems(dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Time | QDir::Reversed));
+    QDir dir(ROOT_PATH);
+    if(dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Time | QDir::Reversed).isEmpty())
+    {
+        MusicPlaylistBackupModule module;
+        module.runBackup();
+    }
 
+    m_dateBox->addItems(dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Time | QDir::Reversed));
     currentDateChanged(m_dateBox->currentText());
 }

@@ -43,7 +43,7 @@ public:
      */
     void stop();
 
-private Q_SLOTS:
+public Q_SLOTS:
     /*!
      * Backup timeout.
      */
@@ -67,7 +67,7 @@ public:
      */
     explicit MusicPlaylistBackupModule(QObject *parent = nullptr);
 
-private Q_SLOTS:
+public Q_SLOTS:
     /*!
      * Backup timeout.
      */

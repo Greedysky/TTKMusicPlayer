@@ -69,7 +69,7 @@ public Q_SLOTS:
     void openFileLocation();
 
 private:
-    Ui::MusicDownloadResetWidget* m_ui;
+    Ui::MusicDownloadResetWidget *m_ui;
 
     QWidget *m_parent;
     QString m_currentName;

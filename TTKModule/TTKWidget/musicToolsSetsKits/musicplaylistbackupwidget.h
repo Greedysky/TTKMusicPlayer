@@ -98,7 +98,7 @@ private Q_SLOTS:
     /*!
      * Current backup time changed.
      */
-    void currentTimeChanged(const QString &text);
+    void currentTimeChanged(int index);
     /*!
      * Current backup list item changed.
      */

@@ -80,7 +80,7 @@ protected:
     }
 
 private:
-    PUB* m_qptr;
+    PUB *m_qptr;
 
 };
 
@@ -142,7 +142,7 @@ public:
     }
 
 private:
-    TTKPrivate<PUB>* m_dptr;
+    TTKPrivate<PUB> *m_dptr;
     TTK_DISABLE_COPY(TTKPrivateInterface)
 
 };

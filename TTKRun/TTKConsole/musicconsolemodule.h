@@ -130,8 +130,8 @@ private:
      */
     void print(qint64 position, qint64 duration) const;
 
-    MusicPlayer* m_player;
-    MusicPlaylist* m_playlist;
+    MusicPlayer *m_player;
+    MusicPlaylist *m_playlist;
     int m_volume;
     QString m_playbackMode, m_enhanced;
 
