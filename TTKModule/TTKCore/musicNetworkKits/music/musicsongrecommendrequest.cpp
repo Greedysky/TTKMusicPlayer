@@ -83,6 +83,21 @@ void MusicSongRecommendRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
+void MusicSongRecommendRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+{
+    TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
+
+    MusicPageQueryRequest::downLoadFinished();
+    for(const TTK::MusicSongInformation &var : m_items)
+    {
+        if(info->m_songId == var.m_songId)
+        {
+            info->m_songProps = var.m_songProps;
+            break;
+        }
+    }
+}
+
 void MusicSongRecommendRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(className() << "downLoadFinished");

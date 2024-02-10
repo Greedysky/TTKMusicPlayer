@@ -16,6 +16,7 @@ void MusicAbstractQueryRequest::startToSearchByID(const QString &value)
 
 void MusicAbstractQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
+    Q_UNUSED(bitrate);
     for(TTK::MusicSongInformation &var : m_items)
     {
         if(var.m_songId == info->m_songId)
@@ -24,8 +25,6 @@ void MusicAbstractQueryRequest::startToQueryResult(TTK::MusicSongInformation *in
             break;
         }
     }
-
-    Q_UNUSED(bitrate);
 }
 
 void MusicAbstractQueryRequest::downLoadFinished()
