@@ -20,19 +20,19 @@ MusicTimeSliderWidget::MusicTimeSliderWidget(QWidget *parent)
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void MusicTimeSliderWidget::setInputModule(QObject *object) const
-{
-    connect(m_slider, SIGNAL(sliderMoved(int)), SLOT(sliderMovedAt(int)));
-    connect(m_slider, SIGNAL(sliderReleasedAt(int)), object, SLOT(playAnyTimeAt(int)));
-}
-
 MusicTimeSliderWidget::~MusicTimeSliderWidget()
 {
     delete m_label;
     delete m_slider;
 }
 
-void MusicTimeSliderWidget::setPlayState(bool state)
+void MusicTimeSliderWidget::setInputModule(QObject *object) const
+{
+    connect(m_slider, SIGNAL(sliderMoved(int)), SLOT(sliderMovedAt(int)));
+    connect(m_slider, SIGNAL(sliderReleasedAt(int)), object, SLOT(playAnyTimeAt(int)));
+}
+
+void MusicTimeSliderWidget::setCurrentPlayState(bool state)
 {
     if(state)
     {

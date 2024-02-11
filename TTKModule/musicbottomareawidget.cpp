@@ -83,10 +83,10 @@ void MusicBottomAreaWidget::setDestopLrcVisible(bool status) const
     m_systemTrayMenu->showDesktopLrc(status);
 }
 
-void MusicBottomAreaWidget::setCurrentPlayStatus(bool status) const
+void MusicBottomAreaWidget::setCurrentPlayState(bool state) const
 {
-    m_systemTrayMenu->setCurrentPlayStatus(status);
-    m_platformExtras->setCurrentPlayStatus(status);
+    m_systemTrayMenu->setCurrentPlayState(state);
+    m_platformExtras->setCurrentPlayState(state);
 }
 
 void MusicBottomAreaWidget::setVolumeValue(int value) const

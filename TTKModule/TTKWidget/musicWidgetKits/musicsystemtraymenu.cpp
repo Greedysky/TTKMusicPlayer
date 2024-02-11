@@ -71,12 +71,12 @@ void MusicSystemTrayMenu::setWindowLockedChanged()
     MusicRightAreaWidget::instance()->setWindowLockedChanged();
 }
 
-void MusicSystemTrayMenu::setCurrentPlayStatus(bool status) const
+void MusicSystemTrayMenu::setCurrentPlayState(bool state) const
 {
 #ifndef Q_OS_UNIX
-    m_playButton->setStyleSheet(status ? TTK::UI::ContextPause : TTK::UI::ContextPlay);
+    m_playButton->setStyleSheet(state ? TTK::UI::ContextPause : TTK::UI::ContextPlay);
 #else
-    Q_UNUSED(status);
+    Q_UNUSED(state);
 #endif
 }
 

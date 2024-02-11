@@ -43,9 +43,14 @@ public:
     ~MusicTimeSliderWidget();
 
     /*!
+     * Set input connection.
+     */
+    void setInputModule(QObject *object) const;
+    /*!
      * Set current play state.
      */
-    void setPlayState(bool state);
+    void setCurrentPlayState(bool state);
+
     /*!
      * Set current play index value.
      */
@@ -54,10 +59,6 @@ public:
      * Set current play range from min and max.
      */
     void setRange(int min, int max);
-    /*!
-     * Set input connection.
-     */
-    void setInputModule(QObject *object) const;
 
 public Q_SLOTS:
     /*!

@@ -62,9 +62,9 @@ public:
      */
     void setDestopLrcVisible(bool status) const;
     /*!
-     * Set current play state button.
+     * Set current play state.
      */
-    void setCurrentPlayStatus(bool status) const;
+    void setCurrentPlayState(bool state) const;
     /*!
      * Set current play volume.
      */

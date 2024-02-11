@@ -103,9 +103,9 @@ MusicRemoteWidget::~MusicRemoteWidget()
     delete m_mainWidget;
 }
 
-void MusicRemoteWidget::setCurrentPlayStatus(bool status) const
+void MusicRemoteWidget::setCurrentPlayState(bool state) const
 {
-    m_playButton->setStyleSheet(status ? TTK::UI::TinyBtnPause : TTK::UI::TinyBtnPlay);
+    m_playButton->setStyleSheet(state ? TTK::UI::TinyBtnPause : TTK::UI::TinyBtnPlay);
 }
 
 void MusicRemoteWidget::setVolumeValue(int index)

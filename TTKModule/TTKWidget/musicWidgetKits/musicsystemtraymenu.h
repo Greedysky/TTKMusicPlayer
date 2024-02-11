@@ -50,9 +50,9 @@ public:
      */
     void showDesktopLrc(bool show) const;
     /*!
-     * Set current play state button.
+     * Set current play state.
      */
-    void setCurrentPlayStatus(bool status) const;
+    void setCurrentPlayState(bool state) const;
     /*!
      * Set current play volume.
      */

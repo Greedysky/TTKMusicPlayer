@@ -76,7 +76,7 @@ void MusicLrcFloatPlayWidget::enterEvent(QtEnterEvent *event)
     setCurrentPlayState();
 }
 
-void MusicLrcFloatPlayWidget::setCurrentPlayState()
+void MusicLrcFloatPlayWidget::setCurrentPlayState() const
 {
     m_buttonKey->setStyleSheet(MusicApplication::instance()->isPlaying() ? TTK::UI::BtnPause : TTK::UI::BtnPlay);
 }

@@ -54,9 +54,9 @@ public:
     ~MusicRemoteWidget();
 
     /*!
-     * Set current play state button.
+     * Set current play state.
      */
-    void setCurrentPlayStatus(bool status) const;
+    void setCurrentPlayState(bool state) const;
     /*!
      * Set current volume value by index.
      */

@@ -134,11 +134,11 @@ void MusicTopAreaWidget::setBackgroundAnimation(bool state)
     state ? m_pictureCarouselTimer.start() : m_pictureCarouselTimer.stop();
 }
 
-void MusicTopAreaWidget::setCurrentPlayStatus(bool status)
+void MusicTopAreaWidget::setCurrentPlayState(bool state) const
 {
     if(m_remoteWidget)
     {
-        m_remoteWidget->setCurrentPlayStatus(status);
+        m_remoteWidget->setCurrentPlayState(state);
     }
 }
 
@@ -407,7 +407,7 @@ void MusicTopAreaWidget::createRemoteWidget()
         return;
     }
 
-    m_remoteWidget->setCurrentPlayStatus(MusicApplication::instance()->isPlaying());
+    m_remoteWidget->setCurrentPlayState(MusicApplication::instance()->isPlaying());
     m_remoteWidget->setVolumeValue(m_ui->musicSound->value());
 
     connect(m_remoteWidget, SIGNAL(showMainWindow()), MusicApplication::instance(), SLOT(showNormal()));

@@ -65,9 +65,9 @@ public:
     virtual void initCurrentLrc() const;
 
     /*!
-     * Set current play state button.
+     * Set current play state.
      */
-    void setCurrentPlayStatus(bool status) const;
+    void setCurrentPlayState(bool state) const;
     /*!
      * Update current lrc by first and second and time.
      */

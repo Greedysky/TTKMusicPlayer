@@ -41,9 +41,9 @@ public:
     ~MusicPlatformExtras();
 
     /*!
-     * Set current play state button.
+     * Set current play state.
      */
-    void setCurrentPlayStatus(bool status) const;
+    void setCurrentPlayState(bool state) const;
     /*!
      * Enable or disable blur behind window.
      */

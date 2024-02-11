@@ -59,7 +59,7 @@ private:
     /*!
      * Set current play state icon.
      */
-    void setCurrentPlayState();
+    void setCurrentPlayState() const;
 
     QToolButton *m_buttonPrevious, *m_buttonNext, *m_buttonKey;
 

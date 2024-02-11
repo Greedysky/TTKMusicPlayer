@@ -125,9 +125,9 @@ void MusicRightAreaWidget::stopDrawLrc() const
     }
 }
 
-void MusicRightAreaWidget::setCurrentPlayStatus(bool status) const
+void MusicRightAreaWidget::setCurrentPlayState(bool state) const
 {
-    m_lrcForDesktop->setCurrentPlayStatus(status);
+    m_lrcForDesktop->setCurrentPlayState(state);
 }
 
 bool MusicRightAreaWidget::destopLrcVisible() const
@@ -145,7 +145,7 @@ bool MusicRightAreaWidget::interiorLrcVisible() const
     return m_lrcForInterior->isVisible();
 }
 
-void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
+void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playState) const
 {
     m_lrcForInterior->setCurrentTime(current, total);
     QString currentLrc, laterLrc;
@@ -155,7 +155,7 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
         //If this is a new line of the lyrics, then restart lyrics display mask
         if(currentLrc != m_lrcForInterior->text())
         {
-            if(playStatus)
+            if(playState)
             {
                 m_lrcForInterior->updateCurrentLrc(intervalTime);
             }

@@ -200,11 +200,6 @@ void MusicPlaylist::append(int playlistRow, const QStringList &items)
 
 void MusicPlaylist::appendQueue(int playlistRow, const QString &content)
 {
-    if(m_currentIndex == -1)
-    {
-        return;
-    }
-
     const int index = m_currentIndex + 1;
     (index != m_mediaList.count()) ? m_mediaList.insert(index, {playlistRow, content})
                                    : m_mediaList.append({playlistRow, content});

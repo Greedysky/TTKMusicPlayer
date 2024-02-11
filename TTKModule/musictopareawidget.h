@@ -87,9 +87,9 @@ public:
      */
     void setBackgroundAnimation(bool state);
     /*!
-     * Set current play state button.
+     * Set current play state.
      */
-    void setCurrentPlayStatus(bool status);
+    void setCurrentPlayState(bool state) const;
     /*!
      * Set current song text.
      */

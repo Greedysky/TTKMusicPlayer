@@ -72,9 +72,9 @@ void MusicLrcContainerForDesktop::initCurrentLrc() const
     }
 }
 
-void MusicLrcContainerForDesktop::setCurrentPlayStatus(bool status) const
+void MusicLrcContainerForDesktop::setCurrentPlayState(bool state) const
 {
-    m_toolPlayButton->setStyleSheet(status ? TTK::UI::DeskTopPause : TTK::UI::DeskTopPlay);
+    m_toolPlayButton->setStyleSheet(state ? TTK::UI::DeskTopPause : TTK::UI::DeskTopPlay);
 }
 
 void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const QString &second, qint64 time)

@@ -99,9 +99,9 @@ public:
      */
     void stopDrawLrc() const;
     /*!
-     * Set current play state button.
+     * Set current play state.
      */
-    void setCurrentPlayStatus(bool status) const;
+    void setCurrentPlayState(bool state) const;
     /*!
      * Get destop lrc visible state.
      */
@@ -117,7 +117,7 @@ public:
     /*!
      * Update current lrc by current time\total time and play state.
      */
-    void updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const;
+    void updateCurrentLrc(qint64 current, qint64 total, bool playState) const;
     /*!
      * Load current song lrc by name and path.
      */

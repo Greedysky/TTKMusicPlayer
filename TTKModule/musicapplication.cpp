@@ -327,10 +327,10 @@ void MusicApplication::showCurrentSong()
         m_player->stop();
         m_rightAreaWidget->stopDrawLrc();
 
-        m_bottomAreaWidget->setCurrentPlayStatus(isPlaying());
-        m_rightAreaWidget->setCurrentPlayStatus(isPlaying());
-        m_topAreaWidget->setCurrentPlayStatus(isPlaying());
-        m_ui->musicTimeWidget->setPlayState(isPlaying());
+        m_bottomAreaWidget->setCurrentPlayState(isPlaying());
+        m_rightAreaWidget->setCurrentPlayState(isPlaying());
+        m_topAreaWidget->setCurrentPlayState(isPlaying());
+        m_ui->musicTimeWidget->setCurrentPlayState(isPlaying());
 
         durationChanged(0);
         positionChanged(0);
@@ -374,10 +374,10 @@ void MusicApplication::switchToPlayState()
         m_rightAreaWidget->startDrawLrc();
     }
 
-    m_bottomAreaWidget->setCurrentPlayStatus(isPlaying());
-    m_rightAreaWidget->setCurrentPlayStatus(isPlaying());
-    m_topAreaWidget->setCurrentPlayStatus(isPlaying());
-    m_ui->musicTimeWidget->setPlayState(isPlaying());
+    m_bottomAreaWidget->setCurrentPlayState(isPlaying());
+    m_rightAreaWidget->setCurrentPlayState(isPlaying());
+    m_topAreaWidget->setCurrentPlayState(isPlaying());
+    m_ui->musicTimeWidget->setCurrentPlayState(isPlaying());
 }
 
 void MusicApplication::switchToStopState()
@@ -1142,9 +1142,9 @@ void MusicApplication::readSystemConfigFromFile()
         switchToPlayState();
     }
 
-    m_bottomAreaWidget->setCurrentPlayStatus(isPlaying());
-    m_rightAreaWidget->setCurrentPlayStatus(isPlaying());
-    m_topAreaWidget->setCurrentPlayStatus(isPlaying());
+    m_bottomAreaWidget->setCurrentPlayState(isPlaying());
+    m_rightAreaWidget->setCurrentPlayState(isPlaying());
+    m_topAreaWidget->setCurrentPlayState(isPlaying());
 
     //Set the lrc color the user set
     m_bottomAreaWidget->lockDesktopLrc(G_SETTING_PTR->value(MusicSettingManager::DLrcLockedMode).toInt());
