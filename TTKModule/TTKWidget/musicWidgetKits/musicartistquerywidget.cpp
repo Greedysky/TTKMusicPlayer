@@ -421,7 +421,7 @@ void MusicArtistQueryWidget::queryAllFinished()
         bool hasItem = false;
         for(const TTK::MusicSongInformation &info : qAsConst(songInfos))
         {
-            if(m_value.contains(info.m_songName))
+            if(m_value.contains(info.m_artistName))
             {
                 hasItem = true;
                 setCurrentID(info.m_artistId);

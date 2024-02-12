@@ -27,6 +27,7 @@
 #define ARTIST_PAGE_SIZE 50
 #define ARTIST_ATTR_PAGE_SIZE 12
 #define ARTIST_LIST_PAGE_SIZE 100
+#define MAX_PAGE_SIZE 1000
 
 /*! @brief The class of the abstract download page query request.
  * @author Greedysky <greedysky@163.com>
@@ -50,6 +51,7 @@ public:
      * Return the page total size.
      */
     int pageTotalSize() const noexcept;
+
     /*!
      * Return the each page max size.
      */
