@@ -238,10 +238,10 @@ void MusicSongsListPlayedTableWidget::itemCellClicked(int row, int column)
 
 void MusicSongsListPlayedTableWidget::removeItems()
 {
-    if(m_playRowIndex < 0)
-    {
-        return;
-    }
+//    if(m_playRowIndex < 0)
+//    {
+//        return;
+//    }
 
     //Remove play widget
     removeCellWidget(m_playRowIndex, 0);

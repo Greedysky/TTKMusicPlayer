@@ -101,7 +101,15 @@ public:
      * Remove music from data list.
      */
     void remove(int playlistRow, const MusicSong &song);
+    /*!
+     * Remove music from data list.
+     */
+    void remove(int playlistRow, const MusicSongList &songs);
 
+    /*!
+     * Append music to data list.
+     */
+    void append(const MusicSongList &songs);
     /*!
      * Append music to data list.
      */
@@ -109,7 +117,7 @@ public:
     /*!
      * Append music to data list.
      */
-    void append(const MusicSongList &song);
+    void append(int playlistRow, const MusicSongList &songs);
 
     /*!
      * Insert music after played music index.
@@ -118,7 +126,15 @@ public:
     /*!
      * Insert music by given index.
      */
+    void insert(int playlistRow, const MusicSongList &songs);
+    /*!
+     * Insert music by given index.
+     */
     void insert(int playlistRow, int index, const MusicSong &song);
+    /*!
+     * Insert music by given index.
+     */
+    void insert(int playlistRow, int index, const MusicSongList &song);
 
     /*!
      * Set current select played music index.

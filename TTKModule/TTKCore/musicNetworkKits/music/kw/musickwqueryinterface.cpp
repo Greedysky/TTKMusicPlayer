@@ -126,6 +126,11 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &su
 
 void ReqKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
+    if(info->m_songId.isEmpty())
+    {
+        return;
+    }
+
     if(info->m_formatProps.isEmpty())
     {
         parseSongProperty(info); //find 128kmp3 first

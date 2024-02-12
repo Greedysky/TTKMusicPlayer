@@ -380,11 +380,8 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
         return;
     }
 
-    MusicSongItem item = m_containerItems[id];
-    for(const MusicSong &song : qAsConst(item.m_songs))
-    {
-        MusicPlayedListPopWidget::instance()->remove(item.m_itemIndex, song);
-    }
+    const MusicSongItem *item = &m_containerItems[id];
+    MusicPlayedListPopWidget::instance()->remove(item->m_itemIndex, item->m_songs);
 
     if(m_playRowIndex == id)
     {
@@ -398,8 +395,8 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
     }
 
     m_containerItems.takeAt(id);
-    removeItem(item.m_itemWidget);
-    delete item.m_itemWidget;
+    removeItem(item->m_itemWidget);
+    delete item->m_itemWidget;
 
     updatePlayedList(id, -1);
 }
@@ -517,11 +514,7 @@ void MusicSongsSummariziedWidget::addToPlayLater(int index)
     }
 
     const MusicSongItem *item = &m_containerItems[id];
-    const MusicSongList *songs = &item->m_songs;
-    for(int i = songs->count() - 1; i >= 0; --i)
-    {
-        MusicPlayedListPopWidget::instance()->insert(item->m_itemIndex, songs->at(i));
-    }
+    MusicPlayedListPopWidget::instance()->insert(item->m_itemIndex, item->m_songs);
 }
 
 void MusicSongsSummariziedWidget::addToPlayedList(int index)
@@ -533,10 +526,7 @@ void MusicSongsSummariziedWidget::addToPlayedList(int index)
     }
 
     const MusicSongItem *item = &m_containerItems[id];
-    for(const MusicSong &song : qAsConst(item->m_songs))
-    {
-        MusicPlayedListPopWidget::instance()->append(item->m_itemIndex, song);
-    }
+    MusicPlayedListPopWidget::instance()->append(item->m_itemIndex, item->m_songs);
 }
 
 void MusicSongsSummariziedWidget::importSongsByFiles(int index)

@@ -111,14 +111,43 @@ void MusicPlayedListPopWidget::remove(int playlistRow, const QString &path)
             m_tableWidget->removeRow(index);
         }
     } while(index != -1);
-    m_tableWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
 
+    m_tableWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
     setPlaylistSongs();
 }
 
 void MusicPlayedListPopWidget::remove(int playlistRow, const MusicSong &song)
 {
     remove(playlistRow, song.path());
+}
+
+void MusicPlayedListPopWidget::remove(int playlistRow, const MusicSongList &songs)
+{
+    int index = -1;
+    m_tableWidget->adjustPlayWidgetRow();
+
+    for(const MusicSong &song : qAsConst(songs))
+    {
+        do
+        {
+            index = m_playlist->remove(playlistRow, song.path());
+            if(index != -1)
+            {
+                m_songList.removeAt(index);
+                m_tableWidget->removeRow(index);
+            }
+        } while(index != -1);
+    }
+
+    m_tableWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
+    setPlaylistSongs();
+}
+
+void MusicPlayedListPopWidget::append(const MusicSongList &songs)
+{
+    clear();
+    m_songList = songs;
+    setPlaylistSongs();
 }
 
 void MusicPlayedListPopWidget::append(int playlistRow, const MusicSong &song)
@@ -128,16 +157,25 @@ void MusicPlayedListPopWidget::append(int playlistRow, const MusicSong &song)
     setPlaylistSongs();
 }
 
-void MusicPlayedListPopWidget::append(const MusicSongList &song)
+void MusicPlayedListPopWidget::append(int playlistRow, const MusicSongList &songs)
 {
-    clear();
-    m_songList = song;
+    for(const MusicSong &song : qAsConst(songs))
+    {
+        m_playlist->append(playlistRow, song.path());
+    }
+
+    m_songList << songs;
     setPlaylistSongs();
 }
 
 void MusicPlayedListPopWidget::insert(int playlistRow, const MusicSong &song)
 {
     insert(playlistRow, m_tableWidget->playRowIndex() + 1, song);
+}
+
+void MusicPlayedListPopWidget::insert(int playlistRow, const MusicSongList &songs)
+{
+    insert(playlistRow, m_tableWidget->playRowIndex() + 1, songs);
 }
 
 void MusicPlayedListPopWidget::insert(int playlistRow, int index, const MusicSong &song)
@@ -149,6 +187,33 @@ void MusicPlayedListPopWidget::insert(int playlistRow, int index, const MusicSon
 
     (index != m_songList.count()) ? m_songList.insert(index, song) : m_songList.append(song);
     m_playlist->appendQueue(playlistRow, song.path());
+
+    const int row = m_tableWidget->playRowIndex();
+    m_tableWidget->removeItems();
+    setPlaylistSongs();
+
+    m_tableWidget->setPlayRowIndex(row);
+    m_tableWidget->selectPlayedRow();
+
+    for(const MusicPlayItem &item : qAsConst(m_playlist->queueList()))
+    {
+        m_tableWidget->setQueueState(item.m_playlistRow);
+    }
+}
+
+void MusicPlayedListPopWidget::insert(int playlistRow, int index, const MusicSongList &songs)
+{
+    if(index < 0 || index > m_songList.count())
+    {
+        return;
+    }
+
+    for(int i = songs.count() - 1; i >= 0; --i)
+    {
+        const MusicSong &song = songs[i];
+        (index != m_songList.count()) ? m_songList.insert(index, song) : m_songList.append(song);
+        m_playlist->appendQueue(playlistRow, song.path());
+    }
 
     const int row = m_tableWidget->playRowIndex();
     m_tableWidget->removeItems();

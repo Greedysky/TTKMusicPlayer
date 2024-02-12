@@ -397,7 +397,7 @@ void MusicApplication::playPrevious()
         return; //The playlist is not performing space-time
     }
 
-    MusicPlayedListPopWidget::instance()->clearQueueState();
+    m_ui->musicPlayedList->clearQueueState();
     m_playlist->setCurrentIndex(PLAY_PREVIOUS_LEVEL);
 
     m_player->stop();

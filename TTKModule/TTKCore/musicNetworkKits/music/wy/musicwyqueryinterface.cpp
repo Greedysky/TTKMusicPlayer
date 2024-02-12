@@ -171,6 +171,11 @@ static void parseSongProperty(TTK::MusicSongInformation *info, int bitrate)
 
 void ReqWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
+    if(info->m_songId.isEmpty())
+    {
+        return;
+    }
+
     if(info->m_formatProps.isEmpty())
     {
         parseSongProperty(info, TTK_BN_128);
