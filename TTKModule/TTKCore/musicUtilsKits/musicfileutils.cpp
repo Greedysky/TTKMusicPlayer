@@ -238,11 +238,14 @@ QString TTK::File::getSaveFileName(QWidget *parent, const QString &filter)
         return {};
     }
 
-    const QString &v = files.front();
-    if(!v.isEmpty())
+    path = files.front();
+    const QString &suffix = dialog.defaultSuffix();
+    if(!suffix.isEmpty() && suffix != QFileInfo(path).suffix())
     {
-        G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, v);
+        path += "." + suffix;
     }
-    return v;
+
+    G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, path);
+    return path;
 #endif
 }
