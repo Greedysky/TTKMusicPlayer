@@ -214,6 +214,9 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
 
     initialize();
 
+    // enable next version
+    button->hide();
+
     connect(button, SIGNAL(clicked()), SLOT(restoreButtonClicked()));
     connect(m_dateBox, SIGNAL(currentTextChanged(QString)), SLOT(currentDateChanged(QString)));
     connect(m_timeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTimeChanged(int)));

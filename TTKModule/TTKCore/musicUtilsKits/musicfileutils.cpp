@@ -202,11 +202,6 @@ QString TTK::File::getSaveFileName(QWidget *parent, const QString &filter)
     QString path = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
 #if defined Q_OS_WIN || defined Q_OS_MAC
     path = QFileDialog::getSaveFileName(parent, title, path, filter);
-    if(!path.isEmpty())
-    {
-        G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, path);
-    }
-    return path;
 #else
     QFileDialog dialog(parent, title, QFileInfo(path).absolutePath(), filter);
     dialog.setAcceptMode(QFileDialog::AcceptSave);
@@ -244,8 +239,10 @@ QString TTK::File::getSaveFileName(QWidget *parent, const QString &filter)
     {
         path += "." + suffix;
     }
-
-    G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, path);
-    return path;
 #endif
+    if(!path.isEmpty())
+    {
+        G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, path);
+    }
+    return path;
 }
