@@ -519,25 +519,7 @@ void MusicSongsListPlayTableWidget::searchQueryByName(QAction *action)
         return;
     }
 
-    const QString &songName = currentSongName();
-    const QStringList names(TTK::String::split(songName));
-    const int index = action->data().toInt() - TTK_LOW_LEVEL;
-
-    switch(index)
-    {
-        case 0: MusicRightAreaWidget::instance()->showSongSearchedFound(songName); break;
-        case 1:
-        case 2:
-        case 3:
-        {
-            if(names.count() >= index)
-            {
-                MusicRightAreaWidget::instance()->showSongSearchedFound(names[index - 1]);
-            }
-            break;
-        }
-        default: break;
-    }
+    MusicRightAreaWidget::instance()->showSongSearchedFound(action->data().toString());
 }
 
 void MusicSongsListPlayTableWidget::addToPlayLater()
@@ -729,14 +711,18 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
 
     const QString &songName = currentSongName();
-    const QStringList names(TTK::String::split(songName));
-    for(int i = 1; i <= names.count(); ++i)
-    {
-        menu.addAction(tr("Search '%1'").arg(names[i - 1].trimmed()))->setData(i + TTK_LOW_LEVEL);
-    }
-    menu.addAction(tr("Search '%1'").arg(songName))->setData(TTK_LOW_LEVEL);
-    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(searchQueryByName(QAction*)));
+    QString name = TTK::generateSongTitle(songName);
+    menu.addAction(tr("Search '%1'").arg(name))->setData(name);
 
+    const QStringList artists(TTK::String::split(TTK::generateSongArtist(songName), ";"));
+    for(int i = 0; i < artists.count(); ++i)
+    {
+        name = artists[i].trimmed();
+        menu.addAction(tr("Search '%1'").arg(name))->setData(name);
+    }
+    menu.addAction(tr("Search '%1'").arg(songName))->setData(songName);
+
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(searchQueryByName(QAction*)));
     menu.exec(QCursor::pos());
 }
 
