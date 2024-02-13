@@ -724,8 +724,8 @@ void MusicApplication::createRightMenu()
     menu.addMenu(&playbackMode);
 
     QList<QAction*> actions;
-    actions << playbackMode.addAction(tr("Single Cycle"), this, SLOT(playOneLoop()));
     actions << playbackMode.addAction(tr("Play Once"), this, SLOT(playOnce()));
+    actions << playbackMode.addAction(tr("Single Cycle"), this, SLOT(playOneLoop()));
     actions << playbackMode.addAction(tr("Order Play"), this, SLOT(playOrder()));
     actions << playbackMode.addAction(tr("List Cycle"), this, SLOT(playlistLoop()));
     actions << playbackMode.addAction(tr("Random Play"), this, SLOT(playRandom()));
@@ -733,11 +733,11 @@ void MusicApplication::createRightMenu()
     int index = TTK_NORMAL_LEVEL;
     switch(playMode())
     {
-        case TTK::PlayMode::Order: index = 0; break;
-        case TTK::PlayMode::Random: index = 1; break;
-        case TTK::PlayMode::ListLoop: index = 2; break;
-        case TTK::PlayMode::OneLoop: index = 3; break;
-        case TTK::PlayMode::Once: index = 4; break;
+        case TTK::PlayMode::Once: index = 0; break;
+        case TTK::PlayMode::OneLoop: index = 1; break;
+        case TTK::PlayMode::Order: index = 2; break;
+        case TTK::PlayMode::ListLoop: index = 3; break;
+        case TTK::PlayMode::Random: index = 4; break;
         default: break;
     }
 
