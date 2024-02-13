@@ -1,5 +1,5 @@
 #include "musicplaylistbackupwidget.h"
-#include "musicsongssummariziedwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicbackupmodule.h"
 #include "musicconnectionpool.h"
 #include "musictkplconfigmanager.h"
@@ -19,7 +19,7 @@ MusicPlaylistBackupTableWidget::MusicPlaylistBackupTableWidget(QWidget *parent)
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicPlaylistBackupTableWidget::~MusicPlaylistBackupTableWidget()

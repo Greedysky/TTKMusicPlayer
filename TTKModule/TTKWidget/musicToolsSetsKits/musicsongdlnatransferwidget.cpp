@@ -1,6 +1,6 @@
 #include "musicsongdlnatransferwidget.h"
 #include "ui_musicsongdlnatransferwidget.h"
-#include "musicsongssummariziedwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicconnectionpool.h"
 
 #include "qdlna/qdlnafinder.h"
@@ -73,7 +73,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     connect(m_dlnaFinder, SIGNAL(finished()), SLOT(scanFinished()));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()

@@ -5860,66 +5860,66 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
     </message>
 </context>
 <context>
-    <name>MusicSongsSummariziedWidget</name>
+    <name>MusicSongsContainerWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="77"/>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="362"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="77"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="362"/>
         <source>Default Item</source>
         <translation>Default Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="83"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="83"/>
         <source>Lovest Item</source>
         <translation>Lovest Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="89"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="89"/>
         <source>Net Item</source>
         <translation>Net Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="95"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="95"/>
         <source>Recent Item</source>
         <translation>Recent Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="200"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="200"/>
         <source>Import file mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="224"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="224"/>
         <source>Import music songs done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="377"/>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="410"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="377"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="410"/>
         <source>Are you sure to delete?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1099"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1099"/>
         <source>Create Item</source>
         <translation>Create Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1100"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1100"/>
         <source>Import Item</source>
         <translation>Import Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1101"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1101"/>
         <source>Music Test Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1102"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1102"/>
         <source>Lrc Batch Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1103"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1103"/>
         <source>Delete All</source>
         <translation type="unfinished"></translation>
     </message>

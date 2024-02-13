@@ -1,6 +1,6 @@
 #include "musicconnecttransferwidget.h"
 #include "ui_musicconnecttransferwidget.h"
-#include "musicsongssummariziedwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicconnectionpool.h"
 #include "musictoastlabel.h"
 #include "musicdeviceinfomodule.h"
@@ -53,7 +53,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     TTK_SIGNLE_SHOT(initialize, TTK_SLOT);
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicConnectTransferWidget::~MusicConnectTransferWidget()

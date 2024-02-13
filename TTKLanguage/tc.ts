@@ -5860,66 +5860,66 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
     </message>
 </context>
 <context>
-    <name>MusicSongsSummariziedWidget</name>
+    <name>MusicSongsContainerWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="77"/>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="362"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="77"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="362"/>
         <source>Default Item</source>
         <translation>默認列表</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="83"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="83"/>
         <source>Lovest Item</source>
         <translation>我的最愛</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="89"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="89"/>
         <source>Net Item</source>
         <translation>網絡列表</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="95"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="95"/>
         <source>Recent Item</source>
         <translation>最近播放</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="200"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="200"/>
         <source>Import file mode</source>
         <translation>正在導入文件，請稍候</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="224"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="224"/>
         <source>Import music songs done</source>
         <translation>歌曲已成功導入列表</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="377"/>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="410"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="377"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="410"/>
         <source>Are you sure to delete?</source>
         <translation>妳確定要刪除嗎？</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1099"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1099"/>
         <source>Create Item</source>
         <translation>新建列表</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1100"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1100"/>
         <source>Import Item</source>
         <translation>導入列表</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1101"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1101"/>
         <source>Music Test Tools</source>
         <translation>歌曲體檢工具</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1102"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1102"/>
         <source>Lrc Batch Download</source>
         <translation>歌詞批量下載工具</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1103"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1103"/>
         <source>Delete All</source>
         <translation>刪除所有列表</translation>
     </message>

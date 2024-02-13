@@ -1,5 +1,5 @@
 #include "musiclocalmanagerwidget.h"
-#include "musicsongssummariziedwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicconnectionpool.h"
 #include "musicitemsearchedit.h"
 #include "musicgiflabelwidget.h"
@@ -333,7 +333,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     connect(m_searchEdit->editor(), SIGNAL(cursorPositionChanged(int,int)), SLOT(searchResultChanged(int,int)));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicLocalManagerWidget::~MusicLocalManagerWidget()

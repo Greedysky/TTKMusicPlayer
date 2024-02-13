@@ -1,5 +1,5 @@
 #include "musicitemquerytablewidget.h"
-#include "musicsongssummariziedwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicdownloadbatchwidget.h"
 #include "musictoastlabel.h"
 #include "musicconnectionpool.h"
@@ -22,7 +22,7 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     headerView->resizeSection(7, 26);
 
     G_CONNECTION_PTR->setValue(MusicQueryTableWidget::className(), this);
-    G_CONNECTION_PTR->connect(MusicQueryTableWidget::className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(MusicQueryTableWidget::className(), MusicSongsContainerWidget::className());
 }
 
 MusicItemQueryTableWidget::~MusicItemQueryTableWidget()

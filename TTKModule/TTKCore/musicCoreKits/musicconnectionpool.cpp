@@ -2,7 +2,7 @@
 #include "musicdownloadstatusmodule.h"
 #include "musicplayer.h"
 #include "musiclrcmakerwidget.h"
-#include "musicsongssummariziedwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicmobilesongsmanagerwidget.h"
 #include "musicequalizerdialog.h"
 #include "musiclrclocallinkwidget.h"
@@ -57,12 +57,12 @@ void MusicConnectionPool::connect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(positionChanged(qint64)), second, SLOT(positionChanged(qint64)));
         QObject::connect(first, SIGNAL(durationChanged(qint64)), second, SLOT(durationChanged(qint64)));
     }
-    else if((from == MusicLocalManagerWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
-            (from == MusicMobileSongsManagerWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
-            (from == MusicSongCheckToolsDuplicateTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
-            (from == MusicSongCheckToolsQualityTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
-            (from == MusicPlaylistBackupTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
-            (from == MusicAbstractDownloadTableWidget::className() && to == MusicSongsSummariziedWidget::className()))
+    else if((from == MusicLocalManagerWidget::className() && to == MusicSongsContainerWidget::className()) ||
+            (from == MusicMobileSongsManagerWidget::className() && to == MusicSongsContainerWidget::className()) ||
+            (from == MusicSongCheckToolsDuplicateTableWidget::className() && to == MusicSongsContainerWidget::className()) ||
+            (from == MusicSongCheckToolsQualityTableWidget::className() && to == MusicSongsContainerWidget::className()) ||
+            (from == MusicPlaylistBackupTableWidget::className() && to == MusicSongsContainerWidget::className()) ||
+            (from == MusicAbstractDownloadTableWidget::className() && to == MusicSongsContainerWidget::className()))
     {
         QObject::connect(first, SIGNAL(addSongToPlaylist(QStringList)), second, SLOT(addSongToPlaylist(QStringList)));
     }
@@ -79,7 +79,7 @@ void MusicConnectionPool::connect(const QString &from, const QString &to)
     {
         QObject::connect(first, SIGNAL(setEqualizerConfig()), second, SLOT(setEqualizerConfig()));
     }
-    else if(from == MusicQueryTableWidget::className() && to == MusicSongsSummariziedWidget::className())
+    else if(from == MusicQueryTableWidget::className() && to == MusicSongsContainerWidget::className())
     {
         QObject::connect(first, SIGNAL(songBufferToPlaylist(MusicResultDataItem)), second, SLOT(addSongBufferToPlaylist(MusicResultDataItem)));
     }
@@ -91,9 +91,9 @@ void MusicConnectionPool::connect(const QString &from, const QString &to)
     {
         QObject::connect(first, SIGNAL(queryMediaProps(TTK::MusicSongPropertyList&)), second, SLOT(queryMediaProps(TTK::MusicSongPropertyList&)));
     }
-    else if((from == MusicConnectTransferWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
-            (from == MusicSongItemSelectedAreaWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
-            (from == MusicSongDlnaTransferWidget::className() && to == MusicSongsSummariziedWidget::className()))
+    else if((from == MusicConnectTransferWidget::className() && to == MusicSongsContainerWidget::className()) ||
+            (from == MusicSongItemSelectedAreaWidget::className() && to == MusicSongsContainerWidget::className()) ||
+            (from == MusicSongDlnaTransferWidget::className() && to == MusicSongsContainerWidget::className()))
     {
         QObject::connect(first, SIGNAL(queryMusicItemList(MusicSongItemList&)), second, SLOT(queryMusicItemList(MusicSongItemList&)));
     }

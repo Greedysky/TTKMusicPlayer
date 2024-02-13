@@ -1,6 +1,6 @@
 #include "musicsongitemselectedareawidget.h"
 #include "ui_musicsongitemselecteddialog.h"
-#include "musicsongssummariziedwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicwidgetheaders.h"
 #include "musicconnectionpool.h"
 #include "ttkclickedlabel.h"
@@ -136,7 +136,7 @@ MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent
     connect(m_modifiedItemButton, SIGNAL(clicked()), SLOT(modifiedItemButtonClicked()));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicSongItemSelectedAreaWidget::~MusicSongItemSelectedAreaWidget()

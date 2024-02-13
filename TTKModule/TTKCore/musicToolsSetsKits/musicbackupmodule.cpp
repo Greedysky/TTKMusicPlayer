@@ -2,7 +2,7 @@
 #include "musicapplication.h"
 #include "musicsettingmanager.h"
 #include "musictkplconfigmanager.h"
-#include "musicsongssummariziedwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicfileutils.h"
 
 MusicAbstractBackup::MusicAbstractBackup(int interval, QObject *parent)

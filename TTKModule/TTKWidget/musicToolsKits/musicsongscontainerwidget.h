@@ -1,5 +1,5 @@
-#ifndef MUSICSONGSSUMMARIZIEDWIDGET_H
-#define MUSICSONGSSUMMARIZIEDWIDGET_H
+#ifndef MUSICSONGSCONTAINERWIDGET_H
+#define MUSICSONGSCONTAINERWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -27,22 +27,22 @@ class MusicSongSearchDialog;
 class MusicSongsListWidget;
 class MusicSongsListFunctionWidget;
 
-/*! @brief The class of the songs summarizied widget.
+/*! @brief The class of the songs container widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongsSummariziedWidget : public MusicSongsToolBoxWidget, private MusicItemSearchInterface<MusicSongItemList>
+class TTK_MODULE_EXPORT MusicSongsContainerWidget : public MusicSongsToolBoxWidget, private MusicItemSearchInterface<MusicSongItemList>
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsSummariziedWidget)
+    TTK_DECLARE_MODULE(MusicSongsContainerWidget)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicSongsSummariziedWidget(QWidget *parent = nullptr);
+    explicit MusicSongsContainerWidget(QWidget *parent = nullptr);
     /*!
      * Object destructor.
      */
-    ~MusicSongsSummariziedWidget();
+    ~MusicSongsContainerWidget();
 
     /*!
      * Add music datas into container.
@@ -299,4 +299,4 @@ private:
 
 };
 
-#endif // MUSICSONGSSUMMARIZIEDWIDGET_H
+#endif // MUSICSONGSCONTAINERWIDGET_H

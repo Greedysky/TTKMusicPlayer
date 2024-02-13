@@ -20,7 +20,7 @@ INCLUDEPATH += $$PWD
 
 HEADERS += \
     $$PWD/musicsongstoolboxwidget.h \
-    $$PWD/musicsongssummariziedwidget.h \
+    $$PWD/musicsongscontainerwidget.h \
     $$PWD/musictoolsetswidget.h \
     $$PWD/musicconnectlocalwidget.h \
     $$PWD/musicconnecttransferwidget.h \
@@ -45,7 +45,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/musicsongstoolboxwidget.cpp \
-    $$PWD/musicsongssummariziedwidget.cpp \
+    $$PWD/musicsongscontainerwidget.cpp \
     $$PWD/musictoolsetswidget.cpp \
     $$PWD/musicconnectlocalwidget.cpp \
     $$PWD/musicconnecttransferwidget.cpp \

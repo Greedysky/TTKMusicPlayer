@@ -1,6 +1,6 @@
 #include "musicmobilesongsmanagerwidget.h"
 #include "ui_musicmobilesongsmanagerwidget.h"
-#include "musicsongssummariziedwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicsongsmanagerthread.h"
 #include "musicconnectionpool.h"
 #include "musictoastlabel.h"
@@ -155,7 +155,7 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
     connect(m_thread, SIGNAL(searchFilePathChanged(QStringList)), SLOT(searchFilePathChanged(QStringList)));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicMobileSongsManagerWidget::~MusicMobileSongsManagerWidget()

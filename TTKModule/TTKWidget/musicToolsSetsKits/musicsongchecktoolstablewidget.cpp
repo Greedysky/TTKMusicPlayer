@@ -1,5 +1,5 @@
 #include "musicsongchecktoolstablewidget.h"
-#include "musicsongssummariziedwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicconnectionpool.h"
 
 static TTKPushButtonItemDelegate *makeButtonItemDelegate(QObject *parent)
@@ -106,7 +106,7 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
     setItemDelegateForColumn(6, makeButtonItemDelegate(this));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicSongCheckToolsDuplicateTableWidget::~MusicSongCheckToolsDuplicateTableWidget()
@@ -222,7 +222,7 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
     setItemDelegateForColumn(7, makeButtonItemDelegate(this));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicSongCheckToolsQualityTableWidget::~MusicSongCheckToolsQualityTableWidget()

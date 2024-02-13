@@ -30,7 +30,7 @@ class MusicTopAreaWidget;
 class MusicRightAreaWidget;
 class MusicLeftAreaWidget;
 class MusicApplicationModule;
-class MusicSongsSummariziedWidget;
+class MusicSongsContainerWidget;
 
 class MusicMPRISPlayerCore;
 class MusicPlaylistBackupModule;
@@ -325,7 +325,7 @@ private:
     int m_currentSongTreeIndex;
     MusicPlayer *m_player;
     MusicPlaylist *m_playlist;
-    MusicSongsSummariziedWidget *m_songTreeWidget;
+    MusicSongsContainerWidget *m_songTreeWidget;
     MusicBottomAreaWidget *m_bottomAreaWidget;
     MusicTopAreaWidget *m_topAreaWidget;
     MusicRightAreaWidget *m_rightAreaWidget;

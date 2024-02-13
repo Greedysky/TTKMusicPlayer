@@ -8,7 +8,7 @@
 #include "musicwebradioview.h"
 #include "musicconnectlocalwidget.h"
 #include "musiccloudsharedsongwidget.h"
-#include "musicsongssummariziedwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicrightareawidget.h"
 
 MusicLeftAreaWidget *MusicLeftAreaWidget::m_instance = nullptr;
