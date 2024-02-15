@@ -12,18 +12,9 @@ MusicSimilarQueryTableWidget::~MusicSimilarQueryTableWidget()
     removeItems();
 }
 
-void MusicSimilarQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
-{
-    MusicItemQueryTableWidget::setQueryInput(query);
-    if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
-    {
-        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
-    }
-}
-
 void MusicSimilarQueryTableWidget::createResultItem(const MusicResultInfoItem &songItem)
 {
-    if(rowCount() >= 15)
+    if(rowCount() >= (SONG_PAGE_SIZE / 2))
     {
         return;
     }
@@ -51,11 +42,6 @@ void MusicSimilarQueryWidget::setCurrentValue(const QString &value)
 void MusicSimilarQueryWidget::resizeWidget()
 {
     m_queryTableWidget->resizeSection();
-}
-
-void MusicSimilarQueryWidget::queryAllFinished()
-{
-
 }
 
 void MusicSimilarQueryWidget::createLabels()

@@ -16,10 +16,10 @@ void MusicPlaylistQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *que
     MusicItemQueryTableWidget::setQueryInput(query);
 }
 
-void MusicPlaylistQueryTableWidget::setConnectClass(QObject *obj)
+void MusicPlaylistQueryTableWidget::setConnectClass(QObject *object)
 {
-    if(obj->metaObject()->indexOfSlot("queryAllFinished()") != -1)
+    if(object->metaObject()->indexOfSlot("queryAllFinished()") != -1)
     {
-        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), obj, SLOT(queryAllFinished()));
+        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), object, SLOT(queryAllFinished()));
     }
 }

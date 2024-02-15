@@ -45,7 +45,7 @@ public:
     /*!
      * Set connect class.
      */
-    void setConnectClass(QObject *obj);
+    void setConnectClass(QObject *object);
 
 };
 

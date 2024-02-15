@@ -14,6 +14,8 @@
         <file alias="lb_slider">../TTKResource/image/lb_slider.png</file>
         <file alias="lb_none_image">../TTKResource/image/lb_none_image.png</file>
         <file alias="lb_recmd_daily">../TTKResource/image/lb_recmd_daily.jpg</file>
+        <file alias="lb_recmd_date">../TTKResource/image/lb_recmd_date.png</file>
+        <file alias="lb_recmd_date_mask">../TTKResource/image/lb_recmd_date_mask.png</file>
         <file alias="lb_album_cover">../TTKResource/image/lb_album_cover.png</file>
         <file alias="lb_playlist_cover">../TTKResource/image/lb_playlist_cover.png</file>
         <file alias="lb_qq">../TTKResource/image/lb_qq.png</file>

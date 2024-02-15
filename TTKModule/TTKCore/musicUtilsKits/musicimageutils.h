@@ -55,22 +55,22 @@ namespace TTK
         TTK_MODULE_EXPORT QByteArray generatePixmapData(const QPixmap &input);
 
         /*!
-         * Set fusion two pixmap.
-         */
-        TTK_MODULE_EXPORT void fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt);
-        /*!
          * Set fusion two image.
          */
         TTK_MODULE_EXPORT void fusionPixmap(QImage &back, const QImage &front, const QPoint &pt);
-
         /*!
-         * Image gray scale.
+         * Set fusion two pixmap.
          */
-        TTK_MODULE_EXPORT QPixmap grayScalePixmap(const QPixmap &input, int radius = 0);
+        TTK_MODULE_EXPORT void fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt);
+
         /*!
          * Counting the perceptive luminance.
          */
         TTK_MODULE_EXPORT unsigned int colorContrast(const unsigned int color);
+        /*!
+         * Image gray scale.
+         */
+        TTK_MODULE_EXPORT QPixmap grayScalePixmap(const QPixmap &input, int radius = 0);
 
         /*!
          * Rerender the custum value.

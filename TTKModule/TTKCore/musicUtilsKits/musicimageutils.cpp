@@ -69,6 +69,18 @@ QByteArray TTK::Image::generatePixmapData(const QPixmap &input)
     return data;
 }
 
+void TTK::Image::fusionPixmap(QImage &back, const QImage &front, const QPoint &pt)
+{
+    if(front.isNull())
+    {
+        return;
+    }
+
+    QPainter painter(&back);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.drawImage(pt.x(), pt.y(), front);
+}
+
 void TTK::Image::fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt)
 {
     if(front.isNull())
@@ -81,16 +93,13 @@ void TTK::Image::fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint 
     painter.drawPixmap(pt.x(), pt.y(), front);
 }
 
-void TTK::Image::fusionPixmap(QImage &back, const QImage &front, const QPoint &pt)
+QRgb TTK::Image::colorContrast(const QRgb color)
 {
-    if(front.isNull())
-    {
-        return;
-    }
-
-    QPainter painter(&back);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.drawImage(pt.x(), pt.y(), front);
+    // Counting the perceptive luminance - human eye favors green color...
+    int v = 255 - (2.0 * qRed(color) + 3.0 * qGreen(color) + qBlue(color)) / 6.0;
+        v = v < 128 ? 0 : 255;
+    // 0, bright colors; 255, dark colors
+    return qRgb(v, v, v);
 }
 
 QPixmap TTK::Image::grayScalePixmap(const QPixmap &input, int radius)
@@ -107,15 +116,6 @@ QPixmap TTK::Image::grayScalePixmap(const QPixmap &input, int radius)
         }
     }
     return QPixmap::fromImage(pix);
-}
-
-QRgb TTK::Image::colorContrast(const QRgb color)
-{
-    // Counting the perceptive luminance - human eye favors green color...
-    int v = 255 - (2.0 * qRed(color) + 3.0 * qGreen(color) + qBlue(color)) / 6.0;
-        v = v < 128 ? 0 : 255;
-    // 0, bright colors; 255, dark colors
-    return qRgb(v, v, v);
 }
 
 static int colorBurnTransform(int c, int delta)

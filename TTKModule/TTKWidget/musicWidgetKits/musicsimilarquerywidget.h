@@ -39,11 +39,6 @@ public:
      */
     ~MusicSimilarQueryTableWidget();
 
-    /*!
-     * Set network query input.
-     */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
-
 public Q_SLOTS:
     /*!
      * Create search result items.
@@ -74,12 +69,6 @@ public:
      * Resize widget bound by resize called.
      */
     virtual void resizeWidget() override final;
-
-public Q_SLOTS:
-    /*!
-     * Query all quality musics is finished.
-     */
-    void queryAllFinished();
 
 private:
     /*!

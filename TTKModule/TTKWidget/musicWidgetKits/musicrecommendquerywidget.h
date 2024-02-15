@@ -20,32 +20,6 @@
  ***************************************************************************/
 
 #include "musicabstractitemquerywidget.h"
-#include "musicitemquerytablewidget.h"
-
-/*! @brief The class of the recommend music query table widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicRecommendQueryTableWidget : public MusicItemQueryTableWidget
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRecommendQueryTableWidget)
-public:
-    /*!
-     * Object constructor.
-     */
-    explicit MusicRecommendQueryTableWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicRecommendQueryTableWidget();
-
-    /*!
-     * Set network query input.
-     */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
-
-};
-
 
 /*! @brief The class of the recommend music query widget.
  * @author Greedysky <greedysky@163.com>
@@ -68,12 +42,6 @@ public:
      * Resize widget bound by resize called.
      */
     virtual void resizeWidget() override final;
-
-public Q_SLOTS:
-    /*!
-     * Query all quality musics is finished.
-     */
-    void queryAllFinished();
 
 private:
     /*!

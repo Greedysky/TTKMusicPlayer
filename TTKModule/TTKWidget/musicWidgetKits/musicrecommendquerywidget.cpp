@@ -1,27 +1,9 @@
 #include "musicrecommendquerywidget.h"
 #include "musicsongrecommendrequest.h"
+#include "musicitemquerytablewidget.h"
+#include "musicimageutils.h"
 
-MusicRecommendQueryTableWidget::MusicRecommendQueryTableWidget(QWidget *parent)
-    : MusicItemQueryTableWidget(parent)
-{
-
-}
-
-MusicRecommendQueryTableWidget::~MusicRecommendQueryTableWidget()
-{
-    removeItems();
-}
-
-void MusicRecommendQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
-{
-    MusicItemQueryTableWidget::setQueryInput(query);
-    if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
-    {
-        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
-    }
-}
-
-
+using MusicRecommendQueryTableWidget = MusicItemQueryTableWidget;
 
 MusicRecommendQueryWidget::MusicRecommendQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent)
@@ -41,11 +23,6 @@ void MusicRecommendQueryWidget::setCurrentValue(const QString &value)
 void MusicRecommendQueryWidget::resizeWidget()
 {
     m_queryTableWidget->resizeSection();
-}
-
-void MusicRecommendQueryWidget::queryAllFinished()
-{
-
 }
 
 void MusicRecommendQueryWidget::createLabels()
@@ -69,10 +46,22 @@ void MusicRecommendQueryWidget::createLabels()
     firstLabel->setText(tr("<font color=#158FE1> Recommend Music</font>"));
     grid->addWidget(firstLabel);
     QLabel *iconLabel = new QLabel(function);
-    iconLabel->setPixmap(QPixmap(":/image/lb_recmd_daily"));
     grid->addWidget(iconLabel);
     //
     grid->addWidget(m_container);
+
+    QPixmap pix(":/image/lb_recmd_daily");
+    QPainter painter(&pix);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.drawPixmap(54, 34, QPixmap(":/image/lb_recmd_date"));
+    painter.setFont(QFont("Arial", 9));
+    painter.setPen(QColor(0xFE, 0xD9, 0xD9));
+    painter.drawText(QRect(54, 34, 115, 27), Qt::AlignCenter, "Wed");
+    painter.setFont(QFont("Arial", 60, QFont::Bold));
+    painter.setPen(QColor(0x20, 0x20, 0x20));
+    painter.drawText(QRect(54, 27 + 34, 115, 115 - 27), Qt::AlignCenter, "15");
+    painter.drawPixmap(54, 34, QPixmap(":/image/lb_recmd_date_mask"));
+    iconLabel->setPixmap(pix);
 
     m_mainWindow->layout()->addWidget(function);
 }
