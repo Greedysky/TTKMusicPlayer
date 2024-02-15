@@ -53,7 +53,7 @@ void MusicDJRadioProgramRequest::downLoadFinished()
                     item.m_coverUrl = value["picUrl"].toString();
                     item.m_category = value["category"].toString();
                     item.m_nickName = value["categoryId"].toString();
-                    item.m_updateTime = TTKDateTime::format(value["createTime"].toULongLong(), TTK_YEAR_FORMAT);
+                    item.m_updateTime = TTKDateTime::format(value["createTime"].toULongLong(), TTK_DATE_FORMAT);
                     item.m_count = value["subCount"].toString();
                     Q_EMIT createProgramItem(item);
                     m_items << item;

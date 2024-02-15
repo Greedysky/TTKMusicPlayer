@@ -73,7 +73,7 @@ void MusicKGSongCommentsRequest::downLoadFinished()
 
                     MusicResultDataItem item;
                     item.m_count = value["like"].toMap()["count"].toString();
-                    item.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_YEAR_TIMEZ_FORMAT);
+                    item.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_DATE_TIMEZ_FORMAT);
                     item.m_description = value["content"].toString();
                     item.m_nickName = value["user_name"].toString();
                     item.m_coverUrl = value["user_pic"].toString();
@@ -142,7 +142,7 @@ void MusicKGPlaylistCommentsRequest::downLoadFinished()
 
                     MusicResultDataItem item;
                     item.m_count = value["like"].toMap()["count"].toString();
-                    item.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_YEAR_TIMEZ_FORMAT);
+                    item.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_DATE_TIMEZ_FORMAT);
                     item.m_description = value["content"].toString();
                     item.m_nickName = value["user_name"].toString();
                     item.m_coverUrl = value["user_pic"].toString();

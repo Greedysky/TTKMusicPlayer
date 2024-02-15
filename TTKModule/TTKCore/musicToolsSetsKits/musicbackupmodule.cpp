@@ -32,7 +32,7 @@ MusicPlaylistBackupModule::MusicPlaylistBackupModule(QObject *parent)
 void MusicPlaylistBackupModule::runBackup()
 {
     const QString &root = APPBACKUP_DIR_FULL + "playlist";
-    const QString &child = QDate::currentDate().toString(TTK_YEAR_FORMAT);
+    const QString &child = QDate::currentDate().toString(TTK_DATE_FORMAT);
 
     QDir dir(root);
     dir.mkpath(child);

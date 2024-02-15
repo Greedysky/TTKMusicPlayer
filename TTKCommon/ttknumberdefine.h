@@ -23,12 +23,18 @@
 
 // ttk date time format define
 #define TTK_TIME_INIT           "00:00"
+#define TTK_HOUR_FORMAT         "hh"
+#define TTK_SECOND_FORMAT       "mm"
 #define TTK_TIME_FORMAT         "hh:mm"
 #define TTK_TIMEZ_FORMAT        "hh:mm:ss"
-#define TTK_YEAR_FORMAT         "yyyy-MM-dd"
-#define TTK_YEARD_FORMAT        "yyyy.MM.dd"
-#define TTK_YEAR_TIME_FORMAT    "yyyy-MM-dd hh:mm"
-#define TTK_YEAR_TIMEZ_FORMAT   "yyyy-MM-dd hh:mm:ss"
+#define TTK_YEAR_FORMAT         "yyyy"
+#define TTK_MONTH_FORMAT        "MM"
+#define TTK_DAY_FORMAT          "dd"
+#define TTK_WEEK_FORMAT         "dddd"
+#define TTK_DATE_FORMAT         "yyyy-MM-dd"
+#define TTK_DATE2_FORMAT        "yyyy.MM.dd"
+#define TTK_DATE_TIME_FORMAT    "yyyy-MM-dd hh:mm"
+#define TTK_DATE_TIMEZ_FORMAT   "yyyy-MM-dd hh:mm:ss"
 
 
 // ttk item size define

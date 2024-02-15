@@ -49,7 +49,7 @@ void MusicResourceRequest::downLoadFinished()
                 const QString &key = value["key"].toString();
                 const QString &path = APPCACHE_DIR_FULL + key;
 
-                if(QDateTime::fromString(value["time"].toString(), TTK_YEAR_FORMAT) > QFileInfo(path).lastModified())
+                if(QDateTime::fromString(value["time"].toString(), TTK_DATE_FORMAT) > QFileInfo(path).lastModified())
                 {
                     MusicDownloadDataRequest *d = new MusicDownloadDataRequest(QSyncUtils::makeDataBucketUrl() + key, path, TTK::Download::Other, this);
                     d->startToRequest();

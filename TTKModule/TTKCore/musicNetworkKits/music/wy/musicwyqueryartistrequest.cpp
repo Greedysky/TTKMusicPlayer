@@ -130,7 +130,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                         item.m_id = info.m_artistId;
                         item.m_name = info.m_artistName;
                         item.m_coverUrl = info.m_coverUrl;
-                        item.m_updateTime = TTKDateTime::format(artistObject["publishTime"].toLongLong(), TTK_YEAR_FORMAT);
+                        item.m_updateTime = TTKDateTime::format(artistObject["publishTime"].toLongLong(), TTK_DATE_FORMAT);
                         Q_EMIT createArtistItem(item);
                     }
 
