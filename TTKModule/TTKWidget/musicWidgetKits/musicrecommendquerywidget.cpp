@@ -59,7 +59,7 @@ void MusicRecommendQueryWidget::createLabels()
     painter.setFont(QFont("Arial", 9));
     painter.setPen(QColor(0xFE, 0xD9, 0xD9));
     painter.drawText(QRect(54, 34, 115, 27), Qt::AlignCenter, TTKDateTime::format(time, TTK_WEEK_FORMAT));
-    painter.setFont(QFont("Arial", 60, QFont::Bold));
+    painter.setFont(QFont("Arial", 55, QFont::Bold));
     painter.setPen(QColor(0x20, 0x20, 0x20));
     painter.drawText(QRect(54, 27 + 34, 115, 115 - 27), Qt::AlignCenter, TTKDateTime::format(time, TTK_DAY_FORMAT));
     painter.drawPixmap(54, 34, QPixmap(":/image/lb_recmd_date_mask"));

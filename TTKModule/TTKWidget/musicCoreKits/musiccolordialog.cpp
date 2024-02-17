@@ -9,8 +9,8 @@ MusicHlPalette::MusicHlPalette(QWidget *parent)
     : QWidget(parent),
       m_dblSaturation(1.0)
 {
-    setMinimumSize(QSize(360, 120));
     setMouseTracking(true);
+    setMinimumSize(QSize(360, 120));
 }
 
 QColor MusicHlPalette::color() const
@@ -42,6 +42,7 @@ void MusicHlPalette::paintEvent(QPaintEvent *event)
     const int ntRight = rect().right();
     const int ntBottm = rect().bottom();
     QColor colorStart, colorDatum, colorFinal;
+
     for(int it = 0; it < ntRight + 1; ++it)
     {
         colorStart.setHslF(it / double(ntRight), m_dblSaturation, 1);
@@ -55,8 +56,7 @@ void MusicHlPalette::paintEvent(QPaintEvent *event)
         linearGradient.setColorAt(0.5, colorDatum);
         linearGradient.setColorAt(1.0, colorFinal);
 
-        QBrush brush(linearGradient);
-        painter.setPen(QPen(brush, 1));
+        painter.setPen(QPen(linearGradient, 1));
         painter.drawLine(QPointF(it, 0), QPointF(it, ntBottm));
     }
 
@@ -100,6 +100,7 @@ void MusicHlPalette::mouseMoveEvent(QMouseEvent *event)
     {
         QPainterPath path;
         path.addEllipse(m_ptVernierPos, 7, 7);
+
         if(path.contains(event->pos()))
         {
             QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust hue and brightness"), this, QRect(m_ptVernierPos - QPoint(8, 8), QSize(16, 16)));
@@ -157,6 +158,7 @@ void MusicHlSaturationPalette::paintEvent(QPaintEvent *event)
     qreal dblVH, dblVS, dblVL = -100.0f;
 #endif
     m_color.getHslF(&dblVH, &dblVS, &dblVL);
+
     QColor colorCenter, colorStart, colorFinal;
     colorCenter.setHslF(dblVH, 0.5, dblVL);
     colorStart.setHslF(dblVH, 1, dblVL);
@@ -168,8 +170,7 @@ void MusicHlSaturationPalette::paintEvent(QPaintEvent *event)
     linearGradient.setColorAt(0.0, colorStart);
     linearGradient.setColorAt(1.0, colorFinal);
 
-    QBrush brush(linearGradient);
-    painter.fillRect(rect(), brush);
+    painter.fillRect(rect(), linearGradient);
 
     const QPointF ptfCenter(m_dblVernierX, ntBottm / 2.0);
     painter.setPen(QPen(Qt::black, 2));
@@ -209,9 +210,9 @@ void MusicHlSaturationPalette::mouseMoveEvent(QMouseEvent *event)
     }
     else
     {
-        const QPointF ptfCenter(m_dblVernierX, rect().bottom() / 2.0);
         QPainterPath path;
-        path.addEllipse(ptfCenter, 7, 7);
+        path.addEllipse(QPointF(m_dblVernierX, rect().bottom() / 2.0), 7, 7);
+
         if(path.contains(event->pos()))
         {
             QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust hue and brightness"), this, QRect(event->pos() - QPoint(8, 8), QSize(16, 16)));
@@ -224,7 +225,6 @@ void MusicHlSaturationPalette::calculateSuration()
     m_dblVernierPercentX = m_dblVernierX/rect().right();
     m_dblSaturation = 1- m_dblVernierPercentX;
     m_color.setHslF(m_color.hslHueF(), m_dblSaturation, m_color.lightnessF());
-
     Q_EMIT saturationChanged(m_dblSaturation);
 }
 
