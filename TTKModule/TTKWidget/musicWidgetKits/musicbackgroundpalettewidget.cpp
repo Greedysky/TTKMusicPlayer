@@ -207,12 +207,11 @@ void MusicBackgroundPaletteWidget::paletteColorClicked()
 
 void MusicBackgroundPaletteWidget::showPaletteDialog()
 {
-    const QColor &paletteColor = MusicColorDialog::popup(this);
-    if(!paletteColor.isValid())
+    const QColor &color = MusicColorDialog::popup(this);
+    if(color.isValid())
     {
-        return;
+        currentColorToFile(m_currentColor = color);
     }
-    currentColorToFile(m_currentColor = paletteColor);
 }
 
 void MusicBackgroundPaletteWidget::currentColorToFile(const QColor &color)

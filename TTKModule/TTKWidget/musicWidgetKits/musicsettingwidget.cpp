@@ -387,11 +387,10 @@ void MusicSettingWidget::rippleVersionUpdateChanged()
 
 void MusicSettingWidget::rippleSpectrumColorChanged()
 {
-    MusicColorDialog dialog(this);
+    MusicColorDialog dialog(m_ui->rippleSpectrumColorButton->color(), this);
     if(dialog.exec())
     {
-        const QColor &color = dialog.color();
-        m_ui->rippleSpectrumColorButton->setColors({color});
+        m_ui->rippleSpectrumColorButton->setColors({dialog.color()});
     }
 }
 

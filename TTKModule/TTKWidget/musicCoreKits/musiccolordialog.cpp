@@ -18,6 +18,21 @@ QColor MusicHlPalette::color() const
     return m_color;
 }
 
+void MusicHlPalette::setColor(const QColor &color)
+{
+    m_color = color;
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    float vh, vs, vl = -100.0f;
+#else
+    qreal vh, vs, vl = -100.0f;
+#endif
+    m_color.getHslF(&vh, &vs, &vl);
+    m_dblSaturation = vs;
+    m_ptfVernierPercentPos.setX(vh);
+    m_ptfVernierPercentPos.setY(1 - vl);
+    Q_EMIT colorChanged(m_color);
+}
+
 void MusicHlPalette::initialize()
 {
     m_ptVernierPos = rect().center();
@@ -28,8 +43,8 @@ void MusicHlPalette::initialize()
 void MusicHlPalette::setSaturation(double dblsaturation)
 {
     m_dblSaturation = dblsaturation;
-    update();
     calculateColor();
+    update();
 }
 
 void MusicHlPalette::paintEvent(QPaintEvent *event)
@@ -136,6 +151,13 @@ double MusicHlSaturationPalette::saturation() const
     return m_dblSaturation;
 }
 
+void MusicHlSaturationPalette::setSaturation(double dblsaturation)
+{
+    m_dblSaturation = dblsaturation;
+    m_dblVernierPercentX = 1 - m_dblSaturation;
+    m_dblVernierX = m_dblVernierPercentX * rect().right();
+}
+
 void MusicHlSaturationPalette::setBaseColor(const QColor &color)
 {
     m_color = color;
@@ -153,16 +175,16 @@ void MusicHlSaturationPalette::paintEvent(QPaintEvent *event)
     const int ntBottm = rect().bottom();
 
 #if TTK_QT_VERSION_CHECK(6,0,0)
-    float dblVH, dblVS, dblVL = -100.0f;
+    float vh, vs, vl = -100.0f;
 #else
-    qreal dblVH, dblVS, dblVL = -100.0f;
+    qreal vh, vs, vl = -100.0f;
 #endif
-    m_color.getHslF(&dblVH, &dblVS, &dblVL);
+    m_color.getHslF(&vh, &vs, &vl);
 
     QColor colorCenter, colorStart, colorFinal;
-    colorCenter.setHslF(dblVH, 0.5, dblVL);
-    colorStart.setHslF(dblVH, 1, dblVL);
-    colorFinal.setHslF(dblVH, 0, dblVL);
+    colorCenter.setHslF(vh, 0.5, vl);
+    colorStart.setHslF(vh, 1, vl);
+    colorFinal.setHslF(vh, 0, vl);
 
     QLinearGradient linearGradient;
     linearGradient.setStart(QPointF(0, 0));
@@ -222,8 +244,8 @@ void MusicHlSaturationPalette::mouseMoveEvent(QMouseEvent *event)
 
 void MusicHlSaturationPalette::calculateSuration()
 {
-    m_dblVernierPercentX = m_dblVernierX/rect().right();
-    m_dblSaturation = 1- m_dblVernierPercentX;
+    m_dblVernierPercentX = m_dblVernierX / rect().right();
+    m_dblSaturation = 1 - m_dblVernierPercentX;
     m_color.setHslF(m_color.hslHueF(), m_dblSaturation, m_color.lightnessF());
     Q_EMIT saturationChanged(m_dblSaturation);
 }
@@ -267,20 +289,36 @@ MusicColorDialog::MusicColorDialog(QWidget *parent)
     QtButtonGroupConnect(buttonGroup, this, buttonClicked, TTK_SLOT);
 }
 
+MusicColorDialog::MusicColorDialog(const QColor &color, QWidget *parent)
+    : MusicColorDialog(parent)
+{
+    if(color.isValid())
+    {
+        setColor(color);
+    }
+}
+
 MusicColorDialog::~MusicColorDialog()
 {
     delete m_ui;
 }
 
-QColor MusicColorDialog::popup(QWidget *parent)
+QColor MusicColorDialog::popup(QWidget *parent, const QColor &color)
 {
-    MusicColorDialog dialog(parent);
+    MusicColorDialog dialog(color, parent);
     return dialog.exec() ? dialog.color() : QColor();
 }
 
 QColor MusicColorDialog::color() const
 {
     return m_color;
+}
+
+void MusicColorDialog::setColor(const QColor &color)
+{
+    m_color = color;
+    m_ui->wgtPalette->setColor(color);
+    m_ui->wgtSaturationIndicator->setSaturation(color.hslSaturationF());
 }
 
 void MusicColorDialog::buttonClicked(int index)

@@ -39,6 +39,11 @@ public:
      */
     QColor color() const;
     /*!
+     * Get color.
+     */
+    void setColor(const QColor &color);
+
+    /*!
      * Init parameter.
      */
     void initialize();
@@ -93,6 +98,10 @@ public:
      * Get saturation.
      */
     double saturation() const;
+    /*!
+     * Set current color saturation.
+     */
+    void setSaturation(double dblsaturation);
 
 Q_SIGNALS:
     /*!
@@ -141,6 +150,7 @@ public:
      * Object constructor.
      */
     explicit MusicColorDialog(QWidget *parent = nullptr);
+    explicit MusicColorDialog(const QColor &color, QWidget *parent = nullptr);
     /*!
      * Object destructor.
      */
@@ -149,11 +159,16 @@ public:
     /*!
      * Get color static function.
      */
-    static QColor popup(QWidget *parent = nullptr);
+    static QColor popup(QWidget *parent = nullptr, const QColor &color = {});
+
     /*!
      * Get color.
      */
     QColor color() const;
+    /*!
+     * Get color.
+     */
+    void setColor(const QColor &color);
 
 public Q_SLOTS:
     /*!

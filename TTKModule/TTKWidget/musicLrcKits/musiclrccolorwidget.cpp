@@ -73,9 +73,8 @@ void MusicLrcColorWidget::addButtonClicked()
     MusicColorDialog dialog(this);
     if(dialog.exec())
     {
-        const QColor &color = dialog.color();
         QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
-        it->setBackground(color);
+        it->setBackground(dialog.color());
         m_ui->listWidget->addItem(it);
     }
 }
