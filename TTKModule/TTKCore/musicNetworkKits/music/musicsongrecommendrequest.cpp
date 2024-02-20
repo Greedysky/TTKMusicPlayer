@@ -9,11 +9,11 @@ namespace ReqLQInterface
     static constexpr const char *LQ_RECOMMEND_URL = "NDhiOGZ6dUJWNTBvN3R5OHNOQmkyQVVwOXdWbDNBOG14MmVXWVJxWlVXRkxuNUxxdzdYTEpUYVZRNVE9";
 
     /*!
-     * Read tags(size\bitrate\url) from query results.
+     * Read tags(size and bitrate and url) from query results.
      */
     static void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key);
     /*!
-     * Read tags(size\bitrate\url) from query results.
+     * Read tags(size and bitrate and url) from query results.
      */
     static void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate);
 

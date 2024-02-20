@@ -44,7 +44,7 @@ namespace ReqBLInterface
      */
     void parseFromMovieInfo(TTK::MusicSongInformation *info, QString &cid);
     /*!
-     * Read mv tags(size\bitrate\url) from query results.
+     * Read mv tags(size and bitrate and url) from query results.
      */
     void parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &cid);
 

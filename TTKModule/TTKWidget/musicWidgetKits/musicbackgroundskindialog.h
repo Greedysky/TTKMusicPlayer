@@ -65,7 +65,7 @@ public:
      */
     void updateArtistFileTheme(const QString &theme);
     /*!
-     * Select current item by name\alpha\listAlpha when the widget show.
+     * Select current item by name and alpha and listAlpha when the widget show.
      */
     void setCurrentBackgroundTheme(const QString &theme, int skin, int list);
 

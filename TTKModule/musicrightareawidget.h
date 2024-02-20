@@ -115,7 +115,7 @@ public:
      */
     bool interiorLrcVisible() const;
     /*!
-     * Update current lrc by current time\total time and play state.
+     * Update current lrc by current time and total time and play state.
      */
     void updateCurrentLrc(qint64 current, qint64 total, bool playState) const;
     /*!

@@ -51,7 +51,7 @@ public:
      */
     void setIcon(const QString &name);
     /*!
-     * Set current item other infomation(size\type\time).
+     * Set current item other infomation(size and type and time).
      */
     void setInformation(const QString &info);
     /*!

@@ -72,7 +72,7 @@ namespace ReqKGInterface
     QString makeSongArtist(const QString &name);
 
     /*!
-     * Read tags(lrc\album pic) from query results.
+     * Read tags(lrc and album pic) from query results.
      */
     void parseFromSongAlbumLrc(TTK::MusicSongInformation *info);
 
@@ -86,11 +86,11 @@ namespace ReqKGInterface
     void parseFromSongAlbumInfo(MusicResultDataItem *item, const QString &hash, const QString &album);
 
     /*!
-     * Read tags(size\bitrate\url) from query results.
+     * Read tags(size and bitrate and url) from query results.
      */
     void parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate);
     /*!
-     * Read tags(size\bitrate\url) from query results.
+     * Read tags(size and bitrate and url) from query results.
      */
     void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key);
 

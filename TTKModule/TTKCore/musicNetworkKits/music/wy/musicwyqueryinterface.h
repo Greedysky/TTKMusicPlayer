@@ -98,11 +98,11 @@ namespace ReqWYInterface
     QByteArray makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type);
 
     /*!
-     * Read tags(size\bitrate\url) from query results.
+     * Read tags(size and bitrate and url) from query results.
      */
     void parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate);
     /*!
-     * Read tags(size\bitrate\url) from query results.
+     * Read tags(size and bitrate and url) from query results.
      */
     void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key);
 

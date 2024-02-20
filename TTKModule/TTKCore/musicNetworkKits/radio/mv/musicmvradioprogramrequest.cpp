@@ -4,11 +4,11 @@
 namespace ReqKGInterface
 {
     /*!
-     * Read mv tags(size\bitrate\url) from query results.
+     * Read mv tags(size and bitrate and url) from query results.
      */
     static void parseFromMovieProperty(TTK::MusicSongInformation *info);
     /*!
-     * Read mv tags(size\bitrate\url) from query results.
+     * Read mv tags(size and bitrate and url) from query results.
      */
     static void parseFromMovieProperty(TTK::MusicSongInformation *info, const QVariantMap &key);
 
