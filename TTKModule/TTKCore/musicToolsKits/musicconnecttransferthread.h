@@ -37,7 +37,7 @@ public:
     /*!
      * Set copy file path list.
      */
-    void setCopyFilePath(const QString &target, const QStringList &path);
+    void setFilePath(const QString &target, const QStringList &path);
 
 Q_SIGNALS:
     /*!

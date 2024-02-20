@@ -181,7 +181,7 @@ void MusicConnectTransferWidget::startToTransferFiles()
         return;
     }
 
-    m_thread->setCopyFilePath(m_currentDeviceItem->m_path + TTK_SEPARATOR, names);
+    m_thread->setFilePath(m_currentDeviceItem->m_path + TTK_SEPARATOR, names);
     m_thread->start();
 }
 

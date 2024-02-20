@@ -86,7 +86,7 @@ void MusicNetworkConnectionItem::testFinshed(bool state)
 MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicNetworkConnectionTestWidget),
-      m_countIndex(0)
+      m_index(0)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -162,11 +162,12 @@ void MusicNetworkConnectionTestWidget::show()
 
 void MusicNetworkConnectionTestWidget::buttonStateChanged()
 {
-    m_countIndex = 0;
+    m_index = 0;
     if(!m_ui->iconLabel->isRunning())
     {
         m_ui->iconLabel->start();
         m_ui->startButton->setText(tr("Stop"));
+
         for(MusicNetworkConnectionItem *item : qAsConst(m_connectionItems))
         {
             item->start();
@@ -176,6 +177,7 @@ void MusicNetworkConnectionTestWidget::buttonStateChanged()
     {
         m_ui->iconLabel->stop();
         m_ui->startButton->setText(tr("Start"));
+
         for(MusicNetworkConnectionItem *item : qAsConst(m_connectionItems))
         {
             item->stop();
@@ -185,7 +187,7 @@ void MusicNetworkConnectionTestWidget::buttonStateChanged()
 
 void MusicNetworkConnectionTestWidget::testFinshed()
 {
-    if(++m_countIndex == 5)
+    if(++m_index == 5)
     {
         m_ui->iconLabel->stop();
         m_ui->startButton->setText(tr("Start"));

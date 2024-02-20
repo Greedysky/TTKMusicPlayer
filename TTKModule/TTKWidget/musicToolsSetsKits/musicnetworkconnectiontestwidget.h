@@ -115,7 +115,7 @@ public Q_SLOTS:
 private:
     Ui::MusicNetworkConnectionTestWidget *m_ui;
 
-    int m_countIndex;
+    int m_index;
     QList<MusicNetworkConnectionItem*> m_connectionItems;
 
 };
