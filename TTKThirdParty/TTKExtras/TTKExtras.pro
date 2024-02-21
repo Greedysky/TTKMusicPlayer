@@ -56,4 +56,4 @@ include($$PWD/qkugou/QKuGou.pri)
 include($$PWD/qrencode/QRencode.pri)
 include($$PWD/qshortcut/QShortCut.pri)
 
-win32:RC_FILE = $$PWD/TTKExtras.rc
+win32:RC_FILE = $$PWD/$${TARGET}.rc

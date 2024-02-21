@@ -55,4 +55,4 @@ INCLUDEPATH += \
 
 SOURCES += $$PWD/musicinitmain.cpp
 
-win32:RC_FILE = $$PWD/TTKInit.rc
+win32:RC_FILE = $$PWD/$${TARGET}.rc

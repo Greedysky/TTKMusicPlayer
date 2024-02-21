@@ -50,4 +50,4 @@ SOURCES += $$PWD/musicconfigobject.cpp
 
 RESOURCES += $$PWD/../TTKUi/MusicApp.qrc
 
-win32:RC_FILE = $$PWD/TTKConfig.rc
+win32:RC_FILE = $$PWD/$${TARGET}.rc

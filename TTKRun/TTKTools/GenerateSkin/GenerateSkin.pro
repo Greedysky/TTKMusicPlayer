@@ -59,4 +59,4 @@ SOURCES += \
 
 FORMS += $$PWD/toolsskin.ui
 
-win32:RC_FILE = $$PWD/GenerateSkin.rc
+win32:RC_FILE = $$PWD/$${TARGET}.rc

@@ -56,4 +56,4 @@ SOURCES += \
     $$PWD/uncompr.c \
     $$PWD/zutil.c
 
-win32:RC_FILE = $$PWD/zlib.rc
+win32:RC_FILE = $$PWD/$${TARGET}.rc

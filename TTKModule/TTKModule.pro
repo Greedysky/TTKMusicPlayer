@@ -52,4 +52,4 @@ SOURCES += \
     $$PWD/musicrightareawidget.cpp \
     $$PWD/musicbottomareawidget.cpp
 
-win32:RC_FILE = $$PWD/TTKCore.rc
+win32:RC_FILE = $$PWD/$${TARGET}.rc

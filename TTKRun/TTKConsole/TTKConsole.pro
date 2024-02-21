@@ -54,4 +54,4 @@ SOURCES += \
     $$PWD/musicconsolemain.cpp \
     $$PWD/musicconsolemodule.cpp
 
-win32:RC_FILE = $$PWD/TTKConsole.rc
+win32:RC_FILE = $$PWD/$${TARGET}.rc

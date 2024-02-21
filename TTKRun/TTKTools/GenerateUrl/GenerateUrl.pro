@@ -57,4 +57,4 @@ SOURCES += \
 
 FORMS += $$PWD/toolsurl.ui
 
-win32:RC_FILE = $$PWD/GenerateUrl.rc
+win32:RC_FILE = $$PWD/$${TARGET}.rc

@@ -63,4 +63,4 @@ SOURCES += $$PWD/qdevicewatcher.cpp
 #load extra define
 include($$PWD/../TTKThirdParty.pri)
 
-win32:RC_FILE = $$PWD/TTKWatcher.rc
+win32:RC_FILE = $$PWD/$${TARGET}.rc

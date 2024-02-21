@@ -122,6 +122,6 @@ SOURCES += \
     $$PWD/ttktime.cpp \
     $$PWD/ttktoastlabel.cpp
 
-RESOURCES += $$PWD/TTKLibrary.qrc
+RESOURCES += $$PWD/$${TARGET}.qrc
 
-win32:RC_FILE = $$PWD/TTKLibrary.rc
+win32:RC_FILE = $$PWD/$${TARGET}.rc

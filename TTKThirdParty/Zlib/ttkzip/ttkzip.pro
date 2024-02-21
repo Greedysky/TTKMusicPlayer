@@ -22,7 +22,7 @@ CONFIG += warn_off plugin lib
 include($$PWD/../../../TTKVersion.pri)
 
 DESTDIR = $$OUT_PWD/../../../bin/$$TTK_VERSION
-TARGET = TTKZip
+TARGET = ttkzip
 
 DEFINES += \
     ZLIB_DLL \
@@ -48,5 +48,5 @@ SOURCES += \
 win32{
     HEADERS += $$PWD/iowin32.h
     SOURCES += $$PWD/iowin32.c
-    RC_FILE = $$PWD/ttkzip.rc
+    RC_FILE = $$PWD/$${TARGET}.rc
 }

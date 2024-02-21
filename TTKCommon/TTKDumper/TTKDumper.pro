@@ -50,4 +50,4 @@ SOURCES += \
     $$PWD/miniprocess.cpp \
     $$PWD/ttkdumper.cpp
 
-win32:RC_FILE = $$PWD/TTKDumper.rc
+win32:RC_FILE = $$PWD/$${TARGET}.rc
