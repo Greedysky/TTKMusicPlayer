@@ -90,7 +90,7 @@ void MusicConnectLocalWidget::initSecondWidget()
     connect(backButton, SIGNAL(clicked()), SLOT(changeStatckedWidgetFirst()));
 
     m_deviceButton = new QPushButton(topWidget);
-    m_deviceButton->setStyleSheet(TTK::UI::TransferChangedDev);
+    m_deviceButton->setStyleSheet(TTK::UI::TransferChangedDev + TTK::UI::MenuStyle02);
     m_deviceButton->setFixedSize(80, 20);
     m_deviceButton->setCursor(Qt::PointingHandCursor);
     m_deviceButton->setMenu(new QMenu(m_deviceButton));
