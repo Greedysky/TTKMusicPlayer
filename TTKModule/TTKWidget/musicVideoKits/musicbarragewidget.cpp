@@ -43,12 +43,20 @@ MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
       m_state(false),
       m_parent(TTKObjectCast(QWidget*, parent))
 {
+
+    m_sizeTimer = new QTimer(this);
+    m_sizeTimer->setSingleShot(true);
+    m_sizeTimer->setInterval(TTK_DN_S2MS / 2);
+    connect(m_sizeTimer, SIGNAL(timeout()), SLOT(sizeChanged()));
+
     m_networkRequest = new MusicBarrageRequest(this);
     connect(m_networkRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
 }
 
 MusicBarrageWidget::~MusicBarrageWidget()
 {
+    m_sizeTimer->stop();
+    delete m_sizeTimer;
     clearItems();
     delete m_networkRequest;
 }
@@ -92,11 +100,9 @@ void MusicBarrageWidget::stop()
 
 void MusicBarrageWidget::setSize(const QSize &size)
 {
+    stop();
     m_parentSize = size;
-    for(MusicBarrageAnimation *animation : qAsConst(m_animations))
-    {
-        animation->setSize(size);
-    }
+    m_sizeTimer->start();
 }
 
 void MusicBarrageWidget::setBarrage(const QString &name, const QString &id)
@@ -139,6 +145,16 @@ void MusicBarrageWidget::addBarrage(const MusicBarrageRecord &record)
     {
         start();
     }
+}
+
+void MusicBarrageWidget::sizeChanged()
+{
+    for(MusicBarrageAnimation *animation : qAsConst(m_animations))
+    {
+        animation->setSize(m_parentSize);
+    }
+
+    start();
 }
 
 void MusicBarrageWidget::downLoadFinished(const QByteArray &bytes)

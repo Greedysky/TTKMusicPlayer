@@ -67,7 +67,7 @@ public:
     /*!
      * Get renderer pixmap image.
      */
-    QPixmap rendererPixmap() const;
+    const QPixmap& rendererPixmap() const;
 
     /*!
      * Stop renderer pixmap animation.

@@ -77,10 +77,15 @@ public:
      * Get background window skin enable.
      */
     bool backgroundTransparentEnable() const;
+
     /*!
-     * Get background skin pixmap.
+     * Get origin background image.
      */
-    QPixmap rendererPixmap() const;
+    const QImage& originImage() const;
+    /*!
+     * Get renderer background pixmap.
+     */
+    const QPixmap& rendererPixmap() const;
 
     /*!
      * Stop background skin change timer.
@@ -101,9 +106,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Background pixmap data changed.
+     * Origin background image data changed.
      */
-    void backgroundPixmapChanged(const QPixmap &pix);
+    void originImageChanged(const QImage &image);
 
 public Q_SLOTS:
     /*!

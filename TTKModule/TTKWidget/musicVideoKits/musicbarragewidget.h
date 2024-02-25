@@ -113,6 +113,10 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     /*!
+     * Region size changed.
+     */
+    void sizeChanged();
+    /*!
      * Send recieved data from net.
      */
     void downLoadFinished(const QByteArray &bytes);
@@ -146,6 +150,7 @@ private:
     bool m_state;
     QSize m_parentSize;
     QWidget *m_parent;
+    QTimer *m_sizeTimer;
     QString m_lastQueryID;
     QList<QLabel*> m_labels;
     QList<MusicBarrageAnimation*> m_animations;

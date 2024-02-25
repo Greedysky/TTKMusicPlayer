@@ -291,8 +291,8 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
 
         if(florid)
         {
-            TTKObjectCast(Florid*, type.m_object)->setPixmap(MusicTopAreaWidget::instance()->rendererPixmap());
-            connect(MusicTopAreaWidget::instance(), SIGNAL(backgroundPixmapChanged(QPixmap)), type.m_object, SLOT(setPixmap(QPixmap)));
+            TTKObjectCast(Florid*, type.m_object)->setImage(MusicTopAreaWidget::instance()->originImage());
+            connect(MusicTopAreaWidget::instance(), SIGNAL(originImageChanged(QImage)), type.m_object, SLOT(setImage(QImage)));
         }
         connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
     }

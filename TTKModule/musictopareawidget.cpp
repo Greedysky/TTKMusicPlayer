@@ -124,7 +124,12 @@ bool MusicTopAreaWidget::backgroundTransparentEnable() const
     return false;
 }
 
-QPixmap MusicTopAreaWidget::rendererPixmap() const
+const QImage& MusicTopAreaWidget::originImage() const
+{
+    return m_backgroundImage;
+}
+
+const QPixmap& MusicTopAreaWidget::rendererPixmap() const
 {
     return m_ui->background->rendererPixmap();
 }
@@ -462,7 +467,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
     painter.drawPixmap(0, 0, QPixmap::fromImage(m_backgroundImage.scaled(size, Qt::KeepAspectRatioByExpanding)));
 
     backgroundTransparent(m_backgroundListAlpha);
-    Q_EMIT backgroundPixmapChanged(pix);
+    Q_EMIT originImageChanged(m_backgroundImage);
 
     m_ui->background->setPixmap(pix);
 }
