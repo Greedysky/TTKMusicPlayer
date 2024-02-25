@@ -89,9 +89,9 @@ public:
 
 public slots:
     /*!
-    * Set background pixmap.
+    * Set background image.
     */
-   void setPixmap(const QPixmap &pix);
+   void setImage(const QImage &image);
     /*!
      * Starts visualization.
      */

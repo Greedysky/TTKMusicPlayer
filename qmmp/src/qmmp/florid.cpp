@@ -20,7 +20,7 @@ RoundAnimationLabel::~RoundAnimationLabel()
 
 void RoundAnimationLabel::setPixmap(const QPixmap &pix)
 {
-    m_pixmap = pix.scaled(2 * LABEL_RADIUS, 2 * LABEL_RADIUS);
+    m_pixmap = pix.scaled(2 * LABEL_RADIUS, 2 * LABEL_RADIUS, Qt::KeepAspectRatio);
 
     QRect rect(QPoint(0, 0), m_pixmap.size());
     QBitmap mask(rect.size());
@@ -88,9 +88,9 @@ Florid::~Florid()
 
 }
 
-void Florid::setPixmap(const QPixmap &pix)
+void Florid::setImage(const QImage &image)
 {
-    m_image = pix.toImage();
+    m_image = image;
     m_renderLabel = false;
     update();
 }
@@ -182,7 +182,7 @@ void Florid::paintEvent(QPaintEvent *)
     if(!m_image.isNull())
     {
         painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-        painter.drawImage(0, 0, m_image.scaled(size()));
+        painter.drawImage(0, 0, m_image.scaled(size(), Qt::KeepAspectRatioByExpanding));
         painter.fillRect(rect(), QColor(150, 150, 150, 150));
 
         const QPoint &pt = rect().center();
