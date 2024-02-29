@@ -377,16 +377,6 @@ bool MusicSongMeta::readInformation()
             length = info->duration();
             if(length == 0)
             {
-                TagMeta wrapper;
-                if(wrapper.readFile(meta->m_metaData[TagMeta::URL]))
-                {
-                    const QMap<TagMeta::Type, QString> &data = wrapper.musicTags();
-                    length = data[TagMeta::LENGTH].toLongLong();
-                }
-            }
-
-            if(length == 0)
-            {
                 const int bitrate = info->value(Qmmp::BITRATE).toInt();
                 if(bitrate > 0)
                 {
