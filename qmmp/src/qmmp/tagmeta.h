@@ -51,11 +51,8 @@ public:
     TagMeta();
     explicit TagMeta(const QString &file);
 
-    bool readFile();
-    bool readFile(const QString &path);
-
-    bool writeMusicTag(Type tag, const QString &value, int id3v2Version);
-    inline QMap<Type, QString> musicTags() const { return m_parameters; }
+    bool read();
+    bool write(Type tag, const QString &value, int id3v2Version);
 
 protected:
     QString m_path;

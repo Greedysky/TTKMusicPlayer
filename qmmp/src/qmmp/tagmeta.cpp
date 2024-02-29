@@ -17,47 +17,41 @@ TagMeta::TagMeta(const QString &file)
 
 }
 
-bool TagMeta::readFile()
+bool TagMeta::read()
 {
-    return readFile(m_path);
-}
-
-bool TagMeta::readFile(const QString &path)
-{
-    if(path.isEmpty())
+    if(m_path.isEmpty())
     {
         return false;
     }
 
-    m_path = path;
-
-    TagLib::FileRef tagFile(QStringToFileName(path));
+    TagLib::FileRef tagFile(QStringToFileName(m_path));
     if(tagFile.isNull())
     {
         return false;
     }
 
+    QMap<Type, QString> parameters;
     if(tagFile.tag())
     {
         TagLib::Tag *tag = tagFile.tag();
-        m_parameters[TITLE] = TStringToQString(tag->title());
-        m_parameters[ARTIST] = TStringToQString(tag->artist());
-        m_parameters[ALBUM] = TStringToQString(tag->album());
-        m_parameters[YEAR] = QString::number(tag->year());
-        m_parameters[COMMENT] =TStringToQString(tag->comment());
-        m_parameters[TRACK] = QString::number(tag->track());
-        m_parameters[GENRE] = TStringToQString(tag->genre());
+        parameters[TITLE] = TStringToQString(tag->title());
+        parameters[ARTIST] = TStringToQString(tag->artist());
+        parameters[ALBUM] = TStringToQString(tag->album());
+        parameters[YEAR] = QString::number(tag->year());
+        parameters[COMMENT] =TStringToQString(tag->comment());
+        parameters[TRACK] = QString::number(tag->track());
+        parameters[GENRE] = TStringToQString(tag->genre());
 
         TagLib::PropertyMap properties = tagFile.file()->properties();
         for(TagLib::PropertyMap::ConstIterator i = properties.begin(); i != properties.end(); ++i)
         {
             if(i->first == "ENCODER")
             {
-                m_parameters[MODE] = TStringToQString((*i->second.begin()));
+                parameters[MODE] = TStringToQString((*i->second.begin()));
             }
             if(i->first == "COMPATIBLE_BRANDS")
             {
-                m_parameters[FORMAT] = TStringToQString((*i->second.begin()));
+                parameters[FORMAT] = TStringToQString((*i->second.begin()));
             }
         }
     }
@@ -67,17 +61,17 @@ bool TagMeta::readFile(const QString &path)
         TagLib::AudioProperties *properties = tagFile.audioProperties();
         if(properties)
         {
-            m_parameters[BITRATE] = QString("%1 kbps").arg(properties->bitrate());
-            m_parameters[SAMPLERATE] = QString("%1 Hz").arg(properties->sampleRate());
-            m_parameters[CHANNEL] = QString::number(properties->channels());
-            m_parameters[LENGTH] = QString::number(properties->lengthInMilliseconds());
+            parameters[BITRATE] = QString("%1 kbps").arg(properties->bitrate());
+            parameters[SAMPLERATE] = QString("%1 Hz").arg(properties->sampleRate());
+            parameters[CHANNEL] = QString::number(properties->channels());
+            parameters[LENGTH] = QString::number(properties->lengthInMilliseconds());
         }
     }
 
     return true;
 }
 
-bool TagMeta::writeMusicTag(Type tag, const QString &value, int id3v2Version)
+bool TagMeta::write(Type tag, const QString &value, int id3v2Version)
 {
     if(m_path.isEmpty())
     {
@@ -124,13 +118,8 @@ bool TagMeta::writeMusicTag(Type tag, const QString &value, int id3v2Version)
     }
 
 #if TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION <= 11
-    if(file.save(TagLib::MPEG::File::AllTags, true, id3v2Version))
+    return file.save(TagLib::MPEG::File::AllTags, true, id3v2Version);
 #else
-    if(file.save(TagLib::MPEG::File::AllTags, TagLib::File::StripOthers, static_cast<TagLib::ID3v2::Version>(id3v2Version)))
+    return file.save(TagLib::MPEG::File::AllTags, TagLib::File::StripOthers, static_cast<TagLib::ID3v2::Version>(id3v2Version));
 #endif
-    {
-        m_parameters[tag] = value;
-        return true;
-    }
-    return false;
 }
