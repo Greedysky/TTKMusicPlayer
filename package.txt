@@ -13,8 +13,8 @@ libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
 libmpg123-1.32.4	https://sourceforge.net/projects/mpg123
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.5	https://ftp.osuosl.org/pub/xiph/releases/ogg
-libopenmpt-0.4.38	https://lib.openmpt.org/libopenmpt
-libprojectm-2.2.1(v4.0.0)	https://github.com/projectM-visualizer/projectm
+libopenmpt-0.4.39	https://lib.openmpt.org/libopenmpt
+libprojectm-2.2.1(v4.1.0)	https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
 libsidplayfp-2.3.1.patch(v2.6.0)	https://github.com/libsidplayfp/libsidplayfp
 libsndfile-1.2.2	https://github.com/libsndfile/libsndfile
@@ -22,13 +22,13 @@ libvorbis-1.3.7	https://ftp.osuosl.org/pub/xiph/releases/vorbis
 mp3gain-1_5_2(v1_6_2)	http://mp3gain.sourceforge.net/download.php
 MPlayer-1.2.1(v1.5)	http://mplayerhq.hu/design7/dload.html
 OptimFROG-5100	http://losslessaudio.org/Downloads.php
-opus-1.4.0	https://www.opus-codec.org/downloads
+opus-1.5.1	https://www.opus-codec.org/downloads
 opusfile-0.12	https://www.opus-codec.org/downloads
 soxr-0.1.3	https://sourceforge.net/projects/soxr
 speex-1.2.1	https://ftp.osuosl.org/pub/xiph/releases/speex
 sunvox-2.1.1c	https://warmplace.ru/soft/sunvox/sunvox_lib.php
 taglib-1.13.1(v2.0)	https://github.com/taglib/taglib
-wavpack-5.6.0	https://www.wavpack.com/downloads.html
+wavpack-5.7.0	https://www.wavpack.com/downloads.html
 libxmp-4.6.0.patch	https://github.com/libxmp/libxmp
 zlib-1.3.1	https://github.com/madler/zlib
 7zip-23.01	https://www.7-zip.org/download.html
@@ -60,4 +60,4 @@ ttk-1.2.3
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2024-02-16
+///Update time 2024-03-07
