@@ -464,7 +464,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
     QPixmap pix(size);
     pix.fill(Qt::transparent);
     QPainter painter(&pix);
-    painter.drawPixmap(0, 0, QPixmap::fromImage(m_backgroundImage.scaled(size, Qt::KeepAspectRatioByExpanding)));
+    painter.drawImage(0, 0, m_backgroundImage.scaled(size, Qt::KeepAspectRatioByExpanding));
 
     backgroundTransparent(m_backgroundListAlpha);
     Q_EMIT originImageChanged(m_backgroundImage);

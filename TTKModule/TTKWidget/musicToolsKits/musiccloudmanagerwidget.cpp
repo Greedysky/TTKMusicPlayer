@@ -95,7 +95,7 @@ void MusicCloudManagerTableWidget::resizeSection() const
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerView = horizontalHeader();
-    headerView->resizeSection(1, 360 + (width - WINDOW_WIDTH_MIN));
+    headerView->resizeSection(1, 360 + width - WINDOW_WIDTH_MIN);
 
     for(int i = 0; i < rowCount(); ++i)
     {
@@ -622,7 +622,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     QHBoxLayout *labelWidgetLayout = new QHBoxLayout(labelWidget);
     functionWidgetLayout->setContentsMargins(10, 20, 10, 10);
 
-    QLabel *label1 = new QLabel(tr("Song"), labelWidget);
+    QLabel *label1 = new QLabel(tr("SongName"), labelWidget);
     label1->setAlignment(Qt::AlignCenter);
     label1->setStyleSheet(TTK::UI::FontStyle01);
     labelWidgetLayout->addWidget(label1, 100);
@@ -669,7 +669,7 @@ void MusicCloudManagerWidget::resizeWidget()
     if(!m_resizeWidgets.isEmpty())
     {
         const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-        m_resizeWidgets[0]->setFixedWidth((width - WINDOW_WIDTH_MIN) + 540);
+        m_resizeWidgets[0]->setFixedWidth(480 + width - WINDOW_WIDTH_MIN);
     }
 }
 

@@ -160,6 +160,7 @@ void MusicApplication::loadCurrentSongLrc()
 
     const QString &fileName = currentFileName();
     const QString &path = TTK::String::lrcDirPrefix() + fileName + LRC_FILE;
+
     m_rightAreaWidget->loadCurrentSongLrc(fileName, path);
     //reset current song lrc index.
     TTK_SIGNLE_SHOT(resetCurrentSongLrcIndex, TTK_SLOT);

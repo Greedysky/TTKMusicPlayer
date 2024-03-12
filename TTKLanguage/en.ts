@@ -792,7 +792,7 @@
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="625"/>
-        <source>Song</source>
+        <source>SongName</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

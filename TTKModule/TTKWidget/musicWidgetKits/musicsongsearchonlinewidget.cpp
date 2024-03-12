@@ -489,11 +489,11 @@ void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     if(!m_resizeWidgets.isEmpty())
     {
-        m_resizeWidgets[1]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 273);
-        m_resizeWidgets[2]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 105);
-        m_resizeWidgets[3]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 105);
+        m_resizeWidgets[1]->setFixedWidth(273 + (width - WINDOW_WIDTH_MIN) / 3.0);
+        m_resizeWidgets[2]->setFixedWidth(105 + (width - WINDOW_WIDTH_MIN) / 3.0);
+        m_resizeWidgets[3]->setFixedWidth(105 + (width - WINDOW_WIDTH_MIN) / 3.0);
     }
 
-    m_textLabel->setText(tr("&nbsp;find <font color=#158FE1> %1 </font> result").arg(TTK::Widget::elidedText(font(), name, Qt::ElideRight, width - WINDOW_WIDTH_MIN + 240)));
+    m_textLabel->setText(tr("&nbsp;find <font color=#158FE1> %1 </font> result").arg(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 240 + width - WINDOW_WIDTH_MIN)));
     m_textLabel->setToolTip(name);
 }
