@@ -62,7 +62,7 @@ void MusicPlaylistBackupTableWidget::itemDoubleClicked(int row, int column)
     }
 
     const QString &path = m_songs->at(currentRow()).path();
-    Q_EMIT addSongToPlaylist(QStringList(QFile::exists(path) ? path : QString()));
+    Q_EMIT addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
 }
 
 void MusicPlaylistBackupTableWidget::contextMenuEvent(QContextMenuEvent *event)
