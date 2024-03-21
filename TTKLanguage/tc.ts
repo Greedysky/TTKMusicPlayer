@@ -5645,7 +5645,7 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="749"/>
         <source>Import music songs is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>導入的歌曲列表爲空</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1090"/>
