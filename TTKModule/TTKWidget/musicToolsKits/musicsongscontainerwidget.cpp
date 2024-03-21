@@ -746,6 +746,7 @@ void MusicSongsContainerWidget::addSongToPlaylist(const QStringList &items)
 {
     if(items.isEmpty())
     {
+        MusicToastLabel::popup(tr("Import music songs is empty"));
         return;
     }
 

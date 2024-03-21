@@ -204,6 +204,7 @@ void MusicSettingWidget::initialize()
     m_ui->otherScreenSaverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool());
     m_ui->otherPlaylistAutoSaveCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherPlaylistAutoSaveEnable).toBool());
     m_ui->otherRandomModeCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherRandomShuffleMode).toBool());
+    m_ui->otherHighDpiScalingCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toBool());
 
     //
     m_ui->downloadDirEdit->setText(G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
@@ -558,7 +559,10 @@ void MusicSettingWidget::fadeInAndOutClicked(bool state)
 
 void MusicSettingWidget::saveParameterSettings()
 {
+    const bool hotkeyEnabled = m_ui->globalHotkeyBox->isChecked();
     const bool languageChanged = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt() != m_ui->languageComboBox->currentIndex();
+    const bool highDpiScalingChanged = G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toBool() != m_ui->otherHighDpiScalingCheckBox->isChecked();
+
     QStringList lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     lastPlayIndex[0] = QString::number(m_ui->lastPlayCheckBox->isChecked());
 
@@ -571,9 +575,7 @@ void MusicSettingWidget::saveParameterSettings()
     G_NETWORK_PTR->setBlockNetwork(m_ui->closeNetWorkCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationMode, m_ui->setDefaultPlayerCheckBox->isChecked());
 
-    const bool hotkeyEnabled = m_ui->globalHotkeyBox->isChecked();
     G_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, hotkeyEnabled);
-
     if(hotkeyEnabled)
     {
         G_HOTKEY_PTR->setHotKey(0, m_ui->item_S01->text());
@@ -593,11 +595,9 @@ void MusicSettingWidget::saveParameterSettings()
         G_HOTKEY_PTR->unsetShortcut();
     }
 
-
     G_SETTING_PTR->setValue(MusicSettingManager::RippleLowPowerMode, m_ui->rippleLowPowerModeBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable, m_ui->rippleSpectrumEnableBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor, TTK::writeColorConfig(m_ui->rippleSpectrumColorButton->colors()));
-
 
     G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateEnable, m_ui->otherCheckUpdateBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherReadAlbumCover, m_ui->otherReadAlbumCoverCheckBox->isChecked());
@@ -609,7 +609,7 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable, m_ui->otherScreenSaverCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherPlaylistAutoSaveEnable, m_ui->otherPlaylistAutoSaveCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherRandomShuffleMode, m_ui->otherRandomModeCheckBox->isChecked());
-
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherHighDpiScalingEnable, m_ui->otherHighDpiScalingCheckBox->isChecked());
 
     G_SETTING_PTR->setValue(MusicSettingManager::LrcColor, m_ui->fontDefaultColorComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcFamily, m_ui->fontComboBox->currentIndex());
@@ -618,7 +618,6 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransparent, m_ui->transparentSlider->value());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColor, TTK::writeColorConfig(m_ui->playedPushButton->colors()));
     G_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColor, TTK::writeColorConfig(m_ui->noPlayedPushButton->colors()));
-
 
     G_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, m_ui->showDesktopCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineMode, m_ui->DSingleLineCheckBox->isChecked());
@@ -630,7 +629,6 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColor, TTK::writeColorConfig(m_ui->DplayedPushButton->colors()));
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColor, TTK::writeColorConfig(m_ui->DnoPlayedPushButton->colors()));
 
-
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, m_ui->downloadDirEdit->text());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcDirPath, m_ui->downloadLrcDirEdit->text());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadFileNameRule, m_ui->downloadRuleEdit->text());
@@ -640,7 +638,6 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, m_ui->downloadServerComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadDownloadLimitSize, m_ui->downloadLimitSpeedComboBox->currentText());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadUploadLimitSize, m_ui->uploadLimitSpeedComboBox->currentText());
-
 
     QmmpSettings *qmmpSettings = QmmpSettings::instance();
     int index = m_ui->replayGainModeComboBox->currentIndex();
@@ -655,7 +652,6 @@ void MusicSettingWidget::saveParameterSettings()
     qmmpSettings->setBufferSize(m_ui->bufferSizeSpinBox->value());
     qmmpSettings->setVolumeStep(m_ui->volumeStepSpinBox->value());
 
-
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValue, m_ui->fadeInSpinBox->value());
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValue, m_ui->fadeOutSpinBox->value());
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnable, m_ui->fadeInAndOutCheckBox->isChecked());
@@ -668,10 +664,21 @@ void MusicSettingWidget::saveParameterSettings()
     Q_EMIT parameterSettingChanged();
     close();
 
+    // show something tips for user
+    QString showTips;
     if(languageChanged)
     {
+        showTips = tr("Language changed, you need to restart to take effect");
+    }
+    else if(highDpiScalingChanged)
+    {
+        showTips = tr("High DPI scaling changed, you need to restart to take effect");
+    }
+
+    if(!showTips.isEmpty())
+    {
         MusicMessageBox message;
-        message.setText(tr("Language changed, you need to restart to take effect"));
+        message.setText(showTips);
         message.exec();
     }
 }
@@ -902,6 +909,7 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherScreenSaverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherPlaylistAutoSaveCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherRandomModeCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherHighDpiScalingCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
     m_ui->otherPluginManagerButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->otherPluginManagerButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -917,6 +925,7 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherScreenSaverCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherPlaylistAutoSaveCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherRandomModeCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherHighDpiScalingCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherPluginManagerButton->setFocusPolicy(Qt::NoFocus);
 #endif
 }

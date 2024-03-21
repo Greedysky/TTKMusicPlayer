@@ -33,6 +33,7 @@
         <otherScreenSaverIndex value=""/>
         <otherPlaylistAutoSaveEnable value="0"/>
         <otherRandomShuffleMode value="0"/>
+        <otherHighDpiScalingEnable value="0"/>
     </otherSetting>
     <rippleSetting>
         <rippleLowPowerMode value="0"/>

@@ -1371,7 +1371,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>240</y>
+       <y>270</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -1389,7 +1389,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>270</y>
+       <y>300</y>
        <width>100</width>
        <height>25</height>
       </rect>
@@ -1422,6 +1422,19 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>随机播放模式为洗牌模式</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherHighDpiScalingCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>235</y>
+       <width>210</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>适配高分辨率屏幕</string>
      </property>
     </widget>
    </widget>
