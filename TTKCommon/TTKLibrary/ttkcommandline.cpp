@@ -2,14 +2,40 @@
 
 #include <QStringList>
 
-void TTKCommandLineParser::addOption(const TTKCommandLineOption &option)
+void TTKCommandLineParser::setDescription(const QString &description) noexcept
+{
+    m_description = description;
+}
+
+bool TTKCommandLineParser::addOption(const TTKCommandLineOption &option)
 {
     if(option.first().isEmpty())
     {
         TTK_ERROR_STREAM("Command line option first key can't be empty");
-        return;
+        return false;
     }
+
+    for(const TTKCommandLineOption &opt : qAsConst(m_options))
+    {
+        if(option == opt)
+        {
+            TTK_ERROR_STREAM("Command line option already having an option named");
+            return false;
+        }
+    }
+
     m_options << option;
+    return true;
+}
+
+bool TTKCommandLineParser::addOptions(const QList<TTKCommandLineOption> &options)
+{
+    bool result = true;
+    for(const TTKCommandLineOption &opt : qAsConst(options))
+    {
+        result &= addOption(opt);
+    }
+    return result;
 }
 
 void TTKCommandLineParser::process()
@@ -48,14 +74,19 @@ QString TTKCommandLineParser::value(const TTKCommandLineOption &option) const
     return second.isEmpty() ? first : second;
 }
 
-void TTKCommandLineParser::printHelp() const
+void TTKCommandLineParser::showHelp() const
 {
     QString text = "TTK Command Line Module Options:\n";
+    if(!m_description.isEmpty())
+    {
+        text = m_description + text;
+    }
+
     for(const TTKCommandLineOption &option : qAsConst(m_options))
     {
         const QString &first = option.first();
         const QString &second = option.second();
-        const QString &line = !second.isEmpty() ? first + ", " + second : first;
+        const QString &line = !second.isEmpty() ? (first + ", " + second) : first;
         text += line.leftJustified(20) + option.description() + "\n";
     }
     TTK_LOG_STREAM(text);

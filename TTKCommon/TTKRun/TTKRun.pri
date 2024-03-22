@@ -18,8 +18,6 @@
 
 DEFINES += TTK_LIBRARY
 
-include($$PWD/../compat/compat.pri)
-
 win32:msvc{
     CONFIG += c++11
 }else{

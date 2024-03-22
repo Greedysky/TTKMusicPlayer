@@ -40,7 +40,7 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
 #ifdef Q_OS_WIN
                                 "MinGW 32bit"));
 #else
-                                "GCC X86_64"));
+                                "GCC x86_64"));
 #endif
 }
 

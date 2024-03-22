@@ -176,7 +176,7 @@ void MusicApplication::importSongsOutsideMode(const QString &file, bool play)
     m_songTreeWidget->importMusicSongsByPath({file}, MUSIC_NORMAL_LIST);
     if(play)
     {
-        playIndexBy(m_playlist->count() - 1, 0);
+        playIndexBy(m_playlist->count() - 1, TTK_NORMAL_LEVEL);
     }
 }
 
@@ -923,7 +923,7 @@ void MusicApplication::setPlaySongChanged(int index)
         return;
     }
 
-    playIndexBy(index, 0);
+    playIndexBy(index, TTK_NORMAL_LEVEL);
 }
 
 void MusicApplication::currentPlaylist(QStringList &list)
@@ -1041,7 +1041,6 @@ void MusicApplication::readSystemConfigFromFile()
             manager.readBuffer(songs);
         }
     }
-    const bool success = m_songTreeWidget->addMusicItemList(songs);
 
     MusicConfigManager manager;
     if(!manager.fromFile(COFIG_PATH_FULL))
@@ -1051,6 +1050,7 @@ void MusicApplication::readSystemConfigFromFile()
 
     manager.readBuffer();
     m_applicationObject->loadNetWorkSetting();
+    const bool success = m_songTreeWidget->addMusicItemList(songs);
 
     switch(TTKStaticCast(TTK::PlayMode, G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt()))
     {
@@ -1101,7 +1101,7 @@ void MusicApplication::readSystemConfigFromFile()
     //Just always set fade false, because it is not finished yet.
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnable, false);
 #ifdef Q_OS_UNIX
-    //Disable  window quit mode on unix
+    //Disable window quit mode on unix
     G_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, false);
 #endif
     //Set interior lrc mode always on

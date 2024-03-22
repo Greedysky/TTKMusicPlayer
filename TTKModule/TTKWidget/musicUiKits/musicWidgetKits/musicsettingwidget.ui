@@ -68,7 +68,7 @@
     <string notr="true">color:#444444;</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="TTKThemeLineLabel" name="baseSetShowInfoWidget">
@@ -1435,6 +1435,9 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>适配高分辨率屏幕</string>
+     </property>
+     <property name="tristate">
+      <bool>false</bool>
      </property>
     </widget>
    </widget>

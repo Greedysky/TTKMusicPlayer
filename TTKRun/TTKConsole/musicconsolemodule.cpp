@@ -47,7 +47,10 @@ MusicConsoleModule::~MusicConsoleModule()
 
 bool MusicConsoleModule::initialize()
 {
-    TTK_LOG_STREAM("\n" TTK_APP_NAME << "Console Module" << TTK_VERSION_STR "\n");
+    QString text = "\n" TTK_APP_NAME "Console Module" "v" TTK_VERSION_STR "\n";
+            text += "Offical web page: https://github.com/Greedysky/TTKMusicPlayer\n";
+            text += "Copyright(C) 2015 - 2024 Greedysky All Rights Reserved\n";
+            text += "TTKMusicPlayer imitates Kugou UI, the music player uses of qmmp core library based on Qt for windows and linux\n\n";
 
     TTKCommandLineOption op1("-u", "--url", "Music play url path");
     TTKCommandLineOption op2("-d", "--dir", "Music play dir path");
@@ -57,11 +60,12 @@ bool MusicConsoleModule::initialize()
     parser.addOption(op1);
     parser.addOption(op2);
     parser.addOption(op3);
+    parser.setDescription(text);
     parser.process();
 
     if(parser.isEmpty())
     {
-        parser.printHelp();
+        parser.showHelp();
         return false;
     }
 

@@ -14,12 +14,17 @@
   </description>
   <categories>
     <category>AudioVideo</category>
+    <category>Player</category>
     <category>Audio</category>
+    <category>Qt</category>
   </categories>
   <keywords>
-    <keyword>audio</keyword>
-    <keyword>multimedia</keyword>
+    <keyword>player</keyword>
+    <keyword>audio</keyword>s
     <keyword>video</keyword>
+    <keyword>multimedia</keyword>
+    <keyword>sound</keyword>
+    <keyword>musicplayer</keyword>
   </keywords>
   <url type="homepage">https://github.com/Greedysky/TTKMusicPlayer</url>
   <developer_name>Greedysky Studio</developer_name>

@@ -1,7 +1,6 @@
 #include "ttkrunobject.h"
 #include "ttkversion.h"
 #include "ttknumberdefine.h"
-#include "compat/compat.h"
 #ifdef _WIN32
 #  define WIN32_LEAN_AND_MEAN
 #  include <qt_windows.h>
@@ -10,14 +9,17 @@
 #  include <unistd.h>
 #endif
 
-static bool strEndWidth(const TTKString &in, const TTKString &out)
+namespace TTK 
 {
-    if(in.empty() || out.empty() || in.size() < out.size())
+static bool endWith(const TTKString &value, const TTKString &tail)
+{
+    if(value.empty() || tail.empty() || value.size() < tail.size())
     {
         return false;
     }
 
-   return in.compare(in.length() - out.size(), out.size(), out) == 0;
+   return value.compare(value.length() - tail.size(), tail.size(), tail) == 0;
+}
 }
 
 
@@ -27,7 +29,7 @@ void TTKRunObject::run(int argc, char **argv) const
     for(int i = 0; i < argc; ++i)
     {
         TTKString arg(argv[i]);
-        if(!strEndWidth(arg, TTK_APP_FILE_NAME))
+        if(!TTK::endWith(arg, TTK_APP_FILE_NAME))
         {
             const size_t pos = arg.find('\"');
             if(pos != TTKString::npos)
@@ -40,14 +42,31 @@ void TTKRunObject::run(int argc, char **argv) const
         }
     }
 
-    const char * const path = TTK_STR_CAT(TTK_SEPARATOR, TTK_VERSION_STR, TTK_SEPARATOR, TTK_SERVICE_RUN_NAME);
+    char path[TTK_LOW_BUFFER] = {};
+    const char * const suffix = TTK_STR_CAT(TTK_SEPARATOR, TTK_VERSION_STR, TTK_SEPARATOR, TTK_SERVICE_RUN_NAME);
 #ifdef _WIN32
-    char dir[TTK_LOW_BUFFER] = {};
-    GetCurrentDirectoryA(TTK_LOW_BUFFER, dir);
-    strlcat(dir, path, TTK_LOW_BUFFER);
-    ShellExecuteA(nullptr, "open", dir, args.c_str(), nullptr, SW_HIDE);
+    GetModuleFileNameA(nullptr, path, TTK_LOW_BUFFER);
+
+    TTKString filePath = path;
+    const size_t pos = filePath.find_last_of('\\');
+    if(pos != TTKString::npos)
+    {
+        filePath.erase(pos);
+    }
+
+    ShellExecuteA(nullptr, "open", (filePath + suffix).c_str(), args.c_str(), nullptr, SW_HIDE);
 #else
-    const TTKString &dir = get_current_dir_name();
-    system((dir + path + args).c_str());
+    TTKString filePath = get_current_dir_name();
+    if(readlink("/proc/self/exe", path, sizeof(path) - 1) != 0)
+    {
+        filePath = path;
+        const size_t pos = filePath.find_last_of('/');
+        if(pos != TTKString::npos)
+        {
+            filePath.erase(pos);
+        }
+    }
+
+    system((filePath + suffix + args).c_str());
 #endif
 }

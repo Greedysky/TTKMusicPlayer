@@ -204,7 +204,7 @@ void MusicSettingWidget::initialize()
     m_ui->otherScreenSaverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool());
     m_ui->otherPlaylistAutoSaveCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherPlaylistAutoSaveEnable).toBool());
     m_ui->otherRandomModeCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherRandomShuffleMode).toBool());
-    m_ui->otherHighDpiScalingCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toBool());
+    m_ui->otherHighDpiScalingCheckBox->setCheckState(TTKStaticCast(Qt::CheckState, G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toInt()));
 
     //
     m_ui->downloadDirEdit->setText(G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
@@ -561,7 +561,7 @@ void MusicSettingWidget::saveParameterSettings()
 {
     const bool hotkeyEnabled = m_ui->globalHotkeyBox->isChecked();
     const bool languageChanged = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt() != m_ui->languageComboBox->currentIndex();
-    const bool highDpiScalingChanged = G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toBool() != m_ui->otherHighDpiScalingCheckBox->isChecked();
+    const bool highDpiScalingChanged = G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toInt() != m_ui->otherHighDpiScalingCheckBox->checkState();
 
     QStringList lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     lastPlayIndex[0] = QString::number(m_ui->lastPlayCheckBox->isChecked());
@@ -609,7 +609,7 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable, m_ui->otherScreenSaverCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherPlaylistAutoSaveEnable, m_ui->otherPlaylistAutoSaveCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherRandomShuffleMode, m_ui->otherRandomModeCheckBox->isChecked());
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherHighDpiScalingEnable, m_ui->otherHighDpiScalingCheckBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherHighDpiScalingEnable, m_ui->otherHighDpiScalingCheckBox->checkState());
 
     G_SETTING_PTR->setValue(MusicSettingManager::LrcColor, m_ui->fontDefaultColorComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcFamily, m_ui->fontComboBox->currentIndex());
@@ -673,6 +673,17 @@ void MusicSettingWidget::saveParameterSettings()
     else if(highDpiScalingChanged)
     {
         showTips = tr("High DPI scaling changed, you need to restart to take effect");
+#ifdef Q_OS_WIN
+        QFile file(TTK::applicationPath() + TTK_QT_CONFIG);
+        file.open(QFile::ReadWrite);
+
+        if(!(m_ui->otherHighDpiScalingCheckBox->isChecked() ? (file.write("[Platforms]\nWindowsArguments = dpiawareness=0\n") != -1) : file.remove()))
+        {
+            m_ui->otherHighDpiScalingCheckBox->setCheckState(Qt::PartiallyChecked);
+            G_SETTING_PTR->setValue(MusicSettingManager::OtherHighDpiScalingEnable, Qt::PartiallyChecked);
+        }
+        file.close();
+#endif
     }
 
     if(!showTips.isEmpty())

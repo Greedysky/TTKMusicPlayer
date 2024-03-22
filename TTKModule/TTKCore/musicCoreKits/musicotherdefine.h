@@ -21,33 +21,35 @@
 
 #include <QObject>
 
-#define TTK_COLOR_FILE              "color.jpg"
-#define TTK_IMAGE_FILE              "image_cache"
-#define TTK_RECORD_FILE             "record.raw"
-#define TTK_RECORD_DATA_FILE        "record_data.wav"
+#define TTK_QT_CONFIG         "qt.conf"
 
-#define MIN_ITEM_COUNT              4
-#define MAX_IMAGE_COUNT             10
+#define TTK_COLOR_FILE        "color.jpg"
+#define TTK_IMAGE_FILE        "image_cache"
+#define TTK_RECORD_FILE       "record.raw"
+#define TTK_RECORD_DATA_FILE  "record_data.wav"
 
-#define MUSIC_AUTHOR_NAME           "Greedysky"
-#define MUSIC_BING_DIR              "Bing"
-#define MUSIC_THUNDER_DIR           "Thunder"
-#define MUSIC_BIRD_DIR              "Bird"
-#define MUSIC_MOVIE_RADIO           QUERY_KG_INTERFACE
+#define MIN_ITEM_COUNT        4
+#define MAX_IMAGE_COUNT       10
 
-#define MUSIC_OUTSIDE_OPEN          "-Open"
-#define MUSIC_OUTSIDE_LIST          "-List"
+#define MUSIC_AUTHOR_NAME     "Greedysky"
+#define MUSIC_BING_DIR        "Bing"
+#define MUSIC_THUNDER_DIR     "Thunder"
+#define MUSIC_BIRD_DIR        "Bird"
+#define MUSIC_MOVIE_RADIO     QUERY_KG_INTERFACE
 
-#define MUSIC_PLAY_NOW              "play_now"
-#define MUSIC_PLAY_LATER            "play_later"
+#define MUSIC_OUTSIDE_OPEN    "-Open"
+#define MUSIC_OUTSIDE_LIST    "-List"
 
-#define MUSIC_NONE_LIST             -1
-#define MUSIC_NORMAL_LIST           0
-#define MUSIC_LOVEST_LIST           1
-#define MUSIC_NETWORK_LIST          2
-#define MUSIC_RECENT_LIST           3
+#define MUSIC_PLAY_NOW        "play_now"
+#define MUSIC_PLAY_LATER      "play_later"
 
-#define MUSIC_LRC_PAGE              1
-#define MUSIC_SEARCH_PAGE           0
+#define MUSIC_NONE_LIST       -1
+#define MUSIC_NORMAL_LIST     0
+#define MUSIC_LOVEST_LIST     1
+#define MUSIC_NETWORK_LIST    2
+#define MUSIC_RECENT_LIST     3
+
+#define MUSIC_LRC_PAGE        1
+#define MUSIC_SEARCH_PAGE     0
 
 #endif // MUSICOTHERDEFINE_H

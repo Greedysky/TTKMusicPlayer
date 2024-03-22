@@ -31,20 +31,20 @@ public:
     /*!
      * Object constructor.
      */
-    TTKCommandLineOption(const QString &first)
+    TTKCommandLineOption(const QString &first) noexcept
         : m_first(first)
     {
 
     }
 
-    TTKCommandLineOption(const QString &first, const QString &description)
+    TTKCommandLineOption(const QString &first, const QString &description) noexcept
         : m_first(first),
           m_description(description)
     {
 
     }
 
-    TTKCommandLineOption(const QString &first, const QString &second, const QString &description)
+    TTKCommandLineOption(const QString &first, const QString &second, const QString &description) noexcept
         : m_first(first),
           m_second(second),
           m_description(description)
@@ -55,16 +55,25 @@ public:
     /*!
      * Get first option.
      */
-    inline QString first() const { return m_first; }
+    inline QString first() const noexcept { return m_first; }
     /*!
      * Get second option.
      */
-    inline QString second() const { return m_second; }
+    inline QString second() const noexcept { return m_second; }
     /*!
      * Get option description.
      */
-    inline QString description() const { return m_description; }
+    inline QString description() const noexcept { return m_description; }
 
+    inline bool operator== (const TTKCommandLineOption &other) const noexcept
+    {
+        return m_first == other.m_first && m_second == other.m_second;
+    }
+    inline bool operator!= (const TTKCommandLineOption &other) const noexcept
+    {
+        return m_first != other.m_first || m_second != other.m_second;
+    }
+    
 private:
     QString m_first;
     QString m_second;
@@ -86,9 +95,18 @@ public:
     TTKCommandLineParser() = default;
 
     /*!
+     * Set application description.
+     */
+    void setDescription(const QString &description) noexcept;
+
+    /*!
      * Add command line option.
      */
-    void addOption(const TTKCommandLineOption &option);
+    bool addOption(const TTKCommandLineOption &option);
+    /*!
+     * Add command line options.
+     */
+    bool addOptions(const QList<TTKCommandLineOption> &options);
 
     /*!
      * Process command line by input.
@@ -111,14 +129,15 @@ public:
     /*!
      * Current input command is empty.
      */
-    inline bool isEmpty() const { return m_commands.isEmpty(); }
+    inline bool isEmpty() const noexcept { return m_commands.isEmpty(); }
 
     /*!
-     * Print help text.
+     * Show help text.
      */
-    void printHelp() const;
+    void showHelp() const;
 
 private:
+    QString m_description;
     QHash<QString, QString> m_commands;
     QList<TTKCommandLineOption> m_options;
 
