@@ -67,6 +67,6 @@ void TTKRunObject::run(int argc, char **argv) const
         }
     }
 
-    system((filePath + suffix + args).c_str());
+    system((filePath + suffix + " " + args).c_str());
 #endif
 }
