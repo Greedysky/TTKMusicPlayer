@@ -55,10 +55,10 @@ equals(QT_MAJOR_VERSION, 5){
     }
 }
 
-equals(Browser, 0): message("Not found Qt web component, build in KuGou module by no webkit")
 equals(Browser, 1): message("Found Qt web component, build in KuGou module by Qt axcontainer")
 equals(Browser, 2): message("Found Qt web component, build in KuGou module by Qt webkit")
 equals(Browser, 3): message("Found Qt web component, build in KuGou module by Qt webengine")
+equals(Browser, 0): message("Not found Qt web component, build in KuGou module by none web component")
 
 INCLUDEPATH += $$PWD
 

@@ -54,7 +54,7 @@ static const QString KG_PLAYLIST_DETAIL_URL  = "cEt0bHpiRkFKMTFZbzUyQ1prK1RCMjBq
 
 
 class QNetworkRequest;
-class MusicResultDataItem;
+struct MusicResultDataItem;
 
 /*! @brief The namespace of the kugou request interface.
  * @author Greedysky <greedysky@163.com>

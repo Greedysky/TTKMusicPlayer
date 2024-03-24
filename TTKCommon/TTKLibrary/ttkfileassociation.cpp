@@ -71,7 +71,7 @@ void TTKFileAssociation::appendSoftware(const QString &suffix)
     const QString &mainString = "HKEY_CURRENT_USER\\Software\\Classes\\" + mainName;
 
     QString appPath = TTK_SERVICE_FULL;
-    appPath.replace("/", "\\");
+    appPath.replace(TTK_SEPARATOR, TTK_RSEPARATOR);
 
     QSettings reg1Setting(mainString, QSettings::NativeFormat);
     reg1Setting.setValue("Default", suffix.toUpper() + QObject::tr("File"));

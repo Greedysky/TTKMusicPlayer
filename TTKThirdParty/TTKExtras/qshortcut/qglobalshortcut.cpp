@@ -1,7 +1,7 @@
 #include "qglobalshortcut_p.h"
 
-bool QGlobalShortcutPrivate::m_error = false;
 int QGlobalShortcutPrivate::m_ref = 0;
+bool QGlobalShortcutPrivate::m_error = false;
 
 #if !TTK_QT_VERSION_CHECK(5,0,0)
 QAbstractEventDispatcher::EventFilter QGlobalShortcutPrivate::m_prevEventFilter = 0;
@@ -26,7 +26,7 @@ QGlobalShortcutPrivate::QGlobalShortcutPrivate()
 
 QGlobalShortcutPrivate::~QGlobalShortcutPrivate()
 {
-    if(!--m_ref)
+    if(!--m_ref && QAbstractEventDispatcher::instance())
     {
 #if !TTK_QT_VERSION_CHECK(5,0,0)
         QAbstractEventDispatcher::instance()->setEventFilter(m_prevEventFilter);
@@ -96,11 +96,7 @@ QGlobalShortcut::QGlobalShortcut(const QKeySequence& shortcut, QObject* parent)
 
 QGlobalShortcut::~QGlobalShortcut()
 {
-    TTK_D(QGlobalShortcut);
-    if(d->m_key != 0)
-    {
-        d->unsetShortcut();
-    }
+    unsetShortcut();
 }
 
 QKeySequence QGlobalShortcut::shortcut() const

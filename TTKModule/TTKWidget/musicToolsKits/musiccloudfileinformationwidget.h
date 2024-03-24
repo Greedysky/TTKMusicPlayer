@@ -21,7 +21,7 @@
 
 #include "musicabstractmovedialog.h"
 
-class QSyncDataItem;
+struct QSyncDataItem;
 
 namespace Ui {
 class MusicCloudFileInformationWidget;

@@ -50,7 +50,7 @@ public:
     /*!
      * Override size hint.
      */
-    QSize sizeHint() const;
+    virtual QSize sizeHint() const override;
 
 private:
     /*!

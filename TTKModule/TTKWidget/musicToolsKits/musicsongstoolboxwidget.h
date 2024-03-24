@@ -21,7 +21,7 @@
 
 #include "musicfunctiontoolboxwidget.h"
 
-class MusicSongSort;
+struct MusicSongSort;
 class MusicItemRenameEidt;
 
 /*! @brief The class of the tool box top widget.

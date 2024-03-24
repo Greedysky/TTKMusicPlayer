@@ -121,17 +121,8 @@ public:
      */
     inline void setSort(const Sort s) noexcept { m_sort = s; }
 
-    /*!
-     * Operator == function.
-     */
     bool operator== (const MusicSong &other) const noexcept;
-    /*!
-     * Operator < function.
-     */
     bool operator< (const MusicSong &other) const noexcept;
-    /*!
-     * Operator > function.
-     */
     bool operator> (const MusicSong &other) const noexcept;
 
 private:

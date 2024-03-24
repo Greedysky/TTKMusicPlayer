@@ -1,7 +1,7 @@
 #include "musicdbplconfigmanager.h"
 
 static constexpr int PLAYLIST_MAJOR_VER = 1;
-static constexpr int PLAYLIST_MINOR_VER = 2;
+//static constexpr int PLAYLIST_MINOR_VER = 2;
 
 MusicDBPLConfigManager::MusicDBPLConfigManager()
     : MusicPlaylistRenderer()
@@ -53,7 +53,9 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
                 return false;
             }
 
-            char uri[v + 1] = {0};
+            char uri[v + 1];
+            memset(uri, 0, sizeof(char) * (v + 1));
+
             if(m_file.read(uri, v) != v)
             {
                 return false;
@@ -110,7 +112,9 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
 
             if(v)
             {
-                char ftype[v + 1] = {0};
+                char ftype[v + 1];
+                memset(ftype, 0, sizeof(char) * (v + 1));
+
                 if(m_file.read(ftype, v) != v)
                 {
                     return false;
@@ -161,7 +165,9 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
                 return false;
             }
 
-            char key[v + 1] = {0};
+            char key[v + 1];
+            memset(key, 0, sizeof(char) * (v + 1));
+
             if(m_file.read(key, v) != v)
             {
                 return false;
@@ -177,7 +183,9 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
                 continue;
             }
 
-            char value[v + 1] = {0};
+            char value[v + 1];
+            memset(value, 0, sizeof(char) * (v + 1));
+
             if(m_file.read((char*)&value, v) != v)
             {
                 return false;

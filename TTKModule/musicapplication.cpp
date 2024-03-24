@@ -166,14 +166,14 @@ void MusicApplication::loadCurrentSongLrc()
     TTK_SIGNLE_SHOT(resetCurrentSongLrcIndex, TTK_SLOT);
 }
 
-void MusicApplication::importSongsOutsideMode(const QString &file, bool play)
+void MusicApplication::importSongsOutsidePath(const QString &path, bool play)
 {
-    if(file.isEmpty())
+    if(path.isEmpty())
     {
         return;
     }
 
-    m_songTreeWidget->importMusicSongsByPath({file}, MUSIC_NORMAL_LIST);
+    m_songTreeWidget->importMusicSongsByPath({path}, MUSIC_NORMAL_LIST);
     if(play)
     {
         playIndexBy(m_playlist->count() - 1, TTK_NORMAL_LEVEL);

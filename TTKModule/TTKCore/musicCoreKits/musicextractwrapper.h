@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 
-class MusicBackgroundImage;
+struct MusicBackgroundImage;
 
 /*! @brief The class of the extract data wrapper.
  * @author Greedysky <greedysky@163.com>

@@ -46,8 +46,8 @@ public:
     bool setShortcut(const QKeySequence &shortcut);
     bool unsetShortcut();
 
-    static bool m_error;
     static int m_ref;
+    static bool m_error;
 #if !TTK_QT_VERSION_CHECK(5,0,0)
     static QAbstractEventDispatcher::EventFilter m_prevEventFilter;
     static bool eventFilter(void* message);

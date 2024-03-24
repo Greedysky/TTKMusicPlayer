@@ -26,7 +26,7 @@
 namespace Ui {
 class MusicConnectTransferWidget;
 }
-class MusicDeviceInfoItem;
+struct MusicDeviceInfoItem;
 class MusicConnectTransferThread;
 
 /*! @brief The class of the transfer file to mobile widget.

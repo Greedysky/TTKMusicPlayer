@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-project(TTKZip)
+project(ttkzip)
 
 add_definitions(-DZLIB_DLL)
 add_definitions(-DZLIB_INTERNAL)

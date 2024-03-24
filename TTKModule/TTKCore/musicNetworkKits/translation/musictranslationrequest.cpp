@@ -17,7 +17,7 @@ void MusicTranslationRequest::startToRequest()
     findAllPlugins();
 }
 
-void MusicTranslationRequest::downLoadFinished(const QString &bytes)
+void MusicTranslationRequest::downLoadDataFinished(const QString &bytes)
 {
     if(bytes.isEmpty())
     {
@@ -43,7 +43,7 @@ void MusicTranslationRequest::findAllPlugins()
 
     if(d)
     {
-        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished(QString)));
         //
         d->setHeader("name", header("name"));
         d->startToRequest(header("data").toString());

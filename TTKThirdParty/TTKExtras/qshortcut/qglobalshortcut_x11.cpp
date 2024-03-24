@@ -108,12 +108,18 @@ quint32 QGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifiers)
 quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
 {
     Display *display = X11Display();
-    return XKeysymToKeycode(display, XStringToKeysym(QKeySequence(key).toString().toLatin1().data()));
+    return display ? XKeysymToKeycode(display, XStringToKeysym(QKeySequence(key).toString().toLatin1().data())) : 0;
 }
 
 bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeMods)
 {
     Display *display = X11Display();
+    if(!display)
+    {
+        m_error = true;
+        return false;
+    }
+
     Window window = X11RootWindow();
     Bool owner = True;
     int pointer = GrabModeAsync;
@@ -131,6 +137,12 @@ bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeM
 bool QGlobalShortcutPrivate::unregisterShortcut(quint32 nativeKey, quint32 nativeMods)
 {
     Display *display = X11Display();
+    if(!display)
+    {
+        m_error = true;
+        return false;
+    }
+
     Window window = X11RootWindow();
     m_error = false;
 
