@@ -1,7 +1,7 @@
 #include "musicdbplconfigmanager.h"
 
 static constexpr int PLAYLIST_MAJOR_VER = 1;
-//static constexpr int PLAYLIST_MINOR_VER = 2;
+static constexpr int PLAYLIST_MINOR_VER = 1;
 
 MusicDBPLConfigManager::MusicDBPLConfigManager()
     : MusicPlaylistRenderer()
@@ -33,7 +33,7 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
 
     TTKUInt8 minorver = 0;
     m_file.read((char*)&minorver, 1);
-    if(minorver < 1)
+    if(minorver < PLAYLIST_MINOR_VER)
     {
         return false;
     }

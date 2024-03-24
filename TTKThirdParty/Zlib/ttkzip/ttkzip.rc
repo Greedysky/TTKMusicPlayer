@@ -25,10 +25,10 @@ BEGIN
         BLOCK "080404b0"
             BEGIN
                 VALUE "CompanyName", TTK_RC_COMPANY
-                VALUE "FileDescription", "TTKZip"
+                VALUE "FileDescription", "ttkzip"
                 VALUE "FileVersion", TTK_RC_PRODUCTVERSION
                 VALUE "LegalCopyright", TTK_RC_COPYRIGHT
-                VALUE "ProductName", "TTKZip"
+                VALUE "ProductName", "ttkzip"
                 VALUE "ProductVersion", TTK_RC_PRODUCTVERSION
             END
     END
