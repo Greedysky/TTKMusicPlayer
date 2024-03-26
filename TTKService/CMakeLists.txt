@@ -26,12 +26,12 @@ include_directories(${MUSIC_COMMON_DUMPER_DIR})
 
 set(TTKAPPLICATION_HEADER_FILES
   ${MUSIC_COMMON_APP_DIR}/ttklocalpeer.h
-  ${MUSIC_COMMON_APP_DIR}/ttkrunapplication.h
+  ${MUSIC_COMMON_APP_DIR}/ttkapplication.h
 )
 
 set(TTKAPPLICATION_SOURCE_FILES
   ${MUSIC_COMMON_APP_DIR}/ttklocalpeer.cpp
-  ${MUSIC_COMMON_APP_DIR}/ttkrunapplication.cpp
+  ${MUSIC_COMMON_APP_DIR}/ttkapplication.cpp
 )
 
 set(HEADER_FILES

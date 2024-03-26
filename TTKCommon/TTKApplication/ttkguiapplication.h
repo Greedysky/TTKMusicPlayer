@@ -1,5 +1,5 @@
-#ifndef TTKRUNAPPLICATION_H
-#define TTKRUNAPPLICATION_H
+#ifndef TTKGUIAPPLICATION_H
+#define TTKGUIAPPLICATION_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -19,23 +19,23 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QApplication>
+#include <QGuiApplication>
 #include "ttkprivate.h"
 
-class TTKRunApplicationPrivate;
+class TTKGuiApplicationPrivate;
 
-/*! @brief The class of the ttk run application.
+/*! @brief The class of the ttk gui application.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT TTKRunApplication : public QApplication
+class TTK_MODULE_EXPORT TTKGuiApplication : public QGuiApplication
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
     */
-    TTKRunApplication(int &argc, char **argv);
-    TTKRunApplication(const QString &id, int &argc, char **argv);
+    TTKGuiApplication(int &argc, char **argv);
+    TTKGuiApplication(const QString &id, int &argc, char **argv);
 
     /*!
      * Check the current server is running or not.
@@ -45,15 +45,6 @@ public:
      * Get current server id.
     */
     QString id() const;
-
-    /*!
-     * Set current active window.
-    */
-    void setActivationWindow(QWidget *aw, bool activateOnMessage = true) const;
-    /*!
-     * Get current active window.
-    */
-    QWidget *activationWindow() const;
 
 Q_SIGNALS:
     /*!
@@ -66,10 +57,6 @@ public Q_SLOTS:
      * Emit when the current message received.
     */
     bool sendMessage(const QString &message, int timeout = 5000);
-    /*!
-     * Selected current active window.
-    */
-    void activateWindow();
 
 private:
     /*!
@@ -78,8 +65,8 @@ private:
     void initialize(const QString &id = {});
 
 private:
-    TTK_DECLARE_PRIVATE(TTKRunApplication)
+    TTK_DECLARE_PRIVATE(TTKGuiApplication)
 
 };
 
-#endif // TTKRUNAPPLICATION_H
+#endif // TTKGUIAPPLICATION_H

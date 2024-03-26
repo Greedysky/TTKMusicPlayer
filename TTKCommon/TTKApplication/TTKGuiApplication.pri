@@ -17,16 +17,13 @@
 # ***************************************************************************
 
 QT += core gui network
-greaterThan(QT_MAJOR_VERSION, 4){ #Qt5
-    QT += widgets
-}
 
 INCLUDEPATH += $$PWD
 
 HEADERS += \
     $$PWD/ttklocalpeer.h \
-    $$PWD/ttkapplication.h
+    $$PWD/ttkguiapplication.h
 
 SOURCES += \
     $$PWD/ttklocalpeer.cpp \
-    $$PWD/ttkapplication.cpp
+    $$PWD/ttkguiapplication.cpp

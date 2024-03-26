@@ -1,64 +1,64 @@
-#include "ttkrunapplication.h"
+#include "ttkapplication.h"
 #include "ttklocalpeer.h"
 
 #include <QWidget>
 
-/*! @brief The class of the ttk run application private.
+/*! @brief The class of the ttk application private.
  * @author Greedysky <greedysky@163.com>
  */
-class TTKRunApplicationPrivate : public TTKPrivate<TTKRunApplication>
+class TTKApplicationPrivate : public TTKPrivate<TTKApplication>
 {
 public:
-    TTKRunApplicationPrivate();
-    ~TTKRunApplicationPrivate();
+    TTKApplicationPrivate();
+    ~TTKApplicationPrivate();
 
     TTKLocalPeer *m_peer;
     QWidget *m_activeWindow;
 };
 
-TTKRunApplicationPrivate::TTKRunApplicationPrivate()
+TTKApplicationPrivate::TTKApplicationPrivate()
     : m_peer(nullptr),
       m_activeWindow(nullptr)
 {
 
 }
 
-TTKRunApplicationPrivate::~TTKRunApplicationPrivate()
+TTKApplicationPrivate::~TTKApplicationPrivate()
 {
     delete m_peer;
 }
 
 
 
-TTKRunApplication::TTKRunApplication(int &argc, char **argv)
+TTKApplication::TTKApplication(int &argc, char **argv)
     : QApplication(argc, argv)
 {
-    TTK_INIT_PRIVATE(TTKRunApplication);
+    TTK_INIT_PRIVATE(TTKApplication);
     initialize();
 }
 
-TTKRunApplication::TTKRunApplication(const QString &id, int &argc, char **argv)
+TTKApplication::TTKApplication(const QString &id, int &argc, char **argv)
     : QApplication(argc, argv)
 {
-    TTK_INIT_PRIVATE(TTKRunApplication);
+    TTK_INIT_PRIVATE(TTKApplication);
     initialize(id);
 }
 
-bool TTKRunApplication::isRunning() const
+bool TTKApplication::isRunning() const
 {
-    TTK_D(TTKRunApplication);
+    TTK_D(TTKApplication);
     return d->m_peer->isClient();
 }
 
-QString TTKRunApplication::id() const
+QString TTKApplication::id() const
 {
-    TTK_D(TTKRunApplication);
+    TTK_D(TTKApplication);
     return d->m_peer->applicationId();
 }
 
-void TTKRunApplication::setActivationWindow(QWidget* aw, bool activateOnMessage) const
+void TTKApplication::setActivationWindow(QWidget* aw, bool activateOnMessage) const
 {
-    TTK_D(TTKRunApplication);
+    TTK_D(TTKApplication);
     d->m_activeWindow = aw;
 
     if(activateOnMessage)
@@ -71,21 +71,21 @@ void TTKRunApplication::setActivationWindow(QWidget* aw, bool activateOnMessage)
     }
 }
 
-QWidget* TTKRunApplication::activationWindow() const
+QWidget* TTKApplication::activationWindow() const
 {
-    TTK_D(TTKRunApplication);
+    TTK_D(TTKApplication);
     return d->m_activeWindow;
 }
 
-bool TTKRunApplication::sendMessage(const QString &message, int timeout)
+bool TTKApplication::sendMessage(const QString &message, int timeout)
 {
-    TTK_D(TTKRunApplication);
+    TTK_D(TTKApplication);
     return d->m_peer->sendMessage(message, timeout);
 }
 
-void TTKRunApplication::activateWindow()
+void TTKApplication::activateWindow()
 {
-    TTK_D(TTKRunApplication);
+    TTK_D(TTKApplication);
     if(d->m_activeWindow)
     {
         d->m_activeWindow->setWindowState(d->m_activeWindow->windowState() & ~Qt::WindowMinimized);
@@ -94,9 +94,9 @@ void TTKRunApplication::activateWindow()
     }
 }
 
-void TTKRunApplication::initialize(const QString &id)
+void TTKApplication::initialize(const QString &id)
 {
-    TTK_D(TTKRunApplication);
+    TTK_D(TTKApplication);
     d->m_peer = new TTKLocalPeer(this, id);
     connect(d->m_peer, SIGNAL(messageReceived(QString)), SIGNAL(messageReceived(QString)));
 }

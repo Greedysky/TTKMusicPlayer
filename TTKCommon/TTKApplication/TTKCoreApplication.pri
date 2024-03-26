@@ -16,17 +16,14 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT += core gui network
-greaterThan(QT_MAJOR_VERSION, 4){ #Qt5
-    QT += widgets
-}
+QT += core network
 
 INCLUDEPATH += $$PWD
 
 HEADERS += \
     $$PWD/ttklocalpeer.h \
-    $$PWD/ttkapplication.h
+    $$PWD/ttkcoreapplication.h
 
 SOURCES += \
     $$PWD/ttklocalpeer.cpp \
-    $$PWD/ttkapplication.cpp
+    $$PWD/ttkcoreapplication.cpp
