@@ -1,6 +1,7 @@
 #include "silenceplugin.h"
 
 #include <QSettings>
+#include <qmath.h>
 
 static float* alignFrame(int channels, float* begin, float* sample, bool end)
 {

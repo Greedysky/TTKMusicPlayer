@@ -2,6 +2,7 @@
 
 #include <QPainter>
 #include <QPropertyAnimation>
+#include <qmath.h>
 
 ElectricPointLabel::ElectricPointLabel(QWidget *parent)
     : QWidget(parent)

@@ -1,5 +1,7 @@
 #include "decoder_mpc.h"
 
+#include <qmath.h>
+
 static mpc_int32_t mpc_callback_read(mpc_reader *reader, void *buffer, mpc_int32_t size)
 {
     DecoderMPC *dmpc = static_cast<DecoderMPC *>(reader->data);

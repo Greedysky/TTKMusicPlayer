@@ -1,6 +1,7 @@
 #include "sonicplugin.h"
 
 #include <QSettings>
+#include <qmath.h>
 
 SonicPlugin *SonicPlugin::m_instance = nullptr;
 
@@ -29,7 +30,8 @@ void SonicPlugin::applyEffect(Buffer *b)
     }
 
     int samplesWritten = 0;
-    float buffer[b->size * 2] = {0};
+    float buffer[b->size * 2];
+    memset(buffer, 0, sizeof(float) * b->size * 2);
 
     do
     {
