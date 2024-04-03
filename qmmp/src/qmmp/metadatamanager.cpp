@@ -275,6 +275,7 @@ MetaDataManager::CoverCacheItem *MetaDataManager::createCoverCacheItem(const QSt
 
 void MetaDataManager::clearCoverCache()
 {
+    QMutexLocker locker(&m_mutex);
     qDeleteAll(m_cover_cache);
     m_cover_cache.clear();
 }
