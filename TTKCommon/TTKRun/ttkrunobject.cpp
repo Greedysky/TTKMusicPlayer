@@ -18,7 +18,7 @@ static bool endWith(const TTKString &value, const TTKString &tail)
         return false;
     }
 
-   return value.compare(value.length() - tail.size(), tail.size(), tail) == 0;
+    return value.compare(value.length() - tail.size(), tail.size(), tail) == 0;
 }
 }
 
