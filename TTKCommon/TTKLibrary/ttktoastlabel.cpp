@@ -1,6 +1,5 @@
 #include "ttktoastlabel.h"
 #include "ttkdesktopwrapper.h"
-#include "ttknumberdefine.h"
 
 #include <QPainter>
 #include <QPropertyAnimation>

@@ -338,7 +338,7 @@ void MusicApplicationModule::windowCloseAnimationFinished()
 
         MusicGifLabelWidget *gifWidget = new MusicGifLabelWidget(m_quitContainer);
         gifWidget->setType(MusicGifLabelWidget::Module::CloseWhite);
-        gifWidget->setInterval(25);
+        gifWidget->setInterval(25 * TTK_DN_MS);
         gifWidget->setInfinited(false);
         m_quitContainer->resize(gifWidget->size());
 

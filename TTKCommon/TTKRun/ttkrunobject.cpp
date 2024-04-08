@@ -1,6 +1,5 @@
 #include "ttkrunobject.h"
 #include "ttkversion.h"
-#include "ttknumberdefine.h"
 #ifdef _WIN32
 #  define WIN32_LEAN_AND_MEAN
 #  include <qt_windows.h>

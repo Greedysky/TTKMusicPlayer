@@ -184,11 +184,11 @@ public: \
 
 
 // Qt style format
-using TTKIntSet =           QSet<int>;                  /* int set */
-using TTKIntList =          QList<int>;                 /* int list */
-using TTKVariantList =      QList<QVariant>;            /* variant list */
-using TTKStringMap =        QMap<QString, QString>;     /* strings map */
-using TTKVariantMap =       QMap<QString, QVariant>;    /* string variant map */
-using TTKIntStringMap =     QMap<qint64, QString>;      /* int string map */
+using TTKIntSet =       QSet<int>;                  /* int set */
+using TTKIntList =      QList<int>;                 /* int list */
+using TTKVariantList =  QList<QVariant>;            /* variant list */
+using TTKStringMap =    QMap<QString, QString>;     /* strings map */
+using TTKVariantMap =   QMap<QString, QVariant>;    /* string variant map */
+using TTKIntStringMap = QMap<qint64, QString>;      /* int string map */
 
 #endif // TTKQTGLOBAL_H

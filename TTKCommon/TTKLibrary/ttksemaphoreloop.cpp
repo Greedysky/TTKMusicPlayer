@@ -1,5 +1,4 @@
 #include "ttksemaphoreloop.h"
-#include "ttknumberdefine.h"
 
 TTKSemaphoreLoop::TTKSemaphoreLoop(QObject *parent)
     : QEventLoop(parent)

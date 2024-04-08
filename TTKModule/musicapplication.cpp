@@ -166,7 +166,7 @@ void MusicApplication::loadCurrentSongLrc()
     TTK_SIGNLE_SHOT(resetCurrentSongLrcIndex, TTK_SLOT);
 }
 
-void MusicApplication::importSongsOutsidePath(const QString &path, bool play)
+void MusicApplication::importSongsByOutside(const QString &path, bool play)
 {
     if(path.isEmpty())
     {

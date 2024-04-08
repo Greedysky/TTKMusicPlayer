@@ -20,7 +20,6 @@
  ***************************************************************************/
 
 #include <QDataStream>
-#include "ttknumberdefine.h"
 #include "ttkmoduleexport.h"
 
 /*! @brief The class of the ttk time object.

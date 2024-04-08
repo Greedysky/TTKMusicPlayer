@@ -20,7 +20,6 @@
  ***************************************************************************/
 
 #include "ttkmoduleexport.h"
-#include "ttknumberdefine.h"
 #include "musicobject.h"
 #include "musicotherdefine.h"
 

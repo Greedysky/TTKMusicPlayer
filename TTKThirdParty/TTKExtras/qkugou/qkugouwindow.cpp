@@ -1,6 +1,5 @@
 #include "qkugouwindow.h"
 #include "qkugouuiobject.h"
-#include "ttknumberdefine.h"
 
 #ifdef Q_OS_WIN
 #  include <ActiveQt/QAxWidget>

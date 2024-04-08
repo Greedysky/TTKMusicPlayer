@@ -322,7 +322,7 @@ void MusicMPRISPlayerCore::OpenUri(const QString &uri)
         }
     }
 
-    m_application->importSongsOutsidePath(path, true);
+    m_application->importSongsByOutside(path, true);
 }
 
 void MusicMPRISPlayerCore::Pause()
@@ -442,8 +442,7 @@ void MusicMPRISPlayerCore::sendProperties()
         return;
     }
 
-    QDBusMessage msg = QDBusMessage::createSignal("/org/mpris/MediaPlayer2",
-                                                  "org.freedesktop.DBus.Properties", "PropertiesChanged");
+    QDBusMessage msg = QDBusMessage::createSignal("/org/mpris/MediaPlayer2", "org.freedesktop.DBus.Properties", "PropertiesChanged");
     msg << "org.mpris.MediaPlayer2.Player";
     msg << map;
     msg << QStringList();

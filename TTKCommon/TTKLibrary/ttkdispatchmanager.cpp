@@ -7,7 +7,7 @@ TTKDispatchManager::TTKDispatchManager()
     : QObject(nullptr)
 {
     m_timer = new QTimer(this);
-    m_timer->setInterval(5000);
+    m_timer->setInterval(5 * TTK_DN_S2MS);
 
     connect(m_timer, SIGNAL(timeout()), SLOT(activeFunctions()));
     m_timer->start();

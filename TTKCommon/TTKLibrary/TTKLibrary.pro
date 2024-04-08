@@ -50,7 +50,6 @@ HEADERS += \
     $$PWD/../ttkglobal.h \
     $$PWD/../ttklogger.h \
     $$PWD/../ttkmoduleexport.h \
-    $$PWD/../ttknumberdefine.h \
     $$PWD/../ttkobject.h \
     $$PWD/../ttkprivate.h \
     $$PWD/../ttkqtcompat.h \

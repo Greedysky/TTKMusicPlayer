@@ -20,7 +20,6 @@
  ***************************************************************************/
 
 #include "musicobject.h"
-#include "ttknumberdefine.h"
 #include "ttkabstractmoveresizewidget.h"
 
 class MusicPlayer;
@@ -82,7 +81,7 @@ public:
     /*!
      * Import outside music datas into container.
      */
-    void importSongsOutsidePath(const QString &path, bool play);
+    void importSongsByOutside(const QString &path, bool play);
 
     /*!
      * Get music current song item download contains.

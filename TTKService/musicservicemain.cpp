@@ -2,9 +2,9 @@
 #include "musicapplication.h"
 #include "musicruntimemanager.h"
 #include "musicconfigobject.h"
+#include "musicprocessmanager.h"
 #include "ttkdumper.h"
 #include "ttkglobalhelper.h"
-#include "ttkcommandline.h"
 #include "ttkplatformsystem.h"
 
 #ifdef Q_OS_UNIX
@@ -62,8 +62,22 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(TTK_APP_COME_NAME);
     QCoreApplication::setApplicationName(TTK_APP_NAME);
 
+    // parse command line args
+    QStringList args;
+    for(int i = 0; i < argc; ++i)
+    {
+        const QString &&arg = QString::fromLocal8Bit(argv[i]);
+        if(!arg.endsWith(TTK_APP_NAME) && !arg.endsWith(TTK_SERVICE_NAME) && !arg.endsWith(TTK_APP_RUN_NAME) && !arg.endsWith(TTK_SERVICE_RUN_NAME))
+        {
+            args << arg;
+        }
+    }
+
     if(app.isRunning())
     {
+        MusicProcessClient client;
+        client.run(args);
+
         TTK_INFO_STREAM("One app has already run");
         return -1;
     }
@@ -99,36 +113,8 @@ int main(int argc, char *argv[])
     MusicApplication w;
     w.show();
 
-    // parse command line args
-    QStringList args;
-    for(int i = 0; i < argc; ++i)
-    {
-        const QString &&arg = QString::fromLocal8Bit(argv[i]);
-        if(!arg.endsWith(TTK_APP_NAME) && !arg.endsWith(TTK_SERVICE_NAME) && !arg.endsWith(TTK_APP_RUN_NAME) && !arg.endsWith(TTK_SERVICE_RUN_NAME))
-        {
-            args << arg;
-        }
-    }
-
-    if(args.count() == 2)
-    {
-        TTKCommandLineOption op1(MUSIC_OUTSIDE_OPEN);
-        TTKCommandLineOption op2(MUSIC_OUTSIDE_LIST);
-
-        TTKCommandLineParser parser;
-        parser.addOption(op1);
-        parser.addOption(op2);
-        parser.process(args);
-
-        if(parser.isSet(op1))
-        {
-            w.importSongsOutsidePath(parser.value(op1), true);
-        }
-        else if(parser.isSet(op2))
-        {
-            w.importSongsOutsidePath(parser.value(op2), false);
-        }
-    }
+    MusicProcessServer server;
+    server.run(args);
 
 #ifdef Q_OS_UNIX
     // unix mpris module

@@ -199,7 +199,7 @@ MusicSongsToolBoxMaskWidget::MusicSongsToolBoxMaskWidget(QWidget *parent)
     hide();
 
     m_updateTimer = new QTimer(this);
-    m_updateTimer->setInterval(200);
+    m_updateTimer->setInterval(200 * TTK_DN_MS);
     connect(m_updateTimer, SIGNAL(timeout()), SLOT(update()));
     m_updateTimer->start();
 }

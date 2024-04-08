@@ -22,7 +22,7 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
     m_textLabel->setGeometry(23, 0, 170, 30);
 
     m_gifLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::RadioBlue, this);
-    m_gifLabel->setInterval(50);
+    m_gifLabel->setInterval(50 * TTK_DN_MS);
     m_gifLabel->setGeometry(193, 8, 14, 14);
 
     m_downloadButton = new QPushButton(this);

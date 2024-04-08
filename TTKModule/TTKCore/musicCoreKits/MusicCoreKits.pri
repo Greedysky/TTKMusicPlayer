@@ -41,7 +41,8 @@ HEADERS += \
     $$PWD/musicextractwrapper.h \
     $$PWD/musicbackgroundconfigmanager.h \
     $$PWD/musicconfigmanager.h \
-    $$PWD/musicimagerenderer.h
+    $$PWD/musicimagerenderer.h \
+    $$PWD/musicprocessmanager.h
 
 SOURCES += \
     $$PWD/musicformats.cpp \
@@ -61,7 +62,8 @@ SOURCES += \
     $$PWD/musicextractwrapper.cpp \
     $$PWD/musicbackgroundconfigmanager.cpp \
     $$PWD/musicconfigmanager.cpp \
-    $$PWD/musicimagerenderer.cpp
+    $$PWD/musicimagerenderer.cpp \
+    $$PWD/musicprocessmanager.cpp
 
 #dbus mpris support for linux
 unix:!mac{
