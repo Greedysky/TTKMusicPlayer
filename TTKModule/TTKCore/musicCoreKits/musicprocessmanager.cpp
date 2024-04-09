@@ -2,7 +2,8 @@
 #include "musicapplication.h"
 #include "ttkcommandline.h"
 
-#define MEMORY_KEY TTK_STR_CAT(MUSIC_AUTHOR_NAME, TTK_DEFAULT_STR, TTK_APP_NAME)
+#define MEMORY_SIZE 512 * TTK_SN_KB2B
+#define MEMORY_KEY  TTK_STR_CAT(MUSIC_AUTHOR_NAME, TTK_DEFAULT_STR, TTK_APP_NAME)
 
 void MusicProcessClient::run(const QStringList &args) const
 {
@@ -36,7 +37,7 @@ MusicProcessServer::MusicProcessServer(QObject *parent)
         m_memory.detach();
     }
 
-    m_memory.create(512 * TTK_SN_KB2B);
+    m_memory.create(MEMORY_SIZE);
     m_timer.start();
 }
 
@@ -46,30 +47,46 @@ MusicProcessServer::~MusicProcessServer()
     m_memory.detach();
 }
 
-void MusicProcessServer::run(const QStringList &args)
+void MusicProcessServer::run(const QStringList &args) const
 {
-    if(args.count() != 2)
+    TTK_INFO_STREAM("Command line args: " << args);
+    if(args.isEmpty())
     {
         return;
     }
 
-    TTK_INFO_STREAM("Command line args: " << args);
-
-    TTKCommandLineOption op1("-Open");
-    TTKCommandLineOption op2("-List");
+    TTKCommandLineOption op0("-h", "--help", "Show command line help options");
+    TTKCommandLineOption op1("-List", "--file-to-list", "Add file to playlist");
+    TTKCommandLineOption op2("-Open", "--file-to-list-play", "Add file to playlist and play it");
+//    TTKCommandLineOption op3("-p", "--play", "Pause if playing, play otherwise");
+//    TTKCommandLineOption op4("-s", "--stop", "Stop current song");
+//    TTKCommandLineOption op5("--next", "Start playing next song");
+//    TTKCommandLineOption op6("--previous", "Start playing previous song");
+//    TTKCommandLineOption op7("--toggle-mute", "Mute/Restore volume");
+//    TTKCommandLineOption op8("--volume", "Set playback volume (example: --volume 20)");
+//    TTKCommandLineOption op9("--add-file", "Display add file dialog");
+//    TTKCommandLineOption op10("--add-dir", "Display add directory dialog");
+//    TTKCommandLineOption op11("--add-url", "Display add url path dialog");
 
     TTKCommandLineParser parser;
+    parser.addOption(op0);
     parser.addOption(op1);
     parser.addOption(op2);
     parser.process(args);
 
+    if(parser.isSet(op0))
+    {
+        parser.showHelp();
+        return;
+    }
+
     if(parser.isSet(op1))
     {
-        MusicApplication::instance()->importSongsByOutside(parser.value(op1), true);
+        MusicApplication::instance()->importSongsByOutside(parser.value(op1), false);
     }
     else if(parser.isSet(op2))
     {
-        MusicApplication::instance()->importSongsByOutside(parser.value(op2), false);
+        MusicApplication::instance()->importSongsByOutside(parser.value(op2), true);
     }
 }
 
@@ -82,7 +99,7 @@ void MusicProcessServer::timeout()
     }
 
     m_memory.lock();
-    memcpy(m_memory.data(), "\0", 1);
+    memset(m_memory.data(), 0, MEMORY_SIZE);
     m_memory.unlock();
 
     run(buffer.split(TTK_SPLITER));

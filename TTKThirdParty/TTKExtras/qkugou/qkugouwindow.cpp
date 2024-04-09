@@ -219,7 +219,7 @@ void QKugouWindow::createKugouSongWidget()
 #if defined TTK_WEBKIT || defined TTK_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
-    d->m_topWidget->setStyleSheet(UI::PushButtonStyle01 + UI::WidgetStyle01);
+    d->m_topWidget->setStyleSheet(TTK::UI::PushButtonStyle01 + TTK::UI::WidgetStyle01);
     QHBoxLayout *topLayout = new QHBoxLayout(d->m_topWidget);
     topLayout->setContentsMargins(0, 0, 0, 0);
     topLayout->setSpacing(25);
@@ -277,7 +277,7 @@ void QKugouWindow::createKugouRadioWidget()
 #if defined TTK_WEBKIT || defined TTK_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
-    d->m_topWidget->setStyleSheet(UI::PushButtonStyle01 + UI::WidgetStyle01);
+    d->m_topWidget->setStyleSheet(TTK::UI::PushButtonStyle01 + TTK::UI::WidgetStyle01);
     QHBoxLayout *topLayout = new QHBoxLayout(d->m_topWidget);
     topLayout->setContentsMargins(0, 0, 0, 0);
     topLayout->setSpacing(50);
@@ -354,7 +354,7 @@ void QKugouWindow::createKugouMovieWidget()
 #if defined TTK_WEBKIT || defined TTK_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
-    d->m_topWidget->setStyleSheet(UI::PushButtonStyle01 + UI::WidgetStyle01);
+    d->m_topWidget->setStyleSheet(TTK::UI::PushButtonStyle01 + TTK::UI::WidgetStyle01);
     QHBoxLayout *topLayout = new QHBoxLayout(d->m_topWidget);
     topLayout->setContentsMargins(0, 0, 0, 0);
     topLayout->setSpacing(50);
@@ -420,7 +420,7 @@ void QKugouWindow::changeClickedButtonStyle(int index)
     const QList<QAbstractButton*> &buttons = d->m_buttonGroup->buttons();
     for(int i = 0; i < buttons.count(); ++i)
     {
-        buttons[i]->setStyleSheet(UI::PushButtonStyle01);
+        buttons[i]->setStyleSheet(TTK::UI::PushButtonStyle01);
     }
-    buttons[index]->setStyleSheet(UI::PushButtonStyle02);
+    buttons[index]->setStyleSheet(TTK::UI::PushButtonStyle02);
 }

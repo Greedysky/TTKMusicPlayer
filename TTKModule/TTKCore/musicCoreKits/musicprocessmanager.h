@@ -58,7 +58,7 @@ public:
     /*!
      * Run.
      */
-    void run(const QStringList &args);
+    void run(const QStringList &args) const;
 
 private Q_SLOTS:
     /*!

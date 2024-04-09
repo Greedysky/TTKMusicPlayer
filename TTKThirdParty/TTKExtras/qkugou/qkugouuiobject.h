@@ -24,21 +24,24 @@
 /*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace UI
+namespace TTK
 {
-    ///PushButton
-    static const QString PushButtonStyle01 = " \
-        QPushButton{ border:none; color:rgb(135, 135, 135); font-size:14px; } \
-        QPushButton:hover{ color:rgb(104, 169, 236); } \
-        QPushButton:checked{ color:rgb(40, 143, 231); }";
+    namespace UI
+    {
+        ///PushButton
+        static const QString PushButtonStyle01 = " \
+            QPushButton{ border:none; color:rgb(135, 135, 135); font-size:14px; } \
+            QPushButton:hover{ color:rgb(104, 169, 236); } \
+            QPushButton:checked{ color:rgb(40, 143, 231); }";
 
-    static const QString PushButtonStyle02 = " \
-        QPushButton{ color:rgb(104, 169, 236); }";
+        static const QString PushButtonStyle02 = " \
+            QPushButton{ color:rgb(104, 169, 236); }";
 
-    ///Widget
-    static const QString WidgetStyle01 = " \
-        QWidget{ background:white; }";
+        ///Widget
+        static const QString WidgetStyle01 = " \
+            QWidget{ background:white; }";
 
+    }
 }
 
 #endif // QKUGOUOBJECT_H

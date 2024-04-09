@@ -52,18 +52,20 @@ bool MusicConsoleModule::initialize()
             text += "Copyright(C) 2015 - 2024 Greedysky All Rights Reserved\n";
             text += "TTKMusicPlayer imitates Kugou UI, the music player uses of qmmp core library based on Qt for windows and linux\n\n";
 
+    TTKCommandLineOption op0("-h", "--help", "Show command line help options");
     TTKCommandLineOption op1("-u", "--url", "Music play url path");
     TTKCommandLineOption op2("-d", "--dir", "Music play dir path");
     TTKCommandLineOption op3("-l", "--playlist", "Music playlist url path");
 
     TTKCommandLineParser parser;
+    parser.addOption(op0);
     parser.addOption(op1);
     parser.addOption(op2);
     parser.addOption(op3);
     parser.setDescription(text);
     parser.process();
 
-    if(parser.isEmpty())
+    if(parser.isEmpty() || parser.isSet(op0))
     {
         parser.showHelp();
         return false;
