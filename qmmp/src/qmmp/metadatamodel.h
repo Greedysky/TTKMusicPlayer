@@ -38,7 +38,7 @@ public:
      * Constructor
      * \param name Localized name of property.
      * \param value Property value.
-     * \param suffix Localized suffix of property (i.e. kB, kB/s, etc).
+     * \param suffix Localized suffix of property (i.e. kbit, kbps, etc).
      */
     MetaDataItem(const QString &name, const QVariant &value, const QString &suffix = QString());
     /*!

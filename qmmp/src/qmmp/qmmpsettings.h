@@ -240,6 +240,8 @@ private slots:
     void sync();
 
 private:
+    void saveSettings();
+
     //replaygain settings
     QmmpSettings::ReplayGainMode m_rg_mode;
     double m_rg_preamp;
@@ -267,8 +269,8 @@ private:
     int m_buffer_size;
     //file type determination
     bool m_determine_by_content;
-    //timer
-    QTimer *m_timer;
+    //protect from multiple calls
+    bool m_saveSettings = false;
 
     static QmmpSettings* m_instance;
 

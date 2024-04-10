@@ -1,6 +1,5 @@
 #include <QSettings>
 #include <QApplication>
-#include <QTimer>
 #include "metadatamanager.h"
 #include "qmmpsettings.h"
 
@@ -43,11 +42,6 @@ QmmpSettings::QmmpSettings(QObject *parent)
     m_buffer_size = settings.value("Output/buffer_size", 500).toInt();
     //file type determination
     m_determine_by_content = settings.value("Misc/determine_file_by_content", false).toBool();
-    //timer
-    m_timer = new QTimer(this);
-    m_timer->setSingleShot(true);
-    m_timer->setInterval(5000);
-    connect(m_timer, SIGNAL(timeout()), SLOT(sync()));
 }
 
 QmmpSettings::~QmmpSettings()
@@ -82,7 +76,7 @@ void QmmpSettings::setReplayGainSettings(ReplayGainMode mode, double preamp, dou
     m_rg_preamp = preamp;
     m_rg_defaut_gain = def_gain;
     m_rg_prevent_clipping = clip;
-    m_timer->start();
+    saveSettings();
     emit replayGainSettingsChanged();
 }
 
@@ -106,7 +100,7 @@ void QmmpSettings::setAudioSettings(bool soft_volume, Qmmp::AudioFormat format, 
     m_aud_software_volume = soft_volume;
     m_aud_format = format;
     m_aud_dithering = use_dithering;
-    m_timer->start();
+    saveSettings();
     emit audioSettingsChanged();
 }
 
@@ -132,7 +126,7 @@ void QmmpSettings::setCoverSettings(QStringList inc, QStringList exc, int depth,
     m_cover_depth = depth;
     m_cover_use_files = use_files;
     MetaDataManager::instance()->clearCoverCache();
-    m_timer->start();
+    saveSettings();
     emit coverSettingsChanged();
 }
 
@@ -162,7 +156,7 @@ void QmmpSettings::setNetworkSettings(bool use_proxy, bool auth, ProxyType type,
     m_proxy_auth = auth;
     m_proxy_type = type;
     m_proxy_url = proxy;
-    m_timer->start();
+    saveSettings();
     emit networkSettingsChanged();
 }
 
@@ -174,7 +168,7 @@ const EqSettings &QmmpSettings::eqSettings() const
 void QmmpSettings::setEqSettings(const EqSettings &settings)
 {
     m_eq_settings = settings;
-    m_timer->start();
+    saveSettings();
     emit eqSettingsChanged();
 }
 
@@ -215,7 +209,7 @@ int QmmpSettings::volumeStep() const
 void QmmpSettings::setAverageBitrate(bool enabled)
 {
     m_average_bitrate = enabled;
-    m_timer->start();
+    saveSettings();
     emit audioSettingsChanged();
 }
 
@@ -226,6 +220,11 @@ bool QmmpSettings::averageBitrate() const
 
 void QmmpSettings::sync()
 {
+    if(m_saveSettings)
+    {
+        return;
+    }
+
     qDebug("%s", Q_FUNC_INFO);
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     //replaygain settings
@@ -265,6 +264,13 @@ void QmmpSettings::sync()
     settings.setValue("Output/buffer_size", m_buffer_size);
     //file type determination
     settings.setValue("Misc/determine_file_by_content", m_determine_by_content);
+    m_saveSettings = false;  //protect from multiple calls
+}
+
+void QmmpSettings::saveSettings()
+{
+    m_saveSettings = true;
+    QMetaObject::invokeMethod(this, &QmmpSettings::sync, Qt::QueuedConnection);
 }
 
 QmmpSettings* QmmpSettings::instance()
