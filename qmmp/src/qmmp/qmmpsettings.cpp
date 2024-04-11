@@ -270,7 +270,7 @@ void QmmpSettings::sync()
 void QmmpSettings::saveSettings()
 {
     m_saveSettings = true;
-    QMetaObject::invokeMethod(this, &QmmpSettings::sync, Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, "sync", Qt::QueuedConnection);
 }
 
 QmmpSettings* QmmpSettings::instance()
