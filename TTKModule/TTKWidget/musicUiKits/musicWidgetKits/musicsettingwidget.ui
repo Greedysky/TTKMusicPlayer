@@ -68,7 +68,7 @@
     <string notr="true">color:#444444;</string>
    </property>
    <property name="currentIndex">
-    <number>4</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="TTKThemeLineLabel" name="baseSetShowInfoWidget">
@@ -482,7 +482,7 @@ font-weight:bold;</string>
       <string notr="true">background:#3BA1E6;border-radius:2px</string>
      </property>
      <property name="text">
-      <string>设置</string>
+      <string>导入歌曲</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -558,7 +558,7 @@ font-weight:bold;</string>
       <string notr="true">background:white;</string>
      </property>
      <property name="text">
-      <string>Ctrl+S</string>
+      <string>Ctrl+I</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -577,7 +577,7 @@ font-weight:bold;</string>
       <string notr="true">background:white;</string>
      </property>
      <property name="text">
-      <string>Ctrl+I</string>
+      <string>Ctrl+M</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -596,7 +596,7 @@ font-weight:bold;</string>
       <string notr="true">background:#3BA1E6;border-radius:2px</string>
      </property>
      <property name="text">
-      <string>导入歌曲</string>
+      <string>静音</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -628,7 +628,7 @@ font-weight:bold;</string>
       <string notr="true">background:#3BA1E6;border-radius:2px</string>
      </property>
      <property name="text">
-      <string>静音</string>
+      <string>设置</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -647,7 +647,7 @@ font-weight:bold;</string>
       <string notr="true">background:white;</string>
      </property>
      <property name="text">
-      <string>Ctrl+M</string>
+      <string>Ctrl+S</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
