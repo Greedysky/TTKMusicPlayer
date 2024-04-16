@@ -2,7 +2,7 @@
 #include "musicblqueryinterface.h"
 #include "musicdatasourcerequest.h"
 
-static const QString QUERY_URL = "QmhheGMwZFNKS3lzQjFEMGJSQ2VCVFdsZVc3Rms5cXJrNGtFM3pkVHMxU3dydVZiVHR4ZGVBPT0=";
+static constexpr const char *QUERY_URL = "QmhheGMwZFNKS3lzQjFEMGJSQ2VCVFdsZVc3Rms5cXJrNGtFM3pkVHMxU3dydVZiVHR4ZGVBPT0=";
 
 MusicBarrageRequest::MusicBarrageRequest(QObject *parent)
     : MusicAbstractNetwork(parent)

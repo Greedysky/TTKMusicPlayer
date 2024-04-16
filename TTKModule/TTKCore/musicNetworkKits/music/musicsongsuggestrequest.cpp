@@ -1,7 +1,7 @@
 #include "musicsongsuggestrequest.h"
 #include "musickgqueryinterface.h"
 
-static const QString QUERY_URL = "Y1U5RUVkYWE4R205VEFEQ3pXZlNGQWNEcFlobFBMNVhMUXRxejhkbHZnaFhVbkNNdFE3T1BzdWRQTG11c3FsT2JPYi84ODFYcG9yd1phMFExQi9qVElDZmhPNlFUZDN5";
+static constexpr const char *QUERY_URL = "Y1U5RUVkYWE4R205VEFEQ3pXZlNGQWNEcFlobFBMNVhMUXRxejhkbHZnaFhVbkNNdFE3T1BzdWRQTG11c3FsT2JPYi84ODFYcG9yd1phMFExQi9qVElDZmhPNlFUZDN5";
 
 MusicSongSuggestRequest::MusicSongSuggestRequest(QObject *parent)
     : MusicPageQueryRequest(parent)
