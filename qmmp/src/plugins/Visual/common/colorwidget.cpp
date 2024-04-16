@@ -5,11 +5,11 @@
 #include <QMouseEvent>
 #include <QColorDialog>
 
-const char* MToolButtonStyle01 = " \
+static constexpr const char *MToolButtonStyle01 = " \
         QToolButton{ background-color:transparent; border:none; } \
         QToolButton::hover{ background-color:rgba(255, 255, 255, 20); }";
 
-const char* MPushButtonStyle01 = " \
+static constexpr const char *MPushButtonStyle01 = " \
         QPushButton{ border:1px solid #AAAAAA; background:#FFFFFF; color:#777777; } \
         QPushButton::hover{ border:1px solid #555555; color:#444444; } \
         QPushButton::disabled{ color:#BBBBBB; border:1px solid #DDDDDD; }";
