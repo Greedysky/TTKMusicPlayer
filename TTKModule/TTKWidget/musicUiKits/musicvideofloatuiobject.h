@@ -28,27 +28,27 @@ namespace TTK
 {
     namespace UI
     {
-        static const QString VideoFloatDownload = " \
+        static constexpr const char *VideoFloatDownload = " \
             QPushButton{ border:none;\
             background-image: url(:/video/btn_download_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_download_hover); }";
 
-        static const QString VideoFloatFresh = " \
+        static constexpr const char *VideoFloatFresh = " \
             QPushButton{ border:none;\
             background-image: url(:/video/btn_fresh_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_fresh_hover); }";
 
-        static const QString VideoFloatFullscreen = " \
+        static constexpr const char *VideoFloatFullscreen = " \
             QPushButton{ border:none;\
             background-image: url(:/video/btn_fullscreen_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_fullscreen_hover); }";
 
-        static const QString VideoFloatSearch = " \
+        static constexpr const char *VideoFloatSearch = " \
             QPushButton{ border:none;\
             background-image: url(:/video/btn_search_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_search_hover); }";
 
-        static const QString VideoFloatShare = " \
+        static constexpr const char *VideoFloatShare = " \
             QPushButton{ border:none;\
             background-image: url(:/video/btn_share_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_share_hover); }";

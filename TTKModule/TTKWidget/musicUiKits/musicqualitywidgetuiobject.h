@@ -28,8 +28,8 @@ namespace TTK
 {
     namespace UI
     {
-        static const QString LabelQuality = " \
-            border:none; \
+        static constexpr const char *LabelQuality = " \
+            border:none; margin-left:-48px; \
             background-image: url(:/quality/btn_quality_normal);";
 
     }

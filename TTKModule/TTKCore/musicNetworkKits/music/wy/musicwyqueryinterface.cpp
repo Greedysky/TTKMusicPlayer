@@ -35,7 +35,7 @@ QByteArray ReqWYInterface::makeTokenRequest(QNetworkRequest *request, const QStr
     request->setUrl(query);
     ReqWYInterface::makeRequestRawHeader(request);
 
-    return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING.toUtf8();
+    return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING;
 }
 
 static void parseSongPropertyNew(TTK::MusicSongInformation *info, int bitrate)

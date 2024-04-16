@@ -9,7 +9,7 @@ MusicQualityWidget::MusicQualityWidget(QWidget *parent)
 {
     setToolTip(tr("Quality"));
     setFixedSize(48, 20);
-    setStyleSheet(TTK::UI::LabelQuality + "margin-left:-48px;");
+    setStyleSheet(TTK::UI::LabelQuality);
 }
 
 void MusicQualityWidget::updateQuality()

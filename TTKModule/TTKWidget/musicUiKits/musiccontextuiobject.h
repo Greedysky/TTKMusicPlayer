@@ -28,22 +28,22 @@ namespace TTK
 {
     namespace UI
     {
-        static const QString ContextPlay = " \
+        static constexpr const char *ContextPlay = " \
             QToolButton{ border:none; \
             background-image: url(:/contextMenu/btn_play_hover); } \
             QToolButton:hover{ background-image: url(:/contextMenu/btn_play_normal); }";
 
-        static const QString ContextPause = " \
+        static constexpr const char *ContextPause = " \
             QToolButton{ border:none; \
             background-image: url(:/contextMenu/btn_pause_hover); } \
             QToolButton:hover{ background-image: url(:/contextMenu/btn_pause_normal); }";
 
-        static const QString ContextNext = " \
+        static constexpr const char *ContextNext = " \
             QToolButton{ border:none; \
             background-image: url(:/contextMenu/btn_next_hover); } \
             QToolButton:hover{ background-image: url(:/contextMenu/btn_next_normal); }";
 
-        static const QString ContextPrevious = " \
+        static constexpr const char *ContextPrevious = " \
             QToolButton{ border:none; \
             background-image: url(:/contextMenu/btn_previous_hover); } \
             QToolButton:hover{ background-image: url(:/contextMenu/btn_previous_normal); }";

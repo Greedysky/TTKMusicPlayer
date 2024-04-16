@@ -325,7 +325,7 @@ namespace TTK
         static const QString MenuStyle01 = " \
             QMenu{ padding:5px; } \
             QMenu::icon{ margin-left:10px; } \
-            QMenu::right-arrow{ background: url(:/tiny/lb_arrow_up_normal); } \
+            QMenu::right-arrow{ background:url(:/tiny/lb_arrow_up_normal); } \
             QMenu::item{ color:#666666; padding:6px 30px 6px 30px; border:1px solid transparent; } \
             QMenu::item:disabled{ color:#AAAAAA; } \
             QMenu::item:selected{ color:white; background: rgb(22, 154, 243); } \

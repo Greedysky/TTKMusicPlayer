@@ -28,154 +28,154 @@ namespace TTK
 {
     namespace UI
     {
-        static const QString VideoBtnPlay = " \
+        static constexpr const char *VideoBtnPlay = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_play_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_play_hover); }";
 
-        static const QString VideoBtnPause = " \
+        static constexpr const char *VideoBtnPause = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_pause_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_pause_hover); }";
 
-        static const QString VideoBtnBarrageOff = " \
+        static constexpr const char *VideoBtnBarrageOff = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_barrage_off_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_barrage_off_hover); }";
 
-        static const QString VideoBtnBarrageOn = " \
+        static constexpr const char *VideoBtnBarrageOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_barrage_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_barrage_on_hover); }";
 
-        static const QString VideoBtnBarrageSend = " \
+        static constexpr const char *VideoBtnBarrageSend = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_barrage_send_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_barrage_send_hover); } \
             QPushButton:disabled{ background-image: url(:/video/btn_barrage_send_disable); }";
 
-        static const QString VideoBtnBarrageStyle = " \
+        static constexpr const char *VideoBtnBarrageStyle = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_barrage_style_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_barrage_style_hover); } \
             QToolButton:disabled{ background-image: url(:/video/btn_barrage_style_disable); }";
 
-        static const QString VideoBtnSTMode = " \
+        static constexpr const char *VideoBtnSTMode = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_st_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_st_hover); }";
 
-        static const QString VideoBtnSDMode = " \
+        static constexpr const char *VideoBtnSDMode = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_sd_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_sd_hover); }";
 
-        static const QString VideoBtnHDMode = " \
+        static constexpr const char *VideoBtnHDMode = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_hd_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_hd_hover); }";
 
-        static const QString VideoBtnSQMode = " \
+        static constexpr const char *VideoBtnSQMode = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_sq_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_sq_hover); }";
 
-        static const QString VideoBtnBlue = " \
+        static constexpr const char *VideoBtnBlue = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_blue_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_blue_hover); }";
 
-        static const QString VideoBtnBlueOn = " \
+        static constexpr const char *VideoBtnBlueOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_blue_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_blue_on_hover); }";
 
-        static const QString VideoBtnGreen = " \
+        static constexpr const char *VideoBtnGreen = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_green_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_green_hover); }";
 
-        static const QString VideoBtnGreenOn = " \
+        static constexpr const char *VideoBtnGreenOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_green_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_green_on_hover); }";
 
-        static const QString VideoBtnOrange = " \
+        static constexpr const char *VideoBtnOrange = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_orange_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_orange_hover); }";
 
-        static const QString VideoBtnOrangeOn = " \
+        static constexpr const char *VideoBtnOrangeOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_orange_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_orange_on_hover); }";
 
-        static const QString VideoBtnPurple = " \
+        static constexpr const char *VideoBtnPurple = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_purple_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_purple_hover); }";
 
-        static const QString VideoBtnPurpleOn = " \
+        static constexpr const char *VideoBtnPurpleOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_purple_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_purple_on_hover); }";
 
-        static const QString VideoBtnRed = " \
+        static constexpr const char *VideoBtnRed = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_red_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_red_hover); }";
 
-        static const QString VideoBtnRedOn = " \
+        static constexpr const char *VideoBtnRedOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_red_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_red_on_hover); }";
 
-        static const QString VideoBtnWhite = " \
+        static constexpr const char *VideoBtnWhite = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_white_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_white_hover); }";
 
-        static const QString VideoBtnWhiteOn = " \
+        static constexpr const char *VideoBtnWhiteOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_white_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_white_on_hover); }";
 
-        static const QString VideoBtnYellow = " \
+        static constexpr const char *VideoBtnYellow = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_yellow_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_yellow_hover); }";
 
-        static const QString VideoBtnYellowOn = " \
+        static constexpr const char *VideoBtnYellowOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_yellow_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_yellow_on_hover); }";
 
-        static const QString VideoBtnSmall = " \
+        static constexpr const char *VideoBtnSmall = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_small_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_small_hover); }";
 
-        static const QString VideoBtnSmallOn = " \
+        static constexpr const char *VideoBtnSmallOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_small_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_small_on_hover); }";
 
-        static const QString VideoBtnMiddle = " \
+        static constexpr const char *VideoBtnMiddle = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_middle_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_middle_hover); }";
 
-        static const QString VideoBtnMiddleOn = " \
+        static constexpr const char *VideoBtnMiddleOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_middle_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_middle_on_hover); }";
 
-        static const QString VideoBtnBig = " \
+        static constexpr const char *VideoBtnBig = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_big_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_big_hover); }";
 
-        static const QString VideoBtnBigOn = " \
+        static constexpr const char *VideoBtnBigOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_big_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_big_on_hover); }";

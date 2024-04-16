@@ -28,135 +28,135 @@ namespace TTK
 {
     namespace UI
     {
-        static const QString SongsDetectStartBtn = " \
+        static constexpr const char *SongsDetectStartBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_hover); }";
 
-        static const QString SongsDetectStopBtn = " \
+        static constexpr const char *SongsDetectStopBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_stop_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_stop_hover); }";
 
-        static const QString SongsRedetectBtn = " \
+        static constexpr const char *SongsRedetectBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_redetect_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_redetect_hover); } \
             QPushButton:disabled{ background-image: url(:/toolSets/btn_redetect_hover); }";
 
-        static const QString SongsDetectDownloadBtn = " \
+        static constexpr const char *SongsDetectDownloadBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_download_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_download_hover); } \
             QPushButton:disabled{ background-image: url(:/toolSets/btn_detect_download_disable); }";
 
-        static const QString SongsDetectPlayBtn = " \
+        static constexpr const char *SongsDetectPlayBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_play_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_play_hover); } \
             QPushButton:disabled{ background-image: url(:/toolSets/btn_detect_play_disable); }";
 
-        static const QString SongsDetectShareBtn = " \
+        static constexpr const char *SongsDetectShareBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_share_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_share_hover); } \
             QPushButton:disabled{ background-image: url(:/toolSets/btn_detect_share_disable); }";
 
-        static const QString SongsDetectUnloveBtn = " \
+        static constexpr const char *SongsDetectUnloveBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_unlove_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_unlove_hover); } \
             QPushButton:disabled{ background-image: url(:/toolSets/btn_detect_unlove_disable); }";
 
-        static const QString CheckTestDuplicate = " \
+        static constexpr const char *CheckTestDuplicate = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_duplicate_normal); } \
             QToolButton:hover{ background-image: url(:/toolSets/btn_duplicate_hover); }";
 
-        static const QString CheckTestDuplicateClicked = " \
+        static constexpr const char *CheckTestDuplicateClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_duplicate_clicked); }";
 
-        static const QString CheckTestQuality = " \
+        static constexpr const char *CheckTestQuality = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_quality_normal); } \
             QToolButton:hover{ background-image: url(:/toolSets/btn_quality_hover); }";
 
-        static const QString CheckTestQualityClicked = " \
+        static constexpr const char *CheckTestQualityClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_quality_clicked); }";
 
-        static const QString CheckTestRename = " \
+        static constexpr const char *CheckTestRename = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_rename_normal); } \
             QToolButton:hover{ background-image: url(:/toolSets/btn_rename_hover); }";
 
-        static const QString CheckTestRenameClicked = " \
+        static constexpr const char *CheckTestRenameClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_rename_clicked); }";
 
-        static const QString TimeToStop = " \
+        static constexpr const char *TimeToStop = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_stop); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_timer_stop_hover); }";
 
-        static const QString TimeToStopClicked = " \
+        static constexpr const char *TimeToStopClicked = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_stop_clicked); }";
 
-        static const QString TimeToPlay = " \
+        static constexpr const char *TimeToPlay = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_play); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_timer_play_hover); }";
 
-        static const QString TimeToPlayClicked = " \
+        static constexpr const char *TimeToPlayClicked = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_play_clicked); }";
 
-        static const QString TimeToDown = " \
+        static constexpr const char *TimeToDown = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_down); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_timer_down_hover); }";
 
-        static const QString TimeToDownClicked = " \
+        static constexpr const char *TimeToDownClicked = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_down_clicked); }";
 
-        static const QString TransferSong = " \
+        static constexpr const char *TransferSong = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_import_song_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_import_song_hover); }";
 
-        static const QString TransferRing = " \
+        static constexpr const char *TransferRing = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_import_ring_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_import_ring_hover); }";
 
-        static const QString TransferChangedDev = " \
+        static constexpr const char *TransferChangedDev = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_change_dev_normal); } \
             QPushButton::menu-indicator{ image:none; } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_change_dev_hover); }";
 
-        static const QString TransferRefreshDev = " \
+        static constexpr const char *TransferRefreshDev = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_refresh_dev_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_refresh_dev_hover); }";
 
-        static const QString ScreenSaverOn = " \
+        static constexpr const char *ScreenSaverOn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_on); }";
 
-        static const QString ScreenSaverOff = " \
+        static constexpr const char *ScreenSaverOff = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_off); }";
 
-        static const QString ScreenItemEnable = " \
+        static constexpr const char *ScreenItemEnable = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_enable); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_saver_enable_hover); }";
 
-        static const QString ScreenItemDisable = " \
+        static constexpr const char *ScreenItemDisable = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_disable); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_saver_disable_hover); }";

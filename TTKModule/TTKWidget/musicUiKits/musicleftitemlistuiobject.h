@@ -28,48 +28,48 @@ namespace TTK
 {
     namespace UI
     {
-        static const QString ItemMusic = " \
+        static constexpr const char *ItemMusic = " \
             QToolButton{ border:none; \
             background-image: url(:/navigation/item_music_normal); } \
             QToolButton:hover{ background-image: url(:/navigation/item_music_hover); }";
 
-        static const QString ItemMusicClicked = " \
+        static constexpr const char *ItemMusicClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/navigation/item_music_clicked); }";
 
-        static const QString ItemLocal = " \
+        static constexpr const char *ItemLocal = " \
             QToolButton{ border:none; \
             background-image: url(:/navigation/item_local_normal); } \
             QToolButton:hover{ background-image: url(:/navigation/item_local_hover); }";
 
-        static const QString ItemLocalClicked = " \
+        static constexpr const char *ItemLocalClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/navigation/item_local_clicked); }";
 
-        static const QString ItemCloud = " \
+        static constexpr const char *ItemCloud = " \
             QToolButton{ border:none; \
             background-image: url(:/navigation/item_cloud_normal); } \
             QToolButton:hover{ background-image: url(:/navigation/item_cloud_hover); }";
 
-        static const QString ItemCloudClicked = " \
+        static constexpr const char *ItemCloudClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/navigation/item_cloud_clicked); }";
 
-        static const QString ItemRadio = " \
+        static constexpr const char *ItemRadio = " \
             QToolButton{ border:none; \
             background-image: url(:/navigation/item_radio_normal); } \
             QToolButton:hover{ background-image: url(:/navigation/item_radio_hover); }";
 
-        static const QString ItemRadioClicked = " \
+        static constexpr const char *ItemRadioClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/navigation/item_radio_clicked); }";
 
-        static const QString ItemDownload = " \
+        static constexpr const char *ItemDownload = " \
             QToolButton{ border:none; \
             background-image: url(:/navigation/item_download_normal); } \
             QToolButton:hover{ background-image: url(:/navigation/item_download_hover); }";
 
-        static const QString ItemDownloadClicked = " \
+        static constexpr const char *ItemDownloadClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/navigation/item_download_clicked); }";
 

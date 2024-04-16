@@ -102,7 +102,7 @@ void MusicTimeSliderWidget::setSliderStyleByType(int type)
         }
         default: break;
     }
-    const QString &prefix = "QSlider::sub-page:Horizontal{background-color:qlineargradient("
+    const QString &prefix = "QSlider::sub-page:Horizontal{ background-color:qlineargradient("
                             "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + front + ", stop:1 " + back + "); }";
     m_slider->setStyleSheet(TTK::UI::SliderStyle07 + prefix);
 }
