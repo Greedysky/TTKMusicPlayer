@@ -49,7 +49,7 @@ MusicProcessServer::~MusicProcessServer()
 
 void MusicProcessServer::run(const QStringList &args) const
 {
-    TTK_INFO_STREAM("Command line args: " << args);
+    TTK_INFO_STREAM("Command line args:" << args);
     if(args.isEmpty())
     {
         return;
