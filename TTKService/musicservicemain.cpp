@@ -27,6 +27,7 @@ static void cleanupCache()
             << MAKE_PLAYER_NAME
             << MAKE_GAIN_NAME;
     TTK::killProcessByName(process);
+    TTK_INFO_STREAM("Application cache cleanup");
 }
 
 static void loadAppScaledFactor(int argc, char *argv[])
@@ -120,11 +121,12 @@ int main(int argc, char *argv[])
     // unix mpris module
     MusicMPRISPlayer mpris;
     mpris.run();
+#endif
+
+#ifdef Q_OS_UNIX
     // memory free
     mallopt(M_MMAP_THRESHOLD, 1024 * 1024);   // 1MB mmap
     mallopt(M_TRIM_THRESHOLD, 2 * 1024 * 1024); // 2MB brk
 #endif
-    const int ret = app.exec();
-    cleanupCache();
-    return ret;
+    return app.exec();
 }

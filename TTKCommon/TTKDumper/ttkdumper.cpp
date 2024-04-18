@@ -173,7 +173,7 @@ LONG TTKDumperPrivate::errorHandler(EXCEPTION_POINTERS *info)
 #elif defined Q_OS_UNIX
 void TTKDumperPrivate::errorHandler(int id)
 {
-    TTK_INFO_STREAM("App error occurred, error code " << id);
+    TTK_INFO_STREAM("Application error occurred, error code " << id);
     if(m_functor)
     {
         m_functor();
@@ -199,6 +199,10 @@ void TTKDumperPrivate::initialize()
     signal(SIGSEGV, errorHandler);
     signal(SIGFPE, errorHandler);
     signal(SIGABRT, errorHandler);
+    signal(SIGBUS, errorHandler);
+    signal(SIGILL, errorHandler);
+    signal(SIGINT, errorHandler);
+    signal(SIGTERM, errorHandler);
 }
 #endif
 
@@ -206,19 +210,23 @@ void TTKDumperPrivate::initialize()
 
 TTKDumper::TTKDumper()
 {
-    TTK_INIT_PRIVATE(TTKDumper);
-
     TTKDumperPrivate::m_name = "TTK";
     TTKDumperPrivate::m_version = TTK_VERSION_STR;
 }
 
 TTKDumper::TTKDumper(const TTKDumperFunctor &functor)
 {
-    TTK_INIT_PRIVATE(TTKDumper);
-
     TTKDumperPrivate::m_name = "TTK";
     TTKDumperPrivate::m_version = TTK_VERSION_STR;
     TTKDumperPrivate::m_functor = functor;
+}
+
+TTKDumper::~TTKDumper()
+{
+    if(TTKDumperPrivate::m_functor)
+    {
+        TTKDumperPrivate::m_functor();
+    }
 }
 
 void TTKDumper::run()

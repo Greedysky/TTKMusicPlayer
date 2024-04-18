@@ -44,6 +44,7 @@ public:
      */
     TTKDumper();
     TTKDumper(const TTKDumperFunctor &functor);
+    ~TTKDumper();
 
     /*!
      * Run module.
