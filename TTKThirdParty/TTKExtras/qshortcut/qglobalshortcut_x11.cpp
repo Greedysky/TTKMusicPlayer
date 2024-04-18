@@ -25,26 +25,26 @@ static Window X11RootWindow()
 }
 #endif
 
-static int (*original_x_errhandler)(Display *display, XErrorEvent *event);
+//static int (*original_x_errhandler)(Display *display, XErrorEvent *event);
 
-static int q_x_errhandler(Display *display, XErrorEvent *event)
-{
-    Q_UNUSED(display);
-    switch(event->error_code)
-    {
-        case BadAccess:
-        case BadValue:
-        case BadWindow:
-            if(event->request_code == 33 /* X_GrabKey */ || event->request_code == 34 /* X_UngrabKey */)
-            {
-                QGlobalShortcutPrivate::m_error = true;
-                //TODO:
-                //char errstr[256];
-                //XGetErrorText(dpy, err->error_code, errstr, 256);
-            }
-        default: return 0;
-    }
-}
+//static int q_x_errhandler(Display *display, XErrorEvent *event)
+//{
+//    Q_UNUSED(display);
+//    switch(event->error_code)
+//    {
+//        case BadAccess:
+//        case BadValue:
+//        case BadWindow:
+//            if(event->request_code == 33 /* X_GrabKey */ || event->request_code == 34 /* X_UngrabKey */)
+//            {
+//                QGlobalShortcutPrivate::m_error = true;
+//                //TODO:
+//                //char errstr[256];
+//                //XGetErrorText(dpy, err->error_code, errstr, 256);
+//            }
+//        default: return 0;
+//    }
+//}
 
 #if !TTK_QT_VERSION_CHECK(5,0,0)
 bool QGlobalShortcutPrivate::eventFilter(void *message)
@@ -126,11 +126,11 @@ bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeM
     int keyboard = GrabModeAsync;
     m_error = false;
 
-    original_x_errhandler = XSetErrorHandler(q_x_errhandler);
+//    original_x_errhandler = XSetErrorHandler(q_x_errhandler);
     XGrabKey(display, nativeKey, nativeMods, window, owner, pointer, keyboard);
     XGrabKey(display, nativeKey, nativeMods | Mod2Mask, window, owner, pointer, keyboard); // allow numlock
     XSync(display, False);
-    XSetErrorHandler(original_x_errhandler);
+//    XSetErrorHandler(original_x_errhandler);
     return !m_error;
 }
 
@@ -146,10 +146,10 @@ bool QGlobalShortcutPrivate::unregisterShortcut(quint32 nativeKey, quint32 nativ
     Window window = X11RootWindow();
     m_error = false;
 
-    original_x_errhandler = XSetErrorHandler(q_x_errhandler);
+//    original_x_errhandler = XSetErrorHandler(q_x_errhandler);
     XUngrabKey(display, nativeKey, nativeMods, window);
     XUngrabKey(display, nativeKey, nativeMods | Mod2Mask, window); // allow numlock
     XSync(display, False);
-    XSetErrorHandler(original_x_errhandler);
+//    XSetErrorHandler(original_x_errhandler);
     return !m_error;
 }

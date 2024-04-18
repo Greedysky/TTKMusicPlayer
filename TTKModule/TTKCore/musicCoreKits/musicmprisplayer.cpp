@@ -34,7 +34,6 @@ void MusicMPRISPlayer::run()
 }
 
 
-
 MusicMPRISPlayerRoot::MusicMPRISPlayerRoot(QObject *parent)
     : QDBusAbstractAdaptor(parent)
 {
@@ -96,7 +95,6 @@ void MusicMPRISPlayerRoot::Raise()
 }
 
 
-
 MusicMPRISPlayerCore::MusicMPRISPlayerCore(QObject *parent)
     : QDBusAbstractAdaptor(parent)
 {
@@ -136,6 +134,7 @@ bool MusicMPRISPlayerCore::canPause() const
 {
     return !m_application->m_playlist->isEmpty();
 }
+
 bool MusicMPRISPlayerCore::canPlay() const
 {
     return !m_application->m_playlist->isEmpty();
