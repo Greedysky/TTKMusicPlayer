@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2023 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2024 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -38,7 +38,7 @@ public:
      * Constructor
      * \param name Localized name of property.
      * \param value Property value.
-     * \param suffix Localized suffix of property (i.e. kB, kB/s, etc).
+     * \param suffix Localized suffix of property (i.e. kbit, kbps, etc).
      */
     MetaDataItem(const QString &name, const QVariant &value, const QString &suffix = QString());
     /*!
