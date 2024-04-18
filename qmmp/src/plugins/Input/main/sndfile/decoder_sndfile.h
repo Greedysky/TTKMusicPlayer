@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2023 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2024 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,12 +21,12 @@
 #ifndef DECODER_AUDIOFILE_H
 #define DECODER_AUDIOFILE_H
 
+#include <qmmp/decoder.h>
 #ifdef Q_OS_WIN
 #  include <windows.h>
 #  define ENABLE_SNDFILE_WINDOWS_PROTOTYPES 1
 #endif
 #include <sndfile.h>
-#include <qmmp/decoder.h>
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>

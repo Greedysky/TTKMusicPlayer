@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2023 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2024 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
