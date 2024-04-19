@@ -87,11 +87,26 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
             if(words.count() < 3)
                 continue;
             if(words[1] == "GENRE")
-                genre = words[2];
+            {
+                if(m_tracks.isEmpty())
+                    genre = words[2];
+                else
+                    m_tracks.last()->info.setValue(Qmmp::GENRE, words[2]);
+            }
             else if(words[1] == "DATE")
-                date = words[2];
+            {
+                 if(m_tracks.isEmpty())
+                     date = words[2];
+                 else
+                     m_tracks.last()->info.setValue(Qmmp::YEAR, words[2]);
+            }
             else if(words[1] == "COMMENT")
-                comment = words[2];
+            {
+                 if(m_tracks.isEmpty())
+                     comment = words[2];
+                 else
+                     m_tracks.last()->info.setValue(Qmmp::COMMENT, words[2]);
+            }
             else if(words[1] == "REPLAYGAIN_ALBUM_GAIN")
                 album_gain = words[2].toDouble();
             else if(words[1] == "REPLAYGAIN_ALBUM_PEAK")
