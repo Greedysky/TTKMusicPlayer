@@ -36,7 +36,7 @@ public:
     /*!
      * Constructs empty CUE parser.
      */
-    CueParser();
+    CueParser() = default;
     /*!
      * Constructs CUE parser and parses given content.
      * \param data Content of CUE file.
@@ -47,6 +47,7 @@ public:
      * Object destructor.
      */
     ~CueParser();
+
     /*!
      * Parses CUE file content.
      * \param data Content of CUE file.
@@ -95,7 +96,7 @@ public:
     /*!
      * Returns information for the given \b track.
      */
-    const TrackInfo *info(int track) const;
+    TrackInfo *info(int track) const;
     /*!
      * Sets duration for the given content file.
      * \param file Content file path.

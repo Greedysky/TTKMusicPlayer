@@ -39,11 +39,12 @@ public:
     /*!
      * Object contsructor.
      */
-    Effect();
+    Effect() = default;
     /*!
      * Destructor.
      */
-    virtual ~Effect();
+    virtual ~Effect() = default;
+
     /*!
      * Adds audio effect to the buffer \b b.
      * Subclass should implement this function.
@@ -67,11 +68,11 @@ public:
     /*!
      * Returns map of channels
      */
-    const ChannelMap channelMap() const;
+    const ChannelMap &channelMap() const;
     /*!
      * Returns audio parameters for output data.
      */
-    const AudioParameters audioParameters() const;
+    AudioParameters audioParameters() const;
     /*!
      * Returns assigned factory object.
      */

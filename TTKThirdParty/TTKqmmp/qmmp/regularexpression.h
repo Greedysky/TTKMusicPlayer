@@ -32,9 +32,8 @@
 class QMMP_EXPORT RegularExpression
 {
 public:
-    RegularExpression();
+    RegularExpression() = default;
     explicit RegularExpression(const QString &pattern);
-    ~RegularExpression();
 
     bool hasMatch(const QString &str);
     QString value(int index) const;

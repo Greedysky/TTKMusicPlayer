@@ -62,13 +62,12 @@ public:
                                 * emitting changed() signal so polling the volume is not needed */
     };
     Q_DECLARE_FLAGS(VolumeFlags, VolumeFlag)
+
     /*!
      * Destructor.
      */
-    virtual ~Volume()
-    {
+    virtual ~Volume() = default;
 
-    }
     /*!
      * Setups volume levels.
      * Subclass should reimplement this fucntion.

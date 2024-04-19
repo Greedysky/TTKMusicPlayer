@@ -39,7 +39,7 @@ class QMMP_EXPORT StateChangedEvent : public QEvent
 {
 public:
     StateChangedEvent(Qmmp::State currentState, Qmmp::State previousState);
-    virtual ~StateChangedEvent();
+    virtual ~StateChangedEvent() = default;
 
     Qmmp::State currentState() const;
     Qmmp::State previousState() const;
@@ -57,11 +57,12 @@ class QMMP_EXPORT StreamInfoChangedEvent : public QEvent
 {
 public:
     explicit StreamInfoChangedEvent(const QHash<QString, QString> &info);
-    virtual ~StreamInfoChangedEvent();
+    virtual ~StreamInfoChangedEvent() = default;
+
     /*!
      * Returns all stream information.
      */
-    const QHash<QString, QString> &streamInfo() const;
+    QHash<QString, QString> streamInfo() const;
 
 private:
     QHash<QString, QString> m_streamInfo;
@@ -75,7 +76,7 @@ class QMMP_EXPORT TrackInfoEvent : public QEvent
 {
 public:
     explicit TrackInfoEvent(const TrackInfo &info);
-    virtual ~TrackInfoEvent();
+    virtual ~TrackInfoEvent() = default;
 
     const TrackInfo &trackInfo() const;
 

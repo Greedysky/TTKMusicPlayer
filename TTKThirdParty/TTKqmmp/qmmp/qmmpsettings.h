@@ -54,6 +54,7 @@ public:
         HTTP_PROXY = 0, /*!< HTTP proxy */
         SOCKS5_PROXY    /*!< SOCKS5 proxy */
     };
+
     /*!
      * Constructor.
      * @param parent Parent object.
@@ -64,6 +65,7 @@ public:
      * Destructor.
      */
     virtual ~QmmpSettings();
+
     /*!
      * Returns current ReplayGain mode.
      */

@@ -48,6 +48,7 @@ public:
      * Destructor.
      */
     virtual ~Visual();
+
     /*!
     * Returns a list of visual factories.
     */

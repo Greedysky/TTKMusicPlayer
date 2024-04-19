@@ -48,7 +48,7 @@ public:
         DESCRIPTION  /*!< Description */
     };
 
-    TagMeta();
+    TagMeta() = default;
     explicit TagMeta(const QString &file);
 
     bool read();

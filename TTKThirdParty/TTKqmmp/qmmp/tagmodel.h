@@ -40,6 +40,7 @@ public:
         DefaultCaps = CreateRemove | Save,
     };
     Q_DECLARE_FLAGS(ModelCaps, ModelCap)
+
     /*!
      * Constructor.
      * @param f Capabilities.
@@ -48,7 +49,8 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~TagModel();
+    virtual ~TagModel() = default;
+
     /*!
      * Returns tag name.
      * Subclass should reimplement this fucntion.

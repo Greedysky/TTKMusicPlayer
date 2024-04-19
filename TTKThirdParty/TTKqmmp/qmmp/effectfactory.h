@@ -55,6 +55,11 @@ class QMMP_EXPORT EffectFactory
 {
 public:
     /*!
+    * Object destructor.
+    */
+    virtual ~EffectFactory() = default;
+
+    /*!
      * Returns effect plugin properties.
      */
     virtual const EffectProperties properties() const = 0;

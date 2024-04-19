@@ -40,10 +40,8 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~Light()
-    {
+    virtual ~Light() = default;
 
-    }
      /*!
      * Open Light file path.
      * Subclass should reimplement this function.
@@ -81,10 +79,8 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~LightFactory()
-    {
+    virtual ~LightFactory() = default;
 
-    }
      /*!
      * Returns Light plugin properties.
      */

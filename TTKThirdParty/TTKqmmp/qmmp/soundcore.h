@@ -50,6 +50,7 @@ public:
      * Destructor.
      */
     ~SoundCore();
+
     /*!
      * Returns length in milliseconds
      */
@@ -179,7 +180,7 @@ public slots:
     /*!
      *  This function returns file path or stream url.
      */
-    const QString path() const;
+    QString path() const;
 
 signals:
     /*!
@@ -218,12 +219,6 @@ signals:
      * Emitted when playback has finished.
      */
     void finished();
-    /*!
-     * Emitted when volume has changed.
-     * @param left Left channel volume level. It should be \b [0..100]
-     * @param right Right channel volume level. It should be \b [0..100]
-     */
-    void volumeChanged(int left, int right);
     /*!
      * Emitted when volume has muted or restored
      * @param muted new state of the volume (\b true - muted, \b false - unmuted)

@@ -47,6 +47,7 @@ public:
     explicit OutputWriter(QObject *parent = nullptr);
 
     virtual ~OutputWriter();
+
     /*!
      * Prepares object for usage and setups required audio parameters.
      * @param freq Sample rate.

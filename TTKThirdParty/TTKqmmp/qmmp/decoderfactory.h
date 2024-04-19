@@ -53,10 +53,8 @@ public:
     /*!
     * Object destructor.
     */
-    virtual ~DecoderFactory()
-    {
+    virtual ~DecoderFactory() = default;
 
-    }
     /*!
      * Returns \b true if plugin can decode data provided by \b d, otherwise returns \b false
      */

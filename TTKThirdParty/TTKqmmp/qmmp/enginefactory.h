@@ -54,10 +54,8 @@ public:
     /*!
     * Object destructor.
     */
-    virtual ~EngineFactory()
-    {
+    virtual ~EngineFactory() = default;
 
-    }
     /*!
      * Returns \b true if plugin supports \b source, otherwise returns \b false
      */

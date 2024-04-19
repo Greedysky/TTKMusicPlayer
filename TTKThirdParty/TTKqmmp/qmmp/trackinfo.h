@@ -35,7 +35,7 @@ public:
     /*!
      * Constructs a new empty TrackInfo object.
      */
-    TrackInfo();
+    TrackInfo() = default;
     /*!
      * Constructs a new empty TrackInfo that with file \b path (local path or URL).
      */
@@ -44,10 +44,7 @@ public:
      * Constructs a new TrackInfo that is a copy of the given \b other
      */
     TrackInfo(const TrackInfo &other);
-    /*!
-     * Destructor.
-     */
-    ~TrackInfo();
+
     /*!
      * This enum describes stored parts of track information.
      */
