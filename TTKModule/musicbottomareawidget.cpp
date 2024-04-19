@@ -6,7 +6,7 @@
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicrightareawidget.h"
-#include "musicripplespecturmmodule.h"
+#include "musicblurspecturmmodule.h"
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
 
@@ -19,7 +19,7 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
 
     createSystemTrayIcon();
     m_platformExtras = new MusicPlatformExtras(this);
-    m_rippleModule = new MusicRippleSpecturmModule(this);
+    m_blurModule = new MusicBlurSpecturmModule(this);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()
@@ -27,7 +27,7 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
     delete m_systemTrayMenu;
     delete m_systemTray;
     delete m_platformExtras;
-    delete m_rippleModule;
+    delete m_blurModule;
 }
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
@@ -39,7 +39,7 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication *ui)
 {
     m_ui = ui;
     //
-    m_rippleModule->initialize(ui->backgroundLayout, ui->bottomWidget);
+    m_blurModule->initialize(ui->backgroundLayout, ui->bottomWidget);
 
     ui->resizeLabelWidget->setPixmap(QPixmap(":/tiny/lb_resize_normal"));
     ui->musicSongTitle->setEffectOnResize(true);
@@ -204,11 +204,11 @@ void MusicBottomAreaWidget::applyParameter()
 
     if(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool())
     {
-        m_rippleModule->update(!G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool());
+        m_blurModule->update(!G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool());
     }
     else
     {
-        m_rippleModule->update(false);
+        m_blurModule->update(false);
     }
 }
 
@@ -225,7 +225,7 @@ void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
     }
 
     m_lrcWidgetShowFullScreen = !m_lrcWidgetShowFullScreen;
-    m_rippleModule->setVisible(m_lrcWidgetShowFullScreen);
+    m_blurModule->setVisible(m_lrcWidgetShowFullScreen);
 
     m_ui->topWidget->setVisible(m_lrcWidgetShowFullScreen);
     m_ui->bottomWidget->setVisible(m_lrcWidgetShowFullScreen);

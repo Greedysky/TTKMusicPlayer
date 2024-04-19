@@ -1,5 +1,5 @@
-#ifndef MUSICRIPPLESPECTURMMODULE_H
-#define MUSICRIPPLESPECTURMMODULE_H
+#ifndef MUSICBLURSPECTURMMODULE_H
+#define MUSICBLURSPECTURMMODULE_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -23,22 +23,22 @@
 #include <QBoxLayout>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the ripples spectrum object.
+/*! @brief The class of the blur spectrum object.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicRippleSpecturmModule : public QObject
+class TTK_MODULE_EXPORT MusicBlurSpecturmModule : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRippleSpecturmModule)
+    TTK_DECLARE_MODULE(MusicBlurSpecturmModule)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicRippleSpecturmModule(QObject *parent = nullptr);
+    explicit MusicBlurSpecturmModule(QObject *parent = nullptr);
     /*!
      * Object destructor.
      */
-    ~MusicRippleSpecturmModule();
+    ~MusicBlurSpecturmModule();
 
     /*!
      * Set ripple spectrum show or not.
@@ -72,4 +72,4 @@ private:
 
 };
 
-#endif // MUSICRIPPLESPECTURMMODULE_H
+#endif // MUSICBLURSPECTURMMODULE_H
