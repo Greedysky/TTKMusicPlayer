@@ -36,6 +36,7 @@ class ReplayGainReader
 {
 public:
     explicit ReplayGainReader(AVFormatContext *ic);
+
     QMap<Qmmp::ReplayGainKey, double> replayGainInfo() const;
 
 private:

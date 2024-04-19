@@ -8,11 +8,6 @@ FloridSurround::FloridSurround(QWidget *parent)
     setWindowTitle(tr("Florid Surround Widget"));
 }
 
-FloridSurround::~FloridSurround()
-{
-
-}
-
 void FloridSurround::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);

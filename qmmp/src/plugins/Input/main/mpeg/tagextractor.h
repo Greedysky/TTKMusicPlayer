@@ -39,7 +39,6 @@ class TagExtractor
 {
 public:
     explicit TagExtractor(QIODevice *input);
-    ~TagExtractor();
 
     const QMap<Qmmp::MetaData, QString> id3v2tag() const;
 

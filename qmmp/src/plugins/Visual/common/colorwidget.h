@@ -36,7 +36,6 @@ public:
      * Object contsructor.
      */
     explicit ColorWidget(QWidget *parent = nullptr);
-
     virtual ~ColorWidget();
 
     /*!

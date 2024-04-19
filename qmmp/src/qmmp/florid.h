@@ -85,7 +85,7 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~Florid();
+    virtual ~Florid() = default;
 
 public slots:
     /*!

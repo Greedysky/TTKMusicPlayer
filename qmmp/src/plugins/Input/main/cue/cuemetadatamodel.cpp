@@ -21,11 +21,6 @@ CUEMetaDataModel::CUEMetaDataModel(bool readOnly, const QString &path)
     m_cueFilePath = file.cueFilePath();
 }
 
-CUEMetaDataModel::~CUEMetaDataModel()
-{
-
-}
-
 QList<MetaDataItem> CUEMetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;

@@ -1,11 +1,6 @@
 #include <QMap>
 #include "audioparameters.h"
 
-AudioParameters::AudioParameters()
-{
-
-}
-
 AudioParameters::AudioParameters(const AudioParameters &other)
     : m_srate(other.sampleRate()),
       m_chan_map(other.channelMap()),
@@ -57,7 +52,7 @@ int AudioParameters::channels() const
     return m_chan_map.count();
 }
 
-const ChannelMap AudioParameters::channelMap() const
+const ChannelMap &AudioParameters::channelMap() const
 {
     return m_chan_map;
 }
@@ -100,7 +95,7 @@ AudioParameters::ByteOrder AudioParameters::byteOrder() const
     }
 }
 
-const QString AudioParameters::toString() const
+QString AudioParameters::toString() const
 {
     static const struct
     {

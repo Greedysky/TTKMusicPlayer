@@ -18,11 +18,6 @@ Decoder::Decoder(QIODevice *input)
 
 }
 
-Decoder::~Decoder()
-{
-
-}
-
 void Decoder::setReplayGainInfo(const QMap<Qmmp::ReplayGainKey, double> &rg)
 {
     m_rg = rg;
@@ -100,13 +95,13 @@ void Decoder::setProperty(Qmmp::TrackProperty key, const QVariant &value)
 
 void Decoder::setProperties(const QMap<Qmmp::TrackProperty, QString> &properties)
 {
-    for(const Qmmp::TrackProperty &key : properties.keys())
+    for(auto it = properties.begin(); it != properties.end(); ++it)
     {
-        setProperty(key, properties.value(key));
+        setProperty(it.key(), it.value());
     }
 }
 
-const QMap<Qmmp::TrackProperty, QString> &Decoder::properties() const
+QMap<Qmmp::TrackProperty, QString> Decoder::properties() const
 {
     return m_properties;
 }
@@ -116,7 +111,7 @@ QStringList Decoder::m_disabledNames;
 QList<QmmpPluginCache*> *Decoder::m_cache = nullptr;
 
 //sort cache items by priority
-static bool _pluginCacheLessComparator(QmmpPluginCache* f1, QmmpPluginCache* f2)
+static bool _pluginCacheLessComparator(const QmmpPluginCache* f1, const QmmpPluginCache* f2)
 {
     return f1->priority() < f2->priority();
 }

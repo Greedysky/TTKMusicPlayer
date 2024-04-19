@@ -6,11 +6,6 @@
 #include "qmmpplugincache_p.h"
 #include "output.h"
 
-Output::Output()
-{
-
-}
-
 void Output::configure(quint32 freq, ChannelMap map, Qmmp::AudioFormat format)
 {
     m_frequency = freq;
@@ -62,11 +57,6 @@ void Output::resume()
 void Output::setTrackInfo(const TrackInfo &info)
 {
     Q_UNUSED(info);
-}
-
-Output::~Output()
-{
-
 }
 
 // static methods

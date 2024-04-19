@@ -27,7 +27,7 @@ void InputSource::stop()
 
 }
 
-const QString InputSource::path() const
+QString InputSource::path() const
 {
     return m_path;
 }

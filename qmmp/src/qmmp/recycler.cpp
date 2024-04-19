@@ -3,11 +3,6 @@
 #include "audioparameters.h"
 #include "buffer.h"
 
-Recycler::Recycler()
-{
-
-}
-
 Recycler::~Recycler()
 {
     for(unsigned int i = 0; i < m_buffer_count; ++i)

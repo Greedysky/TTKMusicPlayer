@@ -60,7 +60,6 @@ class VorbisCommentModel : public TagModel
 {
 public:
     explicit VorbisCommentModel(VorbisMetaDataModel *model);
-    virtual ~VorbisCommentModel();
 
     virtual QString name() const override final;
     virtual QString value(Qmmp::MetaData key) const override final;

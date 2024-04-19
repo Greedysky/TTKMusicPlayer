@@ -45,10 +45,8 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~VisualFactory()
-    {
+    virtual ~VisualFactory() = default;
 
-    }
      /*!
      * Returns visual plugin properties.
      */

@@ -6,16 +6,6 @@
 #include "effectfactory.h"
 #include "effect.h"
 
-Effect::Effect()
-{
-
-}
-
-Effect::~Effect()
-{
-
-}
-
 void Effect::configure(quint32 freq, ChannelMap map)
 {
     m_freq = freq;
@@ -33,12 +23,12 @@ int Effect::channels() const
     return m_channels;
 }
 
-const ChannelMap Effect::channelMap() const
+const ChannelMap &Effect::channelMap() const
 {
     return m_chan_map;
 }
 
-const AudioParameters Effect::audioParameters() const
+AudioParameters Effect::audioParameters() const
 {
     return AudioParameters(m_freq, m_chan_map, Qmmp::PCM_FLOAT);
 }
@@ -48,7 +38,7 @@ EffectFactory* Effect::factory() const
     return m_factory;
 }
 
-bool _effectCacheCompareFunc(QmmpPluginCache *e1, QmmpPluginCache *e2)
+bool _effectCacheCompareFunc(const QmmpPluginCache *e1, const QmmpPluginCache *e2)
 {
     return e1->priority() > e2->priority();
 }

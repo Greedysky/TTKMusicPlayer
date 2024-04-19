@@ -10,11 +10,6 @@ TagExtractor::TagExtractor(QIODevice *input)
 
 }
 
-TagExtractor::~TagExtractor()
-{
-
-}
-
 const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag() const
 {
     QByteArray array = m_input->peek(2048);

@@ -8,11 +8,6 @@ StateChangedEvent::StateChangedEvent(Qmmp::State currentState, Qmmp::State previ
 
 }
 
-StateChangedEvent::~StateChangedEvent()
-{
-
-}
-
 Qmmp::State StateChangedEvent::currentState() const
 {
     return m_state;
@@ -30,12 +25,7 @@ StreamInfoChangedEvent::StreamInfoChangedEvent(const QHash<QString, QString> &in
 
 }
 
-StreamInfoChangedEvent::~StreamInfoChangedEvent()
-{
-
-}
-
-const QHash<QString, QString> &StreamInfoChangedEvent::streamInfo() const
+QHash<QString, QString> StreamInfoChangedEvent::streamInfo() const
 {
     return m_streamInfo;
 }
@@ -43,11 +33,6 @@ const QHash<QString, QString> &StreamInfoChangedEvent::streamInfo() const
 TrackInfoEvent::TrackInfoEvent(const TrackInfo &info)
     : QEvent(EVENT_TRACK_INFO_CHANGED),
       m_info(info)
-{
-
-}
-
-TrackInfoEvent::~TrackInfoEvent()
 {
 
 }

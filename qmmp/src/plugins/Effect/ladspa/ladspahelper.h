@@ -30,7 +30,6 @@ class LADSPAHelper : public Effect
 {
 public:
     LADSPAHelper();
-    virtual ~LADSPAHelper();
 
     virtual void applyEffect(Buffer *b) override final;
     virtual void configure(quint32 freq, ChannelMap map) override final;

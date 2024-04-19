@@ -10,11 +10,6 @@ FloridBass::FloridBass(QWidget *parent)
     m_timer->setInterval(QMMP_VISUAL_INTERVAL * 1.5);
 }
 
-FloridBass::~FloridBass()
-{
-
-}
-
 void FloridBass::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);

@@ -101,11 +101,6 @@ WavPackFileTagModel::WavPackFileTagModel(WavpackContext *ctx)
 
 }
 
-WavPackFileTagModel::~WavPackFileTagModel()
-{
-
-}
-
 QString WavPackFileTagModel::name() const
 {
     return "ID3v1/APEv2";

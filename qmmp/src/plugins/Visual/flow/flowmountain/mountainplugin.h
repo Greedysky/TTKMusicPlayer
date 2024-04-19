@@ -31,7 +31,6 @@ class MountainPlugin : public Visual
     Q_OBJECT
 public:
     explicit MountainPlugin(QWidget *parent = nullptr);
-    virtual ~MountainPlugin();
 
 private:
     virtual void contextMenuEvent(QContextMenuEvent *) override final;

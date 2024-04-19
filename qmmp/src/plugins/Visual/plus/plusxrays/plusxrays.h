@@ -29,7 +29,6 @@ class PlusXRays : public Visual
     Q_OBJECT
 public:
     explicit PlusXRays(QWidget *parent = nullptr);
-    virtual ~PlusXRays();
 
 private slots:
     void readSettings();

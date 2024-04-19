@@ -18,11 +18,6 @@ MountainPlugin::MountainPlugin(QWidget *parent)
     setLayout(layout);
 }
 
-MountainPlugin::~MountainPlugin()
-{
-
-}
-
 void MountainPlugin::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);

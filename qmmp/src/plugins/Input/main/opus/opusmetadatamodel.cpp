@@ -124,11 +124,6 @@ VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::Opus::File *file)
 
 }
 
-VorbisCommentModel::~VorbisCommentModel()
-{
-
-}
-
 QString VorbisCommentModel::name() const
 {
     return "Vorbis Comment";

@@ -44,7 +44,6 @@ class MountainWidget : public QGLWidget
     Q_OBJECT
 public:
     explicit MountainWidget(QWidget *parent = nullptr);
-    virtual ~MountainWidget();
 
     void addBuffer(float *left);
 

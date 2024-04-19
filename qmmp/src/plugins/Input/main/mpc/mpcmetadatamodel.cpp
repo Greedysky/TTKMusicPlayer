@@ -42,11 +42,6 @@ MPCFileTagModel::MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::Tag
     }
 }
 
-MPCFileTagModel::~MPCFileTagModel()
-{
-
-}
-
 QString MPCFileTagModel::name() const
 {
     if(m_type == TagLib::MPC::File::ID3v1)

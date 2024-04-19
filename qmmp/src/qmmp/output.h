@@ -42,11 +42,12 @@ public:
     /*!
      * Object contsructor.
      */
-    Output();
+    Output() = default;
     /*!
      * Destructor.
      */
-    virtual ~Output();
+    virtual ~Output() = default;
+
     /*!
      * Prepares object for usage and setups required audio parameters.
      * Subclass should reimplement this function.

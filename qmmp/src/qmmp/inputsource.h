@@ -42,6 +42,7 @@ public:
      * @param parent Parent object.
      */
     explicit InputSource(const QString &path, QObject *parent = nullptr);
+
     /*!
      * Returns QIODevice-based object for I/O operations.
      * Subclass shoud reimplement this function.
@@ -74,7 +75,7 @@ public:
     /*!
      * Returns input source path or url.
      */
-    const QString path() const;
+    QString path() const;
     /*!
      * Returns start position in ms;
      */

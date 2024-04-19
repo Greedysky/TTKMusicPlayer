@@ -42,6 +42,7 @@ public:
      * Destructor.
      */
     ~StateHandler();
+
     /*!
      * Sends information about playback progress.
      * @param elapsed Current time (in milliseconds).

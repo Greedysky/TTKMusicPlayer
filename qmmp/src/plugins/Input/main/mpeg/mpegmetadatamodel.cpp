@@ -188,11 +188,6 @@ MpegFileTagModel::MpegFileTagModel(TagLib::MPEG::File *file, TagLib::MPEG::File:
     settings.endGroup();
 }
 
-MpegFileTagModel::~MpegFileTagModel()
-{
-
-}
-
 QString MpegFileTagModel::name() const
 {
     if(m_type == TagLib::MPEG::File::ID3v1)

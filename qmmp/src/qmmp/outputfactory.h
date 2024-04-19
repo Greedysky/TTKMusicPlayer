@@ -47,10 +47,8 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~OutputFactory()
-    {
+    virtual ~OutputFactory() = default;
 
-    }
     /*!
      * Returns output plugin properties.
      */

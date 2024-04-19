@@ -201,11 +201,6 @@ VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::XiphComment *tag, TagLib::Fi
 
 }
 
-VorbisCommentModel::~VorbisCommentModel()
-{
-
-}
-
 QString VorbisCommentModel::name() const
 {
     return "Vorbis Comment";

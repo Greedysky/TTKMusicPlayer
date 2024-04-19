@@ -88,6 +88,7 @@ public:
         IsCueEditable = 0x4         /*!< Enable CUE editor. */
     };
     Q_DECLARE_FLAGS(DialogHints, DialogHint)
+
     /*!
      * Constructor.
      * @param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
@@ -97,7 +98,8 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~MetaDataModel();
+    virtual ~MetaDataModel() = default;
+
     /*!
      * Returns extra properties of the media source (in addition to the \b Qmmp::TrackProperty values).
      * Default implemetation returns empty array.

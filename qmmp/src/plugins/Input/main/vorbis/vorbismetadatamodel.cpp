@@ -107,11 +107,6 @@ VorbisCommentModel::VorbisCommentModel(VorbisMetaDataModel *model)
 
 }
 
-VorbisCommentModel::~VorbisCommentModel()
-{
-
-}
-
 QString VorbisCommentModel::name() const
 {
     return "Vorbis Comment";

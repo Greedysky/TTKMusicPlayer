@@ -82,11 +82,6 @@ CueFile::CueFile(const QString &path)
     }
 }
 
-CueFile::~CueFile()
-{
-
-}
-
 QString CueFile::cueFilePath() const
 {
     return m_path;

@@ -32,7 +32,7 @@ QmmpAudioEngine::QmmpAudioEngine(QObject *parent)
 
 QmmpAudioEngine::~QmmpAudioEngine()
 {
-    stop();
+    QmmpAudioEngine::stop();
     reset();
     if(m_output_buf)
         delete[] m_output_buf;

@@ -29,7 +29,6 @@ class OuterRaysWave : public Visual
     Q_OBJECT
 public:
     explicit OuterRaysWave(QWidget *parent = nullptr);
-    virtual ~OuterRaysWave();
 
 private:
     virtual void paintEvent(QPaintEvent *e) override final;

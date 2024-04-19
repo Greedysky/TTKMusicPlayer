@@ -45,11 +45,6 @@ MetaDataModel::MetaDataModel(bool readOnly, DialogHints hints)
 
 }
 
-MetaDataModel::~MetaDataModel()
-{
-
-}
-
 QList<MetaDataItem> MetaDataModel::extraProperties() const
 {
     return QList<MetaDataItem>();

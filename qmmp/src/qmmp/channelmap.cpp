@@ -27,7 +27,7 @@ int ChannelMap::mask() const
     return mask;
 }
 
-const ChannelMap ChannelMap::remaped() const
+ChannelMap ChannelMap::remaped() const
 {
     ChannelMap map;
     for(int i = 0; i < 9; ++i)
@@ -42,9 +42,8 @@ const ChannelMap ChannelMap::remaped() const
     return map;
 }
 
-const QString ChannelMap::toString() const
+QString ChannelMap::toString() const
 {
-    QStringList list;
     QHash<Qmmp::ChannelPosition, QString> names;
     names.insert(Qmmp::CHAN_NULL, "NA");
     names.insert(Qmmp::CHAN_FRONT_LEFT, "FL");
@@ -57,6 +56,7 @@ const QString ChannelMap::toString() const
     names.insert(Qmmp::CHAN_SIDE_LEFT, "SL");
     names.insert(Qmmp::CHAN_SIDE_RIGHT, "SR");
 
+    QStringList list;
     for(const Qmmp::ChannelPosition channel : qAsConst(*this))
     {
        list << names.value(channel);

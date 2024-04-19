@@ -2,11 +2,6 @@
 #include <QTextCodec>
 #include "cueparser.h"
 
-CueParser::CueParser()
-{
-
-}
-
 CueParser::CueParser(const QByteArray &data, const QByteArray &codecName)
 {
     loadData(data, codecName);
@@ -199,7 +194,7 @@ bool CueParser::isEmpty() const
     return m_tracks.isEmpty();
 }
 
-const TrackInfo *CueParser::info(int track) const
+TrackInfo *CueParser::info(int track) const
 {
     if(track < 1 || track > m_tracks.count())
     {
@@ -291,7 +286,7 @@ QStringList CueParser::splitLine(const QString &line)
         //qDebug(qPrintable(buf));
         if(buf.startsWith('"'))
         {
-            int end = buf.indexOf('"',1);
+            int end = buf.indexOf('"', 1);
             if(end == -1) //ignore invalid line
             {
                 list.clear();
@@ -299,7 +294,7 @@ QStringList CueParser::splitLine(const QString &line)
                 return list;
             }
             list << buf.mid (1, end - 1);
-            buf.remove (0, end+1);
+            buf.remove (0, end + 1);
         }
         else
         {
@@ -318,8 +313,8 @@ qint64 CueParser::getLength(const QString &str)
 {
     const QStringList &list = str.split(":");
     if(list.count() == 2)
-        return (qint64)list.at(0).toInt()*60000 + list.at(1).toInt()*1000;
+        return (qint64)list.at(0).toInt() * 60000 + list.at(1).toInt() * 1000;
     else if(list.count() == 3)
-        return (qint64)list.at(0).toInt()*60000 + list.at(1).toInt()*1000 + list.at(2).toInt()*1000/75;
+        return (qint64)list.at(0).toInt() * 60000 + list.at(1).toInt() * 1000 + list.at(2).toInt() * 1000 / 75;
     return 0;
 }

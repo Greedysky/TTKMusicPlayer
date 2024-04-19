@@ -59,7 +59,6 @@ class ApeTagModel : public TagModel
 {
 public:
     explicit ApeTagModel(TagLib::APE::File *file);
-    virtual ~ApeTagModel();
 
     virtual QString name() const override final;
     virtual QList<Qmmp::MetaData> keys() const override final;

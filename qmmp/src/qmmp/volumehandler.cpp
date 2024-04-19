@@ -35,8 +35,8 @@ VolumeHandler::~VolumeHandler()
 void VolumeHandler::setVolume(int left, int right)
 {
     VolumeSettings v;
-    v.left = qBound(0,left,100);
-    v.right = qBound(0,right,100);
+    v.left = qBound(0, left, 100);
+    v.right = qBound(0, right, 100);
     if(m_volume)
     {
         m_volume->setVolume(v);
@@ -61,15 +61,15 @@ void VolumeHandler::changeVolume(int delta)
 void VolumeHandler::setVolume(int volume)
 {
     volume = qBound(0, volume, 100);
-    setVolume(volume-qMax(balance(),0)*volume/100,
-              volume+qMin(balance(),0)*volume/100);
+    setVolume(volume - qMax(balance(), 0) * volume / 100,
+              volume + qMin(balance(), 0) * volume / 100);
 }
 
 void VolumeHandler::setBalance(int balance)
 {
     balance = qBound(-100, balance, 100);
-    setVolume(volume()-qMax(balance,0)*volume()/100,
-              volume()+qMin(balance,0)*volume()/100);
+    setVolume(volume() - qMax(balance, 0) * volume() / 100,
+              volume() + qMin(balance, 0) * volume() / 100);
 }
 
 void VolumeHandler::setMuted(bool muted)
@@ -160,7 +160,6 @@ void VolumeHandler::checkVolume()
 {
     if(!m_volume) //soft volume
     {
-        emit volumeChanged(m_settings.left, m_settings.right);
         emit volumeChanged(volume());
         emit balanceChanged(balance());
         return;
@@ -180,13 +179,11 @@ void VolumeHandler::checkVolume()
     if(m_settings != v) //volume has been changed
     {
         m_settings = v;
-        emit volumeChanged(v.left, v.right);
         emit volumeChanged(volume());
         emit balanceChanged(balance());
     }
     else if(m_prev_block && !signalsBlocked()) //signals have been unblocked
     {
-        emit volumeChanged(v.left, v.right);
         emit volumeChanged(volume());
         emit balanceChanged(balance());
     }

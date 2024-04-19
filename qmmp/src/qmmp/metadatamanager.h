@@ -114,6 +114,7 @@ public:
 private:
     MetaDataManager();
     ~MetaDataManager();
+
     static void destroy();
 
     struct CoverCacheItem

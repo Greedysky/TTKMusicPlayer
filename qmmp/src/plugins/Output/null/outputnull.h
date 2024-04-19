@@ -30,7 +30,6 @@ class OutputNull : public Output
 {
 public:
     OutputNull();
-    virtual ~OutputNull();
 
     virtual bool initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format) override final;
 

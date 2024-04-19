@@ -1,10 +1,5 @@
 #include "trackinfo.h"
 
-TrackInfo::TrackInfo()
-{
-
-}
-
 TrackInfo::TrackInfo(const QString &path)
     : m_path(path)
 {
@@ -14,11 +9,6 @@ TrackInfo::TrackInfo(const QString &path)
 TrackInfo::TrackInfo(const TrackInfo &other)
 {
     *this = other;
-}
-
-TrackInfo::~TrackInfo()
-{
-
 }
 
 TrackInfo &TrackInfo::operator=(const TrackInfo &info)
@@ -161,20 +151,26 @@ void TrackInfo::setValues(const QMap<Qmmp::ReplayGainKey, double> &replayGainInf
 
 void TrackInfo::updateValues(const QMap<Qmmp::MetaData, QString> &metaData)
 {
-    for(const Qmmp::MetaData &key : metaData.keys())
-        setValue(key, metaData[key]);
+    for(auto it = metaData.begin(); it != metaData.end(); ++it)
+    {
+        setValue(it.key(), it.value());
+    }
 }
 
 void TrackInfo::updateValues(const QMap<Qmmp::TrackProperty, QString> &properties)
 {
-    for(const Qmmp::TrackProperty &key : properties.keys())
-        setValue(key, properties[key]);
+    for(auto it = properties.begin(); it != properties.end(); ++it)
+    {
+        setValue(it.key(), it.value());
+    }
 }
 
 void TrackInfo::updateValues(const QMap<Qmmp::ReplayGainKey, double> &replayGainInfo)
 {
-    for(const Qmmp::ReplayGainKey &key : replayGainInfo.keys())
-        setValue(key, replayGainInfo[key]);
+    for(auto it = replayGainInfo.begin(); it != replayGainInfo.end(); ++it)
+    {
+        setValue(it.key(), it.value());
+    }
 }
 
 void TrackInfo::setPath(const QString &path)

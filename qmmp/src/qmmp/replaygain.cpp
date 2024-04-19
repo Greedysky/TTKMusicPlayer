@@ -2,16 +2,6 @@
 #include "buffer.h"
 #include "replaygain_p.h"
 
-ReplayGain::ReplayGain()
-{
-
-}
-
-ReplayGain::~ReplayGain()
-{
-
-}
-
 void ReplayGain::setReplayGainInfo(const QMap<Qmmp::ReplayGainKey, double> &info)
 {
     m_info = info;
@@ -65,11 +55,11 @@ void ReplayGain::updateScale()
     switch(m_mode)
     {
     case QmmpSettings::REPLAYGAIN_TRACK:
-        m_scale = pow(10.0, m_info[Qmmp::REPLAYGAIN_TRACK_GAIN]/20);
+        m_scale = pow(10.0, m_info[Qmmp::REPLAYGAIN_TRACK_GAIN] / 20);
         peak = m_info[Qmmp::REPLAYGAIN_TRACK_PEAK];
         break;
     case QmmpSettings::REPLAYGAIN_ALBUM:
-        m_scale = pow(10.0, m_info[Qmmp::REPLAYGAIN_ALBUM_GAIN]/20);
+        m_scale = pow(10.0, m_info[Qmmp::REPLAYGAIN_ALBUM_GAIN] / 20);
         peak = m_info[Qmmp::REPLAYGAIN_ALBUM_PEAK];
         break;
     case QmmpSettings::REPLAYGAIN_DISABLED:
@@ -77,8 +67,8 @@ void ReplayGain::updateScale()
         return;
     }
     if(m_scale == 1.0)
-        m_scale = pow(10.0, m_default_gain/20);
-    m_scale *= pow(10.0, m_preamp/20);
+        m_scale = pow(10.0, m_default_gain / 20);
+    m_scale *= pow(10.0, m_preamp / 20);
     if(peak > 0.0 && m_prevent_clipping)
         m_scale = m_scale*peak > 1.0 ? 1.0 / peak : m_scale;
     m_scale = qMin(m_scale, 5.6234); // +15 dB

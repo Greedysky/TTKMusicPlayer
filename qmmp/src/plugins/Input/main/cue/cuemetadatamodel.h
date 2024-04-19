@@ -32,7 +32,6 @@ class CUEMetaDataModel : public MetaDataModel
 {
 public:
     explicit CUEMetaDataModel(bool readOnly, const QString &path);
-    virtual ~CUEMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override final;
     virtual QString coverPath() const override final;

@@ -32,7 +32,6 @@ SoundCore::SoundCore(QObject *parent)
     connect(m_handler, SIGNAL(bufferingProgress(int)), SIGNAL(bufferingProgress(int)));
     connect(QmmpSettings::instance(), SIGNAL(eqSettingsChanged()), SIGNAL(eqSettingsChanged()));
     connect(QmmpSettings::instance(), SIGNAL(audioSettingsChanged()), m_volumeControl, SLOT(reload()));
-    connect(m_volumeControl, SIGNAL(volumeChanged(int, int)), SIGNAL(volumeChanged(int, int)));
     connect(m_volumeControl, SIGNAL(volumeChanged(int)), SIGNAL(volumeChanged(int)));
     connect(m_volumeControl, SIGNAL(balanceChanged(int)), SIGNAL(balanceChanged(int)));
     connect(m_volumeControl, SIGNAL(mutedChanged(bool)), SIGNAL(mutedChanged(bool)));
@@ -102,7 +101,7 @@ void SoundCore::seek(qint64 time)
         m_engine->seek(time);
 }
 
-const QString SoundCore::path() const
+QString SoundCore::path() const
 {
     return m_path;
 }

@@ -47,6 +47,11 @@ class QMMP_EXPORT InputSourceFactory
 {
 public:
     /*!
+    * Object destructor.
+    */
+    virtual ~InputSourceFactory() = default;
+
+    /*!
      * Returns transport plugin properties.
      */
     virtual InputSourceProperties properties() const = 0;

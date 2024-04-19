@@ -74,11 +74,6 @@ FloridAutism::FloridAutism(QWidget *parent)
     m_timer->setInterval(700);
 }
 
-FloridAutism::~FloridAutism()
-{
-
-}
-
 void FloridAutism::resizeEvent(QResizeEvent *)
 {
     for(AutismLabel *label : qAsConst(m_labels))

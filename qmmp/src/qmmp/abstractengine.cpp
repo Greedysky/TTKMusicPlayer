@@ -14,11 +14,6 @@ AbstractEngine::AbstractEngine(QObject *parent)
 
 }
 
-AbstractEngine::~AbstractEngine()
-{
-
-}
-
 QMutex *AbstractEngine::mutex()
 {
     return &m_mutex;

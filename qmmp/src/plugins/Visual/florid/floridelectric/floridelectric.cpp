@@ -227,11 +227,6 @@ FloridElectric::FloridElectric(QWidget *parent)
     m_label = new ElectricLabel(this);
 }
 
-FloridElectric::~FloridElectric()
-{
-
-}
-
 void FloridElectric::start()
 {
     Florid::start();

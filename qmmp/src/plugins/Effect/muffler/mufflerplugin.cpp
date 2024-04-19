@@ -6,11 +6,6 @@ MufflerPlugin::MufflerPlugin()
 
 }
 
-MufflerPlugin::~MufflerPlugin()
-{
-
-}
-
 void MufflerPlugin::applyEffect(Buffer *b)
 {
     if(channels() != 2)

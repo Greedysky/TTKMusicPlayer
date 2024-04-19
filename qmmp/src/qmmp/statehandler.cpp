@@ -32,18 +32,18 @@ void StateHandler::dispatch(qint64 elapsed, int bitrate)
     if(qAbs(m_elapsed - elapsed) > TICK_INTERVAL)
     {
         m_elapsed = elapsed;
-        emit (elapsedChanged(elapsed));
+        emit elapsedChanged(elapsed);
         if(m_bitrate != bitrate)
         {
             m_bitrate = bitrate;
-            emit (bitrateChanged(bitrate));
+            emit bitrateChanged(bitrate);
         }
         if((SoundCore::instance()->duration() > PREFINISH_TIME)
                  && (m_duration - m_elapsed < PREFINISH_TIME)
                  && m_sendAboutToFinish)
         {
             m_sendAboutToFinish = false;
-            if(m_duration - m_elapsed > PREFINISH_TIME/2)
+            if(m_duration - m_elapsed > PREFINISH_TIME / 2)
                 qApp->postEvent(parent(), new QEvent(EVENT_NEXT_TRACK_REQUEST));
         }
     }
@@ -127,8 +127,7 @@ void StateHandler::dispatch(Qmmp::State state)
 {
     m_mutex.lock();
     //clear
-    QList<Qmmp::State> clearStates;
-    clearStates << Qmmp::Stopped << Qmmp::NormalError << Qmmp::FatalError;
+    static const QList<Qmmp::State> clearStates = { Qmmp::Stopped, Qmmp::NormalError, Qmmp::FatalError };
     if(clearStates.contains(state))
     {
         m_elapsed = -1;
@@ -140,8 +139,7 @@ void StateHandler::dispatch(Qmmp::State state)
     }
     if(m_state != state)
     {
-        QStringList states;
-        states << "Playing" << "Paused" << "Stopped" << "Buffering" << "NormalError" << "FatalError";
+        static const QStringList states = { "Playing", "Paused", "Stopped", "Buffering", "NormalError", "FatalError" };
         qDebug("StateHandler: Current state: %s; previous state: %s",
                qPrintable(states.at(state)), qPrintable(states.at(m_state)));
         Qmmp::State prevState = state;

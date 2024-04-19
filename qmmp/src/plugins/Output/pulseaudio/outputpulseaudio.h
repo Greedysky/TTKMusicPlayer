@@ -70,7 +70,7 @@ private:
     pa_mainloop *m_loop = nullptr;
     pa_context *m_ctx = nullptr;
     pa_stream *m_stream = nullptr;
-    QHash <Qmmp::ChannelPosition, pa_channel_position_t> m_pa_channels;
+    QHash<Qmmp::ChannelPosition, pa_channel_position_t> m_pa_channels;
 
 };
 

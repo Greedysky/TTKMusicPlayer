@@ -28,7 +28,6 @@ class MufflerPlugin : public Effect
 {
 public:
     MufflerPlugin();
-    virtual ~MufflerPlugin();
 
     virtual void applyEffect(Buffer *b) override final;
 

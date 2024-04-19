@@ -8,11 +8,6 @@ DecoderGME::DecoderGME(const QString &path)
 
 }
 
-DecoderGME::~DecoderGME()
-{
-
-}
-
 bool DecoderGME::initialize()
 {
     int track = m_path.section("#", -1).toInt();

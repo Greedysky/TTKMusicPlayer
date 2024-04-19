@@ -28,14 +28,8 @@
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class CDATrack
+struct CDATrack
 {
-public:
-    CDATrack()
-    {
-
-    }
-
     TrackInfo info;
     lsn_t first_sector = 0;
     lsn_t last_sector = 0;

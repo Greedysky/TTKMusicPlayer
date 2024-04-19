@@ -33,7 +33,6 @@ class DecoderGME : public Decoder
 {
 public:
     explicit DecoderGME(const QString &path);
-    virtual ~DecoderGME();
 
     // Standard Decoder API
     virtual bool initialize() override final;

@@ -62,7 +62,6 @@ class VorbisCommentModel : public TagModel
 {
 public:
     VorbisCommentModel(TagLib::Ogg::XiphComment *tag, TagLib::File *file);
-    virtual ~VorbisCommentModel();
 
     virtual QString name() const override final;
     virtual QString value(Qmmp::MetaData key) const override final;

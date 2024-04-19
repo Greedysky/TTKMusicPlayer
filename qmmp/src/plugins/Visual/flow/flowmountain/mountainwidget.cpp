@@ -14,11 +14,6 @@ MountainWidget::MountainWidget(QWidget *parent)
     memset(m_bars, 0, sizeof(m_bars));
 }
 
-MountainWidget::~MountainWidget()
-{
-
-}
-
 void MountainWidget::addBuffer(float *left)
 {
     generateLogGraph(left, m_bars[m_offset]);

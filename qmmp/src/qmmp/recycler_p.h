@@ -35,11 +35,12 @@ public:
     /*!
      * Constructor.
      */
-    Recycler();
+    Recycler() = default;
     /*!
      * Destructor.
      */
     ~Recycler();
+
     /*!
      * Setups audio parameters of output interface.
      * @param freq Sample rate.

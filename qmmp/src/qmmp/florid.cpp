@@ -83,11 +83,6 @@ Florid::Florid(QWidget *parent)
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
 }
 
-Florid::~Florid()
-{
-
-}
-
 void Florid::setImage(const QImage &image)
 {
     m_image = image;

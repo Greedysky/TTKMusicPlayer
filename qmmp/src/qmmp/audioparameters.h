@@ -37,10 +37,12 @@ public:
         LittleEndian = 0, /*!< Samples are in little-endian byte order */
         BigEndian         /*!< Samples are in big-endian byte order */
     };
+
     /*!
      * Constructor.
      */
-    AudioParameters();
+    AudioParameters() = default;
+
     /*!
      * Constructs audio settings with the given parameters.
      * @param srate Sampling rate.
@@ -75,7 +77,7 @@ public:
     /*!
      * Returns channel map.
      */
-    const ChannelMap channelMap() const;
+    const ChannelMap &channelMap() const;
     /*!
      * Returns pcm format.
      */
@@ -106,7 +108,7 @@ public:
      * Returns string represention of the audio parameters.
      * May be useful for debug purposes.
      */
-    const QString toString() const;
+    QString toString() const;
     /*!
      * Returns sample size in bytes of the given pcm data \b format.
      */

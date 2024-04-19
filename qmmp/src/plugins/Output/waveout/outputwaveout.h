@@ -60,9 +60,6 @@ private:
 class VolumeWaveOut : public Volume
 {
 public:
-    VolumeWaveOut();
-    virtual ~VolumeWaveOut();
-
     virtual void setVolume(const VolumeSettings &vol) override final;
     virtual VolumeSettings volume() const override final;
 

@@ -31,7 +31,6 @@ class FlowVUMeter : public Visual
     Q_OBJECT
 public:
     explicit FlowVUMeter(QWidget *parent = nullptr);
-    virtual ~FlowVUMeter();
 
 private slots:
     void rangeChanged(QAction *action);

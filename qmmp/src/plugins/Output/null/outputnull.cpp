@@ -7,11 +7,6 @@ OutputNull::OutputNull()
 
 }
 
-OutputNull::~OutputNull()
-{
-
-}
-
 bool OutputNull::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format)
 {
     switch(format)

@@ -226,16 +226,6 @@ void OutputWaveOut::uninitialize()
 }
 
 /***** MIXER *****/
-VolumeWaveOut::VolumeWaveOut()
-{
-
-}
-
-VolumeWaveOut::~VolumeWaveOut()
-{
-
-}
-
 void VolumeWaveOut::setVolume(const VolumeSettings &vol)
 {
     DWORD data = (vol.right*0xFFFF/100 << 16) | vol.left*0xFFFF/100;

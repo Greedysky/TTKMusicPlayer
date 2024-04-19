@@ -21,11 +21,6 @@ FlowVUMeter::FlowVUMeter(QWidget *parent)
     setMinimumSize(m_pixmap.size());
 }
 
-FlowVUMeter::~FlowVUMeter()
-{
-
-}
-
 void FlowVUMeter::rangeChanged(QAction *action)
 {
     m_rangeValue = action->data().toInt();

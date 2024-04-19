@@ -29,7 +29,6 @@ class FloridSurround : public Florid
     Q_OBJECT
 public:
     explicit FloridSurround(QWidget *parent = nullptr);
-    virtual ~FloridSurround();
 
 private:
     virtual void paintEvent(QPaintEvent *e) override final;

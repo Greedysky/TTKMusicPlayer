@@ -42,10 +42,6 @@
     } \
 }
 
-AudioConverter::AudioConverter()
-{
-
-}
 
 void AudioConverter::configure(Qmmp::AudioFormat f)
 {

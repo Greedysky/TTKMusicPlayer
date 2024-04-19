@@ -6,11 +6,6 @@
 #include <taglib/mpegfile.h>
 #include <taglib/attachedpictureframe.h>
 
-TagMeta::TagMeta()
-{
-
-}
-
 TagMeta::TagMeta(const QString &file)
     : m_path(file)
 {

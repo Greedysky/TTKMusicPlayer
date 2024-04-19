@@ -75,11 +75,6 @@ FFapFileTagModel::FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::T
     }
 }
 
-FFapFileTagModel::~FFapFileTagModel()
-{
-
-}
-
 QString FFapFileTagModel::name() const
 {
     if(m_type == TagLib::APE::File::ID3v1)

@@ -21,11 +21,6 @@ static inline void stereo_from_multichannel(float *l, float *r, float *s, long c
     }
 }
 
-VisualBuffer::VisualBuffer()
-{
-
-}
-
 void VisualBuffer::add(float *pcm, int samples, int channels, qint64 ts, qint64 delay)
 {
     m_add_index++;

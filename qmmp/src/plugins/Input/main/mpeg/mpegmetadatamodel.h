@@ -58,7 +58,6 @@ class MpegFileTagModel : public TagModel
 {
 public:
     MpegFileTagModel(TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes type);
-    virtual ~MpegFileTagModel();
 
     virtual QString name() const override final;
     virtual QList<Qmmp::MetaData> keys() const override final;

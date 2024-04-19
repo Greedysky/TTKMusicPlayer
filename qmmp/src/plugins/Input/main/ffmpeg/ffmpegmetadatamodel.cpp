@@ -126,11 +126,6 @@ ApeTagModel::ApeTagModel(TagLib::APE::File *file)
 
 }
 
-ApeTagModel::~ApeTagModel()
-{
-
-}
-
 QString ApeTagModel::name() const
 {
     return QLatin1String("APE");

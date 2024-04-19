@@ -52,7 +52,6 @@ class MPCFileTagModel : public TagModel
 {
 public:
     MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes type);
-    virtual ~MPCFileTagModel();
 
     virtual QString name() const override final;
     virtual QList<Qmmp::MetaData> keys() const override final;

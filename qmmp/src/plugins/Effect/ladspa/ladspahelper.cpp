@@ -12,11 +12,6 @@ LADSPAHelper::LADSPAHelper()
     }
 }
 
-LADSPAHelper::~LADSPAHelper()
-{
-
-}
-
 void LADSPAHelper::applyEffect(Buffer *b)
 {
     LADSPAHost::instance()->applyEffect(b->data, b->samples);

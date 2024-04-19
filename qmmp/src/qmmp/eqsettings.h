@@ -39,6 +39,7 @@ public:
         EQ_BANDS_25 = 25, /*!< 25 bands */
         EQ_BANDS_31 = 31  /*!< 31 bands */
     };
+
     /*!
      * Constructs a copy of \b other.
      */
@@ -48,6 +49,7 @@ public:
      * @param bands - Number of bands (supported: 10, 15, 25, 31)
      */
     explicit EqSettings(Bands bands = EQ_BANDS_10);
+
     /*!
      * Returns \b true if equalizer is enabled, otherwise returns \b false.
      */

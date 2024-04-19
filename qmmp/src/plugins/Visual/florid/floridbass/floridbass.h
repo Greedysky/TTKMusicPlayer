@@ -29,7 +29,6 @@ class FloridBass : public Florid
     Q_OBJECT
 public:
     explicit FloridBass(QWidget *parent = nullptr);
-    virtual ~FloridBass();
 
 private:
     virtual void paintEvent(QPaintEvent *e) override final;

@@ -56,7 +56,6 @@ class FFapFileTagModel : public TagModel
 {
 public:
     FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::TagTypes type);
-    virtual ~FFapFileTagModel();
 
     virtual QString name() const override final;
     virtual QList<Qmmp::MetaData> keys() const override final;

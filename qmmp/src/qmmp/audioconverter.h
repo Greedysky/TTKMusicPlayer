@@ -33,7 +33,8 @@ public:
     /*!
      * Object constructor.
      */
-    AudioConverter();
+    AudioConverter() = default;
+
     /*!
      * Sets working audio format.
      * This function should be called before object usage.

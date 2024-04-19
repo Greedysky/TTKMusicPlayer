@@ -13,11 +13,6 @@ FloridPicture::FloridPicture(QWidget *parent)
     m_roundLabel->hide();
 }
 
-FloridPicture::~FloridPicture()
-{
-
-}
-
 void FloridPicture::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);

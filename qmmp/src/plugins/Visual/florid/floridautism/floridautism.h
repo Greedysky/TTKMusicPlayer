@@ -56,7 +56,6 @@ class FloridAutism : public Florid
     Q_OBJECT
 public:
     explicit FloridAutism(QWidget *parent = nullptr);
-    virtual ~FloridAutism();
 
 private:
     virtual void resizeEvent(QResizeEvent *e) override final;

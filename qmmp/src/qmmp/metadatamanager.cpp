@@ -235,6 +235,7 @@ QFileInfoList MetaDataManager::findCoverFiles(QDir dir, int depth) const
     }
     if(!depth || !file_list.isEmpty())
         return file_list;
+
     depth--;
     dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
     dir.setSorting(QDir::Name);

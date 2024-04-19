@@ -43,11 +43,11 @@ public:
     /*!
      * Converts current channel order to internal.
      */
-    const ChannelMap remaped() const;
+    ChannelMap remaped() const;
     /*!
      * Converts channel channel mapping to string representation (for debug purposes).
      */
-    const QString toString() const;
+    QString toString() const;
 
 private:
     static Qmmp::ChannelPosition m_internal_map[9];

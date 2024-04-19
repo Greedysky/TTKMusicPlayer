@@ -11,11 +11,6 @@ OuterRaysWave::OuterRaysWave(QWidget *parent)
     setWindowTitle(tr("Outer RaysWave Widget"));
 }
 
-OuterRaysWave::~OuterRaysWave()
-{
-
-}
-
 void OuterRaysWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);

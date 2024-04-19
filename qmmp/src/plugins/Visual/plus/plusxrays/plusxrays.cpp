@@ -20,11 +20,6 @@ PlusXRays::PlusXRays(QWidget *parent)
     readSettings();
 }
 
-PlusXRays::~PlusXRays()
-{
-
-}
-
 void PlusXRays::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);

@@ -57,7 +57,6 @@ class WavPackFileTagModel : public TagModel
 {
 public:
     explicit WavPackFileTagModel(WavpackContext *ctx);
-    virtual ~WavPackFileTagModel();
 
     virtual QString name() const override final;
     virtual QString value(Qmmp::MetaData key) const override final;
