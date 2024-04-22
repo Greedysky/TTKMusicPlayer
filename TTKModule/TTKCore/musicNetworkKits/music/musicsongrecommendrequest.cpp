@@ -31,7 +31,7 @@ void ReqLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, cons
 
     if(info->m_songProps.isEmpty())
     {
-        parseFromSongProperty(info, key["copyUrl"].toString(), length, TTK_BN_128);
+        parseFromSongProperty(info, key["copyUrl"].toString(), length, TTK_BN_320);
     }
 }
 

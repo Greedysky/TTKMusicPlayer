@@ -54,9 +54,11 @@ void MusicDownloadBatchTableItem::startToRequest()
 {
     if(!G_NETWORK_PTR->isOnline() || m_qulity->currentIndex() < 0)
     {
+        m_status->setPixmap(QPixmap(":/tiny/lb_error"));
         return;
     }
 
+    m_status->setPixmap(QPixmap(":/tiny/lb_question"));
     if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
     {
         startToRequestMusic();
@@ -127,7 +129,10 @@ void MusicDownloadBatchTableItem::startToRequestMusic()
     const int bitrate = currentBitrate(m_qulity->currentIndex());
     m_networkRequest->startToQueryResult(&m_songInfo, bitrate);
 
-    MusicDownloadWidget::startToRequestMusic(m_songInfo, bitrate, this);
+    if(!MusicDownloadWidget::startToRequestMusic(m_songInfo, bitrate, this))
+    {
+        m_status->setPixmap(QPixmap(":/tiny/lb_error"));
+    }
 }
 
 void MusicDownloadBatchTableItem::startToRequestMovie()
@@ -135,7 +140,10 @@ void MusicDownloadBatchTableItem::startToRequestMovie()
     const int bitrate = currentBitrate(m_qulity->currentIndex());
     m_networkRequest->startToQueryResult(&m_songInfo, bitrate);
 
-    MusicDownloadWidget::startToRequestMovie(m_songInfo, bitrate, this);
+    if(!MusicDownloadWidget::startToRequestMovie(m_songInfo, bitrate, this))
+    {
+        m_status->setPixmap(QPixmap(":/tiny/lb_error"));
+    }
 }
 
 

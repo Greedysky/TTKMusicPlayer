@@ -197,11 +197,11 @@ void MusicDownloadWidget::initialize(const TTK::MusicSongInformation &info, Musi
     }
 }
 
-void MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &info, int bitrate, QObject *parent)
+bool MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &info, int bitrate, QObject *parent)
 {
     if(!G_NETWORK_PTR->isOnline() || info.m_songProps.isEmpty())
     {
-        return;
+        return false;
     }
 
     TTK::MusicSongProperty prop;
@@ -216,7 +216,7 @@ void MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &i
 
     if(prop.isEmpty())
     {
-        return;
+        return false;
     }
 
     const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
@@ -226,7 +226,7 @@ void MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &i
     MusicDownloadRecordConfigManager manager;
     if(!manager.fromFile(TTK::toString(TTK::Record::NormalDownload)))
     {
-        return;
+        return false;
     }
 
     MusicSongList records;
@@ -274,13 +274,14 @@ void MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &i
 
     d->setSongMeta(meta);
     d->startToRequest();
+    return true;
 }
 
-void MusicDownloadWidget::startToRequestMovie(const TTK::MusicSongInformation &info, int bitrate, QObject *parent)
+bool MusicDownloadWidget::startToRequestMovie(const TTK::MusicSongInformation &info, int bitrate, QObject *parent)
 {
     if(!G_NETWORK_PTR->isOnline() || info.m_songProps.isEmpty())
     {
-        return;
+        return false;
     }
 
     TTK::MusicSongProperty prop;
@@ -295,7 +296,7 @@ void MusicDownloadWidget::startToRequestMovie(const TTK::MusicSongInformation &i
 
     if(prop.isEmpty())
     {
-        return;
+        return false;
     }
 
     const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
@@ -324,6 +325,7 @@ void MusicDownloadWidget::startToRequestMovie(const TTK::MusicSongInformation &i
     MusicDownloadDataRequest *d = new MusicDownloadDataRequest(prop.m_url, downloadPath, TTK::Download::Video, parent);
     connect(d, SIGNAL(downLoadDataChanged(QString)), parent, SLOT(downloadFinished()));
     d->startToRequest();
+    return true;
 }
 
 void MusicDownloadWidget::downLoadNormalFinished()

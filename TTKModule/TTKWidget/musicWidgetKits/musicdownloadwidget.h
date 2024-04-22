@@ -137,11 +137,11 @@ public:
     /*!
      * Strat to download music.
      */
-    static void startToRequestMusic(const TTK::MusicSongInformation &info, int bitrate, QObject *parent);
+    static bool startToRequestMusic(const TTK::MusicSongInformation &info, int bitrate, QObject *parent);
     /*!
      * Strat to download movie.
      */
-    static void startToRequestMovie(const TTK::MusicSongInformation &info, int bitrate, QObject *parent);
+    static bool startToRequestMovie(const TTK::MusicSongInformation &info, int bitrate, QObject *parent);
 
 Q_SIGNALS:
     /*!
