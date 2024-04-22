@@ -32,7 +32,7 @@ struct TTK_MODULE_EXPORT MusicSkinItem
     int m_useCount;
 
     MusicSkinItem()
-        : m_name(MUSIC_AUTHOR_NAME),
+        : m_name(TTK_AUTHOR_NAME),
           m_useCount(8888)
     {
 

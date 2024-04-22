@@ -319,11 +319,11 @@ void MusicLrcContainerForInterior::queryTranslatedLrcFinished(const QString &byt
 {
     QString text;
 
-    if(bytes.startsWith(MUSIC_AUTHOR_NAME))
+    if(bytes.startsWith(TTK_AUTHOR_NAME))
     {
         // The original and translated lrc have been merged
         text = bytes;
-        text.remove(0, strlen(MUSIC_AUTHOR_NAME));
+        text.remove(0, strlen(TTK_AUTHOR_NAME));
     }
     else
     {

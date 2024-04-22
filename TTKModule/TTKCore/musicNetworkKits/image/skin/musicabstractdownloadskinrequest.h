@@ -22,6 +22,10 @@
 #include "ttkabstractxml.h"
 #include "musicglobaldefine.h"
 
+static constexpr const char *SKIN_BING_DIR = "Bing";
+static constexpr const char *SKIN_THUNDER_DIR = "Thunder/";
+static constexpr const char *SKIN_BIRD_DIR = "Bird/";
+
 /*! @brief The class of the remote skin item.
  * @author Greedysky <greedysky@163.com>
  */
@@ -33,7 +37,7 @@ struct TTK_MODULE_EXPORT MusicSkinRemoteItem
     int m_index;
 
     MusicSkinRemoteItem()
-        : m_name(MUSIC_AUTHOR_NAME),
+        : m_name(TTK_AUTHOR_NAME),
           m_useCount(8888),
           m_index(0)
     {

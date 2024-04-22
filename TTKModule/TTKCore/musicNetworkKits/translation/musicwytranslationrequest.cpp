@@ -91,7 +91,7 @@ void MusicWYTranslationRequest::downLoadFinished()
                         }
                     }
 
-                    Q_EMIT downLoadDataChanged(MUSIC_AUTHOR_NAME + text);
+                    Q_EMIT downLoadDataChanged(TTK_AUTHOR_NAME + text);
                     deleteAll();
                     return;
                 }

@@ -23,6 +23,8 @@
 
 #define TTK_QT_CONFIG         "qt.conf"
 
+#define TTK_AUTHOR_NAME       "Greedysky"
+
 #define TTK_COLOR_FILE        "color.jpg"
 #define TTK_IMAGE_FILE        "image_cache"
 #define TTK_RECORD_FILE       "record.raw"
@@ -31,10 +33,6 @@
 #define MIN_ITEM_COUNT        4
 #define MAX_IMAGE_COUNT       10
 
-#define MUSIC_AUTHOR_NAME     "Greedysky"
-#define MUSIC_BING_DIR        "Bing"
-#define MUSIC_THUNDER_DIR     "Thunder"
-#define MUSIC_BIRD_DIR        "Bird"
 #define MUSIC_MOVIE_RADIO     QUERY_KG_INTERFACE
 
 #define MUSIC_PLAY_NOW        "play_now"

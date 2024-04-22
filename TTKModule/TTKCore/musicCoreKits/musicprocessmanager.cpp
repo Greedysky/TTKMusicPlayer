@@ -3,7 +3,7 @@
 #include "ttkcommandline.h"
 
 #define MEMORY_SIZE 512 * TTK_SN_KB2B
-#define MEMORY_KEY  TTK_STR_CAT(MUSIC_AUTHOR_NAME, TTK_DEFAULT_STR, TTK_APP_NAME)
+#define MEMORY_KEY  TTK_STR_CAT(TTK_AUTHOR_NAME, TTK_DEFAULT_STR, TTK_APP_NAME)
 
 void MusicProcessClient::run(const QStringList &args) const
 {

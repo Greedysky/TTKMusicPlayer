@@ -47,7 +47,7 @@ void MusicDownloadBirdSkinRequest::downLoadFinished(const QByteArray &bytes)
                 value = var.toMap();
 
                 MusicSkinRemoteGroup group;
-                group.m_group = QString("%1/%2").arg(MUSIC_BIRD_DIR, value["category"].toString());
+                group.m_group = QString("%1%2").arg(SKIN_BIRD_DIR, value["category"].toString());
                 group.m_id = value["old_id"].toString();
                 groups << group;
             }
