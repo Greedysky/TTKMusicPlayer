@@ -84,7 +84,7 @@ void MusicBackgroundRemoteWidget::startToRequest(const QString &prefix)
         datas << data;
     }
 
-    m_networkRequest->addImageQueue(datas);
+    m_networkRequest->addQueue(datas);
     m_networkRequest->startToRequest();
 }
 

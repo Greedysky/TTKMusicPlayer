@@ -52,9 +52,9 @@ public:
     ~MusicDownloadQueueRequest();
 
     /*!
-     * Add image download url and save path to download queue.
+     * Add download url and save path to download queue.
      */
-    void addImageQueue(const MusicDownloadQueueDataList &datas);
+    void addQueue(const MusicDownloadQueueDataList &datas);
     /*!
      * Start to download queue data.
      */
@@ -91,10 +91,10 @@ private:
     /*!
      * Start to download data in order.
      */
-    void startOrderImageQueue();
+    void startOrderQueue();
 
     bool m_isDownload, m_isAbort;
-    MusicDownloadQueueDataList m_imageQueue;
+    MusicDownloadQueueDataList m_queue;
     QNetworkRequest *m_request;
 
 };
