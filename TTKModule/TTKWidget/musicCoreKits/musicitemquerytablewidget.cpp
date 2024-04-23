@@ -276,6 +276,7 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const TTK::MusicSongInformation
 {
     if(!G_NETWORK_PTR->isOnline())
     {
+        MusicToastLabel::popup(tr("No resource found"));
         return false;
     }
 
@@ -283,25 +284,28 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const TTK::MusicSongInformation
     songInfo.m_songId = info.m_songId;
     m_networkRequest->startToQueryResult(&songInfo, TTK_BN_128);
 
-    if(!songInfo.m_songProps.isEmpty())
+    if(songInfo.m_songProps.isEmpty())
     {
-        const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
-
-        MusicResultDataItem item;
-        item.m_name = TTK::generateSongName(info.m_songName, info.m_artistName);
-        item.m_updateTime = info.m_duration;
-        item.m_id = info.m_songId;
-        item.m_nickName = prop.m_url;
-        item.m_description = prop.m_format;
-        item.m_count = prop.m_size;
-        item.m_category = play ? MUSIC_PLAY_NOW : MUSIC_PLAY_LATER;
-
-        if(m_networkRequest)
-        {
-            item.m_id = m_networkRequest->queryServer() + item.m_id;
-        }
-        Q_EMIT songBufferToPlaylist(item);
+        MusicToastLabel::popup(tr("No resource found"));
+        return false;
     }
 
+    const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
+
+    MusicResultDataItem item;
+    item.m_name = TTK::generateSongName(info.m_songName, info.m_artistName);
+    item.m_updateTime = info.m_duration;
+    item.m_id = info.m_songId;
+    item.m_nickName = prop.m_url;
+    item.m_description = prop.m_format;
+    item.m_count = prop.m_size;
+    item.m_category = play ? MUSIC_PLAY_NOW : MUSIC_PLAY_LATER;
+
+    if(m_networkRequest)
+    {
+        item.m_id = m_networkRequest->queryServer() + item.m_id;
+    }
+
+    Q_EMIT songBufferToPlaylist(item);
     return true;
 }

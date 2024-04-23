@@ -247,6 +247,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
+        MusicToastLabel::popup(tr("No resource found"));
         return;
     }
 
@@ -257,28 +258,37 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
     }
 
     TTK::MusicSongInformationList songInfos(m_networkRequest->items());
+    if(row >= songInfos.count())
+    {
+        return;
+    }
+
     TTK::MusicSongInformation &songInfo = songInfos[row];
     m_networkRequest->startToQueryResult(&songInfo, TTK_BN_128);
 
-    if(!songInfo.m_songProps.isEmpty())
+    if(songInfo.m_songProps.isEmpty())
     {
-        const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
-
-        MusicResultDataItem item;
-        item.m_name = TTK::generateSongName(this->item(row, 1)->toolTip(), this->item(row, 2)->toolTip());
-        item.m_updateTime = songInfo.m_duration;
-        item.m_id = songInfo.m_songId;
-        item.m_nickName = prop.m_url;
-        item.m_description = prop.m_format;
-        item.m_count = prop.m_size;
-        item.m_category = play ? MUSIC_PLAY_NOW : MUSIC_PLAY_LATER;
-
-        if(m_networkRequest)
-        {
-            item.m_id = m_networkRequest->queryServer() + item.m_id;
-        }
-        Q_EMIT songBufferToPlaylist(item);
+        MusicToastLabel::popup(tr("No resource found"));
+        return;
     }
+
+    const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
+
+    MusicResultDataItem item;
+    item.m_name = TTK::generateSongName(this->item(row, 1)->toolTip(), this->item(row, 2)->toolTip());
+    item.m_updateTime = songInfo.m_duration;
+    item.m_id = songInfo.m_songId;
+    item.m_nickName = prop.m_url;
+    item.m_description = prop.m_format;
+    item.m_count = prop.m_size;
+    item.m_category = play ? MUSIC_PLAY_NOW : MUSIC_PLAY_LATER;
+
+    if(m_networkRequest)
+    {
+        item.m_id = m_networkRequest->queryServer() + item.m_id;
+    }
+
+    Q_EMIT songBufferToPlaylist(item);
 }
 
 
