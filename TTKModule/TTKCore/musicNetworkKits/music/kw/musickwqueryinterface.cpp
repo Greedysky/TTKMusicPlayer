@@ -33,6 +33,14 @@ QString ReqKWInterface::makeCoverPixmapUrl(const QString &url, const QString &id
 
 static void parseSongProperty(TTK::MusicSongInformation *info)
 {
+    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
+    {
+        if(prop.m_bitrate == TTK_BN_128)
+        {
+            return;
+        }
+    }
+
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_SONG_DETAIL_CGG_URL, false).arg(info->m_songId));
     ReqKWInterface::makeRequestRawHeader(&request);
