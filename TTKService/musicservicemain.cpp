@@ -30,7 +30,7 @@ static void cleanupCache()
     TTK_INFO_STREAM("Application cache cleanup");
 }
 
-static void loadAppScaledFactor(int argc, char *argv[])
+static void loadApplicationScaleFactor()
 {
 #if TTK_QT_VERSION_CHECK(6,0,0)
    // do nothing
@@ -39,23 +39,19 @@ static void loadAppScaledFactor(int argc, char *argv[])
       QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
       QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 #    if TTK_QT_VERSION_CHECK(5,14,0)
-        QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Floor);
+        QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #    endif
 #  elif TTK_QT_VERSION_CHECK(5,6,0)
       TTKPlatformSystem platform;
       const float dpi = platform.logicalDotsPerInch() / 96.0;
       qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
-#  else
-//      qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
 #  endif
 #endif
-    Q_UNUSED(argc);
-    Q_UNUSED(argv);
 }
 
 int main(int argc, char *argv[])
 {
-    loadAppScaledFactor(argc, argv);
+    loadApplicationScaleFactor();
 
     TTKApplication app(argc, argv);
 
