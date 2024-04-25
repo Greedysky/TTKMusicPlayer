@@ -2,7 +2,7 @@
 [英文 English](./README.md) | [繁体中文 Chinese](./README_tc.md)
 
 ![TTKMusicPlayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
-![版本](https://img.shields.io/badge/Version-3.6.0.0-blue.svg?style=flat-square)
+![版本](https://img.shields.io/badge/Version-3.7.0.0-blue.svg?style=flat-square)
 ![许可](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 ![许可](https://img.shields.io/badge/License-LGPL%20V3-yellow.svg?style=flat-square)
 
