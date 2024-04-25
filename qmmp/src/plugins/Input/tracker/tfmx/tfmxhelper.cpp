@@ -57,7 +57,7 @@ static bool loadMDAT(TfmxState *state, const char *mdatName, const char *smplNam
     const QByteArray &smplBuffer = smplFile.readAll();
     smpl.size = smplBuffer.length();
     smpl.data = (U8*)smplBuffer.data();
-    return LoadTFMXFile(state, &mdat, &smpl);;
+    return LoadTFMXFile(state, &mdat, &smpl);
 }
 
 static bool loadTFM(TfmxState *state, const char *path)
