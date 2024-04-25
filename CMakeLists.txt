@@ -238,6 +238,16 @@ else()
 endif()
 
 
+if(UNIX)
+  find_program(RENAME_EXECUTABLE rename /usr/bin)
+  if(RENAME_EXECUTABLE)
+    message(STATUS "Message Found rename executable: " ${RENAME_EXECUTABLE})
+  else()
+    message(FATAL_ERROR "Message Could NOT find rename executable")
+  endif()
+endif()
+
+
 find_library(TTK_QMMP_LIBRARY
   NAMES TTKqmmp
   PATHS ${LIBRARY_OUTPUT_PATH}

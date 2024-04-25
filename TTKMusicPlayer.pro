@@ -50,6 +50,7 @@ include($$PWD/TTKVersion.pri)
 unix{
     output = $$OUT_PWD/bin/$$TTK_VERSION/GLanguage
     !exists($$output):system(mkdir -p $$output)
+    !exists(/usr/bin/rename):error(Could not find rename command)
 
     system(find $$PWD/TTKLanguage -name *.ts | xargs $$LRELEASE_EXECUTABLE)
     system(find $$PWD/TTKLanguage -name *.qm | xargs rename -v -f 's/.qm/.ln/' *)
