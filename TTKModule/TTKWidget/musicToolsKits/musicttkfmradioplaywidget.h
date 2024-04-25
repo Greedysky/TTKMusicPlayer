@@ -199,10 +199,11 @@ private:
 
     Ui::MusicTTKFMRadioPlayWidget *m_ui;
     bool m_isPlaying;
+    bool m_statusChanged;
     int m_currentIndex;
     MusicCoreMPlayer *m_player;
-    MusicFMCategoryList m_favItem;
     MusicFMChannelList m_items;
+    MusicFMChannelList m_favItems;
 
 };
 

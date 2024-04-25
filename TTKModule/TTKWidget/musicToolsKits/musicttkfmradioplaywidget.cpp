@@ -8,6 +8,8 @@
 
 #include <QScrollBar>
 
+#define FMRADIO_PATH RESOURCE_DIR_FULL + "fmlist"
+
 MusicFMConfigManager::MusicFMConfigManager()
     : TTKAbstractXml()
 {
@@ -47,17 +49,19 @@ bool MusicFMConfigManager::writeBuffer(const MusicFMCategoryList &items)
         return false;
     }
 
-    const MusicFMCategory &item = items.back();
-
     createProcessingInstruction();
     QDomElement rootDom = createRoot(TTK_APP_NAME);
-    QDomElement categoryDom = writeDomElement(rootDom, "category", {"value", item.m_category});
 
-    for(const MusicFMChannel &channel : qAsConst(item.m_items))
+    for(const MusicFMCategory &item : qAsConst(items))
     {
-        writeDomMultiElement(categoryDom, "channel", {{"name", channel.m_name},
-                                                      {"location", channel.m_location},
-                                                      {"url", channel.m_url}});
+        QDomElement categoryDom = writeDomElement(rootDom, "category", {"value", item.m_category});
+
+        for(const MusicFMChannel &channel : qAsConst(item.m_items))
+        {
+            writeDomMultiElement(categoryDom, "channel", {{"name", channel.m_name},
+                                                          {"location", channel.m_location},
+                                                          {"url", channel.m_url}});
+        }
     }
 
     save();
@@ -118,6 +122,7 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicTTKFMRadioPlayWidget),
       m_isPlaying(false),
+      m_statusChanged(false),
       m_currentIndex(0)
 {
     m_ui->setupUi(this);
@@ -273,6 +278,21 @@ void MusicTTKFMRadioPlayWidget::closeEvent(QCloseEvent *event)
 {
     delete m_player;
     m_player = nullptr;
+
+    MusicFMCategoryList categorys;
+    MusicFMConfigManager manager;
+    if(m_statusChanged && manager.fromFile(FMRADIO_PATH))
+    {
+        manager.readBuffer(categorys);
+
+        if(!categorys.isEmpty())
+        {
+            categorys.back().m_items = m_favItems;
+            manager.reset();
+            manager.writeBuffer(categorys);
+        }
+    }
+
     QWidget::closeEvent(event);
 }
 
@@ -281,19 +301,9 @@ void MusicTTKFMRadioPlayWidget::initialize()
     MusicFMCategoryList categorys;
     {
         MusicFMConfigManager manager;
-        if(manager.fromFile(RESOURCE_DIR_FULL + "fmlist"))
+        if(manager.fromFile(FMRADIO_PATH))
         {
             manager.readBuffer(categorys);
-        }
-    }
-
-    {
-        MusicFMConfigManager manager;
-        if(manager.fromFile(FMRADIO_PATH_FULL))
-        {
-            categorys.takeLast();
-            manager.readBuffer(m_favItem);
-            categorys << m_favItem;
         }
     }
 
@@ -312,6 +322,11 @@ void MusicTTKFMRadioPlayWidget::initialize()
             it->setData(1, TTK_DISPLAY_ROLE, channel.m_location);
         }
         m_items << category.m_items;
+    }
+
+    if(!categorys.isEmpty())
+    {
+        m_favItems = categorys.back().m_items;
     }
 
     createCoreModule();
@@ -394,7 +409,7 @@ void MusicTTKFMRadioPlayWidget::addButtonClicked()
         const MusicFMChannel &channel = w.channelInformation();
 
         m_items << channel;
-        m_favItem.back().m_items << channel;
+        m_favItems << channel;
         QTreeWidgetItem *item = m_ui->itemTree->topLevelItem(m_ui->itemTree->topLevelItemCount() - 1);
         if(!item)
         {
@@ -406,12 +421,8 @@ void MusicTTKFMRadioPlayWidget::addButtonClicked()
         it->setData(0, TTK_DISPLAY_ROLE, channel.m_name);
         it->setData(1, TTK_DISPLAY_ROLE, channel.m_location);
 
-        MusicFMConfigManager manager;
-        if(manager.load(FMRADIO_PATH_FULL))
-        {
-            manager.writeBuffer(m_favItem);
-            MusicToastLabel::popup(tr("Add current channel success"));
-        }
+        m_statusChanged = true;
+        MusicToastLabel::popup(tr("Add current channel success"));
     }
 }
 
@@ -431,7 +442,7 @@ void MusicTTKFMRadioPlayWidget::deleteButtonClicked()
         return;
     }
 
-    const int offset = m_items.count() - m_favItem.back().m_items.count();
+    const int offset = m_items.count() - m_favItems.count();
     if(index < offset)
     {
         MusicToastLabel::popup(tr("The current channel can not be deleted"));
@@ -445,19 +456,15 @@ void MusicTTKFMRadioPlayWidget::deleteButtonClicked()
 
     item->parent()->removeChild(item);
     m_items.removeAt(index);
-    m_favItem.back().m_items.removeAt(index - offset);
+    m_favItems.removeAt(index - offset);
 
     if(m_currentIndex == index)
     {
         radioPrevious();
     }
 
-    MusicFMConfigManager manager;
-    if(manager.load(FMRADIO_PATH_FULL))
-    {
-        manager.writeBuffer(m_favItem);
-        MusicToastLabel::popup(tr("Delete current channel success"));
-    }
+    m_statusChanged = true;
+    MusicToastLabel::popup(tr("Delete current channel success"));
 }
 
 void MusicTTKFMRadioPlayWidget::infoButtonClicked()
