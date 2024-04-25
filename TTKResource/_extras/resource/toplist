@@ -40,7 +40,7 @@
             <value key="6939992364" value="俄罗斯top hit流行音乐榜"/>
             <value key="7095271308" value="泰语榜"/>
             <value key="7356827205" value="BEAT排行榜"/>
-            <value key="7325478166" value="星云榜VOL.3 乐坛传奇Pet Shop Boys新单上线"/>
+            <value key="7325478166" value="星云榜"/>
             <value key="7603212484" value="LOOK直播歌曲榜"/>
             <value key="7775163417" value="赏音榜"/>
             <value key="7785123708" value="黑胶VIP新歌榜"/>
@@ -56,6 +56,7 @@
             <value key="8702982389" value="埃安车友爱听榜"/>
             <value key="8702982391" value="极氪车友爱听榜"/>
             <value key="8532443277" value="蛋仔派对听歌榜"/>
+            <value key="9651277674" value="Suno AI新歌榜"/>
         </tag>
     </WangYi>
     <KuGou>
@@ -125,9 +126,10 @@
             <value key="64" value="影视金曲榜"/>
             <value key="329" value="酷我说唱榜"/>
             <value key="294" value="禅心佛乐榜"/>
-            <value key="290" value="ACG新歌榜"/>
             <value key="292" value="酷我铃声榜"/>
             <value key="291" value="爆笑相声榜"/>
+            <value key="69" value="儿童歌曲榜"/>
+            <value key="344" value="儿童故事榜"/>
         </tag>
         <tag value="场景榜">
             <value key="279" value="秋日思念榜"/>
