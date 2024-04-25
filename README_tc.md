@@ -4,6 +4,7 @@
 ![TTKMusicPlayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
 ![版本](https://img.shields.io/badge/Version-3.6.0.0-blue.svg?style=flat-square)
 ![許可](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
+![許可](https://img.shields.io/badge/License-LGPL%20V3-yellow.svg?style=flat-square)
 
 ![徽標](https://github.com/Greedysky/TTKMusicPlayer/blob/master/TTKResource/logo_banner.png?raw=true)
 
