@@ -89,6 +89,7 @@ void MusicDownloadDataRequest::downLoadFinished()
             TTK_INFO_STREAM("Data download has finished");
         }
     }
+
     deleteAll();
 }
 

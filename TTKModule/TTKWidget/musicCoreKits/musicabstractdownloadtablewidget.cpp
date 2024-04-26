@@ -111,7 +111,8 @@ void MusicAbstractDownloadTableWidget::downloadProgressChanged(float percent, co
 void MusicAbstractDownloadTableWidget::createDownloadItem(const QString &name, qint64 time)
 {
     QString musicName = name;
-    musicName.remove(TTK::String::musicDirPrefix()).chop(4);
+    musicName.remove(TTK::String::musicDirPrefix());
+    musicName = TTK::String::pefix(musicName);
     setRowCount(rowCount() + 1);
 
     MusicSong record;
