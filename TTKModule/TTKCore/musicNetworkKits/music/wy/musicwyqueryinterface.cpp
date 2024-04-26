@@ -38,55 +38,7 @@ QByteArray ReqWYInterface::makeTokenRequest(QNetworkRequest *request, const QStr
     return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING;
 }
 
-static void parseSongPropertyNew(TTK::MusicSongInformation *info, int bitrate)
-{
-    QNetworkRequest request;
-    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_SONG_PATH_URL, false),
-                      TTK::Algorithm::mdII(WY_SONG_PATH_DATA_URL, false).arg(info->m_songId).arg(bitrate * 1000));
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
-
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
-    {
-        QVariantMap value = data.toMap();
-        if(value["code"].toInt() == 200 && value.contains("data"))
-        {
-            const QVariantList &datas = value["data"].toList();
-            for(const QVariant &var : qAsConst(datas))
-            {
-                if(var.isNull())
-                {
-                    continue;
-                }
-
-                value = var.toMap();
-
-                TTK::MusicSongProperty prop;
-                prop.m_url = value["url"].toString();
-                prop.m_bitrate = bitrate;
-
-                if(prop.isEmpty() || info->m_songProps.contains(prop))
-                {
-                    break;
-                }
-
-                prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
-                prop.m_format = value["type"].toString();
-                info->m_songProps.append(prop);
-            }
-        }
-    }
-}
-
-static void parseSongProperty(TTK::MusicSongInformation *info, int bitrate)
+static void parseSongPropertyOld(TTK::MusicSongInformation *info, int bitrate)
 {
     for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
     {
@@ -120,53 +72,118 @@ static void parseSongProperty(TTK::MusicSongInformation *info, int bitrate)
                 return;
             }
 
-            TTK::MusicSongProperty prop;
-            prop.m_url = value["url"].toString();
-            prop.m_bitrate = bitrate;
-
-            const int oCount = info->m_songProps.count();
-            if(prop.isEmpty())
+            const int rate = value["br"].toInt() / 1000;
+            if(rate == bitrate || (bitrate > TTK_BN_500 && rate > TTK_BN_500))
             {
-                parseSongPropertyNew(info, bitrate);
-                if(info->m_songProps.count() != oCount)
-                {
-                    return;
-                }
-
-                QString format;
-                if(bitrate == TTK_BN_128)
-                {
-                    format = TTK::Algorithm::mdII("QXMyZkZJc2dIb1FOenJlTg==", false);
-                    prop.m_format = MP3_FILE_SUFFIX;
-                }
-                else if(bitrate == TTK_BN_320)
-                {
-                    format = TTK::Algorithm::mdII("UThNR09kcDRXNG9qbG45Ng==", false);
-                    prop.m_format = MP3_FILE_SUFFIX;
-                }
-                else if(bitrate == TTK_BN_1000)
-                {
-                    format = TTK::Algorithm::mdII("VGF0djlKc01mL1QxM1pyNQ==", false);
-                    prop.m_format = FLAC_FILE_SUFFIX;
-                }
-                else
-                {
-                    return;
-                }
-
-                prop.m_url = TTK::Algorithm::mdII(WY_SONG_DETAIL_CGG_URL, false).arg(info->m_songId, format);
-                prop.m_size = TTK::Number::sizeByteToLabel(info->m_duration, bitrate);
-                info->m_songProps.append(prop);
-                return;
-            }
-            else
-            {
+                TTK::MusicSongProperty prop;
+                prop.m_url = value["url"].toString();
+                prop.m_bitrate = bitrate;
                 prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
                 prop.m_format = value["type"].toString();
                 info->m_songProps.append(prop);
             }
         }
     }
+}
+
+static void parseSongPropertyNew(TTK::MusicSongInformation *info, int bitrate)
+{
+    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
+    {
+        if(prop.m_bitrate == bitrate)
+        {
+            return;
+        }
+    }
+
+    QNetworkRequest request;
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
+                      TTK::Algorithm::mdII(WY_SONG_PATH_URL, false),
+                      TTK::Algorithm::mdII(WY_SONG_PATH_DATA_URL, false).arg(info->m_songId).arg(bitrate * 1000));
+
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
+    if(bytes.isEmpty())
+    {
+        return;
+    }
+
+    QJson::Parser json;
+    bool ok = false;
+    const QVariant &data = json.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value["code"].toInt() == 200 && value.contains("data"))
+        {
+            const QVariantList &datas = value["data"].toList();
+            for(const QVariant &var : qAsConst(datas))
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+
+                const int rate = value["br"].toInt() / 1000;
+                if(rate == bitrate || (bitrate > TTK_BN_500 && rate > TTK_BN_500))
+                {
+                    TTK::MusicSongProperty prop;
+                    prop.m_url = value["url"].toString();
+                    prop.m_bitrate = bitrate;
+                    prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
+                    prop.m_format = value["type"].toString();
+                    info->m_songProps.append(prop);
+                }
+            }
+        }
+    }
+}
+
+static void parseSongPropertyCGG(TTK::MusicSongInformation *info, int bitrate)
+{
+    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
+    {
+        if(prop.m_bitrate == bitrate)
+        {
+            return;
+        }
+    }
+
+    TTK::MusicSongProperty prop;
+    prop.m_bitrate = bitrate;
+    prop.m_size = TTK::Number::sizeByteToLabel(info->m_duration, bitrate);
+
+    QString format;
+    if(bitrate == TTK_BN_128)
+    {
+        format = TTK::Algorithm::mdII("QXMyZkZJc2dIb1FOenJlTg==", false);
+        prop.m_format = MP3_FILE_SUFFIX;
+    }
+    else if(bitrate == TTK_BN_320)
+    {
+        format = TTK::Algorithm::mdII("UThNR09kcDRXNG9qbG45Ng==", false);
+        prop.m_format = MP3_FILE_SUFFIX;
+    }
+    else if(bitrate == TTK_BN_1000)
+    {
+        format = TTK::Algorithm::mdII("VGF0djlKc01mL1QxM1pyNQ==", false);
+        prop.m_format = FLAC_FILE_SUFFIX;
+    }
+    else
+    {
+        return;
+    }
+
+    prop.m_url = TTK::Algorithm::mdII(WY_SONG_DETAIL_CGG_URL, false).arg(info->m_songId, format);
+    info->m_songProps.append(prop);
+}
+
+static void parseSongProperty(TTK::MusicSongInformation *info, int bitrate)
+{
+    parseSongPropertyOld(info, bitrate);
+    parseSongPropertyNew(info, bitrate);
+    parseSongPropertyCGG(info, bitrate);
 }
 
 void ReqWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
