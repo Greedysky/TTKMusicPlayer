@@ -62,7 +62,7 @@ public:
     /*!
      * Returns effect plugin properties.
      */
-    virtual const EffectProperties properties() const = 0;
+    virtual EffectProperties properties() const = 0;
     /*!
      * Creates effect provided by plugin.
      */
