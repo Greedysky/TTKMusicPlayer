@@ -2,7 +2,7 @@
 #include "crossfadeplugin.h"
 #include "settingsdialog.h"
 
-const EffectProperties EffectCrossfadeFactory::properties() const
+EffectProperties EffectCrossfadeFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("Crossfade Plugin");

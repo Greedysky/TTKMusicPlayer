@@ -2,7 +2,7 @@
 #include "stereoplugin.h"
 #include "settingsdialog.h"
 
-const EffectProperties EffectStereoFactory::properties() const
+EffectProperties EffectStereoFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("Extra Stereo Plugin");

@@ -1,7 +1,7 @@
 #include "effectmufflerfactory.h"
 #include "mufflerplugin.h"
 
-const EffectProperties EffectMufflerFactory::properties() const
+EffectProperties EffectMufflerFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("Voice Removal Plugin");

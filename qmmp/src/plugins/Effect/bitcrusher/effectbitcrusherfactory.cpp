@@ -2,7 +2,7 @@
 #include "bitcrusherplugin.h"
 #include "settingsdialog.h"
 
-const EffectProperties EffectBitcrusherFactory::properties() const
+EffectProperties EffectBitcrusherFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("Bitcrusher Plugin");

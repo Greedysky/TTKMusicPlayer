@@ -2,7 +2,7 @@
 #include "settingsdialog.h"
 #include "ladspahelper.h"
 
-const EffectProperties EffectLADSPAFactory::properties() const
+EffectProperties EffectLADSPAFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("LADSPA Plugin");

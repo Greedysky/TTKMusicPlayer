@@ -2,7 +2,7 @@
 #include "bs2bplugin.h"
 #include "settingsdialog.h"
 
-const EffectProperties EffectBs2bFactory::properties() const
+EffectProperties EffectBs2bFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("BS2B Plugin");

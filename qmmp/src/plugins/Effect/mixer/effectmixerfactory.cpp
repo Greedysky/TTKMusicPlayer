@@ -2,7 +2,7 @@
 #include "mixerplugin.h"
 #include "settingsdialog.h"
 
-const EffectProperties EffectMixerFactory::properties() const
+EffectProperties EffectMixerFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("Channel Mixer Plugin");

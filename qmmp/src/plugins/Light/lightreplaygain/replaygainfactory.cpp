@@ -1,7 +1,7 @@
 #include "replaygainfactory.h"
 #include "replaygainwidget.h"
 
-const LightProperties LightReplaygGainFactory::properties() const
+LightProperties LightReplaygGainFactory::properties() const
 {
     LightProperties properties;
     properties.name = tr("Light ReplayGain Plugin");

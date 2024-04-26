@@ -2,7 +2,7 @@
 #include "echoplugin.h"
 #include "settingsdialog.h"
 
-const EffectProperties EffectEchoFactory::properties() const
+EffectProperties EffectEchoFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("Echo Plugin");

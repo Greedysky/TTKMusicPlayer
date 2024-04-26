@@ -2,7 +2,7 @@
 #include "sonicplugin.h"
 #include "settingsdialog.h"
 
-const EffectProperties EffectSonicFactory::properties() const
+EffectProperties EffectSonicFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("Speed Pitch Plugin");

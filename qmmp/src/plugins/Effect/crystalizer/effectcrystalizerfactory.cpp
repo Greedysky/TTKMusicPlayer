@@ -2,7 +2,7 @@
 #include "crystalizerplugin.h"
 #include "settingsdialog.h"
 
-const EffectProperties EffectCrystalizerFactory::properties() const
+EffectProperties EffectCrystalizerFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("Crystalizer Plugin");

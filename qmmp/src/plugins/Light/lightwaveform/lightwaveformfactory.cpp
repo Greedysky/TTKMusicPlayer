@@ -1,7 +1,7 @@
 #include "lightwaveformfactory.h"
 #include "lightwaveform.h"
 
-const LightProperties LightWaveFormFactory::properties() const
+LightProperties LightWaveFormFactory::properties() const
 {
     LightProperties properties;
     properties.name = tr("Light WaveForm Plugin");

@@ -24,13 +24,13 @@ LADSPASlider::LADSPASlider(double min, double max, double step, LADSPA_Data *val
     m_spinBox->setSingleStep(step);
     m_spinBox->setValue(*value);
 
-    m_slider->setRange(0, (max-min)/step);
+    m_slider->setRange(0, (max - min) / step);
     m_slider->setSingleStep(1);
     m_slider->setPageStep(10);
-    m_slider->setValue((*value-min)/step);
+    m_slider->setValue((*value - min) / step);
 
     connect(m_spinBox, SIGNAL(valueChanged(double)), SLOT(setValue(double)));
-    connect(m_slider, SIGNAL(valueChanged(int)),SLOT(setValue(int)));
+    connect(m_slider, SIGNAL(valueChanged(int)), SLOT(setValue(int)));
 }
 
 void LADSPASlider::setValue(double v)

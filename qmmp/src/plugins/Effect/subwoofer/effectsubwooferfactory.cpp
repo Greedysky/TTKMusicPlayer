@@ -2,7 +2,7 @@
 #include "subwooferplugin.h"
 #include "settingsdialog.h"
 
-const EffectProperties EffectSubwooferFactory::properties() const
+EffectProperties EffectSubwooferFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("Subwoofer Plugin");

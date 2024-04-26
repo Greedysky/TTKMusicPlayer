@@ -1,7 +1,7 @@
 #include "lightspectrogramfactory.h"
 #include "spek-spectrogram.h"
 
-const LightProperties LightSpectrogramFactory::properties() const
+LightProperties LightSpectrogramFactory::properties() const
 {
     LightProperties properties;
     properties.name = tr("Light Spectrogram Plugin");

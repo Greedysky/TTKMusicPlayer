@@ -30,7 +30,7 @@ class EffectCrystalizerFactory : public QObject, public EffectFactory
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.EffectFactoryInterface.1.0")
     Q_INTERFACES(EffectFactory)
 public:
-    virtual const EffectProperties properties() const override final;
+    virtual EffectProperties properties() const override final;
     virtual Effect *create() override final;
     virtual void showSettings(QWidget *parent) override final;
 

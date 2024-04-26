@@ -18,7 +18,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     getCards();
     getSoftDevices();
-    connect(m_ui.deviceComboBox, SIGNAL(activated(int)),SLOT(setText(int)));
+    connect(m_ui.deviceComboBox, SIGNAL(activated(int)), SLOT(setText(int)));
     connect(m_ui.mixerCardComboBox, SIGNAL(activated(int)), SLOT(showMixerDevices(int)));
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("ALSA");

@@ -84,7 +84,7 @@ public:
      /*!
      * Returns Light plugin properties.
      */
-    virtual const LightProperties properties() const = 0;
+    virtual LightProperties properties() const = 0;
     /*!
      * Creates Light provided by plugin.
      * @param parent Parent object.

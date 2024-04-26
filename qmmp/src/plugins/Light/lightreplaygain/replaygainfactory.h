@@ -32,7 +32,7 @@ class LightReplaygGainFactory : public QObject, public LightFactory
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.LightFactoryInterface.1.0")
     Q_INTERFACES(LightFactory)
 public:
-    virtual const LightProperties properties() const override final;
+    virtual LightProperties properties() const override final;
     virtual Light *create(QWidget *parent) override final;
 
 };

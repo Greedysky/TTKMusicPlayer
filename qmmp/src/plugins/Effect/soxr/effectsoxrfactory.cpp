@@ -2,7 +2,7 @@
 #include "soxresampler.h"
 #include "settingsdialog.h"
 
-const EffectProperties EffectSoXRFactory::properties() const
+EffectProperties EffectSoXRFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("SoX Resampler Plugin");

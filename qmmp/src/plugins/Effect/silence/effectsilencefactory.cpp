@@ -2,7 +2,7 @@
 #include "silenceplugin.h"
 #include "settingsdialog.h"
 
-const EffectProperties EffectSilenceFactory::properties() const
+EffectProperties EffectSilenceFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("Silence Removal Plugin");
