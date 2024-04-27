@@ -194,17 +194,18 @@ void MusicSettingWidget::initialize()
     }
 
     //
-    m_ui->otherCheckUpdateBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toBool());
     m_ui->otherReadAlbumCoverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherReadAlbumCover).toBool());
     m_ui->otherReadInfoCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherReadFileInfo).toBool());
     m_ui->otherWriteAlbumCoverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool());
     m_ui->otherWriteInfoCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherWriteFileInfo).toBool());
+    m_ui->otherCheckUpdateBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toBool());
+    m_ui->otherLogTrackCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherLogTrackEnable).toBool());
     m_ui->otherSideByCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toBool());
     m_ui->otherLrcKTVCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool());
-    m_ui->otherScreenSaverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool());
     m_ui->otherPlaylistAutoSaveCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherPlaylistAutoSaveEnable).toBool());
-    m_ui->otherRandomModeCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherRandomShuffleMode).toBool());
+    m_ui->otherScreenSaverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool());
     m_ui->otherHighDpiScalingCheckBox->setCheckState(TTKStaticCast(Qt::CheckState, G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toInt()));
+    m_ui->otherRandomModeCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherRandomShuffleMode).toBool());
 
     //
     m_ui->downloadDirEdit->setText(G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
@@ -599,17 +600,18 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable, m_ui->rippleSpectrumEnableBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor, TTK::writeColorConfig(m_ui->rippleSpectrumColorButton->colors()));
 
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateEnable, m_ui->otherCheckUpdateBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherReadAlbumCover, m_ui->otherReadAlbumCoverCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherReadFileInfo, m_ui->otherReadInfoCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherWriteAlbumCover, m_ui->otherWriteAlbumCoverCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherWriteFileInfo, m_ui->otherWriteInfoCheckBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateEnable, m_ui->otherCheckUpdateBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherLogTrackEnable, m_ui->otherLogTrackCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByMode, m_ui->otherSideByCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVMode, m_ui->otherLrcKTVCheckBox->isChecked());
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable, m_ui->otherScreenSaverCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherPlaylistAutoSaveEnable, m_ui->otherPlaylistAutoSaveCheckBox->isChecked());
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherRandomShuffleMode, m_ui->otherRandomModeCheckBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable, m_ui->otherScreenSaverCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherHighDpiScalingEnable, m_ui->otherHighDpiScalingCheckBox->checkState());
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherRandomShuffleMode, m_ui->otherRandomModeCheckBox->isChecked());
 
     G_SETTING_PTR->setValue(MusicSettingManager::LrcColor, m_ui->fontDefaultColorComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcFamily, m_ui->fontComboBox->currentIndex());
@@ -673,17 +675,6 @@ void MusicSettingWidget::saveParameterSettings()
     else if(highDpiScalingChanged)
     {
         showTips = tr("High DPI scaling changed, you need to restart to take effect");
-#ifdef Q_OS_WIN
-        QFile file(TTK::applicationPath() + TTK_QT_CONFIG);
-        file.open(QFile::ReadWrite);
-
-        if(!(m_ui->otherHighDpiScalingCheckBox->isChecked() ? (file.write("[Platforms]\nWindowsArguments = dpiawareness=0\n") != -1) : file.remove()))
-        {
-            m_ui->otherHighDpiScalingCheckBox->setCheckState(Qt::PartiallyChecked);
-            G_SETTING_PTR->setValue(MusicSettingManager::OtherHighDpiScalingEnable, Qt::PartiallyChecked);
-        }
-        file.close();
-#endif
     }
 
     if(!showTips.isEmpty())
@@ -910,33 +901,35 @@ void MusicSettingWidget::initSpectrumSettingWidget()
 
 void MusicSettingWidget::initOtherSettingWidget()
 {
-    m_ui->otherCheckUpdateBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherReadAlbumCoverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherReadInfoCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherWriteAlbumCoverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherWriteInfoCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherCheckUpdateBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherLogTrackCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherSideByCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherLrcKTVCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->otherScreenSaverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherPlaylistAutoSaveCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->otherRandomModeCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherScreenSaverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherHighDpiScalingCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherRandomModeCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
     m_ui->otherPluginManagerButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->otherPluginManagerButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->otherPluginManagerButton, SIGNAL(clicked()), SLOT(otherPluginManagerChanged()));
 #ifdef Q_OS_UNIX
-    m_ui->otherCheckUpdateBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherReadAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherReadInfoCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherWriteAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherWriteInfoCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherCheckUpdateBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherLogTrackCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherScreenSaverCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherPlaylistAutoSaveCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherRandomModeCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherScreenSaverCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherHighDpiScalingCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherRandomModeCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherPluginManagerButton->setFocusPolicy(Qt::NoFocus);
 #endif
 }

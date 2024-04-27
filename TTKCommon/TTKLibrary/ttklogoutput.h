@@ -31,9 +31,9 @@ namespace TTK
      */
     TTK_MODULE_EXPORT void installLogHandler();
     /*!
-     * Uninstall log output handler.
+     * Remove log output handler.
      */
-    TTK_MODULE_EXPORT void uninstallLogHandler();
+    TTK_MODULE_EXPORT void removeLogHandler();
 
 }
 

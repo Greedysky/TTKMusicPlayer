@@ -273,7 +273,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>渐隐方式退出模式</string>
+      <string>以渐隐方式退出</string>
      </property>
     </widget>
     <widget class="QRadioButton" name="quitWindowRadioBox">
@@ -286,7 +286,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>窗口方式退出模式</string>
+      <string>以窗口方式退出</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="autoStartCheckBox">
@@ -1268,7 +1268,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>开启四周靠边停靠模式</string>
+      <string>四周靠边悬停模式</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="otherReadAlbumCoverCheckBox">
@@ -1319,13 +1319,13 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>145</y>
+       <y>175</y>
        <width>200</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>开启歌词KTV模式</string>
+      <string>歌词KTV模式</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="otherWriteAlbumCoverCheckBox">
@@ -1358,7 +1358,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>175</y>
+       <y>205</y>
        <width>200</width>
        <height>20</height>
       </rect>
@@ -1408,14 +1408,14 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>开启播放列表自动备份</string>
+      <string>播放列表自动备份</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="otherRandomModeCheckBox">
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>205</y>
+       <y>235</y>
        <width>210</width>
        <height>20</height>
       </rect>
@@ -1438,6 +1438,19 @@ font-weight:bold;</string>
      </property>
      <property name="tristate">
       <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherLogTrackCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>145</y>
+       <width>200</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>日志追踪模式</string>
      </property>
     </widget>
    </widget>

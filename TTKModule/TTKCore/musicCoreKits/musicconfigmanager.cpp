@@ -76,6 +76,7 @@ bool MusicConfigManager::readBuffer(int &items)
     G_SETTING_PTR->setValue(MusicSettingManager::OtherPlaylistAutoSaveEnable, readAttributeByTagName("otherPlaylistAutoSaveEnable"));
     G_SETTING_PTR->setValue(MusicSettingManager::OtherRandomShuffleMode, readAttributeByTagName("otherRandomShuffleMode"));
     G_SETTING_PTR->setValue(MusicSettingManager::OtherHighDpiScalingEnable, readAttributeByTagName("otherHighDpiScalingEnable"));
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherLogTrackEnable, readAttributeByTagName("otherLogTrackEnable"));
 
     G_SETTING_PTR->setValue(MusicSettingManager::RippleLowPowerMode, readAttributeByTagName("rippleLowPowerMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable, readAttributeByTagName("rippleSpectrumEnable").toInt());
@@ -188,6 +189,7 @@ bool MusicConfigManager::writeBuffer(const int &items)
     const int otherPlaylistAutoSaveEnable = G_SETTING_PTR->value(MusicSettingManager::OtherPlaylistAutoSaveEnable).toInt();
     const int otherRandomShuffleMode = G_SETTING_PTR->value(MusicSettingManager::OtherRandomShuffleMode).toInt();
     const int otherHighDpiScalingEnable = G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toInt();
+    const int otherLogTrackEnable = G_SETTING_PTR->value(MusicSettingManager::OtherLogTrackEnable).toInt();
     //
     const int rippleLowPowerMode = G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toInt();
     const int rippleSpectrumEnable = G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toInt();
@@ -303,6 +305,7 @@ bool MusicConfigManager::writeBuffer(const int &items)
     writeDomElement(otherSettingDom, "otherPlaylistAutoSaveEnable", {"value", otherPlaylistAutoSaveEnable});
     writeDomElement(otherSettingDom, "otherRandomShuffleMode", {"value", otherRandomShuffleMode});
     writeDomElement(otherSettingDom, "otherHighDpiScalingEnable", {"value", otherHighDpiScalingEnable});
+    writeDomElement(otherSettingDom, "otherLogTrackEnable", {"value", otherLogTrackEnable});
     //
     writeDomElement(rippleSettingDom, "rippleLowPowerMode", {"value", rippleLowPowerMode});
     writeDomElement(rippleSettingDom, "rippleSpectrumEnable", {"value", rippleSpectrumEnable});

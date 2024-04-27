@@ -23,6 +23,7 @@
 #include "musicscreensaverwidget.h"
 #include "musicplatformmanager.h"
 #include "ttklibrary.h"
+#include "ttklogoutput.h"
 #include "ttkconcurrent.h"
 #include "ttkdesktopwrapper.h"
 #include "ttkfileassociation.h"
@@ -277,9 +278,20 @@ void MusicApplicationModule::sideAnimationByOff()
 void MusicApplicationModule::applyParameter()
 {
 #ifdef Q_OS_WIN
+    QFile file(TTK::applicationPath() + TTK_QT_CONFIG);
+    file.open(QFile::ReadWrite);
+
+    if(!(G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toBool() ? (file.write("[Platforms]\nWindowsArguments = dpiawareness=0\n") != -1) : file.remove()))
+    {
+        G_SETTING_PTR->setValue(MusicSettingManager::OtherHighDpiScalingEnable, Qt::PartiallyChecked);
+    }
+    file.close();
+
+    //
     MusicPlatformManager manager;
     manager.windowsStartUpMode(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
 
+    //
     TTKConcurrent(
     {
         TTKFileAssociation association;
@@ -310,6 +322,8 @@ void MusicApplicationModule::applyParameter()
         }
     });
 #endif
+    //
+    G_SETTING_PTR->value(MusicSettingManager::OtherLogTrackEnable).toBool() ? TTK::installLogHandler() : TTK::removeLogHandler();
     //
     if(!m_screenSaverWidget)
     {

@@ -65,7 +65,7 @@ private:
     TTK_DECLARE_SINGLETON_CLASS(TTKLogOutput)
 };
 
-#define LOG_DIR_PATH QApplication::applicationDirPath() + "/log"
+#define LOG_DIR_PATH QApplication::applicationDirPath() + "/log/"
 
 TTKLogOutput::TTKLogOutput()
     : m_file(),
@@ -118,12 +118,12 @@ void TTKLogOutput::loggerHandler(QtMsgType type, const char *message)
 void TTKLogOutput::open()
 {
     m_dateTime = QDate::currentDate().toString(TTK_DATE_FORMAT);
-    const QString &fileName = LOG_DIR_PATH + m_dateTime + "_log";
+    const QString &fileName = LOG_DIR_PATH + m_dateTime;
 
     int index = 1;
     do
     {
-        m_file.setFileName(fileName + QString("_%1.txt").arg(index++));
+        m_file.setFileName(fileName + QString("_%1.log").arg(index++));
     }
     while(m_file.size() >= LOG_MAXSIZE);
 
@@ -139,6 +139,7 @@ void TTKLogOutput::save(const QString &message)
         m_file.flush();
     }
 }
+
 void TTKLogOutput::write(QtMsgType type, const QMessageLogContext &context, const QString &message)
 {
     Q_UNUSED(type);
@@ -171,7 +172,7 @@ void TTK::installLogHandler()
     TTKSingleton<TTKLogOutput>::instance()->install();
 }
 
-void TTK::uninstallLogHandler()
+void TTK::removeLogHandler()
 {
     TTKSingleton<TTKLogOutput>::instance()->uninstall();
 }
