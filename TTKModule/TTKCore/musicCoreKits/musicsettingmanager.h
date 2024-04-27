@@ -80,10 +80,12 @@ public:
         OtherPlaylistAutoSaveEnable = 0x600B,     /*!< Other Playlist Auto Save Enable Parameter*/
         OtherRandomShuffleMode = 0x600C,          /*!< Other Random Shuffle Mode Parameter*/
         OtherHighDpiScalingEnable = 0x600D,       /*!< Other High DPI Scaling Enable Parameter*/
+        OtherLogTrackEnable = 0x600E,             /*!< Other Log Track Enable Parameter*/
         //
         RippleLowPowerMode = 0x7000,              /*!< Ripple Low Power Mode Parameter*/
         RippleSpectrumEnable = 0x7001,            /*!< Ripple Spectrum Enable Parameter*/
         RippleSpectrumColor = 0x7002,             /*!< Ripple Spectrum Color Parameter*/
+        RippleSpectrumTransparent = 0x7003,       /*!< Ripple Spectrum Transparent Parameter*/
         //
         ShowInteriorLrc = 0x8000,                 /*!< Show Interior Lrc Parameter*/
         LrcColor = 0x8001,                        /*!< Lrc Color Parameter*/

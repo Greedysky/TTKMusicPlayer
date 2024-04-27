@@ -47,6 +47,7 @@ set(HEADER_FILES
   ttkitemdelegate.h
   ttklibrary.h
   ttklibraryversion.h
+  ttklogoutput.h
   ttkplatformsystem.h
   ttksemaphoreloop.h
   ttksuperenum.h
@@ -76,6 +77,7 @@ set(SOURCE_FILES
   ttkfileassociation.cpp
   ttkglobalhelper.cpp
   ttkitemdelegate.cpp
+  ttklogoutput.cpp
   ttkplatformsystem.cpp
   ttksemaphoreloop.cpp
   ttksuperenum.cpp

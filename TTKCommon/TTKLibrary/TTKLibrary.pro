@@ -85,6 +85,7 @@ HEADERS += \
     $$PWD/ttkitemdelegate.h \
     $$PWD/ttklibrary.h \
     $$PWD/ttklibraryversion.h \
+    $$PWD/ttklogoutput.h \
     $$PWD/ttkplatformsystem.h \
     $$PWD/ttksemaphoreloop.h \
     $$PWD/ttksuperenum.h \
@@ -113,6 +114,7 @@ SOURCES += \
     $$PWD/ttkfileassociation.cpp \
     $$PWD/ttkglobalhelper.cpp \
     $$PWD/ttkitemdelegate.cpp \
+    $$PWD/ttklogoutput.cpp \
     $$PWD/ttkplatformsystem.cpp \
     $$PWD/ttksemaphoreloop.cpp \
     $$PWD/ttksuperenum.cpp \

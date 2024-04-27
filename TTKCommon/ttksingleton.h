@@ -33,7 +33,7 @@ public:
     /*!
      * Get object instance ptr.
      */
-    static T* createInstance();
+    static T* instance();
 
 private:
     /*!
@@ -61,7 +61,7 @@ template <typename T> QMutex TTKSingleton<T>::m_mutex;
 template <typename T> QScopedPointer<T> TTKSingleton<T>::m_instance;
 
 template <typename T>
-T* TTKSingleton<T>::createInstance()
+T* TTKSingleton<T>::instance()
 {
     if(m_instance.isNull())
     {

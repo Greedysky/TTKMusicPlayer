@@ -8,45 +8,45 @@
 
 TTKDispatchManager* makeMusicDispatchManager()
 {
-    return TTKSingleton<TTKDispatchManager>::createInstance();
+    return TTKSingleton<TTKDispatchManager>::instance();
 }
 
 MusicConnectionPool* makeMusicConnectionPool()
 {
-    return TTKSingleton<MusicConnectionPool>::createInstance();
+    return TTKSingleton<MusicConnectionPool>::instance();
 }
 
 MusicBackgroundManager* makeMusicBackgroundManager()
 {
-    return TTKSingleton<MusicBackgroundManager>::createInstance();
+    return TTKSingleton<MusicBackgroundManager>::instance();
 }
 
 MusicHotKeyManager* makeMusicHotKeyManager()
 {
-    return TTKSingleton<MusicHotKeyManager>::createInstance();
+    return TTKSingleton<MusicHotKeyManager>::instance();
 }
 
 MusicSettingManager* makeMusicSettingManager()
 {
-    return TTKSingleton<MusicSettingManager>::createInstance();
+    return TTKSingleton<MusicSettingManager>::instance();
 }
 
 MusicSingleManager* makeMusicSingleManager()
 {
-    return TTKSingleton<MusicSingleManager>::createInstance();
+    return TTKSingleton<MusicSingleManager>::instance();
 }
 
 MusicDownLoadManager* makeMusicDownLoadManager()
 {
-    return TTKSingleton<MusicDownLoadManager>::createInstance();
+    return TTKSingleton<MusicDownLoadManager>::instance();
 }
 
 MusicDownLoadQueryFactory* makeMusicDownLoadQueryFactory()
 {
-    return TTKSingleton<MusicDownLoadQueryFactory>::createInstance();
+    return TTKSingleton<MusicDownLoadQueryFactory>::instance();
 }
 
 MusicNetworkThread* makeMusicNetworkThread()
 {
-    return TTKSingleton<MusicNetworkThread>::createInstance();
+    return TTKSingleton<MusicNetworkThread>::instance();
 }
