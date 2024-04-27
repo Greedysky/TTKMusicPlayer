@@ -81,6 +81,7 @@ bool MusicConfigManager::readBuffer(int &items)
     G_SETTING_PTR->setValue(MusicSettingManager::RippleLowPowerMode, readAttributeByTagName("rippleLowPowerMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable, readAttributeByTagName("rippleSpectrumEnable").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor, readAttributeByTagName("rippleSpectrumColor"));
+    G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumTransparent, readAttributeByTagName("rippleSpectrumTransparent"));
 
     G_SETTING_PTR->setValue(MusicSettingManager::BackgroundThemeValue, readAttributeByTagName("backgroundThemeValue"));
     G_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparent, readAttributeByTagName("backgroundTransparent").toInt());
@@ -194,6 +195,7 @@ bool MusicConfigManager::writeBuffer(const int &items)
     const int rippleLowPowerMode = G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toInt();
     const int rippleSpectrumEnable = G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toInt();
     const QString &rippleSpectrumColor = G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString();
+    const int rippleSpectrumTransparent = G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumTransparent).toInt();
     //
     const QString &backgroundThemeValue = G_SETTING_PTR->value(MusicSettingManager::BackgroundThemeValue).toString();
     const int backgroundTransparent = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
@@ -310,6 +312,7 @@ bool MusicConfigManager::writeBuffer(const int &items)
     writeDomElement(rippleSettingDom, "rippleLowPowerMode", {"value", rippleLowPowerMode});
     writeDomElement(rippleSettingDom, "rippleSpectrumEnable", {"value", rippleSpectrumEnable});
     writeDomElement(rippleSettingDom, "rippleSpectrumColor", {"value", rippleSpectrumColor});
+    writeDomElement(rippleSettingDom, "rippleSpectrumTransparent", {"value", rippleSpectrumTransparent});
     //
     writeDomElement(backgroundSettingDom, "backgroundThemeValue", {"value", backgroundThemeValue});
     writeDomElement(backgroundSettingDom, "backgroundTransparent", {"value", backgroundTransparent});

@@ -1041,7 +1041,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>135</y>
+       <y>155</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -1059,7 +1059,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>83</x>
-       <y>160</y>
+       <y>180</y>
        <width>180</width>
        <height>21</height>
       </rect>
@@ -1075,7 +1075,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>255</y>
+       <y>275</y>
        <width>100</width>
        <height>25</height>
       </rect>
@@ -1145,7 +1145,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>163</y>
+       <y>183</y>
        <width>55</width>
        <height>16</height>
       </rect>
@@ -1158,7 +1158,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>193</y>
+       <y>213</y>
        <width>55</width>
        <height>16</height>
       </rect>
@@ -1171,7 +1171,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>83</x>
-       <y>190</y>
+       <y>210</y>
        <width>180</width>
        <height>21</height>
       </rect>
@@ -1187,7 +1187,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>223</y>
+       <y>243</y>
        <width>55</width>
        <height>16</height>
       </rect>
@@ -1200,7 +1200,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>83</x>
-       <y>220</y>
+       <y>240</y>
        <width>350</width>
        <height>21</height>
       </rect>
@@ -1223,6 +1223,48 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>开启音频波纹特效</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rippleTransValueLabel">
+     <property name="geometry">
+      <rect>
+       <x>385</x>
+       <y>120</y>
+       <width>35</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>100%</string>
+     </property>
+    </widget>
+    <widget class="TTKClickedSlider" name="rippleTransparentSlider">
+     <property name="geometry">
+      <rect>
+       <x>75</x>
+       <y>120</y>
+       <width>300</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="DfontTransLabel_2">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>122</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>透明度</string>
      </property>
     </widget>
    </widget>
@@ -1473,7 +1515,7 @@ font-weight:bold;</string>
       <string>样式设置</string>
      </property>
     </widget>
-    <widget class="TTKThemeLineLabel" name="DSetColorSongWordWidget">
+    <widget class="TTKThemeLineLabel" name="DsetColorSongWordWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1707,7 +1749,7 @@ font-weight:bold;</string>
       <string>100%</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="DSingleLineCheckBox">
+    <widget class="QCheckBox" name="DsingleLineCheckBox">
      <property name="geometry">
       <rect>
        <x>25</x>

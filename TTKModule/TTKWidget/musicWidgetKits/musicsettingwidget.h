@@ -143,6 +143,20 @@ public Q_SLOTS:
     void close();
 
     /*!
+     * Change to desktop lrc widget.
+     */
+    void changeDesktopLrcWidget();
+    /*!
+     * Change to interior lrc widget.
+     */
+    void changeInteriorLrcWidget();
+    /*!
+     * Change to download widget.
+     */
+    void changeDownloadWidget();
+
+private Q_SLOTS:
+    /*!
      * Clear all function tables selection.
      */
     void clearFunctionTableSelection();
@@ -185,31 +199,21 @@ public Q_SLOTS:
      */
     void rippleSpectrumColorChanged();
     /*!
-     * Ripple spectrum opacity enable changed.
+     * Ripple spectrum transparent changed by value.
      */
-    void rippleSpectrumOpacityEnableClicked(bool state);
+    void rippleSpectrumTransChanged(int value);
+    /*!
+     * Ripple spectrum enable changed.
+     */
+    void rippleSpectrumEnableClicked(bool state);
     /*!
      * Ripple low power mode enable changed.
      */
     void rippleLowPowerEnableBoxClicked(bool state);
-
     /*!
      * Plugin manager changed.
      */
     void otherPluginManagerChanged();
-
-    /*!
-     * Change to desktop lrc widget.
-     */
-    void changeDesktopLrcWidget();
-    /*!
-     * Change to interior lrc widget.
-     */
-    void changeInteriorLrcWidget();
-    /*!
-     * Change to download widget.
-     */
-    void changeDownloadWidget();
 
     /*!
      * Interior lrc foreground change.
@@ -224,7 +228,7 @@ public Q_SLOTS:
      */
     void defaultLrcColorChanged(int value);
     /*!
-     * Interior lrc transparent changed by index.
+     * Interior lrc transparent changed by value.
      */
     void interiorLrcTransChanged(int value);
     /*!
@@ -249,7 +253,7 @@ public Q_SLOTS:
      */
     void defaultDesktopLrcColorChanged(int value);
     /*!
-     * Desktop lrc transparent changed by index.
+     * Desktop lrc transparent changed by value.
      */
     void desktopLrcTransChanged(int value);
     /*!

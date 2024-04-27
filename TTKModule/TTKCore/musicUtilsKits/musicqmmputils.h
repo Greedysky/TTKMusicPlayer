@@ -33,10 +33,6 @@ namespace TTK
          * Get qmmp plugin dir path.
          */
         TTK_MODULE_EXPORT QString pluginPath(const QString &module, const QString &format);
-        /*!
-         * Update qmmp config file transfer.
-         */
-        TTK_MODULE_EXPORT void updateConfig();
 
         /*!
          * Enable effect module control.
@@ -55,10 +51,15 @@ namespace TTK
          * Enable visual module control.
          */
         TTK_MODULE_EXPORT void enabledVisualPlugin(const QString &name, bool enabled);
+
         /*!
-         * Update ripple spectrum config.
+         * Update base config.
          */
-        TTK_MODULE_EXPORT void updateRippleConfig();
+        TTK_MODULE_EXPORT void updateBaseConfig();
+        /*!
+         * Update blur spectrum config.
+         */
+        TTK_MODULE_EXPORT void updateBlurConfig();
 
     }
 }

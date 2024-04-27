@@ -40,6 +40,7 @@
         <rippleLowPowerMode value="0"/>
         <rippleSpectrumEnable value="1"/>
         <rippleSpectrumColor value="250,218,131"/>
+        <rippleSpectrumTransparent value="100"/>
     </rippleSetting>
     <backgroundSetting>
         <backgroundThemeValue value="theme-7"/>
@@ -57,7 +58,7 @@
         <lrcSize value="18"/>
         <lrcFamily value="0"/>
         <lrcType value="1"/>
-        <lrcTransparent value="99"/>
+        <lrcTransparent value="100"/>
         <lrcFrontgroundColor value="250,218,131;250,218,131;250,218,131;"/>
         <lrcBackgroundColor value="255,255,255;255,255,255;255,255,255;"/>
     </interiorLrcSetting>
@@ -67,7 +68,7 @@
         <lrcDSize value="36"/>
         <lrcDFamily value="0"/>
         <lrcDType value="1"/>
-        <lrcDTransparent value="99"/>
+        <lrcDTransparent value="100"/>
         <lrcDFrontgroundColor value="130,247,253;255,255,255;3,233,252;"/>
         <lrcDBackgroundColor value="0,52,138;0,128,192;3,202,252;"/>
         <lrcDWindowMode value="1"/>

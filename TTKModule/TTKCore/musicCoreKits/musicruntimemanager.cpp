@@ -111,7 +111,7 @@ void MusicRunTimeManager::run() const
 #if !TTK_QT_VERSION_CHECK(5,0,0)
     TTK::Codec::setLocalCodec();
 #endif
-    TTK::TTKQmmp::updateConfig();
+    TTK::TTKQmmp::updateBaseConfig();
 
 #ifdef Q_OS_UNIX
     QFont font;

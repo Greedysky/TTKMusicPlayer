@@ -19,18 +19,6 @@ QString TTK::TTKQmmp::pluginPath(const QString &module, const QString &format)
     return path;
 }
 
-void TTK::TTKQmmp::updateConfig()
-{
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Http");
-    settings.setValue("buffer_path", CACHE_DIR_FULL);
-    settings.endGroup();
-
-    settings.beginGroup("Archive");
-    settings.setValue("unpack_path", ARCHIVE_DIR_DIR_FULL);
-    settings.endGroup();
-}
-
 void TTK::TTKQmmp::enabledEffectPlugin(bool enabled, const QString &name)
 {
     for(EffectFactory *factory : Effect::factories())
@@ -91,14 +79,26 @@ void TTK::TTKQmmp::enabledVisualPlugin(const QString &name, bool enabled)
     }
 }
 
-void TTK::TTKQmmp::updateRippleConfig()
+void TTK::TTKQmmp::updateBaseConfig()
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("Http");
+    settings.setValue("buffer_path", CACHE_DIR_FULL);
+    settings.endGroup();
+
+    settings.beginGroup("Archive");
+    settings.setValue("unpack_path", ARCHIVE_DIR_DIR_FULL);
+    settings.endGroup();
+}
+
+void TTK::TTKQmmp::updateBlurConfig()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("OuterBlurWave");
 
     QString colors = G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString();
     settings.setValue("colors", colors.remove(";"));
-    const double opacity = 1.0;
+    const double opacity = (G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumTransparent).toInt() + 50) / 150.0;
     settings.setValue("opacity", opacity);
     settings.endGroup();
 }

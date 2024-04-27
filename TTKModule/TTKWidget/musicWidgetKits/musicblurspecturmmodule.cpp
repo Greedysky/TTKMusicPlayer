@@ -71,7 +71,7 @@ void MusicBlurSpecturmModule::update(bool up)
 {
     up ? show() : close();
 
-    TTK::TTKQmmp::updateRippleConfig();
+    TTK::TTKQmmp::updateBlurConfig();
     if(m_visualWidget)
     {
         Visual *widget = TTKObjectCast(Visual*, m_visualWidget);

@@ -185,8 +185,9 @@ void MusicSettingWidget::initialize()
     m_ui->rippleLowPowerModeBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool());
     m_ui->rippleSpectrumEnableBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool());
     m_ui->rippleSpectrumColorButton->setColors(TTK::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString()));
+    m_ui->rippleTransparentSlider->setValue(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumTransparent).toInt());
 
-    rippleSpectrumOpacityEnableClicked(m_ui->rippleSpectrumEnableBox->isChecked());
+    rippleSpectrumEnableClicked(m_ui->rippleSpectrumEnableBox->isChecked());
 
     if(m_ui->rippleLowPowerModeBox->isChecked())
     {
@@ -238,7 +239,7 @@ void MusicSettingWidget::initialize()
 
     //
     m_ui->showDesktopCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool());
-    m_ui->DSingleLineCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineMode).toBool());
+    m_ui->DsingleLineCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineMode).toBool());
     m_ui->DfontComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcFamily).toInt());
     m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcDefines().findDesktopLrcIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt()));
     m_ui->DfontTypeComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcType).toInt());
@@ -396,15 +397,21 @@ void MusicSettingWidget::rippleSpectrumColorChanged()
     }
 }
 
-void MusicSettingWidget::rippleSpectrumOpacityEnableClicked(bool state)
+void MusicSettingWidget::rippleSpectrumTransChanged(int value)
+{
+    m_ui->rippleTransValueLabel->setText(QString::number(value) + "%");
+}
+
+void MusicSettingWidget::rippleSpectrumEnableClicked(bool state)
 {
     m_ui->rippleSpectrumColorButton->setEnabled(state);
+    m_ui->rippleTransparentSlider->setEnabled(state);
 }
 
 void MusicSettingWidget::rippleLowPowerEnableBoxClicked(bool state)
 {
     m_ui->rippleSpectrumEnableBox->setEnabled(!state);
-    rippleSpectrumOpacityEnableClicked(m_ui->rippleSpectrumEnableBox->isEnabled() && m_ui->rippleSpectrumEnableBox->isChecked());
+    rippleSpectrumEnableClicked(m_ui->rippleSpectrumEnableBox->isEnabled() && m_ui->rippleSpectrumEnableBox->isChecked());
 }
 
 void MusicSettingWidget::otherPluginManagerChanged()
@@ -599,6 +606,7 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::RippleLowPowerMode, m_ui->rippleLowPowerModeBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable, m_ui->rippleSpectrumEnableBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor, TTK::writeColorConfig(m_ui->rippleSpectrumColorButton->colors()));
+    G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumTransparent, m_ui->rippleTransparentSlider->value());
 
     G_SETTING_PTR->setValue(MusicSettingManager::OtherReadAlbumCover, m_ui->otherReadAlbumCoverCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherReadFileInfo, m_ui->otherReadInfoCheckBox->isChecked());
@@ -622,7 +630,7 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColor, TTK::writeColorConfig(m_ui->noPlayedPushButton->colors()));
 
     G_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, m_ui->showDesktopCheckBox->isChecked());
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineMode, m_ui->DSingleLineCheckBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineMode, m_ui->DsingleLineCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcColor, m_ui->DfontDefaultColorComboBox->currentIndex() != -1 ? m_ui->DfontDefaultColorComboBox->currentIndex() + LRC_COLOR_OFFSET : -1);
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcFamily, m_ui->DfontComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcSize, m_ui->DfontSizeComboBox->currentText());
@@ -885,9 +893,12 @@ void MusicSettingWidget::initSpectrumSettingWidget()
     m_ui->rippleSpectrumEnableBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
     m_ui->rippleSpectrumColorButton->setText(tr("Effect"));
+    m_ui->rippleTransparentSlider->setStyleSheet(TTK::UI::SliderStyle06);
+
     connect(m_ui->rippleSpectrumColorButton, SIGNAL(clicked()), SLOT(rippleSpectrumColorChanged()));
     connect(m_ui->rippleLowPowerModeBox, SIGNAL(clicked(bool)), SLOT(rippleLowPowerEnableBoxClicked(bool)));
-    connect(m_ui->rippleSpectrumEnableBox, SIGNAL(clicked(bool)), SLOT(rippleSpectrumOpacityEnableClicked(bool)));
+    connect(m_ui->rippleSpectrumEnableBox, SIGNAL(clicked(bool)), SLOT(rippleSpectrumEnableClicked(bool)));
+    connect(m_ui->rippleTransparentSlider, SIGNAL(valueChanged(int)), SLOT(rippleSpectrumTransChanged(int)));
 
     m_ui->rippleVersionUpdateButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->rippleVersionUpdateButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -937,7 +948,7 @@ void MusicSettingWidget::initOtherSettingWidget()
 void MusicSettingWidget::initDesktopLrcWidget()
 {
     m_ui->showDesktopCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->DSingleLineCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->DsingleLineCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
     TTK::Widget::generateComboBoxFormat(m_ui->DfontComboBox);
     TTK::Widget::generateComboBoxFormat(m_ui->DfontSizeComboBox);
@@ -966,7 +977,7 @@ void MusicSettingWidget::initDesktopLrcWidget()
     connect(m_ui->DresetPushButton, SIGNAL(clicked()), SLOT(resetDesktopParameter()));
 #ifdef Q_OS_UNIX
     m_ui->showDesktopCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->DSingleLineCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->DsingleLineCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->DresetPushButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
