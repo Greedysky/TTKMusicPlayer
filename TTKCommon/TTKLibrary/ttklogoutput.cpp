@@ -6,6 +6,12 @@
 
 #define LOG_MAXSIZE  5 * 1024 * 1024
 
+#if !TTK_QT_VERSION_CHECK(5,0,0)
+class QMessageLogContext {};
+using QtMessageHandler = QtMsgHandler;
+#define qInstallMessageHandler qInstallMsgHandler
+#endif
+
 class TTKLogOutput
 {
 public:
@@ -54,13 +60,7 @@ private:
     QFile m_file;
     QString m_dateTime;
     QMutex m_mutex;
-#if TTK_QT_VERSION_CHECK(5,0,0)
     QtMessageHandler m_defaultHandler;
-#else
-    class QMessageLogContext {};
-    QtMsgHandler m_defaultHandler;
-#define qInstallMessageHandler qInstallMsgHandler
-#endif
 
     TTK_DECLARE_SINGLETON_CLASS(TTKLogOutput)
 };
@@ -147,7 +147,11 @@ void TTKLogOutput::write(QtMsgType type, const QMessageLogContext &context, cons
 
     m_mutex.lock();
 
+#if TTK_QT_VERSION_CHECK(5,0,0)
     m_defaultHandler(type, context, message);
+#else
+    m_defaultHandler(type, message.toUtf8().constData());
+#endif
 
     if(m_file.isOpen())
     {
