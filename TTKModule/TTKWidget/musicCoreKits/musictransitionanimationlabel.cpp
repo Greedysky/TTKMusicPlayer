@@ -12,8 +12,7 @@ MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
       m_isAnimating(false),
       m_currentValue(0),
       m_noAnimationSet(false),
-      m_cubeWave(nullptr),
-      m_waterWave(nullptr)
+      m_imageRender(nullptr)
 {
     TTK::initRandom();
 
@@ -30,6 +29,7 @@ MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
 MusicTransitionAnimationLabel::~MusicTransitionAnimationLabel()
 {
     delete m_animation;
+    delete m_imageRender;
 }
 
 const QPixmap& MusicTransitionAnimationLabel::rendererPixmap() const
@@ -67,12 +67,12 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
     m_currentPixmap = pix;
     m_isAnimating = true;
 
-    m_type = TTKStaticCast(Module, TTK::random(5));
+    m_type = TTKStaticCast(Module, TTK::random(TTKStaticCast(int, Module::MAX)));
     switch(m_type)
     {
         case Module::FadeEffect:
         {
-            m_animation->setDuration(200);
+            m_animation->setDuration(500);
             break;
         }
         case Module::BlindsEffect:
@@ -82,28 +82,28 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
         }
         case Module::CubeEffect:
         {
-            delete m_cubeWave;
-            m_cubeWave = new QAlgorithm::CubeWave;
-            m_cubeWave->input(rect());
-            m_animation->setDuration(500);
+            delete m_imageRender;
+            m_imageRender = new QAlgorithm::CubeWave;
+            m_imageRender->input(rect());
+            m_animation->setDuration(1000);
             break;
         }
         case Module::WaterEffect:
         {
-            delete m_waterWave;
-            m_waterWave = new QAlgorithm::WaterWave(m_currentPixmap.toImage(), height() / 6);
-            m_waterWave->input(rect());
+            delete m_imageRender;
+            m_imageRender = new QAlgorithm::WaterWave(m_currentPixmap.toImage(), height() / 6);
+            m_imageRender->input(rect());
             m_animation->setDuration(1000);
             break;
         }
         case Module::LeftToRightEffect:
         {
-            m_animation->setDuration(150);
+            m_animation->setDuration(250);
             break;
         }
         case Module::TopToBottomEffect:
         {
-            m_animation->setDuration(150);
+            m_animation->setDuration(250);
             break;
         }
         default: break;
@@ -164,13 +164,13 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
             case Module::CubeEffect:
             {
                 painter.drawPixmap(rect(), m_previousPixmap);
-                m_rendererPixmap = m_cubeWave->render(m_currentPixmap, m_currentValue);
+                m_rendererPixmap = m_imageRender->render(m_currentPixmap, m_currentValue);
                 break;
             }
             case Module::WaterEffect:
             {
                 painter.drawPixmap(rect(), m_previousPixmap);
-                m_rendererPixmap = m_waterWave->render(m_currentPixmap, m_currentValue);
+                m_rendererPixmap = m_imageRender->render(m_currentPixmap, m_currentValue);
                 break;
             }
             case Module::LeftToRightEffect:

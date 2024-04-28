@@ -27,22 +27,22 @@
  */
 namespace QAlgorithm
 {
-class SharpeImagePrivate;
+class ImageRenderPrivate;
 
-/*! @brief The class of the sharpe image.
+/*! @brief The class of the image render.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT SharpeImage
+class TTK_MODULE_EXPORT ImageRender
 {
 public:
     /*!
      * Object constructor.
      */
-    SharpeImage();
+    ImageRender();
     /*!
      * Object destructor.
      */
-    virtual ~SharpeImage() = default;
+    virtual ~ImageRender() = default;
 
     /*!
      * Init item data.
@@ -55,10 +55,10 @@ public:
     virtual QPixmap render(const QPixmap &pixmap, int value) = 0;
 
 protected:
-    SharpeImage(SharpeImagePrivate &pvt);
+    ImageRender(ImageRenderPrivate &pvt);
 
 protected:
-    TTK_DECLARE_PRIVATE(SharpeImage)
+    TTK_DECLARE_PRIVATE(ImageRender)
 
 };
 
@@ -66,7 +66,7 @@ protected:
 /*! @brief The class of the gauss blur.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT GaussBlur : public SharpeImage
+class TTK_MODULE_EXPORT GaussBlur : public ImageRender
 {
 public:
     /*!
@@ -85,7 +85,7 @@ public:
 /*! @brief The class of the cube wave.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT CubeWave : public SharpeImage
+class TTK_MODULE_EXPORT CubeWave : public ImageRender
 {
 public:
     /*!
@@ -108,7 +108,7 @@ public:
 /*! @brief The class of the water wave.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT WaterWave : public SharpeImage
+class TTK_MODULE_EXPORT WaterWave : public ImageRender
 {
 public:
     /*!

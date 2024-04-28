@@ -6,56 +6,43 @@
 
 namespace QAlgorithm
 {
-/*! @brief The class of the sharpe image private.
+/*! @brief The class of the image render private.
  * @author Greedysky <greedysky@163.com>
  */
-class SharpeImagePrivate : public TTKPrivate<SharpeImage>
+class ImageRenderPrivate : public TTKPrivate<ImageRender>
 {
 public:
-    SharpeImagePrivate();
-    ~SharpeImagePrivate();
-
     QRect m_rectangle;
 };
 
-SharpeImagePrivate::SharpeImagePrivate()
+
+ImageRender::ImageRender()
+    : ImageRender(TTK_CREATE_PRIVATE(ImageRender))
 {
 
 }
 
-SharpeImagePrivate::~SharpeImagePrivate()
-{
-
-}
-
-
-SharpeImage::SharpeImage()
-    : SharpeImage(TTK_CREATE_PRIVATE(SharpeImage))
-{
-
-}
-
-SharpeImage::SharpeImage(SharpeImagePrivate &pvt)
+ImageRender::ImageRender(ImageRenderPrivate &pvt)
 {
     TTK_INIT_PRIVATE_D(pvt);
 }
 
-void SharpeImage::input(const QRect &region)
+void ImageRender::input(const QRect &region)
 {
-    TTK_D(SharpeImage);
+    TTK_D(ImageRender);
     d->m_rectangle = region;
 }
 
 ////////////////////////////////////////////////////////////////////////
 GaussBlur::GaussBlur()
-    : SharpeImage()
+    : ImageRender()
 {
 
 }
 
 QPixmap GaussBlur::render(const QPixmap &pixmap, int value)
 {
-    TTK_D(SharpeImage);
+    TTK_D(ImageRender);
     QImage image = pixmap.copy(d->m_rectangle).toImage();
 
     const float sigma = 1.0 * value / 2.57;
@@ -170,7 +157,7 @@ QPixmap GaussBlur::render(const QPixmap &pixmap, int value)
 /*! @brief The class of the cube wave private.
  * @author Greedysky <greedysky@163.com>
  */
-class CubeWavePrivate : public SharpeImagePrivate
+class CubeWavePrivate : public ImageRenderPrivate
 {
 public:
     CubeWavePrivate();
@@ -186,7 +173,7 @@ public:
 };
 
 CubeWavePrivate::CubeWavePrivate()
-    : SharpeImagePrivate(),
+    : ImageRenderPrivate(),
       m_row(0),
       m_column(0)
 {
@@ -201,12 +188,7 @@ void CubeWavePrivate::initialize(int width, int height)
 
 bool CubeWavePrivate::isValid(int index, int value) const
 {
-    if(index < 0 || index > m_data.count())
-    {
-        return false;
-    }
-
-    return m_data[index] > value;
+    return (index < 0 || index > m_data.count()) ? false : (m_data[index] > value);
 }
 
 int CubeWavePrivate::count()  const
@@ -216,14 +198,14 @@ int CubeWavePrivate::count()  const
 
 
 CubeWave::CubeWave()
-    : SharpeImage(TTK_CREATE_PRIVATE(CubeWave))
+    : ImageRender(TTK_CREATE_PRIVATE(CubeWave))
 {
 
 }
 
 void CubeWave::input(const QRect &region)
 {
-    SharpeImage::input(region);
+    ImageRender::input(region);
 
     TTK_D(CubeWave);
     d->initialize(region.width(), region.height());
@@ -269,7 +251,7 @@ QPixmap CubeWave::render(const QPixmap &pixmap, int value)
 /*! @brief The class of the water wave private.
  * @author Greedysky <greedysky@163.com>
  */
-class WaterWavePrivate : public SharpeImagePrivate
+class WaterWavePrivate : public ImageRenderPrivate
 {
 public:
     WaterWavePrivate();
@@ -279,7 +261,7 @@ public:
     void render();
     void initialize(const QImage &image, int radius);
 
-    void setWaveSourcePower(int radius, int depth);
+    void setWaveSourcePower(int depth);
     void setWaveSourcePosition(int x, int y);
 
 private:
@@ -298,14 +280,13 @@ private:
     int m_height;
 
     int m_powerRate;
-    float m_scale;
 
     int m_sourceRadius;
     int m_sourceDepth;
 };
 
 WaterWavePrivate::WaterWavePrivate()
-    : SharpeImagePrivate()
+    : ImageRenderPrivate()
 {
 
 }
@@ -375,15 +356,14 @@ void WaterWavePrivate::initialize(const QImage &image, int radius)
     m_buffer1 = new short[m_width * m_height]{};
     m_buffer2 = new short[m_width * m_height]{};
 
-    m_powerRate = 2;
-    m_scale = 1;
+    m_powerRate = 3;
+    m_sourceRadius = TTKStaticCast(int, radius);
 
-    setWaveSourcePower(radius, 100);
+    setWaveSourcePower(100);
 }
 
-void WaterWavePrivate::setWaveSourcePower(int radius, int depth)
+void WaterWavePrivate::setWaveSourcePower(int depth)
 {
-    m_sourceRadius = TTKStaticCast(int, radius / m_scale);
     m_sourceDepth = depth;
 
     const int value = m_sourceRadius * m_sourceRadius;
@@ -411,8 +391,8 @@ void WaterWavePrivate::setWaveSourcePower(int radius, int depth)
 
 void WaterWavePrivate::setWaveSourcePosition(int x, int y)
 {
-    const int sourceX = TTKStaticCast(int, x / m_scale);
-    const int sourceY = TTKStaticCast(int, y / m_scale);
+    const int sourceX = TTKStaticCast(int, x);
+    const int sourceY = TTKStaticCast(int, y);
     if((sourceX + m_sourceRadius) >= m_width || (sourceY + m_sourceRadius) >= m_height || (sourceX - m_sourceRadius) <= 0 || (sourceY - m_sourceRadius) <= 0)
     {
         return;
@@ -463,7 +443,7 @@ void WaterWavePrivate::renderRipple()
 
 
 WaterWave::WaterWave(const QImage &image, int radius)
-    : SharpeImage(TTK_CREATE_PRIVATE(WaterWave))
+    : ImageRender(TTK_CREATE_PRIVATE(WaterWave))
 {
     TTK_D(WaterWave);
     d->initialize(image, radius);
@@ -471,7 +451,7 @@ WaterWave::WaterWave(const QImage &image, int radius)
 
 void WaterWave::input(const QRect &region)
 {
-    SharpeImage::input(region);
+    ImageRender::input(region);
 
     TTK_D(WaterWave);
     d->setWaveSourcePosition(region.width() / 2, region.height() / 2);

@@ -25,7 +25,7 @@
 class QPropertyAnimation;
 namespace QAlgorithm
 {
-class SharpeImage;
+class ImageRender;
 }
 
 /*! @brief The class of the label transition animation.
@@ -43,7 +43,8 @@ public:
         CubeEffect,
         WaterEffect,
         LeftToRightEffect,
-        TopToBottomEffect
+        TopToBottomEffect,
+        MAX = 6
     };
 
     /*!
@@ -103,9 +104,7 @@ private:
     QPixmap m_rendererPixmap;
     QPixmap m_currentPixmap, m_previousPixmap;
     QPropertyAnimation *m_animation;
-
-    QAlgorithm::SharpeImage *m_cubeWave;
-    QAlgorithm::SharpeImage *m_waterWave;
+    QAlgorithm::ImageRender *m_imageRender;
 
 };
 
