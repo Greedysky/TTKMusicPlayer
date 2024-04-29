@@ -908,6 +908,7 @@ void MusicSettingWidget::initSpectrumSettingWidget()
     m_ui->rippleSpectrumEnableBox->setFocusPolicy(Qt::NoFocus);
     m_ui->rippleVersionUpdateButton->setFocusPolicy(Qt::NoFocus);
 #endif
+    m_ui->rippleTransparentSlider->setValue(100);
 }
 
 void MusicSettingWidget::initOtherSettingWidget()
