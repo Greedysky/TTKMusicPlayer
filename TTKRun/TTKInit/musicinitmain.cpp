@@ -1,5 +1,5 @@
 #include <QCoreApplication>
-#include "musicconfigobject.h"
+#include "musicconfigmodule.h"
 
 #ifdef _MSC_VER
 #  pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
@@ -13,8 +13,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(TTK_APP_COME_NAME);
     QCoreApplication::setApplicationName(TTK_APP_NAME);
 
-    MusicConfigObject object;
-    object.initialize();
+    MusicConfigModule config;
+    config.initialize();
     TTK_INFO_STREAM("Parameter Init success");
     return 0;
 }

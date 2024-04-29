@@ -15,6 +15,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(TTK_APP_COME_NAME);
     QCoreApplication::setApplicationName(TTK_APP_NAME);
 
-    MusicConsoleModule object;
-    return object.initialize();
+    MusicConsoleModule console;
+    return console.initialize();
 }

@@ -22,11 +22,11 @@ project(TTKConfig)
 
 set(HEADER_FILES
   musicconfigdefine.h
-  musicconfigobject.h
+  musicconfigmodule.h
 )
 
 set(SOURCE_FILES
-  musicconfigobject.cpp
+  musicconfigmodule.cpp
 )
 
 SET(QRC_FILES

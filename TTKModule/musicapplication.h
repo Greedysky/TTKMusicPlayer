@@ -329,7 +329,7 @@ private:
     MusicTopAreaWidget *m_topAreaWidget;
     MusicRightAreaWidget *m_rightAreaWidget;
     MusicLeftAreaWidget *m_leftAreaWidget;
-    MusicApplicationModule *m_applicationObject;
+    MusicApplicationModule *m_applicationModule;
 
     friend class MusicMPRISPlayerCore;
     friend class MusicPlaylistBackupModule;

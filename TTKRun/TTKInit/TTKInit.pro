@@ -40,7 +40,7 @@ win32:msvc{
 
 win32{
     msvc{
-        HEADERS += $$PWD/../../TTKConfig/musicconfigobject.h
+        HEADERS += $$PWD/../../TTKConfig/musicconfigmodule.h
     }else{
         QMAKE_LFLAGS_CONSOLE += -mwindows
     }

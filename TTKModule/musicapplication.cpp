@@ -33,7 +33,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 {
     m_instance = this;
 
-    m_applicationObject = new MusicApplicationModule(this);
+    m_applicationModule = new MusicApplicationModule(this);
     m_topAreaWidget = new MusicTopAreaWidget(this);
     m_bottomAreaWidget = new MusicBottomAreaWidget(this);
     m_rightAreaWidget = new MusicRightAreaWidget(this);
@@ -100,7 +100,7 @@ MusicApplication::~MusicApplication()
     delete m_topAreaWidget;
     delete m_rightAreaWidget;
     delete m_leftAreaWidget;
-    delete m_applicationObject;
+    delete m_applicationModule;
     delete m_ui;
 }
 
@@ -118,6 +118,7 @@ QString MusicApplication::currentFileName() const
 
     const MusicPlayItem &item = m_playlist->currentItem();
     const MusicSongItemList items(m_songTreeWidget->items());
+
     if(0 <= m_currentSongTreeIndex && m_currentSongTreeIndex < items.count())
     {
         const MusicSongList &songs = items[m_currentSongTreeIndex].m_songs;
@@ -136,6 +137,7 @@ QString MusicApplication::currentFilePath() const
 
     const MusicPlayItem &item = m_playlist->currentItem();
     const MusicSongItemList items(m_songTreeWidget->items());
+
     if(0 <= m_currentSongTreeIndex && m_currentSongTreeIndex < items.count())
     {
         const MusicSongList &songs = items[m_currentSongTreeIndex].m_songs;
@@ -255,8 +257,8 @@ void MusicApplication::quitWindow()
     TTK::Core::enableBreakPoint(true);
     //
     m_quitWindowMode = true;
-    m_applicationObject->cleanup();
-    m_applicationObject->windowCloseAnimation();
+    m_applicationModule->cleanup();
+    m_applicationModule->windowCloseAnimation();
     //Write configuration files
     writeSystemConfigToFile();
 }
@@ -758,15 +760,15 @@ void MusicApplication::createRightMenu()
     remoteControl.addAction(tr("Delete Remote"), m_topAreaWidget, SLOT(deleteCurrentRemote()));
     TTK::Widget::adjustMenuPosition(&remoteControl);
 
-    menu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationObject, SLOT(showEqualizerWidget()));
-    menu.addAction(tr("Sound Effect"), m_applicationObject, SLOT(showSoundEffectWidget()));
-    menu.addAction(tr("Timing Settings"), m_applicationObject, SLOT(showTimerWidget()));
-    menu.addAction(tr("Music Spectrum"), m_applicationObject, SLOT(showSpectrumWidget()));
+    menu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationModule, SLOT(showEqualizerWidget()));
+    menu.addAction(tr("Sound Effect"), m_applicationModule, SLOT(showSoundEffectWidget()));
+    menu.addAction(tr("Timing Settings"), m_applicationModule, SLOT(showTimerWidget()));
+    menu.addAction(tr("Music Spectrum"), m_applicationModule, SLOT(showSpectrumWidget()));
     menu.addSeparator();
 
-    QAction *window = menu.addAction(tr("Window Top"), m_applicationObject, SLOT(setWindowToTop()));
-    window->setIcon(QIcon(m_applicationObject->windowToTop() ? ":/contextMenu/btn_selected" : QString()));
-    menu.addAction(tr("Reset Window"), m_applicationObject, SLOT(resetWindowGeometry()));
+    QAction *window = menu.addAction(tr("Window Top"), m_applicationModule, SLOT(setWindowToTop()));
+    window->setIcon(QIcon(m_applicationModule->windowToTop() ? ":/contextMenu/btn_selected" : QString()));
+    menu.addAction(tr("Reset Window"), m_applicationModule, SLOT(resetWindowGeometry()));
 
     QMenu download(tr("Download"), &menu);
     menu.addMenu(&download);
@@ -779,16 +781,16 @@ void MusicApplication::createRightMenu()
         actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
     }
 
-    if(!m_applicationObject->isLastedVersion())
+    if(!m_applicationModule->isLastedVersion())
     {
-        menu.addAction(QIcon(":/contextMenu/btn_update"), tr("New Version"), m_applicationObject, SLOT(showVersionWidget()));
+        menu.addAction(QIcon(":/contextMenu/btn_update"), tr("New Version"), m_applicationModule, SLOT(showVersionWidget()));
     }
     menu.addAction(QIcon(":/contextMenu/btn_setting"), tr("Settings"), this, SLOT(showSettingWidget()));
 
     QMenu information(tr("About"), &menu);
     menu.addMenu(&information)->setIcon(QIcon(":/contextMenu/btn_about"));
-    information.addAction(QIcon(":/contextMenu/btn_bug_reoprt"), tr("Bug Report"), m_applicationObject, SLOT(showBugReportView()));
-    information.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + TTK_STR_CAT(TTK_VERSION_STR, TTK_VERSION_TIME_STR), m_applicationObject, SLOT(showAboutWidget()));
+    information.addAction(QIcon(":/contextMenu/btn_bug_reoprt"), tr("Bug Report"), m_applicationModule, SLOT(showBugReportView()));
+    information.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + TTK_STR_CAT(TTK_VERSION_STR, TTK_VERSION_TIME_STR), m_applicationModule, SLOT(showAboutWidget()));
 
     menu.addSeparator();
     menu.addAction(QIcon(":/contextMenu/btn_quit"), tr("Quit"), this, SLOT(quitWindow()));
@@ -800,7 +802,7 @@ void MusicApplication::applyParameter()
     //This attribute is effective immediately.
     m_playlist->setShuffleMode(G_SETTING_PTR->value(MusicSettingManager::OtherRandomShuffleMode).toBool());
     //
-    m_applicationObject->applyParameter();
+    m_applicationModule->applyParameter();
     m_rightAreaWidget->applyParameter();
     m_bottomAreaWidget->applyParameter();
 }
@@ -982,19 +984,19 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 void MusicApplication::enterEvent(QtEnterEvent *event)
 {
     TTKAbstractMoveResizeWidget::enterEvent(event);
-    m_applicationObject->sideAnimationByOff();
+    m_applicationModule->sideAnimationByOff();
 }
 
 void MusicApplication::leaveEvent(QEvent *event)
 {
     TTKAbstractMoveResizeWidget::leaveEvent(event);
-    m_applicationObject->sideAnimationByOn();
+    m_applicationModule->sideAnimationByOn();
 }
 
 void MusicApplication::mouseReleaseEvent(QMouseEvent *event)
 {
     TTKAbstractMoveResizeWidget::mouseReleaseEvent(event);
-    m_applicationObject->sideAnimationByOn();
+    m_applicationModule->sideAnimationByOn();
 }
 
 void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
@@ -1049,7 +1051,7 @@ void MusicApplication::readSystemConfigFromFile()
     }
 
     manager.readBuffer();
-    m_applicationObject->loadNetWorkSetting();
+    m_applicationModule->loadNetWorkSetting();
     const bool success = m_songTreeWidget->addMusicItemList(songs);
 
     switch(TTKStaticCast(TTK::PlayMode, G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt()))
@@ -1073,7 +1075,7 @@ void MusicApplication::readSystemConfigFromFile()
 
     //Configure playback mode
     m_ui->musicEnhancedButton->setEnhancedMusicConfig(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt());
-    m_applicationObject->soundEffectChanged();
+    m_applicationModule->soundEffectChanged();
     if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt() == 1)
     {
         m_player->setEqualizerConfig();
@@ -1167,7 +1169,7 @@ void MusicApplication::readSystemConfigFromFile()
     //Update check on
     if(G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toBool())
     {
-        m_applicationObject->soureUpdateCheck();
+        m_applicationModule->soureUpdateCheck();
     }
 }
 

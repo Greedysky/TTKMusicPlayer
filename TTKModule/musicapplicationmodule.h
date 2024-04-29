@@ -36,7 +36,7 @@ namespace TTK
 enum class Direction;
 }
 
-/*! @brief The class of the app object widget.
+/*! @brief The class of the app object module.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicApplicationModule : public QObject

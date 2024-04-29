@@ -1,5 +1,5 @@
-#ifndef MUSICCONFIGOBJECT_H
-#define MUSICCONFIGOBJECT_H
+#ifndef MUSICCONFIGMODULE_H
+#define MUSICCONFIGMODULE_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -22,17 +22,17 @@
 #include "ttkmoduleexport.h"
 #include "musicconfigdefine.h"
 
-/*! @brief The class of the music initialize object.
+/*! @brief The class of the initialize module.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicConfigObject : public QObject
+class TTK_MODULE_EXPORT MusicConfigModule : public QObject
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicConfigObject(QObject *parent = nullptr);
+    explicit MusicConfigModule(QObject *parent = nullptr);
 
     /*!
      * Check current setting file's validation.
@@ -77,4 +77,4 @@ private:
 
 };
 
-#endif // MUSICCONFIGOBJECT_H
+#endif // MUSICCONFIGMODULE_H

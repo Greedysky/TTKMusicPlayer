@@ -1,7 +1,7 @@
 #include "ttkapplication.h"
 #include "musicapplication.h"
 #include "musicruntimemanager.h"
-#include "musicconfigobject.h"
+#include "musicconfigmodule.h"
 #include "musicprocessmanager.h"
 #include "ttkdumper.h"
 #include "ttkglobalhelper.h"
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    MusicConfigObject config;
+    MusicConfigModule config;
     config.valid();
 
     TTKDumper dumper(std::bind(cleanupCache));

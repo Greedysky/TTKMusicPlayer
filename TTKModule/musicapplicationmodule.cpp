@@ -82,7 +82,6 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
 MusicApplicationModule::~MusicApplicationModule()
 {
     Q_CLEANUP_RESOURCE(MusicPlayer);
-
     delete m_backupModule;
     delete m_timerAutoModule;
     delete m_screenSaverWidget;
@@ -152,7 +151,8 @@ void MusicApplicationModule::windowCloseAnimation()
     else
     {
         float v = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
-              v = TTK::Image::reRenderValue<float>(1, 0.35, TTK_RN_MAX - v);
+              v = TTK::Image::reRenderValue<float>(1.0f, 0.35f, TTK_RN_MAX - v);
+
         m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("windowOpacity");
         m_quitAnimation->setDuration(TTK_DN_S2MS);

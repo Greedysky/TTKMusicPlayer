@@ -33,7 +33,7 @@ INCLUDEPATH += \
 
 win32:msvc{
 HEADERS += \
-    $$PWD/../TTKConfig/musicconfigobject.h \
+    $$PWD/../TTKConfig/musicconfigmodule.h \
     $$PWD/../TTKModule/musicapplication.h
 }
 

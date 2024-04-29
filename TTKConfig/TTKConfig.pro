@@ -44,9 +44,9 @@ INCLUDEPATH += \
 
 HEADERS += \
     $$PWD/musicconfigdefine.h \
-    $$PWD/musicconfigobject.h
+    $$PWD/musicconfigmodule.h
 
-SOURCES += $$PWD/musicconfigobject.cpp
+SOURCES += $$PWD/musicconfigmodule.cpp
 
 RESOURCES += $$PWD/../TTKUi/MusicApp.qrc
 
