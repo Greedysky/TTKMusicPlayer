@@ -19,7 +19,7 @@ MusicLayoutAnimationWidget::MusicLayoutAnimationWidget(QWidget *parent)
     setLayout(mainLayout);
 
     m_animation = new QPropertyAnimation(m_mainWidget, {}, this);
-    m_animation->setDuration(500);
+    m_animation->setDuration(TTK_DN_S2MS / 2);
     m_animation->setEasingCurve(QEasingCurve::Linear);
     m_animation->setStartValue(0.0f);
     m_animation->setEndValue(0.0f);

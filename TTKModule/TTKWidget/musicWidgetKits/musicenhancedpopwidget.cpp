@@ -26,7 +26,7 @@ MusicEnhancedToolButton::MusicEnhancedToolButton(QWidget *parent)
     m_foreLabel->resize(LABEL_ANIMAT_WIDGET, LABEL_BUTTON_HEIGHT);
 
     m_animation = new QPropertyAnimation(m_animationLabel, "pos", this);
-    m_animation->setDuration(500);
+    m_animation->setDuration(TTK_DN_S2MS / 2);
     m_animation->setStartValue(QPoint(-LABEL_ANIMAT_WIDGET, 0));
     m_animation->setEndValue(QPoint(LABEL_ANIMAT_WIDGET, 0));
     connect(m_animation, SIGNAL(finished()), SLOT(finished()));
@@ -44,14 +44,14 @@ void MusicEnhancedToolButton::setStyleSheet(const QString &styleSheet, bool stat
     m_state = state;
     if(m_state)
     {
-        m_animation->setDuration(2000);
+        m_animation->setDuration(2 * TTK_DN_S2MS);
         m_foreLabel->setStyleSheet(QString("#ForeLabel{%1}").arg(styleSheet));
         m_animationLabel->setStyleSheet("background-image:url(':/enhance/lb_selected')");
         QToolButton::setStyleSheet(QString("QToolButton{background-image:url(':/enhance/lb_blue'); }"));
     }
     else
     {
-        m_animation->setDuration(500);
+        m_animation->setDuration(TTK_DN_S2MS / 2);
         m_foreLabel->setStyleSheet({});
         m_animationLabel->setStyleSheet("background-image:url(':/enhance/lb_enter')");
         QToolButton::setStyleSheet(QString("QToolButton{%1}").arg(styleSheet));

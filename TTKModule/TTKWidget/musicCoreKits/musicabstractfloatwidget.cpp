@@ -5,7 +5,7 @@ MusicAbstractFloatWidget::MusicAbstractFloatWidget(QWidget *parent)
       m_blockAnimation(false)
 {
     m_animation = new QPropertyAnimation(this, "geometry", this);
-    m_animation->setDuration(500);
+    m_animation->setDuration(TTK_DN_S2MS / 2);
 }
 
 MusicAbstractFloatWidget::~MusicAbstractFloatWidget()

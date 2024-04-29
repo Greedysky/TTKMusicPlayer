@@ -52,7 +52,7 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_quitAnimation = new QPropertyAnimation(this);
     m_sideAnimation = new QPropertyAnimation(parent, "pos", this);
     m_quitAnimation->setTargetObject(parent);
-    m_sideAnimation->setDuration(250);
+    m_sideAnimation->setDuration(TTK_DN_S2MS / 4);
 
     m_backupModule = new MusicBackupModule;
     m_timerAutoModule = new MusicTimerAutoModule(this);
@@ -142,7 +142,7 @@ void MusicApplicationModule::windowCloseAnimation()
 
         m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("geometry");
-        m_quitAnimation->setDuration(250);
+        m_quitAnimation->setDuration(TTK_DN_S2MS / 4);
         m_quitAnimation->setStartValue(w->geometry());
         m_quitAnimation->setEndValue(QRect(w->x(), w->geometry().center().y(), w->width(), 0));
         m_quitAnimation->start();
@@ -157,7 +157,7 @@ void MusicApplicationModule::windowCloseAnimation()
         m_quitAnimation->setPropertyName("windowOpacity");
         m_quitAnimation->setDuration(TTK_DN_S2MS);
         m_quitAnimation->setStartValue(v);
-        m_quitAnimation->setEndValue(0);
+        m_quitAnimation->setEndValue(0.0f);
         m_quitAnimation->start();
     }
 
