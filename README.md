@@ -2,7 +2,7 @@
 [简体中文 Chinese](./README_cn.md) | [繁体中文 Chinese](./README_tc.md)
 
 ![TTKMusicPlayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
-![Version](https://img.shields.io/badge/Version-3.7.0.0-blue.svg?style=flat-square)
+![Version](https://img.shields.io/github/v/release/Greedysky/TTKMusicPlayer?style=flat-square&label=Version)
 ![License](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 ![License](https://img.shields.io/badge/License-LGPL%20V3-yellow.svg?style=flat-square)
 
@@ -21,8 +21,8 @@ Usage
 ## CI Status
  * Qt stable version is tested on Qt4.x for windows-mingw 32bit
  * Qt stable version is tested on Qt4.x for ubuntu-linux-gcc 64bit
- * Qt stable version is tested on Qt5.x for ubuntu-linux-gcc 64bit
  * Qt stable version is tested on Qt5.x for windows-mingw 32bit
+ * Qt stable version is tested on Qt5.x for ubuntu-linux-gcc 64bit
 
 | Platform | Qt & Compiler     | Status                                                                 |
 | :---:    | :---:             | :---:                                                                  |
