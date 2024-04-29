@@ -12,7 +12,7 @@ bool MusicCSVConfigManager::readBuffer(MusicSongItemList &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
 
-    const QStringList data(QString(m_file.readAll()).split("\n"));
+    const QStringList data(QString(m_file.readAll()).split(TTK_LINEFEED));
     if(data.isEmpty())
     {
         return false;
@@ -53,7 +53,7 @@ bool MusicCSVConfigManager::writeBuffer(const MusicSongItemList &items)
         }
     }
 
-    m_file.write(data.join("\n").toUtf8());
+    m_file.write(data.join(TTK_LINEFEED).toUtf8());
     m_file.close();
     return true;
 }

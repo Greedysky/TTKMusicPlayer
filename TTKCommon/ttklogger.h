@@ -21,6 +21,7 @@
 
 #include <QDebug>
 #include <QDateTime>
+#include "ttkglobal.h"
 
 #if QT_VERSION < QT_VERSION_CHECK(5,4,0)
 #  define __TTK_LOG_OUTPUT__ qDebug()
@@ -28,8 +29,8 @@
 #  define __TTK_LOG_OUTPUT__ qDebug().noquote()
 #endif
 
-#define __TTK_DATE__ QDate::currentDate().toString("yyyy-MM-dd")
-#define __TTK_TIME__ QTime::currentTime().toString("hh:mm:ss:zzz")
+#define __TTK_DATE__ QDate::currentDate().toString(TTK_DATE_FORMAT)
+#define __TTK_TIME__ QTime::currentTime().toString(TTK_TIMEZ_FORMAT)
 
 // log stream base macro
 #define __TTK_BASE_STREAM__(level, msg) __TTK_LOG_OUTPUT__ << QString("[%1 %2][%3][%4(%5)] ").arg(__TTK_DATE__, __TTK_TIME__, level, __FILE__, QString::number(__LINE__)) << msg

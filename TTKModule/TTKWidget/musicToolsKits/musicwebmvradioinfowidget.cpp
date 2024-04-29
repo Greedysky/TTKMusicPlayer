@@ -292,7 +292,7 @@ void MusicWebMVRadioInfoWidget::initThirdWidget()
 
     QLabel *marginLabel = new QLabel(middleFuncWidget);
     marginLabel->setFixedWidth(1);
-    QCheckBox *allCheckBox = new QCheckBox(" " + tr("All"), middleFuncWidget);
+    QCheckBox *allCheckBox = new QCheckBox(TTK_SPACE + tr("All"), middleFuncWidget);
     QPushButton *downloadButton = new QPushButton(tr("Download"), middleFuncWidget);
     downloadButton->setFixedSize(55, 25);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));

@@ -310,14 +310,14 @@ void MusicReplayGainWidget::analysisOutput()
         if(data.contains(GAIN_TRACKDB))
         {
             data.replace(GAIN_TRACKDB, {});
-            data.replace("\r\n", {});
+            data.replace(TTK_WLINEFEED, {});
             track = QString(data.trimmed());
         }
 
         if(data.contains(GAIN_ALBUMDB))
         {
             data.replace(GAIN_ALBUMDB, {});
-            data.replace("\r\n", {});
+            data.replace(TTK_WLINEFEED, {});
             album = QString(data.trimmed());
         }
     }

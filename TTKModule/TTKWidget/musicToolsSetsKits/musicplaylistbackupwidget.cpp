@@ -262,7 +262,7 @@ void MusicPlaylistBackupWidget::currentDateChanged(const QString &text)
     QDir dir(ROOT_PATH + text);
     for(const QFileInfo &fin : dir.entryInfoList(QDir::Files, QDir::Time | QDir::Reversed))
     {
-        m_timeBox->addItem(TTKDateTime::format(fin.baseName().toULongLong(), TTK_TIMEZ_FORMAT), fin.baseName());
+        m_timeBox->addItem(TTKDateTime::format(fin.baseName().toULongLong(), TTK_TIMES_FORMAT), fin.baseName());
     }
 
     currentTimeChanged(0);

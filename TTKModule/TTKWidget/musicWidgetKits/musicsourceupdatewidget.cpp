@@ -83,7 +83,7 @@ void MusicSourceUpdateNotifyWidget::downLoadFinished()
     if(TTK::Core::appVersionCheck(TTK_VERSION_STR, version))
     {
         show();
-        m_textLabel->setText(tr("New version found") + "\r\n" + version);
+        m_textLabel->setText(tr("New version found") + TTK_WLINEFEED + version);
     }
     else
     {
@@ -148,7 +148,7 @@ void MusicSourceUpdateWidget::downLoadFinished()
     if(TTK::Core::appVersionCheck(TTK_VERSION_STR, version))
     {
         text.append("v" + version);
-        text.append("\r\n");
+        text.append(TTK_WLINEFEED);
         text.append(description);
 
         m_ui->upgradeButton->setEnabled(true);

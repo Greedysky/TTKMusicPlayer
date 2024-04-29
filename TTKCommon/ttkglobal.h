@@ -103,23 +103,23 @@
 
 
 // C style format
-using TTKInt8 =     signed char;                /* 8 bit signed */
-using TTKUInt8 =    unsigned char;              /* 8 bit unsigned */
-using TTKInt16 =    short;                      /* 16 bit signed */
-using TTKUInt16 =   unsigned short;             /* 16 bit unsigned */
-using TTKInt32 =    int;                        /* 32 bit signed */
-using TTKUInt32 =   unsigned int;               /* 32 bit unsigned */
-using TTKInt64 =    long long;                  /* 64 bit signed */
-using TTKUInt64 =   unsigned long long;         /* 64 bit unsigned */
+using TTKInt8   = signed char;                  /* 8 bit signed */
+using TTKUInt8  = unsigned char;                /* 8 bit unsigned */
+using TTKInt16  = short;                        /* 16 bit signed */
+using TTKUInt16 = unsigned short;               /* 16 bit unsigned */
+using TTKInt32  = int;                          /* 32 bit signed */
+using TTKUInt32 = unsigned int;                 /* 32 bit unsigned */
+using TTKInt64  = long long;                    /* 64 bit signed */
+using TTKUInt64 = unsigned long long;           /* 64 bit unsigned */
 
-using TTKReal =     double;                     /* real */
-using TTKDouble =   double;                     /* double */
-using TTKFloat =    float;                      /* float */
-using TTKBool =     bool;                       /* bool */
+using TTKReal   = double;                       /* real */
+using TTKDouble = double;                       /* double */
+using TTKFloat  = float;                        /* float */
+using TTKBool   = bool;                         /* bool */
 
 // C++ style format
-using TTKString =   std::string;                /* string */
-using TTKWString =  std::wstring;               /* wstring */
+using TTKString  = std::string;                 /* string */
+using TTKWString = std::wstring;                /* wstring */
 
 
 #ifdef __GNUC__
@@ -161,7 +161,7 @@ using TTKWString =  std::wstring;               /* wstring */
 
 
 // marco cat
-#define TTK_CAT(a, b) a##b
+#define TTK_CAT(a, b) a ## b
 // marco str cat
 #ifndef _MSC_VER
 #  define TTK_STR_CAT(...) TTK_PP_OVERLOAD(__TTK_STR_CAT__, __VA_ARGS__)(__VA_ARGS__)
@@ -183,17 +183,20 @@ using TTKWString =  std::wstring;               /* wstring */
 #define TTK_PP_CAT(a, b) TTK_CAT(a, b)
 #define TTK_PP_EMPTY()
 #ifdef _MSC_VER
-#  define TTK_PP_VARIADIC_SIZE(...) TTK_PP_CAT(TTK_PP_VARIADIC_SIZE_I(__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1,),)
+#  define TTK_PP_VARIADIC_SIZE(...) TTK_PP_CAT(TTK_PP_VARIADIC_SIZE_I(__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1, ), )
 #else
-#  define TTK_PP_VARIADIC_SIZE(...) TTK_PP_VARIADIC_SIZE_I(__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1,)
+#  define TTK_PP_VARIADIC_SIZE(...) TTK_PP_VARIADIC_SIZE_I(__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1, )
 #endif
 #define TTK_PP_VARIADIC_SIZE_I(e0, e1, e2, e3, e4, e5, e6, e7, size, ...) size
 
 
 #define TTK_DOT          "."
 #define TTK_DOTDOT       ".."
+#define TTK_SPACE        " "
 #define TTK_SEPARATOR    "/"
-#define TTK_RSEPARATOR   "\\"
+#define TTK_WSEPARATOR   "\\"
+#define TTK_LINEFEED     "\n"
+#define TTK_WLINEFEED    "\r\n"
 #define TTK_PARENT_DIR   TTK_STR_CAT(TTK_DOTDOT, TTK_SEPARATOR)
 
 #define TTK_SPLITER      "*|||*"
@@ -222,16 +225,18 @@ using TTKWString =  std::wstring;               /* wstring */
 #define TTK_TIME_INIT           "00:00"
 #define TTK_HOUR_FORMAT         "hh"
 #define TTK_SECOND_FORMAT       "mm"
-#define TTK_TIME_FORMAT         "hh:mm"
-#define TTK_TIMEZ_FORMAT        "hh:mm:ss"
+#define TTK_TIMEM_FORMAT        "hh:mm"
+#define TTK_TIMES_FORMAT        "hh:mm:ss"
+#define TTK_TIMEZ_FORMAT        "hh:mm:ss:zzz"
 #define TTK_YEAR_FORMAT         "yyyy"
 #define TTK_MONTH_FORMAT        "MM"
 #define TTK_DAY_FORMAT          "dd"
 #define TTK_WEEK_FORMAT         "dddd"
 #define TTK_DATE_FORMAT         "yyyy-MM-dd"
 #define TTK_DATE2_FORMAT        "yyyy.MM.dd"
-#define TTK_DATE_TIME_FORMAT    "yyyy-MM-dd hh:mm"
-#define TTK_DATE_TIMEZ_FORMAT   "yyyy-MM-dd hh:mm:ss"
+#define TTK_DATE_TIMEM_FORMAT   "yyyy-MM-dd hh:mm"
+#define TTK_DATE_TIMES_FORMAT   "yyyy-MM-dd hh:mm:ss"
+#define TTK_DATE_TIMEZ_FORMAT   "yyyy-MM-dd hh:mm:ss:zzz"
 
 
 // ttk item size define

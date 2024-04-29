@@ -48,7 +48,7 @@ void MusicPlatformManager::windowsStartUpMode(bool v) const
 {
     const QString &appName = TTK_APP_NAME;
     QString appPath = TTK_SERVICE_FULL;
-    appPath.replace(TTK_SEPARATOR, TTK_RSEPARATOR);
+    appPath.replace(TTK_SEPARATOR, TTK_WSEPARATOR);
 
     QSettings reg("HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     QSettings regWOW("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);

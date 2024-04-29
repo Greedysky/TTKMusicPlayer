@@ -33,7 +33,7 @@ MusicSong::MusicSong(const QString &path, const QString &duration, const QString
 {
     m_path = path;
     // replace windows \\ path to / path
-    m_path.replace(TTK_RSEPARATOR, TTK_SEPARATOR);
+    m_path.replace(TTK_WSEPARATOR, TTK_SEPARATOR);
 
     const QFileInfo fin(!track ? m_path : TTK::trackRelatedPath(m_path));
 

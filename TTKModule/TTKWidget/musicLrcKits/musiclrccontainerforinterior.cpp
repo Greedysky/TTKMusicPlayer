@@ -328,7 +328,7 @@ void MusicLrcContainerForInterior::queryTranslatedLrcFinished(const QString &byt
     else
     {
         const QStringList &orts = m_lrcAnalysis->dataList();
-        const QStringList &trts = bytes.split("\n");
+        const QStringList &trts = bytes.split(TTK_LINEFEED);
 
         if(orts.count() > trts.count())
         {
@@ -337,8 +337,8 @@ void MusicLrcContainerForInterior::queryTranslatedLrcFinished(const QString &byt
 
         for(int i = 0; i < orts.count(); ++i)
         {
-            text += orts[i].trimmed() + "\r\n";
-            text += trts[i].trimmed() + "\r\n";
+            text += orts[i].trimmed() + TTK_WLINEFEED;
+            text += trts[i].trimmed() + TTK_WLINEFEED;
         }
     }
 

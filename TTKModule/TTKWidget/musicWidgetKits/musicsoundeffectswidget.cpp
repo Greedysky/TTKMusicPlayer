@@ -14,7 +14,7 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProper
     layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(0);
 
-    m_textLabel = new QLabel(" " + property.m_name, this);
+    m_textLabel = new QLabel(TTK_SPACE + property.m_name, this);
     m_textLabel->setObjectName("Background");
     m_textLabel->setStyleSheet(QString("#Background{%1}").arg(TTK::UI::BackgroundStyle05) +
                                TTK::UI::SpinBoxStyle01 +

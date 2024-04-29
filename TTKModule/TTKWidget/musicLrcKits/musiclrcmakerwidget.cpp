@@ -332,13 +332,13 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
         MusicApplication::instance()->playAnyTimeAt(0);
     }
 
-    m_plainText = m_ui->lrcTextEdit->toPlainText().trimmed().split("\n");
+    m_plainText = m_ui->lrcTextEdit->toPlainText().trimmed().split(TTK_LINEFEED);
     m_times.clear();
     m_currentLine = 0;
     m_lineItem->reset();
     m_times[m_currentLine] = 0;
 
-    m_ui->makeTextEdit->setText(m_ui->lrcTextEdit->toPlainText().trimmed() + "\n");
+    m_ui->makeTextEdit->setText(m_ui->lrcTextEdit->toPlainText().trimmed() + TTK_LINEFEED);
     QTextCursor cursor = m_ui->makeTextEdit->textCursor();
     for(int i = 0; i < m_plainText.count(); ++i)
     {

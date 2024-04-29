@@ -40,7 +40,7 @@ QStringList MusicFormats::supportSpekInputFilterFormats()
 
 QString MusicFormats::supportSpekInputFormats()
 {
-    return QString("Audio Files (%1)").arg(supportSpekInputFilterFormats().join(" "));
+    return QString("Audio Files (%1)").arg(supportSpekInputFilterFormats().join(TTK_SPACE));
 }
 
 QString MusicFormats::supportPlaylistInputFormats()

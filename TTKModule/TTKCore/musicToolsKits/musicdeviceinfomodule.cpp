@@ -206,7 +206,7 @@ void MusicDeviceInfoModule::handleReadyRead()
             QString dev, use, total, path;
             int index = 0;
 
-            const QStringList &list = result.split(" ");
+            const QStringList &list = result.split(TTK_SPACE);
             for(int i = 0; i < list.count(); ++i)
             {
                 const QString &data = list.at(i).trimmed();

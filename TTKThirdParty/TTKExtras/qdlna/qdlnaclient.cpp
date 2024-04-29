@@ -48,7 +48,7 @@ QDlnaClientPrivate::~QDlnaClientPrivate()
 
 void QDlnaClientPrivate::initialize(const QString &data)
 {
-    const QStringList &list = data.split("\r\n");
+    const QStringList &list = data.split(TTK_WLINEFEED);
     for(QString str : qAsConst(list))
     {
         QStringList data_list;
@@ -189,7 +189,7 @@ QString QDlnaClient::uploadFileToPlay(const QString &url)
     QString body = XML_HEAD;
     body += "<u:SetAVTransportURI xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\">\n";
     body += "<InstanceID>0</InstanceID>\n";
-    body += "<CurrentURI>" + play_url.replace(" ", "%20") + "</CurrentURI>\n";
+    body += "<CurrentURI>" + play_url.replace(TTK_SPACE, "%20") + "</CurrentURI>\n";
     body += "</u:SetAVTransportURI>\n";
     body += XML_FOOT + "\n";
     const QString &request = QDlnaHelper::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI", d->m_serverIP,d->m_serverPort) + body;

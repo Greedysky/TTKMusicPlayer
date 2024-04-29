@@ -69,7 +69,7 @@ namespace TTK
         /*!
          * Remove given key in string, default is space.
          */
-        TTK_MODULE_EXPORT QString removeToken(const QString &value, const QString &key = " ");
+        TTK_MODULE_EXPORT QString removeToken(const QString &value, const QString &key = TTK_SPACE);
 
         /*!
          * Check the given char is or not chinese character.

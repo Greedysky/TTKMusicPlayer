@@ -75,7 +75,7 @@ QString removeHttpHeader(const QString &data)
 
 int GetResponseCode(const QString &data)
 {
-    const QStringList &data_list = data.split(" ");
+    const QStringList &data_list = data.split(TTK_SPACE);
     if(data_list.count() >= 2)
     {
         bool ok = false;

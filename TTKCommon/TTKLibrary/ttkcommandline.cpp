@@ -87,7 +87,7 @@ void TTKCommandLineParser::showHelp() const
         const QString &first = option.first();
         const QString &second = option.second();
         const QString &line = !second.isEmpty() ? (first + ", " + second) : first;
-        text += line.leftJustified(20) + option.description() + "\n";
+        text += line.leftJustified(20) + option.description() + TTK_LINEFEED;
     }
     TTK_LOG_STREAM(text);
 }

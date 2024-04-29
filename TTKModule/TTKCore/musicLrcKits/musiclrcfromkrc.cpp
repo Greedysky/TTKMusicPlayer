@@ -79,7 +79,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
             QTextStream outstream(&file);
             outstream.setCodec("UTF-8");
             outstream << m_data;
-            QtStreamEndLine(outstream);
+            outstream << QtNamespace(endl);
             file.close();
         }
     }

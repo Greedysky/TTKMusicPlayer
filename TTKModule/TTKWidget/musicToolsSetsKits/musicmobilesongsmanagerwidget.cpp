@@ -39,7 +39,7 @@ void MusicMobileSongsTableWidget::addCellItems(const QStringList &songs)
 
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(fin.fileName());
-        item->setText(" " + TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(0) - 20));
+        item->setText(TTK_SPACE + TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(0) - 20));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 0, item);
 

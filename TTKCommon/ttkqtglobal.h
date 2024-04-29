@@ -22,7 +22,6 @@
 #include <QMap>
 #include <QSet>
 #include <QVariant>
-#include "ttkglobal.h"
 #include "ttklogger.h"
 
 #ifdef QT_DEBUG

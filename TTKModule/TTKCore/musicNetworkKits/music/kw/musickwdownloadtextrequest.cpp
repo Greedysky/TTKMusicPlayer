@@ -52,14 +52,14 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     lrcData.append(TTKTime(value["time"].toDouble() * 1000).toString("[mm:ss.zzz]"))
-                           .append(value["lineLyric"].toByteArray()).append("\n");
+                           .append(value["lineLyric"].toByteArray()).append(TTK_LINEFEED);
                 }
             }
 
             QTextStream outstream(m_file);
             outstream.setCodec("UTF-8");
             outstream << lrcData;
-            QtStreamEndLine(outstream);
+            outstream << QtNamespace(endl);
             m_file->close();
             TTK_INFO_STREAM(className() << "download has finished");
         }

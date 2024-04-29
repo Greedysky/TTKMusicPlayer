@@ -159,8 +159,8 @@ public:
 
     inline friend QDataStream& operator<<(QDataStream &stream, const TTKTime &other) noexcept
     {
-        stream << other.day() << " " << other.hour() << " " << other.minute() << " "
-               << other.second() << " " << other.millionSecond();
+        stream << other.day() << TTK_SPACE << other.hour() << TTK_SPACE << other.minute() << TTK_SPACE
+               << other.second() << TTK_SPACE << other.millionSecond();
         return stream;
     }
 

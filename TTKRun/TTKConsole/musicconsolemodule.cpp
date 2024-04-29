@@ -47,7 +47,7 @@ MusicConsoleModule::~MusicConsoleModule()
 
 bool MusicConsoleModule::initialize()
 {
-    QString text = "\n" TTK_APP_NAME "Console Module" "v" TTK_VERSION_STR "\n";
+    QString text = TTK_LINEFEED TTK_APP_NAME "Console Module" "v" TTK_VERSION_STR TTK_LINEFEED;
             text += "Offical web page: https://github.com/Greedysky/TTKMusicPlayer\n";
             text += "Copyright(C) 2015 - 2024 Greedysky All Rights Reserved\n";
             text += "TTKMusicPlayer imitates Kugou UI, the music player uses of qmmp core library based on Qt for windows and linux\n\n";
@@ -155,7 +155,7 @@ bool MusicConsoleModule::initialize()
         return false;
     }
 
-    TTK_LOG_STREAM("Music Files count: " << m_playlist->count() << "\n");
+    TTK_LOG_STREAM("Music Files count: " << m_playlist->count() << TTK_LINEFEED);
 
     m_player->play();
     m_player->setVolume(m_volume);

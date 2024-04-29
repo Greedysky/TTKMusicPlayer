@@ -140,7 +140,7 @@ QString TTK::String::charactersReplace(const QString &value)
     {
         if(s.contains(ac))
         {
-            s.replace(ac, " ");
+            s.replace(ac, TTK_SPACE);
         }
     }
     return s;

@@ -119,7 +119,7 @@ static QList<PIDInfo> processList()
         return lprocess;
     }
 
-    const QStringList &sp = data.split("\n");
+    const QStringList &sp = data.split(TTK_LINEFEED);
     for(const QString &var : qAsConst(sp))
     {
         const QStringList &line = var.split(";");

@@ -36,7 +36,7 @@ bool MusicSongMeta::read(const QString &url)
     bool track = false;
     QString path(url);
     // replace windows \\ path to / path
-    path.replace(TTK_RSEPARATOR, TTK_SEPARATOR);
+    path.replace(TTK_WSEPARATOR, TTK_SEPARATOR);
 
     if(MusicFormats::isTrack(url))
     {
@@ -402,9 +402,9 @@ bool MusicSongMeta::readInformation()
         QString description;
         const DecoderProperties &properties = factory->properties();
 
-        description += "ShortName: " + properties.shortName + "\n";
-        description += "DecoderName: " + properties.name + "\n";
-        description += "Description: " + properties.description + "\n";
+        description += "ShortName: " + properties.shortName + TTK_LINEFEED;
+        description += "DecoderName: " + properties.name + TTK_LINEFEED;
+        description += "Description: " + properties.description + TTK_LINEFEED;
         description += SPLITER;
 
         const MetaDataModel *model = factory->createMetaDataModel(m_path, true);
@@ -421,24 +421,24 @@ bool MusicSongMeta::readInformation()
                 }
 
                 QString value = item.value().toString();
-                if(value.contains("\n"))
+                if(value.contains(TTK_LINEFEED))
                 {
-                    value = "\n" + value;
+                    value = TTK_LINEFEED + value;
                 }
 
-                description += item.name() + ": " + value + "\n";
+                description += item.name() + ": " + value + TTK_LINEFEED;
                 description += SPLITER;
             }
 
             for(const MetaDataItem &item : model->descriptions())
             {
                 QString value = item.value().toString();
-                if(value.contains("\n"))
+                if(value.contains(TTK_LINEFEED))
                 {
-                    value = "\n" + value;
+                    value = TTK_LINEFEED + value;
                 }
 
-                description += item.name() + ": " + value + "\n";
+                description += item.name() + ": " + value + TTK_LINEFEED;
                 description += SPLITER;
             }
 

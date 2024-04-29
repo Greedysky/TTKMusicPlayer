@@ -12,7 +12,7 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
 
-    QStringList data(QString(m_file.readAll()).split("\n"));
+    QStringList data(QString(m_file.readAll()).split(TTK_LINEFEED));
     if(data.isEmpty())
     {
         return false;
@@ -96,7 +96,7 @@ bool MusicPLSConfigManager::writeBuffer(const MusicSongItemList &items)
     data << "NumberOfEntries=" + QString::number(count);
     data << "Version=2";
 
-    m_file.write(data.join("\n").toUtf8());
+    m_file.write(data.join(TTK_LINEFEED).toUtf8());
     m_file.close();
     return true;
 }

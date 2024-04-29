@@ -735,7 +735,7 @@ void MusicLrcPosterItemWidget::drawTheme16(QPainter *painter)
     for(QString var : qAsConst(m_data))
     {
         QString afVar;
-        var.replace(" ", " / ");
+        var.replace(TTK_SPACE, " / ");
         for(int i = 0; i < var.length(); ++i)
         {
             const QChar &ch = var.at(i);

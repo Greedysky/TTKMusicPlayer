@@ -432,7 +432,7 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
         item.m_path = path;
         item.m_state = MusicCloudDataItem::State::Waited;
         item.m_dataItem.m_name = fin.fileName().trimmed();
-        item.m_dataItem.m_putTime = fin.lastModified().toString(TTK_DATE_TIME_FORMAT);
+        item.m_dataItem.m_putTime = fin.lastModified().toString(TTK_DATE_TIMEM_FORMAT);
         item.m_dataItem.m_size = fin.size();
 
         TTK::Core::sleep(TTK_DN_MS);

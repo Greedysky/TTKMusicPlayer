@@ -110,11 +110,11 @@ namespace QtCompat
 #  define QtButtonGroupVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(buttonClicked(int)), q, s(f()))
 #endif
 
-/// Stream endl
+/// Qt use namespace
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtStreamEndLine(p) p << Qt::endl
+#  define QtNamespace(p) Qt::p
 #else
-#  define QtStreamEndLine(p) p << endl
+#  define QtNamespace(p) p
 #endif
 
 /// Lable pixmap

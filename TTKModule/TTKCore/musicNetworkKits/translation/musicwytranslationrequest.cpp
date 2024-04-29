@@ -66,8 +66,8 @@ void MusicWYTranslationRequest::downLoadFinished()
                 if(!lrc.isEmpty() && !tlrc.isEmpty())
                 {
                     QString text;
-                    QStringList orts = lrc.split("\n");
-                    QStringList trts = tlrc.split("\n");
+                    QStringList orts = lrc.split(TTK_LINEFEED);
+                    QStringList trts = tlrc.split(TTK_LINEFEED);
 
                     for(QString &ort : orts)
                     {
@@ -79,13 +79,13 @@ void MusicWYTranslationRequest::downLoadFinished()
                             continue;
                         }
 
-                        text += ort.remove(prefix) + "\r\n";
+                        text += ort.remove(prefix) + TTK_WLINEFEED;
 
                         for(QString &trt : trts)
                         {
                             if(trt.startsWith(prefix))
                             {
-                                text += trt.remove(prefix) + "\r\n";
+                                text += trt.remove(prefix) + TTK_WLINEFEED;
                                 break;
                             }
                         }

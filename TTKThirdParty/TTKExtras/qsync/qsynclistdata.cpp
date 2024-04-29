@@ -66,7 +66,7 @@ void QSyncListData::receiveDataFromServer()
                      {
                          QDateTime date = QDateTime::fromString(text, "yyyy-MM-ddThh:mm:ss.zzzZ");
                          date = date.addSecs(8 * 60 * 60);
-                         item.m_putTime = date.toString(TTK_DATE_TIME_FORMAT);
+                         item.m_putTime = date.toString(TTK_DATE_TIMEM_FORMAT);
                      }
                      else if(name == "ETag")
                      {

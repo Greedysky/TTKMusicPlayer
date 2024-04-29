@@ -135,7 +135,7 @@ void TTKLogOutput::save(const QString &message)
     if(m_file.isOpen())
     {
         QTextStream out(&m_file);
-        out << message << "\r\n";
+        out << message << TTK_WLINEFEED;
         m_file.flush();
     }
 }

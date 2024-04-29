@@ -148,7 +148,7 @@ void MusicAbstractItemQueryWidget::initFirstWidget()
     middleFuncLayout->setContentsMargins(0, 5, 0, 5);
     QLabel *marginLabel = new QLabel(middleFuncWidget);
     marginLabel->setFixedWidth(1);
-    QCheckBox *allCheckBox = new QCheckBox(" " + tr("All"), middleFuncWidget);
+    QCheckBox *allCheckBox = new QCheckBox(TTK_SPACE + tr("All"), middleFuncWidget);
     QPushButton *playButton = new QPushButton(tr("Play"), middleFuncWidget);
     playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     playButton->setIconSize(QSize(14, 14));

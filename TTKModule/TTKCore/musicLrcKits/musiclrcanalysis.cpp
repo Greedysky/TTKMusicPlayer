@@ -22,7 +22,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setData(const QByteArray &data)
 {
     clear();
 
-    QStringList text = QString(data).split("\n");
+    QStringList text = QString(data).split(TTK_LINEFEED);
     if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
     {
         text[0].clear();
@@ -130,7 +130,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::loadFromKrcFile(const QString &path)
 
     const QString &text = QString(krc.decodeString());
     //The lyrics by line into the lyrics list
-    for(const QString &oneLine : text.split("\r\n"))
+    for(const QString &oneLine : text.split(TTK_WLINEFEED))
     {
         matchLrcLine(oneLine);
     }
@@ -388,7 +388,7 @@ void MusicLrcAnalysis::saveData()
     for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
     {
         data.append(TTKTime::toString(it.key(), "[mm:ss.zzz]"));
-        data.append(it.value() + "\n");
+        data.append(it.value() + TTK_LINEFEED);
     }
 
     QFile file(m_currentFilePath);
@@ -400,7 +400,7 @@ void MusicLrcAnalysis::saveData()
     QTextStream outstream(&file);
     outstream.setCodec("UTF-8");
     outstream << data;
-    QtStreamEndLine(outstream);
+    outstream << QtNamespace(endl);
     file.close();
 }
 
@@ -522,7 +522,7 @@ QString MusicLrcAnalysis::dataString() const
     QString v;
     for(const QString &s : m_lrcContainer.values())
     {
-        v.append(s + "\n");
+        v.append(s + TTK_LINEFEED);
     }
     return v;
 }
