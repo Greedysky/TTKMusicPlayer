@@ -35,6 +35,11 @@ bool MusicCategoryConfigManager::readBuffer(MusicResultsCategoryList &items)
             const QDomNode &tagNode = tagNodes.item(j);
             category.m_category = tagNode.toElement().attribute("value");
 
+            if(category.m_category.isEmpty())
+            {
+                continue;
+            }
+
             const QDomNodeList &typeNodes = tagNode.childNodes();
             for(int k = 0; k < typeNodes.count(); ++k)
             {
@@ -45,6 +50,7 @@ bool MusicCategoryConfigManager::readBuffer(MusicResultsCategoryList &items)
                 item.m_value = element.attribute("value");
                 category.m_items.append(item);
             }
+
             items.append(category);
         }
     }

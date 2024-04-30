@@ -25,6 +25,8 @@
 #include "musicadvancedsearchedwidget.h"
 #include "musicwebmvradioquerywidget.h"
 #include "musicplaylistbackupwidget.h"
+#include "musicplaylistcategorywidget.h"
+#include "musicsongdailywidget.h"
 
 #ifdef Q_OS_WIN
 #  include "musicplatformmanager.h"
@@ -415,6 +417,14 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             Q_EMIT updateBackgroundTheme();
             break;
         }
+        case PlaylistCategoryWidget: //insert playlist category widget
+        {
+            MusicPlaylistCategoryWidget *widget = new MusicPlaylistCategoryWidget(this);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
+            m_ui->functionsContainer->setCurrentWidget(widget);
+            Q_EMIT updateBackgroundTheme();
+            break;
+        }
         case SearchWidget: //insert search display widget
         {
             QString searchedString = m_ui->musicSongSearchEdit->text().trimmed();
@@ -476,6 +486,9 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         }
         case SongDailyWidget: //insert song daily widget
         {
+            MusicSongDailyWidget *widget = new MusicSongDailyWidget(this);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
+            m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();
             break;
         }

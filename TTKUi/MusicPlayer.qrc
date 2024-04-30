@@ -777,4 +777,15 @@
         <file alias="lb_dj">../TTKResource/radio/lb_dj.png</file>
         <file alias="lb_mv">../TTKResource/radio/lb_mv.png</file>
     </qresource>
+    <qresource prefix="/playlist">
+        <file alias="a">../TTKResource/playlist/a.jpg</file>
+        <file alias="b">../TTKResource/playlist/b.jpg</file>
+        <file alias="c">../TTKResource/playlist/c.jpg</file>
+        <file alias="d">../TTKResource/playlist/d.jpg</file>
+        <file alias="e">../TTKResource/playlist/e.jpg</file>
+        <file alias="f">../TTKResource/playlist/f.jpg</file>
+        <file alias="g">../TTKResource/playlist/g.jpg</file>
+        <file alias="h">../TTKResource/playlist/h.jpg</file>
+        <file alias="i">../TTKResource/playlist/i.jpg</file>
+    </qresource>
 </RCC>

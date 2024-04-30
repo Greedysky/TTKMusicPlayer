@@ -38,6 +38,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
   ${MUSIC_WIDGET_DIR}/musicdownloadwidget.h
   ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.h
   ${MUSIC_WIDGET_DIR}/musicdownloadstatusmodule.h
+  ${MUSIC_WIDGET_DIR}/musicsongdailywidget.h
   ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.h
   ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.h
   ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.h
@@ -55,6 +56,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
   ${MUSIC_WIDGET_DIR}/musicplaybackmodepopwidget.h
   ${MUSIC_WIDGET_DIR}/musicqualitywidget.h
   ${MUSIC_WIDGET_DIR}/musicplayedlistpopwidget.h
+  ${MUSIC_WIDGET_DIR}/musicplaylistcategorywidget.h
   ${MUSIC_WIDGET_DIR}/musicplaylistquerycategorypopwidget.h
   ${MUSIC_WIDGET_DIR}/musicplaylistquerycommentswidget.h
   ${MUSIC_WIDGET_DIR}/musicfuntionanimationwidget.h
@@ -90,6 +92,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
   ${MUSIC_WIDGET_DIR}/musicdownloadwidget.cpp
   ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.cpp
   ${MUSIC_WIDGET_DIR}/musicdownloadstatusmodule.cpp
+  ${MUSIC_WIDGET_DIR}/musicsongdailywidget.cpp
   ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.cpp
   ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.cpp
   ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.cpp
@@ -107,6 +110,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
   ${MUSIC_WIDGET_DIR}/musicplaybackmodepopwidget.cpp
   ${MUSIC_WIDGET_DIR}/musicqualitywidget.cpp
   ${MUSIC_WIDGET_DIR}/musicplayedlistpopwidget.cpp
+  ${MUSIC_WIDGET_DIR}/musicplaylistcategorywidget.cpp
   ${MUSIC_WIDGET_DIR}/musicplaylistquerycategorypopwidget.cpp
   ${MUSIC_WIDGET_DIR}/musicplaylistquerycommentswidget.cpp
   ${MUSIC_WIDGET_DIR}/musicfuntionanimationwidget.cpp

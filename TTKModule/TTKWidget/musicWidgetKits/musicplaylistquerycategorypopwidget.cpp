@@ -5,7 +5,7 @@
 #include "ttkclickedlabel.h"
 
 static constexpr int ITEM_MAX_COLUMN = 6;
-static constexpr int ITEM_LABEL_WIDTH = 20;
+static constexpr int ITEM_LABEL_HEIGHT = 20;
 
 MusicPlaylistQueryCategoryItem::MusicPlaylistQueryCategoryItem(QWidget *parent)
     : QWidget(parent)
@@ -20,7 +20,7 @@ void MusicPlaylistQueryCategoryItem::setCategory(const MusicResultsCategory &cat
     QHBoxLayout *layout = new QHBoxLayout(this);
     QLabel *label = new QLabel(category.m_category, this);
     label->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle03);
-    label->setFixedSize(50, ITEM_LABEL_WIDTH);
+    label->setFixedSize(50, ITEM_LABEL_HEIGHT);
     layout->addWidget(label, 0, Qt::AlignTop);
 
     QWidget *item = new QWidget(this);
@@ -30,11 +30,11 @@ void MusicPlaylistQueryCategoryItem::setCategory(const MusicResultsCategory &cat
     TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-    for(int i = 0; i < m_category.m_items.count(); ++i)
+    for(int i = 0; i < category.m_items.count(); ++i)
     {
-        TTKClickedLabel *label = new TTKClickedLabel(m_category.m_items[i].m_value, item);
+        TTKClickedLabel *label = new TTKClickedLabel(category.m_items[i].m_value, item);
         label->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle07));
-        label->setFixedSize(75, ITEM_LABEL_WIDTH);
+        label->setFixedSize(75, ITEM_LABEL_HEIGHT);
 
         clickedGroup->mapped(label);
         itemLayout->addWidget(label, i / ITEM_MAX_COLUMN, i % ITEM_MAX_COLUMN, Qt::AlignLeft);

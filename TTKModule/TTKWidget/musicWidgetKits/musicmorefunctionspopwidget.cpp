@@ -20,7 +20,7 @@ void MusicMoreFunctionsPopWidget::functionClicked(QAction *index)
         case 1: MusicRightAreaWidget::instance()->showSimilarFound(m_currentSongName); break;
         case 2: MusicRightAreaWidget::instance()->showAlbumFound(m_currentSongName, {}); break;
         case 3: MusicRightAreaWidget::instance()->showArtistFound(m_currentSongName, {}); break;
-        case 4: MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::AdvancedSearchWidget); break;
+        case 4: MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::SongDailyWidget); break;
         case 5: MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::AdvancedSearchWidget); break;
         default: break;
     }

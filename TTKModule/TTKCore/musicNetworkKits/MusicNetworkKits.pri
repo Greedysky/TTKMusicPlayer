@@ -117,6 +117,7 @@ HEADERS += \
     $$PWD/tools/musicsourceupdaterequest.h \
     $$PWD/tools/musicresourcerequest.h \
     $$PWD/tools/musicpvcounterrequest.h \
+    $$PWD/tools/musiccibarequest.h \
     $$PWD/tools/musicdownloadmanager.h \
     $$PWD/translation/musicabstracttranslationrequest.h \
     $$PWD/translation/musictranslationrequest.h \
@@ -211,6 +212,7 @@ SOURCES += \
     $$PWD/tools/musicsourceupdaterequest.cpp \
     $$PWD/tools/musicresourcerequest.cpp \
     $$PWD/tools/musicpvcounterrequest.cpp \
+    $$PWD/tools/musiccibarequest.cpp \
     $$PWD/tools/musicdownloadmanager.cpp \
     $$PWD/translation/musicabstracttranslationrequest.cpp \
     $$PWD/translation/musictranslationrequest.cpp \
