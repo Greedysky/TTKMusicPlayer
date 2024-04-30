@@ -33,11 +33,11 @@ class TTK_MODULE_EXPORT QKugouWindow : public QWidget
 public:
     enum Module
     {
-        KuGouSong,      /*!< KuGou Song*/
-        KuGouRadio,     /*!< KuGou Radio*/
-        KuGouList,      /*!< KuGou List*/
-        KugouMovie,     /*!< Kugou Mv*/
-        KuGouSingle     /*!< KuGou Single*/
+        None,        /*!< KuGou None*/
+        KuGouSong,   /*!< KuGou Song*/
+        KuGouRadio,  /*!< KuGou Radio*/
+        KugouMovie,  /*!< Kugou Movie*/
+        KuGouSingle  /*!< KuGou Single*/
     };
 
     /*!
@@ -50,6 +50,12 @@ public:
      */
     void setUrl(const QString &url);
 
+Q_SIGNALS:
+    /*!
+     * Switch to selected item style.
+     */
+    void buttonClicked(int index);
+
 public Q_SLOTS:
     /*!
      * Set web index refresh.
@@ -61,14 +67,6 @@ private Q_SLOTS:
      * Kugou song index changed.
      */
     void kugouSongIndexChanged(int index);
-    /*!
-     * Kugou radio index changed.
-     */
-    void kugouRadioIndexChanged(int index);
-    /*!
-     * Kugou MV index changed.
-     */
-    void kugouMVIndexChanged(int index);
 
 private:
     /*!
@@ -76,29 +74,13 @@ private:
      */
     void createWebViewer();
     /*!
+     * Create web view widget.
+     */
+    void createWebViewer(Module type);
+    /*!
      * Create kugou song widget.
      */
-    void createKugouSongWidget();
-    /*!
-     * Create kugou radio widget.
-     */
-    void createKugouRadioWidget();
-    /*!
-     * Create kugou list widget.
-     */
-    void createKugouListWidget();
-    /*!
-     * Create kugou movie widget.
-     */
-    void createKugouMovieWidget();
-    /*!
-     * Create kugou single widget.
-     */
-    void createKugouSingleWidget();
-    /*!
-     * Change clicked button style by index.
-     */
-    void changeClickedButtonStyle(int index);
+    void createKugouSongWidget(bool power);
 
 private:
     TTK_DECLARE_PRIVATE(QKugouWindow)

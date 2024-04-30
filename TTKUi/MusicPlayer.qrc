@@ -554,13 +554,10 @@
         <file alias="btn_reset_window_hover">../TTKResource/functions/btn_reset_window_hover.png</file>
         <file alias="btn_artist_hover">../TTKResource/functions/btn_artist_hover.png</file>
         <file alias="btn_artist_normal">../TTKResource/functions/btn_artist_normal.png</file>
-        <file alias="btn_playlist_hover">../TTKResource/functions/btn_playlist_hover.png</file>
-        <file alias="btn_playlist_normal">../TTKResource/functions/btn_playlist_normal.png</file>
         <file alias="btn_identify_normal">../TTKResource/functions/btn_identify_normal.png</file>
         <file alias="btn_identify_hover">../TTKResource/functions/btn_identify_hover.png</file>
         <file alias="btn_tools_normal">../TTKResource/functions/btn_tools_normal.png</file>
         <file alias="btn_tools_hover">../TTKResource/functions/btn_tools_hover.png</file>
-        <file alias="btn_toplist_hover">../TTKResource/functions/btn_toplist_hover.png</file>
         <file alias="btn_search_hover">../TTKResource/functions/btn_search_hover.png</file>
         <file alias="btn_recommend_hover">../TTKResource/functions/btn_recommend_hover.png</file>
     </qresource>

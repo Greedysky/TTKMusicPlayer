@@ -35,46 +35,16 @@ public:
      Make Song Recommend Url.
      */
     static QString makeSongRecommendUrl();
-    /*!
-     Make Song Rank Url.
-     */
-    static QString makeSongRankUrl();
-    /*!
-     Make Song Singer Url.
-     */
-    static QString makeSongSingerUrl();
-    /*!
-     Make Song Category Url.
-     */
-    static QString makeSongCategoryUrl();
 
     /*!
      Make Radio Public Url.
      */
     static QString makeRadioPublicUrl();
-    /*!
-     Make Radio High Fm Url.
-     */
-    static QString makeRadioHighFmUrl();
 
     /*!
-     Make List Url.
+     Make Movie Url.
      */
-    static QString makeListUrl();
-
-    /*!
-     Make MV Radio Url.
-     */
-    static QString makeMVRadioUrl();
-    /*!
-     Make MV Recommend Url.
-     */
-    static QString makeMVRecommendUrl();
-
-    /*!
-     Make Web Player Url.
-     */
-    static QString makeWebPlayerUrl();
+    static QString makeMovieRecommendUrl();
 
     /*!
      Make KuiShe Url.

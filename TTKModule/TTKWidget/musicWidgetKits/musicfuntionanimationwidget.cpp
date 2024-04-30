@@ -221,8 +221,8 @@ void MusicOptionAnimationWidget::buttonStyleClear(bool fore)
     m_container[0]->setStyleSheet(fore ? TTK::UI::FuncSongFore : TTK::UI::FuncSongBack);
     m_container[1]->setStyleSheet(fore ? TTK::UI::FuncRadioFore : TTK::UI::FuncRadioBack);
     m_container[2]->setStyleSheet(fore ? TTK::UI::FuncListFore : TTK::UI::FuncListBack);
-    m_container[3]->setStyleSheet(fore ? TTK::UI::FuncMVFore : TTK::UI::FuncMVBack);
-    m_container[4]->setStyleSheet(fore ? TTK::UI::FuncLiveFore : TTK::UI::FuncLiveBack);
+    m_container[3]->setStyleSheet(fore ? TTK::UI::FuncLiveFore : TTK::UI::FuncLiveBack);
+    m_container[4]->setStyleSheet(fore ? TTK::UI::FuncMVFore : TTK::UI::FuncMVBack);
     m_container[5]->setStyleSheet(TTK::UI::FuncLrcFore);
 }
 
@@ -233,8 +233,8 @@ void MusicOptionAnimationWidget::buttonStyleSwitch(int index)
         case 0: m_container[0]->setStyleSheet(TTK::UI::FuncSongForeClicked); break;
         case 1: m_container[1]->setStyleSheet(TTK::UI::FuncRadioForeClicked); break;
         case 2: m_container[2]->setStyleSheet(TTK::UI::FuncListForeClicked); break;
-        case 3: m_container[3]->setStyleSheet(TTK::UI::FuncMVForeClicked); break;
-        case 4: m_container[4]->setStyleSheet(TTK::UI::FuncLiveForeClicked); break;
+        case 3: m_container[3]->setStyleSheet(TTK::UI::FuncLiveForeClicked); break;
+        case 4: m_container[4]->setStyleSheet(TTK::UI::FuncMVForeClicked); break;
         case 5: m_container[5]->setStyleSheet(TTK::UI::FuncLrcForeClicked); break;
         default: break;
     }

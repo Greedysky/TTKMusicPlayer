@@ -293,7 +293,7 @@ void MusicRightAreaWidget::applyParameter()
     if(config != m_lowPowerMode)
     {
         m_lowPowerMode = config;
-        if(m_funcIndex == KugGouSongWidget || m_funcIndex == KugGouRadioWidget || m_funcIndex == kugouListWidget || m_funcIndex == kugouLiveWidget || m_funcIndex == KuiSheWidget)
+        if(m_funcIndex == KugGouSongWidget || m_funcIndex == KugGouRadioWidget || m_funcIndex == kugouMovieWidget || m_funcIndex == KuiSheWidget)
         {
             functionClicked(m_funcIndex);
         }
@@ -350,9 +350,18 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             Q_EMIT updateBackgroundTheme();
             break;
         }
-        case kugouListWidget: //insert kugou list widget
+        case kugouPlaylistWidget: //insert kugou playlist widget
         {
-            createkWebWindow(QKugouWindow::KuGouList);
+            MusicPlaylistQueryWidget *widget = new MusicPlaylistQueryWidget(this);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
+            m_ui->functionsContainer->setCurrentWidget(widget);
+            widget->setCurrentValue({});
+            Q_EMIT updateBackgroundTheme();
+            break;
+        }
+        case kugouMovieWidget: //insert kugou movie widget
+        {
+            createkWebWindow(QKugouWindow::KugouMovie);
             Q_EMIT updateBackgroundTheme();
             break;
         }
@@ -364,19 +373,10 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
                 connect(m_videoPlayerWidget, SIGNAL(popupButtonClicked(bool)), SLOT(videoSetPopup(bool)));
                 connect(m_videoPlayerWidget, SIGNAL(fullscreenButtonClicked(bool)), SLOT(videoFullscreen(bool)));
             }
-            m_videoPlayerWidget->popupMode(false);
 
-//            QWidget *widget = new QWidget(this);
-//            widget->setStyleSheet(TTK::UI::BackgroundStyle10);
-//            m_stackedWidget = widget;
+            m_videoPlayerWidget->popupMode(false);
             m_ui->functionsContainer->addWidget(m_videoPlayerWidget);
             m_ui->functionsContainer->setCurrentWidget(m_videoPlayerWidget);
-            Q_EMIT updateBackgroundTheme();
-            break;
-        }
-        case kugouLiveWidget: //insert kugou live widget
-        {
-            createkWebWindow(QKugouWindow::KugouMovie);
             Q_EMIT updateBackgroundTheme();
             break;
         }
@@ -386,6 +386,33 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_ui->lrcDisplayAllButton->setStyleSheet(TTK::UI::TinyBtnLrcCollapse);
             m_ui->lrcDisplayAllButton->setVisible(true);
             Q_EMIT updateBackgroundThemeDownload();
+            break;
+        }
+        case RecommendWidget: //insert recommend found widget
+        {
+            MusicRecommendQueryWidget *widget = new MusicRecommendQueryWidget(this);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
+            m_ui->functionsContainer->setCurrentWidget(widget);
+            widget->setCurrentValue({});
+            Q_EMIT updateBackgroundTheme();
+            break;
+        }
+        case ToplistWidget: //insert toplist found widget
+        {
+            MusicToplistQueryWidget *widget = new MusicToplistQueryWidget(this);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
+            m_ui->functionsContainer->setCurrentWidget(widget);
+            widget->setCurrentValue({});
+            Q_EMIT updateBackgroundTheme();
+            break;
+        }
+        case ArtistCategoryWidget: //insert artist category found widget
+        {
+            MusicArtistListQueryWidget *widget = new MusicArtistListQueryWidget(this);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
+            m_ui->functionsContainer->setCurrentWidget(widget);
+            widget->setCurrentValue({});
+            Q_EMIT updateBackgroundTheme();
             break;
         }
         case SearchWidget: //insert search display widget
@@ -439,22 +466,6 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             Q_EMIT updateBackgroundTheme();
             break;
         }
-        case ArtistCategoryWidget: //insert artist category found widget
-        {
-            MusicArtistListQueryWidget *widget = new MusicArtistListQueryWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
-            m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
-            break;
-        }
-        case ToplistWidget: //insert toplist found widget
-        {
-            MusicToplistQueryWidget *widget = new MusicToplistQueryWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
-            m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
-            break;
-        }
         case PlaylistWidget: //insert playlist found widget
         {
             MusicPlaylistQueryWidget *widget = new MusicPlaylistQueryWidget(this);
@@ -463,11 +474,8 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             Q_EMIT updateBackgroundTheme();
             break;
         }
-        case RecommendWidget: //insert recommend found widget
+        case SongDailyWidget: //insert song daily widget
         {
-            MusicRecommendQueryWidget *widget = new MusicRecommendQueryWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
-            m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();
             break;
         }
@@ -532,7 +540,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
     }
 }
 
-void MusicRightAreaWidget::showSongCommentsWidget()
+void MusicRightAreaWidget::showSongCommentsFound()
 {
     if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
@@ -558,12 +566,6 @@ void MusicRightAreaWidget::showAlbumFound(const QString &text, const QString &id
     functionClicked(MusicRightAreaWidget::AlbumWidget);
     MusicAlbumQueryWidget *w = TTKObjectCast(MusicAlbumQueryWidget*, m_stackedWidget);
     id.isEmpty() ? w->setCurrentValue(text) : w->setCurrentID(id);
-}
-
-void MusicRightAreaWidget::showArtistCategoryFound()
-{
-    functionClicked(MusicRightAreaWidget::ArtistCategoryWidget);
-    TTKObjectCast(MusicArtistListQueryWidget*, m_stackedWidget)->setCurrentValue({});
 }
 
 void MusicRightAreaWidget::showArtistSearchFound()
@@ -602,28 +604,11 @@ void MusicRightAreaWidget::showArtistFound(const QString &text, const QString &i
     id.isEmpty() ? w->setCurrentValue(text) : w->setCurrentID(id);
 }
 
-void MusicRightAreaWidget::showToplistFound()
-{
-    functionClicked(MusicRightAreaWidget::ToplistWidget);
-    TTKObjectCast(MusicToplistQueryWidget*, m_stackedWidget)->setCurrentValue({});
-}
-
 void MusicRightAreaWidget::showPlaylistFound(const QString &id)
 {
     functionClicked(MusicRightAreaWidget::PlaylistWidget);
     MusicPlaylistQueryWidget *w = TTKObjectCast(MusicPlaylistQueryWidget*, m_stackedWidget);
-    id.isEmpty() ? w->setCurrentValue({}) : w->setCurrentID(id);
-}
-
-void MusicRightAreaWidget::showRecommendFound()
-{
-    functionClicked(MusicRightAreaWidget::RecommendWidget);
-    TTKObjectCast(MusicRecommendQueryWidget*, m_stackedWidget)->setCurrentValue({});
-}
-
-void MusicRightAreaWidget::showAdvancedSearchFound()
-{
-    functionClicked(MusicRightAreaWidget::AdvancedSearchWidget);
+    w->setCurrentID(id);
 }
 
 void MusicRightAreaWidget::showSongSearchedFound(const QString &text)
@@ -842,20 +827,16 @@ void MusicRightAreaWidget::functionInitialize()
 
 void MusicRightAreaWidget::createkWebWindow(int type)
 {
-    QWidget *widget = nullptr;
+    QKugouWindow::Module module = TTKStaticCast(QKugouWindow::Module, type);
+
     if(G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool())
     {
-        QLabel *label = new QLabel(this);
-        label->setAlignment(Qt::AlignCenter);
-        label->setStyleSheet(TTK::UI::BackgroundStyle10);
-        label->setPixmap(QPixmap(":/image/lb_no_power_mode"));
-        widget = label;
+        module = QKugouWindow::None;
     }
-    else
-    {
-        widget = new QKugouWindow(TTKStaticCast(QKugouWindow::Module, type), this);
-        connect(m_ui->musicRefreshButton, SIGNAL(clicked()), widget, SLOT(refresh()));
-    }
+
+    QWidget *widget = new QKugouWindow(module, this);
+    connect(m_ui->musicRefreshButton, SIGNAL(clicked()), widget, SLOT(refresh()));
+    connect(widget, SIGNAL(buttonClicked(int)), this, SLOT(functionClicked(int)));
 
     m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
     m_ui->functionsContainer->setCurrentWidget(widget);

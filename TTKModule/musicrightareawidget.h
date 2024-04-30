@@ -45,22 +45,27 @@ class TTK_MODULE_EXPORT MusicRightAreaWidget : public QWidget
 public:
     enum FunctionModule
     {
+        // kugou main submoudle
         KugGouSongWidget,       /*!< insert kugou song widget*/
         KugGouRadioWidget,      /*!< insert kugou radio widget*/
-        kugouListWidget,        /*!< insert kugou list widget*/
+        kugouPlaylistWidget,    /*!< insert kugou playlist widget*/
+        kugouMovieWidget,       /*!< insert kugou movie widget*/
         VideoWidget,            /*!< insert video widget*/
-        kugouLiveWidget,        /*!< insert kugou live widget*/
         LrcWidget,              /*!< insert lrc display widget*/
+        // kugou song submoudle
+        RecommendWidget,        /*!< insert recommend found widget*/
+        ToplistWidget,          /*!< insert toplist found widget*/
+        ArtistCategoryWidget,   /*!< insert artist category found widget*/
+        PlaylistCategoryWidget, /*!< insert playlist category found widget*/
+        // other moudle
         SearchWidget,           /*!< insert search display widget*/
         SearchSingleWidget,     /*!< insert search single display widget*/
         SimilarWidget,          /*!< insert similar found widget*/
         AlbumWidget,            /*!< insert album found widget*/
         ArtistWidget,           /*!< insert artist found widget*/
-        ArtistCategoryWidget,   /*!< insert artist category found widget*/
-        ToplistWidget,          /*!< insert toplist found widget*/
         PlaylistWidget,         /*!< insert playlist found widget*/
+        SongDailyWidget,        /*!< insert song daily widget*/
         AdvancedSearchWidget,   /*!< insert advanced search widget*/
-        RecommendWidget,        /*!< insert recommend found widget*/
         IndentifyWidget,        /*!< insert indentify songs widget*/
         KuiSheWidget,           /*!< insert kugou kuishe widget*/
         WebDJRadioWidget,       /*!< insert web dj radio widget*/
@@ -180,9 +185,9 @@ public Q_SLOTS:
      */
     void functionClicked(int index, QWidget *widget = nullptr);
     /*!
-     * Music song comments widget.
+     * Music song comments function.
      */
-    void showSongCommentsWidget();
+    void showSongCommentsFound();
     /*!
      * Music similar function that by string.
      */
@@ -191,10 +196,6 @@ public Q_SLOTS:
      * Music album function that by string.
      */
     void showAlbumFound(const QString &text, const QString &id);
-    /*!
-     * Music artist category function.
-     */
-    void showArtistCategoryFound();
     /*!
      * Music artist search function.
      */
@@ -216,21 +217,9 @@ public Q_SLOTS:
      */
     void showArtistFound(const QString &text, const QString &id);
     /*!
-     * Music toplist function.
-     */
-    void showToplistFound();
-    /*!
      * Music playlist function.
      */
     void showPlaylistFound(const QString &id);
-    /*!
-     * Music recommend function.
-     */
-    void showRecommendFound();
-    /*!
-     * Music advanced search function.
-     */
-    void showAdvancedSearchFound();
     /*!
      * Music song research button searched by name.
      */
