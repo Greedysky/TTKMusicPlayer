@@ -105,7 +105,7 @@ QByteArray Serializer::SerializerPrivate::serialize(const QVariant &v, bool *ok,
   if ( ! v.isValid() ) { // invalid or null?
     str = "null";
   }
-  else if (( type == QMetaType::QVariantList ) || ( type == QMetaType::QStringList ))
+  else if ( type == QMetaType::QVariantList || type == QMetaType::QStringList )
   { // an array or a stringlist?
     const QVariantList list = v.toList();
     QList<QByteArray> values;
@@ -278,11 +278,11 @@ QByteArray Serializer::SerializerPrivate::serialize(const QVariant &v, bool *ok,
         break;
     }
 
-    if (( type == QMetaType::QString ) ||  ( type == QMetaType::QByteArray ))
+    if ( type == QMetaType::QString || type == QMetaType::QByteArray )
     { // a string or a byte array?
       str += escapeString( v.toString() );
     }
-    else if (( type == QMetaType::Double) || (type == QMetaType::Float))
+    else if ( type == QMetaType::Double || type == QMetaType::Float )
     { // a double or a float?
       const double value = v.toDouble();
 //  #if defined _WIN32 && !defined(Q_OS_SYMBIAN)
@@ -321,15 +321,15 @@ QByteArray Serializer::SerializerPrivate::serialize(const QVariant &v, bool *ok,
         }
       }
     }
-    else if (( type == QMetaType::Bool))
+    else if ( type == QMetaType::Bool )
     { // boolean value?
       str += ( v.toBool() ? "true" : "false" );
     }
-    else if (( type == QMetaType::ULongLong))
+    else if ( type == QMetaType::ULongLong )
     { // large unsigned number?
       str += QByteArray::number( v.value<qulonglong>() );
     }
-    else if (( type == QMetaType::UInt))
+    else if ( type == QMetaType::UInt )
     { // unsigned int number?
       str += QByteArray::number( v.value<quint32>() );
     } else if ( v.canConvert<qlonglong>() ) { // any signed number?
