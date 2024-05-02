@@ -213,7 +213,7 @@ MusicSongsToolBoxMaskWidget::~MusicSongsToolBoxMaskWidget()
 void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 {
     int alpha = G_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparent).toInt();
-        alpha = TTK::Image::reRenderValue<int>(0xFF, 0x1F, TTK_RN_MAX - alpha);
+        alpha = TTK::Image::boundValue<int>(0xFF, 0x1F, TTK_RN_MAX - alpha);
 
     QWidget::paintEvent(event);
     QPainter painter(this);

@@ -1,11 +1,14 @@
 #include "musicsongdailywidget.h"
+#include "musicfunctionuiobject.h"
 #include "musicwidgetheaders.h"
 #include "musiccibarequest.h"
+#include "musicwidgetutils.h"
 
 MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     : QFrame(parent)
 {
-    setStyleSheet(TTK::UI::BackgroundStyle10);
+    setObjectName(className());
+    setStyleSheet(QString("#%1{%2}").arg(className(), TTK::UI::BackgroundStyle10));
 
     m_container = new QLabel(this);
     m_container->setScaledContents(true);
@@ -14,9 +17,10 @@ MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     layout->addWidget(m_container);
     setLayout(layout);
 
-    m_title = new QLabel(this);
-    m_title->setStyleSheet(TTK::UI::BackgroundStyle01);
-    m_title->move(50, 50);
+    m_note = new QLabel(this);
+    m_content = new QLabel(this);
+    m_label = new QLabel(this);
+    m_button = new QToolButton(this);
 
     m_networkRequest = new MusicCiBaRequest(this);
     connect(m_networkRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), this, SLOT(downLoadFinished(QByteArray)));
@@ -26,8 +30,31 @@ MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
 
 MusicSongDailyWidget::~MusicSongDailyWidget()
 {
+    delete m_note;
+    delete m_content;
+    delete m_label;
     delete m_container;
     delete m_networkRequest;
+}
+
+void MusicSongDailyWidget::resizeWidget()
+{
+    QFont font = m_note->font();
+    int fontSize = 20 + (G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - WINDOW_HEIGHT_MIN) * 0.1;
+    font.setPixelSize(fontSize);
+    const int height = TTK::Widget::fontTextHeight(font);
+    m_note->setFont(font);
+    m_note->setGeometry(50, 50, TTK::Widget::fontTextWidth(font, m_note->text()), height);
+
+    font = m_content->font();
+    fontSize = 19 + (G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - WINDOW_HEIGHT_MIN) * 0.05;
+    font.setPixelSize(fontSize);
+
+    m_content->setFont(font);
+    m_content->setGeometry(50, 50 + height, TTK::Widget::fontTextWidth(font, m_content->text()), TTK::Widget::fontTextHeight(font));
+
+    m_label->setGeometry(50, 250, 44, 44);
+    m_button->setGeometry(50, 250, 44, 44);
 }
 
 void MusicSongDailyWidget::downLoadFinished(const QByteArray &bytes)
@@ -38,20 +65,45 @@ void MusicSongDailyWidget::downLoadFinished(const QByteArray &bytes)
         return;
     }
 
-    QPixmap pix;
-    pix.loadFromData(bytes);
-    m_container->setPixmap(pix);
+    QImage image;
+    image.loadFromData(bytes);
+    m_container->setPixmap(QPixmap::fromImage(image));
 
-    m_title->setText(m_networkRequest->note() + TTK_LINEFEED + m_networkRequest->content());
-    TTK_INFO_STREAM(m_networkRequest->note() << m_networkRequest->content());
-    TTK_INFO_STREAM(m_networkRequest->note() + TTK_LINEFEED + m_networkRequest->content());
+    if(image.isNull())
+    {
+        return;
+    }
+
+    QRgb r = 0, g = 0, b = 0;
+    for(int w = 0; w < image.width(); ++w)
+    {
+        for(int h = 0; h < image.height(); ++h)
+        {
+            const QRgb rgb = image.pixel(w, h);
+            r += qRed(rgb);
+            g += qGreen(rgb);
+            b += qBlue(rgb);
+        }
+    }
+
+    const int size = image.width() * image.height();
+    r /= size;
+    g /= size;
+    b /= size;
+
+    m_note->setText(m_networkRequest->note());
+    m_content->setText(m_networkRequest->content());
+
+    m_note->setStyleSheet(QString("color: rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
+    m_content->setStyleSheet(QString("color: rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
+    m_label->setStyleSheet(QString("background-color: rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
+    m_button->setStyleSheet(TTK::UI::BtnPlay);
+
+    resizeWidget();
 }
 
 void MusicSongDailyWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-
-    QFont font = m_title->font();
-    font.setPixelSize(20 + G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() / 1000.0);
-    m_title->setFont(font);
+    resizeWidget();
 }

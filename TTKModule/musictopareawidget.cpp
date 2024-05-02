@@ -443,6 +443,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRect(const QImage &image)
     {
         origin = origin.convertToFormat(QImage::Format_ARGB32);
     }
+
     TTK::Image::reRenderImage(35, &origin, &origin);
 
     m_backgroundImage = origin;
@@ -456,7 +457,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
         return;
     }
 
-    const float v = TTK::Image::reRenderValue<float>(1.0f, 0.35f, TTK_RN_MAX - m_backgroundAlpha);
+    const float v = TTK::Image::boundValue<float>(1.0f, 0.35f, TTK_RN_MAX - m_backgroundAlpha);
     MusicApplication::instance()->setWindowOpacity(v);
 
     const QSize size(G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());

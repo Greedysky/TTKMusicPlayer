@@ -151,7 +151,7 @@ void MusicApplicationModule::windowCloseAnimation()
     else
     {
         float v = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
-              v = TTK::Image::reRenderValue<float>(1.0f, 0.35f, TTK_RN_MAX - v);
+              v = TTK::Image::boundValue<float>(1.0f, 0.35f, TTK_RN_MAX - v);
 
         m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("windowOpacity");

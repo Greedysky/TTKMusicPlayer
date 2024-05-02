@@ -20,14 +20,15 @@
  ***************************************************************************/
 
 #include <QLabel>
-#include "ttkmoduleexport.h"
+#include "ttkabstractresizeinterface.h"
 
+class QToolButton;
 class MusicCiBaRequest;
 
 /*! @brief The class of the song daily widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongDailyWidget : public QFrame
+class TTK_MODULE_EXPORT MusicSongDailyWidget : public QFrame, public TTKAbstractResizeInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongDailyWidget)
@@ -40,6 +41,11 @@ public:
      * Object destructor.
      */
     ~MusicSongDailyWidget();
+
+    /*!
+     * Resize widget bound by resize called.
+     */
+    virtual void resizeWidget() override final;
 
 private Q_SLOTS:
     /*!
@@ -54,7 +60,8 @@ private:
     virtual void resizeEvent(QResizeEvent *event) override final;
 
     QLabel *m_container;
-    QLabel *m_title;
+    QToolButton *m_button;
+    QLabel *m_note, *m_content, *m_label;
     MusicCiBaRequest *m_networkRequest;
 
 };

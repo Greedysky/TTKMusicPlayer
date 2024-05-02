@@ -73,10 +73,10 @@ namespace TTK
         TTK_MODULE_EXPORT QPixmap grayScalePixmap(const QPixmap &input, int radius = 0);
 
         /*!
-         * Rerender the custum value.
+         * Rerender the bound value.
          */
         template <typename T>
-        TTK_MODULE_EXPORT T reRenderValue(const T &key, const T &alpha, const T &value)
+        TTK_MODULE_EXPORT T boundValue(const T &key, const T &alpha, const T &value)
         {
             if(alpha < TTK_RN_MIN)
             {
