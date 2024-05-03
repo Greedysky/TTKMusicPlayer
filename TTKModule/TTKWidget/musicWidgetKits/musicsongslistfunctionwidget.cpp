@@ -15,7 +15,7 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     QHBoxLayout *layout = new QHBoxLayout(this);
     m_mainWidget = new QWidget(this);
     m_mainWidget->setObjectName("MainWidget");
-    m_mainWidget->setStyleSheet(QString("#%1{ border-image: url(:/tiny/lb_function_normal); }").arg(m_mainWidget->objectName()));
+    m_mainWidget->setStyleSheet(QString("#%1{ border-image:url(:/tiny/lb_function_normal); }").arg(m_mainWidget->objectName()));
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     layout->addWidget(m_mainWidget);
@@ -93,12 +93,12 @@ void MusicSongsListFunctionWidget::enterEvent(QtEnterEvent *event)
     {
         start(false, 1);
     }
-    m_mainWidget->setStyleSheet(QString("#%1{ border-image: url(:/tiny/lb_function_hover); }").arg(m_mainWidget->objectName()));
+    m_mainWidget->setStyleSheet(QString("#%1{ border-image:url(:/tiny/lb_function_hover); }").arg(m_mainWidget->objectName()));
 }
 
 void MusicSongsListFunctionWidget::leaveEvent(QEvent *event)
 {
     QLabel::leaveEvent(event);
     start(true, 0);
-    m_mainWidget->setStyleSheet(QString("#%1{ border-image: url(:/tiny/lb_function_normal); }").arg(m_mainWidget->objectName()));
+    m_mainWidget->setStyleSheet(QString("#%1{ border-image:url(:/tiny/lb_function_normal); }").arg(m_mainWidget->objectName()));
 }

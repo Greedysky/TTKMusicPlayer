@@ -46,14 +46,14 @@ void MusicEnhancedToolButton::setStyleSheet(const QString &styleSheet, bool stat
     {
         m_animation->setDuration(2 * TTK_DN_S2MS);
         m_foreLabel->setStyleSheet(QString("#%1{ %2 }").arg(m_foreLabel->objectName(), styleSheet));
-        m_animationLabel->setStyleSheet("background-image: url(':/enhance/lb_selected')");
-        QToolButton::setStyleSheet(QString("QToolButton{ background-image: url(':/enhance/lb_blue'); }"));
+        m_animationLabel->setStyleSheet("background-image:url(':/enhance/lb_selected')");
+        QToolButton::setStyleSheet(QString("QToolButton{ background-image:url(':/enhance/lb_blue'); }"));
     }
     else
     {
         m_animation->setDuration(TTK_DN_S2MS / 2);
         m_foreLabel->setStyleSheet({});
-        m_animationLabel->setStyleSheet("background-image: url(':/enhance/lb_enter')");
+        m_animationLabel->setStyleSheet("background-image:url(':/enhance/lb_enter')");
         QToolButton::setStyleSheet(QString("QToolButton{ %1 }").arg(styleSheet));
     }
 }

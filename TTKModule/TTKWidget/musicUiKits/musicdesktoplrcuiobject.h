@@ -30,88 +30,88 @@ namespace TTK
     {
         static constexpr const char *DeskTopPlay = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_play_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_play_hover); }";
+            background-image:url(:/desktop/btn_play_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_play_hover); }";
 
         static constexpr const char *DeskTopPause = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_pause_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_pause_hover); }";
+            background-image:url(:/desktop/btn_pause_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_pause_hover); }";
 
         static constexpr const char *DeskTopNext = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_next_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_next_hover); }";
+            background-image:url(:/desktop/btn_next_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_next_hover); }";
 
         static constexpr const char *DeskTopPrevious = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_previous_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_previous_hover); }";
+            background-image:url(:/desktop/btn_previous_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_previous_hover); }";
 
         static constexpr const char *DeskTopSizeDown = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_size-_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_size-_hover); }";
+            background-image:url(:/desktop/btn_size-_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_size-_hover); }";
 
         static constexpr const char *DeskTopSizeUp = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_size+_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_size+_hover); }";
+            background-image:url(:/desktop/btn_size+_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_size+_hover); }";
 
         static constexpr const char *DeskTopSetting = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_setting_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_setting_hover); }";
+            background-image:url(:/desktop/btn_setting_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_setting_hover); }";
 
         static constexpr const char *DeskTopLock = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_lock_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_lock_hover); }";
+            background-image:url(:/desktop/btn_lock_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_lock_hover); }";
 
         static constexpr const char *DeskTopStyle= " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_style_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_style_hover); }";
+            background-image:url(:/desktop/btn_style_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_style_hover); }";
 
         static constexpr const char *DeskTopHMakeLrc = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_hmake_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_hmake_hover); }";
+            background-image:url(:/desktop/btn_hmake_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_hmake_hover); }";
 
         static constexpr const char *DeskTopHSearchLrc = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_hsearch_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_hsearch_hover); }";
+            background-image:url(:/desktop/btn_hsearch_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_hsearch_hover); }";
 
         static constexpr const char *DeskTopHUpdateLrc = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_hupdate_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_hupdate_hover); }";
+            background-image:url(:/desktop/btn_hupdate_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_hupdate_hover); }";
 
         static constexpr const char *DeskTopVMakeLrc = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_vmake_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_vmake_hover); }";
+            background-image:url(:/desktop/btn_vmake_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_vmake_hover); }";
 
         static constexpr const char *DeskTopVSearchLrc = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_vsearch_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_vsearch_hover); }";
+            background-image:url(:/desktop/btn_vsearch_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_vsearch_hover); }";
 
         static constexpr const char *DeskTopVUpdateLrc = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_vupdate_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_vupdate_hover); }";
+            background-image:url(:/desktop/btn_vupdate_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_vupdate_hover); }";
 
         static constexpr const char *DeskTopHorizontal = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_horizontal_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_horizontal_hover); }";
+            background-image:url(:/desktop/btn_horizontal_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_horizontal_hover); }";
 
         static constexpr const char *DeskTopVertical = " \
             QToolButton{ border:none; \
-            background-image: url(:/desktop/btn_vertical_normal); } \
-            QToolButton:hover{ background-image: url(:/desktop/btn_vertical_hover); }";
+            background-image:url(:/desktop/btn_vertical_normal); } \
+            QToolButton:hover{ background-image:url(:/desktop/btn_vertical_hover); }";
 
     }
 }

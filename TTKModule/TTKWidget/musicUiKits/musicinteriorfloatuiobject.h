@@ -34,33 +34,33 @@ namespace TTK
 
         static constexpr const char *InteriorFloatMore = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_more_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/lb_more_hover); }";
+            background-image:url(:/lrc/lb_more_normal); } \
+            QPushButton:hover{ background-image:url(:/lrc/lb_more_hover); }";
 
         static constexpr const char *InteriorFloatUpdate = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_update_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/lb_update_hover); }";
+            background-image:url(:/lrc/lb_update_normal); } \
+            QPushButton:hover{ background-image:url(:/lrc/lb_update_hover); }";
 
         static constexpr const char *InteriorFloatWallpaper = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_wallpaper_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_hover); }";
+            background-image:url(:/lrc/lb_wallpaper_normal); } \
+            QPushButton:hover{ background-image:url(:/lrc/lb_wallpaper_hover); }";
 
         static constexpr const char *InteriorFloatWallpaperOn = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_wallpaper_on_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_on_hover); }";
+            background-image:url(:/lrc/lb_wallpaper_on_normal); } \
+            QPushButton:hover{ background-image:url(:/lrc/lb_wallpaper_on_hover); }";
 
         static constexpr const char *InteriorFloatSearch = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_search_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/lb_search_hover); }";
+            background-image:url(:/lrc/lb_search_normal); } \
+            QPushButton:hover{ background-image:url(:/lrc/lb_search_hover); }";
 
         static constexpr const char *InteriorFloatPhoto = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_photo_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/lb_photo_hover); }";
+            background-image:url(:/lrc/lb_photo_normal); } \
+            QPushButton:hover{ background-image:url(:/lrc/lb_photo_hover); }";
 
         static constexpr const char *InteriorFloatPhotoItem = " \
             QCheckBox::indicator::unchecked{ image:url(:/lrc/lb_photo_unchecked); } \
@@ -68,23 +68,23 @@ namespace TTK
 
         static constexpr const char *InteriorFloatPhotoPrevious = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/btn_photo_previous_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/btn_photo_previous_hover); }";
+            background-image:url(:/lrc/btn_photo_previous_normal); } \
+            QPushButton:hover{ background-image:url(:/lrc/btn_photo_previous_hover); }";
 
         static constexpr const char *InteriorFloatPhotoNext = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/btn_photo_next_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/btn_photo_next_hover); }";
+            background-image:url(:/lrc/btn_photo_next_normal); } \
+            QPushButton:hover{ background-image:url(:/lrc/btn_photo_next_hover); }";
 
         static constexpr const char *InteriorLrcBigger = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/btn_bigger_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/btn_bigger_hover); }";
+            background-image:url(:/lrc/btn_bigger_normal); } \
+            QPushButton:hover{ background-image:url(:/lrc/btn_bigger_hover); }";
 
         static constexpr const char *InteriorLrcSmaller = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/btn_smaller_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/btn_smaller_hover); }";
+            background-image:url(:/lrc/btn_smaller_normal); } \
+            QPushButton:hover{ background-image:url(:/lrc/btn_smaller_hover); }";
 
     }
 }

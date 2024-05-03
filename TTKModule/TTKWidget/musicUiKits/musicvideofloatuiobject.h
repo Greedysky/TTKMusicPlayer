@@ -30,28 +30,28 @@ namespace TTK
     {
         static constexpr const char *VideoFloatDownload = " \
             QPushButton{ border:none;\
-            background-image: url(:/video/btn_download_normal); } \
-            QPushButton:hover{ background-image: url(:/video/btn_download_hover); }";
+            background-image:url(:/video/btn_download_normal); } \
+            QPushButton:hover{ background-image:url(:/video/btn_download_hover); }";
 
         static constexpr const char *VideoFloatFresh = " \
             QPushButton{ border:none;\
-            background-image: url(:/video/btn_fresh_normal); } \
-            QPushButton:hover{ background-image: url(:/video/btn_fresh_hover); }";
+            background-image:url(:/video/btn_fresh_normal); } \
+            QPushButton:hover{ background-image:url(:/video/btn_fresh_hover); }";
 
         static constexpr const char *VideoFloatFullscreen = " \
             QPushButton{ border:none;\
-            background-image: url(:/video/btn_fullscreen_normal); } \
-            QPushButton:hover{ background-image: url(:/video/btn_fullscreen_hover); }";
+            background-image:url(:/video/btn_fullscreen_normal); } \
+            QPushButton:hover{ background-image:url(:/video/btn_fullscreen_hover); }";
 
         static constexpr const char *VideoFloatSearch = " \
             QPushButton{ border:none;\
-            background-image: url(:/video/btn_search_normal); } \
-            QPushButton:hover{ background-image: url(:/video/btn_search_hover); }";
+            background-image:url(:/video/btn_search_normal); } \
+            QPushButton:hover{ background-image:url(:/video/btn_search_hover); }";
 
         static constexpr const char *VideoFloatShare = " \
             QPushButton{ border:none;\
-            background-image: url(:/video/btn_share_normal); } \
-            QPushButton:hover{ background-image: url(:/video/btn_share_hover); }";
+            background-image:url(:/video/btn_share_normal); } \
+            QPushButton:hover{ background-image:url(:/video/btn_share_hover); }";
 
     }
 }

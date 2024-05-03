@@ -30,43 +30,43 @@ namespace TTK
     {
         static constexpr const char *EnhanceOn = " \
             QToolButton{ border:none; \
-            background-image: url(:/enhance/btn_magic_on_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/btn_magic_on_hover); }";
+            background-image:url(:/enhance/btn_magic_on_normal); } \
+            QToolButton:hover{ background-image:url(:/enhance/btn_magic_on_hover); }";
 
         static constexpr const char *EnhanceOff = " \
             QToolButton{ border:none; \
-            background-image: url(:/enhance/btn_magic_off_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/btn_magic_off_hover); }";
+            background-image:url(:/enhance/btn_magic_off_normal); } \
+            QToolButton:hover{ background-image:url(:/enhance/btn_magic_off_hover); }";
 
         static constexpr const char *EnhanceClose = " \
             QToolButton{ border:none; \
-            background-image: url(:/enhance/btn_close_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/btn_close_hover); }";
+            background-image:url(:/enhance/btn_close_normal); } \
+            QToolButton:hover{ background-image:url(:/enhance/btn_close_hover); }";
 
         static constexpr const char *EnhanceHelp = " \
             QToolButton{ border:none; \
-            background-image: url(:/enhance/btn_help_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/btn_help_hover); }";
+            background-image:url(:/enhance/btn_help_normal); } \
+            QToolButton:hover{ background-image:url(:/enhance/btn_help_hover); }";
 
         static constexpr const char *EnhanceShare = " \
             QToolButton{ border:none; \
-            background-image: url(:/enhance/btn_share_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/btn_share_hover); }";
+            background-image:url(:/enhance/btn_share_normal); } \
+            QToolButton:hover{ background-image:url(:/enhance/btn_share_hover); }";
 
         static constexpr const char *EnhanceTitle = " \
             QToolButton{ border:none; \
-            background-image: url(:/enhance/lb_title_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/lb_title_hover); }";
+            background-image:url(:/enhance/lb_title_normal); } \
+            QToolButton:hover{ background-image:url(:/enhance/lb_title_hover); }";
 
         static constexpr const char *EqualizerOn = " \
             QPushButton{ border:none; \
-            background-image: url(:/enhance/btn_equalizer_on_normal); } \
-            QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_on_hover); }";
+            background-image:url(:/enhance/btn_equalizer_on_normal); } \
+            QPushButton:hover{ background-image:url(:/enhance/btn_equalizer_on_hover); }";
 
         static constexpr const char *EqualizerOff = " \
             QPushButton{ border:none; \
-            background-image: url(:/enhance/btn_equalizer_off_normal); } \
-            QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_off_hover); }";
+            background-image:url(:/enhance/btn_equalizer_off_normal); } \
+            QPushButton:hover{ background-image:url(:/enhance/btn_equalizer_off_hover); }";
 
     }
 }

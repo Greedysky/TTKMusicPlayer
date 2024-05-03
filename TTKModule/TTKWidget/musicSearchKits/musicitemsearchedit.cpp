@@ -9,7 +9,7 @@ MusicItemSearchEdit::MusicItemSearchEdit(QWidget *parent)
 
     QLabel *icon = new QLabel(this);
     icon->setFixedSize(16, 16);
-    icon->setStyleSheet(TTK::UI::BackgroundStyle01 + "border-image: url(:/tiny/btn_search_main_hover);");
+    icon->setStyleSheet(TTK::UI::BackgroundStyle01 + "border-image:url(:/tiny/btn_search_main_hover);");
 
     m_searchEdit = new MusicSearchEdit(this);
     layout->addWidget(icon);

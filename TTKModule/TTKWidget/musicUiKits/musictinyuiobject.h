@@ -30,153 +30,153 @@ namespace TTK
     {
         static constexpr const char *TinyBtnPlay = " \
             QToolButton,QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_play_normal); } \
-            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_play_hover); }";
+            background-image:url(:/tiny/btn_play_normal); } \
+            QToolButton:hover,QPushButton:hover{ background-image:url(:/tiny/btn_play_hover); }";
 
         static constexpr const char *TinyBtnPause = " \
             QToolButton,QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_pause_normal); } \
-            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_pause_hover); }";
+            background-image:url(:/tiny/btn_pause_normal); } \
+            QToolButton:hover,QPushButton:hover{ background-image:url(:/tiny/btn_pause_hover); }";
 
         static constexpr const char *TinyBtnNext = " \
             QToolButton,QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_next_normal); } \
-            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_next_hover); }";
+            background-image:url(:/tiny/btn_next_normal); } \
+            QToolButton:hover,QPushButton:hover{ background-image:url(:/tiny/btn_next_hover); }";
 
         static constexpr const char *TinyBtnPrevious = " \
             QToolButton,QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_previous_normal); } \
-            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_previous_hover); }";
+            background-image:url(:/tiny/btn_previous_normal); } \
+            QToolButton:hover,QPushButton:hover{ background-image:url(:/tiny/btn_previous_hover); }";
 
         static constexpr const char *TinyBtnList = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_list_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_list_hover); }";
+            background-image:url(:/tiny/btn_list_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_list_hover); }";
 
         static constexpr const char *TinyBtnSetting = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_setting_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_setting_hover); }";
+            background-image:url(:/tiny/btn_setting_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_setting_hover); }";
 
         static constexpr const char *TinyBtnVisual = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_visual_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_visual_hover); }";
+            background-image:url(:/tiny/btn_visual_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_visual_hover); }";
 
         static constexpr const char *TinyBtnWallpaperOff = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_wallpaper_off_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_wallpaper_off_hover); }";
+            background-image:url(:/tiny/btn_wallpaper_off_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_wallpaper_off_hover); }";
 
         static constexpr const char *TinyBtnLrcOff = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_lrc_off_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_lrc_off_hover); }";
+            background-image:url(:/tiny/btn_lrc_off_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_lrc_off_hover); }";
 
         static constexpr const char *TinyBtnCollapse = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_collapse_w_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_collapse_w_hover); }";
+            background-image:url(:/tiny/btn_collapse_w_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_collapse_w_hover); }";
 
         static constexpr const char *TinyBtnExpand = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_expand_w_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_expand_w_hover); }";
+            background-image:url(:/tiny/btn_expand_w_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_expand_w_hover); }";
 
         static constexpr const char *TinyBtnUnDownload = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_download_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_download_hover); }";
+            background-image:url(:/tiny/btn_download_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_download_hover); }";
 
         static constexpr const char *TinyBtnDownload = " \
             QPushButton{ border:none; margin-left:-16px; \
-            background-image: url(:/tiny/btn_download_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_download_hover); }";
+            background-image:url(:/tiny/btn_download_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_download_hover); }";
 
         static constexpr const char *TinyBtnUnLove = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_unloved_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_unloved_hover); }";
+            background-image:url(:/tiny/btn_unloved_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_unloved_hover); }";
 
         static constexpr const char *TinyBtnLove = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_loved_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_loved_hover); }";
+            background-image:url(:/tiny/btn_loved_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_loved_hover); }";
 
         static constexpr const char *TinyBtnDelete = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_delete_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_delete_hover); }";
+            background-image:url(:/tiny/btn_delete_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_delete_hover); }";
 
         static constexpr const char *TinyBtnMV = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_mv_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_mv_hover); }";
+            background-image:url(:/tiny/btn_mv_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_mv_hover); }";
 
         static constexpr const char *TinyBtnPlayLater = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_play_later_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_play_later_hover); }";
+            background-image:url(:/tiny/btn_play_later_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_play_later_hover); }";
 
         static constexpr const char *TinyBtnMore = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_more_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_more_hover); }";
+            background-image:url(:/tiny/btn_more_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_more_hover); }";
 
         static constexpr const char *TinyBtnLocalSearch = " \
             QToolButton{ border:none; \
-            background-image: url(:/tiny/btn_search_normal); } \
-            QToolButton:hover{ background-image: url(:/tiny/btn_search_hover); }";
+            background-image:url(:/tiny/btn_search_normal); } \
+            QToolButton:hover{ background-image:url(:/tiny/btn_search_hover); }";
 
         static constexpr const char *TinyBtnMainSearch = " \
             QToolButton{ border:none; \
-            background-image: url(:/tiny/btn_search_main_normal); } \
-            QToolButton:hover{ background-image: url(:/tiny/btn_search_main_hover); }";
+            background-image:url(:/tiny/btn_search_main_normal); } \
+            QToolButton:hover{ background-image:url(:/tiny/btn_search_main_hover); }";
 
         static constexpr const char *TinyBtnLocation = " \
             QToolButton{ border:none; \
-            background-image: url(:/tiny/btn_location_normal); } \
-            QToolButton:hover{ background-image: url(:/tiny/btn_location_hover); }";
+            background-image:url(:/tiny/btn_location_normal); } \
+            QToolButton:hover{ background-image:url(:/tiny/btn_location_hover); }";
 
         static constexpr const char *TinyBtnSound = " \
             QToolButton{ border:none; \
-            background-image: url(:/tiny/btn_sound_normal); } \
-            QToolButton:hover{ background-image: url(:/tiny/btn_sound_hover); }";
+            background-image:url(:/tiny/btn_sound_normal); } \
+            QToolButton:hover{ background-image:url(:/tiny/btn_sound_hover); }";
 
         static constexpr const char *TinyBtnSoundWhite = " \
             QToolButton{ border:none; \
-            background-image: url(:/tiny/btn_sound); } \
-            QToolButton:hover{ background-image: url(:/tiny/btn_sound); }";
+            background-image:url(:/tiny/btn_sound); } \
+            QToolButton:hover{ background-image:url(:/tiny/btn_sound); }";
 
         static constexpr const char *TinyBtnClose = " \
             QToolButton{ border:none; \
-            background-image: url(:/tiny/btn_close_normal); } \
-            QToolButton:hover{ background-image: url(:/tiny/btn_close_hover); }";
+            background-image:url(:/tiny/btn_close_normal); } \
+            QToolButton:hover{ background-image:url(:/tiny/btn_close_hover); }";
 
         static constexpr const char *TinyBtnLrcExpand = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_collapse_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_collapse_hover); }";
+            background-image:url(:/tiny/btn_collapse_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_collapse_hover); }";
 
         static constexpr const char *TinyBtnLrcCollapse = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_expand_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_expand_hover); }";
+            background-image:url(:/tiny/btn_expand_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_expand_hover); }";
 
         static constexpr const char *TinyBtnShare = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_share_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_share_hover); }";
+            background-image:url(:/tiny/btn_share_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_share_hover); }";
 
         static constexpr const char *TinyBtnListMenu = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_list_menu_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_list_menu_hover); }";
+            background-image:url(:/tiny/btn_list_menu_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_list_menu_hover); }";
 
         static constexpr const char *TinyBtnPlaylist = " \
             QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_playlist_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_playlist_hover); }";
+            background-image:url(:/tiny/btn_playlist_normal); } \
+            QPushButton:hover{ background-image:url(:/tiny/btn_playlist_hover); }";
 
     }
 }

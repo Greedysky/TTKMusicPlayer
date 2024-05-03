@@ -30,23 +30,23 @@ namespace TTK
     {
         static constexpr const char *ContextPlay = " \
             QToolButton{ border:none; \
-            background-image: url(:/contextMenu/btn_play_hover); } \
-            QToolButton:hover{ background-image: url(:/contextMenu/btn_play_normal); }";
+            background-image:url(:/contextMenu/btn_play_hover); } \
+            QToolButton:hover{ background-image:url(:/contextMenu/btn_play_normal); }";
 
         static constexpr const char *ContextPause = " \
             QToolButton{ border:none; \
-            background-image: url(:/contextMenu/btn_pause_hover); } \
-            QToolButton:hover{ background-image: url(:/contextMenu/btn_pause_normal); }";
+            background-image:url(:/contextMenu/btn_pause_hover); } \
+            QToolButton:hover{ background-image:url(:/contextMenu/btn_pause_normal); }";
 
         static constexpr const char *ContextNext = " \
             QToolButton{ border:none; \
-            background-image: url(:/contextMenu/btn_next_hover); } \
-            QToolButton:hover{ background-image: url(:/contextMenu/btn_next_normal); }";
+            background-image:url(:/contextMenu/btn_next_hover); } \
+            QToolButton:hover{ background-image:url(:/contextMenu/btn_next_normal); }";
 
         static constexpr const char *ContextPrevious = " \
             QToolButton{ border:none; \
-            background-image: url(:/contextMenu/btn_previous_hover); } \
-            QToolButton:hover{ background-image: url(:/contextMenu/btn_previous_normal); }";
+            background-image:url(:/contextMenu/btn_previous_hover); } \
+            QToolButton:hover{ background-image:url(:/contextMenu/btn_previous_normal); }";
 
     }
 }
