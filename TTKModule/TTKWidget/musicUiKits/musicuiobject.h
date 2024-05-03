@@ -431,12 +431,12 @@ namespace TTK
 
         ///ComboBox
         static const QString ComboBoxStyle01 = " \
-            QComboBox{ border: 1px solid gray; color:#666666; } \
-            QComboBox::hover{ border: 1px solid rgb(22, 154, 243); } \
+            QComboBox{ border:1px solid gray; color:#666666; } \
+            QComboBox::hover{ border:1px solid rgb(22, 154, 243); } \
             QComboBox::drop-down{ subcontrol-origin:padding; \
             subcontrol-position:top right; width:20px; border-left:none; } \
             QComboBox::down-arrow{ image:url(:/image/btn_down_arrow); } \
-            QComboBox::disabled{ border: 1px solid #BBBBBB; }";
+            QComboBox::disabled{ border:1px solid #BBBBBB; }";
 
         static const QString ComboBoxStyle02 = ComboBoxStyle01 + " \
             QComboBox{ border:none; } \
@@ -444,8 +444,8 @@ namespace TTK
 
         ///ListWidget
         static const QString ListWidgetStyle01 = " \
-            QListView::item:hover{ background-color: rgba(20, 20, 20, 20); color:#444444; } \
-            QListWidget::item:selected{ background-color: rgba(20, 20, 20, 20); color:#444444; }";
+            QListView::item:hover{ background-color:rgba(20, 20, 20, 20); color:#444444; } \
+            QListWidget::item:selected{ background-color:rgba(20, 20, 20, 20); color:#444444; }";
 
         static const QString ListWidgetStyle02 = ListWidgetStyle01 + " \
             QListWidget{ border:none; }";
@@ -476,7 +476,7 @@ namespace TTK
         static const QString TextEditStyle01 = " \
             QTextEdit{ border:1px solid gray; color:#666666; } \
             QTextEdit::hover{ border:1px solid rgb(22, 154, 243); } \
-            QTextEdit::disabled{ color:#BBBBBB; border: 1px solid #BBBBBB; }";
+            QTextEdit::disabled{ color:#BBBBBB; border:1px solid #BBBBBB; }";
 
         ///HeadView
         static const QString HeaderView01 = " \
@@ -488,11 +488,11 @@ namespace TTK
 
         ///SpinBox
         static const QString SpinBoxStyle01 = " \
-            QSpinBox{ font-size:12px; color:#666666; font-weight:normal; border: 1px solid gray; } \
+            QSpinBox{ font-size:12px; color:#666666; font-weight:normal; border:1px solid gray; } \
             QSpinBoxt::hover{ border:1px solid rgb(22, 154, 243); } \
             QSpinBox::up-button{ image:url(:/image/btn_up_arrow); } \
             QSpinBox::down-button{ image:url(:/image/btn_down_arrow); } \
-            QSpinBox::disabled{ color:#BBBBBB; border: 1px solid #BBBBBB; }";
+            QSpinBox::disabled{ color:#BBBBBB; border:1px solid #BBBBBB; }";
 
         ///ProgressBar
         static const QString ProgressBar01 = " \

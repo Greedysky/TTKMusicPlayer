@@ -97,9 +97,9 @@ void MusicSongDailyWidget::downLoadFinished(const QByteArray &bytes)
     m_note->setText(m_networkRequest->note());
     m_content->setText(m_networkRequest->content());
 
-    m_note->setStyleSheet(QString("color: rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
-    m_content->setStyleSheet(QString("color: rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
-    m_label->setStyleSheet(QString("background-color: rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
+    m_note->setStyleSheet(QString("color:rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
+    m_content->setStyleSheet(QString("color:rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
+    m_label->setStyleSheet(QString("background-color:rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
 
     m_button->show();
     m_button->setStyleSheet(TTK::UI::BtnPlay);
