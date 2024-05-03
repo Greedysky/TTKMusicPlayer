@@ -33,7 +33,7 @@ void MusicToplistQueryCategoryItem::setCategory(const MusicResultsCategory &cate
     for(int i = 0; i < m_category.m_items.count(); ++i)
     {
         TTKClickedLabel *label = new TTKClickedLabel(m_category.m_items[i].m_value, item);
-        label->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle07));
+        label->setStyleSheet(QString("QLabel::hover{ %1 }").arg(TTK::UI::ColorStyle07));
         label->setFixedSize(200, ITEM_LABEL_HEIGHT);
 
         clickedGroup->mapped(label);
@@ -105,11 +105,11 @@ void MusicToplistQueryCategoryPopWidget::initialize()
 
     const QString &style = TTK::UI::BorderStyle03 + TTK::UI::BackgroundStyle10;
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), style));
+    setStyleSheet(QString("#%1{ %2 }").arg(objectName(), style));
 
     m_containWidget->setFixedSize(600, 370);
     m_containWidget->setObjectName("ContainWidget");
-    m_containWidget->setStyleSheet(QString("#ContainWidget{%1}").arg(style));
+    m_containWidget->setStyleSheet(QString("#%1{ %2 }").arg(m_containWidget->objectName(), style));
 
     m_menu->setStyleSheet(TTK::UI::MenuStyle04);
 }

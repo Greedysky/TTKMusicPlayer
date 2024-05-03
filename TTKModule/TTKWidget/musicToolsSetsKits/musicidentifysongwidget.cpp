@@ -26,7 +26,7 @@ MusicIdentifySongWidget::MusicIdentifySongWidget(QWidget *parent)
 
     m_mainWindow = new QStackedWidget(this);
     m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(TTK::UI::BackgroundStyle10));
+    m_mainWindow->setStyleSheet(QString("#%1{ %2 }").arg(m_mainWindow->objectName(), TTK::UI::BackgroundStyle10));
     layout->addWidget(m_mainWindow);
     setLayout(layout);
 

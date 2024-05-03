@@ -16,7 +16,7 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProper
 
     m_textLabel = new QLabel(TTK_SPACE + property.m_name, this);
     m_textLabel->setObjectName("Background");
-    m_textLabel->setStyleSheet(QString("#Background{%1}").arg(TTK::UI::BackgroundStyle05) +
+    m_textLabel->setStyleSheet(QString("#%1{ %2 }").arg(m_textLabel->objectName(), TTK::UI::BackgroundStyle05) +
                                TTK::UI::SpinBoxStyle01 +
                                TTK::UI::SliderStyle06 +
                                TTK::UI::CheckBoxStyle01 +

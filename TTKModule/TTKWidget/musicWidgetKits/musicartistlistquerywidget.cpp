@@ -118,7 +118,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         for(int i = -1; i < 27; ++i)
         {
             TTKClickedLabel *label = new TTKClickedLabel(QString(TTKStaticCast(char, i + 65)), containNumberWidget);
-            label->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(TTK::UI::ColorStyle07, TTK::UI::ColorStyle08));
+            label->setStyleSheet(QString("QLabel::hover{ %1 } QLabel{ %2 }").arg(TTK::UI::ColorStyle07, TTK::UI::ColorStyle08));
 
             if(i == -1)
             {

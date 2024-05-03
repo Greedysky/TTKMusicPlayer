@@ -122,7 +122,7 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(TTK::UI::BackgroundStyle03));
+    m_ui->toolWidget->setStyleSheet(QString("#toolWidget{ %1 }").arg(TTK::UI::BackgroundStyle03));
 
     m_ui->allSelectedcheckBox->setStyleSheet(TTK::UI::CheckBoxStyle03);
     m_ui->allSelectedcheckBox->setCursor(QCursor(Qt::PointingHandCursor));

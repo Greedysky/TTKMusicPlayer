@@ -207,7 +207,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
         for(const QString &data : qAsConst(titles))
         {
             QLabel *l = new QLabel(data, containTopWidget);
-            l->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle07));
+            l->setStyleSheet(QString("QLabel::hover{ %1 }").arg(TTK::UI::ColorStyle07));
             QFrame *hline = new QFrame(containTopWidget);
             hline->setFrameShape(QFrame::VLine);
             hline->setStyleSheet(TTK::UI::ColorStyle12);

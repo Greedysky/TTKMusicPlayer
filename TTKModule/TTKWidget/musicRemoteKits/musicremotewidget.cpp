@@ -54,7 +54,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_nextSongButton->setStyleSheet(TTK::UI::TinyBtnNext);
     m_playButton->setStyleSheet(TTK::UI::TinyBtnPlay);
     m_settingButton->setStyleSheet(TTK::UI::TinyBtnSetting);
-    m_mainWidget->setStyleSheet(QString("#MainWidget{%1}").arg(TTK::UI::BackgroundStyle04));
+    m_mainWidget->setStyleSheet(QString("#%1{ %2 }").arg(m_mainWidget->objectName(), TTK::UI::BackgroundStyle04));
 
     m_showMainWindowButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_preSongButton->setCursor(QCursor(Qt::PointingHandCursor));

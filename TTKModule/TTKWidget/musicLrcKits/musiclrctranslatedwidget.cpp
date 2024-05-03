@@ -6,7 +6,7 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     : QLabel(parent)
 {
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), TTK::UI::BackgroundStyle07));
+    setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle07));
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(10, 0, 10, 0);
@@ -42,11 +42,11 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     TTK::Widget::generateVScrollAreaFormat(scrollArea, m_plainText, false);
 
     m_plainText->setObjectName("ContentsWidget");
-    m_plainText->setStyleSheet(QString("#ContentsWidget{%1%2%3}").arg(TTK::UI::BackgroundStyle01, TTK::UI::ColorStyle12, TTK::UI::FontStyle03));
+    m_plainText->setStyleSheet(QString("#%1{ %2 %3 %4 }").arg(m_plainText->objectName(), TTK::UI::BackgroundStyle01, TTK::UI::ColorStyle12, TTK::UI::FontStyle03));
 
     QWidget *view = scrollArea->viewport();
     view->setObjectName("Viewport");
-    view->setStyleSheet(QString("#Viewport{%1}").arg(TTK::UI::BackgroundStyle01));
+    view->setStyleSheet(QString("#%1{ %2 }").arg(view->objectName(), TTK::UI::BackgroundStyle01));
 
     mainLayout->addWidget(topWidget);
     mainLayout->addWidget(scrollArea);

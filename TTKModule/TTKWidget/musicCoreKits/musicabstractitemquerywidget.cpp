@@ -17,7 +17,7 @@ MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
 
     m_mainWindow = new QWidget(this);
     m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(TTK::UI::BackgroundStyle10));
+    m_mainWindow->setStyleSheet(QString("#%1{ %2 }").arg(m_mainWindow->objectName(), TTK::UI::BackgroundStyle10));
 
     m_statusLabel = new QLabel(tr("Loading now ... "), m_mainWindow);
     m_statusLabel->setStyleSheet(TTK::UI::FontStyle04 + TTK::UI::FontStyle01);

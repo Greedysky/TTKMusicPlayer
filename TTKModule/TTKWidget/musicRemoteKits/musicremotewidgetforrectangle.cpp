@@ -22,7 +22,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
 
     m_toolWidget = new QWidget(this);
     m_toolWidget->setObjectName("ToolWidget");
-    m_toolWidget->setStyleSheet(QString("#ToolWidget{%1}").arg(TTK::UI::BackgroundStyle04));
+    m_toolWidget->setStyleSheet(QString("#%1{ %2 }").arg(m_toolWidget->objectName(), TTK::UI::BackgroundStyle04));
     vbox->addWidget(m_toolWidget);
 
     QHBoxLayout *hbox = new QHBoxLayout(m_toolWidget);

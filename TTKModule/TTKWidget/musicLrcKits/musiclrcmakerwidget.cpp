@@ -156,7 +156,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->stackedWidget->setStyleSheet(QString("#stackedWidget{%1}").arg(TTK::UI::BackgroundStyle10));
+    m_ui->stackedWidget->setStyleSheet(QString("#stackedWidget{ %1 }").arg(TTK::UI::BackgroundStyle10));
 
     createMainWidget();
     createFirstWidget();

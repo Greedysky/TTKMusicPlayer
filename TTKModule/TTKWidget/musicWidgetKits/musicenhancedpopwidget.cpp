@@ -45,16 +45,16 @@ void MusicEnhancedToolButton::setStyleSheet(const QString &styleSheet, bool stat
     if(m_state)
     {
         m_animation->setDuration(2 * TTK_DN_S2MS);
-        m_foreLabel->setStyleSheet(QString("#ForeLabel{%1}").arg(styleSheet));
-        m_animationLabel->setStyleSheet("background-image:url(':/enhance/lb_selected')");
-        QToolButton::setStyleSheet(QString("QToolButton{background-image:url(':/enhance/lb_blue'); }"));
+        m_foreLabel->setStyleSheet(QString("#%1{ %2 }").arg(m_foreLabel->objectName(), styleSheet));
+        m_animationLabel->setStyleSheet("background-image: url(':/enhance/lb_selected')");
+        QToolButton::setStyleSheet(QString("QToolButton{ background-image: url(':/enhance/lb_blue'); }"));
     }
     else
     {
         m_animation->setDuration(TTK_DN_S2MS / 2);
         m_foreLabel->setStyleSheet({});
-        m_animationLabel->setStyleSheet("background-image:url(':/enhance/lb_enter')");
-        QToolButton::setStyleSheet(QString("QToolButton{%1}").arg(styleSheet));
+        m_animationLabel->setStyleSheet("background-image: url(':/enhance/lb_enter')");
+        QToolButton::setStyleSheet(QString("QToolButton{ %1 }").arg(styleSheet));
     }
 }
 
@@ -116,7 +116,7 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
         case 4: style += "#%1{ margin-left: -144px; }"; break;
         default: break;
     }
-    setStyleSheet(style.arg(className()));
+    setStyleSheet(style.arg(objectName()));
 
     const QString &prfix = QString("background-image:url(':/enhance/lb_%1')");
     m_caseButton->setStyleSheet(type ? TTK::UI::EnhanceOn : TTK::UI::EnhanceOff);
@@ -167,7 +167,7 @@ void MusicEnhancedPopWidget::initialize()
 
     m_containWidget->setFixedSize(272, 370);
     m_containWidget->setObjectName("ContainWidget");
-    m_containWidget->setStyleSheet(QString("#ContainWidget{%1%2}").arg(TTK::UI::BorderStyle01, "background:url(':/enhance/lb_background')"));
+    m_containWidget->setStyleSheet(QString("#%1{ %2 %3 }").arg(m_containWidget->objectName(), TTK::UI::BorderStyle01, "background:url(':/enhance/lb_background')"));
 
     QToolButton *labelButton = new QToolButton(m_containWidget);
     labelButton->setGeometry(80, 20, 126, 40);

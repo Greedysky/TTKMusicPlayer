@@ -67,7 +67,7 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     : QAbstractScrollArea(parent)
 {
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), TTK::UI::BackgroundStyle02));
+    setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle02));
 
     m_player = new MusicCoreMPlayer(this);
     m_videoWidget = new MusicViewWidget(this);

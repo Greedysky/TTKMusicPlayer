@@ -292,7 +292,7 @@ MusicFunctionToolBoxWidget::MusicFunctionToolBoxWidget(QWidget *parent)
 
     m_contentsWidget = new QWidget(this);
     m_contentsWidget->setObjectName("ContentsWidget");
-    m_contentsWidget->setStyleSheet("#ContentsWidget{background-color:transparent; }");
+    m_contentsWidget->setStyleSheet(QString("#%1{ %2 }").arg(m_contentsWidget->objectName(), TTK::UI::BackgroundStyle01));
 
     m_layout = new QVBoxLayout(m_contentsWidget);
     m_layout->setContentsMargins(0, 0, 0 ,0);
@@ -430,7 +430,7 @@ void MusicFunctionToolBoxWidget::setTransparent(int alpha)
     const QString &alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(alpha);
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("Viewport");
-    view->setStyleSheet(QString("#Viewport{%1}").arg(alphaStr));
+    view->setStyleSheet(QString("#%1{ %2 }").arg(view->objectName(), alphaStr));
 
     m_scrollArea->verticalScrollBar()->setStyleSheet(" \
             QScrollBar{ background:transparent; width:8px; padding-top:0px; padding-bottom:0px; } \

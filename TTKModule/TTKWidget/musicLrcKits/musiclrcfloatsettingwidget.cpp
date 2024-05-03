@@ -9,7 +9,7 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     : MusicAbstractFloatWidget(parent)
 {
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), TTK::UI::BackgroundStyle05));
+    setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle05));
 
     QLabel *colorLabel = new QLabel(tr("Color"), this);
     QLabel *sizeLabel = new QLabel(tr("Size"), this);

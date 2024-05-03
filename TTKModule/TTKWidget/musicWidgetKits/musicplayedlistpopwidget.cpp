@@ -373,7 +373,7 @@ void MusicPlayedListPopWidget::initialize()
     const QString &background = TTK::UI::BackgroundStyle10;
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("Viewport");
-    view->setStyleSheet(QString("#Viewport{%1}").arg(background));
+    view->setStyleSheet(QString("#%1{ %2 }").arg(view->objectName(), background));
 
     m_tableWidget = new MusicSongsListPlayedTableWidget(this);
     m_tableWidget->setSongsList(&m_songList);
@@ -399,7 +399,7 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     MusicPlayedListTopContainerWidget *topWidget = new MusicPlayedListTopContainerWidget(this);
 #ifdef Q_OS_UNIX
     topWidget->setObjectName("TopWidget");
-    topWidget->setStyleSheet(QString("#TopWidget{%1}").arg(TTK::UI::BackgroundStyle10));
+    topWidget->setStyleSheet(QString("#%1{ %2 }").arg(topWidget->objectName(), TTK::UI::BackgroundStyle10));
 #endif
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setSpacing(15);

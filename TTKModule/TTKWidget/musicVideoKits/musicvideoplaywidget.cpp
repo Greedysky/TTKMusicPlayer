@@ -82,7 +82,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
 #else
     QWidget *videoMaskWidget = new QWidget(this);
     videoMaskWidget->setObjectName("videoMaskWidget");
-    videoMaskWidget->setStyleSheet(QString("#%1{%2}").arg(videoMaskWidget->objectName(), TTK::UI::BackgroundStyle10));
+    videoMaskWidget->setStyleSheet(QString("#%1{ %2 }").arg(videoMaskWidget->objectName(), TTK::UI::BackgroundStyle10));
     QHBoxLayout *videoMaskWidgetLayout = new QHBoxLayout(videoMaskWidget);
     videoMaskWidgetLayout->setContentsMargins(0, 0, 0, 0);
     videoMaskWidgetLayout->addWidget(m_tableWidget);

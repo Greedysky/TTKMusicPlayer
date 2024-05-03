@@ -1,5 +1,6 @@
 #include "musicemojilabelwidget.h"
 #include "musictinyuiobject.h"
+#include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 #include "ttkclickedgroup.h"
 #include "ttkclickedlabel.h"
@@ -13,7 +14,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
 {
     setFixedSize(260, 175);
     setAttribute(Qt::WA_DeleteOnClose);
-    setStyleSheet("background:white");
+    setStyleSheet(TTK::UI::BackgroundStyle10);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -39,7 +40,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
         {
             TTKClickedLabel *label = new TTKClickedLabel(labelWidget);
             label->setAlignment(Qt::AlignCenter);
-            label->setStyleSheet(QString("QLabel{%1}QLabel:hover{%2}").arg(TTK::UI::BorderStyle03, TTK::UI::BorderStyle04));
+            label->setStyleSheet(QString("QLabel{ %1 } QLabel:hover{ %2 }").arg(TTK::UI::BorderStyle03, TTK::UI::BorderStyle04));
             label->setFixedSize(32, 32);
             labelIconLayout->addWidget(label, i, j);
 

@@ -178,7 +178,7 @@ void MusicCommentsWidget::initialize(bool isPain)
     m_isPain = isPain;
 
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), TTK::UI::BackgroundStyle07));
+    setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle07));
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -279,10 +279,10 @@ void MusicCommentsWidget::initialize(bool isPain)
         TTK::Widget::generateVScrollAreaFormat(scrollArea, contentsWidget, false);
 
         contentsWidget->setObjectName("ContentsWidget");
-        contentsWidget->setStyleSheet(QString("#ContentsWidget{%1}").arg(TTK::UI::BackgroundStyle01));
+        contentsWidget->setStyleSheet(QString("#%1{ %2 }").arg(contentsWidget->objectName(), TTK::UI::BackgroundStyle01));
         QWidget *view = scrollArea->viewport();
         view->setObjectName("Viewport");
-        view->setStyleSheet(QString("#Viewport{%1}").arg(TTK::UI::BackgroundStyle01));
+        view->setStyleSheet(QString("#%1{ %2 }").arg(view->objectName(), TTK::UI::BackgroundStyle01));
         //
         mainLayout->addWidget(topWidget);
         mainLayout->addWidget(scrollArea);

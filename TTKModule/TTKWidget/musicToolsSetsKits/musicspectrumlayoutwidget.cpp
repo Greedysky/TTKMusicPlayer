@@ -85,11 +85,11 @@ void MusicSpectrumLayoutWidget::initialize()
 
     const QString &style = TTK::UI::BorderStyle03 + TTK::UI::BackgroundStyle10;
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), style));
+    setStyleSheet(QString("#%1{ %2 }").arg(objectName(), style));
 
     m_containWidget->setFixedSize(240, 440);
     m_containWidget->setObjectName("ContainWidget");
-    m_containWidget->setStyleSheet(QString("#ContainWidget{%1}").arg(style));
+    m_containWidget->setStyleSheet(QString("#%1{ %2 }").arg(m_containWidget->objectName(), style));
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
     layout->setContentsMargins(0, 0, 0, 0);

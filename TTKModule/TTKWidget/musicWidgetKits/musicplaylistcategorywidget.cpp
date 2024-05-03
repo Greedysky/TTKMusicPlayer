@@ -43,7 +43,7 @@ MusicPlaylistCategoryItem::MusicPlaylistCategoryItem(MusicResultsCategory *categ
     for(int i = 0; i < category->m_items.count(); ++i)
     {
         TTKClickedLabel *label = new TTKClickedLabel(category->m_items[i].m_value, item);
-        label->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle07));
+        label->setStyleSheet(QString("QLabel::hover{ %1 }").arg(TTK::UI::ColorStyle07));
         label->setFixedSize(LINE_SPACING_SIZE, ITEM_LABEL_HEIGHT);
 
         clickedGroup->mapped(label);
