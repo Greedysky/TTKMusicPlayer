@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QFrame>
-#include "ttkmoduleexport.h"
+#include <QLabel>
+#include "ttkabstractresizeinterface.h"
 
 class QGridLayout;
 class MusicResultsCategory;
@@ -37,6 +37,21 @@ public:
      * Object constructor.
      */
     explicit MusicPlaylistCategoryItem(MusicResultsCategory *category, const QString &tag, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicPlaylistCategoryItem();
+
+    /*!
+     * Resize window bound by resize called.
+     */
+    void resizeWindow();
+
+public Q_SLOTS:
+    /*!
+     * Current category item clicked.
+     */
+    void buttonClicked(int index);
 
 private:
     /*!
@@ -54,7 +69,7 @@ private:
 /*! @brief The class of the playlist music category widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPlaylistCategoryWidget : public QFrame
+class TTK_MODULE_EXPORT MusicPlaylistCategoryWidget : public QFrame, public TTKAbstractResizeInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlaylistCategoryWidget)
@@ -63,12 +78,23 @@ public:
      * Object constructor.
      */
     explicit MusicPlaylistCategoryWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicPlaylistCategoryWidget();
+
+    /*!
+     * Resize widget bound by resize called.
+     */
+    virtual void resizeWidget() override final;
 
 private:
     /*!
      * Create all widget in layout.
      */
     void initialize();
+
+    QList<MusicPlaylistCategoryItem*> m_items;
 
 };
 

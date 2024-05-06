@@ -21,8 +21,8 @@
 
 #include <QCheckBox>
 #include <QBoxLayout>
-#include "musictoolmenuwidget.h"
 #include "ttkclickedlabel.h"
+#include "musictoolmenuwidget.h"
 
 /*! @brief The class of the music spectrum layout item.
  * @author Greedysky <greedysky@163.com>

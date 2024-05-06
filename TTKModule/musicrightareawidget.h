@@ -221,6 +221,10 @@ public Q_SLOTS:
      */
     void showPlaylistFound(const QString &id);
     /*!
+     * Music playlist category function.
+     */
+    void showPlaylistCategoryFound(const QString &id, const QString &value);
+    /*!
      * Music song research button searched by name.
      */
     void showSongSearchedFound(const QString &text);

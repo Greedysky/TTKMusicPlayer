@@ -56,7 +56,7 @@ void MusicSongDailyWidget::resizeWidget()
     m_content->setFont(font);
     m_content->setGeometry(50, 50 + noteHeight, TTK::Widget::fontTextWidth(font, m_content->text()), contentHeight);
 
-    m_button->setGeometry((this->width() - 44) / 2, (this->height() - 44) / 2, 44, 44);
+    m_button->setGeometry((width() - 44) / 2, (this->height() - 44) / 2, 44, 44);
 }
 
 void MusicSongDailyWidget::downLoadFinished(const QByteArray &bytes)

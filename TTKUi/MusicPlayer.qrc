@@ -787,5 +787,7 @@
         <file alias="g">../TTKResource/playlist/g.jpg</file>
         <file alias="h">../TTKResource/playlist/h.jpg</file>
         <file alias="i">../TTKResource/playlist/i.jpg</file>
+        <file alias="lb_hot">../TTKResource/playlist/lb_hot.png</file>
+        <file alias="lb_new">../TTKResource/playlist/lb_new.png</file>
     </qresource>
 </RCC>

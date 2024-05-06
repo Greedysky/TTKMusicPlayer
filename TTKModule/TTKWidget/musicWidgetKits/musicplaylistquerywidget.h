@@ -96,6 +96,11 @@ public:
     ~MusicPlaylistQueryWidget();
 
     /*!
+     * Set current category to search founds.
+     */
+    void setCurrentCategory(const MusicResultsCategoryItem &category);
+
+    /*!
      * Set current value to search founds.
      */
     virtual void setCurrentValue(const QString &value) override final;

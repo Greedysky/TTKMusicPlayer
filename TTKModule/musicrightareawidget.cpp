@@ -624,6 +624,13 @@ void MusicRightAreaWidget::showPlaylistFound(const QString &id)
     w->setCurrentID(id);
 }
 
+void MusicRightAreaWidget::showPlaylistCategoryFound(const QString &id, const QString &value)
+{
+    functionClicked(MusicRightAreaWidget::PlaylistWidget);
+    MusicPlaylistQueryWidget *w = TTKObjectCast(MusicPlaylistQueryWidget*, m_stackedWidget);
+    w->setCurrentCategory({id, value});
+}
+
 void MusicRightAreaWidget::showSongSearchedFound(const QString &text)
 {
     m_ui->musicSongSearchEdit->setText(text.trimmed());

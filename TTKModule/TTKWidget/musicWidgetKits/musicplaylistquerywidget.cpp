@@ -144,6 +144,12 @@ MusicPlaylistQueryWidget::~MusicPlaylistQueryWidget()
     delete m_pageQueryWidget;
 }
 
+void MusicPlaylistQueryWidget::setCurrentCategory(const MusicResultsCategoryItem &category)
+{
+    MusicAbstractItemQueryWidget::setCurrentValue(category.m_value);
+    m_networkRequest->startToSearchByID(category.m_key);
+}
+
 void MusicPlaylistQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);

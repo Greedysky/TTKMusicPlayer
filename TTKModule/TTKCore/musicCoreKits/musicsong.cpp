@@ -5,7 +5,7 @@
 #include "musicextractwrapper.h"
 #include "musicsettingmanager.h"
 
-#include <qmmp/regularexpression.h>
+#include <qmmp/trackinfo.h>
 
 MusicSong::MusicSong() noexcept
     : m_sort(Sort::ByFileName),
@@ -99,14 +99,7 @@ bool TTK::playlistRowValid(int index)
 
 QString TTK::trackRelatedPath(const QString &path)
 {
-    if(!MusicFormats::isTrack(path))
-    {
-        return path;
-    }
-
-    QString url = path.section("://", -1);
-    url.remove(RegularExpression("#\\d+$"));
-    return url;
+    return MusicFormats::isTrack(path) ? TrackInfo::pathFromUrl(path) : path;
 }
 
 QString TTK::generateSongName(const QString &title, const QString &artist)
