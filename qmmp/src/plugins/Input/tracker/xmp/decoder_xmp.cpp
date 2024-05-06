@@ -52,6 +52,16 @@ void DecoderXMP::readSettings()
     {
         flags |= XMP_FLAGS_FX9BUG;
     }
+
+    if(settings.value("fixlopp", false).toBool())
+    {
+        flags |= XMP_FLAGS_FIXLOOP;
+    }
+
+    if(settings.value("a500", false).toBool())
+    {
+        flags |= XMP_FLAGS_A500;
+    }
     xmp_set_player(m_ctx, XMP_PLAYER_FLAGS, flags);
 
     settings.endGroup();

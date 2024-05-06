@@ -41,6 +41,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.lowPassCheckBox->setChecked(settings.value("lowpass", false).toBool());
     m_ui.vblankCheckBox->setChecked(settings.value("vblank", false).toBool());
     m_ui.fx9BugCheckBox->setChecked(settings.value("fx9bug", false).toBool());
+    m_ui.fixLoopCheckBox->setChecked(settings.value("fixlopp", false).toBool());
+    m_ui.a500CheckBox->setChecked(settings.value("a500", false).toBool());
     settings.endGroup();
 }
 
@@ -66,6 +68,8 @@ void SettingsDialog::accept()
     settings.setValue("lowpass", m_ui.lowPassCheckBox->isChecked());
     settings.setValue("vblank", m_ui.vblankCheckBox->isChecked());
     settings.setValue("fx9bug", m_ui.fx9BugCheckBox->isChecked());
+    settings.setValue("fixlopp", m_ui.fixLoopCheckBox->isChecked());
+    settings.setValue("a500", m_ui.a500CheckBox->isChecked());
     settings.endGroup();
 
     if(DecoderXMP::instance())
