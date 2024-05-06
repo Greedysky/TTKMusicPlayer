@@ -26,9 +26,10 @@ Volume *OutputWaveOutFactory::createVolume()
     return vol;
 }
 
-void OutputWaveOutFactory::showSettings(QWidget *parent)
+QDialog *OutputWaveOutFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

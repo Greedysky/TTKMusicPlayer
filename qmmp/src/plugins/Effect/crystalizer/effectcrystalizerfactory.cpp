@@ -16,9 +16,9 @@ Effect *EffectCrystalizerFactory::create()
     return new CrystalizerPlugin();
 }
 
-void EffectCrystalizerFactory::showSettings(QWidget *parent)
+QDialog *EffectCrystalizerFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

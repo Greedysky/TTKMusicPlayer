@@ -9,7 +9,6 @@ SettingsDialog::SettingsDialog(SidDatabase *db, QWidget *parent)
 {
     m_db = db;
     m_ui.setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
 #ifdef Q_OS_UNIX
     for(QAbstractButton *button : m_ui.buttonBox->buttons())
     {

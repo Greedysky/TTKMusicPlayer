@@ -32,7 +32,7 @@ class HttpInputFactory : public QObject, InputSourceFactory
 public:
     virtual InputSourceProperties properties() const override final;
     virtual InputSource *create(const QString &url, QObject *parent = nullptr) override final;
-    virtual void showSettings(QWidget *parent) override final;
+    virtual QDialog *createSettings(QWidget *parent) override final;
 
 };
 

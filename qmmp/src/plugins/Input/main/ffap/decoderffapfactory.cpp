@@ -117,9 +117,10 @@ MetaDataModel* DecoderFFapFactory::createMetaDataModel(const QString &path, bool
     return new FFapMetaDataModel(path, readOnly);
 }
 
-void DecoderFFapFactory::showSettings(QWidget *parent)
+QDialog *DecoderFFapFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

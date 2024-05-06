@@ -63,9 +63,9 @@ MetaDataModel* DecoderArchiveFactory::createMetaDataModel(const QString &path, b
     return nullptr;
 }
 
-void DecoderArchiveFactory::showSettings(QWidget *parent)
+QDialog *DecoderArchiveFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

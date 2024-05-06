@@ -32,7 +32,7 @@ class EffectSubwooferFactory : public QObject, public EffectFactory
 public:
     virtual EffectProperties properties() const override final;
     virtual Effect *create() override final;
-    virtual void showSettings(QWidget *parent) override final;
+    virtual QDialog *createSettings(QWidget *parent) override final;
 
 };
 

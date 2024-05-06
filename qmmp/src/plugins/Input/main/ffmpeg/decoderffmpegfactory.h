@@ -41,7 +41,7 @@ public:
     virtual Decoder *create(const QString &path, QIODevice *input) override final;
     virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) override final;
     virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override final;
-    virtual void showSettings(QWidget *parent) override final;
+    virtual QDialog *createSettings(QWidget *parent) override final;
 
 private:
     QList<TrackInfo*> createPlayListFromChapters(AVFormatContext *in, TrackInfo *info, int trackNumber);

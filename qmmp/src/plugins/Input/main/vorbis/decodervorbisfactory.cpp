@@ -90,9 +90,10 @@ MetaDataModel* DecoderVorbisFactory::createMetaDataModel(const QString &path, bo
     return new VorbisMetaDataModel(path, readOnly);
 }
 
-void DecoderVorbisFactory::showSettings(QWidget *parent)
+QDialog *DecoderVorbisFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

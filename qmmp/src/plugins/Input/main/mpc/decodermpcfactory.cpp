@@ -75,9 +75,10 @@ MetaDataModel* DecoderMPCFactory::createMetaDataModel(const QString &path, bool 
     return new MPCMetaDataModel(path, readOnly);
 }
 
-void DecoderMPCFactory::showSettings(QWidget *parent)
+QDialog *DecoderMPCFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

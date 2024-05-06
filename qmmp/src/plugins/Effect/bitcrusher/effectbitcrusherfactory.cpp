@@ -16,9 +16,9 @@ Effect *EffectBitcrusherFactory::create()
     return new BitcrusherPlugin();
 }
 
-void EffectBitcrusherFactory::showSettings(QWidget *parent)
+QDialog *EffectBitcrusherFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

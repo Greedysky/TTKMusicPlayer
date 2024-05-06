@@ -68,9 +68,10 @@ MetaDataModel* DecoderV2MFactory::createMetaDataModel(const QString &path, bool 
     return nullptr;
 }
 
-void DecoderV2MFactory::showSettings(QWidget *parent)
+QDialog *DecoderV2MFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

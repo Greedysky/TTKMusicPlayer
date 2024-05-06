@@ -81,9 +81,10 @@ MetaDataModel* DecoderXSFFactory::createMetaDataModel(const QString &path, bool 
     return nullptr;
 }
 
-void DecoderXSFFactory::showSettings(QWidget *parent)
+QDialog *DecoderXSFFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

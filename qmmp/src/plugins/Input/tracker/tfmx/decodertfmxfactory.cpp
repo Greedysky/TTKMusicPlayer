@@ -73,9 +73,10 @@ MetaDataModel* DecoderTFMXFactory::createMetaDataModel(const QString &path, bool
     return nullptr;
 }
 
-void DecoderTFMXFactory::showSettings(QWidget *parent)
+QDialog *DecoderTFMXFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

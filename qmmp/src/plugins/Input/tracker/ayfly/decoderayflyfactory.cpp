@@ -79,9 +79,10 @@ MetaDataModel* DecoderAyflyFactory::createMetaDataModel(const QString &path, boo
     return nullptr;
 }
 
-void DecoderAyflyFactory::showSettings(QWidget *parent)
+QDialog *DecoderAyflyFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

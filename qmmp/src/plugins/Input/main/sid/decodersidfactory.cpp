@@ -96,9 +96,9 @@ MetaDataModel* DecoderSIDFactory::createMetaDataModel(const QString &path, bool 
     return nullptr;
 }
 
-void DecoderSIDFactory::showSettings(QWidget *parent)
+QDialog *DecoderSIDFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(&m_db, parent))->show();
+    return new SettingsDialog(&m_db, parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

@@ -76,9 +76,10 @@ MetaDataModel* DecoderUADEFactory::createMetaDataModel(const QString &path, bool
     return new UADEMetaDataModel(path);
 }
 
-void DecoderUADEFactory::showSettings(QWidget *parent)
+QDialog *DecoderUADEFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

@@ -14,9 +14,10 @@ Effect *EffectMufflerFactory::create()
     return new MufflerPlugin();
 }
 
-void EffectMufflerFactory::showSettings(QWidget *parent)
+QDialog *EffectMufflerFactory::createSettings(QWidget *parent)
 {
-   Q_UNUSED(parent);
+    Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

@@ -16,9 +16,9 @@ Effect *EffectSonicFactory::create()
     return new SonicPlugin();
 }
 
-void EffectSonicFactory::showSettings(QWidget *parent)
+QDialog *EffectSonicFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

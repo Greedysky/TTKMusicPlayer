@@ -76,9 +76,10 @@ MetaDataModel* DecoderSC68Factory::createMetaDataModel(const QString &path, bool
     return nullptr;
 }
 
-void DecoderSC68Factory::showSettings(QWidget *parent)
+QDialog *DecoderSC68Factory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

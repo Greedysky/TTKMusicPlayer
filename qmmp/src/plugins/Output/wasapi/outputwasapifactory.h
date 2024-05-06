@@ -35,7 +35,7 @@ public:
     virtual OutputProperties properties() const override final;
     virtual Output *create() override final;
     virtual Volume *createVolume() override final;
-    virtual void showSettings(QWidget *parent) override final;
+    virtual QDialog *createSettings(QWidget *parent) override final;
 
 };
 

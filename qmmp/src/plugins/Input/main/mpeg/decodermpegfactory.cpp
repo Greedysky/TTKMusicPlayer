@@ -286,9 +286,9 @@ MetaDataModel* DecoderMPEGFactory::createMetaDataModel(const QString &path, bool
    return new MPEGMetaDataModel(path, readOnly);
 }
 
-void DecoderMPEGFactory::showSettings(QWidget *parent)
+QDialog *DecoderMPEGFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

@@ -9,7 +9,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
 {
     m_ui.setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
 #ifdef Q_OS_WIN
     setFixedHeight(110);
 #elif defined Q_OS_UNIX

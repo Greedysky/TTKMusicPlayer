@@ -17,9 +17,9 @@ Effect *EffectCrossfadeFactory::create()
     return new CrossfadePlugin();
 }
 
-void EffectCrossfadeFactory::showSettings(QWidget *parent)
+QDialog *EffectCrossfadeFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

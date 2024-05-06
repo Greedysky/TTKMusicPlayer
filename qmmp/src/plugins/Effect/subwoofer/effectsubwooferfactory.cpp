@@ -16,9 +16,9 @@ Effect *EffectSubwooferFactory::create()
     return new SubwooferPlugin();
 }
 
-void EffectSubwooferFactory::showSettings(QWidget *parent)
+QDialog *EffectSubwooferFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

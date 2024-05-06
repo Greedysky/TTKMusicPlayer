@@ -66,9 +66,10 @@ MetaDataModel* DecoderSoundMonFactory::createMetaDataModel(const QString &path, 
     return nullptr;
 }
 
-void DecoderSoundMonFactory::showSettings(QWidget *parent)
+QDialog *DecoderSoundMonFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

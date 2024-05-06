@@ -52,9 +52,9 @@ MetaDataModel* DecoderCUEFactory::createMetaDataModel(const QString &path, bool 
     return path.startsWith("cue://") ? new CUEMetaDataModel(readOnly, path) : nullptr;
 }
 
-void DecoderCUEFactory::showSettings(QWidget *parent)
+QDialog *DecoderCUEFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

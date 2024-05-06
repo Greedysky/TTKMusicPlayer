@@ -66,9 +66,10 @@ MetaDataModel* DecoderOrganyaFactory::createMetaDataModel(const QString &path, b
     return nullptr;
 }
 
-void DecoderOrganyaFactory::showSettings(QWidget *parent)
+QDialog *DecoderOrganyaFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

@@ -421,9 +421,10 @@ MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bo
     return new FFmpegMetaDataModel(path, readOnly);
 }
 
-void DecoderFFmpegFactory::showSettings(QWidget *parent)
+QDialog *DecoderFFmpegFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

@@ -17,9 +17,9 @@ Effect *EffectSRConverterFactory::create()
     return new SRConverter();
 }
 
-void EffectSRConverterFactory::showSettings(QWidget *parent)
+QDialog *EffectSRConverterFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

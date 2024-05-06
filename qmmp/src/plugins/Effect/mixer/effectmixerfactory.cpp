@@ -16,9 +16,9 @@ Effect *EffectMixerFactory::create()
     return new MixerPlugin();
 }
 
-void EffectMixerFactory::showSettings(QWidget *parent)
+QDialog *EffectMixerFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

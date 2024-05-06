@@ -21,9 +21,9 @@ Volume *OutputOSS4Factory::createVolume()
     return new VolumeOSS4();
 }
 
-void OutputOSS4Factory::showSettings(QWidget* parent)
+QDialog *OutputOSS4Factory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

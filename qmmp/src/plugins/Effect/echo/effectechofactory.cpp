@@ -16,9 +16,9 @@ Effect *EffectEchoFactory::create()
     return new EchoPlugin();
 }
 
-void EffectEchoFactory::showSettings(QWidget *parent)
+QDialog *EffectEchoFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

@@ -71,9 +71,10 @@ MetaDataModel* DecoderHivelyFactory::createMetaDataModel(const QString &path, bo
     return new HivelyMetaDataModel(path);
 }
 
-void DecoderHivelyFactory::showSettings(QWidget *parent)
+QDialog *DecoderHivelyFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

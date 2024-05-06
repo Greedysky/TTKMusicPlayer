@@ -16,9 +16,9 @@ Effect *EffectLADSPAFactory::create()
     return new LADSPAHelper();
 }
 
-void EffectLADSPAFactory::showSettings(QWidget *parent)
+QDialog *EffectLADSPAFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

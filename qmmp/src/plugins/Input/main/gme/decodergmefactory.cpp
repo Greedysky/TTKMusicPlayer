@@ -80,9 +80,9 @@ MetaDataModel* DecoderGMEFactory::createMetaDataModel(const QString &path, bool 
     return nullptr;
 }
 
-void DecoderGMEFactory::showSettings(QWidget *parent)
+QDialog *DecoderGMEFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

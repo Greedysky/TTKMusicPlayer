@@ -103,9 +103,9 @@ MetaDataModel *DecoderOpenMPTFactory::createMetaDataModel(const QString &path, b
     return new OpenMPTMetaDataModel(path);
 }
 
-void DecoderOpenMPTFactory::showSettings(QWidget *parent)
+QDialog *DecoderOpenMPTFactory::createSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

@@ -71,9 +71,10 @@ MetaDataModel *DecoderSunVoxFactory::createMetaDataModel(const QString &path, bo
     return new SunVoxMetaDataModel(path);
 }
 
-void DecoderSunVoxFactory::showSettings(QWidget *parent)
+QDialog *DecoderSunVoxFactory::createSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
+    return nullptr;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
