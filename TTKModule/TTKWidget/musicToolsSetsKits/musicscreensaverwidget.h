@@ -200,7 +200,7 @@ private Q_SLOTS:
      */
     void switchButtonState();
     /*!
-     * Send download data from net.
+     * Download data from net finished.
      */
     void downLoadFinished(const QString &bytes);
     /*!

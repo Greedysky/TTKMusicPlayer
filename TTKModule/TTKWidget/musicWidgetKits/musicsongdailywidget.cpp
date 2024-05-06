@@ -24,7 +24,8 @@ MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     m_button->hide();
 
     m_networkRequest = new MusicCiBaRequest(this);
-    connect(m_networkRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), this, SLOT(downLoadFinished(QByteArray)));
+    connect(m_button, SIGNAL(clicked(bool)), SLOT(downLoadSongFinished()));
+    connect(m_networkRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), this, SLOT(downLoadImageFinished(QByteArray)));
 
     m_networkRequest->startToRequest();
 }
@@ -59,7 +60,12 @@ void MusicSongDailyWidget::resizeWidget()
     m_button->setGeometry((width() - 44) / 2, (this->height() - 44) / 2, 44, 44);
 }
 
-void MusicSongDailyWidget::downLoadFinished(const QByteArray &bytes)
+void MusicSongDailyWidget::downLoadSongFinished()
+{
+    TTK_INFO_STREAM("downLoadSongFinished");
+}
+
+void MusicSongDailyWidget::downLoadImageFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {

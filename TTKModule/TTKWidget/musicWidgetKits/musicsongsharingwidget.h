@@ -105,7 +105,7 @@ public Q_SLOTS:
      */
     void shareTimeout();
     /*!
-     * Download pixmap data finished.
+     * Download data from net finished.
      */
     void downLoadFinished(const QByteArray &bytes);
 

@@ -49,9 +49,13 @@ public:
 
 private Q_SLOTS:
     /*!
-     * Send download data from net.
+     * To download music data from net finished.
      */
-    void downLoadFinished(const QByteArray &bytes);
+    void downLoadSongFinished();
+    /*!
+     * To download image data from net finished.
+     */
+    void downLoadImageFinished(const QByteArray &bytes);
 
 private:
     /*!

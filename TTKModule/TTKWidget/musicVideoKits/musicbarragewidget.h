@@ -117,7 +117,7 @@ private Q_SLOTS:
      */
     void sizeChanged();
     /*!
-     * Send recieved data from net.
+     * Download data from net finished.
      */
     void downLoadFinished(const QByteArray &bytes);
 

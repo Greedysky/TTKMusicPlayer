@@ -45,7 +45,7 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Get counter pv finished.
+     * Download data from net finished.
      */
     void downloadFinished(const QString &bytes);
 

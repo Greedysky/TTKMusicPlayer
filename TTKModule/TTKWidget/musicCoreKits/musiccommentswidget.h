@@ -49,7 +49,7 @@ public:
 
 private Q_SLOTS:
     /*!
-     * Send recieved data from net.
+     * Download data from net finished.
      */
     void downLoadFinished(const QByteArray &bytes);
 

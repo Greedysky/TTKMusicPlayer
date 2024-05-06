@@ -56,7 +56,7 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     /*!
-     * Download single data from net finished.
+     * Download data from net finished.
      */
     void downLoadSingleFinished();
 

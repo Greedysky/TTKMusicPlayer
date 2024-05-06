@@ -63,7 +63,7 @@ public Q_SLOTS:
      */
     void currentQualityChanged(int index);
     /*!
-     * Data download is finished.
+     * Download data from net finished.
      */
     void downloadFinished();
 

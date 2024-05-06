@@ -60,7 +60,7 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     /*!
-     * Download details data from net finished.
+     * Download data from net finished.
      */
     void downloadDetailsFinished();
 

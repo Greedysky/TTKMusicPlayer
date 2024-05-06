@@ -163,7 +163,7 @@ public Q_SLOTS:
      */
     void startToRequest();
     /*!
-     * Data download is finished.
+     * Download data from net finished.
      */
     void downloadFinished();
 

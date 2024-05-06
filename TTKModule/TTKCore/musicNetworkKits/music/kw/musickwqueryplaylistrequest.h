@@ -64,11 +64,11 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     /*!
-     * Download details data from net finished.
+     * Download data from net finished.
      */
     void downloadDetailsFinished();
     /*!
-     * Download more playlisy details finished.
+     * Download data from net finished.
      */
     void downloadMoreDetailsFinished();
 

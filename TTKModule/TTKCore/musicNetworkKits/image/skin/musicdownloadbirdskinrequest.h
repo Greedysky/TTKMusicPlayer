@@ -55,7 +55,7 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished(const QByteArray &bytes) override final;
     /*!
-     * Download item data from net finished.
+     * Download data from net finished.
      */
     void downLoadItemsFinished(const QByteArray &bytes);
 
