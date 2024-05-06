@@ -72,7 +72,7 @@ public Q_SLOTS:
     /*!
      * Set music to play.
      */
-    void playSong();
+    void playSongClicked();
     /*!
      * Set music to previous.
      */

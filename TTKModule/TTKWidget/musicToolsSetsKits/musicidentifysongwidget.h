@@ -67,7 +67,7 @@ public Q_SLOTS:
     /*!
      * Set music song to play.
      */
-    void playSong();
+    void playSongClicked();
     /*!
      * Set music song to download.
      */

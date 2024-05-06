@@ -24,7 +24,6 @@
 
 class QLabel;
 class QPushButton;
-class MusicCoreMPlayer;
 
 /*! @brief The class of the song search online table widget.
  * @author Greedysky <greedysky@163.com>

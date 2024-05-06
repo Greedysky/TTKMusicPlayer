@@ -129,7 +129,7 @@ void MusicIdentifySongWidget::detectedTimeOut()
     }
 }
 
-void MusicIdentifySongWidget::playSong()
+void MusicIdentifySongWidget::playSongClicked()
 {
     if(!m_player)
     {
@@ -347,7 +347,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     downButton->setStyleSheet(TTK::UI::SongsDetectDownloadBtn);
     shareButton->setStyleSheet(TTK::UI::SongsDetectShareBtn);
 
-    connect(playButton, SIGNAL(clicked()), SLOT(playSong()));
+    connect(playButton, SIGNAL(clicked()), SLOT(playSongClicked()));
     connect(downButton, SIGNAL(clicked()), SLOT(showDownloadWidget()));
     connect(shareButton, SIGNAL(clicked()), SLOT(showSongShareWidget()));
 

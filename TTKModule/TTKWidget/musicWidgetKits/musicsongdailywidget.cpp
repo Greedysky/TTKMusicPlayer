@@ -1,8 +1,10 @@
 #include "musicsongdailywidget.h"
+#include "musiccibarequest.h"
+#include "musicsongrecommendrequest.h"
 #include "musicfunctionuiobject.h"
 #include "musicwidgetheaders.h"
-#include "musiccibarequest.h"
 #include "musicwidgetutils.h"
+#include "musiccoremplayer.h"
 
 MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     : QFrame(parent)
@@ -21,13 +23,19 @@ MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     m_content = new QLabel(this);
     m_button = new QToolButton(this);
     m_button->setCursor(QCursor(Qt::PointingHandCursor));
+    m_button->setStyleSheet(TTK::UI::BtnPlay);
     m_button->hide();
 
-    m_networkRequest = new MusicCiBaRequest(this);
-    connect(m_button, SIGNAL(clicked(bool)), SLOT(downLoadSongFinished()));
-    connect(m_networkRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), this, SLOT(downLoadImageFinished(QByteArray)));
+    m_player = new MusicCoreMPlayer(this);
+    m_imageRequest = new MusicCiBaRequest(this);
+    m_songRequest = new MusicSongRecommendRequest(this);
 
-    m_networkRequest->startToRequest();
+    connect(m_button, SIGNAL(clicked(bool)), SLOT(playSongClicked()));
+    connect(m_imageRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), this, SLOT(downLoadImageFinished(QByteArray)));
+    connect(m_songRequest, SIGNAL(downLoadDataChanged(QString)), this, SLOT(downLoadSongFinished()));
+
+    m_imageRequest->startToRequest();
+    m_songRequest->startToSearch({});
 }
 
 MusicSongDailyWidget::~MusicSongDailyWidget()
@@ -35,7 +43,7 @@ MusicSongDailyWidget::~MusicSongDailyWidget()
     delete m_note;
     delete m_content;
     delete m_container;
-    delete m_networkRequest;
+    delete m_imageRequest;
 }
 
 void MusicSongDailyWidget::resizeWidget()
@@ -60,9 +68,26 @@ void MusicSongDailyWidget::resizeWidget()
     m_button->setGeometry((width() - 44) / 2, (this->height() - 44) / 2, 44, 44);
 }
 
+void MusicSongDailyWidget::playSongClicked()
+{
+    if(m_songRequest->isEmpty())
+    {
+        return;
+    }
+
+    m_player->setMedia(MusicCoreMPlayer::Module::Music, m_songRequest->items().back().m_songProps.first().m_url);
+    m_button->setStyleSheet(TTK::UI::BtnPause);
+    m_button->hide();
+}
+
 void MusicSongDailyWidget::downLoadSongFinished()
 {
-    TTK_INFO_STREAM("downLoadSongFinished");
+    if(m_songRequest->isEmpty())
+    {
+        return;
+    }
+
+    m_button->show();
 }
 
 void MusicSongDailyWidget::downLoadImageFinished(const QByteArray &bytes)
@@ -99,14 +124,11 @@ void MusicSongDailyWidget::downLoadImageFinished(const QByteArray &bytes)
     g /= size;
     b /= size;
 
-    m_note->setText(m_networkRequest->note());
-    m_content->setText(m_networkRequest->content());
+    m_note->setText(m_imageRequest->note());
+    m_content->setText(m_imageRequest->content());
 
     m_note->setStyleSheet(QString("color:rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
     m_content->setStyleSheet(QString("color:rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
-
-    m_button->show();
-    m_button->setStyleSheet(TTK::UI::BtnPlay);
 
     resizeWidget();
 }

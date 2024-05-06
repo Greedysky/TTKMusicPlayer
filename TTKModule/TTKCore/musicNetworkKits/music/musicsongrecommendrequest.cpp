@@ -88,7 +88,7 @@ void MusicSongRecommendRequest::startToQueryResult(TTK::MusicSongInformation *in
     TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
 
     MusicPageQueryRequest::downLoadFinished();
-    for(const TTK::MusicSongInformation &var : m_items)
+    for(const TTK::MusicSongInformation &var : qAsConst(m_items))
     {
         if(info->m_songId == var.m_songId)
         {
