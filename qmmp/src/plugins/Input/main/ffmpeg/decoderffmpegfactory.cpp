@@ -251,10 +251,7 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
 
     if(path.contains("://")) //is it cue track?
     {
-        filePath.remove("ffmpeg://");
-        filePath.remove("m4b://");
-        filePath.remove(RegularExpression("#\\d+$"));
-        trackNumber = path.section("#", -1).toInt();
+        filePath = TrackInfo::pathFromUrl(path, &trackNumber);
         parts = TrackInfo::AllParts; //extract all metadata for single  cue/m4b track
     }
     else

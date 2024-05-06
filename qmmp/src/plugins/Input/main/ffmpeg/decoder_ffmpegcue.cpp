@@ -28,16 +28,13 @@ DecoderFFmpegCue::~DecoderFFmpegCue()
 
 bool DecoderFFmpegCue::initialize()
 {
-    QString filePath = m_path;
     if(!m_path.startsWith("ffmpeg://"))
     {
         qWarning("DecoderFFmpegCue: invalid path.");
         return false;
     }
 
-    filePath.remove("ffmpeg://");
-    filePath.remove(RegularExpression("#\\d+$"));
-    m_track = m_path.section("#", -1).toInt();
+    const QString &filePath = TrackInfo::pathFromUrl(m_path, &m_track);
 
     AVFormatContext *in = nullptr;
 #ifdef Q_OS_WIN
@@ -70,6 +67,7 @@ bool DecoderFFmpegCue::initialize()
         qWarning("DecoderFFmpegCue: invalid cuesheet");
         return false;
     }
+
     m_input = new QFile(filePath);
     if(!m_input->open(QIODevice::ReadOnly))
     {

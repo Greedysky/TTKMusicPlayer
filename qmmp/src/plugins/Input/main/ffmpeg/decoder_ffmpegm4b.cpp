@@ -33,16 +33,13 @@ DecoderFFmpegM4b::~DecoderFFmpegM4b()
 
 bool DecoderFFmpegM4b::initialize()
 {
-    QString filePath = m_path;
     if(!m_path.startsWith("m4b://"))
     {
         qWarning("DecoderFFmpegM4b: invalid path.");
         return false;
     }
 
-    filePath.remove("m4b://");
-    filePath.remove(RegularExpression("#\\d+$"));
-    m_track = m_path.section("#", -1).toInt();
+    const QString &filePath = TrackInfo::pathFromUrl(m_path, &m_track);
 
     AVFormatContext *in = nullptr;
 #ifdef Q_OS_WIN

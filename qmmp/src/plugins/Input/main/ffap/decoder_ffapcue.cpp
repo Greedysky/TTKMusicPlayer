@@ -19,16 +19,13 @@ DecoderFFapCUE::~DecoderFFapCUE()
 
 bool DecoderFFapCUE::initialize()
 {
-    QString filePath = m_path;
-    if(!m_path.startsWith("ape://") || filePath.endsWith(".ape"))
+    if(!m_path.startsWith("ape://") || m_path.endsWith(".ape"))
     {
         qWarning("DecoderFFapCUE: invalid path.");
         return false;
     }
 
-    filePath.remove("ape://");
-    filePath.remove(RegularExpression("#\\d+$"));
-    m_track = m_path.section("#", -1).toInt();
+    const QString &filePath = TrackInfo::pathFromUrl(m_path, &m_track);
 
     TagLib::FileStream stream(QStringToFileName(filePath), true);
     TagLib::APE::File file(&stream);

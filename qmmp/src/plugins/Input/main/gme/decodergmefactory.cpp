@@ -39,11 +39,9 @@ QList<TrackInfo*> DecoderGMEFactory::createPlayList(const QString &path, TrackIn
 {
     if(path.contains("://")) //is it one track?
     {
-        QString filePath = path;
-        filePath.remove("gme://");
-        filePath.remove(RegularExpression("#\\d+$"));
+        int track = -1;
+        QString filePath = TrackInfo::pathFromUrl(path, &track);
 
-        const int track = path.section("#", -1).toInt();
         QList<TrackInfo*> playlist = createPlayList(filePath, parts, ignoredPaths);
         if(playlist.isEmpty() || track <= 0 || track > playlist.count())
         {

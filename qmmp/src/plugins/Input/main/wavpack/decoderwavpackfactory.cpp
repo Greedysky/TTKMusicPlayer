@@ -38,9 +38,7 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
 
     if(path.contains("://")) //is it cue track?
     {
-        filePath.remove("wvpack://");
-        filePath.remove(RegularExpression("#\\d+$"));
-        track = path.section("#", -1).toInt();
+        filePath = TrackInfo::pathFromUrl(path, &track);
         parts = TrackInfo::AllParts; //extract all metadata for single cue track
     }
     else

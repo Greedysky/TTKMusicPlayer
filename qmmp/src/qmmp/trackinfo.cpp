@@ -195,3 +195,32 @@ void TrackInfo::clear()
     m_path.clear();
     m_duration = 0;
 }
+
+QString TrackInfo::pathFromUrl(const QString &url, int *track)
+{
+    QString path = url;
+    int index = path.indexOf("://");
+    if(index > 0)
+    {
+        path.remove(0, index + 3);
+    }
+
+    const QString &trackStr = path.section("#", -1);
+    bool ok = false;
+    int t = trackStr.toInt(&ok);
+    if(ok)
+    {
+        if(track)
+        {
+            *track = t;
+        }
+
+        index = path.lastIndexOf("#");
+        path.remove(index, path.size() - index);
+    }
+    else if(track)
+    {
+        *track = -1;
+    }
+    return path;
+}

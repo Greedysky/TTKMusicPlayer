@@ -309,13 +309,7 @@ QList<TrackInfo*> TFMXHelper::createPlayList(TrackInfo::Parts parts)
 
 QString TFMXHelper::cleanPath() const
 {
-    QString path = m_path;
-    if(m_path.contains("://"))
-    {
-        path.remove("tfmx://");
-        path.remove(RegularExpression("#\\d+$"));
-    }
-    return path;
+    return m_path.contains("://") ? TrackInfo::pathFromUrl(m_path) : m_path;
 }
 
 QStringList TFMXHelper::filters()

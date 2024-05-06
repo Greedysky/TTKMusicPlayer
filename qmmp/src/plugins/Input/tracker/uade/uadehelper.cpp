@@ -151,13 +151,7 @@ QList<TrackInfo*> UADEHelper::createPlayList(TrackInfo::Parts parts)
 
 QString UADEHelper::cleanPath() const
 {
-    QString path = m_path;
-    if(m_path.contains("://"))
-    {
-        path.remove("uade://");
-        path.remove(RegularExpression("#\\d+$"));
-    }
-    return path;
+    return m_path.contains("://") ? TrackInfo::pathFromUrl(m_path) : m_path;
 }
 
 QStringList UADEHelper::filters()

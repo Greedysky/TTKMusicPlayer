@@ -10,12 +10,7 @@
 CueFile::CueFile(const QString &path)
     : CueParser()
 {
-    m_path = path;
-    if(path.contains("://"))
-    {
-        m_path.remove("cue://");
-        m_path.remove(RegularExpression("#\\d+$"));
-    }
+    m_path = path.contains("://") ? TrackInfo::pathFromUrl(path) : path;
 
     QFile file(m_path);
     if(!file.open(QIODevice::ReadOnly))

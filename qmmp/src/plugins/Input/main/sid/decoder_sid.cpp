@@ -6,6 +6,7 @@
 #include <sidplayfp/SidInfo.h>
 #include <sidplayfp/SidTuneInfo.h>
 #include <sidplayfp/SidDatabase.h>
+#include <qmmp/trackinfo.h>
 #include "decoder_sid.h"
 
 #include <QSettings>
@@ -31,12 +32,10 @@ bool DecoderSID::initialize()
     m_length_in_bytes = 0;
     m_read_bytes = 0;
 
-    QString path = m_path;
-    path.remove("sid://");
-    path.remove(RegularExpression("#\\d+$"));
-    int track = m_path.section("#", -1).toInt();
+    int track = -1;
+    const QString &filePath = TrackInfo::pathFromUrl(m_path, &track);
 
-    m_tune.load(QmmpPrintable(path));
+    m_tune.load(QmmpPrintable(filePath));
     if(!m_tune.getInfo())
     {
         qWarning("DecoderSID: unable to load tune, error: %s", m_tune.statusString());
@@ -82,7 +81,7 @@ bool DecoderSID::initialize()
 
     if(m_length <= 0)
     {
-        m_length = settings.value("use_length", false).toBool() ? (settings.value("song_length", 180).toInt() * 1000) : (QFileInfo(path).size() * 8.0 / bitrate());
+        m_length = settings.value("use_length", false).toBool() ? (settings.value("song_length", 180).toInt() * 1000) : (QFileInfo(filePath).size() * 8.0 / bitrate());
     }
 
     qDebug("DecoderSID: song length: %d", m_length);

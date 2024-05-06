@@ -23,16 +23,11 @@ Music_Emu *GMEHelper::load(const QString &path, int sample_rate)
         gme_delete(m_emu);
     m_emu = nullptr;
 
-    QString filePath = path;
-    if(path.contains("://"))
-    {
-        filePath.remove("gme://");
-        filePath.remove(RegularExpression("#\\d+$"));
-    }
+    m_path = path.contains("://") ? TrackInfo::pathFromUrl(path) : path;
 
     const char *err = nullptr;
     gme_type_t file_type;
-    if((err = gme_identify_file(QmmpPrintable(filePath), &file_type)))
+    if((err = gme_identify_file(QmmpPrintable(m_path), &file_type)))
     {
         qWarning("GMEHelper: %s", err);
         return nullptr;
@@ -50,16 +45,15 @@ Music_Emu *GMEHelper::load(const QString &path, int sample_rate)
         return nullptr;
     }
 
-    if((err = gme_load_file(m_emu, QmmpPrintable(filePath))))
+    if((err = gme_load_file(m_emu, QmmpPrintable(m_path))))
     {
         qWarning("GMEHelper: %s", err);
         return nullptr;
     }
 
-    QString m3u_path = filePath.left(filePath.lastIndexOf("."));
+    QString m3u_path = m_path.left(m_path.lastIndexOf("."));
     m3u_path.append(".m3u");
     gme_load_m3u(m_emu, QmmpPrintable(m3u_path));
-    m_path = path;
     return m_emu;
 }
 

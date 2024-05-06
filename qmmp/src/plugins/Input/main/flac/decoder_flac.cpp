@@ -260,10 +260,9 @@ bool DecoderFLAC::initialize()
     {
         if(m_path.startsWith("flac://")) //embeded cue track
         {
-            QString p = m_path;
-            p.remove("flac://");
-            p.remove(RegularExpression("#\\d+$"));
-            TagLib::FileStream stream(QStringToFileName(p), true);
+            const QString &filePath = TrackInfo::pathFromUrl(m_path);
+
+            TagLib::FileStream stream(QStringToFileName(filePath), true);
 #if TAGLIB_MAJOR_VERSION >= 2
             TagLib::FLAC::File fileRef(&stream);
 #else
@@ -278,14 +277,14 @@ bool DecoderFLAC::initialize()
                 qDebug("DecoderFLAC: using cuesheet xiph comment.");
                 m_parser = new CueParser(tag->fieldListMap()["CUESHEET"].toString() .toCString(true));
                 m_parser->setDuration(fileRef.audioProperties()->lengthInMilliseconds());
-                m_parser->setUrl("flac", p);
+                m_parser->setUrl("flac", filePath);
                 m_track = m_path.section("#", -1).toInt();
                 if(m_track < 1 || m_track > m_parser->count())
                 {
                     qWarning("DecoderFLAC: invalid cuesheet xiph comment");
                     return false;
                 }
-                m_data->input = new QFile(p);
+                m_data->input = new QFile(filePath);
                 m_data->input->open(QIODevice::ReadOnly);
                 if(tag->contains("DISCNUMBER") && !tag->fieldListMap()["DISCNUMBER"].isEmpty())
                 {

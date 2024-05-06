@@ -5,14 +5,9 @@
 #include <taglib/id3v2framefactory.h>
 
 FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
-    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable),
-      m_path(path)
+    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
 {
-    if(path.startsWith("flac://"))
-    {
-        m_path.remove("flac://");
-        m_path.remove(RegularExpression("#\\d+$"));
-    }
+    m_path = path.contains("://") ? TrackInfo::pathFromUrl(path) : path;
 
     if(m_path.endsWith(".flac", Qt::CaseInsensitive))
     {

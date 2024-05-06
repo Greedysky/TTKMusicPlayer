@@ -24,18 +24,11 @@ SidTune *SIDHelper::load(const QString &path)
         m_tune = nullptr;
     }
 
-    QString filePath = path;
     int track = 1;
-    if(path.contains("://"))
-    {
-        filePath.remove("sid://");
-        filePath.remove(RegularExpression("#\\d+$"));
-        track = path.section("#", -1).toInt();
-    }
+    m_path = path.contains("://") ? TrackInfo::pathFromUrl(path, &track) : path;
 
-    m_tune = new SidTune(QmmpPrintable(filePath));
+    m_tune = new SidTune(QmmpPrintable(m_path));
     m_tune->selectSong(track - 1);
-    m_path = filePath;
     return m_tune;
 }
 

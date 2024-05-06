@@ -10,18 +10,14 @@ FFapMetaDataModel::FFapMetaDataModel(const QString &path, bool readOnly)
 {
     if(path.contains("://"))
     {
-        QString p = path;
-        p.remove("ape://");
-        p.remove(RegularExpression("#\\d+$"));
-
-        m_path = p;
-        m_stream = new TagLib::FileStream(QStringToFileName(p), true);
+        m_path = TrackInfo::pathFromUrl(path);
+        m_stream = new TagLib::FileStream(QStringToFileName(m_path), true);
         m_file = new TagLib::APE::File(m_stream);
     }
     else
     {
         m_path = path;
-        m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
+        m_stream = new TagLib::FileStream(QStringToFileName(m_path), readOnly);
         m_file = new TagLib::APE::File(m_stream);
         m_tags << new FFapFileTagModel(m_file, TagLib::APE::File::ID3v1);
         m_tags << new FFapFileTagModel(m_file, TagLib::APE::File::APE);
