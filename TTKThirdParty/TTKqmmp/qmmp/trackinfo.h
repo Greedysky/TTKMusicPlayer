@@ -166,6 +166,11 @@ public:
      */
     void clear();
 
+    /*!
+     * Decode path for cue url path
+     */
+    static QString pathFromUrl(const QString &url, int *track = nullptr);
+
 private:
     QMap<Qmmp::MetaData, QString> m_metaData;
     QMap<Qmmp::TrackProperty, QString> m_properties;

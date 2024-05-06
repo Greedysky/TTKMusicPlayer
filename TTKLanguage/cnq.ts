@@ -1096,6 +1096,14 @@ too high may cause clipping!</source>
         <translation>模拟Protracker 2.x FX9问题</translation>
     </message>
     <message>
+        <source>Emulate sample loop bug</source>
+        <translation>模拟采样循环问题</translation>
+    </message>
+    <message>
+        <source>Use Paula mixer in Amiga modules</source>
+        <translation>Amiga模块中使用Paula混音器</translation>
+    </message>
+    <message>
         <source>22050 Hz</source>
         <translation>22050 Hz</translation>
     </message>

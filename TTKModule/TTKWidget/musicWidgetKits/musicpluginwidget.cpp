@@ -102,14 +102,22 @@ public:
 
     inline void showSettingWidget() const
     {
+        QDialog *dialog = nullptr;
+
         switch(type())
         {
-            case PluginDecoder: TTKStaticCast(DecoderFactory*, m_factory)->showSettings(treeWidget()); break;
+            case PluginDecoder: dialog = TTKStaticCast(DecoderFactory*, m_factory)->createSettings(nullptr); break;
             case PluginEffect: break;
             case PluginVisual: break;
-            case PluginTransports: TTKStaticCast(InputSourceFactory*, m_factory)->showSettings(treeWidget()); break;
-            case PluginOutput: TTKStaticCast(OutputFactory*, m_factory)->showSettings(treeWidget()); break;
+            case PluginTransports: dialog = TTKStaticCast(InputSourceFactory*, m_factory)->createSettings(nullptr); break;
+            case PluginOutput: dialog = TTKStaticCast(OutputFactory*, m_factory)->createSettings(nullptr); break;
             default: break;
+        }
+
+        if(dialog)
+        {
+            dialog->exec();
+            dialog->deleteLater();
         }
     }
 

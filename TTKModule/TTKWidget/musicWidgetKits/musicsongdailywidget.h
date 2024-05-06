@@ -61,7 +61,7 @@ private:
 
     QLabel *m_container;
     QToolButton *m_button;
-    QLabel *m_note, *m_content, *m_label;
+    QLabel *m_note, *m_content;
     MusicCiBaRequest *m_networkRequest;
 
 };

@@ -108,7 +108,7 @@ void MusicSoundEffectsItemWidget::setPluginEnabled()
 
 void MusicSoundEffectsItemWidget::soundEffectValueChanged()
 {
-    TTK::TTKQmmp::showEffectSetting(m_property.m_type, m_textLabel);
+    TTK::TTKQmmp::showEffectSetting(m_property.m_type);
 }
 
 

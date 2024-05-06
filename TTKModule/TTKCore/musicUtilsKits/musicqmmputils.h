@@ -45,7 +45,7 @@ namespace TTK
         /*!
          * Show effect setting control.
          */
-        TTK_MODULE_EXPORT void showEffectSetting(const QString &name, QWidget *parent);
+        TTK_MODULE_EXPORT void showEffectSetting(const QString &name);
 
         /*!
          * Enable visual module control.

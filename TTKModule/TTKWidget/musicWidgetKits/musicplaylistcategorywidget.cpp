@@ -1,7 +1,8 @@
 #include "musicplaylistcategorywidget.h"
 #include "musiccategoryconfigmanager.h"
 #include "musicabstractqueryrequest.h"
-#include "musicuiobject.h"
+#include "musicwidgetutils.h"
+#include "musicwidgetheaders.h"
 #include "ttkclickedgroup.h"
 #include "ttkclickedlabel.h"
 
@@ -65,7 +66,10 @@ void MusicPlaylistCategoryItem::resizeEvent(QResizeEvent *event)
         m_gridLayout->removeWidget(item);
     }
 
-    const int lineNumber = width() / LINE_SPACING_SIZE;
+    const int w = (G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - LEFT_SIDE_WIDTH_MIN - 200);
+    qDebug() << w << width();
+//    setFixedWidth(w);
+    const int lineNumber = w / LINE_SPACING_SIZE;
     for(int i = 0; i < m_items.count(); ++i)
     {
         m_gridLayout->addWidget(m_items[i], i / lineNumber, i % lineNumber, Qt::AlignLeft);
@@ -87,6 +91,14 @@ void MusicPlaylistCategoryWidget::initialize()
     setLayout(layout);
 
     setStyleSheet(TTK::UI::BackgroundStyle10);
+
+    QWidget *containWidget = new QWidget(this);
+    QVBoxLayout *containLayout = new QVBoxLayout(containWidget);
+    containWidget->setLayout(containLayout);
+
+    QScrollArea *scrollArea = new QScrollArea(this);
+    TTK::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
+    layout->addWidget(scrollArea);
 
     QStringList tags;
     QString server = QUERY_WY_INTERFACE;
@@ -122,11 +134,11 @@ void MusicPlaylistCategoryWidget::initialize()
     for(int i = 0; i < categorys.count() - 1; ++i)
     {
         MusicPlaylistCategoryItem *item = new MusicPlaylistCategoryItem(&categorys[i + 1], tags[i], this);
-        layout->addWidget(item);
+        containLayout->addWidget(item);
 
         QFrame *line = new QFrame(this);
         line->setFrameShape(QFrame::HLine);
         line->setStyleSheet(TTK::UI::ColorStyle12);
-        layout->addWidget(line);
+        containLayout->addWidget(line);
     }
 }

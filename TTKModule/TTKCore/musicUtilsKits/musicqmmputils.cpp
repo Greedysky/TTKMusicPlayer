@@ -1,6 +1,7 @@
 #include "musicqmmputils.h"
 #include "musicsettingmanager.h"
 
+#include <QDialog>
 #include <QSettings>
 #include <qmmp/qmmp.h>
 #include <qmmp/visual.h>
@@ -55,13 +56,18 @@ MusicPluginPropertyList TTK::TTKQmmp::effectPlugins()
     return properties;
 }
 
-void TTK::TTKQmmp::showEffectSetting(const QString &name, QWidget *parent)
+void TTK::TTKQmmp::showEffectSetting(const QString &name)
 {
     for(EffectFactory *factory : Effect::factories())
     {
         if(factory->properties().shortName == name)
         {
-            factory->showSettings(parent);
+            QDialog *dialog = factory->createSettings(nullptr);
+            if(dialog)
+            {
+                dialog->exec();
+                dialog->deleteLater();
+            }
             break;
         }
     }
