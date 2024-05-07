@@ -23,9 +23,7 @@
 #include "ttkabstractresizeinterface.h"
 
 class QToolButton;
-class MusicCoreMPlayer;
 class MusicCiBaRequest;
-class MusicSongRecommendRequest;
 
 /*! @brief The class of the song daily widget.
  * @author Greedysky <greedysky@163.com>
@@ -51,14 +49,6 @@ public:
 
 private Q_SLOTS:
     /*!
-     * Set music to play.
-     */
-    void playSongClicked();
-    /*!
-     * Download music data from net finished.
-     */
-    void downLoadSongFinished();
-    /*!
      * Download image data from net finished.
      */
     void downLoadImageFinished(const QByteArray &bytes);
@@ -69,13 +59,9 @@ private:
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
 
-
     QLabel *m_container;
-    QToolButton *m_button;
     QLabel *m_note, *m_content;
-    MusicCoreMPlayer *m_player;
     MusicCiBaRequest *m_imageRequest;
-    MusicSongRecommendRequest *m_songRequest;
 
 };
 

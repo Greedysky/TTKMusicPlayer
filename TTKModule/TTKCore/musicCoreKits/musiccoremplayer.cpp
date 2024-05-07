@@ -37,10 +37,10 @@ void MusicCoreMPlayer::setMedia(Module type, const QString &data, int winId)
     connect(m_process, SIGNAL(finished(int)), SIGNAL(finished(int)));
 
     QString url = data;
-    if(url.startsWith(HTTPS_PROTOCOL))
-    {
-        url.replace(HTTPS_PROTOCOL, HTTP_PROTOCOL);
-    }
+//    if(url.startsWith(HTTPS_PROTOCOL))
+//    {
+//        url.replace(HTTPS_PROTOCOL, HTTP_PROTOCOL);
+//    }
 
     switch(m_category)
     {
@@ -113,37 +113,7 @@ void MusicCoreMPlayer::setPosition(qint64 pos)
     m_process->write(QString("seek %1 2\n").arg(pos).toUtf8());
 }
 
-void MusicCoreMPlayer::setLeftVolume()
-{
-    if(!m_process)
-    {
-        return;
-    }
-
-    m_process->write(QString("af channels=1:1:1\n").toUtf8());
-}
-
-void MusicCoreMPlayer::setRightVolume()
-{
-    if(!m_process)
-    {
-        return;
-    }
-
-    m_process->write(QString("af channels=1:1\n").toUtf8());
-}
-
-void MusicCoreMPlayer::setMultiVoice(int number)
-{
-    if(!m_process)
-    {
-        return;
-    }
-
-    m_process->write(QString("switch_audio %1\n").arg(number).toUtf8());
-}
-
-void MusicCoreMPlayer::setMute(bool mute)
+void MusicCoreMPlayer::setMuted(bool mute)
 {
     if(!m_process)
     {

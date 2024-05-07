@@ -76,7 +76,7 @@ void MusicIdentifySongWidget::detectedButtonClicked()
         return;
     }
 
-    if(m_detectedButton->styleSheet().contains(TTK::UI::SongsDetectStartBtn))
+    if(m_detectedButton->styleSheet() == TTK::UI::SongsDetectStartBtn)
     {
         m_recordCore->onRecordStart();
         if(m_recordCore->error())

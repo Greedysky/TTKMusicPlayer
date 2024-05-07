@@ -66,7 +66,7 @@ void MusicScreenSaverHoverItem::display(const QPoint &point)
 
 void MusicScreenSaverHoverItem::switchButtonState()
 {
-    if(m_enableButton->styleSheet().contains(TTK::UI::ScreenItemDisable))
+    if(m_enableButton->styleSheet() == TTK::UI::ScreenItemDisable)
     {
         const QPixmap pix(TTK::Image::grayScalePixmap(QPixmap(m_path), 70));
         m_parent->setPixmap(pix);

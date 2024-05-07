@@ -58,23 +58,11 @@ public:
      * Set current play pos.
      */
     void setPosition(qint64 pos);
-    /*!
-     * Set left player volume mode.
-     */
-    void setLeftVolume();
-    /*!
-     * Set right player volume mode.
-     */
-    void setRightVolume();
-    /*!
-     * Set single voice from multi voice by id.
-     */
-    void setMultiVoice(int number);
 
     /*!
      * Set current player mute or not.
      */
-    void setMute(bool mute);
+    void setMuted(bool mute);
     /*!
      * Set current player volume.
      */

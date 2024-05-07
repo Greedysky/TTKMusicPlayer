@@ -7,6 +7,27 @@
 #include "ttkclickedgroup.h"
 #include "ttkclickedlabel.h"
 
+struct CategoryProperty
+{
+    enum
+    {
+        New,
+        Hot
+    };
+
+    struct Property
+    {
+        int m_index;
+        int m_type;
+    };
+
+    QString m_tag;
+    MusicResultsCategory m_category;
+    QList<Property> m_property;
+};
+TTK_DECLARE_LIST(CategoryProperty);
+
+
 static constexpr int ITEM_MAX_COLUMN = 6;
 static constexpr int ITEM_LABEL_HEIGHT = 20;
 static constexpr int LINE_SPACING_SIZE = 75;
@@ -36,7 +57,7 @@ public:
 };
 
 
-MusicPlaylistCategoryItem::MusicPlaylistCategoryItem(MusicResultsCategory *category, const QString &tag, QWidget *parent)
+MusicPlaylistCategoryItem::MusicPlaylistCategoryItem(CategoryProperty *category, QWidget *parent)
     : QWidget(parent)
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
@@ -51,10 +72,10 @@ MusicPlaylistCategoryItem::MusicPlaylistCategoryItem(MusicResultsCategory *categ
 
     QLabel *iconLabel = new QLabel(leftLabel);
     iconLabel->setFixedSize(38, 38);
-    iconLabel->setPixmap(QPixmap(":/playlist/" + tag));
+    iconLabel->setPixmap(QPixmap(":/playlist/" + category->m_tag));
     leftLabelLayout->addWidget(iconLabel, 0, Qt::AlignCenter);
 
-    QLabel *textLabel = new QLabel(category->m_category, leftLabel);
+    QLabel *textLabel = new QLabel(category->m_category.m_category, leftLabel);
     textLabel->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle03);
     leftLabelLayout->addWidget(textLabel, 0, Qt::AlignCenter);
     leftLabelLayout->addStretch();
@@ -66,27 +87,32 @@ MusicPlaylistCategoryItem::MusicPlaylistCategoryItem(MusicResultsCategory *categ
     TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-    for(int i = 0; i < category->m_items.count(); ++i)
+    const MusicResultsCategoryItemList &items = category->m_category.m_items;
+
+    for(int i = 0; i < items.count(); ++i)
     {
         QWidget *label = nullptr;
-        if(i % 6 == 0)
+
+        for(const CategoryProperty::Property &property : qAsConst(category->m_property))
         {
-            label = new CategoryMultiItem(category->m_items[i].m_value, ":/playlist/lb_hot", item);
+            if(property.m_index != i)
+            {
+                continue;
+            }
+
+            const QString &icon = property.m_type == CategoryProperty::New ? "lb_new" : "lb_hot";
+            label = new CategoryMultiItem(items[i].m_value, ":/playlist/" + icon, item);
             clickedGroup->mapped(TTKStaticCast(CategoryMultiItem*, label)->m_item);
         }
-        else if(i % 11 == 0)
+
+        if(!label)
         {
-            label = new CategoryMultiItem(category->m_items[i].m_value, ":/playlist/lb_new", item);
-            clickedGroup->mapped(TTKStaticCast(CategoryMultiItem*, label)->m_item);
-        }
-        else
-        {
-            label = new CategorySingleItem(category->m_items[i].m_value, item);
+            label = new CategorySingleItem(items[i].m_value, item);
             clickedGroup->mapped(label);
         }
 
-        label->setProperty("key", category->m_items[i].m_key);
-        label->setProperty("value", category->m_items[i].m_value);
+        label->setProperty("key", items[i].m_key);
+        label->setProperty("value", items[i].m_value);
         label->setStyleSheet(QString("QLabel::hover{ %1 }").arg(TTK::UI::ColorStyle07));
         label->setFixedSize(LINE_SPACING_SIZE, ITEM_LABEL_HEIGHT);
 
@@ -173,23 +199,44 @@ void MusicPlaylistCategoryWidget::initialize()
     TTK::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
     layout->addWidget(scrollArea);
 
-    QStringList tags;
+    CategoryPropertyList items;
     QString server = QUERY_WY_INTERFACE;
 
     switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
     {
     case MusicAbstractQueryRequest::QueryServer::WY:
+    {
         server = QUERY_WY_INTERFACE;
-        tags << "h" << "b" << "a" << "g" << "i";
+        items.append({"h", {}, {{0, CategoryProperty::Hot}, {3, CategoryProperty::New}, {4, CategoryProperty::New}}});
+        items.append({"b", {}, {{0, CategoryProperty::Hot}, {5, CategoryProperty::New}, {9, CategoryProperty::New}, {15, CategoryProperty::New}, {21, CategoryProperty::Hot}}});
+        items.append({"a", {}, {{2, CategoryProperty::New}, {7, CategoryProperty::New}, {8, CategoryProperty::New}}});
+        items.append({"g", {}, {{1, CategoryProperty::Hot}, {3, CategoryProperty::New}, {9, CategoryProperty::New}}});
+        items.append({"i", {}, {{0, CategoryProperty::New}, {1, CategoryProperty::Hot}, {8, CategoryProperty::New}, {15, CategoryProperty::New}}});
         break;
+    }
     case MusicAbstractQueryRequest::QueryServer::KW:
+    {
         server = QUERY_KW_INTERFACE;
-        tags << "i" << "g" << "a" << "d" << "b" << "h";
+        items.append({"i", {}, {{0, CategoryProperty::Hot}, {3, CategoryProperty::New}, {8, CategoryProperty::New}, {13, CategoryProperty::New}}});
+        items.append({"g", {}, {{1, CategoryProperty::Hot}, {7, CategoryProperty::New}}});
+        items.append({"a", {}, {{0, CategoryProperty::New}, {1, CategoryProperty::Hot}, {8, CategoryProperty::New}, {15, CategoryProperty::New}}});
+        items.append({"d", {}, {{2, CategoryProperty::Hot}}});
+        items.append({"b", {}, {{2, CategoryProperty::New}, {7, CategoryProperty::New}, {15, CategoryProperty::Hot}, {16, CategoryProperty::New}}});
+        items.append({"h", {}, {{0, CategoryProperty::Hot}, {5, CategoryProperty::New}}});
         break;
+    }
     case MusicAbstractQueryRequest::QueryServer::KG:
+    {
         server = QUERY_KG_INTERFACE;
-        tags << "a" << "i" << "h" << "b" << "g" << "d" << "c";
+        items.append({"a", {}, {{0, CategoryProperty::Hot}, {5, CategoryProperty::New}, {9, CategoryProperty::New}, {15, CategoryProperty::New}, {21, CategoryProperty::Hot}}});
+        items.append({"i", {}, {{3, CategoryProperty::New}, {5, CategoryProperty::New}, {11, CategoryProperty::Hot}, {13, CategoryProperty::New}}});
+        items.append({"h", {}, {{0, CategoryProperty::Hot}, {6, CategoryProperty::New}}});
+        items.append({"b", {}, {{0, CategoryProperty::Hot}, {4, CategoryProperty::New}, {10, CategoryProperty::New}, {16, CategoryProperty::New}}});
+        items.append({"g", {}, {{1, CategoryProperty::Hot}, {3, CategoryProperty::New}, {12, CategoryProperty::New}}});
+        items.append({"d", {}, {{0, CategoryProperty::Hot}}});
+        items.append({"c", {}, {{2, CategoryProperty::New}, {5, CategoryProperty::New}, {9, CategoryProperty::Hot}}});
         break;
+    }
     default: break;
     }
 
@@ -198,7 +245,7 @@ void MusicPlaylistCategoryWidget::initialize()
     manager.fromFile(MusicCategoryConfigManager::Category::PlayList);
     manager.readBuffer(categorys);
 
-    if(tags.count() != categorys.count() - 1)
+    if(items.count() != categorys.count() - 1)
     {
         TTK_ERROR_STREAM("Playlist tags is not the same from category");
         return;
@@ -206,7 +253,9 @@ void MusicPlaylistCategoryWidget::initialize()
 
     for(int i = 0; i < categorys.count() - 1; ++i)
     {
-        MusicPlaylistCategoryItem *item = new MusicPlaylistCategoryItem(&categorys[i + 1], tags[i], this);
+        items[i].m_category = categorys[i + 1];
+
+        MusicPlaylistCategoryItem *item = new MusicPlaylistCategoryItem(&items[i], this);
         containLayout->addWidget(item);
         m_items << item;
 

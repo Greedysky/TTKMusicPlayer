@@ -23,7 +23,7 @@
 #include "ttkabstractresizeinterface.h"
 
 class QGridLayout;
-class MusicResultsCategory;
+struct CategoryProperty;
 
 /*! @brief The class of the playlist music category item.
  * @author Greedysky <greedysky@163.com>
@@ -36,7 +36,7 @@ public:
     /*!
      * Object constructor.
      */
-    explicit MusicPlaylistCategoryItem(MusicResultsCategory *category, const QString &tag, QWidget *parent = nullptr);
+    explicit MusicPlaylistCategoryItem(CategoryProperty *category, QWidget *parent = nullptr);
     /*!
      * Object destructor.
      */

@@ -124,8 +124,7 @@ public:
     enum class QueryMode
     {
         Normal,     /*!< query normal*/
-        Meta,       /*!< query meta*/
-        MetaItem    /*!< query meta item*/
+        Meta        /*!< query meta*/
     };
 
     /*!
