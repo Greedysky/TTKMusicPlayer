@@ -292,9 +292,9 @@ void MusicCommentsWidget::initialize(bool isPain)
         mainLayout->addWidget(contentsWidget);
         setFixedHeight(300);
     }
-    setLayout(mainLayout);
 
     initLabel({}, 0);
+    setLayout(mainLayout);
 }
 
 void MusicCommentsWidget::setCurrentSongName(const QString &name)

@@ -21,6 +21,13 @@ struct CategoryProperty
         int m_type;
     };
 
+    CategoryProperty(const QString &tag, const QList<Property> &property)
+        : m_tag(tag),
+          m_property(property)
+    {
+
+    }
+
     QString m_tag;
     MusicResultsCategory m_category;
     QList<Property> m_property;
@@ -207,34 +214,34 @@ void MusicPlaylistCategoryWidget::initialize()
     case MusicAbstractQueryRequest::QueryServer::WY:
     {
         server = QUERY_WY_INTERFACE;
-        items.append({"h", {}, {{0, CategoryProperty::Hot}, {3, CategoryProperty::New}, {4, CategoryProperty::New}}});
-        items.append({"b", {}, {{0, CategoryProperty::Hot}, {5, CategoryProperty::New}, {9, CategoryProperty::New}, {15, CategoryProperty::New}, {21, CategoryProperty::Hot}}});
-        items.append({"a", {}, {{2, CategoryProperty::New}, {7, CategoryProperty::New}, {8, CategoryProperty::New}}});
-        items.append({"g", {}, {{1, CategoryProperty::Hot}, {3, CategoryProperty::New}, {9, CategoryProperty::New}}});
-        items.append({"i", {}, {{0, CategoryProperty::New}, {1, CategoryProperty::Hot}, {8, CategoryProperty::New}, {15, CategoryProperty::New}}});
+        items.append({"h", {{0, CategoryProperty::Hot}, {3, CategoryProperty::New}, {4, CategoryProperty::New}}});
+        items.append({"b", {{0, CategoryProperty::Hot}, {5, CategoryProperty::New}, {9, CategoryProperty::New}, {15, CategoryProperty::New}, {21, CategoryProperty::Hot}}});
+        items.append({"a", {{2, CategoryProperty::New}, {7, CategoryProperty::New}, {8, CategoryProperty::New}}});
+        items.append({"g", {{1, CategoryProperty::Hot}, {3, CategoryProperty::New}, {9, CategoryProperty::New}}});
+        items.append({"i", {{0, CategoryProperty::New}, {1, CategoryProperty::Hot}, {8, CategoryProperty::New}, {15, CategoryProperty::New}}});
         break;
     }
     case MusicAbstractQueryRequest::QueryServer::KW:
     {
         server = QUERY_KW_INTERFACE;
-        items.append({"i", {}, {{0, CategoryProperty::Hot}, {3, CategoryProperty::New}, {8, CategoryProperty::New}, {13, CategoryProperty::New}}});
-        items.append({"g", {}, {{1, CategoryProperty::Hot}, {7, CategoryProperty::New}}});
-        items.append({"a", {}, {{0, CategoryProperty::New}, {1, CategoryProperty::Hot}, {8, CategoryProperty::New}, {15, CategoryProperty::New}}});
-        items.append({"d", {}, {{2, CategoryProperty::Hot}}});
-        items.append({"b", {}, {{2, CategoryProperty::New}, {7, CategoryProperty::New}, {15, CategoryProperty::Hot}, {16, CategoryProperty::New}}});
-        items.append({"h", {}, {{0, CategoryProperty::Hot}, {5, CategoryProperty::New}}});
+        items.append({"i", {{0, CategoryProperty::Hot}, {3, CategoryProperty::New}, {8, CategoryProperty::New}, {13, CategoryProperty::New}}});
+        items.append({"g", {{1, CategoryProperty::Hot}, {7, CategoryProperty::New}}});
+        items.append({"a", {{0, CategoryProperty::New}, {1, CategoryProperty::Hot}, {8, CategoryProperty::New}, {15, CategoryProperty::New}}});
+        items.append({"d", {{2, CategoryProperty::Hot}}});
+        items.append({"b", {{2, CategoryProperty::New}, {7, CategoryProperty::New}, {15, CategoryProperty::Hot}, {16, CategoryProperty::New}}});
+        items.append({"h", {{0, CategoryProperty::Hot}, {5, CategoryProperty::New}}});
         break;
     }
     case MusicAbstractQueryRequest::QueryServer::KG:
     {
         server = QUERY_KG_INTERFACE;
-        items.append({"a", {}, {{0, CategoryProperty::Hot}, {5, CategoryProperty::New}, {9, CategoryProperty::New}, {15, CategoryProperty::New}, {21, CategoryProperty::Hot}}});
-        items.append({"i", {}, {{3, CategoryProperty::New}, {5, CategoryProperty::New}, {11, CategoryProperty::Hot}, {13, CategoryProperty::New}}});
-        items.append({"h", {}, {{0, CategoryProperty::Hot}, {6, CategoryProperty::New}}});
-        items.append({"b", {}, {{0, CategoryProperty::Hot}, {4, CategoryProperty::New}, {10, CategoryProperty::New}, {16, CategoryProperty::New}}});
-        items.append({"g", {}, {{1, CategoryProperty::Hot}, {3, CategoryProperty::New}, {12, CategoryProperty::New}}});
-        items.append({"d", {}, {{0, CategoryProperty::Hot}}});
-        items.append({"c", {}, {{2, CategoryProperty::New}, {5, CategoryProperty::New}, {9, CategoryProperty::Hot}}});
+        items.append({"a", {{0, CategoryProperty::Hot}, {5, CategoryProperty::New}, {9, CategoryProperty::New}, {15, CategoryProperty::New}, {21, CategoryProperty::Hot}}});
+        items.append({"i", {{3, CategoryProperty::New}, {5, CategoryProperty::New}, {11, CategoryProperty::Hot}, {13, CategoryProperty::New}}});
+        items.append({"h", {{0, CategoryProperty::Hot}, {6, CategoryProperty::New}}});
+        items.append({"b", {{0, CategoryProperty::Hot}, {4, CategoryProperty::New}, {10, CategoryProperty::New}, {16, CategoryProperty::New}}});
+        items.append({"g", {{1, CategoryProperty::Hot}, {3, CategoryProperty::New}, {12, CategoryProperty::New}}});
+        items.append({"d", {{0, CategoryProperty::Hot}}});
+        items.append({"c", {{2, CategoryProperty::New}, {5, CategoryProperty::New}, {9, CategoryProperty::Hot}}});
         break;
     }
     default: break;
