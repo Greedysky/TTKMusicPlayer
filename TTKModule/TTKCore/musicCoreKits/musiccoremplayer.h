@@ -50,9 +50,9 @@ public:
     ~MusicCoreMPlayer();
 
     /*!
-     * Set media by type and data path.
+     * Set media by type and url path.
      */
-    void setMedia(Module type, const QString &data, int winId = -1);
+    void setMedia(Module type, const QString &url, int winId = -1);
 
     /*!
      * Set current play pos.
@@ -92,7 +92,7 @@ Q_SIGNALS:
     /*!
      * Current media data path changed.
      */
-    void mediaChanged(const QString &data);
+    void mediaChanged(const QString &url);
     /*!
      * Current media is finished.
      */
@@ -142,15 +142,15 @@ private:
     /*!
      * Set player to radio media data.
      */
-    void setRadioMedia(const QString &data);
+    void setRadioMedia(const QString &url);
     /*!
      * Set player to music media data.
      */
-    void setMusicMedia(const QString &data);
+    void setMusicMedia(const QString &url);
     /*!
      * Set player to video media data.
      */
-    void setVideoMedia(const QString &data, int winId);
+    void setVideoMedia(const QString &url, int winId);
 
     QProcess *m_process;
     TTK::PlayState m_playState;

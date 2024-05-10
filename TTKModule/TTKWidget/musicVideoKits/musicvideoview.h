@@ -86,9 +86,9 @@ public:
     ~MusicVideoView();
 
     /*!
-     * Set video play data.
+     * Set video play url.
      */
-    void setMedia(const QString &data);
+    void setMedia(const QString &url);
     /*!
      * Set barrage play data.
      */
@@ -160,7 +160,7 @@ private Q_SLOTS:
     /*!
      * Current media changed.
      */
-    void mediaChanged(const QString &data);
+    void mediaChanged(const QString &url);
     /*!
      * Media play finished.
      */

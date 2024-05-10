@@ -104,9 +104,9 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
     createRightMenu();
 }
 
-void MusicVideoView::setMedia(const QString &data)
+void MusicVideoView::setMedia(const QString &url)
 {
-    m_player->setMedia(MusicCoreMPlayer::Module::Video, data, (int)m_videoWidget->winId());
+    m_player->setMedia(MusicCoreMPlayer::Module::Video, url, (int)m_videoWidget->winId());
     m_videoControl->setQualityActionState();
 }
 
@@ -188,9 +188,9 @@ void MusicVideoView::volumeChanged(int volume)
     m_player->setVolume(volume);
 }
 
-void MusicVideoView::mediaChanged(const QString &data)
+void MusicVideoView::mediaChanged(const QString &url)
 {
-    m_videoControl->mediaChanged(data);
+    m_videoControl->mediaChanged(url);
 }
 
 void MusicVideoView::mediaPlayFinished(int code)

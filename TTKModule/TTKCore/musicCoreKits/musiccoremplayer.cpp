@@ -22,7 +22,7 @@ MusicCoreMPlayer::~MusicCoreMPlayer()
     closeModule();
 }
 
-void MusicCoreMPlayer::setMedia(Module type, const QString &data, int winId)
+void MusicCoreMPlayer::setMedia(Module type, const QString &url, int winId)
 {
     closeModule();
     if(!QFile::exists(MAKE_PLAYER_PATH_FULL))
@@ -35,12 +35,6 @@ void MusicCoreMPlayer::setMedia(Module type, const QString &data, int winId)
     m_playState = TTK::PlayState::Stopped;
     m_process = new QProcess(this);
     connect(m_process, SIGNAL(finished(int)), SIGNAL(finished(int)));
-
-    QString url = data;
-    if(url.startsWith(HTTPS_PROTOCOL))
-    {
-        url.replace(HTTPS_PROTOCOL, HTTP_PROTOCOL);
-    }
 
     switch(m_category)
     {
@@ -66,28 +60,30 @@ void MusicCoreMPlayer::closeModule()
     }
 }
 
-void MusicCoreMPlayer::setRadioMedia(const QString &data)
+void MusicCoreMPlayer::setRadioMedia(const QString &url)
 {
-    Q_EMIT mediaChanged(data);
+    Q_EMIT mediaChanged(url);
 
     QStringList arguments;
-    arguments << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
+    arguments << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << url;
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
     m_process->start(MAKE_PLAYER_PATH_FULL, arguments);
 }
 
-void MusicCoreMPlayer::setMusicMedia(const QString &data)
+void MusicCoreMPlayer::setMusicMedia(const QString &url)
 {
-    Q_EMIT mediaChanged(data);
+    Q_EMIT mediaChanged(url);
 
     QStringList arguments;
-    arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
+    arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << url;
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
     m_process->start(MAKE_PLAYER_PATH_FULL, arguments);
 }
 
-void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
+void MusicCoreMPlayer::setVideoMedia(const QString &url, int winId)
 {
+    Q_EMIT mediaChanged(url);
+
     QStringList arguments;
     arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-zoom" << "-wid" << QString::number(winId);
 #ifdef Q_OS_WIN
@@ -95,8 +91,7 @@ void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
 #else
     arguments << "-vo" << "x11";
 #endif
-    arguments << data;
-    Q_EMIT mediaChanged(data);
+    arguments << url;
 
     m_process->setProcessChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(durationRecieve()));
