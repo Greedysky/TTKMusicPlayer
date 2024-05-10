@@ -2,6 +2,7 @@
 #include "musiccibarequest.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
+#include "musicimageutils.h"
 
 MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     : QFrame(parent)
@@ -16,8 +17,8 @@ MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     layout->addWidget(m_container);
     setLayout(layout);
 
-    m_note = new QLabel(this);
-    m_content = new QLabel(this);
+    m_note = new QLabel(m_container);
+    m_content = new QLabel(m_container);
 
     m_imageRequest = new MusicCiBaRequest(this);
     connect(m_imageRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), this, SLOT(downLoadImageFinished(QByteArray)));
@@ -87,11 +88,14 @@ void MusicSongDailyWidget::downLoadImageFinished(const QByteArray &bytes)
     g /= size;
     b /= size;
 
+    const QRgb rgb = TTK::Image::colorContrast(qRgb(r, g, b));
+    const QString &style = QString("color:rgb(%1, %2, %3)").arg(qRed(rgb)).arg(qGreen(rgb)).arg(qBlue(rgb));
+
+    m_note->setStyleSheet(style);
+    m_content->setStyleSheet(style);
+
     m_note->setText(m_imageRequest->note());
     m_content->setText(m_imageRequest->content());
-
-    m_note->setStyleSheet(QString("color:rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
-    m_content->setStyleSheet(QString("color:rgb(%1, %2, %3)").arg(0xFF - r).arg(0xFF - g).arg(0xFF - b));
 
     resizeWidget();
 }
