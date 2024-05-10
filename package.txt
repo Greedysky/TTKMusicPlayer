@@ -20,7 +20,7 @@ libsidplayfp-2.3.1.patch(v2.7.0)	https://github.com/libsidplayfp/libsidplayfp
 libsndfile-1.2.2	https://github.com/libsndfile/libsndfile
 libvorbis-1.3.7	https://ftp.osuosl.org/pub/xiph/releases/vorbis
 mp3gain-1_5_2(v1_6_2)	http://mp3gain.sourceforge.net/download.php
-MPlayer-1.2.1(v1.5)	http://mplayerhq.hu/design7/dload.html
+mplayer-1.4(v1.5)	http://mplayerhq.hu/design7/dload.html
 OptimFROG-5100	http://losslessaudio.org/Downloads.php
 opus-1.5.2	https://www.opus-codec.org/downloads
 opusfile-0.12	https://www.opus-codec.org/downloads
@@ -60,4 +60,4 @@ ttk-1.2.3
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2024-04-18
+///Update time 2024-05-10
