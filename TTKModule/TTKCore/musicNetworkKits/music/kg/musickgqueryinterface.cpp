@@ -132,10 +132,10 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
 
     bool foundProp = false;
     {
-        const QByteArray &encodedData = TTK::Algorithm::md5(QString("%1kgcloudv2").arg(hash).toUtf8());
+        const QByteArray &key = TTK::Algorithm::md5(QString("%1kgcloudv2").arg(hash).toUtf8());
 
         QNetworkRequest request;
-        request.setUrl(TTK::Algorithm::mdII(KG_SONG_DETAIL_URL, false).arg(hash, encodedData.constData()));
+        request.setUrl(TTK::Algorithm::mdII(KG_SONG_DETAIL_URL, false).arg(hash, key.constData()));
         ReqKGInterface::makeRequestRawHeader(&request);
 
         const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
@@ -166,10 +166,10 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
         const QString &mid = TTK::Algorithm::mdII("Wk51dktMOHJXUTdmM1VsVUVXTFM5RTlYQ05laDE0Z2lZMzFPL1M1VUJSaHd1N0kwRDQxdkpWVFJPZTQ9", false);
         const QString &sign = TTK::Algorithm::mdII("SVhlNmFTaWpqdVhYVTAwaHh4QllwRkFGSmJpY0VSZUhXQmQrV2Q4WHo0eXVCWm1zK1p0RkVRPT0=", false);
         const QString &user = "0";
-        const QByteArray &encodedData = TTK::Algorithm::md5((hash + sign + mid + user).toUtf8());
+        const QByteArray &key = TTK::Algorithm::md5((hash + sign + mid + user).toUtf8());
 
         QNetworkRequest request;
-        request.setUrl(TTK::Algorithm::mdII(KG_SONG_DETAIL_OLD_URL, false).arg(mid, hash, user, encodedData.constData()));
+        request.setUrl(TTK::Algorithm::mdII(KG_SONG_DETAIL_OLD_URL, false).arg(mid, hash, user, key.constData()));
         request.setRawHeader("x-router", TTK::Algorithm::mdII("MTJnUGtpL0hqWXhZQmlCNE9hVzVyREF0QXZmeVBNNVc=", false).toUtf8());
         ReqKGInterface::makeRequestRawHeader(&request);
 
@@ -194,6 +194,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
                     {
                         prop.m_url = datas.front().toString();
                         info->m_songProps.append(prop);
+                        foundProp = true;
                     }
                 }
             }

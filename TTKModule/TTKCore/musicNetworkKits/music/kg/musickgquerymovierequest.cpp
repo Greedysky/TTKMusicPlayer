@@ -57,10 +57,10 @@ void ReqKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, boo
         return;
     }
 
-    const QByteArray &encodedData = TTK::Algorithm::md5(QString("%1kugoumvcloud").arg(info->m_songId).toUtf8());
+    const QByteArray &key = TTK::Algorithm::md5(QString("%1kugoumvcloud").arg(info->m_songId).toUtf8());
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(encodedData, info->m_songId));
+    request.setUrl(TTK::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(key, info->m_songId));
     ReqKGInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);

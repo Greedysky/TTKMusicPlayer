@@ -49,6 +49,8 @@ void MusicWYQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, in
     TTK_NETWORK_QUERY_CHECK();
     ReqWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
+
+    findUrlPathSize(&info->m_songProps, info->m_duration);
     MusicQueryRequest::startToQueryResult(info, bitrate);
 }
 

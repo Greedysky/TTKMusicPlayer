@@ -160,6 +160,7 @@ void MusicSongRecommendRequest::downLoadFinished()
 
                 TTK_NETWORK_QUERY_CHECK();
                 ReqLQInterface::parseFromSongProperty(&info, value);
+                findUrlPathSize(&info.m_songProps, info.m_duration);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(info.m_songProps.isEmpty())

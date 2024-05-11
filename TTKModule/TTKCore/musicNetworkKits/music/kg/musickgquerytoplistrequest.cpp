@@ -37,6 +37,8 @@ void MusicKGQueryToplistRequest::startToQueryResult(TTK::MusicSongInformation *i
     TTK_NETWORK_QUERY_CHECK();
     ReqKGInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
+
+    findUrlPathSize(&info->m_songProps, info->m_duration);
     MusicQueryToplistRequest::startToQueryResult(info, bitrate);
 }
 

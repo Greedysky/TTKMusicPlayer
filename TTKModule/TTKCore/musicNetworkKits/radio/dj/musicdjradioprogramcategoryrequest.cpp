@@ -58,6 +58,8 @@ void MusicDJRadioProgramCategoryRequest::startToQueryResult(TTK::MusicSongInform
     TTK_NETWORK_QUERY_CHECK();
     ReqWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
+
+    findUrlPathSize(&info->m_songProps, info->m_duration);
     MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
 }
 
