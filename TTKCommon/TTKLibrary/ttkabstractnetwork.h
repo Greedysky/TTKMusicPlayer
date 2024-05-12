@@ -118,13 +118,13 @@ protected:
 namespace TTK
 {
     /*!
-     * Make request Content-Type header.
-     */
-    TTK_MODULE_EXPORT void makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data = {});
-    /*!
      * Make request User-Agent header.
      */
     TTK_MODULE_EXPORT void makeUserAgentHeader(QNetworkRequest *request, const QByteArray &data = {});
+    /*!
+     * Make request Content-Type header.
+     */
+    TTK_MODULE_EXPORT void makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data = {});
 
     /*!
      * Get download file size by url.

@@ -37,4 +37,4 @@ namespace TTK
 
 }
 
-#endif
+#endif // MINIPROCESS_H
