@@ -1,13 +1,13 @@
-#include "toolsskin.h"
-#include "ui_toolsskin.h"
+#include "toolskin.h"
+#include "ui_toolskin.h"
 #include "musicextractwrapper.h"
 #include "musicfileutils.h"
 #include "musiccolordialog.h"
 #include "musicbackgroundconfigmanager.h"
 
-ToolsSkin::ToolsSkin(QWidget *parent)
+ToolSkin::ToolSkin(QWidget *parent)
     : QWidget(parent),
-      m_ui(new Ui::ToolsSkin),
+      m_ui(new Ui::ToolSkin),
       m_pixmap(QPixmap(1, 1))
 {
     m_ui->setupUi(this);
@@ -22,12 +22,12 @@ ToolsSkin::ToolsSkin(QWidget *parent)
     connect(m_ui->writeButton, SIGNAL(clicked()), SLOT(writeClicked()));
 }
 
-ToolsSkin::~ToolsSkin()
+ToolSkin::~ToolSkin()
 {
     delete m_ui;
 }
 
-void ToolsSkin::imageClicked()
+void ToolSkin::imageClicked()
 {
     const QString &path = TTK::File::getOpenFileName(this);
     if(path.isEmpty())
@@ -39,7 +39,7 @@ void ToolsSkin::imageClicked()
     m_ui->pixLabel->setPixmap(m_pixmap.scaled(m_ui->pixLabel->size()));
 }
 
-void ToolsSkin::paletteClicked()
+void ToolSkin::paletteClicked()
 {
     const QColor &color = MusicColorDialog::popup(this);
     if(!color.isValid())
@@ -52,7 +52,7 @@ void ToolsSkin::paletteClicked()
     m_ui->pixLabel->setPixmap(m_pixmap.scaled(m_ui->pixLabel->size()));
 }
 
-void ToolsSkin::readClicked()
+void ToolSkin::readClicked()
 {
     const QString &path = TTK::File::getOpenFileName(this, "TKM Files (*.tkm)");
     if(path.isEmpty())
@@ -70,7 +70,7 @@ void ToolsSkin::readClicked()
     }
 }
 
-void ToolsSkin::writeClicked()
+void ToolSkin::writeClicked()
 {
     const QString &path = TTK::File::getSaveFileName(this, "TKM Files (*.tkm)");
     if(path.isEmpty())

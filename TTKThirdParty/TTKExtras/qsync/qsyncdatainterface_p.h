@@ -48,4 +48,4 @@ public:
     QNetworkAccessManager *m_manager;
 };
 
-#endif
+#endif // QSYNCDATAINTERFACE_P_H

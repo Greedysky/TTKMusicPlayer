@@ -34,4 +34,4 @@ struct TTK_MODULE_EXPORT QSyncConfig
     static QByteArray KEY;
 };
 
-#endif
+#endif // QSYNCCONF_H

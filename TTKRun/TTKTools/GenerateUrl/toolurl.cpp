@@ -1,10 +1,10 @@
-#include "toolsurl.h"
-#include "ui_toolsurl.h"
+#include "toolurl.h"
+#include "ui_toolurl.h"
 #include "musicalgorithmutils.h"
 
-ToolsUrl::ToolsUrl(QWidget *parent)
+ToolUrl::ToolUrl(QWidget *parent)
     : QWidget(parent),
-      m_ui(new Ui::ToolsUrl)
+      m_ui(new Ui::ToolUrl)
 {
     m_ui->setupUi(this);
 
@@ -15,12 +15,12 @@ ToolsUrl::ToolsUrl(QWidget *parent)
     connect(m_ui->decodeButton, SIGNAL(clicked()), SLOT(decodeClicked()));
 }
 
-ToolsUrl::~ToolsUrl()
+ToolUrl::~ToolUrl()
 {
     delete m_ui;
 }
 
-void ToolsUrl::encodeClicked()
+void ToolUrl::encodeClicked()
 {
     QString key = m_ui->keyLineEdit->text().trimmed();
     if(key.isEmpty())
@@ -33,7 +33,7 @@ void ToolsUrl::encodeClicked()
     m_ui->outPutLineEdit->setText(output);
 }
 
-void ToolsUrl::decodeClicked()
+void ToolUrl::decodeClicked()
 {
     QString key = m_ui->keyLineEdit->text().trimmed();
     if(key.isEmpty())

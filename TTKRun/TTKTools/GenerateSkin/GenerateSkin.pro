@@ -51,12 +51,12 @@ INCLUDEPATH += \
     $$PWD/../../../TTKModule/TTKWidget/musicCoreKits \
     $$PWD/../../../TTKModule/TTKWidget/musicUiKits
 
-HEADERS += $$PWD/toolsskin.h
+HEADERS += $$PWD/toolskin.h
 
 SOURCES += \
     $$PWD/main.cpp \
-    $$PWD/toolsskin.cpp
+    $$PWD/toolskin.cpp
 
-FORMS += $$PWD/toolsskin.ui
+FORMS += $$PWD/toolskin.ui
 
 win32:RC_FILE = $$PWD/$${TARGET}.rc

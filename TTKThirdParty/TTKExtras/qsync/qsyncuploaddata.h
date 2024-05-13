@@ -60,4 +60,4 @@ private Q_SLOTS:
 
 };
 
-#endif
+#endif // QSYNCUPLOADDATA_H

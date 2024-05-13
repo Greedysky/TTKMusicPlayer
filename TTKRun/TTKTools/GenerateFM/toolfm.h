@@ -1,5 +1,5 @@
-#ifndef QSYNCLISTDATA_H
-#define QSYNCLISTDATA_H
+#ifndef TOOLFM_H
+#define TOOLFM_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,37 +19,38 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "qsyncdatainterface.h"
+#include "musicfmconfigmanager.h"
+#include "musicpagequeryrequest.h"
 
-/*! @brief The class of the sync cloud list data.
+/*! @brief The class of the qingting fm radio tool.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT QSyncListData : public QSyncDataInterface
+class ToolFM : public MusicPageQueryRequest
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit QSyncListData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
+    explicit ToolFM(QObject *parent = nullptr);
 
     /*!
-     * List data to operator.
+     * Start to download radio data.
      */
-    void listDataOperator(const QString &bucket);
-
-Q_SIGNALS:
-    /*!
-     * Receive data finshed.
-     */
-    void receiveFinshed(const QSyncDataItemList &items);
+    void startToRequest();
 
 private Q_SLOTS:
     /*!
-     * Receive data from server finshed.
+     * Download data from net finished.
      */
-    virtual void receiveDataFromServer() override final;
+    virtual void downLoadFinished() override final;
+
+private:
+    /*!
+     * Start to download radio list data.
+     */
+    void startToListRequest(int id, MusicFMChannelList *channels);
 
 };
 
-#endif // QSYNCLISTDATA_H
+#endif // TOOLFM_H

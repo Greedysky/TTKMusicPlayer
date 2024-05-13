@@ -1,5 +1,5 @@
-#ifndef TOOLSURL_H
-#define TOOLSURL_H
+#ifndef TOOLURL_H
+#define TOOLURL_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -22,23 +22,32 @@
 #include <QWidget>
 
 namespace Ui {
-class ToolsUrl;
+class ToolUrl;
 }
 
-class ToolsUrl : public QWidget
+/*! @brief The class of the url tool.
+ * @author Greedysky <greedysky@163.com>
+ */
+class ToolUrl : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ToolsUrl(QWidget *parent = nullptr);
-    ~ToolsUrl();
+    /*!
+     * Object constructor.
+     */
+    explicit ToolUrl(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~ToolUrl();
 
 private Q_SLOTS:
     void encodeClicked();
     void decodeClicked();
 
 private:
-    Ui::ToolsUrl *m_ui;
+    Ui::ToolUrl *m_ui;
 
 };
 
-#endif // TOOLSURL_H
+#endif // TOOLURL_H

@@ -16,6 +16,31 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-TEMPLATE = subdirs
-CONFIG += ordered
-SUBDIRS += GenerateUrl GenerateSkin GenerateFM
+cmake_minimum_required(VERSION 3.0.0)
+
+project(GenerateFM)
+
+set(HEADER_FILES
+  toolfm.h
+)
+
+set(SOURCE_FILES
+  toolfm.cpp
+  main.cpp
+)
+
+if(WIN32)
+  list(APPEND SOURCE_FILES ${PROJECT_NAME}.rc)
+endif()
+
+if(TTK_QT_VERSION VERSION_GREATER "4")
+  qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
+
+  add_executable(${PROJECT_NAME} ${UIC_FILES} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
+  target_link_libraries(${PROJECT_NAME} Qt5::Core TTKCore)
+else()
+  qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
+
+  add_executable(${PROJECT_NAME} ${UIC_FILES} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
+  target_link_libraries(${PROJECT_NAME} ${QT_QTCORE_LIBRARY} TTKCore)
+endif()

@@ -47,4 +47,4 @@ public:
 
 };
 
-#endif
+#endif // QSYNCUTILS_H

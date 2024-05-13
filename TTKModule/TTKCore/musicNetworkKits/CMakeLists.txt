@@ -81,6 +81,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
   ${MUSIC_CORE_NETWORK_DIR}/music/musicsongrecommendrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/musicsongsuggestrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/musicunityquerymovierequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmconfigmanager.h
   ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.h
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategoryrequest.h
@@ -177,6 +178,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
   ${MUSIC_CORE_NETWORK_DIR}/music/musicsongrecommendrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/musicsongsuggestrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/musicunityquerymovierequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmconfigmanager.cpp
   ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategoryrequest.cpp

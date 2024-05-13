@@ -165,5 +165,5 @@ private:
 
 };
 
-#endif //MUSICVIDEOPLAYWIDGET_H
+#endif // MUSICVIDEOPLAYWIDGET_H
 

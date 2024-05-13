@@ -223,7 +223,7 @@ void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
 
 void MusicWebFMRadioPlayWidget::positionChanged(qint64 position)
 {
-    m_ui->positionLabel->setText(QString("%1").arg(TTKTime::formatDuration(position * TTK_DN_S2MS)));
+    m_ui->positionLabel->setText(TTKTime::formatDuration(position * TTK_DN_S2MS));
 
     if(m_analysis->isEmpty())
     {

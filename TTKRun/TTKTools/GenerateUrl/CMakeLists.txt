@@ -21,16 +21,16 @@ cmake_minimum_required(VERSION 3.0.0)
 project(GenerateUrl)
 
 set(HEADER_FILES
-  toolsurl.h
+  toolurl.h
 )
 
 set(SOURCE_FILES
-  toolsurl.cpp
+  toolurl.cpp
   main.cpp
 )
 
 set(UI_FILES
-  toolsurl.ui
+  toolurl.ui
 )
 
 if(WIN32)

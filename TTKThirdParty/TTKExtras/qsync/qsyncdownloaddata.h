@@ -69,4 +69,4 @@ private Q_SLOTS:
 
 };
 
-#endif
+#endif // QSYNCDOWNLOADDATA_H

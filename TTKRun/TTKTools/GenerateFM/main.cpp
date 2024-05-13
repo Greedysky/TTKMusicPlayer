@@ -1,6 +1,5 @@
 #include <QApplication>
-#include "toolurl.h"
-#include "ttkobject.h"
+#include "toolfm.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,8 +9,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(TTK_APP_COME_NAME);
     QCoreApplication::setApplicationName(TTK_APP_NAME);
 
-    ToolUrl w;
-    w.show();
+    ToolFM w;
+    w.startToRequest();
 
     return app.exec();
 }

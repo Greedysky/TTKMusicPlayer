@@ -16,7 +16,7 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT += core gui
+QT += core gui network
 greaterThan(QT_MAJOR_VERSION, 4){ #Qt5
     QT += widgets
 }
@@ -26,7 +26,7 @@ TEMPLATE = app
 include($$PWD/../../../TTKVersion.pri)
 
 DESTDIR = $$OUT_PWD/../../../bin/$$TTK_VERSION
-TARGET = GenerateUrl
+TARGET = GenerateFM
 
 DEFINES += TTK_LIBRARY
 
@@ -47,14 +47,17 @@ INCLUDEPATH += \
     $$PWD/../../../TTKCommon \
     $$PWD/../../../TTKCommon/TTKLibrary \
     $$PWD/../../../TTKModule/TTKCore/musicCoreKits \
-    $$PWD/../../../TTKModule/TTKCore/musicUtilsKits
+    $$PWD/../../../TTKModule/TTKCore/musicUtilsKits \
+    $$PWD/../../../TTKModule/TTKCore/musicNetworkKits \
+    $$PWD/../../../TTKModule/TTKCore/musicNetworkKits/core \
+    $$PWD/../../../TTKModule/TTKCore/musicNetworkKits/tools \
+    $$PWD/../../../TTKModule/TTKCore/musicNetworkKits/radio/fm \
+    $$PWD/../../../TTKThirdParty/TTKExtras
 
-HEADERS += $$PWD/toolurl.h
+HEADERS += $$PWD/toolfm.h
 
 SOURCES += \
     $$PWD/main.cpp\
-    $$PWD/toolurl.cpp
-
-FORMS += $$PWD/toolurl.ui
+    $$PWD/toolfm.cpp
 
 win32:RC_FILE = $$PWD/$${TARGET}.rc

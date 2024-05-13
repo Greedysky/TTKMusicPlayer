@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkabstractxml.h"
+#include "musicfmconfigmanager.h"
 #include "musicabstractmovewidget.h"
 #include "musicabstractmovedialog.h"
 
@@ -30,52 +30,6 @@ namespace Ui {
 class MusicTTKFMRadioPlayWidget;
 class MusicTTKFMRadioInformationWidget;
 }
-
-/*! @brief The class of the fm channel item.
- * @author Greedysky <greedysky@163.com>
- */
-struct TTK_MODULE_EXPORT MusicFMChannel
-{
-    QString m_name;
-    QString m_location;
-    QString m_url;
-};
-TTK_DECLARE_LIST(MusicFMChannel);
-
-
-/*! @brief The class of the fm category item.
- * @author Greedysky <greedysky@163.com>
- */
-struct TTK_MODULE_EXPORT MusicFMCategory
-{
-    QString m_category;
-    MusicFMChannelList m_items;
-};
-TTK_DECLARE_LIST(MusicFMCategory);
-
-
-/*! @brief The class of the fm config manager.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicFMConfigManager : public TTKAbstractXml, public TTKAbstractReadWriteInterface<MusicFMCategoryList>
-{
-    TTK_DECLARE_MODULE(MusicFMConfigManager)
-public:
-    /*!
-     * Object constructor.
-     */
-    MusicFMConfigManager();
-
-    /*!
-     * Read datas from buffer.
-     */
-    virtual bool readBuffer(MusicFMCategoryList &items) override final;
-    /*!
-     * Write datas into buffer.
-     */
-    virtual bool writeBuffer(const MusicFMCategoryList &items) override final;
-
-};
 
 
 /*! @brief The class of the web music radio information widget.

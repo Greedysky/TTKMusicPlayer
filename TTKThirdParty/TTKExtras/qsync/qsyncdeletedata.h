@@ -52,4 +52,4 @@ private Q_SLOTS:
 
 };
 
-#endif
+#endif // QSYNCDELETEDATA_H

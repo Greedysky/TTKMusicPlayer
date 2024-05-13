@@ -21,16 +21,16 @@ cmake_minimum_required(VERSION 3.0.0)
 project(GenerateSkin)
 
 set(HEADER_FILES
-  toolsskin.h
+  toolskin.h
 )
 
 set(SOURCE_FILES
-  toolsskin.cpp
+  toolskin.cpp
   main.cpp
 )
 
 set(UI_FILES
-  toolsskin.ui
+  toolskin.ui
 )
 
 if(WIN32)

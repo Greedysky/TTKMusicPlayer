@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ToolsUrl</class>
- <widget class="QWidget" name="ToolsUrl">
+ <class>ToolUrl</class>
+ <widget class="QWidget" name="ToolUrl">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ToolsUrl</string>
+   <string>ToolUrl</string>
   </property>
   <widget class="QLineEdit" name="keyLineEdit">
    <property name="geometry">

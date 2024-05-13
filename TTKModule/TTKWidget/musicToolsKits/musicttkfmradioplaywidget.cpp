@@ -10,65 +10,6 @@
 
 #define FMRADIO_PATH RESOURCE_DIR_FULL + "fmlist"
 
-MusicFMConfigManager::MusicFMConfigManager()
-    : TTKAbstractXml()
-{
-
-}
-
-bool MusicFMConfigManager::readBuffer(MusicFMCategoryList &items)
-{
-    const QDomNodeList &nodes = m_document->elementsByTagName("category");
-    for(int i = 0; i < nodes.count(); ++i)
-    {
-        MusicFMCategory category;
-        const QDomNode &node = nodes.item(i);
-        category.m_category = node.toElement().attribute("value");
-
-        const QDomNodeList &chnNodes = node.childNodes();
-        for(int j = 0; j < chnNodes.count(); ++j)
-        {
-            const QDomElement &element = chnNodes.item(j).toElement();
-
-            MusicFMChannel item;
-            item.m_name = element.attribute("name");
-            item.m_location = element.attribute("location");
-            item.m_url = element.attribute("url");
-            category.m_items << item;
-        }
-        items.append(category);
-    }
-
-    return true;
-}
-
-bool MusicFMConfigManager::writeBuffer(const MusicFMCategoryList &items)
-{
-    if(items.isEmpty())
-    {
-        return false;
-    }
-
-    createProcessingInstruction();
-    QDomElement rootDom = createRoot(TTK_APP_NAME);
-
-    for(const MusicFMCategory &item : qAsConst(items))
-    {
-        QDomElement categoryDom = writeDomElement(rootDom, "category", {"value", item.m_category});
-
-        for(const MusicFMChannel &channel : qAsConst(item.m_items))
-        {
-            writeDomMultiElement(categoryDom, "channel", {{"name", channel.m_name},
-                                                          {"location", channel.m_location},
-                                                          {"url", channel.m_url}});
-        }
-    }
-
-    save();
-    return true;
-}
-
-
 MusicTTKFMRadioInformationWidget::MusicTTKFMRadioInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicTTKFMRadioInformationWidget),
@@ -100,12 +41,11 @@ void MusicTTKFMRadioInformationWidget::setChannelInformation(const MusicFMChanne
 {
     m_ui->pathEdit->setText(channel.m_url);
     m_ui->nameEdit->setText(channel.m_name);
-    m_ui->locationEdit->setText(channel.m_location);
 }
 
 MusicFMChannel MusicTTKFMRadioInformationWidget::channelInformation() const
 {
-    return {m_ui->nameEdit->text(), m_ui->locationEdit->text(), m_ui->pathEdit->text()};
+    return {m_ui->nameEdit->text(), m_ui->pathEdit->text()};
 }
 
 void MusicTTKFMRadioInformationWidget::setReadOnly(bool mode)
@@ -113,7 +53,6 @@ void MusicTTKFMRadioInformationWidget::setReadOnly(bool mode)
     m_readOnly = mode;
     m_ui->pathEdit->setReadOnly(mode);
     m_ui->nameEdit->setReadOnly(mode);
-    m_ui->locationEdit->setReadOnly(mode);
 }
 
 
@@ -171,8 +110,7 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     m_ui->volumeSlider->setValue(100);
 
     m_ui->itemTree->setHeaderLabels({{}, {}});
-    m_ui->itemTree->setColumnWidth(0, 220);
-    m_ui->itemTree->setColumnWidth(1, 100);
+    m_ui->itemTree->setColumnWidth(0, 320);
 
     m_ui->itemTree->header()->setVisible(false);
     m_ui->itemTree->setStyleSheet(TTK::UI::ColorStyle02);
@@ -185,12 +123,6 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     delegateTitle->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     delegateTitle->setStyleSheet(TTK::UI::BackgroundStyle01);
     m_ui->itemTree->setItemDelegateForColumn(0, delegateTitle);
-
-    TTKLabelItemDelegate *delegateName = new TTKLabelItemDelegate(this);
-    delegateName->setModuleMode(TTKAbstractItemDelegate::DisplayMode);
-    delegateName->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    delegateName->setStyleSheet(TTK::UI::BackgroundStyle01);
-    m_ui->itemTree->setItemDelegateForColumn(1, delegateName);
 
     initialize();
     TTK::Widget::adjustWidgetPosition(this);
@@ -319,7 +251,6 @@ void MusicTTKFMRadioPlayWidget::initialize()
             QTreeWidgetItem *it = new QTreeWidgetItem(item);
             it->setData(0, TTK_DATA_ROLE, index++);
             it->setData(0, TTK_DISPLAY_ROLE, channel.m_name);
-            it->setData(1, TTK_DISPLAY_ROLE, channel.m_location);
         }
         m_items << category.m_items;
     }
@@ -397,7 +328,7 @@ void MusicTTKFMRadioPlayWidget::positionChanged(qint64 position)
         return;
     }
 
-    m_ui->positionLabel->setText(QString("%1").arg(TTKTime::formatDuration(position * TTK_DN_S2MS)));
+    m_ui->positionLabel->setText(TTKTime::formatDuration(position * TTK_DN_S2MS));
 }
 
 void MusicTTKFMRadioPlayWidget::addButtonClicked()
@@ -407,6 +338,10 @@ void MusicTTKFMRadioPlayWidget::addButtonClicked()
     if(w.exec())
     {
         const MusicFMChannel &channel = w.channelInformation();
+        if(channel.m_name.isEmpty() || channel.m_url.isEmpty())
+        {
+            return;
+        }
 
         m_items << channel;
         m_favItems << channel;
@@ -419,7 +354,6 @@ void MusicTTKFMRadioPlayWidget::addButtonClicked()
         QTreeWidgetItem *it = new QTreeWidgetItem(item);
         it->setData(0, TTK_DATA_ROLE, m_items.count() - 1);
         it->setData(0, TTK_DISPLAY_ROLE, channel.m_name);
-        it->setData(1, TTK_DISPLAY_ROLE, channel.m_location);
 
         m_statusChanged = true;
         MusicToastLabel::popup(tr("Add current channel success"));

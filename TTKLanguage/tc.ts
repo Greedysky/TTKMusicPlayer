@@ -7459,77 +7459,77 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
     </message>
 </context>
 <context>
-    <name>ToolsSkin</name>
+    <name>ToolSkin</name>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateSkin/toolsskin.ui" line="14"/>
-        <source>ToolsSkin</source>
+        <location filename="../TTKRun/TTKTools/GenerateSkin/toolskin.ui" line="14"/>
+        <source>ToolSkin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateSkin/toolsskin.ui" line="39"/>
+        <location filename="../TTKRun/TTKTools/GenerateSkin/toolskin.ui" line="39"/>
         <source>Name</source>
         <translation type="unfinished">名稱</translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateSkin/toolsskin.ui" line="62"/>
+        <location filename="../TTKRun/TTKTools/GenerateSkin/toolskin.ui" line="62"/>
         <source>Use Count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateSkin/toolsskin.ui" line="85"/>
+        <location filename="../TTKRun/TTKTools/GenerateSkin/toolskin.ui" line="85"/>
         <source>Read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateSkin/toolsskin.ui" line="98"/>
+        <location filename="../TTKRun/TTKTools/GenerateSkin/toolskin.ui" line="98"/>
         <source>Write</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateSkin/toolsskin.ui" line="111"/>
+        <location filename="../TTKRun/TTKTools/GenerateSkin/toolskin.ui" line="111"/>
         <source>Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateSkin/toolsskin.ui" line="124"/>
+        <location filename="../TTKRun/TTKTools/GenerateSkin/toolskin.ui" line="124"/>
         <source>Palette</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ToolsUrl</name>
+    <name>ToolUrl</name>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateUrl/toolsurl.ui" line="14"/>
-        <source>ToolsUrl</source>
+        <location filename="../TTKRun/TTKTools/GenerateUrl/toolurl.ui" line="14"/>
+        <source>ToolUrl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateUrl/toolsurl.ui" line="56"/>
+        <location filename="../TTKRun/TTKTools/GenerateUrl/toolurl.ui" line="56"/>
         <source>Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateUrl/toolsurl.ui" line="69"/>
+        <location filename="../TTKRun/TTKTools/GenerateUrl/toolurl.ui" line="69"/>
         <source>Input</source>
         <translation type="unfinished">音頻輸入</translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateUrl/toolsurl.ui" line="82"/>
+        <location filename="../TTKRun/TTKTools/GenerateUrl/toolurl.ui" line="82"/>
         <source>Output</source>
         <translation type="unfinished">音頻輸出</translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateUrl/toolsurl.ui" line="95"/>
+        <location filename="../TTKRun/TTKTools/GenerateUrl/toolurl.ui" line="95"/>
         <source>Encode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateUrl/toolsurl.ui" line="108"/>
+        <location filename="../TTKRun/TTKTools/GenerateUrl/toolurl.ui" line="108"/>
         <source>Decode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKRun/TTKTools/GenerateUrl/toolsurl.ui" line="121"/>
+        <location filename="../TTKRun/TTKTools/GenerateUrl/toolurl.ui" line="121"/>
         <source>Close</source>
         <translation type="unfinished">關閉</translation>
     </message>

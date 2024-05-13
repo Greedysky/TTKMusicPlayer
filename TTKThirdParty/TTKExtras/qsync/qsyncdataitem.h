@@ -49,4 +49,4 @@ struct TTK_MODULE_EXPORT QSyncDataItem
 };
 TTK_DECLARE_LIST(QSyncDataItem);
 
-#endif
+#endif // QSYNCDATAITEM_H

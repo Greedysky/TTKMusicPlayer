@@ -1,5 +1,5 @@
-#ifndef TOOLSSKIN_H
-#define TOOLSSKIN_H
+#ifndef TOOLSKIN_H
+#define TOOLSKIN_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -22,15 +22,24 @@
 #include <QWidget>
 
 namespace Ui {
-class ToolsSkin;
+class ToolSkin;
 }
 
-class ToolsSkin : public QWidget
+/*! @brief The class of the skin tool.
+ * @author Greedysky <greedysky@163.com>
+ */
+class ToolSkin : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ToolsSkin(QWidget *parent = nullptr);
-    ~ToolsSkin();
+    /*!
+     * Object constructor.
+     */
+    explicit ToolSkin(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~ToolSkin();
 
 private Q_SLOTS:
     void imageClicked();
@@ -39,9 +48,9 @@ private Q_SLOTS:
     void writeClicked();
 
 private:
-    Ui::ToolsSkin *m_ui;
+    Ui::ToolSkin *m_ui;
     QPixmap m_pixmap;
 
 };
 
-#endif // TOOLSSKIN_H
+#endif // TOOLSKIN_H

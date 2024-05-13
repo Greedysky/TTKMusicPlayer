@@ -72,7 +72,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>15</x>
-      <y>75</y>
+      <y>35</y>
       <width>54</width>
       <height>25</height>
      </rect>
@@ -81,24 +81,11 @@ QLabel{background:transparent;}</string>
      <string>名称:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>75</y>
-      <width>45</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>地区:</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
       <x>15</x>
-      <y>35</y>
+      <y>75</y>
       <width>54</width>
       <height>25</height>
      </rect>
@@ -114,24 +101,8 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>75</x>
-      <y>75</y>
+      <y>35</y>
       <width>161</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="locationEdit">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>75</y>
-      <width>121</width>
       <height>25</height>
      </rect>
     </property>
@@ -146,7 +117,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>75</x>
-      <y>35</y>
+      <y>75</y>
       <width>365</width>
       <height>25</height>
      </rect>

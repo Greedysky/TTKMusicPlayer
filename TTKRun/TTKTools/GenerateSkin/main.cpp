@@ -1,6 +1,6 @@
 #include <QApplication>
-#include "toolsskin.h"
-#include "musicobject.h"
+#include "toolskin.h"
+#include "ttkobject.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(TTK_APP_COME_NAME);
     QCoreApplication::setApplicationName(TTK_APP_NAME);
 
-    ToolsSkin w;
+    ToolSkin w;
     w.show();
 
     return app.exec();

@@ -71,4 +71,4 @@ protected:
 
 };
 
-#endif
+#endif // QSYNCDATAINTERFACE_H
