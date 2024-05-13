@@ -40,7 +40,7 @@ win32:msvc{
     }
 }
 
-LIBS += -L$$DESTDIR -lTTKCore
+LIBS += -L$$DESTDIR -lTTKCore -lTTKLibrary -lTTKExtras
 unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lttkzip -lzlib
 
 INCLUDEPATH += \
