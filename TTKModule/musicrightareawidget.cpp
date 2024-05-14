@@ -662,6 +662,9 @@ void MusicRightAreaWidget::showSongMainWidget()
     ///To prevent concise state changed while function windowConciseChanged first called
     const bool pre = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
     G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, false);
+#ifdef Q_OS_UNIX
+    m_ui->functionsContainer->setCurrentIndex(MUSIC_LRC_PAGE);
+#endif
     functionClicked(MusicRightAreaWidget::KugGouSongWidget);
     G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, pre);
 }

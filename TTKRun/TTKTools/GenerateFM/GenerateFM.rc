@@ -27,12 +27,12 @@ BEGIN
         BLOCK "080404b0"
             BEGIN
                 VALUE "CompanyName", TTK_RC_COMPANY
-                VALUE "FileDescription", "GenerateUrl"
+                VALUE "FileDescription", "GenerateFM"
                 VALUE "FileVersion", TTK_RC_PRODUCTVERSION
-                VALUE "InternalName", "GenerateUrl.exe"
+                VALUE "InternalName", "GenerateFM.exe"
                 VALUE "LegalCopyright", TTK_RC_COPYRIGHT
-                VALUE "OriginalFilename", "GenerateUrl.exe"
-                VALUE "ProductName", "GenerateUrl"
+                VALUE "OriginalFilename", "GenerateFM.exe"
+                VALUE "ProductName", "GenerateFM"
                 VALUE "ProductVersion", TTK_RC_PRODUCTVERSION
             END
     END

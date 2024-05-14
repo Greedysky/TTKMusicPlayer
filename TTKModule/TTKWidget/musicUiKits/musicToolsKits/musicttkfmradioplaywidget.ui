@@ -110,27 +110,6 @@
     <string notr="true">background:rgba(255, 255, 255, 100);</string>
    </property>
   </widget>
-  <widget class="QTreeWidget" name="itemTree">
-   <property name="geometry">
-    <rect>
-     <x>193</x>
-     <y>40</y>
-     <width>320</width>
-     <height>251</height>
-    </rect>
-   </property>
-   <property name="alternatingRowColors">
-    <bool>true</bool>
-   </property>
-   <property name="animated">
-    <bool>true</bool>
-   </property>
-   <column>
-    <property name="text">
-     <string notr="true">1</string>
-    </property>
-   </column>
-  </widget>
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
@@ -290,6 +269,40 @@
     <string>Info</string>
    </property>
   </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>193</x>
+     <y>30</y>
+     <width>336</width>
+     <height>280</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: white</string>
+   </property>
+   <widget class="QTreeWidget" name="itemTree">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>15</y>
+      <width>320</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="animated">
+     <bool>true</bool>
+    </property>
+    <column>
+     <property name="text">
+      <string notr="true">1</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -301,7 +314,6 @@
   <zorder>nextButton</zorder>
   <zorder>positionLabel</zorder>
   <zorder>titleWidget</zorder>
-  <zorder>itemTree</zorder>
   <zorder>gifLabel_1</zorder>
   <zorder>gifLabel_2</zorder>
   <zorder>gifLabel_3</zorder>
@@ -310,6 +322,7 @@
   <zorder>addButton</zorder>
   <zorder>deleteButton</zorder>
   <zorder>infoButton</zorder>
+  <zorder>widget</zorder>
  </widget>
  <customwidgets>
   <customwidget>
