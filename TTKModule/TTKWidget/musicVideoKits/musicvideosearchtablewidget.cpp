@@ -143,7 +143,9 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
     }
 
     const TTK::MusicSongInformation &info = m_networkRequest->items()[row];
-    const TTK::MusicSongPropertyList &props = info.m_songProps;
+    TTK::MusicSongPropertyList props = info.m_songProps;
+    std::sort(props.begin(), props.end()); //to find out the min bitrate
+
     if(!props.isEmpty())
     {
         const TTK::MusicSongProperty &prop = props.front();

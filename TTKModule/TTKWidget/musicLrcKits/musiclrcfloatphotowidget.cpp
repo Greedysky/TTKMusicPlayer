@@ -29,7 +29,7 @@ MusicLrcFloatPhotoItem::~MusicLrcFloatPhotoItem()
     delete m_checkBox;
 }
 
-void MusicLrcFloatPhotoItem::setPhoto(const QString &path)
+void MusicLrcFloatPhotoItem::setPath(const QString &path)
 {
     m_pixPath = path;
 
@@ -177,8 +177,8 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     cancelButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_previous, SIGNAL(clicked()), SLOT(photoPrevious()));
-    connect(m_next, SIGNAL(clicked()), SLOT(photoNext()));
+    connect(m_next, SIGNAL(clicked()), SLOT(imageNext()));
+    connect(m_previous, SIGNAL(clicked()), SLOT(imagePrevious()));
     connect(m_checkBox, SIGNAL(clicked(bool)), SLOT(selectAllStateChanged(bool)));
     connect(manageButton, SIGNAL(clicked()), SLOT(manageButtonClicked()));
     connect(confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
@@ -206,7 +206,7 @@ void MusicLrcFloatPhotoWidget::show()
 {
     QWidget::show();
     animationLeave();
-    showArtistPhoto();
+    showArtistImage();
 }
 
 void MusicLrcFloatPhotoWidget::close()
@@ -228,17 +228,17 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
     QStringList list;
     for(int i : qAsConst(m_selectNum))
     {
-       list << m_photos[i];
+       list << m_images[i];
     }
 
-    G_BACKGROUND_PTR->setArtistPhotoList(list);
+    G_BACKGROUND_PTR->setArtistImageList(list);
     close();
 }
 
-void MusicLrcFloatPhotoWidget::showArtistPhoto() const
+void MusicLrcFloatPhotoWidget::showArtistImage() const
 {
     m_previous->setEnabled(m_currentIndex != 0);
-    int page = ceil(m_photos.count() * 1.0 / MIN_ITEM_COUNT) - 1;
+    int page = ceil(m_images.count() * 1.0 / MIN_ITEM_COUNT) - 1;
     if(page < 0)
     {
         page = 0;
@@ -249,20 +249,11 @@ void MusicLrcFloatPhotoWidget::showArtistPhoto() const
     const int indexCheck = m_currentIndex * MIN_ITEM_COUNT;
     for(int i = 0; i < m_planes.count(); ++i)
     {
-        m_planes[i]->setPhoto((indexCheck + i) < m_photos.count() ? m_photos[indexCheck + i] : QString());
+        m_planes[i]->setPath((indexCheck + i) < m_images.count() ? m_images[indexCheck + i] : QString());
         //check show radio button
         m_planes[i]->setBoxChecked(m_selectNum.contains(indexCheck + i));
-        m_planes[i]->setBoxVisible((indexCheck + i) < m_photos.count());
+        m_planes[i]->setBoxVisible((indexCheck + i) < m_images.count());
     }
-}
-
-void MusicLrcFloatPhotoWidget::photoPrevious()
-{
-    if(--m_currentIndex < 0)
-    {
-        m_currentIndex = 0;
-    }
-    showArtistPhoto();
 }
 
 void MusicLrcFloatPhotoWidget::artistNameChanged()
@@ -275,9 +266,9 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
     m_currentIndex = 0;
     m_selectNum.clear();
     m_checkBox->setChecked(true);
-    m_photos = G_BACKGROUND_PTR->artistPhotoList();
+    m_images = G_BACKGROUND_PTR->artistImageList();
 
-    for(int i = 0; i < m_photos.count(); ++i)
+    for(int i = 0; i < m_images.count(); ++i)
     {
         m_selectNum << i;
     }
@@ -287,9 +278,9 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
     m_artistLabel->setFixedSize(TTK::Widget::fontTextWidth(m_artistLabel->font(), name) + 50, 35);
 }
 
-void MusicLrcFloatPhotoWidget::photoNext()
+void MusicLrcFloatPhotoWidget::imageNext()
 {
-    int page = ceil(m_photos.count() * 1.0 / MIN_ITEM_COUNT) - 1;
+    int page = ceil(m_images.count() * 1.0 / MIN_ITEM_COUNT) - 1;
     if(page < 0)
     {
         page = 0;
@@ -299,7 +290,16 @@ void MusicLrcFloatPhotoWidget::photoNext()
     {
         m_currentIndex = page;
     }
-    showArtistPhoto();
+    showArtistImage();
+}
+
+void MusicLrcFloatPhotoWidget::imagePrevious()
+{
+    if(--m_currentIndex < 0)
+    {
+        m_currentIndex = 0;
+    }
+    showArtistImage();
 }
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBackground(int index)
@@ -332,11 +332,11 @@ void MusicLrcFloatPhotoWidget::selectAllStateChanged(bool state)
 {
     if(state)
     {
-        for(int i = 0; i < m_photos.count(); ++i)
+        for(int i = 0; i < m_images.count(); ++i)
         {
             m_selectNum << i;
         }
-        showArtistPhoto();
+        showArtistImage();
     }
     else
     {

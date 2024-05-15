@@ -136,28 +136,28 @@ void MusicIdentifySongWidget::playSongClicked()
         return;
     }
 
-    if(!m_songInfo.m_songProps.isEmpty())
+    if(!m_info.m_songProps.isEmpty())
     {
-        m_player->setMedia(MusicCoreMPlayer::Module::Music, m_songInfo.m_songProps.front().m_url);
+        m_player->setMedia(MusicCoreMPlayer::Module::Music, m_info.m_songProps.front().m_url);
     }
 }
 
 void MusicIdentifySongWidget::showDownloadWidget()
 {
-    if(!m_songInfo.m_artistName.isEmpty())
+    if(!m_info.m_artistName.isEmpty())
     {
         MusicDownloadWidget *widget = new MusicDownloadWidget(this);
-        widget->initialize(m_songInfo, MusicAbstractQueryRequest::QueryType::Music);
+        widget->initialize(m_info, MusicAbstractQueryRequest::QueryType::Music);
         widget->show();
     }
 }
 
 void MusicIdentifySongWidget::showSongShareWidget()
 {
-    if(!m_songInfo.m_artistName.isEmpty())
+    if(!m_info.m_artistName.isEmpty())
     {
         MusicSongSharingWidget::Item item;
-        item.m_name = m_songInfo.m_songName;
+        item.m_name = m_info.m_songName;
 
         MusicSongSharingWidget widget(this);
         widget.initialize(MusicSongSharingWidget::Module::Song, item);
@@ -295,7 +295,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
             if(info.m_artistName.toLower().trimmed().contains(songIdentify.m_artistName.toLower().trimmed(), Qt::CaseInsensitive) &&
                info.m_songName.toLower().trimmed().contains(songIdentify.m_songName.toLower().trimmed(), Qt::CaseInsensitive))
             {
-                m_songInfo = info;
+                m_info = info;
                 break;
             }
         }
@@ -303,12 +303,12 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     //
     QLabel *iconLabel = new QLabel(widget);
     iconLabel->setMinimumSize(280, 280);
-    if(!m_songInfo.m_artistName.isEmpty())
+    if(!m_info.m_artistName.isEmpty())
     {
-        const QString &name = ART_DIR_FULL + m_songInfo.m_artistName + SKN_FILE;
+        const QString &name = ART_DIR_FULL + m_info.m_artistName + SKN_FILE;
         if(!QFile::exists(name))
         {
-            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, TTK::Download::Cover, this);
+            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(m_info.m_coverUrl, name, TTK::Download::Cover, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToRequest();
             loop.exec();
@@ -362,12 +362,12 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     m_lrcLabel = new QLabel(widget);
     m_lrcLabel->setMinimumWidth(280);
 
-    if(!m_songInfo.m_artistName.isEmpty())
+    if(!m_info.m_artistName.isEmpty())
     {
-        const QString &name = TTK::String::lrcDirPrefix() + TTK::generateSongName(m_songInfo.m_songName, m_songInfo.m_artistName) + LRC_FILE;
+        const QString &name = TTK::String::lrcDirPrefix() + TTK::generateSongName(m_info.m_songName, m_info.m_artistName) + LRC_FILE;
         if(!QFile::exists(name))
         {
-            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_songInfo.m_lrcUrl, name, this);
+            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_info.m_lrcUrl, name, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToRequest();
             loop.exec();
@@ -375,10 +375,10 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
 
         m_analysis->loadFromLrcFile(name);
 
-        d->startToQueryResult(&m_songInfo, TTK_BN_128);
-        if(!m_songInfo.m_songProps.isEmpty())
+        d->startToQueryResult(&m_info, TTK_BN_128);
+        if(!m_info.m_songProps.isEmpty())
         {
-            m_player->setMedia(MusicCoreMPlayer::Module::Music, m_songInfo.m_songProps.front().m_url);
+            m_player->setMedia(MusicCoreMPlayer::Module::Music, m_info.m_songProps.front().m_url);
         }
     }
 

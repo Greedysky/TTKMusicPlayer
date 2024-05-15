@@ -10,7 +10,7 @@ MusicBackgroundManager::MusicBackgroundManager()
 void MusicBackgroundManager::setArtistName(const QString &name)
 {
     m_currentArtistName = TTK::generateSongArtist(name);
-    updateArtistPhotoList();
+    updateArtistImageList();
 }
 
 QString MusicBackgroundManager::artistName() const
@@ -18,21 +18,21 @@ QString MusicBackgroundManager::artistName() const
     return m_currentArtistName;
 }
 
-void MusicBackgroundManager::photoNext()
+void MusicBackgroundManager::imageNext()
 {
     m_currentIndex++;
 }
 
-void MusicBackgroundManager::photoPrevious()
+void MusicBackgroundManager::imagePrevious()
 {
     m_currentIndex--;
 }
 
-QString MusicBackgroundManager::artistPhotoPath()
+QString MusicBackgroundManager::artistImagePath()
 {
-    if(!m_photos.isEmpty())
+    if(!m_images.isEmpty())
     {
-        return m_photos[m_currentIndex < m_photos.count() ? m_currentIndex : m_currentIndex = 0];
+        return m_images[m_currentIndex < m_images.count() ? m_currentIndex : m_currentIndex = 0];
     }
     else
     {
@@ -40,20 +40,20 @@ QString MusicBackgroundManager::artistPhotoPath()
     }
 }
 
-QString MusicBackgroundManager::artistPhotoDefaultPath() const
+QString MusicBackgroundManager::artistImageDefaultPath() const
 {
-    if(m_photos.isEmpty())
+    if(m_images.isEmpty())
     {
         return {};
     }
 
     const int index = m_currentIndex - 1;
-    return (-1 < index && index < m_photos.count()) ? m_photos[index] : QString();
+    return (-1 < index && index < m_images.count()) ? m_images[index] : QString();
 }
 
-void MusicBackgroundManager::updateArtistPhotoList()
+void MusicBackgroundManager::updateArtistImageList()
 {
-    m_photos.clear();
+    m_images.clear();
     m_currentIndex = 0;
 
     const QString &filter = BACKGROUND_DIR_FULL + m_currentArtistName + "%1" + SKN_FILE;
@@ -64,7 +64,7 @@ void MusicBackgroundManager::updateArtistPhotoList()
         {
             if(file.size() > 0)
             {
-                m_photos << file.fileName();
+                m_images << file.fileName();
             }
             file.close();
         }
@@ -73,14 +73,14 @@ void MusicBackgroundManager::updateArtistPhotoList()
     Q_EMIT artistChanged();
 }
 
-QStringList MusicBackgroundManager::artistPhotoList() const
+QStringList MusicBackgroundManager::artistImageList() const
 {
-    return m_photos;
+    return m_images;
 }
 
-void MusicBackgroundManager::setArtistPhotoList(const QStringList &list)
+void MusicBackgroundManager::setArtistImageList(const QStringList &list)
 {
-    m_photos = list;
+    m_images = list;
 }
 
 void MusicBackgroundManager::setSelectArtistIndex(int index)

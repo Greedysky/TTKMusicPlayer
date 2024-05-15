@@ -40,52 +40,52 @@ public:
     QString artistName() const;
 
     /*!
-     * Get artist photo current index.
+     * Get artist image current index.
      */
     inline int currentIndex() const { return m_currentIndex; }
     /*!
-     * Set artist photo current index.
+     * Set artist image current index.
      */
     inline void setCurrentIndex(int index) { m_currentIndex = index; }
     /*!
-     * Get artist photo count.
+     * Get artist image count.
      */
-    inline int count() const { return m_photos.count(); }
+    inline int count() const { return m_images.count(); }
     /*!
-     * Get artist photo count is 0.
+     * Get artist image count is 0.
      */
-    inline bool isEmpty() const { return m_photos.isEmpty(); }
+    inline bool isEmpty() const { return m_images.isEmpty(); }
 
     /*!
-     * Set artist photo current index + 1.
+     * Set artist image current index + 1.
      */
-    void photoNext();
+    void imageNext();
     /*!
-     * Set artist photo current index - 1.
+     * Set artist image current index - 1.
      */
-    void photoPrevious();
+    void imagePrevious();
 
     /*!
-     * Get artist photo path.
+     * Get artist image path.
      */
-    QString artistPhotoPath();
+    QString artistImagePath();
     /*!
-     * Get artist photo path by default.
+     * Get artist image path by default.
      */
-    QString artistPhotoDefaultPath() const;
+    QString artistImageDefaultPath() const;
 
     /*!
-     * Update artist photo list.
+     * Update artist image list.
      */
-    void updateArtistPhotoList();
+    void updateArtistImageList();
     /*!
-     * Get artist photo path list.
+     * Get artist image path list.
      */
-    QStringList artistPhotoList() const;
+    QStringList artistImageList() const;
     /*!
-     * Set artist photo path by given path list.
+     * Set artist image path by given path list.
      */
-    void setArtistPhotoList(const QStringList &list);
+    void setArtistImageList(const QStringList &list);
     /*!
      * Set user select current index.
      */
@@ -135,7 +135,7 @@ private:
     MusicBackgroundManager();
 
     int m_currentIndex;
-    QStringList m_photos;
+    QStringList m_images;
     QObjectList m_observer;
     QString m_currentArtistName, m_background;
 

@@ -43,9 +43,9 @@ public:
     ~MusicLrcFloatPhotoItem();
 
     /*!
-     * Set photo path and pix.
+     * Set image path and pix.
      */
-    void setPhoto(const QString &path);
+    void setPath(const QString &path);
     /*!
      * Set check box checked state.
      */
@@ -137,19 +137,19 @@ public Q_SLOTS:
      */
     void confirmButtonClicked();
     /*!
-     * To selected previous artist pic.
+     * To selected next artist image.
      */
-    void photoPrevious();
+    void imageNext();
     /*!
-     * To selected next artist pic.
+     * To selected previous artist image.
      */
-    void photoNext();
+    void imagePrevious();
     /*!
-     * Update current artist pic.
+     * Update current artist image.
      */
     void artistNameChanged();
     /*!
-     * User selected the plane pic.
+     * User selected the plane image.
      */
     void sendUserSelectArtBackground(int index);
     /*!
@@ -170,11 +170,11 @@ private:
     /*!
      * Show all artist pics in displaying.
      */
-    void showArtistPhoto() const;
+    void showArtistImage() const;
 
     int m_currentIndex;
     TTKIntSet m_selectNum;
-    QStringList m_photos;
+    QStringList m_images;
     QLabel *m_artistLabel;
     QCheckBox *m_checkBox;
     QPushButton *m_previous, *m_next;

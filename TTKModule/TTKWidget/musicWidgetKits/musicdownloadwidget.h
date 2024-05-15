@@ -187,7 +187,7 @@ private:
 
     Ui::MusicDownloadWidget *m_ui;
     MusicAbstractQueryRequest *m_networkRequest;
-    TTK::MusicSongInformation m_songInfo;
+    TTK::MusicSongInformation m_info;
     MusicAbstractQueryRequest::QueryType m_queryType;
 
 };

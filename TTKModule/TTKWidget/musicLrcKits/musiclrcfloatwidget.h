@@ -66,8 +66,8 @@ public Q_SLOTS:
     void wallpaperButtonClicked();
 
 private:
-    QPushButton *m_more, *m_update, *m_search;
-    QPushButton *m_wallpaper, *m_photo;
+    QPushButton *m_moreButton, *m_updateButton, *m_searchButton;
+    QPushButton *m_wallpaperButton, *m_photoButton;
     MusicLrcFloatPhotoWidget *m_floatPhotoWidget;
     MusicLrcFloatSettingWidget *m_floatSettingWidget;
 

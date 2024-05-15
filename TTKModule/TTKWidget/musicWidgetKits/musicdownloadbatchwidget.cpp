@@ -42,7 +42,7 @@ void MusicDownloadBatchTableItem::addCellItem(MusicAbstractQueryRequest *request
     m_singer->setToolTip(info.m_artistName);
     m_singer->setText(TTK::Widget::elidedText(m_singer->font(), m_singer->toolTip(), Qt::ElideRight, m_singer->width() - 10));
 
-    m_songInfo = info;
+    m_info = info;
     m_networkRequest = request;
     m_queryType = request->queryType();
 
@@ -79,12 +79,12 @@ void MusicDownloadBatchTableItem::currentQualityChanged(int index)
     const int bitrate = currentBitrate(index);
     if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
     {
-        const QString &size = TTK::Number::sizeByteToLabel(m_songInfo.m_duration, bitrate);
+        const QString &size = TTK::Number::sizeByteToLabel(m_info.m_duration, bitrate);
         m_information->setText(QString("%1/%2KBPS/%3").arg(size).arg(bitrate).arg(QString(bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX).toUpper()));
     }
     else if(m_queryType == MusicAbstractQueryRequest::QueryType::Movie)
     {
-        const QString &size = TTK::Number::sizeByteToLabel(m_songInfo.m_duration, bitrate);
+        const QString &size = TTK::Number::sizeByteToLabel(m_info.m_duration, bitrate);
         m_information->setText(QString("%1/%2KBPS/%3").arg(size).arg(bitrate).arg(QString(MP4_FILE_SUFFIX).toUpper()));
     }
 
@@ -127,9 +127,9 @@ int MusicDownloadBatchTableItem::currentBitrate(int index)
 void MusicDownloadBatchTableItem::startToRequestMusic()
 {
     const int bitrate = currentBitrate(m_qulity->currentIndex());
-    m_networkRequest->startToQueryResult(&m_songInfo, bitrate);
+    m_networkRequest->startToQueryResult(&m_info, bitrate);
 
-    if(!MusicDownloadWidget::startToRequestMusic(m_songInfo, bitrate, this))
+    if(!MusicDownloadWidget::startToRequestMusic(m_info, bitrate, this))
     {
         m_status->setPixmap(QPixmap(":/tiny/lb_error"));
     }
@@ -138,9 +138,9 @@ void MusicDownloadBatchTableItem::startToRequestMusic()
 void MusicDownloadBatchTableItem::startToRequestMovie()
 {
     const int bitrate = currentBitrate(m_qulity->currentIndex());
-    m_networkRequest->startToQueryResult(&m_songInfo, bitrate);
+    m_networkRequest->startToQueryResult(&m_info, bitrate);
 
-    if(!MusicDownloadWidget::startToRequestMovie(m_songInfo, bitrate, this))
+    if(!MusicDownloadWidget::startToRequestMovie(m_info, bitrate, this))
     {
         m_status->setPixmap(QPixmap(":/tiny/lb_error"));
     }

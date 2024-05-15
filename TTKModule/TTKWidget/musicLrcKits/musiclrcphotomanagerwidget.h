@@ -147,7 +147,7 @@ public:
 private:
     Ui::MusicLrcPhotoManagerWidget *m_ui;
 
-    MusicLrcPhotoWidget *m_photoWidget;
+    MusicLrcPhotoWidget *m_widget;
 
 };
 

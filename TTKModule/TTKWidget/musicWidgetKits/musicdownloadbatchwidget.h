@@ -79,7 +79,7 @@ private:
     void startToRequestMovie();
 
     QComboBox *m_qulity;
-    TTK::MusicSongInformation m_songInfo;
+    TTK::MusicSongInformation m_info;
     QLabel *m_songName, *m_singer;
     QLabel *m_information, *m_status;
     MusicAbstractQueryRequest *m_networkRequest;

@@ -98,7 +98,7 @@ void MusicLrcPhotoWidget::addButtonClicked()
         addCellItem(path);
     }
 
-    G_BACKGROUND_PTR->updateArtistPhotoList();
+    G_BACKGROUND_PTR->updateArtistImageList();
 }
 
 void MusicLrcPhotoWidget::deleteButtonClicked()
@@ -129,7 +129,7 @@ void MusicLrcPhotoWidget::deleteButtonClicked()
         m_gridLayout->addWidget(item, i / MIN_ITEM_COUNT, i % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     }
 
-    G_BACKGROUND_PTR->updateArtistPhotoList();
+    G_BACKGROUND_PTR->updateArtistImageList();
     MusicToastLabel::popup(tr("Delete current file success"));
 }
 
@@ -217,17 +217,17 @@ MusicLrcPhotoManagerWidget::MusicLrcPhotoManagerWidget(QWidget *parent)
     m_ui->artTextLabel->setText(G_BACKGROUND_PTR->artistName());
     m_ui->artTextLabel->setStyleSheet(TTK::UI::ColorStyle07);
 
-    m_photoWidget = new MusicLrcPhotoWidget(this);
-    TTK::Widget::generateVScrollAreaFormat(m_ui->viewArea, m_photoWidget);
+    m_widget = new MusicLrcPhotoWidget(this);
+    TTK::Widget::generateVScrollAreaFormat(m_ui->viewArea, m_widget);
 
-    connect(m_ui->addButton, SIGNAL(clicked()), m_photoWidget, SLOT(addButtonClicked()));
-    connect(m_ui->deleteButton, SIGNAL(clicked()), m_photoWidget, SLOT(deleteButtonClicked()));
-    connect(m_ui->exportButton, SIGNAL(clicked()), m_photoWidget, SLOT(exportButtonClicked()));
+    connect(m_ui->addButton, SIGNAL(clicked()), m_widget, SLOT(addButtonClicked()));
+    connect(m_ui->deleteButton, SIGNAL(clicked()), m_widget, SLOT(deleteButtonClicked()));
+    connect(m_ui->exportButton, SIGNAL(clicked()), m_widget, SLOT(exportButtonClicked()));
     connect(m_ui->okButton, SIGNAL(clicked()), SLOT(close()));
 }
 
 MusicLrcPhotoManagerWidget::~MusicLrcPhotoManagerWidget()
 {
     delete m_ui;
-    delete m_photoWidget;
+    delete m_widget;
 }
