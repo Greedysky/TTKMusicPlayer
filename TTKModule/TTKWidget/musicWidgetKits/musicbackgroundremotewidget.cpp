@@ -263,6 +263,7 @@ void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroupLis
         QString title(m_groups[i].m_group);
         m_typeBox->addItem(title.remove(SKIN_THUNDER_DIR));
     }
+
     m_typeBox->setCurrentIndex(0);
     m_typeBox->blockSignals(false);
 }

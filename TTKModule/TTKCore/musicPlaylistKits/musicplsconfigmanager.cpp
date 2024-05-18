@@ -18,7 +18,7 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
         return false;
     }
 
-    if(!data.takeFirst().toLower().contains("[playlist]"))
+    if(!data.takeFirst().contains("[playlist]", Qt::CaseInsensitive))
     {
         return false;
     }
@@ -26,14 +26,13 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
     const QRegExp regx1("^File(\\d+)=(.+)");
     const QRegExp regx2("^Length(\\d+)=(-{0,1}\\d+)");
 
-    int number = 0;
     bool error = false;
 
     for(const QString &line : qAsConst(data))
     {
         if(regx1.indexIn(line) > -1)
         {
-            if((number = regx1.cap(1).toInt()) > 0)
+            if(regx1.cap(1).toInt() > 0)
             {
                 item.m_songs << MusicSong(regx1.cap(2));
             }
@@ -44,7 +43,7 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
         }
         else if(regx2.indexIn(line) > -1)
         {
-            if((number = regx2.cap(1).toInt()) > 0)
+            if(regx2.cap(1).toInt() > 0)
             {
                 item.m_songs.back().setDuration(TTKTime::formatDuration(regx2.cap(2).toInt() * TTK_DN_S2MS));
             }
