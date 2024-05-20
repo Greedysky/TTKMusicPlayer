@@ -11,14 +11,13 @@
 #include <qmmp/buffer.h>
 #include "outputwasapi.h"
 
-#define WASAPI_BUFSIZE 10000000LL //1s
-
 #ifndef AUDCLNT_STREAMFLAGS_AUTOCONVERTPCM
 #define AUDCLNT_STREAMFLAGS_AUTOCONVERTPCM 0x80000000
 #endif
 
 OutputWASAPI *OutputWASAPI::instance = nullptr;
 VolumeWASAPI *OutputWASAPI::volumeControl = nullptr;
+
 OutputWASAPI::DWASAPIChannels OutputWASAPI::m_wasapi_pos[10]  = {
    {Qmmp::CHAN_FRONT_LEFT, SPEAKER_FRONT_LEFT},
    {Qmmp::CHAN_FRONT_RIGHT, SPEAKER_FRONT_RIGHT},
@@ -38,6 +37,7 @@ OutputWASAPI::OutputWASAPI()
     instance = this;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_id = settings.value("WASAPI/device", "default").toString();
+    m_bufferSize = settings.value("WASAPI/buffer_size", 1000).toInt() * 1000LL;
     m_exclusive = settings.value("WASAPI/exclusive_mode", false).toBool();
 }
 
@@ -146,7 +146,7 @@ bool OutputWASAPI::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat fo
         qDebug("OutputWASAPI: format is not supported, using converter");
     }
 
-    if((result = m_pAudioClient->Initialize(mode, streamFlags, WASAPI_BUFSIZE, 0, (WAVEFORMATEX *)&wfex, nullptr)) != S_OK)
+    if((result = m_pAudioClient->Initialize(mode, streamFlags, m_bufferSize, 0, (WAVEFORMATEX *)&wfex, nullptr)) != S_OK)
     {
         qWarning("OutputWASAPI: IAudioClient::Initialize failed, error code = 0x%lx", result);
         return false;

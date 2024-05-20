@@ -13,7 +13,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     m_ui.setupUi(this);
 #ifdef Q_OS_WIN
-    setFixedHeight(95);
+    setFixedHeight(135);
 #elif defined Q_OS_UNIX
     for(QAbstractButton *button : m_ui.buttonBox->buttons())
     {
@@ -25,8 +25,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QString id = settings.value("WASAPI/device", "default").toString();
     int index = m_ui.deviceComboBox->findData(id);
-    m_ui.exclusiveModeCheckBox->setChecked(settings.value("WASAPI/exclusive_mode", false).toBool());
     m_ui.deviceComboBox->setCurrentIndex(qMax(index, 0));
+    m_ui.bufferSizeSpinBox->setValue(settings.value("WASAPI/buffer_size", 1000).toInt());
+    m_ui.exclusiveModeCheckBox->setChecked(settings.value("WASAPI/exclusive_mode", false).toBool());
 }
 
 void SettingsDialog::accept()
@@ -34,6 +35,7 @@ void SettingsDialog::accept()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     int index = m_ui.deviceComboBox->currentIndex();
     settings.setValue("WASAPI/device", m_ui.deviceComboBox->itemData(index).toString());
+    settings.setValue("WASAPI/buffer_size", m_ui.bufferSizeSpinBox->value());
     settings.setValue("WASAPI/exclusive_mode", m_ui.exclusiveModeCheckBox->isChecked());
     QDialog::accept();
 }
