@@ -94,21 +94,21 @@ public Q_SLOTS:
     void deleteFileFinished(bool state);
 
     /*!
-     * Update list to server.
+     * Update list from server.
      */
-    void updateListToServer();
+    void updateListFromServer();
     /*!
-     * Delete file to server.
+     * Delete file from server.
      */
-    void deleteFileToServer();
+    void deleteFileFromServer();
     /*!
-     * Delete files to server.
+     * Delete files from server.
      */
-    void deleteFilesToServer();
+    void deleteFilesFromServer();
     /*!
-     * Download file to server.
+     * Download file from server.
      */
-    void downloadFileToServer();
+    void downloadFileFromServer();
 
     /*!
      * Cancel upload files to server.
@@ -222,13 +222,13 @@ public Q_SLOTS:
      */
     void updataSizeLabel(qint64 size);
     /*!
-     * Download file to server.
+     * Download file from server.
      */
-    void downloadFileToServer();
+    void downloadFileFromServer();
     /*!
-     * Delete file to server.
+     * Delete file from server.
      */
-    void deleteFileToServer();
+    void deleteFileFromServer();
     /*!
      * Upload files to server.
      */

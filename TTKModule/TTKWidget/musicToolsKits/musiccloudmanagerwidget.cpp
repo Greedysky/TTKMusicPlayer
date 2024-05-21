@@ -87,7 +87,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
         return false;
     }
 
-    updateListToServer();
+    updateListFromServer();
     return true;
 }
 
@@ -193,13 +193,13 @@ void MusicCloudManagerTableWidget::deleteFileFinished(bool state)
     Q_EMIT updateLabelMessage(state ? tr("Delete current file success") : tr("Delete current file error"));
 }
 
-void MusicCloudManagerTableWidget::updateListToServer()
+void MusicCloudManagerTableWidget::updateListFromServer()
 {
     Q_EMIT updateLabelMessage(tr("List updating"));
     m_syncListData->listDataOperator(SYNC_MUSIC_BUCKET);
 }
 
-void MusicCloudManagerTableWidget::deleteFileToServer()
+void MusicCloudManagerTableWidget::deleteFileFromServer()
 {
     if(!isValid() || m_uploading)
     {
@@ -222,7 +222,7 @@ void MusicCloudManagerTableWidget::deleteFileToServer()
     createUploadFileModule();
 }
 
-void MusicCloudManagerTableWidget::deleteFilesToServer()
+void MusicCloudManagerTableWidget::deleteFilesFromServer()
 {
     if(m_uploading)
     {
@@ -252,7 +252,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
     createUploadFileModule();
 }
 
-void MusicCloudManagerTableWidget::downloadFileToServer()
+void MusicCloudManagerTableWidget::downloadFileFromServer()
 {
     if(!isValid())
     {
@@ -321,7 +321,7 @@ void MusicCloudManagerTableWidget::uploadDone()
 {
     m_uploading = false;
     m_currentDataItem.clear();
-    updateListToServer();
+    updateListFromServer();
 }
 
 void MusicCloudManagerTableWidget::showFileInformationWidget()
@@ -360,11 +360,11 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
     TTK::Widget::adjustMenuPosition(&uploadMenu);
 
     menu.addMenu(&uploadMenu);
-    menu.addAction(tr("Delete File"), this, SLOT(deleteFileToServer()))->setEnabled(!m_uploading);
-    menu.addAction(tr("Delete Files"), this, SLOT(deleteFilesToServer()))->setEnabled(!m_uploading);
+    menu.addAction(tr("Delete File"), this, SLOT(deleteFileFromServer()))->setEnabled(!m_uploading);
+    menu.addAction(tr("Delete Files"), this, SLOT(deleteFilesFromServer()))->setEnabled(!m_uploading);
     menu.addSeparator();
-    menu.addAction(tr("Download"), this, SLOT(downloadFileToServer()))->setEnabled(!m_uploading);
-    menu.addAction(tr("Update List"), this, SLOT(updateListToServer()))->setEnabled(!m_uploading);
+    menu.addAction(tr("Download"), this, SLOT(downloadFileFromServer()))->setEnabled(!m_uploading);
+    menu.addAction(tr("Update List"), this, SLOT(updateListFromServer()))->setEnabled(!m_uploading);
     menu.addSeparator();
     menu.addAction(tr("Song Info..."), this, SLOT(showFileInformationWidget()));
 
@@ -379,7 +379,7 @@ bool MusicCloudManagerTableWidget::cloudConfigValid() const
 
 void MusicCloudManagerTableWidget::addCellItem(const MusicCloudDataItem &data)
 {
-    int row = rowCount();
+    const int row = rowCount();
     setRowCount(row + 1);
 
     QHeaderView *headerView = horizontalHeader();
@@ -614,8 +614,8 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     deleteButton->setFocusPolicy(Qt::NoFocus);
 #endif
     connect(uploadButton, SIGNAL(clicked(bool)), SLOT(uploadFilesToServer()));
-    connect(downloadButton, SIGNAL(clicked(bool)), SLOT(downloadFileToServer()));
-    connect(deleteButton, SIGNAL(clicked(bool)), SLOT(deleteFileToServer()));
+    connect(downloadButton, SIGNAL(clicked(bool)), SLOT(downloadFileFromServer()));
+    connect(deleteButton, SIGNAL(clicked(bool)), SLOT(deleteFileFromServer()));
     //
     QWidget *labelWidget = new QWidget(mainWidget);
     labelWidget->setStyleSheet(TTK::UI::BackgroundStyle09);
@@ -679,14 +679,14 @@ void MusicCloudManagerWidget::updataSizeLabel(qint64 size)
     m_sizeValueBar->setValue(size * TTK_RN_MAX / (10 * TTK_SN_GB2B));
 }
 
-void MusicCloudManagerWidget::downloadFileToServer()
+void MusicCloudManagerWidget::downloadFileFromServer()
 {
-    m_tableWidget->downloadFileToServer();
+    m_tableWidget->downloadFileFromServer();
 }
 
-void MusicCloudManagerWidget::deleteFileToServer()
+void MusicCloudManagerWidget::deleteFileFromServer()
 {
-    m_tableWidget->deleteFileToServer();
+    m_tableWidget->deleteFileFromServer();
 }
 
 void MusicCloudManagerWidget::uploadFilesToServer()
