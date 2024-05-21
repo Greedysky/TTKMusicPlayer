@@ -99,7 +99,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_leaverAnimation->addAnimation(ctrlAnimation);
 
     connect(m_tableWidget, SIGNAL(mediaUrlPathChanged(MusicVideoItem)), SLOT(mediaUrlPathChanged(MusicVideoItem)));
-    connect(m_tableWidget, SIGNAL(restartToSearchQuery(QString)), SLOT(videoResearchButtonSearched(QString)));
+    connect(m_tableWidget, SIGNAL(startToQueryByText(QString)), SLOT(videoResearchButtonSearched(QString)));
     connect(m_searchEdit, SIGNAL(trigger(QString)), SLOT(videoResearchButtonSearched(QString)));
 
     connect(m_videoFloatWidget, SIGNAL(searchButtonClicked()), SLOT(switchToSearchTable()));

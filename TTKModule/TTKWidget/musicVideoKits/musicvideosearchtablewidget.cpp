@@ -34,7 +34,6 @@ void MusicVideoSearchTableWidget::startToSearchByText(const QString &text)
     setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
 
     m_singleRadioMode = false;
-    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Movie);
     m_networkRequest->startToSearch(text);
 }
 
@@ -68,7 +67,6 @@ void MusicVideoSearchTableWidget::startToSearchByID(const QString &text)
     setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
 
     m_singleRadioMode = false;
-    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Movie);
     m_networkRequest->startToSearchByID(text);
 }
 

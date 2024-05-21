@@ -20,10 +20,10 @@ MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     m_note = new QLabel(m_container);
     m_content = new QLabel(m_container);
 
-    m_imageRequest = new MusicCiBaRequest(this);
-    connect(m_imageRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), this, SLOT(downLoadImageFinished(QByteArray)));
+    m_networkRequest = new MusicCiBaRequest(this);
+    connect(m_networkRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), this, SLOT(downLoadImageFinished(QByteArray)));
 
-    m_imageRequest->startToRequest();
+    m_networkRequest->startToRequest();
 }
 
 MusicSongDailyWidget::~MusicSongDailyWidget()
@@ -31,7 +31,7 @@ MusicSongDailyWidget::~MusicSongDailyWidget()
     delete m_note;
     delete m_content;
     delete m_container;
-    delete m_imageRequest;
+    delete m_networkRequest;
 }
 
 void MusicSongDailyWidget::resizeWidget()
@@ -94,8 +94,8 @@ void MusicSongDailyWidget::downLoadImageFinished(const QByteArray &bytes)
     m_note->setStyleSheet(style);
     m_content->setStyleSheet(style);
 
-    m_note->setText(m_imageRequest->note());
-    m_content->setText(m_imageRequest->content());
+    m_note->setText(m_networkRequest->note());
+    m_content->setText(m_networkRequest->content());
 
     resizeWidget();
 }

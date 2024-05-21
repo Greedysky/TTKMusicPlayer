@@ -147,7 +147,7 @@ void MusicIdentifySongWidget::showDownloadWidget()
     if(!m_info.m_artistName.isEmpty())
     {
         MusicDownloadWidget *widget = new MusicDownloadWidget(this);
-        widget->initialize(m_info, MusicAbstractQueryRequest::QueryType::Music);
+        widget->initialize(m_info);
         widget->show();
     }
 }
@@ -284,7 +284,6 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     TTKSemaphoreLoop loop;
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     d->startToSearch(textLabel->text().trimmed());
     loop.exec();
 

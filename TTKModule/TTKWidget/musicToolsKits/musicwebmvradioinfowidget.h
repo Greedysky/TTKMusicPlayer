@@ -42,10 +42,6 @@ public:
      * Set network query input.
      */
     virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
-    /*!
-     * Download query result data.
-     */
-    virtual void downloadQueryResult(int row) override final;
 
 public Q_SLOTS:
     /*!

@@ -150,7 +150,6 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-        d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
         d->startToSearch(song->name().trimmed());
         loop.exec();
 

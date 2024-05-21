@@ -123,15 +123,15 @@ public:
     /*!
      * Set current name to search and download data.
      */
+    void initialize(const QString &name);
+    /*!
+     * Set current name to search and download data.
+     */
+    void initialize(const TTK::MusicSongInformation &info);
+    /*!
+     * Set current name to search and download data.
+     */
     void initialize(MusicAbstractQueryRequest *request, int row);
-    /*!
-     * Set current name to search and download data.
-     */
-    void initialize(const QString &name, MusicAbstractQueryRequest::QueryType type);
-    /*!
-     * Set current name to search and download data.
-     */
-    void initialize(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
 
 public:
     /*!

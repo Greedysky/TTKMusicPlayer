@@ -167,7 +167,7 @@ void MusicAbstractSongsListTableWidget::showDownloadWidget()
     }
 
     MusicDownloadWidget *widget = new MusicDownloadWidget;
-    widget->initialize(currentSongName(), MusicAbstractQueryRequest::QueryType::Music);
+    widget->initialize(currentSongName());
     widget->show();
 }
 

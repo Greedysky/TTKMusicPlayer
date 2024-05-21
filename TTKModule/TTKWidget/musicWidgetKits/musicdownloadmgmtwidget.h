@@ -20,7 +20,6 @@
  ***************************************************************************/
 
 #include "musicabstractmovewidget.h"
-#include "musicabstractqueryrequest.h"
 
 namespace Ui {
 class MusicDownloadResetWidget;
@@ -93,7 +92,7 @@ public:
     /*!
      * Set current name to search and download data.
      */
-    void initialize(const QString &name, MusicAbstractQueryRequest::QueryType type);
+    void initialize(const QString &name);
 
 private:
     QWidget *m_parent;

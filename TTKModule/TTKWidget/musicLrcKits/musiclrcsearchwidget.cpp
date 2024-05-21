@@ -42,7 +42,7 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     connect(m_ui->label_checkBox, SIGNAL(clicked(bool)), m_ui->tableWidget, SLOT(checkedItemsState(bool)));
     connect(m_ui->tableWidget, SIGNAL(resolvedSuccess()), SLOT(lrcSearchFinished()));
     connect(m_ui->tableWidget, SIGNAL(lrcDownloadStateChanged(QString)), SLOT(lrcDownloadStateChanged(QString)));
-    connect(m_ui->tableWidget, SIGNAL(restartToSearchQuery(QString)), SLOT(setCurrentSongName(QString)));
+    connect(m_ui->tableWidget, SIGNAL(startToQueryByText(QString)), SLOT(setCurrentSongName(QString)));
 }
 
 MusicLrcSearchWidget::~MusicLrcSearchWidget()

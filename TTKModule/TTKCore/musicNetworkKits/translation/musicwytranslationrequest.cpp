@@ -20,7 +20,6 @@ void MusicWYTranslationRequest::startToRequest(const QString &data)
     MusicWYQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     d->startToSearch(QFileInfo(header("name").toString()).baseName());
     loop.exec();
 

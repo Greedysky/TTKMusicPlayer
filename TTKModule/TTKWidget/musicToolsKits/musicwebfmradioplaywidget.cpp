@@ -121,7 +121,7 @@ void MusicWebFMRadioPlayWidget::radioResourceDownload()
     }
 
     MusicDownloadWidget *widget = new MusicDownloadWidget(this);
-    widget->initialize(info, MusicAbstractQueryRequest::QueryType::Music);
+    widget->initialize(info);
     widget->show();
 }
 

@@ -65,9 +65,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Restart search to query by name.
+     * Start to query by text.
      */
-    void restartToSearchQuery(const QString &name);
+    void startToQueryByText(const QString &text);
     /*!
      * Add current network music buffer to playlist.
      */

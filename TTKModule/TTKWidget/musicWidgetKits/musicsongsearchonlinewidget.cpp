@@ -61,7 +61,6 @@ void MusicSongSearchTableWidget::startToSearchByText(const QString &text)
 
     MusicItemSearchTableWidget::startToSearchByText(text);
 
-    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     m_networkRequest->startToSearch(text);
 }
 
@@ -214,9 +213,9 @@ void MusicSongSearchTableWidget::searchActionClicked(QAction *action)
     switch(action->data().toInt())
     {
         case 0: downloadQueryResult(row); break;
-        case 1: Q_EMIT restartToSearchQuery(info.m_songName); break;
+        case 1: Q_EMIT startToQueryByText(info.m_songName); break;
         case 2: MusicRightAreaWidget::instance()->showArtistFound(info.m_artistName, info.m_artistId); break;
-        case 3: Q_EMIT restartToSearchQuery(TTK::generateSongName(info.m_songName, info.m_artistName)); break;
+        case 3: Q_EMIT startToQueryByText(TTK::generateSongName(info.m_songName, info.m_artistName)); break;
         case 4: addSearchMusicToPlaylist(row, true); break;
         case 5: MusicRightAreaWidget::instance()->showAlbumFound(info.m_albumName, info.m_albumId); break;
         default: break;
@@ -326,7 +325,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     setLayout(boxLayout);
 
     createToolWidget(toolWidget);
-    connect(m_tableWidget, SIGNAL(restartToSearchQuery(QString)), MusicRightAreaWidget::instance(), SLOT(showSongSearchedFound(QString)));
+    connect(m_tableWidget, SIGNAL(startToQueryByText(QString)), MusicRightAreaWidget::instance(), SLOT(showSongSearchedFound(QString)));
 }
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()

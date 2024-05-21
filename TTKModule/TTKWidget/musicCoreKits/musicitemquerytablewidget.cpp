@@ -39,7 +39,6 @@ void MusicItemQueryTableWidget::startToSearchByText(const QString &text)
         return;
     }
 
-    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     m_networkRequest->startToSearch(text);
 }
 

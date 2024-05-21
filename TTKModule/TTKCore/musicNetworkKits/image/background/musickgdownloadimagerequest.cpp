@@ -20,7 +20,6 @@ void MusicKGDownloadBackgroundRequest::startToRequest()
     MusicKGQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     d->startToSearch(m_name);
     loop.exec();
 

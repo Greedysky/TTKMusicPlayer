@@ -5,6 +5,7 @@ MusicAbstractMVRadioRequest::MusicAbstractMVRadioRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
     m_queryValue = "1";
+    m_queryType = MusicAbstractQueryRequest::QueryType::Movie;
 }
 
 void MusicAbstractMVRadioRequest::startToSearch(const QString &value)

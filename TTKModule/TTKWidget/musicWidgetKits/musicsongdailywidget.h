@@ -61,7 +61,7 @@ private:
 
     QLabel *m_container;
     QLabel *m_note, *m_content;
-    MusicCiBaRequest *m_imageRequest;
+    MusicCiBaRequest *m_networkRequest;
 
 };
 

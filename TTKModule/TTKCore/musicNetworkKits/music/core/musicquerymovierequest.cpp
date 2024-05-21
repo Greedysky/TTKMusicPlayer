@@ -3,7 +3,7 @@
 MusicQueryMovieRequest::MusicQueryMovieRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-
+    m_queryType = MusicAbstractQueryRequest::QueryType::Movie;
 }
 
 void MusicQueryMovieRequest::startToSearch(const QString &value)

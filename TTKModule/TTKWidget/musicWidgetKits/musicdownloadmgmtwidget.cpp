@@ -50,7 +50,7 @@ void MusicDownloadResetWidget::initialize(const QString &name)
 void MusicDownloadResetWidget::restartToRequest()
 {
     MusicDownloadWidget *widget = new MusicDownloadWidget(m_parent);
-    widget->initialize(m_currentName, MusicAbstractQueryRequest::QueryType::Music);
+    widget->initialize(m_currentName);
     widget->show();
 
     close();
@@ -81,20 +81,17 @@ MusicDownloadMgmtWidget::MusicDownloadMgmtWidget(QObject *parent)
 
 }
 
-void MusicDownloadMgmtWidget::initialize(const QString &name, MusicAbstractQueryRequest::QueryType type)
+void MusicDownloadMgmtWidget::initialize(const QString &name)
 {
-    if(type == MusicAbstractQueryRequest::QueryType::Music)
-    {
-        bool exist = false;
-        MusicApplication::instance()->containsDownloadItem(exist);
+    bool exist = false;
+    MusicApplication::instance()->containsDownloadItem(exist);
 
-        if(exist)
-        {
-            MusicDownloadResetWidget *resetWidget = new MusicDownloadResetWidget(m_parent);
-            resetWidget->initialize(name);
-            resetWidget->show();
-            return;
-        }
+    if(exist)
+    {
+        MusicDownloadResetWidget *resetWidget = new MusicDownloadResetWidget(m_parent);
+        resetWidget->initialize(name);
+        resetWidget->show();
+        return;
     }
 
     MusicDownloadWidget *widget = new MusicDownloadWidget(m_parent);
@@ -102,6 +99,6 @@ void MusicDownloadMgmtWidget::initialize(const QString &name, MusicAbstractQuery
     {
         connect(widget, SIGNAL(dataDownloadChanged()), parent(), SLOT(downloadSongFinished()));
     }
-    widget->initialize(name, type);
+    widget->initialize(name);
     widget->show();
 }

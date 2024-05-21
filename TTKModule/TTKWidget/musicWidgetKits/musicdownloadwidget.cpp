@@ -139,6 +139,43 @@ void MusicDownloadWidget::controlEnabled(bool enabled)
     m_ui->downloadButton->setEnabled(enabled);
 }
 
+void MusicDownloadWidget::initialize(const QString &name)
+{
+    if(!m_networkRequest)
+    {
+       m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+       connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadNormalFinished()));
+    }
+
+    m_ui->loadingLabel->run(true);
+    controlEnabled(true);
+    m_ui->downloadName->setText(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 200));
+
+    m_queryType = m_networkRequest->queryType();
+    m_networkRequest->startToSearch(name);
+}
+
+void MusicDownloadWidget::initialize(const TTK::MusicSongInformation &info)
+{
+    m_info = info;
+    m_queryType = MusicAbstractQueryRequest::QueryType::Music;
+
+    m_ui->loadingLabel->run(true);
+    controlEnabled(true);
+    m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_artistName, info.m_songName), Qt::ElideRight, 200));
+
+    if(m_info.m_songProps.isEmpty())
+    {
+       close();
+       MusicToastLabel::popup(tr("No resource found"));
+    }
+    else
+    {
+       std::sort(m_info.m_songProps.begin(), m_info.m_songProps.end()); //to find out the min bitrate
+       addCellItems(m_info.m_songProps);
+    }
+}
+
 void MusicDownloadWidget::initialize(MusicAbstractQueryRequest *request, int row)
 {
     const TTK::MusicSongInformationList songInfos(request->items());
@@ -156,45 +193,6 @@ void MusicDownloadWidget::initialize(MusicAbstractQueryRequest *request, int row
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(m_info.m_artistName, m_info.m_songName), Qt::ElideRight, 200));
 
     TTK_SIGNLE_SHOT(downLoadRequestFinished, TTK_SLOT);
-}
-
-void MusicDownloadWidget::initialize(const QString &name, MusicAbstractQueryRequest::QueryType type)
-{
-    m_queryType = type;
-
-    if(!m_networkRequest)
-    {
-        m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadNormalFinished()));
-    }
-
-    m_ui->loadingLabel->run(true);
-    controlEnabled(true);
-    m_ui->downloadName->setText(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 200));
-
-    m_networkRequest->setQueryType(type);
-    m_networkRequest->startToSearch(name);
-}
-
-void MusicDownloadWidget::initialize(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
-{
-    m_info = info;
-    m_queryType = type;
-
-    m_ui->loadingLabel->run(true);
-    controlEnabled(true);
-    m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_artistName, info.m_songName), Qt::ElideRight, 200));
-
-    if(m_info.m_songProps.isEmpty())
-    {
-        close();
-        MusicToastLabel::popup(tr("No resource found"));
-    }
-    else
-    {
-        std::sort(m_info.m_songProps.begin(), m_info.m_songProps.end()); //to find out the min bitrate
-        addCellItems(m_info.m_songProps);
-    }
 }
 
 bool MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &info, int bitrate, QObject *parent)

@@ -325,7 +325,6 @@ void MusicArtistQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
     m_networkRequest->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     m_networkRequest->startToSearch(TTK::generateSongArtist(value));
 }
 

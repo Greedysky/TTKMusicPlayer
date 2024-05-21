@@ -28,20 +28,6 @@ void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *qu
     }
 }
 
-void MusicWebMVRadioInfoTableWidget::downloadQueryResult(int row)
-{
-    if(!isValid(row))
-    {
-        return;
-    }
-
-    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Movie);
-
-    MusicDownloadWidget *widget = new MusicDownloadWidget(this);
-    widget->initialize(m_networkRequest, row);
-    widget->show();
-}
-
 void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
 {
     MusicQueryTableWidget::itemCellClicked(row, column);
