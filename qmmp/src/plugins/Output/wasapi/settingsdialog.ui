@@ -7,8 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>290</width>
-    <height>134</height>
+    <height>135</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>290</width>
+    <height>135</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>290</width>
+    <height>135</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>WASAPI Plugin Settings</string>
@@ -106,32 +118,32 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>WASAPISettingsDialog</receiver>
+   <receiver>SettingsDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>179</x>
-     <y>51</y>
+     <x>144</x>
+     <y>116</y>
     </hint>
     <hint type="destinationlabel">
-     <x>274</x>
-     <y>2</y>
+     <x>144</x>
+     <y>66</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>WASAPISettingsDialog</receiver>
+   <receiver>SettingsDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>231</x>
-     <y>46</y>
+     <x>144</x>
+     <y>116</y>
     </hint>
     <hint type="destinationlabel">
-     <x>271</x>
-     <y>44</y>
+     <x>144</x>
+     <y>66</y>
     </hint>
    </hints>
   </connection>

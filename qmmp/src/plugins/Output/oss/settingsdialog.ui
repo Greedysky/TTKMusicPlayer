@@ -10,6 +10,18 @@
     <height>241</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>430</width>
+    <height>241</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>430</width>
+    <height>241</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>OSS Plugin Settings</string>
   </property>
