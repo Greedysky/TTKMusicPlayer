@@ -135,6 +135,11 @@ bool TTK::String::isCharValid(const QString &value)
 QString TTK::String::charactersReplace(const QString &value)
 {
     QString s(TTK::String::convertHtmlToPlain(value));
+    // convert to html is failed, use origin value
+    if(!value.isEmpty() && s.isEmpty())
+    {
+        s = value;
+    }
 
     for(const QString &ac : TTK::String::characters())
     {
