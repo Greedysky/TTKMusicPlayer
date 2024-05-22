@@ -48,6 +48,8 @@ static void parseSongPropertyOld(TTK::MusicSongInformation *info, int bitrate)
         }
     }
 
+    TTK_INFO_STREAM("parse song property in old module");
+
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
     ReqWYInterface::makeRequestRawHeader(&request);
@@ -95,6 +97,8 @@ static void parseSongPropertyNew(TTK::MusicSongInformation *info, int bitrate)
             return;
         }
     }
+
+    TTK_INFO_STREAM("parse song property in new module");
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
@@ -149,6 +153,8 @@ static void parseSongPropertyCGG(TTK::MusicSongInformation *info, int bitrate)
             return;
         }
     }
+
+    TTK_INFO_STREAM("parse song property in cgg module");
 
     TTK::MusicSongProperty prop;
     prop.m_bitrate = bitrate;

@@ -132,6 +132,8 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
 
     bool foundProp = false;
     {
+        TTK_INFO_STREAM("parse song property in old module");
+
         const QByteArray &key = TTK::Algorithm::md5(QString("%1kgcloudv2").arg(hash).toUtf8());
 
         QNetworkRequest request;
@@ -163,6 +165,8 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
 
     if(!foundProp)
     {
+        TTK_INFO_STREAM("parse song property in new module");
+
         const QString &mid = TTK::Algorithm::mdII("Wk51dktMOHJXUTdmM1VsVUVXTFM5RTlYQ05laDE0Z2lZMzFPL1M1VUJSaHd1N0kwRDQxdkpWVFJPZTQ9", false);
         const QString &sign = TTK::Algorithm::mdII("SVhlNmFTaWpqdVhYVTAwaHh4QllwRkFGSmJpY0VSZUhXQmQrV2Q4WHo0eXVCWm1zK1p0RkVRPT0=", false);
         const QString &user = "0";
