@@ -110,14 +110,12 @@ void MusicAbstractDownloadTableWidget::downloadProgressChanged(float percent, co
 
 void MusicAbstractDownloadTableWidget::createDownloadItem(const QString &name, qint64 time)
 {
-    QString musicName = name;
-    musicName.remove(TTK::String::musicDirPrefix());
-    musicName = TTK::String::pefix(musicName);
+    QFileInfo fin(name);
     setRowCount(rowCount() + 1);
 
     MusicSong record;
-    record.setName(musicName);
-    record.setPath(QFileInfo(name).absoluteFilePath());
+    record.setName(fin.completeBaseName());
+    record.setPath(fin.absoluteFilePath());
     record.setSizeStr("0.00M");
     record.setAddTimeStr(QString::number(time));
     m_songs->append(record);

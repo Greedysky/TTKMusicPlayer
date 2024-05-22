@@ -267,9 +267,26 @@ void MusicCloudManagerTableWidget::downloadFileFromServer()
     }
 
     const MusicCloudDataItem &data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
+    const QString &format = QFileInfo(data.m_dataItem.m_name).completeSuffix();
+    const QString &baseName = QFileInfo(data.m_dataItem.m_name).completeBaseName();
     const QString &url = m_syncDownloadData->downloadUrl(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
 
-    MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, TTK::String::musicDirPrefix() + data.m_dataItem.m_name, TTK::Download::Music, TTK::Record::CloudDownload, this);
+    int index = 1;
+    QString downloadPath;
+    QString fileName = baseName;
+
+    do
+    {
+        downloadPath = QString("%1%2.%3").arg(TTK::String::musicDirPrefix(), fileName, format);
+        if(!QFile::exists(downloadPath))
+        {
+            break;
+        }
+
+        fileName = baseName + QString("(%1)").arg(index++);
+    } while(index < 99);
+
+    MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, downloadPath, TTK::Download::Music, TTK::Record::CloudDownload, this);
     d->startToRequest();
 }
 

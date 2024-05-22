@@ -218,45 +218,38 @@ bool MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &i
     }
 
     const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
-    QString fileName = MusicRulesAnalysis::parse(info, G_SETTING_PTR->value(MusicSettingManager::DownloadFileNameRule).toString());
-    QString downloadPath = QString("%1%2.%3").arg(downloadPrefix, fileName, prop.m_format);
+    const QString &baseName = MusicRulesAnalysis::parse(info, G_SETTING_PTR->value(MusicSettingManager::DownloadFileNameRule).toString());
+
+    int index = 1;
+    QString downloadPath;
+    QString fileName = baseName;
+
+    do
+    {
+        downloadPath = QString("%1%2.%3").arg(downloadPrefix, fileName, prop.m_format);
+        if(!QFile::exists(downloadPath))
+        {
+            break;
+        }
+
+        fileName = baseName + QString("(%1)").arg(index++);
+    } while(index < 99);
 
     MusicDownloadRecordConfigManager manager;
-    if(!manager.fromFile(TTK::toString(TTK::Record::NormalDownload)))
+    if(manager.fromFile(TTK::toString(TTK::Record::NormalDownload)))
     {
-        return false;
-    }
+        MusicSongList records;
+        manager.readBuffer(records);
 
-    MusicSongList records;
-    manager.readBuffer(records);
+        MusicSong record;
+        record.setName(fileName);
+        record.setPath(QFileInfo(downloadPath).absoluteFilePath());
+        record.setSizeStr(prop.m_size);
+        record.setAddTimeStr("-1");
+        records << record;
 
-    MusicSong record;
-    record.setName(fileName);
-    record.setPath(QFileInfo(downloadPath).absoluteFilePath());
-    record.setSizeStr(prop.m_size);
-    record.setAddTimeStr("-1");
-    records << record;
-
-    manager.reset();
-    manager.writeBuffer(records);
-
-    if(QFile::exists(downloadPath))
-    {
-        for(int i = 1; i < 99; ++i)
-        {
-            if(!QFile::exists(downloadPath))
-            {
-                break;
-            }
-
-            if(i != 1)
-            {
-                fileName.chop(3);
-            }
-
-            fileName += QString("(%1)").arg(i);
-            downloadPath = QString("%1%2.%3").arg(downloadPrefix, fileName, prop.m_format);
-        }
+        manager.reset();
+        manager.writeBuffer(records);
     }
 
     MusicDownloadMetaDataRequest *d = new MusicDownloadMetaDataRequest(prop.m_url, downloadPath, parent);
