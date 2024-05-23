@@ -418,28 +418,12 @@ font-weight:bold;
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="showPerArea_21">
-   <property name="geometry">
-    <rect>
-     <x>64</x>
-     <y>68</y>
-     <width>41</width>
-     <height>261</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(230,115,0);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#35bfff;&quot;&gt;+16DB&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#35bfff;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#35bfff;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#35bfff;&quot;&gt;00DB&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#35bfff;&quot;&gt;&lt;br/&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#35bfff;&quot;&gt;-16DB&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="showPerArea_22">
    <property name="geometry">
     <rect>
-     <x>114</x>
+     <x>109</x>
      <y>309</y>
-     <width>20</width>
+     <width>30</width>
      <height>20</height>
     </rect>
    </property>
@@ -449,13 +433,16 @@ font-weight:bold;
    <property name="text">
     <string>80</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="showPerArea_23">
    <property name="geometry">
     <rect>
-     <x>154</x>
+     <x>149</x>
      <y>309</y>
-     <width>20</width>
+     <width>30</width>
      <height>20</height>
     </rect>
    </property>
@@ -465,13 +452,16 @@ font-weight:bold;
    <property name="text">
     <string>100</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="showPerArea_24">
    <property name="geometry">
     <rect>
-     <x>194</x>
+     <x>189</x>
      <y>309</y>
-     <width>20</width>
+     <width>30</width>
      <height>20</height>
     </rect>
    </property>
@@ -481,13 +471,16 @@ font-weight:bold;
    <property name="text">
     <string>125</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="showPerArea_25">
    <property name="geometry">
     <rect>
-     <x>234</x>
+     <x>229</x>
      <y>309</y>
-     <width>20</width>
+     <width>30</width>
      <height>20</height>
     </rect>
    </property>
@@ -497,13 +490,16 @@ font-weight:bold;
    <property name="text">
     <string>250</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="showPerArea_26">
    <property name="geometry">
     <rect>
-     <x>274</x>
+     <x>269</x>
      <y>309</y>
-     <width>20</width>
+     <width>30</width>
      <height>20</height>
     </rect>
    </property>
@@ -513,13 +509,16 @@ font-weight:bold;
    <property name="text">
     <string>500</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="showPerArea_27">
    <property name="geometry">
     <rect>
-     <x>314</x>
+     <x>309</x>
      <y>309</y>
-     <width>20</width>
+     <width>30</width>
      <height>20</height>
     </rect>
    </property>
@@ -529,13 +528,16 @@ font-weight:bold;
    <property name="text">
     <string>1k</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="showPerArea_28">
    <property name="geometry">
     <rect>
-     <x>354</x>
+     <x>349</x>
      <y>309</y>
-     <width>20</width>
+     <width>30</width>
      <height>20</height>
     </rect>
    </property>
@@ -545,13 +547,16 @@ font-weight:bold;
    <property name="text">
     <string>2k</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="showPerArea_29">
    <property name="geometry">
     <rect>
-     <x>394</x>
+     <x>389</x>
      <y>309</y>
-     <width>20</width>
+     <width>30</width>
      <height>20</height>
     </rect>
    </property>
@@ -561,13 +566,16 @@ font-weight:bold;
    <property name="text">
     <string>4k</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="showPerArea_30">
    <property name="geometry">
     <rect>
-     <x>434</x>
+     <x>429</x>
      <y>309</y>
-     <width>20</width>
+     <width>30</width>
      <height>20</height>
     </rect>
    </property>
@@ -577,13 +585,16 @@ font-weight:bold;
    <property name="text">
     <string>8k</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="showPerArea_31">
    <property name="geometry">
     <rect>
-     <x>474</x>
+     <x>469</x>
      <y>309</y>
-     <width>20</width>
+     <width>30</width>
      <height>20</height>
     </rect>
    </property>
@@ -592,6 +603,9 @@ font-weight:bold;
    </property>
    <property name="text">
     <string>16k</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QWidget" name="backgroundMask" native="true">
@@ -606,6 +620,63 @@ font-weight:bold;
    <property name="styleSheet">
     <string notr="true">background:white;</string>
    </property>
+   <widget class="QLabel" name="showPerArea_32">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>55</y>
+      <width>45</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:#35bfff;</string>
+    </property>
+    <property name="text">
+     <string>+16DB</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="showPerArea_33">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>160</y>
+      <width>45</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:#35bfff;</string>
+    </property>
+    <property name="text">
+     <string>00DB</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="showPerArea_34">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>260</y>
+      <width>45</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:#35bfff;</string>
+    </property>
+    <property name="text">
+     <string>-16DB</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
@@ -636,7 +707,6 @@ font-weight:bold;
   <zorder>showPerArea_15</zorder>
   <zorder>showPerArea_18</zorder>
   <zorder>showPerArea_20</zorder>
-  <zorder>showPerArea_21</zorder>
   <zorder>showPerArea_22</zorder>
   <zorder>showPerArea_23</zorder>
   <zorder>showPerArea_24</zorder>
