@@ -132,12 +132,12 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
 
     bool foundProp = false;
     {
-        TTK_INFO_STREAM("parse song property in old module");
+        TTK_INFO_STREAM("parse song property in v1 module");
 
         const QByteArray &key = TTK::Algorithm::md5(QString("%1kgcloudv2").arg(hash).toUtf8());
 
         QNetworkRequest request;
-        request.setUrl(TTK::Algorithm::mdII(KG_SONG_DETAIL_URL, false).arg(hash, key.constData()));
+        request.setUrl(TTK::Algorithm::mdII(KG_SONG_PATH_URL, false).arg(hash, key.constData()));
         ReqKGInterface::makeRequestRawHeader(&request);
 
         const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
@@ -165,7 +165,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
 
     if(!foundProp)
     {
-        TTK_INFO_STREAM("parse song property in new module");
+        TTK_INFO_STREAM("parse song property in v2 module");
 
         const QString &mid = TTK::Algorithm::mdII("Wk51dktMOHJXUTdmM1VsVUVXTFM5RTlYQ05laDE0Z2lZMzFPL1M1VUJSaHd1N0kwRDQxdkpWVFJPZTQ9", false);
         const QString &sign = TTK::Algorithm::mdII("SVhlNmFTaWpqdVhYVTAwaHh4QllwRkFGSmJpY0VSZUhXQmQrV2Q4WHo0eXVCWm1zK1p0RkVRPT0=", false);
@@ -173,7 +173,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
         const QByteArray &key = TTK::Algorithm::md5((hash + sign + mid + user).toUtf8());
 
         QNetworkRequest request;
-        request.setUrl(TTK::Algorithm::mdII(KG_SONG_DETAIL_OLD_URL, false).arg(mid, hash, user, key.constData()));
+        request.setUrl(TTK::Algorithm::mdII(KG_SONG_PATH_OLD_URL, false).arg(mid, hash, user, key.constData()));
         request.setRawHeader("x-router", TTK::Algorithm::mdII("MTJnUGtpL0hqWXhZQmlCNE9hVzVyREF0QXZmeVBNNVc=", false).toUtf8());
         ReqKGInterface::makeRequestRawHeader(&request);
 

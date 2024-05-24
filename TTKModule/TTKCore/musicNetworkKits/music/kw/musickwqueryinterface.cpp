@@ -44,7 +44,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info)
     TTK_INFO_STREAM("parse song property in cgg module");
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_SONG_DETAIL_CGG_URL, false).arg(info->m_songId));
+    request.setUrl(TTK::Algorithm::mdII(KW_SONG_PATH_CGG_URL, false).arg(info->m_songId));
     ReqKWInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
@@ -64,7 +64,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info)
 static void parseSongProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &bitrate, QString &url)
 {
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(info->m_songId, bitrate));
+    request.setUrl(TTK::Algorithm::mdII(KW_SONG_PATH_URL, false).arg(info->m_songId, bitrate));
     ReqKWInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
@@ -106,7 +106,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &su
         }
     }
 
-    TTK_INFO_STREAM("parse song property in old module");
+    TTK_INFO_STREAM("parse song property in v1 module");
 
     TTK::MusicSongProperty prop;
     prop.m_bitrate = bitrate;

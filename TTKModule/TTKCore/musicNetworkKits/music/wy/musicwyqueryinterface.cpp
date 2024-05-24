@@ -25,20 +25,55 @@ QString ReqWYInterface::makeCoverPixmapUrl(const QString &url)
     return url + TTK::Algorithm::mdII("dCt3T2JSbmJ2LzFuOUZBalAwTnUvNkRpc3dZPQ==", false);
 }
 
-QByteArray ReqWYInterface::makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type)
+QByteArray ReqWYInterface::makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &data, Crypto crypto)
 {
-    QAlgorithm::Aes aes;
-    QByteArray parameter = aes.encryptCBC(type.toUtf8(), "0CoJUm6Qyw8W8jud", "0102030405060708");
-    parameter = aes.encryptCBC(parameter, "a44e542eaac91dce", "0102030405060708");
-    TTK::Url::urlEncode(parameter);
+    switch(crypto)
+    {
+        case Crypto::Web:
+        {
+            QAlgorithm::Aes aes;
+            QByteArray param = aes.encryptCBC(data.toUtf8(), "0CoJUm6Qyw8W8jud", "0102030405060708");
+            param = aes.encryptCBC(param, "a44e542eaac91dce", "0102030405060708");
+            TTK::Url::urlEncode(param);
 
-    request->setUrl(query);
-    ReqWYInterface::makeRequestRawHeader(request);
+            request->setUrl(query);
+            ReqWYInterface::makeRequestRawHeader(request);
+            return "params=" + param + "&encSecKey=" + WY_SECKRY_STRING;
+        }
+        case Crypto::Linux:
+        {
+            QAlgorithm::Aes aes;
+            QByteArray param = aes.encryptECB(data.toUtf8(), "rFgB&h#%2?^eDg:Q");
+            TTK::Url::urlEncode(param);
 
-    return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING;
+            request->setUrl(query);
+            ReqWYInterface::makeRequestRawHeader(request);
+            return "eparams=" + param.toHex();
+        }
+        case Crypto::Client:
+        {
+            const QString &message = "nobody" + query + "use" + data + "md5forencrypt";
+            TTK_INFO_STREAM(message);
+            const QByteArray &digest = QCryptographicHash::hash(message.toUtf8(), QCryptographicHash::Md5).toHex();
+            TTK_INFO_STREAM(digest);
+            const QString &body = query + "-36cd479b6b5-" + data + "-36cd479b6b5-" + digest;
+     TTK_INFO_STREAM(body);
+            QAlgorithm::Aes aes;
+            QByteArray param = aes.encryptECB(body.toUtf8(), "e82ckenh8dichen8");
+            TTK::Url::urlEncode(param);
+
+            request->setUrl(query);
+            ReqWYInterface::makeRequestRawHeader(request);
+            return "params=" + param.toHex();
+        }
+        default:
+        {
+            return {};
+        }
+    }
 }
 
-static void parseSongPropertyOld(TTK::MusicSongInformation *info, int bitrate)
+static void parseSongPropertyV1(TTK::MusicSongInformation *info, int bitrate)
 {
     for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
     {
@@ -48,10 +83,10 @@ static void parseSongPropertyOld(TTK::MusicSongInformation *info, int bitrate)
         }
     }
 
-    TTK_INFO_STREAM("parse song property in old module");
+    TTK_INFO_STREAM("parse song property in v1 module");
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
+    request.setUrl(TTK::Algorithm::mdII(WY_SONG_PATH_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
     ReqWYInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
@@ -88,7 +123,7 @@ static void parseSongPropertyOld(TTK::MusicSongInformation *info, int bitrate)
     }
 }
 
-static void parseSongPropertyNew(TTK::MusicSongInformation *info, int bitrate)
+static void parseSongPropertyV2(TTK::MusicSongInformation *info, int bitrate)
 {
     for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
     {
@@ -98,7 +133,7 @@ static void parseSongPropertyNew(TTK::MusicSongInformation *info, int bitrate)
         }
     }
 
-    TTK_INFO_STREAM("parse song property in new module");
+    TTK_INFO_STREAM("parse song property in v2 module");
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
@@ -181,14 +216,14 @@ static void parseSongPropertyCGG(TTK::MusicSongInformation *info, int bitrate)
         return;
     }
 
-    prop.m_url = TTK::Algorithm::mdII(WY_SONG_DETAIL_CGG_URL, false).arg(info->m_songId, format);
+    prop.m_url = TTK::Algorithm::mdII(WY_SONG_PATH_CGG_URL, false).arg(info->m_songId, format);
     info->m_songProps.append(prop);
 }
 
 static void parseSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
-    parseSongPropertyOld(info, bitrate);
-    parseSongPropertyNew(info, bitrate);
+    parseSongPropertyV1(info, bitrate);
+    parseSongPropertyV2(info, bitrate);
     parseSongPropertyCGG(info, bitrate);
 }
 

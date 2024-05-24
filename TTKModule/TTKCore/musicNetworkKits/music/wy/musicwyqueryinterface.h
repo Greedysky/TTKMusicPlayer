@@ -35,10 +35,10 @@ static constexpr const char *WY_SONG_SEARCH_DATA_URL   = "enoyd2tlWk4xYk1JUUIraX
 static constexpr const char *WY_SONG_LRC_OLD_URL       = "eEZRWnA5eWZZZWFvakpnQ2F2Sml1aTZQa1crekFlZUJoTXUwRUgwekRtOXFsU2l2S1BKZFdwTUVaNGRzWUJ2ZTNpdlRDNnVuTUt2M0xtUTRsaWh2NTZBQ0JacnNTbXp6";
 static constexpr const char *WY_SONG_PATH_URL          = "M21IV2dlSHNzaE1zZEpyb2hrQ0dqVEY3Ly9DZ3ZteDM1RStuSlJIRVVCRTljbWJKKzRBVnNZY3JEcEZKY045dEJ5KzM0WHArSDVCYXhrMHBoZmlTZXBWdHIvND0=";
 static constexpr const char *WY_SONG_PATH_DATA_URL     = "ei9SdFJqZWlHWlh3eXBsWHJTS09FbUpRU1J4Zi9wZDlOQUMyVTVnL3c0YW9GSjVH";
-static constexpr const char *WY_SONG_INFO_OLD_URL      = "N2NkQWg4V3o0NXYvMlFHamVOWVZ5Y2NnTDk2cTNFdFVROVNwTndJV2REYXM0K01Yd2NIT1pwaGcyTGJ0QVVsNHVxT0lTZHFKNTI2QnlWMnVBWFNDdWYrb09Waz0=";
+static constexpr const char *WY_SONG_PATH_OLD_URL      = "N2NkQWg4V3o0NXYvMlFHamVOWVZ5Y2NnTDk2cTNFdFVROVNwTndJV2REYXM0K01Yd2NIT1pwaGcyTGJ0QVVsNHVxT0lTZHFKNTI2QnlWMnVBWFNDdWYrb09Waz0=";
+static constexpr const char *WY_SONG_PATH_CGG_URL      = "SnVoVFlqZ1dSa1BRYkVpQnA1SmtYL0toMUJyOWg3c0w4Snd5UVBMR0ptMU5PN3AzNkg3L2xDTEZpNUNEd1VjNi85WHYvQWRPc0RnY01Ba2o=";
 static constexpr const char *WY_SONG_INFO_URL          = "S3paVUxRY3hZVDVweWhJZFU0K0FpakhJc3R5YW1hbmpmRUVsL3JTRUdwcnlDdDlMWFJSR0ludFFPZ1MycWExVVlLNjg5Njh3VmV2cGxpQzE=";
 static constexpr const char *WY_SONG_INFO_DATA_URL     = "Zmh6cVNyd2REdlVlZ3JQVUZpNjd5YlBaYVR0SEQrWFAydVpzOWc9PQ==";
-static constexpr const char *WY_SONG_DETAIL_CGG_URL    = "SnVoVFlqZ1dSa1BRYkVpQnA1SmtYL0toMUJyOWg3c0w4Snd5UVBMR0ptMU5PN3AzNkg3L2xDTEZpNUNEd1VjNi85WHYvQWRPc0RnY01Ba2o=";
 ///artist url
 static constexpr const char *WY_ARTIST_URL             = "YmhRbVZDYy8rbytiRWc5cXc2MUVUdEFKRmw2eFhTVmhqWTZ6MmRVNEMzbVg0Q3BFQVF4d0VYUktBMk1aVUNVb3ZaNk5VL3BYRjBZPQ==";
 static constexpr const char *WY_ARTIST_INFO_URL        = "RnJtNVNTT01ncFI2cDJMRTMrSFFwWFBWVEEzQnZNYmg4TEJrRjZCeHorTE13aVNCNUxScGo2QzNzVUNKNzhKbkI2VjNKUT09";
@@ -79,6 +79,13 @@ class QNetworkRequest;
  */
 namespace ReqWYInterface
 {
+    enum class Crypto
+    {
+        Web,
+        Linux,
+        Client
+    };
+
     /*!
      * Make request query data.
      */
@@ -95,7 +102,7 @@ namespace ReqWYInterface
     /*!
      * Make token query request.
      */
-    QByteArray makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type);
+    QByteArray makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &data, Crypto crypto = Crypto::Web);
 
     /*!
      * Read tags(size and bitrate and url) from query results.
