@@ -167,6 +167,12 @@ static constexpr quint64 ARRAYLSMASK[] = {
     0x0000000000000000l, 0x0000000000100001l, 0x0000000000300003l
 };
 
+enum class Mode
+{
+    Encrypt = 0,
+    Decrypt = 1
+};
+
 /*! @brief The class of the des wrapper private.
  * @author Greedysky <greedysky@163.com>
  */
@@ -174,11 +180,11 @@ class DesPrivate : public TTKPrivate<Des>
 {
 public:
     quint64 bitTransform(const int *array, int len, quint64 source);
-    void desSubKeys(quint64 key, quint64* K, Des::Mode mode);
+    void desSubKeys(quint64 key, quint64* K, Mode mode);
     quint64 des64(quint64 *subkeys, quint64 data);
     char* encrypt(char *src, int length, char *key);
 
-    Des::Mode m_mode;
+    Mode m_mode;
 };
 
 quint64 DesPrivate::bitTransform(const int *array, int len, quint64 source)
@@ -196,7 +202,7 @@ quint64 DesPrivate::bitTransform(const int *array, int len, quint64 source)
     return dest;
 }
 
-void DesPrivate::desSubKeys(quint64 key, quint64* K, Des::Mode mode)
+void DesPrivate::desSubKeys(quint64 key, quint64* K, Mode mode)
 {
     quint64 temp = bitTransform(ARRAYPC_1, 56, key);
     for(int j = 0; j < 16; ++j)
@@ -206,7 +212,7 @@ void DesPrivate::desSubKeys(quint64 key, quint64* K, Des::Mode mode)
         K[j] = bitTransform(ARRAYPC_2, 64, temp);
     }
 
-    if(mode == Des::Mode::Decrypt)
+    if(mode == Mode::Decrypt)
     {
         quint64 t;
         for(int j = 0; j < 8; ++j)

@@ -34,12 +34,6 @@ class DesPrivate;
 class TTK_MODULE_EXPORT Des
 {
 public:
-    enum class Mode
-    {
-        Encrypt = 0,
-        Decrypt = 1
-    };
-    
     /*!
      * Object constructor.
      */

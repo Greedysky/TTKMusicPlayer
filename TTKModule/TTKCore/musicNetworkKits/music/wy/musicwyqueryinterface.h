@@ -33,9 +33,12 @@ static constexpr const char *WY_SECKRY_STRING          = "411571dca16717d9af5ef1
 static constexpr const char *WY_SONG_SEARCH_URL        = "STg2eHNFN0FLWnRzeDNlQXRlaHIvVlJ6b2k5a2s3Y2JmMG9lUEQzTytuNG5JenowY3ZleC9SbXFyak1ta29pYzA3dytZZz09";
 static constexpr const char *WY_SONG_SEARCH_DATA_URL   = "enoyd2tlWk4xYk1JUUIraXg5bzBUV2FvMTBvVWNVMWVxUmh2YUJqcVhoMW44cldwRldISVNqK09WVml0dDg4d2YwdllwZz09";
 static constexpr const char *WY_SONG_LRC_OLD_URL       = "eEZRWnA5eWZZZWFvakpnQ2F2Sml1aTZQa1crekFlZUJoTXUwRUgwekRtOXFsU2l2S1BKZFdwTUVaNGRzWUJ2ZTNpdlRDNnVuTUt2M0xtUTRsaWh2NTZBQ0JacnNTbXp6";
-static constexpr const char *WY_SONG_PATH_URL          = "M21IV2dlSHNzaE1zZEpyb2hrQ0dqVEY3Ly9DZ3ZteDM1RStuSlJIRVVCRTljbWJKKzRBVnNZY3JEcEZKY045dEJ5KzM0WHArSDVCYXhrMHBoZmlTZXBWdHIvND0=";
-static constexpr const char *WY_SONG_PATH_DATA_URL     = "ei9SdFJqZWlHWlh3eXBsWHJTS09FbUpRU1J4Zi9wZDlOQUMyVTVnL3c0YW9GSjVH";
-static constexpr const char *WY_SONG_PATH_OLD_URL      = "N2NkQWg4V3o0NXYvMlFHamVOWVZ5Y2NnTDk2cTNFdFVROVNwTndJV2REYXM0K01Yd2NIT1pwaGcyTGJ0QVVsNHVxT0lTZHFKNTI2QnlWMnVBWFNDdWYrb09Waz0=";
+static constexpr const char *WY_SONG_PATH_V1_URL       = "N2NkQWg4V3o0NXYvMlFHamVOWVZ5Y2NnTDk2cTNFdFVROVNwTndJV2REYXM0K01Yd2NIT1pwaGcyTGJ0QVVsNHVxT0lTZHFKNTI2QnlWMnVBWFNDdWYrb09Waz0=";
+static constexpr const char *WY_SONG_PATH_V2_URL       = "M21IV2dlSHNzaE1zZEpyb2hrQ0dqVEY3Ly9DZ3ZteDM1RStuSlJIRVVCRTljbWJKKzRBVnNZY3JEcEZKY045dEJ5KzM0WHArSDVCYXhrMHBoZmlTZXBWdHIvND0=";
+static constexpr const char *WY_SONG_PATH_V2_DATA_URL  = "ei9SdFJqZWlHWlh3eXBsWHJTS09FbUpRU1J4Zi9wZDlOQUMyVTVnL3c0YW9GSjVH";
+static constexpr const char *WY_SONG_PATH_V3_URL       = "cmNsdVp5dFI1TG5VMVg1N2w1bnZwOEx0TGlUazZuZ1JFMkg0dVcvS0ZKbExPL2d0UW9kT0RaZHNhMzFXcjZiVytiZmtLY2hvYjk0bVEyZDhWaldiTmx6V0pmaz0=";
+static constexpr const char *WY_SONG_PATH_V3_QUERY_URL = "OCtmZUdQbVRENjVqWGo5eERUbnlnQ3BsLzVoa3p5WnFxYnJKcWZ3K1NCQWtiS01p";
+static constexpr const char *WY_SONG_PATH_V3_DATA_URL  = "TDlnVTZReGNvWk9YTkFFdVF4bDJJcUk4K1BHRFU1N2I3eHlNNmwwYnIzcEVRdDZVelpRVEpRODNjTDVWdXprVEJtcENlNmFmUHZXYUNsdXkxSHV6elE9PQ==";
 static constexpr const char *WY_SONG_PATH_CGG_URL      = "SnVoVFlqZ1dSa1BRYkVpQnA1SmtYL0toMUJyOWg3c0w4Snd5UVBMR0ptMU5PN3AzNkg3L2xDTEZpNUNEd1VjNi85WHYvQWRPc0RnY01Ba2o=";
 static constexpr const char *WY_SONG_INFO_URL          = "S3paVUxRY3hZVDVweWhJZFU0K0FpakhJc3R5YW1hbmpmRUVsL3JTRUdwcnlDdDlMWFJSR0ludFFPZ1MycWExVVlLNjg5Njh3VmV2cGxpQzE=";
 static constexpr const char *WY_SONG_INFO_DATA_URL     = "Zmh6cVNyd2REdlVlZ3JQVUZpNjd5YlBaYVR0SEQrWFAydVpzOWc9PQ==";
@@ -79,13 +82,6 @@ class QNetworkRequest;
  */
 namespace ReqWYInterface
 {
-    enum class Crypto
-    {
-        Web,
-        Linux,
-        Client
-    };
-
     /*!
      * Make request query data.
      */
@@ -99,10 +95,15 @@ namespace ReqWYInterface
      * Make cover pixmap url.
      */
     QString makeCoverPixmapUrl(const QString &url);
+
     /*!
      * Make token query request.
      */
-    QByteArray makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &data, Crypto crypto = Crypto::Web);
+    QByteArray makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &data);
+    /*!
+     * Make token query request.
+     */
+    QByteArray makeTokenRequest(QNetworkRequest *request, const QString &url, const QString &query, const QString &data);
 
     /*!
      * Read tags(size and bitrate and url) from query results.

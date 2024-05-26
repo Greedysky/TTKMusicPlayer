@@ -35,20 +35,20 @@ public:
     /*!
      * Encrypt des ECB by input.
      */
-    QByteArray encryptECB(const QByteArray &in, const QByteArray &key);
+    QByteArray encryptECB(const QByteArray &in, const QByteArray &key, bool hex = false);
     /*!
      * Decrypt des ECB by input.
      */
-    QByteArray decryptECB(const QByteArray &in, const QByteArray &key);
+    QByteArray decryptECB(const QByteArray &in, const QByteArray &key, bool hex = false);
 
     /*!
      * Encrypt aes CBC by input.
      */
-    QByteArray encryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv);
+    QByteArray encryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv, bool hex = false);
     /*!
      * Decrypt aes CBC by input.
      */
-    QByteArray decryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv);
+    QByteArray decryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv, bool hex = false);
 
 };
 }

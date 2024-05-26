@@ -148,7 +148,6 @@ void MusicEqualizerDialog::initialize()
     m_ui->resetButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
-    TTK::Widget::setFontSize(m_ui->showPerArea_21, 9);
     TTK::Widget::setFontSize(m_ui->showPerArea_22, 9);
     TTK::Widget::setFontSize(m_ui->showPerArea_23, 9);
     TTK::Widget::setFontSize(m_ui->showPerArea_24, 9);
@@ -159,6 +158,9 @@ void MusicEqualizerDialog::initialize()
     TTK::Widget::setFontSize(m_ui->showPerArea_29, 9);
     TTK::Widget::setFontSize(m_ui->showPerArea_30, 9);
     TTK::Widget::setFontSize(m_ui->showPerArea_31, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_32, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_33, 9);
+    TTK::Widget::setFontSize(m_ui->showPerArea_34, 9);
 #endif
 }
 

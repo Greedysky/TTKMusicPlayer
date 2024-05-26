@@ -137,7 +137,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
         const QByteArray &key = TTK::Algorithm::md5(QString("%1kgcloudv2").arg(hash).toUtf8());
 
         QNetworkRequest request;
-        request.setUrl(TTK::Algorithm::mdII(KG_SONG_PATH_URL, false).arg(hash, key.constData()));
+        request.setUrl(TTK::Algorithm::mdII(KG_SONG_PATH_V1_URL, false).arg(hash, key.constData()));
         ReqKGInterface::makeRequestRawHeader(&request);
 
         const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
@@ -173,7 +173,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
         const QByteArray &key = TTK::Algorithm::md5((hash + sign + mid + user).toUtf8());
 
         QNetworkRequest request;
-        request.setUrl(TTK::Algorithm::mdII(KG_SONG_PATH_OLD_URL, false).arg(mid, hash, user, key.constData()));
+        request.setUrl(TTK::Algorithm::mdII(KG_SONG_PATH_V2_URL, false).arg(mid, hash, user, key.constData()));
         request.setRawHeader("x-router", TTK::Algorithm::mdII("MTJnUGtpL0hqWXhZQmlCNE9hVzVyREF0QXZmeVBNNVc=", false).toUtf8());
         ReqKGInterface::makeRequestRawHeader(&request);
 
