@@ -133,30 +133,24 @@ TTKString TTK::base64Decode(const TTKString &bytes)
 }
 
 
-TTKCryptographicHash::TTKCryptographicHash()
+QString TTKCryptographicHash::encrypt(const QString &data, const char *key)
 {
-
+    const TTKString &result = xxteaEncrypt(data.toStdString(), key);
+    return QString::fromStdString(TTK::base64Encode((const unsigned char *)result.c_str(), result.length()));
 }
 
-QString TTKCryptographicHash::encrypt(const QString &data, const QString &key)
+QString TTKCryptographicHash::decrypt(const QString &data, const char *key)
 {
-    return xxteaEncrypt(data, key).toUtf8().toBase64();
+    return QString::fromStdString(xxteaDecrypt(TTK::base64Decode(data.toStdString()), key));
 }
 
-QString TTKCryptographicHash::decrypt(const QString &data, const QString &key)
+TTKString TTKCryptographicHash::xxteaEncrypt(const TTKString &data, const char *key)
 {
-    return xxteaDecrypt(QByteArray::fromBase64(data.toUtf8()), key);
-}
-
-TTKString TTKCryptographicHash::xxteaEncrypt(const TTKString &data, const TTKString &key)
-{
-    const TTKString &raw = QString(QString(data.c_str()).toUtf8()).toStdString();
-
     uchar dataCopy[1024];
-    strcpy((char*)dataCopy, (const char *)raw.c_str());
+    strcpy((char*)dataCopy, (const char *)data.c_str());
 
     uchar keyCopy[1024];
-    strcpy((char*)keyCopy, (const char *)key.c_str());
+    strcpy((char*)keyCopy, key);
 
     xxtea_uint s[1];
     uchar *encrypt = xxteaEncrypt(dataCopy, strlen((const char *)dataCopy), keyCopy, strlen((const char *)keyCopy), s);
@@ -166,7 +160,7 @@ TTKString TTKCryptographicHash::xxteaEncrypt(const TTKString &data, const TTKStr
     return encode;
 }
 
-TTKString TTKCryptographicHash::xxteaDecrypt(const TTKString &data, const TTKString &key)
+TTKString TTKCryptographicHash::xxteaDecrypt(const TTKString &data, const char *key)
 {
     const TTKString &decode = TTK::base64Decode(data);
     if(decode.empty())
@@ -179,7 +173,7 @@ TTKString TTKCryptographicHash::xxteaDecrypt(const TTKString &data, const TTKStr
 
     dataCopy[decode.length()] = '\0';
     uchar keyCopy[1024];
-    strcpy((char*)keyCopy, (const char *)key.c_str());
+    strcpy((char*)keyCopy, key);
 
     xxtea_uint s[1];
     uchar *encrypt = xxteaDecrypt(dataCopy, decode.length(), keyCopy, strlen((const char *)keyCopy), s);
@@ -193,16 +187,6 @@ TTKString TTKCryptographicHash::xxteaDecrypt(const TTKString &data, const TTKStr
     free(encrypt);
 
     return raw;
-}
-
-QString TTKCryptographicHash::xxteaEncrypt(const QString &data, const QString &key)
-{
-    return xxteaEncrypt(data.toStdString(), key.toStdString()).c_str();
-}
-
-QString TTKCryptographicHash::xxteaDecrypt(const QString &data, const QString &key)
-{
-    return xxteaDecrypt(data.toStdString(), key.toStdString()).c_str();
 }
 
 void TTKCryptographicHash::xxteaUintEncrypt(xxtea_uint *v, xxtea_uint len, xxtea_uint *k)
@@ -224,6 +208,7 @@ void TTKCryptographicHash::xxteaUintEncrypt(xxtea_uint *v, xxtea_uint len, xxtea
             y = v[p + 1];
             z = v[p] += XXTEA_MX;
         }
+
         y = v[0];
         z = v[n] += XXTEA_MX;
     }
@@ -247,6 +232,7 @@ void TTKCryptographicHash::xxteaUintDecrypt(xxtea_uint *v, xxtea_uint len, xxtea
             z = v[p - 1];
             y = v[p] -= XXTEA_MX;
         }
+
         z = v[n];
         y = v[0] -= XXTEA_MX;
         sum -= XXTEA_DELTA;

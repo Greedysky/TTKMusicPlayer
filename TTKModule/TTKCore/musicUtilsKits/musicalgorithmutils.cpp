@@ -41,10 +41,10 @@ QByteArray TTK::Algorithm::hmacSha1(const QByteArray &data, const QByteArray &ke
 QString TTK::Algorithm::mdII(const QString &data, bool encode)
 {
     TTKCryptographicHash hash;
-    return encode ? hash.encrypt(data, ALG_URL_KEY) : hash.decrypt(data, ALG_URL_KEY);
+    return encode ? hash.encrypt(data, MDII_URL_KEY) : hash.decrypt(data, MDII_URL_KEY);
 }
 
-QString TTK::Algorithm::mdII(const QString &data, const QString &key, bool encode)
+QString TTK::Algorithm::mdII(const QString &data, const char *key, bool encode)
 {
     TTKCryptographicHash hash;
     return encode ? hash.encrypt(data, key) : hash.decrypt(data, key);

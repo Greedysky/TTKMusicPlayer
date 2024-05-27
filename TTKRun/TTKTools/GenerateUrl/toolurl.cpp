@@ -25,11 +25,11 @@ void ToolUrl::encodeClicked()
     QString key = m_ui->keyLineEdit->text().trimmed();
     if(key.isEmpty())
     {
-        key = ALG_URL_KEY;
+        key = MDII_URL_KEY;
     }
 
     QString input = m_ui->inputLineEdit->text().trimmed();
-    QString output = TTK::Algorithm::mdII(input, key, true);
+    QString output = TTK::Algorithm::mdII(input, key.toStdString().c_str(), true);
     m_ui->outPutLineEdit->setText(output);
 }
 
@@ -38,10 +38,10 @@ void ToolUrl::decodeClicked()
     QString key = m_ui->keyLineEdit->text().trimmed();
     if(key.isEmpty())
     {
-        key = ALG_URL_KEY;
+        key = MDII_URL_KEY;
     }
 
     QString input = m_ui->inputLineEdit->text().trimmed();
-    QString output = TTK::Algorithm::mdII(input, key, false);
+    QString output = TTK::Algorithm::mdII(input, key.toStdString().c_str(), false);
     m_ui->outPutLineEdit->setText(output);
 }

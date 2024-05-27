@@ -134,15 +134,15 @@ void MusicSongSharingWidget::sendToShare(const QString &playUrl, const QString &
     QString url;
     if(m_ui->qqButton->isChecked())
     {
-        url = QString(TTK::Algorithm::mdII(QQ_SHARE, ALG_SHR_KEY, false)).arg(playUrl, m_ui->textEdit->toPlainText(), imageUrl, m_ui->sharedName->text(), tr("TTKMusicPlayer"));
+        url = QString(TTK::Algorithm::mdII(QQ_SHARE, MDII_SHR_KEY, false)).arg(playUrl, m_ui->textEdit->toPlainText(), imageUrl, m_ui->sharedName->text(), tr("TTKMusicPlayer"));
     }
     else if(m_ui->qqspaceButton->isChecked())
     {
-        url = QString(TTK::Algorithm::mdII(QZONE_SHARE, ALG_SHR_KEY, false)).arg(playUrl, tr("TTKMusicPlayer"), imageUrl, m_ui->textEdit->toPlainText());
+        url = QString(TTK::Algorithm::mdII(QZONE_SHARE, MDII_SHR_KEY, false)).arg(playUrl, tr("TTKMusicPlayer"), imageUrl, m_ui->textEdit->toPlainText());
     }
     else if(m_ui->sinaButton->isChecked())
     {
-        url = QString(TTK::Algorithm::mdII(SINA_SHARE, ALG_SHR_KEY, false)).arg(playUrl, imageUrl, m_ui->textEdit->toPlainText());
+        url = QString(TTK::Algorithm::mdII(SINA_SHARE, MDII_SHR_KEY, false)).arg(playUrl, imageUrl, m_ui->textEdit->toPlainText());
     }
     else if(m_ui->weixingButton->isChecked())
     {
@@ -166,15 +166,15 @@ void MusicSongSharingWidget::sendToShare(const QString &a, const QString &b, con
     QString url;
     if(m_data.m_server == QUERY_WY_INTERFACE)
     {
-        url = TTK::Algorithm::mdII(a, ALG_SHR_KEY, false).arg(m_data.m_id);
+        url = TTK::Algorithm::mdII(a, MDII_SHR_KEY, false).arg(m_data.m_id);
     }
     else if(m_data.m_server == QUERY_KG_INTERFACE)
     {
-        url = TTK::Algorithm::mdII(b, ALG_SHR_KEY, false).arg(m_data.m_id);
+        url = TTK::Algorithm::mdII(b, MDII_SHR_KEY, false).arg(m_data.m_id);
     }
     else if(m_data.m_server == QUERY_KW_INTERFACE)
     {
-        url = TTK::Algorithm::mdII(c, ALG_SHR_KEY, false).arg(m_data.m_id);
+        url = TTK::Algorithm::mdII(c, MDII_SHR_KEY, false).arg(m_data.m_id);
     }
     else
     {

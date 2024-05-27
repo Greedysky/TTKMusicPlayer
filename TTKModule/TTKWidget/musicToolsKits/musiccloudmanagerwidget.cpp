@@ -693,7 +693,7 @@ void MusicCloudManagerWidget::resizeWidget()
 void MusicCloudManagerWidget::updataSizeLabel(qint64 size)
 {
     m_sizeValueLabel->setText(QString("%1/40.0G").arg(TTK::Number::sizeByteToLabel(size)));
-    m_sizeValueBar->setValue(size * TTK_RN_MAX / (10 * TTK_SN_GB2B));
+    m_sizeValueBar->setValue(size * TTK_RN_MAX / (40 * TTK_SN_GB2B));
 }
 
 void MusicCloudManagerWidget::downloadFileFromServer()

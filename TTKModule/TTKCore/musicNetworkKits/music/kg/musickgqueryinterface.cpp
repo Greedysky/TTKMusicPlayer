@@ -3,7 +3,7 @@
 
 void ReqKGInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
-    request->setRawHeader("User-Agent", TTK::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
+    request->setRawHeader("User-Agent", TTK::Algorithm::mdII(KG_UA_URL, MDII_UA_KEY, false).toUtf8());
     TTK::setSslConfiguration(request);
     TTK::makeContentTypeHeader(request);
 }

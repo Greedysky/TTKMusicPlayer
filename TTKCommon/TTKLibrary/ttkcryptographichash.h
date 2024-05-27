@@ -41,37 +41,23 @@ class TTK_MODULE_EXPORT TTKCryptographicHash
     TTK_DECLARE_MODULE(TTKCryptographicHash)
 public:
     /*!
-     * Object constructor.
-     */
-    TTKCryptographicHash();
-
-    /*!
      * encrypt by QString data.
      */
-    QString encrypt(const QString &data, const QString &key);
+    QString encrypt(const QString &data, const char *key);
     /*!
      * decrypt by QString data.
      */
-    QString decrypt(const QString &data, const QString &key);
+    QString decrypt(const QString &data, const char *key);
 
 private:
     /*!
      * XXTEA encrypt by TTKString data.
      */
-    TTKString xxteaEncrypt(const TTKString &data, const TTKString &key);
-    /*!
-     * XXTEA encrypt by QString data.
-     */
-    QString xxteaEncrypt(const QString &data, const QString &key);
-
+    TTKString xxteaEncrypt(const TTKString &data, const char *key);
     /*!
      * XXTEA decrypt by TTKString data.
      */
-    TTKString xxteaDecrypt(const TTKString &data, const TTKString &key);
-    /*!
-     * XXTEA decrypt by QString data.
-     */
-    QString xxteaDecrypt(const QString &data, const QString &key);
+    TTKString xxteaDecrypt(const TTKString &data, const char *key);
 
     /*!
      * Do XXTEA encrypt.

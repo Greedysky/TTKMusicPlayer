@@ -21,9 +21,9 @@
 
 #include "musicglobaldefine.h"
 
-static constexpr const char *ALG_UA_KEY  = "ua11.25.17";
-static constexpr const char *ALG_URL_KEY = "GREEDYSKY";
-static constexpr const char *ALG_SHR_KEY = "123asd";
+static constexpr const char *MDII_UA_KEY  = "ua11.25.17";
+static constexpr const char *MDII_URL_KEY = "GREEDYSKY";
+static constexpr const char *MDII_SHR_KEY = "123asd";
 
 /*! @brief The namespace of the utils algorithm.
  * @author Greedysky <greedysky@163.com>
@@ -46,13 +46,13 @@ namespace TTK
         TTK_MODULE_EXPORT QByteArray hmacSha1(const QByteArray &data, const QByteArray &key);
 
         /*!
-         * Get mdII(greedysky) algorithm.
+         * Get mdII ttk algorithm.
          */
         TTK_MODULE_EXPORT QString mdII(const QString &data, bool encode);
         /*!
-         * Get mdII(greedysky) algorithm.
+         * Get mdII ttk algorithm.
          */
-        TTK_MODULE_EXPORT QString mdII(const QString &data, const QString &key, bool encode);
+        TTK_MODULE_EXPORT QString mdII(const QString &data, const char *key, bool encode);
 
     }
 }

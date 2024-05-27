@@ -3,19 +3,6 @@
 
 static constexpr int DATA_CACHE_SIZE = 1024;
 
-QByteArray PKCS7Padding(const QByteArray &in, int alignSize)
-{
-    // 计算需要填充字节数（按alignSize字节对齐进行填充）
-    int remainder = in.size() % alignSize;
-    int paddingSize = (remainder == 0) ? alignSize : (alignSize - remainder);
-
-    // 进行填充
-    QByteArray temp(in);
-    temp.append(paddingSize, paddingSize);
-    return temp;
-}
-
-
 QByteArray QAlgorithm::Aes::encryptECB(const QByteArray &in, const QByteArray &key, bool hex)
 {
     AES_KEY aes;
@@ -27,7 +14,6 @@ QByteArray QAlgorithm::Aes::encryptECB(const QByteArray &in, const QByteArray &k
     const int remd = in.size() % AES_BLOCK_SIZE;
     const int number = (remd == 0) ? AES_BLOCK_SIZE : (AES_BLOCK_SIZE - remd);
 
-    // 进行填充
     QByteArray buffer(in);
     buffer.append(number, number);
     QByteArray result(buffer.size(), '0');
