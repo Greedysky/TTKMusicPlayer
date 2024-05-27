@@ -15,10 +15,13 @@ QByteArray QAlgorithm::Aes::encryptECB(const QByteArray &in, const QByteArray &k
     const int number = (remd == 0) ? AES_BLOCK_SIZE : (AES_BLOCK_SIZE - remd);
 
     QByteArray buffer(in);
-    buffer.append(number, number);
+    for(int i = 0; i < number; ++i)
+    {
+        buffer.append(number);
+    }
     QByteArray result(buffer.size(), '0');
 
-    for (int i = 0; i < buffer.length() / AES_BLOCK_SIZE; i++)
+    for(int i = 0; i < buffer.length() / AES_BLOCK_SIZE; ++i)
     {
         AES_ecb_encrypt((const unsigned char*)buffer.data() + AES_BLOCK_SIZE * i,
                         (unsigned char*)result.data() + AES_BLOCK_SIZE * i,
@@ -40,7 +43,7 @@ QByteArray QAlgorithm::Aes::decryptECB(const QByteArray &in, const QByteArray &k
     const QByteArray &buffer = hex ? QByteArray::fromHex(in) : QByteArray::fromBase64(in);
     QByteArray result(buffer.length(), '0');
 
-    for (int i = 0; i < buffer.length() / AES_BLOCK_SIZE; i++)
+    for(int i = 0; i < buffer.length() / AES_BLOCK_SIZE; ++i)
     {
         AES_ecb_encrypt((const unsigned char*)buffer.data() + AES_BLOCK_SIZE * i,
                         (unsigned char*)result.data() + AES_BLOCK_SIZE * i,
