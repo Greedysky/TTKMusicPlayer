@@ -7204,22 +7204,22 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="119"/>
         <source>FMRadio</source>
-        <translation>FM電台</translation>
+        <translation>私人漫遊</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="120"/>
         <source>TKRadio</source>
-        <translation>TK電台</translation>
+        <translation>私人電台</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="121"/>
         <source>DJRadio</source>
-        <translation>DJ電台</translation>
+        <translation>主播電台</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="122"/>
         <source>MVRadio</source>
-        <translation>MV電台</translation>
+        <translation>視頻電台</translation>
     </message>
 </context>
 <context>

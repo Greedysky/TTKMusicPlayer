@@ -107,9 +107,8 @@ void MusicPlaylistFoundCategoryPopWidget::initialize()
     setObjectName(className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), style));
 
+    m_menu->setStyleSheet(TTK::UI::MenuStyle04);
     m_containWidget->setFixedSize(600, 370);
     m_containWidget->setObjectName("ContainWidget");
     m_containWidget->setStyleSheet(QString("#%1{ %2 }").arg(m_containWidget->objectName(), style));
-
-    m_menu->setStyleSheet(TTK::UI::MenuStyle04);
 }

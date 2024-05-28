@@ -66,7 +66,7 @@ namespace TTK
         static constexpr const char *TinyBtnWallpaperOff = " \
             QPushButton{ border:none; \
             background-image:url(:/tiny/btn_wallpaper_off_normal); } \
-            QPushButton:hover{ background-image:url(:/tiny/btn_wallpaper_off_hover); }";
+            QPushButton:hover{ background-image:url(:/tiny/btn_wallpaper_on_normal); }";
 
         static constexpr const char *TinyBtnLrcOff = " \
             QPushButton{ border:none; \

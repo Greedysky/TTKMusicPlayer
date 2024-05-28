@@ -49,7 +49,8 @@ void MusicPlayBackModePopWidget::setPlaybackMode(TTK::PlayMode mode)
 void MusicPlayBackModePopWidget::initialize()
 {
     setTranslucentBackground();
-    m_containWidget->setFixedSize(140, 160);
+
+    m_containWidget->setFixedSize(110, 160);
     m_menu->removeAction(m_menu->actions().front());
     m_menu->addAction(QIcon(":/functions/btn_once_hover"), tr("Play Once"), MusicApplication::instance(), SLOT(playOnce()));
     m_menu->addAction(QIcon(":/functions/btn_one_loop_hover"), tr("Single Cycle"), MusicApplication::instance(), SLOT(playOneLoop()));

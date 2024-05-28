@@ -110,6 +110,7 @@ void MusicRemoteWidgetForStrip::windowStateChanged()
 {
     const bool f = m_windowStateButton->styleSheet().contains("collapse");
     setFixedHeight(f ? 50 : 80);
+
     m_bottomWidget->setVisible(!f);
     m_windowStateButton->setStyleSheet(f ? TTK::UI::TinyBtnExpand : TTK::UI::TinyBtnCollapse);
     m_windowStateButton->setToolTip(f ? tr("Expand") : tr("Collapse"));
@@ -118,6 +119,7 @@ void MusicRemoteWidgetForStrip::windowStateChanged()
 void MusicRemoteWidgetForStrip::contextMenuEvent(QContextMenuEvent *event)
 {
     TTKAbstractMoveWidget::contextMenuEvent(event);
+
     QMenu menu(this);
     menu.setWindowFlags(menu.windowFlags() | Qt::FramelessWindowHint);
     menu.setAttribute(Qt::WA_TranslucentBackground);

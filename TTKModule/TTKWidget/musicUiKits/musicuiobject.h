@@ -348,7 +348,8 @@ namespace TTK
             QMenu::item{ color:#BBBBBB; } \
             QMenu::item:disabled{ color:#555555; } \
             QMenu::item:selected{ background:rgba(0, 0, 0, 200); } \
-            QMenu::separator{ background:#BBBBBB; }";
+            QMenu::separator{ background:#BBBBBB; } \
+            QMenu::item::icon{ padding:6px 10px 6px 10px; }";
 
         static const QString MenuStyle04 = " \
             QMenu{ border:none; background:transparent; }";

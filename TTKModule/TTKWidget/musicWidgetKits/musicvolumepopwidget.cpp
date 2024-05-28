@@ -76,6 +76,7 @@ void MusicVolumePopWidget::timeToReset()
 void MusicVolumePopWidget::initialize()
 {
     setTranslucentBackground();
+
     m_containWidget->setFixedSize(20, 100);
     QHBoxLayout *layout = new QHBoxLayout(m_containWidget);
     layout->setContentsMargins(0, 9, 0, 9);

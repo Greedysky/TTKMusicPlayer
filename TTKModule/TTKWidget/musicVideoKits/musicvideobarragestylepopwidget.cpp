@@ -127,6 +127,7 @@ void MusicVideoBarrageStylePopWidget::barrageColorButtonClicked(int index)
 void MusicVideoBarrageStylePopWidget::initialize()
 {
     setTranslucentBackground();
+
     m_containWidget->setFixedSize(200, 85);
     QVBoxLayout *containLayout = new QVBoxLayout(m_containWidget);
     //

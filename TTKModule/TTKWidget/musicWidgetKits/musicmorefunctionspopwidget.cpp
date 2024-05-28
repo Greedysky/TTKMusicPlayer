@@ -29,7 +29,8 @@ void MusicMoreFunctionsPopWidget::functionClicked(QAction *index)
 void MusicMoreFunctionsPopWidget::initialize()
 {
     setTranslucentBackground();
-    m_containWidget->setFixedSize(140, 190);
+
+    m_containWidget->setFixedSize(110, 190);
     m_menu->removeAction(m_menu->actions().front());
 
     QActionGroup *group = new QActionGroup(this);
