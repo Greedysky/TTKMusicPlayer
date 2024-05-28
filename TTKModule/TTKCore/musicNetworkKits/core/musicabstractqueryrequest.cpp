@@ -63,7 +63,7 @@ bool MusicAbstractQueryRequest::findUrlPathSize(TTK::MusicSongProperty *prop, co
 {
     if(!prop->m_size.isEmpty() && prop->m_size != TTK_DEFAULT_STR)
     {
-        return false;
+        return true;
     }
 
     if(prop->m_bitrate != -1 && !duration.isEmpty() && duration != TTK_DEFAULT_STR)
@@ -83,10 +83,7 @@ bool MusicAbstractQueryRequest::findUrlPathSize(TTK::MusicSongPropertyList *prop
 {
     for(int i = 0; i < props->count(); ++i)
     {
-        if(!findUrlPathSize(&(*props)[i], duration))
-        {
-            return false;
-        }
+        findUrlPathSize(&(*props)[i], duration);
     }
     return true;
 }
