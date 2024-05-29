@@ -47,7 +47,7 @@ void MusicToolMenuWidget::setTranslucentBackground()
 {
     m_menu->setWindowFlags(m_menu->windowFlags() | Qt::FramelessWindowHint);
     m_menu->setAttribute(Qt::WA_TranslucentBackground);
-    m_menu->setStyleSheet(TTK::UI::MenuStyle03);
+    m_menu->setStyleSheet(TTK::UI::MenuStyle04);
 }
 
 void MusicToolMenuWidget::popupMenu()

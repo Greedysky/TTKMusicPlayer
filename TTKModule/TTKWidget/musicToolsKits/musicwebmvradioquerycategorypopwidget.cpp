@@ -107,7 +107,7 @@ void MusicWebMVRadioQueryCategoryPopWidget::initialize()
     setObjectName(className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), style));
 
-    m_menu->setStyleSheet(TTK::UI::MenuStyle04);
+    m_menu->setStyleSheet(TTK::UI::MenuStyle05);
     m_containWidget->setFixedSize(480, 200);
     m_containWidget->setObjectName("ContainWidget");
     m_containWidget->setStyleSheet(QString("#%1{ %2 }").arg(m_containWidget->objectName(), style));

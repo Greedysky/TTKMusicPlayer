@@ -77,9 +77,10 @@ namespace TTK
         static const QString BackgroundStyle01 = " \
             background-color:transparent; " +
 #ifdef Q_OS_UNIX
-            QString("border-style:falt;") +
-#endif
+            QString("border-style:falt;");
+#else
             QString();
+#endif
 
         static const QString BackgroundStyle02 = " \
             background-color:rgb(0, 0, 0);";
@@ -163,9 +164,10 @@ namespace TTK
         static const QString ToolButtonStyle01 = " \
             QToolButton{ background-color:transparent; " +
 #ifdef Q_OS_UNIX
-            QString("border-style:falt;") +
-#endif
+            QString("border-style:falt; }");
+#else
             QString("}");
+#endif
 
         static const QString ToolButtonStyle02 = " \
             QToolButton::hover{ border:1px solid #000000; }";
@@ -185,9 +187,10 @@ namespace TTK
         static const QString PushButtonStyle01 = " \
             QPushButton{ background-color:transparent; " +
 #ifdef Q_OS_UNIX
-            QString("border-style:falt;") +
-#endif
+            QString("border-style:falt; }");
+#else
             QString("}");
+#endif
 
         static const QString PushButtonStyle02 = PushButtonStyle01 + " \
             QPushButton{ border-none; }";
@@ -331,14 +334,15 @@ namespace TTK
             QMenu::item:selected{ color:white; background: rgb(22, 154, 243); } \
             QMenu::separator{ height:1px; background:#DDDDDD; margin-top:5px; margin-bottom:5px; }" +
 #if TTK_QT_VERSION_CHECK(5,12,0)
-            QString("QMenu::item{ padding:6px 30px 6px 10px; } "
+            QString("QMenu::item{ padding:6px 30px 6px 10px; } ") +
 #  ifdef Q_OS_UNIX
-                    "QMenu::item::icon{ padding:6px 40px 6px 10px; }") +
+            QString("QMenu::item::icon{ padding:6px 40px 6px 10px; }");
 #  else
-                    "QMenu::item::icon{ padding:6px 30px 6px 10px; }") +
+            QString("QMenu::item::icon{ padding:6px 30px 6px 10px; }");
 #  endif
-#endif
+#else
             QString();
+#endif
 
         static const QString MenuStyle02 = MenuStyle01 + " \
             QMenu{ background:rgba(255, 255, 255, 235); }";
@@ -351,7 +355,14 @@ namespace TTK
             QMenu::separator{ background:#BBBBBB; } \
             QMenu::item::icon{ padding:6px 10px 6px 10px; }";
 
-        static const QString MenuStyle04 = " \
+        static const QString MenuStyle04 = MenuStyle03 +
+#if !TTK_QT_VERSION_CHECK(5,12,0)
+            QString("QMenu::item::icon{ padding:6px 10px 6px 30px; }");
+#else
+            QString();
+#endif
+
+        static const QString MenuStyle05 = " \
             QMenu{ border:none; background:transparent; }";
 
         ///Slider

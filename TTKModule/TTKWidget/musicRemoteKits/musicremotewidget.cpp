@@ -191,7 +191,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     menu.setWindowFlags(menu.windowFlags() | Qt::FramelessWindowHint);
     menu.setAttribute(Qt::WA_TranslucentBackground);
-    menu.setStyleSheet(TTK::UI::MenuStyle03);
+    menu.setStyleSheet(TTK::UI::MenuStyle04);
     menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
     menu.addAction(tr("Show MainWindow"), this, SIGNAL(showMainWindow()));
     menu.addSeparator();
