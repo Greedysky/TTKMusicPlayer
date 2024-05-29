@@ -187,15 +187,6 @@ QWidget* MusicBackgroundOnlineWidget::createFunctionsWidget(bool revert, QWidget
         m_typeBox->hide();
         TTK::Widget::generateComboBoxFormat(m_typeBox);
 
-        m_allButton = new QPushButton(tr("All"), m_functionsWidget);
-        m_allButton->setStyleSheet(TTK::UI::PushButtonStyle02 + QString("QPushButton{ %1 }").arg(TTK::UI::ColorStyle07));
-        m_allButton->setCursor(QCursor(Qt::PointingHandCursor));
-        m_allButton->setFixedSize(35, 20);
-#ifdef Q_OS_UNIX
-        m_allButton->setFocusPolicy(Qt::NoFocus);
-#endif
-        m_allButton->hide();
-
         m_functionsWidget->setLayout(hbox);
         connect(m_typeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTypeChanged(int)));
     }
@@ -204,15 +195,11 @@ QWidget* MusicBackgroundOnlineWidget::createFunctionsWidget(bool revert, QWidget
     if(revert)
     {
         layout->removeWidget(m_typeBox);
-        layout->addWidget(m_allButton);
-        m_allButton->show();
         m_typeBox->hide();
     }
     else
     {
-        layout->removeWidget(m_allButton);
         layout->addWidget(m_typeBox);
-        m_allButton->hide();
         m_typeBox->show();
     }
 
@@ -258,6 +245,7 @@ void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroupLis
 {
     MusicBackgroundRemoteWidget::downLoadFinished(bytes);
     m_typeBox->blockSignals(true);
+
     for(int i = 0; i < bytes.count(); ++i)
     {
         QString title(m_groups[i].m_group);

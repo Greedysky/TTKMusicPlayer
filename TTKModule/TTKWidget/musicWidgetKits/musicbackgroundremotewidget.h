@@ -156,7 +156,6 @@ public Q_SLOTS:
 
 private:
     QWidget *m_functionsWidget;
-    QPushButton *m_allButton;
     QComboBox *m_typeBox;
 
 };

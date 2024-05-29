@@ -87,14 +87,14 @@ MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
 QPixmap MusicBackgroundSkinDialog::setBackgroundUrl(QString &name)
 {
     QString path = USER_THEME_DIR_FULL + name + TKM_FILE;
-    MusicBackgroundSkinDialog::themeValidCheck(name, path);
+    MusicBackgroundSkinDialog::themeIsValid(name, path);
     G_BACKGROUND_PTR->setBackgroundUrl(path);
 
     MusicBackgroundImage image;
     return MusicExtractWrapper::outputSkin(&image, path) ? image.m_pix : QPixmap();
 }
 
-bool MusicBackgroundSkinDialog::themeValidCheck(QString &name, QString &path)
+bool MusicBackgroundSkinDialog::themeIsValid(QString &name, QString &path)
 {
     if(!QFile::exists(path))
     {
@@ -124,7 +124,7 @@ void MusicBackgroundSkinDialog::updateArtistFileTheme(const QString &theme)
 {
     const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL, theme, TKM_FILE);
     m_stackBackgroundList->addCellItem(theme, des, true);
-    m_stackBackgroundList->updateLastedItem();
+    m_stackBackgroundList->updateLastItem();
 }
 
 void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, int skin, int list)
@@ -173,7 +173,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog()
 void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
 {
     cpoyFileFromLocal(path);
-    m_stackBackgroundList->updateLastedItem();
+    m_stackBackgroundList->updateLastItem();
 }
 
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
@@ -199,7 +199,8 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
     {
         cpoyFileFromLocal(path);
     }
-    m_stackBackgroundList->updateLastedItem();
+
+    m_stackBackgroundList->updateLastItem();
 }
 
 void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
@@ -243,6 +244,7 @@ void MusicBackgroundSkinDialog::classicalListWidgetItemClicked(int type, const Q
             QFile::copy(QString("%1%2%3").arg(THEME_DIR_FULL, name, TKM_FILE), path);
             m_stackBackgroundList->addCellItem(name, path, true);
         }
+
         listWidgetItemClicked(m_stackBackgroundList, name);
     }
     else
@@ -296,7 +298,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget 
 
     QString s(name);
     QString path = USER_THEME_DIR_FULL + s + TKM_FILE;
-    MusicBackgroundSkinDialog::themeValidCheck(s, path);
+    MusicBackgroundSkinDialog::themeIsValid(s, path);
 
     G_BACKGROUND_PTR->setBackgroundUrl(path);
     G_BACKGROUND_PTR->backgroundUrlChanged();
@@ -306,6 +308,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidge
 {
     MusicBackgroundImage image;
     item->outputRemoteSkin(image, name);
+
     if(!image.isValid())
     {
         return;

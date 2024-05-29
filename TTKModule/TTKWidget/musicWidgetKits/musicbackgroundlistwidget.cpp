@@ -285,7 +285,7 @@ MusicBackgroundListItem* MusicBackgroundListWidget::find(const MusicBackgroundIm
     return nullptr;
 }
 
-void MusicBackgroundListWidget::updateLastedItem()
+void MusicBackgroundListWidget::updateLastItem()
 {
     if(!m_items.isEmpty())
     {

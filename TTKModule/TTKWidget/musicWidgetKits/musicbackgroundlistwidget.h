@@ -214,9 +214,9 @@ public:
     MusicBackgroundListItem* find(const MusicBackgroundImage &image) const;
 
     /*!
-     * Update lasted item state.
+     * Update last item state.
      */
-    void updateLastedItem();
+    void updateLastItem();
 
     /*!
      * Item count.

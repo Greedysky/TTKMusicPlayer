@@ -52,9 +52,9 @@ public:
      */
     static QPixmap setBackgroundUrl(QString &name);
     /*!
-     * Theme valid check.
+     * Theme is valid check.
      */
-    static bool themeValidCheck(QString &name, QString &path);
+    static bool themeIsValid(QString &name, QString &path);
     /*!
      * Copy art file to local themes dir path.
      */

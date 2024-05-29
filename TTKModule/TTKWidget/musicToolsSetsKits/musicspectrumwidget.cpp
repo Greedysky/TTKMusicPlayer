@@ -169,12 +169,38 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
             bool state = true;
             switch(type.m_type)
             {
-                case MusicSpectrum::Module::Normal: createSpectrumWidget(MusicSpectrum::Module::Normal, state, type.m_module, m_spectrumLayout); break;
-                case MusicSpectrum::Module::Plus: createSpectrumWidget(MusicSpectrum::Module::Plus, state, type.m_module, m_spectrumLayout); break;
-                case MusicSpectrum::Module::Wave: createSpectrumWidget(MusicSpectrum::Module::Wave, state, type.m_module, m_spectrumLayout); break;
-                case MusicSpectrum::Module::Flow: createFlowWidget(MusicSpectrum::Module::Flow, state, type.m_module, m_spectrumLayout); break;
-                case MusicSpectrum::Module::Florid: createFloridWidget(MusicSpectrum::Module::Florid, state, type.m_module, m_spectrumLayout); break;
-                case MusicSpectrum::Module::Light: createLightWidget(MusicSpectrum::Module::Light, state, type.m_module, m_spectrumLayout); break;
+                case MusicSpectrum::Module::Normal:
+                {
+                    createSpectrumWidget(MusicSpectrum::Module::Normal, state, type.m_module, m_spectrumLayout);
+                    break;
+                }
+                case MusicSpectrum::Module::Plus:
+                {
+                    createSpectrumWidget(MusicSpectrum::Module::Plus, state, type.m_module, m_spectrumLayout);
+                    break;
+                }
+                case MusicSpectrum::Module::Wave:
+                {
+                    createSpectrumWidget(MusicSpectrum::Module::Wave, state, type.m_module, m_spectrumLayout);
+                    break;
+                }
+                case MusicSpectrum::Module::Flow:
+                {
+                    m_lastFlowName.clear();
+                    createFlowWidget(MusicSpectrum::Module::Flow, state, type.m_module, m_spectrumLayout);
+                    break;
+                }
+                case MusicSpectrum::Module::Florid:
+                {
+                    m_lastFloridName.clear();
+                    createFloridWidget(MusicSpectrum::Module::Florid, state, type.m_module, m_spectrumLayout);
+                    break;
+                }
+                case MusicSpectrum::Module::Light:
+                {
+                    createLightWidget(MusicSpectrum::Module::Light, state, type.m_module, m_spectrumLayout);
+                    break;
+                }
                 default: break;
             }
 #endif
