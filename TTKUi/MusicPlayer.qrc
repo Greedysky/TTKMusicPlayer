@@ -771,12 +771,6 @@
         <file alias="florid_6">../TTKResource/spectrum/florid_6.png</file>
         <file alias="florid_7">../TTKResource/spectrum/florid_7.png</file>
     </qresource>
-    <qresource prefix="/radio">
-        <file alias="lb_fm">../TTKResource/radio/lb_fm.png</file>
-        <file alias="lb_tk">../TTKResource/radio/lb_tk.png</file>
-        <file alias="lb_dj">../TTKResource/radio/lb_dj.png</file>
-        <file alias="lb_mv">../TTKResource/radio/lb_mv.png</file>
-    </qresource>
     <qresource prefix="/playlist">
         <file alias="a">../TTKResource/playlist/a.jpg</file>
         <file alias="b">../TTKResource/playlist/b.jpg</file>

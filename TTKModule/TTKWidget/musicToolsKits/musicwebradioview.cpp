@@ -116,10 +116,10 @@ void MusicWebFMRadioWidget::addCelltItems()
     TTK_DECLARE_LIST(ToolItem);
 
     ToolItemList pairs;
-    pairs << ToolItem(":/radio/lb_fm", tr("FMRadio"))
-          << ToolItem(":/radio/lb_tk", tr("TKRadio"))
-          << ToolItem(":/radio/lb_dj", tr("DJRadio"))
-          << ToolItem(":/radio/lb_mv", tr("MVRadio"));
+    pairs << ToolItem(":/image/lb_default_art", tr("FMRadio"))
+          << ToolItem(":/image/lb_default_art", tr("TKRadio"))
+          << ToolItem(":/image/lb_default_art", tr("DJRadio"))
+          << ToolItem(":/image/lb_default_art", tr("MVRadio"));
 
     for(const ToolItem &pair : qAsConst(pairs))
     {
