@@ -82,7 +82,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
     connect(ui->userOptionWidget, SIGNAL(buttonClicked(int)), SLOT(switchToSelectedItemStyle(int)));
 }
 
-void MusicLeftAreaWidget::setLoveState(bool state)
+void MusicLeftAreaWidget::setSongLoveState(bool state)
 {
     m_ui->musicBestLove->setStyleSheet(state ? TTK::UI::BtnLove : TTK::UI::BtnUnLove);
     Q_EMIT currentLoveStateChanged();

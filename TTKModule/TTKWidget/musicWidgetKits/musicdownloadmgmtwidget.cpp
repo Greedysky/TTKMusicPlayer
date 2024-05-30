@@ -22,19 +22,17 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_ui->downloadButton->setStyleSheet(TTK::UI::PushButtonStyle03);
-    m_ui->openDetailButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     m_ui->openDirButton->setStyleSheet(TTK::UI::PushButtonStyle03);
 
 #ifdef Q_OS_UNIX
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->openDetailButton->setFocusPolicy(Qt::NoFocus);
     m_ui->openDirButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(restartToRequest()));
-    connect(m_ui->openDetailButton, SIGNAL(clicked()), SLOT(openDetailInfo()));
     connect(m_ui->openDirButton, SIGNAL(clicked()), SLOT(openFileLocation()));
-    connect(this, SIGNAL(openStackedDownloadWidget()), MusicLeftAreaWidget::instance(), SLOT(stackedMyDownWidgetChanged()));
+
+    TTK::Widget::adjustWidgetPosition(this);
 }
 
 MusicDownloadResetWidget::~MusicDownloadResetWidget()
@@ -54,12 +52,6 @@ void MusicDownloadResetWidget::restartToRequest()
     widget->show();
 
     close();
-}
-
-void MusicDownloadResetWidget::openDetailInfo()
-{
-    close();
-    Q_EMIT openStackedDownloadWidget();
 }
 
 void MusicDownloadResetWidget::openFileLocation()

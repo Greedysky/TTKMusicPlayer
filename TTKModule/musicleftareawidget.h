@@ -57,9 +57,9 @@ public:
     void setupUi(Ui::MusicApplication *ui);
 
     /*!
-     * Reset current music love icon state.
+     * Reset current song love state.
      */
-    void setLoveState(bool state);
+    void setSongLoveState(bool state);
 
 Q_SIGNALS:
     /*!
@@ -84,6 +84,8 @@ public Q_SLOTS:
      * Switch to selected item style.
      */
     void switchToSelectedItemStyle(int index);
+
+private:
     /*!
      * Change to song list widget.
      */

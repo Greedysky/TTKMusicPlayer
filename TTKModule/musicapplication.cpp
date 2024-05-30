@@ -192,9 +192,16 @@ QString MusicApplication::containsDownloadItem(bool &contains) const
         const MusicPlayItem &item = m_playlist->currentItem();
         if(item.isValid())
         {
-            const MusicSong currentSong(item.m_path);
-            path = QString("%1%2.%3").arg(G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString(),
-                                          currentSong.name(), currentSong.format());
+            if(m_songTreeWidget->playRowIndex() != MUSIC_NETWORK_LIST)
+            {
+                path = item.m_path;
+            }
+            else
+            {
+                const MusicSong currentSong(item.m_path);
+                path = QString("%1%2.%3").arg(G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString(), currentFileName(), currentSong.format());
+            }
+
             contains = QFile::exists(path);
         }
     }
@@ -684,18 +691,18 @@ void MusicApplication::addSongToLovestList(bool state)
         if(contains)
         {
             m_songTreeWidget->songToLovestListAt(false, index);
-            m_leftAreaWidget->setLoveState(false);
+            m_leftAreaWidget->setSongLoveState(false);
         }
         else
         {
             m_songTreeWidget->songToLovestListAt(true, index);
-            m_leftAreaWidget->setLoveState(true);
+            m_leftAreaWidget->setSongLoveState(true);
         }
     }
     else
     {
         m_songTreeWidget->songToLovestListAt(false, index);
-        m_leftAreaWidget->setLoveState(false);
+        m_leftAreaWidget->setSongLoveState(false);
     }
 
     MusicToastLabel::popup(!contains ? tr("Add music to lovest list done") : tr("Remove music to lovest list done"));

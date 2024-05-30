@@ -47,21 +47,11 @@ public:
      */
     void initialize(const QString &name);
 
-Q_SIGNALS:
-    /*!
-     * To open stacked download widget once.
-     */
-    void openStackedDownloadWidget();
-
 public Q_SLOTS:
     /*!
      * Restart to dwonload music data.
      */
     void restartToRequest();
-    /*!
-     * Open file details information by song.
-     */
-    void openDetailInfo();
     /*!
      * Open file location in dir.
      */
