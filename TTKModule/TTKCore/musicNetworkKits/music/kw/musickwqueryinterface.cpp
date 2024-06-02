@@ -29,36 +29,6 @@ QString ReqKWInterface::makeCoverPixmapUrl(const QString &url, const QString &id
     }
 }
 
-static void parseSongProperty(TTK::MusicSongInformation *info)
-{
-    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
-    {
-        if(prop.m_bitrate == TTK_BN_128)
-        {
-            return;
-        }
-    }
-
-    TTK_INFO_STREAM("parse song property in cgg module");
-
-    QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_SONG_PATH_CGG_URL, false).arg(info->m_songId));
-    ReqKWInterface::makeRequestRawHeader(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
-
-    TTK::MusicSongProperty prop;
-    prop.m_bitrate = TTK_BN_128;
-    prop.m_format = MP3_FILE_SUFFIX;
-    prop.m_size = TTK_DEFAULT_STR;
-    prop.m_url = bytes;
-    info->m_songProps.append(prop);
-}
-
 static void parseSongPropertyV1(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
 {
     for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
@@ -224,14 +194,12 @@ void ReqKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int 
 
     if(info->m_formatProps.isEmpty())
     {
-        parseSongProperty(info); //find 128kmp3 first
         parseSongProperty(info, MP3_FILE_SUFFIX, "128kmp3", TTK_BN_128);
         return;
     }
 
     if(bitrate == TTK_BN_0)
     {
-        parseSongProperty(info); //find 128kmp3 first
         parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formatProps, TTK_BN_128);
         parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formatProps, TTK_BN_192);
         parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formatProps, TTK_BN_320);
@@ -239,10 +207,6 @@ void ReqKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int 
     }
     else
     {
-        if(bitrate == TTK_BN_128)
-        {
-            parseSongProperty(info); //find 128kmp3 first
-        }
         parseSongProperty(info, bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX, info->m_formatProps, bitrate);
     }
 }

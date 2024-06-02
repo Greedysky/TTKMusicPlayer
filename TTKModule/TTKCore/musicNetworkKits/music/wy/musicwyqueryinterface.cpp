@@ -227,53 +227,11 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, int bitrate)
     }
 }
 
-static void parseSongPropertyCGG(TTK::MusicSongInformation *info, int bitrate)
-{
-    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
-    {
-        if(prop.m_bitrate == bitrate)
-        {
-            return;
-        }
-    }
-
-    TTK_INFO_STREAM("parse song property in cgg module");
-
-    TTK::MusicSongProperty prop;
-    prop.m_bitrate = bitrate;
-    prop.m_size = TTK::Number::sizeByteToLabel(info->m_duration, bitrate);
-
-    QString format;
-    if(bitrate == TTK_BN_128)
-    {
-        format = TTK::Algorithm::mdII(_128KBPS, false);
-        prop.m_format = MP3_FILE_SUFFIX;
-    }
-    else if(bitrate == TTK_BN_320)
-    {
-        format = TTK::Algorithm::mdII(_320KBPS, false);
-        prop.m_format = MP3_FILE_SUFFIX;
-    }
-    else if(bitrate == TTK_BN_1000)
-    {
-        format = TTK::Algorithm::mdII(_999KBPS, false);
-        prop.m_format = FLAC_FILE_SUFFIX;
-    }
-    else
-    {
-        return;
-    }
-
-    prop.m_url = TTK::Algorithm::mdII(WY_SONG_PATH_CGG_URL, false).arg(info->m_songId, format);
-    info->m_songProps.append(prop);
-}
-
 static void parseSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
     parseSongPropertyV1(info, bitrate);
     parseSongPropertyV2(info, bitrate);
     parseSongPropertyV3(info, bitrate);
-    parseSongPropertyCGG(info, bitrate);
 }
 
 void ReqWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
