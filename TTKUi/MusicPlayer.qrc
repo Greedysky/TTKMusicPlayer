@@ -771,6 +771,24 @@
         <file alias="florid_6">../TTKResource/spectrum/florid_6.png</file>
         <file alias="florid_7">../TTKResource/spectrum/florid_7.png</file>
     </qresource>
+    <qresource prefix="/radio">
+        <file alias="lb_radio_1">../TTKResource/radio/lb_radio_1.jpg</file>
+        <file alias="lb_radio_2">../TTKResource/radio/lb_radio_2.jpg</file>
+        <file alias="lb_radio_3">../TTKResource/radio/lb_radio_3.jpg</file>
+        <file alias="lb_radio_4">../TTKResource/radio/lb_radio_4.jpg</file>
+        <file alias="lb_radio_5">../TTKResource/radio/lb_radio_5.jpg</file>
+        <file alias="lb_radio_6">../TTKResource/radio/lb_radio_6.jpg</file>
+        <file alias="lb_radio_7">../TTKResource/radio/lb_radio_7.jpg</file>
+        <file alias="lb_radio_8">../TTKResource/radio/lb_radio_8.jpg</file>
+        <file alias="lb_radio_9">../TTKResource/radio/lb_radio_9.jpg</file>
+        <file alias="lb_radio_10">../TTKResource/radio/lb_radio_10.jpg</file>
+        <file alias="lb_radio_11">../TTKResource/radio/lb_radio_11.jpg</file>
+        <file alias="lb_radio_12">../TTKResource/radio/lb_radio_12.jpg</file>
+        <file alias="lb_radio_13">../TTKResource/radio/lb_radio_13.jpg</file>
+        <file alias="lb_radio_14">../TTKResource/radio/lb_radio_14.jpg</file>
+        <file alias="lb_radio_15">../TTKResource/radio/lb_radio_15.jpg</file>
+        <file alias="lb_radio_16">../TTKResource/radio/lb_radio_16.jpg</file>
+    </qresource>
     <qresource prefix="/playlist">
         <file alias="a">../TTKResource/playlist/a.jpg</file>
         <file alias="b">../TTKResource/playlist/b.jpg</file>

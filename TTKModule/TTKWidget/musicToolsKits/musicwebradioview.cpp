@@ -116,10 +116,22 @@ void MusicWebFMRadioWidget::addCelltItems()
     TTK_DECLARE_LIST(ToolItem);
 
     ToolItemList pairs;
-    pairs << ToolItem(":/image/lb_default_art", tr("FMRadio"))
-          << ToolItem(":/image/lb_default_art", tr("TKRadio"))
-          << ToolItem(":/image/lb_default_art", tr("DJRadio"))
-          << ToolItem(":/image/lb_default_art", tr("MVRadio"));
+    pairs << ToolItem(":/radio/lb_radio_1", tr("FMRadio"))
+          << ToolItem(":/radio/lb_radio_2", tr("TKRadio"))
+          << ToolItem(":/radio/lb_radio_3", tr("DJRadio"))
+          << ToolItem(":/radio/lb_radio_4", tr("MVRadio"))
+          << ToolItem(":/radio/lb_radio_5", tr("PVRadio"))
+          << ToolItem(":/radio/lb_radio_6", tr("TRRadio"))
+          << ToolItem(":/radio/lb_radio_7", tr("TMRadio"))
+          << ToolItem(":/radio/lb_radio_8", tr("VPRadio"))
+          << ToolItem(":/radio/lb_radio_9", tr("NWRadio"))
+          << ToolItem(":/radio/lb_radio_10", tr("FNRadio"))
+          << ToolItem(":/radio/lb_radio_11", tr("MYRadio"))
+          << ToolItem(":/radio/lb_radio_12", tr("FVRadio"))
+          << ToolItem(":/radio/lb_radio_13", tr("WWRadio"))
+          << ToolItem(":/radio/lb_radio_14", tr("HCRadio"))
+          << ToolItem(":/radio/lb_radio_15", tr("RHRadio"))
+          << ToolItem(":/radio/lb_radio_16", tr("HSRadio"));
 
     for(const ToolItem &pair : qAsConst(pairs))
     {
