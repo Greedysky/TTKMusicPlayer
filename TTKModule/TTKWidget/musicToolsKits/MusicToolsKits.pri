@@ -27,6 +27,7 @@ HEADERS += \
     $$PWD/musicconnecttransfertablewidget.h \
     $$PWD/musiclocalmanagerwidget.h \
     $$PWD/musicttkfmradioplaywidget.h \
+    $$PWD/musicpersonalradioquerywidget.h \
     $$PWD/musicwebfmradioplaywidget.h \
     $$PWD/musicwebdjradiocategorywidget.h \
     $$PWD/musicwebdjradiowidget.h \
@@ -52,6 +53,7 @@ SOURCES += \
     $$PWD/musicconnecttransfertablewidget.cpp \
     $$PWD/musiclocalmanagerwidget.cpp \
     $$PWD/musicttkfmradioplaywidget.cpp \
+    $$PWD/musicpersonalradioquerywidget.cpp \
     $$PWD/musicwebfmradioplaywidget.cpp \
     $$PWD/musicwebdjradiocategorywidget.cpp \
     $$PWD/musicwebdjradiowidget.cpp \

@@ -72,7 +72,7 @@ void MusicKWSongCommentsRequest::downLoadFinished()
 
                     MusicResultDataItem item;
                     item.m_count = value["like_num"].toString();
-                    item.m_updateTime = TTKDateTime::format(value["time"].toString(), TTK_DATE_TIMES_FORMAT);
+                    item.m_time = TTKDateTime::format(value["time"].toString(), TTK_DATE_TIMES_FORMAT);
                     item.m_description = value["msg"].toString();
                     item.m_nickName = QUrl::fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
                     item.m_coverUrl = value["u_pic"].toString();
@@ -141,7 +141,7 @@ void MusicKWPlaylistCommentsRequest::downLoadFinished()
 
                     MusicResultDataItem item;
                     item.m_count = value["like_num"].toString();
-                    item.m_updateTime = TTKDateTime::format(value["time"].toString(), TTK_DATE_TIMES_FORMAT);
+                    item.m_time = TTKDateTime::format(value["time"].toString(), TTK_DATE_TIMES_FORMAT);
                     item.m_description = value["msg"].toString();
                     item.m_nickName = QUrl::fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
                     item.m_coverUrl = value["u_pic"].toString();

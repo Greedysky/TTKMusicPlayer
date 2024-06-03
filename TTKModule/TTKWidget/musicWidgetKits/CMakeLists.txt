@@ -51,7 +51,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
   ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.h
   ${MUSIC_WIDGET_DIR}/musicplaylistquerywidget.h
   ${MUSIC_WIDGET_DIR}/musicplaylistqueryinfowidget.h
-  ${MUSIC_WIDGET_DIR}/musicplaylistquerytablewidget.h
   ${MUSIC_WIDGET_DIR}/musicenhancedpopwidget.h
   ${MUSIC_WIDGET_DIR}/musicplaybackmodepopwidget.h
   ${MUSIC_WIDGET_DIR}/musicqualitywidget.h
@@ -105,7 +104,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
   ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.cpp
   ${MUSIC_WIDGET_DIR}/musicplaylistquerywidget.cpp
   ${MUSIC_WIDGET_DIR}/musicplaylistqueryinfowidget.cpp
-  ${MUSIC_WIDGET_DIR}/musicplaylistquerytablewidget.cpp
   ${MUSIC_WIDGET_DIR}/musicenhancedpopwidget.cpp
   ${MUSIC_WIDGET_DIR}/musicplaybackmodepopwidget.cpp
   ${MUSIC_WIDGET_DIR}/musicqualitywidget.cpp

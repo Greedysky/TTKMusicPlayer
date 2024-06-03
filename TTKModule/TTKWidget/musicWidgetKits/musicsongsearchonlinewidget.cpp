@@ -275,7 +275,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
 
     MusicResultDataItem item;
     item.m_name = TTK::generateSongName(this->item(row, 1)->toolTip(), this->item(row, 2)->toolTip());
-    item.m_updateTime = songInfo.m_duration;
+    item.m_time = songInfo.m_duration;
     item.m_id = songInfo.m_songId;
     item.m_nickName = prop.m_url;
     item.m_description = prop.m_format;

@@ -38,11 +38,6 @@ public:
      */
     ~MusicWebMVRadioInfoTableWidget();
 
-    /*!
-     * Set network query input.
-     */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
-
 public Q_SLOTS:
     /*!
      * Subclass should implement this function.

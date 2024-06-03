@@ -58,7 +58,7 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                 const QString &albumName = value["name"].toString();
                 item.m_count = albumName;
                 item.m_description = value["company"].toString();
-                item.m_updateTime = value["pub"].toString();
+                item.m_time = value["pub"].toString();
                 item.m_category = value["lang"].toString();
 
                 m_totalSize = value["songnum"].toInt();
@@ -171,7 +171,7 @@ void MusicKWQueryArtistAlbumRequest::downLoadFinished()
                     item.m_id = value["albumid"].toString();
                     item.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["pic"].toString(), {});
                     item.m_name = value["name"].toString();
-                    item.m_updateTime = value["pub"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
+                    item.m_time = value["pub"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
                     Q_EMIT createAlbumItem(item);
                 }
             }

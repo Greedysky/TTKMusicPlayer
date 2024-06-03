@@ -24,31 +24,6 @@
 
 class MusicToplistQueryCategoryPopWidget;
 
-/*! @brief The class of the toplist music query table widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicToplistQueryTableWidget : public MusicItemQueryTableWidget
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicToplistQueryTableWidget)
-public:
-    /*!
-     * Object constructor.
-     */
-    explicit MusicToplistQueryTableWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicToplistQueryTableWidget();
-
-    /*!
-     * Set network query input.
-     */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
-
-};
-
-
 /*! @brief The class of the toplist music query widget.
  * @author Greedysky <greedysky@163.com>
  */

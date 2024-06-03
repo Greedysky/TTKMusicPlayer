@@ -106,7 +106,7 @@ void ReqKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *item, const QSt
                     item->m_id = value["album_id"].toString();
                     item->m_name = TTK::String::charactersReplace(value["album_name"].toString());
                     item->m_description = value["publish_company"].toString();
-                    item->m_updateTime = value["publish_date"].toString();
+                    item->m_time = value["publish_date"].toString();
                     item->m_category = value["language"].toString();
                     break;
                 }

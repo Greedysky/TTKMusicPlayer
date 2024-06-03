@@ -110,7 +110,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 4, item);
 
-                      item = new QTableWidgetItem(data.m_updateTime);
+                      item = new QTableWidgetItem(data.m_time);
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(index, 5, item);

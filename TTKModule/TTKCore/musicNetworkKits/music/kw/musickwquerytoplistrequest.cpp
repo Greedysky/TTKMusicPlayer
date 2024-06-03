@@ -157,7 +157,7 @@ void MusicKWQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
                     item.m_coverUrl = value["pic"].toString();
                     item.m_count = value["id"].toString();
                     item.m_description = value["intro"].toString();
-                    item.m_updateTime = value["pub"].toString();
+                    item.m_time = value["pub"].toString();
                     Q_EMIT createToplistItem(item);
                     return;
                 }

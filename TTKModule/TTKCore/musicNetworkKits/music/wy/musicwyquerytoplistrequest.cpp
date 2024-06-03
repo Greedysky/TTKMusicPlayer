@@ -127,6 +127,6 @@ void MusicWYQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
     item.m_coverUrl = input["coverImgUrl"].toString();
     item.m_count = input["playCount"].toString();
     item.m_description = input["description"].toString();
-    item.m_updateTime = TTKDateTime::format(input["updateTime"].toULongLong(), TTK_DATE_FORMAT);
+    item.m_time = TTKDateTime::format(input["updateTime"].toULongLong(), TTK_DATE_FORMAT);
     Q_EMIT createToplistItem(item);
 }

@@ -321,7 +321,7 @@ void MusicKWQueryArtistMovieRequest::downLoadFinished()
                         item.m_coverUrl = TTK::Algorithm::mdII(KW_MOVIE_COVER_URL, false) + item.m_coverUrl;
                     }
                     item.m_name = value["name"].toString();
-                    item.m_updateTime.clear();
+                    item.m_time.clear();
                     Q_EMIT createMovieItem(item);
                 }
             }

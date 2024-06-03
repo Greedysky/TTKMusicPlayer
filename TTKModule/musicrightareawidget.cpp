@@ -26,6 +26,7 @@
 #include "musicwebmvradioquerywidget.h"
 #include "musicplaylistbackupwidget.h"
 #include "musicplaylistcategorywidget.h"
+#include "musicpersonalradioquerywidget.h"
 #include "musicsongdailywidget.h"
 
 #ifdef Q_OS_WIN
@@ -533,6 +534,14 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             Q_EMIT updateBackgroundTheme();
             break;
         }
+        case WebPVRadioWidget: //insert web pv radio widget
+        {
+            MusicPersonalRadioQueryWidget *widget = new MusicPersonalRadioQueryWidget(this);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
+            m_ui->functionsContainer->setCurrentWidget(widget);
+            Q_EMIT updateBackgroundTheme();
+            break;
+        }
         case ScreenSaverWidget: //insert screen saver widget
         {
             MusicScreenSaverWidget *widget = new MusicScreenSaverWidget(this);
@@ -553,7 +562,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
     }
 }
 
-void MusicRightAreaWidget::showSongCommentsFound()
+void MusicRightAreaWidget::showCommentsFound()
 {
     if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
@@ -608,6 +617,13 @@ void MusicRightAreaWidget::showMovieSearchRadioFound()
     }
 
     m_videoPlayerWidget->videoResearchButtonSearched(m_rawData);
+}
+
+void MusicRightAreaWidget::showPersonalRadioFound(const QString &id)
+{
+    functionClicked(MusicRightAreaWidget::WebPVRadioWidget);
+    MusicPersonalRadioQueryWidget *w = TTKObjectCast(MusicPersonalRadioQueryWidget*, m_stackedWidget);
+    w->setCurrentValue(id);
 }
 
 void MusicRightAreaWidget::showArtistFound(const QString &text, const QString &id)

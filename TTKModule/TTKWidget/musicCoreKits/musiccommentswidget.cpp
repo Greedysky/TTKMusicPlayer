@@ -124,7 +124,7 @@ void MusicCommentsItem::addCellItem(const MusicResultDataItem &item)
 {
     m_userName->setText(item.m_nickName + ":");
     m_userName->setFixedWidth(TTK::Widget::fontTextWidth(m_userName->font(), m_userName->text()));
-    m_timerLabel->setText(TTKDateTime::format(item.m_updateTime.toULongLong(), TTK_DATE_TIMES_FORMAT));
+    m_timerLabel->setText(TTKDateTime::format(item.m_time.toULongLong(), TTK_DATE_TIMES_FORMAT));
     m_timerLabel->setFixedWidth(TTK::Widget::fontTextWidth(m_timerLabel->font(), m_timerLabel->text()));
     m_starLabel->setText(QString("(%1)").arg(item.m_count));
     m_userCommit->setText(item.m_description);

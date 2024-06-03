@@ -21,31 +21,6 @@
 
 #include "musicabstractitemquerywidget.h"
 
-/*! @brief The class of the dj radio music info table widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicWebDJRadioInfoTableWidget : public MusicItemQueryTableWidget
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebDJRadioInfoTableWidget)
-public:
-    /*!
-     * Object constructor.
-     */
-    explicit MusicWebDJRadioInfoTableWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicWebDJRadioInfoTableWidget();
-
-    /*!
-     * Set network query input.
-     */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
-
-};
-
-
 /*! @brief The class of the dj radio music info widget.
  * @author Greedysky <greedysky@163.com>
  */

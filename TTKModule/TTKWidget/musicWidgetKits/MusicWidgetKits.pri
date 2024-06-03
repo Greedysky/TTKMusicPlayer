@@ -51,7 +51,6 @@ HEADERS += \
     $$PWD/musicmessageaboutdialog.h \
     $$PWD/musicplaylistquerywidget.h \
     $$PWD/musicplaylistqueryinfowidget.h \
-    $$PWD/musicplaylistquerytablewidget.h \
     $$PWD/musicenhancedpopwidget.h \
     $$PWD/musicplaybackmodepopwidget.h \
     $$PWD/musicqualitywidget.h \
@@ -104,7 +103,6 @@ SOURCES += \
     $$PWD/musicmessageaboutdialog.cpp \
     $$PWD/musicplaylistquerywidget.cpp \
     $$PWD/musicplaylistqueryinfowidget.cpp \
-    $$PWD/musicplaylistquerytablewidget.cpp \
     $$PWD/musicenhancedpopwidget.cpp \
     $$PWD/musicplaybackmodepopwidget.cpp \
     $$PWD/musicqualitywidget.cpp \

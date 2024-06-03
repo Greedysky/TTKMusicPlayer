@@ -58,7 +58,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                 item.m_coverUrl = albumValue["picUrl"].toString();
                 item.m_count = albumValue["name"].toString();
                 item.m_description = albumValue["company"].toString();
-                item.m_updateTime = TTKDateTime::format(albumValue["publishTime"].toULongLong(), TTK_DATE_FORMAT);
+                item.m_time = TTKDateTime::format(albumValue["publishTime"].toULongLong(), TTK_DATE_FORMAT);
                 item.m_category = albumValue["language"].toString();
 
                 const QVariantList &datas = value["songs"].toList();
@@ -186,7 +186,7 @@ void MusicWYQueryArtistAlbumRequest::downLoadFinished()
                     item.m_id = value["id"].toString();
                     item.m_coverUrl = ReqWYInterface::makeCoverPixmapUrl(value["picUrl"].toString());
                     item.m_name = value["name"].toString();
-                    item.m_updateTime = TTKDateTime::format(value["publishTime"].toULongLong(), TTK_DATE2_FORMAT);
+                    item.m_time = TTKDateTime::format(value["publishTime"].toULongLong(), TTK_DATE2_FORMAT);
                     Q_EMIT createAlbumItem(item);
                 }
             }

@@ -81,7 +81,7 @@ void MusicKGQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
             item.m_name = value["specialname"].toString();
             item.m_count = value["playcount"].toString();
             item.m_description = value["intro"].toString();
-            item.m_updateTime = value["publishtime"].toString();
+            item.m_time = value["publishtime"].toString();
             item.m_nickName = value["nickname"].toString();
             item.m_category.clear();
 
@@ -141,7 +141,7 @@ void MusicKGQueryPlaylistRequest::downLoadFinished()
                     item.m_name = value["specialname"].toString();
                     item.m_count = value["playcount"].toString();
                     item.m_description = value["intro"].toString();
-                    item.m_updateTime = value["publishtime"].toString();
+                    item.m_time = value["publishtime"].toString();
                     item.m_nickName = value["username"].toString();
                     Q_EMIT createPlaylistItem(item);
                 }

@@ -70,6 +70,7 @@ public:
         KuiSheWidget,           /*!< insert kugou kuishe widget*/
         WebDJRadioWidget,       /*!< insert web dj radio widget*/
         WebMVRadioWidget,       /*!< insert web mv radio widget*/
+        WebPVRadioWidget,       /*!< insert web pv radio widget*/
         LocalManagerWidget,     /*!< insert local manager widget*/
         CloudManagerWidget,     /*!< insert cloud manager widget*/
         ScreenSaverWidget,      /*!< insert screen saver widget*/
@@ -184,10 +185,12 @@ public Q_SLOTS:
      * Function button clicked.
      */
     void functionClicked(int index, QWidget *widget = nullptr);
+
+public Q_SLOTS:
     /*!
-     * Music song comments function.
+     * Music comments function.
      */
-    void showSongCommentsFound();
+    void showCommentsFound();
     /*!
      * Music similar function that by string.
      */
@@ -213,6 +216,10 @@ public Q_SLOTS:
      */
     void showMovieSearchRadioFound();
     /*!
+     * Music personal search radio function.
+     */
+    void showPersonalRadioFound(const QString &id);
+    /*!
      * Music artist function that by string.
      */
     void showArtistFound(const QString &text, const QString &id);
@@ -236,6 +243,8 @@ public Q_SLOTS:
      * Video button clicked by name to search.
      */
     void showVideoSearchedFound(const QString &name, const QString &id);
+
+public Q_SLOTS:
     /*!
      * Music load song index widget.
      */

@@ -169,7 +169,7 @@ void MusicKGQueryArtistAlbumRequest::downLoadFinished()
                     item.m_id = value["albumid"].toString();
                     item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     item.m_name = value["albumname"].toString();
-                    item.m_updateTime = TTK::String::split(value["publishtime"].toString().replace(TTK_DEFAULT_STR, TTK_DOT), TTK_SPACE).front();
+                    item.m_time = TTK::String::split(value["publishtime"].toString().replace(TTK_DEFAULT_STR, TTK_DOT), TTK_SPACE).front();
                     Q_EMIT createAlbumItem(item);
                 }
             }

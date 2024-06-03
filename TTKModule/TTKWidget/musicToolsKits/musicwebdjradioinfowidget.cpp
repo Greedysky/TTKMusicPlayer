@@ -5,39 +5,19 @@
 
 #include <qmath.h>
 
-MusicWebDJRadioInfoTableWidget::MusicWebDJRadioInfoTableWidget(QWidget *parent)
-    : MusicItemQueryTableWidget(parent)
-{
-
-}
-
-MusicWebDJRadioInfoTableWidget::~MusicWebDJRadioInfoTableWidget()
-{
-    removeItems();
-}
-
-void MusicWebDJRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
-{
-    MusicItemQueryTableWidget::setQueryInput(query);
-    if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
-    {
-        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
-    }
-}
-
-
-
 MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
 
-    m_queryTableWidget = new MusicWebDJRadioInfoTableWidget(this);
+    m_queryTableWidget = new MusicItemQueryTableWidget(this);
     m_queryTableWidget->hide();
 
     MusicAbstractQueryRequest *d = new MusicDJRadioProgramCategoryRequest(this);
     m_queryTableWidget->setQueryInput(d);
+
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
     connect(d, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createProgramCategoryItem(MusicResultDataItem)));
 }
 
@@ -104,7 +84,7 @@ void MusicWebDJRadioInfoWidget::createProgramCategoryItem(const MusicResultDataI
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[3];
-        data->m_label->setToolTip(tr("UpdateTime: %1").arg(item.m_updateTime));
+        data->m_label->setToolTip(tr("UpdateTime: %1").arg(item.m_time));
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
     }
 }

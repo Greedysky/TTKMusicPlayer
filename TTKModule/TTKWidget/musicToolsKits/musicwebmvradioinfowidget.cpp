@@ -19,15 +19,6 @@ MusicWebMVRadioInfoTableWidget::~MusicWebMVRadioInfoTableWidget()
     removeItems();
 }
 
-void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
-{
-    MusicItemQueryTableWidget::setQueryInput(query);
-    if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
-    {
-        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
-    }
-}
-
 void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
 {
     MusicQueryTableWidget::itemCellClicked(row, column);
@@ -107,6 +98,8 @@ MusicWebMVRadioInfoWidget::MusicWebMVRadioInfoWidget(QWidget *parent)
 
     MusicAbstractQueryRequest *d = new MusicMVRadioProgramRequest(this);
     m_queryTableWidget->setQueryInput(d);
+
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
     connect(d, SIGNAL(createMVRadioItem(MusicResultDataItem)), SLOT(createMVRadioProgramItem(MusicResultDataItem)));
 }
 

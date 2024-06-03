@@ -5,33 +5,11 @@
 
 #include "qrencode/qrcodewidget.h"
 
-MusicAlbumQueryTableWidget::MusicAlbumQueryTableWidget(QWidget *parent)
-    : MusicItemQueryTableWidget(parent)
-{
-
-}
-
-MusicAlbumQueryTableWidget::~MusicAlbumQueryTableWidget()
-{
-    removeItems();
-}
-
-void MusicAlbumQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
-{
-    MusicItemQueryTableWidget::setQueryInput(query);
-    if(parent()->metaObject()->indexOfSlot("queryAlbumFinished()") != -1)
-    {
-        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAlbumFinished()));
-    }
-}
-
-
-
 MusicAlbumQueryWidget::MusicAlbumQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent)
 {
     m_shareType = MusicSongSharingWidget::Module::Album;
-    m_queryTableWidget = new MusicAlbumQueryTableWidget(this);
+    m_queryTableWidget = new MusicItemQueryTableWidget(this);
     m_queryTableWidget->hide();
 
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
@@ -50,6 +28,8 @@ void MusicAlbumQueryWidget::setCurrentID(const QString &id)
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
     m_queryTableWidget->setQueryInput(d);
     m_queryTableWidget->startToSearchByText(id);
+
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAlbumFinished()));
     connect(d, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createAlbumItem(MusicResultDataItem)));
 }
 
@@ -139,7 +119,7 @@ void MusicAlbumQueryWidget::createAlbumItem(const MusicResultDataItem &item)
             d->startToRequest(item.m_coverUrl);
         }
 
-        QStringList list{item.m_count, item.m_category, item.m_description, item.m_updateTime};
+        QStringList list{item.m_count, item.m_category, item.m_description, item.m_time};
         for(int i = 0; i < list.count(); ++i)
         {
             if(list[i].isEmpty())

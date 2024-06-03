@@ -7221,6 +7221,66 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
         <source>MVRadio</source>
         <translation>視頻電台</translation>
     </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="123"/>
+        <source>PVRadio</source>
+        <translation>私人雷達</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="124"/>
+        <source>TRRadio</source>
+        <translation>寶藏雷達</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="125"/>
+        <source>TMRadio</source>
+        <translation>時光雷達</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="126"/>
+        <source>VPRadio</source>
+        <translation>會員雷達</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="127"/>
+        <source>NWRadio</source>
+        <translation>新歌雷達</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="128"/>
+        <source>FNRadio</source>
+        <translation>樂迷雷達</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="129"/>
+        <source>MYRadio</source>
+        <translation>神秘雷達</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="130"/>
+        <source>FVRadio</source>
+        <translation>曾經愛聽</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="131"/>
+        <source>WWRadio</source>
+        <translation>周新發現</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="132"/>
+        <source>HCRadio</source>
+        <translation>熱評趨勢</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="133"/>
+        <source>RHRadio</source>
+        <translation>紅心趨勢</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="134"/>
+        <source>HSRadio</source>
+        <translation>熱點雷達</translation>
+    </message>
 </context>
 <context>
     <name>MusicWebMVRadioInfoTableWidget</name>

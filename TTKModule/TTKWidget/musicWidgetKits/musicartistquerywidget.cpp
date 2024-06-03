@@ -53,7 +53,7 @@ void MusicArtistAlbumsItemWidget::setResultDataItem(const MusicResultDataItem &i
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
     m_nameLabel->setText(TTK::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
-    m_updateLabel->setToolTip(item.m_updateTime);
+    m_updateLabel->setToolTip(item.m_time);
     m_updateLabel->setText(TTK::Widget::elidedText(m_updateLabel->font(), m_updateLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
     if(TTK::isCoverValid(item.m_coverUrl))
@@ -279,34 +279,12 @@ void MusicArtistAlbumsQueryWidget::buttonClicked(int index)
 
 
 
-MusicArtistQueryTableWidget::MusicArtistQueryTableWidget(QWidget *parent)
-    : MusicItemQueryTableWidget(parent)
-{
-
-}
-
-MusicArtistQueryTableWidget::~MusicArtistQueryTableWidget()
-{
-    removeItems();
-}
-
-void MusicArtistQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
-{
-    MusicItemQueryTableWidget::setQueryInput(query);
-    if(parent()->metaObject()->indexOfSlot("queryArtistFinished()") != -1)
-    {
-        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryArtistFinished()));
-    }
-}
-
-
-
 MusicArtistQueryWidget::MusicArtistQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent),
       m_artistAlbums(nullptr),
       m_artistMvs(nullptr)
 {
-    m_queryTableWidget = new MusicArtistQueryTableWidget(this);
+    m_queryTableWidget = new MusicItemQueryTableWidget(this);
     m_queryTableWidget->hide();
 
     m_shareType = MusicSongSharingWidget::Module::Artist;
@@ -334,6 +312,8 @@ void MusicArtistQueryWidget::setCurrentID(const QString &id)
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeArtistRequest(this);
     m_queryTableWidget->setQueryInput(d);
     m_queryTableWidget->startToSearchByText(id);
+
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryArtistFinished()));
     connect(d, SIGNAL(createArtistItem(MusicResultDataItem)), SLOT(createArtistItem(MusicResultDataItem)));
 }
 
@@ -483,7 +463,7 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
 
         data = &m_resizeWidgets[3];
-        data->m_label->setToolTip(tr("Birth: %1").arg(item.m_updateTime));
+        data->m_label->setToolTip(tr("Birth: %1").arg(item.m_time));
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         m_infoLabel->setText(item.m_description);

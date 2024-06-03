@@ -14,7 +14,7 @@ MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
     QHeaderView *headerView = horizontalHeader();
     headerView->resizeSection(0, 10);
     headerView->resizeSection(1, TTK_ITEM_SIZE_XL + 20);
-    headerView->resizeSection(2, 157);
+    headerView->resizeSection(2, 150);
     headerView->resizeSection(3, 82);
 
     TTK::Widget::setTransparent(this, 0);
@@ -93,6 +93,66 @@ void MusicWebFMRadioWidget::itemDoubleClicked(int row, int column)
         case 3:
         {
             MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::WebMVRadioWidget);
+            break;
+        }
+        case 4:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("3136952023");
+            break;
+        }
+        case 5:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("5362359247");
+            break;
+        }
+        case 6:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("5320167908");
+            break;
+        }
+        case 7:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("8402996200");
+            break;
+        }
+        case 8:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("5300458264");
+            break;
+        }
+        case 9:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("5327906368");
+            break;
+        }
+        case 10:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("5341776086");
+            break;
+        }
+        case 11:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("9380018200");
+            break;
+        }
+        case 12:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("9102252203");
+            break;
+        }
+        case 13:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("8892529201");
+            break;
+        }
+        case 14:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("8902540200");
+            break;
+        }
+        case 15:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("8819359201");
             break;
         }
         default: break;

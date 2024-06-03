@@ -721,7 +721,7 @@ void MusicSongsContainerWidget::addSongBufferToPlaylist(const MusicResultDataIte
 {
     MusicSongItem *songItem = &m_containerItems[MUSIC_NETWORK_LIST];
     const QByteArray &md5 = TTK::Algorithm::md5(item.m_id.toUtf8());
-    MusicSong song(item.m_nickName + "#" + md5 + "." + item.m_description, item.m_updateTime, item.m_name);
+    MusicSong song(item.m_nickName + "#" + md5 + "." + item.m_description, item.m_time, item.m_name);
     song.setFormat(item.m_description);
     song.setSizeStr(item.m_count);
 

@@ -76,7 +76,7 @@ void MusicWYSongCommentsRequest::downLoadFinished()
                     item.m_nickName = user["nickname"].toString();
                     item.m_coverUrl = user["avatarUrl"].toString();
                     item.m_count = value["likedCount"].toString();
-                    item.m_updateTime = value["time"].toString();
+                    item.m_time = value["time"].toString();
                     item.m_description = value["content"].toString();
                     Q_EMIT createCommentItem(item);
                 }
@@ -147,7 +147,7 @@ void MusicWYPlaylistCommentsRequest::downLoadFinished()
                     item.m_nickName = user["nickname"].toString();
                     item.m_coverUrl = user["avatarUrl"].toString();
                     item.m_count = value["likedCount"].toString();
-                    item.m_updateTime = value["time"].toString();
+                    item.m_time = value["time"].toString();
                     item.m_description = value["content"].toString();
                     Q_EMIT createCommentItem(item);
                 }

@@ -16,7 +16,7 @@ void MusicMoreFunctionsPopWidget::functionClicked(QAction *index)
 {
     switch(index->data().toInt())
     {
-        case 0: MusicRightAreaWidget::instance()->showSongCommentsFound(); break;
+        case 0: MusicRightAreaWidget::instance()->showCommentsFound(); break;
         case 1: MusicRightAreaWidget::instance()->showSimilarFound(m_currentSongName); break;
         case 2: MusicRightAreaWidget::instance()->showAlbumFound(m_currentSongName, {}); break;
         case 3: MusicRightAreaWidget::instance()->showArtistFound(m_currentSongName, {}); break;

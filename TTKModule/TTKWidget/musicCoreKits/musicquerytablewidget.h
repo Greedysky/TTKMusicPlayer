@@ -46,7 +46,7 @@ public:
     /*!
      * Set network query input.
      */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query);
+    void setQueryInput(MusicAbstractQueryRequest *query);
     /*!
      * Get network query input.
      */

@@ -176,31 +176,6 @@ private:
 };
 
 
-/*! @brief The class of the artist music query table widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicArtistQueryTableWidget : public MusicItemQueryTableWidget
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicArtistQueryTableWidget)
-public:
-    /*!
-     * Object constructor.
-     */
-    explicit MusicArtistQueryTableWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicArtistQueryTableWidget();
-
-    /*!
-     * Set network query input.
-     */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
-
-};
-
-
 /*! @brief The class of the artist music query widget.
  * @author Greedysky <greedysky@163.com>
  */

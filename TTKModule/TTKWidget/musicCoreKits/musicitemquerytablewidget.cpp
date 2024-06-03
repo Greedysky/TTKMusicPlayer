@@ -293,7 +293,7 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const TTK::MusicSongInformation
 
     MusicResultDataItem item;
     item.m_name = TTK::generateSongName(info.m_songName, info.m_artistName);
-    item.m_updateTime = info.m_duration;
+    item.m_time = info.m_duration;
     item.m_id = info.m_songId;
     item.m_nickName = prop.m_url;
     item.m_description = prop.m_format;

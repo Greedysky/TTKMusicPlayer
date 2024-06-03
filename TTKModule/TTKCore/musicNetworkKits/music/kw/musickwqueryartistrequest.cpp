@@ -127,7 +127,7 @@ void MusicKWQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) cons
     if(ok)
     {
         const QVariantMap &value = data.toMap();
-        item->m_updateTime = value["birthday"].toString();
+        item->m_time = value["birthday"].toString();
         item->m_nickName = value["aartist"].toString();
         item->m_coverUrl = value["hts_pic"].toString();
         item->m_description = TTK::String::convertHtmlToPlain(value["info"].toString());

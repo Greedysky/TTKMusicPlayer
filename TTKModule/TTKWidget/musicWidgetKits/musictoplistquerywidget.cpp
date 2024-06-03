@@ -3,38 +3,17 @@
 #include "musiccoverrequest.h"
 #include "musictoplistquerycategorypopwidget.h"
 
-MusicToplistQueryTableWidget::MusicToplistQueryTableWidget(QWidget *parent)
-    : MusicItemQueryTableWidget(parent)
-{
-
-}
-
-MusicToplistQueryTableWidget::~MusicToplistQueryTableWidget()
-{
-    removeItems();
-}
-
-void MusicToplistQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
-{
-    MusicItemQueryTableWidget::setQueryInput(query);
-    if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
-    {
-        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
-    }
-}
-
-
-
 MusicToplistQueryWidget::MusicToplistQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent),
       m_categoryButton(nullptr)
 {
-    m_queryTableWidget = new MusicToplistQueryTableWidget(this);
+    m_queryTableWidget = new MusicItemQueryTableWidget(this);
     m_queryTableWidget->hide();
 
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeToplistRequest(this);
     m_queryTableWidget->setQueryInput(d);
 
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
     connect(d, SIGNAL(createToplistItem(MusicResultDataItem)), SLOT(createToplistItem(MusicResultDataItem)));
 }
 
@@ -193,7 +172,7 @@ void MusicToplistQueryWidget::createToplistItem(const MusicResultDataItem &item)
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[2];
-        data->m_label->setToolTip(tr("UpdateTime: %1").arg(item.m_updateTime));
+        data->m_label->setToolTip(tr("UpdateTime: %1").arg(item.m_time));
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[3];

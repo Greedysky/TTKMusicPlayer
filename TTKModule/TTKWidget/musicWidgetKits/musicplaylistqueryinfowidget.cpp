@@ -12,7 +12,7 @@ MusicPlaylistQueryInfoWidget::MusicPlaylistQueryInfoWidget(QWidget *parent)
       m_commentsWidget(nullptr)
 {
     m_shareType = MusicSongSharingWidget::Module::Playlist;
-    m_queryTableWidget = new MusicPlaylistQueryTableWidget(this);
+    m_queryTableWidget = new MusicItemQueryTableWidget(this);
     m_container->show();
 
     initFirstWidget();
@@ -100,12 +100,12 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
     topLineLayout->setContentsMargins(10, 5, 5, 0);
 
-    QLabel *playlistLabel = new QLabel(topLineWidget);
-    QFont playlistFont = playlistLabel->font();
-    playlistFont.setPixelSize(20);
-    playlistLabel->setFont(playlistFont);
-    playlistLabel->setStyleSheet(TTK::UI::FontStyle01);
-    playlistLabel->setToolTip(item.m_name);
+    QLabel *nameLabel = new QLabel(topLineWidget);
+    QFont nameFont = nameLabel->font();
+    nameFont.setPixelSize(20);
+    nameLabel->setFont(nameFont);
+    nameLabel->setStyleSheet(TTK::UI::FontStyle01);
+    nameLabel->setToolTip(item.m_name);
 
     QLabel *creatorLabel = new QLabel(topLineWidget);
     creatorLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
@@ -117,9 +117,9 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
 
     QLabel *updateLabel = new QLabel(topLineWidget);
     updateLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
-    updateLabel->setToolTip(tr("Update: %1").arg(item.m_updateTime));
+    updateLabel->setToolTip(tr("UpdateTime: %1").arg(item.m_time));
 
-    topLineLayout->addWidget(playlistLabel);
+    topLineLayout->addWidget(nameLabel);
     topLineLayout->addWidget(creatorLabel);
     topLineLayout->addWidget(tagsLabel);
     topLineLayout->addWidget(updateLabel);
@@ -229,7 +229,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidgets.push_back({playlistLabel, playlistLabel->font()});
+    m_resizeWidgets.push_back({nameLabel, nameLabel->font()});
     m_resizeWidgets.push_back({creatorLabel, creatorLabel->font()});
     m_resizeWidgets.push_back({tagsLabel, tagsLabel->font()});
     m_resizeWidgets.push_back({updateLabel, updateLabel->font()});
@@ -240,7 +240,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
 void MusicPlaylistQueryInfoWidget::setQueryInput(MusicAbstractQueryRequest *query)
 {
     m_queryTableWidget->setQueryInput(query);
-    TTKObjectCast(MusicPlaylistQueryTableWidget*, m_queryTableWidget)->setConnectClass(this);
+    connect(query, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
 void MusicPlaylistQueryInfoWidget::setCurrentIndex(int index)

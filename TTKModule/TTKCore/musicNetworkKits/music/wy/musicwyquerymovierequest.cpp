@@ -403,7 +403,7 @@ void MusicWYQueryArtistMovieRequest::downLoadFinished()
                     item.m_id = value["id"].toString();
                     item.m_coverUrl = value["imgurl"].toString();
                     item.m_name = value["name"].toString();
-                    item.m_updateTime.clear();
+                    item.m_time.clear();
                     Q_EMIT createMovieItem(item);
                 }
             }

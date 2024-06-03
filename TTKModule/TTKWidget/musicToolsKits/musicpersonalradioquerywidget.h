@@ -1,5 +1,5 @@
-#ifndef MUSICALBUMQUERYWIDGET_H
-#define MUSICALBUMQUERYWIDGET_H
+#ifndef MUSICPERSONALRADIOQUERYWIDGET_H
+#define MUSICPERSONALRADIOQUERYWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -21,27 +21,23 @@
 
 #include "musicabstractitemquerywidget.h"
 
-/*! @brief The class of the album music query widget.
+/*! @brief The class of the personal radio query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAlbumQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicPersonalRadioQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAlbumQueryWidget)
+    TTK_DECLARE_MODULE(MusicPersonalRadioQueryWidget)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicAlbumQueryWidget(QWidget *parent = nullptr);
+    explicit MusicPersonalRadioQueryWidget(QWidget *parent = nullptr);
 
     /*!
      * Set current value to search founds.
      */
     virtual void setCurrentValue(const QString &value) override final;
-    /*!
-     * Set current id to search founds.
-     */
-    virtual void setCurrentID(const QString &id) override final;
     /*!
      * Resize widget bound by resize called.
      */
@@ -52,21 +48,13 @@ public Q_SLOTS:
      * Query all quality musics is finished.
      */
     void queryAllFinished();
-    /*!
-     * Query album musics is finished.
-     */
-    void queryAlbumFinished();
-    /*!
-     * Create the current album info item.
-     */
-    void createAlbumItem(const MusicResultDataItem &item);
 
 private:
     /*!
-     * Create init interface lables.
+     * Set music playlist item.
      */
-    void createLabels();
+    void setResultDataItem(const MusicResultDataItem &item);
 
 };
 
-#endif // MUSICALBUMQUERYWIDGET_H
+#endif // MUSICPERSONALRADIOQUERYWIDGET_H
