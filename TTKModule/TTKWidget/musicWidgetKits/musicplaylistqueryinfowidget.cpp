@@ -1,5 +1,4 @@
 #include "musicplaylistqueryinfowidget.h"
-#include "musicplaylistquerytablewidget.h"
 #include "musicplaylistquerycommentswidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musiccoverrequest.h"

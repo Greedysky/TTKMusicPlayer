@@ -734,7 +734,7 @@ void MusicSongsContainerWidget::addSongBufferToPlaylist(const MusicResultDataIte
         index = songItem->m_songs.count() - 1;
     }
 
-    if(item.m_category == MUSIC_PLAY_NOW)
+    if(item.m_title == MUSIC_PLAY_NOW)
     {
         ///when download finished just play it at once
         setCurrentIndex(MUSIC_NETWORK_LIST);

@@ -39,9 +39,6 @@ void MusicPersonalRadioQueryWidget::resizeWidget()
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180 + width));
 
         data = &m_resizeWidgets[2];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 210 + width));
-
-        data = &m_resizeWidgets[3];
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 350 + width));
     }
 }
@@ -101,18 +98,13 @@ void MusicPersonalRadioQueryWidget::setResultDataItem(const MusicResultDataItem 
     creatorLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     creatorLabel->setToolTip(tr("PlayCount: %1").arg(item.m_count));
 
-    QLabel *tagsLabel = new QLabel(topLineWidget);
-    tagsLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
-    tagsLabel->setToolTip(tr("UpdateTime: %1").arg(item.m_time));
-
-    QLabel *updateLabel = new QLabel(topLineWidget);
-    updateLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
-    updateLabel->setToolTip(tr("Description: %1").arg(item.m_description));
+    QLabel *descriptionLabel = new QLabel(topLineWidget);
+    descriptionLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
+    descriptionLabel->setToolTip(tr("Description: %1").arg(item.m_description));
 
     topLineLayout->addWidget(nameLabel);
     topLineLayout->addWidget(creatorLabel);
-    topLineLayout->addWidget(tagsLabel);
-    topLineLayout->addWidget(updateLabel);
+    topLineLayout->addWidget(descriptionLabel);
     topLineWidget->setLayout(topLineLayout);
 
     QWidget *topButtonWidget = new QWidget(topFuncWidget);
@@ -153,8 +145,7 @@ void MusicPersonalRadioQueryWidget::setResultDataItem(const MusicResultDataItem 
 
     m_resizeWidgets.push_back({nameLabel, nameLabel->font()});
     m_resizeWidgets.push_back({creatorLabel, creatorLabel->font()});
-    m_resizeWidgets.push_back({tagsLabel, tagsLabel->font()});
-    m_resizeWidgets.push_back({updateLabel, updateLabel->font()});
+    m_resizeWidgets.push_back({descriptionLabel, descriptionLabel->font()});
 
     resizeWidget();
 }
