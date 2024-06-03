@@ -39,7 +39,7 @@ void MusicPersonalRadioQueryWidget::resizeWidget()
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180 + width));
 
         data = &m_resizeWidgets[2];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 350 + width));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 320 + width));
     }
 }
 
