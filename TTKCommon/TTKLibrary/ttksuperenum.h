@@ -65,7 +65,7 @@ private:
     operator int () const { return m_data; } \
     operator QString () const { return toString(); } \
     Type& operator =(int v) { m_data = v; return *this; } \
-    Type& operator =(const Type &v) { data_ = v.data_; return *this; } \
+    Type& operator =(const Type &v) { m_data = v.m_data; return *this; } \
     Type& operator =(const QString &v) { m_data = Type ## EnumObject.stringToKey(v); return *this; } \
   private: \
     int m_data; \

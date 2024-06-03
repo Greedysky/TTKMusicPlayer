@@ -13,7 +13,8 @@ TTKSuperEnum::TTKSuperEnum(const QString &value)
         const int pos = data.indexOf('=');
         if(pos != TTKSuperEnum::Null)
         {
-            enumValue = data.right(data.length() - pos - 1).trimmed().toInt();
+            const QString &v = data.right(data.length() - pos - 1).trimmed();
+            enumValue = v.toInt(nullptr, (v.startsWith("0x") || v.startsWith("0X")) ? 16 : 10);
             data = data.left(pos);
         }
 
