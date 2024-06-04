@@ -105,7 +105,7 @@ protected:
 
     bool m_isDrawTopState, m_isDrawMoveState;
     bool m_isBlockMoveExpand, m_isActive;
-    QPoint m_pressAt;
+    QPoint m_mousePressedAt;
 
 };
 

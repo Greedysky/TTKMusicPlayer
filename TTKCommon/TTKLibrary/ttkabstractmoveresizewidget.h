@@ -28,8 +28,8 @@
  */
 struct TTK_MODULE_EXPORT MoveResizeData
 {
-    bool m_mouseLeftPress;
-    bool m_isPressBorder;
+    bool m_borderPressed;
+    bool m_mouseLeftPressed;
     QPoint m_mousePos;
     QPoint m_windowPos;
     QSize m_pressedSize;

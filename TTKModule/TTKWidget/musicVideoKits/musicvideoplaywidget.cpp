@@ -130,7 +130,7 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
 void MusicVideoPlayWidget::popupMode(bool popup)
 {
     m_videoFloatWidget->popupMode(popup);
-    blockMoveOption(!popup);
+    blockOption(!popup);
 
     if(popup)
     {
@@ -154,7 +154,7 @@ void MusicVideoPlayWidget::popupMode(bool popup)
 
 bool MusicVideoPlayWidget::isPopupMode() const
 {
-    return !m_moveOption;
+    return !m_blockOption;
 }
 
 void MusicVideoPlayWidget::resizeWindow()

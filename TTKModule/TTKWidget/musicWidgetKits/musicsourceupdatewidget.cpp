@@ -17,7 +17,7 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
     setStyleSheet(TTK::UI::BackgroundStyle10);
     setMouseTracking(true);
-    blockMoveOption(true);
+    blockOption(true);
 
     const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     setGeometry(windowSize.width() - 240, windowSize.height() - 150, 220, 100);

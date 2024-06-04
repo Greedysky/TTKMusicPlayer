@@ -25,22 +25,22 @@ void MusicMoveButton::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
     {
-        m_leftButtonPress = true;
+        m_mouseLeftPressed = true;
     }
 
-    m_pressAt = QtMouseGlobalPos(event);
+    m_mousePressedAt = QtMouseGlobalPos(event);
 }
 
 void MusicMoveButton::mouseMoveEvent(QMouseEvent *event)
 {
-    if(!m_leftButtonPress)
+    if(!m_mouseLeftPressed)
     {
         event->ignore();
         return;
     }
 
-    const int xpos = QtMouseGlobalX(event) - m_pressAt.x();
-    m_pressAt = QtMouseGlobalPos(event);
+    const int xpos = QtMouseGlobalX(event) - m_mousePressedAt.x();
+    m_mousePressedAt = QtMouseGlobalPos(event);
 
     move(x() + xpos, y());
     Q_EMIT moveChanged();
@@ -48,8 +48,8 @@ void MusicMoveButton::mouseMoveEvent(QMouseEvent *event)
 
 void MusicMoveButton::mouseReleaseEvent(QMouseEvent *event)
 {
-    m_pressAt = QtMouseGlobalPos(event);
-    m_leftButtonPress = false;
+    m_mousePressedAt = QtMouseGlobalPos(event);
+    m_mouseLeftPressed = false;
     Q_EMIT buttonRelease();
 }
 

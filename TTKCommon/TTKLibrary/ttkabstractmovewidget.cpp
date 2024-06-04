@@ -9,9 +9,9 @@ TTKAbstractMoveWidget::TTKAbstractMoveWidget(QWidget *parent)
 
 TTKAbstractMoveWidget::TTKAbstractMoveWidget(bool transparent, QWidget *parent)
     : QWidget(parent),
-      m_moveOption(false),
-      m_showShadow(true),
-      m_leftButtonPress(false)
+      m_blockOption(false),
+      m_shadowOption(true),
+      m_mouseLeftPressed(false)
 {
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground, transparent);
@@ -21,7 +21,7 @@ void TTKAbstractMoveWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
 
-    if(m_showShadow)
+    if(m_shadowOption)
     {
         QPainter painter(this);
         TTK::setBorderShadow(this, &painter);
@@ -31,32 +31,32 @@ void TTKAbstractMoveWidget::paintEvent(QPaintEvent *event)
 void TTKAbstractMoveWidget::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
-    if(event->button() == Qt::LeftButton && !m_moveOption)
+    if(event->button() == Qt::LeftButton && !m_blockOption)
     {
-        m_leftButtonPress = true;
+        m_mouseLeftPressed = true;
     }
 
-    m_pressAt = QtMouseGlobalPos(event);
+    m_mousePressedAt = QtMouseGlobalPos(event);
 }
 
 void TTKAbstractMoveWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
-    if(!m_leftButtonPress )
+    if(!m_mouseLeftPressed)
     {
         event->ignore();
         return;
     }
 
-    const int xpos = QtMouseGlobalX(event) - m_pressAt.x();
-    const int ypos = QtMouseGlobalY(event) - m_pressAt.y();
-    m_pressAt = QtMouseGlobalPos(event);
+    const int xpos = QtMouseGlobalX(event) - m_mousePressedAt.x();
+    const int ypos = QtMouseGlobalY(event) - m_mousePressedAt.y();
+    m_mousePressedAt = QtMouseGlobalPos(event);
     move(x() + xpos, y() + ypos);
 }
 
 void TTKAbstractMoveWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     QWidget::mouseReleaseEvent(event);
-    m_pressAt = QtMouseGlobalPos(event);
-    m_leftButtonPress = false;
+    m_mousePressedAt = QtMouseGlobalPos(event);
+    m_mouseLeftPressed = false;
 }

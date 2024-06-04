@@ -21,8 +21,8 @@ TTKAbstractMoveResizeWidget::TTKAbstractMoveResizeWidget(bool transparent, QWidg
     : QWidget(parent),
       m_direction(TTK::Direction::No)
 {
-    m_struct.m_mouseLeftPress = false;
-    m_struct.m_isPressBorder = false;
+    m_struct.m_borderPressed = false;
+    m_struct.m_mouseLeftPressed = false;
 
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground, transparent);
@@ -44,7 +44,7 @@ bool TTKAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
 void TTKAbstractMoveResizeWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
-    if(m_struct.m_isPressBorder || m_direction == TTK::Direction::No)
+    if(m_struct.m_borderPressed || m_direction == TTK::Direction::No)
     {
         return;
     }
@@ -62,7 +62,7 @@ void TTKAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)
     QWidget::mousePressEvent(event);
 
     m_struct.m_pressedSize = size();
-    m_struct.m_isPressBorder = false;
+    m_struct.m_borderPressed = false;
     setFocus();
 
     if(event->button() == Qt::LeftButton)
@@ -71,11 +71,11 @@ void TTKAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)
         if(QRect(DISTANCE + 1, DISTANCE + 1, width() - (DISTANCE + 1) * 2, height() - (DISTANCE + 1) * 2).contains(event->pos()))
         {
             m_struct.m_mousePos = QtMouseGlobalPos(event);
-            m_struct.m_mouseLeftPress = true;
+            m_struct.m_mouseLeftPressed = true;
         }
         else
         {
-            m_struct.m_isPressBorder = true;
+            m_struct.m_borderPressed = true;
         }
     }
 }
@@ -83,9 +83,9 @@ void TTKAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)
 void TTKAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
-    !m_struct.m_isPressBorder ? sizeDirection() : moveDirection();
+    !m_struct.m_borderPressed ? sizeDirection() : moveDirection();
 
-    if(m_struct.m_mouseLeftPress)
+    if(m_struct.m_mouseLeftPressed)
     {
         move(m_struct.m_windowPos + QtMouseGlobalPos(event) - m_struct.m_mousePos);
     }
@@ -94,8 +94,8 @@ void TTKAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
 void TTKAbstractMoveResizeWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     QWidget::mouseReleaseEvent(event);
-    m_struct.m_isPressBorder = false;
-    m_struct.m_mouseLeftPress = false;
+    m_struct.m_borderPressed = false;
+    m_struct.m_mouseLeftPressed = false;
     setCursor(QCursor(Qt::ArrowCursor));
     m_direction = TTK::Direction::No;
 }

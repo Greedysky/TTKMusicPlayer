@@ -11,14 +11,14 @@ TTKClickedSlider::TTKClickedSlider(QWidget *parent)
 TTKClickedSlider::TTKClickedSlider(Qt::Orientation orientation, QWidget *parent)
     : QSlider(orientation, parent),
       m_value(0),
-      m_mousePress(false)
+      m_mousePressed(false)
 {
     setCursor(QCursor(Qt::PointingHandCursor));
 }
 
 bool TTKClickedSlider::event(QEvent *event)
 {
-    if(m_mousePress)
+    if(m_mousePressed)
     {
         setValue(m_value);
     }
@@ -30,7 +30,7 @@ void TTKClickedSlider::mousePressEvent(QMouseEvent *event)
     QSlider::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
-        m_mousePress = true;
+        m_mousePressed = true;
 
         double pos;
         if(orientation() == Qt::Horizontal)
@@ -49,7 +49,7 @@ void TTKClickedSlider::mousePressEvent(QMouseEvent *event)
 void TTKClickedSlider::mouseMoveEvent(QMouseEvent *event)
 {
     QSlider::mouseMoveEvent(event);
-    if(m_mousePress)
+    if(m_mousePressed)
     {
         if(orientation() == Qt::Horizontal)
         {
@@ -95,5 +95,5 @@ void TTKClickedSlider::mouseMoveEvent(QMouseEvent *event)
 void TTKClickedSlider::mouseReleaseEvent(QMouseEvent *event)
 {
     QSlider::mouseReleaseEvent(event);
-    m_mousePress = false;
+    m_mousePressed = false;
 }

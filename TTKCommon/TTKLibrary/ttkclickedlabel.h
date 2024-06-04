@@ -36,6 +36,11 @@ public:
     explicit TTKClickedLabel(QWidget *parent = nullptr);
     explicit TTKClickedLabel(const QString &text, QWidget *parent = nullptr);
 
+    /*!
+     * Set or not block clicked.
+     */
+    inline void blockOption(bool block) { m_blockOption = block; }
+
 Q_SIGNALS:
     /*!
      * Click the item.
@@ -47,6 +52,8 @@ private:
      * Override the widget event.
      */
     virtual void mousePressEvent(QMouseEvent *event) override final;
+
+    bool m_blockOption;
 
 };
 

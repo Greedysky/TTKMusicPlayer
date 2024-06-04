@@ -52,7 +52,7 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
 
     int m_value;
-    bool m_mousePress;
+    bool m_mousePressed;
 
 };
 

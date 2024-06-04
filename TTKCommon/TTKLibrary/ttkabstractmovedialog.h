@@ -40,11 +40,11 @@ public:
     /*!
      * Set or not draw window bound shadow.
      */
-    inline void drawWindowShadow(bool show) { m_showShadow = show; }
+    inline void drawWindowShadow(bool show) { m_shadowOption = show; }
     /*!
      * Set or not block widget moving.
      */
-    inline void blockMoveOption(bool block) { m_moveOption = block; }
+    inline void blockOption(bool block) { m_blockOption = block; }
 
 private:
     /*!
@@ -55,9 +55,9 @@ private:
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
 
-    QPoint m_pressAt;
-    bool m_moveOption, m_showShadow;
-    bool m_leftButtonPress;
+    QPoint m_mousePressedAt;
+    bool m_blockOption, m_shadowOption;
+    bool m_mouseLeftPressed;
 
 };
 
