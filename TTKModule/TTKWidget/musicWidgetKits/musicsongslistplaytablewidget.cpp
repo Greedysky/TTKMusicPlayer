@@ -23,7 +23,7 @@ MusicSongsListPlayTableWidget::MusicSongsListPlayTableWidget(int index, QWidget 
       m_openFileWidget(nullptr),
       m_songsInfoWidget(nullptr),
       m_songsPlayWidget(nullptr),
-      m_leftButtonPressed(false),
+      m_mouseLeftPressed(false),
       m_renameActived(false),
       m_deleteItemWithFile(false),
       m_renameItem(nullptr),
@@ -611,7 +611,7 @@ void MusicSongsListPlayTableWidget::mousePressEvent(QMouseEvent *event)
 
     if(event->button() == Qt::LeftButton)
     {
-        m_leftButtonPressed = true;
+        m_mouseLeftPressed = true;
         m_dragStartIndex = currentRow();
         m_dragStartPoint = event->pos();
     }
@@ -620,7 +620,7 @@ void MusicSongsListPlayTableWidget::mousePressEvent(QMouseEvent *event)
 void MusicSongsListPlayTableWidget::mouseMoveEvent(QMouseEvent *event)
 {
     MusicAbstractSongsListTableWidget::mouseMoveEvent(event);
-    if(m_leftButtonPressed && abs(m_dragStartPoint.y() - event->pos().y()) > 15)
+    if(m_mouseLeftPressed && abs(m_dragStartPoint.y() - event->pos().y()) > 15)
     {
         m_mouseMoved = true;
         setCursor(QCursor(QPixmap(":/functions/lb_drag_cursor")));
@@ -633,7 +633,7 @@ void MusicSongsListPlayTableWidget::mouseReleaseEvent(QMouseEvent *event)
     startToDrag();
 
     m_mouseMoved = false;
-    m_leftButtonPressed = false;
+    m_mouseLeftPressed = false;
     setCursor(QCursor(Qt::ArrowCursor));
 }
 
@@ -760,7 +760,7 @@ void MusicSongsListPlayTableWidget::startToDrag()
     bool empty;
     Q_EMIT isSearchedResultEmpty(empty);
 
-    if(empty && m_dragStartIndex > -1 && m_leftButtonPressed && m_mouseMoved)
+    if(empty && m_dragStartIndex > -1 && m_mouseLeftPressed && m_mouseMoved)
     {
         MusicSongList songs;
         const int start = m_dragStartIndex;

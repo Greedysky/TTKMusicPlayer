@@ -199,7 +199,7 @@ private:
     MusicSongsListItemInfoWidget *m_songsInfoWidget;
     MusicSongsListPlayWidget *m_songsPlayWidget;
 
-    bool m_leftButtonPressed;
+    bool m_mouseLeftPressed;
     bool m_renameActived, m_deleteItemWithFile;
     MusicSongList m_searchedSongs;
     QTableWidgetItem *m_renameItem;
