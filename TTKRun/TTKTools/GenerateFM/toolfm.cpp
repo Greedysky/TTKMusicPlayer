@@ -1,9 +1,9 @@
 #include "toolfm.h"
 
-static constexpr const char *QT_BASE_URL     = "TDNBRFd3S3lvRnVBNzFCblJSQmRHRFhrdVNnQk9qMlBEbzdjWUpSdS95VT0=";
+static constexpr const char *QT_BASE_URL = "TDNBRFd3S3lvRnVBNzFCblJSQmRHRFhrdVNnQk9qMlBEbzdjWUpSdS95VT0=";
 static constexpr const char *QT_CATEGORY_URL = "N2VwdWNwUGxOL0ZWZCtrN3V6ekd4SUZqUXVQZ3p1Y2pyeEpsc01RZzR6blNnK0o5L3Q4NWRPRCswVzkrTURKV1VvdzMvQkJ4VEVrPQ==";
-static constexpr const char *QT_CHANNEL_URL  = "UHJCNEJXWlZhQVowVE1ndXZnajFKQ2tsb1c1SDdlaEE0a0pDWEM2RGJMaktmWXpNZFR6WTcxbmRNb0ZTRTVwQXo5cE92REJOMlhjPQ==";
-static constexpr const char *QT_SONG_URL     = "OTB3emRpcnNRVDI3eVBtZ2Nwbk9jZXQyQ2hUZjJ1ZjdFdEJIN1V4WHU1WnUvMjk4MEtNWFYrUXRwUlZkWG96TA==";
+static constexpr const char *QT_CHANNEL_URL = "UHJCNEJXWlZhQVowVE1ndXZnajFKQ2tsb1c1SDdlaEE0a0pDWEM2RGJMaktmWXpNZFR6WTcxbmRNb0ZTRTVwQXo5cE92REJOMlhjPQ==";
+static constexpr const char *QT_SONG_URL = "OTB3emRpcnNRVDI3eVBtZ2Nwbk9jZXQyQ2hUZjJ1ZjdFdEJIN1V4WHU1WnUvMjk4MEtNWFYrUXRwUlZkWG96TA==";
 
 static void makeRequestRawHeader(QNetworkRequest *request)
 {

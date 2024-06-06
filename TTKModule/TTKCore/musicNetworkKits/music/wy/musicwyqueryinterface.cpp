@@ -4,16 +4,23 @@
 
 #include "qalgorithm/aeswrapper.h"
 
-static constexpr const char *_128KBPS = "QXMyZkZJc2dIb1FOenJlTg==";
-static constexpr const char *_320KBPS = "UThNR09kcDRXNG9qbG45Ng==";
-static constexpr const char *_999KBPS = "VGF0djlKc01mL1QxM1pyNQ==";
+static constexpr const char *BN_128KBPS = "QXMyZkZJc2dIb1FOenJlTg==";
+static constexpr const char *BN_320KBPS = "UThNR09kcDRXNG9qbG45Ng==";
+static constexpr const char *BN_999KBPS = "VGF0djlKc01mL1QxM1pyNQ==";
+
+static constexpr const char *WY_UA_URL = "Vkloais0Z0Q4Smp1aElYSXFUVy96SXdoZ2VsTURzdDBpZEZjT21jMy9PRE1DMzdwQ0p5MllueTkrRGdzb2VkdlJMemJhWEFReHlUUk9uSEtMTHRLUzRxS3psczJiRW9LZ3BQbHh1Z3lGRlhEQk5JbVVGb1NDN1JzTDhZMjBybllLcndKSHlSNC94QzRJWXlL";
+static constexpr const char *WY_COOKIE_URL = "eU5NVy9LRm5jWE9pdUU1MzNQNi9OcjVUbi9vSGhYcGVaQWc0NjlPbCt1WnNDbDlONDg1SSthTi9JUDQ1YVpsRg==";
+static constexpr const char *WY_USER_URL = "bSs4UEJOUzFwRWpzRVY0WUVJekhzU0Nzc1JZT0pLc2tOdFNaM05DWnRhM3JHT0kzSWpQb1MyNXJkK3A5YmV3YklpM082dDk1amVjejV0NlV5aHYybkF4Zjd3L2NSblJkYmRXOS8xVlJOWnYvMWhweUxsSGhtSGVPYnFQZE10d01sNWswZFNzYnVEOGhBWkpHdHFTUGpJNVROdWM9";
+static constexpr const char *WY_RAND_URL = "V0Zsb2tGREU1R0thR29GYjRYdk5jbm5NZjEvN1d6WWNiQlZqb2k4eE1nTm9lTHlBRktkQTBOaXNjQ3ZHU0ZMSw==";
+static constexpr const char *WY_BASE_URL = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
+static constexpr const char *WY_SECKRY_URL = "411571dca16717d9af5ef1ac97a8d21cb740329890560688b1b624de43f49fdd7702493835141b06ae45f1326e264c98c24ce87199c1a776315e5f25c11056b02dd92791fcc012bff8dd4fc86e37888d5ccc060f7837b836607dbb28bddc703308a0ba67c24c6420dd08eec2b8111067486c907b6e53c027ae1e56c188bc568e";
 
 void ReqWYInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     request->setRawHeader("Referer", TTK::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("Origin", TTK::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("User-Agent", TTK::Algorithm::mdII(WY_UA_URL, MDII_UA_KEY, false).toUtf8());
-    request->setRawHeader("Cookie", QString("MUSIC_U=%1; NMTID=%2; ").arg(TTK::Algorithm::mdII(WY_COOKIE_URL, false), TTK::Algorithm::mdII(WY_NMTID_URL, MDII_UA_KEY, false)).toUtf8());
+    request->setRawHeader("Cookie", TTK::Algorithm::mdII(WY_COOKIE_URL, false).arg(TTK::Algorithm::mdII(WY_USER_URL, false), TTK::Algorithm::mdII(WY_RAND_URL, MDII_UA_KEY, false)).toUtf8());
     TTK::setSslConfiguration(request);
     TTK::makeContentTypeHeader(request);
 }
@@ -38,7 +45,7 @@ QByteArray ReqWYInterface::makeTokenRequest(QNetworkRequest *request, const QStr
 
     request->setUrl(query);
     ReqWYInterface::makeRequestRawHeader(request);
-    return "params=" + param + "&encSecKey=" + WY_SECKRY_STRING;
+    return "params=" + param + "&encSecKey=" + WY_SECKRY_URL;
 }
 
 QByteArray ReqWYInterface::makeTokenRequest(QNetworkRequest *request, const QString &url, const QString &query, const QString &data)
@@ -176,9 +183,9 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, int bitrate)
     QString format;
     switch(bitrate)
     {
-        case TTK_BN_128: format = TTK::Algorithm::mdII(_128KBPS, false); break;
-        case TTK_BN_320: format = TTK::Algorithm::mdII(_320KBPS, false); break;
-        case TTK_BN_1000: format = TTK::Algorithm::mdII(_999KBPS, false); break;
+        case TTK_BN_128: format = TTK::Algorithm::mdII(BN_128KBPS, false); break;
+        case TTK_BN_320: format = TTK::Algorithm::mdII(BN_320KBPS, false); break;
+        case TTK_BN_1000: format = TTK::Algorithm::mdII(BN_999KBPS, false); break;
         default: return;
     }
 

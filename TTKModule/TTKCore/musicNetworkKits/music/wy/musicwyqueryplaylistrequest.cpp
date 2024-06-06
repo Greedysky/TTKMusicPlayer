@@ -32,11 +32,10 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
-                      TTK::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(value));
+    request.setUrl(TTK::Algorithm::mdII(WY_PLAYLIST_INFO_V2_URL, false));
+    ReqWYInterface::makeRequestRawHeader(&request);
 
-    QNetworkReply *reply = m_manager.post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, TTK::Algorithm::mdII(WY_PLAYLIST_INFO_V2_DATA_URL, false).arg(value).toUtf8());
     connect(reply, SIGNAL(finished()), SLOT(downloadDetailsFinished()));
     QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 }
@@ -66,11 +65,10 @@ void MusicWYQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
     MusicPageQueryRequest::downLoadFinished();
 
     QNetworkRequest request;
-    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
-                      TTK::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(item.m_id));
+    request.setUrl(TTK::Algorithm::mdII(WY_PLAYLIST_INFO_V2_URL, false));
+    ReqWYInterface::makeRequestRawHeader(&request);
 
-    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, TTK::Algorithm::mdII(WY_PLAYLIST_INFO_V2_DATA_URL, false).arg(item.m_id).toUtf8());
     if(bytes.isEmpty())
     {
         return;

@@ -7,7 +7,7 @@
 namespace ReqYYTInterface
 {
     static constexpr const char *MODULE = "YYT";
-    static constexpr const char *MOVIE_URL      = "aHFyKzJ2V2gvdWVrdzEyWlBmUFdHbys5RGM3STRrY25uQ2xCRDdXeldPV0pXMWtNVmN1di9CRndFeDNqbExEdjA5dC9qcWEzMWFxc3NnRWkrcFcrZlBReC90bz0=";
+    static constexpr const char *MOVIE_URL = "aHFyKzJ2V2gvdWVrdzEyWlBmUFdHbys5RGM3STRrY25uQ2xCRDdXeldPV0pXMWtNVmN1di9CRndFeDNqbExEdjA5dC9qcWEzMWFxc3NnRWkrcFcrZlBReC90bz0=";
     static constexpr const char *MOVIE_DATA_URL = "emxYODBYb2dkQUVzcFcxVFZJS29kbzIwMzhybDVJRk1aNDFab1l3ellaM2pEdEFTVHFvN3RRV2ZNOXM4QkFkVXcrNWNzamFzc2ducEs2NXVyU1RmaVM2VlJtSmlSVUt5MUJmSE9WS2lxc3A5bVh0TXNBRzBEeWd2R29yNVZkUzJLbVBVbGdQSFZOemdQUGkxWFN5TllweHdDNnA3ZStUclVIUE1zYmpwNkVaSC96RHY5eXdTVWdoTVhsK2tidGhmOGcvcFpLejA5NlVLaUlxZko5Ni9ucEJRSUJyZVJGUW5YQlpLQzBGdm44SklDVDh5T0xmTWZoRWpoU3pWTFRtby9mYWQ0QlpJNjk4Q3dzczA=";
 }
 
