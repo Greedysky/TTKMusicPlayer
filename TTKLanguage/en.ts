@@ -7294,6 +7294,31 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
         <source>HSRadio</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="195"/>
+        <source>EARadio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="196"/>
+        <source>CNRadio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="197"/>
+        <source>JPRadio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="198"/>
+        <source>KRRadio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="199"/>
+        <source>CTRadio</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MusicWebMVRadioInfoTableWidget</name>

@@ -7294,6 +7294,31 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
         <source>HSRadio</source>
         <translation>熱點雷達</translation>
     </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="195"/>
+        <source>EARadio</source>
+        <translation>歐美雷達</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="196"/>
+        <source>CNRadio</source>
+        <translation>華語雷達</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="197"/>
+        <source>JPRadio</source>
+        <translation>日系雷達</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="198"/>
+        <source>KRRadio</source>
+        <translation>韓系雷達</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="199"/>
+        <source>CTRadio</source>
+        <translation>粵語雷達</translation>
+    </message>
 </context>
 <context>
     <name>MusicWebMVRadioInfoTableWidget</name>

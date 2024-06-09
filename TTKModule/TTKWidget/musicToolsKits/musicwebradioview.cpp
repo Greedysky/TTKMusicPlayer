@@ -155,6 +155,31 @@ void MusicWebFMRadioWidget::itemDoubleClicked(int row, int column)
             MusicRightAreaWidget::instance()->showPersonalRadioFound("8819359201");
             break;
         }
+        case 16:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("2829816518");
+            break;
+        }
+        case 17:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("2829883282");
+            break;
+        }
+        case 18:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("2829896389");
+            break;
+        }
+        case 19:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("2829920189");
+            break;
+        }
+        case 20:
+        {
+            MusicRightAreaWidget::instance()->showPersonalRadioFound("8805180200");
+            break;
+        }
         default: break;
     }
 }
@@ -191,7 +216,12 @@ void MusicWebFMRadioWidget::addCelltItems()
           << ToolItem(":/radio/lb_radio_13", tr("WWRadio"))
           << ToolItem(":/radio/lb_radio_14", tr("HCRadio"))
           << ToolItem(":/radio/lb_radio_15", tr("RHRadio"))
-          << ToolItem(":/radio/lb_radio_16", tr("HSRadio"));
+          << ToolItem(":/radio/lb_radio_16", tr("HSRadio"))
+          << ToolItem(":/radio/lb_radio_17", tr("EARadio"))
+          << ToolItem(":/radio/lb_radio_18", tr("CNRadio"))
+          << ToolItem(":/radio/lb_radio_19", tr("JPRadio"))
+          << ToolItem(":/radio/lb_radio_20", tr("KRRadio"))
+          << ToolItem(":/radio/lb_radio_21", tr("CTRadio"));
 
     for(const ToolItem &pair : qAsConst(pairs))
     {

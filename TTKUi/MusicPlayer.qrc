@@ -788,6 +788,11 @@
         <file alias="lb_radio_14">../TTKResource/radio/lb_radio_14.jpg</file>
         <file alias="lb_radio_15">../TTKResource/radio/lb_radio_15.jpg</file>
         <file alias="lb_radio_16">../TTKResource/radio/lb_radio_16.jpg</file>
+        <file alias="lb_radio_17">../TTKResource/radio/lb_radio_17.jpg</file>
+        <file alias="lb_radio_18">../TTKResource/radio/lb_radio_18.jpg</file>
+        <file alias="lb_radio_19">../TTKResource/radio/lb_radio_19.jpg</file>
+        <file alias="lb_radio_20">../TTKResource/radio/lb_radio_20.jpg</file>
+        <file alias="lb_radio_21">../TTKResource/radio/lb_radio_21.jpg</file>
     </qresource>
     <qresource prefix="/playlist">
         <file alias="a">../TTKResource/playlist/a.jpg</file>
