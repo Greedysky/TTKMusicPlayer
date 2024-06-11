@@ -99,7 +99,7 @@ private:
     /*!
      * Download data from net and just play or not.
      */
-    bool downloadDataFrom(const TTK::MusicSongInformation &info, bool play);
+    bool downloadDataFrom(TTK::MusicSongInformation *info, bool play);
 
 };
 

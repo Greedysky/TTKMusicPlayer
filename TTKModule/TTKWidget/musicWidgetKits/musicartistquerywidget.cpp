@@ -390,7 +390,7 @@ void MusicArtistQueryWidget::setCurrentIndex(int index)
 
 void MusicArtistQueryWidget::queryAllFinished()
 {
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
+    const TTK::MusicSongInformationList &songInfos = m_networkRequest->items();
     if(songInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));
@@ -423,7 +423,7 @@ void MusicArtistQueryWidget::queryArtistFinished()
         return;
     }
 
-    const TTK::MusicSongInformationList songInfos(d->items());
+    const TTK::MusicSongInformationList &songInfos = d->items();
     if(songInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));

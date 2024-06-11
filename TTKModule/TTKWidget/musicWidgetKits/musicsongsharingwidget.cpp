@@ -92,7 +92,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
                 break;
             }
 
-            const TTK::MusicSongInformation info(d->items().front());
+            const TTK::MusicSongInformation &info = d->items().front();
             m_data.m_id = info.m_songId;
             m_data.m_cover = info.m_coverUrl;
             m_data.m_server = d->queryServer();

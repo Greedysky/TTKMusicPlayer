@@ -207,7 +207,7 @@ void MusicSongSearchTableWidget::searchActionClicked(QAction *action)
         return;
     }
 
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
+    const TTK::MusicSongInformationList &songInfos = m_networkRequest->items();
     const TTK::MusicSongInformation &info = songInfos[row];
 
     switch(action->data().toInt())
@@ -262,21 +262,21 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    TTK::MusicSongInformation &songInfo = songInfos[row];
-    m_networkRequest->startToQueryResult(&songInfo, TTK_BN_128);
+    TTK::MusicSongInformation &info = songInfos[row];
+    m_networkRequest->startToQueryResult(&info, TTK_BN_128);
 
-    if(songInfo.m_songProps.isEmpty())
+    if(info.m_songProps.isEmpty())
     {
         MusicToastLabel::popup(tr("No resource found"));
         return;
     }
 
-    const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
+    const TTK::MusicSongProperty &prop = info.m_songProps.front();
 
     MusicResultDataItem item;
     item.m_name = TTK::generateSongName(this->item(row, 1)->toolTip(), this->item(row, 2)->toolTip());
-    item.m_time = songInfo.m_duration;
-    item.m_id = songInfo.m_songId;
+    item.m_time = info.m_duration;
+    item.m_id = info.m_songId;
     item.m_nickName = prop.m_url;
     item.m_description = prop.m_format;
     item.m_count = prop.m_size;

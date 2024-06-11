@@ -66,7 +66,7 @@ void MusicItemQueryTableWidget::itemDoubleClicked(int row, int column)
 
 void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 {
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
+    TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     const TTKIntList &list = checkedIndexList();
     if(list.isEmpty())
     {
@@ -76,10 +76,13 @@ void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 
     for(int i = 0; i < list.count(); ++i)
     {
-        if(downloadDataFrom(songInfos[list[i]], play && (i == 0)))
+        const int index = list[i];
+        if(index >= songInfos.count())
         {
             continue;
         }
+
+        downloadDataFrom(&songInfos[index], play && (i == 0 /* first item row */));
     }
 }
 
@@ -117,7 +120,7 @@ void MusicItemQueryTableWidget::resizeSection() const
 void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
 {
     const int row = currentRow();
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
+    const TTK::MusicSongInformationList &songInfos = m_networkRequest->items();
     if(!isValid(row) || row >= songInfos.count())
     {
         return;
@@ -151,7 +154,7 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     const int row = currentRow();
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
+    const TTK::MusicSongInformationList &songInfos = m_networkRequest->items();
     if(!isValid(row) || row >= songInfos.count())
     {
         return;
@@ -262,16 +265,16 @@ void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
+    TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     if(row >= songInfos.count())
     {
         return;
     }
 
-    downloadDataFrom(songInfos[row], play);
+    downloadDataFrom(&songInfos[row], play);
 }
 
-bool MusicItemQueryTableWidget::downloadDataFrom(const TTK::MusicSongInformation &info, bool play)
+bool MusicItemQueryTableWidget::downloadDataFrom(TTK::MusicSongInformation *info, bool play)
 {
     if(!G_NETWORK_PTR->isOnline())
     {
@@ -279,22 +282,20 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const TTK::MusicSongInformation
         return false;
     }
 
-    TTK::MusicSongInformation songInfo;
-    songInfo.m_songId = info.m_songId;
-    m_networkRequest->startToQueryResult(&songInfo, TTK_BN_128);
+    m_networkRequest->startToQueryResult(info, TTK_BN_128);
 
-    if(songInfo.m_songProps.isEmpty())
+    if(info->m_songProps.isEmpty())
     {
         MusicToastLabel::popup(tr("No resource found"));
         return false;
     }
 
-    const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
+    const TTK::MusicSongProperty &prop = info->m_songProps.front();
 
     MusicResultDataItem item;
-    item.m_name = TTK::generateSongName(info.m_songName, info.m_artistName);
-    item.m_time = info.m_duration;
-    item.m_id = info.m_songId;
+    item.m_name = TTK::generateSongName(info->m_songName, info->m_artistName);
+    item.m_time = info->m_duration;
+    item.m_id = info->m_songId;
     item.m_nickName = prop.m_url;
     item.m_description = prop.m_format;
     item.m_count = prop.m_size;

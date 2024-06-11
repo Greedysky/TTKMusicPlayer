@@ -220,7 +220,7 @@ void MusicVideoSearchTableWidget::queryMediaProps(TTK::MusicSongPropertyList &pr
     }
 
     const int row = !m_singleRadioMode ? m_previousClickRow : 0;
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
+    const TTK::MusicSongInformationList &songInfos = m_networkRequest->items();
     props = (!songInfos.isEmpty() && row != -1) ? songInfos[row].m_songProps : TTK::MusicSongPropertyList();
 }
 

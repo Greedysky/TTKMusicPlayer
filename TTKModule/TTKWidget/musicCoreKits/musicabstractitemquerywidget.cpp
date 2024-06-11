@@ -212,9 +212,8 @@ void MusicAbstractItemQueryWidget::setSongCountText()
         return;
     }
 
-    const TTK::MusicSongInformationList songInfos(d->items());
     if(m_songButton)
     {
-        m_songButton->setText(tr("SongItems") + QString("(%1)").arg(songInfos.count()));
+        m_songButton->setText(tr("SongItems") + QString("(%1)").arg(d->items().count()));
     }
 }

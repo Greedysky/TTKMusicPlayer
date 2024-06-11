@@ -155,7 +155,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
 
         if(!d->isEmpty())
         {
-            const TTK::MusicSongInformation info(d->items().front());
+            const TTK::MusicSongInformation &info = d->items().front();
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToRequest();

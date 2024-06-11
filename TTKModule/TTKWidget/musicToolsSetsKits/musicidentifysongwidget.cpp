@@ -262,7 +262,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         m_analysis->setLineMax(11);
         connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }
-    const MusicSongIdentifyData songIdentify(m_networkRequest->items().front());
+    const MusicSongIdentifyData &songIdentify = m_networkRequest->items().front();
 
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);
