@@ -114,7 +114,7 @@ int DecoderSndFile::bitrate() const
 
 qint64 DecoderSndFile::read(unsigned char *data, qint64 maxSize)
 {
-    return sizeof(float)* sf_read_float(m_sndfile, (float *)data, maxSize / sizeof(float));
+    return sizeof(float) * sf_read_float(m_sndfile, (float *)data, maxSize / sizeof(float));
 }
 
 void DecoderSndFile::seek(qint64 time)
