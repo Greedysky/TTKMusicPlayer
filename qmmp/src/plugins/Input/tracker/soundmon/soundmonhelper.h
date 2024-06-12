@@ -19,7 +19,6 @@
 #ifndef SOUNDMONHELPER_H
 #define SOUNDMONHELPER_H
 
-#include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
 #include <libsoundmon/player.h>

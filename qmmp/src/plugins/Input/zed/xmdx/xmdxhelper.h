@@ -19,7 +19,6 @@
 #ifndef XMDXHELPER_H
 #define XMDXHELPER_H
 
-#include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
 

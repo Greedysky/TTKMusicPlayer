@@ -20,8 +20,7 @@
 #define OPENMPTHELPER_H
 
 #include <QMap>
-#include <QIODevice>
-#include <QStringList>
+#include <QFile>
 #include <libopenmpt/libopenmpt.h>
 #include <libopenmpt/libopenmpt_stream_callbacks_file.h>
 

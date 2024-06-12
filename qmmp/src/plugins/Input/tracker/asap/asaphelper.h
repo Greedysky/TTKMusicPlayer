@@ -19,7 +19,6 @@
 #ifndef ASAPHELPER_H
 #define ASAPHELPER_H
 
-#include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
 #include <libasap/asap.h>

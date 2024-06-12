@@ -19,7 +19,6 @@
 #ifndef XSFHELPER_H
 #define XSFHELPER_H
 
-#include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
 #include <libxsf/psflib/psfcore.h>

@@ -19,7 +19,6 @@
 #ifndef ORGANYAHELPER_H
 #define ORGANYAHELPER_H
 
-#include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
 

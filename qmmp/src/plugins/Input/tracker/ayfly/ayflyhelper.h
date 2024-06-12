@@ -19,7 +19,6 @@
 #ifndef AYFLYHELPER_H
 #define AYFLYHELPER_H
 
-#include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
 #undef _UNICODE

@@ -19,7 +19,6 @@
 #ifndef STSOUNDHELPER_H
 #define STSOUNDHELPER_H
 
-#include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
 #include <libstsound/ym_music.h>

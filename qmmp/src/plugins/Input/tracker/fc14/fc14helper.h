@@ -19,7 +19,6 @@
 #ifndef FC14HELPER_H
 #define FC14HELPER_H
 
-#include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
 #include <libfc14/fc14audiodecoder.h>

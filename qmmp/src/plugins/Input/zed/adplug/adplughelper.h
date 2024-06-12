@@ -20,7 +20,6 @@
 #define ADPLUGHELPER_H
 
 #include <QFile>
-#include <QStringList>
 #include <adplug/adplug.h>
 
 /*!

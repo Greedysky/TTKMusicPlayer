@@ -19,7 +19,6 @@
 #ifndef HIVELYHELPER_H
 #define HIVELYHELPER_H
 
-#include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
 extern "C" {

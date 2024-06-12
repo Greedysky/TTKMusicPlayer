@@ -1,8 +1,6 @@
 #include "openmptmetadatamodel.h"
 #include "openmpthelper.h"
 
-#include <QFile>
-
 OpenMPTMetaDataModel::OpenMPTMetaDataModel(const QString &path)
     : MetaDataModel(true)
 {

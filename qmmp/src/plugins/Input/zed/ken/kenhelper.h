@@ -19,7 +19,6 @@
 #ifndef KENHELPER_H
 #define KENHELPER_H
 
-#include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
 
