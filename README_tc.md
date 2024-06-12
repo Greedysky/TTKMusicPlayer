@@ -92,6 +92,7 @@ TTKMusicPlayer的壹些特性
  * Future Composer File(*.fc *.fc13 *.fc14 *.smod)
  * OptimFrog File(*.ofr *.ofs)
  * Audio Overload File(*.pcm *.msu *.spu *.psf *.ssf *.qsf *.dsf *.psf2 *.minipsf *.minissf *.miniqsf *.minidsf *.minipsf2 *.2sf *.mini2sf *.gsf *.minigsf *.usf *.miniusf *.ncsf *.minincsf *.snsf *.minisnsf)
+ * Quite OK Audio File(*.qoa)
  * S98 Audio File(*.s98 *.cym *.mym *.x1f)
  * Atari ST(E) And Amiga File(*.sc68 *.snd *.sndh)
  * Speex Audio File(*.spx)
