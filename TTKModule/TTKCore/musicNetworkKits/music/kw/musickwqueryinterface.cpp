@@ -116,15 +116,15 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
     QString quality;
     if((format.contains("MP3128") || format.contains("128kmp3")) && bitrate == TTK_BN_128)
     {
-        quality = "128k";
+        quality = "128";
     }
-//    else if((format.contains("MP3192") || format.contains("192kmp3")) && bitrate == TTK_BN_192)
-//    {
-//        quality = "192k";
-//    }
+    //    else if((format.contains("MP3192") || format.contains("192kmp3")) && bitrate == TTK_BN_192)
+    //    {
+    //        quality = "192";
+    //    }
     else if((format.contains("MP3H") || format.contains("320kmp3")) && bitrate == TTK_BN_320 )
     {
-        quality = "320k";
+        quality = "320";
     }
     else if((format.contains("FLAC") || format.contains("2000kflac")) && bitrate == TTK_BN_1000)
     {
@@ -136,10 +136,12 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
     }
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_SONG_PATH_V2_URL, false).arg("kw", info->m_songId, quality));
+    request.setUrl(TTK::Algorithm::mdII(KW_SONG_PATH_V2_URL, false));
     TTK::setSslConfiguration(&request);
+    TTK::makeContentTypeHeader(&request);
 
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
+    const QByteArray &parameter = TTK::Algorithm::mdII(KW_SONG_PATH_V2_DATA_URL, false).arg(info->m_songId, quality).toUtf8();
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())
     {
         return;
@@ -151,30 +153,14 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
     if(ok)
     {
         QVariantMap value = data.toMap();
-        if(value["code"].toInt() == 0 && value.contains("data"))
+        if(value["code"].toInt() == 200 && value.contains("data"))
         {
             TTK::MusicSongProperty prop;
             prop.m_bitrate = bitrate;
             prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
             prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = value["data"].toString();
-
-            value = value["extra"].toMap();
-            if(value.isEmpty())
-            {
-                return;
-            }
-
-            value = value["quality"].toMap();
-            if(value.isEmpty())
-            {
-                return;
-            }
-
-            if(value["target"].toString() == quality && value["result"].toString() == quality)
-            {
-                info->m_songProps.append(prop);
-            }
+            info->m_songProps.append(prop);
         }
     }
 }

@@ -68,7 +68,8 @@ void MusicWYQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
     request.setUrl(TTK::Algorithm::mdII(WY_PLAYLIST_INFO_V2_URL, false));
     ReqWYInterface::makeRequestRawHeader(&request);
 
-    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, TTK::Algorithm::mdII(WY_PLAYLIST_INFO_V2_DATA_URL, false).arg(item.m_id).toUtf8());
+    const QByteArray &parameter = TTK::Algorithm::mdII(WY_PLAYLIST_INFO_V2_DATA_URL, false).arg(item.m_id).toUtf8();
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())
     {
         return;

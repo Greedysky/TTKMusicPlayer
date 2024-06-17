@@ -56,7 +56,7 @@ void MusicBackgroundManager::updateArtistImageList()
     m_images.clear();
     m_currentIndex = 0;
 
-    const QString &filter = BACKGROUND_DIR_FULL + m_currentArtistName + "%1" + SKN_FILE;
+    const QString &filter = BACKGROUND_DIR_FULL + m_currentArtistName + "-%1" + SKN_FILE;
     for(int i = 0; i < MAX_IMAGE_COUNT; ++i)
     {
         QFile file(filter.arg(i));

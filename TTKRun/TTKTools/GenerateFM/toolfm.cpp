@@ -90,7 +90,8 @@ void ToolFM::startToListRequest(int id, MusicFMChannelList *channels)
         QNetworkRequest request;
         makeRequestRawHeader(&request);
 
-        const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, TTK::Algorithm::mdII(QT_CHANNEL_URL, false).arg(id).arg(++m_pageIndex + 1).toUtf8());
+        const QByteArray &parameter = TTK::Algorithm::mdII(QT_CHANNEL_URL, false).arg(id).arg(++m_pageIndex + 1).toUtf8();
+        const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
         if(bytes.isEmpty())
         {
             return;

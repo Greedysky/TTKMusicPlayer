@@ -131,5 +131,5 @@ bool MusicDownloadStatusModule::checkArtistCoverValid() const
 bool MusicDownloadStatusModule::checkArtistBackgroundValid() const
 {
     const QString &fileName = TTK::generateSongArtist(m_parent->currentFileName());
-    return QFile::exists(BACKGROUND_DIR_FULL + fileName + "0" + SKN_FILE);
+    return QFile::exists(BACKGROUND_DIR_FULL + fileName + "-0" + SKN_FILE);
 }

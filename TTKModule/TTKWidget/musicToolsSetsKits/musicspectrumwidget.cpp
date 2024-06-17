@@ -57,7 +57,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->localFileButton->setFocusPolicy(Qt::NoFocus);
     m_ui->openFileButton->setFocusPolicy(Qt::NoFocus);
 #endif
-    /////////// Objects Mouse tracking
+    // Objects Mouse tracking
     setObjectsTracking({m_ui->background});
 
     connect(m_ui->localFileButton, SIGNAL(clicked()), SLOT(localFileButtonClicked()));

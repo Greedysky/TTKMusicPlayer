@@ -85,7 +85,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     G_HOTKEY_PTR->addHotKey(this, SLOT(importSongsPopup()));
     G_HOTKEY_PTR->addHotKey(this, SLOT(volumeMute()));
 
-    /////////// Objects Mouse tracking;
+    // Objects Mouse tracking
     setObjectsTracking({m_ui->background, m_ui->songsContainer});
 
     readSystemConfigFromFile();

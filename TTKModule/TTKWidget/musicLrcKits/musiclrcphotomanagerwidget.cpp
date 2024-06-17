@@ -92,7 +92,7 @@ void MusicLrcPhotoWidget::addButtonClicked()
     for(int i = 0; i < offset; ++i)
     {
         const QString &name = G_BACKGROUND_PTR->artistName();
-        const QString &path = BACKGROUND_DIR_FULL + name + QString::number(m_items.count()) + SKN_FILE;
+        const QString &path = BACKGROUND_DIR_FULL + name + "-" + QString::number(m_items.count()) + SKN_FILE;
         QFile::copy(files[i], path);
 
         addCellItem(path);
@@ -164,16 +164,9 @@ void MusicLrcPhotoWidget::exportButtonClicked()
 
 void MusicLrcPhotoWidget::initialize()
 {
-    const QDir dir(BACKGROUND_DIR_FULL);
-    const QString &name = G_BACKGROUND_PTR->artistName();
-
-    for(const QFileInfo &fin : dir.entryInfoList())
+    for(const QString &path : G_BACKGROUND_PTR->artistImageList())
     {
-        const QString &v = fin.fileName();
-        if(v.length() > name.length() && v.startsWith(name) && v[name.length() + 1] == '.')
-        {
-            addCellItem(dir.filePath(v));
-        }
+        addCellItem(path);
     }
 }
 
@@ -197,7 +190,7 @@ MusicLrcPhotoManagerWidget::MusicLrcPhotoManagerWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
     setBackgroundLabel(m_ui->background);
-    
+
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
