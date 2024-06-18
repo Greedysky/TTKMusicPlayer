@@ -72,7 +72,7 @@
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractitemquerywidget.cpp" line="218"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractitemquerywidget.cpp" line="217"/>
         <source>SongItems</source>
         <translation>歌曲列表</translation>
     </message>
@@ -1694,41 +1694,41 @@
     <name>MusicItemQueryTableWidget</name>
     <message>
         <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="73"/>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="91"/>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="261"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="94"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="264"/>
         <source>Please select one item first</source>
         <translation>请选择某一条记录</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="160"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="163"/>
         <source>Play</source>
         <translation>播放</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="161"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="164"/>
         <source>Add to list</source>
         <translation>添加音乐</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="162"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="165"/>
         <source>Download More...</source>
         <translation>下载更多音质...</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="167"/>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="168"/>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="169"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="170"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="171"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="172"/>
         <source>Search &apos;%1&apos;</source>
         <translation>搜索 &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="170"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="173"/>
         <source>Search &apos;%1 - %2&apos;</source>
         <translation>搜索 &apos;%1 - %2&apos;</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="278"/>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="288"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="281"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemquerytablewidget.cpp" line="289"/>
         <source>No resource found</source>
         <translation>没有找到相关资源</translation>
     </message>
@@ -2926,7 +2926,7 @@
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="204"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="197"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
@@ -7215,107 +7215,107 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
 <context>
     <name>MusicWebFMRadioWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="179"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="204"/>
         <source>FMRadio</source>
         <translation>私人漫游</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="180"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="205"/>
         <source>TKRadio</source>
         <translation>私人电台</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="181"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="206"/>
         <source>DJRadio</source>
         <translation>主播电台</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="182"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="207"/>
         <source>MVRadio</source>
         <translation>视频电台</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="183"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="208"/>
         <source>PVRadio</source>
         <translation>私人雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="184"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="209"/>
         <source>TRRadio</source>
         <translation>宝藏雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="185"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="210"/>
         <source>TMRadio</source>
         <translation>时光雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="186"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="211"/>
         <source>VPRadio</source>
         <translation>会员雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="187"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="212"/>
         <source>NWRadio</source>
         <translation>新歌雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="188"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="213"/>
         <source>FNRadio</source>
         <translation>乐迷雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="189"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="214"/>
         <source>MYRadio</source>
         <translation>神秘雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="190"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="215"/>
         <source>FVRadio</source>
         <translation>曾经爱听</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="191"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="216"/>
         <source>WWRadio</source>
         <translation>周新发现</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="192"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="217"/>
         <source>HCRadio</source>
         <translation>热评趋势</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="193"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="218"/>
         <source>RHRadio</source>
         <translation>红心趋势</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="194"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="219"/>
         <source>HSRadio</source>
         <translation>热点雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="195"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="220"/>
         <source>EARadio</source>
         <translation>欧美雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="196"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="221"/>
         <source>CNRadio</source>
         <translation>华语雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="197"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="222"/>
         <source>JPRadio</source>
         <translation>日系雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="198"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="223"/>
         <source>KRRadio</source>
         <translation>韩系雷达</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="199"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebradioview.cpp" line="224"/>
         <source>CTRadio</source>
         <translation>粤语雷达</translation>
     </message>
