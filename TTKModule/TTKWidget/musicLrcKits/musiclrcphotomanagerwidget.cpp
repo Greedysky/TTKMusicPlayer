@@ -154,7 +154,25 @@ void MusicLrcPhotoWidget::exportButtonClicked()
     {
         if(item->isSelected())
         {
-            QFile::copy(item->path(), dir + QString::number(TTKDateTime::currentTimestamp()) + JPG_FILE);
+            QString suffix = JPG_FILE;
+            QFile file(item->path());
+            if(!file.open(QFile::ReadOnly))
+            {
+                continue;
+            }
+
+            const QByteArray &header = file.read(4);
+            if(header.startsWith(QByteArray::fromHex("FFD8")))
+            {
+                suffix = JPG_FILE;
+            }
+            else if(header.startsWith(QByteArray::fromHex("89504E47")))
+            {
+                suffix = PNG_FILE;
+            }
+
+            file.copy(dir + QString::number(TTKDateTime::currentTimestamp()) + suffix);
+            file.close();
             TTK::Core::sleep(TTK_DN_MS);
         }
     }

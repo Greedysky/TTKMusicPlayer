@@ -30,6 +30,7 @@
 //
 #define SKN_FILE_SUFFIX          "skn"
 #define JPG_FILE_SUFFIX          "jpg"
+#define PNG_FILE_SUFFIX          "png"
 #define LRC_FILE_SUFFIX          "lrc"
 #define KRC_FILE_SUFFIX          "krc"
 #define XML_FILE_SUFFIX          "xml"
@@ -60,6 +61,7 @@
 //
 #define SKN_FILE                 TTK_STR_CAT(TTK_DOT, SKN_FILE_SUFFIX)
 #define JPG_FILE                 TTK_STR_CAT(TTK_DOT, JPG_FILE_SUFFIX)
+#define PNG_FILE                 TTK_STR_CAT(TTK_DOT, PNG_FILE_SUFFIX)
 #define LRC_FILE                 TTK_STR_CAT(TTK_DOT, LRC_FILE_SUFFIX)
 #define KRC_FILE                 TTK_STR_CAT(TTK_DOT, KRC_FILE_SUFFIX)
 #define MP3_FILE                 TTK_STR_CAT(TTK_DOT, MP3_FILE_SUFFIX)
