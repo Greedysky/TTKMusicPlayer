@@ -16,7 +16,7 @@ The TTKMusicplayer plugin for run
   * |__Lyric
   * |__Movie
   * |__Music
-* |__当前版本号
+* |__Version
   * |__GLanguage
   * |__GTheme
   * |__GPlugins
@@ -116,6 +116,7 @@ The TTKMusicplayer plugin for run
  * optimfrog
  * organya
  * psf
+ * qoa
  * s98
  * sunvox
  * v2m
