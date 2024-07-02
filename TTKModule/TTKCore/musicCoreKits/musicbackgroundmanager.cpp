@@ -104,14 +104,10 @@ void MusicBackgroundManager::removeObserver(QObject *object)
 void MusicBackgroundManager::setBackgroundUrl(const QString &path)
 {
     m_background = path;
+    Q_EMIT backgroundChanged();
 }
 
 QString MusicBackgroundManager::backgroundUrl() const
 {
     return m_background;
-}
-
-void MusicBackgroundManager::backgroundUrlChanged()
-{
-    Q_EMIT backgroundChanged();
 }

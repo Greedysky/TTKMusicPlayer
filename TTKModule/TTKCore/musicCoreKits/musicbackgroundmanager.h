@@ -109,11 +109,6 @@ public:
      */
     QString backgroundUrl() const;
 
-    /*!
-     * Get artist background picture path.
-     */
-    void backgroundUrlChanged();
-
 Q_SIGNALS:
     /*!
      * New artist has been set.
