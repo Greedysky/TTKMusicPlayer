@@ -78,7 +78,7 @@ private:
 
 private:
     bool m_isUnity;
-    int m_pluginIndex;
+    int m_pluginSelector;
     int m_startPageIndex;
     QString m_value;
 

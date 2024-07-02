@@ -52,7 +52,7 @@ private:
     void findAllPlugins();
 
 private:
-    int m_pluginIndex;
+    int m_pluginSelector;
 
 };
 

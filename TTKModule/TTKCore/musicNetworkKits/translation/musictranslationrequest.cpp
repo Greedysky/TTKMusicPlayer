@@ -6,14 +6,14 @@
 
 MusicTranslationRequest::MusicTranslationRequest(QObject *parent)
     : MusicAbstractNetwork(parent),
-      m_pluginIndex(-1)
+      m_pluginSelector(-1)
 {
 
 }
 
 void MusicTranslationRequest::startToRequest()
 {
-    m_pluginIndex = -1;
+    m_pluginSelector = -1;
     findAllPlugins();
 }
 
@@ -32,7 +32,7 @@ void MusicTranslationRequest::downLoadDataFinished(const QString &bytes)
 void MusicTranslationRequest::findAllPlugins()
 {
     MusicAbstractTranslationRequest *d = nullptr;
-    switch(++m_pluginIndex)
+    switch(++m_pluginSelector)
     {
         case 0: d = new MusicWYTranslationRequest(this); break;
         case 1: d = new MusicBingTranslationRequest(this); break;

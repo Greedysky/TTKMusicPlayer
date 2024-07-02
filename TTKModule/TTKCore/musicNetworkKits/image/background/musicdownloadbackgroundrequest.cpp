@@ -7,7 +7,7 @@
 MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
     : QObject(parent),
       m_findCount(0),
-      m_pluginIndex(-1),
+      m_pluginSelector(-1),
       m_name(name),
       m_path(path)
 {
@@ -17,7 +17,7 @@ MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &na
 void MusicDownloadBackgroundRequest::startToRequest()
 {
     m_findCount = 0;
-    m_pluginIndex = -1;
+    m_pluginSelector = -1;
     findAllPlugins();
 }
 
@@ -44,7 +44,7 @@ void MusicDownloadBackgroundRequest::downLoadFinished(const QString &bytes)
 void MusicDownloadBackgroundRequest::findAllPlugins()
 {
     MusicAbstractDownloadImageRequest *d = nullptr;
-    switch(++m_pluginIndex)
+    switch(++m_pluginSelector)
     {
         case 0: d = new MusicKGDownloadBackgroundRequest(m_name, m_path, this); break;
         case 1: d = new MusicKWDownloadBackgroundRequest(m_name, m_path, this); break;

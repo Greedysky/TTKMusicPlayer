@@ -53,7 +53,7 @@ private:
 
 private:
     int m_findCount;
-    int m_pluginIndex;
+    int m_pluginSelector;
     QString m_name, m_path;
 
 };

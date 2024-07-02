@@ -24,7 +24,7 @@ namespace ReqBLInterface
 MusicUnityQueryMovieRequest::MusicUnityQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent),
       m_isUnity(false),
-      m_pluginIndex(0),
+      m_pluginSelector(0),
       m_value("0")
 {
     m_pageSize = SONG_PAGE_SIZE;
@@ -38,7 +38,7 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
     m_totalSize = 0;
     m_pageIndex = offset;
 
-    switch(m_pluginIndex)
+    switch(m_pluginSelector)
     {
         case 0:
         {
@@ -87,7 +87,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
             QVariantMap value = data.toMap();
             const int lastCount = m_items.count();
 
-            switch(m_pluginIndex)
+            switch(m_pluginSelector)
             {
                 case 0:
                 {
@@ -225,6 +225,6 @@ void MusicUnityQueryMovieRequest::findAllPlugins(int count)
     if(count + m_pageSize > m_items.count())
     {
         setToUnity();
-        ++m_pluginIndex;
+        ++m_pluginSelector;
     }
 }
