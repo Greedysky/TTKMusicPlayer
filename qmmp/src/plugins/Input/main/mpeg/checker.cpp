@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <functional>
+#include <qmmp/qmmp.h>
 
 class AbstractChecker
 {
