@@ -10,7 +10,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     m_ui.setupUi(this);
 #ifdef Q_OS_WIN
-    setFixedHeight(270);
+    setFixedHeight(292);
 #elif defined Q_OS_UNIX
     for(QAbstractButton *button : m_ui.buttonBox->buttons())
     {
@@ -36,6 +36,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.secondTagComboBox->setCurrentIndex(settings.value("tag_2", APE).toInt());
     m_ui.thirdTagComboBox->setCurrentIndex(settings.value("tag_3", ID3v1).toInt());
     m_ui.mergeTagsCheckBox->setChecked(settings.value("merge_tags", false).toBool());
+    m_ui.detectEncodingCheckBox->setChecked(settings.value("detect_encoding", false).toBool());
 
     settings.endGroup();
 }
@@ -50,6 +51,7 @@ void SettingsDialog::accept()
     settings.setValue("tag_2", m_ui.secondTagComboBox->currentIndex());
     settings.setValue("tag_3", m_ui.thirdTagComboBox->currentIndex());
     settings.setValue("merge_tags", m_ui.mergeTagsCheckBox->isChecked());
+    settings.setValue("detect_encoding", m_ui.detectEncodingCheckBox->isChecked());
     settings.endGroup();
     QDialog::accept();
 }
@@ -85,8 +87,8 @@ void SettingsDialog::findCodecs()
         {
             rank = 5;
         }
-        sortKey.prepend(QChar('0' + rank));
 
+        sortKey.prepend(QChar('0' + rank));
         codecMap.insert(sortKey, codec);
     }
 

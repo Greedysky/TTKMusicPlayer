@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2024 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2024 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,53 +18,23 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef TAGEXTRACTOR_H
-#define TAGEXTRACTOR_H
+#ifndef CHECKERBASE_H
+#define CHECKERBASE_H
 
 #include <QMap>
 
-#include <taglib/id3v1tag.h>
-#include <taglib/id3v2tag.h>
+class AbstractChecker;
 
-#include <qmmp/qmmp.h>
-
-class QIODevice;
-class QBuffer;
-class QByteArray;
-
-/**
-    @author Ilya Kotov <forkotov02@ya.ru>
-*/
-class TagExtractor
+class CheckerHelper
 {
 public:
-    explicit TagExtractor(QIODevice *input);
+    CheckerHelper();
 
-    const QMap<Qmmp::MetaData, QString> id3v2tag() const;
-
-    static QTextCodec *detectCharset(const TagLib::Tag *tag);
+    QString detect(const QString &str);
 
 private:
-    QIODevice *m_input;
+    QMap<QString, AbstractChecker*> m_checkers;
 
 };
 
-/**
-    @author Ilya Kotov <forkotov02@ya.ru>
-*/
-class ID3v2Tag : public TagLib::ID3v2::Tag
-{
-public:
-    ID3v2Tag(QByteArray *array, long offset);
-    ~ID3v2Tag();
-
-protected:
-    void read();
-
-private:
-    QBuffer *m_buf;
-    long m_offset;
-
-};
-
-#endif
+#endif // CHECKERBASE_H

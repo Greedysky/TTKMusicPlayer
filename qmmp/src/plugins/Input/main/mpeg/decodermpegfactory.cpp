@@ -152,6 +152,12 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
 
             if(tag && codec && !tag->isEmpty())
             {
+                if((tag == fileRef.ID3v1Tag() || tag == fileRef.ID3v2Tag()) && settings.value("detect_encoding", false).toBool())
+                {
+                    QTextCodec *detectedCodec = TagExtractor::detectCharset(tag);
+                    codec = detectedCodec ? detectedCodec : codec;
+                }
+
                 bool utf = codec->name().contains("UTF");
 
                 QMap<Qmmp::MetaData, QString> tags;

@@ -1,4 +1,5 @@
 #include "mpegmetadatamodel.h"
+#include "tagextractor.h"
 
 #include <QBuffer>
 #include <QSettings>
@@ -185,6 +186,13 @@ MpegFileTagModel::MpegFileTagModel(TagLib::MPEG::File *file, TagLib::MPEG::File:
 
     if(!m_codec || m_codec->name().startsWith("UTF"))
         m_codec = QTextCodec::codecForName("UTF-8");
+
+    if((m_type == TagLib::MPEG::File::ID3v1 || m_type == TagLib::MPEG::File::ID3v2) && settings.value("detect_encoding", false).toBool())
+    {
+        QTextCodec *detectedCodec = TagExtractor::detectCharset(m_tag);
+        m_codec = detectedCodec ? detectedCodec : m_codec;
+    }
+
     settings.endGroup();
 }
 

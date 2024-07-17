@@ -1,5 +1,7 @@
 #include "tagextractor.h"
+#include "checker.h"
 
+#include <QSet>
 #include <QBuffer>
 #include <QSettings>
 #include <QTextCodec>
@@ -34,6 +36,11 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag() const
     if(!codec)
         codec = QTextCodec::codecForName("UTF-8");
 
+    if(settings.value("detect_encoding", false).toBool())
+    {
+        QTextCodec *detectedCodec = detectCharset(&tag);
+        codec = detectedCodec ? detectedCodec : codec;
+    }
     settings.endGroup();
 
     bool utf = codec->name().contains("UTF");
@@ -58,6 +65,25 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag() const
     }
     return tags;
 }
+
+QTextCodec *TagExtractor::detectCharset(const TagLib::Tag *tag)
+{
+    if(tag->title().isLatin1() && tag->album().isLatin1() && tag->artist().isLatin1())
+    {
+        CheckerHelper checker;
+        QSet<QString> charsets;
+        charsets << checker.detect(tag->title().toCString());
+        charsets << checker.detect(tag->album().toCString());
+        charsets << checker.detect(tag->artist().toCString());
+
+        if(charsets.contains("GBK"))
+            return QTextCodec::codecForName("GBK");
+        else if(charsets.contains("GB18030"))
+            return QTextCodec::codecForName("GB18030");
+    }
+    return QTextCodec::codecForName("UTF-8");
+}
+
 
 ID3v2Tag::ID3v2Tag(QByteArray *array, long offset)
     : TagLib::ID3v2::Tag(),

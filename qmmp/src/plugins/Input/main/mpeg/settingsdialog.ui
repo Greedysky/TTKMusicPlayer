@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>270</width>
-    <height>327</height>
+    <height>349</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>270</width>
-    <height>327</height>
+    <height>349</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>270</width>
-    <height>327</height>
+    <height>349</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -253,6 +253,32 @@
       <string>Encodings</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
+      <item row="1" column="1">
+       <widget class="QComboBox" name="id3v2EncComboBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_18_2_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>ID3v2 encoding:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_17_2_2">
         <property name="sizePolicy">
@@ -279,32 +305,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_18_2_2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>ID3v2 encoding:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="id3v2EncComboBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="2" rowspan="2">
        <spacer name="horizontalSpacer_2">
         <property name="orientation">
@@ -317,6 +317,13 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item row="2" column="0" rowspan="2" colspan="3">
+       <widget class="QCheckBox" name="detectEncodingCheckBox">
+        <property name="text">
+         <string>Try to detect encoding</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

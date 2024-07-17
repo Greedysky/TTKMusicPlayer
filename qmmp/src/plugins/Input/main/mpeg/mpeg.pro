@@ -5,12 +5,14 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decodermpegfactory.h \
            tagextractor.h \
            mpegmetadatamodel.h \
-           settingsdialog.h
+           settingsdialog.h \
+           checker.h
 
 SOURCES += decodermpegfactory.cpp \
            tagextractor.cpp \
            mpegmetadatamodel.cpp \
-           settingsdialog.cpp
+           settingsdialog.cpp \
+           checker.cpp
 
 FORMS += settingsdialog.ui
 
