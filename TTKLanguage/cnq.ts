@@ -888,6 +888,10 @@ too high may cause clipping!</source>
         <translation>ID3v2 编码：</translation>
     </message>
     <message>
+        <source>Try to detect encoding</source>
+        <translation>尝试自动识别编码</translation>
+    </message>
+    <message>
         <source>SID Plugin Settings</source>
         <translation>SID插件设置</translation>
     </message>
