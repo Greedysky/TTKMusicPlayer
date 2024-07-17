@@ -541,7 +541,7 @@ void MusicApplication::importSongsItemList()
     m_songTreeWidget->appendMusicItemList(items);
 }
 
-void MusicApplication::exportSongsItemList(int index)
+void MusicApplication::exportSongsItem(int index)
 {
     const QString &path = TTK::File::getSaveFileName(this, MusicFormats::supportPlaylistOutputFormats());
     if(path.isEmpty())
@@ -556,7 +556,21 @@ void MusicApplication::exportSongsItemList(int index)
     }
 
     MusicPlaylistManager manager;
-    manager.writeSongItem(path, items[index]);
+    manager.writeSongItem(path, {items[index]});
+
+    MusicToastLabel::popup(tr("Export current file success"));
+}
+
+void MusicApplication::exportSongsItemList()
+{
+    const QString &path = TTK::File::getSaveFileName(this, MusicFormats::supportPlaylistOutputFormats());
+    if(path.isEmpty())
+    {
+        return;
+    }
+
+    MusicPlaylistManager manager;
+    manager.writeSongItem(path, m_songTreeWidget->items());
 
     MusicToastLabel::popup(tr("Export current file success"));
 }

@@ -5681,16 +5681,21 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1092"/>
+        <source>Export Items</source>
+        <translation>导出所有列表</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1093"/>
         <source>Music Test Tools</source>
         <translation>歌曲体检工具</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1093"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1094"/>
         <source>Lrc Batch Download</source>
         <translation>歌词批量下载工具</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1094"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongscontainerwidget.cpp" line="1095"/>
         <source>Delete All</source>
         <translation>删除所有列表</translation>
     </message>

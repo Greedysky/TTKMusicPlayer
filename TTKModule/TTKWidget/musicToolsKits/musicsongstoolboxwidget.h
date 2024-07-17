@@ -110,9 +110,9 @@ public Q_SLOTS:
      */
     void addNewDirChanged();
     /*!
-     * Export music songs by item list.
+     * Export music songs by item.
      */
-    void exportSongsItemList();
+    void exportSongsItem();
     /*!
      * Show menu items.
      */

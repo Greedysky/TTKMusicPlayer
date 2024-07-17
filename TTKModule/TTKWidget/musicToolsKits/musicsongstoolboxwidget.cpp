@@ -77,9 +77,9 @@ void MusicSongsToolBoxTopWidget::addNewDirChanged()
     Q_EMIT addNewDir(m_index);
 }
 
-void MusicSongsToolBoxTopWidget::exportSongsItemList()
+void MusicSongsToolBoxTopWidget::exportSongsItem()
 {
-   MusicApplication::instance()->exportSongsItemList(m_index);
+   MusicApplication::instance()->exportSongsItem(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::showMenu()
@@ -120,7 +120,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     }
     menu.addMenu(&sortFiles);
 
-    menu.addAction(tr("Export List"), this, SLOT(exportSongsItemList()));
+    menu.addAction(tr("Export List"), this, SLOT(exportSongsItem()));
     menu.addSeparator();
 
     disable = isItemEnabled();

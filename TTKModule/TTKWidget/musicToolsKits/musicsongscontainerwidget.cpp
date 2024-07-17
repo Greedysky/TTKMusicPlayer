@@ -363,6 +363,10 @@ void MusicSongsContainerWidget::addNewRowItem()
         checkCurrentNameExist(name);
         addNewRowItem(name);
     }
+    else
+    {
+        MusicToastLabel::popup(tr("Exceeded the maximum number limit"));
+    }
 }
 
 void MusicSongsContainerWidget::deleteRowItem(int index)
@@ -1089,6 +1093,7 @@ void MusicSongsContainerWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(TTK::UI::MenuStyle02);
     menu.addAction(tr("Create Item"), this, SLOT(addNewRowItem()));
     menu.addAction(tr("Import Item"), MusicApplication::instance(), SLOT(importSongsItemList()));
+    menu.addAction(tr("Export Items"), MusicApplication::instance(), SLOT(exportSongsItemList()));
     menu.addAction(tr("Music Test Tools"), this, SLOT(showSongCheckToolsWidget()));
     menu.addAction(tr("Lrc Batch Download"), this, SLOT(showLrcDownloadBatchWidget()));
     menu.addAction(tr("Delete All"), this, SLOT(deleteRowItems()))->setEnabled(m_containerItems.count() > ITEM_MIN_COUNT);

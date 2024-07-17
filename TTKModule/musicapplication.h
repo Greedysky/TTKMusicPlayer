@@ -200,9 +200,13 @@ public Q_SLOTS:
      */
     void importSongsItemList();
     /*!
+     * Export music songs by item.
+     */
+    void exportSongsItem(int index);
+    /*!
      * Export music songs by item list.
      */
-    void exportSongsItemList(int index);
+    void exportSongsItemList();
     /*!
      * Set current music play list sort.
      */

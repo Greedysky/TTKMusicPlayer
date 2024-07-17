@@ -11,7 +11,7 @@
 #include "musictxtconfigmanager.h"
 #include "musicjspfconfigmanager.h"
 
-void MusicPlaylistManager::writeSongItem(const QString &path, const MusicSongItem &item)
+void MusicPlaylistManager::writeSongItem(const QString &path, const MusicSongItemList &item)
 {
     const QFileInfo fin(path);
     const QString &suffix = TTK_FILE_SUFFIX(fin);
@@ -114,10 +114,10 @@ bool MusicPlaylistManager::readTKPLConfig(const QString &path, MusicSongItemList
     return manager.fromFile(path) ? manager.readBuffer(items) : false;
 }
 
-bool MusicPlaylistManager::writeTKPLConfig(const QString &path, const MusicSongItem &item)
+bool MusicPlaylistManager::writeTKPLConfig(const QString &path, const MusicSongItemList &item)
 {
     MusicTKPLConfigManager manager;
-    return manager.load(path) ? manager.writeBuffer({item}) : false;
+    return manager.load(path) ? manager.writeBuffer(item) : false;
 }
 
 bool MusicPlaylistManager::readM3UConfig(const QString &path, MusicSongItemList &items)
@@ -126,10 +126,10 @@ bool MusicPlaylistManager::readM3UConfig(const QString &path, MusicSongItemList 
     return manager.fromFile(path) ? manager.readBuffer(items) : false;
 }
 
-bool MusicPlaylistManager::writeM3UConfig(const QString &path, const MusicSongItem &item)
+bool MusicPlaylistManager::writeM3UConfig(const QString &path, const MusicSongItemList &item)
 {
     MusicM3UConfigManager manager;
-    return manager.load(path) ? manager.writeBuffer({item}) : false;
+    return manager.load(path) ? manager.writeBuffer(item) : false;
 }
 
 bool MusicPlaylistManager::readPLSConfig(const QString &path, MusicSongItemList &items)
@@ -138,10 +138,10 @@ bool MusicPlaylistManager::readPLSConfig(const QString &path, MusicSongItemList 
     return manager.fromFile(path) ? manager.readBuffer(items) : false;
 }
 
-bool MusicPlaylistManager::writePLSConfig(const QString &path, const MusicSongItem &item)
+bool MusicPlaylistManager::writePLSConfig(const QString &path, const MusicSongItemList &item)
 {
     MusicPLSConfigManager manager;
-    return manager.load(path) ? manager.writeBuffer({item}) : false;
+    return manager.load(path) ? manager.writeBuffer(item) : false;
 }
 
 bool MusicPlaylistManager::readWPLConfig(const QString &path, MusicSongItemList &items)
@@ -150,10 +150,10 @@ bool MusicPlaylistManager::readWPLConfig(const QString &path, MusicSongItemList 
     return manager.fromFile(path) ? manager.readBuffer(items) : false;
 }
 
-bool MusicPlaylistManager::writeWPLConfig(const QString &path, const MusicSongItem &item)
+bool MusicPlaylistManager::writeWPLConfig(const QString &path, const MusicSongItemList &item)
 {
     MusicWPLConfigManager manager;
-    return manager.load(path) ? manager.writeBuffer({item}) : false;
+    return manager.load(path) ? manager.writeBuffer(item) : false;
 }
 
 bool MusicPlaylistManager::readXSPFConfig(const QString &path, MusicSongItemList &items)
@@ -162,10 +162,10 @@ bool MusicPlaylistManager::readXSPFConfig(const QString &path, MusicSongItemList
     return manager.fromFile(path) ? manager.readBuffer(items) : false;
 }
 
-bool MusicPlaylistManager::writeXSPFConfig(const QString &path, const MusicSongItem &item)
+bool MusicPlaylistManager::writeXSPFConfig(const QString &path, const MusicSongItemList &item)
 {
     MusicXSPFConfigManager manager;
-    return manager.load(path) ? manager.writeBuffer({item}) : false;
+    return manager.load(path) ? manager.writeBuffer(item) : false;
 }
 
 bool MusicPlaylistManager::readJSPFConfig(const QString &path, MusicSongItemList &items)
@@ -174,10 +174,10 @@ bool MusicPlaylistManager::readJSPFConfig(const QString &path, MusicSongItemList
     return manager.fromFile(path) ? manager.readBuffer(items) : false;
 }
 
-bool MusicPlaylistManager::writeJSPFConfig(const QString &path, const MusicSongItem &item)
+bool MusicPlaylistManager::writeJSPFConfig(const QString &path, const MusicSongItemList &item)
 {
     MusicJSPFConfigManager manager;
-    return manager.load(path) ? manager.writeBuffer({item}) : false;
+    return manager.load(path) ? manager.writeBuffer(item) : false;
 }
 
 bool MusicPlaylistManager::readASXConfig(const QString &path, MusicSongItemList &items)
@@ -186,10 +186,10 @@ bool MusicPlaylistManager::readASXConfig(const QString &path, MusicSongItemList 
     return manager.fromFile(path) ? manager.readBuffer(items) : false;
 }
 
-bool MusicPlaylistManager::writeASXConfig(const QString &path, const MusicSongItem &item)
+bool MusicPlaylistManager::writeASXConfig(const QString &path, const MusicSongItemList &item)
 {
     MusicASXConfigManager manager;
-    return manager.load(path) ? manager.writeBuffer({item}) : false;
+    return manager.load(path) ? manager.writeBuffer(item) : false;
 }
 
 bool MusicPlaylistManager::readFPLConfig(const QString &path, MusicSongItemList &items)
@@ -210,10 +210,10 @@ bool MusicPlaylistManager::readCSVConfig(const QString &path, MusicSongItemList 
     return manager.fromFile(path) ? manager.readBuffer(items) : false;
 }
 
-bool MusicPlaylistManager::writeCSVConfig(const QString &path, const MusicSongItem &item)
+bool MusicPlaylistManager::writeCSVConfig(const QString &path, const MusicSongItemList &item)
 {
     MusicCSVConfigManager manager;
-    return manager.load(path) ? manager.writeBuffer({item}) : false;
+    return manager.load(path) ? manager.writeBuffer(item) : false;
 }
 
 bool MusicPlaylistManager::readTXTConfig(const QString &path, MusicSongItemList &items)
@@ -222,8 +222,8 @@ bool MusicPlaylistManager::readTXTConfig(const QString &path, MusicSongItemList 
     return manager.fromFile(path) ? manager.readBuffer(items) : false;
 }
 
-bool MusicPlaylistManager::writeTXTConfig(const QString &path, const MusicSongItem &item)
+bool MusicPlaylistManager::writeTXTConfig(const QString &path, const MusicSongItemList &item)
 {
     MusicTXTConfigManager manager;
-    return manager.load(path) ? manager.writeBuffer({item}) : false;
+    return manager.load(path) ? manager.writeBuffer(item) : false;
 }

@@ -31,7 +31,7 @@ public:
     /*!
      * Write music playlist data to file.
      */
-    void writeSongItem(const QString &path, const MusicSongItem &item);
+    void writeSongItem(const QString &path, const MusicSongItemList &item);
     /*!
      * Read music playlist data from file.
      */
@@ -45,7 +45,7 @@ private:
     /*!
      * Write ttk music playlist data to file.
      */
-    bool writeTKPLConfig(const QString &path, const MusicSongItem &item);
+    bool writeTKPLConfig(const QString &path, const MusicSongItemList &item);
 
     /*!
      * Read m3u music playlist data from file.
@@ -54,7 +54,7 @@ private:
     /*!
      * Write m3u music playlist data to file.
      */
-    bool writeM3UConfig(const QString &path, const MusicSongItem &item);
+    bool writeM3UConfig(const QString &path, const MusicSongItemList &item);
 
     /*!
      * Read pls music playlist data from file.
@@ -63,7 +63,7 @@ private:
     /*!
      * Write pls music playlist data to file.
      */
-    bool writePLSConfig(const QString &path, const MusicSongItem &item);
+    bool writePLSConfig(const QString &path, const MusicSongItemList &item);
 
     /*!
      * Read wpl music playlist data from file.
@@ -72,7 +72,7 @@ private:
     /*!
      * Write wpl music playlist data to file.
      */
-    bool writeWPLConfig(const QString &path, const MusicSongItem &item);
+    bool writeWPLConfig(const QString &path, const MusicSongItemList &item);
 
     /*!
      * Read xspf music playlist data from file.
@@ -81,7 +81,7 @@ private:
     /*!
      * Write xspf music playlist data to file.
      */
-    bool writeXSPFConfig(const QString &path, const MusicSongItem &item);
+    bool writeXSPFConfig(const QString &path, const MusicSongItemList &item);
 
     /*!
      * Read jspf music playlist data from file.
@@ -90,7 +90,7 @@ private:
     /*!
      * Write jspf music playlist data to file.
      */
-    bool writeJSPFConfig(const QString &path, const MusicSongItem &item);
+    bool writeJSPFConfig(const QString &path, const MusicSongItemList &item);
 
     /*!
      * Read asx music playlist data from file.
@@ -99,7 +99,7 @@ private:
     /*!
      * Write asx music playlist data to file.
      */
-    bool writeASXConfig(const QString &path, const MusicSongItem &item);
+    bool writeASXConfig(const QString &path, const MusicSongItemList &item);
 
     /*!
      * Read foobar2k music playlist data from file.
@@ -118,7 +118,7 @@ private:
     /*!
      * Write csv music playlist data to file.
      */
-    bool writeCSVConfig(const QString &path, const MusicSongItem &item);
+    bool writeCSVConfig(const QString &path, const MusicSongItemList &item);
 
     /*!
      * Read txt music playlist data from file.
@@ -127,7 +127,7 @@ private:
     /*!
      * Write txt music playlist data to file.
      */
-    bool writeTXTConfig(const QString &path, const MusicSongItem &item);
+    bool writeTXTConfig(const QString &path, const MusicSongItemList &item);
 
 };
 
