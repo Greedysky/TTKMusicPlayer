@@ -93,9 +93,10 @@ HEADERS += \
     $$PWD/music/wy/musicwydiscoverlistrequest.h \
     $$PWD/music/zed/musicblqueryinterface.h \
     $$PWD/music/zed/musicbarragerequest.h \
+    $$PWD/music/zed/musicunityqueryinterface.h \
+    $$PWD/music/zed/musicunityquerymovierequest.h \
     $$PWD/music/musicsongrecommendrequest.h \
     $$PWD/music/musicsongsuggestrequest.h \
-    $$PWD/music/musicunityquerymovierequest.h \
     $$PWD/radio/fm/musicfmconfigmanager.h \
     $$PWD/radio/fm/musicfmradiosongrequest.h \
     $$PWD/radio/dj/musicabstractdjradiorequest.h \
@@ -189,9 +190,10 @@ SOURCES += \
     $$PWD/music/wy/musicwydiscoverlistrequest.cpp \
     $$PWD/music/zed/musicblqueryinterface.cpp \
     $$PWD/music/zed/musicbarragerequest.cpp \
+    $$PWD/music/zed/musicunityqueryinterface.cpp \
+    $$PWD/music/zed/musicunityquerymovierequest.cpp \
     $$PWD/music/musicsongrecommendrequest.cpp \
     $$PWD/music/musicsongsuggestrequest.cpp \
-    $$PWD/music/musicunityquerymovierequest.cpp \
     $$PWD/radio/fm/musicfmconfigmanager.cpp \
     $$PWD/radio/fm/musicfmradiosongrequest.cpp \
     $$PWD/radio/dj/musicabstractdjradiorequest.cpp \

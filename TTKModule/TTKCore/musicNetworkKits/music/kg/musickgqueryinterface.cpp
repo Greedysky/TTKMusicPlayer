@@ -1,5 +1,5 @@
 #include "musickgqueryinterface.h"
-#include "musicabstractqueryrequest.h"
+#include "musicunityqueryinterface.h"
 
 static constexpr const char *KG_UA_URL = "cGhYNDZVdmNaVG5KZk50NVFvcUJyYWVQdmdNTkFTMmM=";
 
@@ -236,48 +236,7 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &
         return;
     }
 
-    QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KG_SONG_PATH_V3_URL, false).arg("kg", hash, quality));
-    TTK::setSslConfiguration(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
-
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
-    {
-        QVariantMap value = data.toMap();
-        if(value["code"].toInt() == 0 && value.contains("data"))
-        {
-            TTK::MusicSongProperty prop;
-            prop.m_bitrate = bitrate;
-            prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
-            prop.m_size = TTK_DEFAULT_STR;
-            prop.m_url = value["data"].toString();
-
-            value = value["extra"].toMap();
-            if(value.isEmpty())
-            {
-                return;
-            }
-
-            value = value["quality"].toMap();
-            if(value.isEmpty())
-            {
-                return;
-            }
-
-            if(value["target"].toString() == quality && value["result"].toString() == quality)
-            {
-                info->m_songProps.append(prop);
-            }
-        }
-    }
+    ReqUnityInterface::parseFromSongProperty(info, "kg", hash, quality, bitrate);
 }
 
 static void parseSongProperty(TTK::MusicSongInformation *info, const QString &hash, int bitrate)
