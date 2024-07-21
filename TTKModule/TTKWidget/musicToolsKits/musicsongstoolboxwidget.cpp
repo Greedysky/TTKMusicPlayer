@@ -51,7 +51,7 @@ void MusicSongsToolBoxTopWidget::changRowItemNameChanged()
 {
     if(!m_renameEdit)
     {
-        m_renameEdit = new MusicItemRenameEidt(title(), this);
+        m_renameEdit = new MusicItemRenameEidt(title(false), this);
         connect(m_renameEdit, SIGNAL(renameFinished(QString)), SLOT(changItemName(QString)));
         m_renameEdit->setGeometry(m_labelIcon->width(), 3, RENAME_WIDTH, height() - 6);
     }
@@ -60,7 +60,6 @@ void MusicSongsToolBoxTopWidget::changRowItemNameChanged()
 
 void MusicSongsToolBoxTopWidget::changItemName(const QString &name)
 {
-    setTitle(name + m_suffixString);
     Q_EMIT changRowItemName(m_index, name);
 
     m_renameEdit->deleteLater();

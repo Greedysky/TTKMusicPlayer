@@ -464,7 +464,28 @@ void MusicSongsContainerWidget::changRowItemName(int index, const QString &name)
         return;
     }
 
+    bool found = false;
+    for(int i = 0; i < m_containerItems.count(); ++i)
+    {
+        if(i == id)
+        {
+            continue;
+        }
+
+        if(m_containerItems[i].m_itemName == name)
+        {
+            found = true;
+        }
+    }
+
     MusicSongItem *item = &m_containerItems[id];
+    if(found)
+    {
+        MusicToastLabel::popup(tr("Item name is already exists"));
+        setItemTitle(item);
+        return;
+    }
+
     item->m_itemName = name;
     setItemTitle(item);
 }
@@ -1061,6 +1082,22 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
 {
     MusicSongsToolBoxWidget::dropEvent(event);
 
+    QStringList dirs, files;
+    const QMimeData *data = event->mimeData();
+
+    for(const QUrl &url : data->urls())
+    {
+        const QString &path = url.toLocalFile();
+        if(QFileInfo(path).isDir())
+        {
+            dirs << path;
+        }
+        else
+        {
+            files << path;
+        }
+    }
+
     for(const MusicToolBoxWidgetItem &item : qAsConst(m_itemList))
     {
         if(!TTK::playlistRowValid(item.m_itemIndex))
@@ -1071,18 +1108,25 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
         QWidget *container = item.m_widgetItem->item();
         if(item.m_widgetItem->isActive() || (container && container->isVisible()))
         {
-            QStringList files;
-            const QMimeData *data = event->mimeData();
-
-            for(const QUrl &url : data->urls())
-            {
-                files << url.toLocalFile();
-            }
-
             importMusicSongsByPath(files, foundMappedIndex(item.m_itemIndex));
             break;
         }
     }
+
+//    for(const QString &dir : qAsConst(dirs))
+//    {
+//        MusicSongItem item;
+//        item.m_itemName = QFileInfo(dir).baseName();
+
+//        const QStringList &files = TTK::File::fileListByPath(dir, MusicFormats::supportMusicInputFilterFormats());
+//        for(const QString &path : qAsConst(files))
+//        {
+//            item.m_songs << TTK::generateSongList(path);
+//        }
+
+//        m_containerItems << item;
+//        createWidgetItem(&m_containerItems.back());
+//    }
 }
 
 void MusicSongsContainerWidget::contextMenuEvent(QContextMenuEvent *event)

@@ -84,7 +84,6 @@ QString MusicFunctionToolBoxTopWidget::title(bool suffix)
     if(!suffix)
     {
         const int index = text.lastIndexOf("[");
-        m_suffixString = text.right(text.length() - index);
         text = text.left(index);
     }
     return text;

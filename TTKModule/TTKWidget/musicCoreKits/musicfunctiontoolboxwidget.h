@@ -71,7 +71,7 @@ public:
     /*!
      * Get top label title.
      */
-    QString title(bool suffix = false);
+    QString title(bool suffix);
 
 Q_SIGNALS:
     /*!
@@ -100,7 +100,6 @@ protected:
     virtual void paintEvent(QPaintEvent *event) override;
 
     int m_index;
-    QString m_suffixString;
     QLabel *m_labelIcon, *m_labelText;
 
     bool m_isDrawTopState, m_isDrawMoveState;
