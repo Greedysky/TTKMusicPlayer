@@ -1117,6 +1117,7 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
     {
         MusicSongItem item;
         item.m_itemName = QFileInfo(dir).baseName();
+        checkCurrentNameExist(item.m_itemName);
 
         const QStringList &files = TTK::File::fileListByPath(dir, MusicFormats::supportMusicInputFilterFormats());
         for(const QString &path : qAsConst(files))

@@ -173,6 +173,7 @@ void MusicLrcPhotoWidget::exportButtonClicked()
 
             file.copy(dir + QString::number(TTKDateTime::currentTimestamp()) + suffix);
             file.close();
+
             TTK::Core::sleep(TTK_DN_MS);
         }
     }
