@@ -3558,7 +3558,12 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicplaylistbackupwidget.cpp" line="249"/>
-        <source>Do I want to restore the original list after the restoration is overwritten?</source>
+        <source>Do you want to export the all backup list?</source>
+        <translation>是否导出所有的备份列表至本地？</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicplaylistbackupwidget.cpp" line="250"/>
+        <source>Do you want to restore the original list after the restoration is overwritten?</source>
         <translation>恢复后原列表将被覆盖，是否要恢复列表？</translation>
     </message>
 </context>

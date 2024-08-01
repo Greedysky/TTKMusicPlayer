@@ -4,6 +4,8 @@
 #include "musicconnectionpool.h"
 #include "musictkplconfigmanager.h"
 #include "musicmessagebox.h"
+#include "musicfileutils.h"
+#include "musictoolsetsuiobject.h"
 
 #define ROOT_PATH APPBACKUP_DIR_FULL + "playlist/"
 
@@ -121,6 +123,11 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     iLabel->setFont(iLabelFont);
     iLabel->setStyleSheet(TTK::UI::ColorStyle03);
 
+    QPushButton *exportButton = new QPushButton(topWidget);
+    exportButton->setIcon(QIcon(":/toolSets/btn_detect_download_normal"));
+    exportButton->setCursor(QCursor(Qt::PointingHandCursor));
+    exportButton->setFixedSize(25, 25);
+
     m_dateBox = new QComboBox(topWidget);
     m_dateBox->setFixedSize(95, 25);
     TTK::Widget::generateComboBoxFormat(m_dateBox);
@@ -132,6 +139,7 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     topWidgetLayout->addWidget(pLabel);
     topWidgetLayout->addWidget(iLabel);
     topWidgetLayout->addStretch(1);
+    topWidgetLayout->addWidget(exportButton);
     topWidgetLayout->addWidget(m_dateBox);
     topWidgetLayout->addWidget(m_timeBox);
     topWidget->setLayout(topWidgetLayout);
@@ -199,22 +207,25 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     pLabelFont.setPixelSize(16);
     m_titleLabel->setFont(pLabelFont);
     //
-    QPushButton *button = new QPushButton(tr("Restore"), containerTopWidget);
-    button->setStyleSheet(TTK::UI::PushButtonStyle03);
-    button->setCursor(QCursor(Qt::PointingHandCursor));
-    button->setFixedSize(84, 26);
-#ifdef Q_OS_UNIX
-    button->setFocusPolicy(Qt::NoFocus);
-#endif
+    QPushButton *restoreButton = new QPushButton(tr("Restore"), containerTopWidget);
+    restoreButton->setStyleSheet(TTK::UI::PushButtonStyle03);
+    restoreButton->setCursor(QCursor(Qt::PointingHandCursor));
+    restoreButton->setFixedSize(84, 26);
     //
     containerTopWidgetLayout->addWidget(blueFrame);
     containerTopWidgetLayout->addWidget(m_titleLabel);
     containerTopWidgetLayout->addStretch(1);
-    containerTopWidgetLayout->addWidget(button);
+    containerTopWidgetLayout->addWidget(restoreButton);
+
+#ifdef Q_OS_UNIX
+    exportButton->setFocusPolicy(Qt::NoFocus);
+    restoreButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     initialize();
 
-    connect(button, SIGNAL(clicked()), SLOT(restoreButtonClicked()));
+    connect(exportButton, SIGNAL(clicked()), SLOT(exportButtonClicked()));
+    connect(restoreButton, SIGNAL(clicked()), SLOT(restoreButtonClicked()));
     connect(m_dateBox, SIGNAL(currentTextChanged(QString)), SLOT(currentDateChanged(QString)));
     connect(m_timeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTimeChanged(int)));
     connect(m_listWidget, SIGNAL(currentRowChanged(int)), SLOT(currentItemChanged(int)));
@@ -243,14 +254,32 @@ void MusicPlaylistBackupWidget::resizeWidget()
     }
 }
 
-void MusicPlaylistBackupWidget::restoreButtonClicked()
+void MusicPlaylistBackupWidget::exportButtonClicked()
 {
     MusicMessageBox message;
-    message.setText(tr("Do I want to restore the original list after the restoration is overwritten?"));
+    message.setText(tr("Do you want to export the all backup list?"));
     if(!message.exec())
     {
         return;
     }
+
+    const QString &path = TTK::File::getExistingDirectory(this);
+    if(!path.isEmpty())
+    {
+        TTK::File::copyPath(ROOT_PATH, path + "/playlist", true);
+    }
+}
+
+void MusicPlaylistBackupWidget::restoreButtonClicked()
+{
+    MusicMessageBox message;
+    message.setText(tr("Do you want to restore the original list after the restoration is overwritten?"));
+    if(!message.exec())
+    {
+        return;
+    }
+
+    // TODO
 }
 
 void MusicPlaylistBackupWidget::currentDateChanged(const QString &text)

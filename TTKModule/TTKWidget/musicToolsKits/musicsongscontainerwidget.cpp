@@ -1113,20 +1113,20 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
         }
     }
 
-//    for(const QString &dir : qAsConst(dirs))
-//    {
-//        MusicSongItem item;
-//        item.m_itemName = QFileInfo(dir).baseName();
+    for(const QString &dir : qAsConst(dirs))
+    {
+        MusicSongItem item;
+        item.m_itemName = QFileInfo(dir).baseName();
 
-//        const QStringList &files = TTK::File::fileListByPath(dir, MusicFormats::supportMusicInputFilterFormats());
-//        for(const QString &path : qAsConst(files))
-//        {
-//            item.m_songs << TTK::generateSongList(path);
-//        }
+        const QStringList &files = TTK::File::fileListByPath(dir, MusicFormats::supportMusicInputFilterFormats());
+        for(const QString &path : qAsConst(files))
+        {
+            item.m_songs << TTK::generateSongList(path);
+        }
 
-//        m_containerItems << item;
-//        createWidgetItem(&m_containerItems.back());
-//    }
+        m_containerItems << item;
+        createWidgetItem(&m_containerItems.back());
+    }
 }
 
 void MusicSongsContainerWidget::contextMenuEvent(QContextMenuEvent *event)

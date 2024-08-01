@@ -88,6 +88,10 @@ public:
 
 private Q_SLOTS:
     /*!
+     * Export button clicked.
+     */
+    void exportButtonClicked();
+    /*!
      * Restore button clicked.
      */
     void restoreButtonClicked();
