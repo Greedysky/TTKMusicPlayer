@@ -17,8 +17,8 @@ MusicFunctionToolBoxTopWidget::MusicFunctionToolBoxTopWidget(int index, const QS
       m_isBlockMoveExpand(false),
       m_isActive(false)
 {
-    setAcceptDrops(true);
     setFixedHeight(40);
+    setAcceptDrops(true);
 
     QHBoxLayout *topLayout = new QHBoxLayout(this);
     topLayout->setContentsMargins(3, 0, 0, 0);
