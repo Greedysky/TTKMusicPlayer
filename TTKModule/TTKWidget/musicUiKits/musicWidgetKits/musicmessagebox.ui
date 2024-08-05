@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>338</width>
-    <height>198</height>
+    <width>358</width>
+    <height>185</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,8 +21,8 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>330</width>
-     <height>190</height>
+     <width>350</width>
+     <height>177</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -51,7 +51,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>312</x>
+     <x>332</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -66,8 +66,8 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>330</width>
-     <height>165</height>
+     <width>350</width>
+     <height>152</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -77,8 +77,8 @@
   <widget class="QPushButton" name="confirmButton">
    <property name="geometry">
     <rect>
-     <x>124</x>
-     <y>144</y>
+     <x>170</x>
+     <y>142</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -90,8 +90,8 @@
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>234</x>
-     <y>144</y>
+     <x>260</x>
+     <y>142</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -103,9 +103,9 @@
   <widget class="QLabel" name="textLabel">
    <property name="geometry">
     <rect>
-     <x>49</x>
+     <x>60</x>
      <y>39</y>
-     <width>250</width>
+     <width>280</width>
      <height>95</height>
     </rect>
    </property>
