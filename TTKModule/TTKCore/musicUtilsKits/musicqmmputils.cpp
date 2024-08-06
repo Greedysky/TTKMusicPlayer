@@ -96,13 +96,13 @@ void TTK::TTKQmmp::updateBaseConfig()
     settings.setValue("unpack_path", ARCHIVE_DIR_DIR_FULL);
     settings.endGroup();
 
-    settings.beginGroup("Decoder");
-    QStringList names = settings.value("disabled_plugins").toStringList();
-    if(names.isEmpty())
-    {
-        settings.setValue("disabled_plugins", names << "ken");
-    }
-    settings.endGroup();
+//    settings.beginGroup("Decoder");
+//    QStringList names = settings.value("disabled_plugins").toStringList();
+//    if(names.isEmpty())
+//    {
+//        settings.setValue("disabled_plugins", names << "ken");
+//    }
+//    settings.endGroup();
 }
 
 void TTK::TTKQmmp::updateBlurConfig()
