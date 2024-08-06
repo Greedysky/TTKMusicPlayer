@@ -22,6 +22,7 @@ DecoderProperties DecoderKenFactory::properties() const
     properties.filters << "*.kdm" << "*.ksm" << "*.sm" << "*.snd";
     properties.description = "Ken Silverman's Audio File";
     properties.protocols << "file";
+    properties.priority = 8;
     properties.noInput = true;
     return properties;
 }
