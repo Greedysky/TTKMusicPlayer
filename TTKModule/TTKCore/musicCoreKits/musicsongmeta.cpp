@@ -392,6 +392,7 @@ bool MusicSongMeta::readInformation()
             m_songMetas << meta;
             m_offset = m_songMetas.count() - 1;
         }
+
         qDeleteAll(infos);
 
         if(m_songMetas.isEmpty())

@@ -93,6 +93,7 @@ void MusicDownloadTableWidget::removeItems()
 {
     qDeleteAll(m_items);
     m_items.clear();
+
     MusicAbstractTableWidget::removeItems();
     setColumnCount(1);
 }

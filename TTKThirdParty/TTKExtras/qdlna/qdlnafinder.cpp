@@ -50,6 +50,7 @@ void QDlnaFinderPrivate::find()
 void QDlnaFinderPrivate::removeClients()
 {
     qDeleteAll(m_clients);
+    m_clients.clear();
 }
 
 bool QDlnaFinderPrivate::findClient(const QString &server)
