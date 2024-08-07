@@ -490,7 +490,7 @@ bool MusicApplicationModule::closeCurrentEqualizer()
             return false;
         }
 
-        Q_EMIT enhancedMusicChanged(0);
+        Q_EMIT enhancedSongChanged(0);
     }
     return true;
 }

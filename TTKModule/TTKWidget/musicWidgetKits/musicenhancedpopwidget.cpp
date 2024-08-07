@@ -93,7 +93,7 @@ MusicEnhancedPopWidget::MusicEnhancedPopWidget(QWidget *parent)
 
     initialize();
 
-    connect(MusicApplicationModule::instance(), SIGNAL(enhancedMusicChanged(int)), SLOT(setEnhancedMusicConfig(int)));
+    connect(MusicApplicationModule::instance(), SIGNAL(enhancedSongChanged(int)), SLOT(setEnhancedSongConfig(int)));
     connect(m_menu, SIGNAL(windowStateChanged(bool)), SLOT(buttonAnimationChanged(bool)));
 }
 
@@ -103,7 +103,7 @@ MusicEnhancedPopWidget::~MusicEnhancedPopWidget()
     qDeleteAll(m_buttons);
 }
 
-void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
+void MusicEnhancedPopWidget::setEnhancedSongConfig(int type)
 {
     setObjectName(className());
     QString style = TTK::UI::BtnMagic;
@@ -134,13 +134,13 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     }
 
     TTK::TTKQmmp::enabledEffectPlugin(false);
-    Q_EMIT enhancedMusicChanged(type);
+    Q_EMIT enhancedSongChanged(type);
     m_menu->close();
 }
 
 void MusicEnhancedPopWidget::switchButtonState()
 {
-    setEnhancedMusicConfig(m_caseButton->styleSheet().contains(":/enhance/btn_magic_off_normal") ? m_lastSelectedIndex : 0);
+    setEnhancedSongConfig(m_caseButton->styleSheet().contains(":/enhance/btn_magic_off_normal") ? m_lastSelectedIndex : 0);
 }
 
 void MusicEnhancedPopWidget::buttonAnimationChanged(bool state)
@@ -221,7 +221,7 @@ void MusicEnhancedPopWidget::initialize()
     buttonGroup->addButton(button2, 2);
     buttonGroup->addButton(button3, 3);
     buttonGroup->addButton(button4, 4);
-    QtButtonGroupConnect(buttonGroup, this, setEnhancedMusicConfig, TTK_SLOT);
+    QtButtonGroupConnect(buttonGroup, this, setEnhancedSongConfig, TTK_SLOT);
     m_buttons << button1 << button2 << button3 << button4;
 
     m_lastSelectedIndex = G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt();

@@ -176,7 +176,7 @@ void MusicApplication::importSongsByOutside(const QString &path, bool play)
         return;
     }
 
-    m_songTreeWidget->importMusicSongsByPath({path}, MUSIC_NORMAL_LIST);
+    m_songTreeWidget->importSongsByPath({path}, MUSIC_NORMAL_LIST);
     if(play)
     {
         playIndexBy(m_playlist->count() - 1, TTK_NORMAL_LEVEL);
@@ -349,8 +349,8 @@ void MusicApplication::showCurrentSong()
     }
 
     m_ui->musicPlayedList->selectCurrentIndex();
-    m_songTreeWidget->setRecentMusicSongs(index);
-    m_songTreeWidget->setMusicPlayCount(index);
+    m_songTreeWidget->appendRecentSongs(index);
+    m_songTreeWidget->setSongPlayCount(index);
     m_ui->musicSongTitle->setText(name);
     m_ui->musicMoreFunction->setCurrentSongName(name);
     //Show the current play song information
@@ -495,7 +495,7 @@ void MusicApplication::importSongsPopup()
 void MusicApplication::importSongsByFiles(int index)
 {
     const QStringList &files = TTK::File::getOpenFileNames(this, MusicFormats::supportMusicInputFormats());
-    m_songTreeWidget->importMusicSongsByPath(files, index);
+    m_songTreeWidget->importSongsByPath(files, index);
 }
 
 void MusicApplication::importSongsByDir(int index)
@@ -506,7 +506,7 @@ void MusicApplication::importSongsByDir(int index)
         return;
     }
 
-    m_songTreeWidget->importMusicSongsByUrl(path, index);
+    m_songTreeWidget->importSongsByUrl(path, index);
 }
 
 void MusicApplication::importSongsByUrl()
@@ -524,7 +524,7 @@ void MusicApplication::importSongsByUrl()
         return;
     }
 
-    m_songTreeWidget->importMusicSongsByUrl(path, TTK_LOW_LEVEL);
+    m_songTreeWidget->importSongsByUrl(path, TTK_LOW_LEVEL);
 }
 
 void MusicApplication::importSongsItemList()
@@ -538,7 +538,7 @@ void MusicApplication::importSongsItemList()
     MusicPlaylistManager manager;
     MusicSongItemList items;
     manager.readSongItems(files, items);
-    m_songTreeWidget->appendMusicItemList(items);
+    m_songTreeWidget->appendSongItemList(items);
 }
 
 void MusicApplication::exportSongsItem(int index)
@@ -728,7 +728,7 @@ void MusicApplication::windowConciseChanged()
     m_topAreaWidget->backgroundThemeDownloadFinished();
 }
 
-void MusicApplication::enhancedMusicChanged(int type)
+void MusicApplication::enhancedSongChanged(int type)
 {
     m_player->setEnhanced(TTKStaticCast(MusicPlayer::Enhance, type));
 }
@@ -952,7 +952,7 @@ void MusicApplication::setPlaySongChanged(int index)
 
 void MusicApplication::currentPlaylist(QStringList &list)
 {
-    list = m_songTreeWidget->musicSongsFileName(m_songTreeWidget->currentIndex());
+    list = m_songTreeWidget->songsFileName(m_songTreeWidget->currentIndex());
 }
 
 void MusicApplication::resizeEvent(QResizeEvent *event)
@@ -1049,7 +1049,7 @@ bool MusicApplication::eventFilter(QObject *object, QEvent *event)
 void MusicApplication::setPlayIndex()
 {
     m_currentSongTreeIndex = m_songTreeWidget->currentIndex();
-    m_playlist->add(m_currentSongTreeIndex, m_songTreeWidget->musicSongsFilePath(m_currentSongTreeIndex));
+    m_playlist->add(m_currentSongTreeIndex, m_songTreeWidget->songsFilePath(m_currentSongTreeIndex));
     m_songTreeWidget->setCurrentSongTreeIndex(m_currentSongTreeIndex);
 }
 
@@ -1074,7 +1074,7 @@ void MusicApplication::readSystemConfigFromFile()
 
     manager.readBuffer();
     m_applicationModule->loadNetWorkSetting();
-    const bool success = m_songTreeWidget->addMusicItemList(songs);
+    const bool success = m_songTreeWidget->addSongItemList(songs);
 
     switch(TTKStaticCast(TTK::PlayMode, G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt()))
     {
@@ -1096,7 +1096,7 @@ void MusicApplication::readSystemConfigFromFile()
     volumeChanged(G_SETTING_PTR->value(MusicSettingManager::Volume).toInt());
 
     //Configure playback mode
-    m_ui->musicEnhancedButton->setEnhancedMusicConfig(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt());
+    m_ui->musicEnhancedButton->setEnhancedSongConfig(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt());
     m_applicationModule->soundEffectChanged();
     if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt() == 1)
     {
@@ -1142,7 +1142,7 @@ void MusicApplication::readSystemConfigFromFile()
     const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     //add new music file to playlist
     value = lastPlayIndex[1].toInt();
-    m_playlist->add(value, m_songTreeWidget->musicSongsFilePath(value));
+    m_playlist->add(value, m_songTreeWidget->songsFilePath(value));
     if(TTK_NORMAL_LEVEL < value && value < songs.count())
     {
         m_ui->musicPlayedList->append(songs[value].m_songs);

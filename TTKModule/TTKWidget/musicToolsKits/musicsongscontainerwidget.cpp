@@ -53,7 +53,7 @@ MusicSongsContainerWidget::~MusicSongsContainerWidget()
     }
 }
 
-bool MusicSongsContainerWidget::addMusicItemList(const MusicSongItemList &items)
+bool MusicSongsContainerWidget::addSongItemList(const MusicSongItemList &items)
 {
     TTKIntSet inDeed;
     inDeed << MUSIC_NORMAL_LIST << MUSIC_LOVEST_LIST << MUSIC_NETWORK_LIST << MUSIC_RECENT_LIST;
@@ -114,7 +114,7 @@ bool MusicSongsContainerWidget::addMusicItemList(const MusicSongItemList &items)
     return inDeed.isEmpty();
 }
 
-void MusicSongsContainerWidget::appendMusicItemList(const MusicSongItemList &items)
+void MusicSongsContainerWidget::appendSongItemList(const MusicSongItemList &items)
 {
     for(int i = 0; i < items.count(); ++i)
     {
@@ -126,7 +126,7 @@ void MusicSongsContainerWidget::appendMusicItemList(const MusicSongItemList &ite
     }
 }
 
-void MusicSongsContainerWidget::importMusicSongsByUrl(const QString &path, int playlistRow)
+void MusicSongsContainerWidget::importSongsByUrl(const QString &path, int playlistRow)
 {
     if(path.isEmpty())
     {
@@ -150,7 +150,7 @@ void MusicSongsContainerWidget::importMusicSongsByUrl(const QString &path, int p
             }
         }
 
-        importMusicSongsByPath(files, playlistRow);
+        importSongsByPath(files, playlistRow);
     }
     else if(TTK::String::isNetworkUrl(path))
     {
@@ -178,11 +178,11 @@ void MusicSongsContainerWidget::importMusicSongsByUrl(const QString &path, int p
            files << fin.absoluteFilePath();
         }
 
-        importMusicSongsByPath(files, playlistRow);
+        importSongsByPath(files, playlistRow);
     }
 }
 
-void MusicSongsContainerWidget::importMusicSongsByPath(const QStringList &files, int playlistRow)
+void MusicSongsContainerWidget::importSongsByPath(const QStringList &files, int playlistRow)
 {
     if(files.isEmpty())
     {
@@ -225,7 +225,7 @@ void MusicSongsContainerWidget::importMusicSongsByPath(const QStringList &files,
     }
 }
 
-QStringList MusicSongsContainerWidget::musicSongsFileName(int index) const
+QStringList MusicSongsContainerWidget::songsFileName(int index) const
 {
     QStringList list;
 
@@ -241,7 +241,7 @@ QStringList MusicSongsContainerWidget::musicSongsFileName(int index) const
     return list;
 }
 
-QStringList MusicSongsContainerWidget::musicSongsFilePath(int index) const
+QStringList MusicSongsContainerWidget::songsFilePath(int index) const
 {
     QStringList list;
     if(index < 0 || index >= m_containerItems.count())
@@ -613,7 +613,7 @@ void MusicSongsContainerWidget::searchResultChanged(int, int column)
 
     if(!isSearchPlayIndex())
     {
-        const QStringList searchedSongs(musicSongsFileName(m_lastSearchIndex));
+        const QStringList searchedSongs(songsFileName(m_lastSearchIndex));
         TTKIntList result;
         for(int i = 0; i < searchedSongs.count(); ++i)
         {
@@ -633,7 +633,7 @@ void MusicSongsContainerWidget::searchResultChanged(int, int column)
     }
 
     const QString &text = m_songSearchWidget->text();
-    const QStringList searchedSongs(musicSongsFileName(m_currentIndex));
+    const QStringList searchedSongs(songsFileName(m_currentIndex));
 
     TTKIntList result;
     for(int i = 0; i < searchedSongs.count(); ++i)
@@ -672,7 +672,7 @@ void MusicSongsContainerWidget::updateCurrentIndex()
     m_playRowIndex = lastPlayIndex[1].toInt();
     const int index = lastPlayIndex[2].toInt();
     setCurrentIndex(index);
-    setMusicPlayCount(index);
+    setSongPlayCount(index);
 
     MusicApplication::instance()->showCurrentSong();
 }
@@ -777,7 +777,7 @@ void MusicSongsContainerWidget::addSongToPlaylist(const QStringList &items)
 
     QStringList files(items);
     const int row = makeValidIndex();
-    importMusicSongsByPath(files, row);
+    importSongsByPath(files, row);
 
     const MusicSongItem *item = &m_containerItems[row];
     const MusicSongList *musicSongs = &item->m_songs;
@@ -871,7 +871,7 @@ void MusicSongsContainerWidget::isSearchedResultEmpty(bool &empty)
     empty = !hasSearchResult();
 }
 
-void MusicSongsContainerWidget::setMusicPlayCount(int index)
+void MusicSongsContainerWidget::setSongPlayCount(int index)
 {
     if(index < 0 || m_playRowIndex < 0)
     {
@@ -886,7 +886,7 @@ void MusicSongsContainerWidget::setMusicPlayCount(int index)
     }
 }
 
-void MusicSongsContainerWidget::setRecentMusicSongs(int index)
+void MusicSongsContainerWidget::appendRecentSongs(int index)
 {
     if(index < 0 || m_playRowIndex < 0 || m_playRowIndex == MUSIC_NETWORK_LIST || m_playRowIndex == MUSIC_RECENT_LIST)
     {
@@ -931,7 +931,7 @@ void MusicSongsContainerWidget::setRecentMusicSongs(int index)
     }
 }
 
-void MusicSongsContainerWidget::queryMusicItemList(MusicSongItemList &songs)
+void MusicSongsContainerWidget::querySongItemList(MusicSongItemList &songs)
 {
     songs = m_containerItems;
 }
@@ -1108,7 +1108,7 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
         QWidget *container = item.m_widgetItem->item();
         if(item.m_widgetItem->isActive() || (container && container->isVisible()))
         {
-            importMusicSongsByPath(files, foundMappedIndex(item.m_itemIndex));
+            importSongsByPath(files, foundMappedIndex(item.m_itemIndex));
             break;
         }
     }

@@ -92,15 +92,15 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Set enhanced music config changed return selected index.
+     * Set enhanced song config changed return selected index.
      */
-    void enhancedMusicChanged(int type);
+    void enhancedSongChanged(int type);
 
 public Q_SLOTS:
     /*!
-     * Set enhanced music config.
+     * Set enhanced song config.
      */
-    void setEnhancedMusicConfig(int type);
+    void setEnhancedSongConfig(int type);
     /*!
      * switch button on or off.
      */

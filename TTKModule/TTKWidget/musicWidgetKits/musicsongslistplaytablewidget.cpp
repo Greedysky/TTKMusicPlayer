@@ -733,7 +733,7 @@ void MusicSongsListPlayTableWidget::closeRenameItem()
         return;
     }
 
-    //just close the rename edittext;
+    //just close the rename editor;
     if(m_renameActived)
     {
         closePersistentEditor(m_renameItem);

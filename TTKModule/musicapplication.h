@@ -256,9 +256,9 @@ public Q_SLOTS:
      */
     void windowConciseChanged();
     /*!
-     * Set current music enhanced effect by type.
+     * Set current song enhanced effect by type.
      */
-    void enhancedMusicChanged(int type);
+    void enhancedSongChanged(int type);
     /*!
      * Create right menu.
      */

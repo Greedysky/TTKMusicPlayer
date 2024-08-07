@@ -63,21 +63,21 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Current music love icon state changed.
+     * Current song love icon state changed.
      */
     void currentLoveStateChanged();
     /*!
-     * Current music download icon state changed.
+     * Current song download icon state changed.
      */
     void currentDownloadStateChanged();
 
 public Q_SLOTS:
     /*!
-     * To download music data from net to load.
+     * To download song data from net to load.
      */
     void downloadSongToLocal();
     /*!
-     * To download music data from net finished.
+     * To download song data from net finished.
      */
     void downloadSongFinished();
     /*!

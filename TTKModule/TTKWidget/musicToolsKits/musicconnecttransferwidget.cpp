@@ -76,7 +76,7 @@ void MusicConnectTransferWidget::setDeviceInfoItem(MusicDeviceInfoItem *item)
 void MusicConnectTransferWidget::initialize()
 {
     MusicSongItemList songs;
-    Q_EMIT queryMusicItemList(songs);
+    Q_EMIT querySongItemList(songs);
 
     m_ui->playListLayoutWidget->setStyleSheet(TTK::UI::BackgroundStyle01);
     QButtonGroup *buttonGroup = new QButtonGroup(this);
@@ -154,7 +154,7 @@ void MusicConnectTransferWidget::itemSelectedChanged()
 void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 {
     MusicSongItemList songs;
-    Q_EMIT queryMusicItemList(songs);
+    Q_EMIT querySongItemList(songs);
 
     if(index >= songs.count() || index < 0)
     {

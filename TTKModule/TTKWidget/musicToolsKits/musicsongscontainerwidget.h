@@ -47,11 +47,11 @@ public:
     /*!
      * Add music datas into container.
      */
-    bool addMusicItemList(const MusicSongItemList &items);
+    bool addSongItemList(const MusicSongItemList &items);
     /*!
      * Append music datas into container.
      */
-    void appendMusicItemList(const MusicSongItemList &items);
+    void appendSongItemList(const MusicSongItemList &items);
     /*!
      * Query music datas from container.
      */
@@ -60,20 +60,20 @@ public:
     /*!
      * Input imported music urls into container.
      */
-    void importMusicSongsByUrl(const QString &path, int playlistRow);
+    void importSongsByUrl(const QString &path, int playlistRow);
     /*!
      * Input imported music datas into container.
      */
-    void importMusicSongsByPath(const QStringList &files, int playlistRow);
+    void importSongsByPath(const QStringList &files, int playlistRow);
 
     /*!
      * Get music songs file name by index.
      */
-    QStringList musicSongsFileName(int index) const;
+    QStringList songsFileName(int index) const;
     /*!
      * Get music songs file path by index.
      */
-    QStringList musicSongsFilePath(int index) const;
+    QStringList songsFilePath(int index) const;
     /*!
      * Map music song index by file path.
      */
@@ -203,15 +203,15 @@ public Q_SLOTS:
     /*!
      * Set current music song play count by given song index.
      */
-    void setMusicPlayCount(int index);
+    void setSongPlayCount(int index);
     /*!
      * Input recent imported music datas into container.
      */
-    void setRecentMusicSongs(int index);
+    void appendRecentSongs(int index);
     /*!
      * Query music datas from container.
      */
-    void queryMusicItemList(MusicSongItemList &songs);
+    void querySongItemList(MusicSongItemList &songs);
     /*!
      * Update current artist when it download finished.
      */

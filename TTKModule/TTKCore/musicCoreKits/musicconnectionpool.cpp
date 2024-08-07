@@ -95,7 +95,7 @@ void MusicConnectionPool::connect(const QString &from, const QString &to)
             (from == MusicSongItemSelectedAreaWidget::className() && to == MusicSongsContainerWidget::className()) ||
             (from == MusicSongDlnaTransferWidget::className() && to == MusicSongsContainerWidget::className()))
     {
-        QObject::connect(first, SIGNAL(queryMusicItemList(MusicSongItemList&)), second, SLOT(queryMusicItemList(MusicSongItemList&)));
+        QObject::connect(first, SIGNAL(querySongItemList(MusicSongItemList&)), second, SLOT(querySongItemList(MusicSongItemList&)));
     }
     else if((from == MusicCloudManagerTableWidget::className() && to == MusicCloudUploadTableWidget::className()))
     {

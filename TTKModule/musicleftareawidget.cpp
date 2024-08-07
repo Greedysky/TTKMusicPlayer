@@ -77,8 +77,8 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
     connect(ui->musicSound, SIGNAL(volumeChanged(int)), MusicApplication::instance(), SLOT(volumeChanged(int)));
     connect(ui->musicBestLove, SIGNAL(clicked()), MusicApplication::instance(), SLOT(addSongToLovestList()));
     connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(downloadSongToLocal()));
-    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), MusicApplication::instance(), SLOT(enhancedMusicChanged(int)));
-    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget, SLOT(setSliderStyleByType(int)));
+    connect(ui->musicEnhancedButton, SIGNAL(enhancedSongChanged(int)), MusicApplication::instance(), SLOT(enhancedSongChanged(int)));
+    connect(ui->musicEnhancedButton, SIGNAL(enhancedSongChanged(int)), ui->musicTimeWidget, SLOT(setSliderStyleByType(int)));
     connect(ui->userOptionWidget, SIGNAL(buttonClicked(int)), SLOT(switchToSelectedItemStyle(int)));
 }
 

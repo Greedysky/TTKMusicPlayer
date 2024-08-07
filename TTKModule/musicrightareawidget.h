@@ -141,19 +141,19 @@ public:
      */
     void showSettingWidget() const;
     /*!
-     * Music artist search function.
+     * Song artist search function.
      */
     void artistSearchByID(const QString &id);
     /*!
-     * Music album search function.
+     * Song album search function.
      */
     void albumSearchByID(const QString &id);
     /*!
-     * Music movie search function.
+     * Song movie search function.
      */
     void movieSearchByID(const QString &id);
     /*!
-     * Music movie radio search function.
+     * Song movie radio search function.
      */
     void movieRadioSearchByID(const QVariant &data);
 
@@ -188,55 +188,55 @@ public Q_SLOTS:
 
 public Q_SLOTS:
     /*!
-     * Music comments function.
+     * Song comments function.
      */
     void showCommentsFound();
     /*!
-     * Music similar function that by string.
+     * Song similar function that by string.
      */
     void showSimilarFound(const QString &text);
     /*!
-     * Music album function that by string.
+     * Song album function that by string.
      */
     void showAlbumFound(const QString &text, const QString &id);
     /*!
-     * Music artist search function.
+     * Song artist search function.
      */
     void showArtistSearchFound();
     /*!
-     * Music album search function.
+     * Song album search function.
      */
     void showAlbumSearchFound();
     /*!
-     * Music movie search function.
+     * Song movie search function.
      */
     void showMovieSearchFound();
     /*!
-     * Music movie search radio function.
+     * Song movie search radio function.
      */
     void showMovieSearchRadioFound();
     /*!
-     * Music personal search radio function.
+     * Song personal search radio function.
      */
     void showPersonalRadioFound(const QString &id);
     /*!
-     * Music artist function that by string.
+     * Song artist function that by string.
      */
     void showArtistFound(const QString &text, const QString &id);
     /*!
-     * Music playlist function.
+     * Song playlist function.
      */
     void showPlaylistFound(const QString &id);
     /*!
-     * Music playlist category function.
+     * Song playlist category function.
      */
     void showPlaylistCategoryFound(const QString &id, const QString &value);
     /*!
-     * Music song research button searched by name.
+     * Song research button searched by name.
      */
     void showSongSearchedFound(const QString &text);
     /*!
-     * Music song search by given id.
+     * Song search by given id.
      */
     void showSingleSearchedFound(const QString &id);
     /*!
@@ -246,7 +246,7 @@ public Q_SLOTS:
 
 public Q_SLOTS:
     /*!
-     * Music load song index widget.
+     * Song load song index widget.
      */
     void showSongMainWidget();
     /*!

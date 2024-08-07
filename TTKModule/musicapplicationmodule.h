@@ -100,9 +100,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Set enhanced music config changed.
+     * Set enhanced song config changed.
      */
-    void enhancedMusicChanged(int type);
+    void enhancedSongChanged(int type);
 
 public Q_SLOTS:
     /*!

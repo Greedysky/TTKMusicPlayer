@@ -55,7 +55,7 @@ Q_SIGNALS:
     /*!
      * Query music datas from container.
      */
-    void queryMusicItemList(MusicSongItemList &songs);
+    void querySongItemList(MusicSongItemList &songs);
 
 public Q_SLOTS:
     /*!

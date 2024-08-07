@@ -150,7 +150,7 @@ MusicSongItemSelectedAreaWidget::~MusicSongItemSelectedAreaWidget()
 MusicSongList MusicSongItemSelectedAreaWidget::selectedSongItems()
 {
     MusicSongItemList songs;
-    Q_EMIT queryMusicItemList(songs);
+    Q_EMIT querySongItemList(songs);
 
     MusicSongList selectedSongs;
     for(const MusicSongItem &item : qAsConst(songs))
@@ -176,7 +176,7 @@ MusicSongList MusicSongItemSelectedAreaWidget::selectedSongItems()
 void MusicSongItemSelectedAreaWidget::modifiedItemButtonClicked()
 {
     MusicSongItemList songs;
-    Q_EMIT queryMusicItemList(songs);
+    Q_EMIT querySongItemList(songs);
 
     m_selected = true;
 
