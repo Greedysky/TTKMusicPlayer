@@ -13,7 +13,7 @@ libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
 libmpg123-1.32.6	https://sourceforge.net/projects/mpg123
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.5	https://ftp.osuosl.org/pub/xiph/releases/ogg
-libopenmpt-0.4.43	https://lib.openmpt.org/libopenmpt
+libopenmpt-0.4.44	https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1(v4.1.1)	https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
 libsidplayfp-2.3.1.patch(v2.8.0)	https://github.com/libsidplayfp/libsidplayfp
@@ -31,7 +31,7 @@ taglib-1.13.1(v2.0.1)	https://github.com/taglib/taglib
 wavpack-5.7.0	https://www.wavpack.com/downloads.html
 libxmp-4.6.0.patch	https://github.com/libxmp/libxmp
 zlib-1.3.1	https://github.com/madler/zlib
-7zip-24.06	https://www.7-zip.org/download.html
+7zip-24.07	https://www.7-zip.org/download.html
 
 ttk-1.2.5
 -libasap-6.0.3	 https://sourceforge.net/projects/asap
@@ -45,7 +45,7 @@ ttk-1.2.5
 -liborganya		 https://github.com/xbmc/audiodecoder.organya
 				 https://github.com/EterCyber/Foobar2000-Input-Pxtone
 -libpsf			 https://github.com/sasq64/musicplayer
--libqoa			 https://github.com/phoboslab/qoa
+-libqoa			 https://github.com/phoboslab/qoa e0c69447d4d3945c3c92ac1751e4cdc9803a8303
 -libs98			 https://github.com/sasq64/musicplayer
 -libsc68-2.2.1	 https://sourceforge.net/projects/sc68
 -libsonic		 https://github.com/waywardgeek/sonic 8694c596378c24e340c09ff2cd47c065494233f1
@@ -53,7 +53,7 @@ ttk-1.2.5
 				 https://github.com/arnaud-neny/rePlayer
 -libstsound		 https://github.com/arnaud-carre/StSound
 -libtfmx		 https://github.com/sasq64/musicplayer
--libuade-3.03	 https://gitlab.com/uade-music-player/uade fc22380cba4a8815f53b373808a1138742de020b
+-libuade-3.03	 https://gitlab.com/uade-music-player/uade 93251831d4ec4d148631f79f55d923c259a62799
 -libv2m-20211104 https://github.com/jgilje/v2m-player
 -libxmdx		 https://github.com/mistydemeo/mdxmini
 				 https://github.com/mistydemeo/pmdmini
@@ -61,4 +61,4 @@ ttk-1.2.5
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2024-06-11
+///Update time 2024-08-07
