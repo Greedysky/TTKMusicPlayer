@@ -190,7 +190,7 @@ void MusicApplicationModule::sideAnimationByOn()
 #ifdef Q_OS_WIN
     constexpr int gap = 2;
 #elif defined Q_OS_UNIX
-    const int gap = TTKPlatformSystem().systemName() == TTKPlatformSystem::System::LinuxUbuntu ? 3 : 2;
+    const int gap = TTKPlatformSystem::systemName() == TTKPlatformSystem::System::LinuxUbuntu ? 3 : 2;
 #endif
     const QRect &rect = TTKDesktopWrapper::screenGeometry();
     const TTK::Direction direction = TTKDesktopWrapper::screenTaskbar().m_direction;

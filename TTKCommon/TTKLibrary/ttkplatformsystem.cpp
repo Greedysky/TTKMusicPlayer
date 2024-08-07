@@ -53,25 +53,25 @@ static QSize generateDPIValue()
     return defaultSize;
 }
 
-int TTKPlatformSystem::logicalDotsPerInchX() const
+int TTKPlatformSystem::logicalDotsPerInchX()
 {
     const QSize dpi(generateDPIValue());
     return dpi.width();
 }
 
-int TTKPlatformSystem::logicalDotsPerInchY() const
+int TTKPlatformSystem::logicalDotsPerInchY()
 {
     const QSize dpi(generateDPIValue());
     return dpi.height();
 }
 
-int TTKPlatformSystem::logicalDotsPerInch() const
+int TTKPlatformSystem::logicalDotsPerInch()
 {
     const QSize dpi(generateDPIValue());
     return (dpi.width() + dpi.height()) / 2;
 }
 
-TTKPlatformSystem::System TTKPlatformSystem::systemName() const
+TTKPlatformSystem::System TTKPlatformSystem::systemName()
 {
 #ifdef Q_OS_WIN
     typedef void (__stdcall *NTPROC)(DWORD*, DWORD*, DWORD*);

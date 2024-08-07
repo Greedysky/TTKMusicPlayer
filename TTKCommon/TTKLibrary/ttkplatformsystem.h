@@ -60,20 +60,20 @@ public:
     /*!
      * Get local DPI x.
      */
-    int logicalDotsPerInchX() const;
+    static int logicalDotsPerInchX();
     /*!
      * Get local DPI y.
      */
-    int logicalDotsPerInchY() const;
+    static int logicalDotsPerInchY();
     /*!
      * Get local DPI.
      */
-    int logicalDotsPerInch() const;
+    static int logicalDotsPerInch();
 
     /*!
      * Get system name.
      */
-    System systemName() const;
+    static System systemName();
 
 };
 
