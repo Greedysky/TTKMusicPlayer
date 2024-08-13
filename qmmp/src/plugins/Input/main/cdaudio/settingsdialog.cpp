@@ -24,11 +24,15 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.speedCheckBox->setChecked(speed > 0);
     m_ui.speedSpinBox->setValue(speed);
     m_ui.cdtextCheckBox->setChecked(settings.value("cdtext", true).toBool());
+#ifdef WITH_LIBCDDB
     m_ui.cddbGroupBox->setChecked(settings.value("use_cddb", false).toBool());
     m_ui.httpCheckBox->setChecked(settings.value("cddb_http", false).toBool());
     m_ui.serverLineEdit->setText(settings.value("cddb_server", "gnudb.org").toString());
     m_ui.pathLineEdit->setText(settings.value("cddb_path").toString());
     m_ui.portLineEdit->setText(settings.value("cddb_port", 8880).toString());
+#else
+    m_ui->cddbGroupBox->setVisible(false);
+#endif
     settings.endGroup();
 }
 
@@ -56,11 +60,13 @@ void SettingsDialog::accept()
     
     settings.setValue("cdtext", m_ui.cdtextCheckBox->isChecked());
     settings.setValue("cdtext", m_ui.cdtextCheckBox->isChecked());
+#ifdef WITH_LIBCDDB
     settings.setValue("use_cddb", m_ui.cddbGroupBox->isChecked());
     settings.setValue("cddb_http", m_ui.httpCheckBox->isChecked());
     settings.setValue("cddb_server",  m_ui.serverLineEdit->text());
     settings.setValue("cddb_path", m_ui.pathLineEdit->text());
     settings.setValue("cddb_port", m_ui.portLineEdit->text());
+#endif
     settings.endGroup();
     settings.sync();
 

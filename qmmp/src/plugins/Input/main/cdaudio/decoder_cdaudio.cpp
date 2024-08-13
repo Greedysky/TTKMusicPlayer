@@ -6,7 +6,9 @@
 #include <cdio/audio.h>
 #include <cdio/cd_types.h>
 #include <cdio/logging.h>
+#ifdef WITH_LIBCDDB
 #include <cddb/cddb.h>
+#endif
 #include <qmmp/qmmpsettings.h>
 
 #define CDDA_SECTORS 4
@@ -31,6 +33,7 @@ static void log_handler(cdio_log_level_t level, const char *message)
     }
 }
 
+#ifdef WITH_LIBCDDB
 static void cddb_log_handler(cddb_log_level_t level, const char *message)
 {
     QString str = QString::fromLocal8Bit(message).trimmed();
@@ -46,6 +49,7 @@ static void cddb_log_handler(cddb_log_level_t level, const char *message)
         qWarning("DecoderCDAudio: cddb message: %s (level=error)", qPrintable(str));
     }
 }
+#endif
 
 
 DecoderCDAudio::DecoderCDAudio(const QString &path)
@@ -141,7 +145,9 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &path, TrackInfo
         cdio = nullptr;
         return tracks;
     }
+#ifdef WITH_LIBCDDB
     bool use_cddb = true;
+#endif
     //fill track list
     for(int i = first_track_number; i <= last_track_number; ++i)
     {
@@ -178,7 +184,9 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &path, TrackInfo
             t.info.setValue(Qmmp::GENRE, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_GENRE,i)));
             t.info.setValue(Qmmp::COMMENT, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_MESSAGE,i)));
             t.info.setValue(Qmmp::COMPOSER, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_COMPOSER,i)));
+#ifdef WITH_LIBCDDB
             use_cddb = false;
+#endif
         }
         else
             t.info.setValue(Qmmp::TITLE, QString("CDA Track %1").arg(i, 2, 10, QChar('0')));
@@ -186,6 +194,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &path, TrackInfo
     }
     qDebug("DecoderCDAudio: found %d audio tracks", tracks.count());
 
+#ifdef WITH_LIBCDDB
     use_cddb = use_cddb && settings.value("CDAudio/use_cddb", false).toBool();
     if(use_cddb)
     {
@@ -279,6 +288,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &path, TrackInfo
         if(cddb_conn)
             cddb_destroy(cddb_conn);
     }
+#endif
 
     cdio_destroy(cdio);
     cdio = nullptr;
