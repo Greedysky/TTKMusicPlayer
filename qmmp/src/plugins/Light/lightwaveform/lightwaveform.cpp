@@ -127,7 +127,7 @@ bool LightWaveFormScanner::scan(const QString &path)
         factory = Decoder::findByContent(source->ioDevice());
     if(!factory && source->path().contains("://"))
         factory = Decoder::findByProtocol(source->path().section("://", 0, 0));
-    if(!factory)
+    if(!factory || source->path().startsWith("cdda://"))
     {
         qWarning("LightWaveFormScanner: unsupported file format");
         source->deleteLater();
