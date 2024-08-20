@@ -54,7 +54,7 @@ public:
     /*!
      * Theme is valid check.
      */
-    static bool themeIsValid(QString &name, QString &path);
+    static bool isValid(QString &name, QString &path);
     /*!
      * Copy art file to local themes dir path.
      */
@@ -65,18 +65,18 @@ public:
      */
     void updateArtistFileTheme(const QString &theme);
     /*!
-     * Select current item by name and alpha and listAlpha when the widget show.
+     * Select current item by name and background and list transparent when the widget show.
      */
-    void setCurrentBackgroundTheme(const QString &theme, int skin, int list);
+    void setCurrentBackgroundTheme(const QString &theme, int background, int list);
 
     /*!
-     * Get list background skin alpha.
+     * Get list background skin transparent.
      */
-    int backgroundListAlpha() const;
+    int backgroundListTransparent() const;
     /*!
      * Get background window skin enable.
      */
-    bool backgroundTransparentEnable() const;
+    bool backgroundTransparentEnabled() const;
 
     /*!
      * Set skin transparent tool text.

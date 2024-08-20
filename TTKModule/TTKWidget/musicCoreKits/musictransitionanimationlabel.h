@@ -57,18 +57,18 @@ public:
     ~MusicTransitionAnimationLabel();
 
     /*!
-     * Set no animation to start.
+     * Set animation to start.
      */
-    inline void setAnimation(bool on) { m_noAnimationSet = on; }
+    inline void setAnimation(bool enable) { m_animationEnabled = enable; }
     /*!
-     * Get no animation state.
+     * Get animation state.
      */
-    inline bool noAnimation() const { return m_noAnimationSet; }
+    inline bool animation() const { return m_animationEnabled; }
 
     /*!
-     * Get renderer pixmap image.
+     * Get render pixmap image.
      */
-    const QPixmap& rendererPixmap() const;
+    const QPixmap& renderPixmap() const;
 
     /*!
      * Stop renderer pixmap animation.
@@ -100,8 +100,8 @@ private:
     Module m_type;
     bool m_isAnimating;
     int m_currentValue;
-    bool m_noAnimationSet;
-    QPixmap m_rendererPixmap;
+    bool m_animationEnabled;
+    QPixmap m_renderPixmap;
     QPixmap m_currentPixmap, m_previousPixmap;
     QPropertyAnimation *m_animation;
     QAlgorithm::ImageRender *m_imageRender;

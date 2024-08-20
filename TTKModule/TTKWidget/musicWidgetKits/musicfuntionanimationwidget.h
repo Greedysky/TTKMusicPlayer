@@ -50,7 +50,7 @@ private:
      */
     virtual void paintEvent(QPaintEvent *event) override final;
 
-    int m_backgroundAlpha;
+    int m_backgroundTransparent;
 
 };
 

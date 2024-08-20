@@ -66,7 +66,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     connect(m_ui->skinTransparentLabelBox, SIGNAL(clicked(bool)), SLOT(windowTransparentChanged(bool)));
     connect(m_ui->skinTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(backgroundTransparentChanged(int)));
     connect(m_ui->skinTransparentButton, SIGNAL(sliderStateChanged(bool)), MusicTopAreaWidget::instance(), SLOT(backgroundAnimationChanged(bool)));
-    connect(m_ui->listTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(playlistTransparent(int)));
+    connect(m_ui->listTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(playlistTransparentChanged(int)));
     connect(m_ui->paletteButton, SIGNAL(clicked()), SLOT(showPaletteDialog()));
     connect(m_ui->customSkin, SIGNAL(clicked()) ,SLOT(showCustomSkinDialog()));
     connect(m_ui->resetWindowButton, SIGNAL(clicked()), MusicApplicationModule::instance(), SLOT(resetWindowGeometry()));
@@ -87,14 +87,14 @@ MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
 QPixmap MusicBackgroundSkinDialog::setBackgroundUrl(QString &name)
 {
     QString path = USER_THEME_DIR_FULL + name + TKM_FILE;
-    MusicBackgroundSkinDialog::themeIsValid(name, path);
+    MusicBackgroundSkinDialog::isValid(name, path);
     G_BACKGROUND_PTR->setBackgroundUrl(path);
 
     MusicBackgroundImage image;
     return MusicExtractWrapper::outputSkin(&image, path) ? image.m_pix : QPixmap();
 }
 
-bool MusicBackgroundSkinDialog::themeIsValid(QString &name, QString &path)
+bool MusicBackgroundSkinDialog::isValid(QString &name, QString &path)
 {
     if(!QFile::exists(path))
     {
@@ -127,7 +127,7 @@ void MusicBackgroundSkinDialog::updateArtistFileTheme(const QString &theme)
     m_stackBackgroundList->updateLastItem();
 }
 
-void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, int skin, int list)
+void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, int background, int list)
 {
     m_cacheBackgroundList->setCurrentItemName(theme);
     m_stackBackgroundList->setCurrentItemName(theme);
@@ -136,18 +136,18 @@ void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, 
     setListTransToolText(list);
 
     const bool state = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentEnable).toBool();
-    m_ui->skinTransparentButton->setValue(state ? skin : 0);
+    m_ui->skinTransparentButton->setValue(state ? background : 0);
     m_ui->skinTransparentButton->setEnabled(state);
-    setSkinTransToolText(state ? skin : 0);
+    setSkinTransToolText(state ? background : 0);
     m_ui->skinTransparentLabelBox->setChecked(state);
 }
 
-int MusicBackgroundSkinDialog::backgroundListAlpha() const
+int MusicBackgroundSkinDialog::backgroundListTransparent() const
 {
     return m_ui->listTransparentButton->value();
 }
 
-bool MusicBackgroundSkinDialog::backgroundTransparentEnable() const
+bool MusicBackgroundSkinDialog::backgroundTransparentEnabled() const
 {
     return m_ui->skinTransparentLabelBox->isChecked();
 }
@@ -297,7 +297,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget 
 
     QString s(name);
     QString path = USER_THEME_DIR_FULL + s + TKM_FILE;
-    MusicBackgroundSkinDialog::themeIsValid(s, path);
+    MusicBackgroundSkinDialog::isValid(s, path);
 
     G_BACKGROUND_PTR->setBackgroundUrl(path);
 }

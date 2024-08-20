@@ -66,26 +66,26 @@ public:
      */
     inline QString backgroundPath() const { return m_backgroundImagePath; }
     /*!
-     * Get background skin alpha.
+     * Get background skin transparent.
      */
-    inline int backgroundAlpha() const { return m_backgroundAlpha; }
+    inline int backgroundTransparent() const { return m_backgroundTransparent; }
     /*!
-     * Get list background skin alpha.
+     * Get list background skin transparent.
      */
-    int backgroundListAlpha();
+    int backgroundListTransparent();
     /*!
      * Get background window skin enable.
      */
-    bool backgroundTransparentEnable() const;
+    bool backgroundTransparentEnabled() const;
 
     /*!
      * Get origin background image.
      */
     const QImage& originImage() const;
     /*!
-     * Get renderer background pixmap.
+     * Get render background pixmap.
      */
-    const QPixmap& rendererPixmap() const;
+    const QPixmap& renderPixmap() const;
 
     /*!
      * Stop background skin change timer.
@@ -154,7 +154,7 @@ public Q_SLOTS:
     /*!
      * Current list background transparent changed.
      */
-    void playlistTransparent(int index);
+    void playlistTransparentChanged(int index);
     /*!
      * Changed current remote to square mode.
      */
@@ -232,7 +232,7 @@ private:
     QImage m_backgroundImage;
     int m_lastRemoteBeforeWallpaper;
     QString m_backgroundImagePath;
-    int m_backgroundAlpha, m_backgroundListAlpha;
+    int m_backgroundTransparent, m_backgroundListTransparent;
     QTimer m_pictureCarouselTimer;
 
     static MusicTopAreaWidget *m_instance;

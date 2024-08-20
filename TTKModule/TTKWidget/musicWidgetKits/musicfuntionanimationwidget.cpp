@@ -17,7 +17,7 @@ MusicBackgroundWidget::MusicBackgroundWidget(QWidget *parent)
 
 void MusicBackgroundWidget::backgroundTransparent(int value)
 {
-    m_backgroundAlpha = TTK::Image::boundValue<int>(0xFF, 0x10, TTK_RN_MAX - value);
+    m_backgroundTransparent = TTK::Image::boundValue<int>(0xFF, 0x10, TTK_RN_MAX - value);
     update();
 }
 
@@ -26,7 +26,7 @@ void MusicBackgroundWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 
     QPainter painter(this);
-    painter.fillRect(rect(), QColor(255, 255, 255, m_backgroundAlpha));
+    painter.fillRect(rect(), QColor(255, 255, 255, m_backgroundTransparent));
 }
 
 

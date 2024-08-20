@@ -23,7 +23,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
       m_backgroundWidget(nullptr),
       m_remoteWidget(nullptr),
       m_lastRemoteBeforeWallpaper(-1),
-      m_backgroundListAlpha(60)
+      m_backgroundListTransparent(60)
 {
     m_instance = this;
 
@@ -102,24 +102,24 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication *ui)
 void MusicTopAreaWidget::setBackgroundParameter()
 {
     m_backgroundImagePath = G_SETTING_PTR->value(MusicSettingManager::BackgroundThemeValue).toString();
-    m_backgroundListAlpha = G_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparent).toInt();
-    m_backgroundAlpha = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
+    m_backgroundTransparent = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
+    m_backgroundListTransparent = G_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparent).toInt();
 }
 
-int MusicTopAreaWidget::backgroundListAlpha()
+int MusicTopAreaWidget::backgroundListTransparent()
 {
     if(m_backgroundWidget)
     {
-        m_backgroundListAlpha = m_backgroundWidget->backgroundListAlpha();
+        m_backgroundListTransparent = m_backgroundWidget->backgroundListTransparent();
     }
-    return m_backgroundListAlpha;
+    return m_backgroundListTransparent;
 }
 
-bool MusicTopAreaWidget::backgroundTransparentEnable() const
+bool MusicTopAreaWidget::backgroundTransparentEnabled() const
 {
     if(m_backgroundWidget)
     {
-        return m_backgroundWidget->backgroundTransparentEnable();
+        return m_backgroundWidget->backgroundTransparentEnabled();
     }
     return false;
 }
@@ -129,9 +129,9 @@ const QImage& MusicTopAreaWidget::originImage() const
     return m_backgroundImage;
 }
 
-const QPixmap& MusicTopAreaWidget::rendererPixmap() const
+const QPixmap& MusicTopAreaWidget::renderPixmap() const
 {
-    return m_ui->background->rendererPixmap();
+    return m_ui->background->renderPixmap();
 }
 
 void MusicTopAreaWidget::setBackgroundAnimation(bool state)
@@ -170,7 +170,7 @@ void MusicTopAreaWidget::showSkinManagerWidget()
         m_backgroundWidget = new MusicBackgroundSkinDialog(this);
     }
 
-    m_backgroundWidget->setCurrentBackgroundTheme(m_backgroundImagePath, m_backgroundAlpha, m_backgroundListAlpha);
+    m_backgroundWidget->setCurrentBackgroundTheme(m_backgroundImagePath, m_backgroundTransparent, m_backgroundListTransparent);
     m_backgroundWidget->exec();
 }
 
@@ -186,7 +186,7 @@ void MusicTopAreaWidget::backgroundTransparentChanged(int value)
         m_backgroundWidget->setSkinTransToolText(value);
     }
 
-    m_backgroundAlpha = value;
+    m_backgroundTransparent = value;
     drawWindowBackgroundRectString();
 }
 
@@ -250,7 +250,12 @@ void MusicTopAreaWidget::backgroundChanged()
 
 void MusicTopAreaWidget::backgroundAnimationChanged(bool state)
 {
-    m_ui->background->setAnimation(state);
+    if(!isEnableBackground())
+    {
+        return;
+    }
+
+    m_ui->background->setAnimation(!state);
 }
 
 void MusicTopAreaWidget::backgroundThemeDownloadFinished()
@@ -279,15 +284,15 @@ void MusicTopAreaWidget::backgroundThemeChangedByResize()
     }
 }
 
-void MusicTopAreaWidget::playlistTransparent(int index)
+void MusicTopAreaWidget::playlistTransparentChanged(int index)
 {
     if(m_backgroundWidget)
     {
         m_backgroundWidget->setListTransToolText(index);
     }
 
-    m_backgroundListAlpha = index;
-    backgroundTransparent(m_backgroundListAlpha);
+    m_backgroundListTransparent = index;
+    backgroundTransparent(m_backgroundListTransparent);
 }
 
 void MusicTopAreaWidget::showSquareRemote()
@@ -457,7 +462,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
         return;
     }
 
-    const float v = TTK::Image::boundValue<float>(1.0f, 0.35f, TTK_RN_MAX - m_backgroundAlpha);
+    const float v = TTK::Image::boundValue<float>(1.0f, 0.35f, TTK_RN_MAX - m_backgroundTransparent);
     MusicApplication::instance()->setWindowOpacity(v);
 
     const QSize size(G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
@@ -467,7 +472,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
     QPainter painter(&pix);
     painter.drawImage(0, 0, m_backgroundImage.scaled(size, Qt::KeepAspectRatioByExpanding));
 
-    backgroundTransparent(m_backgroundListAlpha);
+    backgroundTransparent(m_backgroundListTransparent);
     Q_EMIT originImageChanged(m_backgroundImage);
 
     m_ui->background->setPixmap(pix);

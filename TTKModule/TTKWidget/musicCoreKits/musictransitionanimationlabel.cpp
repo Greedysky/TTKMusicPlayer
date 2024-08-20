@@ -11,7 +11,7 @@ MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
       m_type(Module::FadeEffect),
       m_isAnimating(false),
       m_currentValue(0),
-      m_noAnimationSet(false),
+      m_animationEnabled(true),
       m_imageRender(nullptr)
 {
     TTK::initRandom();
@@ -32,9 +32,9 @@ MusicTransitionAnimationLabel::~MusicTransitionAnimationLabel()
     delete m_imageRender;
 }
 
-const QPixmap& MusicTransitionAnimationLabel::rendererPixmap() const
+const QPixmap& MusicTransitionAnimationLabel::renderPixmap() const
 {
-    return m_rendererPixmap;
+    return m_renderPixmap;
 }
 
 void MusicTransitionAnimationLabel::stop()
@@ -54,9 +54,9 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
     }
 
     const QPixmap &pixmap = QtLablePixmap(this);
-    if(m_noAnimationSet || pixmap.isNull())
+    if(!m_animationEnabled || pixmap.isNull())
     {
-        m_rendererPixmap = pix;
+        m_renderPixmap = pix;
         QLabel::setPixmap(pix);
         return;
     }
@@ -122,9 +122,9 @@ void MusicTransitionAnimationLabel::animationFinished()
 {
     m_currentValue = 0;
     m_isAnimating = false;
-    m_rendererPixmap = m_currentPixmap;
+    m_renderPixmap = m_currentPixmap;
 
-    QLabel::setPixmap(m_rendererPixmap);
+    QLabel::setPixmap(m_renderPixmap);
 }
 
 void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
@@ -143,7 +143,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 painter.fillRect(rect(), QColor(0xFF, 0xFF, 0xFF, 2.55 * m_currentValue));
                 painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 painter.drawPixmap(rect(), m_currentPixmap);
-                m_rendererPixmap = pix;
+                m_renderPixmap = pix;
                 break;
             }
             case Module::BlindsEffect:
@@ -158,19 +158,19 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                     const QRect rect(0, perHeight * i, width(), perHeight * m_currentValue / 100.0);
                     painter.drawPixmap(rect, m_currentPixmap.copy(rect));
                 }
-                m_rendererPixmap = pix;
+                m_renderPixmap = pix;
                 break;
             }
             case Module::CubeEffect:
             {
                 painter.drawPixmap(rect(), m_previousPixmap);
-                m_rendererPixmap = m_imageRender->render(m_currentPixmap, m_currentValue);
+                m_renderPixmap = m_imageRender->render(m_currentPixmap, m_currentValue);
                 break;
             }
             case Module::WaterEffect:
             {
                 painter.drawPixmap(rect(), m_previousPixmap);
-                m_rendererPixmap = m_imageRender->render(m_currentPixmap, m_currentValue);
+                m_renderPixmap = m_imageRender->render(m_currentPixmap, m_currentValue);
                 break;
             }
             case Module::LeftToRightEffect:
@@ -180,7 +180,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 const QRect rect(0, 0, width() * m_currentValue / 100.0, height());
                 painter.drawPixmap(rect, m_currentPixmap.copy(rect));
-                m_rendererPixmap = pix;
+                m_renderPixmap = pix;
                 break;
             }
             case Module::TopToBottomEffect:
@@ -190,12 +190,12 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 const QRect rect(0, 0, width(), height() * m_currentValue / 100.0);
                 painter.drawPixmap(rect, m_currentPixmap.copy(rect));
-                m_rendererPixmap = pix;
+                m_renderPixmap = pix;
                 break;
             }
             default: break;
         }
-        painter.drawPixmap(rect(), m_rendererPixmap);
+        painter.drawPixmap(rect(), m_renderPixmap);
     }
     else
     {
