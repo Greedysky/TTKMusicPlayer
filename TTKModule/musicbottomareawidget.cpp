@@ -107,31 +107,31 @@ void MusicBottomAreaWidget::showMessage(const QString &title, const QString &tex
 
 void MusicBottomAreaWidget::setWindowConcise()
 {
-    const bool con = m_platformExtras->isDisableBlurBehindWindow();
-    G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, con);
+    const bool concise = m_platformExtras->isDisableBlurBehindWindow();
+    G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, concise);
 
-    m_ui->topRightWidget->setVisible(!con);
-    m_ui->centerRightWidget->setVisible(!con);
-    m_ui->bottomCenterWidget->setVisible(!con);
-    m_ui->bottomRightWidget->setVisible(!con);
-    m_ui->bottomLeftContainWidget->setMinimumWidth(con ? CONCISE_WIDTH_MIN : 220);
+    m_ui->topRightWidget->setVisible(!concise);
+    m_ui->centerRightWidget->setVisible(!concise);
+    m_ui->bottomCenterWidget->setVisible(!concise);
+    m_ui->bottomRightWidget->setVisible(!concise);
+    m_ui->bottomLeftContainWidget->setMinimumWidth(concise ? CONCISE_WIDTH_MIN : 220);
 
-    m_ui->musicWindowConcise->setParent(con ? m_ui->background : m_ui->topRightWidget);
-    m_ui->musicWindowConcise->setStyleSheet(con ? TTK::UI::BtnConciseOut : TTK::UI::BtnConciseIn);
-    m_ui->minimization->setParent(con ? m_ui->background : m_ui->topRightWidget);
-    m_ui->windowClose->setParent(con ? m_ui->background : m_ui->topRightWidget);
+    m_ui->musicWindowConcise->setParent(concise ? m_ui->background : m_ui->topRightWidget);
+    m_ui->musicWindowConcise->setStyleSheet(concise ? TTK::UI::BtnConciseOut : TTK::UI::BtnConciseIn);
+    m_ui->minimization->setParent(concise ? m_ui->background : m_ui->topRightWidget);
+    m_ui->windowClose->setParent(concise ? m_ui->background : m_ui->topRightWidget);
 
-    m_ui->musicBestLove->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
-    m_ui->musicDownload->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
-    m_ui->musicMoreFunction->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
-    m_ui->musicSound->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
-    m_ui->musicDesktopLrc->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->musicBestLove->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->musicDownload->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->musicMoreFunction->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->musicSound->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->musicDesktopLrc->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
 
-    m_ui->musicTimeWidget->setParent(con ? m_ui->background : m_ui->bottomCenterWidget);
+    m_ui->musicTimeWidget->setParent(concise ? m_ui->background : m_ui->bottomCenterWidget);
 
-    if(con)
+    MusicApplication *app = MusicApplication::instance();
+    if(concise)
     {
-        MusicApplication *app = MusicApplication::instance();
         app->setMinimumSize(CONCISE_WIDTH_MIN, WINDOW_HEIGHT_MIN);
         app->setMaximumSize(CONCISE_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 
@@ -160,7 +160,6 @@ void MusicBottomAreaWidget::setWindowConcise()
     else
     {
         const QSize &size = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-        MusicApplication *app = MusicApplication::instance();
         app->setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
         app->setMaximumSize(size.width(), size.height());
 
@@ -183,7 +182,8 @@ void MusicBottomAreaWidget::setWindowConcise()
 
         m_ui->bottomCenterWidgetLayout->addWidget(m_ui->musicTimeWidget, 3, 0, 1, 6);
     }
-    m_platformExtras->disableBlurBehindWindow(!con);
+
+    m_platformExtras->disableBlurBehindWindow(!concise);
 }
 
 bool MusicBottomAreaWidget::isLrcWidgetShowFullScreen() const

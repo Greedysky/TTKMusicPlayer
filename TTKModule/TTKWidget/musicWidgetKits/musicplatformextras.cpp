@@ -9,21 +9,14 @@
 class MusicAbstractPlatformExtras
 {
 public:
-    MusicAbstractPlatformExtras()
-    {
-
-    }
-
-    virtual ~MusicAbstractPlatformExtras()
-    {
-
-    }
+    MusicAbstractPlatformExtras() = default;
+    virtual ~MusicAbstractPlatformExtras() = default;
 
     /*!
      * Set current status.
      * Subclass should implement this function.
      */
-    virtual void setStatus(bool status) = 0;
+    virtual void setCurrentStatus(bool status) = 0;
     /*!
      * Set current action.
      * Subclass should implement this function.
@@ -69,7 +62,7 @@ public:
     /*!
      * Set current status.
      */
-    virtual void setStatus(bool status) override final
+    virtual void setCurrentStatus(bool status) override final
     {
 #if TTK_QT_VERSION_CHECK(5,2,0)
         const QStyle::StandardPixmap pix = status ? QStyle::SP_MediaPause : QStyle::SP_MediaPlay;
@@ -140,15 +133,10 @@ public:
 
     }
 
-    ~MusicLinuxExtras()
-    {
-
-    }
-
     /*!
      * Set current status.
      */
-    virtual void setStatus(bool status) override final
+    virtual void setCurrentStatus(bool status) override final
     {
         Q_UNUSED(status);
     }
@@ -174,15 +162,10 @@ public:
 
     }
 
-    ~MusicMacExtras()
-    {
-
-    }
-
     /*!
      * Set current status.
      */
-    virtual void setStatus(bool status) override final
+    virtual void setCurrentStatus(bool status) override final
     {
         Q_UNUSED(status);
     }
@@ -217,7 +200,7 @@ MusicPlatformExtras::~MusicPlatformExtras()
 
 void MusicPlatformExtras::setCurrentPlayState(bool state) const
 {
-    m_platformExtras->setStatus(state);
+    m_platformExtras->setCurrentStatus(state);
 }
 
 void MusicPlatformExtras::disableBlurBehindWindow(bool enabled)
