@@ -202,9 +202,9 @@ private:
      */
     void backgroundTransparent(int value);
     /*!
-     * Check background draw enable.
+     * Check artist background mode.
      */
-    bool isEnableBackground() const;
+    bool isArtistBackground() const;
     /*!
      * Create remote widget.
      */

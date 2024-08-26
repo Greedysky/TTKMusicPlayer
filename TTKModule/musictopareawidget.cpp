@@ -176,7 +176,7 @@ void MusicTopAreaWidget::showSkinManagerWidget()
 
 void MusicTopAreaWidget::backgroundTransparentChanged(int value)
 {
-    if(!isEnableBackground())
+    if(isArtistBackground())
     {
         return;
     }
@@ -192,7 +192,7 @@ void MusicTopAreaWidget::backgroundTransparentChanged(int value)
 
 void MusicTopAreaWidget::backgroundTransparentChanged(const QString &fileName)
 {
-    if(!isEnableBackground())
+    if(isArtistBackground())
     {
         return;
     }
@@ -228,7 +228,7 @@ void MusicTopAreaWidget::backgroundTransparentChanged()
 void MusicTopAreaWidget::backgroundSkinChanged(const QString &fileName)
 {
     m_backgroundImagePath = fileName;
-    if(isEnableBackground())
+    if(!isArtistBackground())
     {
         backgroundTransparentChanged();
     }
@@ -250,17 +250,12 @@ void MusicTopAreaWidget::backgroundChanged()
 
 void MusicTopAreaWidget::backgroundAnimationChanged(bool state)
 {
-    if(!isEnableBackground())
-    {
-        return;
-    }
-
     m_ui->background->setAnimation(!state);
 }
 
 void MusicTopAreaWidget::backgroundThemeDownloadFinished()
 {
-    if(!isEnableBackground() && m_ui->musiclrccontainerforinterior->isShowArtistBackground())
+    if(isArtistBackground() && m_ui->musiclrccontainerforinterior->isShowArtistBackground())
     {
         backgroundChanged();
         setBackgroundAnimation(true);
@@ -278,7 +273,7 @@ void MusicTopAreaWidget::backgroundThemeChangedByResize()
     drawWindowBackgroundRectString();
     backgroundAnimationChanged(false);
 
-    if(!isEnableBackground())
+    if(isArtistBackground())
     {
         setBackgroundAnimation(true);
     }
@@ -405,9 +400,9 @@ void MusicTopAreaWidget::backgroundTransparent(int value)
     m_ui->centerLeftWidget->backgroundTransparent(value);
 }
 
-bool MusicTopAreaWidget::isEnableBackground() const
+bool MusicTopAreaWidget::isArtistBackground() const
 {
-    return m_ui->functionsContainer->currentIndex() != MUSIC_LRC_PAGE;
+    return m_ui->functionsContainer->currentIndex() == MUSIC_LRC_PAGE;
 }
 
 void MusicTopAreaWidget::createRemoteWidget()
