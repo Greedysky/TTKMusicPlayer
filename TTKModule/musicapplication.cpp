@@ -725,7 +725,7 @@ void MusicApplication::addSongToLovestList(bool state)
 void MusicApplication::windowConciseChanged()
 {
     m_bottomAreaWidget->setWindowConcise();
-    m_topAreaWidget->backgroundThemeDownloadFinished();
+    m_topAreaWidget->setBackgroundAnimation(!G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool());
 }
 
 void MusicApplication::enhancedSongChanged(int type)
