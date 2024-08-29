@@ -26,6 +26,8 @@ void MusicFMRadioSongRequest::startToRequest()
 
 void MusicFMRadioSongRequest::downLoadFinished()
 {
+    TTK_INFO_STREAM(className() << __FUNCTION__);
+
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {

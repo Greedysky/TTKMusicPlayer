@@ -79,8 +79,10 @@ void MusicIdentifySongRequest::startToRequest(const QString &path)
 
 void MusicIdentifySongRequest::downLoadFinished()
 {
-    MusicAbstractNetwork::downLoadFinished();
+    TTK_INFO_STREAM(className() << __FUNCTION__);
+
     m_items.clear();
+    MusicAbstractNetwork::downLoadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {

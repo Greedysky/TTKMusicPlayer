@@ -8,6 +8,8 @@ MusicMVRadioCategoryRequest::MusicMVRadioCategoryRequest(QObject *parent)
 
 void MusicMVRadioCategoryRequest::downLoadFinished()
 {
+    TTK_INFO_STREAM(className() << __FUNCTION__);
+
     MusicAbstractMVRadioRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {

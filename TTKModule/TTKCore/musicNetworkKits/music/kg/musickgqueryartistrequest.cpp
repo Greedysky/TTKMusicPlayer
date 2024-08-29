@@ -9,7 +9,7 @@ MusicKGQueryArtistRequest::MusicKGQueryArtistRequest(QObject *parent)
 
 void MusicKGQueryArtistRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << "startToPage" << offset);
+    TTK_INFO_STREAM(className() << __FUNCTION__ << offset);
 
     deleteAll();
     m_totalSize = 0;
@@ -26,7 +26,7 @@ void MusicKGQueryArtistRequest::startToPage(int offset)
 
 void MusicKGQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
+    TTK_INFO_STREAM(className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
@@ -39,7 +39,7 @@ void MusicKGQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *in
 
 void MusicKGQueryArtistRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

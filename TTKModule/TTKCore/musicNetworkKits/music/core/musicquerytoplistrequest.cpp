@@ -8,7 +8,7 @@ MusicQueryToplistRequest::MusicQueryToplistRequest(QObject *parent)
 
 void MusicQueryToplistRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
+    TTK_INFO_STREAM(className() << __FUNCTION__ << value);
 
     MusicAbstractQueryRequest::downLoadFinished();
     m_queryValue = value;

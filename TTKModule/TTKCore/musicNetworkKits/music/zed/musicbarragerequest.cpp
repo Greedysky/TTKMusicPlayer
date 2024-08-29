@@ -12,7 +12,7 @@ MusicBarrageRequest::MusicBarrageRequest(QObject *parent)
 
 void MusicBarrageRequest::startToRequest(const QString &data)
 {
-    TTK_INFO_STREAM(className() << "startToRequest" << data);
+    TTK_INFO_STREAM(className() << __FUNCTION__ << data);
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(BL_MOVIE_URL, false).arg(data).arg(1));
@@ -25,7 +25,7 @@ void MusicBarrageRequest::startToRequest(const QString &data)
 
 void MusicBarrageRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

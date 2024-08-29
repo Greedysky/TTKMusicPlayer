@@ -31,7 +31,7 @@ MusicTXDownloadBackgroundRequest::MusicTXDownloadBackgroundRequest(const QString
 
 void MusicTXDownloadBackgroundRequest::startToRequest()
 {
-    TTK_INFO_STREAM(className() << "startToRequest");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicAbstractNetwork::deleteAll();
 
@@ -47,7 +47,7 @@ void MusicTXDownloadBackgroundRequest::startToRequest()
 
 void MusicTXDownloadBackgroundRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicAbstractDownloadImageRequest::downLoadFinished();
     QString id;
@@ -87,7 +87,7 @@ void MusicTXDownloadBackgroundRequest::downLoadFinished()
 
     if(id.isEmpty())
     {
-        TTK_INFO_STREAM(className() << "downLoadFinished");
+        TTK_INFO_STREAM(className() << __FUNCTION__);
         Q_EMIT downLoadDataChanged({});
         deleteAll();
         return;
@@ -98,7 +98,7 @@ void MusicTXDownloadBackgroundRequest::downLoadFinished()
 
 void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadUrlFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicAbstractDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -132,7 +132,7 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
 
 void MusicTXDownloadBackgroundRequest::downLoadUrl(const QString &id)
 {
-    TTK_INFO_STREAM(className() << "downLoadUrl" << id);
+    TTK_INFO_STREAM(className() << __FUNCTION__ << id);
 
     MusicAbstractNetwork::deleteAll();
 

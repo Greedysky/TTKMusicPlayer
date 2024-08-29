@@ -69,7 +69,7 @@ MusicSongRecommendRequest::MusicSongRecommendRequest(QObject *parent)
 
 void MusicSongRecommendRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
+    TTK_INFO_STREAM(className() << __FUNCTION__ << value);
 
     deleteAll();
 
@@ -85,7 +85,7 @@ void MusicSongRecommendRequest::startToSearch(const QString &value)
 
 void MusicSongRecommendRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
+    TTK_INFO_STREAM(className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
     MusicPageQueryRequest::downLoadFinished();
     for(const TTK::MusicSongInformation &var : qAsConst(m_items))
@@ -100,7 +100,7 @@ void MusicSongRecommendRequest::startToQueryResult(TTK::MusicSongInformation *in
 
 void MusicSongRecommendRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicAbstractQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

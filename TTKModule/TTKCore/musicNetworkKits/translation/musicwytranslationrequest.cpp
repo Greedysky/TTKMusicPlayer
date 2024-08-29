@@ -11,7 +11,7 @@ MusicWYTranslationRequest::MusicWYTranslationRequest(QObject *parent)
 
 void MusicWYTranslationRequest::startToRequest(const QString &data)
 {
-    TTK_INFO_STREAM(className() << "startToRequest");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     Q_UNUSED(data);
     MusicAbstractNetwork::deleteAll();
@@ -43,7 +43,7 @@ void MusicWYTranslationRequest::startToRequest(const QString &data)
 
 void MusicWYTranslationRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicAbstractTranslationRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

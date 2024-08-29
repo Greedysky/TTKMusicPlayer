@@ -99,7 +99,6 @@ void MusicDownloadTableWidget::removeItems()
 }
 
 
-
 MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicDownloadWidget)

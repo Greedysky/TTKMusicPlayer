@@ -9,7 +9,7 @@ MusicWYQueryArtistListRequest::MusicWYQueryArtistListRequest(QObject *parent)
 
 void MusicWYQueryArtistListRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << "startToPage" << offset);
+    TTK_INFO_STREAM(className() << __FUNCTION__ << offset);
 
     deleteAll();
     m_totalSize = m_pageSize; // 0
@@ -55,7 +55,7 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
 
 void MusicWYQueryArtistListRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicQueryArtistListRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

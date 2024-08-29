@@ -11,7 +11,7 @@ MusicKWDownloadBackgroundRequest::MusicKWDownloadBackgroundRequest(const QString
 
 void MusicKWDownloadBackgroundRequest::startToRequest()
 {
-    TTK_INFO_STREAM(className() << "startToRequest");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicAbstractNetwork::deleteAll();
 
@@ -27,7 +27,7 @@ void MusicKWDownloadBackgroundRequest::startToRequest()
 
 void MusicKWDownloadBackgroundRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicAbstractDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

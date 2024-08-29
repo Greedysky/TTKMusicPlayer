@@ -12,7 +12,7 @@ MusicKGDownloadBackgroundRequest::MusicKGDownloadBackgroundRequest(const QString
 
 void MusicKGDownloadBackgroundRequest::startToRequest()
 {
-    TTK_INFO_STREAM(className() << "startToRequest");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicAbstractNetwork::deleteAll();
 
@@ -43,7 +43,7 @@ void MusicKGDownloadBackgroundRequest::startToRequest()
 
 void MusicKGDownloadBackgroundRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicAbstractDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

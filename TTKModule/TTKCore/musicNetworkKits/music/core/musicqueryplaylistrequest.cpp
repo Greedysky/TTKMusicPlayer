@@ -8,7 +8,7 @@ MusicQueryPlaylistRequest::MusicQueryPlaylistRequest(QObject *parent)
 
 void MusicQueryPlaylistRequest::startToSearchByID(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSearchByID" << value);
+    TTK_INFO_STREAM(className() << __FUNCTION__ << value);
 
     m_queryValue = value;
     startToPage(0);

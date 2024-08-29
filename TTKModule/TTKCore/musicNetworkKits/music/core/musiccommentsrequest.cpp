@@ -8,7 +8,7 @@ MusicCommentsRequest::MusicCommentsRequest(QObject *parent)
 
 void MusicCommentsRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
+    TTK_INFO_STREAM(className() << __FUNCTION__ << value);
 
     m_id = value;
     startToPage(0);

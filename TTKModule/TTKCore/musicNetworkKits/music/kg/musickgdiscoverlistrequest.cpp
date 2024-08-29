@@ -9,7 +9,7 @@ MusicKGDiscoverListRequest::MusicKGDiscoverListRequest(QObject *parent)
 
 void MusicKGDiscoverListRequest::startToSearch()
 {
-    TTK_INFO_STREAM(className() << "startToSearch");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     deleteAll();
     m_item.clear();
@@ -25,7 +25,7 @@ void MusicKGDiscoverListRequest::startToSearch()
 
 void MusicKGDiscoverListRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicDiscoverListRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

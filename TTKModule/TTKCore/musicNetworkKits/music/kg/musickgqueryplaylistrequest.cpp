@@ -9,7 +9,7 @@ MusicKGQueryPlaylistRequest::MusicKGQueryPlaylistRequest(QObject *parent)
 
 void MusicKGQueryPlaylistRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << "startToPage" << offset);
+    TTK_INFO_STREAM(className() << __FUNCTION__ << offset);
 
     deleteAll();
     m_totalSize = 0;
@@ -26,7 +26,7 @@ void MusicKGQueryPlaylistRequest::startToPage(int offset)
 
 void MusicKGQueryPlaylistRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
+    TTK_INFO_STREAM(className() << __FUNCTION__ << value);
 
     deleteAll();
 
@@ -41,7 +41,7 @@ void MusicKGQueryPlaylistRequest::startToSearch(const QString &value)
 
 void MusicKGQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
+    TTK_INFO_STREAM(className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
@@ -54,7 +54,7 @@ void MusicKGQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *
 
 void MusicKGQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
 {
-    TTK_INFO_STREAM(className() << "startToQueryInfo" << item.m_id);
+    TTK_INFO_STREAM(className() << __FUNCTION__ << item.m_id);
 
     MusicPageQueryRequest::downLoadFinished();
 
@@ -108,7 +108,7 @@ void MusicKGQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
 
 void MusicKGQueryPlaylistRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicQueryPlaylistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -155,7 +155,7 @@ void MusicKGQueryPlaylistRequest::downLoadFinished()
 
 void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
 {
-    TTK_INFO_STREAM(className() << "downloadDetailsFinished");
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicQueryPlaylistRequest::downLoadFinished();
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());

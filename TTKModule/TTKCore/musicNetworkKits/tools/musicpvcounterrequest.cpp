@@ -49,6 +49,7 @@ void MusicPVCounterRequest::startToRequest()
 void MusicPVCounterRequest::downLoadFinished()
 {
     bool ok = false;
+    TTK_INFO_STREAM(className() << __FUNCTION__);
 
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
