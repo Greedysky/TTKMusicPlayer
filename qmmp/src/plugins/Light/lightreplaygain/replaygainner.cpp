@@ -145,9 +145,9 @@ void ReplayGainner::run()
     converter.configure(ap.format());
     //buffers
     double out_left[BUFFER_FRAMES] = {0}, out_right[BUFFER_FRAMES] = {0}; //replay gain buffers
-    float float_buf[BUFFER_FRAMES*ap.channels()]; //float buffer
-    qint64 buf_size = BUFFER_FRAMES*ap.frameSize();
-    unsigned char char_buf[buf_size]; //char buffer
+    float *float_buf = new float[BUFFER_FRAMES * ap.channels()]; //float buffer
+    qint64 buf_size = BUFFER_FRAMES * ap.frameSize();
+    unsigned char *char_buf = new unsigned char[buf_size]; //char buffer
 
     //counters
     qint64 totalSamples = m_decoder->totalTime() * ap.sampleRate() * ap.channels() / 1000, len = 0;
@@ -212,6 +212,9 @@ void ReplayGainner::run()
         }
         m_mutex.unlock();
     }
+
+    delete[] float_buf;
+    delete[] char_buf;
 
     if(error)
     {

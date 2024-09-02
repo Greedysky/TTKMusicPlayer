@@ -54,8 +54,9 @@ bool DecoderAAC::initialize()
     {
         qDebug("DecoderAAC: header offset = %d bytes", aac_file.offset());
 
-        char data[aac_file.offset()];
+        char *data = new char[aac_file.offset()];
         input()->read(data, aac_file.offset());
+        delete[] data;
     }
 
     m_totalTime = aac_file.duration();
@@ -77,13 +78,8 @@ bool DecoderAAC::initialize()
 
     m_input_at = input()->read((char *)m_input_buf, AAC_BUFFER_SIZE);
 
-#ifdef FAAD_MODIFIED
-    uint32_t freq = 0;
-    uint8_t chan = 0;
-#else
     unsigned long freq = 0;
     unsigned char chan = 0;
-#endif
     int res = NeAACDecInit(data()->handle, (unsigned char*) m_input_buf, m_input_at, &freq, &chan);
     if(res < 0)
     {

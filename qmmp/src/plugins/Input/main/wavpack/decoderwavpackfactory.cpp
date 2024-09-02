@@ -97,9 +97,8 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
         int cue_len = WavpackGetTagItem(ctx, "cuesheet", nullptr, 0);
         if(cue_len > 0)
         {
-            char value[cue_len + 1];
-            memset(value, 0, cue_len + 1);
-            WavpackGetTagItem(ctx, "cuesheet", value, cue_len + 1);
+            QByteArray value(cue_len, '\0');
+            WavpackGetTagItem(ctx, "cuesheet", value.data(), cue_len);
 
             CueParser parser(value);
             parser.setDuration(info->duration());
