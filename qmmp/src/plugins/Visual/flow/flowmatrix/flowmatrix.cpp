@@ -11,8 +11,7 @@ FlowMatrix::FlowMatrix(QWidget *parent)
     : Visual(parent)
 {
     setWindowTitle(tr("Flow Matrix Widget"));
-
-    qsrand(QDateTime::currentMSecsSinceEpoch());
+    srand(QDateTime::currentMSecsSinceEpoch());
 
     for(int i = 0; i < 50; ++i)
     {
@@ -131,7 +130,7 @@ void FlowMatrix::process(float *left, float *)
                 m_y = 0;
             }
 
-            matrix->move(m_x, m_y + qrand() % max);
+            matrix->move(m_x, m_y + rand() % max);
         }
         else
         {

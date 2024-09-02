@@ -108,7 +108,7 @@ void ColorWidget::setColors(const QList<QColor> &colors)
     for(const QColor &color : colors)
     {
         QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
-        it->setBackgroundColor(color);
+        it->setBackground(color);
         m_ui->listWidget->addItem(it);
     }
 
@@ -125,7 +125,7 @@ QList<QColor> ColorWidget::colors() const
     QList<QColor> colors;
     for(int i = 0; i < m_ui->listWidget->count(); ++i)
     {
-        colors << m_ui->listWidget->item(i)->backgroundColor();
+        colors << m_ui->listWidget->item(i)->background().color();
     }
     return colors;
 }
@@ -136,7 +136,7 @@ void ColorWidget::addButtonClicked()
     if(dialog.exec())
     {
         QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
-        it->setBackgroundColor(dialog.selectedColor());
+        it->setBackground(dialog.selectedColor());
         m_ui->listWidget->addItem(it);
 
         if(m_singleColorMode)
@@ -171,7 +171,7 @@ void ColorWidget::modifyButtonClicked()
         QListWidgetItem *it = m_ui->listWidget->currentItem();
         if(it)
         {
-            it->setBackgroundColor(dialog.selectedColor());
+            it->setBackground(dialog.selectedColor());
         }
     }
 }

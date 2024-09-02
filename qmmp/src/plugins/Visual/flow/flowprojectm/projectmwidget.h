@@ -19,13 +19,17 @@
 #ifndef PROJECTMWIDGET_H
 #define PROJECTMWIDGET_H
 
-#include <QGLWidget>
+#include <QtGlobal>
 #include <QListWidget>
-#if QT_VERSION >= 0x050400
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,4)
 #  ifdef Q_OS_UNIX
 #    include <QOpenGLWidget>
 #    define QT_OPENGL_WIDGET
+#  else
+#    include <QGLWidget>
 #  endif
+#else
+#  include <QGLWidget>
 #endif
 #include <libprojectM/projectM.hpp>
 

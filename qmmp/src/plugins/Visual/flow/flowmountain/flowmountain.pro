@@ -1,6 +1,11 @@
 include($$PWD/../../Visual.pri)
 
-QT += opengl
+lessThan(QT_MAJOR_VERSION, 6){
+    QT += opengl
+}else{
+    QT += openglwidgets
+}
+
 DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += mountainplugin.h \

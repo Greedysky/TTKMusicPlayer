@@ -3,7 +3,12 @@ include($$PWD/../../Visual.pri)
 #DEFINES += PROJECTM_31
 #DEFINES += PROJECTM_4
 
-QT += opengl
+lessThan(QT_MAJOR_VERSION, 6){
+    QT += opengl
+}else{
+    QT += openglwidgets
+}
+
 DESTDIR = $$PLUGINS_PREFIX/Visual
 
 contains(DEFINES, PROJECTM_4) {

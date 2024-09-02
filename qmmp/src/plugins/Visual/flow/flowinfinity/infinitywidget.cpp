@@ -59,7 +59,7 @@ InfinityWidget::InfinityWidget(QWidget *parent)
     : Visual(parent)
 {
     setWindowTitle(tr("Flow Infinity Widget"));
-    qsrand(QDateTime::currentMSecsSinceEpoch());
+    srand(QDateTime::currentMSecsSinceEpoch());
 
     initialize();
 
@@ -191,7 +191,7 @@ void InfinityWidget::process(float *left, float *right)
     if(m_colorCounter % m_colorTime == 0)
     {
         m_oldColor = m_newColor;
-        m_newColor = qrand() % NB_PALETTES;
+        m_newColor = rand() % NB_PALETTES;
         m_colorCounter = 0;
     }
 
@@ -321,7 +321,7 @@ void InfinityWidget::createModule()
 
 void InfinityWidget::loadRandomEffect()
 {
-    m_currentEffect = etables[qrand() % NB_EFFECT_COUNT];
+    m_currentEffect = etables[rand() % NB_EFFECT_COUNT];
 }
 
 void InfinityWidget::displayBlur()

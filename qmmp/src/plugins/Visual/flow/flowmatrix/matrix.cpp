@@ -6,7 +6,7 @@ Matrix::Matrix(QWidget *parent)
     : QWidget(parent)
 {
     setAttribute(Qt::WA_TransparentForMouseEvents);
-    qsrand(QDateTime::currentMSecsSinceEpoch());
+    srand(QDateTime::currentMSecsSinceEpoch());
 
     m_timer = new QTimer(this);
     m_timer->setInterval(1000);
@@ -36,7 +36,7 @@ void Matrix::timeout()
     m_word.clear();
     for(int i = 0; i < 10; ++i)
     {
-        m_word.append(qrand() % 2 ? "0" : "1");
+        m_word.append(rand() % 2 ? "0" : "1");
     }
 
     update();

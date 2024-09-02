@@ -26,7 +26,7 @@ AncientLabel::~AncientLabel()
 
 void AncientLabel::start()
 {
-    QTimer::singleShot(qrand() % ANIMATION_DURATION, this, SLOT(timeout()));
+    QTimer::singleShot(rand() % ANIMATION_DURATION, this, SLOT(timeout()));
 }
 
 void AncientLabel::setColor(const QColor &color)
@@ -37,9 +37,9 @@ void AncientLabel::setColor(const QColor &color)
 void AncientLabel::timeout()
 {
     m_offset = rect().center();
-    m_size = qrand() % POINT_SIZE + 1;
+    m_size = rand() % POINT_SIZE + 1;
 
-    int x = qrand() % (LABEL_RADIUS * 3), y = qrand() % (LABEL_RADIUS * 3);
+    int x = rand() % (LABEL_RADIUS * 3), y = rand() % (LABEL_RADIUS * 3);
     if(x % 2 == 0)
     {
         x = -x;

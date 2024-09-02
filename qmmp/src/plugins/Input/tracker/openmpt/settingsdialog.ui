@@ -189,6 +189,6 @@
   </connection>
  </connections>
  <slots>
-  <slot>restore_defaults()</slot>
+  <slot>restoreDefaults()</slot>
  </slots>
 </ui>

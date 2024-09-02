@@ -22,7 +22,7 @@ ElectricPointLabel::~ElectricPointLabel()
 
 void ElectricPointLabel::start()
 {
-    QTimer::singleShot(qrand() % ANIMATION_DURATION, this, SLOT(timeout()));
+    QTimer::singleShot(rand() % ANIMATION_DURATION, this, SLOT(timeout()));
 }
 
 void ElectricPointLabel::setColor(const QColor &color)
@@ -33,9 +33,9 @@ void ElectricPointLabel::setColor(const QColor &color)
 void ElectricPointLabel::timeout()
 {
     m_offset = rect().center();
-    m_size = qrand() % LABEL_RADIUS / 5 + 1;
+    m_size = rand() % LABEL_RADIUS / 5 + 1;
 
-    int x = qrand() % (LABEL_RADIUS * 3), y = qrand() % (LABEL_RADIUS * 3);
+    int x = rand() % (LABEL_RADIUS * 3), y = rand() % (LABEL_RADIUS * 3);
     if(x % 2 == 0)
     {
         x = -x;
@@ -106,7 +106,7 @@ ElectricCircleLabel::~ElectricCircleLabel()
 
 void ElectricCircleLabel::start()
 {
-    QTimer::singleShot(qrand() % (ANIMATION_DURATION / 2), this, SLOT(timeout()));
+    QTimer::singleShot(rand() % (ANIMATION_DURATION / 2), this, SLOT(timeout()));
 }
 
 void ElectricCircleLabel::setColor(const QColor &color)
@@ -122,7 +122,7 @@ void ElectricCircleLabel::finished()
 void ElectricCircleLabel::timeout()
 {
     m_posAnimation->setStartValue(LABEL_RADIUS);
-    m_posAnimation->setKeyValueAt(0.5, LABEL_RADIUS + qrand() % (LABEL_RADIUS / 2));
+    m_posAnimation->setKeyValueAt(0.5, LABEL_RADIUS + rand() % (LABEL_RADIUS / 2));
     m_posAnimation->setEndValue(LABEL_RADIUS);
     m_posAnimation->start();
 }

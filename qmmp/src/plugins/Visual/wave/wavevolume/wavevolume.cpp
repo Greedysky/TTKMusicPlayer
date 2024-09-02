@@ -27,10 +27,11 @@ void WaveVolume::paintEvent(QPaintEvent *)
     painter.setRenderHints(QPainter::Antialiasing);
 
     QLinearGradient line(0, 0, width(), 0);
-    line.setColorAt(0.0f, QColor(0, 0xff, 0).dark());
-    line.setColorAt(0.65f, QColor(0xff, 0xff, 0).dark());
-    line.setColorAt(1.0f, QColor(0xff, 0, 0).dark());
+    line.setColorAt(0.0f, QColor(0, 0xff, 0));
+    line.setColorAt(0.65f, QColor(0xff, 0xff, 0));
+    line.setColorAt(1.0f, QColor(0xff, 0, 0));
     painter.fillRect(0, 0, width(), height(), line);
+    painter.fillRect(0, 0, width(), height(), QColor(0, 0, 0, 88));
 
     line.setColorAt(0.0f, QColor(0, 0xff, 0));
     line.setColorAt(0.65f, QColor(0xff, 0xff, 0));

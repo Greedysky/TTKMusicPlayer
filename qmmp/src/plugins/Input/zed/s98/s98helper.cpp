@@ -66,7 +66,7 @@ bool S98Helper::initialize()
         if(valid || m_info.dwIsV3)
         {
             const QString text(raw + (valid ? strlen(pfx) : 0));
-            for(const QString &v : text.split(0xa, QString::SkipEmptyParts))
+            for(const QString &v : text.split(char(0xa), QString::SkipEmptyParts))
             {
                 const QStringList &parts = v.split('=', QString::SkipEmptyParts);
                 if(parts.count() < 2)

@@ -89,7 +89,7 @@ SoniqueWidget::SoniqueWidget(QWidget *parent)
     setWindowTitle(tr("Flow Sonique Widget"));
 
     setMinimumSize(580, 320);
-    qsrand(QDateTime::currentMSecsSinceEpoch());
+    srand(QDateTime::currentMSecsSinceEpoch());
 
     m_visData = new VisData;
     m_instance = new QLibrary;
@@ -252,7 +252,7 @@ void SoniqueWidget::randomPreset()
         return;
     }
 
-    m_currentIndex = qrand() % m_presetList.count();
+    m_currentIndex = rand() % m_presetList.count();
     generatePreset();
 }
 

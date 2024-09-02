@@ -19,12 +19,16 @@
 #ifndef MOUNTAINWIDGET_H
 #define MOUNTAINWIDGET_H
 
-#include <QGLWidget>
-#if QT_VERSION >= 0x050400
+#include <QtGlobal>
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,4)
 #  ifdef Q_OS_UNIX
 #    include <QOpenGLWidget>
 #    define QT_OPENGL_WIDGET
+#  else
+#    include <QGLWidget>
 #  endif
+#else
+#  include <QGLWidget>
 #endif
 
 #define NUM_BANDS 32
