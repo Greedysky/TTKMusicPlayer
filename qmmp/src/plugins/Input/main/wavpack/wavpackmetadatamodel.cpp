@@ -72,7 +72,7 @@ QString WavPackMetaDataModel::cue() const
     {
         QByteArray value(len, '\0');
         WavpackGetTagItem(m_ctx, "cuesheet", value.data(), len + 1);
-        return QString::fromUtf8(value);
+        return QString::fromUtf8(value.data());
     }
 
     return QString();
