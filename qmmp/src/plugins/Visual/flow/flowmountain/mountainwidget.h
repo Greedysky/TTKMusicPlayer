@@ -20,15 +20,17 @@
 #define MOUNTAINWIDGET_H
 
 #include <QtGlobal>
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,4)
+#if QT_VERSION >= QT_VERSION_CHECK(5,4,0)
 #  ifdef Q_OS_UNIX
 #    include <QOpenGLWidget>
-#    define QT_OPENGL_WIDGET
+#    define QtOpenGLWidget QOpenGLWidget
 #  else
 #    include <QGLWidget>
+#    define QtOpenGLWidget QGLWidget
 #  endif
 #else
 #  include <QGLWidget>
+#  define QtOpenGLWidget QGLWidget
 #endif
 
 #define NUM_BANDS 32
@@ -39,11 +41,7 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-#ifdef QT_OPENGL_WIDGET
-class MountainWidget : public QOpenGLWidget
-#else
-class MountainWidget : public QGLWidget
-#endif
+class MountainWidget : public QtOpenGLWidget
 {
     Q_OBJECT
 public:

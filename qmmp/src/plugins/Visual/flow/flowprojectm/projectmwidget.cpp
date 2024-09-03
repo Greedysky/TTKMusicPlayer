@@ -28,11 +28,7 @@ void ProjectMWrapper::presetSwitchedEvent(bool isHardCut, unsigned int index) co
 
 
 ProjectMWidget::ProjectMWidget(QListWidget *widget, QWidget *parent)
-#ifdef QT_OPENGL_WIDGET
-    : QOpenGLWidget(parent)
-#else
-    : QGLWidget(parent)
-#endif
+    : QtOpenGLWidget(parent)
     , m_itemWidget(widget)
 {
     setMinimumSize(580, 320);

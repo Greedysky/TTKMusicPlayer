@@ -21,15 +21,17 @@
 
 #include <QtGlobal>
 #include <QListWidget>
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,4)
+#if QT_VERSION >= QT_VERSION_CHECK(5,4,0)
 #  ifdef Q_OS_UNIX
 #    include <QOpenGLWidget>
-#    define QT_OPENGL_WIDGET
+#    define QtOpenGLWidget QOpenGLWidget
 #  else
 #    include <QGLWidget>
+#    define QtOpenGLWidget QGLWidget
 #  endif
 #else
 #  include <QGLWidget>
+#  define QtOpenGLWidget QGLWidget
 #endif
 #include <projectM-4/types.h>
 #include <projectM-4/playlist_core.h>
@@ -37,11 +39,7 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-#ifdef QT_OPENGL_WIDGET
-class ProjectMWidget : public QOpenGLWidget
-#else
-class ProjectMWidget : public QGLWidget
-#endif
+class ProjectMWidget : public QtOpenGLWidget
 {
     Q_OBJECT
 public:

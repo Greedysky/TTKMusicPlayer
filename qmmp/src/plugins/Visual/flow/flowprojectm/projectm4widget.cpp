@@ -4,11 +4,7 @@
 #include <projectM-4/projectM.h>
 
 ProjectM4Widget::ProjectM4Widget(QListWidget *widget, QWidget *parent)
-#ifdef QT_OPENGL_WIDGET
-    : QOpenGLWidget(parent)
-#else
-    : QGLWidget(parent)
-#endif
+    : QtOpenGLWidget(parent)
     , m_itemWidget(widget)
 {
     setMinimumSize(580, 320);
