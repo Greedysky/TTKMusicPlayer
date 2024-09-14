@@ -160,6 +160,7 @@ class MusicAbstractSongsListTableWidget;
  */
 struct TTK_MODULE_EXPORT MusicSongItem
 {
+    int m_id;
     int m_itemIndex;
     QString m_itemName;
     MusicSongSort m_sort;
@@ -167,7 +168,8 @@ struct TTK_MODULE_EXPORT MusicSongItem
     MusicAbstractSongsListTableWidget *m_itemWidget;
 
     MusicSongItem()
-        : m_itemIndex(-1),
+        : m_id(-1),
+          m_itemIndex(-1),
           m_itemWidget(nullptr)
     {
 

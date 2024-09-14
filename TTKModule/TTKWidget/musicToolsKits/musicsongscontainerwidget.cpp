@@ -119,9 +119,10 @@ void MusicSongsContainerWidget::appendSongItemList(const MusicSongItemList &item
     for(int i = 0; i < items.count(); ++i)
     {
         m_containerItems << items[i];
+
         MusicSongItem *item = &m_containerItems.back();
         item->m_itemIndex = ++m_itemIndexRaise;
-        checkCurrentNameExist(item->m_itemName);
+        checkTitleNameValid(item->m_itemName);
         createWidgetItem(item);
     }
 }
@@ -292,7 +293,7 @@ QString MusicSongsContainerWidget::mapFilePathBySongIndex(int playlistRow, int i
 
 void MusicSongsContainerWidget::removeSearchResult(int &row)
 {
-    if(!hasSearchResult() || !isSearchPlayIndex())
+    if(!hasSearchResult() || !isSearchedPlayIndex())
     {
         return;
     }
@@ -360,8 +361,22 @@ void MusicSongsContainerWidget::addNewRowItem()
     if(m_containerItems.count() <= ITEM_MAX_COUNT)
     {
         QString name = tr("Default Item");
-        checkCurrentNameExist(name);
-        addNewRowItem(name);
+        checkTitleNameValid(name);
+
+        int id = 0;
+        for(const MusicSongItem &songItem : qAsConst(m_containerItems))
+        {
+            if(id < songItem.m_id)
+            {
+               id = songItem.m_id;
+            }
+        }
+
+        MusicSongItem item;
+        item.m_id = id + 1;
+        item.m_itemName = name;
+        m_containerItems << item;
+        createWidgetItem(&m_containerItems.back());
     }
     else
     {
@@ -611,7 +626,7 @@ void MusicSongsContainerWidget::searchResultChanged(int, int column)
         return;
     }
 
-    if(!isSearchPlayIndex())
+    if(!isSearchedPlayIndex())
     {
         const QStringList searchedSongs(songsFileName(m_lastSearchIndex));
         TTKIntList result;
@@ -1117,7 +1132,7 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
     {
         MusicSongItem item;
         item.m_itemName = QFileInfo(dir).baseName();
-        checkCurrentNameExist(item.m_itemName);
+        checkTitleNameValid(item.m_itemName);
 
         const QStringList &files = TTK::File::fileListByPath(dir, MusicFormats::supportMusicInputFilterFormats());
         for(const QString &path : qAsConst(files))
@@ -1163,7 +1178,7 @@ void MusicSongsContainerWidget::closeSearchWidgetInNeed()
     }
 }
 
-void MusicSongsContainerWidget::checkCurrentNameExist(QString &name)
+void MusicSongsContainerWidget::checkTitleNameValid(QString &name)
 {
     QString check = name;
     for(int i = 1; i <= ITEM_MAX_COUNT; ++i)
@@ -1185,14 +1200,6 @@ void MusicSongsContainerWidget::checkCurrentNameExist(QString &name)
             break;
         }
     }
-}
-
-void MusicSongsContainerWidget::addNewRowItem(const QString &name)
-{
-    MusicSongItem item;
-    item.m_itemName = name;
-    m_containerItems << item;
-    createWidgetItem(&m_containerItems.back());
 }
 
 void MusicSongsContainerWidget::createWidgetItem(MusicSongItem *item)

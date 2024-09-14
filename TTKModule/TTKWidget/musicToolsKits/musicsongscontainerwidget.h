@@ -251,7 +251,7 @@ private:
     /*!
      * Current index is searched or not.
      */
-    inline bool isSearchPlayIndex() const { return m_lastSearchIndex == m_currentIndex; }
+    inline bool isSearchedPlayIndex() const { return m_lastSearchIndex == m_currentIndex; }
     /*!
      * Close searched text widget.
      */
@@ -261,13 +261,9 @@ private:
      */
     void closeSearchWidgetInNeed();
     /*!
-     * Check current name exist.
+     * Check title name valid.
      */
-    void checkCurrentNameExist(QString &name);
-    /*!
-     * Add new play list item by name.
-     */
-    void addNewRowItem(const QString &name);
+    void checkTitleNameValid(QString &name);
     /*!
      * Create widget item.
      */

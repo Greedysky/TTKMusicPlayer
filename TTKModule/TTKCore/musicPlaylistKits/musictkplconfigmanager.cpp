@@ -20,6 +20,13 @@ bool MusicTKPLConfigManager::readBuffer(MusicSongItemList &items)
         item.m_itemIndex = element.attribute("index").toInt();
         item.m_itemName = element.attribute("name");
 
+        bool ok = false;
+        item.m_id = element.attribute("id").toInt(&ok);
+        if(!ok)
+        {
+            item.m_id = item.m_itemIndex;
+        }
+
         const QString &string = element.attribute("sortIndex");
         item.m_sort.m_type = string.isEmpty() ? -1 : string.toInt();
         item.m_sort.m_order = TTKStaticCast(Qt::SortOrder, element.attribute("sortType").toInt());
@@ -41,8 +48,9 @@ bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items)
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        QDomElement pathDom = writeDomMultiElement(rootDom, "musicList", {{"name", item.m_itemName},
-                                                                          {"index", i},
+        QDomElement pathDom = writeDomMultiElement(rootDom, "musicList", {{"index", i},
+                                                                          {"id", item.m_id},
+                                                                          {"name", item.m_itemName},
                                                                           {"count", item.m_songs.count()},
                                                                           {"sortIndex", item.m_sort.m_type},
                                                                           {"sortType", item.m_sort.m_order}});
