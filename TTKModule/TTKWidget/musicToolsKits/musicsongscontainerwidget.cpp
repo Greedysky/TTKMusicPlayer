@@ -64,7 +64,34 @@ MusicSongsContainerWidget *MusicSongsContainerWidget::instance()
 
 void MusicSongsContainerWidget::updateSongItem(const MusicSongItem &item)
 {
-    // TODO
+    int index = -1;
+    for(int i = 0; i < m_containerItems.count(); ++i)
+    {
+        if(item.m_id == m_containerItems[i].m_id)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    if(index == -1)
+    {
+        appendSongItemList({item});
+    }
+    else
+    {
+        MusicSongItem *songItem = &m_containerItems[index];
+        songItem->m_sort = item.m_sort;
+        songItem->m_songs =item.m_songs;
+        songItem->m_itemName = item.m_itemName;
+        songItem->m_itemWidget->updateSongsList(songItem->m_songs);
+        setItemTitle(songItem);
+
+        if(foundMappedIndex(songItem->m_itemIndex) == m_playRowIndex)
+        {
+            MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
+        }
+    }
 }
 
 bool MusicSongsContainerWidget::addSongItemList(const MusicSongItemList &items)
@@ -136,7 +163,12 @@ void MusicSongsContainerWidget::appendSongItemList(const MusicSongItemList &item
 
         MusicSongItem *item = &m_containerItems.back();
         item->m_itemIndex = ++m_itemIndexRaise;
-        checkTitleNameValid(item->m_itemName);
+
+        QString name = item->m_itemName;
+        item->m_itemName.clear();
+        checkTitleNameValid(name);
+        item->m_itemName = name;
+
         createWidgetItem(item);
     }
 }
@@ -1197,18 +1229,18 @@ void MusicSongsContainerWidget::checkTitleNameValid(QString &name)
     QString check = name;
     for(int i = 1; i <= ITEM_MAX_COUNT; ++i)
     {
-        bool hasName = false;
+        bool found = false;
         for(const MusicSongItem &songItem : qAsConst(m_containerItems))
         {
             if(check == songItem.m_itemName)
             {
-                hasName = true;
+                found = true;
                 check = name + QString::number(i);
                 break;
             }
         }
 
-        if(!hasName)
+        if(!found)
         {
             name = check;
             break;
