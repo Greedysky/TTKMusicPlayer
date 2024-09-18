@@ -14,7 +14,6 @@
 #include "musiclrcposterwidget.h"
 #include "musiclayoutanimationwidget.h"
 #include "musicbottomareawidget.h"
-#include "musicleftareawidget.h"
 #include "musictopareawidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicwidgetheaders.h"

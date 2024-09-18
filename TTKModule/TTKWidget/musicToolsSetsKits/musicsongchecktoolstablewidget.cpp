@@ -1,6 +1,5 @@
 #include "musicsongchecktoolstablewidget.h"
 #include "musicsongscontainerwidget.h"
-#include "musicconnectionpool.h"
 
 static TTKPushButtonItemDelegate *makeButtonItemDelegate(QObject *parent)
 {
@@ -104,14 +103,6 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
 
     setItemDelegateForColumn(5, makeButtonItemDelegate(this));
     setItemDelegateForColumn(6, makeButtonItemDelegate(this));
-
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
-}
-
-MusicSongCheckToolsDuplicateTableWidget::~MusicSongCheckToolsDuplicateTableWidget()
-{
-    G_CONNECTION_PTR->removeValue(this);
 }
 
 void MusicSongCheckToolsDuplicateTableWidget::addCellItems(const MusicSongCheckToolsDuplicateList &songs)
@@ -181,7 +172,7 @@ void MusicSongCheckToolsDuplicateTableWidget::playSong()
     if(it)
     {
         const QString &path = it->data(TTK_DATA_ROLE).toString();
-        Q_EMIT addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
+        MusicSongsContainerWidget::instance()->addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
     }
 }
 
@@ -220,14 +211,6 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
 
     setItemDelegateForColumn(6, makeButtonItemDelegate(this));
     setItemDelegateForColumn(7, makeButtonItemDelegate(this));
-
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
-}
-
-MusicSongCheckToolsQualityTableWidget::~MusicSongCheckToolsQualityTableWidget()
-{
-    G_CONNECTION_PTR->removeValue(this);
 }
 
 void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToolsQualityList &songs)
@@ -306,7 +289,7 @@ void MusicSongCheckToolsQualityTableWidget::playSong()
     if(it)
     {
         const QString &path = it->data(TTK_DATA_ROLE).toString();
-        Q_EMIT addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
+        MusicSongsContainerWidget::instance()->addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
     }
 }
 

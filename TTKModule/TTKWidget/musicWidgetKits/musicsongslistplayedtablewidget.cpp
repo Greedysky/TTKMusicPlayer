@@ -1,6 +1,5 @@
 #include "musicsongslistplayedtablewidget.h"
 #include "musicsongslistplayedwidget.h"
-#include "musicrightareawidget.h"
 
 #include <qmath.h>
 

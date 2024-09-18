@@ -44,12 +44,6 @@ public:
      */
     virtual void updateSongsList(const MusicSongList &songs) override final;
 
-Q_SIGNALS:
-    /*!
-     * Add current selected song to playlist.
-     */
-    void addSongToPlaylist(const QStringList &items);
-
 private Q_SLOTS:
     /*!
      * Table widget item cell double clicked.

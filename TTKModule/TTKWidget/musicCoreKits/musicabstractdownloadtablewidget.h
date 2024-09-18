@@ -48,10 +48,6 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Add current selected song to playlist.
-     */
-    void addSongToPlaylist(const QStringList &items);
-    /*!
      * Update item title.
      */
     void updateItemTitle(int index);

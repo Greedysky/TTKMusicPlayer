@@ -68,21 +68,11 @@ public:
      * Object constructor.
      */
     explicit MusicSongCheckToolsDuplicateTableWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicSongCheckToolsDuplicateTableWidget();
 
     /*!
      * Create cell items by input data.
      */
     void addCellItems(const MusicSongCheckToolsDuplicateList &songs);
-
-Q_SIGNALS:
-    /*!
-     * Add current selected song to playlist.
-     */
-    void addSongToPlaylist(const QStringList &items);
 
 public Q_SLOTS:
     /*!
@@ -116,21 +106,11 @@ public:
      * Object constructor.
      */
     explicit MusicSongCheckToolsQualityTableWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicSongCheckToolsQualityTableWidget();
 
     /*!
      * Create cell items by input data.
      */
     void addCellItems(const MusicSongCheckToolsQualityList &songs);
-
-Q_SIGNALS:
-    /*!
-     * Add current selected song to playlist.
-     */
-    void addSongToPlaylist(const QStringList &items);
 
 public Q_SLOTS:
     /*!

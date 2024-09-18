@@ -10,7 +10,6 @@
 #include "musicopenfilewidget.h"
 #include "musicplayedlistpopwidget.h"
 #include "musicapplication.h"
-#include "musicleftareawidget.h"
 
 #include <qmath.h>
 #include <QAction>

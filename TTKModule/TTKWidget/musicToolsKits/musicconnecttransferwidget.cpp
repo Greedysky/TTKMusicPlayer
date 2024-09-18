@@ -1,7 +1,6 @@
 #include "musicconnecttransferwidget.h"
 #include "ui_musicconnecttransferwidget.h"
 #include "musicsongscontainerwidget.h"
-#include "musicconnectionpool.h"
 #include "musictoastlabel.h"
 #include "musicdeviceinfomodule.h"
 #include "musicconnecttransferthread.h"
@@ -51,14 +50,10 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 #endif
 
     TTK_SIGNLE_SHOT(initialize, TTK_SLOT);
-
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicConnectTransferWidget::~MusicConnectTransferWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
     delete m_ui;
     delete m_thread;
 }
@@ -76,7 +71,7 @@ void MusicConnectTransferWidget::setDeviceInfoItem(MusicDeviceInfoItem *item)
 void MusicConnectTransferWidget::initialize()
 {
     MusicSongItemList songs;
-    Q_EMIT querySongItemList(songs);
+    MusicSongsContainerWidget::instance()->querySongItemList(songs);
 
     m_ui->playListLayoutWidget->setStyleSheet(TTK::UI::BackgroundStyle01);
     QButtonGroup *buttonGroup = new QButtonGroup(this);
@@ -154,7 +149,7 @@ void MusicConnectTransferWidget::itemSelectedChanged()
 void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 {
     MusicSongItemList songs;
-    Q_EMIT querySongItemList(songs);
+    MusicSongsContainerWidget::instance()->querySongItemList(songs);
 
     if(index >= songs.count() || index < 0)
     {

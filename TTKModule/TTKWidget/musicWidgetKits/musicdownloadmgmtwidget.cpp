@@ -1,7 +1,6 @@
 #include "ui_musicdownloadresetwidget.h"
 #include "musicdownloadmgmtwidget.h"
 #include "musicdownloadwidget.h"
-#include "musicleftareawidget.h"
 #include "musicapplication.h"
 #include "musicurlutils.h"
 

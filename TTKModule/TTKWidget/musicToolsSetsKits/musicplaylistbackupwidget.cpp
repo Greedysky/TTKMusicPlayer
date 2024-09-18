@@ -1,7 +1,6 @@
 #include "musicplaylistbackupwidget.h"
 #include "musicsongscontainerwidget.h"
 #include "musicbackupmodule.h"
-#include "musicconnectionpool.h"
 #include "musictkplconfigmanager.h"
 #include "musicmessagebox.h"
 #include "musicfileutils.h"
@@ -19,14 +18,10 @@ MusicPlaylistBackupTableWidget::MusicPlaylistBackupTableWidget(QWidget *parent)
     headerView->resizeSection(1, 45);
 
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
-
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicPlaylistBackupTableWidget::~MusicPlaylistBackupTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
     removeItems();
 }
 
@@ -64,7 +59,7 @@ void MusicPlaylistBackupTableWidget::itemDoubleClicked(int row, int column)
     }
 
     const QString &path = m_songs->at(currentRow()).path();
-    Q_EMIT addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
+    MusicSongsContainerWidget::instance()->addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
 }
 
 void MusicPlaylistBackupTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -279,7 +274,13 @@ void MusicPlaylistBackupWidget::restoreButtonClicked()
         return;
     }
 
-    // TODO
+    int index = m_listWidget->currentRow();
+    if(index < 0 || index > m_items.count())
+    {
+        return;
+    }
+
+    MusicSongsContainerWidget::instance()->updateSongItem(m_items[index]);
 }
 
 void MusicPlaylistBackupWidget::currentDateChanged(const QString &text)

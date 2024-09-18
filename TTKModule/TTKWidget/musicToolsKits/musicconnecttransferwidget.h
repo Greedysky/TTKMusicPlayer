@@ -51,12 +51,6 @@ public:
      */
     void setDeviceInfoItem(MusicDeviceInfoItem *item);
 
-Q_SIGNALS:
-    /*!
-     * Query music datas from container.
-     */
-    void querySongItemList(MusicSongItemList &songs);
-
 public Q_SLOTS:
     /*!
      * Button state changed.

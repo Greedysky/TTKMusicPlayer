@@ -90,12 +90,6 @@ public:
      */
     void findExtraDevicePath(const QString &dir);
 
-Q_SIGNALS:
-    /*!
-     * Add current selected song to playlist.
-     */
-    void addSongToPlaylist(const QStringList &items);
-
 public Q_SLOTS:
     /*!
      * Select all items.

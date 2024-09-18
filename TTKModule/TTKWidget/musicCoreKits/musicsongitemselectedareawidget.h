@@ -113,13 +113,9 @@ public:
     /*!
      * Get selected song items.
      */
-    MusicSongList selectedSongItems();
+    MusicSongList selectedSongItems() const;
 
 Q_SIGNALS:
-    /*!
-     * Query music datas from container.
-     */
-    void querySongItemList(MusicSongItemList &songs);
     /*!
      * Confirm changed.
      */

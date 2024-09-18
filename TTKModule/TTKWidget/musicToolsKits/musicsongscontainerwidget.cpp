@@ -19,6 +19,8 @@ static constexpr int ITEM_MIN_COUNT = MIN_ITEM_COUNT;
 static constexpr int ITEM_MAX_COUNT = 10;
 static constexpr int RECENT_ITEM_MAX_COUNT = 50;
 
+MusicSongsContainerWidget *MusicSongsContainerWidget::m_instance = nullptr;
+
 MusicSongsContainerWidget::MusicSongsContainerWidget(QWidget *parent)
     : MusicSongsToolBoxWidget(parent),
       MusicItemSearchInterfaceClass(),
@@ -28,6 +30,8 @@ MusicSongsContainerWidget::MusicSongsContainerWidget(QWidget *parent)
       m_listFunctionWidget(nullptr),
       m_songSearchWidget(nullptr)
 {
+    m_instance = this;
+
     setAcceptDrops(true);
 
     m_listMaskWidget = new MusicSongsToolBoxMaskWidget(this);
@@ -51,6 +55,16 @@ MusicSongsContainerWidget::~MusicSongsContainerWidget()
     {
         delete m_containerItems.takeLast().m_itemWidget;
     }
+}
+
+MusicSongsContainerWidget *MusicSongsContainerWidget::instance()
+{
+    return m_instance;
+}
+
+void MusicSongsContainerWidget::updateSongItem(const MusicSongItem &item)
+{
+    // TODO
 }
 
 bool MusicSongsContainerWidget::addSongItemList(const MusicSongItemList &items)

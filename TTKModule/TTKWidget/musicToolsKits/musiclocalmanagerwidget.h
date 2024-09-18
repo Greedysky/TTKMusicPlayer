@@ -133,12 +133,6 @@ public:
      */
     virtual void resizeWidget() override final;
 
-Q_SIGNALS:
-    /*!
-     * Add current selected song to playlist.
-     */
-    void addSongToPlaylist(const QStringList &items);
-
 private Q_SLOTS:
     /*!
      * Type index changed.

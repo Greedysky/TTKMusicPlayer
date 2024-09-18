@@ -2,7 +2,6 @@
 #include "ui_musicmobilesongsmanagerwidget.h"
 #include "musicsongscontainerwidget.h"
 #include "musicsongsmanagerthread.h"
-#include "musicconnectionpool.h"
 #include "musictoastlabel.h"
 
 MusicMobileSongsTableWidget::MusicMobileSongsTableWidget(QWidget *parent)
@@ -153,14 +152,10 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
 
     m_thread = new MusicSongsManagerThread(this);
     connect(m_thread, SIGNAL(searchFilePathChanged(QStringList)), SLOT(searchFilePathChanged(QStringList)));
-
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicMobileSongsManagerWidget::~MusicMobileSongsManagerWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
     TTKRemoveSingleWidget(className());
     clearItems();
     m_thread->stop();
@@ -221,7 +216,7 @@ void MusicMobileSongsManagerWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(column);
     mappedSearchRow(m_ui->searchLineEdit->text().length(), row);
-    Q_EMIT addSongToPlaylist(QStringList(m_containerItems[row]));
+    MusicSongsContainerWidget::instance()->addSongToPlaylist(QStringList(m_containerItems[row]));
 }
 
 void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &path)
@@ -289,5 +284,5 @@ void MusicMobileSongsManagerWidget::selectedItemsToPlaylist()
         items << m_containerItems[index];
     }
 
-    Q_EMIT addSongToPlaylist(items);
+    MusicSongsContainerWidget::instance()->addSongToPlaylist(items);
 }

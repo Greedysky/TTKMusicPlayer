@@ -2,7 +2,6 @@
 #include "musicsongscontainerwidget.h"
 #include "musicdownloadbatchwidget.h"
 #include "musictoastlabel.h"
-#include "musicconnectionpool.h"
 #include "musicrightareawidget.h"
 
 MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
@@ -20,14 +19,10 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     headerView->resizeSection(5, 26);
     headerView->resizeSection(6, 26);
     headerView->resizeSection(7, 26);
-
-    G_CONNECTION_PTR->setValue(MusicQueryTableWidget::className(), this);
-    G_CONNECTION_PTR->connect(MusicQueryTableWidget::className(), MusicSongsContainerWidget::className());
 }
 
 MusicItemQueryTableWidget::~MusicItemQueryTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
     removeItems();
 }
 
@@ -306,6 +301,6 @@ bool MusicItemQueryTableWidget::downloadDataFrom(TTK::MusicSongInformation *info
         item.m_id = m_networkRequest->queryServer() + item.m_id;
     }
 
-    Q_EMIT songBufferToPlaylist(item);
+    MusicSongsContainerWidget::instance()->addSongBufferToPlaylist(item);
     return true;
 }

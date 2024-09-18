@@ -1,11 +1,10 @@
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongsearchrecordconfigmanager.h"
 #include "musicdownloadbatchwidget.h"
-#include "musicconnectionpool.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicrightareawidget.h"
 #include "musictoastlabel.h"
-#include "musicapplication.h"
+#include "musicsongscontainerwidget.h"
 #include "musicwidgetheaders.h"
 
 #include <QButtonGroup>
@@ -25,13 +24,6 @@ MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
     headerView->resizeSection(6, 26);
     headerView->resizeSection(7, 26);
     headerView->resizeSection(8, 26);
-
-    G_CONNECTION_PTR->setValue(MusicQueryTableWidget::className(), this);
-}
-
-MusicSongSearchTableWidget::~MusicSongSearchTableWidget()
-{
-    removeItems();
 }
 
 void MusicSongSearchTableWidget::startToSearchByText(const QString &text)
@@ -287,7 +279,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
         item.m_id = m_networkRequest->queryServer() + item.m_id;
     }
 
-    Q_EMIT songBufferToPlaylist(item);
+    MusicSongsContainerWidget::instance()->addSongBufferToPlaylist(item);
 }
 
 

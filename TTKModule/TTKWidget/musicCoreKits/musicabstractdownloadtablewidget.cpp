@@ -1,7 +1,6 @@
 #include "musicabstractdownloadtablewidget.h"
 #include "musicsongscontainerwidget.h"
 #include "musicdownloadmanager.h"
-#include "musicconnectionpool.h"
 #include "musicmessagebox.h"
 
 MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *parent)
@@ -11,14 +10,10 @@ MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *pare
     m_progressBarDelegate = new TTKProgressBarItemDelegate(this);
     m_progressBarDelegate->setStyleSheet(TTK::UI::ProgressBar01);
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
-
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
     MusicDownloadRecordConfigManager manager;
     if(!manager.load(TTK::toString(m_type)))
     {
@@ -89,7 +84,7 @@ void MusicAbstractDownloadTableWidget::itemDoubleClicked(int row, int column)
     }
 
     const QString &path = m_songs->at(currentRow()).path();
-    Q_EMIT addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
+    MusicSongsContainerWidget::instance()->addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
 }
 
 void MusicAbstractDownloadTableWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)

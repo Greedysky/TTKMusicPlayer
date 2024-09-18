@@ -1,5 +1,4 @@
 #include "musicbackupmodule.h"
-#include "musicapplication.h"
 #include "musicsettingmanager.h"
 #include "musictkplconfigmanager.h"
 #include "musicsongscontainerwidget.h"
@@ -51,7 +50,7 @@ void MusicPlaylistBackupModule::runBackup()
         return;
     }
 
-    manager.writeBuffer(MusicApplication::instance()->m_songTreeWidget->items());
+    manager.writeBuffer(MusicSongsContainerWidget::instance()->items());
 
     const QFileInfoList &fileList = dir.entryInfoList(QDir::Files, QDir::Time | QDir::Reversed);
     if(fileList.count() > 7)

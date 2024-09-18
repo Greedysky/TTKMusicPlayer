@@ -37,10 +37,6 @@ public:
      * Object constructor.
      */
     explicit MusicSongSearchTableWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicSongSearchTableWidget();
 
     /*!
      * Start to search query by text.

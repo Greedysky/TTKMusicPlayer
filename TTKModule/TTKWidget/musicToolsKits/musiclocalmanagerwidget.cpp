@@ -1,6 +1,5 @@
 #include "musiclocalmanagerwidget.h"
 #include "musicsongscontainerwidget.h"
-#include "musicconnectionpool.h"
 #include "musicitemsearchedit.h"
 #include "musicgiflabelwidget.h"
 #include "musicsongmeta.h"
@@ -331,14 +330,10 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     connect(button, SIGNAL(clicked()), SLOT(updateMediaLibraryPath()));
     connect(m_songTableWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
     connect(m_searchEdit->editor(), SIGNAL(cursorPositionChanged(int,int)), SLOT(searchResultChanged(int,int)));
-
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicLocalManagerWidget::~MusicLocalManagerWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
     delete m_sizeLabel;
     delete m_searchEdit;
     delete m_loadingLabel;
@@ -484,7 +479,7 @@ void MusicLocalManagerWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(column);
     mappedSearchRow(m_searchEdit->editor()->text().length(), row);
-    Q_EMIT addSongToPlaylist(QStringList(m_containerItems[row].m_path));
+    MusicSongsContainerWidget::instance()->addSongToPlaylist(QStringList(m_containerItems[row].m_path));
 }
 
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)

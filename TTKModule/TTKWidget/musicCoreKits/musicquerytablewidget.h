@@ -68,10 +68,6 @@ Q_SIGNALS:
      * Start to query by text.
      */
     void startToQueryByText(const QString &text);
-    /*!
-     * Add current network music buffer to playlist.
-     */
-    void songBufferToPlaylist(const MusicResultDataItem &item);
 
 public Q_SLOTS:
     /*!

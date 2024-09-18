@@ -46,12 +46,6 @@ public:
      */
     ~MusicSongDlnaTransferWidget();
 
-Q_SIGNALS:
-    /*!
-     * Query music datas from container.
-     */
-    void querySongItemList(MusicSongItemList &songs);
-
 public Q_SLOTS:
     /*!
      * Start to scan dlna devices.

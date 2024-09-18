@@ -2,7 +2,6 @@
 #include "ui_musicsongitemselecteddialog.h"
 #include "musicsongscontainerwidget.h"
 #include "musicwidgetheaders.h"
-#include "musicconnectionpool.h"
 #include "ttkclickedlabel.h"
 
 MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *parent)
@@ -134,23 +133,19 @@ MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent
     setLayout(layout);
 
     connect(m_modifiedItemButton, SIGNAL(clicked()), SLOT(modifiedItemButtonClicked()));
-
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicSongItemSelectedAreaWidget::~MusicSongItemSelectedAreaWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
     delete m_label;
     delete m_itemLabel;
     delete m_modifiedItemButton;
 }
 
-MusicSongList MusicSongItemSelectedAreaWidget::selectedSongItems()
+MusicSongList MusicSongItemSelectedAreaWidget::selectedSongItems() const
 {
     MusicSongItemList songs;
-    Q_EMIT querySongItemList(songs);
+    MusicSongsContainerWidget::instance()->querySongItemList(songs);
 
     MusicSongList selectedSongs;
     for(const MusicSongItem &item : qAsConst(songs))
@@ -176,7 +171,7 @@ MusicSongList MusicSongItemSelectedAreaWidget::selectedSongItems()
 void MusicSongItemSelectedAreaWidget::modifiedItemButtonClicked()
 {
     MusicSongItemList songs;
-    Q_EMIT querySongItemList(songs);
+    MusicSongsContainerWidget::instance()->querySongItemList(songs);
 
     m_selected = true;
 

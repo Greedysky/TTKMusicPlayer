@@ -6,7 +6,6 @@
 #include "musicsongsharingwidget.h"
 #include "musicdownloadwidget.h"
 #include "musicapplication.h"
-#include "musicleftareawidget.h"
 
 MusicAbstractSongsListTableWidget::MusicAbstractSongsListTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(-1, parent)

@@ -34,10 +34,6 @@ public:
      * Object constructor.
      */
     explicit MusicCloudDownloadTableWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicCloudDownloadTableWidget();
 
 private:
     /*!
@@ -60,10 +56,6 @@ public:
      * Object constructor.
      */
     explicit MusicCloudUploadTableWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicCloudUploadTableWidget();
 
 Q_SIGNALS:
     /*!

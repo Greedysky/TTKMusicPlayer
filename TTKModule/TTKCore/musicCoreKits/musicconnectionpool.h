@@ -58,7 +58,7 @@ private:
     /*!
      * Object constructor.
      */
-    MusicConnectionPool();
+    MusicConnectionPool() = default;
     
     QMap<QString, QObject*> m_parameters;
 

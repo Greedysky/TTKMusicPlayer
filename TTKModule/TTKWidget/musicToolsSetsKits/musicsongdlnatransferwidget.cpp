@@ -1,7 +1,6 @@
 #include "musicsongdlnatransferwidget.h"
 #include "ui_musicsongdlnatransferwidget.h"
 #include "musicsongscontainerwidget.h"
-#include "musicconnectionpool.h"
 
 #include "qdlna/qdlnafinder.h"
 #include "qdlna/qdlnaclient.h"
@@ -71,14 +70,10 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     connect(m_ui->nextButton, SIGNAL(clicked()), SLOT(playNext()));
     connect(m_ui->refreshButton, SIGNAL(clicked()), SLOT(startToScan()));
     connect(m_dlnaFinder, SIGNAL(finished()), SLOT(scanFinished()));
-
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicSongsContainerWidget::className());
 }
 
 MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
     TTKRemoveSingleWidget(className());
     delete m_dlnaFinder;
     delete m_ui;
@@ -131,7 +126,7 @@ void MusicSongDlnaTransferWidget::playSongClicked()
     }
 
     MusicSongItemList songs;
-    Q_EMIT querySongItemList(songs);
+    MusicSongsContainerWidget::instance()->querySongItemList(songs);
 
     if(songs.empty())
     {

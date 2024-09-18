@@ -1,5 +1,4 @@
 #include "musiccloudtablewidget.h"
-#include "musicconnectionpool.h"
 #include "musicnumberutils.h"
 #include "musictoastlabel.h"
 
@@ -24,13 +23,6 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
     setFixedHeight(0);
-
-    G_CONNECTION_PTR->setValue(className(), this);
-}
-
-MusicCloudDownloadTableWidget::~MusicCloudDownloadTableWidget()
-{
-    G_CONNECTION_PTR->removeValue(this);
 }
 
 void MusicCloudDownloadTableWidget::addCellItem(int index, const MusicSong &record)
@@ -77,13 +69,6 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
     setFixedHeight(0);
-
-    G_CONNECTION_PTR->setValue(className(), this);
-}
-
-MusicCloudUploadTableWidget::~MusicCloudUploadTableWidget()
-{
-    G_CONNECTION_PTR->removeValue(this);
 }
 
 void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item)

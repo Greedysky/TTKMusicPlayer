@@ -45,6 +45,15 @@ public:
     ~MusicSongsContainerWidget();
 
     /*!
+     * Get class object instance.
+     */
+    static MusicSongsContainerWidget *instance();
+
+    /*!
+     * Update music datas from container.
+     */
+    void updateSongItem(const MusicSongItem &item);
+    /*!
      * Add music datas into container.
      */
     bool addSongItemList(const MusicSongItemList &items);
@@ -292,6 +301,8 @@ private:
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
     MusicSongSearchDialog *m_songSearchWidget;
+
+    static MusicSongsContainerWidget *m_instance;
 
 };
 
