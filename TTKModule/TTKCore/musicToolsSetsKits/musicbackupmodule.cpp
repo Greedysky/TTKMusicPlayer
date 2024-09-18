@@ -13,6 +13,7 @@ MusicAbstractBackup::MusicAbstractBackup(int interval, QObject *parent)
 
 void MusicAbstractBackup::start()
 {
+    runBackup();
     m_timer.start();
 }
 

@@ -89,6 +89,7 @@ void MusicSongsContainerWidget::updateSongItem(const MusicSongItem &item)
 
         if(foundMappedIndex(songItem->m_itemIndex) == m_playRowIndex)
         {
+            MusicPlayedListPopWidget::instance()->clear();
             MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
         }
     }
@@ -490,7 +491,7 @@ void MusicSongsContainerWidget::deleteRowItems()
     }
 }
 
-void MusicSongsContainerWidget::deleteRowItemAll(int index)
+void MusicSongsContainerWidget::deleteAllItems(int index)
 {
     const int id = foundMappedIndex(index);
     if(id == -1)
@@ -1290,8 +1291,8 @@ void MusicSongsContainerWidget::setItemTitle(MusicSongItem *item)
 void MusicSongsContainerWidget::setInputModule(QObject *object) const
 {
     connect(object, SIGNAL(addNewRowItem()), SLOT(addNewRowItem()));
-    connect(object, SIGNAL(deleteRowItemAll(int)), SLOT(deleteRowItemAll(int)));
     connect(object, SIGNAL(deleteRowItem(int)), SLOT(deleteRowItem(int)));
+    connect(object, SIGNAL(deleteAllItems(int)), SLOT(deleteAllItems(int)));
     connect(object, SIGNAL(changRowItemName(int,QString)), SLOT(changRowItemName(int,QString)));
     connect(object, SIGNAL(addNewFiles(int)), SLOT(importSongsByFiles(int)));
     connect(object, SIGNAL(addNewDir(int)), SLOT(importSongsByDir(int)));

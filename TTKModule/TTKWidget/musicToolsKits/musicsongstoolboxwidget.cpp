@@ -42,9 +42,9 @@ void MusicSongsToolBoxTopWidget::deleteRowItemChanged()
     Q_EMIT deleteRowItem(m_index);
 }
 
-void MusicSongsToolBoxTopWidget::deleteRowItemAllChanged()
+void MusicSongsToolBoxTopWidget::deleteAllItemsChanged()
 {
-    Q_EMIT deleteRowItemAll(m_index);
+    Q_EMIT deleteAllItems(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::changRowItemNameChanged()
@@ -123,7 +123,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addSeparator();
 
     disable = isItemEnabled();
-    menu.addAction(tr("Delete All"), this, SLOT(deleteRowItemAllChanged()));
+    menu.addAction(tr("Delete All"), this, SLOT(deleteAllItemsChanged()));
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete Item"), this, SLOT(deleteRowItemChanged()))->setEnabled(disable);
     menu.addAction(tr("Rename"), this, SLOT(changRowItemNameChanged()))->setEnabled(disable);
 
@@ -237,7 +237,7 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
     m_topWidget = new MusicSongsToolBoxTopWidget(index, text, this);
     connect(m_topWidget, SIGNAL(addNewRowItem()), SIGNAL(addNewRowItem()));
     connect(m_topWidget, SIGNAL(deleteRowItem(int)), SIGNAL(deleteRowItem(int)));
-    connect(m_topWidget, SIGNAL(deleteRowItemAll(int)), SIGNAL(deleteRowItemAll(int)));
+    connect(m_topWidget, SIGNAL(deleteAllItems(int)), SIGNAL(deleteAllItems(int)));
     connect(m_topWidget, SIGNAL(changRowItemName(int,QString)), SIGNAL(changRowItemName(int,QString)));
     connect(m_topWidget, SIGNAL(addNewFiles(int)), SIGNAL(addNewFiles(int)));
     connect(m_topWidget, SIGNAL(addNewDir(int)), SIGNAL(addNewDir(int)));

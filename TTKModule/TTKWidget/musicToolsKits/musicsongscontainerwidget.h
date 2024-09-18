@@ -135,7 +135,7 @@ public Q_SLOTS:
     /*!
      * Delete all items in play list item.
      */
-    void deleteRowItemAll(int index);
+    void deleteAllItems(int index);
     /*!
      * Open rename selected play list item widget.
      */

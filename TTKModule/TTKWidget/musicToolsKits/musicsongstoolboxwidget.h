@@ -58,7 +58,7 @@ Q_SIGNALS:
     /*!
      * Delete all items in play list item.
      */
-    void deleteRowItemAll(int index);
+    void deleteAllItems(int index);
     /*!
      * Open rename selected play list item widget.
      */
@@ -92,7 +92,7 @@ public Q_SLOTS:
     /*!
      * Delete all items in play list item.
      */
-    void deleteRowItemAllChanged();
+    void deleteAllItemsChanged();
     /*!
      * Open rename selected play list item widget.
      */
@@ -205,7 +205,7 @@ Q_SIGNALS:
     /*!
      * Delete all items in play list item.
      */
-    void deleteRowItemAll(int index);
+    void deleteAllItems(int index);
     /*!
      * Open rename selected play list item widget.
      */
