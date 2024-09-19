@@ -31,7 +31,7 @@ taglib-1.13.1(v2.0.2)	https://github.com/taglib/taglib
 wavpack-5.7.0	https://www.wavpack.com/downloads.html
 libxmp-4.6.0.patch	https://github.com/libxmp/libxmp
 zlib-1.3.1	https://github.com/madler/zlib
-7zip-24.07	https://www.7-zip.org/download.html
+7zip-24.08	https://www.7-zip.org/download.html
 
 ttk-1.2.5
 -libasap-6.0.3	 https://sourceforge.net/projects/asap
@@ -62,4 +62,4 @@ ttk-1.2.5
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2024-09-09
+///Update time 2024-09-19
