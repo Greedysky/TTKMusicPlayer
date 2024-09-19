@@ -120,21 +120,18 @@ namespace TTK
             border:none;";
 
         static const QString BorderStyle02 = " \
-            border:1px solid #666666;";
-
-        static const QString BorderStyle03 = " \
             border:1px solid gray;";
 
-        static const QString BorderStyle04 = " \
+        static const QString BorderStyle03 = " \
             border:1px solid #0095CD;";
 
-        static const QString BorderStyle05 = " \
+        static const QString BorderStyle04 = " \
             border-top:1px dashed gray;";
 
-        static const QString BorderStyle06 = " \
+        static const QString BorderStyle05 = " \
             border-radius:3px;";
 
-        static const QString BorderStyle07 = " \
+        static const QString BorderStyle06 = " \
             border-top-left-radius:5px; border-top-right-radius:5px;";
 
         ///Font

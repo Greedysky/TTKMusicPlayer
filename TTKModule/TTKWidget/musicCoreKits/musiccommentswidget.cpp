@@ -104,7 +104,7 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     //
     QFrame *solidLine = new QFrame(this);
     solidLine->setFixedHeight(1);
-    solidLine->setStyleSheet(TTK::UI::BorderStyle05 + TTK::UI::ColorStyle03);
+    solidLine->setStyleSheet(TTK::UI::BorderStyle04 + TTK::UI::ColorStyle03);
     //
     layout->addWidget(centerWidget);
     layout->addWidget(solidLine);

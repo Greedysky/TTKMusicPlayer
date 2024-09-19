@@ -4,7 +4,7 @@
 static TTKPushButtonItemDelegate *makeButtonItemDelegate(QObject *parent)
 {
     TTKPushButtonItemDelegate *delegate = new TTKPushButtonItemDelegate(parent);
-    delegate->setStyleSheet(TTK::UI::BorderStyle03 + TTK::UI::BorderStyle06 + TTK::UI::BackgroundStyle10);
+    delegate->setStyleSheet(TTK::UI::BorderStyle02 + TTK::UI::BorderStyle05 + TTK::UI::BackgroundStyle10);
     return delegate;
 }
 

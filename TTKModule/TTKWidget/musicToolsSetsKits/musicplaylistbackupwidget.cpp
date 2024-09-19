@@ -121,6 +121,7 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     QPushButton *exportButton = new QPushButton(topWidget);
     exportButton->setIcon(QIcon(":/toolSets/btn_detect_download_normal"));
     exportButton->setCursor(QCursor(Qt::PointingHandCursor));
+    exportButton->setStyleSheet(TTK::UI::BorderStyle02);
     exportButton->setFixedSize(25, 25);
 
     m_dateBox = new QComboBox(topWidget);

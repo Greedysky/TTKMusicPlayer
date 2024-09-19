@@ -103,7 +103,7 @@ void MusicPlaylistFoundCategoryPopWidget::initialize()
     setTranslucentBackground();
     setText(tr("All"));
 
-    const QString &style = TTK::UI::BorderStyle03 + TTK::UI::BackgroundStyle10;
+    const QString &style = TTK::UI::BorderStyle02 + TTK::UI::BackgroundStyle10;
     setObjectName(className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), style));
 

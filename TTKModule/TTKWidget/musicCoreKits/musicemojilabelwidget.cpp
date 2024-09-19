@@ -40,7 +40,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
         {
             TTKClickedLabel *label = new TTKClickedLabel(labelWidget);
             label->setAlignment(Qt::AlignCenter);
-            label->setStyleSheet(QString("QLabel{ %1 } QLabel:hover{ %2 }").arg(TTK::UI::BorderStyle03, TTK::UI::BorderStyle04));
+            label->setStyleSheet(QString("QLabel{ %1 } QLabel:hover{ %2 }").arg(TTK::UI::BorderStyle02, TTK::UI::BorderStyle03));
             label->setFixedSize(32, 32);
             labelIconLayout->addWidget(label, i, j);
 
@@ -97,7 +97,7 @@ void MusicEMOJILabelWidget::buttonClicked(int index)
     {
         button->setStyleSheet(TTK::UI::BackgroundStyle01 + TTK::UI::BorderStyle01);
     }
-    m_buttonItems[index]->setStyleSheet(m_buttonItems[index]->styleSheet() + TTK::UI::BorderStyle03);
+    m_buttonItems[index]->setStyleSheet(m_buttonItems[index]->styleSheet() + TTK::UI::BorderStyle02);
 
     for(int i = 0; i < 3; ++i)
     {
