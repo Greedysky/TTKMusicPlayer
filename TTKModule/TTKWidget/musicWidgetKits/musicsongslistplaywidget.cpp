@@ -202,9 +202,9 @@ void MusicSongsListPlayWidget::currentLoveStateClicked()
 
 void MusicSongsListPlayWidget::currentDownloadStateClicked()
 {
-    bool state = false;
-    MusicApplication::instance()->containsDownloadItem(state);
-    m_downloadButton->setStyleSheet(state ? TTK::UI::TinyBtnDownload : TTK::UI::TinyBtnUnDownload);
+    bool exist = false;
+    MusicApplication::instance()->containsDownloadItem(exist);
+    m_downloadButton->setStyleSheet(exist ? TTK::UI::TinyBtnDownload : TTK::UI::TinyBtnUnDownload);
 }
 
 void MusicSongsListPlayWidget::enterEvent(QtEnterEvent *event)
