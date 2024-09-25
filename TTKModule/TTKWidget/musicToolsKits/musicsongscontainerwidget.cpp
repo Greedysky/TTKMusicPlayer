@@ -1201,9 +1201,9 @@ void MusicSongsContainerWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("Create Item"), this, SLOT(addNewRowItem()));
     menu.addAction(tr("Import Item"), MusicApplication::instance(), SLOT(importSongsItemList()));
     menu.addAction(tr("Export Items"), MusicApplication::instance(), SLOT(exportSongsItemList()));
+    menu.addAction(tr("Delete All"), this, SLOT(deleteRowItems()))->setEnabled(m_containerItems.count() > ITEM_MIN_COUNT);
     menu.addAction(tr("Music Test Tools"), this, SLOT(showSongCheckToolsWidget()));
     menu.addAction(tr("Lrc Batch Download"), this, SLOT(showLrcDownloadBatchWidget()));
-    menu.addAction(tr("Delete All"), this, SLOT(deleteRowItems()))->setEnabled(m_containerItems.count() > ITEM_MIN_COUNT);
 
     TTK::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());

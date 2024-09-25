@@ -64,7 +64,7 @@ QByteArray ReqWYInterface::makeTokenRequest(QNetworkRequest *request, const QStr
     const QString &body = query + "-36cd479b6b5-" + data + "-36cd479b6b5-" + digest;
 
     QAlgorithm::Aes aes;
-    QByteArray param = aes.encryptECB(body.toUtf8(), "e82ckenh8dichen8", true);
+    const QByteArray &param = aes.encryptECB(body.toUtf8(), "e82ckenh8dichen8", true);
 
     request->setUrl(url);
     ReqWYInterface::makeRequestRawHeader(request);
