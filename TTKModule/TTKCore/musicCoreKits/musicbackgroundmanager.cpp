@@ -30,14 +30,12 @@ void MusicBackgroundManager::imagePrevious()
 
 QString MusicBackgroundManager::artistImagePath()
 {
-    if(!m_images.isEmpty())
-    {
-        return m_images[m_currentIndex < m_images.count() ? m_currentIndex : m_currentIndex = 0];
-    }
-    else
+    if(m_images.isEmpty())
     {
         return {};
     }
+
+    return m_images[m_currentIndex < m_images.count() ? m_currentIndex : m_currentIndex = 0];
 }
 
 QString MusicBackgroundManager::artistImageDefaultPath() const

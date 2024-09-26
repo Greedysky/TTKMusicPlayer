@@ -3,7 +3,7 @@
 //Vlc3dFJiZVZzS096RW13QmJIQms1cUhxaXJkcHFjZkwxRUFMUmlhZWhiZkd4TFUyYnRxNzdnPT0=
 static constexpr const char *OS_PLUGINS_URL = "resource/plugins";
 
-static void parseSongPropertyV1(TTK::MusicSongInformation *info, const QString &url, const QString &quality, int bitrate)
+static void parseSongPropertyV1(TTK::MusicSongInformation *info, const QString &key, const QString &url, const QString &quality, int bitrate)
 {
     for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
     {
@@ -14,6 +14,7 @@ static void parseSongPropertyV1(TTK::MusicSongInformation *info, const QString &
     }
 
     QNetworkRequest request;
+    request.setRawHeader("X-Request-Key", key.toUtf8());
     request.setUrl(url);
     TTK::setSslConfiguration(&request);
 
@@ -82,19 +83,21 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
             }
 
             const QVariantMap &value = var.toMap();
-            for(const QString &key : value.keys())
+            const QString &key = value["key"].toString();
+
+            for(const QString &module : value.keys())
             {
-                if(key == "A")
+                if(module == "A")
                 {
-                    const QString &url = value[key].toString();
+                    const QString &url = value[module].toString();
                     if(url.isEmpty())
                     {
                         continue;
                     }
 
-                    parseSongPropertyV1(info, TTK::Algorithm::mdII(url, false).arg(type, id, quality), quality, bitrate);
+                    parseSongPropertyV1(info, TTK::Algorithm::mdII(key, false), TTK::Algorithm::mdII(url, false).arg(type, id, quality), quality, bitrate);
                 }
-                else if(key == "B")
+                else if(module == "B")
                 {
                     // TODO
                 }
