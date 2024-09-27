@@ -39,6 +39,7 @@ public:
         TTK::Direction m_direction;
     };
 
+public:
     /*!
      * Get screen taskbar info by given screen index.
      */

@@ -76,7 +76,7 @@ void TTK::makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data
     request->setRawHeader("Content-Type", data.isEmpty() ? "application/x-www-form-urlencoded" : data);
 }
 
-qint64 TTK::queryFileSizeByUrl(const QString &url)
+qint64 TTK::fetchFileSizeByUrl(const QString &url)
 {
     qint64 size = -1;
 
@@ -102,7 +102,7 @@ qint64 TTK::queryFileSizeByUrl(const QString &url)
     const QVariant &redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     if(redirection.isValid())
     {
-        size = queryFileSizeByUrl(redirection.toString());
+        size = fetchFileSizeByUrl(redirection.toString());
     }
 
     reply->deleteLater();
@@ -146,6 +146,46 @@ QByteArray TTK::syncNetworkQueryForPost(QNetworkRequest *request, const QByteArr
     TTKSemaphoreLoop loop;
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.post(*request, data);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QtNetworkErrorVoidConnect(reply, &loop, quit, TTK_SLOT);
+    loop.exec();
+
+    if(reply->error() != QNetworkReply::NoError)
+    {
+        TTK_INFO_STREAM(reply->error() << reply->errorString());
+        return {};
+    }
+
+    const QByteArray bytes(reply->readAll());
+    reply->deleteLater();
+    return bytes;
+}
+
+QByteArray TTK::syncNetworkQueryForPut(QNetworkRequest *request, const QByteArray &data)
+{
+    TTKSemaphoreLoop loop;
+    QNetworkAccessManager manager;
+    QNetworkReply *reply = manager.put(*request, data);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QtNetworkErrorVoidConnect(reply, &loop, quit, TTK_SLOT);
+    loop.exec();
+
+    if(reply->error() != QNetworkReply::NoError)
+    {
+        TTK_INFO_STREAM(reply->error() << reply->errorString());
+        return {};
+    }
+
+    const QByteArray bytes(reply->readAll());
+    reply->deleteLater();
+    return bytes;
+}
+
+QByteArray TTK::syncNetworkQueryForPatch(QNetworkRequest *request, const QByteArray &data)
+{
+    TTKSemaphoreLoop loop;
+    QNetworkAccessManager manager;
+    QNetworkReply *reply = manager.sendCustomRequest(*request, "PATCH", data);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QtNetworkErrorVoidConnect(reply, &loop, quit, TTK_SLOT);
     loop.exec();

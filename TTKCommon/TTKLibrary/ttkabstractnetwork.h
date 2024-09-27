@@ -127,9 +127,9 @@ namespace TTK
     TTK_MODULE_EXPORT void makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data = {});
 
     /*!
-     * Get download file size by url.
+     * Fetch download file size by url.
      */
-    TTK_MODULE_EXPORT qint64 queryFileSizeByUrl(const QString &url);
+    TTK_MODULE_EXPORT qint64 fetchFileSizeByUrl(const QString &url);
     /*!
      * Set request ssl configuration.
      */
@@ -143,6 +143,14 @@ namespace TTK
      * Sync network query for post.
      */
     TTK_MODULE_EXPORT QByteArray syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &data);
+    /*!
+     * Sync network query for put.
+     */
+    TTK_MODULE_EXPORT QByteArray syncNetworkQueryForPut(QNetworkRequest *request, const QByteArray &data);
+    /*!
+     * Sync network query for patch.
+     */
+    TTK_MODULE_EXPORT QByteArray syncNetworkQueryForPatch(QNetworkRequest *request, const QByteArray &data);
 
 }
 

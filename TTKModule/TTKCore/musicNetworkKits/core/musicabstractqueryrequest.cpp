@@ -73,7 +73,7 @@ bool MusicAbstractQueryRequest::findUrlPathSize(TTK::MusicSongProperty *prop, co
     else
     {
         TTK_NETWORK_QUERY_CHECK(false);
-        prop->m_size = TTK::Number::sizeByteToLabel(TTK::queryFileSizeByUrl(prop->m_url));
+        prop->m_size = TTK::Number::sizeByteToLabel(TTK::fetchFileSizeByUrl(prop->m_url));
         TTK_NETWORK_QUERY_CHECK(false);
     }
     return true;

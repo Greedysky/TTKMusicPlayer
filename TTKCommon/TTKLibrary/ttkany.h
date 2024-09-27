@@ -217,7 +217,7 @@ inline void swap(TTKAny &left, TTKAny &right) noexcept
 #if !TTK_HAS_CXX17
 // compatiblity for std any
 using any = TTKAny;
-using namespace::TTK;
+using namespace TTK;
 #endif
 }
 
