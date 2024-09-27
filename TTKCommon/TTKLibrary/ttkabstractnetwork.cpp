@@ -1,10 +1,13 @@
 #include "ttkabstractnetwork.h"
+#if !TTK_QT_VERSION_CHECK(5,8,0)
+#include <QBuffer>
+#endif
 
 TTKAbstractNetwork::TTKAbstractNetwork(QObject *parent)
     : QObject(parent),
-      m_interrupt(false),
-      m_stateCode(TTK::NetworkCode::Query),
-      m_reply(nullptr)
+    m_interrupt(false),
+    m_stateCode(TTK::NetworkCode::Query),
+    m_reply(nullptr)
 {
 #ifndef QT_NO_SSL
     connect(&m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
@@ -185,7 +188,16 @@ QByteArray TTK::syncNetworkQueryForPatch(QNetworkRequest *request, const QByteAr
 {
     TTKSemaphoreLoop loop;
     QNetworkAccessManager manager;
+#if TTK_QT_VERSION_CHECK(5,8,0)
     QNetworkReply *reply = manager.sendCustomRequest(*request, "PATCH", data);
+#else
+    QBuffer *buffer = new QBuffer;
+    buffer->setData(data);
+    buffer->open(QIODevice::ReadOnly);
+
+    QNetworkReply *reply = manager.sendCustomRequest(*request, "PATCH", buffer);
+    buffer->setParent(reply);
+#endif
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QtNetworkErrorVoidConnect(reply, &loop, quit, TTK_SLOT);
     loop.exec();
