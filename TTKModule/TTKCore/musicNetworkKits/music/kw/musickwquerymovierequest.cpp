@@ -214,7 +214,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                     ReqKWInterface::parseFromMovieProperty(&info, value["FORMATS"].toString());
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(info.m_songProps.isEmpty() || !findUrlPathSize(&info.m_songProps, info.m_duration))
+                    if(info.m_songProps.isEmpty() || !fetchUrlPathSize(&info.m_songProps, info.m_duration))
                     {
                         continue;
                     }
@@ -250,7 +250,7 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
     ReqKWInterface::parseFromMovieProperty(&info, "MP4UL|MP4L|MP4HV|MP4");
     TTK_NETWORK_QUERY_CHECK();
 
-    if(!info.m_songProps.isEmpty() && findUrlPathSize(&info.m_songProps, info.m_duration))
+    if(!info.m_songProps.isEmpty() && fetchUrlPathSize(&info.m_songProps, info.m_duration))
     {
         Q_EMIT createResultItem({info, serverToString()});
         m_items << info;

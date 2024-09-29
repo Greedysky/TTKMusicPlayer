@@ -207,13 +207,13 @@ protected:
      */
     QString serverToString() const;
     /*!
-     * Find url path size.
+     * Fetch url path size.
      */
-    bool findUrlPathSize(TTK::MusicSongProperty *prop, const QString &duration) const;
+    bool fetchUrlPathSize(TTK::MusicSongProperty *prop, const QString &duration) const;
     /*!
-     * Find url path size.
+     * Fetch url path size.
      */
-    bool findUrlPathSize(TTK::MusicSongPropertyList *props, const QString &duration) const;
+    bool fetchUrlPathSize(TTK::MusicSongPropertyList *props, const QString &duration) const;
 
     QString m_queryValue;
     QString m_queryServer;

@@ -235,7 +235,7 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
                 prop.m_url = value[key].toString();
                 prop.m_format = TTK::String::splitToken(prop.m_url);
 
-                if(!findUrlPathSize(&prop, info.m_duration))
+                if(!fetchUrlPathSize(&prop, info.m_duration))
                 {
                     continue;
                 }

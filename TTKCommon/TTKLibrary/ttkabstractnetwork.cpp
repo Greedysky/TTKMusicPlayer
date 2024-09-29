@@ -5,9 +5,9 @@
 
 TTKAbstractNetwork::TTKAbstractNetwork(QObject *parent)
     : QObject(parent),
-    m_interrupt(false),
-    m_stateCode(TTK::NetworkCode::Query),
-    m_reply(nullptr)
+      m_interrupt(false),
+      m_stateCode(TTK::NetworkCode::Query),
+      m_reply(nullptr)
 {
 #ifndef QT_NO_SSL
     connect(&m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));

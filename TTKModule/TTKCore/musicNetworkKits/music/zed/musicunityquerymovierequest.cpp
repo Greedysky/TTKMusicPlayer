@@ -144,7 +144,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                                 info.m_songProps.append(prop);
                             }
 
-                            if(info.m_songProps.isEmpty() || !findUrlPathSize(&info.m_songProps, info.m_duration))
+                            if(info.m_songProps.isEmpty() || !fetchUrlPathSize(&info.m_songProps, info.m_duration))
                             {
                                 continue;
                             }

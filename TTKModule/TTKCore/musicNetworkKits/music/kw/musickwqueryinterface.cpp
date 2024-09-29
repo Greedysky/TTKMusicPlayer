@@ -242,4 +242,5 @@ void ReqKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int 
 void ReqKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format)
 {
     info->m_formatProps = format;
+    TTK_INFO_STREAM(info->m_songId);
 }
