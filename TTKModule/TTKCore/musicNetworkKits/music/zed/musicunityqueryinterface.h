@@ -29,7 +29,7 @@ namespace ReqUnityInterface
     /*!
      * Read tags(size and bitrate and url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &type, const QString &id, const QString &quality, int bitrate);
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &type, const QString &id, int bitrate);
 
 }
 

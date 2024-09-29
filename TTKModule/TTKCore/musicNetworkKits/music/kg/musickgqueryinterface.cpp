@@ -218,25 +218,10 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &
 
     TTK_INFO_STREAM("parse song property in v3 module");
 
-    QString quality;
-    if(bitrate == TTK_BN_128)
+    if(bitrate == TTK_BN_128 || bitrate == TTK_BN_320 || bitrate == TTK_BN_1000)
     {
-        quality = "128k";
+        ReqUnityInterface::parseFromSongProperty(info, QUERY_KG_INTERFACE, hash, bitrate);
     }
-    else if(bitrate == TTK_BN_320)
-    {
-        quality = "320k";
-    }
-    else if(bitrate == TTK_BN_1000)
-    {
-        quality = "flac";
-    }
-    else
-    {
-        return;
-    }
-
-    ReqUnityInterface::parseFromSongProperty(info, "kg", hash, quality, bitrate);
 }
 
 static void parseSongProperty(TTK::MusicSongInformation *info, const QString &hash, int bitrate)

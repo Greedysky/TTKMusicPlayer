@@ -185,25 +185,12 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &
 
     TTK_INFO_STREAM("parse song property in v3 module");
 
-    QString quality;
-    if((format.contains("MP3128") || format.contains("128kmp3")) && bitrate == TTK_BN_128)
+    if(((format.contains("MP3128") || format.contains("128kmp3")) && bitrate == TTK_BN_128) ||
+       ((format.contains("MP3H") || format.contains("320kmp3")) && bitrate == TTK_BN_320) ||
+       ((format.contains("FLAC") || format.contains("2000kflac")) && bitrate == TTK_BN_1000))
     {
-        quality = "128k";
+        ReqUnityInterface::parseFromSongProperty(info, QUERY_KW_INTERFACE, info->m_songId, bitrate);
     }
-    else if((format.contains("MP3H") || format.contains("320kmp3")) && bitrate == TTK_BN_320)
-    {
-        quality = "320k";
-    }
-    else if((format.contains("FLAC") || format.contains("2000kflac")) && bitrate == TTK_BN_1000)
-    {
-        quality = "flac";
-    }
-    else
-    {
-        return;
-    }
-
-    ReqUnityInterface::parseFromSongProperty(info, "kw", info->m_songId, quality, bitrate);
 }
 
 static void parseSongProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
@@ -242,5 +229,4 @@ void ReqKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int 
 void ReqKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format)
 {
     info->m_formatProps = format;
-    TTK_INFO_STREAM(info->m_songId);
 }
