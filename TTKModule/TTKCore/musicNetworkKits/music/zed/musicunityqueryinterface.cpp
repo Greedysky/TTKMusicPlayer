@@ -1,6 +1,52 @@
 #include "musicunityqueryinterface.h"
 
 static constexpr const char *OS_PLUGINS_URL = "resource/plugins";
+static constexpr const char *OS_MODULE_A = "A";
+static constexpr const char *OS_MODULE_B = "B";
+
+static QString makeQualityValue(const QString &type, int bitrate)
+{
+    if(type == OS_MODULE_A)
+    {
+        switch(bitrate)
+        {
+        case TTK_BN_128: return "128k";
+        case TTK_BN_320: return "320k";
+        case TTK_BN_1000: return "flac";
+        default: return {};
+        }
+    }
+    else if(type == OS_MODULE_B)
+    {
+        switch(bitrate)
+        {
+        case TTK_BN_128: return "128";
+        case TTK_BN_320: return "320";
+        case TTK_BN_1000: return "999";
+        default: return {};
+        }
+    }
+    return {};
+}
+
+static QString makeModuleValue(const QString &type, const QString &module)
+{
+    if(type == OS_MODULE_A)
+    {
+        if(module == QUERY_WY_INTERFACE) return "wy";
+        else if(module == QUERY_KG_INTERFACE) return "kg";
+        else if(module == QUERY_KW_INTERFACE) return "kw";
+        else return {};
+    }
+    else if(type == OS_MODULE_B)
+    {
+        if(module == QUERY_WY_INTERFACE) return "wangyi";
+        else if(module == QUERY_KG_INTERFACE) return "kugou";
+        else if(module == QUERY_KW_INTERFACE) return "kuwo";
+        else return {};
+    }
+    return {};
+}
 
 //OVpCbTNnaHljODBhZ0hHUzNvejBGTmFJREdXVzRWWDJwREw4ckNSZGNrbz0=
 //Ukg1OFg2VUIzWDVQbWxYSkdYUHY1d21mOVZ3SlpERHhFYjFyQzREb29NTUFTZW55eVN1YVRnPT0=
@@ -134,84 +180,20 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
                     continue;
                 }
 
-                if(module == "A")
+                const QString &server = makeModuleValue(module, type);
+                const QString &quality = makeQualityValue(module, bitrate);
+
+                if(server.isEmpty() || quality.isEmpty())
                 {
-                    QString quality;
-                    if(bitrate == TTK_BN_128)
-                    {
-                        quality = "128k";
-                    }
-                    else if(bitrate == TTK_BN_320)
-                    {
-                        quality = "320k";
-                    }
-                    else if(bitrate == TTK_BN_1000)
-                    {
-                        quality = "flac";
-                    }
-                    else
-                    {
-                        continue;
-                    }
+                    continue;
+                }
 
-                    QString server;
-                    if(type == QUERY_WY_INTERFACE)
-                    {
-                        server = "wy";
-                    }
-                    else if(type == QUERY_KG_INTERFACE)
-                    {
-                        server = "kg";
-                    }
-                    else if(type == QUERY_KW_INTERFACE)
-                    {
-                        server = "kw";
-                    }
-                    else
-                    {
-                        continue;
-                    }
-
+                if(module == OS_MODULE_A)
+                {
                     parseSongPropertyA(info, key, TTK::Algorithm::mdII(url, false).arg(server, id, quality), quality, bitrate);
                 }
-                else if(module == "B")
+                else if(module == OS_MODULE_B)
                 {
-                    QString quality;
-                    if(bitrate == TTK_BN_128)
-                    {
-                        quality = "128";
-                    }
-                    else if(bitrate == TTK_BN_320)
-                    {
-                        quality = "320";
-                    }
-                    else if(bitrate == TTK_BN_1000)
-                    {
-                        quality = "999";
-                    }
-                    else
-                    {
-                        continue;
-                    }
-
-                    QString server;
-                    if(type == QUERY_WY_INTERFACE)
-                    {
-                        server = "wangyi";
-                    }
-                    else if(type == QUERY_KG_INTERFACE)
-                    {
-                        server = "kugou";
-                    }
-                    else if(type == QUERY_KW_INTERFACE)
-                    {
-                        server = "kuwo";
-                    }
-                    else
-                    {
-                        continue;
-                    }
-
                     parseSongPropertyB(info, TTK::Algorithm::mdII(url, false).arg(server, id, quality), bitrate);
                 }
             }
