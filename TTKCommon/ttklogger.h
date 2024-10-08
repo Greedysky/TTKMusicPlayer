@@ -63,31 +63,31 @@
 
 #define TTK_LOG_STREAM(msg) __TTK_LOG_OUTPUT__ << msg
 
-#define TTK_TRACE_STREAM(msg) { __TTK_BASE_STREAM__("I", msg); }
+#define TTK_TRACE_STREAM(msg) { __TTK_BASE_STREAM__("T", msg); }
 #define TTK_DEBUG_STREAM(msg) { __TTK_BASE_STREAM__("D", msg); }
-#define TTK_INFO_STREAM(msg)  { __TTK_BASE_STREAM__("W", msg); }
-#define TTK_WARN_STREAM(msg)  { __TTK_BASE_STREAM__("T", msg); }
+#define TTK_INFO_STREAM(msg)  { __TTK_BASE_STREAM__("I", msg); }
+#define TTK_WARN_STREAM(msg)  { __TTK_BASE_STREAM__("W", msg); }
 #define TTK_ERROR_STREAM(msg) { __TTK_BASE_STREAM__("E", msg); }
 #define TTK_FATAL_STREAM(msg) { __TTK_BASE_STREAM__("F", msg); }
 
-#define TTK_TRACE_STREAM_ONCE(msg) { __TTK_ONCE_STREAM__("I", msg) }
+#define TTK_TRACE_STREAM_ONCE(msg) { __TTK_ONCE_STREAM__("T", msg) }
 #define TTK_DEBUG_STREAM_ONCE(msg) { __TTK_ONCE_STREAM__("D", msg) }
-#define TTK_INFO_STREAM_ONCE(msg)  { __TTK_ONCE_STREAM__("W", msg) }
-#define TTK_WARN_STREAM_ONCE(msg)  { __TTK_ONCE_STREAM__("T", msg) }
+#define TTK_INFO_STREAM_ONCE(msg)  { __TTK_ONCE_STREAM__("I", msg) }
+#define TTK_WARN_STREAM_ONCE(msg)  { __TTK_ONCE_STREAM__("W", msg) }
 #define TTK_ERROR_STREAM_ONCE(msg) { __TTK_ONCE_STREAM__("E", msg) }
 #define TTK_FATAL_STREAM_ONCE(msg) { __TTK_ONCE_STREAM__("F", msg) }
 
-#define TTK_TRACE_STREAM_COUNT(count, msg) { __TTK_COUNT_STREAM__(count, "I", msg) }
+#define TTK_TRACE_STREAM_COUNT(count, msg) { __TTK_COUNT_STREAM__(count, "T", msg) }
 #define TTK_DEBUG_STREAM_COUNT(count, msg) { __TTK_COUNT_STREAM__(count, "D", msg) }
-#define TTK_INFO_STREAM_COUNT(count, msg)  { __TTK_COUNT_STREAM__(count, "W", msg) }
-#define TTK_WARN_STREAM_COUNT(count, msg)  { __TTK_COUNT_STREAM__(count, "T", msg) }
+#define TTK_INFO_STREAM_COUNT(count, msg)  { __TTK_COUNT_STREAM__(count, "I", msg) }
+#define TTK_WARN_STREAM_COUNT(count, msg)  { __TTK_COUNT_STREAM__(count, "W", msg) }
 #define TTK_ERROR_STREAM_COUNT(count, msg) { __TTK_COUNT_STREAM__(count, "E", msg) }
 #define TTK_FATAL_STREAM_COUNT(count, msg) { __TTK_COUNT_STREAM__(count, "F", msg) }
 
-#define TTK_TRACE_STREAM_PERIOD(period, msg) { __TTK_PERIOD_STREAM__(period, "I", msg) }
+#define TTK_TRACE_STREAM_PERIOD(period, msg) { __TTK_PERIOD_STREAM__(period, "T", msg) }
 #define TTK_DEBUG_STREAM_PERIOD(period, msg) { __TTK_PERIOD_STREAM__(period, "D", msg) }
-#define TTK_INFO_STREAM_PERIOD(period, msg)  { __TTK_PERIOD_STREAM__(period, "W", msg) }
-#define TTK_WARN_STREAM_PERIOD(period, msg)  { __TTK_PERIOD_STREAM__(period, "T", msg) }
+#define TTK_INFO_STREAM_PERIOD(period, msg)  { __TTK_PERIOD_STREAM__(period, "I", msg) }
+#define TTK_WARN_STREAM_PERIOD(period, msg)  { __TTK_PERIOD_STREAM__(period, "W", msg) }
 #define TTK_ERROR_STREAM_PERIOD(period, msg) { __TTK_PERIOD_STREAM__(period, "E", msg) }
 #define TTK_FATAL_STREAM_PERIOD(period, msg) { __TTK_PERIOD_STREAM__(period, "F", msg) }
 

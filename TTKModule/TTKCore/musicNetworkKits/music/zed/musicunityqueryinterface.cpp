@@ -151,9 +151,14 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
     QFile file(APPCACHE_DIR_FULL + OS_PLUGINS_URL);
     if(file.open(QIODevice::ReadOnly))
     {
-        TTK_ERROR_STREAM("Load unity plugins using local resource config");
+        TTK_INFO_STREAM("Load unity plugins using local resource config");
         bytes = file.readAll();
         file.close();
+    }
+    else
+    {
+        TTK_ERROR_STREAM("Load unity plugins resource config failed");
+        return;
     }
 
     QJson::Parser json;
