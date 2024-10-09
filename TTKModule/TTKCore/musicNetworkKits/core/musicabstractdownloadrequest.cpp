@@ -16,7 +16,7 @@ MusicAbstractDownLoadRequest::MusicAbstractDownLoadRequest(const QString &url, c
     }
     m_file = new QFile(m_savePath, this);
 
-    G_DOWNLOAD_MANAGER_PTR->connectNetworkMultiValue(this);
+    G_DOWNLOAD_MANAGER_PTR->connectMultiNetwork(this);
 
     m_speedTimer.setInterval(TTK_DN_S2MS);
     connect(&m_speedTimer, SIGNAL(timeout()), SLOT(updateDownloadSpeed()));
@@ -28,7 +28,7 @@ MusicAbstractDownLoadRequest::~MusicAbstractDownLoadRequest()
     {
         m_speedTimer.stop();
     }
-    G_DOWNLOAD_MANAGER_PTR->removeNetworkMultiValue(this);
+    G_DOWNLOAD_MANAGER_PTR->removeMultiNetwork(this);
 }
 
 void MusicAbstractDownLoadRequest::deleteAll()

@@ -317,11 +317,11 @@ void MusicCloudManagerTableWidget::reuploadFilesToServer(const QStringList &item
     uploadFilesToServer(items);
 }
 
-void MusicCloudManagerTableWidget::uploadProgress(const QString &time, qint64 bytesSent, qint64 bytesTotal)
+void MusicCloudManagerTableWidget::uploadProgress(const QString &time, qint64 percent, qint64 total)
 {
-    if(bytesTotal != 0)
+    if(total != 0)
     {
-        const int value = TTKStaticCast(int, (bytesSent * 1.0 / bytesTotal) * 100);
+        const int value = TTKStaticCast(int, (percent * 1.0 / total) * 100);
         const int row = FindUploadItemRow(time);
         if(row != -1)
         {

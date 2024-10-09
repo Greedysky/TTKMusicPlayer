@@ -1,4 +1,5 @@
 #include "musicdownloadrecordwidget.h"
+#include "musicconnectionpool.h"
 #include "musicwidgetheaders.h"
 
 MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
@@ -18,6 +19,13 @@ MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
 
     TTK::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
+
+    G_CONNECTION_PTR->setValue(className(), this);
+}
+
+MusicDownloadRecordTableWidget::~MusicDownloadRecordTableWidget()
+{
+    G_CONNECTION_PTR->removeValue(this);
 }
 
 void MusicDownloadRecordTableWidget::addCellItem(int index, const MusicSong &record)

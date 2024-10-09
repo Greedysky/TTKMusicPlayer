@@ -75,24 +75,24 @@ public:
     /*!
      * Set mutiple network connection object.
      */
-    void connectNetworkMultiValue(QObject *object);
+    void connectMultiNetwork(QObject *object);
     /*!
      * Remove mutiple network connection object.
      */
-    void removeNetworkMultiValue(QObject *object);
+    void removeMultiNetwork(QObject *object);
 
     /*!
      * Set data network connection object.
      */
-    void connectDownload(const MusicDownLoadPairData &pair);
+    void connectNetworkData(const MusicDownLoadPairData &pair);
     /*!
      * Reset data network connection object.
      */
-    void reconnectDownload(const MusicDownLoadPairData &pair);
+    void reconnectNetworkData(const MusicDownLoadPairData &pair);
     /*!
      * Remove data network connection object.
      */
-    void removeDownload(const MusicDownLoadPairData &pair);
+    void removeNetworkData(const MusicDownLoadPairData &pair);
 
 private Q_SLOTS:
     /*!
@@ -101,8 +101,8 @@ private Q_SLOTS:
     void downloadProgressChanged(float percent, const QString &total, qint64 time);
 
 private:
-    QObjectList m_queueList;
-    QList<MusicDownLoadPairData> m_pairList;
+    QObjectList m_objects;
+    QList<MusicDownLoadPairData> m_datas;
 
     TTK_DECLARE_SINGLETON_CLASS(MusicDownLoadManager)
 

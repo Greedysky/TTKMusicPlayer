@@ -89,8 +89,8 @@ void QSyncUploadData::receiveDataFromServer()
     }
 }
 
-void QSyncUploadData::uploadProgress(qint64 bytesSent, qint64 bytesTotal)
+void QSyncUploadData::uploadProgress(qint64 percent, qint64 total)
 {
     TTK_D(QSyncUploadData);
-    Q_EMIT uploadProgressChanged(d->m_uploadTime, bytesSent, bytesTotal);
+    Q_EMIT uploadProgressChanged(d->m_uploadTime, percent, total);
 }

@@ -130,7 +130,7 @@ public Q_SLOTS:
     /*!
      * Show upload progress.
      */
-    void uploadProgress(const QString &time, qint64 bytesSent, qint64 bytesTotal);
+    void uploadProgress(const QString &time, qint64 percent, qint64 total);
     /*!
      * All files upload finsihed.
      */

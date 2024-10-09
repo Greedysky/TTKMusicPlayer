@@ -49,7 +49,7 @@ void MusicDownloadDataRequest::startToRequest(const QString &url)
     if(m_downloadType == TTK::Download::Music && !m_redirection)
     {
         m_createTime = TTKDateTime::currentTimestamp();
-        G_DOWNLOAD_MANAGER_PTR->connectDownload(MusicDownLoadPairData(m_createTime, this, m_recordType));
+        G_DOWNLOAD_MANAGER_PTR->connectNetworkData(MusicDownLoadPairData(m_createTime, this, m_recordType));
         Q_EMIT createDownloadItem(m_savePath, m_createTime);
     }
 }

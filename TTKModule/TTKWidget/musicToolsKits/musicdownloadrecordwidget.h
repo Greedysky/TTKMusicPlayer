@@ -34,6 +34,10 @@ public:
      * Object constructor.
      */
     explicit MusicDownloadRecordTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicDownloadRecordTableWidget();
 
 private:
     /*!

@@ -4,9 +4,9 @@
 #include "musicdownloadrecordwidget.h"
 #include "musiccloudtablewidget.h"
 
-void MusicDownLoadManager::connectNetworkMultiValue(QObject *object)
+void MusicDownLoadManager::connectMultiNetwork(QObject *object)
 {
-    m_queueList << object;
+    m_objects << object;
     const QObject *to = G_CONNECTION_PTR->value(MusicDownloadStatusModule::className());
     if(to)
     {
@@ -14,16 +14,16 @@ void MusicDownLoadManager::connectNetworkMultiValue(QObject *object)
     }
 }
 
-void MusicDownLoadManager::removeNetworkMultiValue(QObject *object)
+void MusicDownLoadManager::removeMultiNetwork(QObject *object)
 {
-    const int index = m_queueList.indexOf(object);
+    const int index = m_objects.indexOf(object);
     if(index != -1)
     {
-        m_queueList.takeAt(index);
+        m_objects.takeAt(index);
     }
 }
 
-void MusicDownLoadManager::connectDownload(const MusicDownLoadPairData &pair)
+void MusicDownLoadManager::connectNetworkData(const MusicDownLoadPairData &pair)
 {
     QString className;
     switch(pair.m_type)
@@ -42,15 +42,15 @@ void MusicDownLoadManager::connectDownload(const MusicDownLoadPairData &pair)
     }
 
     connect(pair.m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), SLOT(downloadProgressChanged(float, QString, qint64)));
-    m_pairList << pair;
+    m_datas << pair;
 }
 
-void MusicDownLoadManager::reconnectDownload(const MusicDownLoadPairData &pair)
+void MusicDownLoadManager::reconnectNetworkData(const MusicDownLoadPairData &pair)
 {
-    const int index = m_pairList.indexOf(pair);
+    const int index = m_datas.indexOf(pair);
     if(index != -1)
     {
-        MusicDownLoadPairData *p = &m_pairList[index];
+        MusicDownLoadPairData *p = &m_datas[index];
         disconnect(p->m_object, SIGNAL(createDownloadItem(QString, qint64)), pair.m_object, SLOT(createDownloadItem(QString, qint64)));
         disconnect(p->m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), pair.m_object, SLOT(downloadProgressChanged(float, QString, qint64)));
 
@@ -59,12 +59,12 @@ void MusicDownLoadManager::reconnectDownload(const MusicDownLoadPairData &pair)
     }
 }
 
-void MusicDownLoadManager::removeDownload(const MusicDownLoadPairData &pair)
+void MusicDownLoadManager::removeNetworkData(const MusicDownLoadPairData &pair)
 {
-    const int index = m_pairList.indexOf(pair);
+    const int index = m_datas.indexOf(pair);
     if(index != -1)
     {
-        m_pairList.takeAt(index);
+        m_datas.takeAt(index);
     }
 }
 
@@ -73,6 +73,6 @@ void MusicDownLoadManager::downloadProgressChanged(float percent, const QString 
     Q_UNUSED(total);
     if(percent >= 100)
     {
-        removeDownload(MusicDownLoadPairData(time));
+        removeNetworkData(MusicDownLoadPairData(time));
     }
 }

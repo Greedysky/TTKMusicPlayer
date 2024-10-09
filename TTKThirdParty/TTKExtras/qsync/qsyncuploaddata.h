@@ -56,7 +56,7 @@ private Q_SLOTS:
     /*!
      * Show upload progress.
      */
-    void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
+    void uploadProgress(qint64 percent, qint64 total);
 
 };
 

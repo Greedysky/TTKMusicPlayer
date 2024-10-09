@@ -34,6 +34,10 @@ public:
      * Object constructor.
      */
     explicit MusicCloudDownloadTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicCloudDownloadTableWidget();
 
 private:
     /*!
