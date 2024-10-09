@@ -36,7 +36,7 @@ public:
     /*!
      * Get uplaod data operator.
      */
-    void uploadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath);
+    void request(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath);
 
 Q_SIGNALS:
     /*!

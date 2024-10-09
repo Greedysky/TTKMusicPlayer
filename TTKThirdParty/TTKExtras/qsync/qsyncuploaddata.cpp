@@ -26,7 +26,7 @@ QSyncUploadData::QSyncUploadData(QNetworkAccessManager *networkManager, QObject 
     d->m_manager = networkManager;
 }
 
-void QSyncUploadData::uploadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
+void QSyncUploadData::request(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
 {
     TTK_D(QSyncUploadData);
     d->m_uploadTime = time;

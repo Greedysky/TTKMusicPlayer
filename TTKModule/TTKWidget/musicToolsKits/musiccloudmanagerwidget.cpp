@@ -196,26 +196,34 @@ void MusicCloudManagerTableWidget::deleteFileFinished(bool state)
 void MusicCloudManagerTableWidget::updateListFromServer()
 {
     Q_EMIT updateLabelMessage(tr("List updating"));
-    m_syncListData->listDataOperator(SYNC_MUSIC_BUCKET);
+    m_syncListData->request(SYNC_MUSIC_BUCKET);
 }
 
 void MusicCloudManagerTableWidget::deleteFileFromServer()
 {
-    if(!isValid() || m_uploading)
+    if(m_uploading)
+    {
+        MusicToastLabel::popup(tr("Current mode is uploading files"));
+        return;
+    }
+
+    if(!isValid())
     {
         MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 
-    QTableWidgetItem *it = item(currentRow(), 0);
+    const int index = currentRow();
+    QTableWidgetItem *it = item(index, 0);
     if(it == nullptr)
     {
         return;
     }
 
     const MusicCloudDataItem &data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
-    removeRow(currentRow());
-    m_syncDeleteData->deleteDataOperator(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
+    removeRow(index);
+
+    m_syncDeleteData->request(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
     m_totalFileSzie -= data.m_dataItem.m_size;
     Q_EMIT updataSizeLabel(m_totalFileSzie);
 
@@ -243,7 +251,7 @@ void MusicCloudManagerTableWidget::deleteFilesFromServer()
 
         const MusicCloudDataItem &data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
         removeRow(index);
-        m_syncDeleteData->deleteDataOperator(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
+        m_syncDeleteData->request(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
 
         m_totalFileSzie -= data.m_dataItem.m_size;
         Q_EMIT updataSizeLabel(m_totalFileSzie);
@@ -503,7 +511,7 @@ void MusicCloudManagerTableWidget::startToUploadFile()
         return;
     }
 
-    m_syncUploadData->uploadDataOperator(m_currentDataItem.m_id, SYNC_MUSIC_BUCKET, m_currentDataItem.m_dataItem.m_name, m_currentDataItem.m_path);
+    m_syncUploadData->request(m_currentDataItem.m_id, SYNC_MUSIC_BUCKET, m_currentDataItem.m_dataItem.m_name, m_currentDataItem.m_path);
 }
 
 int MusicCloudManagerTableWidget::FindUploadItemRow(const QString &time) const

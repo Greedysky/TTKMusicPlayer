@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>589</width>
-    <height>398</height>
+    <height>428</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>4</x>
      <y>4</y>
      <width>581</width>
-     <height>390</height>
+     <height>420</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -67,7 +67,7 @@
      <x>4</x>
      <y>29</y>
      <width>581</width>
-     <height>365</height>
+     <height>395</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -78,7 +78,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>318</y>
+      <y>348</y>
       <width>100</width>
       <height>35</height>
      </rect>
@@ -163,6 +163,22 @@ QLabel{background:transparent;}</string>
       <width>80</width>
       <height>25</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="infoLabel">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>320</y>
+      <width>561</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>(Note: Batch download in excessive requests, which may lead to download failures)</string>
     </property>
    </widget>
   </widget>

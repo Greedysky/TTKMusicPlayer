@@ -10,7 +10,7 @@ QSyncListData::QSyncListData(QNetworkAccessManager *networkManager, QObject *par
 
 }
 
-void QSyncListData::listDataOperator(const QString &bucket)
+void QSyncListData::request(const QString &bucket)
 {
     TTK_D(QSyncDataInterface);
     const QString &method = "GET";

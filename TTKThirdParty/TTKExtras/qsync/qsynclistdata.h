@@ -36,7 +36,7 @@ public:
     /*!
      * List data to operator.
      */
-    void listDataOperator(const QString &bucket);
+    void request(const QString &bucket);
 
 Q_SIGNALS:
     /*!

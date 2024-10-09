@@ -7,7 +7,7 @@ QSyncDeleteData::QSyncDeleteData(QNetworkAccessManager *networkManager, QObject 
 
 }
 
-void QSyncDeleteData::deleteDataOperator(const QString &bucket, const QString &fileName)
+void QSyncDeleteData::request(const QString &bucket, const QString &fileName)
 {
     TTK_D(QSyncDataInterface);
     const QString &method = "DELETE";

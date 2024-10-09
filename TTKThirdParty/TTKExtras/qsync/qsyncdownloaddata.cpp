@@ -28,7 +28,7 @@ QSyncDownloadData::QSyncDownloadData(QNetworkAccessManager *networkManager, QObj
     d->m_manager = networkManager;
 }
 
-void QSyncDownloadData::downloadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
+void QSyncDownloadData::request(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
 {
     TTK_D(QSyncDownloadData);
     d->m_downloadTime = time;

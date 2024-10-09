@@ -36,7 +36,7 @@ public:
     /*!
      * Get download data operator.
      */
-    void downloadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath);
+    void request(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath);
 
     /*!
      * Get download url request.
