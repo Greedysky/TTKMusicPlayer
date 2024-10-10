@@ -47,7 +47,7 @@ void QSyncDownloadData::request(const QString &time, const QString &bucket, cons
     d->insertAuthorization(method, headers, resource);
 
     QNetworkRequest request;
-    request.setUrl("http://" + host + url);
+    request.setUrl(HTTP_PROTOCOL + host + url);
 
     for(auto it = headers.constBegin(); it != headers.constEnd(); ++it)
     {
@@ -80,13 +80,13 @@ QString QSyncDownloadData::downloadUrl(const QString &bucket, const QString &fil
     const QString &host = bucket + TTK_DOT + QSyncConfig::HOST;
 
     TTKStringMap headers;
+    headers.insert("Host", host);
     headers.insert("Date", QString::number(deadline));
     headers.insert("Content-Type", contentType);
-    headers.insert("Host", host);
 
     QString signature = QSyncUtils::authorizationCode(QSyncConfig::KEY, method, headers, resource);
     signature.replace("+", "%2B");
-    return QString("http://%1/%2?OSSAccessKeyId=%3&Expires=%4&Signature=%5").arg(host, encodeKey, QSyncConfig::NAME).arg(deadline).arg(signature);
+    return QString("%1%2/%3?OSSAccessKeyId=%4&Expires=%5&Signature=%6").arg(HTTP_PROTOCOL, host, encodeKey, QSyncConfig::NAME).arg(deadline).arg(signature);
 }
 
 void QSyncDownloadData::receiveDataFromServer()

@@ -85,9 +85,9 @@ void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item
     setRowCount(count);
 
     MusicSong record;
-    record.setName(item.m_dataItem.m_name);
+    record.setName(item.m_data.m_name);
     record.setPath(item.m_path);
-    record.setSizeStr(TTK::Number::sizeByteToLabel(item.m_dataItem.m_size));
+    record.setSizeStr(TTK::Number::sizeByteToLabel(item.m_data.m_size));
 
     addCellItem(count - 1, record);
 }

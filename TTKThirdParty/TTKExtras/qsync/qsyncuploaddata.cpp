@@ -37,14 +37,14 @@ void QSyncUploadData::request(const QString &time, const QString &bucket, const 
     const QString &host = bucket + TTK_DOT + QSyncConfig::HOST;
 
     TTKStringMap headers;
-    headers.insert("Date", QSyncUtils::GMT());
     headers.insert("Host", host);
+    headers.insert("Date", QSyncUtils::GMT());
     headers.insert("Content-Type", "charset=utf-8");
 
     d->insertAuthorization(method, headers, resource);
 
     QNetworkRequest request;
-    request.setUrl("http://" + host + url);
+    request.setUrl(HTTP_PROTOCOL + host + url);
 
     for(auto it = headers.constBegin(); it != headers.constEnd(); ++it)
     {

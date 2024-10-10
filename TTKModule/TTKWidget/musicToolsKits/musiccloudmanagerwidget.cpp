@@ -150,7 +150,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItemList &i
         data.m_id = QString::number(TTKDateTime::currentTimestamp());
         data.m_path = item.m_name.trimmed();
         data.m_state = MusicCloudDataItem::State::Successed;
-        data.m_dataItem = item;
+        data.m_data = item;
         m_totalFileSzie += item.m_size;
 
         addCellItem(data);
@@ -176,7 +176,7 @@ void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
             MusicCloudDataItem data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
             data.m_state = MusicCloudDataItem::State::Successed;
             it->setData(TTK_DATA_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
-            m_totalFileSzie += data.m_dataItem.m_size;
+            m_totalFileSzie += data.m_data.m_size;
         }
         Q_EMIT updataSizeLabel(m_totalFileSzie);
     }
@@ -223,8 +223,8 @@ void MusicCloudManagerTableWidget::deleteFileFromServer()
     const MusicCloudDataItem &data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
     removeRow(index);
 
-    m_syncDeleteData->request(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
-    m_totalFileSzie -= data.m_dataItem.m_size;
+    m_syncDeleteData->request(SYNC_MUSIC_BUCKET, data.m_data.m_name);
+    m_totalFileSzie -= data.m_data.m_size;
     Q_EMIT updataSizeLabel(m_totalFileSzie);
 
     createUploadFileModule();
@@ -234,6 +234,7 @@ void MusicCloudManagerTableWidget::deleteFilesFromServer()
 {
     if(m_uploading)
     {
+        MusicToastLabel::popup(tr("Current mode is uploading files"));
         return;
     }
 
@@ -251,9 +252,9 @@ void MusicCloudManagerTableWidget::deleteFilesFromServer()
 
         const MusicCloudDataItem &data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
         removeRow(index);
-        m_syncDeleteData->request(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
 
-        m_totalFileSzie -= data.m_dataItem.m_size;
+        m_syncDeleteData->request(SYNC_MUSIC_BUCKET, data.m_data.m_name);
+        m_totalFileSzie -= data.m_data.m_size;
         Q_EMIT updataSizeLabel(m_totalFileSzie);
     }
 
@@ -275,9 +276,9 @@ void MusicCloudManagerTableWidget::downloadFileFromServer()
     }
 
     const MusicCloudDataItem &data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
-    const QString &format = QFileInfo(data.m_dataItem.m_name).completeSuffix();
-    const QString &baseName = QFileInfo(data.m_dataItem.m_name).completeBaseName();
-    const QString &url = m_syncDownloadData->downloadUrl(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
+    const QString &format = QFileInfo(data.m_data.m_name).completeSuffix();
+    const QString &baseName = QFileInfo(data.m_data.m_name).completeBaseName();
+    const QString &url = m_syncDownloadData->downloadUrl(SYNC_MUSIC_BUCKET, data.m_data.m_name);
 
     int index = 1;
     QString downloadPath;
@@ -364,7 +365,7 @@ void MusicCloudManagerTableWidget::showFileInformationWidget()
 
     MusicCloudFileInformationWidget widget;
     MusicCloudDataItem data(it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>());
-    widget.setFileInformation(&data.m_dataItem);
+    widget.setFileInformation(&data.m_data);
     widget.exec();
 }
 
@@ -413,25 +414,25 @@ void MusicCloudManagerTableWidget::addCellItem(const MusicCloudDataItem &data)
     setItem(row, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(data.m_dataItem.m_name);
+    item->setToolTip(data.m_data.m_name);
     item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 20));
     item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(row, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setData(TTK_PROGRESS_ROLE, data.m_dataItem.m_hash.isEmpty() ? 0 : 100);
+    item->setData(TTK_PROGRESS_ROLE, data.m_data.m_hash.isEmpty() ? 0 : 100);
     setItem(row, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(TTK::Number::sizeByteToLabel(data.m_dataItem.m_size));
+    item->setToolTip(TTK::Number::sizeByteToLabel(data.m_data.m_size));
     item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(3) - 5));
     item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
     setItem(row, 3, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(data.m_dataItem.m_putTime);
+    item->setToolTip(data.m_data.m_putTime);
     item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(4) - 5));
     item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
@@ -456,9 +457,9 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
         item.m_id = QString::number(TTKDateTime::currentTimestamp());
         item.m_path = path;
         item.m_state = MusicCloudDataItem::State::Waited;
-        item.m_dataItem.m_name = fin.fileName().trimmed();
-        item.m_dataItem.m_putTime = fin.lastModified().toString(TTK_DATE_TIMEM_FORMAT);
-        item.m_dataItem.m_size = fin.size();
+        item.m_data.m_name = fin.fileName().trimmed();
+        item.m_data.m_putTime = fin.lastModified().toString(TTK_DATE_TIMEM_FORMAT);
+        item.m_data.m_size = fin.size();
 
         TTK::Core::sleep(TTK_DN_MS);
 
@@ -511,7 +512,7 @@ void MusicCloudManagerTableWidget::startToUploadFile()
         return;
     }
 
-    m_syncUploadData->request(m_currentDataItem.m_id, SYNC_MUSIC_BUCKET, m_currentDataItem.m_dataItem.m_name, m_currentDataItem.m_path);
+    m_syncUploadData->request(m_currentDataItem.m_id, SYNC_MUSIC_BUCKET, m_currentDataItem.m_data.m_name, m_currentDataItem.m_path);
 }
 
 int MusicCloudManagerTableWidget::FindUploadItemRow(const QString &time) const
