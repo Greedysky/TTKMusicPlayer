@@ -10,8 +10,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicSongDlnaTransferWidget),
       m_isPlaying(false),
-      m_currentPlayIndex(-1),
-      m_songs(nullptr)
+      m_currentPlayIndex(-1)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -125,22 +124,22 @@ void MusicSongDlnaTransferWidget::playSongClicked()
         return;
     }
 
-    MusicSongItemList songs;
-    MusicSongsContainerWidget::instance()->querySongItemList(songs);
+    MusicSongItemList items;
+    MusicSongsContainerWidget::instance()->querySongItemList(items);
 
-    if(songs.empty())
+    if(items.empty())
     {
         return;
     }
 
-    m_songs = &songs[0].m_songs;
+    MusicSongList *songs = &items[0].m_songs;
     ++m_currentPlayIndex;
-    if(m_currentPlayIndex < 0 || m_currentPlayIndex >= m_songs->count())
+    if(m_currentPlayIndex < 0 || m_currentPlayIndex >= songs->count())
     {
         m_currentPlayIndex = 0;
     }
 
-    const MusicSong &song = (*m_songs)[m_currentPlayIndex];
+    const MusicSong &song = (*songs)[m_currentPlayIndex];
     const QFileInfo fin(song.path());
 
     QDlnaClient *client = m_dlnaFinder->client(index);

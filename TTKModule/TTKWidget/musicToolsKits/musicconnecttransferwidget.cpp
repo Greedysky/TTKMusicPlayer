@@ -70,16 +70,16 @@ void MusicConnectTransferWidget::setDeviceInfoItem(MusicDeviceInfoItem *item)
 
 void MusicConnectTransferWidget::initialize()
 {
-    MusicSongItemList songs;
-    MusicSongsContainerWidget::instance()->querySongItemList(songs);
+    MusicSongItemList items;
+    MusicSongsContainerWidget::instance()->querySongItemList(items);
 
     m_ui->playListLayoutWidget->setStyleSheet(TTK::UI::BackgroundStyle01);
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     QtButtonGroupConnect(buttonGroup, this, currentPlaylistSelected, TTK_SLOT);
 
-    for(int i = 0; i < songs.count(); ++i)
+    for(int i = 0; i < items.count(); ++i)
     {
-        QPushButton *button = new QPushButton(QString("%1(%2)").arg(songs[i].m_itemName).arg(songs[i].m_songs.count()), this);
+        QPushButton *button = new QPushButton(QString("%1(%2)").arg(items[i].m_itemName).arg(items[i].m_songs.count()), this);
         button->setStyleSheet(TTK::UI::PushButtonStyle04);
         button->setCursor(QCursor(Qt::PointingHandCursor));
         button->setFixedSize(120, 25);
@@ -91,7 +91,7 @@ void MusicConnectTransferWidget::initialize()
     }
 
     int count = 0;
-    for(const MusicSongItem &item : qAsConst(songs))
+    for(const MusicSongItem &item : qAsConst(items))
     {
         count += item.m_songs.count();
     }
@@ -148,17 +148,17 @@ void MusicConnectTransferWidget::itemSelectedChanged()
 
 void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 {
-    MusicSongItemList songs;
-    MusicSongsContainerWidget::instance()->querySongItemList(songs);
+    MusicSongItemList items;
+    MusicSongsContainerWidget::instance()->querySongItemList(items);
 
-    if(index >= songs.count() || index < 0)
+    if(index >= items.count() || index < 0)
     {
         return;
     }
 
     clearSearchResult();
     m_ui->searchLineEdit->clear();
-    m_containerItems = songs[m_currentIndex = index].m_songs;
+    m_containerItems = items[m_currentIndex = index].m_songs;
     addCellItems(m_containerItems);
 }
 

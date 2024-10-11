@@ -144,11 +144,11 @@ MusicSongItemSelectedAreaWidget::~MusicSongItemSelectedAreaWidget()
 
 MusicSongList MusicSongItemSelectedAreaWidget::selectedSongItems() const
 {
-    MusicSongItemList songs;
-    MusicSongsContainerWidget::instance()->querySongItemList(songs);
+    MusicSongItemList items;
+    MusicSongsContainerWidget::instance()->querySongItemList(items);
 
     MusicSongList selectedSongs;
-    for(const MusicSongItem &item : qAsConst(songs))
+    for(const MusicSongItem &item : qAsConst(items))
     {
         if(m_selected)
         {
@@ -170,14 +170,14 @@ MusicSongList MusicSongItemSelectedAreaWidget::selectedSongItems() const
 
 void MusicSongItemSelectedAreaWidget::modifiedItemButtonClicked()
 {
-    MusicSongItemList songs;
-    MusicSongsContainerWidget::instance()->querySongItemList(songs);
+    MusicSongItemList items;
+    MusicSongsContainerWidget::instance()->querySongItemList(items);
 
     m_selected = true;
 
     MusicSongItemSelectedDialog widget;
     connect(&widget, SIGNAL(itemListChanged(TTKIntList)), SLOT(itemListChanged(TTKIntList)));
-    widget.addCellItems(&songs);
+    widget.addCellItems(&items);
     widget.exec();
 
     Q_EMIT confirmChanged();

@@ -80,7 +80,6 @@ private:
     Ui::MusicSongDlnaTransferWidget *m_ui;
     bool m_isPlaying;
     int m_currentPlayIndex;
-    MusicSongList *m_songs;
     QDlnaFinder *m_dlnaFinder;
     QDlnaFileServer *m_dlnaFileServer;
 

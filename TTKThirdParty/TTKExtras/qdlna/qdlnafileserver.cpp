@@ -63,15 +63,22 @@ QString QDlnaFileServer::localAddress(const QString &prefix) const
     {
       if(address.toString().contains(value))
       {
-          return QString("http://%1:11111/").arg(address.toString());
+          return QString("http://%1:11111/music/").arg(address.toString());
       }
     }
-    return "http://0.0.0.0:11111/";
+    return "http://0.0.0.0:11111/music/";
 }
 
 void QDlnaFileServer::handleRequest(QHttpRequest *request, QHttpResponse *response)
 {
     TTK_D(QDlnaFileServer);
+    if(d->m_prefix.isEmpty())
+    {
+        response->writeHead(500);
+        response->end("Music path prefix is empty");
+        return;
+    }
+
     const QRegExp regx("^/music/(.*)$");
     if(regx.indexIn(request->path()) != -1)
     {
