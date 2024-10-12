@@ -32,6 +32,7 @@ QDlnaFinderPrivate::QDlnaFinderPrivate()
 
 QDlnaFinderPrivate::~QDlnaFinderPrivate()
 {
+    m_udpSock->disconnectFromHost();
     delete m_udpSock;
     removeClients();
 }

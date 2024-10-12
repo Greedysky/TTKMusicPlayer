@@ -26,6 +26,7 @@ namespace Ui {
 class MusicSongDlnaTransferWidget;
 }
 
+class QDlnaClient;
 class QDlnaFinder;
 class QDlnaFileServer;
 
@@ -77,8 +78,14 @@ public Q_SLOTS:
     void playNext();
 
 private:
+    /*!
+     * Get current selected client.
+     */
+    QDlnaClient *getClient() const;
+
+private:
     Ui::MusicSongDlnaTransferWidget *m_ui;
-    bool m_isPlaying;
+    TTK::PlayState m_state;
     int m_currentPlayIndex;
     QDlnaFinder *m_dlnaFinder;
     QDlnaFileServer *m_dlnaFileServer;

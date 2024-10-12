@@ -19,14 +19,12 @@ class QDlnaClientPrivate : public TTKPrivate<QDlnaClient>
 {
 public:
     QDlnaClientPrivate();
-    ~QDlnaClientPrivate();
 
     void initialize(const QString &data);
     bool connectServer();
 
     bool m_isConnected;
 
-    QDlnaXml *m_xml;
     QString m_serverIP, m_serverPort;
     QString m_smp, m_controlURL;
     QString m_friendlyName;
@@ -35,15 +33,9 @@ public:
 };
 
 QDlnaClientPrivate::QDlnaClientPrivate()
-    : m_isConnected(false),
-      m_xml(new QDlnaXml)
+    : m_isConnected(false)
 {
 
-}
-
-QDlnaClientPrivate::~QDlnaClientPrivate()
-{
-    delete m_xml;
 }
 
 void QDlnaClientPrivate::initialize(const QString &data)
@@ -81,24 +73,23 @@ void QDlnaClientPrivate::initialize(const QString &data)
 
 bool QDlnaClientPrivate::connectServer()
 {
-    const QString &request = QDlnaHelper::MakeRequest("GET", m_smp, 0, {}, m_serverIP, m_serverPort);
+    const QString &request = QDlnaHelper::makeRequest("GET", m_smp, 0, {}, m_serverIP, m_serverPort);
     const QString &response = QDlnaHelper::makeSocketGetReply(m_serverIP, m_serverPort, request);
     TTK_INFO_STREAM(m_serverIP << m_serverPort << m_smp << response);
-    const int code = QDlnaHelper::GetResponseCode(response);
-    if(code != 200)
+    if(!QDlnaHelper::isValid(response))
     {
         return false;
     }
 
-    const QString &body = QDlnaHelper::removeHttpHeader(response);
-    if(!m_xml->fromString(m_xml->tagNameToLower(body)))
+    QDlnaXml xml;
+    if(!xml.fromString(xml.tagNameToLower(QDlnaHelper::removeHttpHeader(response))))
     {
         return false;
     }
     //
     for(const QString &name : qAsConst(FRIENS_NAMES))
     {
-        m_friendlyName = m_xml->readTagNameValue(name);
+        m_friendlyName = xml.readTagNameValue(name);
         if(!m_friendlyName.isEmpty())
         {
             break;
@@ -111,7 +102,7 @@ bool QDlnaClientPrivate::connectServer()
     //
     for(const QString &name : qAsConst(AVT_NAMES))
     {
-        QDlnaService server = m_xml->readServiceTag(name, "server");
+        const QDlnaService &server = xml.readServiceTag(name, "server");
         if(!server.isEmpty())
         {
             m_services.insert(AVTRANSPORT, server);
@@ -121,7 +112,7 @@ bool QDlnaClientPrivate::connectServer()
     //
     for(const QString &name : qAsConst(AVT_NAMES))
     {
-        QDlnaService server = m_xml->readServiceTag(name, "service");
+        const QDlnaService &server = xml.readServiceTag(name, "service");
         if(!server.isEmpty())
         {
             m_services.insert(AVTRANSPORT, server);
@@ -150,19 +141,19 @@ QDlnaClient::QDlnaClient(const QString &data)
     d->initialize(data);
 }
 
-QString QDlnaClient::server()
+QString QDlnaClient::server() const
 {
     TTK_D(QDlnaClient);
     return d->m_serverIP;
 }
 
-QString QDlnaClient::serverName()
+QString QDlnaClient::serverName() const
 {
     TTK_D(QDlnaClient);
     return d->m_friendlyName;
 }
 
-bool QDlnaClient::connect()
+bool QDlnaClient::connect() const
 {
     TTK_D(QDlnaClient);
     return d->connectServer();
@@ -174,14 +165,13 @@ bool QDlnaClient::isConnected() const
     return d->m_isConnected;
 }
 
-QString QDlnaClient::tryToPlayFile(const QString &url)
+bool QDlnaClient::tryToPlayFile(const QString &url) const
 {
     uploadFileToPlay(url);
-    const QString &playState = startPlay(0);
-    return playState;
+    return play();
 }
 
-QString QDlnaClient::uploadFileToPlay(const QString &url)
+bool QDlnaClient::uploadFileToPlay(const QString &url) const
 {
     TTK_D(QDlnaClient);
     //Later we will send a message to the DLNA server to start the file playing
@@ -192,66 +182,79 @@ QString QDlnaClient::uploadFileToPlay(const QString &url)
     body += "<CurrentURI>" + play_url.replace(TTK_SPACE, "%20") + "</CurrentURI>\n";
     body += "</u:SetAVTransportURI>\n";
     body += XML_FOOT + "\n";
-    const QString &request = QDlnaHelper::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI", d->m_serverIP,d->m_serverPort) + body;
+    const QString &request = QDlnaHelper::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI", d->m_serverIP,d->m_serverPort) + body;
     TTK_INFO_STREAM(request);
-    return QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
+    return QDlnaHelper::isValid(QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
 
-QString QDlnaClient::startPlay(int instance)
+bool QDlnaClient::play(int instance) const
 {
     TTK_D(QDlnaClient);
     //Start playing the new upload film or music track
     QString body = XML_HEAD;
     body += "<u:Play xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>"+ QString::number(instance) + "</InstanceID><Speed>1</Speed></u:Play>\n";
     body += XML_FOOT + "\n";
-    const QString &request = QDlnaHelper::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Play", d->m_serverIP, d->m_serverPort) + body;
-    return QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
+    const QString &request = QDlnaHelper::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Play", d->m_serverIP, d->m_serverPort) + body;
+    return QDlnaHelper::isValid(QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
 
-QString QDlnaClient::stopPlay(int instance)
-{
-    TTK_D(QDlnaClient);
-    //Called to stop playing a movie or a music track
-    QString body = XML_HEAD;
-    body += "<u:Stop xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:Stop>\n";
-    body += XML_FOOT + "\n";
-    const QString &request = QDlnaHelper::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Stop", d->m_serverIP, d->m_serverPort) + body;
-    return QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
-}
-
-QString QDlnaClient::pause(int instance)
+bool QDlnaClient::pause(int instance) const
 {
     TTK_D(QDlnaClient);
     //Called to pause playing a movie or a music track
     QString body = XML_HEAD;
     body += "<u:Pause xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:Pause>\n";
     body += XML_FOOT + "\n";
-    const QString &request = QDlnaHelper::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Pause", d->m_serverIP, d->m_serverPort) + body;
-    return QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
+    const QString &request = QDlnaHelper::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Pause", d->m_serverIP, d->m_serverPort) + body;
+    return QDlnaHelper::isValid(QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
 
-QString QDlnaClient::position()
+bool QDlnaClient::stop(int instance) const
+{
+    TTK_D(QDlnaClient);
+    //Called to stop playing a movie or a music track
+    QString body = XML_HEAD;
+    body += "<u:Stop xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:Stop>\n";
+    body += XML_FOOT + "\n";
+    const QString &request = QDlnaHelper::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Stop", d->m_serverIP, d->m_serverPort) + body;
+    return QDlnaHelper::isValid(QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
+}
+
+bool QDlnaClient::position() const
 {
     TTK_D(QDlnaClient);
     //Returns the current position for the track that is playing on the DLNA server
     const QString &body = XML_HEAD + "<m:GetPositionInfo xmlns:m=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID xmlns:dt=\"urn:schemas-microsoft-com:datatypes\" dt:dt=\"ui4\">0</InstanceID></m:GetPositionInfo>" + XML_FOOT + "\n";
-    const QString &request = QDlnaHelper::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#GetPositionInfo", d->m_serverIP, d->m_serverPort) + body;
-    return QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
+    const QString &request = QDlnaHelper::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#GetPositionInfo", d->m_serverIP, d->m_serverPort) + body;
+    return QDlnaHelper::isValid(QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
 
-int QDlnaClient::totalSeconds(const QString &value)
+bool QDlnaClient::positionInfo(qint64 &position, qint64 &duration, int instance) const
 {
-    //Convert the time left for the track to play back to seconds
-    const QStringList &data_list = value.split(TTK_DOT);
-    if(data_list.count() >= 2)
+    TTK_D(QDlnaClient);
+    //Returns the current position for the track that is playing on the DLNA server
+    QString body = XML_HEAD;
+    body += "<u:GetPositionInfo xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:GetPositionInfo>\n";
+    body += XML_FOOT + "\n";
+    const QString &request = QDlnaHelper::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#GetPositionInfo", d->m_serverIP, d->m_serverPort) + body;
+    const QString &response =  QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
+    if(!QDlnaHelper::isValid(response))
     {
-        const QStringList &info_list = data_list[1].split(":");
-        if(info_list.count() >= 2)
-        {
-            const int mins = info_list[0].toInt();
-            const int secs = info_list[1].toInt();
-            return mins * 60 + secs;
-        }
+        return false;
     }
-    return 0;
+
+    QDlnaXml xml;
+    if(!xml.fromString(QDlnaHelper::removeHttpHeader(response)))
+    {
+        return false;
+    }
+
+    position = totalSeconds(xml.readTagNameValue("Relime"));
+    duration = totalSeconds(xml.readTagNameValue("TrackDuration"));
+    return true;
+}
+
+qint64 QDlnaClient::totalSeconds(const QString &value) const
+{
+    return QDateTime::fromString(value, TTK_TIMES_FORMAT).toSecsSinceEpoch();
 }

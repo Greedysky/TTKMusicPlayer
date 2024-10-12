@@ -27,21 +27,26 @@
 namespace QDlnaHelper
 {
     /*!
-     * Make request.
-     */
-    QString MakeRequest(const QString &methord, const QString &url, int length, const QString &soapAction, const QString &ip, const QString &port);
-    /*!
      * Make socket get reply.
      */
     QString makeSocketGetReply(const QString &ip, const QString &port, const QString &data);
     /*!
+     * Make request.
+     */
+    QString makeRequest(const QString &methord, const QString &url, int length, const QString &soapAction, const QString &ip, const QString &port);
+    /*!
      * Remove http header.
      */
     QString removeHttpHeader(const QString &data);
+
     /*!
      * Get response code.
      */
-    int GetResponseCode(const QString &data);
+    bool isValid(const QString &data);
+    /*!
+     * Get response code.
+     */
+    int getResponseCode(const QString &data);
 
 }
 

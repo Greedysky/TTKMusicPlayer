@@ -31,21 +31,23 @@ class TTK_MODULE_EXPORT QDlnaClient
 public:
     explicit QDlnaClient(const QString &data);
 
-    QString server();
-    QString serverName();
+    QString server() const;
+    QString serverName() const;
 
-    bool connect();
+    bool connect() const;
     bool isConnected() const;
 
-    QString tryToPlayFile(const QString &url);
-    QString uploadFileToPlay(const QString &url);
+    bool tryToPlayFile(const QString &url) const;
+    bool uploadFileToPlay(const QString &url) const;
 
-    QString startPlay(int instance);
-    QString stopPlay(int instance);
-    QString pause(int instance);
+    bool play(int instance = 0) const;
+    bool pause(int instance = 0) const;
+    bool stop(int instance = 0) const;
 
-    QString position();
-    int totalSeconds(const QString &value);
+    bool position() const;
+    bool positionInfo(qint64 &position, qint64 &duration, int instance = 0) const;
+
+    qint64 totalSeconds(const QString &value) const;
 
 private:
     TTK_DECLARE_PRIVATE(QDlnaClient)

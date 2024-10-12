@@ -1,6 +1,7 @@
 #include "musicsongdlnatransferwidget.h"
 #include "ui_musicsongdlnatransferwidget.h"
 #include "musicsongscontainerwidget.h"
+#include "musictoastlabel.h"
 
 #include "qdlna/qdlnafinder.h"
 #include "qdlna/qdlnaclient.h"
@@ -9,8 +10,8 @@
 MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicSongDlnaTransferWidget),
-      m_isPlaying(false),
-      m_currentPlayIndex(-1)
+      m_state(TTK::PlayState::Stopped),
+      m_currentPlayIndex(0)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -74,6 +75,15 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
 MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
 {
     TTKRemoveSingleWidget(className());
+
+    QDlnaClient *client = getClient();
+    if(client)
+    {
+        client->pause();
+        client->stop();
+        TTK_INFO_STREAM("Stop DLNA module");
+    }
+
     delete m_dlnaFinder;
     delete m_ui;
 }
@@ -99,6 +109,11 @@ void MusicSongDlnaTransferWidget::scanFinished()
             m_ui->deviceComboBox->addItem(name);
         }
     }
+
+    if(m_ui->deviceComboBox->currentText() == tr("No connections"))
+    {
+        MusicToastLabel::popup(tr("Can not find any clients"));
+    }
 }
 
 void MusicSongDlnaTransferWidget::positionChanged(qint64 position)
@@ -118,8 +133,8 @@ void MusicSongDlnaTransferWidget::playSongClicked()
         return;
     }
 
-    const int index = m_ui->deviceComboBox->currentIndex();
-    if(index < 0)
+    QDlnaClient *client = getClient();
+    if(!client)
     {
         return;
     }
@@ -133,7 +148,6 @@ void MusicSongDlnaTransferWidget::playSongClicked()
     }
 
     MusicSongList *songs = &items[0].m_songs;
-    ++m_currentPlayIndex;
     if(m_currentPlayIndex < 0 || m_currentPlayIndex >= songs->count())
     {
         m_currentPlayIndex = 0;
@@ -142,17 +156,66 @@ void MusicSongDlnaTransferWidget::playSongClicked()
     const MusicSong &song = (*songs)[m_currentPlayIndex];
     const QFileInfo fin(song.path());
 
-    QDlnaClient *client = m_dlnaFinder->client(index);
-    m_dlnaFileServer->setPrefixPath(fin.path());
-    client->tryToPlayFile(m_dlnaFileServer->localAddress(client->server()) + fin.fileName());
+    if(m_state == TTK::PlayState::Playing)
+    {
+        client->pause();
+        m_state = TTK::PlayState::Paused;
+        m_ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
+    }
+    else
+    {
+        if(m_state == TTK::PlayState::Paused)
+        {
+            client->play();
+            m_state = TTK::PlayState::Playing;
+            m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
+            return;
+        }
+
+        m_dlnaFileServer->setPrefixPath(fin.path());
+        if(client->tryToPlayFile(m_dlnaFileServer->localAddress(client->server()) + fin.fileName()))
+        {
+            m_state = TTK::PlayState::Playing;
+            m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
+
+            qint64 position = 0, duration = 0;
+            if(client->positionInfo(position, duration))
+            {
+                positionChanged(position);
+                durationChanged(duration);
+            }
+        }
+        else
+        {
+            m_state = TTK::PlayState::Stopped;
+            m_ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
+        }
+    }
 }
 
 void MusicSongDlnaTransferWidget::playPrevious()
 {
     m_currentPlayIndex--;
+    m_state = TTK::PlayState::Stopped;
+
+    playSongClicked();
 }
 
 void MusicSongDlnaTransferWidget::playNext()
 {
     m_currentPlayIndex++;
+    m_state = TTK::PlayState::Stopped;
+
+    playSongClicked();
+}
+
+QDlnaClient *MusicSongDlnaTransferWidget::getClient() const
+{
+    const int index = m_ui->deviceComboBox->currentIndex();
+    if(index < 0)
+    {
+        return nullptr;
+    }
+
+    return m_dlnaFinder->client(index);
 }

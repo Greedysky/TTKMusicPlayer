@@ -35,6 +35,7 @@ public:
     QString toString() const;
 
     QString tagNameToLower(const QString &data) const;
+
     QString readTagNameValue(const QString &tagName) const;
     QDlnaService readServiceTag(const QString &type, const QString &tagName) const;
 
