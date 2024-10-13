@@ -229,6 +229,11 @@ bool QDlnaClient::position() const
     return QDlnaHelper::isValid(QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
 
+static qint64 valueToSecond(const QString &value)
+{
+    return QDateTime::fromString(value, TTK_TIMES_FORMAT).toMSecsSinceEpoch() / 1000;
+}
+
 bool QDlnaClient::positionInfo(qint64 &position, qint64 &duration, int instance) const
 {
     TTK_D(QDlnaClient);
@@ -249,12 +254,7 @@ bool QDlnaClient::positionInfo(qint64 &position, qint64 &duration, int instance)
         return false;
     }
 
-    position = totalSeconds(xml.readTagNameValue("Relime"));
-    duration = totalSeconds(xml.readTagNameValue("TrackDuration"));
+    position = valueToSecond(xml.readTagNameValue("Relime"));
+    duration = valueToSecond(xml.readTagNameValue("TrackDuration"));
     return true;
-}
-
-qint64 QDlnaClient::totalSeconds(const QString &value) const
-{
-    return QDateTime::fromString(value, TTK_TIMES_FORMAT).toSecsSinceEpoch();
 }

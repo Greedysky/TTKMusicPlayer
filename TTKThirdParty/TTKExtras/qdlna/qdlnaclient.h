@@ -47,8 +47,6 @@ public:
     bool position() const;
     bool positionInfo(qint64 &position, qint64 &duration, int instance = 0) const;
 
-    qint64 totalSeconds(const QString &value) const;
-
 private:
     TTK_DECLARE_PRIVATE(QDlnaClient)
 
