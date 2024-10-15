@@ -37,15 +37,14 @@ public:
     bool connect() const;
     bool isConnected() const;
 
-    bool tryToPlayFile(const QString &url) const;
-    bool uploadFileToPlay(const QString &url) const;
+    bool open(const QString &url) const;
 
     bool play(int instance = 0) const;
     bool pause(int instance = 0) const;
     bool stop(int instance = 0) const;
+    bool remove(int instance = 0) const;
 
-    bool position() const;
-    bool positionInfo(qint64 &position, qint64 &duration, int instance = 0) const;
+    bool position(qint64 &position, qint64 &duration, int instance = 0) const;
 
 private:
     TTK_DECLARE_PRIVATE(QDlnaClient)

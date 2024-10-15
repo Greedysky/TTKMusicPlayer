@@ -57,14 +57,6 @@ public Q_SLOTS:
      */
     void scanFinished();
     /*!
-     * Set current player position.
-     */
-    void positionChanged(qint64 position);
-    /*!
-     * Set current player duration.
-     */
-    void durationChanged(qint64 duration);
-    /*!
      * Set music to play.
      */
     void playSongClicked();

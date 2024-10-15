@@ -58,15 +58,17 @@ void QDlnaFileServer::setPrefixPath(const QString &path)
 
 QString QDlnaFileServer::localAddress(const QString &prefix) const
 {
+    const QString &url = "http://%1:11111/music/";
     const QString &value = prefix.left(prefix.lastIndexOf(TTK_DOT));
+
     for(const QHostAddress &address : QNetworkInterface::allAddresses())
     {
       if(address.toString().contains(value))
       {
-          return QString("http://%1:11111/music/").arg(address.toString());
+          return url.arg(address.toString());
       }
     }
-    return "http://0.0.0.0:11111/music/";
+    return url.arg("0.0.0.0");
 }
 
 void QDlnaFileServer::handleRequest(QHttpRequest *request, QHttpResponse *response)

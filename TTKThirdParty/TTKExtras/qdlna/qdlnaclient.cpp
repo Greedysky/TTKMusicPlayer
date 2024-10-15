@@ -3,14 +3,24 @@
 
 #include <QMap>
 #include <unistd.h>
+#include <QFileInfo>
 #include <QStringList>
 
 static constexpr const char *AVTRANSPORT = "avtransport";
 
 static const QString XML_HEAD = "<?xml version=\"1.0\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n<SOAP-ENV:Body>\n";
 static const QString XML_FOOT = "</SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n";
-static const QStringList FRIENS_NAMES = {"friendlyname", "friendlyName", "FriendlyName", "FriendlyName"};
+static const QString META_DATA = "&lt;DIDL-Lite xmlns=\"urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/\""
+                                 " xmlns:upnp=\"urn:schemas-upnp-org:metadata-1-0/upnp/\""
+                                 " xmlns:dc=\"http://purl.org/dc/elements/1.1/\""
+                                 " xmlns:sec=\"http://www.sec.co.kr/\"&gt;&lt;item id=\"f-0\" parentID=\"0\" restricted=\"0\"&gt;"
+                                 "&lt;dc:title&gt;%1&lt;/dc:title&gt;"
+                                 "&lt;dc:creator&gt;%2&lt;/dc:creator&gt;"
+                                 "&lt;upnp:class&gt;object.item.%3Item&lt;/upnp:class&gt;"
+                                 "&lt;res protocolInfo=\"http-get:*:%4:DLNA.ORG_OP=01;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=01700000000000000000000000000000\" &gt;"
+                                 "%5&lt;/res&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;";
 static const QStringList AVT_NAMES = {"avtransport", "AVTransport"};
+static const QStringList FRIENS_NAMES = {"friendlyname", "friendlyName", "FriendlyName", "FriendlyName"};
 
 /*! @brief The class of the dlna client private.
  * @author Greedysky <greedysky@163.com>
@@ -21,7 +31,7 @@ public:
     QDlnaClientPrivate();
 
     void initialize(const QString &data);
-    bool connectServer();
+    bool connect();
 
     bool m_isConnected;
 
@@ -71,7 +81,7 @@ void QDlnaClientPrivate::initialize(const QString &data)
     }
 }
 
-bool QDlnaClientPrivate::connectServer()
+bool QDlnaClientPrivate::connect()
 {
     const QString &request = QDlnaHelper::makeRequest("GET", m_smp, 0, {}, m_serverIP, m_serverPort);
     const QString &response = QDlnaHelper::makeSocketGetReply(m_serverIP, m_serverPort, request);
@@ -156,7 +166,7 @@ QString QDlnaClient::serverName() const
 bool QDlnaClient::connect() const
 {
     TTK_D(QDlnaClient);
-    return d->connectServer();
+    return d->connect();
 }
 
 bool QDlnaClient::isConnected() const
@@ -165,21 +175,19 @@ bool QDlnaClient::isConnected() const
     return d->m_isConnected;
 }
 
-bool QDlnaClient::tryToPlayFile(const QString &url) const
-{
-    uploadFileToPlay(url);
-    return play();
-}
-
-bool QDlnaClient::uploadFileToPlay(const QString &url) const
+bool QDlnaClient::open(const QString &url) const
 {
     TTK_D(QDlnaClient);
     //Later we will send a message to the DLNA server to start the file playing
+    QFileInfo fin(url);
     QString play_url = url;
     QString body = XML_HEAD;
+    play_url.replace(TTK_SPACE, "%20");
+
     body += "<u:SetAVTransportURI xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\">\n";
     body += "<InstanceID>0</InstanceID>\n";
-    body += "<CurrentURI>" + play_url.replace(TTK_SPACE, "%20") + "</CurrentURI>\n";
+    body += "<CurrentURI>" + play_url + "</CurrentURI>\n";
+    body += "<CurrentURIMetaData>" + META_DATA.arg(fin.baseName(), fin.owner(), "audio", "audio/mp3", play_url) + "</CurrentURIMetaData>\n";
     body += "</u:SetAVTransportURI>\n";
     body += XML_FOOT + "\n";
     const QString &request = QDlnaHelper::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI", d->m_serverIP,d->m_serverPort) + body;
@@ -220,12 +228,14 @@ bool QDlnaClient::stop(int instance) const
     return QDlnaHelper::isValid(QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
 
-bool QDlnaClient::position() const
+bool QDlnaClient::remove(int instance) const
 {
     TTK_D(QDlnaClient);
-    //Returns the current position for the track that is playing on the DLNA server
-    const QString &body = XML_HEAD + "<m:GetPositionInfo xmlns:m=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID xmlns:dt=\"urn:schemas-microsoft-com:datatypes\" dt:dt=\"ui4\">0</InstanceID></m:GetPositionInfo>" + XML_FOOT + "\n";
-    const QString &request = QDlnaHelper::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#GetPositionInfo", d->m_serverIP, d->m_serverPort) + body;
+    //Called to remove queue track
+    QString body = XML_HEAD;
+    body += "<u:RemoveAllTracksFromQueue xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:RemoveAllTracksFromQueue>\n";
+    body += XML_FOOT + "\n";
+    const QString &request = QDlnaHelper::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#RemoveAllTracksFromQueue", d->m_serverIP, d->m_serverPort) + body;
     return QDlnaHelper::isValid(QDlnaHelper::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
 
@@ -234,7 +244,7 @@ static qint64 valueToSecond(const QString &value)
     return QDateTime::fromString(value, TTK_TIMES_FORMAT).toMSecsSinceEpoch() / 1000;
 }
 
-bool QDlnaClient::positionInfo(qint64 &position, qint64 &duration, int instance) const
+bool QDlnaClient::position(qint64 &position, qint64 &duration, int instance) const
 {
     TTK_D(QDlnaClient);
     //Returns the current position for the track that is playing on the DLNA server

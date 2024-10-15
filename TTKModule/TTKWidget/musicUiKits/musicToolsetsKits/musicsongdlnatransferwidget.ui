@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>343</width>
-    <height>218</height>
+    <height>198</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>4</x>
      <y>4</y>
      <width>335</width>
-     <height>210</height>
+     <height>190</height>
     </rect>
    </property>
    <property name="text">
@@ -59,7 +59,7 @@
    <property name="geometry">
     <rect>
      <x>4</x>
-     <y>109</y>
+     <y>89</y>
      <width>335</width>
      <height>105</height>
     </rect>
@@ -159,38 +159,6 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="labelTime">
-   <property name="geometry">
-    <rect>
-     <x>250</x>
-     <y>75</y>
-     <width>75</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:white;</string>
-   </property>
-   <property name="text">
-    <string>00:00/00:00</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="MusicMovingClickedSlider" name="timeSlider">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>77</y>
-     <width>220</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -198,16 +166,7 @@
   <zorder>nextButton</zorder>
   <zorder>previousButton</zorder>
   <zorder>playButton</zorder>
-  <zorder>labelTime</zorder>
-  <zorder>timeSlider</zorder>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>MusicMovingClickedSlider</class>
-   <extends>QSlider</extends>
-   <header>musicmovingclickedslider.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

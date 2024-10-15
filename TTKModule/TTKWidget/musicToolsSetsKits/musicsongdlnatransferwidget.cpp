@@ -53,8 +53,6 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->refreshButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->deviceComboBox->setStyleSheet(TTK::UI::ComboBoxStyle02);
-    m_ui->timeSlider->setStyleSheet(TTK::UI::SliderStyle10);
-    m_ui->timeSlider->setValue(0);
 
     m_ui->deviceComboBox->addItem(tr("No connections"));
     m_ui->deviceComboBox->setEnabled(false);
@@ -79,8 +77,8 @@ MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
     QDlnaClient *client = getClient();
     if(client)
     {
-        client->pause();
         client->stop();
+        client->remove();
         TTK_INFO_STREAM("Stop DLNA module");
     }
 
@@ -114,16 +112,6 @@ void MusicSongDlnaTransferWidget::scanFinished()
     {
         MusicToastLabel::popup(tr("Can not find any clients"));
     }
-}
-
-void MusicSongDlnaTransferWidget::positionChanged(qint64 position)
-{
-    m_ui->timeSlider->setValue(position);
-}
-
-void MusicSongDlnaTransferWidget::durationChanged(qint64 duration)
-{
-    m_ui->timeSlider->setRange(0, duration);
 }
 
 void MusicSongDlnaTransferWidget::playSongClicked()
@@ -173,16 +161,17 @@ void MusicSongDlnaTransferWidget::playSongClicked()
         }
 
         m_dlnaFileServer->setPrefixPath(fin.path());
-        if(client->tryToPlayFile(m_dlnaFileServer->localAddress(client->server()) + fin.fileName()))
+        client->open(m_dlnaFileServer->localAddress(client->server()) + fin.fileName());
+
+        if(client->play())
         {
             m_state = TTK::PlayState::Playing;
             m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
 
             qint64 position = 0, duration = 0;
-            if(client->positionInfo(position, duration))
+            if(client->position(position, duration))
             {
-                positionChanged(position);
-                durationChanged(duration);
+                TTK_INFO_STREAM(position << " " << duration);
             }
         }
         else
