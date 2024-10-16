@@ -117,7 +117,7 @@ int TTK::Number::bitrateToNormal(int bitrate)
     }
     else if(bitrate > TTK_BN_320)
     {
-        return TTK_BN_500;
+        return TTK_BN_1000;
     }
     else
     {
