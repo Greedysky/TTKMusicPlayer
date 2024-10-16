@@ -29,6 +29,7 @@
   <url type="homepage">https://github.com/Greedysky/TTKMusicPlayer</url>
   <developer_name>Greedysky Studio</developer_name>
   <releases>
+    <release version="4.1.0.0" date="2024-10-16" />
     <release version="4.0.0.0" date="2024-06-18" />
     <release version="3.7.0.0" date="2024-04-25" />
     <release version="3.6.0.0" date="2024-02-14" />
