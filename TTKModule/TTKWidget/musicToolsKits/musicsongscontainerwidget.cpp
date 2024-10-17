@@ -268,9 +268,9 @@ void MusicSongsContainerWidget::importSongsByPath(const QStringList &files, int 
         item->m_itemWidget->updateSongsList(item->m_songs);
         setItemTitle(item);
         setCurrentIndex(playlistRow);
-
-        MusicToastLabel::popup(tr("Import music songs done"));
     }
+
+    MusicToastLabel::popup(tr("Import music songs done"));
 }
 
 QStringList MusicSongsContainerWidget::songsFileName(int index) const

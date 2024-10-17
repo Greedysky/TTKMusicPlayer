@@ -11,7 +11,6 @@ MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle10));
 
     m_container = new QLabel(this);
-    m_container->setScaledContents(true);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(m_container);
@@ -52,6 +51,7 @@ void MusicSongDailyWidget::resizeWidget()
 
     m_content->setFont(font);
     m_content->setGeometry(50, 50 + noteHeight, TTK::Widget::fontTextWidth(font, m_content->text()), contentHeight);
+    m_container->setPixmap(QPixmap::fromImage(m_image).scaled(m_container->size(), Qt::KeepAspectRatioByExpanding));
 }
 
 void MusicSongDailyWidget::downLoadImageFinished(const QByteArray &bytes)
@@ -62,28 +62,25 @@ void MusicSongDailyWidget::downLoadImageFinished(const QByteArray &bytes)
         return;
     }
 
-    QImage image;
-    image.loadFromData(bytes);
-    m_container->setPixmap(QPixmap::fromImage(image));
-
-    if(image.isNull())
+    m_image.loadFromData(bytes);
+    if(m_image.isNull())
     {
         return;
     }
 
     QRgb r = 0, g = 0, b = 0;
-    for(int w = 0; w < image.width(); ++w)
+    for(int w = 0; w < m_image.width(); ++w)
     {
-        for(int h = 0; h < image.height(); ++h)
+        for(int h = 0; h < m_image.height(); ++h)
         {
-            const QRgb rgb = image.pixel(w, h);
+            const QRgb rgb = m_image.pixel(w, h);
             r += qRed(rgb);
             g += qGreen(rgb);
             b += qBlue(rgb);
         }
     }
 
-    const int size = image.width() * image.height();
+    const int size = m_image.width() * m_image.height();
     r /= size;
     g /= size;
     b /= size;

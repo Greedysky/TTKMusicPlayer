@@ -114,7 +114,7 @@ void MusicAdvancedSearchedWidget::typeIndexChanged(int index)
             switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
             {
                 case MusicAbstractQueryRequest::QueryServer::WY: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(WY_PL_SHARE, MDII_SHR_KEY, false).arg("988604820")); break;
-                case MusicAbstractQueryRequest::QueryServer::KW: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(KW_PL_SHARE, MDII_SHR_KEY, false).arg("236350390")); break;
+                case MusicAbstractQueryRequest::QueryServer::KW: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(KW_PL_SHARE, MDII_SHR_KEY, false).arg("3565578939")); break;
                 case MusicAbstractQueryRequest::QueryServer::KG: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(KG_PL_SHARE, MDII_SHR_KEY, false).arg("3339907")); break;
                 default: break;
             }
