@@ -218,13 +218,13 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
     restoreButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    initialize();
-
     connect(exportButton, SIGNAL(clicked()), SLOT(exportButtonClicked()));
     connect(restoreButton, SIGNAL(clicked()), SLOT(restoreButtonClicked()));
     connect(m_dateBox, SIGNAL(currentTextChanged(QString)), SLOT(currentDateChanged(QString)));
     connect(m_timeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTimeChanged(int)));
     connect(m_listWidget, SIGNAL(currentRowChanged(int)), SLOT(currentItemChanged(int)));
+
+    initialize();
 }
 
 MusicPlaylistBackupWidget::~MusicPlaylistBackupWidget()
@@ -296,7 +296,7 @@ void MusicPlaylistBackupWidget::currentDateChanged(const QString &text)
         m_timeBox->addItem(TTKDateTime::format(fin.baseName().toULongLong(), TTK_TIMES_FORMAT), fin.baseName());
     }
 
-    currentTimeChanged(0);
+    m_listWidget->setCurrentRow(0);
 }
 
 void MusicPlaylistBackupWidget::currentTimeChanged(int index)
@@ -329,7 +329,7 @@ void MusicPlaylistBackupWidget::currentTimeChanged(int index)
         m_listWidget->addItem(it);
     }
 
-    currentItemChanged(0);
+    m_listWidget->setCurrentRow(0);
 }
 
 void MusicPlaylistBackupWidget::currentItemChanged(int index)
@@ -358,5 +358,4 @@ void MusicPlaylistBackupWidget::initialize()
     }
 
     m_dateBox->addItems(dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Time | QDir::Reversed));
-    currentDateChanged(m_dateBox->currentText());
 }
