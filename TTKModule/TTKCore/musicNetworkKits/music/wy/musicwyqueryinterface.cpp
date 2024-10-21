@@ -8,13 +8,14 @@ static constexpr const char *BN_128KBPS = "QXMyZkZJc2dIb1FOenJlTg==";
 static constexpr const char *BN_320KBPS = "UThNR09kcDRXNG9qbG45Ng==";
 static constexpr const char *BN_999KBPS = "VGF0djlKc01mL1QxM1pyNQ==";
 
+static constexpr const char *WY_USER_URL = "resource/user";
 static constexpr const char *WY_UA_URL = "Vkloais0Z0Q4Smp1aElYSXFUVy96SXdoZ2VsTURzdDBpZEZjT21jMy9PRE1DMzdwQ0p5MllueTkrRGdzb2VkdlJMemJhWEFReHlUUk9uSEtMTHRLUzRxS3psczJiRW9LZ3BQbHh1Z3lGRlhEQk5JbVVGb1NDN1JzTDhZMjBybllLcndKSHlSNC94QzRJWXlL";
 static constexpr const char *WY_COOKIE_URL = "eU5NVy9LRm5jWE9pdUU1MzNQNi9OcjVUbi9vSGhYcGVaQWc0NjlPbCt1WnNDbDlONDg1SSthTi9JUDQ1YVpsRg==";
-static constexpr const char *WY_USER1_URL = "a2ZvNGovSDhnUTZGRVpIbUlud0EwWUFlUWNETUNENWV1YXVIalRjZm10Z2phaEFmVXFUOFRWWVErT2ZKeCtwdHJST0pGdDlNWUF0MmlBVFlqNjQ3YVN6TU5hWSszQWxPWTE4alcvSHZRSWkwY2huTjBmNkxuSDVjREpXcXNjR2I0UHFZWGhuNnBqOW9iMnV4ZkhNdXFGcU9iSmJCWjRZclBjYzJvQ3JBTnhFVU9GTUk2VndJNXc9PQ==";
-static constexpr const char *WY_USER2_URL = "dVJLVkorVzU3MytpL3VwMmc4cDRsMXlzVzNBcFp2WFRORHJIakp5VmxKL1phYit0VjZMVGwzRVowZTJpSkcva2svV1NMczJyT0lUcjd4dzFXNVJabWQ1aGU2WDl2S1JybzNVSTRCY1FwSG1JbExXeTduR2RER01VM1ozMGg3bUR6dXV6UzFRMnRzMTF0SmQ5YkExTkhZUFR3KzAzU1pNMnppNXl4VzZvdmE5QTRjemczV3lYNWc9PQ==";
-static constexpr const char *WY_USER3_URL = "cXEyVU5sOC85cnN2RHd1QnFsdGxyZ09vNUR1bEVkZHA0TTBTaWJGSVBCTkhPUURqMmFHbE51VjNuL3d6elVKOFc2a3JyZm02bVhZZlFDVjNqY1gxZlloWmtsOWNWSmI0SU5CMzdKVnBwVzBWU1U4ZkJrK3RzNkFZMUREbnJIeGt0V1BIOWJlWGUzL0l3R3lDdHFVejhhTW5NSWp2NFVkZEpDSVZhMU9KRGwzQ1JJSy9RMk5CTGc9PQ==";
-static constexpr const char *WY_USER4_URL = "OVNiL0lvZzdmMUE0TUhHVVQ1dTJzbGxyMlg5bzVTYll4bnJNcVU1TmxKZnVkMjl2K0VGdnJCM3kranN2RHRVc3dTMDMyVStQMnp1eHpvU2p0My9oellkSFNTUmdVeDdJZFlaMERXbE41c2FBSXVydC8vUTlzdTVwRXptTHV2TDRiL0N4dHE3VGc1dFc2Y2g3VFRUSUczOWVKejdEREluaU1kN2xQY3hwajEwUnBHdGFQQnVRdXc9PQ==";
-static constexpr const char *WY_USER5_URL = "amFaeXpTZ3pZeUUweFR2T0p2OExWWVdoVlN1cUpPQ0o1aGFISlB2dzM5dz0=";
+static constexpr const char *WY_USER1_URL = "OXY2dEJZRnFibTNleTZvWHluNm01MHVVTzI1Y2RlbjFDRWxoQUtMYnFtbXQzQTFTeEdSY1lXSGR3WkVyOGwvVWh5aUZ4MkE3K2QrQVlFTFQ0K3lxN1NwOGtPRmdkV3FxMmZNUEVpa1NVYTA2M0dpWjlnbTdwT0QwYzlLZmRjVmtyd3VKVzgzTFZ4NC9nVkoxSXJDeEdoME51cjJnZ2FhbGZVQTlsSy8yQjNtbVhzQnc=";
+static constexpr const char *WY_USER2_URL = "WHdLblIxcTl3Q1RoMWg3MGdsMFNhK0dZbG90YlpoZkJtakk1ak5NYVdGamlPVDdoNERMa0g3Y2VwWERRcTdtNEFxQVJxQmVZWHRDcXRLcmZWYWs3aHgzZ21jU1J0MkdyMUxPQ0N4cUJJSEZocXZTb3FrcjlnaW1US2dLa3pSVHpNNXh4b2lLWVF3TExYWlh2NVd2RlRTWE1rOXpZWXRLQ2pmbWF2VmxaZkxyT21OSGU=";
+static constexpr const char *WY_USER3_URL = "OTg0RWFEV0kxZThhVms4OEtKTTFCekQzWlFNcXcxS1d4V1hQa0g0bHZSQlVZVDRPUFlTMjh4d3IyUEI0RWVwMlFCbnRNQjJ5Y2xsUE8yRHdQRjlmbjVpNk1iZHArcVM5UUlOc1RLbkZ2SDZqWkEya0MxUkxBN2xVOUQxRjMrQUhLdmlGSndFRkNFT3p4dVRPYy9oVTBnS3Bkd29WOHIzZEROc0RDM0Rsc21oV2ZpY1M=";
+static constexpr const char *WY_USER4_URL = "WDRQV285Q2tsM1MwaE16dlFueTJ0QWRpdTNhK0ZYczlqRkNHWCtKT1h3MllZeS9JaUtlT21sU1ljMmpTMFZnM3BaTktLZXdab2JCRnNudTI2R3VVTnQxb3gwbmNCMnJrUGUyYzhXdk9CQ0FNTjdpN2tObDh0QmZYTDJ5NWV0Mmc3bmcxSjZ0blo0TXhWSDludVdHK2lRN0ZHaFFMU0tNbnJzSFRPd0RCZVZheGUyRmY=";
+static constexpr const char *WY_USER5_URL = "NzFFREdNSnNwWDF3b2lobnhZdkVqNVdiUGcyOHFTejhiSHQ5UnJkSkNJQzFtMXV1RWY1dHhrOE5KSUs1cUdqbg==";
 static constexpr const char *WY_RAND_URL = "V0Zsb2tGREU1R0thR29GYjRYdk5jbm5NZjEvN1d6WWNiQlZqb2k4eE1nTm9lTHlBRktkQTBOaXNjQ3ZHU0ZMSw==";
 static constexpr const char *WY_BASE_URL = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
 static constexpr const char *WY_SECKRY_URL = "411571dca16717d9af5ef1ac97a8d21cb740329890560688b1b624de43f49fdd7702493835141b06ae45f1326e264c98c24ce87199c1a776315e5f25c11056b02dd92791fcc012bff8dd4fc86e37888d5ccc060f7837b836607dbb28bddc703308a0ba67c24c6420dd08eec2b8111067486c907b6e53c027ae1e56c188bc568e";
@@ -26,10 +27,22 @@ static QString makeUser()
 
 void ReqWYInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
+    QString user;
+    QFile file(APPCACHE_DIR_FULL + WY_USER_URL);
+    if(file.open(QIODevice::ReadOnly))
+    {
+        user = QString::fromUtf8(file.readAll());
+        file.close();
+    }
+    else
+    {
+        user = makeUser();
+    }
+
     request->setRawHeader("Referer", TTK::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("Origin", TTK::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("User-Agent", TTK::Algorithm::mdII(WY_UA_URL, MDII_UA_KEY, false).toUtf8());
-    request->setRawHeader("Cookie", TTK::Algorithm::mdII(WY_COOKIE_URL, false).arg(makeUser(), TTK::Algorithm::mdII(WY_RAND_URL, MDII_UA_KEY, false)).toUtf8());
+    request->setRawHeader("Cookie", TTK::Algorithm::mdII(WY_COOKIE_URL, false).arg(user, TTK::Algorithm::mdII(WY_RAND_URL, MDII_UA_KEY, false)).toUtf8());
     TTK::setSslConfiguration(request);
     TTK::makeContentTypeHeader(request);
 }

@@ -60,6 +60,8 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const QString &k
         }
     }
 
+    TTK_INFO_STREAM("Parse song in A module, url:" << url);
+
     QNetworkRequest request;
     request.setRawHeader("X-Request-Key", TTK::Algorithm::mdII(key, false).toUtf8());
     request.setUrl(url);
@@ -126,6 +128,8 @@ static void parseSongPropertyB(TTK::MusicSongInformation *info, const QString &u
         }
     }
 
+    TTK_INFO_STREAM("Parse song in B module, url:" << url);
+
     QNetworkRequest request;
     request.setUrl(url);
     TTK::setSslConfiguration(&request);
@@ -149,7 +153,11 @@ static void parseSongPropertyB(TTK::MusicSongInformation *info, const QString &u
             prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
             prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = value["url"].toString();
-            info->m_songProps.append(prop);
+
+            if(!prop.isEmpty())
+            {
+                info->m_songProps.append(prop);
+            }
         }
     }
 }
