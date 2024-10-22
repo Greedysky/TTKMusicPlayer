@@ -21,5 +21,5 @@ MOC_DIR = ./.build/moc
 OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
-# update time 2024.10.16
-TTK_VERSION = 4.1.0.0
+# update time 2024.10.22
+TTK_VERSION = 4.1.1.0

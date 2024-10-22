@@ -22,7 +22,7 @@ project(TTKMusicPlayer)
 
 set(TTK_MAJOR_VERSION 4)
 set(TTK_MINOR_VERSION 1)
-set(TTK_PATCH_VERSION 0)
+set(TTK_PATCH_VERSION 1)
 set(TTK_VERSION "${TTK_MAJOR_VERSION}.${TTK_MINOR_VERSION}.${TTK_PATCH_VERSION}.0")
 
 # Find includes in the build directories
