@@ -17,13 +17,13 @@ void MusicPVCounterRequest::startToRequest()
     QFile file(APPCACHE_DIR_FULL + OS_COUNTER_URL);
     if(file.open(QIODevice::ReadOnly))
     {
-        TTK_ERROR_STREAM("PV counter using local resource config");
+        TTK_INFO_STREAM("PV counter using local resource config");
         bytes = file.readAll();
         file.close();
     }
     else
     {
-        TTK_ERROR_STREAM("PV counter using network resource config");
+        TTK_INFO_STREAM("PV counter using network resource config");
         QNetworkRequest request;
         request.setUrl(QSyncUtils::makeDataBucketUrl() + OS_COUNTER_URL);
         bytes = TTK::syncNetworkQueryForGet(&request);
