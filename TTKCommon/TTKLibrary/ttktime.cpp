@@ -125,10 +125,10 @@ qint64 TTKTime::formatDuration(const QString &time) noexcept
     return TTKTime::fromString(time, "mm:ss").toValue();
 }
 
-QString TTKTime::formatDuration(qint64 time/*, bool greedy*/) noexcept
+QString TTKTime::formatDuration(qint64 time) noexcept
 {
     const TTKTime t(time);
-    if(/*!greedy || */time < TTK_DN_H2MS)
+    if(time < TTK_DN_H2MS)
     {
         return t.toString("mm:ss");
     }
@@ -246,7 +246,7 @@ void TTKTime::copyToThis(const TTKTime &other) noexcept
 }
 
 
-qint64 TTKDateTime::currentTimestamp()
+qint64 TTKDateTime::currentTimestamp() noexcept
 {
     return QDateTime::currentMSecsSinceEpoch();
 }

@@ -19,7 +19,7 @@
 class TTKDumperPrivate : public TTKPrivate<TTKDumper>
 {
 public:
-    TTKDumperPrivate();
+    TTKDumperPrivate() = default;
 
 #ifdef Q_OS_WIN
     typedef BOOL (WINAPI *MINIDUMPWRITEDUMP)(HANDLE hProcess, DWORD dwPid, HANDLE hFile, MINIDUMP_TYPE DumpType,
@@ -42,14 +42,9 @@ public:
     static TTKDumperFunctor m_functor;
 };
 
-QString TTKDumperPrivate::m_name;
-QString TTKDumperPrivate::m_version;
-TTKDumperFunctor TTKDumperPrivate::m_functor;
-
-TTKDumperPrivate::TTKDumperPrivate()
-{
-
-}
+QString TTKDumperPrivate::m_name = {};
+QString TTKDumperPrivate::m_version = {};
+TTKDumperFunctor TTKDumperPrivate::m_functor = {};
 
 #ifdef Q_OS_WIN
 void TTKDumperPrivate::initialize()

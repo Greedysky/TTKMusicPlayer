@@ -136,7 +136,7 @@ public:
     /*!
      * Transform msec time to string format(mm:ss).
      */
-    static QString formatDuration(qint64 time/*, bool greedy = true*/) noexcept;
+    static QString formatDuration(qint64 time) noexcept;
 
     TTKTime& operator = (const TTKTime &other) noexcept;
     TTKTime& operator = (TTKTime &&other) noexcept;
@@ -197,7 +197,7 @@ public:
     /*!
      * Get current timestamp(ms).
      */
-    static qint64 currentTimestamp();
+    static qint64 currentTimestamp() noexcept;
     /*!
      * Transform string time format to timestamp(ms) string.
      */
