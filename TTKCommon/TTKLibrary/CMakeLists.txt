@@ -56,6 +56,7 @@ set(HEADER_FILES
   ttktime.h
   ttktoastlabel.h
   ttkunsortedmap.h
+  ttkvariant.h
 )
 
 set(SOURCE_FILES

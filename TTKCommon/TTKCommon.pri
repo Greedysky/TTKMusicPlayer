@@ -59,6 +59,7 @@ win32{
             $$PWD/TTKLibrary/ttkthemelinelabel.h \
             $$PWD/TTKLibrary/ttktime.h \
             $$PWD/TTKLibrary/ttktoastlabel.h \
-            $$PWD/TTKLibrary/ttkunsortedmap.h
+            $$PWD/TTKLibrary/ttkunsortedmap.h \
+            $$PWD/TTKLibrary/ttkvariant.h
     }
 }

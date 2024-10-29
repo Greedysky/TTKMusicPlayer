@@ -93,7 +93,8 @@ HEADERS += \
     $$PWD/ttkthemelinelabel.h \
     $$PWD/ttktime.h \
     $$PWD/ttktoastlabel.h \
-    $$PWD/ttkunsortedmap.h
+    $$PWD/ttkunsortedmap.h \
+    $$PWD/ttkvariant.h
 
 SOURCES += \
     $$PWD/ttkabstractmovedialog.cpp \

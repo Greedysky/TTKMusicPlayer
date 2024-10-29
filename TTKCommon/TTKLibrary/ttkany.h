@@ -39,8 +39,8 @@ public:
 
     template <typename T,
               typename = typename std::enable_if<!std::is_same<typename std::decay<T>::type, TTKAny>::value, T>::type>
-    TTKAny(T &&t) noexcept
-        : m_ptr(new _Derived<typename std::decay<T>::type>(std::forward<T>(t))),
+    TTKAny(T &&value) noexcept
+        : m_ptr(new _Derived<typename std::decay<T>::type>(std::forward<T>(value))),
           m_type(typeid(typename std::decay<T>::type))
     {
 
