@@ -124,6 +124,7 @@ public:
         : m_type(typeid(void))
     {
     }
+
     /*!
      * Object constructor.
      */
@@ -132,6 +133,7 @@ public:
     {
         Helper_t::move(other.m_type, &other.m_data, &m_data);
     }
+
     /*!
      * Object constructor.
      */
@@ -140,6 +142,21 @@ public:
     {
         Helper_t::copy(other.m_type, &other.m_data, &m_data);
     }
+
+    /*!
+     * Object constructor.
+     */
+    template <class T,
+             class = typename std::enable_if<Contains<typename std::remove_reference<T>::type, Types...>::value>::type>
+    TTKVariant(T &&value)
+        : m_type(typeid(void))
+    {
+        Helper_t::Destroy(m_type, &m_data);
+        typedef typename std::remove_reference<T>::type U;
+        new (&m_data) U(std::forward<T>(value));
+        m_type = std::type_index(typeid(T));
+    }
+
     /*!
      * Object destructor.
      */
@@ -162,14 +179,14 @@ public:
         return *this;
     }
 
-    template <class T,
-    class = typename std::enable_if<Contains<typename std::remove_reference<T>::type, Types...>::value>::type>
-        TTKVariant(T &&value) : m_type(typeid(void))
+    bool operator==(const TTKVariant &other) const noexcept
     {
-        Helper_t::Destroy(m_type, &m_data);
-        typedef typename std::remove_reference<T>::type U;
-        new (&m_data) U(std::forward<T>(value));
-        m_type = std::type_index(typeid(T));
+        return m_type == other.m_type;
+    }
+
+    bool operator<(const TTKVariant &other) const noexcept
+    {
+        return m_type < other.m_type;
     }
 
     template <typename T>
@@ -204,16 +221,6 @@ public:
     int indexOf() const noexcept
     {
         return Index<T, Types...>::value;
-    }
-
-    bool operator==(const TTKVariant &other) const noexcept
-    {
-        return m_type == other.m_type;
-    }
-
-    bool operator<(const TTKVariant &other) const noexcept
-    {
-        return m_type < other.m_type;
     }
 
 private:
