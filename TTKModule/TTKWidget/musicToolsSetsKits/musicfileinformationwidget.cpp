@@ -1,5 +1,6 @@
 #include "musicfileinformationwidget.h"
 #include "ui_musicfileinformationwidget.h"
+#include "musicwycoverrequest.h"
 #include "musicnumberutils.h"
 #include "musicsongmeta.h"
 #include "musictoastlabel.h"
@@ -37,14 +38,16 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     m_ui->saveButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->viewButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->openPixButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->dynamicPixButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->editButton->setFocusPolicy(Qt::NoFocus);
     m_ui->deletePixButton->setFocusPolicy(Qt::NoFocus);
     m_ui->savePixButton->setFocusPolicy(Qt::NoFocus);
     m_ui->saveButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->openPixButton->setFocusPolicy(Qt::NoFocus);
     m_ui->viewButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->openPixButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->dynamicPixButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     connect(m_ui->editButton, SIGNAL(clicked()), SLOT(editTag()));
@@ -53,6 +56,7 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     connect(m_ui->saveButton, SIGNAL(clicked()), SLOT(saveTag()));
     connect(m_ui->viewButton, SIGNAL(clicked()), SLOT(openFileDir()));
     connect(m_ui->openPixButton, SIGNAL(clicked()), SLOT(openImageFileDir()));
+    connect(m_ui->dynamicPixButton, SIGNAL(clicked()), SLOT(openDynamicImage()));
 }
 
 MusicFileInformationWidget::~MusicFileInformationWidget()
@@ -118,6 +122,22 @@ void MusicFileInformationWidget::saveAlbumImage()
         {
             pix.save(path);
         }
+    }
+}
+
+void MusicFileInformationWidget::openDynamicImage()
+{
+    MusicWYCoverSourceRequest *d = new MusicWYCoverSourceRequest(this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged(QString)));
+    d->startToRequest(QFileInfo(m_path).baseName());
+}
+
+void MusicFileInformationWidget::downLoadDataChanged(const QString &bytes)
+{
+    TTK_INFO_STREAM(bytes);
+    if(bytes.isEmpty())
+    {
+        MusicToastLabel::popup(tr("No dynamic picture data"));
     }
 }
 

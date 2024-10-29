@@ -13,7 +13,7 @@ void MusicKWCoverSourceRequest::startToRequest(const QString &url)
 {
     if(url.isEmpty() || url == "NO_PIC")
     {
-        deleteLater();
+        deleteAll();
         return;
     }
 
@@ -41,7 +41,7 @@ void MusicKWCoverSourceRequest::downLoadFinished(const QByteArray &bytes)
     else
     {
         Q_EMIT downLoadRawDataChanged(bytes);
-        deleteLater();
+        deleteAll();
     }
 }
 

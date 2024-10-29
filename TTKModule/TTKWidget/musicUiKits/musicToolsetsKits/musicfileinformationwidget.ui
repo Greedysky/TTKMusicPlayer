@@ -629,7 +629,7 @@
      <widget class="QPushButton" name="deletePixButton">
       <property name="geometry">
        <rect>
-        <x>325</x>
+        <x>230</x>
         <y>350</y>
         <width>80</width>
         <height>25</height>
@@ -671,7 +671,7 @@
      <widget class="QPushButton" name="openPixButton">
       <property name="geometry">
        <rect>
-        <x>230</x>
+        <x>135</x>
         <y>350</y>
         <width>80</width>
         <height>25</height>
@@ -687,7 +687,7 @@
      <widget class="QPushButton" name="savePixButton">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>325</x>
         <y>350</y>
         <width>80</width>
         <height>25</height>
@@ -740,6 +740,22 @@
       </property>
       <property name="text">
        <string>-</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="dynamicPixButton">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>350</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>动态图片</string>
       </property>
      </widget>
     </widget>

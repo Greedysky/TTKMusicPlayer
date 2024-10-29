@@ -91,6 +91,7 @@ HEADERS += \
     $$PWD/music/wy/musicwydownloadtextrequest.h \
     $$PWD/music/wy/musicwycommentsrequest.h \
     $$PWD/music/wy/musicwydiscoverlistrequest.h \
+    $$PWD/music/wy/musicwycoverrequest.h \
     $$PWD/music/zed/musicblqueryinterface.h \
     $$PWD/music/zed/musicbarragerequest.h \
     $$PWD/music/zed/musicunityqueryinterface.h \
@@ -188,6 +189,7 @@ SOURCES += \
     $$PWD/music/wy/musicwydownloadtextrequest.cpp \
     $$PWD/music/wy/musicwycommentsrequest.cpp \
     $$PWD/music/wy/musicwydiscoverlistrequest.cpp \
+    $$PWD/music/wy/musicwycoverrequest.cpp \
     $$PWD/music/zed/musicblqueryinterface.cpp \
     $$PWD/music/zed/musicbarragerequest.cpp \
     $$PWD/music/zed/musicunityqueryinterface.cpp \

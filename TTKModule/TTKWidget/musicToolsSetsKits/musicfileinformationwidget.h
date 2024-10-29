@@ -66,6 +66,14 @@ public Q_SLOTS:
      */
     void saveAlbumImage();
     /*!
+     * Dynamic album image.
+     */
+    void openDynamicImage();
+    /*!
+     * Download data from net finished.
+     */
+    void downLoadDataChanged(const QString &bytes);
+    /*!
      * Music modify tag start.
      */
     void editTag();

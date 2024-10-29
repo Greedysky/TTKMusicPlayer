@@ -24,6 +24,6 @@ void MusicCoverSourceRequest::downLoadFinished(const QByteArray &bytes)
     MusicCoverRequest::downLoadFinished();
 
     Q_EMIT downLoadRawDataChanged(bytes);
-    deleteLater();
+    deleteAll();
 }
 

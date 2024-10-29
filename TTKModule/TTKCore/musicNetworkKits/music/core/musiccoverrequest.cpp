@@ -5,3 +5,9 @@ MusicCoverRequest::MusicCoverRequest(QObject *parent)
 {
 
 }
+
+void MusicCoverRequest::deleteAll()
+{
+    MusicAbstractNetwork::deleteAll();
+    deleteLater();
+}
