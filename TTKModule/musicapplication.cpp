@@ -162,7 +162,27 @@ void MusicApplication::loadCurrentSongLrc()
     }
 
     const QString &fileName = currentFileName();
-    const QString &path = TTK::String::lrcDirPrefix() + fileName + LRC_FILE;
+    const QString &prefixPath = TTK::String::lrcDirPrefix() + fileName;
+    QString path = prefixPath + LRC_FILE;
+
+    if(!QFile::exists(path))
+    {
+        // try to load krc file
+        path = prefixPath + KRC_FILE;
+
+        if(!QFile::exists(path))
+        {
+            const QString &nativePath = QFileInfo(currentFilePath()).absoluteDir().absolutePath() + fileName;
+            // try to load same dir lrc file
+            path = nativePath + LRC_FILE;
+
+            if(!QFile::exists(path))
+            {
+                // try to load same dir krc file
+                path = nativePath + KRC_FILE;
+            }
+        }
+    }
 
     m_rightAreaWidget->loadCurrentSongLrc(fileName, path);
     //reset current song lrc index.

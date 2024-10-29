@@ -312,7 +312,7 @@ void MusicPlaylistBackupWidget::currentTimeChanged(int index)
     m_listWidget->blockSignals(false);
 
     MusicTKPLConfigManager manager;
-    if(!manager.fromFile(ROOT_PATH + m_dateBox->currentText() + "/" + m_timeBox->itemData(index).toString() + TKF_FILE))
+    if(!manager.fromFile(ROOT_PATH + m_dateBox->currentText() + TTK_SEPARATOR + m_timeBox->itemData(index).toString() + TKF_FILE))
     {
         TTK_LOG_STREAM("Backup playlist read error");
         return;
