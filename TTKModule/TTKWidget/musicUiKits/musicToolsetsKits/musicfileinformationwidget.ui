@@ -755,7 +755,7 @@
        <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="text">
-       <string>动态图片</string>
+       <string>动态封面</string>
       </property>
      </widget>
     </widget>

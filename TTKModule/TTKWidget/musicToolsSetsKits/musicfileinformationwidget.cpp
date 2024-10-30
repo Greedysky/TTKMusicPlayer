@@ -6,12 +6,14 @@
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
 #include "musicmessagebox.h"
+#include "musiccoremplayer.h"
 #include "musicsong.h"
 
 MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicFileInformationWidget),
-      m_deleteImage(false)
+      m_deleteImage(false),
+      m_player(nullptr)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -62,6 +64,7 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
 MusicFileInformationWidget::~MusicFileInformationWidget()
 {
     delete m_ui;
+    delete m_player;
 }
 
 void MusicFileInformationWidget::openFileDir()
@@ -127,18 +130,47 @@ void MusicFileInformationWidget::saveAlbumImage()
 
 void MusicFileInformationWidget::openDynamicImage()
 {
-    MusicWYCoverSourceRequest *d = new MusicWYCoverSourceRequest(this);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged(QString)));
-    d->startToRequest(QFileInfo(m_path).baseName());
+    if(m_ui->dynamicPixButton->text() == tr("Dynamic"))
+    {
+        m_ui->dynamicPixButton->setText(tr("Static"));
+
+        MusicWYCoverSourceRequest *d = new MusicWYCoverSourceRequest(this);
+        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+        d->startToRequest(QFileInfo(m_path).baseName());
+    }
+    else
+    {
+        m_ui->dynamicPixButton->setText(tr("Dynamic"));
+
+        if(m_player && m_player->isPlaying())
+        {
+            m_player->stop();
+            delete m_player;
+            m_player = nullptr;
+        }
+
+        MusicSongMeta meta;
+        meta.read(m_path);
+        rendererPixmap(m_ui, meta.cover());
+    }
 }
 
-void MusicFileInformationWidget::downLoadDataChanged(const QString &bytes)
+void MusicFileInformationWidget::downLoadFinished(const QString &bytes)
 {
-    TTK_INFO_STREAM(bytes);
     if(bytes.isEmpty())
     {
-        MusicToastLabel::popup(tr("No dynamic picture data"));
+        MusicToastLabel::popup(tr("No dynamic cover data"));
+        m_ui->dynamicPixButton->setText(tr("Dynamic"));
+        return;
     }
+
+    if(!m_player)
+    {
+        m_player = new MusicCoreMPlayer(this);
+    }
+
+    m_player->setMedia(MusicCoreMPlayer::Module::Movie, bytes, m_ui->pixmapLabel->winId());
+    m_player->play();
 }
 
 void MusicFileInformationWidget::editTag()

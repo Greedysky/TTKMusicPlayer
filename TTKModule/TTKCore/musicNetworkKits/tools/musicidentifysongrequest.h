@@ -72,7 +72,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &bytes);
+    void downLoadRawDataFinished(const QByteArray &bytes);
 
 private:
     MusicSongIdentifyDataList m_items;

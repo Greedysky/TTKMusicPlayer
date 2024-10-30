@@ -1,7 +1,5 @@
 #include "musicwycoverrequest.h"
-#include "musicwyqueryinterface.h"
-#include "musicdownloadqueryfactory.h"
-#include "musicabstractqueryrequest.h"
+#include "musicwyqueryrequest.h"
 
 static constexpr const char *WY_COVER_URL = "VUFVWVFwcE90dTIzME9XR2NsY3JYYldmTmpWZEJWZ0k5d0U1UXZUN1Jobz0=";
 static constexpr const char *WY_COVER_DATA_URL = "STE3dncrRTVPdVBiRVlZaHk5M2FRRXhQamM4PQ==";
@@ -14,17 +12,12 @@ MusicWYCoverSourceRequest::MusicWYCoverSourceRequest(QObject *parent)
 
 void MusicWYCoverSourceRequest::startToRequest(const QString &url)
 {
-    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, 0);
-
     TTKSemaphoreLoop loop;
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+    MusicWYQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     d->startToSearch(url);
     loop.exec();
-
-    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, index);
 
     if(d->isEmpty())
     {

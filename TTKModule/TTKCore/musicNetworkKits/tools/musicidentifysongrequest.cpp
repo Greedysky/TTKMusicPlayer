@@ -20,7 +20,7 @@ bool MusicIdentifySongRequest::queryIdentifyKey()
     connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
     MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
-    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadRawDataFinished(QByteArray)));
     d->startToRequest(QSyncUtils::makeDataBucketUrl() + OS_ACRCLOUD_URL);
     loop.exec();
 
@@ -126,7 +126,7 @@ void MusicIdentifySongRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicIdentifySongRequest::downLoadFinished(const QByteArray &bytes)
+void MusicIdentifySongRequest::downLoadRawDataFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {

@@ -20,16 +20,11 @@ void MusicKWCoverSourceRequest::startToRequest(const QString &url)
     m_decodeUrl = url.startsWith(TTK::Algorithm::mdII(KW_ALBUM_COVER_INFO_URL, false).left(TTK_ITEM_SIZE_S));
 
     MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
-    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadRawDataFinished(QByteArray)));
     d->startToRequest(url);
 }
 
-void MusicKWCoverSourceRequest::downLoadFinished()
-{
-    MusicCoverRequest::downLoadFinished();
-}
-
-void MusicKWCoverSourceRequest::downLoadFinished(const QByteArray &bytes)
+void MusicKWCoverSourceRequest::downLoadRawDataFinished(const QByteArray &bytes)
 {
     MusicCoverRequest::downLoadFinished();
 

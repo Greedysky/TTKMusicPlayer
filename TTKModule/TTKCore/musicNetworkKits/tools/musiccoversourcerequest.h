@@ -43,11 +43,7 @@ private Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
-    /*!
-     * Download data from net finished.
-     */
-    void downLoadFinished(const QByteArray &bytes);
+    void downLoadRawDataFinished(const QByteArray &bytes);
 
 };
 

@@ -37,7 +37,8 @@ public:
         Null,   /*!< no module*/
         Radio,  /*!< radio module*/
         Music,  /*!< music module*/
-        Video   /*!< video module*/
+        Video,  /*!< video module*/
+        Movie,  /*!< movie module*/
     };
 
     /*!
@@ -112,19 +113,19 @@ private Q_SLOTS:
     /*!
      * Player data has recieved.
      */
-    void dataRecieve();
+    void dataRecieved();
     /*!
      * Player position data has recieved.
      */
-    void positionRecieve();
+    void positionRecieved();
     /*!
      * Player duration data has recieved.
      */
-    void durationRecieve();
+    void durationRecieved();
     /*!
      * Player music data has recieved.
      */
-    void standardRecieve();
+    void standardRecieved();
     /*!
      * Player one second time out.
      */
@@ -151,6 +152,10 @@ private:
      * Set player to video media data.
      */
     void setVideoMedia(const QString &url, int winId);
+    /*!
+     * Set player to movie media data.
+     */
+    void setMovieMedia(const QString &url, int winId);
 
     QProcess *m_process;
     TTK::PlayState m_playState;

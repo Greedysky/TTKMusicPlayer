@@ -22,6 +22,8 @@
 #include "musicwidgetheaders.h"
 #include "musicabstractmovedialog.h"
 
+class MusicCoreMPlayer;
+
 namespace Ui {
 class MusicFileInformationWidget;
 }
@@ -72,7 +74,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadDataChanged(const QString &bytes);
+    void downLoadFinished(const QString &bytes);
     /*!
      * Music modify tag start.
      */
@@ -91,6 +93,7 @@ private:
     Ui::MusicFileInformationWidget *m_ui;
     QString m_path, m_imagePath;
     bool m_deleteImage;
+    MusicCoreMPlayer *m_player;
 
 };
 
