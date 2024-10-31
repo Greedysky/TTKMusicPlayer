@@ -101,7 +101,7 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
             return false;
         }
 
-        item.m_songs << MusicSong(filePath, TTKTime::formatDuration((int)duration * TTK_DN_S2MS));
+        item.m_songs << MusicSong(filePath, TTKTime::formatDuration(TTKStaticCast(int, duration) * TTK_DN_S2MS));
         if(minorver <= 2)
         {
             // legacy filetype support

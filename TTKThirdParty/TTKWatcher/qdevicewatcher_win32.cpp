@@ -190,7 +190,7 @@ static HWND dw_create_internal_window(const void* userData)
                              hi, // application
                              0); // windows creation data.
     if (!hwnd) {
-        qWarning("QDeviceWatcherPrivate: Failed to create internal window: %d", (int)GetLastError());
+        qWarning("QDeviceWatcherPrivate: Failed to create internal window: %d", TTKStaticCast(int, GetLastError()));
 #if CONFIG_NOTIFICATION
     } else {
         DEV_BROADCAST_DEVICEINTERFACE NotificationFilter ;
