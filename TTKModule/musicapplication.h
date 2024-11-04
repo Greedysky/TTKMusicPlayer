@@ -304,6 +304,7 @@ private:
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     virtual void enterEvent(QtEnterEvent *event) override final;
     virtual void leaveEvent(QEvent *event) override final;
+    virtual void mouseMoveEvent(QMouseEvent *event) override final;
     virtual void mouseReleaseEvent(QMouseEvent *event) override final;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override final;
     virtual bool eventFilter(QObject *object, QEvent *event) override final;

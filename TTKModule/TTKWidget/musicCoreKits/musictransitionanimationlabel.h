@@ -74,6 +74,10 @@ public:
      * Stop renderer pixmap animation.
      */
     void stop();
+    /*!
+     * Get animation is in run state.
+     */
+    bool isRunning() const;
 
 public Q_SLOTS:
     /*!

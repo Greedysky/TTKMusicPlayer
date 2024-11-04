@@ -39,11 +39,16 @@ const QPixmap& MusicTransitionAnimationLabel::renderPixmap() const
 
 void MusicTransitionAnimationLabel::stop()
 {
-    if(m_animation->state() == QPropertyAnimation::Running)
+    if(isRunning())
     {
         m_animation->stop();
         animationFinished();
     }
+}
+
+bool MusicTransitionAnimationLabel::isRunning() const
+{
+    return m_animation->state() == QPropertyAnimation::Running;
 }
 
 void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)

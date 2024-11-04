@@ -977,6 +977,12 @@ void MusicApplication::currentPlaylist(QStringList &list)
 
 void MusicApplication::resizeEvent(QResizeEvent *event)
 {
+    if(m_ui->background->isRunning())
+    {
+        event->ignore();
+        return;
+    }
+
     if(!m_quitWindowMode)
     {
         G_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, size());
@@ -1035,6 +1041,22 @@ void MusicApplication::leaveEvent(QEvent *event)
     m_applicationModule->sideAnimationByOn();
 }
 
+void MusicApplication::mouseMoveEvent(QMouseEvent *event)
+{
+    TTKAbstractMoveResizeWidget::mouseMoveEvent(event);
+
+    if(m_ui->background->isRunning())
+    {
+        setFixedSize(G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
+    }
+    else
+    {
+        const QSize &size = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+        setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+        setMaximumSize(size.width(), size.height());
+    }
+}
+
 void MusicApplication::mouseReleaseEvent(QMouseEvent *event)
 {
     TTKAbstractMoveResizeWidget::mouseReleaseEvent(event);
@@ -1043,7 +1065,7 @@ void MusicApplication::mouseReleaseEvent(QMouseEvent *event)
 
 void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    if(event->pos().y() <= m_ui->topWidget->height() && !G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
+    if(!m_ui->background->isRunning() && event->pos().y() <= m_ui->topWidget->height() && !G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
         TTKAbstractMoveResizeWidget::mouseDoubleClickEvent(event);
         if(event->buttons() == Qt::LeftButton)
