@@ -71,9 +71,14 @@ public:
     const QPixmap& renderPixmap() const;
 
     /*!
+     * Start renderer pixmap animation.
+     */
+    void start();
+    /*!
      * Stop renderer pixmap animation.
      */
     void stop();
+
     /*!
      * Get animation is in run state.
      */

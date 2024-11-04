@@ -37,6 +37,13 @@ const QPixmap& MusicTransitionAnimationLabel::renderPixmap() const
     return m_renderPixmap;
 }
 
+void MusicTransitionAnimationLabel::start()
+{
+    stop();
+    m_isAnimating = true;
+    m_animation->start();
+}
+
 void MusicTransitionAnimationLabel::stop()
 {
     if(isRunning())
