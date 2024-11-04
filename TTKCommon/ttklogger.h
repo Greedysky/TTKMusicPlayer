@@ -44,7 +44,7 @@
   }
 // log stream count base macro
 #define __TTK_COUNT_STREAM__(count, level, msg) \
-  static  __last__ = 1; \
+  static int __last__ = 1; \
   if(count > 0 && ++__last__ > count) \
   { \
     __last__ = 1; \
