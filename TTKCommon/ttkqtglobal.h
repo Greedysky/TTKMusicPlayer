@@ -53,8 +53,26 @@ void qAsConst(const T &&) = delete;
 #endif
 
 
+#ifdef Q_CC_MSVC
+template <typename T>
+inline T object_cast(QObject *object)
+{
+    T v = qobject_cast<T>(object);
+    return v ? v : TTKStaticCast(T, object);
+}
+
+template <typename T>
+inline T object_cast(const QObject *object)
+{
+    T v = qobject_cast<T>(object);
+    return v ? v : TTKStaticCast(T, object);
+}
+#else
+#  define object_cast qobject_cast
+#endif
+
 #ifdef TTK_CAST
-#  define TTKObjectCast(x, y) (qobject_cast<x>(y))
+#  define TTKObjectCast(x, y) (object_cast<x>(y))
 #else
 #  define TTKObjectCast(x, y) ((x)(y))
 #endif

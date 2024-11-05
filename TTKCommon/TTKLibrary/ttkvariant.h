@@ -147,7 +147,7 @@ public:
      * Object constructor.
      */
     template <class T,
-             class = typename std::enable_if<Contains<typename std::remove_reference<T>::type, Types...>::value>::type>
+              class = typename std::enable_if<Contains<typename std::remove_reference<T>::type, Types...>::value>::type>
     TTKVariant(T &&value)
         : m_type(typeid(void))
     {
