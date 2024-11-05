@@ -169,7 +169,7 @@ void MusicFileInformationWidget::downLoadFinished(const QString &bytes)
         m_player = new MusicCoreMPlayer(this);
     }
 
-    m_player->setMedia(MusicCoreMPlayer::Module::Movie, bytes, TTKStaticCast(int, m_ui->pixmapLabel->winId()));
+    m_player->setMedia(MusicCoreMPlayer::Module::Movie, bytes, (int)m_ui->pixmapLabel->winId());
     m_player->play();
 }
 

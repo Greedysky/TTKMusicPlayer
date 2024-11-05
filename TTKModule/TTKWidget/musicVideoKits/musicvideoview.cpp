@@ -106,7 +106,7 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoView::setMedia(const QString &url)
 {
-    m_player->setMedia(MusicCoreMPlayer::Module::Video, url, TTKStaticCast(int, m_videoWidget->winId()));
+    m_player->setMedia(MusicCoreMPlayer::Module::Video, url, (int)m_videoWidget->winId());
     m_videoControl->setQualityActionState();
 }
 
