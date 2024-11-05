@@ -305,14 +305,16 @@ VolumeDirectSound::VolumeDirectSound()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_volume.left = settings.value("DirectSound/left_volume", 100).toInt();
     m_volume.right = settings.value("DirectSound/right_volume", 100).toInt();
+    m_muted = settings.value("DirectSound/muted", false).toBool();
 }
 
 VolumeDirectSound::~VolumeDirectSound()
 {
-    m_volume = volume();
+    m_volume = VolumeDirectSound::volume();
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue("DirectSound/left_volume", m_volume.left);
     settings.setValue("DirectSound/right_volume", m_volume.right);
+    settings.setValue("DirectSound/muted", m_muted);
     OutputDirectSound::volumeControl = nullptr;
 }
 
@@ -330,32 +332,48 @@ void VolumeDirectSound::setVolume(const VolumeSettings &vol)
             if(balance > 0)
                 pandB = -pandB;
         }
-        OutputDirectSound::instance->secondaryBuffer()->SetVolume(voldB*100);
-        OutputDirectSound::instance->secondaryBuffer()->SetPan(pandB*100);
+        OutputDirectSound::instance->secondaryBuffer()->SetVolume(m_muted ? -10000 : (voldB * 100));
+        OutputDirectSound::instance->secondaryBuffer()->SetPan(pandB * 100);
     }
     m_volume = vol;
 }
 
 VolumeSettings VolumeDirectSound::volume() const
 {
-    VolumeSettings vol;
-    if(OutputDirectSound::instance && OutputDirectSound::instance->secondaryBuffer())
+    if(OutputDirectSound::instance && OutputDirectSound::instance->secondaryBuffer() && !m_muted)
     {
         long v = 0;
-        double voldB = 0, pandB = 0;
         OutputDirectSound::instance->secondaryBuffer()->GetVolume(&v);
-        voldB = v / 100.0;
+        double voldB = v / 100.0;
         OutputDirectSound::instance->secondaryBuffer()->GetPan(&v);
-        pandB = v / 100.0;
-        int volume = 100*pow(10, voldB/20.0);
-        int balance = 100 - 100*pow(10, abs(pandB)/20.0);
+        double pandB = v / 100.0;
+        int volume = 100 * pow(10, voldB / 20.0);
+        int balance = 100 - 100 * pow(10, abs(pandB) / 20.0);
         if(pandB > 0)
             balance = -balance;
-        vol.left = volume-qMax(balance,0)*volume/100.0;
-        vol.right = volume+qMin(balance,0)*volume/100.0;
+
+        VolumeSettings vol;
+        vol.left = volume - qMax(balance, 0) * volume / 100.0;
+        vol.right = volume + qMin(balance, 0) * volume / 100.0;
         return vol;
     }
     return m_volume;
+}
+
+bool VolumeDirectSound::isMuted() const
+{
+    return m_muted;
+}
+
+void VolumeDirectSound::setMuted(bool mute)
+{
+    m_muted = mute;
+    setVolume(m_volume);
+}
+
+Volume::VolumeFlags VolumeDirectSound::flags() const
+{
+    return Volume::IsMuteSupported;
 }
 
 void VolumeDirectSound::restore()

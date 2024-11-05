@@ -89,11 +89,15 @@ public:
 
     virtual void setVolume(const VolumeSettings &vol) override final;
     virtual VolumeSettings volume() const override final;
+    virtual bool isMuted() const override final;
+    virtual void setMuted(bool mute) override final;
+    virtual VolumeFlags flags() const override final;
 
     void restore();
 
 private:
     VolumeSettings m_volume;
+    bool m_muted = false;
 
 };
 

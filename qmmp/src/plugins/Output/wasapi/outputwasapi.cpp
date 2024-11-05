@@ -296,14 +296,16 @@ VolumeWASAPI::VolumeWASAPI()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_volume.left = settings.value("WASAPI/left_volume", 100).toInt();
     m_volume.right = settings.value("WASAPI/right_volume", 100).toInt();
+    m_muted = settings.value("WASAPI/muted", false).toBool();
 }
 
 VolumeWASAPI::~VolumeWASAPI()
 {
-    m_volume = volume();
+    m_volume = VolumeWASAPI::volume();
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue("WASAPI/left_volume", m_volume.left);
     settings.setValue("WASAPI/right_volume", m_volume.right);
+    settings.setValue("WASAPI/muted", m_muted);
     OutputWASAPI::volumeControl = nullptr;
 }
 
@@ -330,7 +332,33 @@ VolumeSettings VolumeWASAPI::volume() const
     return m_volume;
 }
 
+bool VolumeWASAPI::isMuted() const
+{
+    if(OutputWASAPI::instance && OutputWASAPI::instance->simpleAudioVolume())
+    {
+        WINBOOL muted = false;
+        OutputWASAPI::instance->simpleAudioVolume()->GetMute(&muted);
+        return muted;
+    }
+    return m_muted;
+}
+
+void VolumeWASAPI::setMuted(bool mute)
+{
+    if(OutputWASAPI::instance && OutputWASAPI::instance->simpleAudioVolume())
+    {
+        OutputWASAPI::instance->simpleAudioVolume()->SetMute(mute, nullptr);
+    }
+    m_muted = mute;
+}
+
+Volume::VolumeFlags VolumeWASAPI::flags() const
+{
+    return Volume::IsMuteSupported;
+}
+
 void VolumeWASAPI::restore()
 {
     setVolume(m_volume);
+    setMuted(m_muted);
 }

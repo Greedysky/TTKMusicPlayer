@@ -166,7 +166,7 @@ void VolumeHandler::checkVolume()
     }
 
     VolumeSettings v = m_volume->volume();
-    bool muted = m_volume->isMuted();
+    const bool muted = m_volume->flags() & Volume::IsMuteSupported ? m_volume->isMuted() : isMuted();
 
     v.left = qBound(0, v.left, 100);
     v.right = qBound(0, v.right, 100);
