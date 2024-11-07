@@ -141,7 +141,7 @@ protected:
     virtual void leaveEvent(QEvent *event) override final;
     virtual void closeEvent(QCloseEvent *event) override final;
 
-    bool m_verticalWindow, m_singleLineType;
+    bool m_verticalWindow, m_singleLine;
     bool m_windowLocked, m_reverse;
     int m_currentLrcFontSize, m_widgetWidth;
     QPoint m_offset, m_geometry;

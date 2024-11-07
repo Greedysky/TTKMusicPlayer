@@ -467,7 +467,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     m_showArtistBackground ? artAction->setText(tr("Art Turn Off")) : artAction->setText(tr("Art Turn On"));
     QAction *showLrc = menu.addAction(tr("Lrc Turn Off"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? showLrc->setText(tr("Lrc Turn Off")) : showLrc->setText(tr("Lrc Turn On"));
-    menu.addAction(tr("Set As Background"), MusicTopAreaWidget::instance(), SLOT(setAsArtistBackground()))->setEnabled(!G_BACKGROUND_PTR->isEmpty());
+    menu.addAction(tr("Set As Background"), MusicTopAreaWidget::instance(), SLOT(setArtistBackground()))->setEnabled(!G_BACKGROUND_PTR->isEmpty());
     menu.addSeparator();
 
     const QString &filePath = m_lrcAnalysis->currentFilePath();
@@ -894,14 +894,12 @@ void MusicLrcContainerForInterior::setItemStyleSheet(int index, int size, int tr
 
     if(G_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::Color index = TTKStaticCast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt());
-        setLinearGradientColor(index);
+        setLinearGradientColor(TTKStaticCast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt()));
     }
     else
     {
-        const MusicLrcColor cl(TTK::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
-                               TTK::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
-        setLinearGradientColor(cl);
+        setLinearGradientColor({TTK::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
+                                TTK::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString())});
     }
 }
 

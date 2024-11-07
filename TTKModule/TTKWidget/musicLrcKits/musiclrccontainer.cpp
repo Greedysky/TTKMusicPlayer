@@ -34,14 +34,12 @@ void MusicLrcContainer::applyParameter()
 
     if(G_SETTING_PTR->value(t + "LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::Color index = TTKStaticCast(MusicLrcColor::Color, G_SETTING_PTR->value(t + "LrcColor").toInt());
-        setLinearGradientColor(index);
+        setLinearGradientColor(TTKStaticCast(MusicLrcColor::Color, G_SETTING_PTR->value(t + "LrcColor").toInt()));
     }
     else
     {
-        const MusicLrcColor cl(TTK::readColorConfig(G_SETTING_PTR->value(t + "LrcFrontgroundColor").toString()),
-                               TTK::readColorConfig(G_SETTING_PTR->value(t + "LrcBackgroundColor").toString()));
-        setLinearGradientColor(cl);
+        setLinearGradientColor({TTK::readColorConfig(G_SETTING_PTR->value(t + "LrcFrontgroundColor").toString()),
+                                TTK::readColorConfig(G_SETTING_PTR->value(t + "LrcBackgroundColor").toString())});
     }
 }
 

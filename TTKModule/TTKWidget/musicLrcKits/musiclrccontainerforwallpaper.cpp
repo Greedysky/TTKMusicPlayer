@@ -192,13 +192,11 @@ void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int t
 
     if(G_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::Color index = TTKStaticCast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt());
-        setLinearGradientColor(index);
+        setLinearGradientColor(TTKStaticCast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt()));
     }
     else
     {
-        const MusicLrcColor cl(TTK::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
-                               TTK::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
-        setLinearGradientColor(cl);
+        setLinearGradientColor({TTK::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
+                                TTK::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString())});
     }
 }

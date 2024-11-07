@@ -118,7 +118,7 @@ public Q_SLOTS:
     /*!
      * Set background as artist background picture.
      */
-    void setAsArtistBackground();
+    void setArtistBackground();
     /*!
      * Current background transparent changed.
      */
@@ -210,21 +210,21 @@ private:
      */
     void createRemoteWidget();
     /*!
-     * Draw window background rect.
+     * Draw window background.
      */
-    void drawWindowBackgroundRect();
+    void drawWindowBackground();
     /*!
-     * Draw window background rect.
+     * Draw window background.
      */
-    void drawWindowBackgroundRect(const QImage &image);
+    void drawWindowBackground(const QImage &image);
     /*!
-     * Draw window background rect by qimage.
+     * Draw window background by qimage.
      */
-    void drawWindowBackgroundRectString();
+    void drawWindowBackgroundByImage();
     /*!
-     * Draw window background rect by picture.
+     * Draw window background by path.
      */
-    void drawWindowBackgroundRectString(const QString &path);
+    void drawWindowBackgroundByPath(const QString &path);
 
     Ui::MusicApplication *m_ui;
     MusicBackgroundSkinDialog *m_backgroundWidget;

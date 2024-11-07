@@ -187,7 +187,7 @@ void MusicTopAreaWidget::backgroundTransparentChanged(int value)
     }
 
     m_backgroundTransparent = value;
-    drawWindowBackgroundRectString();
+    drawWindowBackgroundByImage();
 }
 
 void MusicTopAreaWidget::backgroundTransparentChanged(const QString &fileName)
@@ -197,10 +197,10 @@ void MusicTopAreaWidget::backgroundTransparentChanged(const QString &fileName)
         return;
     }
 
-    drawWindowBackgroundRectString(fileName);
+    drawWindowBackgroundByPath(fileName);
 }
 
-void MusicTopAreaWidget::setAsArtistBackground()
+void MusicTopAreaWidget::setArtistBackground()
 {
     QString path = G_BACKGROUND_PTR->artistImageDefaultPath();
     if(!path.isEmpty())
@@ -222,7 +222,7 @@ void MusicTopAreaWidget::setAsArtistBackground()
 
 void MusicTopAreaWidget::backgroundTransparentChanged()
 {
-    drawWindowBackgroundRect();
+    drawWindowBackground();
 }
 
 void MusicTopAreaWidget::backgroundSkinChanged(const QString &fileName)
@@ -240,11 +240,11 @@ void MusicTopAreaWidget::backgroundChanged()
     if(!path.isEmpty())
     {
         G_BACKGROUND_PTR->imageNext();
-        drawWindowBackgroundRectString(path);
+        drawWindowBackgroundByPath(path);
     }
     else
     {
-        drawWindowBackgroundRect();
+        drawWindowBackground();
     }
 }
 
@@ -262,7 +262,7 @@ void MusicTopAreaWidget::backgroundThemeDownloadFinished()
     }
     else
     {
-        drawWindowBackgroundRect();
+        drawWindowBackground();
     }
 }
 
@@ -270,7 +270,7 @@ void MusicTopAreaWidget::backgroundThemeChangedByResize()
 {
     backgroundAnimationChanged(true);
     setBackgroundAnimation(false);
-    drawWindowBackgroundRectString();
+    drawWindowBackgroundByImage();
     backgroundAnimationChanged(false);
 
     if(isArtistBackground())
@@ -425,13 +425,13 @@ void MusicTopAreaWidget::createRemoteWidget()
     m_remoteWidget->show();
 }
 
-void MusicTopAreaWidget::drawWindowBackgroundRect()
+void MusicTopAreaWidget::drawWindowBackground()
 {
     setBackgroundAnimation(false);
-    drawWindowBackgroundRect(MusicBackgroundSkinDialog::setBackgroundUrl(m_backgroundImagePath).toImage());
+    drawWindowBackground(MusicBackgroundSkinDialog::setBackgroundUrl(m_backgroundImagePath).toImage());
 }
 
-void MusicTopAreaWidget::drawWindowBackgroundRect(const QImage &image)
+void MusicTopAreaWidget::drawWindowBackground(const QImage &image)
 {
     if(image.isNull())
     {
@@ -447,10 +447,10 @@ void MusicTopAreaWidget::drawWindowBackgroundRect(const QImage &image)
     TTK::Image::reRenderImage(35, &origin, &origin);
 
     m_backgroundImage = origin;
-    drawWindowBackgroundRectString();
+    drawWindowBackgroundByImage();
 }
 
-void MusicTopAreaWidget::drawWindowBackgroundRectString()
+void MusicTopAreaWidget::drawWindowBackgroundByImage()
 {
     if(m_backgroundImage.isNull())
     {
@@ -473,7 +473,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
     m_ui->background->setPixmap(pix);
 }
 
-void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
+void MusicTopAreaWidget::drawWindowBackgroundByPath(const QString &path)
 {
-    drawWindowBackgroundRect(QImage(path));
+    drawWindowBackground(QImage(path));
 }
