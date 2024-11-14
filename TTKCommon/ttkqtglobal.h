@@ -41,7 +41,6 @@
 
 
 #if !TTK_QT_VERSION_CHECK(5,7,0)
-#  define TTK_AS_CONST
 // this adds const to non-const objects (like std::as_const)
 template <typename T>
 Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { return t; }
@@ -49,7 +48,7 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { ret
 template <typename T>
 void qAsConst(const T &&) = delete;
 #elif TTK_QT_VERSION_CHECK(6,6,0)
-#define qAsConst std::as_const
+#  define qAsConst std::as_const
 #endif
 
 
@@ -207,5 +206,9 @@ using TTKVariantList =  QList<QVariant>;            /* variant list */
 using TTKStringMap =    QMap<QString, QString>;     /* strings map */
 using TTKVariantMap =   QMap<QString, QVariant>;    /* string variant map */
 using TTKIntStringMap = QMap<qint64, QString>;      /* int string map */
+
+#if !TTK_QT_VERSION_CHECK(5,10,0)
+using qsizetype = QIntegerForSizeof<std::size_t>::Signed;
+#endif
 
 #endif // TTKQTGLOBAL_H
