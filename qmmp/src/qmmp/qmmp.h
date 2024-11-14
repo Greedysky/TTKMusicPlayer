@@ -64,6 +64,11 @@ void qAsConst(const T &&) = delete;
 #  endif
 #endif
 
+#if QT_VERSION < QT_VERSION_CHECK(5,10,0)
+using qsizetype = QIntegerForSizeof<std::size_t>::Signed;
+#endif
+
+
 /*! @brief The Qmmp class stores global settings and enums.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */

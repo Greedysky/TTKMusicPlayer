@@ -85,6 +85,7 @@ private:
     virtual void contextMenuEvent(QContextMenuEvent *) override final;
 
     virtual void process(float *left, float *right) override final;
+
     void deinit();
     void initialize();
     void createMenu();
