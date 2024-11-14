@@ -26,7 +26,7 @@
 
 #define QMMP_VERSION_MAJOR 1
 #define QMMP_VERSION_MINOR 7
-#define QMMP_VERSION_PATCH 1
+#define QMMP_VERSION_PATCH 2
 
 #define QMMP_VERSION_INT (QMMP_VERSION_MAJOR<<16 | QMMP_VERSION_MINOR<<8 | QMMP_VERSION_PATCH)
 
@@ -53,15 +53,21 @@
 
 #define CSTR_TO_QSTR(codec, str, utf) codec->toUnicode(str.toCString(utf)).trimmed()
 
-#ifndef TTK_AS_CONST
-#  if QT_VERSION < QT_VERSION_CHECK(5,7,0)
+#ifndef TTK_LIBRARY
+#if QT_VERSION < QT_VERSION_CHECK(5,7,0)
 // this adds const to non-const objects (like std::as_const)
 template <typename T>
 Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { return t; }
 // prevent rvalue arguments:
 template <typename T>
 void qAsConst(const T &&) = delete;
-#  endif
+#elif QT_VERSION >= QT_VERSION_CHECK(6,6,0)
+#  define qAsConst std::as_const
+#endif
+
+#if QT_VERSION < QT_VERSION_CHECK(5,10,0)
+using qsizetype = QIntegerForSizeof<std::size_t>::Signed;
+#endif
 #endif
 
 /*! @brief The Qmmp class stores global settings and enums.
