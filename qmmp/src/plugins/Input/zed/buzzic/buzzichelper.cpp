@@ -56,6 +56,7 @@ QString BuzzicHelper::instruments() const
         if(v)
         {
             name += v;
+            name += "\n";
         }
     }
     return name;

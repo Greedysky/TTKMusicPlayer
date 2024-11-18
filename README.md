@@ -111,6 +111,7 @@ The TTKMusicplayer plugin for run
  * archive
  * asap
  * ayfly
+ * buzzic
  * dca
  * ken
  * optimfrog
