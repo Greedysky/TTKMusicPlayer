@@ -74,6 +74,8 @@
  *
  * Quite OK Audio File(*.qoa)
  *
+ * Buzzic Audio File(*.buz *buz2)
+ *
  * S98 Audio File(*.s98 *.cym *.mym *.x1f)
  *
  * Atari ST(E) And Amiga File(*.sc68 *.snd *.sndh)
