@@ -18,40 +18,40 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_HEADERS
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicmobiledeviceswidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicmobilesongsmanagerwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicreplaygainwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musictimerwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musictransformwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongringtonemakerwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumlayoutwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongdlnatransferwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicscreensaverwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicplaylistbackupwidget.h
+set_property(GLOBAL PROPERTY TTK_WIDGET_TOOLSETS_KITS_HEADERS
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicmobiledeviceswidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicmobilesongsmanagerwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicreplaygainwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musictimerwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musictransformwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicsongringtonemakerwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumlayoutwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicsongdlnatransferwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicscreensaverwidget.h
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicplaylistbackupwidget.h
 )
 
-set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicmobiledeviceswidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicmobilesongsmanagerwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicreplaygainwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musictimerwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musictransformwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongringtonemakerwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumlayoutwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongdlnatransferwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicscreensaverwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicplaylistbackupwidget.cpp
+set_property(GLOBAL PROPERTY TTK_WIDGET_TOOLSETS_KITS_SOURCES
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicmobiledeviceswidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicmobilesongsmanagerwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicreplaygainwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musictimerwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musictransformwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicsongringtonemakerwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumlayoutwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicsongdlnatransferwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicscreensaverwidget.cpp
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}/musicplaylistbackupwidget.cpp
 )

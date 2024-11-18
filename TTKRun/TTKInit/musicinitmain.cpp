@@ -1,7 +1,7 @@
 #include <QCoreApplication>
 #include "musicconfigmodule.h"
 
-#ifdef _MSC_VER
+#ifdef _MSC_VER // do not show console window
 #  pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 #endif
 

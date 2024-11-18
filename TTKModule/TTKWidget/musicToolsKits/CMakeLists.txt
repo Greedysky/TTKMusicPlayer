@@ -18,56 +18,56 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_HEADERS
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicsongscontainerwidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musictoolsetswidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnectlocalwidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransferwidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiclocalmanagerwidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicttkfmradioplaywidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicpersonalradioquerywidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebfmradioplaywidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiocategorywidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiowidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioquerywidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioinfowidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerywidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerycategorypopwidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioinfowidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudmanagerwidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicdownloadrecordwidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudfileinformationwidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudtoolboxwidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudtablewidget.h
+set_property(GLOBAL PROPERTY TTK_WIDGET_TOOLS_KITS_HEADERS
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicsongscontainerwidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musictoolsetswidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicconnectlocalwidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransferwidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiclocalmanagerwidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicttkfmradioplaywidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicpersonalradioquerywidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebfmradioplaywidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiocategorywidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiowidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioquerywidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioinfowidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerywidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerycategorypopwidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioinfowidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudmanagerwidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicdownloadrecordwidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudfileinformationwidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudtoolboxwidget.h
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudtablewidget.h
 )
 
-set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_SOURCES
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicsongscontainerwidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnectlocalwidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransferwidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiclocalmanagerwidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicttkfmradioplaywidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicpersonalradioquerywidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebfmradioplaywidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiocategorywidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiowidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioquerywidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioinfowidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerywidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerycategorypopwidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioinfowidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudmanagerwidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicdownloadrecordwidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudfileinformationwidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudtoolboxwidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudtablewidget.cpp
+set_property(GLOBAL PROPERTY TTK_WIDGET_TOOLS_KITS_SOURCES
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicsongscontainerwidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicconnectlocalwidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransferwidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiclocalmanagerwidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicttkfmradioplaywidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicpersonalradioquerywidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebfmradioplaywidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiocategorywidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiowidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioquerywidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioinfowidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerywidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerycategorypopwidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioinfowidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudmanagerwidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicdownloadrecordwidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudfileinformationwidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudtoolboxwidget.cpp
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudtablewidget.cpp
 )

@@ -20,18 +20,18 @@ cmake_minimum_required(VERSION 3.0.0)
 
 project(TTKMusicPlayer)
 
-set(LIBRARY_OUTPUT_PATH ${MUSIC_BUILD_DIR})
-set(EXECUTABLE_OUTPUT_PATH ${MUSIC_BUILD_DIR})
+set(LIBRARY_OUTPUT_PATH ${TTK_BUILD_DIR})
+set(EXECUTABLE_OUTPUT_PATH ${TTK_BUILD_DIR})
 
-include_directories(${MUSIC_COMMON_DIR})
-include_directories(${MUSIC_COMMON_RUN_DIR})
+include_directories(${TTK_COMMON_DIR})
+include_directories(${TTK_COMMON_RUN_DIR})
 
 set(HEADER_FILES
-  ${MUSIC_COMMON_RUN_DIR}/ttkrunobject.h
+  ${TTK_COMMON_RUN_DIR}/ttkrunobject.h
 )
 
 set(SOURCE_FILES
-  ${MUSIC_COMMON_RUN_DIR}/ttkrunobject.cpp
+  ${TTK_COMMON_RUN_DIR}/ttkrunobject.cpp
   ttkrunmain.cpp
 )
 

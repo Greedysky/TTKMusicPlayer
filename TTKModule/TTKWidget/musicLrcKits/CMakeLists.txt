@@ -18,50 +18,50 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY MUSIC_WIDGET_LRC_KITS_HEADERS
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanager.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerforinterior.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainer.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerfordesktop.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforinterior.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforwallpaper.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchwidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchtablewidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcphotomanagerwidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatwidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatphotowidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatplaywidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmakerwidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrclocallinkwidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccommentswidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrctranslatedwidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccolorwidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcposterwidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcdownloadbatchwidget.h
+set_property(GLOBAL PROPERTY TTK_WIDGET_LRC_KITS_HEADERS
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanager.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerforinterior.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccontainer.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccontainerfordesktop.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforinterior.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforwallpaper.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcsearchwidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcsearchtablewidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcphotomanagerwidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcfloatwidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcfloatphotowidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcfloatplaywidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmakerwidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrclocallinkwidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccommentswidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrctranslatedwidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccolorwidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcposterwidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcdownloadbatchwidget.h
 )
 
-set_property(GLOBAL PROPERTY MUSIC_WIDGET_LRC_KITS_SOURCES
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanager.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerforinterior.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforwallpaper.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainer.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerfordesktop.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforinterior.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchwidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchtablewidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcphotomanagerwidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatwidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatphotowidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatplaywidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmakerwidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrclocallinkwidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccommentswidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrctranslatedwidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccolorwidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcposterwidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcdownloadbatchwidget.cpp
+set_property(GLOBAL PROPERTY TTK_WIDGET_LRC_KITS_SOURCES
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanager.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerforinterior.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforwallpaper.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccontainer.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccontainerfordesktop.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforinterior.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcsearchwidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcsearchtablewidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcphotomanagerwidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcfloatwidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcfloatphotowidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcfloatplaywidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmakerwidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrclocallinkwidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccommentswidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrctranslatedwidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccolorwidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcposterwidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcdownloadbatchwidget.cpp
 )

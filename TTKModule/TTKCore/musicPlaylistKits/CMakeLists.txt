@@ -18,31 +18,31 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY MUSIC_CORE_PLAYLIST_KITS_HEADERS
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicasxconfigmanager.h
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicdbplconfigmanager.h
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicfplconfigmanager.h
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicm3uconfigmanager.h
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicplaylistinterface.h
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicplsconfigmanager.h
-  ${MUSIC_CORE_PLAYLIST_DIR}/musictkplconfigmanager.h
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicwplconfigmanager.h
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicxspfconfigmanager.h
-  ${MUSIC_CORE_PLAYLIST_DIR}/musiccsvconfigmanager.h
-  ${MUSIC_CORE_PLAYLIST_DIR}/musictxtconfigmanager.h
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicjspfconfigmanager.h
+set_property(GLOBAL PROPERTY TTK_CORE_PLAYLIST_KITS_HEADERS
+  ${TTK_CORE_PLAYLIST_DIR}/musicasxconfigmanager.h
+  ${TTK_CORE_PLAYLIST_DIR}/musicdbplconfigmanager.h
+  ${TTK_CORE_PLAYLIST_DIR}/musicfplconfigmanager.h
+  ${TTK_CORE_PLAYLIST_DIR}/musicm3uconfigmanager.h
+  ${TTK_CORE_PLAYLIST_DIR}/musicplaylistinterface.h
+  ${TTK_CORE_PLAYLIST_DIR}/musicplsconfigmanager.h
+  ${TTK_CORE_PLAYLIST_DIR}/musictkplconfigmanager.h
+  ${TTK_CORE_PLAYLIST_DIR}/musicwplconfigmanager.h
+  ${TTK_CORE_PLAYLIST_DIR}/musicxspfconfigmanager.h
+  ${TTK_CORE_PLAYLIST_DIR}/musiccsvconfigmanager.h
+  ${TTK_CORE_PLAYLIST_DIR}/musictxtconfigmanager.h
+  ${TTK_CORE_PLAYLIST_DIR}/musicjspfconfigmanager.h
 )
 
-set_property(GLOBAL PROPERTY MUSIC_CORE_PLAYLIST_KITS_SOURCES
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicasxconfigmanager.cpp
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicdbplconfigmanager.cpp
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicfplconfigmanager.cpp
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicm3uconfigmanager.cpp
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicplsconfigmanager.cpp
-  ${MUSIC_CORE_PLAYLIST_DIR}/musictkplconfigmanager.cpp
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicwplconfigmanager.cpp
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicxspfconfigmanager.cpp
-  ${MUSIC_CORE_PLAYLIST_DIR}/musiccsvconfigmanager.cpp
-  ${MUSIC_CORE_PLAYLIST_DIR}/musictxtconfigmanager.cpp
-  ${MUSIC_CORE_PLAYLIST_DIR}/musicjspfconfigmanager.cpp
+set_property(GLOBAL PROPERTY TTK_CORE_PLAYLIST_KITS_SOURCES
+  ${TTK_CORE_PLAYLIST_DIR}/musicasxconfigmanager.cpp
+  ${TTK_CORE_PLAYLIST_DIR}/musicdbplconfigmanager.cpp
+  ${TTK_CORE_PLAYLIST_DIR}/musicfplconfigmanager.cpp
+  ${TTK_CORE_PLAYLIST_DIR}/musicm3uconfigmanager.cpp
+  ${TTK_CORE_PLAYLIST_DIR}/musicplsconfigmanager.cpp
+  ${TTK_CORE_PLAYLIST_DIR}/musictkplconfigmanager.cpp
+  ${TTK_CORE_PLAYLIST_DIR}/musicwplconfigmanager.cpp
+  ${TTK_CORE_PLAYLIST_DIR}/musicxspfconfigmanager.cpp
+  ${TTK_CORE_PLAYLIST_DIR}/musiccsvconfigmanager.cpp
+  ${TTK_CORE_PLAYLIST_DIR}/musictxtconfigmanager.cpp
+  ${TTK_CORE_PLAYLIST_DIR}/musicjspfconfigmanager.cpp
 )

@@ -60,108 +60,108 @@ add_definitions(-DQT_THREAD)
 add_definitions(-DTTK_LIBRARY)
 add_definitions(-DQMMP_LIBRARY)
 
-set(MUSIC_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
-set(MUSIC_COMMON_DIR "${MUSIC_DIR}/TTKCommon")
-set(MUSIC_COMMON_COMPAT_DIR "${MUSIC_COMMON_DIR}/compat")
-set(MUSIC_COMMON_APP_DIR "${MUSIC_COMMON_DIR}/TTKApplication")
-set(MUSIC_COMMON_DUMPER_DIR "${MUSIC_COMMON_DIR}/TTKDumper")
-set(MUSIC_COMMON_LIB_DIR "${MUSIC_COMMON_DIR}/TTKLibrary")
-set(MUSIC_COMMON_RUN_DIR "${MUSIC_COMMON_DIR}/TTKRun")
-set(MUSIC_LIB_DIR "${MUSIC_DIR}/TTKModule")
-set(MUSIC_LIB_CORE_DIR "${MUSIC_LIB_DIR}/TTKCore")
-set(MUSIC_LIB_WIDGET_DIR "${MUSIC_LIB_DIR}/TTKWidget")
+set(TTK_BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
+set(TTK_COMMON_DIR "${TTK_BASE_DIR}/TTKCommon")
+set(TTK_COMMON_COMPAT_DIR "${TTK_COMMON_DIR}/compat")
+set(TTK_COMMON_APP_DIR "${TTK_COMMON_DIR}/TTKApplication")
+set(TTK_COMMON_DUMPER_DIR "${TTK_COMMON_DIR}/TTKDumper")
+set(TTK_COMMON_LIB_DIR "${TTK_COMMON_DIR}/TTKLibrary")
+set(TTK_COMMON_RUN_DIR "${TTK_COMMON_DIR}/TTKRun")
+set(TTK_MODULE_DIR "${TTK_BASE_DIR}/TTKModule")
+set(TTK_MODULE_CORE_DIR "${TTK_MODULE_DIR}/TTKCore")
+set(TTK_MODULE_WIDGET_DIR "${TTK_MODULE_DIR}/TTKWidget")
 
 include_directories(
-  ${MUSIC_DIR}
-  ${MUSIC_COMMON_DIR}
-  ${MUSIC_COMMON_LIB_DIR}
-  ${MUSIC_LIB_DIR}
+  ${TTK_BASE_DIR}
+  ${TTK_COMMON_DIR}
+  ${TTK_COMMON_LIB_DIR}
+  ${TTK_MODULE_DIR}
 )
 
 
-set(MUSIC_CORE_DIR "${MUSIC_LIB_CORE_DIR}/musicCoreKits")
-set(MUSIC_CORE_LRCMANAGER_DIR "${MUSIC_LIB_CORE_DIR}/musicLrcKits")
-set(MUSIC_CORE_NETWORK_DIR "${MUSIC_LIB_CORE_DIR}/musicNetworkKits")
-set(MUSIC_CORE_PLAYLIST_DIR "${MUSIC_LIB_CORE_DIR}/musicPlaylistKits")
-set(MUSIC_CORE_LOCALSEARCH_DIR "${MUSIC_LIB_CORE_DIR}/musicSearchKits")
-set(MUSIC_CORE_TOOLSWIDGET_DIR "${MUSIC_LIB_CORE_DIR}/musicToolsKits")
-set(MUSIC_CORE_TOOLSETSWIDGET_DIR "${MUSIC_LIB_CORE_DIR}/musicToolsSetsKits")
-set(MUSIC_CORE_UTILS_DIR "${MUSIC_LIB_CORE_DIR}/musicUtilsKits")
-set(MUSIC_CORE_VIDEOKITS_DIR "${MUSIC_LIB_CORE_DIR}/musicVideoKits")
+set(TTK_CORE_DIR "${TTK_MODULE_CORE_DIR}/musicCoreKits")
+set(TTK_CORE_LRCMANAGER_DIR "${TTK_MODULE_CORE_DIR}/musicLrcKits")
+set(TTK_CORE_NETWORK_DIR "${TTK_MODULE_CORE_DIR}/musicNetworkKits")
+set(TTK_CORE_PLAYLIST_DIR "${TTK_MODULE_CORE_DIR}/musicPlaylistKits")
+set(TTK_CORE_LOCALSEARCH_DIR "${TTK_MODULE_CORE_DIR}/musicSearchKits")
+set(TTK_CORE_TOOLSWIDGET_DIR "${TTK_MODULE_CORE_DIR}/musicToolsKits")
+set(TTK_CORE_TOOLSETSWIDGET_DIR "${TTK_MODULE_CORE_DIR}/musicToolsSetsKits")
+set(TTK_CORE_UTILS_DIR "${TTK_MODULE_CORE_DIR}/musicUtilsKits")
+set(TTK_CORE_VIDEOKITS_DIR "${TTK_MODULE_CORE_DIR}/musicVideoKits")
 
 include_directories(
-  ${MUSIC_CORE_DIR}
-  ${MUSIC_CORE_LRCMANAGER_DIR}
-  ${MUSIC_CORE_NETWORK_DIR}
-  ${MUSIC_CORE_NETWORK_DIR}/core
-  ${MUSIC_CORE_NETWORK_DIR}/image/background
-  ${MUSIC_CORE_NETWORK_DIR}/image/skin
-  ${MUSIC_CORE_NETWORK_DIR}/music
-  ${MUSIC_CORE_NETWORK_DIR}/music/core
-  ${MUSIC_CORE_NETWORK_DIR}/music/kg
-  ${MUSIC_CORE_NETWORK_DIR}/music/kw
-  ${MUSIC_CORE_NETWORK_DIR}/music/wy
-  ${MUSIC_CORE_NETWORK_DIR}/music/zed
-  ${MUSIC_CORE_NETWORK_DIR}/radio/dj
-  ${MUSIC_CORE_NETWORK_DIR}/radio/fm
-  ${MUSIC_CORE_NETWORK_DIR}/radio/mv
-  ${MUSIC_CORE_NETWORK_DIR}/tools
-  ${MUSIC_CORE_NETWORK_DIR}/translation
-  ${MUSIC_CORE_PLAYLIST_DIR}
-  ${MUSIC_CORE_LOCALSEARCH_DIR}
-  ${MUSIC_CORE_TOOLSWIDGET_DIR}
-  ${MUSIC_CORE_TOOLSETSWIDGET_DIR}
-  ${MUSIC_CORE_UTILS_DIR}
-  ${MUSIC_CORE_VIDEOKITS_DIR}
+  ${TTK_CORE_DIR}
+  ${TTK_CORE_LRCMANAGER_DIR}
+  ${TTK_CORE_NETWORK_DIR}
+  ${TTK_CORE_NETWORK_DIR}/core
+  ${TTK_CORE_NETWORK_DIR}/image/background
+  ${TTK_CORE_NETWORK_DIR}/image/skin
+  ${TTK_CORE_NETWORK_DIR}/music
+  ${TTK_CORE_NETWORK_DIR}/music/core
+  ${TTK_CORE_NETWORK_DIR}/music/kg
+  ${TTK_CORE_NETWORK_DIR}/music/kw
+  ${TTK_CORE_NETWORK_DIR}/music/wy
+  ${TTK_CORE_NETWORK_DIR}/music/zed
+  ${TTK_CORE_NETWORK_DIR}/radio/dj
+  ${TTK_CORE_NETWORK_DIR}/radio/fm
+  ${TTK_CORE_NETWORK_DIR}/radio/mv
+  ${TTK_CORE_NETWORK_DIR}/tools
+  ${TTK_CORE_NETWORK_DIR}/translation
+  ${TTK_CORE_PLAYLIST_DIR}
+  ${TTK_CORE_LOCALSEARCH_DIR}
+  ${TTK_CORE_TOOLSWIDGET_DIR}
+  ${TTK_CORE_TOOLSETSWIDGET_DIR}
+  ${TTK_CORE_UTILS_DIR}
+  ${TTK_CORE_VIDEOKITS_DIR}
 )
 
 
-set(MUSIC_WIDGET_DIR "${MUSIC_LIB_WIDGET_DIR}/musicWidgetKits")
-set(MUSIC_WIDGET_CORE_DIR "${MUSIC_LIB_WIDGET_DIR}/musicCoreKits")
-set(MUSIC_WIDGET_LRCMANAGER_DIR "${MUSIC_LIB_WIDGET_DIR}/musicLrcKits")
-set(MUSIC_WIDGET_REMOTEWIDGET_DIR "${MUSIC_LIB_WIDGET_DIR}/musicRemoteKits")
-set(MUSIC_WIDGET_LOCALSEARCH_DIR "${MUSIC_LIB_WIDGET_DIR}/musicSearchKits")
-set(MUSIC_WIDGET_TOOLSWIDGET_DIR "${MUSIC_LIB_WIDGET_DIR}/musicToolsKits")
-set(MUSIC_WIDGET_TOOLSETSWIDGET_DIR "${MUSIC_LIB_WIDGET_DIR}/musicToolsSetsKits")
-set(MUSIC_WIDGET_UI_DIR "${MUSIC_LIB_WIDGET_DIR}/musicUiKits")
-set(MUSIC_WIDGET_VIDEOKITS_DIR "${MUSIC_LIB_WIDGET_DIR}/musicVideoKits")
+set(TTK_WIDGET_DIR "${TTK_MODULE_WIDGET_DIR}/musicWidgetKits")
+set(TTK_WIDGET_CORE_DIR "${TTK_MODULE_WIDGET_DIR}/musicCoreKits")
+set(TTK_WIDGET_LRCMANAGER_DIR "${TTK_MODULE_WIDGET_DIR}/musicLrcKits")
+set(TTK_WIDGET_REMOTEWIDGET_DIR "${TTK_MODULE_WIDGET_DIR}/musicRemoteKits")
+set(TTK_WIDGET_LOCALSEARCH_DIR "${TTK_MODULE_WIDGET_DIR}/musicSearchKits")
+set(TTK_WIDGET_TOOLSWIDGET_DIR "${TTK_MODULE_WIDGET_DIR}/musicToolsKits")
+set(TTK_WIDGET_TOOLSETSWIDGET_DIR "${TTK_MODULE_WIDGET_DIR}/musicToolsSetsKits")
+set(TTK_WIDGET_UI_DIR "${TTK_MODULE_WIDGET_DIR}/musicUiKits")
+set(TTK_WIDGET_VIDEOKITS_DIR "${TTK_MODULE_WIDGET_DIR}/musicVideoKits")
 
 include_directories(
-  ${MUSIC_WIDGET_DIR}
-  ${MUSIC_WIDGET_CORE_DIR}
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}
-  ${MUSIC_WIDGET_LOCALSEARCH_DIR}
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}
-  ${MUSIC_WIDGET_UI_DIR}
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}
+  ${TTK_WIDGET_DIR}
+  ${TTK_WIDGET_CORE_DIR}
+  ${TTK_WIDGET_LRCMANAGER_DIR}
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}
+  ${TTK_WIDGET_LOCALSEARCH_DIR}
+  ${TTK_WIDGET_TOOLSWIDGET_DIR}
+  ${TTK_WIDGET_TOOLSETSWIDGET_DIR}
+  ${TTK_WIDGET_UI_DIR}
+  ${TTK_WIDGET_VIDEOKITS_DIR}
 )
 
 
-set(MUSIC_CONFIG_DIR "${MUSIC_DIR}/TTKConfig")
-set(MUSIC_UI_DIR "${MUSIC_DIR}/TTKUi")
-set(MUSIC_THIRDPARTY_DIR "${MUSIC_DIR}/TTKThirdParty")
-set(MUSIC_TTKSERVICE_DIR "${MUSIC_DIR}/TTKService")
-set(MUSIC_UTILS_DIR "${MUSIC_DIR}/TTKUtils")
-set(MUSIC_LANGUAGE_DIR "${MUSIC_DIR}/TTKLanguage")
-set(MUSIC_RESOURCE_DIR "${MUSIC_DIR}/TTKResource")
+set(TTK_CONFIG_DIR "${TTK_BASE_DIR}/TTKConfig")
+set(TTK_UI_DIR "${TTK_BASE_DIR}/TTKUi")
+set(TTK_THIRDPARTY_DIR "${TTK_BASE_DIR}/TTKThirdParty")
+set(TTK_TTKSERVICE_DIR "${TTK_BASE_DIR}/TTKService")
+set(TTK_UTILS_DIR "${TTK_BASE_DIR}/TTKUtils")
+set(TTK_LANGUAGE_DIR "${TTK_BASE_DIR}/TTKLanguage")
+set(TTK_RESOURCE_DIR "${TTK_BASE_DIR}/TTKResource")
 
 include_directories(
-  ${MUSIC_THIRDPARTY_DIR}
-  ${MUSIC_THIRDPARTY_DIR}/Zlib
-  ${MUSIC_THIRDPARTY_DIR}/TTKWatcher
-  ${MUSIC_THIRDPARTY_DIR}/TTKExtras
+  ${TTK_THIRDPARTY_DIR}
+  ${TTK_THIRDPARTY_DIR}/Zlib
+  ${TTK_THIRDPARTY_DIR}/TTKWatcher
+  ${TTK_THIRDPARTY_DIR}/TTKExtras
 )
 
 
-set(MUSIC_BUILD_DIR "${CMAKE_CACHEFILE_DIR}/bin")
-set(MUSIC_GENERATE_DIR "${CMAKE_CACHEFILE_DIR}/Generate")
+set(TTK_BUILD_DIR "${CMAKE_CACHEFILE_DIR}/bin")
+set(TTK_GENERATE_DIR "${CMAKE_CACHEFILE_DIR}/Generate")
 
-include_directories(${MUSIC_GENERATE_DIR})
+include_directories(${TTK_GENERATE_DIR})
 
-set(LIBRARY_OUTPUT_PATH ${MUSIC_BUILD_DIR}/${TTK_VERSION})
-set(EXECUTABLE_OUTPUT_PATH ${MUSIC_BUILD_DIR}/${TTK_VERSION})
+set(LIBRARY_OUTPUT_PATH ${TTK_BUILD_DIR}/${TTK_VERSION})
+set(EXECUTABLE_OUTPUT_PATH ${TTK_BUILD_DIR}/${TTK_VERSION})
 file(MAKE_DIRECTORY ${LIBRARY_OUTPUT_PATH}/GLanguage)
 
 set(OPENSSL_DIR "" CACHE PATH "Openssl install path")
@@ -183,25 +183,10 @@ else()
 endif()
 
 
-if(TTK_QT_VERSION VERSION_GREATER "4")
-  find_package(Qt5Core REQUIRED)
-  find_package(Qt5Gui REQUIRED)
-  find_package(Qt5Widgets REQUIRED)
-  find_package(Qt5Multimedia REQUIRED)
-  find_package(Qt5Network REQUIRED)
-  find_package(Qt5Xml REQUIRED)
-  find_package(Qt5OpenGL REQUIRED)
-
-  if(WIN32)
-    find_package(Qt5WinExtras REQUIRED)
-  else(UNIX)
-    find_package(Qt5X11Extras REQUIRED)
-    find_package(Qt5DBus REQUIRED)
-  endif()
-else()
+if(TTK_QT_VERSION VERSION_EQUAL "4")
   set(minimum_required_qt_version "4.8")
   find_package(Qt4 REQUIRED)
-  
+
   if(QT4_FOUND)
     if("${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}" VERSION_LESS "${minimum_required_qt_version}")
       message(FATAL_ERROR "Message error: TTK requires Qt >= ${minimum_required_qt_version} -- you cannot use Qt ${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_PATCH}.")
@@ -226,6 +211,21 @@ else()
     endif()
   else()
     message(FATAL_ERROR "Message error: Qt4 was not found on your system. You probably need to set the QT_QMAKE_EXECUTABLE variable")
+  endif()
+elseif(TTK_QT_VERSION VERSION_EQUAL "5")
+  find_package(Qt5Core REQUIRED)
+  find_package(Qt5Gui REQUIRED)
+  find_package(Qt5Widgets REQUIRED)
+  find_package(Qt5Multimedia REQUIRED)
+  find_package(Qt5Network REQUIRED)
+  find_package(Qt5Xml REQUIRED)
+  find_package(Qt5OpenGL REQUIRED)
+
+  if(WIN32)
+    find_package(Qt5WinExtras REQUIRED)
+  else(UNIX)
+    find_package(Qt5X11Extras REQUIRED)
+    find_package(Qt5DBus REQUIRED)
   endif()
 endif()
 
@@ -254,14 +254,11 @@ find_library(TTK_QMMP_LIBRARY
 )
 
 # qmmp include
-include_directories(${MUSIC_THIRDPARTY_DIR}/TTKqmmp)
-if(NOT (TTK_QT_VERSION VERSION_GREATER "4"))
-  if(UNIX)
-    include_directories(
-      /usr/include/QtMultimediaKit
-      /usr/include/QtMobility
-    )
-  endif()
+include_directories(${TTK_THIRDPARTY_DIR}/TTKqmmp)
+if(TTK_QT_VERSION VERSION_EQUAL "4" AND UNIX)
+  include_directories(
+    /usr/include/QtMultimediaKit
+    /usr/include/QtMobility)
 endif()
 
 
@@ -274,34 +271,34 @@ add_subdirectory(TTKService)
 add_subdirectory(TTKRun)
 
 
-set(MUSIC_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}")
-set(MUSIC_INSTALL_BIN_DIR "${MUSIC_INSTALL_DIR}/${TTK_VERSION}")
+set(TTK_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}")
+set(TTK_INSTALL_BIN_DIR "${TTK_INSTALL_DIR}/${TTK_VERSION}")
 
-install(DIRECTORY "${MUSIC_BUILD_DIR}/" DESTINATION "${MUSIC_INSTALL_DIR}" USE_SOURCE_PERMISSIONS)
-install(FILES "${MUSIC_DIR}/ChangeLog"
-              "${MUSIC_DIR}/LICENSE"
-              "${MUSIC_DIR}/LICENSE.LGPLv3"
-              "${MUSIC_DIR}/README.md"
-              "${MUSIC_DIR}/README_cn.md"
-              "${MUSIC_DIR}/README_tc.md"
-              "${MUSIC_DIR}/.github/FUNDING.yml"
-              "${MUSIC_UTILS_DIR}/resource/LICENSE.QT-LICENSE-AGREEMENT"
-        DESTINATION "${MUSIC_INSTALL_DIR}/doc")
-install(FILES "${MUSIC_UTILS_DIR}/resource/README.txt" DESTINATION "${MUSIC_INSTALL_DIR}")
+install(DIRECTORY "${TTK_BUILD_DIR}/" DESTINATION "${TTK_INSTALL_DIR}" USE_SOURCE_PERMISSIONS)
+install(FILES "${TTK_BASE_DIR}/ChangeLog"
+              "${TTK_BASE_DIR}/LICENSE"
+              "${TTK_BASE_DIR}/LICENSE.LGPLv3"
+              "${TTK_BASE_DIR}/README.md"
+              "${TTK_BASE_DIR}/README_cn.md"
+              "${TTK_BASE_DIR}/README_tc.md"
+              "${TTK_BASE_DIR}/.github/FUNDING.yml"
+              "${TTK_UTILS_DIR}/resource/LICENSE.QT-LICENSE-AGREEMENT"
+        DESTINATION "${TTK_INSTALL_DIR}/doc")
+install(FILES "${TTK_UTILS_DIR}/resource/README.txt" DESTINATION "${TTK_INSTALL_DIR}")
 if(WIN32)
-  install(FILES "${MUSIC_UTILS_DIR}/resource/qicon.dll" DESTINATION "${MUSIC_INSTALL_DIR}")
+  install(FILES "${TTK_UTILS_DIR}/resource/qicon.dll" DESTINATION "${TTK_INSTALL_DIR}")
 else(UNIX)
-  install(DIRECTORY "${MUSIC_UTILS_DIR}/deploy" DESTINATION "${MUSIC_INSTALL_DIR}")
-  install(FILES "${MUSIC_UTILS_DIR}/ttk_runtime" DESTINATION "${MUSIC_INSTALL_DIR}")
-  install(FILES "${MUSIC_UTILS_DIR}/deploy/share/appdata/ttkmusicplayer.appdata.xml" DESTINATION "${MUSIC_INSTALL_DIR}/share/metainfo")
+  install(DIRECTORY "${TTK_UTILS_DIR}/deploy" DESTINATION "${TTK_INSTALL_DIR}")
+  install(FILES "${TTK_UTILS_DIR}/ttk_runtime" DESTINATION "${TTK_INSTALL_DIR}")
+  install(FILES "${TTK_UTILS_DIR}/deploy/share/appdata/ttkmusicplayer.appdata.xml" DESTINATION "${TTK_INSTALL_DIR}/share/metainfo")
 endif()
 # copy run resource
 if(UNIX)
-  install(CODE "execute_process(COMMAND \"${MUSIC_UTILS_DIR}/resource.sh\" \"${MUSIC_RESOURCE_DIR}\" \"${MUSIC_INSTALL_BIN_DIR}\")")
+  install(CODE "execute_process(COMMAND \"${TTK_UTILS_DIR}/resource.sh\" \"${TTK_RESOURCE_DIR}\" \"${TTK_INSTALL_BIN_DIR}\")")
 endif()
 # update and release translations
 if(WIN32)
-  install(CODE "execute_process(COMMAND \"${MUSIC_UTILS_DIR}/ts_win.bat\" \"${QT_LRELEASE_EXECUTABLE}\" \"${MUSIC_INSTALL_BIN_DIR}\" \"${MUSIC_DIR}\")")
+  install(CODE "execute_process(COMMAND \"${TTK_UTILS_DIR}/ts_win.bat\" \"${QT_LRELEASE_EXECUTABLE}\" \"${TTK_INSTALL_BIN_DIR}\" \"${TTK_BASE_DIR}\")")
 else(UNIX)
-  install(CODE "execute_process(COMMAND \"${MUSIC_UTILS_DIR}/ts_linux.sh\" \"${QT_LRELEASE_EXECUTABLE}\" \"${MUSIC_INSTALL_BIN_DIR}\" \"${MUSIC_DIR}\")")
+  install(CODE "execute_process(COMMAND \"${TTK_UTILS_DIR}/ts_linux.sh\" \"${QT_LRELEASE_EXECUTABLE}\" \"${TTK_INSTALL_BIN_DIR}\" \"${TTK_BASE_DIR}\")")
 endif()

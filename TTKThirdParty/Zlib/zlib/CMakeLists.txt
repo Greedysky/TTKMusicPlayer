@@ -53,7 +53,7 @@ set(SOURCE_FILES
   uncompr.c
   zutil.c
 )
-  
+
 if(WIN32)
   list(APPEND SOURCE_FILES ${PROJECT_NAME}.rc)
 endif()

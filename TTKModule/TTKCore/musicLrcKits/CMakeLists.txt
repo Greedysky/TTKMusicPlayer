@@ -18,14 +18,14 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY MUSIC_CORE_LRC_KITS_HEADERS
-  ${MUSIC_CORE_LRCMANAGER_DIR}/musiclrcanalysis.h
-  ${MUSIC_CORE_LRCMANAGER_DIR}/musiclrcdefines.h
-  ${MUSIC_CORE_LRCMANAGER_DIR}/musiclrcfromkrc.h
+set_property(GLOBAL PROPERTY TTK_CORE_LRC_KITS_HEADERS
+  ${TTK_CORE_LRCMANAGER_DIR}/musiclrcanalysis.h
+  ${TTK_CORE_LRCMANAGER_DIR}/musiclrcdefines.h
+  ${TTK_CORE_LRCMANAGER_DIR}/musiclrcfromkrc.h
 )
 
-set_property(GLOBAL PROPERTY MUSIC_CORE_LRC_KITS_SOURCES
-  ${MUSIC_CORE_LRCMANAGER_DIR}/musiclrcanalysis.cpp
-  ${MUSIC_CORE_LRCMANAGER_DIR}/musiclrcdefines.cpp
-  ${MUSIC_CORE_LRCMANAGER_DIR}/musiclrcfromkrc.cpp
+set_property(GLOBAL PROPERTY TTK_CORE_LRC_KITS_SOURCES
+  ${TTK_CORE_LRCMANAGER_DIR}/musiclrcanalysis.cpp
+  ${TTK_CORE_LRCMANAGER_DIR}/musiclrcdefines.cpp
+  ${TTK_CORE_LRCMANAGER_DIR}/musiclrcfromkrc.cpp
 )

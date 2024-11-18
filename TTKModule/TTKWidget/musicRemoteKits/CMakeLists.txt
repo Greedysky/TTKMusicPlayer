@@ -18,22 +18,22 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY MUSIC_WIDGET_REMOTE_KITS_HEADERS
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidget.h
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.h
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.h
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsimplestyle.h
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforcomplexstyle.h
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforstrip.h
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforripple.h
+set_property(GLOBAL PROPERTY TTK_WIDGET_REMOTE_KITS_HEADERS
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidget.h
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.h
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.h
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsimplestyle.h
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforcomplexstyle.h
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforstrip.h
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforripple.h
 )
 
-set_property(GLOBAL PROPERTY MUSIC_WIDGET_REMOTE_KITS_SOURCES
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidget.cpp
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.cpp
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.cpp
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsimplestyle.cpp
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforcomplexstyle.cpp
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforstrip.cpp
-  ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforripple.cpp
+set_property(GLOBAL PROPERTY TTK_WIDGET_REMOTE_KITS_SOURCES
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidget.cpp
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.cpp
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.cpp
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsimplestyle.cpp
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforcomplexstyle.cpp
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforstrip.cpp
+  ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforripple.cpp
 )

@@ -20,18 +20,18 @@ cmake_minimum_required(VERSION 3.0.0)
 
 project(TTKService)
 
-include_directories(${MUSIC_CONFIG_DIR})
-include_directories(${MUSIC_COMMON_APP_DIR})
-include_directories(${MUSIC_COMMON_DUMPER_DIR})
+include_directories(${TTK_CONFIG_DIR})
+include_directories(${TTK_COMMON_APP_DIR})
+include_directories(${TTK_COMMON_DUMPER_DIR})
 
 set(TTKAPPLICATION_HEADER_FILES
-  ${MUSIC_COMMON_APP_DIR}/ttklocalpeer.h
-  ${MUSIC_COMMON_APP_DIR}/ttkapplication.h
+  ${TTK_COMMON_APP_DIR}/ttklocalpeer.h
+  ${TTK_COMMON_APP_DIR}/ttkapplication.h
 )
 
 set(TTKAPPLICATION_SOURCE_FILES
-  ${MUSIC_COMMON_APP_DIR}/ttklocalpeer.cpp
-  ${MUSIC_COMMON_APP_DIR}/ttkapplication.cpp
+  ${TTK_COMMON_APP_DIR}/ttklocalpeer.cpp
+  ${TTK_COMMON_APP_DIR}/ttkapplication.cpp
 )
 
 set(HEADER_FILES
@@ -47,16 +47,16 @@ if(WIN32)
   list(APPEND SOURCE_FILES ${PROJECT_NAME}.rc)
 endif()
 
-if(TTK_QT_VERSION VERSION_GREATER "4")
-  qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
-  
-  add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
-  add_dependencies(${PROJECT_NAME} TTKCore)
-  target_link_libraries(${PROJECT_NAME} Qt5::Core TTKCore TTKConfig)
-else()
+if(TTK_QT_VERSION VERSION_EQUAL "4")
   qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
 
   add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
   add_dependencies(${PROJECT_NAME} TTKCore)
   target_link_libraries(${PROJECT_NAME} ${QT_QTCORE_LIBRARY} TTKCore TTKConfig)
+elseif(TTK_QT_VERSION VERSION_EQUAL "5")
+  qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
+  
+  add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
+  add_dependencies(${PROJECT_NAME} TTKCore)
+  target_link_libraries(${PROJECT_NAME} Qt5::Core TTKCore TTKConfig)
 endif()

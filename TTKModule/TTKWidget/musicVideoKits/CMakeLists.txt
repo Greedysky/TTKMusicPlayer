@@ -18,25 +18,25 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY MUSIC_WIDGET_VIDEO_KITS_HEADERS
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicbarragerecord.h
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicbarragewidget.h
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideocontrolwidget.h
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideoview.h
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideosearchtablewidget.h
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideoplaywidget.h
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideofloatwidget.h
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideoqualitypopwidget.h
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideobarragestylepopwidget.h
+set_property(GLOBAL PROPERTY TTK_WIDGET_VIDEO_KITS_HEADERS
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicbarragerecord.h
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicbarragewidget.h
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideocontrolwidget.h
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideoview.h
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideosearchtablewidget.h
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideoplaywidget.h
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideofloatwidget.h
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideoqualitypopwidget.h
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideobarragestylepopwidget.h
 )
 
-set_property(GLOBAL PROPERTY MUSIC_WIDGET_VIDEO_KITS_SOURCES
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicbarragewidget.cpp
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideocontrolwidget.cpp
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideoview.cpp
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideosearchtablewidget.cpp
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideoplaywidget.cpp
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideofloatwidget.cpp
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideoqualitypopwidget.cpp
-  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideobarragestylepopwidget.cpp
+set_property(GLOBAL PROPERTY TTK_WIDGET_VIDEO_KITS_SOURCES
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicbarragewidget.cpp
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideocontrolwidget.cpp
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideoview.cpp
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideosearchtablewidget.cpp
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideoplaywidget.cpp
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideofloatwidget.cpp
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideoqualitypopwidget.cpp
+  ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideobarragestylepopwidget.cpp
 )

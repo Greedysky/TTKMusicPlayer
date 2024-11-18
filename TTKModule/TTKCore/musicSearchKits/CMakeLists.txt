@@ -18,11 +18,11 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY MUSIC_CORE_SEARCH_KITS_HEADERS
-  ${MUSIC_CORE_LOCALSEARCH_DIR}/musicsearchinterface.h
-  ${MUSIC_CORE_LOCALSEARCH_DIR}/musicsongsearchrecordconfigmanager.h
+set_property(GLOBAL PROPERTY TTK_CORE_SEARCH_KITS_HEADERS
+  ${TTK_CORE_LOCALSEARCH_DIR}/musicsearchinterface.h
+  ${TTK_CORE_LOCALSEARCH_DIR}/musicsongsearchrecordconfigmanager.h
 )
 
-set_property(GLOBAL PROPERTY MUSIC_CORE_SEARCH_KITS_SOURCES
-  ${MUSIC_CORE_LOCALSEARCH_DIR}/musicsongsearchrecordconfigmanager.cpp
+set_property(GLOBAL PROPERTY TTK_CORE_SEARCH_KITS_SOURCES
+  ${TTK_CORE_LOCALSEARCH_DIR}/musicsongsearchrecordconfigmanager.cpp
 )

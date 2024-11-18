@@ -39,7 +39,22 @@ else(UNIX)
   list(APPEND SOURCE_FILES qdevicewatcher_linux.cpp)
 endif()
 
-if(TTK_QT_VERSION VERSION_GREATER "4")
+if(TTK_QT_VERSION VERSION_EQUAL "4")
+  qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
+
+  if(TTK_BUILD_SHARED)
+    add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
+  else()
+    add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
+  endif()
+
+  list(APPEND QT4_LIBS ${QT_QTCORE_LIBRARY} -luser32)
+  if(UNIX)
+    list(REMOVE_ITEM QT4_LIBS -luser32)
+  endif()
+
+  target_link_libraries(${PROJECT_NAME} ${QT4_LIBS})
+elseif(TTK_QT_VERSION VERSION_EQUAL "5")
   qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
 
   if(TTK_BUILD_SHARED)
@@ -54,19 +69,4 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   endif()
 
   target_link_libraries(${PROJECT_NAME} ${QT5_LIBS})
-else()
-  qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
-  
-  if(TTK_BUILD_SHARED)
-    add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
-  else()
-    add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
-  endif()
-
-  list(APPEND QT4_LIBS ${QT_QTCORE_LIBRARY} -luser32)
-  if(UNIX)
-    list(REMOVE_ITEM QT4_LIBS -luser32)
-  endif()
-
-  target_link_libraries(${PROJECT_NAME} ${QT4_LIBS})
 endif()

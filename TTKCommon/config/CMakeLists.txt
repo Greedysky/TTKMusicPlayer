@@ -61,4 +61,4 @@ else()
 endif()
 
 # configure ttkconfig file
-configure_file(ttkconfig.h.cmake ${MUSIC_GENERATE_DIR}/ttkconfig.h @ONLY)
+configure_file(ttkconfig.h.cmake ${TTK_GENERATE_DIR}/ttkconfig.h @ONLY)
