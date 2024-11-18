@@ -2,6 +2,7 @@ TEMPLATE = subdirs
 
 SUBDIRS += adplug
 SUBDIRS += archive
+SUBDIRS += buzzic
 SUBDIRS += dca
 SUBDIRS += ken
 SUBDIRS += optimfrog
