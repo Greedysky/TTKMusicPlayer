@@ -21,5 +21,7 @@ MOC_DIR = ./.build/moc
 OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
+greaterThan(QT_MAJOR_VERSION, 4): DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050400 QT_DEPRECATED_WARNINGS
+
 # update time 2024.10.22
 TTK_VERSION = 4.1.1.0
