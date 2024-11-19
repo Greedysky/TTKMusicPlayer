@@ -12,9 +12,9 @@
 
 使用方法
 --------
-**音乐播放器模仿酷狗，基于Qt和Qmmp库开发，支持Windows和Linux平台.**
+**音乐播放器模仿酷狗，基于Qt和Qmmp库开发，支持Windows和Linux平台。**
 
-**编译教程我已经写在wiki上了.(看这里<u>https://github.com/Greedysky/TTKMusicPlayer/wiki</u> )**
+**编译教程我已经写在wiki上了(看这里<u>https://github.com/Greedysky/TTKMusicPlayer/wiki</u> )**
 
 ### 本项目代码不用于商用，仅限研究和学习使用，资源版权归个音乐平台所有。
 
