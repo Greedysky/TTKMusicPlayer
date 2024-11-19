@@ -59,9 +59,9 @@ Qmmp修改版二进制库下载地址: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
 播放器及其他依赖下载地址: **<u>http://pan.baidu.com/s/1gdB5QLH</u>**
 
-播放器皮肤下载地址: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
+皮肤下载地址: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
 
-播放器二进制下载地址: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
+二进制下载地址: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
 特性
 --------

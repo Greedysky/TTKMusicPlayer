@@ -59,9 +59,9 @@ Qmmp修改版二進制庫下載地址: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
 播放器及其他依賴下載地址: **<u>http://pan.baidu.com/s/1gdB5QLH</u>**
 
-播放器皮膚下載地址: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
+皮膚下載地址: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
 
-播放器二進制下載地址: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
+二進制下載地址: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
 特性
 --------
