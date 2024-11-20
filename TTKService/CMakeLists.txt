@@ -47,16 +47,26 @@ if(WIN32)
   list(APPEND SOURCE_FILES ${PROJECT_NAME}.rc)
 endif()
 
+if(WIN32)
+  list(APPEND SOURCE_FILES ${PROJECT_NAME}.rc)
+endif()
+
+set(QT_LINK_LIBS TTKCore TTKConfig)
+
 if(TTK_QT_VERSION VERSION_EQUAL "4")
   qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
 
-  add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
-  add_dependencies(${PROJECT_NAME} TTKCore)
-  target_link_libraries(${PROJECT_NAME} ${QT_QTCORE_LIBRARY} TTKCore TTKConfig)
+  list(APPEND QT_LINK_LIBS ${QT_QTCORE_LIBRARY})
 elseif(TTK_QT_VERSION VERSION_EQUAL "5")
   qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
-  
-  add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
-  add_dependencies(${PROJECT_NAME} TTKCore)
-  target_link_libraries(${PROJECT_NAME} Qt5::Core TTKCore TTKConfig)
+
+  list(APPEND QT_LINK_LIBS Qt5::Core)
+elseif(TTK_QT_VERSION VERSION_EQUAL "6")
+  qt6_wrap_cpp(MOC_FILES ${HEADER_FILES})
+
+  list(APPEND QT_LINK_LIBS Qt6::Core)
 endif()
+
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
+add_dependencies(${PROJECT_NAME} TTKCore)
+target_link_libraries(${PROJECT_NAME} ${QT_LINK_LIBS})

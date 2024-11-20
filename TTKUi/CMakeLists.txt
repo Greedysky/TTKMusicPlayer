@@ -27,29 +27,24 @@ SET(QRC_FILES
 if(TTK_QT_VERSION VERSION_EQUAL "4")
   qt4_add_resources(RCC_FILES ${QRC_FILES})
 
-  if(WIN32)
-    list(APPEND RCC_FILES TTKUi.rc)
-  endif()
-
-  if(TTK_BUILD_SHARED)
-    add_library(${PROJECT_NAME} SHARED ${RCC_FILES})
-  else()
-    add_library(${PROJECT_NAME} STATIC ${RCC_FILES})
-  endif()
-
-  target_link_libraries(${PROJECT_NAME} ${QT_QTCORE_LIBRARY})
+  list(APPEND QT_LINK_LIBS ${QT_QTCORE_LIBRARY})
 elseif(TTK_QT_VERSION VERSION_EQUAL "5")
   qt5_add_resources(RCC_FILES ${QRC_FILES})
 
-  if(WIN32)
-    list(APPEND RCC_FILES TTKUi.rc)
-  endif()
+  list(APPEND QT_LINK_LIBS Qt5::Core)
+elseif(TTK_QT_VERSION VERSION_EQUAL "6")
+  qt6_add_resources(RCC_FILES ${QRC_FILES})
 
-  if(TTK_BUILD_SHARED)
-    add_library(${PROJECT_NAME} SHARED ${RCC_FILES})
-  else()
-    add_library(${PROJECT_NAME} STATIC ${RCC_FILES})
-  endif()
-
-  target_link_libraries(${PROJECT_NAME} Qt5::Core)
+  list(APPEND QT_LINK_LIBS Qt6::Core)
 endif()
+
+if(WIN32)
+  list(APPEND RCC_FILES TTKUi.rc)
+endif()
+
+if(TTK_BUILD_SHARED)
+  add_library(${PROJECT_NAME} SHARED ${RCC_FILES})
+else()
+  add_library(${PROJECT_NAME} STATIC ${RCC_FILES})
+endif()
+target_link_libraries(${PROJECT_NAME} ${QT_LINK_LIBS})
