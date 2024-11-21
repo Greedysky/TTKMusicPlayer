@@ -35,22 +35,22 @@ MusicSongDailyWidget::~MusicSongDailyWidget()
 
 void MusicSongDailyWidget::resizeWidget()
 {
+    const double scale = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() * 1.0 / WINDOW_WIDTH_MIN;
+
     QFont font = m_note->font();
-    const int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - WINDOW_HEIGHT_MIN;
-    int fontSize = 20 + height * 0.1;
-    font.setPixelSize(fontSize > 70 ? 70 : fontSize);
+    font.setPixelSize(20.0 * scale);
     const int noteHeight = TTK::Widget::fontTextHeight(font);
 
     m_note->setFont(font);
     m_note->setGeometry(50, 50, TTK::Widget::fontTextWidth(font, m_note->text()), noteHeight);
 
     font = m_content->font();
-    fontSize = 19 + height * 0.05;
-    font.setPixelSize(fontSize > 42 ? 42 : fontSize);
+    font.setPixelSize(18.0 * scale);
     const int contentHeight = TTK::Widget::fontTextHeight(font);
 
     m_content->setFont(font);
     m_content->setGeometry(50, 50 + noteHeight, TTK::Widget::fontTextWidth(font, m_content->text()), contentHeight);
+
     m_container->setPixmap(QPixmap::fromImage(m_image).scaled(m_container->size(), Qt::KeepAspectRatioByExpanding));
 }
 
