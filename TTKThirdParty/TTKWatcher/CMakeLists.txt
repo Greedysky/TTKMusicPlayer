@@ -35,7 +35,7 @@ elseif(APPLE)
   list(APPEND SOURCE_FILES qdevicewatcher_mac.cpp)
 elseif(WINCE)
   list(APPEND SOURCE_FILES qdevicewatcher_wince.cpp)
-else(UNIX)
+else()
   list(APPEND SOURCE_FILES qdevicewatcher_linux.cpp)
 endif()
 

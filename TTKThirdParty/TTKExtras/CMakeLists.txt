@@ -84,7 +84,7 @@ else()
       else()
         _TO_FOUND_WEBKIT(${QT_WEBKIT_MODULE_NAME}.a)
       endif()
-    else(UNIX)
+    else()
       _TO_FOUND_WEBKIT(${QT_WEBKIT_MODULE_NAME}.so)
       string(COMPARE EQUAL "${QT_WEBKIT_MODULE_TYPE}" "0" QT_RESULT)
       if(${QT_RESULT})
@@ -218,7 +218,7 @@ set(SOURCE_FILES
 
 if(WIN32)
   list(APPEND SOURCE_FILES qshortcut/qglobalshortcut_win.cpp ${PROJECT_NAME}.rc)
-else(UNIX)
+else()
   list(APPEND SOURCE_FILES qshortcut/qglobalshortcut_x11.cpp)
 endif()
 
