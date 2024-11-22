@@ -1,5 +1,5 @@
-#ifndef TTKGLOBALHELPER_H
-#define TTKGLOBALHELPER_H
+#ifndef TTKGLOBALWRAPPER_H
+#define TTKGLOBALWRAPPER_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -22,7 +22,7 @@
 #include <QPainter>
 #include "ttkmoduleexport.h"
 
-/*! @brief The namespace of the global helper.
+/*! @brief The namespace of the global wrapper.
  * @author Greedysky <greedysky@163.com>
  */
 namespace TTK
@@ -38,4 +38,4 @@ namespace TTK
 
 }
 
-#endif // TTKGLOBALHELPER_H
+#endif // TTKGLOBALWRAPPER_H

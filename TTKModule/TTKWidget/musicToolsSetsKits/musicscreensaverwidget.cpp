@@ -5,7 +5,7 @@
 #include "musicimageutils.h"
 #include "musicwidgetutils.h"
 #include "ttkdesktopwrapper.h"
-#include "ttkglobalhelper.h"
+#include "ttkglobalwrapper.h"
 
 #include "qsync/qsyncutils.h"
 

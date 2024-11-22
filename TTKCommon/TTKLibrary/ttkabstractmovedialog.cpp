@@ -1,5 +1,5 @@
 #include "ttkabstractmovedialog.h"
-#include "ttkglobalhelper.h"
+#include "ttkglobalwrapper.h"
 
 TTKAbstractMoveDialog::TTKAbstractMoveDialog(QWidget *parent)
     : TTKAbstractMoveDialog(true, parent)

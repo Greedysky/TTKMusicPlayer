@@ -1,5 +1,5 @@
-#ifndef QDLNAHELPER_H
-#define QDLNAHELPER_H
+#ifndef QDLNA_H
+#define QDLNA_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -24,7 +24,7 @@
 /*! @brief The namespace of the dlna helper.
  * @author Greedysky <greedysky@163.com>
  */
-namespace QDlnaHelper
+namespace QDlna
 {
     /*!
      * Make socket get reply.
@@ -50,4 +50,4 @@ namespace QDlnaHelper
 
 }
 
-#endif // QDLNAHELPER_H
+#endif // QDLNA_H

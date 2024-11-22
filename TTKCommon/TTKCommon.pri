@@ -47,7 +47,7 @@ win32{
             $$PWD/TTKLibrary/ttkdispatchmanager.h \
             $$PWD/TTKLibrary/ttkfileassociation.h \
             $$PWD/TTKLibrary/ttkfileinterface.h \
-            $$PWD/TTKLibrary/ttkglobalhelper.h \
+            $$PWD/TTKLibrary/ttkglobalwrapper.h \
             $$PWD/TTKLibrary/ttkitemdelegate.h \
             $$PWD/TTKLibrary/ttklibrary.h \
             $$PWD/TTKLibrary/ttklibraryversion.h \

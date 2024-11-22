@@ -43,7 +43,7 @@ set(HEADER_FILES
   ttkdispatchmanager.h
   ttkfileassociation.h
   ttkfileinterface.h
-  ttkglobalhelper.h
+  ttkglobalwrapper.h
   ttkitemdelegate.h
   ttklibrary.h
   ttklibraryversion.h
@@ -76,7 +76,7 @@ set(SOURCE_FILES
   ttkdesktopwrapper.cpp
   ttkdispatchmanager.cpp
   ttkfileassociation.cpp
-  ttkglobalhelper.cpp
+  ttkglobalwrapper.cpp
   ttkitemdelegate.cpp
   ttklogoutput.cpp
   ttkplatformsystem.cpp

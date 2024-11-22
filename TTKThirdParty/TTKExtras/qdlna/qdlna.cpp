@@ -1,10 +1,10 @@
-#include "qdlnahelper.h"
+#include "qdlna.h"
 
 #include <QSysInfo>
 #include <QTcpSocket>
 #include <QStringList>
 
-namespace QDlnaHelper
+namespace QDlna
 {
 QString makeSocketGetReply(const QString &ip, const QString &port, const QString &data)
 {

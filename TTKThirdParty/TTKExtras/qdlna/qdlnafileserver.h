@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "qdlnahelper.h"
+#include "qdlna.h"
 #include "ttkprivate.h"
 
 class QHttpRequest;

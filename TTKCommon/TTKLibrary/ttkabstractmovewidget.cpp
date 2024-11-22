@@ -1,5 +1,5 @@
 #include "ttkabstractmovewidget.h"
-#include "ttkglobalhelper.h"
+#include "ttkglobalwrapper.h"
 
 TTKAbstractMoveWidget::TTKAbstractMoveWidget(QWidget *parent)
     : TTKAbstractMoveWidget(true, parent)

@@ -4,7 +4,7 @@
 #include "musicextractwrapper.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
-#include "ttkglobalhelper.h"
+#include "ttkglobalwrapper.h"
 
 MusicProgressWidget::MusicProgressWidget(QWidget *parent)
     : QProgressDialog(parent)

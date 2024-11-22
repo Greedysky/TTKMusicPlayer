@@ -81,7 +81,7 @@ HEADERS += \
     $$PWD/ttkdispatchmanager.h \
     $$PWD/ttkfileassociation.h \
     $$PWD/ttkfileinterface.h \
-    $$PWD/ttkglobalhelper.h \
+    $$PWD/ttkglobalwrapper.h \
     $$PWD/ttkitemdelegate.h \
     $$PWD/ttklibrary.h \
     $$PWD/ttklibraryversion.h \
@@ -113,7 +113,7 @@ SOURCES += \
     $$PWD/ttkdesktopwrapper.cpp \
     $$PWD/ttkdispatchmanager.cpp \
     $$PWD/ttkfileassociation.cpp \
-    $$PWD/ttkglobalhelper.cpp \
+    $$PWD/ttkglobalwrapper.cpp \
     $$PWD/ttkitemdelegate.cpp \
     $$PWD/ttklogoutput.cpp \
     $$PWD/ttkplatformsystem.cpp \

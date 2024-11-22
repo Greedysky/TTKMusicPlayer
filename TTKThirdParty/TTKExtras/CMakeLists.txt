@@ -121,9 +121,9 @@ set(HEADER_FILES
   qalgorithm/deswrapper.h
   qalgorithm/aeswrapper.h
   qalgorithm/imagewrapper.h
+  qdlna/qdlna.h
   qdlna/qdlnaclient.h
   qdlna/qdlnafinder.h
-  qdlna/qdlnahelper.h
   qdlna/qdlnaservice.h
   qdlna/qdlnaxml.h
   qdlna/qdlnafileserver.h
@@ -176,9 +176,9 @@ set(SOURCE_FILES
   qalgorithm/deswrapper.cpp
   qalgorithm/aeswrapper.cpp
   qalgorithm/imagewrapper.cpp
+  qdlna/qdlna.cpp
   qdlna/qdlnaclient.cpp
   qdlna/qdlnafinder.cpp
-  qdlna/qdlnahelper.cpp
   qdlna/qdlnaxml.cpp
   qdlna/qdlnafileserver.cpp
   qhttpserver/http_parser.c
