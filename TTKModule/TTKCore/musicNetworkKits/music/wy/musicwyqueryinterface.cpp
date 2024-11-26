@@ -20,6 +20,8 @@ static constexpr const char *WY_RAND_URL = "V0Zsb2tGREU1R0thR29GYjRYdk5jbm5NZjEv
 static constexpr const char *WY_BASE_URL = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
 static constexpr const char *WY_SECKRY_URL = "411571dca16717d9af5ef1ac97a8d21cb740329890560688b1b624de43f49fdd7702493835141b06ae45f1326e264c98c24ce87199c1a776315e5f25c11056b02dd92791fcc012bff8dd4fc86e37888d5ccc060f7837b836607dbb28bddc703308a0ba67c24c6420dd08eec2b8111067486c907b6e53c027ae1e56c188bc568e";
 
+Q_GLOBAL_STATIC(QString, WY_USER_DATA)
+
 static QString makeUser()
 {
     return TTK::Algorithm::mdII(WY_USER1_URL, false) + TTK::Algorithm::mdII(WY_USER2_URL, false) + TTK::Algorithm::mdII(WY_USER3_URL, false) + TTK::Algorithm::mdII(WY_USER4_URL, false) + TTK::Algorithm::mdII(WY_USER5_URL, false);
@@ -27,22 +29,24 @@ static QString makeUser()
 
 void ReqWYInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
-    QString user;
-    QFile file(APPCACHE_DIR_FULL + WY_USER_URL);
-    if(file.open(QIODevice::ReadOnly))
+    if(WY_USER_DATA->isEmpty())
     {
-        user = QString::fromUtf8(file.readAll());
-        file.close();
-    }
-    else
-    {
-        user = makeUser();
+        QFile file(APPCACHE_DIR_FULL + WY_USER_URL);
+        if(file.open(QIODevice::ReadOnly))
+        {
+            *WY_USER_DATA = QString::fromUtf8(file.readAll());
+            file.close();
+        }
+        else
+        {
+            *WY_USER_DATA = makeUser();
+        }
     }
 
     request->setRawHeader("Referer", TTK::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("Origin", TTK::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("User-Agent", TTK::Algorithm::mdII(WY_UA_URL, MDII_UA_KEY, false).toUtf8());
-    request->setRawHeader("Cookie", TTK::Algorithm::mdII(WY_COOKIE_URL, false).arg(user, TTK::Algorithm::mdII(WY_RAND_URL, MDII_UA_KEY, false)).toUtf8());
+    request->setRawHeader("Cookie", TTK::Algorithm::mdII(WY_COOKIE_URL, false).arg(*WY_USER_DATA, TTK::Algorithm::mdII(WY_RAND_URL, MDII_UA_KEY, false)).toUtf8());
     TTK::setSslConfiguration(request);
     TTK::makeContentTypeHeader(request);
 }
