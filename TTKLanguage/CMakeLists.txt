@@ -1,5 +1,5 @@
 # ***************************************************************************
-# * This file is part of the TTK Weather project
+# * This file is part of the TTK Music Player project
 # * Copyright (C) 2015 - 2024 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
