@@ -40,7 +40,7 @@ else()
 endif()
 
 if(WIN32)
-  list(APPEND QT_LINK_LIBS -luser32)
+  list(APPEND QT_LINK_LIBS user32)
 endif()
 
 if(TTK_QT_VERSION VERSION_EQUAL "4")

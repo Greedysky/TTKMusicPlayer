@@ -35,7 +35,7 @@ if(WIN32)
 endif()
 
 if(WIN32)
-  list(APPEND QT_LINK_LIBS -lpsapi)
+  list(APPEND QT_LINK_LIBS psapi)
 endif()
 
 if(TTK_QT_VERSION VERSION_EQUAL "4")
