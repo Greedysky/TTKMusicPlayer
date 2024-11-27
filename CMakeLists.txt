@@ -27,8 +27,12 @@ set(TTK_VERSION "${TTK_MAJOR_VERSION}.${TTK_MINOR_VERSION}.${TTK_PATCH_VERSION}.
 
 # Find includes in the build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-# Turn on automatic invocation of the MOC
+# Turn off automatic invocation of the UI
+set(CMAKE_AUTOUIC OFF)
+# Turn off automatic invocation of the MOC
 set(CMAKE_AUTOMOC OFF)
+# Turn off automatic invocation of the RCC
+set(CMAKE_AUTORCC OFF)
 # Add a compiler flag
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -pthread -fopenmp -Wall")
 if(WIN32)
@@ -223,6 +227,8 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "5")
   endif()
 elseif(TTK_QT_VERSION VERSION_EQUAL "6")
   find_package(Qt6 COMPONENTS Core Gui Widgets Multimedia Network Xml OpenGL Core5Compat REQUIRED)
+  # Add a compiler flag
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
   if(UNIX)
     find_package(Qt6 COMPONENTS DBus REQUIRED)
@@ -263,6 +269,7 @@ endif()
 
 
 add_subdirectory(TTKCommon)
+add_subdirectory(TTKLanguage)
 add_subdirectory(TTKConfig)
 add_subdirectory(TTKUi)
 add_subdirectory(TTKThirdParty)

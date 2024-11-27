@@ -1,5 +1,5 @@
 # ***************************************************************************
-# * This file is part of the TTK Music Player project
+# * This file is part of the TTK Weather project
 # * Copyright (C) 2015 - 2024 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
@@ -18,36 +18,15 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-project(TTKConsole)
-
-set(HEADER_FILES
-  musicconsolemodule.h
-)
+project(TTKLanguage)
 
 set(SOURCE_FILES
-  musicconsolemodule.cpp
-  musicconsolemain.cpp
+  cn.ts
+  cnq.ts
+  en.ts
+  enq.ts
+  tc.ts
+  tcq.ts
 )
 
-if(WIN32)
-  list(APPEND SOURCE_FILES ${PROJECT_NAME}.rc)
-endif()
-
-set(QT_LINK_LIBS TTKCore)
-
-if(TTK_QT_VERSION VERSION_EQUAL "4")
-  qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
-
-  list(APPEND QT_LINK_LIBS ${QT_QTCORE_LIBRARY})
-elseif(TTK_QT_VERSION VERSION_EQUAL "5")
-  qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
-
-  list(APPEND QT_LINK_LIBS Qt5::Core)
-elseif(TTK_QT_VERSION VERSION_EQUAL "6")
-  qt6_wrap_cpp(MOC_FILES ${HEADER_FILES})
-
-  list(APPEND QT_LINK_LIBS Qt6::Core)
-endif()
-
-add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES} ${MOC_FILES})
-target_link_libraries(${PROJECT_NAME} ${QT_LINK_LIBS})
+add_custom_target(${PROJECT_NAME} SOURCES ${SOURCE_FILES})

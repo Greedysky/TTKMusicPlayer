@@ -67,6 +67,6 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "6")
   list(APPEND QT_LINK_LIBS Qt6::Core)
 endif()
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES} ${MOC_FILES})
 add_dependencies(${PROJECT_NAME} TTKCore)
 target_link_libraries(${PROJECT_NAME} ${QT_LINK_LIBS})

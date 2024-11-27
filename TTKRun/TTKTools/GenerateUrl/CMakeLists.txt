@@ -40,21 +40,21 @@ endif()
 set(QT_LINK_LIBS TTKCore)
 
 if(TTK_QT_VERSION VERSION_EQUAL "4")
-  qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
   qt4_wrap_ui(UIC_FILES ${UI_FILES})
+  qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
 
   list(APPEND QT_LINK_LIBS ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
 elseif(TTK_QT_VERSION VERSION_EQUAL "5")
-  qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
   qt5_wrap_ui(UIC_FILES ${UI_FILES})
+  qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
 
   list(APPEND QT_LINK_LIBS Qt5::Core Qt5::Gui Qt5::Widgets)
 elseif(TTK_QT_VERSION VERSION_EQUAL "6")
-  qt6_wrap_cpp(MOC_FILES ${HEADER_FILES})
   qt6_wrap_ui(UIC_FILES ${UI_FILES})
+  qt6_wrap_cpp(MOC_FILES ${HEADER_FILES})
 
   list(APPEND QT_LINK_LIBS Qt6::Core Qt6::Gui Qt6::Widgets)
 endif()
 
-add_executable(${PROJECT_NAME} ${UIC_FILES} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES} ${UIC_FILES} ${MOC_FILES})
 target_link_libraries(${PROJECT_NAME} ${QT_LINK_LIBS})
