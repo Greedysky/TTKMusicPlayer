@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_HEADER_FILES
   ${TTK_CORE_NETWORK_DIR}/core/musicabstractqueryrequest.h
   ${TTK_CORE_NETWORK_DIR}/core/musicabstractnetwork.h
   ${TTK_CORE_NETWORK_DIR}/core/musicabstractdownloadrequest.h
@@ -117,7 +117,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_HEADERS
   ${TTK_CORE_NETWORK_DIR}/musicdownloadqueryfactory.h
 )
 
-set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_SOURCES
+set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_SOURCE_FILES
   ${TTK_CORE_NETWORK_DIR}/core/musicabstractqueryrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/core/musicabstractnetwork.cpp
   ${TTK_CORE_NETWORK_DIR}/core/musicabstractdownloadrequest.cpp

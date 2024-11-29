@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_CORE_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_CORE_KITS_HEADER_FILES
   ${TTK_CORE_DIR}/musicobject.h
   ${TTK_CORE_DIR}/musicformats.h
   ${TTK_CORE_DIR}/musicpluginproperty.h
@@ -44,7 +44,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_KITS_HEADERS
   ${TTK_CORE_DIR}/musicprocessmanager.h
 )
 
-set_property(GLOBAL PROPERTY TTK_CORE_KITS_SOURCES
+set_property(GLOBAL PROPERTY TTK_CORE_KITS_SOURCE_FILES
   ${TTK_CORE_DIR}/musichotkeymanager.cpp
   ${TTK_CORE_DIR}/musicformats.cpp
   ${TTK_CORE_DIR}/musicplayer.cpp
@@ -67,6 +67,6 @@ set_property(GLOBAL PROPERTY TTK_CORE_KITS_SOURCES
 )
 
 if(UNIX)
-  set_property(GLOBAL APPEND PROPERTY TTK_CORE_KITS_HEADERS ${TTK_CORE_DIR}/musicmprisplayer.h)
-  set_property(GLOBAL APPEND PROPERTY TTK_CORE_KITS_SOURCES ${TTK_CORE_DIR}/musicmprisplayer.cpp)
+  set_property(GLOBAL APPEND PROPERTY TTK_CORE_KITS_HEADER_FILES ${TTK_CORE_DIR}/musicmprisplayer.h)
+  set_property(GLOBAL APPEND PROPERTY TTK_CORE_KITS_SOURCE_FILES ${TTK_CORE_DIR}/musicmprisplayer.cpp)
 endif()

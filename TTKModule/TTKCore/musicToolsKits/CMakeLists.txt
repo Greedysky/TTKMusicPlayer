@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_CORE_TOOLS_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_CORE_TOOLS_KITS_HEADER_FILES
   ${TTK_CORE_TOOLSWIDGET_DIR}/musicrulesanalysis.h
   ${TTK_CORE_TOOLSWIDGET_DIR}/musicdownloadrecordconfigmanager.h
   ${TTK_CORE_TOOLSWIDGET_DIR}/musicclouddataitem.h
@@ -26,7 +26,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_TOOLS_KITS_HEADERS
   ${TTK_CORE_TOOLSWIDGET_DIR}/musicconnecttransferthread.h
 )
 
-set_property(GLOBAL PROPERTY TTK_CORE_TOOLS_KITS_SOURCES
+set_property(GLOBAL PROPERTY TTK_CORE_TOOLS_KITS_SOURCE_FILES
   ${TTK_CORE_TOOLSWIDGET_DIR}/musicrulesanalysis.cpp
   ${TTK_CORE_TOOLSWIDGET_DIR}/musicdownloadrecordconfigmanager.cpp
   ${TTK_CORE_TOOLSWIDGET_DIR}/musicdeviceinfomodule.cpp

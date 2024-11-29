@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_CORE_TOOLSETS_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_CORE_TOOLSETS_KITS_HEADER_FILES
   ${TTK_CORE_TOOLSETSWIDGET_DIR}/musicaudiorecordermodule.h
   ${TTK_CORE_TOOLSETSWIDGET_DIR}/musicbackupmodule.h
   ${TTK_CORE_TOOLSETSWIDGET_DIR}/musicdesktopwallpaperthread.h
@@ -29,7 +29,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_TOOLSETS_KITS_HEADERS
   ${TTK_CORE_TOOLSETSWIDGET_DIR}/musicnetworktestthread.h
 )
 
-set_property(GLOBAL PROPERTY TTK_CORE_TOOLSETS_KITS_SOURCES
+set_property(GLOBAL PROPERTY TTK_CORE_TOOLSETS_KITS_SOURCE_FILES
   ${TTK_CORE_TOOLSETSWIDGET_DIR}/musicaudiorecordermodule.cpp
   ${TTK_CORE_TOOLSETSWIDGET_DIR}/musicbackupmodule.cpp
   ${TTK_CORE_TOOLSETSWIDGET_DIR}/musicdesktopwallpaperthread.cpp

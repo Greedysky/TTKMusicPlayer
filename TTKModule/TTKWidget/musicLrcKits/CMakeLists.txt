@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_WIDGET_LRC_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_WIDGET_LRC_KITS_HEADER_FILES
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanager.h
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.h
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerforinterior.h
@@ -42,7 +42,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_LRC_KITS_HEADERS
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcdownloadbatchwidget.h
 )
 
-set_property(GLOBAL PROPERTY TTK_WIDGET_LRC_KITS_SOURCES
+set_property(GLOBAL PROPERTY TTK_WIDGET_LRC_KITS_SOURCE_FILES
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanager.cpp
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.cpp
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerforinterior.cpp

@@ -236,6 +236,12 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "6")
 endif()
 
 
+if(TTK_QT_VERSION VERSION_GREATER "4")
+  add_definitions(-DQT_DEPRECATED_WARNINGS)
+  add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050400)
+endif()
+
+
 find_program(QT_LRELEASE_EXECUTABLE lrelease ${QT_INSTALL_BINS})
 if(QT_LRELEASE_EXECUTABLE)
   message(STATUS "Message Found lrelease executable: " ${QT_LRELEASE_EXECUTABLE})

@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_HEADER_FILES
   ${TTK_WIDGET_DIR}/musicsettingwidget.h
   ${TTK_WIDGET_DIR}/musicbackgroundskindialog.h
   ${TTK_WIDGET_DIR}/musicsystemtraymenu.h
@@ -71,7 +71,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_HEADERS
   ${TTK_WIDGET_DIR}/musicfileassociationwidget.h
 )
 
-set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_SOURCES
+set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_SOURCE_FILES
   ${TTK_WIDGET_DIR}/musicsettingwidget.cpp
   ${TTK_WIDGET_DIR}/musicbackgroundskindialog.cpp
   ${TTK_WIDGET_DIR}/musicsystemtraymenu.cpp

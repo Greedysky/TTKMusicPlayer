@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_WIDGET_CORE_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_WIDGET_CORE_KITS_HEADER_FILES
   ${TTK_WIDGET_CORE_DIR}/musicabstracttablewidget.h
   ${TTK_WIDGET_CORE_DIR}/musicabstractmovedialog.h
   ${TTK_WIDGET_CORE_DIR}/musicabstractmovewidget.h
@@ -64,7 +64,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_CORE_KITS_HEADERS
   ${TTK_WIDGET_CORE_DIR}/musicsinglemanager.h
 )
 
-set_property(GLOBAL PROPERTY TTK_WIDGET_CORE_KITS_SOURCES
+set_property(GLOBAL PROPERTY TTK_WIDGET_CORE_KITS_SOURCE_FILES
   ${TTK_WIDGET_CORE_DIR}/musicabstracttablewidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicabstractmovedialog.cpp
   ${TTK_WIDGET_CORE_DIR}/musicabstractmovewidget.cpp

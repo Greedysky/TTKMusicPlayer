@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_WIDGET_REMOTE_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_WIDGET_REMOTE_KITS_HEADER_FILES
   ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidget.h
   ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.h
   ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.h
@@ -28,7 +28,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_REMOTE_KITS_HEADERS
   ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforripple.h
 )
 
-set_property(GLOBAL PROPERTY TTK_WIDGET_REMOTE_KITS_SOURCES
+set_property(GLOBAL PROPERTY TTK_WIDGET_REMOTE_KITS_SOURCE_FILES
   ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidget.cpp
   ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.cpp
   ${TTK_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.cpp

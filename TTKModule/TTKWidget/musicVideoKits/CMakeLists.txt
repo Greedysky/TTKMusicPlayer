@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_WIDGET_VIDEO_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_WIDGET_VIDEO_KITS_HEADER_FILES
   ${TTK_WIDGET_VIDEOKITS_DIR}/musicbarragerecord.h
   ${TTK_WIDGET_VIDEOKITS_DIR}/musicbarragewidget.h
   ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideocontrolwidget.h
@@ -30,7 +30,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_VIDEO_KITS_HEADERS
   ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideobarragestylepopwidget.h
 )
 
-set_property(GLOBAL PROPERTY TTK_WIDGET_VIDEO_KITS_SOURCES
+set_property(GLOBAL PROPERTY TTK_WIDGET_VIDEO_KITS_SOURCE_FILES
   ${TTK_WIDGET_VIDEOKITS_DIR}/musicbarragewidget.cpp
   ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideocontrolwidget.cpp
   ${TTK_WIDGET_VIDEOKITS_DIR}/musicvideoview.cpp

@@ -18,13 +18,13 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_CORE_LRC_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_CORE_LRC_KITS_HEADER_FILES
   ${TTK_CORE_LRCMANAGER_DIR}/musiclrcanalysis.h
   ${TTK_CORE_LRCMANAGER_DIR}/musiclrcdefines.h
   ${TTK_CORE_LRCMANAGER_DIR}/musiclrcfromkrc.h
 )
 
-set_property(GLOBAL PROPERTY TTK_CORE_LRC_KITS_SOURCES
+set_property(GLOBAL PROPERTY TTK_CORE_LRC_KITS_SOURCE_FILES
   ${TTK_CORE_LRCMANAGER_DIR}/musiclrcanalysis.cpp
   ${TTK_CORE_LRCMANAGER_DIR}/musiclrcdefines.cpp
   ${TTK_CORE_LRCMANAGER_DIR}/musiclrcfromkrc.cpp

@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_WIDGET_UI_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_WIDGET_UI_KITS_HEADER_FILES
   ${TTK_WIDGET_UI_DIR}/musicuiobject.h
   ${TTK_WIDGET_UI_DIR}/musiccontextuiobject.h
   ${TTK_WIDGET_UI_DIR}/musicdesktoplrcuiobject.h
@@ -36,7 +36,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_UI_KITS_HEADERS
   ${TTK_WIDGET_UI_DIR}/musicwidgetheaders.h
 )
 
-set_property(GLOBAL PROPERTY TTK_UIS
+set_property(GLOBAL PROPERTY TTK_UI_FILES
   ${TTK_WIDGET_UI_DIR}/musicApplication/musicapplication.ui
   ${TTK_WIDGET_UI_DIR}/musicLrcKits/musiclrcphotomanagerwidget.ui
   ${TTK_WIDGET_UI_DIR}/musicLrcKits/musiclrcmakerwidget.ui

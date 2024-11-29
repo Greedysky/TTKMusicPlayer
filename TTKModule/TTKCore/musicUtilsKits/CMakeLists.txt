@@ -18,7 +18,7 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 
-set_property(GLOBAL PROPERTY TTK_CORE_UTILS_KITS_HEADERS
+set_property(GLOBAL PROPERTY TTK_CORE_UTILS_KITS_HEADER_FILES
   ${TTK_CORE_UTILS_DIR}/musiccoreutils.h
   ${TTK_CORE_UTILS_DIR}/musicwidgetutils.h
   ${TTK_CORE_UTILS_DIR}/musicnumberutils.h
@@ -31,7 +31,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_UTILS_KITS_HEADERS
   ${TTK_CORE_UTILS_DIR}/musicimageutils.h
 )
 
-set_property(GLOBAL PROPERTY TTK_CORE_UTILS_KITS_SOURCES
+set_property(GLOBAL PROPERTY TTK_CORE_UTILS_KITS_SOURCE_FILES
   ${TTK_CORE_UTILS_DIR}/musiccoreutils.cpp
   ${TTK_CORE_UTILS_DIR}/musicwidgetutils.cpp
   ${TTK_CORE_UTILS_DIR}/musicnumberutils.cpp
