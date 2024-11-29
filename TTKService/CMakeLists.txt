@@ -39,8 +39,8 @@ set(HEADER_FILES
 )
 
 set(SOURCE_FILES
-  musicservicemain.cpp
   ${TTKAPPLICATION_SOURCE_FILES}
+  musicservicemain.cpp
 )
 
 if(WIN32)
