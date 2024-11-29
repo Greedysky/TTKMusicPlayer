@@ -109,7 +109,7 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const QString &k
                 return;
             }
 
-            if(value["target"].toString() == quality && value["result"].toString() == quality)
+            if(value["target"].toString().contains(quality, Qt::CaseInsensitive) && value["result"].toString().contains(quality, Qt::CaseInsensitive))
             {
                 info->m_songProps.append(prop);
             }
