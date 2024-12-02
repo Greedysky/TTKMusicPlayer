@@ -219,6 +219,7 @@
             <value key="1265" value="经典"/>
             <value key="2200" value="情歌"/>
             <value key="2199" value="BGM"/>
+            <value key="2212" value="演唱会"/>
             <value key="1877" value="游戏"/>
             <value key="155" value="怀旧"/>
             <value key="2201" value="合唱"/>
@@ -255,6 +256,8 @@
             <value key="334" value="广场舞"/>
             <value key="2202" value="通勤"/>
             <value key="2203" value="宅家"/>
+            <value key="2214" value="Citywalk"/>
+            <value key="2213" value="露营"/>
         </tag>
         <tag value="年代">
             <value key="637" value="70后"/>
