@@ -1,14 +1,14 @@
 # TTKMusicPlayer
-[简体中文 Chinese](./README_cn.md) | [英文 English](./README.md)
+[简体中文 Chinese](README_cn.md) | [英文 English](README.md)
 
 ![TTKMusicPlayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
 ![版本](https://img.shields.io/github/v/release/Greedysky/TTKMusicPlayer?style=flat-square&label=Version)
 ![許可](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 ![許可](https://img.shields.io/badge/License-LGPL%20V3-yellow.svg?style=flat-square)
 
-![徽標](https://github.com/Greedysky/TTKMusicPlayer/blob/master/TTKResource/logo_banner.png?raw=true)
+![徽標](TTKResource/logo_banner.png?raw=true)
 
-### **|[關於](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#使用方法)|[許可證](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#許可證)|[下載](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#下載)|[特性](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#特性)|[快照](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#快照)|[版權](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#版權)|[貢獻](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#貢獻)|**
+### **|[關於](README_tc.md#使用方法)|[許可證](README_tc.md#許可證)|[下載](README_tc.md#下載)|[特性](README_tc.md#特性)|[快照](README_tc.md#快照)|[版權](README_tc.md#版權)|[貢獻](README_tc.md#貢獻)|**
 
 使用方法
 --------
@@ -35,7 +35,7 @@
 
 許可證
 --------
-TTKMusicPlayer是基於[Licence GPL v3](https://github.com/Greedysky/TTKMusicPlayer/blob/master/LICENSE)條款授權的免費軟件。如果您使用TTKMusicPlayer或者它的動態庫，則務必添加相關許可證到項目中。
+TTKMusicPlayer是基於[Licence GPL v3](LICENSE)條款授權的免費軟件。如果您使用TTKMusicPlayer或者它的動態庫，則務必添加相關許可證到項目中。
 
 API 文檔
 --------

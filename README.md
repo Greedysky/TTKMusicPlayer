@@ -1,14 +1,14 @@
 # TTKMusicPlayer
-[简体中文 Chinese](./README_cn.md) | [繁体中文 Chinese](./README_tc.md)
+[简体中文 Chinese](README_cn.md) | [繁体中文 Chinese](README_tc.md)
 
 ![TTKMusicPlayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
 ![Version](https://img.shields.io/github/v/release/Greedysky/TTKMusicPlayer?style=flat-square&label=Version)
 ![License](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 ![License](https://img.shields.io/badge/License-LGPL%20V3-yellow.svg?style=flat-square)
 
-![LOGO](https://github.com/Greedysky/TTKMusicPlayer/blob/master/TTKResource/logo_banner.png?raw=true)
+![LOGO](TTKResource/logo_banner.png?raw=true)
 
-### **|[About](https://github.com/Greedysky/TTKMusicPlayer#usage)|[License](https://github.com/Greedysky/TTKMusicPlayer#license)|[Download](https://github.com/Greedysky/TTKMusicPlayer#download)|[Features](https://github.com/Greedysky/TTKMusicPlayer#features)|[Screenshots](https://github.com/Greedysky/TTKMusicPlayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicPlayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicPlayer#how-to-contribute)|**
+### **|[About](#usage)|[License](#license)|[Download](#download)|[Features](#features)|[Screenshots](#screenshots)|[Copyright](#copyright)|[Contribute](#how-to-contribute)|**
 
 Usage
 --------
@@ -35,7 +35,7 @@ Usage
 
 License
 --------
-TTKMusicPlayer is free software licensed under the term of [Licence GPL v3](https://github.com/Greedysky/TTKMusicPlayer/blob/master/LICENSE). If you use TTKMusicPlayer or its constituent libraries, you must adhere to the terms of the license in question.
+TTKMusicPlayer is free software licensed under the term of [Licence GPL v3](LICENSE). If you use TTKMusicPlayer or its constituent libraries, you must adhere to the terms of the license in question.
 
 API Document
 --------
