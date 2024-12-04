@@ -52,15 +52,8 @@ else()
   message(STATUS "Message TTK build by static link")
 endif()
 
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 OLD)
-  cmake_policy(SET CMP0005 OLD)
-  cmake_policy(SET CMP0028 OLD)
-endif(COMMAND cmake_policy)
-
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
-
 add_definitions(-DTTK_LIBRARY)
 add_definitions(-DQMMP_LIBRARY)
 

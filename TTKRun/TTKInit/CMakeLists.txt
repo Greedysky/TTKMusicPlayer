@@ -41,4 +41,4 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "6")
 endif()
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
-target_link_libraries(${PROJECT_NAME} ${QT_LINK_LIBS})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_LINK_LIBS})
