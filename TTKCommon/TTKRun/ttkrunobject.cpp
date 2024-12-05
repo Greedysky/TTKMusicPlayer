@@ -37,7 +37,7 @@ void TTKRunObject::run(int argc, char **argv) const
             }
 
             args.append(TTK_STR_QUOTES(arg));
-            args.append(TTK_SPACE);
+            args.append(" ");
         }
     }
 
@@ -66,6 +66,6 @@ void TTKRunObject::run(int argc, char **argv) const
         }
     }
 
-    system((filePath + suffix + TTK_SPACE + args).c_str());
+    system((filePath + suffix + " " + args).c_str());
 #endif
 }

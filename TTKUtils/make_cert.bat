@@ -22,7 +22,7 @@ for /L %%n in (0,1,12) do (
    if exist "!sources[%%n]!\makecert.exe" set base=!sources[%%n]!
 )
 
-"%base%\makecert.exe" -a sha512 -r -n "CN=Greedysky Studio" -b 01/01/2016 -e 12/31/2024 -sv %temp%\CbipSetupKey.pvk %temp%\CbipSetupKey.cer
+"%base%\makecert.exe" -a sha512 -r -n "CN=Greedysky Studio" -b 01/01/2016 -e 12/31/2026 -sv %temp%\CbipSetupKey.pvk %temp%\CbipSetupKey.cer
 "%base%\cert2spc.exe" %temp%\CbipSetupKey.cer %temp%\CbipSetupKey.spc
 "%base%\pvk2pfx.exe" -pvk %temp%\CbipSetupKey.pvk -spc %temp%\CbipSetupKey.spc -f -pfx %userprofile%\Desktop\TTKMusicPlayer.pfx
 "%base%\signtool.exe" sign /f %userprofile%\Desktop\TTKMusicPlayer.pfx  /t "http://time.certum.pl/" /d "TTKMusicPlayer" %1

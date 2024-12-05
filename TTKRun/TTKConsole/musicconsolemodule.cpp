@@ -49,7 +49,7 @@ bool MusicConsoleModule::initialize()
 {
     QString text = TTK_LINEFEED TTK_APP_NAME "Console Module" "v" TTK_VERSION_STR TTK_LINEFEED;
             text += "Offical web page: https://github.com/Greedysky/TTKMusicPlayer\n";
-            text += "Copyright(C) 2015 - 2024 Greedysky All Rights Reserved\n";
+            text += "Copyright(C) 2015 - 2025 Greedysky All Rights Reserved\n";
             text += "TTKMusicPlayer imitates Kugou UI, the music player uses of qmmp core library based on Qt for windows and linux\n\n";
 
     TTKCommandLineOption op0("-h", "--help", "Show command line help options");
