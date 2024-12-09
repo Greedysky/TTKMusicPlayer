@@ -1,5 +1,5 @@
-#ifndef MUSICPLATFORMMANAGER_H
-#define MUSICPLATFORMMANAGER_H
+﻿#ifndef MINIBLINK_H
+#define MINIBLINK_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,25 +19,44 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicglobaldefine.h"
+#include <QWidget>
 
-/*! @brief The class of the platform system manager.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicPlatformManager
+namespace wke {
+class CWebView;
+}
+
+class Miniblink : public QWidget
 {
-    TTK_DECLARE_MODULE(MusicPlatformManager)
+    Q_OBJECT
 public:
-#ifdef Q_OS_WIN
-    /*!
-     * Set windows left win key enable.
-     */
-    void windowsEnableLeftMode();
-    /*!
-     * Set windows start up mode.
-     */
-    void windowsStartUpMode(bool v) const;
-#endif
+    explicit Miniblink(QWidget *parent = nullptr);
+
+    void load(const QString& url);
+    void setHtml(const QString& html);
+
+    void setUrl(const QString &url);
+    QString url() const;
+
+    void finish(bool ok);
+
+public:
+    static bool init();
+    static bool release();
+
+Q_SIGNALS:
+    void loadFinished(bool ok);
+
+public Q_SLOTS:
+    void stop();
+    void back();
+    void forward();
+    void reload();
+
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override final;
+
+private:
+    wke::CWebView* m_webView;
 };
 
-#endif // MUSICPLATFORMMANAGER_H
+#endif // MINIBLINK_H

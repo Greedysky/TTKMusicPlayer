@@ -21,7 +21,6 @@
 #include "musicpvcounterrequest.h"
 #include "musicsourceupdaterequest.h"
 #include "musicscreensaverwidget.h"
-#include "musicplatformmanager.h"
 #include "ttklibrary.h"
 #include "ttklogoutput.h"
 #include "ttkconcurrent.h"
@@ -68,15 +67,6 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_sourceUpdateRequest = new MusicSourceUpdateRequest(this);
 
     runTimerAutoModule();
-
-#ifdef Q_OS_WIN
-    MusicPlatformManager manager;
-    const int version = manager.windowsIEVersion();
-    if(version == -1 || version < 8)
-    {
-        MusicToastLabel::popup(version == -1 ? QObject::tr("No ie core version detected") : QObject::tr("IE core version less than 8"));
-    }
-#endif
 }
 
 MusicApplicationModule::~MusicApplicationModule()

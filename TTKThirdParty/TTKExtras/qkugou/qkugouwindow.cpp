@@ -1,21 +1,19 @@
 #include "qkugouwindow.h"
 #include "qkugouuiobject.h"
 
-#ifdef Q_OS_WIN
-#  include <ActiveQt/QAxWidget>
-#else
-#  ifdef TTK_WEBKIT
-#    if TTK_QT_VERSION_CHECK(5,0,0)
-#      include <QtWebKitWidgets/QWebView>
-#      include <QtWebKitWidgets/QWebFrame>
-#    else
-#      include <QtWebKit/QWebView>
-#      include <QtWebKit/QWebFrame>
-#    endif
-#  elif defined TTK_WEBENGINE
-#    include <QtWebEngineWidgets/QWebEngineView>
-#    include <QtWebEngineWidgets/QWebEngineSettings>
+#ifdef TTK_MINIBLINK
+#  include "miniblink/miniblink.h"
+#elif defined TTK_WEBKIT
+#  if TTK_QT_VERSION_CHECK(5,0,0)
+#    include <QtWebKitWidgets/QWebView>
+#    include <QtWebKitWidgets/QWebFrame>
+#  else
+#    include <QtWebKit/QWebView>
+#    include <QtWebKit/QWebFrame>
 #  endif
+#elif defined TTK_WEBENGINE
+#  include <QtWebEngineWidgets/QWebEngineView>
+#  include <QtWebEngineWidgets/QWebEngineSettings>
 #endif
 
 #include <QLabel>
@@ -59,19 +57,17 @@ QKugouWindow::QKugouWindow(Module type, QWidget *parent)
 {
     TTK_INIT_PRIVATE(QKugouWindow);
 
-#ifdef Q_OS_UNIX
-#  ifdef TTK_WEBKIT
+#ifdef TTK_WEBKIT
     QWebSettings *settings = QWebSettings::globalSettings();
     settings->setAttribute(QWebSettings::PluginsEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
-#  elif defined TTK_WEBENGINE
+#elif defined TTK_WEBENGINE
     QWebEngineSettings *settings = QWebEngineSettings::defaultSettings();
     settings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
     settings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, true);
-#  endif
 #endif
 
     if(type != KuGouSong && type != None)
@@ -87,53 +83,53 @@ QKugouWindow::QKugouWindow(Module type, QWidget *parent)
 void QKugouWindow::setUrl(const QString &url)
 {
     TTK_D(QKugouWindow);
-#ifdef Q_OS_WIN
-    QAxWidget *w = TTKObjectCast(QAxWidget*, d->m_webView);
+#ifdef TTK_MINIBLINK
+    Miniblink *w = TTKObjectCast(Miniblink*, d->m_webView);
     if(w)
     {
-        w->dynamicCall("Navigate(const QString&)", url);
+        w->setUrl(url);
     }
-#else
-#  ifdef TTK_WEBKIT
+#elif defined TTK_WEBKIT
     QWebView *w = TTKObjectCast(QWebView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
     }
-#  elif defined TTK_WEBENGINE
+#elif defined TTK_WEBENGINE
     QWebEngineView *w = TTKObjectCast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
     }
-#  else
+#else
     Q_UNUSED(url);
     Q_UNUSED(d);
-#  endif
 #endif
 }
 
 void QKugouWindow::refresh()
 {
     TTK_D(QKugouWindow);
-#ifdef Q_OS_WIN
-    TTK_SIGNLE_SHOT(TTKObjectCast(QAxWidget*, d->m_webView), Refresh, TTK_SLOT);
-#else
-#  ifdef TTK_WEBKIT
+#ifdef TTK_MINIBLINK
+    Miniblink *w = TTKObjectCast(Miniblink*, d->m_webView);
+    if(w)
+    {
+        w->reload();
+    }
+#elif defined TTK_WEBKIT
     QWebView *w = TTKObjectCast(QWebView*, d->m_webView);
     if(w)
     {
         w->reload();
     }
-#  elif defined TTK_WEBENGINE
+#elif defined TTK_WEBENGINE
     QWebEngineView *w = TTKObjectCast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->reload();
     }
-#  else
+#else
     Q_UNUSED(d);
-#  endif
 #endif
 }
 
@@ -156,27 +152,17 @@ void QKugouWindow::createWebViewer()
 {
     TTK_D(QKugouWindow);
     delete d->m_webView;
-#ifdef Q_OS_WIN
-    QAxWidget *view = new QAxWidget(this);
-    view->setWindowFlags(Qt::FramelessWindowHint);
-    view->setMouseTracking(false);
-    view->setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}"); //ie web view
-    view->setObjectName("WebWidget");
-    view->setFocusPolicy(Qt::StrongFocus);
-    view->setProperty("DisplayAlerts", false);
-    view->setProperty("DisplayScrollBars", false);
-    view->setProperty("Silent", true);
+#ifdef TTK_MINIBLINK
+    Miniblink *view = new Miniblink(this);
     d->m_webView = view;
-#else
-#  ifdef TTK_WEBKIT
+#elif defined TTK_WEBKIT
     QWebView *view = new QWebView(this);
     view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
     view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     d->m_webView = view;
-#  elif defined TTK_WEBENGINE
+#elif defined TTK_WEBENGINE
     QWebEngineView *view = new QWebEngineView(this);
     d->m_webView = view;
-#  endif
 #endif
 }
 
@@ -186,9 +172,12 @@ void QKugouWindow::createWebViewer(Module type)
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#if defined TTK_WEBKIT || defined TTK_WEBENGINE
+#if defined TTK_MINIBLINK || defined TTK_WEBKIT || defined TTK_WEBENGINE
     createWebViewer();
-    layout->addWidget(d->m_webView);
+    if(d->m_webView)
+    {
+        layout->addWidget(d->m_webView);
+    }
 
     switch(type)
     {
@@ -214,7 +203,7 @@ void QKugouWindow::createKugouSongWidget(bool power)
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#if defined TTK_WEBKIT || defined TTK_WEBENGINE
+#if defined TTK_MINIBLINK || defined TTK_WEBKIT || defined TTK_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
     d->m_topWidget->setStyleSheet(TTK::UI::PushButtonStyle01 + TTK::UI::WidgetStyle01);
@@ -261,7 +250,10 @@ void QKugouWindow::createKugouSongWidget(bool power)
     if(power)
     {
         createWebViewer();
-        layout->addWidget(d->m_webView);
+        if(d->m_webView)
+        {
+            layout->addWidget(d->m_webView);
+        }
     }
     else
     {

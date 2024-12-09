@@ -17,33 +17,6 @@ void MusicPlatformManager::windowsEnableLeftMode()
     SendInput(4, input, sizeof(INPUT));
 }
 
-int MusicPlatformManager::windowsIEVersion() const
-{
-    const DWORD versionInfoSize = GetFileVersionInfoSizeW(L"mshtml.dll", nullptr);
-    if(versionInfoSize == 0)
-    {
-        return -1;
-    }
-
-    BYTE *data = new BYTE[versionInfoSize];
-    if(!GetFileVersionInfoW(L"mshtml.dll", 0, versionInfoSize, data))
-    {
-        delete[] data;
-        return -1;
-    }
-
-    const VS_FIXEDFILEINFO *fixedFileInfo = nullptr;
-    UINT fixedFileInfoSize = 0;
-    if(!VerQueryValueW(data, L"\\", (LPVOID*)&fixedFileInfo, &fixedFileInfoSize))
-    {
-        delete[] data;
-        return -1;
-    }
-
-    delete[] data;
-    return HIWORD(fixedFileInfo->dwProductVersionMS);
-}
-
 void MusicPlatformManager::windowsStartUpMode(bool v) const
 {
     const QString &appName = TTK_APP_NAME;
