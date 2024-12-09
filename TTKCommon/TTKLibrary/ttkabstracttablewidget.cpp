@@ -22,9 +22,9 @@ TTKAbstractTableWidget::TTKAbstractTableWidget(QWidget *parent)
 
     setMouseTracking(true);  //Open the capture mouse function
 
-    QFont font = this->font();
-    font.setBold(false);
-    setFont(font);
+    QFont ft = font();
+    ft.setBold(false);
+    setFont(ft);
 
     setShowGrid(false);//Does not display the grid
     setFrameShape(QFrame::NoFrame);//Set No Border
