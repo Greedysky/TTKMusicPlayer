@@ -152,9 +152,13 @@ void QKugouWindow::createWebViewer()
 {
     TTK_D(QKugouWindow);
     delete d->m_webView;
+    d->m_webView = nullptr;
 #ifdef TTK_MINIBLINK
-    Miniblink *view = new Miniblink(this);
-    d->m_webView = view;
+    if(Miniblink::initialize())
+    {
+        Miniblink *view = new Miniblink(this);
+        d->m_webView = view;
+    }
 #elif defined TTK_WEBKIT
     QWebView *view = new QWebView(this);
     view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
@@ -177,14 +181,22 @@ void QKugouWindow::createWebViewer(Module type)
     if(d->m_webView)
     {
         layout->addWidget(d->m_webView);
-    }
 
-    switch(type)
+        switch(type)
+        {
+        case KuGouRadio: setUrl(QKugouUrl::makeRadioPublicUrl()); break;
+        case KugouMovie: setUrl(QKugouUrl::makeMovieRecommendUrl()); break;
+        case KuGouSingle: setUrl(QKugouUrl::makeKuiSheUrl()); break;
+        default: break;
+        }
+    }
+    else
     {
-    case KuGouRadio: setUrl(QKugouUrl::makeRadioPublicUrl()); break;
-    case KugouMovie: setUrl(QKugouUrl::makeMovieRecommendUrl()); break;
-    case KuGouSingle: setUrl(QKugouUrl::makeKuiSheUrl()); break;
-    default: break;
+        QLabel *pix = new QLabel(this);
+        pix->setAlignment(Qt::AlignCenter);
+        pix->setStyleSheet(TTK::UI::WidgetStyle01);
+        pix->setPixmap(QPixmap(":/image/lb_no_module"));
+        layout->addWidget(pix);
     }
 #else
     Q_UNUSED(d);
@@ -253,6 +265,14 @@ void QKugouWindow::createKugouSongWidget(bool power)
         if(d->m_webView)
         {
             layout->addWidget(d->m_webView);
+        }
+        else
+        {
+            QLabel *pix = new QLabel(this);
+            pix->setAlignment(Qt::AlignCenter);
+            pix->setStyleSheet(TTK::UI::WidgetStyle01);
+            pix->setPixmap(QPixmap(":/image/lb_no_module"));
+            layout->addWidget(pix);
         }
     }
     else

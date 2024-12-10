@@ -1,5 +1,5 @@
-﻿#include "miniblink/miniblink.h"
-#include "miniblink/wke.h"
+﻿#include "miniblink.h"
+#include "wke.h"
 
 #include <QFile>
 #include <QApplication>
@@ -12,14 +12,43 @@ static void onLoadingFinish(wkeWebView, void *param, const wkeString, wkeLoading
     ((Miniblink *)param)->finish(result == WKE_LOADING_SUCCEEDED);
 }
 
+int Miniblink::m_ref = 0;
+
 Miniblink::Miniblink(QWidget *parent)
     : QWidget(parent)
 {
-    init();
-
     m_webView = wkeCreateWebWindow(WKE_WINDOW_TYPE_CONTROL, (HWND)winId(), 0, 0, width(), height());
     wkeOnLoadingFinish(m_webView, onLoadingFinish, this);
     wkeShowWindow(m_webView, TRUE);
+}
+
+Miniblink::~Miniblink()
+{
+    if(--m_ref == 0)
+    {
+        wkeFinalize();
+    }
+}
+
+bool Miniblink::initialize()
+{
+    static bool loaded = false;
+    if(!loaded)
+    {
+        const QString &dll = QCoreApplication::applicationDirPath() + "/GPlugins/node.dll";
+        if(QFile(dll).exists())
+        {
+            wkeSetWkeDllPath(reinterpret_cast<const wchar_t *>(dll.utf16()));
+            wkeInitialize();
+            loaded = true;
+        }
+    }
+
+    if(loaded)
+    {
+        ++m_ref;
+    }
+    return loaded;
 }
 
 void Miniblink::load(const QString& url)
@@ -45,30 +74,6 @@ QString Miniblink::url() const
 void Miniblink::finish(bool ok)
 {
     emit loadFinished(ok);
-}
-
-bool Miniblink::init()
-{
-    static bool loaded = false;
-    if(!loaded)
-    {
-        const QString &dll = QCoreApplication::applicationDirPath() + "/GPlugins/node.dll";
-        if(!QFile(dll).exists())
-        {
-            return false;
-        }
-
-        wkeSetWkeDllPath(reinterpret_cast<const wchar_t *>(dll.utf16()));
-        wkeInitialize();
-        loaded = true;
-    }
-    return loaded;
-}
-
-bool Miniblink::release()
-{
-    wkeFinalize();
-    return true;
 }
 
 void Miniblink::stop()

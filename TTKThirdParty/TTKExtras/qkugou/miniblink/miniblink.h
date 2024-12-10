@@ -30,6 +30,9 @@ class Miniblink : public QWidget
     Q_OBJECT
 public:
     explicit Miniblink(QWidget *parent = nullptr);
+    ~Miniblink();
+
+    static bool initialize();
 
     void load(const QString& url);
     void setHtml(const QString& html);
@@ -38,10 +41,6 @@ public:
     QString url() const;
 
     void finish(bool ok);
-
-public:
-    static bool init();
-    static bool release();
 
 Q_SIGNALS:
     void loadFinished(bool ok);
@@ -56,6 +55,7 @@ protected:
     virtual void resizeEvent(QResizeEvent *event) override final;
 
 private:
+    static int m_ref;
     wke::CWebView* m_webView;
 };
 
