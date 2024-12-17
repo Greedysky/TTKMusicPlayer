@@ -238,6 +238,7 @@ qint64 HttpStreamReader::readBuffer(char* data, qint64 maxlen)
         if(m_stream.buffer_fill >= m_stream.buffer_size)
         {
             m_stream.buffer_fill = 0;
+            m_stream.aborted = true;
             return 0;
         }
 
