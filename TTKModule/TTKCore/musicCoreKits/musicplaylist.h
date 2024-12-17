@@ -96,6 +96,10 @@ public:
      * Get current play music media path.
      */
     QString currentMediaPath() const;
+    /*!
+     * Check current media path is same or not.
+     */
+    bool isSameMediaPath(const QString &path) const;
 
     /*!
      * Get all music media path.

@@ -124,15 +124,15 @@ void MusicPlayer::play()
     setCurrentPlayState(TTK::PlayState::Playing);
     const Qmmp::State state = m_core->state(); ///Get the current state of play
 
-    const QString &mediaPath = m_playlist->currentMediaPath();
-    if(m_currentMedia == mediaPath && state == Qmmp::Paused)
+    if(m_playlist->isSameMediaPath(m_currentMedia) && state == Qmmp::Paused)
     {
-        m_core->pause(); ///When the pause time for recovery
+        ///When the pause time for recovery
+        m_core->pause();
         update();
         return;
     }
 
-    m_currentMedia = mediaPath;
+    m_currentMedia = m_playlist->currentMediaPath();
     ///The current playback path
     if(!m_core->play(m_currentMedia))
     {
