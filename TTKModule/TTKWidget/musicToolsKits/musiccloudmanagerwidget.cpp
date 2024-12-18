@@ -15,7 +15,7 @@
 #include "qsync/qsyncdeletedata.h"
 #include "qsync/qsyncdownloaddata.h"
 
-static constexpr const char *OS_CLOUD_URL = "cloud";
+static constexpr const char *QUERY_CLOUD_URL = "cloud";
 
 Q_DECLARE_METATYPE(MusicCloudDataItem)
 
@@ -78,7 +78,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
 
         MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startToRequest(QSyncUtils::makeDataBucketUrl() + OS_CLOUD_URL);
+        d->startToRequest(QSyncUtils::makeDataBucketUrl() + QUERY_CLOUD_URL);
         loop.exec();
     }
 

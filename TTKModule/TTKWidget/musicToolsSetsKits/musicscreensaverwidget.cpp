@@ -9,23 +9,23 @@
 
 #include "qsync/qsyncutils.h"
 
-#define OS_ITEM_SIZE QSize(165, 110)
+#define SS_ITEM_SIZE QSize(165, 110)
 
-static constexpr int OS_COUNT = 10;
+static constexpr int SS_COUNT = 10;
 static constexpr int LINE_SPACING_SIZE = 160;
 
-static constexpr const char *OS_SCREEN_DIR = "Screen";
-static constexpr const char *OS_SCREENSAVER_URL = "ScreenSaver";
-static constexpr const char *OS_WALLPAPER_NAME = "wallpaper.png";
-static constexpr const char *OS_WALLBAR_NAME = "wallbar.png";
-static constexpr const char *OS_WALLNAIL_NAME = "thumbnail.png";
+static constexpr const char *SS_SCREEN_DIR = "Screen";
+static constexpr const char *SS_SCREENSAVER_URL = "ScreenSaver";
+static constexpr const char *SS_WALLPAPER_NAME = "wallpaper.png";
+static constexpr const char *SS_WALLBAR_NAME = "wallbar.png";
+static constexpr const char *SS_WALLNAIL_NAME = "thumbnail.png";
 
 MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
     : QLabel(parent),
       m_index(-1),
       m_parent(parent)
 {
-    setFixedSize(OS_ITEM_SIZE + QSize(8, 8));
+    setFixedSize(SS_ITEM_SIZE + QSize(8, 8));
     setAttribute(Qt::WA_TranslucentBackground);
     setStyleSheet(TTK::UI::BackgroundStyle01);
 
@@ -103,7 +103,7 @@ void MusicScreenSaverHoverItem::paintEvent(QPaintEvent *event)
     TTK::setBorderShadow(this, &painter);
 
     const QPixmap &pixmap = QtLablePixmap(this);
-    painter.drawPixmap(QRect(QPoint(4, 4), OS_ITEM_SIZE), pixmap.scaled(OS_ITEM_SIZE));
+    painter.drawPixmap(QRect(QPoint(4, 4), SS_ITEM_SIZE), pixmap.scaled(SS_ITEM_SIZE));
 }
 
 
@@ -300,7 +300,7 @@ void MusicScreenSaverWidget::applyParameter()
 QVector<bool> MusicScreenSaverWidget::parseSettingParameter()
 {
     QVector<bool> statusVector;
-    statusVector.fill(true, OS_COUNT);
+    statusVector.fill(true, SS_COUNT);
 
     const QString &value = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverIndex).toString();
     const QStringList items(value.split(";"));
@@ -355,9 +355,9 @@ void MusicScreenSaverWidget::switchButtonState()
 void MusicScreenSaverWidget::downLoadFinished(const QString &bytes)
 {
     QVector<bool> statusVector(parseSettingParameter());
-    if(bytes.contains(OS_WALLNAIL_NAME))
+    if(bytes.contains(SS_WALLNAIL_NAME))
     {
-        const int index = TTK::String::splitToken(bytes, OS_SCREEN_DIR, TTK_SEPARATOR).toInt();
+        const int index = TTK::String::splitToken(bytes, SS_SCREEN_DIR, TTK_SEPARATOR).toInt();
         if(index < 0 || index >= statusVector.count())
         {
             return;
@@ -387,25 +387,25 @@ void MusicScreenSaverWidget::initialize()
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
 
     MusicDownloadQueueDataList datas;
-    for(int index = 0; index < OS_COUNT; ++index)
+    for(int index = 0; index < SS_COUNT; ++index)
     {
-        const QString &url = QSyncUtils::makeDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(index);
-        const QString &prefix = QString("%1%2/%3/").arg(APPCACHE_DIR_FULL, OS_SCREEN_DIR).arg(index);
+        const QString &url = QSyncUtils::makeDataBucketUrl() + QString("%1/%2/").arg(SS_SCREENSAVER_URL).arg(index);
+        const QString &prefix = QString("%1%2/%3/").arg(APPCACHE_DIR_FULL, SS_SCREEN_DIR).arg(index);
         QDir().mkpath(prefix);
 
         MusicDownloadQueueData wallData;
-        wallData.m_url = url + OS_WALLPAPER_NAME;
-        wallData.m_path = prefix + OS_WALLPAPER_NAME;
+        wallData.m_url = url + SS_WALLPAPER_NAME;
+        wallData.m_path = prefix + SS_WALLPAPER_NAME;
         datas << wallData;
 
         MusicDownloadQueueData barData;
-        barData.m_url = url + OS_WALLBAR_NAME;
-        barData.m_path = prefix + OS_WALLBAR_NAME;
+        barData.m_url = url + SS_WALLBAR_NAME;
+        barData.m_path = prefix + SS_WALLBAR_NAME;
         datas << barData;
 
         MusicDownloadQueueData nailData;
-        nailData.m_url = url + OS_WALLNAIL_NAME;
-        nailData.m_path = prefix + OS_WALLNAIL_NAME;
+        nailData.m_url = url + SS_WALLNAIL_NAME;
+        nailData.m_path = prefix + SS_WALLNAIL_NAME;
         datas << nailData;
     }
 
@@ -485,7 +485,7 @@ void MusicScreenSaverBackgroundWidget::backgroundTimeout()
 {
     QVector<bool> statusVector(MusicScreenSaverWidget::parseSettingParameter());
     QVector<int> intVector;
-    for(int index = 0; index < OS_COUNT; ++index)
+    for(int index = 0; index < SS_COUNT; ++index)
     {
         if(statusVector[index])
         {
@@ -496,10 +496,10 @@ void MusicScreenSaverBackgroundWidget::backgroundTimeout()
     if(!intVector.isEmpty())
     {
         const int index = intVector[TTK::random(intVector.count())];
-        const QString &prefix = QString("%1%2/%3/").arg(APPCACHE_DIR_FULL, OS_SCREEN_DIR).arg(index);
+        const QString &prefix = QString("%1%2/%3/").arg(APPCACHE_DIR_FULL, SS_SCREEN_DIR).arg(index);
 
-        QPixmap background(prefix + OS_WALLPAPER_NAME);
-        const QPixmap bar(prefix + OS_WALLBAR_NAME);
+        QPixmap background(prefix + SS_WALLPAPER_NAME);
+        const QPixmap bar(prefix + SS_WALLBAR_NAME);
         TTK::Image::fusionPixmap(background, bar, QPoint(100, 900));
         setPixmap(QPixmap(background.scaled(size())));
     }

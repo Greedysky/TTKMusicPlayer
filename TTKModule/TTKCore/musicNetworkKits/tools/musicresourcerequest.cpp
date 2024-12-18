@@ -3,8 +3,8 @@
 
 #include "qsync/qsyncutils.h"
 
-static constexpr const char *OS_RESOURCE_DIR = "resource";
-static constexpr const char *OS_RESOURCE_URL = "resource.json";
+static constexpr const char *QUERY_RESOURCE_DIR = "resource";
+static constexpr const char *QUERY_RESOURCE_URL = "resource.json";
 
 MusicResourceRequest::MusicResourceRequest(QObject *parent)
     : MusicAbstractNetwork(parent)
@@ -15,7 +15,7 @@ MusicResourceRequest::MusicResourceRequest(QObject *parent)
 void MusicResourceRequest::startToRequest()
 {
     QNetworkRequest request;
-    request.setUrl(QSyncUtils::makeDataBucketUrl() + OS_RESOURCE_URL);
+    request.setUrl(QSyncUtils::makeDataBucketUrl() + QUERY_RESOURCE_URL);
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 
@@ -32,9 +32,9 @@ void MusicResourceRequest::downLoadFinished()
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QDir dir(APPCACHE_DIR_FULL);
-        if(!dir.exists(OS_RESOURCE_DIR))
+        if(!dir.exists(QUERY_RESOURCE_DIR))
         {
-            dir.mkdir(OS_RESOURCE_DIR);
+            dir.mkdir(QUERY_RESOURCE_DIR);
         }
 
         QJson::Parser json;

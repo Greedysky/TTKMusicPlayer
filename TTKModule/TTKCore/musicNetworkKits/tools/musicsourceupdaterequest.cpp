@@ -3,7 +3,7 @@
 
 #include "qsync/qsyncutils.h"
 
-static constexpr const char *OS_VERSION_URL = "version";
+static constexpr const char *QUERY_VERSION_URL = "version";
 
 MusicSourceUpdateRequest::MusicSourceUpdateRequest(QObject *parent)
     : QObject(parent)
@@ -15,7 +15,7 @@ void MusicSourceUpdateRequest::startToRequest()
 {
     MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startToRequest(QSyncUtils::makeDataBucketUrl() + OS_VERSION_URL);
+    d->startToRequest(QSyncUtils::makeDataBucketUrl() + QUERY_VERSION_URL);
 }
 
 QString MusicSourceUpdateRequest::version() const

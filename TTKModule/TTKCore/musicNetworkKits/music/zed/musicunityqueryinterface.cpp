@@ -1,12 +1,12 @@
 #include "musicunityqueryinterface.h"
 
-static constexpr const char *OS_PLUGINS_URL = "resource/plugins";
-static constexpr const char *OS_MODULE_A = "A";
-static constexpr const char *OS_MODULE_B = "B";
+static constexpr const char *QUERY_PLUGINS_URL = "resource/plugins";
+static constexpr const char *QUERY_MODULE_A = "A";
+static constexpr const char *QUERY_MODULE_B = "B";
 
 static QString makeQualityValue(const QString &type, int bitrate)
 {
-    if(type == OS_MODULE_A)
+    if(type == QUERY_MODULE_A)
     {
         switch(bitrate)
         {
@@ -16,7 +16,7 @@ static QString makeQualityValue(const QString &type, int bitrate)
         default: return {};
         }
     }
-    else if(type == OS_MODULE_B)
+    else if(type == QUERY_MODULE_B)
     {
         switch(bitrate)
         {
@@ -31,14 +31,14 @@ static QString makeQualityValue(const QString &type, int bitrate)
 
 static QString makeModuleValue(const QString &type, const QString &module)
 {
-    if(type == OS_MODULE_A)
+    if(type == QUERY_MODULE_A)
     {
         if(module == QUERY_WY_INTERFACE) return "wy";
         else if(module == QUERY_KG_INTERFACE) return "kg";
         else if(module == QUERY_KW_INTERFACE) return "kw";
         else return {};
     }
-    else if(type == OS_MODULE_B)
+    else if(type == QUERY_MODULE_B)
     {
         if(module == QUERY_WY_INTERFACE) return "wangyi";
         else if(module == QUERY_KG_INTERFACE) return "kugou";
@@ -166,7 +166,7 @@ static void parseSongPropertyB(TTK::MusicSongInformation *info, const QString &u
 void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &type, const QString &id, int bitrate)
 {
     QByteArray bytes;
-    QFile file(APPCACHE_DIR_FULL + OS_PLUGINS_URL);
+    QFile file(APPCACHE_DIR_FULL + QUERY_PLUGINS_URL);
     if(file.open(QIODevice::ReadOnly))
     {
         TTK_INFO_STREAM("Load unity plugins using local resource config");
@@ -194,6 +194,12 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
 
             const QVariantMap &value = var.toMap();
             const QString &key = value["key"].toString();
+            const bool option = value["option"].toBool();
+
+            if(!option)
+            {
+                continue;
+            }
 
             for(const QString &module : value.keys())
             {
@@ -211,11 +217,11 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
                     continue;
                 }
 
-                if(module == OS_MODULE_A)
+                if(module == QUERY_MODULE_A)
                 {
                     parseSongPropertyA(info, key, TTK::Algorithm::mdII(url, false).arg(server, id, quality), quality, bitrate);
                 }
-                else if(module == OS_MODULE_B)
+                else if(module == QUERY_MODULE_B)
                 {
                     parseSongPropertyB(info, TTK::Algorithm::mdII(url, false).arg(server, id, quality), bitrate);
                 }
