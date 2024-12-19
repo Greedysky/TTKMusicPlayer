@@ -1,7 +1,6 @@
 #include "musiccommentswidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musiccoverrequest.h"
-#include "musicemojilabelwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicinteriorlrcuiobject.h"
 #include "musicpagequerywidget.h"
@@ -37,8 +36,7 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     m_userCommit = new QTextEdit(userWidget);
     m_userCommit->setReadOnly(true);
     m_userCommit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_userCommit->setStyleSheet(TTK::UI::BorderStyle01 + TTK::UI::BackgroundStyle01 +
-                                TTK::UI::ColorStyle04);
+    m_userCommit->setStyleSheet(TTK::UI::BorderStyle01 + TTK::UI::BackgroundStyle01 + TTK::UI::ColorStyle04);
     m_userCommit->viewport()->setStyleSheet(TTK::UI::BackgroundStyle01 + TTK::UI::ColorStyle04);
     m_userName->setStyleSheet(TTK::UI::ColorStyle03);
     userWidgetLayout->addWidget(m_userName);
@@ -151,8 +149,7 @@ void MusicCommentsItem::downLoadFinished(const QByteArray &bytes)
 
 MusicCommentsWidget::MusicCommentsWidget(QWidget *parent)
     : QLabel(parent),
-      m_isPain(true),
-      m_messageEdit(nullptr),
+      m_plain(true),
       m_topLabel(nullptr),
       m_commentsLabel(nullptr),
       m_messageComments(nullptr),
@@ -167,15 +164,14 @@ MusicCommentsWidget::~MusicCommentsWidget()
     deleteCommentsItems();
     delete m_topLabel;
     delete m_commentsLabel;
-    delete m_messageEdit;
     delete m_pageQueryWidget;
     delete m_messageComments;
     delete m_networkRequest;
 }
 
-void MusicCommentsWidget::initialize(bool isPain)
+void MusicCommentsWidget::initialize(bool plain)
 {
-    m_isPain = isPain;
+    m_plain = plain;
 
     setObjectName(className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle07));
@@ -185,7 +181,7 @@ void MusicCommentsWidget::initialize(bool isPain)
     mainLayout->setSpacing(0);
 
     QWidget *topWidget = nullptr;
-    if(isPain)
+    if(plain)
     {
         topWidget = new QWidget(this);
         topWidget->setFixedHeight(40);
@@ -220,46 +216,17 @@ void MusicCommentsWidget::initialize(bool isPain)
     contentsLayout->setSpacing(0);
     //
     QWidget *messageBox = new QWidget(contentsWidget);
-    messageBox->setFixedHeight(150);
+    messageBox->setAttribute(Qt::WA_TranslucentBackground, true);
+    messageBox->setFixedHeight(60);
     QVBoxLayout *messageBoxLayout = new QVBoxLayout(messageBox);
     messageBoxLayout->setContentsMargins(10, 10, 10, 3);
-    messageBox->setAttribute(Qt::WA_TranslucentBackground, false);
-    m_messageEdit = new QTextEdit(messageBox);
-    m_messageEdit->setFixedHeight(75);
-    m_messageEdit->verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
-    m_messageEdit->setStyleSheet(TTK::UI::BorderStyle02 + TTK::UI::BackgroundStyle01 + TTK::UI::ColorStyle04);
-    m_messageEdit->viewport()->setStyleSheet(TTK::UI::BackgroundStyle01 + TTK::UI::ColorStyle04);
-    messageBox->setAttribute(Qt::WA_TranslucentBackground, true);
-    m_commentsLabel = new QLabel(contentsWidget);
+    m_commentsLabel = new QLabel(messageBox);
     m_commentsLabel->setStyleSheet(TTK::UI::ColorStyle04);
-    QFrame *solidLine = new QFrame(contentsWidget);
+    QFrame *solidLine = new QFrame(messageBox);
     solidLine->setFrameShape(QFrame::HLine);
     solidLine->setFixedHeight(1);
     solidLine->setStyleSheet(TTK::UI::ColorStyle03);
     //
-    QWidget *messageMiddle = new QWidget(messageBox);
-    QHBoxLayout *messageMiddleLayout = new QHBoxLayout(messageMiddle);
-    messageMiddleLayout->setContentsMargins(0, 10, 0, 0);
-    QPushButton *emojiButton = new QPushButton(messageMiddle);
-    QPushButton *sendButton = new QPushButton(tr("Send"), messageMiddle);
-    emojiButton->setIcon(QIcon(":/lrc/lb_emoji"));
-    emojiButton->setCursor(QCursor(Qt::PointingHandCursor));
-    emojiButton->setStyleSheet(TTK::UI::BackgroundStyle01);
-    connect(emojiButton, SIGNAL(clicked()), SLOT(createEMOJILabelWidget()));
-    sendButton->setFixedSize(65, 25);
-    sendButton->setCursor(QCursor(Qt::PointingHandCursor));
-    sendButton->setStyleSheet(TTK::UI::PushButtonStyle03);
-    messageMiddleLayout->addWidget(emojiButton);
-    messageMiddleLayout->addStretch(1);
-    messageMiddleLayout->addWidget(sendButton);
-    messageMiddle->setLayout(messageMiddleLayout);
-#ifdef Q_OS_UNIX
-    emojiButton->setFocusPolicy(Qt::NoFocus);
-    sendButton->setFocusPolicy(Qt::NoFocus);
-#endif
-    //
-    messageBoxLayout->addWidget(m_messageEdit);
-    messageBoxLayout->addWidget(messageMiddle);
     messageBoxLayout->addWidget(m_commentsLabel);
     messageBoxLayout->addWidget(solidLine);
     messageBox->setLayout(messageBoxLayout);
@@ -273,7 +240,7 @@ void MusicCommentsWidget::initialize(bool isPain)
     contentsLayout->addWidget(m_messageComments);
     contentsWidget->setLayout(contentsLayout);
     //
-    if(isPain)
+    if(plain)
     {
         QScrollArea *scrollArea = new QScrollArea(this);
         TTK::Widget::generateVScrollAreaFormat(scrollArea, contentsWidget, false);
@@ -290,7 +257,7 @@ void MusicCommentsWidget::initialize(bool isPain)
     else
     {
         mainLayout->addWidget(contentsWidget);
-        setFixedHeight(300);
+        setFixedHeight(210);
     }
 
     initLabel({}, 0);
@@ -321,7 +288,7 @@ void MusicCommentsWidget::createCommentItem(const MusicResultDataItem &item)
     QVBoxLayout *layout = TTKObjectCast(QVBoxLayout*, m_messageComments->layout());
     layout->insertWidget(layout->count() - 1, comment);
 
-    if(!m_isPain)
+    if(!m_plain)
     {
         setFixedHeight(height() + comment->height());
     }
@@ -333,19 +300,6 @@ void MusicCommentsWidget::buttonClicked(int index)
 
     m_pageQueryWidget->page(index, m_networkRequest->pageTotalSize());
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
-}
-
-void MusicCommentsWidget::createEMOJILabelWidget()
-{
-    MusicEMOJILabelWidget *w = new MusicEMOJILabelWidget(this);
-    connect(w, SIGNAL(dataChanged(QString)), SLOT(currentEMOJIchanged(QString)));
-    w->move(15, 160);
-    w->show();
-}
-
-void MusicCommentsWidget::currentEMOJIchanged(const QString &data)
-{
-    m_messageEdit->insertPlainText(data);
 }
 
 void MusicCommentsWidget::mousePressEvent(QMouseEvent *event)
@@ -375,9 +329,9 @@ void MusicCommentsWidget::deleteCommentsItems()
     qDeleteAll(m_commentsItems);
     m_commentsItems.clear();
 
-    if(!m_isPain)
+    if(!m_plain)
     {
-        setFixedHeight(300);
+        setFixedHeight(210);
     }
 }
 

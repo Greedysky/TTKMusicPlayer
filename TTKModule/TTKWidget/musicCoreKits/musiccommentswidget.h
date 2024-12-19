@@ -81,7 +81,7 @@ public:
     /*!
      * Init widget.
      */
-    virtual void initialize(bool isPain);
+    virtual void initialize(bool plain);
     /*!
      * Set current song name.
      */
@@ -96,14 +96,6 @@ public Q_SLOTS:
      * Page widget button has changed.
      */
     void buttonClicked(int index);
-    /*!
-     * Create emoji label widget.
-     */
-    void createEMOJILabelWidget();
-    /*!
-     * Current EMOJI changed.
-     */
-    void currentEMOJIchanged(const QString &data);
 
 protected:
     /*!
@@ -125,8 +117,7 @@ protected:
      */
     void createPageWidget();
 
-    bool m_isPain;
-    QTextEdit *m_messageEdit;
+    bool m_plain;
     QLabel *m_topLabel, *m_commentsLabel;
     QWidget *m_messageComments;
     MusicPageQueryWidget *m_pageQueryWidget;

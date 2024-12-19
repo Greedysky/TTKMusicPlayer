@@ -50,7 +50,6 @@ HEADERS += \
     $$PWD/musictextsliderwidget.h \
     $$PWD/musictoolmenuwidget.h \
     $$PWD/musicgiflabelwidget.h \
-    $$PWD/musicemojilabelwidget.h \
     $$PWD/musicopenfilewidget.h \
     $$PWD/musicsplititemclickedlabel.h \
     $$PWD/musiclayoutanimationwidget.h \
@@ -95,7 +94,6 @@ SOURCES += \
     $$PWD/musictextsliderwidget.cpp \
     $$PWD/musictoolmenuwidget.cpp \
     $$PWD/musicgiflabelwidget.cpp \
-    $$PWD/musicemojilabelwidget.cpp \
     $$PWD/musicopenfilewidget.cpp \
     $$PWD/musicsplititemclickedlabel.cpp \
     $$PWD/musiclayoutanimationwidget.cpp \

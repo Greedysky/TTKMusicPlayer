@@ -50,7 +50,6 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_CORE_KITS_HEADER_FILES
   ${TTK_WIDGET_CORE_DIR}/musictextsliderwidget.h
   ${TTK_WIDGET_CORE_DIR}/musictoolmenuwidget.h
   ${TTK_WIDGET_CORE_DIR}/musicgiflabelwidget.h
-  ${TTK_WIDGET_CORE_DIR}/musicemojilabelwidget.h
   ${TTK_WIDGET_CORE_DIR}/musicopenfilewidget.h
   ${TTK_WIDGET_CORE_DIR}/musicsplititemclickedlabel.h
   ${TTK_WIDGET_CORE_DIR}/musiclayoutanimationwidget.h
@@ -96,7 +95,6 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_CORE_KITS_SOURCE_FILES
   ${TTK_WIDGET_CORE_DIR}/musictextsliderwidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musictoolmenuwidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicgiflabelwidget.cpp
-  ${TTK_WIDGET_CORE_DIR}/musicemojilabelwidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicopenfilewidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicsplititemclickedlabel.cpp
   ${TTK_WIDGET_CORE_DIR}/musiclayoutanimationwidget.cpp
