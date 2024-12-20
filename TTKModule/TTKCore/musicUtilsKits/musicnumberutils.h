@@ -42,10 +42,6 @@ namespace TTK
         TTK_MODULE_EXPORT QString speedByteToLabel(qint64 size);
 
         /*!
-         * Transfrom bitrate to normal.
-         */
-        TTK_MODULE_EXPORT int bitrateToNormal(int bitrate);
-        /*!
          * Transfrom bitrate to level.
          */
         TTK_MODULE_EXPORT TTK::QueryQuality bitrateToLevel(int bitrate);

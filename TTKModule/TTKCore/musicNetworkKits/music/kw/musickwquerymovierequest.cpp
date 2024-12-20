@@ -113,9 +113,9 @@ void ReqKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, con
         {
             TTK::MusicSongProperty prop;
             prop.m_url = regx.cap(1);
-            prop.m_bitrate = bitrate;
-            prop.m_format = MP4_FILE_SUFFIX;
             prop.m_size = TTK_DEFAULT_STR;
+            prop.m_format = MP4_FILE_SUFFIX;
+            prop.m_bitrate = bitrate;
 
             if(prop.isEmpty() || info->m_songProps.contains(prop))
             {

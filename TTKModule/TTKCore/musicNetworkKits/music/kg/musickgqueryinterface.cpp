@@ -150,7 +150,7 @@ static void parseSongPropertyV1(TTK::MusicSongInformation *info, const QString &
                 prop.m_url = value["url"].toString();
                 prop.m_size = TTK::Number::sizeByteToLabel(value["fileSize"].toInt());
                 prop.m_format = value["extName"].toString();
-                prop.m_bitrate = TTK::Number::bitrateToNormal(bitrate);
+                prop.m_bitrate = bitrate;
                 info->m_songProps.append(prop);
             }
         }
@@ -190,15 +190,54 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
             const QVariantMap &value = data.toMap();
             if(value.contains("status") && value["status"].toInt() == 1)
             {
-                TTK::MusicSongProperty prop;
-                prop.m_size = TTK::Number::sizeByteToLabel(value["fileSize"].toInt());
-                prop.m_format = value["extName"].toString();
-                prop.m_bitrate = TTK::Number::bitrateToNormal(bitrate);
-
                 const QVariantList &datas = value["url"].toList();
                 if(!datas.isEmpty())
                 {
+                    TTK::MusicSongProperty prop;
                     prop.m_url = datas.front().toString();
+                    prop.m_size = TTK::Number::sizeByteToLabel(value["fileSize"].toInt());
+                    prop.m_format = value["extName"].toString();
+                    prop.m_bitrate = bitrate;
+                    info->m_songProps.append(prop);
+                }
+            }
+        }
+    }
+}
+
+static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &module, QString &id, int bitrate)
+{
+    const qint64 time = TTKDateTime::currentTimestamp();
+    const QByteArray &key = TTK::Algorithm::md5(TTK::Algorithm::mdII(KG_SONG_PATH_V3_DATA_URL, false).arg(time).arg(module).toUtf8());
+
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(KG_SONG_PATH_V3_URL, false).arg(time).arg(module, key.constData()));
+    ReqKGInterface::makeRequestRawHeader(&request);
+
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
+    if(!bytes.isEmpty())
+    {
+        QJson::Parser json;
+        bool ok = false;
+        const QVariant &data = json.parse(bytes, &ok);
+        if(ok)
+        {
+            QVariantMap value = data.toMap();
+            if(value.contains("data") && value["err_code"].toInt() == 0)
+            {
+                value = value["data"].toMap();
+                id = value["encode_album_audio_id"].toString();
+
+                const int rate = value["bitrate"].toInt();
+                const QString &url = value["play_url"].toString();
+
+                if(rate == bitrate && !url.isEmpty())
+                {
+                    TTK::MusicSongProperty prop;
+                    prop.m_url = url;
+                    prop.m_size = TTK::Number::sizeByteToLabel(value["filesize"].toInt());
+                    prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;;
+                    prop.m_bitrate = bitrate;
                     info->m_songProps.append(prop);
                 }
             }
@@ -218,6 +257,23 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &
 
     TTK_INFO_STREAM("parse song property in v3 module");
 
+    QString id;
+    parseSongPropertyV3(info, "hash=" + hash, id, bitrate);
+    parseSongPropertyV3(info, "encode_album_audio_id=" + id, id, bitrate);
+}
+
+static void parseSongPropertyV4(TTK::MusicSongInformation *info, const QString &hash, int bitrate)
+{
+    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
+    {
+        if(prop.m_bitrate == bitrate)
+        {
+            return;
+        }
+    }
+
+    TTK_INFO_STREAM("parse song property in v4 module");
+
     if(bitrate == TTK_BN_128 || bitrate == TTK_BN_320 || bitrate == TTK_BN_1000)
     {
         ReqUnityInterface::parseFromSongProperty(info, QUERY_KG_INTERFACE, hash, bitrate);
@@ -234,6 +290,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
     parseSongPropertyV1(info, hash, bitrate);
     parseSongPropertyV2(info, hash, bitrate);
     parseSongPropertyV3(info, hash, bitrate);
+    parseSongPropertyV4(info, hash, bitrate);
 }
 
 void ReqKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)

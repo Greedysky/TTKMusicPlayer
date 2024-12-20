@@ -82,11 +82,11 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const QString &k
         if(value["code"].toInt() == 0)
         {
             TTK::MusicSongProperty prop;
-            prop.m_bitrate = bitrate;
-            prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
-            prop.m_size = TTK_DEFAULT_STR;
-
             prop.m_url = value["data"].toString();
+            prop.m_size = TTK_DEFAULT_STR;
+            prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
+            prop.m_bitrate = bitrate;
+
             if(prop.isEmpty())
             {
                 prop.m_url = value["url"].toString();
@@ -149,10 +149,10 @@ static void parseSongPropertyB(TTK::MusicSongInformation *info, const QString &u
         if(value.contains("url"))
         {
             TTK::MusicSongProperty prop;
-            prop.m_bitrate = bitrate;
-            prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
-            prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = value["url"].toString();
+            prop.m_size = TTK_DEFAULT_STR;
+            prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
+            prop.m_bitrate = bitrate;
 
             if(!prop.isEmpty())
             {

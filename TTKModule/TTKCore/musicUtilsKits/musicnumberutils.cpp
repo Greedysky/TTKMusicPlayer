@@ -97,49 +97,21 @@ QString TTK::Number::speedByteToLabel(qint64 size)
     }
 }
 
-int TTK::Number::bitrateToNormal(int bitrate)
-{
-    if(bitrate > TTK_BN_0 && bitrate <= TTK_BN_64)
-    {
-        return TTK_BN_32;
-    }
-    else if(bitrate > TTK_BN_64 && bitrate < TTK_BN_128)
-    {
-        return TTK_BN_128;
-    }
-    else if(bitrate > TTK_BN_128 && bitrate < TTK_BN_192)
-    {
-        return TTK_BN_192;
-    }
-    else if(bitrate > TTK_BN_192 && bitrate < TTK_BN_320)
-    {
-        return TTK_BN_320;
-    }
-    else if(bitrate > TTK_BN_320)
-    {
-        return TTK_BN_1000;
-    }
-    else
-    {
-        return bitrate;
-    }
-}
-
 TTK::QueryQuality TTK::Number::bitrateToLevel(int bitrate)
 {
     if(bitrate <= 0)
     {
         return QueryQuality::None;
     }
-    else if(bitrate > 0 && bitrate <= TTK_BN_128)
+    else if(0 < bitrate && bitrate <= TTK_BN_128)
     {
         return QueryQuality::Standard;
     }
-    else if(bitrate > TTK_BN_128 && bitrate <= TTK_BN_192)
+    else if(TTK_BN_128 < bitrate && bitrate <= TTK_BN_192)
     {
         return QueryQuality::High;
     }
-    else if(bitrate > TTK_BN_192 && bitrate <= TTK_BN_320)
+    else if(TTK_BN_192 < bitrate && bitrate <= TTK_BN_320)
     {
         return QueryQuality::Super;
     }

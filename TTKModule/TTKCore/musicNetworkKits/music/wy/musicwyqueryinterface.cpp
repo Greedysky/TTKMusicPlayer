@@ -4,10 +4,6 @@
 
 #include "qalgorithm/aeswrapper.h"
 
-static constexpr const char *BN_128KBPS = "QXMyZkZJc2dIb1FOenJlTg==";
-static constexpr const char *BN_320KBPS = "UThNR09kcDRXNG9qbG45Ng==";
-static constexpr const char *BN_999KBPS = "VGF0djlKc01mL1QxM1pyNQ==";
-
 static constexpr const char *WY_USER_URL = "resource/user";
 static constexpr const char *WY_UA_URL = "Vkloais0Z0Q4Smp1aElYSXFUVy96SXdoZ2VsTURzdDBpZEZjT21jMy9PRE1DMzdwQ0p5MllueTkrRGdzb2VkdlJMemJhWEFReHlUUk9uSEtMTHRLUzRxS3psczJiRW9LZ3BQbHh1Z3lGRlhEQk5JbVVGb1NDN1JzTDhZMjBybllLcndKSHlSNC94QzRJWXlL";
 static constexpr const char *WY_COOKIE_URL = "eU5NVy9LRm5jWE9pdUU1MzNQNi9OcjVUbi9vSGhYcGVaQWc0NjlPbCt1WnNDbDlONDg1SSthTi9JUDQ1YVpsRg==";
@@ -129,9 +125,9 @@ static void parseSongPropertyV1(TTK::MusicSongInformation *info, int bitrate)
             {
                 TTK::MusicSongProperty prop;
                 prop.m_url = value["url"].toString();
-                prop.m_bitrate = bitrate;
                 prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
                 prop.m_format = value["type"].toString();
+                prop.m_bitrate = bitrate;
                 info->m_songProps.append(prop);
             }
         }
@@ -184,9 +180,9 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, int bitrate)
                 {
                     TTK::MusicSongProperty prop;
                     prop.m_url = value["url"].toString();
-                    prop.m_bitrate = bitrate;
                     prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
                     prop.m_format = value["type"].toString();
+                    prop.m_bitrate = bitrate;
                     info->m_songProps.append(prop);
                 }
             }
@@ -209,9 +205,9 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, int bitrate)
     QString format;
     switch(bitrate)
     {
-        case TTK_BN_128: format = TTK::Algorithm::mdII(BN_128KBPS, false); break;
-        case TTK_BN_320: format = TTK::Algorithm::mdII(BN_320KBPS, false); break;
-        case TTK_BN_1000: format = TTK::Algorithm::mdII(BN_999KBPS, false); break;
+        case TTK_BN_128: format = "standard"; break;
+        case TTK_BN_320: format = "exhigh"; break;
+        case TTK_BN_1000: format = "lossless"; break;
         default: return;
     }
 
@@ -250,9 +246,9 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, int bitrate)
                 {
                     TTK::MusicSongProperty prop;
                     prop.m_url = value["url"].toString();
-                    prop.m_bitrate = bitrate;
                     prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
                     prop.m_format = value["type"].toString();
+                    prop.m_bitrate = bitrate;
                     info->m_songProps.append(prop);
                 }
             }

@@ -93,10 +93,10 @@ static void parseSongPropertyV1(TTK::MusicSongInformation *info, const QString &
             if(format == suffix)
             {
                 TTK::MusicSongProperty prop;
-                prop.m_bitrate = bitrate;
-                prop.m_format = suffix;
-                prop.m_size = TTK_DEFAULT_STR;
                 prop.m_url = value["url"].toString();
+                prop.m_size = TTK_DEFAULT_STR;
+                prop.m_format = suffix;
+                prop.m_bitrate = bitrate;
                 info->m_songProps.append(prop);
             }
         }
@@ -159,9 +159,9 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
         {
             TTK::MusicSongProperty prop;
             prop.m_url = regx.cap(1);
-            prop.m_bitrate = bitrate;
-            prop.m_format = suffix;
             prop.m_size = TTK_DEFAULT_STR;
+            prop.m_format = suffix;
+            prop.m_bitrate = bitrate;
 
             if(prop.m_url.isEmpty() || info->m_songProps.contains(prop))
             {

@@ -80,9 +80,9 @@ void ReqBLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, con
                 TTK::MusicSongProperty prop;
                 prop.m_url = value["url"].toString();
                 prop.m_url.replace(HTTPS_PROTOCOL, HTTP_PROTOCOL);
-                prop.m_bitrate = TTK_BN_250;
-                prop.m_format = MP4_FILE_SUFFIX;
                 prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
+                prop.m_format = MP4_FILE_SUFFIX;
+                prop.m_bitrate = TTK_BN_250;
                 info->m_songProps.append(prop);
 
                 info->m_duration = TTKTime::formatDuration(value["length"].toInt());
