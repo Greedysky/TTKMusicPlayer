@@ -55,7 +55,7 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
         return true;
     else if(filters.contains("*.shn") && formats.contains("shn"))
         return true;
-    else if(filters.contains("*.ac3") && formats.contains("eac3"))
+    else if(filters.contains("*.ac3") && (formats.contains("ac3") || formats.contains("eac3")))
         return true;
     else if(filters.contains("*.dts") && formats.contains("dts"))
         return true;
@@ -140,7 +140,7 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.ra");
     if(!avcodec_find_decoder(AV_CODEC_ID_SHORTEN))
         filters.removeAll("*.shn");
-    if(!avcodec_find_decoder(AV_CODEC_ID_EAC3))
+    if(!avcodec_find_decoder(AV_CODEC_ID_AC3) && !avcodec_find_decoder(AV_CODEC_ID_EAC3))
         filters.removeAll("*.ac3");
     if(!avcodec_find_decoder(AV_CODEC_ID_DTS))
         filters.removeAll("*.dts");
