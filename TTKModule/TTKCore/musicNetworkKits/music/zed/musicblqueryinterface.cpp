@@ -5,7 +5,7 @@ void ReqBLInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     TTK::setSslConfiguration(request);
     TTK::makeContentTypeHeader(request);
-    request->setRawHeader("Cookie", TTK::Algorithm::mdII(BL_BUVID_URL, false).toUtf8());
+    request->setRawHeader("Cookie", TTK::Algorithm::mdII(BL_COOKIE_URL, false).toUtf8());
 }
 
 void ReqBLInterface::parseFromMovieInfo(TTK::MusicSongInformation *info, QString &cid)
@@ -48,7 +48,7 @@ void ReqBLInterface::parseFromMovieInfo(TTK::MusicSongInformation *info, QString
 void ReqBLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &cid)
 {
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(BL_MOVIE_PLAY_URL, false).arg(info->m_songId, cid).arg(16));
+    request.setUrl(TTK::Algorithm::mdII(BL_MOVIE_PLAY_URL, false).arg(info->m_songId, cid).arg(32));
     ReqBLInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
@@ -84,7 +84,6 @@ void ReqBLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, con
                 prop.m_format = MP4_FILE_SUFFIX;
                 prop.m_bitrate = TTK_BN_250;
                 info->m_songProps.append(prop);
-
                 info->m_duration = TTKTime::formatDuration(value["length"].toInt());
                 break;
             }
