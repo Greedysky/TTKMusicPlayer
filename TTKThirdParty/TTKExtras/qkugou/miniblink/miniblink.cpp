@@ -73,7 +73,7 @@ QString Miniblink::url() const
 
 void Miniblink::finish(bool ok)
 {
-    emit loadFinished(ok);
+    Q_EMIT loadFinished(ok);
 }
 
 void Miniblink::stop()
