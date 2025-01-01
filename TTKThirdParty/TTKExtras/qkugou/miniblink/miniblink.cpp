@@ -24,6 +24,8 @@ Miniblink::Miniblink(QWidget *parent)
 
 Miniblink::~Miniblink()
 {
+    wkeDestroyWebWindow(m_webView);
+    //
     if(--m_ref == 0)
     {
         wkeFinalize();
