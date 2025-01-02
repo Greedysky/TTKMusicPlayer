@@ -303,6 +303,10 @@ void MusicSettingWidget::initialize()
     m_ui->setDefaultPlayerCheckBox->setEnabled(false);
     m_ui->setDefaultPlayerCheckBox->setChecked(false);
     G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationMode, false);
+
+    m_ui->otherSideByCheckBox->setEnabled(false);
+    m_ui->otherSideByCheckBox->setChecked(false);
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByMode, false);
 #endif
 }
 

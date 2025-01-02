@@ -26,8 +26,48 @@
     <keyword>sound</keyword>
     <keyword>musicplayer</keyword>
   </keywords>
+  <url type="bugtracker">https://github.com/Greedysky/TTKMusicPlayer/issues</url>
+  <url type="help">https://github.com/Greedysky/TTKMusicPlayer</url>
   <url type="homepage">https://github.com/Greedysky/TTKMusicPlayer</url>
   <developer_name>Greedysky Studio</developer_name>
+  <screenshots>
+    <screenshot type="default">
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/1.jpg?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/2.jpg?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/3.jpg?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/4.jpg?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/5.jpg?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/6.jpg?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/7.jpg?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/8.jpg?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/9.jpg?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/10.jpg?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/11.jpg?raw=true</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://github.com/Greedysky/Resource/blob/master/Screen/12.jpg?raw=true</image>
+    </screenshot>
+  </screenshots>
   <releases>
     <release version="4.1.2.0" date="2024-12-06" />
     <release version="4.1.1.0" date="2024-10-22" />
