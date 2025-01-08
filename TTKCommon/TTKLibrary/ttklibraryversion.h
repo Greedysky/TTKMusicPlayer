@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkversion.h"
+#include "../ttkversion.h"
 
 //update time 2025.01.08
 #define TTK_LIBRARY_MAJOR_VERSION 1
