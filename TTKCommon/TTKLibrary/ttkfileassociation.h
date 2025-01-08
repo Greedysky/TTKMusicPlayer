@@ -19,10 +19,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#ifdef _WIN32
 #include <QStringList>
 #include "ttkmoduleexport.h"
 
-#ifdef Q_OS_WIN
 /*! @brief The class of the file association.
  * @author Greedysky <greedysky@163.com>
  */

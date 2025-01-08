@@ -39,7 +39,7 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
 //    m_plainText->setAlignment(Qt::AlignCenter);
 
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaFormat(scrollArea, m_plainText, false);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_plainText, false);
 
     m_plainText->setObjectName("ContentsWidget");
     m_plainText->setStyleSheet(QString("#%1{ %2 %3 %4 }").arg(m_plainText->objectName(), TTK::UI::BackgroundStyle01, TTK::UI::ColorStyle12, TTK::UI::FontStyle03));

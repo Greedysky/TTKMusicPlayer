@@ -13,7 +13,7 @@ MusicDownloadBatchTableItem:: MusicDownloadBatchTableItem(QWidget *parent)
     m_status->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 
     m_qulity = new QComboBox(this);
-    TTK::Widget::generateComboBoxFormat(m_qulity, TTK::UI::ComboBoxStyle02 + TTK::UI::ItemView01);
+    TTK::Widget::generateComboBoxStyle(m_qulity, TTK::UI::ComboBoxStyle02 + TTK::UI::ItemView01);
 
     m_songName->setGeometry(0, 0, 190, TTK_ITEM_SIZE_S);
     m_singer->setGeometry(180, 0, 120, TTK_ITEM_SIZE_S);
@@ -226,7 +226,7 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    TTK::Widget::generateComboBoxFormat(m_ui->qualityBox, TTK::UI::ComboBoxStyle02 + TTK::UI::ItemView01);
+    TTK::Widget::generateComboBoxStyle(m_ui->qualityBox, TTK::UI::ComboBoxStyle02 + TTK::UI::ItemView01);
     m_ui->qualityBox->addItems({QObject::tr("SD"), QObject::tr("HQ"), QObject::tr("SQ"), QObject::tr("CD")});
     connect(m_ui->qualityBox, SIGNAL(currentIndexChanged(int)), m_ui->tableWidget, SLOT(currentQualityChanged(int)));
 

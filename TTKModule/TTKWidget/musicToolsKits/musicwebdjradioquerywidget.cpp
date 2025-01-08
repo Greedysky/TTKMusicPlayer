@@ -157,7 +157,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
 
         m_container->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
-        TTK::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
+        TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWindow);
         m_container->addWidget(scrollArea);
 
         m_initialized = true;

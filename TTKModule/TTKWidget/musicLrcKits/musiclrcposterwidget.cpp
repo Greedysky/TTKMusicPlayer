@@ -987,11 +987,11 @@ MusicLrcPosterWidget::MusicLrcPosterWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_itemWidget = new MusicLrcPosterItemWidget(this);
-    TTK::Widget::generateVScrollAreaFormat(m_ui->viewArea, m_itemWidget);
+    TTK::Widget::generateVScrollAreaStyle(m_ui->viewArea, m_itemWidget);
     connect(m_ui->lrcArea, SIGNAL(textChanged(QStringList)), m_itemWidget, SLOT(textChanged(QStringList)));
 
     m_themeWidget = new MusicLrcPosterThemeListWidget(this);
-    TTK::Widget::generateHScrollAreaFormat(m_ui->listArea, m_themeWidget);
+    TTK::Widget::generateHScrollAreaStyle(m_ui->listArea, m_themeWidget);
 
     m_ui->openButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->saveButton->setStyleSheet(TTK::UI::PushButtonStyle04);

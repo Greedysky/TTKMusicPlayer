@@ -127,7 +127,7 @@ static void parseSongPropertyV1(TTK::MusicSongInformation *info, const QString &
         }
     }
 
-    TTK_INFO_STREAM("parse song property in v1 module");
+    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v1 module");
 
     const QByteArray &key = TTK::Algorithm::md5(QString("%1kgcloudv2").arg(hash).toUtf8());
 
@@ -167,7 +167,7 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
         }
     }
 
-    TTK_INFO_STREAM("parse song property in v2 module");
+    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v2 module");
 
     const QString &mid = TTK::Algorithm::mdII("Wk51dktMOHJXUTdmM1VsVUVXTFM5RTlYQ05laDE0Z2lZMzFPL1M1VUJSaHd1N0kwRDQxdkpWVFJPZTQ9", false);
     const QString &sign = TTK::Algorithm::mdII("SVhlNmFTaWpqdVhYVTAwaHh4QllwRkFGSmJpY0VSZUhXQmQrV2Q4WHo0eXVCWm1zK1p0RkVRPT0=", false);
@@ -255,7 +255,7 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &
         }
     }
 
-    TTK_INFO_STREAM("parse song property in v3 module");
+    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v3 module");
 
     QString id;
     parseSongPropertyV3(info, "hash=" + hash, id, bitrate);
@@ -272,7 +272,7 @@ static void parseSongPropertyV4(TTK::MusicSongInformation *info, const QString &
         }
     }
 
-    TTK_INFO_STREAM("parse song property in v4 module");
+    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v4 module");
 
     if(bitrate == TTK_BN_128 || bitrate == TTK_BN_320 || bitrate == TTK_BN_1000)
     {

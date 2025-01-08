@@ -127,7 +127,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    TTK::Widget::generateComboBoxFormat(m_ui->stateComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->stateComboBox);
     m_ui->stateComboBox->addItems({tr("OperatorAll"), tr("All Off")});
     connect(m_ui->stateComboBox, SIGNAL(currentIndexChanged(int)), SLOT(stateComboBoxChanged(int)));
 
@@ -140,7 +140,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->eqEffectButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    TTK::Widget::generateVScrollAreaFormat(m_ui->scrollArea, m_ui->effectContainer);
+    TTK::Widget::generateVScrollAreaStyle(m_ui->scrollArea, m_ui->effectContainer);
     readSoundEffect();
 
     G_CONNECTION_PTR->setValue(className(), this);

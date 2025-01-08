@@ -203,7 +203,7 @@ void MusicPlaylistCategoryWidget::initialize()
     containWidget->setLayout(containLayout);
 
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, containWidget);
     layout->addWidget(scrollArea);
 
     CategoryPropertyList items;

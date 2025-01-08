@@ -806,7 +806,7 @@ void MusicSettingWidget::initNormalSettingWidget()
 
     m_ui->quitWindowRadioBox->setEnabled(false);
 #endif
-    TTK::Widget::generateComboBoxFormat(m_ui->languageComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->languageComboBox);
     m_ui->languageComboBox->addItems({tr("0"), tr("1"), tr("2")});
 
     connect(m_ui->globalHotkeyBox, SIGNAL(clicked(bool)), SLOT(globalHotkeyBoxChanged(bool)));
@@ -842,9 +842,9 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadFullRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadLimitRadioBox->setFocusPolicy(Qt::NoFocus);
 #endif
-    TTK::Widget::generateComboBoxFormat(m_ui->downloadServerComboBox);
-    TTK::Widget::generateComboBoxFormat(m_ui->downloadLimitSpeedComboBox);
-    TTK::Widget::generateComboBoxFormat(m_ui->uploadLimitSpeedComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->downloadServerComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->downloadLimitSpeedComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->uploadLimitSpeedComboBox);
 
     m_ui->downloadSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
     m_ui->downloadSpinBox->setRange(1024, 5 * 1024);
@@ -955,10 +955,10 @@ void MusicSettingWidget::initDesktopLrcWidget()
     m_ui->showDesktopCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->DsingleLineCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
-    TTK::Widget::generateComboBoxFormat(m_ui->DfontComboBox);
-    TTK::Widget::generateComboBoxFormat(m_ui->DfontSizeComboBox);
-    TTK::Widget::generateComboBoxFormat(m_ui->DfontTypeComboBox);
-    TTK::Widget::generateComboBoxFormat(m_ui->DfontDefaultColorComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->DfontComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->DfontSizeComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->DfontTypeComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->DfontDefaultColorComboBox);
 
     m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().desktopLrcSize());
@@ -991,10 +991,10 @@ void MusicSettingWidget::initDesktopLrcWidget()
 
 void MusicSettingWidget::initInteriorLrcWidget()
 {
-    TTK::Widget::generateComboBoxFormat(m_ui->fontComboBox);
-    TTK::Widget::generateComboBoxFormat(m_ui->fontSizeComboBox);
-    TTK::Widget::generateComboBoxFormat(m_ui->fontTypeComboBox);
-    TTK::Widget::generateComboBoxFormat(m_ui->fontDefaultColorComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->fontComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->fontSizeComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->fontTypeComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->fontDefaultColorComboBox);
 
     m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->fontSizeComboBox->addItems(MusicLrcDefines().interiorLrcSize());
@@ -1025,7 +1025,7 @@ void MusicSettingWidget::initInteriorLrcWidget()
 
 void MusicSettingWidget::initSoundEffectWidget()
 {
-    TTK::Widget::generateComboBoxFormat(m_ui->outputTypeComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->outputTypeComboBox);
     for(const QAudioDeviceInfo &info : QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
     {
         m_ui->outputTypeComboBox->addItem(info.deviceName());
@@ -1062,8 +1062,8 @@ void MusicSettingWidget::initSoundEffectWidget()
 
 void MusicSettingWidget::initAudioSettingWidget()
 {
-    TTK::Widget::generateComboBoxFormat(m_ui->replayGainModeComboBox);
-    TTK::Widget::generateComboBoxFormat(m_ui->bitDepthComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->replayGainModeComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->bitDepthComboBox);
 
     m_ui->preampSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
     m_ui->defaultGainSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
@@ -1095,7 +1095,7 @@ void MusicSettingWidget::initNetworkWidget()
     m_ui->proxyUsernameEdit->setStyleSheet(TTK::UI::LineEditStyle01);
     m_ui->proxyAreaEdit->setStyleSheet(TTK::UI::LineEditStyle01);
 
-    TTK::Widget::generateComboBoxFormat(m_ui->proxyTypeComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->proxyTypeComboBox);
 
     m_ui->proxyTypeTestButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->proxyTypeTestButton->setCursor(QCursor(Qt::PointingHandCursor));

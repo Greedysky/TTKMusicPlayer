@@ -126,11 +126,11 @@ MusicPlaylistBackupWidget::MusicPlaylistBackupWidget(QWidget *parent)
 
     m_dateBox = new QComboBox(topWidget);
     m_dateBox->setFixedSize(95, 25);
-    TTK::Widget::generateComboBoxFormat(m_dateBox);
+    TTK::Widget::generateComboBoxStyle(m_dateBox);
 
     m_timeBox = new QComboBox(topWidget);
     m_timeBox->setFixedSize(80, 25);
-    TTK::Widget::generateComboBoxFormat(m_timeBox);
+    TTK::Widget::generateComboBoxStyle(m_timeBox);
 
     topWidgetLayout->addWidget(pLabel);
     topWidgetLayout->addWidget(iLabel);

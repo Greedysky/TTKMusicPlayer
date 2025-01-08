@@ -31,7 +31,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
 
     initialize();
 
-    TTK::Widget::generateComboBoxFormat(m_ui->eqChoice);
+    TTK::Widget::generateComboBoxStyle(m_ui->eqChoice);
     m_ui->eqChoice->addItems({tr("Custom"), tr("Default"), tr("Classical"), tr("Club"), tr("Dance"), tr("Bass"), tr("Soprano"),
                               tr("BassSoprano"), tr("Headset"), tr("Hall"), tr("Scene"), tr("Pop"), tr("Repaglinide"),
                               tr("Party"), tr("Rock"), tr("Oscar"), tr("Mild"), tr("SoftRock"), tr("Electronics")});

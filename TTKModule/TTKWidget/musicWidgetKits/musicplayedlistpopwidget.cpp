@@ -387,7 +387,7 @@ void MusicPlayedListPopWidget::initialize()
     playedListLayout->addWidget(m_tableWidget);
     playedListContainer->setLayout(playedListLayout);
 
-    TTK::Widget::generateVScrollAreaFormat(m_scrollArea, playedListContainer);
+    TTK::Widget::generateVScrollAreaStyle(m_scrollArea, playedListContainer);
     m_tableWidget->setMovedScrollBar(m_scrollArea->verticalScrollBar());
 
     containLayout->addWidget(m_scrollArea);

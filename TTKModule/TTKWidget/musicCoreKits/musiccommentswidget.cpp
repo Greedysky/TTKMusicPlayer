@@ -243,7 +243,7 @@ void MusicCommentsWidget::initialize(bool plain)
     if(plain)
     {
         QScrollArea *scrollArea = new QScrollArea(this);
-        TTK::Widget::generateVScrollAreaFormat(scrollArea, contentsWidget, false);
+        TTK::Widget::generateVScrollAreaStyle(scrollArea, contentsWidget, false);
 
         contentsWidget->setObjectName("ContentsWidget");
         contentsWidget->setStyleSheet(QString("#%1{ %2 }").arg(contentsWidget->objectName(), TTK::UI::BackgroundStyle01));

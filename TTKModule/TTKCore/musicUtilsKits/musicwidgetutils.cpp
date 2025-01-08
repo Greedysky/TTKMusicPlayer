@@ -116,14 +116,14 @@ void TTK::Widget::widgetToRound(QWidget *widget, int ratioX, int ratioY)
     widget->setMask(TTK::Image::generateMask(widget->rect(), ratioX, ratioY));
 }
 
-void TTK::Widget::generateComboBoxFormat(QComboBox *widget, const QString &style)
+void TTK::Widget::generateComboBoxStyle(QComboBox *widget, const QString &style)
 {
     widget->setItemDelegate(new QStyledItemDelegate(widget));
     widget->setStyleSheet(style.isEmpty() ? TTK::UI::ComboBoxStyle01 + TTK::UI::ItemView01 : style);
     widget->view()->setStyleSheet(TTK::UI::ScrollBarStyle01);
 }
 
-void TTK::Widget::generateVScrollAreaFormat(QWidget *widget, QWidget *parent, bool background)
+void TTK::Widget::generateVScrollAreaStyle(QWidget *widget, QWidget *parent, bool background)
 {
     QScrollArea *area = TTKObjectCast(QScrollArea*, widget);
     if(area)
@@ -140,7 +140,7 @@ void TTK::Widget::generateVScrollAreaFormat(QWidget *widget, QWidget *parent, bo
     }
 }
 
-void TTK::Widget::generateHScrollAreaFormat(QWidget *widget, QWidget *parent, bool background)
+void TTK::Widget::generateHScrollAreaStyle(QWidget *widget, QWidget *parent, bool background)
 {
     QScrollArea *area = TTKObjectCast(QScrollArea*, widget);
     if(area)

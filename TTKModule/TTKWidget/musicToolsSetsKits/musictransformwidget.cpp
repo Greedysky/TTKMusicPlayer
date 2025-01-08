@@ -26,10 +26,10 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    TTK::Widget::generateComboBoxFormat(m_ui->formatCombo);
-    TTK::Widget::generateComboBoxFormat(m_ui->kbpsCombo);
-    TTK::Widget::generateComboBoxFormat(m_ui->hzCombo);
-    TTK::Widget::generateComboBoxFormat(m_ui->msCombo);
+    TTK::Widget::generateComboBoxStyle(m_ui->formatCombo);
+    TTK::Widget::generateComboBoxStyle(m_ui->kbpsCombo);
+    TTK::Widget::generateComboBoxStyle(m_ui->hzCombo);
+    TTK::Widget::generateComboBoxStyle(m_ui->msCombo);
 
     m_ui->inputButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->outputButton->setStyleSheet(TTK::UI::PushButtonStyle04);

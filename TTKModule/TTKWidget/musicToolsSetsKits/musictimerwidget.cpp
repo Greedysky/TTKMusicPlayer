@@ -188,11 +188,11 @@ void MusicTimerWidget::initFirstWidget()
     m_ui->noSetRadioButton1->setStyleSheet(TTK::UI::RadioButtonStyle01);
     m_ui->setRadioButton1->setStyleSheet(TTK::UI::RadioButtonStyle01);
 
-    TTK::Widget::generateComboBoxFormat(m_ui->hourComboBox1);
-    TTK::Widget::generateComboBoxFormat(m_ui->secComboBox1);
-    TTK::Widget::generateComboBoxFormat(m_ui->repeatComboBox1);
-    TTK::Widget::generateComboBoxFormat(m_ui->plistComboBox);
-    TTK::Widget::generateComboBoxFormat(m_ui->psongComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->hourComboBox1);
+    TTK::Widget::generateComboBoxStyle(m_ui->secComboBox1);
+    TTK::Widget::generateComboBoxStyle(m_ui->repeatComboBox1);
+    TTK::Widget::generateComboBoxStyle(m_ui->plistComboBox);
+    TTK::Widget::generateComboBoxStyle(m_ui->psongComboBox);
 #ifdef Q_OS_UNIX
     m_ui->noSetRadioButton1->setFocusPolicy(Qt::NoFocus);
     m_ui->setRadioButton1->setFocusPolicy(Qt::NoFocus);
@@ -207,9 +207,9 @@ void MusicTimerWidget::initSecondWidget()
     m_ui->noSetRadioButton2->setStyleSheet(TTK::UI::RadioButtonStyle01);
     m_ui->setRadioButton2->setStyleSheet(TTK::UI::RadioButtonStyle01);
 
-    TTK::Widget::generateComboBoxFormat(m_ui->hourComboBox2);
-    TTK::Widget::generateComboBoxFormat(m_ui->secComboBox2);
-    TTK::Widget::generateComboBoxFormat(m_ui->repeatComboBox2);
+    TTK::Widget::generateComboBoxStyle(m_ui->hourComboBox2);
+    TTK::Widget::generateComboBoxStyle(m_ui->secComboBox2);
+    TTK::Widget::generateComboBoxStyle(m_ui->repeatComboBox2);
 #ifdef Q_OS_UNIX
     m_ui->noSetRadioButton2->setFocusPolicy(Qt::NoFocus);
     m_ui->setRadioButton2->setFocusPolicy(Qt::NoFocus);
@@ -224,9 +224,9 @@ void MusicTimerWidget::initThreeWidget()
     m_ui->noSetRadioButton3->setStyleSheet(TTK::UI::RadioButtonStyle01);
     m_ui->setRadioButton3->setStyleSheet(TTK::UI::RadioButtonStyle01);
 
-    TTK::Widget::generateComboBoxFormat(m_ui->hourComboBox3);
-    TTK::Widget::generateComboBoxFormat(m_ui->secComboBox3);
-    TTK::Widget::generateComboBoxFormat(m_ui->repeatComboBox3);
+    TTK::Widget::generateComboBoxStyle(m_ui->hourComboBox3);
+    TTK::Widget::generateComboBoxStyle(m_ui->secComboBox3);
+    TTK::Widget::generateComboBoxStyle(m_ui->repeatComboBox3);
 #ifdef Q_OS_UNIX
     m_ui->noSetRadioButton3->setFocusPolicy(Qt::NoFocus);
     m_ui->setRadioButton3->setFocusPolicy(Qt::NoFocus);

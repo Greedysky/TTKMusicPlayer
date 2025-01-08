@@ -185,7 +185,7 @@ QWidget* MusicBackgroundOnlineWidget::createFunctionsWidget(bool revert, QWidget
         m_typeBox->setFixedSize(100, 20);
         m_typeBox->addItem(tr("Select One"));
         m_typeBox->hide();
-        TTK::Widget::generateComboBoxFormat(m_typeBox);
+        TTK::Widget::generateComboBoxStyle(m_typeBox);
 
         m_functionsWidget->setLayout(hbox);
         connect(m_typeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTypeChanged(int)));

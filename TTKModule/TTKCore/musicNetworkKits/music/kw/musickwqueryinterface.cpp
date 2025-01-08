@@ -41,7 +41,7 @@ static void parseSongPropertyV1(TTK::MusicSongInformation *info, const QString &
         }
     }
 
-    TTK_INFO_STREAM("parse song property in v1 module");
+    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v1 module");
 
     QString quality;
     if((format.contains("MP3128") || format.contains("128kmp3")) && bitrate == TTK_BN_128)
@@ -113,7 +113,7 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
         }
     }
 
-    TTK_INFO_STREAM("parse song property in v2 module");
+    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v2 module");
 
     QString quality;
     if((format.contains("MP3128") || format.contains("128kmp3")) && bitrate == TTK_BN_128)
@@ -183,7 +183,7 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &
         }
     }
 
-    TTK_INFO_STREAM("parse song property in v3 module");
+    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v3 module");
 
     if(((format.contains("MP3128") || format.contains("128kmp3")) && bitrate == TTK_BN_128) ||
        ((format.contains("MP3H") || format.contains("320kmp3")) && bitrate == TTK_BN_320) ||

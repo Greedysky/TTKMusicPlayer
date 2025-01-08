@@ -104,7 +104,7 @@ void MusicSpectrumLayoutWidget::initialize()
     m_containLayout->setSpacing(20);
     containWidget->setLayout(m_containLayout);
 
-    TTK::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, containWidget);
     scrollArea->viewport()->setStyleSheet(TTK::UI::BackgroundStyle10);
     layout->addWidget(scrollArea);
 

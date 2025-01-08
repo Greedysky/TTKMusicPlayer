@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "../ttkversion.h"
+#include "ttkversion.h"
 
-//update time 2024.11.22
+//update time 2025.01.08
 #define TTK_LIBRARY_MAJOR_VERSION 1
 #define TTK_LIBRARY_MINOR_VERSION 2
-#define TTK_LIBRARY_PATCH_VERSION 12
+#define TTK_LIBRARY_PATCH_VERSION 13
 
 #define TTK_LIBRARY_VERSION       TTK_VERSION_CHECK(TTK_LIBRARY_MAJOR_VERSION, TTK_LIBRARY_MINOR_VERSION, TTK_LIBRARY_PATCH_VERSION, 0)
 #define TTK_LIBRARY_VERSION_STR   TTK_VERSION_CHECK_STR(TTK_LIBRARY_MAJOR_VERSION, TTK_LIBRARY_MINOR_VERSION, TTK_LIBRARY_PATCH_VERSION, 0)

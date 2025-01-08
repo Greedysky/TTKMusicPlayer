@@ -31,10 +31,10 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     m_ui->playRingButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->saveSongButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
-    TTK::Widget::generateComboBoxFormat(m_ui->formatCombo);
-    TTK::Widget::generateComboBoxFormat(m_ui->kbpsCombo);
-    TTK::Widget::generateComboBoxFormat(m_ui->hzCombo);
-    TTK::Widget::generateComboBoxFormat(m_ui->msCombo);
+    TTK::Widget::generateComboBoxStyle(m_ui->formatCombo);
+    TTK::Widget::generateComboBoxStyle(m_ui->kbpsCombo);
+    TTK::Widget::generateComboBoxStyle(m_ui->hzCombo);
+    TTK::Widget::generateComboBoxStyle(m_ui->msCombo);
 #ifdef Q_OS_UNIX
     m_ui->addSongButton->setFocusPolicy(Qt::NoFocus);
     m_ui->playSongButton->setFocusPolicy(Qt::NoFocus);

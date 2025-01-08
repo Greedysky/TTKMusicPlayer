@@ -230,7 +230,7 @@ MusicLrcPhotoManagerWidget::MusicLrcPhotoManagerWidget(QWidget *parent)
     m_ui->artTextLabel->setStyleSheet(TTK::UI::ColorStyle07);
 
     m_widget = new MusicLrcPhotoWidget(this);
-    TTK::Widget::generateVScrollAreaFormat(m_ui->viewArea, m_widget);
+    TTK::Widget::generateVScrollAreaStyle(m_ui->viewArea, m_widget);
 
     connect(m_ui->addButton, SIGNAL(clicked()), m_widget, SLOT(addButtonClicked()));
     connect(m_ui->deleteButton, SIGNAL(clicked()), m_widget, SLOT(deleteButtonClicked()));

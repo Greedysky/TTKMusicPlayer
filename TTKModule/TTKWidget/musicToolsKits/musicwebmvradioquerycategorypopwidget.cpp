@@ -74,7 +74,7 @@ void MusicWebMVRadioQueryCategoryPopWidget::setCategory(const QString &server, Q
     containWidget->setLayout(containLayout);
 
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, containWidget);
     layout->addWidget(scrollArea);
 
     for(const MusicResultsCategory &category : qAsConst(categorys))

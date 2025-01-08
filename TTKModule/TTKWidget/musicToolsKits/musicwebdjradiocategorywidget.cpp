@@ -78,7 +78,7 @@ MusicWebDJRadioCategoryWidget::MusicWebDJRadioCategoryWidget(QWidget *parent)
     QWidget *mainWindow = new QWidget(this);
 
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaFormat(scrollArea, mainWindow);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, mainWindow);
     layout->addWidget(scrollArea);
 
     m_gridLayout = new QGridLayout(mainWindow);
