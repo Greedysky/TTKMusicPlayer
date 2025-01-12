@@ -1,5 +1,5 @@
-#ifndef TTKLIBRARYVERSION_H
-#define TTKLIBRARYVERSION_H
+#ifndef TTKSPINLOCK_H
+#define TTKSPINLOCK_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -19,20 +19,38 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "../ttkversion.h"
+#include "ttkmoduleexport.h"
 
-//update time 2025.01.12
-#define TTK_LIBRARY_MAJOR_VERSION 1
-#define TTK_LIBRARY_MINOR_VERSION 2
-#define TTK_LIBRARY_PATCH_VERSION 14
+/*! @brief The class of the spin lock.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT TTKSpinLock
+{
+public:
+    TTKSpinLock() = default;
 
-#define TTK_LIBRARY_VERSION       TTK_VERSION_CHECK(TTK_LIBRARY_MAJOR_VERSION, TTK_LIBRARY_MINOR_VERSION, TTK_LIBRARY_PATCH_VERSION, 0)
-#define TTK_LIBRARY_VERSION_STR   TTK_VERSION_CHECK_STR(TTK_LIBRARY_MAJOR_VERSION, TTK_LIBRARY_MINOR_VERSION, TTK_LIBRARY_PATCH_VERSION, 0)
+    void lock() noexcept
+    {
+        while(m_lock.test_and_set(std::memory_order_acquire))
+        {
+            // wait for spin lock to unlock
+        }
+    }
 
-#undef TTK_RC_FILEVERSION
-#undef TTK_RC_PRODUCTVERSION
+    void unlock() noexcept
+    {
+        m_lock.clear(std::memory_order_release);
+    }
 
-#define TTK_RC_FILEVERSION        TTK_LIBRARY_MAJOR_VERSION, TTK_LIBRARY_MINOR_VERSION, TTK_LIBRARY_PATCH_VERSION, 0
-#define TTK_RC_PRODUCTVERSION     TTK_LIBRARY_VERSION_STR
+private:
+    std::atomic_flag m_lock = ATOMIC_FLAG_INIT;
 
-#endif // TTKLIBRARYVERSION_H
+};
+
+// compatiblity for std spin_lock
+namespace std
+{
+using spin_lock = TTKSpinLock;
+}
+
+#endif // TTKSPINLOCK_H

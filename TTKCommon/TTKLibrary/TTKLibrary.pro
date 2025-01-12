@@ -88,6 +88,7 @@ HEADERS += \
     $$PWD/ttklogoutput.h \
     $$PWD/ttkplatformsystem.h \
     $$PWD/ttksemaphoreloop.h \
+    $$PWD/ttkspinlock.h \
     $$PWD/ttksuperenum.h \
     $$PWD/ttktabbutton.h \
     $$PWD/ttkthemelinelabel.h \
