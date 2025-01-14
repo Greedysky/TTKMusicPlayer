@@ -50,6 +50,8 @@ set(HEADER_FILES
   ttklogoutput.h
   ttkplatformsystem.h
   ttksemaphoreloop.h
+  ttksmartptr.h
+  ttkspinlock.h
   ttksuperenum.h
   ttktabbutton.h
   ttkthemelinelabel.h

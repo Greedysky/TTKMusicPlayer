@@ -44,13 +44,42 @@ public:
 
 private:
     std::atomic_flag m_lock = ATOMIC_FLAG_INIT;
+    TTK_DISABLE_COPY(TTKSpinLock)
 
 };
+
+/*! @brief The class of the spin lock guard.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT TTKSpinLockGuard
+{
+public:
+    TTKSpinLockGuard(TTKSpinLock& lock)
+        : m_lock(lock)
+    {
+        m_lock.lock();
+    }
+
+    ~TTKSpinLockGuard()
+    {
+        m_lock.unlock();
+    }
+
+private:
+    TTKSpinLock &m_lock;
+    TTK_DISABLE_COPY(TTKSpinLockGuard)
+
+};
+
 
 // compatiblity for std spin_lock
 namespace std
 {
 using spin_lock = TTKSpinLock;
+using spin_lock_guard = TTKSpinLockGuard;
+
+using spinlock = spin_lock;
+using spinlock_guard = spin_lock_guard;
 }
 
 #endif // TTKSPINLOCK_H

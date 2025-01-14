@@ -54,6 +54,8 @@ win32{
             $$PWD/TTKLibrary/ttklogoutput.h \
             $$PWD/TTKLibrary/ttkplatformsystem.h \
             $$PWD/TTKLibrary/ttksemaphoreloop.h \
+            $$PWD/TTKLibrary/ttksmartpointer.h \
+            $$PWD/TTKLibrary/ttksmartptr.h \
             $$PWD/TTKLibrary/ttkspinlock.h \
             $$PWD/TTKLibrary/ttksuperenum.h \
             $$PWD/TTKLibrary/ttktabbutton.h \
