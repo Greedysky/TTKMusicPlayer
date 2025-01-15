@@ -13,44 +13,44 @@ void MusicMVRadioCategoryRequest::downLoadFinished()
     MusicAbstractMVRadioRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
-        bytes = QString(bytes).split("var mvfmdata = ").back().split("$img = ").front().toUtf8();
-        bytes.chop(3);
-
         QJson::Parser json;
         bool ok = false;
-        const QVariant &data = json.parse(bytes, &ok);
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
-            const QVariantList &datas = data.toList();
-            for(const QVariant &var : qAsConst(datas))
+            QVariantMap value = data.toMap();
+            if(value.contains("data"))
             {
-                if(var.isNull())
+                const QVariantList &datas = value["data"].toList();
+                for(const QVariant &var : qAsConst(datas))
                 {
-                    continue;
-                }
-
-                QVariantMap value = var.toMap();
-                TTK_NETWORK_QUERY_CHECK();
-
-                if(value["classId"].toString() == m_queryValue)
-                {
-                    const QVariantList &fms = value["fm_list"].toList();
-                    for(const QVariant &var : qAsConst(fms))
+                    if(var.isNull())
                     {
-                        if(var.isNull())
+                        continue;
+                    }
+
+                    QVariantMap value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    if(value["classId"].toString() == m_queryValue)
+                    {
+                        const QVariantList &fms = value["fm_list"].toList();
+                        for(const QVariant &var : qAsConst(fms))
                         {
-                            continue;
+                            if(var.isNull())
+                            {
+                                continue;
+                            }
+
+                            value = var.toMap();
+                            TTK_NETWORK_QUERY_CHECK();
+
+                            MusicResultDataItem item;
+                            item.m_name = value["fmName"].toString();
+                            item.m_id = value["fmId"].toString();
+                            item.m_coverUrl = value["imgUrlMv"].toString();
+                            Q_EMIT createMVRadioItem(item);
                         }
-
-                        value = var.toMap();
-                        TTK_NETWORK_QUERY_CHECK();
-
-                        MusicResultDataItem item;
-                        item.m_name = value["fmName"].toString();
-                        item.m_id = value["fmId"].toString();
-                        item.m_coverUrl = value["imgUrlMv"].toString();
-                        Q_EMIT createMVRadioItem(item);
                     }
                 }
             }

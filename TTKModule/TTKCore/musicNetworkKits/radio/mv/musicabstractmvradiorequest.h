@@ -21,7 +21,7 @@
 
 #include "musicabstractqueryrequest.h"
 
-static constexpr const char *MV_CATEGORY_URL = "a2JPOG81ckd3T1NtN004dnRBZ2JubTZYeFYxSFBXWCtDdkZmVVZKY1NVNGxDUGhaMjY0dXh2bk1XWWpXRlpQUmE3ZG5VZVErNURVPQ==";
+static constexpr const char *MV_CATEGORY_URL = "US93a3pGUVMzNmdBUDRtUGUyMk42WFZzS2oyczJpTzFTWWNzVmxJbGt0VmhSQk5qdzFZTGZDWHJ4U1JnY1pQMkdycm1rdz09";
 
 
 /*! @brief The class of the music mv radio request abstract.
