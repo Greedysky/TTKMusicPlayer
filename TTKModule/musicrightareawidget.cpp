@@ -343,13 +343,13 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
     {
         case KugGouSongWidget: //insert kugou song widget
         {
-            createkWebWindow(QKugouWindow::KuGouSong);
+            createkWebWindow(QKugouWindow::Song);
             Q_EMIT updateBackgroundTheme();
             break;
         }
         case KugGouRadioWidget: //insert kugou radio widget
         {
-            createkWebWindow(QKugouWindow::KuGouRadio);
+            createkWebWindow(QKugouWindow::Radio);
             Q_EMIT updateBackgroundTheme();
             break;
         }
@@ -364,7 +364,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         }
         case kugouMovieWidget: //insert kugou movie widget
         {
-            createkWebWindow(QKugouWindow::KugouMovie);
+            createkWebWindow(QKugouWindow::Movie);
             Q_EMIT updateBackgroundTheme();
             break;
         }
@@ -512,7 +512,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         }
         case KuiSheWidget: //insert kugou kuishe widget
         {
-            createkWebWindow(QKugouWindow::KuGouSingle);
+            createkWebWindow(QKugouWindow::Single);
             Q_EMIT updateBackgroundTheme();
             break;
         }

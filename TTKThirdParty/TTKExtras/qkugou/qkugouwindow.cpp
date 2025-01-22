@@ -53,7 +53,7 @@ QKugouWindowPrivate::~QKugouWindowPrivate()
 
 
 QKugouWindow::QKugouWindow(Module type, QWidget *parent)
-    : QWidget(parent)
+    : QLabel(parent)
 {
     TTK_INIT_PRIVATE(QKugouWindow);
 
@@ -70,13 +70,16 @@ QKugouWindow::QKugouWindow(Module type, QWidget *parent)
     settings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, true);
 #endif
 
-    if(type != KuGouSong && type != None)
+    setAlignment(Qt::AlignCenter);
+    setStyleSheet(TTK::UI::WidgetStyle01);
+
+    if(type != Module::Song && type != Module::None)
     {
         createWebViewer(type);
     }
     else
     {
-        createKugouSongWidget(type == KuGouSong);
+        createKugouSongWidget(type == Module::Song);
     }
 }
 
@@ -184,9 +187,9 @@ void QKugouWindow::createWebViewer(Module type)
 
         switch(type)
         {
-        case KuGouRadio: setUrl(QKugouUrl::makeRadioPublicUrl()); break;
-        case KugouMovie: setUrl(QKugouUrl::makeMovieRecommendUrl()); break;
-        case KuGouSingle: setUrl(QKugouUrl::makeKuiSheUrl()); break;
+        case Module::Radio: setUrl(QKugouUrl::makeRadioPublicUrl()); break;
+        case Module::Movie: setUrl(QKugouUrl::makeMovieRecommendUrl()); break;
+        case Module::Single: setUrl(QKugouUrl::makeKuiSheUrl()); break;
         default: break;
         }
     }

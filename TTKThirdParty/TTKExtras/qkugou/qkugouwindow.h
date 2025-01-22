@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QWidget>
+#include <QLabel>
 #include "qkugouurl.h"
 
 class QKugouWindowPrivate;
@@ -27,17 +27,17 @@ class QKugouWindowPrivate;
 /*! @brief The class of the kugou window widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT QKugouWindow : public QWidget
+class TTK_MODULE_EXPORT QKugouWindow : public QLabel
 {
     Q_OBJECT
 public:
     enum Module
     {
-        None,        /*!< KuGou None*/
-        KuGouSong,   /*!< KuGou Song*/
-        KuGouRadio,  /*!< KuGou Radio*/
-        KugouMovie,  /*!< Kugou Movie*/
-        KuGouSingle  /*!< KuGou Single*/
+        None,   /*!< KuGou None*/
+        Song,   /*!< KuGou Song*/
+        Radio,  /*!< KuGou Radio*/
+        Movie,  /*!< Kugou Movie*/
+        Single  /*!< KuGou Single*/
     };
 
     /*!
