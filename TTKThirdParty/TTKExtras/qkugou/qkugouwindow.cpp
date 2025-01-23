@@ -197,7 +197,6 @@ void QKugouWindow::createWebViewer(Module type)
     {
         QLabel *pix = new QLabel(this);
         pix->setAlignment(Qt::AlignCenter);
-        pix->setStyleSheet(TTK::UI::WidgetStyle01);
         pix->setPixmap(QPixmap(":/image/lb_no_module"));
         layout->addWidget(pix);
     }
@@ -205,7 +204,6 @@ void QKugouWindow::createWebViewer(Module type)
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
     pix->setAlignment(Qt::AlignCenter);
-    pix->setStyleSheet(TTK::UI::WidgetStyle01);
     pix->setPixmap(QPixmap(":/image/lb_no_module"));
     layout->addWidget(pix);
 #endif
@@ -273,7 +271,6 @@ void QKugouWindow::createKugouSongWidget(bool power)
         {
             QLabel *pix = new QLabel(this);
             pix->setAlignment(Qt::AlignCenter);
-            pix->setStyleSheet(TTK::UI::WidgetStyle01);
             pix->setPixmap(QPixmap(":/image/lb_no_module"));
             layout->addWidget(pix);
         }
@@ -282,7 +279,6 @@ void QKugouWindow::createKugouSongWidget(bool power)
     {
         QLabel *pix = new QLabel(this);
         pix->setAlignment(Qt::AlignCenter);
-        pix->setStyleSheet(TTK::UI::WidgetStyle01);
         pix->setPixmap(QPixmap(":/image/lb_no_power_mode"));
         layout->addWidget(pix);
     }
@@ -292,7 +288,6 @@ void QKugouWindow::createKugouSongWidget(bool power)
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
     pix->setAlignment(Qt::AlignCenter);
-    pix->setStyleSheet(TTK::UI::WidgetStyle01);
     pix->setPixmap(QPixmap(":/image/lb_no_module"));
     layout->addWidget(pix);
 #endif

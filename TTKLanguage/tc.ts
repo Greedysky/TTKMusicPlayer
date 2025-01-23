@@ -4592,8 +4592,8 @@ Copyright© 2015 - 2025 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsettingwidget.ui" line="1694"/>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsettingwidget.ui" line="1961"/>
-        <source>恢复默认方案</source>
-        <translation>恢復默認方案</translation>
+        <source>恢复默认</source>
+        <translation>恢復默認</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsettingwidget.ui" line="1267"/>

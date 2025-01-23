@@ -1691,7 +1691,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>恢复默认方案</string>
+      <string>恢复默认</string>
      </property>
     </widget>
     <widget class="QLabel" name="DfontTransLabel">
@@ -1958,7 +1958,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>恢复默认方案</string>
+      <string>恢复默认</string>
      </property>
     </widget>
     <widget class="QLabel" name="fontTransLabel">
