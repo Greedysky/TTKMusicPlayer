@@ -72,6 +72,10 @@ public Q_SLOTS:
      */
     void openDynamicImage();
     /*!
+     * Current tab index changed.
+     */
+    void currentTabChanged(int index);
+    /*!
      * Download data from net finished.
      */
     void downLoadFinished(const QString &bytes);
@@ -86,6 +90,11 @@ public Q_SLOTS:
 
 private:
     /*!
+     * Override the widget event.
+     */
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+
+    /*!
      * Eet editLine enable.
      */
     void setEditLineEnabled(bool enabled);
@@ -93,6 +102,7 @@ private:
     Ui::MusicFileInformationWidget *m_ui;
     QString m_path, m_imagePath;
     bool m_deleteImage;
+    QWidget *m_container;
     MusicCoreMPlayer *m_player;
 
 };

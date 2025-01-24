@@ -13,6 +13,7 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicFileInformationWidget),
       m_deleteImage(false),
+      m_container(nullptr),
       m_player(nullptr)
 {
     m_ui->setupUi(this);
@@ -59,20 +60,14 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     connect(m_ui->viewButton, SIGNAL(clicked()), SLOT(openFileDir()));
     connect(m_ui->openPixButton, SIGNAL(clicked()), SLOT(openImageFileDir()));
     connect(m_ui->dynamicPixButton, SIGNAL(clicked()), SLOT(openDynamicImage()));
+    connect(m_ui->mainViewWidget, SIGNAL(currentChanged(int)), SLOT(currentTabChanged(int)));
 }
 
 MusicFileInformationWidget::~MusicFileInformationWidget()
 {
     delete m_ui;
+    delete m_container;
     delete m_player;
-}
-
-void MusicFileInformationWidget::openFileDir()
-{
-    if(!TTK::Url::openUrl(TTK::trackRelatedPath(m_path)))
-    {
-        MusicToastLabel::popup(tr("The file has been moved or does not exist"));
-    }
 }
 
 static void rendererPixmap(Ui::MusicFileInformationWidget *ui, const QPixmap &pixmap)
@@ -87,6 +82,60 @@ static void rendererPixmap(Ui::MusicFileInformationWidget *ui, const QPixmap &pi
         ui->pixmapWidthLabel->setText(QString("%1px").arg(pixmap.width()));
         ui->pixmapHeightLabel->setText(QString("%1px").arg(pixmap.height()));
         ui->pixmapLabel->setPixmap(pixmap.scaled(ui->pixmapLabel->size()));
+    }
+}
+
+void MusicFileInformationWidget::initialize(const QString &name)
+{
+    if(name.contains(CACHE_DIR_FULL)) //cache song should not allow open url
+    {
+        m_ui->viewButton->setEnabled(false);
+    }
+
+    MusicSongMeta meta;
+    const bool state = meta.read(m_path = name);
+    const QFileInfo fin(meta.fileRelatedPath());
+
+    QString check;
+    m_ui->filePathEdit->setText((check = fin.filePath()).isEmpty() ? TTK_DEFAULT_STR : check);
+    m_ui->fileFormatEdit->setText((check = TTK_FILE_SUFFIX(fin)).isEmpty() ? TTK_DEFAULT_STR : check);
+    m_ui->fileSizeEdit->setText((check = TTK::Number::sizeByteToLabel(fin.size())).isEmpty() ? TTK_DEFAULT_STR : check);
+
+    m_ui->fileAlbumEdit->setText(state ? ((check = meta.album()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileArtistEdit->setText(state ? ((check = meta.artist()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileGenreEdit->setText(state ? ((check = meta.genre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileTitleEdit->setText(state ? ((check = meta.title()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileYearEdit->setText(state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileTimeEdit->setText(state ? ((check = meta.duration()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+
+    const int rating = meta.rating().toInt();
+    if(rating == 0) m_ui->ratingLabel->setValue(0);
+    else if(rating < 64) m_ui->ratingLabel->setValue(1);
+    else if(rating < 128) m_ui->ratingLabel->setValue(2);
+    else if(rating < 196) m_ui->ratingLabel->setValue(3);
+    else if(rating < 255) m_ui->ratingLabel->setValue(4);
+    else m_ui->ratingLabel->setValue(5);
+
+    m_ui->bitrateEdit->setText(state ? ((check = (meta.bitrate())).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->channelEdit->setText(state ? ((check = meta.channel()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->sampleRateEdit->setText(state ? ((check = meta.sampleRate()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->trackNumEdit->setText(state ? ((check = meta.trackNum()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+
+    QColor color;
+    QString bitrate;
+    TTK::Number::bitrateToQuality(TTK::Number::bitrateToLevel(m_ui->bitrateEdit->text()), bitrate, color);
+    m_ui->qualityEdit->setText(bitrate);
+
+    m_ui->descriptionPlainEdit->setPlainText(meta.description());
+
+    rendererPixmap(m_ui, meta.cover());
+}
+
+void MusicFileInformationWidget::openFileDir()
+{
+    if(!TTK::Url::openUrl(TTK::trackRelatedPath(m_path)))
+    {
+        MusicToastLabel::popup(tr("The file has been moved or does not exist"));
     }
 }
 
@@ -149,9 +198,20 @@ void MusicFileInformationWidget::openDynamicImage()
             m_player = nullptr;
         }
 
+        delete m_container;
+        m_container = nullptr;
+
         MusicSongMeta meta;
         meta.read(m_path);
         rendererPixmap(m_ui, meta.cover());
+    }
+}
+
+void MusicFileInformationWidget::currentTabChanged(int index)
+{
+    if(index != 1 && m_container && m_player) //image tab
+    {
+        openDynamicImage();
     }
 }
 
@@ -169,7 +229,17 @@ void MusicFileInformationWidget::downLoadFinished(const QString &bytes)
         m_player = new MusicCoreMPlayer(this);
     }
 
-    m_player->setMedia(MusicCoreMPlayer::Module::Movie, bytes, (int)m_ui->pixmapLabel->winId());
+    if(!m_container)
+    {
+        const QPoint &glbPos = m_ui->pixmapLabel->mapToGlobal({0, 0});
+
+        m_container = new QWidget;
+        m_container->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::Window);
+        m_container->setGeometry(QRect(glbPos, m_ui->pixmapLabel->size()));
+        m_container->show();
+    }
+
+    m_player->setMedia(MusicCoreMPlayer::Module::Movie, bytes, (int)m_container->winId());
     m_player->play();
 }
 
@@ -236,50 +306,15 @@ void MusicFileInformationWidget::saveTag()
     MusicToastLabel::popup(tr("Save successfully"));
 }
 
-void MusicFileInformationWidget::initialize(const QString &name)
+void MusicFileInformationWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    if(name.contains(CACHE_DIR_FULL)) //cache song should not allow open url
+    MusicAbstractMoveDialog::mouseMoveEvent(event);
+
+    if(m_container)
     {
-        m_ui->viewButton->setEnabled(false);
+        const QPoint &glbPos = m_ui->pixmapLabel->mapToGlobal({0, 0});
+        m_container->setGeometry(QRect(glbPos, m_ui->pixmapLabel->size()));
     }
-
-    MusicSongMeta meta;
-    const bool state = meta.read(m_path = name);
-    const QFileInfo fin(meta.fileRelatedPath());
-
-    QString check;
-    m_ui->filePathEdit->setText((check = fin.filePath()).isEmpty() ? TTK_DEFAULT_STR : check);
-    m_ui->fileFormatEdit->setText((check = TTK_FILE_SUFFIX(fin)).isEmpty() ? TTK_DEFAULT_STR : check);
-    m_ui->fileSizeEdit->setText((check = TTK::Number::sizeByteToLabel(fin.size())).isEmpty() ? TTK_DEFAULT_STR : check);
-
-    m_ui->fileAlbumEdit->setText(state ? ((check = meta.album()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->fileArtistEdit->setText(state ? ((check = meta.artist()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->fileGenreEdit->setText(state ? ((check = meta.genre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->fileTitleEdit->setText(state ? ((check = meta.title()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->fileYearEdit->setText(state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->fileTimeEdit->setText(state ? ((check = meta.duration()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-
-    const int rating = meta.rating().toInt();
-    if(rating == 0) m_ui->ratingLabel->setValue(0);
-    else if(rating < 64) m_ui->ratingLabel->setValue(1);
-    else if(rating < 128) m_ui->ratingLabel->setValue(2);
-    else if(rating < 196) m_ui->ratingLabel->setValue(3);
-    else if(rating < 255) m_ui->ratingLabel->setValue(4);
-    else m_ui->ratingLabel->setValue(5);
-
-    m_ui->bitrateEdit->setText(state ? ((check = (meta.bitrate())).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->channelEdit->setText(state ? ((check = meta.channel()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->sampleRateEdit->setText(state ? ((check = meta.sampleRate()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->trackNumEdit->setText(state ? ((check = meta.trackNum()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-
-    QColor color;
-    QString bitrate;
-    TTK::Number::bitrateToQuality(TTK::Number::bitrateToLevel(m_ui->bitrateEdit->text()), bitrate, color);
-    m_ui->qualityEdit->setText(bitrate);
-
-    m_ui->descriptionPlainEdit->setPlainText(meta.description());
-
-    rendererPixmap(m_ui, meta.cover());
 }
 
 void MusicFileInformationWidget::setEditLineEnabled(bool enabled)
