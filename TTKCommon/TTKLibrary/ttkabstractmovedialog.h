@@ -46,7 +46,7 @@ public:
      */
     inline void blockOption(bool block) { m_blockOption = block; }
 
-private:
+protected:
     /*!
      * Override the widget event.
      */
