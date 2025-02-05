@@ -2,10 +2,13 @@
 #include "musicunityqueryinterface.h"
 
 static constexpr const char *KG_UA_URL = "cGhYNDZVdmNaVG5KZk50NVFvcUJyYWVQdmdNTkFTMmM=";
+static constexpr const char *KG_COOKIE_URL = "M1BlYjdvWUlwdHJIYXgzeGpUVDlWbnB6ZGZPaUxWVzhKdEZ2RHBHR1RBckFUbG82ZzlOOHRnMW0wUUZpVmdDNGNQMFFjTXd1OVhidmwvdHh6NjNkZ08reXEzWUl0ZXl3d21Ka3ErM1Q1eEp3WUs0YkYvV3dWVUFDSVd3YmI3c3U3c09pZTlIM1FQRFUyMG43Z2ZqRXJVTHhubkhjRC9EN3hVbzhia1QzdUZQU3orRzZZRmRncGZLazhkMD0=";
 
 void ReqKGInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     request->setRawHeader("User-Agent", TTK::Algorithm::mdII(KG_UA_URL, MDII_UA_KEY, false).toUtf8());
+    request->setRawHeader("Cookie", TTK::Algorithm::mdII(KG_COOKIE_URL, false).toUtf8());
+
     TTK::setSslConfiguration(request);
     TTK::makeContentTypeHeader(request);
 }

@@ -43,6 +43,7 @@ void ReqWYInterface::makeRequestRawHeader(QNetworkRequest *request)
     request->setRawHeader("Origin", TTK::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("User-Agent", TTK::Algorithm::mdII(WY_UA_URL, MDII_UA_KEY, false).toUtf8());
     request->setRawHeader("Cookie", TTK::Algorithm::mdII(WY_COOKIE_URL, false).arg(*WY_USER_DATA(), TTK::Algorithm::mdII(WY_RAND_URL, MDII_UA_KEY, false)).toUtf8());
+
     TTK::setSslConfiguration(request);
     TTK::makeContentTypeHeader(request);
 }
