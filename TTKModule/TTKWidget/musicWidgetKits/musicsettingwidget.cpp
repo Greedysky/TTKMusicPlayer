@@ -91,7 +91,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     MusicFunctionItemList items;
     items << MusicFunctionItem(":/contextMenu/btn_setting", tr("Normal"))
           << MusicFunctionItem(":/contextMenu/btn_keyboard", tr("Hotkey"))
-          << MusicFunctionItem(":/contextMenu/btn_download", tr("Dwonload"))
+          << MusicFunctionItem(":/contextMenu/btn_download", tr("Download"))
           << MusicFunctionItem(":/contextMenu/btn_spectrum", tr("Ripple"))
           << MusicFunctionItem(":/tiny/btn_more_normal", tr("Other"));
     m_ui->normalFunTableWidget->setRowCount(items.count());
@@ -367,6 +367,11 @@ void MusicSettingWidget::downloadFileNameRuleChanged(QAction *action)
     }
 }
 
+void MusicSettingWidget::serverPluginChanged()
+{
+    MusicServerPluginWidget().exec();
+}
+
 void MusicSettingWidget::downloadGroupCached(int index)
 {
     m_ui->downloadSpinBox->setEnabled(index);
@@ -420,7 +425,7 @@ void MusicSettingWidget::rippleLowPowerEnableBoxClicked(bool state)
 
 void MusicSettingWidget::otherPluginManagerChanged()
 {
-    MusicPluginWidget().exec();
+    MusicQmmpPluginWidget().exec();
 }
 
 void MusicSettingWidget::changeDesktopLrcWidget()
@@ -824,10 +829,12 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadLrcDirButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->downloadCacheCleanButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->downloadRuleButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->downloadServerPluginButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->downloadDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadLrcDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadCacheCleanButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadRuleButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->downloadServerPluginButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadCacheAutoRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
     m_ui->downloadCacheManRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
     m_ui->downloadFullRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
@@ -837,6 +844,7 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadLrcDirButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadCacheCleanButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadRuleButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->downloadServerPluginButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadCacheAutoRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadCacheManRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadFullRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -871,6 +879,7 @@ void MusicSettingWidget::initDownloadWidget()
 
     connect(m_ui->downloadCacheCleanButton, SIGNAL(clicked()), SLOT(downloadCacheClean()));
     connect(m_ui->downloadRuleButton->menu(), SIGNAL(triggered(QAction*)), SLOT(downloadFileNameRuleChanged(QAction*)));
+    connect(m_ui->downloadServerPluginButton, SIGNAL(clicked()), SLOT(serverPluginChanged()));
     //
     QButtonGroup *buttonGroup1 = new QButtonGroup(this);
     buttonGroup1->addButton(m_ui->downloadCacheAutoRadioBox, 0);

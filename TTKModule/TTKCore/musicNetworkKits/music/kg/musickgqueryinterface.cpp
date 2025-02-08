@@ -262,7 +262,11 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &
 
     QString id;
     parseSongPropertyV3(info, "hash=" + hash, id, bitrate);
-    parseSongPropertyV3(info, "encode_album_audio_id=" + id, id, bitrate);
+
+    if(!id.isEmpty())
+    {
+        parseSongPropertyV3(info, "encode_album_audio_id=" + id, id, bitrate);
+    }
 }
 
 static void parseSongPropertyV4(TTK::MusicSongInformation *info, const QString &hash, int bitrate)

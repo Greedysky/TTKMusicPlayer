@@ -77,6 +77,7 @@ set_property(GLOBAL PROPERTY TTK_UI_FILES
   ${TTK_WIDGET_UI_DIR}/musicWidgetKits/musicmessageaboutdialog.ui
   ${TTK_WIDGET_UI_DIR}/musicWidgetKits/musicdownloadbatchwidget.ui
   ${TTK_WIDGET_UI_DIR}/musicWidgetKits/musicsongitemselecteddialog.ui
-  ${TTK_WIDGET_UI_DIR}/musicWidgetKits/musicpluginwidget.ui
+  ${TTK_WIDGET_UI_DIR}/musicWidgetKits/musicqmmppluginwidget.ui
+  ${TTK_WIDGET_UI_DIR}/musicWidgetKits/musicserverpluginwidget.ui
   ${TTK_WIDGET_UI_DIR}/musicWidgetKits/musicinputdialog.ui
 )

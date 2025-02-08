@@ -27,7 +27,7 @@ class MusicFileAssociationWidget;
 }
 
 
-/*! @brief The class of the song item selected table widget
+/*! @brief The class of the file association item selected table widget
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicFileAssociationTableWidget : public MusicFillItemTableWidget
@@ -41,9 +41,9 @@ public:
     explicit MusicFileAssociationTableWidget(QWidget *parent = nullptr);
 
     /*!
-     * Get unchecked data items.
+     * Save data items.
      */
-    void uncheckedDataList() const;
+    void save() const;
 
 public Q_SLOTS:
     /*!

@@ -49,7 +49,7 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Restart to dwonload music data.
+     * Restart to download music data.
      */
     void restartToRequest();
     /*!

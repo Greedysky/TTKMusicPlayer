@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MusicQmmpPluginWidget</class>
+ <widget class="QDialog" name="MusicQmmpPluginWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>488</width>
+    <height>398</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>插件管理</string>
+  </property>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>480</width>
+     <height>390</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="topTitleName">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>4</y>
+     <width>220</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>插件管理</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="topTitleCloseButton">
+   <property name="geometry">
+    <rect>
+     <x>462</x>
+     <y>6</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="backgroundMask" native="true">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>29</y>
+     <width>480</width>
+     <height>365</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:white;</string>
+   </property>
+   <widget class="QTreeWidget" name="treeWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>15</y>
+      <width>460</width>
+      <height>310</height>
+     </rect>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="animated">
+     <bool>true</bool>
+    </property>
+    <property name="columnCount">
+     <number>2</number>
+    </property>
+    <column>
+     <property name="text">
+      <string notr="true">1</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string notr="true">2</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="settingButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>395</x>
+      <y>330</y>
+      <width>75</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="text">
+     <string>参数设置</string>
+    </property>
+   </widget>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

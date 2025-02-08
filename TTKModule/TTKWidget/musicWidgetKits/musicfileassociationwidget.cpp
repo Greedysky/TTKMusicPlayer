@@ -22,7 +22,7 @@ MusicFileAssociationTableWidget::MusicFileAssociationTableWidget(QWidget *parent
     addCellItems();
 }
 
-void MusicFileAssociationTableWidget::uncheckedDataList() const
+void MusicFileAssociationTableWidget::save() const
 {
     QStringList formats;
     const TTKIntList &unsupports = uncheckedIndexList();
@@ -116,7 +116,7 @@ MusicFileAssociationWidget::MusicFileAssociationWidget(QWidget *parent)
 
 void MusicFileAssociationWidget::confirmButtonClicked()
 {
-    m_ui->itemTableWidget->uncheckedDataList();
+    m_ui->itemTableWidget->save();
     accept();
 }
 

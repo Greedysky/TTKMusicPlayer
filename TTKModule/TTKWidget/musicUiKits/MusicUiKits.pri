@@ -76,5 +76,6 @@ FORMS += \
     $$PWD/musicWidgetKits/musicmessageaboutdialog.ui \
     $$PWD/musicWidgetKits/musicdownloadbatchwidget.ui \
     $$PWD/musicWidgetKits/musicsongitemselecteddialog.ui \
-    $$PWD/musicWidgetKits/musicpluginwidget.ui \
+    $$PWD/musicWidgetKits/musicqmmppluginwidget.ui \
+    $$PWD/musicWidgetKits/musicserverpluginwidget.ui \
     $$PWD/musicWidgetKits/musicinputdialog.ui

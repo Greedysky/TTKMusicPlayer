@@ -1,7 +1,11 @@
 #include "musicpluginwidget.h"
-#include "ui_musicpluginwidget.h"
+#include "ui_musicqmmppluginwidget.h"
+#include "ui_musicserverpluginwidget.h"
 #include "musicitemdelegate.h"
 #include "musicpluginproperty.h"
+
+#include "qjson/parser.h"
+#include "qjson/serializer.h"
 
 #include <qmmp/decoderfactory.h>
 #include <qmmp/effectfactory.h>
@@ -16,13 +20,13 @@
 
 #include <QScrollBar>
 
-/*! @brief The class of the plugin item widget.
+/*! @brief The class of the qmmp plugin item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicPluginItem : public QTreeWidgetItem
+class MusicQmmpPluginItem : public QTreeWidgetItem
 {
 public:
-    MusicPluginItem(QTreeWidgetItem *parent, DecoderFactory *factory, const QString &path)
+    MusicQmmpPluginItem(QTreeWidgetItem *parent, DecoderFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, PluginDecoder),
           m_factory(factory)
     {
@@ -34,7 +38,7 @@ public:
         initialize(Decoder::isEnabled(factory), true, property);
     }
 
-    MusicPluginItem(QTreeWidgetItem *parent, EffectFactory *factory, const QString &path)
+    MusicQmmpPluginItem(QTreeWidgetItem *parent, EffectFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, PluginEffect),
           m_factory(factory)
     {
@@ -45,7 +49,7 @@ public:
         initialize(Effect::isEnabled(factory), false, property);
     }
 
-    MusicPluginItem(QTreeWidgetItem *parent, VisualFactory *factory, const QString &path)
+    MusicQmmpPluginItem(QTreeWidgetItem *parent, VisualFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, PluginVisual),
           m_factory(factory)
     {
@@ -56,7 +60,7 @@ public:
         initialize(Visual::isEnabled(factory), false, property);
     }
 
-    MusicPluginItem(QTreeWidgetItem *parent, InputSourceFactory *factory, const QString &path)
+    MusicQmmpPluginItem(QTreeWidgetItem *parent, InputSourceFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, PluginTransports),
           m_factory(factory)
     {
@@ -67,7 +71,7 @@ public:
         initialize(InputSource::isEnabled(factory), true, property);
     }
 
-    MusicPluginItem(QTreeWidgetItem *parent, OutputFactory *factory, const QString &path)
+    MusicQmmpPluginItem(QTreeWidgetItem *parent, OutputFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, PluginOutput),
           m_factory(factory)
     {
@@ -171,9 +175,9 @@ private:
 
 
 
-MusicPluginWidget::MusicPluginWidget(QWidget *parent)
+MusicQmmpPluginWidget::MusicQmmpPluginWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicPluginWidget)
+      m_ui(new Ui::MusicQmmpPluginWidget)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -233,11 +237,11 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     connect(m_ui->treeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(pluginItemChanged(QTreeWidgetItem*,int)));
 }
 
-void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
+void MusicQmmpPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
 {
-    if(column == 0 && (item->type() == MusicPluginItem::PluginDecoder || item->type() == MusicPluginItem::PluginTransports || item->type() == MusicPluginItem::PluginOutput))
+    if(column == 0 && (item->type() == MusicQmmpPluginItem::PluginDecoder || item->type() == MusicQmmpPluginItem::PluginTransports || item->type() == MusicQmmpPluginItem::PluginOutput))
     {
-        if(item->type() == MusicPluginItem::PluginOutput)
+        if(item->type() == MusicQmmpPluginItem::PluginOutput)
         {
             QTreeWidgetItem *parent = item->parent();
             if(!parent)
@@ -256,27 +260,27 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
 
         const Qt::CheckState status = TTKStaticCast(Qt::CheckState, item->data(column, TTK_CHECKED_ROLE).toInt());
         item->setData(column, TTK_CHECKED_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
-        TTKDynamicCast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
+        TTKDynamicCast(MusicQmmpPluginItem*, item)->setEnabled(status != Qt::Checked);
 
         const QColor &color = (status != Qt::Checked) ? QColor(0xE6, 0x73, 0x00) : QColor(0x00, 0x00, 0x00);
         item->setData(1, Qt::ForegroundRole, color);
         item->setData(2, Qt::ForegroundRole, color);
     }
 
-    MusicPluginItem *it = TTKDynamicCast(MusicPluginItem*, item);
+    MusicQmmpPluginItem *it = TTKDynamicCast(MusicQmmpPluginItem*, item);
     m_ui->settingButton->setEnabled(it ? it->hasSettings() : false);
 }
 
-void MusicPluginWidget::pluginButtonClicked()
+void MusicQmmpPluginWidget::pluginButtonClicked()
 {
-    MusicPluginItem *item = TTKDynamicCast(MusicPluginItem*, m_ui->treeWidget->currentItem());
+    MusicQmmpPluginItem *item = TTKDynamicCast(MusicQmmpPluginItem*, m_ui->treeWidget->currentItem());
     if(item)
     {
         item->showSettingWidget();
     }
 }
 
-void MusicPluginWidget::loadPluginsInfo()
+void MusicQmmpPluginWidget::loadPluginsInfo()
 {
     m_ui->treeWidget->blockSignals(true);
 
@@ -286,7 +290,7 @@ void MusicPluginWidget::loadPluginsInfo()
     item->setExpanded(true);
     for(DecoderFactory *factory : Decoder::factories())
     {
-        new MusicPluginItem(item, factory, Decoder::file(factory));
+        new MusicQmmpPluginItem(item, factory, Decoder::file(factory));
     }
     m_ui->treeWidget->addTopLevelItem(item);
 
@@ -295,7 +299,7 @@ void MusicPluginWidget::loadPluginsInfo()
     item->setExpanded(true);
     for(EffectFactory *factory : Effect::factories())
     {
-        new MusicPluginItem(item, factory, Effect::file(factory));
+        new MusicQmmpPluginItem(item, factory, Effect::file(factory));
     }
     m_ui->treeWidget->addTopLevelItem(item);
 
@@ -304,7 +308,7 @@ void MusicPluginWidget::loadPluginsInfo()
     item->setExpanded(true);
     for(VisualFactory *factory : Visual::factories())
     {
-        new MusicPluginItem(item, factory, Visual::file(factory));
+        new MusicQmmpPluginItem(item, factory, Visual::file(factory));
     }
     m_ui->treeWidget->addTopLevelItem(item);
 
@@ -313,7 +317,7 @@ void MusicPluginWidget::loadPluginsInfo()
     item->setExpanded(true);
     for(InputSourceFactory *factory : InputSource::factories())
     {
-        new MusicPluginItem(item, factory, InputSource::file(factory));
+        new MusicQmmpPluginItem(item, factory, InputSource::file(factory));
     }
     m_ui->treeWidget->addTopLevelItem(item);
 
@@ -322,9 +326,185 @@ void MusicPluginWidget::loadPluginsInfo()
     item->setExpanded(true);
     for(OutputFactory *factory : Output::factories())
     {
-        new MusicPluginItem(item, factory, Output::file(factory));
+        new MusicQmmpPluginItem(item, factory, Output::file(factory));
     }
     m_ui->treeWidget->addTopLevelItem(item);
 
     m_ui->treeWidget->blockSignals(false);
+}
+
+
+static constexpr const char *QUERY_PLUGINS_URL = "resource/plugins";
+
+MusicServerPluginTableWidget::MusicServerPluginTableWidget(QWidget *parent)
+    : MusicFillItemTableWidget(parent)
+{
+    setAttribute(Qt::WA_TranslucentBackground, false);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setColumnCount(2);
+
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(0, 30);
+#ifdef Q_OS_UNIX
+    headerView->resizeSection(1, 219);
+#else
+    headerView->resizeSection(1, 222);
+#endif
+    verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
+
+    addCellItems();
+}
+
+void MusicServerPluginTableWidget::save() const
+{
+    QByteArray bytes;
+    QFile file(APPCACHE_DIR_FULL + QUERY_PLUGINS_URL);
+    if(file.open(QIODevice::ReadOnly))
+    {
+        TTK_INFO_STREAM("Load server unity plugins ok");
+        bytes = file.readAll();
+        file.close();
+    }
+    else
+    {
+        TTK_ERROR_STREAM("Load server unity plugins failed");
+        return;
+    }
+
+    QJson::Parser json;
+    bool ok = false;
+    const QVariant &data = json.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantList datas = data.toList();
+        for(int i = 0; i < datas.count(); ++i)
+        {
+            QVariant &var = datas[i];
+            QTableWidgetItem *it = item(i, 0);
+
+            if(var.isNull() || !it)
+            {
+                continue;
+            }
+
+            QVariantMap value = var.toMap();
+            value["option"] = it->data(TTK_CHECKED_ROLE).toBool();
+            var = value;
+        }
+
+        if(!file.open(QIODevice::WriteOnly))
+        {
+            TTK_ERROR_STREAM("Save server unity plugins failed");
+            return;
+        }
+
+        QJson::Serializer s;
+        s.serialize(datas, &file, &ok);
+        TTK_INFO_STREAM("Save server unity plugins" << (ok ? "ok" : "failed"));
+    }
+}
+
+void MusicServerPluginTableWidget::itemCellClicked(int row, int column)
+{
+    Q_UNUSED(column);
+    QTableWidgetItem *it = nullptr;
+
+    it = item(row, 0);
+    const Qt::CheckState status = TTKStaticCast(Qt::CheckState, it->data(TTK_CHECKED_ROLE).toInt());
+    it->setData(TTK_CHECKED_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
+
+    it = item(row, 1);
+    it->setForeground(status == Qt::Checked ? Qt::gray : QColor(0xE6, 0x73, 0x00));
+}
+
+void MusicServerPluginTableWidget::checkedItemsStatus(bool checked)
+{
+    MusicFillItemTableWidget::checkedItemsStatus(checked);
+
+    for(int i = 0; i < rowCount(); ++i)
+    {
+        item(i, 1)->setForeground(!checked ? Qt::gray : QColor(0xE6, 0x73, 0x00));
+    }
+}
+
+void MusicServerPluginTableWidget::addCellItems()
+{
+    QByteArray bytes;
+    QFile file(APPCACHE_DIR_FULL + QUERY_PLUGINS_URL);
+    if(file.open(QIODevice::ReadOnly))
+    {
+        TTK_INFO_STREAM("Load server unity plugins ok");
+        bytes = file.readAll();
+        file.close();
+    }
+    else
+    {
+        TTK_ERROR_STREAM("Load server unity plugins failed");
+        return;
+    }
+
+    QJson::Parser json;
+    bool ok = false;
+    const QVariant &data = json.parse(bytes, &ok);
+    if(ok)
+    {
+        int index = 0;
+        const QVariantList &datas = data.toList();
+        setRowCount(datas.count());
+
+        for(const QVariant &var : qAsConst(datas))
+        {
+            if(var.isNull())
+            {
+                continue;
+            }
+
+            const QVariantMap &value = var.toMap();
+            const QString &name = value["name"].toString();
+            const bool option = value["option"].toBool();
+
+            QTableWidgetItem *item = new QTableWidgetItem;
+            item->setData(TTK_CHECKED_ROLE, option ? Qt::Checked : Qt::Unchecked);
+            setItem(index, 0, item);
+
+                              item = new QTableWidgetItem;
+            item->setText(name);
+            item->setForeground(option ? QColor(0xE6, 0x73, 0x00) : Qt::gray);
+            QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+            setItem(index++, 1, item);
+        }
+    }
+}
+
+
+
+MusicServerPluginWidget::MusicServerPluginWidget(QWidget *parent)
+    : MusicAbstractMoveDialog(parent),
+      m_ui(new Ui::MusicServerPluginWidget)
+{
+    m_ui->setupUi(this);
+    setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
+
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+
+    m_ui->confirmButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->selectAllCheckButton->setStyleSheet(TTK::UI::CheckBoxStyle01);
+#ifdef Q_OS_UNIX
+    m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->selectAllCheckButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
+    connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
+    connect(m_ui->selectAllCheckButton, SIGNAL(clicked(bool)), m_ui->itemTableWidget, SLOT(checkedItemsStatus(bool)));
+}
+
+void MusicServerPluginWidget::confirmButtonClicked()
+{
+    m_ui->itemTableWidget->save();
+    accept();
 }

@@ -20,24 +20,26 @@
  ***************************************************************************/
 
 #include "musicabstractmovedialog.h"
+#include "musicfillitemtablewidget.h"
 
 namespace Ui {
-class MusicPluginWidget;
+class MusicQmmpPluginWidget;
+class MusicServerPluginWidget;
 }
 class QTreeWidgetItem;
 
-/*! @brief The class of the plugin manager widget.
+/*! @brief The class of the qmmp plugin manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPluginWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicQmmpPluginWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPluginWidget)
+    TTK_DECLARE_MODULE(MusicQmmpPluginWidget)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicPluginWidget(QWidget *parent = nullptr);
+    explicit MusicQmmpPluginWidget(QWidget *parent = nullptr);
 
 public Q_SLOTS:
     /*!
@@ -55,7 +57,69 @@ private:
      */
     void loadPluginsInfo();
 
-    Ui::MusicPluginWidget *m_ui;
+    Ui::MusicQmmpPluginWidget *m_ui;
+
+};
+
+
+/*! @brief The class of the server plugin manager table widget
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicServerPluginTableWidget : public MusicFillItemTableWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicServerPluginTableWidget)
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicServerPluginTableWidget(QWidget *parent = nullptr);
+
+    /*!
+     * Save data items.
+     */
+    void save() const;
+
+public Q_SLOTS:
+    /*!
+     * Table widget item cell click.
+     */
+    virtual void itemCellClicked(int row, int column) override;
+    /*!
+     * Checked items status.
+     */
+    void checkedItemsStatus(bool checked);
+
+private:
+    /*!
+     * Create cell items by input data.
+     */
+    void addCellItems();
+
+};
+
+
+/*! @brief The class of the server plugin manager widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicServerPluginWidget : public MusicAbstractMoveDialog
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicServerPluginWidget)
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicServerPluginWidget(QWidget *parent = nullptr);
+
+public Q_SLOTS:
+    /*!
+     * Confirm button clicked.
+     */
+    void confirmButtonClicked();
+
+private:
+    Ui::MusicServerPluginWidget *m_ui;
 
 };
 

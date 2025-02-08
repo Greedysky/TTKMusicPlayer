@@ -97,10 +97,10 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const QString &k
                 return;
             }
 
-            value = value["extra"].toMap();
-            if(value.isEmpty())
+            const QVariantMap &extra = value["extra"].toMap();
+            if(!extra.isEmpty())
             {
-                return;
+                value = extra["extra"].toMap();
             }
 
             value = value["quality"].toMap();
@@ -169,13 +169,13 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
     QFile file(APPCACHE_DIR_FULL + QUERY_PLUGINS_URL);
     if(file.open(QIODevice::ReadOnly))
     {
-        TTK_INFO_STREAM("Load unity plugins using local resource config");
+        TTK_INFO_STREAM("Load server unity plugins using local resource config");
         bytes = file.readAll();
         file.close();
     }
     else
     {
-        TTK_ERROR_STREAM("Load unity plugins resource config failed");
+        TTK_ERROR_STREAM("Load server unity plugins resource config failed");
         return;
     }
 

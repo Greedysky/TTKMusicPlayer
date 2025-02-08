@@ -1035,6 +1035,19 @@ font-weight:bold;</string>
       <string>...</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="downloadServerPluginButton">
+     <property name="geometry">
+      <rect>
+       <x>305</x>
+       <y>227</y>
+       <width>80</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>第三方插件</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="four">
     <widget class="TTKThemeLineLabel" name="rippleVersionWidget">

@@ -178,6 +178,10 @@ private Q_SLOTS:
      */
     void downloadFileNameRuleChanged(QAction *action);
     /*!
+     * Server plugin manager changed.
+     */
+    void serverPluginChanged();
+    /*!
      * Set enable or disable download cache.
      */
     void downloadGroupCached(int index);

@@ -94,7 +94,7 @@ public:
     /*!
      * Set current transparent.
      */
-    void setTransparent(int trans) { m_transparent = trans; }
+    inline void setTransparent(int trans) { m_transparent = trans; }
 
 private:
     /*!

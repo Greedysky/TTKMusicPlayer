@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MusicPluginWidget</class>
- <widget class="QDialog" name="MusicPluginWidget">
+ <class>MusicServerPluginWidget</class>
+ <widget class="QDialog" name="MusicServerPluginWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>488</width>
-    <height>398</height>
+    <width>288</width>
+    <height>333</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>插件管理</string>
+   <string>第三方插件管理</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>480</width>
-     <height>390</height>
+     <width>280</width>
+     <height>325</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -42,13 +42,13 @@
     <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
    </property>
    <property name="text">
-    <string>插件管理</string>
+    <string>第三方插件管理</string>
    </property>
   </widget>
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>462</x>
+     <x>262</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -63,50 +63,31 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>480</width>
-     <height>365</height>
+     <width>280</width>
+     <height>300</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:white;</string>
    </property>
-   <widget class="QTreeWidget" name="treeWidget">
+   <widget class="MusicServerPluginTableWidget" name="itemTableWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>15</y>
-      <width>460</width>
-      <height>310</height>
+      <width>260</width>
+      <height>240</height>
      </rect>
     </property>
-    <property name="alternatingRowColors">
-     <bool>true</bool>
-    </property>
-    <property name="animated">
-     <bool>true</bool>
-    </property>
-    <property name="columnCount">
-     <number>2</number>
-    </property>
-    <column>
-     <property name="text">
-      <string notr="true">1</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string notr="true">2</string>
-     </property>
-    </column>
    </widget>
-   <widget class="QPushButton" name="settingButton">
+   <widget class="QPushButton" name="confirmButton">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>395</x>
-      <y>330</y>
+      <x>195</x>
+      <y>265</y>
       <width>75</width>
       <height>26</height>
      </rect>
@@ -118,7 +99,20 @@
      <enum>Qt::NoFocus</enum>
     </property>
     <property name="text">
-     <string>参数设置</string>
+     <string>确定</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="selectAllCheckButton">
+    <property name="geometry">
+     <rect>
+      <x>17</x>
+      <y>270</y>
+      <width>80</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>全选</string>
     </property>
    </widget>
   </widget>
@@ -127,6 +121,13 @@
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicServerPluginTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musicpluginwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
