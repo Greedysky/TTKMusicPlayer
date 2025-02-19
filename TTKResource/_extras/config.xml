@@ -8,7 +8,7 @@
     <plusSetting>
         <geometry value="242,84,1000,665"/>
         <language value="0"/>
-        <StartUpMode value="0"/>
+        <startUpMode value="0"/>
         <startUpPlayMode value="0"/>
         <closeEventMode value="1"/>
         <closeNetworkMode value="0"/>
@@ -32,7 +32,7 @@
         <otherScreenSaverTime value="10"/>
         <otherScreenSaverIndex value=""/>
         <otherPlaylistAutoSaveEnable value="0"/>
-        <otherRandomShuffleMode value="0"/>
+        <otherRandomShuffleMode value="1"/>
         <otherHighDpiScalingEnable value="0"/>
         <otherLogTrackEnable value="0"/>
     </otherSetting>
@@ -53,7 +53,6 @@
         <hotkeyValue value=""/>
     </hotkeySetting>
     <interiorLrcSetting>
-        <showInteriorLrc value="1"/>
         <lrcColor value="0"/>
         <lrcSize value="18"/>
         <lrcFamily value="0"/>
