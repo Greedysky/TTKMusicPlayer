@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014-2024 by Ilya Kotov                                 *
+ *   Copyright (C) 2014-2025 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -219,6 +219,7 @@ protected:
 
 private:
     static void loadPlugins();
+    static void updateCache();
     static QList<QmmpPluginCache*> *m_cache;
     static QStringList m_disabledNames;
 
