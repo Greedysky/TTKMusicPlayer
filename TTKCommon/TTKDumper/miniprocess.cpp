@@ -79,7 +79,7 @@ void TTK::killProcessByName(const QString &process)
     const QStringList list(processList());
     if(list.contains(process) && killProcess(process.toStdWString().c_str()))
     {
-        TTK_INFO_STREAM("Windows Kill Process " << process << " Successed");
+        TTK_INFO_STREAM("Windows Kill Process" << process << "Successed");
     }
 }
 
@@ -90,7 +90,7 @@ void TTK::killProcessByName(const QStringList &processes)
     {
         if(list.contains(process) && killProcess(process.toStdWString().c_str()))
         {
-            TTK_INFO_STREAM("Windows Kill Process " << process << " Successed");
+            TTK_INFO_STREAM("Windows Kill Process" << process << "Successed");
         }
     }
 }
@@ -150,7 +150,7 @@ void TTK::killProcessByName(const QString &process)
     {
         if(info.m_path.contains(process) && killProcess(info.m_pid))
         {
-            TTK_INFO_STREAM("Unix Kill Process " << process << " PID" << info.m_pid << " Successed");
+            TTK_INFO_STREAM("Unix Kill Process" << process << "PID" << info.m_pid << "Successed");
             break;
         }
     }
@@ -165,7 +165,7 @@ void TTK::killProcessByName(const QStringList &processes)
         {
             if(info.m_path.contains(process) && killProcess(info.m_pid))
             {
-                TTK_INFO_STREAM("Unix Kill Process " << process << " PID" << info.m_pid << " Successed");
+                TTK_INFO_STREAM("Unix Kill Process" << process << "PID" << info.m_pid << "Successed");
                 break;
             }
         }
