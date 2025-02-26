@@ -137,6 +137,20 @@ void Decoder::loadPlugins()
     m_disabledNames = settings.value("Decoder/disabled_plugins").toStringList();
     std::stable_sort(m_cache->begin(), m_cache->end(), _pluginCacheLessComparator);
     QmmpPluginCache::cleanup(&settings);
+
+    qAddPostRoutine(Decoder::updateCache);
+}
+
+void Decoder::updateCache()
+{
+    if(m_cache)
+    {
+        QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+        for(QmmpPluginCache *item : qAsConst(*m_cache))
+        {
+            item->update(&settings);
+        }
+    }
 }
 
 QString Decoder::file(const DecoderFactory *factory)

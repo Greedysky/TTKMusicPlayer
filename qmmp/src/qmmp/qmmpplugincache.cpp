@@ -99,18 +99,24 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
     settings->endGroup();
 }
 
-const QString QmmpPluginCache::shortName() const
+QString QmmpPluginCache::shortName() const
 {
     return m_shortName;
 }
 
-const QString QmmpPluginCache::file() const
+QString QmmpPluginCache::file() const
 {
     return m_path;
 }
 
-const QStringList &QmmpPluginCache::filters() const
+QStringList QmmpPluginCache::filters() const
 {
+    if(m_decoderFactory)
+        return m_decoderFactory->properties().filters;
+
+    if(m_engineFactory)
+        return m_engineFactory->properties().filters;
+
     return m_filters;
 }
 
@@ -172,6 +178,24 @@ InputSourceFactory *QmmpPluginCache::inputSourceFactory()
         m_inputSourceFactory = qobject_cast<InputSourceFactory *> (instance());
     }
     return m_inputSourceFactory;
+}
+
+void QmmpPluginCache::update(QSettings *settings)
+{
+    //save changed filters list only
+    if(m_filters != filters())
+    {
+        m_filters = filters();
+
+        settings->beginGroup("PluginCache");
+        QStringList values = settings->value(m_path).toStringList();
+        if(values.count() == 6)
+        {
+            values[3] = m_filters.join(QLatin1Char(';'));
+            settings->setValue(m_path, values);
+        }
+        settings->endGroup();
+    }
 }
 
 bool QmmpPluginCache::hasError() const
