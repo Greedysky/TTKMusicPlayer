@@ -1,4 +1,4 @@
-#!/bin/sh  
+#!/bin/sh
 
 appname=$1
 
@@ -9,5 +9,5 @@ fi
 
 des="./"
 
-deplist=$(ldd $appname | awk  '{if (match($3,"/")){ printf("%s "),$3 } }')  
-cp $deplist $des  
+deplist=$(ldd $appname | awk  '{if (match($3,"/")){ printf("%s "),$3 } }')
+cp $deplist $des
