@@ -29,11 +29,11 @@ namespace TTK
     /*!
      * Kill process by name.
      */
-    TTK_MODULE_EXPORT void killProcessByName(const QString &process);
+    TTK_MODULE_EXPORT void killProcessByName(const QString &process, bool more = false);
     /*!
      * Kill process by name list.
      */
-    TTK_MODULE_EXPORT void killProcessByName(const QStringList &processes);
+    TTK_MODULE_EXPORT void killProcessByName(const QStringList &processes, bool more = false);
 
 }
 

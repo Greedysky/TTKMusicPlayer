@@ -74,23 +74,37 @@ static bool killProcess(LPCWSTR processName)
    return true;
 }
 
-void TTK::killProcessByName(const QString &process)
+void TTK::killProcessByName(const QString &process, bool more)
 {
-    const QStringList list(processList());
-    if(list.contains(process) && killProcess(process.toStdWString().c_str()))
+    const QStringList infos(processList());
+    for(const QString &info : qAsConst(infos))
     {
-        TTK_INFO_STREAM("Windows Kill Process" << process << "Successed");
+        if(info.contains(process) && killProcess(process.toStdWString().c_str()))
+        {
+            TTK_INFO_STREAM("Windows Kill Process" << process << "Successed");
+            if(!more)
+            {
+                break;
+            }
+        }
     }
 }
 
-void TTK::killProcessByName(const QStringList &processes)
+void TTK::killProcessByName(const QStringList &processes, bool more)
 {
-    const QStringList list(processList());
+    const QStringList infos(processList());
     for(const QString &process : qAsConst(processes))
     {
-        if(list.contains(process) && killProcess(process.toStdWString().c_str()))
+        for(const QString &info : qAsConst(infos))
         {
-            TTK_INFO_STREAM("Windows Kill Process" << process << "Successed");
+            if(info.contains(process) && killProcess(process.toStdWString().c_str()))
+            {
+                TTK_INFO_STREAM("Windows Kill Process" << process << "Successed");
+                if(!more)
+                {
+                    break;
+                }
+            }
         }
     }
 }
@@ -143,30 +157,36 @@ static bool killProcess(int pid)
     return true;
 }
 
-void TTK::killProcessByName(const QString &process)
+void TTK::killProcessByName(const QString &process, bool more)
 {
-    const QList<PIDInfo> list(processList());
-    for(const PIDInfo &info : qAsConst(list))
+    const QList<PIDInfo> infos(processList());
+    for(const PIDInfo &info : qAsConst(infos))
     {
         if(info.m_path.contains(process) && killProcess(info.m_pid))
         {
             TTK_INFO_STREAM("Unix Kill Process" << process << "PID" << info.m_pid << "Successed");
-            break;
+            if(!more)
+            {
+                break;
+            }
         }
     }
 }
 
-void TTK::killProcessByName(const QStringList &processes)
+void TTK::killProcessByName(const QStringList &processes, bool more)
 {
-    const QList<PIDInfo> list(processList());
+    const QList<PIDInfo> infos(processList());
     for(const QString &process : qAsConst(processes))
     {
-        for(const PIDInfo &info : qAsConst(list))
+        for(const PIDInfo &info : qAsConst(infos))
         {
             if(info.m_path.contains(process) && killProcess(info.m_pid))
             {
                 TTK_INFO_STREAM("Unix Kill Process" << process << "PID" << info.m_pid << "Successed");
-                break;
+                if(!more)
+                {
+                    break;
+                }
             }
         }
     }
