@@ -65,7 +65,11 @@ void WaveVoice::typeChanged(QAction *action)
         case 1: m_palette = VisualPalette::PALETTE_PERCEPTUAL; break;
         case 2: m_palette = VisualPalette::PALETTE_RAINBOW; break;
         case 3: m_palette = VisualPalette::PALETTE_SOX; break;
-        case 4: m_palette = VisualPalette::PALETTE_MONO; break;
+        case 4: m_palette = VisualPalette::PALETTE_MAGMA; break;
+        case 5: m_palette = VisualPalette::PALETTE_LINAS; break;
+        case 6: m_palette = VisualPalette::PALETTE_CUBEHELIX; break;
+        case 7: m_palette = VisualPalette::PALETTE_FRACTALIZER; break;
+        case 8: m_palette = VisualPalette::PALETTE_MONO; break;
         default: break;
     }
 }
@@ -127,7 +131,11 @@ void WaveVoice::contextMenuEvent(QContextMenuEvent *)
     actionChecked(typeMenu.addAction(tr("Perceptual")), 1, m_palette);
     actionChecked(typeMenu.addAction(tr("Rainbow")), 2, m_palette);
     actionChecked(typeMenu.addAction(tr("Sox")), 3, m_palette);
-    actionChecked(typeMenu.addAction(tr("Mono")), 4, m_palette);
+    actionChecked(typeMenu.addAction(tr("Magma")), 4, m_palette);
+    actionChecked(typeMenu.addAction(tr("Linas")), 5, m_palette);
+    actionChecked(typeMenu.addAction(tr("CubeHelix")), 6, m_palette);
+    actionChecked(typeMenu.addAction(tr("Fractalizer")), 7, m_palette);
+    actionChecked(typeMenu.addAction(tr("Mono")), 8, m_palette);
     connect(&typeMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
     menu.addMenu(&typeMenu);
 
