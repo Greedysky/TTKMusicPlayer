@@ -191,7 +191,7 @@ void QmmpPluginCache::update(QSettings *settings)
         QStringList values = settings->value(m_path).toStringList();
         if(values.count() == 6)
         {
-            values[3] = m_filters.join(QLatin1Char(';'));
+            values[3] = m_filters.join(";");
             settings->setValue(m_path, values);
         }
         settings->endGroup();
