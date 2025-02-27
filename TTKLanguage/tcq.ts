@@ -1309,6 +1309,22 @@ too high may cause clipping!</source>
         <translation>紅譜</translation>
     </message>
     <message>
+        <source>Magma</source>
+        <translation>巖漿譜</translation>
+    </message>
+    <message>
+        <source>Linas</source>
+        <translation>利納斯譜</translation>
+    </message>
+    <message>
+        <source>CubeHelix</source>
+        <translation>立方螺旋譜</translation>
+    </message>
+    <message>
+        <source>Fractalizer</source>
+        <translation>分形譜</translation>
+    </message>
+    <message>
         <source>Mono</source>
         <translation>黑白譜</translation>
     </message>
