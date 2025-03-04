@@ -43,19 +43,21 @@ win32:msvc{
     }
 }
 
-INCLUDEPATH += $$PWD/../
+INCLUDEPATH += \
+    $$PWD/../ \
+    $$PWD/../base
 
 HEADERS += \
-    $$PWD/../ttkcompat.h \
-    $$PWD/../ttkglobal.h \
-    $$PWD/../ttklogger.h \
-    $$PWD/../ttkmoduleexport.h \
+    $$PWD/../base/ttkcompat.h \
+    $$PWD/../base/ttkglobal.h \
+    $$PWD/../base/ttklogger.h \
+    $$PWD/../base/ttkmoduleexport.h \
+    $$PWD/../base/ttkprivate.h \
+    $$PWD/../base/ttkqtcompat.h \
+    $$PWD/../base/ttkqtglobal.h \
+    $$PWD/../base/ttkqtobject.h \
+    $$PWD/../base/ttksingleton.h \
     $$PWD/../ttkobject.h \
-    $$PWD/../ttkprivate.h \
-    $$PWD/../ttkqtcompat.h \
-    $$PWD/../ttkqtglobal.h \
-    $$PWD/../ttkqtobject.h \
-    $$PWD/../ttksingleton.h \
     $$PWD/../ttkversion.h
 
 HEADERS += \

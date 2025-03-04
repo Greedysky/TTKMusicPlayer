@@ -40,7 +40,9 @@ win32:msvc{
     }
 }
 
-INCLUDEPATH += $$PWD/../
+INCLUDEPATH += \
+    $$PWD/../ \
+    $$PWD/../base
 
 HEADERS += \
     $$PWD/miniprocess.h \

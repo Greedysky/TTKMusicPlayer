@@ -45,6 +45,7 @@ unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher
 
 INCLUDEPATH += \
     $$PWD/../../../TTKCommon \
+    $$PWD/../../../TTKCommon/base \
     $$PWD/../../../TTKCommon/TTKLibrary \
     $$PWD/../../../TTKModule/TTKCore/musicCoreKits \
     $$PWD/../../../TTKModule/TTKCore/musicUtilsKits

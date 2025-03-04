@@ -49,8 +49,9 @@ win32{
 LIBS += -L$$DESTDIR -lTTKConfig
 
 INCLUDEPATH += \
-    $$PWD/../../TTKCommon \
     $$PWD/../../TTKConfig \
+    $$PWD/../../TTKCommon \
+    $$PWD/../../TTKCommon/base \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
 SOURCES += $$PWD/musicinitmain.cpp

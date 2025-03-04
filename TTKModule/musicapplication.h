@@ -171,6 +171,14 @@ public Q_SLOTS:
     void playOnce();
 
     /*!
+     * Set current player volume down.
+     */
+    void volumeDown();
+    /*!
+     * Set current player volume up.
+     */
+    void volumeUp();
+    /*!
      * Set current play volume to 0.
      */
     void volumeMute();
@@ -178,6 +186,7 @@ public Q_SLOTS:
      * Current play volume changed.
      */
     void volumeChanged(int volume);
+
     /*!
      * Import music songs.
      */
@@ -206,6 +215,7 @@ public Q_SLOTS:
      * Export music songs by item list.
      */
     void exportSongsItemList();
+
     /*!
      * Set current music play list sort.
      */
@@ -230,14 +240,7 @@ public Q_SLOTS:
      * Set song speed and slow by given pos.
      */
     void playAnyTimeAt(int time);
-    /*!
-     * Set current player volume down.
-     */
-    void volumeDown();
-    /*!
-     * Set current player volume up.
-     */
-    void volumeUp();
+
     /*!
      * Show setting widget.
      */

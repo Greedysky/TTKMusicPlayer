@@ -478,6 +478,28 @@ void MusicApplication::playOnce()
     m_ui->musicPlayMode->setPlaybackMode(TTK::PlayMode::Once);
 }
 
+void MusicApplication::volumeDown()
+{
+    int currentVol = m_player->volume();
+    currentVol -= 15;
+    if(currentVol < 0)
+    {
+        currentVol = 0;   //reset music volume
+    }
+    volumeChanged(currentVol);
+}
+
+void MusicApplication::volumeUp()
+{
+    int currentVol = m_player->volume();
+    currentVol += 15;
+    if(currentVol > 100)
+    {
+        currentVol = 100;   //reset music volume
+    }
+    volumeChanged(currentVol);
+}
+
 void MusicApplication::volumeMute()
 {
     m_player->setMuted(!m_player->isMuted());
@@ -668,28 +690,6 @@ void MusicApplication::playAnyTimeAt(int time)
     m_player->setPosition(time);
     //Set lrc corrent to show
     m_rightAreaWidget->setSongTimeSpeed(time);
-}
-
-void MusicApplication::volumeDown()
-{
-    int currentVol = m_player->volume();
-    currentVol -= 15;
-    if(currentVol < 0)
-    {
-        currentVol = 0;   //reset music volume
-    }
-    volumeChanged(currentVol);
-}
-
-void MusicApplication::volumeUp()
-{
-    int currentVol = m_player->volume();
-    currentVol += 15;
-    if(currentVol > 100)
-    {
-        currentVol = 100;   //reset music volume
-    }
-    volumeChanged(currentVol);
 }
 
 void MusicApplication::showSettingWidget()

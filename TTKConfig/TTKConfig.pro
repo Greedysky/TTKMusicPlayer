@@ -40,6 +40,7 @@ win32:msvc{
 
 INCLUDEPATH += \
     $$PWD/../TTKCommon \
+    $$PWD/../TTKCommon/base \
     $$PWD/../TTKModule/TTKCore/musicCoreKits
 
 HEADERS += \

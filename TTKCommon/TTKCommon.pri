@@ -18,6 +18,7 @@
 
 INCLUDEPATH += \
     $$PWD \
+    $$PWD/base \
     $$PWD/TTKLibrary \
     $$PWD/TTKDumper
 
