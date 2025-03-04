@@ -2,8 +2,8 @@ adplug-2.3.3	https://github.com/adplug/adplug
 enca-1.19	https://cihar.com/software/enca
 faad2-2.11.1	https://github.com/knik0/faad2
 ffmpeg-3.4.13	http://ffmpeg.org/releases
-flac-1.4.3	https://ftp.osuosl.org/pub/xiph/releases/flac
-game-music-emu-0.6.3	https://github.com/libgme/game-music-emu
+flac-1.5.0	https://ftp.osuosl.org/pub/xiph/releases/flac
+libgme-0.6.4	https://github.com/libgme/game-music-emu
 libADLMIDI-1.5.1.0	https://github.com/Wohlstand/libADLMIDI
 libbinio-1.5	https://github.com/adplug/libbinio
 libbs2b-3.1.0	https://sourceforge.net/projects/bs2b
@@ -29,11 +29,11 @@ speex-1.2.1	https://ftp.osuosl.org/pub/xiph/releases/speex
 sunvox-2.1.2b	https://warmplace.ru/soft/sunvox/sunvox_lib.php
 taglib-1.13.1(v2.0.2)	https://github.com/taglib/taglib
 wavpack-5.8.1	https://www.wavpack.com/downloads.html
-libxmp-4.6.1.patch	https://github.com/libxmp/libxmp
+libxmp-4.6.2.patch	https://github.com/libxmp/libxmp
 zlib-1.3.1	https://github.com/madler/zlib
 7zip-24.09	https://www.7-zip.org/download.html
 
-ttk-1.2.8
+ttk-1.2.9
 -libasap-6.0.3	 https://sourceforge.net/projects/asap
 -libayfly		 https://github.com/l29ah/ayfly
 -libdca			 https://github.com/DeaDBeeF-Player/deadbeef/tree/master/plugins/dca
@@ -54,7 +54,7 @@ ttk-1.2.8
 -libstsound		 https://github.com/arnaud-carre/StSound
 -libtfmx		 https://github.com/sasq64/musicplayer
 -libuade-3.05	 http://www.zakalwe.fi/uade/
-			 https://gitlab.com/uade-music-player/uade 8d57d71ecd96fe52c98410c1633dbf9b92b87857
+			 https://gitlab.com/uade-music-player/uade f776abe75d66725f9699ea5728dd24db0e2d17f8
 -libv2m-20211104 https://github.com/jgilje/v2m-player
 -libxmdx		 https://github.com/mistydemeo/mdxmini
 				 https://github.com/mistydemeo/pmdmini
@@ -62,4 +62,4 @@ ttk-1.2.8
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2025-02-13
+///Update time 2025-03-03
