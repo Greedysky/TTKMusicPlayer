@@ -118,12 +118,12 @@ void MusicEnhancedPopWidget::setEnhancedSongConfig(int type)
     }
     setStyleSheet(style.arg(objectName()));
 
-    const QString &prfix = QString("background-image:url(':/enhance/lb_%1')");
+    const QString &prefix = QString("background-image:url(':/enhance/lb_%1')");
     m_caseButton->setStyleSheet(type ? TTK::UI::EnhanceOn : TTK::UI::EnhanceOff);
-    m_buttons[0]->setStyleSheet(prfix.arg(type == 1 ? "3d_on" : "3d_off"), type == 1);
-    m_buttons[1]->setStyleSheet(prfix.arg(type == 2 ? "nicam_on" : "nicam_off"), type == 2);
-    m_buttons[2]->setStyleSheet(prfix.arg(type == 3 ? "subwoofer_on" : "subwoofer_off"), type == 3);
-    m_buttons[3]->setStyleSheet(prfix.arg(type == 4 ? "vocal_on" : "vocal_off"), type == 4);
+    m_buttons[0]->setStyleSheet(prefix.arg(type == 1 ? "3d_on" : "3d_off"), type == 1);
+    m_buttons[1]->setStyleSheet(prefix.arg(type == 2 ? "nicam_on" : "nicam_off"), type == 2);
+    m_buttons[2]->setStyleSheet(prefix.arg(type == 3 ? "subwoofer_on" : "subwoofer_off"), type == 3);
+    m_buttons[3]->setStyleSheet(prefix.arg(type == 4 ? "vocal_on" : "vocal_off"), type == 4);
 
     m_lastSelectedIndex = (type == 0) ? m_lastSelectedIndex : type;
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, type);
@@ -175,18 +175,18 @@ void MusicEnhancedPopWidget::initialize()
     labelButton->setCursor(Qt::PointingHandCursor);
 
     QToolButton *helpButton = new QToolButton(m_containWidget);
-    helpButton->setGeometry(205, 3, 24, 24);
+    helpButton->setGeometry(202, 3, 24, 24);
     helpButton->setStyleSheet(TTK::UI::EnhanceHelp);
     helpButton->setCursor(Qt::PointingHandCursor);
     connect(helpButton, SIGNAL(clicked()), SLOT(helpButtonClicked()));
 
     QToolButton *shareButton = new QToolButton(m_containWidget);
-    shareButton->setGeometry(230, 3, 24, 24);
+    shareButton->setGeometry(227, 3, 24, 24);
     shareButton->setStyleSheet(TTK::UI::EnhanceShare);
     shareButton->setCursor(Qt::PointingHandCursor);
 
     QToolButton *closeButton = new QToolButton(m_containWidget);
-    closeButton->setGeometry(255, 8, 16, 16);
+    closeButton->setGeometry(252, 8, 16, 16);
     closeButton->setStyleSheet(TTK::UI::EnhanceClose);
     closeButton->setCursor(Qt::PointingHandCursor);
     connect(closeButton, SIGNAL(clicked()), m_menu, SLOT(close()));
