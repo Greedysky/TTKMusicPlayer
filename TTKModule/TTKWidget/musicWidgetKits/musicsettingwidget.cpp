@@ -118,6 +118,11 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
     m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
 #endif
+    m_hotKeyEdits << m_ui->item_key1 << m_ui->item_key2 << m_ui->item_key3 << m_ui->item_key4
+                  << m_ui->item_key5 << m_ui->item_key6 << m_ui->item_key7 << m_ui->item_key8
+                  << m_ui->item_key9 << m_ui->item_key10 << m_ui->item_key11 << m_ui->item_key12
+                  << m_ui->item_key13 << m_ui->item_key14 << m_ui->item_key15 << m_ui->item_key16;
+
     connect(m_ui->normalFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(setScrollWidgetPageIndex(int)));
     connect(m_ui->normalFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(clearFunctionTableSelection()));
     connect(m_ui->lrcFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(setScrollWidgetPageIndex(int)));
@@ -167,14 +172,11 @@ void MusicSettingWidget::initialize()
         hotkeys = G_HOTKEY_PTR->defaultKeys();
     }
 
-    m_ui->item_S01->setText(hotkeys[0]);
-    m_ui->item_S02->setText(hotkeys[1]);
-    m_ui->item_S03->setText(hotkeys[2]);
-    m_ui->item_S04->setText(hotkeys[3]);
-    m_ui->item_S05->setText(hotkeys[4]);
-    m_ui->item_S06->setText(hotkeys[5]);
-    m_ui->item_S07->setText(hotkeys[6]);
-    m_ui->item_S08->setText(hotkeys[7]);
+    for(int i = 0; i < m_hotKeyEdits.count(); ++i)
+    {
+        m_hotKeyEdits[i]->setText(hotkeys[i]);
+    }
+
     m_ui->globalHotkeyBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::HotkeyEnable).toBool());
     globalHotkeyBoxChanged(m_ui->globalHotkeyBox->isChecked());
 
@@ -329,14 +331,10 @@ void MusicSettingWidget::fileAssociationChanged()
 
 void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
 {
-    m_ui->item_S01->setHotKeyEnabled(state);
-    m_ui->item_S02->setHotKeyEnabled(state);
-    m_ui->item_S03->setHotKeyEnabled(state);
-    m_ui->item_S04->setHotKeyEnabled(state);
-    m_ui->item_S05->setHotKeyEnabled(state);
-    m_ui->item_S06->setHotKeyEnabled(state);
-    m_ui->item_S07->setHotKeyEnabled(state);
-    m_ui->item_S08->setHotKeyEnabled(state);
+    for(MusicGlobalHotKeyEdit *edit : qAsConst(m_hotKeyEdits))
+    {
+        edit->setHotKeyEnabled(state);
+    }
 }
 
 void MusicSettingWidget::downloadCacheClean()
@@ -595,14 +593,10 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, hotkeyEnabled);
     if(hotkeyEnabled)
     {
-        G_HOTKEY_PTR->setHotKey(0, m_ui->item_S01->text());
-        G_HOTKEY_PTR->setHotKey(1, m_ui->item_S02->text());
-        G_HOTKEY_PTR->setHotKey(2, m_ui->item_S03->text());
-        G_HOTKEY_PTR->setHotKey(3, m_ui->item_S04->text());
-        G_HOTKEY_PTR->setHotKey(4, m_ui->item_S05->text());
-        G_HOTKEY_PTR->setHotKey(5, m_ui->item_S06->text());
-        G_HOTKEY_PTR->setHotKey(6, m_ui->item_S07->text());
-        G_HOTKEY_PTR->setHotKey(7, m_ui->item_S08->text());
+        for(int i = 0; i < m_hotKeyEdits.count(); ++i)
+        {
+            G_HOTKEY_PTR->setHotKey(i, m_hotKeyEdits[i]->text());
+        }
 
         G_HOTKEY_PTR->setEnabled(true);
         G_SETTING_PTR->setValue(MusicSettingManager::HotkeyValue, G_HOTKEY_PTR->keys().join(TTK_SPLITER));

@@ -24,6 +24,7 @@
 #include "musicabstracttablewidget.h"
 
 class QComboBox;
+class MusicGlobalHotKeyEdit;
 
 namespace Ui {
 class MusicSettingWidget;
@@ -379,6 +380,8 @@ private:
     bool setNetworkProxyByType(Proxy type);
 
     Ui::MusicSettingWidget *m_ui;
+
+    QVector<MusicGlobalHotKeyEdit*> m_hotKeyEdits;
 
 };
 

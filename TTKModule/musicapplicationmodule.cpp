@@ -265,6 +265,16 @@ void MusicApplicationModule::sideAnimationByOff()
     m_direction = TTK::Direction::No;
 }
 
+void MusicApplicationModule::soundEffectChanged()
+{
+    const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
+    const QStringList &effects = value.split(";", QtSkipEmptyParts);
+    for(const QString &effect : qAsConst(effects))
+    {
+        TTK::TTKQmmp::enabledEffectPlugin(true, effect);
+    }
+}
+
 void MusicApplicationModule::applyParameter()
 {
 #ifdef Q_OS_WIN
@@ -457,16 +467,6 @@ void MusicApplicationModule::showSoundEffectWidget()
     MusicSoundEffectsWidget widget;
     widget.setInputModule(this);
     widget.exec();
-}
-
-void MusicApplicationModule::soundEffectChanged()
-{
-    const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
-    const QStringList &effects = value.split(";", QtSkipEmptyParts);
-    for(const QString &effect : qAsConst(effects))
-    {
-        TTK::TTKQmmp::enabledEffectPlugin(true, effect);
-    }
 }
 
 bool MusicApplicationModule::closeCurrentEqualizer()

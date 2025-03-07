@@ -77,13 +77,21 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_ui->musicTimeWidget->setInputModule(this);
 
     G_HOTKEY_PTR->addHotKey(this, SLOT(switchToPlayState()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(showSettingWidget()));
     G_HOTKEY_PTR->addHotKey(this, SLOT(playPrevious()));
     G_HOTKEY_PTR->addHotKey(this, SLOT(playNext()));
     G_HOTKEY_PTR->addHotKey(this, SLOT(volumeUp()));
     G_HOTKEY_PTR->addHotKey(this, SLOT(volumeDown()));
-    G_HOTKEY_PTR->addHotKey(this, SLOT(showSettingWidget()));
-    G_HOTKEY_PTR->addHotKey(this, SLOT(importSongsPopup()));
     G_HOTKEY_PTR->addHotKey(this, SLOT(volumeMute()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(importSongsPopup()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(addSongToLovestList()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(currentPlayLocation()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(importSongsItemList()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(exportSongsItemList()));
+    G_HOTKEY_PTR->addHotKey(m_applicationModule, SLOT(showSpectrumWidget()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(windowConciseChanged()));
+    G_HOTKEY_PTR->addHotKey(m_applicationModule, SLOT(showAboutWidget()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(quitWindow()));
 
     // Objects Mouse tracking
     setObjectsTracking({m_ui->background, m_ui->songsContainer});

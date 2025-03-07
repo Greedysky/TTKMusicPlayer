@@ -113,8 +113,10 @@ int MusicHotKeyManager::count() const
 QStringList MusicHotKeyManager::defaultKeys() const
 {
     QStringList keys;
-    keys << "Ctrl+B" << "Ctrl+Left" << "Ctrl+Right" << "Ctrl+Up"
-         << "Ctrl+Down" << "Ctrl+S" << "Ctrl+I" << "Ctrl+M";
+    keys << "Ctrl+B" << "Ctrl+S" << "Ctrl+Left" << "Ctrl+Right"
+         << "Ctrl+Up" << "Ctrl+Down" << "Ctrl+M" << "Ctrl+I"
+         << "Ctrl+L" << "Ctrl+W" << "Ctrl+Alt+I" << "Ctrl+Alt+O"
+         << "Ctrl+Alt+S" << "Ctrl+N" << "Ctrl+A" << "Ctrl+Q";
     return keys;
 }
 

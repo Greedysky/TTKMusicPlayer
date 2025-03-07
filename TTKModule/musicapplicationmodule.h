@@ -94,6 +94,11 @@ public:
     void sideAnimationByOff();
 
     /*!
+     * Sound effect changed.
+     */
+    void soundEffectChanged();
+
+    /*!
      * Apply settings parameters.
      */
     void applyParameter();
@@ -161,10 +166,6 @@ public Q_SLOTS:
      * Show set sound effect widget.
      */
     void showSoundEffectWidget();
-    /*!
-     * Sound effect changed.
-     */
-    void soundEffectChanged();
 
 private:
     /*!
