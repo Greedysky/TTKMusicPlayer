@@ -77,7 +77,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
         MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
-        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadKeyFinished(QByteArray)));
         d->startToRequest(QSyncUtils::makeDataBucketUrl() + QUERY_CLOUD_URL);
         loop.exec();
     }
@@ -109,7 +109,7 @@ void MusicCloudManagerTableWidget::resizeSection() const
     }
 }
 
-void MusicCloudManagerTableWidget::downLoadFinished(const QByteArray &bytes)
+void MusicCloudManagerTableWidget::downLoadKeyFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {

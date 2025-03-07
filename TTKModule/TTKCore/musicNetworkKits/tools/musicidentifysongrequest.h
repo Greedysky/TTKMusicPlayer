@@ -26,32 +26,33 @@
  */
 struct TTK_MODULE_EXPORT MusicSongIdentifyData
 {
-    QString m_artistName;
     QString m_songName;
+    QString m_artistName;
 };
 TTK_DECLARE_LIST(MusicSongIdentifyData);
 
-/*! @brief The class of the song identify query request.
+/*! @brief The class of the abstract song identify query request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicIdentifySongRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicAbstractIdentifyRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicIdentifySongRequest)
+    TTK_DECLARE_MODULE(MusicAbstractIdentifyRequest)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicIdentifySongRequest(QObject *parent = nullptr);
+    explicit MusicAbstractIdentifyRequest(QObject *parent = nullptr);
 
     /*!
-     * Get query song id keys.
+     * Get query cloud id keys.
      */
-    bool queryIdentifyKey();
+    bool queryCloudKey();
+
     /*!
      * Start to download identify data.
      */
-    void startToRequest(const QString &path);
+    virtual void startToRequest(const QString &path) = 0;
 
     /*!
      * Get identify songs.
@@ -64,19 +65,69 @@ Q_SIGNALS:
      */
     void finished();
 
+private Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    void downLoadKeyFinished(const QByteArray &bytes);
+
+protected:
+    MusicSongIdentifyDataList m_items;
+    QString m_accessKey, m_accessSecret;
+
+};
+
+
+/*! @brief The class of the acr song identify query request.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicACRIdentifyRequest : public MusicAbstractIdentifyRequest
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicACRIdentifyRequest)
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicACRIdentifyRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to download identify data.
+     */
+    virtual void startToRequest(const QString &path) override final;
+
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
     virtual void downLoadFinished() override final;
+
+};
+
+
+/*! @brief The class of the xf song identify query request.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicXFIdentifyRequest : public MusicAbstractIdentifyRequest
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicXFIdentifyRequest)
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicXFIdentifyRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to download identify data.
+     */
+    virtual void startToRequest(const QString &path) override final;
+
+public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadRawDataFinished(const QByteArray &bytes);
-
-private:
-    MusicSongIdentifyDataList m_items;
-    QString m_accessKey, m_accessSecret;
+    virtual void downLoadFinished() override final;
 
 };
 

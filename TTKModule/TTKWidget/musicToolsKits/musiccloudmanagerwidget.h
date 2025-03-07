@@ -79,7 +79,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &bytes);
+    void downLoadKeyFinished(const QByteArray &bytes);
     /*!
      * Receive data from sync finshed.
      */

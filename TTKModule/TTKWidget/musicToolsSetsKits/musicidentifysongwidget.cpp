@@ -35,7 +35,7 @@ MusicIdentifySongWidget::MusicIdentifySongWidget(QWidget *parent)
     connect(m_timer, SIGNAL(timeout()), SLOT(detectedTimeOut()));
 
     m_recordCore = new MusicAudioRecorderModule(this);
-    m_networkRequest = new MusicIdentifySongRequest(this);
+    m_networkRequest = new MusicXFIdentifyRequest(this);
 
     QShortcut *cut = new QShortcut(Qt::SHIFT + Qt::CTRL + Qt::Key_T, this);
     connect(cut, SIGNAL(activated()), SLOT(detectedButtonClicked()));
@@ -59,7 +59,7 @@ MusicIdentifySongWidget::~MusicIdentifySongWidget()
 
 void MusicIdentifySongWidget::queryIdentifyKey()
 {
-    if(m_networkRequest->queryIdentifyKey())
+    if(m_networkRequest->queryCloudKey())
     {
         m_detectedButton->setEnabled(true);
     }
