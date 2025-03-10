@@ -57,7 +57,7 @@ public:
     /*!
      * Get identify songs.
      */
-    inline const MusicSongIdentifyDataList& items() const { return m_items; }
+    inline const MusicSongIdentifyDataList& items() const noexcept { return m_items; }
 
 Q_SIGNALS:
     /*!
@@ -65,11 +65,11 @@ Q_SIGNALS:
      */
     void finished();
 
-private Q_SLOTS:
+protected Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadKeyFinished(const QByteArray &bytes);
+    virtual void downLoadKeyFinished(const QByteArray &bytes) = 0;
 
 protected:
     MusicSongIdentifyDataList m_items;
@@ -102,6 +102,12 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override final;
 
+private Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadKeyFinished(const QByteArray &bytes) override final;
+
 };
 
 
@@ -128,6 +134,12 @@ public Q_SLOTS:
      * Download data from net finished.
      */
     virtual void downLoadFinished() override final;
+
+private Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadKeyFinished(const QByteArray &bytes) override final;
 
 };
 

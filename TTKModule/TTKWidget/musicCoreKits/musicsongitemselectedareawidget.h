@@ -113,7 +113,7 @@ public:
     /*!
      * Get selected song items.
      */
-    MusicSongList selectedSongItems() const;
+    MusicSongList selectedSongItems() const ;
 
 Q_SIGNALS:
     /*!

@@ -64,7 +64,7 @@ public:
     /*!
      * Query music datas from container.
      */
-    inline const MusicSongItemList& items() const { return m_containerItems; }
+    inline const MusicSongItemList& items() const noexcept { return m_containerItems; }
 
     /*!
      * Input imported music urls into container.

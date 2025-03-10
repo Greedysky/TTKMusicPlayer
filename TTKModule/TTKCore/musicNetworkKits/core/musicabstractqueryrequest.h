@@ -179,7 +179,7 @@ public:
     /*!
      * Get the current song container.
      */
-    inline const TTK::MusicSongInformationList& items() const { return m_items; }
+    inline const TTK::MusicSongInformationList& items() const noexcept { return m_items; }
     /*!
      * Check the current song container is empty.
      */

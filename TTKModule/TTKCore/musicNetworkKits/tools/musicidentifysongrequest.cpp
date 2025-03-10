@@ -27,28 +27,6 @@ bool MusicAbstractIdentifyRequest::queryCloudKey()
     return !m_accessKey.isEmpty() && !m_accessSecret.isEmpty();
 }
 
-void MusicAbstractIdentifyRequest::downLoadKeyFinished(const QByteArray &bytes)
-{
-    if(bytes.isEmpty())
-    {
-        TTK_ERROR_STREAM("Input byte data is empty");
-    }
-    else
-    {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(bytes, &ok);
-        if(ok)
-        {
-            const QVariantMap &value = data.toMap();
-            m_accessKey = value["key"].toString();
-            m_accessSecret = value["secret"].toString();
-        }
-    }
-
-    Q_EMIT finished();
-}
-
 
 MusicACRIdentifyRequest::MusicACRIdentifyRequest(QObject *parent)
     : MusicAbstractIdentifyRequest(parent)
@@ -154,6 +132,28 @@ void MusicACRIdentifyRequest::downLoadFinished()
     deleteAll();
 }
 
+void MusicACRIdentifyRequest::downLoadKeyFinished(const QByteArray &bytes)
+{
+    if(bytes.isEmpty())
+    {
+        TTK_ERROR_STREAM("Input byte data is empty");
+    }
+    else
+    {
+        QJson::Parser json;
+        bool ok = false;
+        const QVariant &data = json.parse(bytes, &ok);
+        if(ok)
+        {
+            const QVariantMap &value = data.toMap();
+            m_accessKey = value["key"].toString();
+            m_accessSecret = value["secret"].toString();
+        }
+    }
+
+    Q_EMIT finished();
+}
+
 
 MusicXFIdentifyRequest::MusicXFIdentifyRequest(QObject *parent)
     : MusicAbstractIdentifyRequest(parent)
@@ -174,16 +174,14 @@ void MusicXFIdentifyRequest::startToRequest(const QString &path)
     file.close();
 
     const QByteArray &timeStamp = QByteArray::number(TTKDateTime::currentTimestamp() / 1000);
-    const QByteArray &appid = TTK::Algorithm::mdII("NFpLMEZ6VmVGZkhKZ3BNOQ==", false).toUtf8();
-    const QByteArray &apikey = TTK::Algorithm::mdII("bkNJN01LOXRvVnZoNEd1WWplQlc5aWJISGFjVnVuMWtxVEhqWjRZL1A4UGJ5bWFR", false).toUtf8();
     const QByteArray &audioBody = TTK::Algorithm::mdII("VHd2bFMwaTZGNFQxeDBuU0prYXE0SDIzOVYyWlVwMWk=", false).toUtf8().toBase64();
-    const QByteArray &md5 = TTK::Algorithm::md5(apikey + timeStamp + audioBody);
+    const QByteArray &md5 = TTK::Algorithm::md5(m_accessSecret.toUtf8() + timeStamp + audioBody);
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII("cFJiZUh0Z3FxalV6NzlBcEhUVmN5VGRzMm5NZ01rbzlWaFUzRE1ubzBoTU53WlI5cEZpNnVxT3l6OEE9", false));
     request.setRawHeader("X-CurTime", timeStamp);
     request.setRawHeader("X-Param", audioBody);
-    request.setRawHeader("X-Appid", appid);
+    request.setRawHeader("X-Appid", m_accessKey.toUtf8());
     request.setRawHeader("X-CheckSum", md5);
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
@@ -232,4 +230,26 @@ void MusicXFIdentifyRequest::downLoadFinished()
 
     Q_EMIT downLoadDataChanged({});
     deleteAll();
+}
+
+void MusicXFIdentifyRequest::downLoadKeyFinished(const QByteArray &bytes)
+{
+    if(bytes.isEmpty())
+    {
+        TTK_ERROR_STREAM("Input byte data is empty");
+    }
+    else
+    {
+        QJson::Parser json;
+        bool ok = false;
+        const QVariant &data = json.parse(bytes, &ok);
+        if(ok)
+        {
+            const QVariantMap &value = data.toMap();
+            m_accessKey = value["xfid"].toString();
+            m_accessSecret = value["xfkey"].toString();
+        }
+    }
+
+    Q_EMIT finished();
 }
