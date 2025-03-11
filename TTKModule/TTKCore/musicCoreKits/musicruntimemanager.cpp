@@ -139,7 +139,7 @@ void MusicRunTimeManager::run() const
     G_NETWORK_PTR->setBlockNetwork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toBool());
 }
 
-QStringList MusicRunTimeManager::translator() const noexcept
+QStringList MusicRunTimeManager::translator() const
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt();
     return {TTK::languageCore(index), TTK::languageQmmp(index)};

@@ -30,26 +30,26 @@ public:
     /*!
      Make Song Yueku Url.
      */
-    static QString makeSongYuekuUrl();
+    static QString makeSongYuekuUrl() noexcept;
     /*!
      Make Song Recommend Url.
      */
-    static QString makeSongRecommendUrl();
+    static QString makeSongRecommendUrl() noexcept;
 
     /*!
      Make Radio Public Url.
      */
-    static QString makeRadioPublicUrl();
+    static QString makeRadioPublicUrl() noexcept;
 
     /*!
      Make Movie Url.
      */
-    static QString makeMovieRecommendUrl();
+    static QString makeMovieRecommendUrl() noexcept;
 
     /*!
      Make KuiShe Url.
      */
-    static QString makeKuiSheUrl();
+    static QString makeKuiSheUrl() noexcept;
 
 };
 
