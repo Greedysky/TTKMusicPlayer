@@ -2,7 +2,7 @@
 #include "ui_musicbackgroundpalettewidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicbackgroundconfigmanager.h"
-#include "musicextractwrapper.h"
+#include "musicextractmanager.h"
 #include "musiccolordialog.h"
 #include "musicwidgetheaders.h"
 
@@ -179,7 +179,7 @@ MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
 void MusicBackgroundPaletteWidget::updateBackground(const QString &path)
 {
     MusicBackgroundImage image;
-    if(MusicExtractWrapper::outputSkin(&image, path))
+    if(MusicExtractManager::outputSkin(&image, path))
     {
         m_ui->background->setPixmap(image.m_pix.scaled(size()));
     }

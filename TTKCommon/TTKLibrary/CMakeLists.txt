@@ -39,11 +39,11 @@ set(HEADER_FILES
   ttkconcurrentqueue.h
   ttkcryptographichash.h
   ttkdefer.h
-  ttkdesktopwrapper.h
+  ttkdesktopscreen.h
   ttkdispatchmanager.h
   ttkfileassociation.h
   ttkfileinterface.h
-  ttkglobalwrapper.h
+  ttkglobalinterface.h
   ttkitemdelegate.h
   ttklibrary.h
   ttklibraryversion.h
@@ -75,10 +75,10 @@ set(SOURCE_FILES
   ttkclickedslider.cpp
   ttkcommandline.cpp
   ttkcryptographichash.cpp
-  ttkdesktopwrapper.cpp
+  ttkdesktopscreen.cpp
   ttkdispatchmanager.cpp
   ttkfileassociation.cpp
-  ttkglobalwrapper.cpp
+  ttkglobalinterface.cpp
   ttkitemdelegate.cpp
   ttklogoutput.cpp
   ttkplatformsystem.cpp

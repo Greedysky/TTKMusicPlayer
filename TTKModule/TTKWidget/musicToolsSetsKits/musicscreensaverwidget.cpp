@@ -4,8 +4,8 @@
 #include "musicdownloadqueuerequest.h"
 #include "musicimageutils.h"
 #include "musicwidgetutils.h"
-#include "ttkdesktopwrapper.h"
-#include "ttkglobalwrapper.h"
+#include "ttkdesktopscreen.h"
+#include "ttkglobalinterface.h"
 
 #include "qsync/qsyncutils.h"
 
@@ -472,7 +472,7 @@ void MusicScreenSaverBackgroundWidget::runningTimeout()
     if(!m_isRunning)
     {
         m_isRunning = true;
-        setGeometry(TTKDesktopWrapper::screenGeometry());
+        setGeometry(TTKDesktopScreen::screenGeometry());
         setParent(nullptr);
         showFullScreen();
 

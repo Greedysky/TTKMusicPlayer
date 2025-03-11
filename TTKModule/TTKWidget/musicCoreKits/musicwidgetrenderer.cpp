@@ -1,7 +1,7 @@
 #include "musicwidgetrenderer.h"
 #include "musicbackgroundmanager.h"
 #include "musicbackgroundconfigmanager.h"
-#include "musicextractwrapper.h"
+#include "musicextractmanager.h"
 
 MusicWidgetRenderer::MusicWidgetRenderer()
     : m_background(nullptr)
@@ -17,7 +17,7 @@ void MusicWidgetRenderer::setBackgroundPixmap(const QSize &size)
     }
 
     MusicBackgroundImage image;
-    if(MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->backgroundUrl()))
+    if(MusicExtractManager::outputSkin(&image, G_BACKGROUND_PTR->backgroundUrl()))
     {
         m_background->setPixmap(image.m_pix.scaled(size));
     }

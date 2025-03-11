@@ -1,4 +1,4 @@
-#include "ttkglobalwrapper.h"
+#include "ttkglobalinterface.h"
 
 #include <QWidget>
 #include <QApplication>

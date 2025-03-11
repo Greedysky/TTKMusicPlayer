@@ -3,9 +3,9 @@
 #include "musicbackgroundmanager.h"
 #include "musicfileutils.h"
 #include "musicimageutils.h"
-#include "musicextractwrapper.h"
+#include "musicextractmanager.h"
 #include "musicbackgroundconfigmanager.h"
-#include "ttkdesktopwrapper.h"
+#include "ttkdesktopscreen.h"
 
 #include "qalgorithm/imagewrapper.h"
 
@@ -24,7 +24,7 @@ MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
     if(m_pixmap.isNull())
     {
         MusicBackgroundImage image;
-        MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->backgroundUrl());
+        MusicExtractManager::outputSkin(&image, G_BACKGROUND_PTR->backgroundUrl());
         m_pixmap = image.m_pix;
     }
 }
@@ -1039,6 +1039,6 @@ void MusicLrcPosterWidget::saveButtonClicked()
             rect.setWidth(rect.width() + ITEM_SCROLL_WIDTH);
         }
 
-        TTKDesktopWrapper::grabWidget(m_itemWidget, rect).save(path, JPG_FILE_SUFFIX);
+        TTKDesktopScreen::grabWidget(m_itemWidget, rect).save(path, JPG_FILE_SUFFIX);
     }
 }

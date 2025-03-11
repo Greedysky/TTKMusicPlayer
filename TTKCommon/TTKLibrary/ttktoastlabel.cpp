@@ -1,5 +1,5 @@
 #include "ttktoastlabel.h"
-#include "ttkdesktopwrapper.h"
+#include "ttkdesktopscreen.h"
 
 #include <QPainter>
 #include <QPropertyAnimation>
@@ -52,7 +52,7 @@ void TTKToastLabel::popup(QWidget *parent)
 {
     if(!parent)
     {
-        const QSize &windowSize = TTKDesktopWrapper::screenGeometry().size();
+        const QSize &windowSize = TTKDesktopScreen::screenGeometry().size();
         move((windowSize.width() - width()) / 2, windowSize.height() - 200);
     }
     else

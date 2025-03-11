@@ -4,8 +4,8 @@
 #include "musicconfigmodule.h"
 #include "musicprocessmanager.h"
 #include "ttkdumper.h"
-#include "ttkglobalwrapper.h"
-#include "ttkplatformsystem.h"
+#include "ttkdesktopscreen.h"
+#include "ttkglobalinterface.h"
 
 #ifdef Q_OS_UNIX
 #  include <malloc.h>
@@ -42,7 +42,7 @@ static void loadApplicationScaleFactor()
         QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #    endif
 #  elif TTK_QT_VERSION_CHECK(5,6,0)
-      const float dpi = TTKPlatformSystem::logicalDotsPerInch() / 96.0;
+      const float dpi = TTKDesktopScreen::dotsPerInch() / 96.0;
       qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
 #  endif
 #endif

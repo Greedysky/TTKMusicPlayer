@@ -2,7 +2,7 @@
 #include "musicnumberutils.h"
 #include "musicsongmeta.h"
 #include "musicformats.h"
-#include "musicextractwrapper.h"
+#include "musicextractmanager.h"
 #include "musicsettingmanager.h"
 
 #include <qmmp/trackinfo.h>

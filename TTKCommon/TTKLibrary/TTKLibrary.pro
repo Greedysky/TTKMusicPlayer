@@ -79,11 +79,11 @@ HEADERS += \
     $$PWD/ttkconcurrentqueue.h \
     $$PWD/ttkcryptographichash.h \
     $$PWD/ttkdefer.h \
-    $$PWD/ttkdesktopwrapper.h \
+    $$PWD/ttkdesktopscreen.h \
     $$PWD/ttkdispatchmanager.h \
     $$PWD/ttkfileassociation.h \
     $$PWD/ttkfileinterface.h \
-    $$PWD/ttkglobalwrapper.h \
+    $$PWD/ttkglobalinterface.h \
     $$PWD/ttkitemdelegate.h \
     $$PWD/ttklibrary.h \
     $$PWD/ttklibraryversion.h \
@@ -114,10 +114,10 @@ SOURCES += \
     $$PWD/ttkclickedslider.cpp \
     $$PWD/ttkcommandline.cpp \
     $$PWD/ttkcryptographichash.cpp \
-    $$PWD/ttkdesktopwrapper.cpp \
+    $$PWD/ttkdesktopscreen.cpp \
     $$PWD/ttkdispatchmanager.cpp \
     $$PWD/ttkfileassociation.cpp \
-    $$PWD/ttkglobalwrapper.cpp \
+    $$PWD/ttkglobalinterface.cpp \
     $$PWD/ttkitemdelegate.cpp \
     $$PWD/ttklogoutput.cpp \
     $$PWD/ttkplatformsystem.cpp \

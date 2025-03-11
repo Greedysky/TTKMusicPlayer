@@ -1,5 +1,5 @@
-#ifndef TTKDESKTOPWRAPPER_H
-#define TTKDESKTOPWRAPPER_H
+#ifndef TTKDESKTOPSCREEN_H
+#define TTKDESKTOPSCREEN_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -27,10 +27,10 @@ namespace TTK
 enum class Direction;
 }
 
-/*! @brief The class of the desktop screen wrapper.
+/*! @brief The class of the desktop screen.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT TTKDesktopWrapper
+class TTK_MODULE_EXPORT TTKDesktopScreen
 {
 public:
     struct TaskbarInfo
@@ -67,6 +67,19 @@ public:
      */
     static QPixmap grabWindow(int x = 0, int y = 0, int w = -1, int h = -1);
 
+    /*!
+     * Get local DPI x.
+     */
+    static int dotsPerInchX();
+    /*!
+     * Get local DPI y.
+     */
+    static int dotsPerInchY();
+    /*!
+     * Get local DPI.
+     */
+    static int dotsPerInch();
+
 };
 
-#endif // TTKDESKTOPWRAPPER_H
+#endif // TTKDESKTOPSCREEN_H

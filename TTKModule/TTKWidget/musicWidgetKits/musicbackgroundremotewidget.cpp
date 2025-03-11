@@ -3,7 +3,7 @@
 #include "musicdownloadbingskinrequest.h"
 #include "musicdownloadthunderskinrequest.h"
 #include "musicdownloadbirdskinrequest.h"
-#include "musicextractwrapper.h"
+#include "musicextractmanager.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
 
@@ -220,7 +220,7 @@ void MusicBackgroundOnlineWidget::outputRemoteSkin(MusicBackgroundImage &image, 
         MusicSkinRemoteItem &item = items[index];
         image.m_item.m_name = item.m_name;
         image.m_item.m_useCount = item.m_useCount;
-        MusicExtractWrapper::outputThunderSkin(image.m_pix, data);
+        MusicExtractManager::outputThunderSkin(image.m_pix, data);
     }
 }
 

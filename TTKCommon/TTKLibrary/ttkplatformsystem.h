@@ -58,19 +58,6 @@ public:
     };
 
     /*!
-     * Get local DPI x.
-     */
-    static int logicalDotsPerInchX();
-    /*!
-     * Get local DPI y.
-     */
-    static int logicalDotsPerInchY();
-    /*!
-     * Get local DPI.
-     */
-    static int logicalDotsPerInch();
-
-    /*!
      * Get system name.
      */
     static System systemName();

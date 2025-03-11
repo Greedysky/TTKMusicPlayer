@@ -24,7 +24,7 @@
 #include "ttklibrary.h"
 #include "ttklogoutput.h"
 #include "ttkconcurrent.h"
-#include "ttkdesktopwrapper.h"
+#include "ttkdesktopscreen.h"
 #include "ttkfileassociation.h"
 #include "ttkplatformsystem.h"
 
@@ -96,7 +96,7 @@ void MusicApplicationModule::cleanup()
     {
         m_direction = TTK::Direction::No;
         MusicApplication *w = MusicApplication::instance();
-        const QRect &rect = TTKDesktopWrapper::screenGeometry();
+        const QRect &rect = TTKDesktopScreen::screenGeometry();
         w->move((rect.width() - w->width()) / 2, w->y());
     }
 }
@@ -182,8 +182,8 @@ void MusicApplicationModule::sideAnimationByOn()
 #elif defined Q_OS_UNIX
     const int gap = TTKPlatformSystem::systemName() == TTKPlatformSystem::System::LinuxUbuntu ? 3 : 2;
 #endif
-    const QRect &rect = TTKDesktopWrapper::screenGeometry();
-    const TTK::Direction direction = TTKDesktopWrapper::screenTaskbar().m_direction;
+    const QRect &rect = TTKDesktopScreen::screenGeometry();
+    const TTK::Direction direction = TTKDesktopScreen::screenTaskbar().m_direction;
 
     if(direction != TTK::Direction::Left && -MARGIN_SIDE <= lpx && lpx <= MARGIN_SIDE)
     {
@@ -231,7 +231,7 @@ void MusicApplicationModule::sideAnimationByOff()
     }
 
     MusicApplication *w = MusicApplication::instance();
-    const QRect &rect = TTKDesktopWrapper::screenGeometry();
+    const QRect &rect = TTKDesktopScreen::screenGeometry();
 
     switch(m_direction)
     {
@@ -408,7 +408,7 @@ void MusicApplicationModule::resetWindowGeometry()
 {
     m_direction = TTK::Direction::No;
 
-    const QRect &rect = TTKDesktopWrapper::screenGeometry();
+    const QRect &rect = TTKDesktopScreen::screenGeometry();
     G_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, rect.size());
     G_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
 

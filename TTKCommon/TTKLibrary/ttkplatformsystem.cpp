@@ -3,73 +3,9 @@
 #ifdef Q_OS_WIN
 #  define WIN32_LEAN_AND_MEAN
 #  include <qt_windows.h>
-#  include <QScreen>
-#  include <QApplication>
-#elif defined Q_OS_UNIX
-#  include <X11/Xlib.h>
 #endif
-#include <QSize>
 #include <QFile>
 #include <QRegExp>
-
-static constexpr int DEFAULT_DPI = 96;
-
-static QSize generateDPIValue()
-{
-    const QSize defaultSize(DEFAULT_DPI, DEFAULT_DPI);
-#ifdef Q_OS_WIN
-#  if TTK_QT_VERSION_CHECK(5,0,0)
-    if(!qApp)
-    {
-        int count = 0;
-        QApplication(count, nullptr);
-    }
-
-    QScreen *screen = QApplication::primaryScreen();
-    if(!screen)
-    {
-        return defaultSize;
-    }
-
-    const double x = screen->logicalDotsPerInchX();
-    const double y = screen->logicalDotsPerInchY();
-
-    return QSize(x, y);
-#  endif
-#elif defined Q_OS_UNIX
-    Display *dp = XOpenDisplay(nullptr);
-    if(!dp)
-    {
-        return defaultSize;
-    }
-
-    const int screen = 0; /* Screen number */
-    const double x = (DisplayWidth(dp, screen) * 25.4) / DisplayWidthMM(dp, screen);
-    const double y = (DisplayHeight(dp, screen) * 25.4) / DisplayHeightMM(dp, screen);
-
-    XCloseDisplay(dp);
-    return QSize(x + 0.5, y + 0.5);
-#endif
-    return defaultSize;
-}
-
-int TTKPlatformSystem::logicalDotsPerInchX()
-{
-    const QSize dpi(generateDPIValue());
-    return dpi.width();
-}
-
-int TTKPlatformSystem::logicalDotsPerInchY()
-{
-    const QSize dpi(generateDPIValue());
-    return dpi.height();
-}
-
-int TTKPlatformSystem::logicalDotsPerInch()
-{
-    const QSize dpi(generateDPIValue());
-    return (dpi.width() + dpi.height()) / 2;
-}
 
 TTKPlatformSystem::System TTKPlatformSystem::systemName()
 {

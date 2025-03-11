@@ -1,10 +1,10 @@
 #include "musicprogresswidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicbackgroundconfigmanager.h"
-#include "musicextractwrapper.h"
+#include "musicextractmanager.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
-#include "ttkglobalwrapper.h"
+#include "ttkglobalinterface.h"
 
 MusicProgressWidget::MusicProgressWidget(QWidget *parent)
     : QProgressDialog(parent)
@@ -79,7 +79,7 @@ void MusicProgressWidget::paintEvent(QPaintEvent *event)
 void MusicProgressWidget::show()
 {
     MusicBackgroundImage image;
-    if(MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->backgroundUrl()))
+    if(MusicExtractManager::outputSkin(&image, G_BACKGROUND_PTR->backgroundUrl()))
     {
         m_background->setPixmap(image.m_pix.scaled(size()));
     }

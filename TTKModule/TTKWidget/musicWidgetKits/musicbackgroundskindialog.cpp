@@ -8,7 +8,7 @@
 #include "musicapplicationmodule.h"
 #include "musicfileutils.h"
 #include "musicsettingmanager.h"
-#include "musicextractwrapper.h"
+#include "musicextractmanager.h"
 
 static constexpr int CURRENT_ITEMS_COUNT = 58;
 
@@ -91,7 +91,7 @@ QPixmap MusicBackgroundSkinDialog::setBackgroundUrl(QString &name)
     G_BACKGROUND_PTR->setBackgroundUrl(path);
 
     MusicBackgroundImage image;
-    return MusicExtractWrapper::outputSkin(&image, path) ? image.m_pix : QPixmap();
+    return MusicExtractManager::outputSkin(&image, path) ? image.m_pix : QPixmap();
 }
 
 bool MusicBackgroundSkinDialog::isValid(QString &name, QString &path)
@@ -318,7 +318,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidge
         const int index = cpoyFileToLocalIndex();
         const QString &theme = QString("theme-%1").arg(index + 1);
         const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL, theme, TKM_FILE);
-        MusicExtractWrapper::inputSkin(&image, des);
+        MusicExtractManager::inputSkin(&image, des);
 
         m_stackBackgroundList->addCellItem(theme, des, true);
         listWidgetItemClicked(m_stackBackgroundList, theme);
@@ -413,5 +413,5 @@ int MusicBackgroundSkinDialog::cpoyFileToLocal(const QString &path)
     const QString &des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(index + 1).arg(TKM_FILE);
     MusicBackgroundImage image;
     image.m_pix = QPixmap(path);
-    return MusicExtractWrapper::inputSkin(&image, des) ? index : -1;
+    return MusicExtractManager::inputSkin(&image, des) ? index : -1;
 }

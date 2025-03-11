@@ -1,4 +1,4 @@
-#include "musicextractwrapper.h"
+#include "musicextractmanager.h"
 #include "musicbackgroundconfigmanager.h"
 #include "musicimageutils.h"
 
@@ -15,7 +15,7 @@
 #define FILE_ATTRIBUTE_ARCHIVE 0x00000020
 #endif
 
-bool MusicExtractWrapper::outputThunderSkin(QPixmap &image, const QString &input)
+bool MusicExtractManager::outputThunderSkin(QPixmap &image, const QString &input)
 {
     const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
@@ -75,7 +75,7 @@ bool MusicExtractWrapper::outputThunderSkin(QPixmap &image, const QString &input
     return true;
 }
 
-bool MusicExtractWrapper::outputBinary(const QString &input, const QString &output, QStringList &path)
+bool MusicExtractManager::outputBinary(const QString &input, const QString &output, QStringList &path)
 {
     const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
@@ -146,7 +146,7 @@ bool MusicExtractWrapper::outputBinary(const QString &input, const QString &outp
     return true;
 }
 
-bool MusicExtractWrapper::outputSkin(MusicBackgroundImage *image, const QString &input)
+bool MusicExtractManager::outputSkin(MusicBackgroundImage *image, const QString &input)
 {
     const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
@@ -229,7 +229,7 @@ bool MusicExtractWrapper::outputSkin(MusicBackgroundImage *image, const QString 
     return true;
 }
 
-bool MusicExtractWrapper::inputSkin(MusicBackgroundImage *image, const QString &output)
+bool MusicExtractManager::inputSkin(MusicBackgroundImage *image, const QString &output)
 {
     const zipFile &zFile = zipOpen64(qPrintable(output), 0);
     if(!zFile)
@@ -263,7 +263,7 @@ bool MusicExtractWrapper::inputSkin(MusicBackgroundImage *image, const QString &
     return true;
 }
 
-bool MusicExtractWrapper::outputData(QByteArray &data, const QString &input)
+bool MusicExtractManager::outputData(QByteArray &data, const QString &input)
 {
     const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
@@ -317,7 +317,7 @@ bool MusicExtractWrapper::outputData(QByteArray &data, const QString &input)
     return true;
 }
 
-bool MusicExtractWrapper::inputData(const QByteArray &data, const QString &output)
+bool MusicExtractManager::inputData(const QByteArray &data, const QString &output)
 {
     if(data.isEmpty())
     {

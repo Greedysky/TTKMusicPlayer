@@ -43,12 +43,12 @@ win32{
             $$PWD/TTKLibrary/ttkconcurrent.h \
             $$PWD/TTKLibrary/ttkconcurrentqueue.h \
             $$PWD/TTKLibrary/ttkcryptographichash.h \
-            $$PWD/TTKLibrary/ttkdesktopwrapper.h \
+            $$PWD/TTKLibrary/ttkdesktopscreen.h \
             $$PWD/TTKLibrary/ttkdefer.h \
             $$PWD/TTKLibrary/ttkdispatchmanager.h \
             $$PWD/TTKLibrary/ttkfileassociation.h \
             $$PWD/TTKLibrary/ttkfileinterface.h \
-            $$PWD/TTKLibrary/ttkglobalwrapper.h \
+            $$PWD/TTKLibrary/ttkglobalinterface.h \
             $$PWD/TTKLibrary/ttkitemdelegate.h \
             $$PWD/TTKLibrary/ttklibrary.h \
             $$PWD/TTKLibrary/ttklibraryversion.h \

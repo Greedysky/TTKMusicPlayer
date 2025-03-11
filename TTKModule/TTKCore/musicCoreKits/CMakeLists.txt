@@ -36,7 +36,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_KITS_HEADER_FILES
   ${TTK_CORE_DIR}/musicsongmeta.h
   ${TTK_CORE_DIR}/musiccategoryconfigmanager.h
   ${TTK_CORE_DIR}/musicplaylistmanager.h
-  ${TTK_CORE_DIR}/musicextractwrapper.h
+  ${TTK_CORE_DIR}/musicextractmanager.h
   ${TTK_CORE_DIR}/musicruntimemanager.h
   ${TTK_CORE_DIR}/musicdispatchmanager.h
   ${TTK_CORE_DIR}/musicbackgroundconfigmanager.h
@@ -59,7 +59,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_KITS_SOURCE_FILES
   ${TTK_CORE_DIR}/musicsongmeta.cpp
   ${TTK_CORE_DIR}/musiccategoryconfigmanager.cpp
   ${TTK_CORE_DIR}/musicplaylistmanager.cpp
-  ${TTK_CORE_DIR}/musicextractwrapper.cpp
+  ${TTK_CORE_DIR}/musicextractmanager.cpp
   ${TTK_CORE_DIR}/musicruntimemanager.cpp
   ${TTK_CORE_DIR}/musicbackgroundconfigmanager.cpp
   ${TTK_CORE_DIR}/musicimagerenderer.cpp
