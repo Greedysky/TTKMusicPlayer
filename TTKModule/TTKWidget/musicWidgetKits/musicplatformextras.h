@@ -51,7 +51,7 @@ public:
     /*!
      * Get blur behind window state.
      */
-    inline bool isDisableBlurBehindWindow() const { return m_disableBlurBehindWindow; }
+    inline bool isDisableBlurBehindWindow() const noexcept { return m_disableBlurBehindWindow; }
 
 private:
     bool m_disableBlurBehindWindow;

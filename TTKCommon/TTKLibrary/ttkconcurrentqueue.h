@@ -34,7 +34,7 @@ public:
     /*!
      * Object constructor.
      */
-    TTKConcurrentQueue()
+    TTKConcurrentQueue() noexcept
         : m_queue(),
           m_mutex(),
           m_condition()
@@ -128,7 +128,7 @@ private:
     /*!
      * Object destructor.
      */
-    ~TTKConcurrentQueue()
+    ~TTKConcurrentQueue() noexcept
     {
         delete[] m_buffer;
     }
@@ -163,7 +163,7 @@ private:
     /*!
      * Get container data capacity size.
      */
-    inline size_t capacity() const
+    inline size_t capacity() const noexcept
     {
         return m_capacity;
     }

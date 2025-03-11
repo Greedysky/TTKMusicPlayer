@@ -7,7 +7,7 @@
 class QHttpRequestPrivate : public TTKPrivate<QHttpRequest>
 {
 public:
-    QHttpRequestPrivate();
+    QHttpRequestPrivate() noexcept;
 
     QHttpConnection *m_connection;
     HeaderHash m_headers;
@@ -21,7 +21,7 @@ public:
 
 };
 
-QHttpRequestPrivate::QHttpRequestPrivate()
+QHttpRequestPrivate::QHttpRequestPrivate() noexcept
     : m_connection(nullptr),
       m_url("http://localhost/"),
       m_success(false)

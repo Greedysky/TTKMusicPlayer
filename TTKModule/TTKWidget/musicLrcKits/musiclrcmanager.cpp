@@ -3,13 +3,13 @@
 
 #include <QFontDatabase>
 
-MusicLrcColor::MusicLrcColor()
+MusicLrcColor::MusicLrcColor() noexcept
     : m_index(Color::Null)
 {
 
 }
 
-MusicLrcColor::MusicLrcColor(const QList<QColor> &front, const QList<QColor> &back, Color index)
+MusicLrcColor::MusicLrcColor(const QList<QColor> &front, const QList<QColor> &back, Color index) noexcept
     : m_frontColor(front),
       m_backColor(back),
       m_index(index)
@@ -244,33 +244,33 @@ void MusicLrcManager::setLinearGradientColor(const MusicLrcColor &color)
     update();
 }
 
-void MusicLrcManager::setSelfPosition(int x, int y)
+void MusicLrcManager::setSelfPosition(int x, int y) noexcept
 {
     m_position = QPoint(x, y);
     m_lrcPerWidth = x;
 }
 
-void MusicLrcManager::setSelfPosition(const QPoint &point)
+void MusicLrcManager::setSelfPosition(const QPoint &point) noexcept
 {
     m_position = point;
 }
 
-int MusicLrcManager::x() const
+int MusicLrcManager::x() const noexcept
 {
     return m_position.x();
 }
 
-int MusicLrcManager::y() const
+int MusicLrcManager::y() const noexcept
 {
     return m_position.y();
 }
 
-void MusicLrcManager::setX(int x)
+void MusicLrcManager::setX(int x) noexcept
 {
     m_position.setX(x);
 }
 
-void MusicLrcManager::setY(int y)
+void MusicLrcManager::setY(int y) noexcept
 {
     m_position.setY(y);
 }

@@ -13,11 +13,6 @@ MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
 
 }
 
-MusicLrcAnalysis::~MusicLrcAnalysis()
-{
-
-}
-
 MusicLrcAnalysis::State MusicLrcAnalysis::setData(const QByteArray &data)
 {
     clear();
@@ -404,24 +399,24 @@ void MusicLrcAnalysis::saveData()
     file.close();
 }
 
-void MusicLrcAnalysis::clear()
+void MusicLrcAnalysis::clear() noexcept
 {
     m_currentLrcIndex = 0;
     m_lrcContainer.clear();
     m_currentShowLrcContainer.clear();
 }
 
-bool MusicLrcAnalysis::isValid() const
+bool MusicLrcAnalysis::isValid() const noexcept
 {
     return (!isEmpty()) && (m_currentLrcIndex + m_lineMax <= m_currentShowLrcContainer.count());
 }
 
-bool MusicLrcAnalysis::isEmpty() const
+bool MusicLrcAnalysis::isEmpty() const noexcept
 {
     return m_lrcContainer.isEmpty();
 }
 
-int MusicLrcAnalysis::count() const
+int MusicLrcAnalysis::count() const noexcept
 {
     return m_lrcContainer.count();
 }

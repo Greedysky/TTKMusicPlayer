@@ -82,15 +82,15 @@ public:
     /*!
      * Set lrc display expand option.
      */
-    inline void setLrcDisplayExpand(bool expand) { m_lrcDisplayAll = expand; }
+    inline void setLrcDisplayExpand(bool expand) noexcept { m_lrcDisplayAll = expand; }
     /*!
      * Get lrc display expand option.
      */
-    inline bool lrcDisplayExpand() const { return m_lrcDisplayAll; }
+    inline bool lrcDisplayExpand() const noexcept { return m_lrcDisplayAll; }
     /*!
      * Get state of background is artist shown.
      */
-    inline bool isShowArtistBackground() const { return m_showArtistBackground; }
+    inline bool isShowArtistBackground() const noexcept { return m_showArtistBackground; }
 
     /*!
      * Set current lrc size.
@@ -99,7 +99,7 @@ public:
     /*!
      * Get current lrc size.
      */
-    int lrcSize() const;
+    int lrcSize() const noexcept;
     /*!
      * Resize window bound by resize called.
      */

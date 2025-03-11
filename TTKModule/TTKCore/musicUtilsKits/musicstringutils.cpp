@@ -102,7 +102,7 @@ bool TTK::String::isChinese(const QChar &c)
 #endif
 }
 
-bool TTK::String::isNetworkUrl(const QString &path)
+bool TTK::String::isNetworkUrl(const QString &path) noexcept
 {
     return path.startsWith(HTTP_PROTOCOL) || path.startsWith(HTTPS_PROTOCOL);
 }

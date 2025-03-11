@@ -14,7 +14,7 @@ QHash<int, QString> STATUS_CODES;
 class QHttpServerPrivate : public TTKPrivate<QHttpServer>
 {
 public:
-    QHttpServerPrivate();
+    QHttpServerPrivate() noexcept;
 
     bool listen(const QHostAddress &address, quint16 port);
     void create();
@@ -25,7 +25,7 @@ public:
 
 };
 
-QHttpServerPrivate::QHttpServerPrivate()
+QHttpServerPrivate::QHttpServerPrivate() noexcept
     : m_tcpServer(nullptr)
 {
 

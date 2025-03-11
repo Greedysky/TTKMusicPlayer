@@ -215,7 +215,7 @@ MusicFunctionToolBoxWidgetItem::~MusicFunctionToolBoxWidgetItem()
     delete m_layout;
 }
 
-QWidget *MusicFunctionToolBoxWidgetItem::item() const
+QWidget *MusicFunctionToolBoxWidgetItem::item() const noexcept
 {
     return m_item;
 }
@@ -395,12 +395,12 @@ void MusicFunctionToolBoxWidget::resizeScrollIndex(int index) const
     }
 }
 
-int MusicFunctionToolBoxWidget::currentIndex() const
+int MusicFunctionToolBoxWidget::currentIndex() const noexcept
 {
     return m_currentIndex;
 }
 
-int MusicFunctionToolBoxWidget::count() const
+int MusicFunctionToolBoxWidget::count() const noexcept
 {
     return m_itemList.count();
 }

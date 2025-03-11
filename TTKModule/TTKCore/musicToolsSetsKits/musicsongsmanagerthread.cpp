@@ -8,12 +8,12 @@ MusicSongsManagerThread::MusicSongsManagerThread(QObject *parent)
 
 }
 
-void MusicSongsManagerThread::setFindFilePath(const QString &path)
+void MusicSongsManagerThread::setFindFilePath(const QString &path) noexcept
 {
     setFindFilePath(QStringList(path));
 }
 
-void MusicSongsManagerThread::setFindFilePath(const QStringList &path)
+void MusicSongsManagerThread::setFindFilePath(const QStringList &path) noexcept
 {
     m_path = path;
 }

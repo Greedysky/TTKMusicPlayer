@@ -42,15 +42,15 @@ public:
     /*!
      * Get note data.
      */
-    QString note() const;
+    QString note() const noexcept;
     /*!
      * Get content data.
      */
-    QString content() const;
+    QString content() const noexcept;
     /*!
      * Get image data.
      */
-    QString image() const;
+    QString image() const noexcept;
 
 public Q_SLOTS:
     /*!

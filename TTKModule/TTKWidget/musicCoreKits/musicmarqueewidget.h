@@ -38,7 +38,7 @@ public:
     /*!
      * Set effect on resize.
      */
-    inline void setEffectOnResize(bool on) { m_effectOnResize = on; }
+    inline void setEffectOnResize(bool on) noexcept { m_effectOnResize = on; }
     /*!
      * Set marquee text.
      */
@@ -46,7 +46,7 @@ public:
     /*!
      * Get marquee text.
      */
-    inline QString text() const { return m_text.trimmed(); }
+    inline QString text() const noexcept { return m_text.trimmed(); }
     /*!
      * Override size hint.
      */

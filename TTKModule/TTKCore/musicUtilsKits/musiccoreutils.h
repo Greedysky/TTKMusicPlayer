@@ -41,15 +41,15 @@ namespace TTK
         /*!
          * Reset break point.
          */
-        TTK_MODULE_EXPORT void resetBreakPoint();
+        TTK_MODULE_EXPORT void resetBreakPoint() noexcept;
         /*!
          * Enable break point.
          */
-        TTK_MODULE_EXPORT void enableBreakPoint(bool enable);
+        TTK_MODULE_EXPORT void enableBreakPoint(bool enable) noexcept;
         /*!
          * Break point enabled or not.
          */
-        TTK_MODULE_EXPORT bool isBreakPointEnabled();
+        TTK_MODULE_EXPORT bool isBreakPointEnabled() noexcept;
 
     }
 }

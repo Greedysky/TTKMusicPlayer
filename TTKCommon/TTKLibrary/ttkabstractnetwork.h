@@ -64,11 +64,11 @@ public:
     /*!
      * Set the current raw data.
      */
-    inline void setHeader(const QString &key, const QVariant &value) { m_rawData[key] = value; }
+    inline void setHeader(const QString &key, const QVariant &value) noexcept { m_rawData[key] = value; }
     /*!
      * Get the current raw data.
      */
-    inline const QVariant header(const QString &key) const { return m_rawData[key]; }
+    inline const QVariant header(const QString &key) const noexcept { return m_rawData[key]; }
 
 Q_SIGNALS:
     /*!
@@ -120,11 +120,11 @@ namespace TTK
     /*!
      * Make request User-Agent header.
      */
-    TTK_MODULE_EXPORT void makeUserAgentHeader(QNetworkRequest *request, const QByteArray &data = {});
+    TTK_MODULE_EXPORT void makeUserAgentHeader(QNetworkRequest *request, const QByteArray &data = {}) noexcept;
     /*!
      * Make request Content-Type header.
      */
-    TTK_MODULE_EXPORT void makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data = {});
+    TTK_MODULE_EXPORT void makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data = {}) noexcept;
 
     /*!
      * Fetch download file size by url.
@@ -133,7 +133,7 @@ namespace TTK
     /*!
      * Set request ssl configuration.
      */
-    TTK_MODULE_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone);
+    TTK_MODULE_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone) noexcept;
 
     /*!
      * Sync network query for get.

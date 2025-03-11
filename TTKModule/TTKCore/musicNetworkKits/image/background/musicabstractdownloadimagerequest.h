@@ -48,11 +48,11 @@ public:
     /*!
      * Set the remain count.
      */
-    inline void setRemainCount(int count) { m_remainCount = count; }
+    inline void setRemainCount(int count) noexcept { m_remainCount = count; }
     /*!
      * get the found count.
      */
-    inline int foundCount() { return MAX_IMAGE_COUNT - m_remainCount + m_counter++; }
+    inline int foundCount() noexcept { return MAX_IMAGE_COUNT - m_remainCount + m_counter++; }
 
 public Q_SLOTS:
     /*!

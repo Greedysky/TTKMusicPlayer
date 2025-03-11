@@ -10,7 +10,7 @@
 #endif
 
 static bool __BreakPoint__ = false;
-static bool versionCheck(const QStringList &ol, const QStringList &dl, int depth)
+static bool versionCheck(const QStringList &ol, const QStringList &dl, int depth) noexcept
 {
     if(depth >= ol.count())
     {
@@ -56,17 +56,17 @@ bool TTK::Core::appVersionCheck(const QString &o, const QString &d)
     return versionCheck(ol, dl, 0);
 }
 
-void TTK::Core::resetBreakPoint()
+void TTK::Core::resetBreakPoint() noexcept
 {
     __BreakPoint__ = false;
 }
 
-void TTK::Core::enableBreakPoint(bool enable)
+void TTK::Core::enableBreakPoint(bool enable) noexcept
 {
     __BreakPoint__ = enable;
 }
 
-bool TTK::Core::isBreakPointEnabled()
+bool TTK::Core::isBreakPointEnabled() noexcept
 {
     return __BreakPoint__;
 }

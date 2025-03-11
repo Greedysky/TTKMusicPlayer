@@ -57,7 +57,7 @@ protected:
     /*!
      * Get current random simulation.
      */
-    QString randSimulation() const;
+    QString randSimulation() const noexcept;
 
     QActionGroup *m_actionGroup;
 

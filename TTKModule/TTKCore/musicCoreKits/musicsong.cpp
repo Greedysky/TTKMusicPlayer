@@ -22,13 +22,13 @@ MusicSong::MusicSong() noexcept
 
 }
 
-MusicSong::MusicSong(const QString &path, bool track) noexcept
+MusicSong::MusicSong(const QString &path, bool track)
     : MusicSong(path, {}, {}, track)
 {
 
 }
 
-MusicSong::MusicSong(const QString &path, const QString &duration, const QString &name, bool track) noexcept
+MusicSong::MusicSong(const QString &path, const QString &duration, const QString &name, bool track)
     : MusicSong()
 {
     m_path = path;
@@ -92,7 +92,7 @@ bool MusicSong::operator> (const MusicSong &other) const noexcept
 }
 
 
-bool TTK::playlistRowValid(int index)
+bool TTK::playlistRowValid(int index) noexcept
 {
     return index != MUSIC_LOVEST_LIST && index != MUSIC_NETWORK_LIST && index != MUSIC_RECENT_LIST;
 }
@@ -102,7 +102,7 @@ QString TTK::trackRelatedPath(const QString &path)
     return MusicFormats::isTrack(path) ? TrackInfo::pathFromUrl(path) : path;
 }
 
-QString TTK::generateSongName(const QString &title, const QString &artist)
+QString TTK::generateSongName(const QString &title, const QString &artist) noexcept
 {
     return (title.isEmpty() || artist.isEmpty()) ? artist + title : artist + " - " + title;
 }

@@ -2,7 +2,7 @@
 
 #include <QStringList>
 
-TTKXmlHelper::TTKXmlHelper(const QDomNode &root)
+TTKXmlHelper::TTKXmlHelper(const QDomNode &root) noexcept
     : m_root(root),
       m_current(root)
 {
@@ -59,12 +59,12 @@ bool TTKXmlHelper::hasNext()
     return hasNext;
 }
 
-QDomNode TTKXmlHelper::next() const
+QDomNode TTKXmlHelper::next() const noexcept
 {
     return m_current;
 }
 
-QString TTKXmlHelper::nodeName(const QString &name) const
+QString TTKXmlHelper::nodeName(const QString &name) const noexcept
 {
     for(const QString &value : qAsConst(m_nodeNames))
     {

@@ -110,7 +110,7 @@ public:
     /*!
      * Get current play mode.
      */
-    TTK::PlayMode playMode() const;
+    TTK::PlayMode playMode() const noexcept;
 
 public Q_SLOTS:
     /*!

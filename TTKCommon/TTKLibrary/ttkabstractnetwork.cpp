@@ -71,12 +71,12 @@ void TTKAbstractNetwork::sslErrorsString(QNetworkReply *reply, const QList<QSslE
 
 
 
-void TTK::makeUserAgentHeader(QNetworkRequest *request, const QByteArray &data)
+void TTK::makeUserAgentHeader(QNetworkRequest *request, const QByteArray &data) noexcept
 {
     request->setRawHeader("User-Agent", data.isEmpty() ? "Mozilla/5.0 (X11; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0" : data);
 }
 
-void TTK::makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data)
+void TTK::makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data) noexcept
 {
     request->setRawHeader("Content-Type", data.isEmpty() ? "application/x-www-form-urlencoded" : data);
 }
@@ -114,7 +114,7 @@ qint64 TTK::fetchFileSizeByUrl(const QString &url)
     return size;
 }
 
-void TTK::setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode)
+void TTK::setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode) noexcept
 {
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request->sslConfiguration();

@@ -32,13 +32,13 @@ public:
     /*!
      * Object constructor.
      */
-    _ScopeGuard(Function &&f)
+    _ScopeGuard(Function &&f) noexcept
         : m_fun(std::forward<Function>(f))
     {
 
     }
 
-    _ScopeGuard(_ScopeGuard &&rhs)
+    _ScopeGuard(_ScopeGuard &&rhs) noexcept
         : m_fun(std::move(rhs.m_fun))
     {
 
@@ -47,7 +47,7 @@ public:
     /*!
      * Object destructor.
      */
-    ~_ScopeGuard()
+    ~_ScopeGuard() noexcept
     {
         if(m_fun)
         {

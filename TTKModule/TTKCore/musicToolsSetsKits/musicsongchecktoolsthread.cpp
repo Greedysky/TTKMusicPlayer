@@ -9,7 +9,7 @@ MusicSongCheckToolsRenameThread::MusicSongCheckToolsRenameThread(QObject *parent
 
 }
 
-void MusicSongCheckToolsRenameThread::setRenameSongs(MusicSongList *songs)
+void MusicSongCheckToolsRenameThread::setRenameSongs(MusicSongList *songs) noexcept
 {
     m_songItems = songs;
 }
@@ -68,7 +68,7 @@ MusicSongCheckToolsDuplicateThread::MusicSongCheckToolsDuplicateThread(QObject *
     m_songItems = nullptr;
 }
 
-void MusicSongCheckToolsDuplicateThread::setDuplicateSongs(MusicSongList *songs)
+void MusicSongCheckToolsDuplicateThread::setDuplicateSongs(MusicSongList *songs) noexcept
 {
     m_songItems = songs;
 }
@@ -123,7 +123,7 @@ MusicSongCheckToolsQualityThread::MusicSongCheckToolsQualityThread(QObject *pare
     m_songItems = nullptr;
 }
 
-void MusicSongCheckToolsQualityThread::setQualitySongs(MusicSongList *songs)
+void MusicSongCheckToolsQualityThread::setQualitySongs(MusicSongList *songs) noexcept
 {
     m_songItems = songs;
 }

@@ -7,19 +7,19 @@
 class TTKCoreApplicationPrivate : public TTKPrivate<TTKCoreApplication>
 {
 public:
-    TTKCoreApplicationPrivate();
-    ~TTKCoreApplicationPrivate();
+    TTKCoreApplicationPrivate() noexcept;
+    ~TTKCoreApplicationPrivate() noexcept;
 
     TTKLocalPeer *m_peer;
 };
 
-TTKCoreApplicationPrivate::TTKCoreApplicationPrivate()
+TTKCoreApplicationPrivate::TTKCoreApplicationPrivate() noexcept
     : m_peer(nullptr)
 {
 
 }
 
-TTKCoreApplicationPrivate::~TTKCoreApplicationPrivate()
+TTKCoreApplicationPrivate::~TTKCoreApplicationPrivate() noexcept
 {
     delete m_peer;
 }
@@ -46,7 +46,7 @@ bool TTKCoreApplication::isRunning() const
     return d->m_peer->isClient();
 }
 
-QString TTKCoreApplication::id() const
+QString TTKCoreApplication::id() const noexcept
 {
     TTK_D(TTKCoreApplication);
     return d->m_peer->applicationId();

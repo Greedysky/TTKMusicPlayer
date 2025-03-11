@@ -13,7 +13,7 @@ MusicHlPalette::MusicHlPalette(QWidget *parent)
     setMinimumSize(QSize(360, 120));
 }
 
-QColor MusicHlPalette::color() const
+QColor MusicHlPalette::color() const noexcept
 {
     return m_color;
 }
@@ -146,7 +146,7 @@ MusicHlSaturationPalette::MusicHlSaturationPalette(QWidget *parent)
     setMaximumHeight(24);
 }
 
-double MusicHlSaturationPalette::saturation() const
+double MusicHlSaturationPalette::saturation() const noexcept
 {
     return m_dblSaturation;
 }
@@ -309,7 +309,7 @@ QColor MusicColorDialog::popup(QWidget *parent, const QColor &color)
     return dialog.exec() ? dialog.color() : QColor();
 }
 
-QColor MusicColorDialog::color() const
+QColor MusicColorDialog::color() const noexcept
 {
     return m_color;
 }

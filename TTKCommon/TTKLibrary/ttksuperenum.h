@@ -39,11 +39,11 @@ public:
     /*!
      * Map key int to string.
      */
-    QString keyToString(int value) const;
+    QString keyToString(int value) const noexcept;
     /*!
      * Map key string to int.
      */
-    int stringToKey(const QString &name) const;
+    int stringToKey(const QString &name) const noexcept;
 
 private:
     std::unordered_map<int, QString> m_enumValue;

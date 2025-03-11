@@ -37,42 +37,42 @@ public:
     /*!
      * Get current artist name.
      */
-    QString artistName() const;
+    QString artistName() const noexcept;
 
     /*!
      * Get artist image current index.
      */
-    inline int currentIndex() const { return m_currentIndex; }
+    inline int currentIndex() const noexcept { return m_currentIndex; }
     /*!
      * Set artist image current index.
      */
-    inline void setCurrentIndex(int index) { m_currentIndex = index; }
+    inline void setCurrentIndex(int index) noexcept { m_currentIndex = index; }
     /*!
      * Get artist image count.
      */
-    inline int count() const { return m_images.count(); }
+    inline int count() const noexcept { return m_images.count(); }
     /*!
      * Get artist image count is 0.
      */
-    inline bool isEmpty() const { return m_images.isEmpty(); }
+    inline bool isEmpty() const noexcept { return m_images.isEmpty(); }
 
     /*!
      * Set artist image current index + 1.
      */
-    void imageNext();
+    void imageNext() noexcept;
     /*!
      * Set artist image current index - 1.
      */
-    void imagePrevious();
+    void imagePrevious() noexcept;
 
     /*!
      * Get artist image path.
      */
-    QString artistImagePath();
+    QString artistImagePath() noexcept;
     /*!
      * Get artist image path by default.
      */
-    QString artistImageDefaultPath() const;
+    QString artistImageDefaultPath() const noexcept;
 
     /*!
      * Update artist image list.
@@ -81,15 +81,15 @@ public:
     /*!
      * Get artist image path list.
      */
-    QStringList artistImageList() const;
+    QStringList artistImageList() const noexcept;
     /*!
      * Set artist image path by given path list.
      */
-    void setArtistImageList(const QStringList &list);
+    void setArtistImageList(const QStringList &list) noexcept;
     /*!
      * Set user select current index.
      */
-    void setSelectArtistIndex(int index);
+    void setSelectArtistIndex(int index) noexcept;
 
     /*!
      * Add observer.
@@ -103,11 +103,11 @@ public:
     /*!
      * Set artist background picture by path.
      */
-    void setBackgroundUrl(const QString &path);
+    void setBackgroundUrl(const QString &path) noexcept;
     /*!
      * Get artist background picture path.
      */
-    QString backgroundUrl() const;
+    QString backgroundUrl() const noexcept;
 
 Q_SIGNALS:
     /*!
@@ -127,7 +127,7 @@ private:
     /*!
      * Object constructor.
      */
-    MusicBackgroundManager();
+    MusicBackgroundManager() noexcept;
 
     int m_currentIndex;
     QStringList m_images;

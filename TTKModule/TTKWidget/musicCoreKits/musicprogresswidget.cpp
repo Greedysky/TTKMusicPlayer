@@ -33,6 +33,7 @@ void MusicProgressWidget::initialize()
 {
     m_background = new QLabel(this);
     m_background->setGeometry(4, 4, 360, 115);
+
     QWidget *backgroundMask = new QWidget(this);
     backgroundMask->setGeometry(4, 29, 360, 90);
     backgroundMask->setStyleSheet(TTK::UI::BackgroundStyle11);

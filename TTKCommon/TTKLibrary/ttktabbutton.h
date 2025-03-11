@@ -52,11 +52,11 @@ public:
     /*!
      * Get button current index.
      */
-    inline int currentIndex() const { return m_currentIndex; }
+    inline int currentIndex() const noexcept { return m_currentIndex; }
     /*!
      * Get tab buttons count.
      */
-    inline int count() const { return m_buttonGroup->buttons().count(); }
+    inline int count() const noexcept { return m_buttonGroup->buttons().count(); }
 
 Q_SIGNALS:
     /*!

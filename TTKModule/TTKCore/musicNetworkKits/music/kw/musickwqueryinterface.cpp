@@ -3,7 +3,7 @@
 
 #include "qalgorithm/deswrapper.h"
 
-void ReqKWInterface::makeRequestRawHeader(QNetworkRequest *request)
+void ReqKWInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
 {
     TTK::setSslConfiguration(request);
     TTK::makeUserAgentHeader(request);

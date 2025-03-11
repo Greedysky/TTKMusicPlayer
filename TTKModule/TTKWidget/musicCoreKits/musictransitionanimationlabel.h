@@ -59,16 +59,16 @@ public:
     /*!
      * Set animation to start.
      */
-    inline void setAnimation(bool enable) { m_animationEnabled = enable; }
+    inline void setAnimation(bool enable) noexcept { m_animationEnabled = enable; }
     /*!
      * Get animation state.
      */
-    inline bool animation() const { return m_animationEnabled; }
+    inline bool animation() const noexcept { return m_animationEnabled; }
 
     /*!
      * Get render pixmap image.
      */
-    const QPixmap& renderPixmap() const;
+    const QPixmap& renderPixmap() const noexcept;
 
     /*!
      * Start renderer pixmap animation.

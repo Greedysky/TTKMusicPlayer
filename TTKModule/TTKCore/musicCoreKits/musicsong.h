@@ -43,8 +43,8 @@ public:
      * Object constructor.
      */
     MusicSong() noexcept;
-    explicit MusicSong(const QString &path, bool track = false) noexcept;
-    MusicSong(const QString &path, const QString &duration, const QString &name = {}, bool track = false) noexcept;
+    explicit MusicSong(const QString &path, bool track = false) ;
+    MusicSong(const QString &path, const QString &duration, const QString &name = {}, bool track = false);
 
     /*!
      * Get music title name.
@@ -144,7 +144,7 @@ struct TTK_MODULE_EXPORT MusicSongSort
     int m_type;
     Qt::SortOrder m_order;
 
-    MusicSongSort()
+    MusicSongSort() noexcept
         : m_type(-1),
           m_order(Qt::AscendingOrder)
     {
@@ -167,7 +167,7 @@ struct TTK_MODULE_EXPORT MusicSongItem
     MusicSongList m_songs;
     MusicAbstractSongsListTableWidget *m_itemWidget;
 
-    MusicSongItem()
+    MusicSongItem() noexcept
         : m_id(-1),
           m_itemIndex(-1),
           m_itemWidget(nullptr)
@@ -191,7 +191,7 @@ namespace TTK
     /*!
      * Check current song playlist row is valid or not.
      */
-    TTK_MODULE_EXPORT bool playlistRowValid(int index);
+    TTK_MODULE_EXPORT bool playlistRowValid(int index) noexcept;
     /*!
      * Remove track info in path.
      */
@@ -200,7 +200,7 @@ namespace TTK
     /*!
      * Generate song name.
      */
-    TTK_MODULE_EXPORT QString generateSongName(const QString &title, const QString &artist);
+    TTK_MODULE_EXPORT QString generateSongName(const QString &title, const QString &artist) noexcept;
     /*!
      * Get song title name.
      */

@@ -32,7 +32,7 @@ MusicTransitionAnimationLabel::~MusicTransitionAnimationLabel()
     delete m_imageRender;
 }
 
-const QPixmap& MusicTransitionAnimationLabel::renderPixmap() const
+const QPixmap& MusicTransitionAnimationLabel::renderPixmap() const noexcept
 {
     return m_renderPixmap;
 }

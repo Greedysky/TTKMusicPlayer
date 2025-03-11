@@ -61,16 +61,16 @@ public:
     /*!
      * Set playlist row index.
      */
-    void setPlaylistRow(int index);
+    void setPlaylistRow(int index) noexcept;
 
     /*!
      * Get the current play row.
      */
-    inline void setPlayRowIndex(int index) { m_playRowIndex = index; }
+    inline void setPlayRowIndex(int index) noexcept { m_playRowIndex = index; }
     /*!
      * Get the current play row.
      */
-    inline int playRowIndex() const { return m_playRowIndex; }
+    inline int playRowIndex() const noexcept { return m_playRowIndex; }
 
 Q_SIGNALS:
     /*!

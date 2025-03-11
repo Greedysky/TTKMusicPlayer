@@ -15,7 +15,7 @@ MusicRatingLabel::MusicRatingLabel(int value, QWidget *parent)
     setFixedSize(26 * 5, 22);
 }
 
-void MusicRatingLabel::setValue(int value)
+void MusicRatingLabel::setValue(int value) noexcept
 {
     m_value = value;
 }

@@ -53,7 +53,7 @@ void MusicToolSetsWidget::addCelltItems()
         QString m_name;
 
         ToolItem() = default;
-        ToolItem(const QString &icon, const QString &name)
+        ToolItem(const QString &icon, const QString &name) noexcept
             : m_icon(icon),
               m_name(name)
         {

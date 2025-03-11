@@ -140,11 +140,11 @@ public:
     /*!
      * Set song image cover artist.
      */
-    void setCover(const QPixmap &cover) noexcept;
+    void setCover(const QPixmap &cover);
     /*!
      * Set song image cover artist.
      */
-    void setCover(const QByteArray &data) noexcept;
+    void setCover(const QByteArray &data);
     /*!
      * Get song image cover artist.
      */

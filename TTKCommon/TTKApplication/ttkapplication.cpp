@@ -9,21 +9,21 @@
 class TTKApplicationPrivate : public TTKPrivate<TTKApplication>
 {
 public:
-    TTKApplicationPrivate();
-    ~TTKApplicationPrivate();
+    TTKApplicationPrivate() noexcept;
+    ~TTKApplicationPrivate() noexcept;
 
     TTKLocalPeer *m_peer;
     QWidget *m_activeWindow;
 };
 
-TTKApplicationPrivate::TTKApplicationPrivate()
+TTKApplicationPrivate::TTKApplicationPrivate() noexcept
     : m_peer(nullptr),
       m_activeWindow(nullptr)
 {
 
 }
 
-TTKApplicationPrivate::~TTKApplicationPrivate()
+TTKApplicationPrivate::~TTKApplicationPrivate() noexcept
 {
     delete m_peer;
 }
@@ -50,13 +50,13 @@ bool TTKApplication::isRunning() const
     return d->m_peer->isClient();
 }
 
-QString TTKApplication::id() const
+QString TTKApplication::id() const noexcept
 {
     TTK_D(TTKApplication);
     return d->m_peer->applicationId();
 }
 
-void TTKApplication::setActivationWindow(QWidget* aw, bool activateOnMessage) const
+void TTKApplication::setActivationWindow(QWidget* aw, bool activateOnMessage) const noexcept
 {
     TTK_D(TTKApplication);
     d->m_activeWindow = aw;
@@ -71,7 +71,7 @@ void TTKApplication::setActivationWindow(QWidget* aw, bool activateOnMessage) co
     }
 }
 
-QWidget* TTKApplication::activationWindow() const
+QWidget* TTKApplication::activationWindow() const noexcept
 {
     TTK_D(TTKApplication);
     return d->m_activeWindow;

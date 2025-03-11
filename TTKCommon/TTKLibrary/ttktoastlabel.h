@@ -44,11 +44,11 @@ public:
     /*!
      * Set text margin in the body.
      */
-    void setFontMargin(int height, int width);
+    void setFontMargin(int height, int width) noexcept;
     /*!
      * Get timer interval.
      */
-    int timerInterval() const;
+    int timerInterval() const noexcept;
     /*!
      * Set context font size.
      */

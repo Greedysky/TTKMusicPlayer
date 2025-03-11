@@ -32,7 +32,7 @@ struct TTK_MODULE_EXPORT QDlnaService
     QString m_serviceType;
     QString m_serviceID;
 
-    inline bool isEmpty() const
+    inline bool isEmpty() const noexcept
     {
         return m_controlURL.isEmpty() && m_scpdURL.isEmpty() && m_eventSubURL.isEmpty() && m_serviceType.isEmpty() && m_serviceID.isEmpty();
     }

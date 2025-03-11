@@ -86,7 +86,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     return true;
 }
 
-QByteArray MusicLrcFromKrc::decodeString() const
+QByteArray MusicLrcFromKrc::decodeString() const noexcept
 {
     return m_data;
 }

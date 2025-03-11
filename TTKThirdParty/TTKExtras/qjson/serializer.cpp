@@ -52,12 +52,13 @@ using namespace QJson;
 class Serializer::SerializerPrivate : public TTKPrivate<Serializer>
 {
   public:
-    SerializerPrivate() :
+    SerializerPrivate() noexcept :
       specialNumbersAllowed(false),
       indentMode(QJson::IndentNone),
       doublePrecision(6) {
         errorMessage.clear();
     }
+
     QString errorMessage;
     bool specialNumbersAllowed;
     IndentMode indentMode;

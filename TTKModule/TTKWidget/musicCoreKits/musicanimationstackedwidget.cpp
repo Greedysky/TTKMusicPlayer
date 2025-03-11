@@ -150,12 +150,12 @@ void MusicAnimationStackedWidget::setLength(int length, Module type)
     }
 }
 
-int MusicAnimationStackedWidget::previousIndex() const
+int MusicAnimationStackedWidget::previousIndex() const noexcept
 {
     return m_previousIndex;
 }
 
-int MusicAnimationStackedWidget::currentIndex() const
+int MusicAnimationStackedWidget::currentIndex() const noexcept
 {
     return m_currentIndex;
 }

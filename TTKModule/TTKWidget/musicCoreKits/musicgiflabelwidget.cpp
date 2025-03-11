@@ -59,7 +59,7 @@ void MusicGifLabelWidget::setType(Module type)
     }
 }
 
-MusicGifLabelWidget::Module MusicGifLabelWidget::type() const
+MusicGifLabelWidget::Module MusicGifLabelWidget::type() const noexcept
 {
     return m_type;
 }
@@ -74,12 +74,12 @@ int MusicGifLabelWidget::interval() const
     return m_timer->interval();
 }
 
-void MusicGifLabelWidget::setInfinited(bool s)
+void MusicGifLabelWidget::setInfinited(bool s) noexcept
 {
     m_infinited = s;
 }
 
-bool MusicGifLabelWidget::infinited() const
+bool MusicGifLabelWidget::infinited() const noexcept
 {
     return m_infinited;
 }
@@ -286,7 +286,7 @@ void MusicGifLabelMaskWidget::run(bool run)
     }
 }
 
-bool MusicGifLabelMaskWidget::isRunning() const
+bool MusicGifLabelMaskWidget::isRunning() const noexcept
 {
     return m_loadingLabel->isRunning();
 }

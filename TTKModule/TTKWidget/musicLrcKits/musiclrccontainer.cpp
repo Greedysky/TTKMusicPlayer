@@ -59,13 +59,13 @@ void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
     Q_EMIT linearGradientColorChanged();
 }
 
-void MusicLrcContainer::setCurrentTime(qint64 time, qint64 total)
+void MusicLrcContainer::setCurrentTime(qint64 time, qint64 total) noexcept
 {
     m_currentTime = time;
     m_totalTime = total;
 }
 
-qint64 MusicLrcContainer::totalTime() const
+qint64 MusicLrcContainer::totalTime() const noexcept
 {
     return m_totalTime;
 }

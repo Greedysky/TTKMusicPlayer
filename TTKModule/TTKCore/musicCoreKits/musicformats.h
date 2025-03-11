@@ -31,43 +31,43 @@ public:
     /*!
      * Check song is track valid or not.
      */
-    static bool isTrack(const QString &url);
+    static bool isTrack(const QString &url) noexcept;
     /*!
      * Check song is dedirection valid or not.
      */
-    static bool isRedirection(const QString &url);
+    static bool isRedirection(const QString &url) noexcept;
 
 public:
     /*!
      * Get player supported formats.
      */
-    static QStringList supportMusicFormats();
+    static QStringList supportMusicFormats() noexcept;
     /*!
      * Get player supported input filter formats.
      */
-    static QStringList supportMusicInputFilterFormats();
+    static QStringList supportMusicInputFilterFormats() noexcept;
     /*!
      * Get player supported input format .
      */
-    static QString supportMusicInputFormats();
+    static QString supportMusicInputFormats() noexcept;
 
     /*!
      * Get spek supported input filter formats.
      */
-    static QStringList supportSpekInputFilterFormats();
+    static QStringList supportSpekInputFilterFormats() noexcept;
     /*!
      * Get spek supported input formats.
      */
-    static QString supportSpekInputFormats();
+    static QString supportSpekInputFormats() noexcept;
 
     /*!
      * Get playlist supported input formats.
      */
-    static QString supportPlaylistInputFormats();
+    static QString supportPlaylistInputFormats() noexcept;
     /*!
      * Get playlist supported output formats.
      */
-    static QString supportPlaylistOutputFormats();
+    static QString supportPlaylistOutputFormats() noexcept;
 
 };
 

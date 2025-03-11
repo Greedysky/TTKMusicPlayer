@@ -4,7 +4,7 @@ static constexpr const char *QUERY_PLUGINS_URL = "resource/plugins";
 static constexpr const char *QUERY_MODULE_A = "A";
 static constexpr const char *QUERY_MODULE_B = "B";
 
-static QString makeQualityValue(const QString &type, int bitrate)
+static QString makeQualityValue(const QString &type, int bitrate) noexcept
 {
     if(type == QUERY_MODULE_A)
     {
@@ -29,7 +29,7 @@ static QString makeQualityValue(const QString &type, int bitrate)
     return {};
 }
 
-static QString makeModuleValue(const QString &type, const QString &module)
+static QString makeModuleValue(const QString &type, const QString &module) noexcept
 {
     if(type == QUERY_MODULE_A)
     {

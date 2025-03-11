@@ -41,12 +41,12 @@ struct TTK_MODULE_EXPORT MusicCloudDataItem
     State m_state;
     QSyncDataItem m_data;
 
-    inline bool isValid() const
+    inline bool isValid() const noexcept
     {
         return !m_data.m_name.isEmpty();
     }
 
-    inline void clear()
+    inline void clear() noexcept
     {
         m_id.clear();
         m_path.clear();
@@ -54,7 +54,7 @@ struct TTK_MODULE_EXPORT MusicCloudDataItem
         m_data.clear();
     }
 
-    inline bool operator==(const MusicCloudDataItem &other) const
+    inline bool operator==(const MusicCloudDataItem &other) const noexcept
     {
         return m_data.m_name == other.m_data.m_name;
     }

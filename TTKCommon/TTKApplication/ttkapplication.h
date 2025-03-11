@@ -44,16 +44,16 @@ public:
     /*!
      * Get current server id.
     */
-    QString id() const;
+    QString id() const noexcept;
 
     /*!
      * Set current active window.
     */
-    void setActivationWindow(QWidget *aw, bool activateOnMessage = true) const;
+    void setActivationWindow(QWidget *aw, bool activateOnMessage = true) const noexcept;
     /*!
      * Get current active window.
     */
-    QWidget *activationWindow() const;
+    QWidget *activationWindow() const noexcept;
 
 Q_SIGNALS:
     /*!

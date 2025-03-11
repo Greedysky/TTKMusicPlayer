@@ -73,20 +73,20 @@ public:
     /*!
      * Set current song name.
      */
-    inline void setCurrentSongName(const QString &name) { m_currentSongName = name; }
+    inline void setCurrentSongName(const QString &name) noexcept { m_currentSongName = name; }
     /*!
      * Set current play total time.
      */
-    void setCurrentTime(qint64 time, qint64 total);
+    void setCurrentTime(qint64 time, qint64 total) noexcept;
     /*!
      * Get current play total time.
      */
-    qint64 totalTime() const;
+    qint64 totalTime() const noexcept;
 
     /*!
      * Set lrc analysis model.
      */
-    inline void setLrcAnalysisModel(MusicLrcAnalysis *analysis)  { m_lrcAnalysis = analysis; }
+    inline void setLrcAnalysisModel(MusicLrcAnalysis *analysis) noexcept { m_lrcAnalysis = analysis; }
     /*!
      * Get lrc analysis model.
      */

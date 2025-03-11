@@ -31,14 +31,14 @@ struct TTK_MODULE_EXPORT MusicSkinItem
     QString m_name;
     int m_useCount;
 
-    MusicSkinItem()
+    MusicSkinItem() noexcept
         : m_name(TTK_AUTHOR_NAME),
           m_useCount(8888)
     {
 
     }
 
-    inline bool isValid() const
+    inline bool isValid() const noexcept
     {
         return !(m_name.isEmpty() && m_useCount == 0);
     }
@@ -53,7 +53,7 @@ struct TTK_MODULE_EXPORT MusicBackgroundImage
     QPixmap m_pix;
     MusicSkinItem m_item;
 
-    inline bool isValid() const
+    inline bool isValid() const noexcept
     {
         return !m_pix.isNull() && m_item.isValid();
     }

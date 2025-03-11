@@ -29,25 +29,25 @@ struct TTK_MODULE_EXPORT MusicPlayItem
     int m_playlistRow;
     QString m_path;
 
-    MusicPlayItem()
+    MusicPlayItem() noexcept
         : m_playlistRow(-1)
     {
 
     }
 
-    MusicPlayItem(int index, const QString &path)
+    MusicPlayItem(int index, const QString &path) noexcept
         : m_playlistRow(index),
           m_path(path)
     {
 
     }
 
-    inline bool isValid() const
+    inline bool isValid() const noexcept
     {
         return m_playlistRow != -1 && !m_path.isEmpty();
     }
 
-    inline bool operator== (const MusicPlayItem &other) const
+    inline bool operator== (const MusicPlayItem &other) const noexcept
     {
         return m_playlistRow == other.m_playlistRow && m_path == other.m_path;
     }
@@ -73,25 +73,25 @@ public:
     /*!
      * Set shuffle mode.
      */
-    void setShuffleMode(bool shuffle);
+    void setShuffleMode(bool shuffle) noexcept;
 
     /*!
      * Get current play mode.
      */
-    TTK::PlayMode playbackMode() const;
+    TTK::PlayMode playbackMode() const noexcept;
     /*!
      * Set current play mode.
      */
-    void setPlaybackMode(TTK::PlayMode mode);
+    void setPlaybackMode(TTK::PlayMode mode) noexcept;
 
     /*!
      * Get current play index.
      */
-    int currentIndex() const;
+    int currentIndex() const noexcept;
     /*!
      * Get current play item.
      */
-    MusicPlayItem currentItem() const;
+    MusicPlayItem currentItem() const noexcept;
     /*!
      * Get current play music media path.
      */
@@ -104,20 +104,20 @@ public:
     /*!
      * Get all music media path.
      */
-    const MusicPlayItemList& mediaList() const;
+    const MusicPlayItemList& mediaList() const noexcept;
     /*!
      * Get queue music media path.
      */
-    const MusicPlayItemList& queueList() const;
+    const MusicPlayItemList& queueList() const noexcept;
 
     /*!
      * Get current medias count.
      */
-    int count() const;
+    int count() const noexcept;
     /*!
      * Check current medias is empty.
      */
-    bool isEmpty() const;
+    bool isEmpty() const noexcept;
     /*!
      * Clear current medias.
      */
@@ -170,7 +170,7 @@ public:
     /*!
      * Remove music all queue media.
      */
-    void removeQueue();
+    void removeQueue() noexcept;
 
 Q_SIGNALS:
     /*!
@@ -204,28 +204,28 @@ private:
         /*!
          * Object constructor.
          */
-        Shuffle();
+        Shuffle() noexcept;
 
         /*!
          * Set shuffle enable or disable.
          */
-        void setEnabled(bool enable);
+        void setEnabled(bool enable) noexcept;
         /*!
          * Get shuffle enable or disable.
          */
-        bool isEnabled() const;
+        bool isEnabled() const noexcept;
         /*!
          * Init parameter.
         */
-        void initialize(const MusicPlayItemList &items);
+        void initialize(const MusicPlayItemList &items) noexcept;
         /*!
          * Set current play index.
          */
-        void setCurrentIndex(const MusicPlayItem &item);
+        void setCurrentIndex(const MusicPlayItem &item) noexcept;
         /*!
          * Set current play index.
          */
-        MusicPlayItem setCurrentIndex(int index);
+        MusicPlayItem setCurrentIndex(int index) noexcept;
 
     private:
         int m_index;

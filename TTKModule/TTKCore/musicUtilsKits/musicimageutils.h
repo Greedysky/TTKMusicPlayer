@@ -76,7 +76,7 @@ namespace TTK
          * Rerender the bound value.
          */
         template <typename T>
-        TTK_MODULE_EXPORT T boundValue(const T &key, const T &alpha, const T &value)
+        TTK_MODULE_EXPORT T boundValue(const T &key, const T &alpha, const T &value) noexcept
         {
             if(alpha < TTK_RN_MIN)
             {

@@ -8,13 +8,13 @@ static constexpr const char *RULE_DURAION = "%duration";
 static constexpr const char *RULE_TRACK = "%track";
 static constexpr const char *RULE_YEAR = "%year";
 
-QStringList MusicRulesAnalysis::rules()
+QStringList MusicRulesAnalysis::rules() noexcept
 {
     static QStringList rules{QObject::tr("Title"), QObject::tr("Artist"), QObject::tr("Album"), QObject::tr("Duration"), QObject::tr("Track"), QObject::tr("Year")};
     return rules;
 }
 
-QString MusicRulesAnalysis::rule(int index)
+QString MusicRulesAnalysis::rule(int index) noexcept
 {
     switch(index)
     {

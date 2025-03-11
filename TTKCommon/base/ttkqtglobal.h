@@ -54,14 +54,14 @@ void qAsConst(const T &&) = delete;
 
 #ifdef Q_CC_MSVC
 template <typename T>
-inline T object_cast(QObject *object)
+inline T object_cast(QObject *object) noexcept
 {
     T v = qobject_cast<T>(object);
     return v ? v : TTKStaticCast(T, object);
 }
 
 template <typename T>
-inline T object_cast(const QObject *object)
+inline T object_cast(const QObject *object) noexcept
 {
     T v = qobject_cast<T>(object);
     return v ? v : TTKStaticCast(T, object);

@@ -54,16 +54,16 @@ public:
     /*!
      * Get current player is playing or not.
      */
-    bool isPlaying() const;
+    bool isPlaying() const noexcept;
     /*!
      * Get current player state.
      */
-    TTK::PlayState state() const;
+    TTK::PlayState state() const noexcept;
 
     /*!
      * Set current play list.
      */
-    void setPlaylist(MusicPlaylist *playlist);
+    void setPlaylist(MusicPlaylist *playlist) noexcept;
 
     /*!
      * Get current player duration.
@@ -89,7 +89,7 @@ public:
     /*!
      * Get current player mute state.
      */
-    bool isMuted() const;
+    bool isMuted() const noexcept;
     /*!
      * Set current player mute or not.
      */
@@ -102,7 +102,7 @@ public:
     /*!
      * Get current music enhanced effect.
      */
-    Enhance enhanced() const;
+    Enhance enhanced() const noexcept;
 
 Q_SIGNALS:
     /*!
@@ -162,7 +162,7 @@ private:
     /*!
      * set current play state.
      */
-    void setCurrentPlayState(TTK::PlayState state);
+    void setCurrentPlayState(TTK::PlayState state) noexcept;
 
     MusicPlaylist *m_playlist;
     TTK::PlayState m_state;

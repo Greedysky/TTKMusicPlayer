@@ -15,7 +15,7 @@ MusicRoundAnimationLabel::~MusicRoundAnimationLabel()
     stop();
 }
 
-void MusicRoundAnimationLabel::setPixmap(const QPixmap &pix)
+void MusicRoundAnimationLabel::setPixmap(const QPixmap &pix) noexcept
 {
     m_pixmap = pix;
 }

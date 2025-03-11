@@ -37,15 +37,15 @@ public:
     /*!
      * Set flag wheather to block current network.
      */
-    void setBlockNetwork(bool block);
+    void setBlockNetwork(bool block) noexcept;
     /*!
      * Set current network state.
      */
-    inline void setNetWorkState(bool state) { m_networkState = state; }
+    inline void setNetWorkState(bool state) noexcept { m_networkState = state; }
     /*!
      * Check current network is on.
      */
-    inline bool isOnline() const { return m_networkState; }
+    inline bool isOnline() const noexcept { return m_networkState; }
 
 Q_SIGNALS:
     /*!

@@ -32,12 +32,12 @@ struct TTK_MODULE_EXPORT MusicDeviceInfoItem
     int m_usedBytes;
     int m_totalBytes;
 
-    inline bool isValid() const
+    inline bool isValid() const noexcept
     {
         return !m_path.isEmpty();
     }
 
-    inline void clear()
+    inline void clear() noexcept
     {
         m_name.clear();
         m_path.clear();

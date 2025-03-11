@@ -32,13 +32,13 @@ struct TTK_MODULE_EXPORT QSyncDataItem
     QString m_putTime;
     int m_size;
 
-    QSyncDataItem()
+    QSyncDataItem() noexcept
         : m_size(0)
     {
 
     }
 
-    inline void clear()
+    inline void clear() noexcept
     {
         m_name.clear();
         m_hash.clear();

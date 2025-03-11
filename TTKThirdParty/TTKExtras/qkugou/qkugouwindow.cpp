@@ -28,14 +28,14 @@
 class QKugouWindowPrivate : public TTKPrivate<QKugouWindow>
 {
 public:
-    QKugouWindowPrivate();
-    ~QKugouWindowPrivate();
+    QKugouWindowPrivate() noexcept;
+    ~QKugouWindowPrivate() noexcept;
 
     QWidget *m_webView, *m_topWidget;
     QButtonGroup *m_buttonGroup;
 };
 
-QKugouWindowPrivate::QKugouWindowPrivate()
+QKugouWindowPrivate::QKugouWindowPrivate() noexcept
     : m_webView(nullptr),
       m_topWidget(nullptr),
       m_buttonGroup(nullptr)
@@ -43,7 +43,7 @@ QKugouWindowPrivate::QKugouWindowPrivate()
 
 }
 
-QKugouWindowPrivate::~QKugouWindowPrivate()
+QKugouWindowPrivate::~QKugouWindowPrivate() noexcept
 {
     delete m_buttonGroup;
     delete m_topWidget;

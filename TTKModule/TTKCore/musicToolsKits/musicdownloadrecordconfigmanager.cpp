@@ -1,6 +1,6 @@
 #include "musicdownloadrecordconfigmanager.h"
 
-QString TTK::toString(Record type)
+QString TTK::toString(Record type) noexcept
 {
     switch(type)
     {

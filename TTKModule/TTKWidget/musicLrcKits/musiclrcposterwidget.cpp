@@ -29,7 +29,7 @@ MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
     }
 }
 
-bool MusicLrcPosterItemWidget::hasScroll() const
+bool MusicLrcPosterItemWidget::hasScroll() const noexcept
 {
      return height() > ITEM_HEIGHT;
 }
@@ -40,7 +40,7 @@ void MusicLrcPosterItemWidget::setImagePath(const QString &path)
     update();
 }
 
-void MusicLrcPosterItemWidget::setCurrentSongName(const QString &name)
+void MusicLrcPosterItemWidget::setCurrentSongName(const QString &name) noexcept
 {
     m_title = name;
 }

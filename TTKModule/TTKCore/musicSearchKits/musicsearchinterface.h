@@ -35,7 +35,7 @@ public:
     /*!
      * Object constructor.
      */
-    explicit MusicItemSearchInterface()
+    MusicItemSearchInterface() noexcept
         : m_containerItems(),
           m_searchResultLevel(0),
           m_searchResultItems()
@@ -46,7 +46,7 @@ public:
     /*!
      * Check current search result is empty or not.
      */
-    inline bool hasSearchResult() const
+    inline bool hasSearchResult() const noexcept
     {
         return !m_searchResultItems.isEmpty();
     }
@@ -54,7 +54,7 @@ public:
     /*!
      * Clear search result.
      */
-    inline void clearSearchResult()
+    inline void clearSearchResult() noexcept
     {
         m_searchResultLevel = 0;
         m_searchResultItems.clear();
@@ -63,7 +63,7 @@ public:
     /*!
      * Mapped search row.
      */
-    inline void mappedSearchRow(int pos, int &row) const
+    inline void mappedSearchRow(int pos, int &row) const noexcept
     {
         if(hasSearchResult())
         {

@@ -100,7 +100,7 @@ public:
     /*!
      * Get current play row index.
      */
-    inline int playRowIndex() const { return m_playRowIndex; }
+    inline int playRowIndex() const noexcept { return m_playRowIndex; }
     /*!
      * Set current song tree index.
      */
@@ -260,7 +260,7 @@ private:
     /*!
      * Current index is searched or not.
      */
-    inline bool isSearchedPlayIndex() const { return m_lastSearchIndex == m_currentIndex; }
+    inline bool isSearchedPlayIndex() const noexcept { return m_lastSearchIndex == m_currentIndex; }
     /*!
      * Close searched text widget.
      */

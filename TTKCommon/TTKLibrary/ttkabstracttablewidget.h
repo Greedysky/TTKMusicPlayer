@@ -74,7 +74,7 @@ protected:
     /*!
      * Check item row is valid or not.
      */
-    inline bool isValid() const
+    inline bool isValid() const noexcept
     {
         return !(rowCount() == 0 || currentRow() < 0);
     }

@@ -35,7 +35,7 @@ struct TTK_MODULE_EXPORT TTKXmlAttr
     QVariant m_value;
 
     TTKXmlAttr() = default;
-    TTKXmlAttr(const QString &key, const QVariant &value)
+    TTKXmlAttr(const QString &key, const QVariant &value) noexcept
         : m_key(key),
           m_value(value)
     {
@@ -53,7 +53,7 @@ struct TTK_MODULE_EXPORT TTKXmlNode
     TTKXmlAttrList m_attrs;
     QString m_text;
 
-    TTKXmlNode()
+    TTKXmlNode() noexcept
         : m_attrs(),
           m_text()
     {
@@ -72,7 +72,7 @@ public:
     /*!
      * Object constructor.
      */
-    explicit TTKXmlHelper(const QDomNode &root);
+    explicit TTKXmlHelper(const QDomNode &root) noexcept;
 
     /*!
      * Load xml helper.
@@ -86,11 +86,11 @@ public:
     /*!
      * Get xml next node.
      */
-    QDomNode next() const;
+    QDomNode next() const noexcept;
     /*!
      * Get match node name case insensitive.
      */
-    QString nodeName(const QString &name) const;
+    QString nodeName(const QString &name) const noexcept;
 
 private:
     QDomNode m_root, m_current;

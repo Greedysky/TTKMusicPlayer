@@ -10,7 +10,7 @@ MusicNetworkTestThread::MusicNetworkTestThread(QObject *parent)
     TTK::initRandom();
 }
 
-void MusicNetworkTestThread::setUrl(const QString &url)
+void MusicNetworkTestThread::setUrl(const QString &url) noexcept
 {
     m_currentUrl = url;
 }

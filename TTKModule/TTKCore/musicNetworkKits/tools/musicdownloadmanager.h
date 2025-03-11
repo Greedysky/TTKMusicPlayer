@@ -31,7 +31,7 @@ struct TTK_MODULE_EXPORT MusicDownLoadPairData
     QObject *m_object;
     TTK::Record m_type;
 
-    MusicDownLoadPairData()
+    MusicDownLoadPairData() noexcept
         : m_timestamp(-1),
           m_object(nullptr),
           m_type(TTK::Record::NormalDownload)
@@ -39,13 +39,13 @@ struct TTK_MODULE_EXPORT MusicDownLoadPairData
 
     }
 
-    MusicDownLoadPairData(qint64 t)
+    MusicDownLoadPairData(qint64 t) noexcept
         : MusicDownLoadPairData()
     {
         m_timestamp = t;
     }
 
-    MusicDownLoadPairData(qint64 t, QObject *object, TTK::Record type)
+    MusicDownLoadPairData(qint64 t, QObject *object, TTK::Record type) noexcept
         : m_timestamp(t),
           m_object(object),
           m_type(type)
@@ -53,12 +53,12 @@ struct TTK_MODULE_EXPORT MusicDownLoadPairData
 
     }
 
-    inline bool operator< (const MusicDownLoadPairData &other) const
+    inline bool operator< (const MusicDownLoadPairData &other) const noexcept
     {
         return m_timestamp < other.m_timestamp;
     }
 
-    inline bool operator== (const MusicDownLoadPairData &other) const
+    inline bool operator== (const MusicDownLoadPairData &other) const noexcept
     {
         return m_timestamp == other.m_timestamp;
     }

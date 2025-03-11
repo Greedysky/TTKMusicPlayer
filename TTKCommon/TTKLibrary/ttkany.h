@@ -103,7 +103,7 @@ private:
 
     struct _Base
     {
-        virtual ~_Base() noexcept = default;
+        virtual ~_Base() = default;
 
         virtual _BasePtr clone() const noexcept = 0;
     };

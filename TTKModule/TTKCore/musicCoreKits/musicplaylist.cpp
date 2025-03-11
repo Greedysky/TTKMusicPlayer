@@ -3,23 +3,23 @@
 
 #include <random>
 
-MusicPlaylist::Shuffle::Shuffle()
+MusicPlaylist::Shuffle::Shuffle() noexcept
     : m_index(-1),
       m_enable(false)
 {
 }
 
-void MusicPlaylist::Shuffle::setEnabled(bool enable)
+void MusicPlaylist::Shuffle::setEnabled(bool enable) noexcept
 {
     m_enable = enable;
 }
 
-bool MusicPlaylist::Shuffle::isEnabled() const
+bool MusicPlaylist::Shuffle::isEnabled() const noexcept
 {
     return m_enable;
 }
 
-void MusicPlaylist::Shuffle::initialize(const MusicPlayItemList &items)
+void MusicPlaylist::Shuffle::initialize(const MusicPlayItemList &items) noexcept
 {
     if(m_enable && items.count() != m_data.count())
     {
@@ -29,12 +29,12 @@ void MusicPlaylist::Shuffle::initialize(const MusicPlayItemList &items)
     }
 }
 
-void MusicPlaylist::Shuffle::setCurrentIndex(const MusicPlayItem &item)
+void MusicPlaylist::Shuffle::setCurrentIndex(const MusicPlayItem &item) noexcept
 {
     m_index = m_data.indexOf(item);
 }
 
-MusicPlayItem MusicPlaylist::Shuffle::setCurrentIndex(int index)
+MusicPlayItem MusicPlaylist::Shuffle::setCurrentIndex(int index) noexcept
 {
     if(m_data.isEmpty())
     {
@@ -71,28 +71,28 @@ MusicPlaylist::MusicPlaylist(QObject *parent)
     TTK::initRandom();
 }
 
-void MusicPlaylist::setShuffleMode(bool shuffle)
+void MusicPlaylist::setShuffleMode(bool shuffle) noexcept
 {
     m_shuffle.setEnabled(shuffle);
 }
 
-TTK::PlayMode MusicPlaylist::playbackMode() const
+TTK::PlayMode MusicPlaylist::playbackMode() const noexcept
 {
     return m_playbackMode;
 }
 
-void MusicPlaylist::setPlaybackMode(TTK::PlayMode mode)
+void MusicPlaylist::setPlaybackMode(TTK::PlayMode mode) noexcept
 {
     m_playbackMode = mode;
     Q_EMIT playbackModeChanged(m_playbackMode);
 }
 
-int MusicPlaylist::currentIndex() const
+int MusicPlaylist::currentIndex() const noexcept
 {
     return m_currentIndex;
 }
 
-MusicPlayItem MusicPlaylist::currentItem() const
+MusicPlayItem MusicPlaylist::currentItem() const noexcept
 {
     if(m_currentIndex == -1 || m_currentIndex >= m_mediaList.count())
     {
@@ -121,22 +121,22 @@ bool MusicPlaylist::isSameMediaPath(const QString &path) const
     return item.m_path == path;
 }
 
-const MusicPlayItemList& MusicPlaylist::mediaList() const
+const MusicPlayItemList& MusicPlaylist::mediaList() const noexcept
 {
     return m_mediaList;
 }
 
-const MusicPlayItemList& MusicPlaylist::queueList() const
+const MusicPlayItemList& MusicPlaylist::queueList() const noexcept
 {
     return m_queueList;
 }
 
-int MusicPlaylist::count() const
+int MusicPlaylist::count() const noexcept
 {
     return m_mediaList.count();
 }
 
-bool MusicPlaylist::isEmpty() const
+bool MusicPlaylist::isEmpty() const noexcept
 {
     return m_mediaList.isEmpty();
 }
@@ -240,7 +240,7 @@ int MusicPlaylist::remove(int playlistRow, const QString &content)
     return index;
 }
 
-void MusicPlaylist::removeQueue()
+void MusicPlaylist::removeQueue() noexcept
 {
     m_queueList.clear();
 }

@@ -30,16 +30,17 @@ void MusicDesktopWallpaperThread::setInterval(int msec)
     m_timer->setInterval(msec);
 }
 
-bool MusicDesktopWallpaperThread::isRunning() const
+bool MusicDesktopWallpaperThread::isRunning() const noexcept
 {
     return m_run;
 }
 
-void MusicDesktopWallpaperThread::setRandom(bool random)
+void MusicDesktopWallpaperThread::setRandom(bool random) noexcept
 {
     m_random = random;
 }
-void MusicDesktopWallpaperThread::setImagePath(const QStringList &list)
+
+void MusicDesktopWallpaperThread::setImagePath(const QStringList &list) noexcept
 {
     m_path = list;
 }

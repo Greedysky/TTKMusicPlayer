@@ -18,12 +18,12 @@ static constexpr const char *WY_SECKRY_URL = "411571dca16717d9af5ef1ac97a8d21cb7
 
 Q_GLOBAL_STATIC(QString, WY_USER_DATA)
 
-static QString makeUser()
+static QString makeUser() noexcept
 {
     return TTK::Algorithm::mdII(WY_USER1_URL, false) + TTK::Algorithm::mdII(WY_USER2_URL, false) + TTK::Algorithm::mdII(WY_USER3_URL, false) + TTK::Algorithm::mdII(WY_USER4_URL, false) + TTK::Algorithm::mdII(WY_USER5_URL, false);
 }
 
-void ReqWYInterface::makeRequestRawHeader(QNetworkRequest *request)
+void ReqWYInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
 {
     if(WY_USER_DATA()->isEmpty())
     {

@@ -77,19 +77,19 @@ private:
         TTKDispatchManager::Module m_type;
         TTKVariantList m_args;
 
-        TTKDispatchItem()
+        TTKDispatchItem() noexcept
             : m_times(0),
               m_type(TTKDispatchManager::Module::Null)
         {
 
         }
 
-        inline bool isEmpty() const
+        inline bool isEmpty() const noexcept
         {
             return m_args.isEmpty();
         }
 
-        inline bool isValid() const
+        inline bool isValid() const noexcept
         {
             return m_times <= 5;
         }

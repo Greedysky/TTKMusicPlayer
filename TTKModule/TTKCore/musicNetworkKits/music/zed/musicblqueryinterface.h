@@ -34,7 +34,7 @@ namespace ReqBLInterface
     /*!
      * Make request query data.
      */
-    void makeRequestRawHeader(QNetworkRequest *request);
+    void makeRequestRawHeader(QNetworkRequest *request) noexcept;
 
     /*!
      * Read mv cid from query results.

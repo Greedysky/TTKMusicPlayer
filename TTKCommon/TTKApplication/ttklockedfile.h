@@ -45,8 +45,8 @@ namespace TTKLockedPrivate {
        /*!
          * Object constructor.
         */
-        TTKLockedFile();
-        explicit TTKLockedFile(const QString &name);
+        TTKLockedFile() noexcept;
+        explicit TTKLockedFile(const QString &name) noexcept;
         /*!
          * Object destructor.
         */
@@ -65,11 +65,11 @@ namespace TTKLockedPrivate {
         /*!
          * Unlock current file.
         */
-        bool isLocked() const;
+        bool isLocked() const noexcept;
         /*!
          * Get current lock status.
         */
-        LockMode lockMode() const;
+        LockMode lockMode() const noexcept;
         /*!
          * Get current lock file mode.
         */

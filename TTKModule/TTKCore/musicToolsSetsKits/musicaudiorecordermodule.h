@@ -54,7 +54,7 @@ public:
     /*!
      * Get volume by value.
      */
-    int volume() const;
+    int volume() const noexcept;
 
     /*!
      * Set output file name.
@@ -67,7 +67,7 @@ public:
     /*!
      * Current input device error or not.
      */
-    bool error() const;
+    bool error() const noexcept;
 
     /*!
      * Recorder play start.

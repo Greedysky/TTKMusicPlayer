@@ -120,7 +120,7 @@ public:
     /*!
      * Object constructor.
      */
-    TTKVariant()
+    TTKVariant() noexcept
         : m_type(typeid(void))
     {
     }

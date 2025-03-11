@@ -68,7 +68,7 @@ inline typename _MakeUnique<_Tp>::__invalid_type make_unique(_Args &&...) = dele
 class _SharedCount
 {
 public:
-    _SharedCount() : m_count(1) {}
+    _SharedCount() noexcept : m_count(1) {}
 
     std::atomic<int> m_count;
 };
@@ -79,7 +79,7 @@ class TTKSharedPtr
 public:
     TTKSharedPtr() noexcept : m_ptr(nullptr), m_ref_count(new _SharedCount) {}
     TTKSharedPtr(T* ptr) noexcept : m_ptr(ptr), m_ref_count(new _SharedCount) {}
-    ~TTKSharedPtr()
+    ~TTKSharedPtr() noexcept
     {
         clean();
     }
@@ -88,19 +88,19 @@ public:
     friend class TTKSharedPtr;
 
     template <typename U>
-    TTKSharedPtr(const TTKSharedPtr<U> &p, T* ptr)
+    TTKSharedPtr(const TTKSharedPtr<U> &p, T* ptr) noexcept
     {
         m_ptr = ptr;
         m_ref_count = p.m_ref_count;
         m_ref_count->m_count++;
     }
-    TTKSharedPtr(const TTKSharedPtr &p)
+    TTKSharedPtr(const TTKSharedPtr &p) noexcept
     {
         m_ptr = p.m_ptr;
         m_ref_count = p.m_ref_count;
         m_ref_count->m_count++;
     }
-    TTKSharedPtr& operator=(const TTKSharedPtr &p)
+    TTKSharedPtr& operator=(const TTKSharedPtr &p) noexcept
     {
         clean();
         m_ptr = p.m_ptr;
@@ -108,14 +108,14 @@ public:
         m_ref_count->m_count++;
         return *this;
     }
-    TTKSharedPtr(TTKSharedPtr &&p)
+    TTKSharedPtr(TTKSharedPtr &&p) noexcept
     {
         m_ptr = p.m_ptr;
         m_ref_count = p.m_ref_count;
         p.m_ptr = nullptr;
         p.m_ref_count = nullptr;
     }
-    TTKSharedPtr& operator=(TTKSharedPtr &&p)
+    TTKSharedPtr& operator=(TTKSharedPtr &&p) noexcept
     {
         clean();
         m_ptr = p.m_ptr;
@@ -132,7 +132,7 @@ public:
     operator bool() const noexcept { return m_ptr; }
 
 private:
-    void clean()
+    void clean() noexcept
     {
         if(m_ref_count)
         {

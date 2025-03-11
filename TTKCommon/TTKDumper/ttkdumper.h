@@ -42,9 +42,9 @@ public:
     /*!
      * Object constructor.
      */
-    TTKDumper();
-    TTKDumper(const TTKDumperFunctor &functor);
-    ~TTKDumper();
+    TTKDumper() noexcept;
+    TTKDumper(const TTKDumperFunctor &functor) noexcept;
+    ~TTKDumper() noexcept;
 
     /*!
      * Run module.

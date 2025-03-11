@@ -63,7 +63,7 @@ public:
     /*!
      * Get the gif type.
      */
-    Module type() const;
+    Module type() const noexcept;
 
     /*!
      * Set the gif interval.
@@ -77,11 +77,11 @@ public:
     /*!
      * Set the gif infinited mode.
      */
-    void setInfinited(bool s);
+    void setInfinited(bool s) noexcept;
     /*!
      * Get the gif infinited mode.
      */
-    bool infinited() const;
+    bool infinited() const noexcept;
 
     /*!
      * Run the gif.
@@ -90,7 +90,7 @@ public:
     /*!
      * Get current running state.
      */
-    inline bool isRunning() const { return m_isRunning; }
+    inline bool isRunning() const noexcept { return m_isRunning; }
 
     /*!
      * Start the gif.
@@ -150,7 +150,7 @@ public:
     /*!
      * Get current running state.
      */
-    bool isRunning() const;
+    bool isRunning() const noexcept;
 
 protected:
     /*!
@@ -179,11 +179,11 @@ public:
     /*!
      * Set percent value.
      */
-    inline void setValue(int value)  { m_value = value; }
+    inline void setValue(int value) noexcept { m_value = value; }
     /*!
      * Get percent value.
      */
-    inline int value() const { return m_value; }
+    inline int value() const noexcept { return m_value; }
 
 private:
     /*!

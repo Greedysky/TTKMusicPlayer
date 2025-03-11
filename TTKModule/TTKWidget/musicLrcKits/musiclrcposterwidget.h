@@ -64,7 +64,7 @@ public:
     /*!
      * Check widget has scroll or not.
      */
-    bool hasScroll() const;
+    bool hasScroll() const noexcept;
     /*!
      * Set image path.
      */
@@ -72,7 +72,7 @@ public:
     /*!
      * Set current song name.
      */
-    void setCurrentSongName(const QString &name);
+    void setCurrentSongName(const QString &name) noexcept;
 
 public Q_SLOTS:
     /*!

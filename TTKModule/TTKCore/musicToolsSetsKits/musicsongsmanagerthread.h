@@ -37,11 +37,11 @@ public:
     /*!
      * Set find file path by given path.
      */
-    void setFindFilePath(const QString &path);
+    void setFindFilePath(const QString &path) noexcept;
     /*!
      * Set find file path by given path list.
      */
-    void setFindFilePath(const QStringList &path);
+    void setFindFilePath(const QStringList &path) noexcept;
 
 Q_SIGNALS:
     /*!

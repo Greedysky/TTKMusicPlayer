@@ -62,7 +62,7 @@ public:
     /*!
      * Set music sort.
      */
-    inline void setSongSort(MusicSongSort *sort) { m_songSort = sort; }
+    inline void setSongSort(MusicSongSort *sort) noexcept { m_songSort = sort; }
     /*!
      * Update item duration label.
      */

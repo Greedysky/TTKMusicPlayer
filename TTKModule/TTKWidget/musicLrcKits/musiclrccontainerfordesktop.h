@@ -75,7 +75,7 @@ public:
     /*!
      * Get current desktop lrc window type is vertical or not.
      */
-    inline bool isVerticalWindowType() const { return m_verticalWindow; }
+    inline bool isVerticalWindowType() const noexcept { return m_verticalWindow; }
     /*!
      * Make object status copy.
      */

@@ -61,7 +61,7 @@ public:
     /*!
      * Get current window is to top.
      */
-    inline bool windowToTop() const { return m_setWindowToTop; }
+    inline bool windowToTop() const noexcept { return m_setWindowToTop; }
 
     /*!
      * Clean up the system parameter.

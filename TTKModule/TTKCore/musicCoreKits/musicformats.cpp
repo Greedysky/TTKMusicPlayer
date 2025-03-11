@@ -2,33 +2,33 @@
 
 #include <qmmp/format.h>
 
-bool MusicFormats::isTrack(const QString &url)
+bool MusicFormats::isTrack(const QString &url) noexcept
 {
     return Format::isTrack(url);
 }
 
-bool MusicFormats::isRedirection(const QString &url)
+bool MusicFormats::isRedirection(const QString &url) noexcept
 {
     return Format::isRedirection(url);
 }
 
-QStringList MusicFormats::supportMusicFormats()
+QStringList MusicFormats::supportMusicFormats() noexcept
 {
     return Format::supportMusicFormats();
 }
 
-QStringList MusicFormats::supportMusicInputFilterFormats()
+QStringList MusicFormats::supportMusicInputFilterFormats() noexcept
 {
     return Format::supportMusicInputFilterFormats();
 }
 
-QString MusicFormats::supportMusicInputFormats()
+QString MusicFormats::supportMusicInputFormats() noexcept
 {
     const QStringList formats(Format::supportMusicInputFormats());
     return formats.join(";;");
 }
 
-QStringList MusicFormats::supportSpekInputFilterFormats()
+QStringList MusicFormats::supportSpekInputFilterFormats() noexcept
 {
     QStringList formats;
     formats << "*.wma" << "*.ape" << "*.tta" << "*.m4a" << "*.m4b" << "*.aac" << "*.ra" << "*.shn" << "*.ac3" << "*.mka" << "*.vqf" << "*.tak" << "*.spx" << "*.adx" << "*.aix";
@@ -38,12 +38,12 @@ QStringList MusicFormats::supportSpekInputFilterFormats()
     return formats;
 }
 
-QString MusicFormats::supportSpekInputFormats()
+QString MusicFormats::supportSpekInputFormats() noexcept
 {
     return QString("Audio Files (%1)").arg(supportSpekInputFilterFormats().join(TTK_SPACE));
 }
 
-QString MusicFormats::supportPlaylistInputFormats()
+QString MusicFormats::supportPlaylistInputFormats() noexcept
 {
     QStringList formats;
     formats << "Playlist Files (*.tkpl *.m3u *.m3u8 *.pls *.wpl *.xspf *.jspf *.asx *.fpl *.dbpl *.csv *.txt)";
@@ -62,7 +62,7 @@ QString MusicFormats::supportPlaylistInputFormats()
     return formats.join(";;");
 }
 
-QString MusicFormats::supportPlaylistOutputFormats()
+QString MusicFormats::supportPlaylistOutputFormats() noexcept
 {
     QStringList formats;
     formats << "TTKlist Files (*.tkpl)";

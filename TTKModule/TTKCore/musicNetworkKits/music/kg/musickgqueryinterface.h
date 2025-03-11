@@ -64,7 +64,7 @@ namespace ReqKGInterface
     /*!
      * Make request query data.
      */
-    void makeRequestRawHeader(QNetworkRequest *request);
+    void makeRequestRawHeader(QNetworkRequest *request) noexcept;
 
     /*!
      * Make song artist name.

@@ -114,7 +114,7 @@ void MusicBingTranslationRequest::downLoadFinished()
     deleteAll();
 }
 
-QString MusicBingTranslationRequest::mapToString(Language type) const
+QString MusicBingTranslationRequest::mapToString(Language type) const noexcept
 {
     switch(type)
     {

@@ -115,37 +115,37 @@ MusicMPRISPlayerCore::MusicMPRISPlayerCore(QObject *parent)
     syncProperties();
 }
 
-bool MusicMPRISPlayerCore::canControl() const
+bool MusicMPRISPlayerCore::canControl() const noexcept
 {
     return true;
 }
 
-bool MusicMPRISPlayerCore::canGoNext() const
+bool MusicMPRISPlayerCore::canGoNext() const noexcept
 {
     return !m_application->m_playlist->isEmpty();
 }
 
-bool MusicMPRISPlayerCore::canGoPrevious() const
+bool MusicMPRISPlayerCore::canGoPrevious() const noexcept
 {
     return !m_application->m_playlist->isEmpty();
 }
 
-bool MusicMPRISPlayerCore::canPause() const
+bool MusicMPRISPlayerCore::canPause() const noexcept
 {
     return !m_application->m_playlist->isEmpty();
 }
 
-bool MusicMPRISPlayerCore::canPlay() const
+bool MusicMPRISPlayerCore::canPlay() const noexcept
 {
     return !m_application->m_playlist->isEmpty();
 }
 
-bool MusicMPRISPlayerCore::canSeek() const
+bool MusicMPRISPlayerCore::canSeek() const noexcept
 {
     return m_core->duration() > 0;
 }
 
-QString MusicMPRISPlayerCore::loopStatus() const
+QString MusicMPRISPlayerCore::loopStatus() const noexcept
 {
     switch(m_application->playMode())
     {
@@ -155,7 +155,7 @@ QString MusicMPRISPlayerCore::loopStatus() const
     }
 }
 
-void MusicMPRISPlayerCore::setLoopStatus(const QString &value)
+void MusicMPRISPlayerCore::setLoopStatus(const QString &value) noexcept
 {
     if(value == "Track")
     {
@@ -171,7 +171,7 @@ void MusicMPRISPlayerCore::setLoopStatus(const QString &value)
     }
 }
 
-double MusicMPRISPlayerCore::maximumRate() const
+double MusicMPRISPlayerCore::maximumRate() const noexcept
 {
     return 1.0;
 }
@@ -246,12 +246,12 @@ QVariantMap MusicMPRISPlayerCore::metadata() const
     return map;
 }
 
-double MusicMPRISPlayerCore::minimumRate() const
+double MusicMPRISPlayerCore::minimumRate() const noexcept
 {
     return 1.0;
 }
 
-QString MusicMPRISPlayerCore::playbackStatus() const
+QString MusicMPRISPlayerCore::playbackStatus() const noexcept
 {
     if(m_core->state() == Qmmp::Playing)
     {
@@ -269,22 +269,22 @@ qlonglong MusicMPRISPlayerCore::position() const
     return qMax(m_core->elapsed() * TTK_DN_S2MS, qint64(0));
 }
 
-double MusicMPRISPlayerCore::rate() const
+double MusicMPRISPlayerCore::rate() const noexcept
 {
     return 1.0;
 }
 
-void MusicMPRISPlayerCore::setRate(double value)
+void MusicMPRISPlayerCore::setRate(double value) noexcept
 {
     Q_UNUSED(value)
 }
 
-bool MusicMPRISPlayerCore::shuffle() const
+bool MusicMPRISPlayerCore::shuffle() const noexcept
 {
     return m_application->playMode() == TTK::PlayMode::Random;
 }
 
-void MusicMPRISPlayerCore::setShuffle(bool value)
+void MusicMPRISPlayerCore::setShuffle(bool value) noexcept
 {
     m_application->m_playlist->setPlaybackMode(value ? TTK::PlayMode::Random : TTK::PlayMode::Order);
 }

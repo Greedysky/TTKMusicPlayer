@@ -106,7 +106,7 @@ public:
     /*!
      * Get control bar widget.
      */
-    inline MusicVideoControlWidget *controlBarWidget() const { return m_videoControl; }
+    inline MusicVideoControlWidget *controlBarWidget() const noexcept { return m_videoControl; }
 
 Q_SIGNALS:
     /*!

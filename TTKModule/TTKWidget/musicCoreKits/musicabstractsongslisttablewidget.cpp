@@ -53,7 +53,7 @@ int MusicAbstractSongsListTableWidget::totalHeight() const
     return height;
 }
 
-void MusicAbstractSongsListTableWidget::setPlaylistRow(int index)
+void MusicAbstractSongsListTableWidget::setPlaylistRow(int index) noexcept
 {
     m_playlistRow = index;
 }

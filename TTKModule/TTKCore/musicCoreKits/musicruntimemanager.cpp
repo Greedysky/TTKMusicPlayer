@@ -139,13 +139,13 @@ void MusicRunTimeManager::run() const
     G_NETWORK_PTR->setBlockNetwork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toBool());
 }
 
-QStringList MusicRunTimeManager::translator() const
+QStringList MusicRunTimeManager::translator() const noexcept
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt();
     return {TTK::languageCore(index), TTK::languageQmmp(index)};
 }
 
-bool MusicRunTimeManager::configVersionCheck() const
+bool MusicRunTimeManager::configVersionCheck() const noexcept
 {
     return G_SETTING_PTR->value(MusicSettingManager::ConfigVersion).toString() == TTK_CONFIG_VERSION_STR;
 }

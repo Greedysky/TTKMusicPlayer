@@ -37,11 +37,11 @@ public:
     /*!
      * Get Interior lrc size.
      */
-    QStringList interiorLrcSize() const;
+    QStringList interiorLrcSize() const noexcept;
     /*!
      * Get desktop lrc size.
      */
-    QStringList desktopLrcSize() const;
+    QStringList desktopLrcSize() const noexcept;
 
     /*!
      * Find Interior lrc index.

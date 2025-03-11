@@ -32,17 +32,17 @@ MusicPlayer::~MusicPlayer()
     delete m_core;
 }
 
-bool MusicPlayer::isPlaying() const
+bool MusicPlayer::isPlaying() const noexcept
 {
     return m_state == TTK::PlayState::Playing;
 }
 
-TTK::PlayState MusicPlayer::state() const
+TTK::PlayState MusicPlayer::state() const noexcept
 {
     return m_state;
 }
 
-void MusicPlayer::setPlaylist(MusicPlaylist *playlist)
+void MusicPlayer::setPlaylist(MusicPlaylist *playlist) noexcept
 {
     m_playlist = playlist;
 }
@@ -73,7 +73,7 @@ void MusicPlayer::setVolume(int volume)
     m_core->setVolume(volume);
 }
 
-bool MusicPlayer::isMuted() const
+bool MusicPlayer::isMuted() const noexcept
 {
     return m_core->isMuted();
 }
@@ -108,7 +108,7 @@ void MusicPlayer::setEnhanced(Enhance type)
     }
 }
 
-MusicPlayer::Enhance MusicPlayer::enhanced() const
+MusicPlayer::Enhance MusicPlayer::enhanced() const noexcept
 {
     return m_enhance;
 }
@@ -270,7 +270,7 @@ void MusicPlayer::setStopState()
     setCurrentPlayState(TTK::PlayState::Stopped);
 }
 
-void MusicPlayer::setCurrentPlayState(TTK::PlayState state)
+void MusicPlayer::setCurrentPlayState(TTK::PlayState state) noexcept
 {
     m_state = state;
     Q_EMIT stateChanged(m_state);

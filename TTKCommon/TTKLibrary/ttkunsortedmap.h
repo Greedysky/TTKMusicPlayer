@@ -96,22 +96,22 @@ public:
     }
 
     template <class _Iter = iterator, typename std::enable_if<!std::is_same<_Iter, const_iterator>::value, int>::type = 0>
-    _CONSTEXPR_CONTAINER iterator erase(iterator _Where) noexcept
+    _CONSTEXPR_CONTAINER iterator erase(iterator _Where)
     {
         return m_conatiner.erase(_Where);
     }
 
-    _CONSTEXPR_CONTAINER iterator erase(const_iterator _Where) noexcept
+    _CONSTEXPR_CONTAINER iterator erase(const_iterator _Where)
     {
         return m_conatiner.erase(_Where);
     }
 
-    _CONSTEXPR_CONTAINER iterator erase(const_iterator _First, const_iterator _Last) noexcept
+    _CONSTEXPR_CONTAINER iterator erase(const_iterator _First, const_iterator _Last)
     {
         return m_conatiner.erase(_First, _Last);
     }
 
-    _CONSTEXPR_CONTAINER size_type erase(const key_type &_Keyval) noexcept
+    _CONSTEXPR_CONTAINER size_type erase(const key_type &_Keyval)
     {
         const auto &iter = find(_Keyval);
         if(iter == end())

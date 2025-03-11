@@ -203,20 +203,20 @@ void TTKDumperPrivate::initialize()
 
 
 
-TTKDumper::TTKDumper()
+TTKDumper::TTKDumper() noexcept
 {
     TTKDumperPrivate::m_name = "TTK";
     TTKDumperPrivate::m_version = TTK_VERSION_STR;
 }
 
-TTKDumper::TTKDumper(const TTKDumperFunctor &functor)
+TTKDumper::TTKDumper(const TTKDumperFunctor &functor) noexcept
 {
     TTKDumperPrivate::m_name = "TTK";
     TTKDumperPrivate::m_version = TTK_VERSION_STR;
     TTKDumperPrivate::m_functor = functor;
 }
 
-TTKDumper::~TTKDumper()
+TTKDumper::~TTKDumper() noexcept
 {
     if(TTKDumperPrivate::m_functor)
     {

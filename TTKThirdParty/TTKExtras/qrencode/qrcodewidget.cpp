@@ -8,7 +8,7 @@
 class QRCodeQWidgetPrivate : public TTKPrivate<QRCodeQWidget>
 {
 public:
-    QRCodeQWidgetPrivate();
+    QRCodeQWidgetPrivate() noexcept;
 
     bool m_casesen;
     int m_margin;
@@ -21,7 +21,7 @@ public:
 
 };
 
-QRCodeQWidgetPrivate::QRCodeQWidgetPrivate()
+QRCodeQWidgetPrivate::QRCodeQWidgetPrivate() noexcept
     : m_casesen(true),
       m_margin(10),
       m_percent(0.23f),

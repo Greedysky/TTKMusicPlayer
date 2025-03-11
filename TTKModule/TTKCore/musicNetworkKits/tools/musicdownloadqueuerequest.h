@@ -54,7 +54,7 @@ public:
     /*!
      * Add download url and save path to download queue.
      */
-    void addQueue(const MusicDownloadQueueDataList &datas);
+    void addQueue(const MusicDownloadQueueDataList &datas) noexcept;
     /*!
      * Start to download queue data.
      */
@@ -67,7 +67,7 @@ public:
     /*!
      * Clear image download url queue.
      */
-    void clear();
+    void clear() noexcept;
 
 public Q_SLOTS:
     /*!

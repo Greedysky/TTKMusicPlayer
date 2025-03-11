@@ -21,7 +21,7 @@ struct CategoryProperty
         int m_type;
     };
 
-    CategoryProperty(const QString &tag, const QList<Property> &property)
+    CategoryProperty(const QString &tag, const QList<Property> &property) noexcept
         : m_tag(tag),
           m_property(property)
     {

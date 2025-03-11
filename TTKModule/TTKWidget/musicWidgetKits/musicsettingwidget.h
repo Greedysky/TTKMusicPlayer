@@ -38,7 +38,7 @@ struct TTK_MODULE_EXPORT MusicFunctionItem
     QString m_icon;
     QString m_name;
 
-    MusicFunctionItem(const QString &icon, const QString &name)
+    MusicFunctionItem(const QString &icon, const QString &name) noexcept
         : m_icon(icon),
           m_name(name)
     {

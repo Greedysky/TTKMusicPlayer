@@ -56,7 +56,7 @@ namespace TTK
     /*!
      * Check current url is valid or not.
      */
-    inline static bool isCoverValid(const QString &url)
+    inline static bool isCoverValid(const QString &url) noexcept
     {
         return !(url.isEmpty() || url == TTK_NULL_STR || url == TTK_DEFAULT_STR);
     }

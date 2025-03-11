@@ -64,7 +64,7 @@ private:
         int m_minute;
         bool m_state;
 
-        MusicTimeData()
+        MusicTimeData() noexcept
             : m_index(-1),
               m_hour(-1),
               m_minute(-1),

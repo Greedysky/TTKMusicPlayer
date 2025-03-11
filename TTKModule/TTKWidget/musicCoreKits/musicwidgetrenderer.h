@@ -38,7 +38,7 @@ public:
     /*!
      * Set background label.
      */
-    inline void setBackgroundLabel(QLabel *label) { m_background = label; }
+    inline void setBackgroundLabel(QLabel *label) noexcept { m_background = label; }
 
 protected:
     /*!

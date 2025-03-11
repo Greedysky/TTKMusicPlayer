@@ -21,17 +21,17 @@ void MusicCiBaRequest::startToRequest()
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-QString MusicCiBaRequest::note() const
+QString MusicCiBaRequest::note() const noexcept
 {
     return m_rawData["note"].toString();
 }
 
-QString MusicCiBaRequest::content() const
+QString MusicCiBaRequest::content() const noexcept
 {
     return m_rawData["content"].toString();
 }
 
-QString MusicCiBaRequest::image() const
+QString MusicCiBaRequest::image() const noexcept
 {
     return m_rawData["picture4"].toString();
 }

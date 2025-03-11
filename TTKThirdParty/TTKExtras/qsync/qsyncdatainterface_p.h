@@ -27,7 +27,7 @@
 class QSyncDataInterfacePrivate : public TTKPrivate<QSyncDataInterface>
 {
 public:
-    QSyncDataInterfacePrivate()
+    QSyncDataInterfacePrivate() noexcept
         : m_manager(nullptr)
     {
 

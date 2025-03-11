@@ -42,7 +42,7 @@ public:
     /*!
      * Get music song information.
      */
-    inline const TTK::MusicSongInformation& item() const { return m_item; }
+    inline const TTK::MusicSongInformation& item() const noexcept { return m_item; }
 
 public Q_SLOTS:
     /*!

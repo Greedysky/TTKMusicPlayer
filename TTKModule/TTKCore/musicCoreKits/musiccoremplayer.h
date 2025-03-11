@@ -75,11 +75,11 @@ public:
     /*!
      * Get current player state.
      */
-    inline TTK::PlayState state() const { return m_playState; }
+    inline TTK::PlayState state() const noexcept { return m_playState; }
     /*!
      * Get current player category.
      */
-    inline Module category() const { return m_category; }
+    inline Module category() const noexcept { return m_category; }
 
 Q_SIGNALS:
     /*!

@@ -49,7 +49,7 @@ private:
     /*!
      * Map type from enum to string.
      */
-    QString mapToString(Language type) const;
+    QString mapToString(Language type) const noexcept;
 
 };
 

@@ -43,20 +43,20 @@ public:
     /*!
      * Select the current item.
      */
-    void setSelected(bool v);
+    void setSelected(bool v) noexcept;
     /*!
      * Get current selected item state.
      */
-    inline bool isSelected() const { return m_isSelected; }
+    inline bool isSelected() const noexcept { return m_isSelected; }
 
     /*!
      * Get current item apth.
      */
-    inline QString path() const { return m_path; }
+    inline QString path() const noexcept { return m_path; }
     /*!
      * Get current item apth.
      */
-    inline QString& pathRef() { return m_path; }
+    inline QString& pathRef() noexcept { return m_path; }
 
 private:
     /*!

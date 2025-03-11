@@ -23,7 +23,7 @@ TTKSuperEnum::TTKSuperEnum(const QString &value)
     }
 }
 
-QString TTKSuperEnum::keyToString(int value) const
+QString TTKSuperEnum::keyToString(int value) const noexcept
 {
     if(TTKSuperEnum::Null == value)
     {
@@ -34,7 +34,7 @@ QString TTKSuperEnum::keyToString(int value) const
     return it != m_enumValue.end() ? it->second : "Invalid";
 }
 
-int TTKSuperEnum::stringToKey(const QString &name) const
+int TTKSuperEnum::stringToKey(const QString &name) const noexcept
 {
     if("Null" == name)
     {

@@ -58,7 +58,7 @@ public:
     /*!
      * Set module mode.
      */
-    inline void setModuleMode(TTKUInt8 mode) { m_mode = mode; }
+    inline void setModuleMode(TTKUInt8 mode) noexcept { m_mode = mode; }
 
     /*!
      * Set delegate item style.

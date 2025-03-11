@@ -124,23 +124,23 @@ public:
      */
     MusicMPRISPlayerCore(QObject *parent = nullptr);
 
-    bool canControl() const;
-    bool canGoNext() const;
-    bool canGoPrevious() const;
-    bool canPause() const;
-    bool canPlay() const;
-    bool canSeek() const;
-    QString loopStatus() const;
-    void setLoopStatus(const QString &value);
-    double maximumRate() const;
+    bool canControl() const noexcept;
+    bool canGoNext() const noexcept;
+    bool canGoPrevious() const noexcept;
+    bool canPause() const noexcept;
+    bool canPlay() const noexcept;
+    bool canSeek() const noexcept;
+    QString loopStatus() const noexcept;
+    void setLoopStatus(const QString &value) noexcept;
+    double maximumRate() const noexcept;
     QVariantMap metadata() const;
-    double minimumRate() const;
-    QString playbackStatus() const;
+    double minimumRate() const noexcept;
+    QString playbackStatus() const noexcept;
     qlonglong position() const;
-    double rate() const;
-    void setRate(double value);
-    bool shuffle() const;
-    void setShuffle(bool value);
+    double rate() const noexcept;
+    void setRate(double value) noexcept;
+    bool shuffle() const noexcept;
+    void setShuffle(bool value) noexcept;
     double volume() const;
     void setVolume(double value);
 

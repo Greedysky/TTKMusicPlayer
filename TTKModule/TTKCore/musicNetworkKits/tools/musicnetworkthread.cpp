@@ -29,7 +29,7 @@ void MusicNetworkThread::start()
     networkStateChanged();
 }
 
-void MusicNetworkThread::setBlockNetwork(bool block)
+void MusicNetworkThread::setBlockNetwork(bool block) noexcept
 {
     G_SETTING_PTR->setValue(MusicSettingManager::CloseNetWorkMode, block);
 }

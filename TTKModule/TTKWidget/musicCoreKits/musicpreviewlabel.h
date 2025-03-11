@@ -41,7 +41,7 @@ public:
     /*!
      * Get linear gradient colors.
      */
-    QList<QColor> colors() const;
+    QList<QColor> colors() const noexcept;
     /*!
      * Get linear gradient color.
      */
@@ -94,7 +94,7 @@ public:
     /*!
      * Set current transparent.
      */
-    inline void setTransparent(int trans) { m_transparent = trans; }
+    inline void setTransparent(int trans) noexcept { m_transparent = trans; }
 
 private:
     /*!

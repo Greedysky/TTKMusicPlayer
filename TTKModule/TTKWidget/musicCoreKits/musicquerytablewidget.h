@@ -107,7 +107,7 @@ protected:
     /*!
      * Check item row is valid or not.
      */
-    inline bool isValid(int row) const
+    inline bool isValid(int row) const noexcept
     {
         return !(row < 0 || row >= rowCount() - 1);
     }

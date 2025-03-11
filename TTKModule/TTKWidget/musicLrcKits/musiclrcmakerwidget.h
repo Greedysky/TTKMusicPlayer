@@ -47,7 +47,7 @@ public:
     /*!
      * Current text line make done.
      */
-    bool done() const;
+    bool done() const noexcept;
     /*!
      * Item move reset.
      */

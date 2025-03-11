@@ -40,8 +40,8 @@ namespace TTKLockedPrivate {
 class TTKLocalPeerPrivate : public TTKPrivate<TTKLocalPeer>
 {
 public:
-    TTKLocalPeerPrivate();
-    ~TTKLocalPeerPrivate();
+    TTKLocalPeerPrivate() noexcept;
+    ~TTKLocalPeerPrivate() noexcept;
 
     QString m_id;
     QString m_socketName;
@@ -51,13 +51,13 @@ public:
 };
 const char *TTKLocalPeerPrivate::m_ack = "ack";
 
-TTKLocalPeerPrivate::TTKLocalPeerPrivate()
+TTKLocalPeerPrivate::TTKLocalPeerPrivate() noexcept
     : m_server(nullptr)
 {
 
 }
 
-TTKLocalPeerPrivate::~TTKLocalPeerPrivate()
+TTKLocalPeerPrivate::~TTKLocalPeerPrivate() noexcept
 {
     delete m_server;
 }
@@ -196,7 +196,7 @@ bool TTKLocalPeer::sendMessage(const QString &message, int timeout) const
     return res;
 }
 
-QString TTKLocalPeer::applicationId() const
+QString TTKLocalPeer::applicationId() const noexcept
 {
     TTK_D(TTKLocalPeer);
     return d->m_id;

@@ -161,7 +161,7 @@ void MusicAudioRecorderModule::setVolume(int volume)
 #endif
 }
 
-int MusicAudioRecorderModule::volume() const
+int MusicAudioRecorderModule::volume() const noexcept
 {
     return m_inputVolume;
 }
@@ -176,7 +176,7 @@ QString MusicAudioRecorderModule::fileName() const
     return m_file->fileName();
 }
 
-bool MusicAudioRecorderModule::error() const
+bool MusicAudioRecorderModule::error() const noexcept
 {
     if(!m_audioInputFile)
     {

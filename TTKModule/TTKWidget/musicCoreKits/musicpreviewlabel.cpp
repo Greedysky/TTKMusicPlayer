@@ -20,7 +20,7 @@ void MusicColorPreviewLabel::setColors(const QList<QColor> &colors)
     update();
 }
 
-QList<QColor> MusicColorPreviewLabel::colors() const
+QList<QColor> MusicColorPreviewLabel::colors() const noexcept
 {
     return m_gradientColors;
 }

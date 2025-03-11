@@ -63,11 +63,11 @@ public:
     /*!
      * Get previoud index.
      */
-    int previousIndex() const;
+    int previousIndex() const noexcept;
     /*!
      * Get current index.
      */
-    int currentIndex() const;
+    int currentIndex() const noexcept;
 
     /*!
      * Set animation duration.

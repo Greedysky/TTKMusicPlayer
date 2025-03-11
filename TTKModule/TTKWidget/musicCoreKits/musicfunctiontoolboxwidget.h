@@ -44,11 +44,11 @@ public:
     /*!
      * Set index.
      */
-    inline void setIndex(int index) { m_index = index; }
+    inline void setIndex(int index) noexcept { m_index = index; }
     /*!
      * Get index.
      */
-    inline int index() const { return m_index; }
+    inline int index() const noexcept { return m_index; }
 
     /*!
      * Get active.
@@ -131,7 +131,7 @@ public:
     /*!
      * Get widget item.
      */
-    QWidget *item() const;
+    QWidget *item() const noexcept;
     /*!
      * Create cell item by input item.
      */
@@ -149,7 +149,7 @@ public:
     /*!
      * Get item widget expand state.
      */
-    bool isExpand() const;
+    bool isExpand() const ;
 
     /*!
      * Get item widget is in active state.
@@ -205,7 +205,7 @@ struct TTK_MODULE_EXPORT MusicToolBoxWidgetItem
     int m_itemIndex;
     MusicFunctionToolBoxWidgetItem *m_widgetItem;
 
-    MusicToolBoxWidgetItem()
+    MusicToolBoxWidgetItem() noexcept
         : m_itemIndex(-1),
           m_widgetItem(nullptr)
     {
@@ -258,11 +258,11 @@ public:
     /*!
      * Get current index.
      */
-    int currentIndex() const;
+    int currentIndex() const noexcept;
     /*!
      * Get item's count.
      */
-    int count() const;
+    int count() const noexcept;
 
 public Q_SLOTS:
     /*!

@@ -43,7 +43,7 @@ public:
     /*!
      * Set rotating widget background pixmap.
      */
-    void setPixmap(const QPixmap &pix);
+    void setPixmap(const QPixmap &pix) noexcept;
     /*!
      * Set rotating widget interval.
      */

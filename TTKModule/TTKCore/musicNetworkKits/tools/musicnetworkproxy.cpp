@@ -16,52 +16,52 @@ MusicNetworkProxy::~MusicNetworkProxy()
     delete m_socket;
 }
 
-void MusicNetworkProxy::setHostName(const QString &name)
+void MusicNetworkProxy::setHostName(const QString &name) noexcept
 {
     m_hostName = name;
 }
 
-QString MusicNetworkProxy::hostName() const
+QString MusicNetworkProxy::hostName() const noexcept
 {
     return m_hostName;
 }
 
-void MusicNetworkProxy::setPort(int port)
+void MusicNetworkProxy::setPort(int port) noexcept
 {
     m_port = port;
 }
 
-void MusicNetworkProxy::setType(int type)
+void MusicNetworkProxy::setType(int type) noexcept
 {
     m_type = type;
 }
 
-int MusicNetworkProxy::type() const
+int MusicNetworkProxy::type() const noexcept
 {
     return m_type;
 }
 
-int MusicNetworkProxy::port() const
+int MusicNetworkProxy::port() const noexcept
 {
     return m_port;
 }
 
-void MusicNetworkProxy::setUser(const QString &user)
+void MusicNetworkProxy::setUser(const QString &user) noexcept
 {
     m_user = user;
 }
 
-QString MusicNetworkProxy::user() const
+QString MusicNetworkProxy::user() const noexcept
 {
     return m_user;
 }
 
-void MusicNetworkProxy::setPassword(const QString &pwd)
+void MusicNetworkProxy::setPassword(const QString &pwd) noexcept
 {
     m_pwd = pwd;
 }
 
-QString MusicNetworkProxy::password() const
+QString MusicNetworkProxy::password() const noexcept
 {
     return m_pwd;
 }

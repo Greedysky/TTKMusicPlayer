@@ -40,7 +40,7 @@ public:
     /*!
      * Set input value (0 - 5).
      */
-    void setValue(int value);
+    void setValue(int value) noexcept;
 
 private:
     /*!

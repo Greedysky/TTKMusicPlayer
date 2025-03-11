@@ -59,8 +59,8 @@ public:
     /*!
      * Object constructor.
      */
-    MusicLrcColor();
-    MusicLrcColor(const QList<QColor> &front, const QList<QColor> &back, Color index = Color::Null);
+    MusicLrcColor() noexcept;
+    MusicLrcColor(const QList<QColor> &front, const QList<QColor> &back, Color index = Color::Null) noexcept;
 
     QList<QColor> m_frontColor;
     QList<QColor> m_backColor;
@@ -136,37 +136,37 @@ public:
     /*!
      * Set lrc font speed level by given value.
      */
-    inline void setSpeedLevel(int l) { m_speedLevel = l; }
+    inline void setSpeedLevel(int l) noexcept { m_speedLevel = l; }
     /*!
      * Set lrc font transparent by given value.
      */
-    inline void setFontTransparent(int t) { m_transparent = t; }
+    inline void setFontTransparent(int t) noexcept { m_transparent = t; }
 
     /*!
      * Set self position by x and y.
      */
-    void setSelfPosition(int x, int y);
+    void setSelfPosition(int x, int y) noexcept;
     /*!
      * Set self position by point.
      */
-    void setSelfPosition(const QPoint &point);
+    void setSelfPosition(const QPoint &point) noexcept;
 
     /*!
      * Get self position x.
      */
-    int x() const;
+    int x() const noexcept;
     /*!
      * Get self position y.
      */
-    int y() const;
+    int y() const noexcept;
     /*!
      * Set self position x.
      */
-    void setX(int x);
+    void setX(int x) noexcept;
     /*!
      * Set self position y.
      */
-    void setY(int y);
+    void setY(int y) noexcept;
 
     /*!
      * Reset to origin state.
@@ -180,7 +180,7 @@ public:
     /*!
      * Get current font szie.
      */
-    inline int lrcFontSize() const { return m_font.pointSize(); }
+    inline int lrcFontSize() const noexcept { return m_font.pointSize(); }
 
 public Q_SLOTS:
     /*!

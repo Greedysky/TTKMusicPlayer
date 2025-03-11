@@ -1,7 +1,7 @@
 #include "musicbackgroundmanager.h"
 #include "musicsong.h"
 
-MusicBackgroundManager::MusicBackgroundManager()
+MusicBackgroundManager::MusicBackgroundManager() noexcept
     : m_currentIndex(0)
 {
 
@@ -13,22 +13,22 @@ void MusicBackgroundManager::setArtistName(const QString &name)
     updateArtistImageList();
 }
 
-QString MusicBackgroundManager::artistName() const
+QString MusicBackgroundManager::artistName() const noexcept
 {
     return m_currentArtistName;
 }
 
-void MusicBackgroundManager::imageNext()
+void MusicBackgroundManager::imageNext() noexcept
 {
     m_currentIndex++;
 }
 
-void MusicBackgroundManager::imagePrevious()
+void MusicBackgroundManager::imagePrevious() noexcept
 {
     m_currentIndex--;
 }
 
-QString MusicBackgroundManager::artistImagePath()
+QString MusicBackgroundManager::artistImagePath() noexcept
 {
     if(m_images.isEmpty())
     {
@@ -38,7 +38,7 @@ QString MusicBackgroundManager::artistImagePath()
     return m_images[m_currentIndex < m_images.count() ? m_currentIndex : m_currentIndex = 0];
 }
 
-QString MusicBackgroundManager::artistImageDefaultPath() const
+QString MusicBackgroundManager::artistImageDefaultPath() const noexcept
 {
     if(m_images.isEmpty())
     {
@@ -71,17 +71,17 @@ void MusicBackgroundManager::updateArtistImageList()
     Q_EMIT artistChanged();
 }
 
-QStringList MusicBackgroundManager::artistImageList() const
+QStringList MusicBackgroundManager::artistImageList() const noexcept
 {
     return m_images;
 }
 
-void MusicBackgroundManager::setArtistImageList(const QStringList &list)
+void MusicBackgroundManager::setArtistImageList(const QStringList &list) noexcept
 {
     m_images = list;
 }
 
-void MusicBackgroundManager::setSelectArtistIndex(int index)
+void MusicBackgroundManager::setSelectArtistIndex(int index) noexcept
 {
     m_currentIndex = index;
     Q_EMIT selectIndexChanged();
@@ -99,13 +99,13 @@ void MusicBackgroundManager::removeObserver(QObject *object)
     disconnect(this, SIGNAL(backgroundChanged()), object, SLOT(backgroundChanged()));
 }
 
-void MusicBackgroundManager::setBackgroundUrl(const QString &path)
+void MusicBackgroundManager::setBackgroundUrl(const QString &path) noexcept
 {
     m_background = path;
     Q_EMIT backgroundChanged();
 }
 
-QString MusicBackgroundManager::backgroundUrl() const
+QString MusicBackgroundManager::backgroundUrl() const noexcept
 {
     return m_background;
 }

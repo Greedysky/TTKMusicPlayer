@@ -14,7 +14,7 @@ MusicDownloadMetaDataRequest::MusicDownloadMetaDataRequest(const QString &url, c
     m_needUpdate = false;
 }
 
-void MusicDownloadMetaDataRequest::setSongMeta(MusicSongMeta &meta)
+void MusicDownloadMetaDataRequest::setSongMeta(MusicSongMeta &meta) noexcept
 {
     m_songMeta = std::move(meta);
 }

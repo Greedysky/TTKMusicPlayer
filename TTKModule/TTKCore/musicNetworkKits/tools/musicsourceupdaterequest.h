@@ -44,16 +44,16 @@ public:
     /*!
      * Get lasted version.
      */
-    QString version() const;
+    QString version() const noexcept;
     /*!
      * Get lasted version description.
      */
-    QString description() const;
+    QString description() const noexcept;
 
     /*!
      * Is lasted version.
      */
-    bool isLastedVersion() const;
+    bool isLastedVersion() const noexcept;
 
 Q_SIGNALS:
     /*!

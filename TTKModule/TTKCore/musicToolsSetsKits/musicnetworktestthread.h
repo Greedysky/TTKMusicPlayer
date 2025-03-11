@@ -37,7 +37,7 @@ public:
     /*!
      * Set current test url.
      */
-    void setUrl(const QString &url);
+    void setUrl(const QString &url) noexcept;
 
 Q_SIGNALS:
     /*!

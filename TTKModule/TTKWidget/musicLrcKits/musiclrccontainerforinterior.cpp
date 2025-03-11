@@ -172,7 +172,7 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
     startDrawLrc();
 }
 
-int MusicLrcContainerForInterior::lrcSize() const
+int MusicLrcContainerForInterior::lrcSize() const noexcept
 {
     return G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
 }

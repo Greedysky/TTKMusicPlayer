@@ -55,16 +55,16 @@ public:
     /*!
      * State is running.
      */
-    bool isRunning() const;
+    bool isRunning() const noexcept;
 
     /*!
      * Set random mode check.
      */
-    void setRandom(bool random);
+    void setRandom(bool random) noexcept;
     /*!
      * Set image path.
      */
-    void setImagePath(const QStringList &list);
+    void setImagePath(const QStringList &list) noexcept;
 
 #if defined Q_OS_WIN
     /*!

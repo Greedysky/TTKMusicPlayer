@@ -60,23 +60,19 @@ public:
      * Object constructor.
      */
     explicit MusicLrcAnalysis(QObject *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicLrcAnalysis();
 
     /*!
      * Set current line maximum value.
      */
-    inline void setLineMax(int max) { m_lineMax = max; }
+    inline void setLineMax(int max) noexcept { m_lineMax = max; }
     /*!
      * Get current line maximum value.
      */
-    inline int lineMax() const { return m_lineMax; }
+    inline int lineMax() const noexcept { return m_lineMax; }
     /*!
      * Get current line middle number.
      */
-    inline int lineMiddle() const { return m_lineMax / 2; }
+    inline int lineMiddle() const noexcept { return m_lineMax / 2; }
 
     /*!
      * Set lrc container data from other raw data.
@@ -112,36 +108,36 @@ public:
     /*!
      * Set current middle index.
      */
-    inline void setCurrentIndex(int index) { m_currentLrcIndex = index; }
+    inline void setCurrentIndex(int index) noexcept { m_currentLrcIndex = index; }
     /*!
      * Get current middle index.
      */
-    inline int currentIndex() const { return m_currentLrcIndex; }
+    inline int currentIndex() const noexcept { return m_currentLrcIndex; }
     /*!
      * Set current file path.
      */
-    inline void setCurrentFilePath(const QString &name) { m_currentFilePath = name; }
+    inline void setCurrentFilePath(const QString &name) noexcept { m_currentFilePath = name; }
     /*!
      * Get current file path.
      */
-    inline QString currentFilePath() const { return m_currentFilePath; }
+    inline QString currentFilePath() const noexcept { return m_currentFilePath; }
 
     /*!
      * Clear current lrc cache.
      */
-    void clear();
+    void clear() noexcept;
     /*!
      * Check current index is valid or not.
      */
-    bool isValid() const;
+    bool isValid() const noexcept;
     /*!
      * Check current container is empty or not.
      */
-    bool isEmpty() const;
+    bool isEmpty() const noexcept;
     /*!
      * Check current container count.
      */
-    int count() const;
+    int count() const noexcept;
 
     /*!
      * Get current lrc text by index.

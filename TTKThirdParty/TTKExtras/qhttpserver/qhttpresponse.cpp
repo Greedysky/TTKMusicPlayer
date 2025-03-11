@@ -12,7 +12,7 @@
 class QHttpResponsePrivate : public TTKPrivate<QHttpResponse>
 {
 public:
-    QHttpResponsePrivate();
+    QHttpResponsePrivate() noexcept;
 
     void writeHeaders();
     void writeHead(int status);
@@ -37,7 +37,7 @@ public:
 
 };
 
-QHttpResponsePrivate::QHttpResponsePrivate()
+QHttpResponsePrivate::QHttpResponsePrivate() noexcept
     : m_connection(nullptr),
       m_headerWritten(false),
       m_sentConnectionHeader(false),

@@ -65,7 +65,7 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
     m_actionGroup->addAction(menu.addAction(tr("Search '%1 - %2'").arg(info.m_artistName, info.m_songName)))->setData(3);
 }
 
-QString MusicItemSearchTableWidget::randSimulation() const
+QString MusicItemSearchTableWidget::randSimulation() const noexcept
 {
     switch(TTK::random(5) + 3)
     {

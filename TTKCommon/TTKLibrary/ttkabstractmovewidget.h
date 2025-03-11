@@ -40,11 +40,11 @@ public:
     /*!
      * Set or not draw window bound shadow.
      */
-    inline void drawWindowShadow(bool show) { m_shadowOption = show; }
+    inline void drawWindowShadow(bool show) noexcept { m_shadowOption = show; }
     /*!
      * Set or not block widget moving.
      */
-    inline void blockOption(bool block) { m_blockOption = block; }
+    inline void blockOption(bool block) noexcept { m_blockOption = block; }
 
 protected:
     /*!

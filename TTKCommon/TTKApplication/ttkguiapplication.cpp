@@ -9,19 +9,19 @@
 class TTKGuiApplicationPrivate : public TTKPrivate<TTKGuiApplication>
 {
 public:
-    TTKGuiApplicationPrivate();
-    ~TTKGuiApplicationPrivate();
+    TTKGuiApplicationPrivate() noexcept;
+    ~TTKGuiApplicationPrivate() noexcept;
 
     TTKLocalPeer *m_peer;
 };
 
-TTKGuiApplicationPrivate::TTKGuiApplicationPrivate()
+TTKGuiApplicationPrivate::TTKGuiApplicationPrivate() noexcept
     : m_peer(nullptr)
 {
 
 }
 
-TTKGuiApplicationPrivate::~TTKGuiApplicationPrivate()
+TTKGuiApplicationPrivate::~TTKGuiApplicationPrivate() noexcept
 {
     delete m_peer;
 }
@@ -48,7 +48,7 @@ bool TTKGuiApplication::isRunning() const
     return d->m_peer->isClient();
 }
 
-QString TTKGuiApplication::id() const
+QString TTKGuiApplication::id() const noexcept
 {
     TTK_D(TTKGuiApplication);
     return d->m_peer->applicationId();

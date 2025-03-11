@@ -32,11 +32,11 @@ public:
     /*!
      * Get all rule filters.
      */
-    static QStringList rules();
+    static QStringList rules() noexcept;
     /*!
      * Get rule filter by index.
      */
-    static QString rule(int index);
+    static QString rule(int index) noexcept;
     /*!
      * Parse rule value string to normal.
      */

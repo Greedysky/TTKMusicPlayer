@@ -64,11 +64,11 @@ public:
     /*!
      * Get background skin name.
      */
-    inline QString backgroundPath() const { return m_backgroundImagePath; }
+    inline QString backgroundPath() const noexcept { return m_backgroundImagePath; }
     /*!
      * Get background skin transparent.
      */
-    inline int backgroundTransparent() const { return m_backgroundTransparent; }
+    inline int backgroundTransparent() const noexcept { return m_backgroundTransparent; }
     /*!
      * Get list background skin transparent.
      */

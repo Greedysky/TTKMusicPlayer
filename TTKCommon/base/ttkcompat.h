@@ -24,13 +24,13 @@
 namespace TTK
 {
 template <typename _Tp>
-inline constexpr const _Tp& min(const _Tp &a, const _Tp &b)
+inline constexpr const _Tp& min(const _Tp &a, const _Tp &b) noexcept
 {
     return (a < b) ? a : b;
 }
 
 template <typename _Tp>
-inline constexpr const _Tp& max(const _Tp &a, const _Tp &b)
+inline constexpr const _Tp& max(const _Tp &a, const _Tp &b) noexcept
 {
     return (a < b) ? b : a;
 }
@@ -61,7 +61,7 @@ inline _Tp exchange(_Tp &__obj, _Up &&__new_val) noexcept
 
 #if !TTK_HAS_CXX17
 template <typename _Tp>
-inline constexpr const _Tp& clamp(const _Tp &_Val, const _Tp &_Min_val, const _Tp &_Max_val)
+inline constexpr const _Tp& clamp(const _Tp &_Val, const _Tp &_Min_val, const _Tp &_Max_val) noexcept
 {
     return TTK::max(_Min_val, TTK::min(_Max_val, _Val));
 }

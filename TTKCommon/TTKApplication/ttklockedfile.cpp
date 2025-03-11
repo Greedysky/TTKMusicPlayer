@@ -1,6 +1,6 @@
 #include "ttklockedfile.h"
 
-TTKLockedFile::TTKLockedFile()
+TTKLockedFile::TTKLockedFile() noexcept
     : QFile()
 {
 #ifdef Q_OS_WIN
@@ -10,7 +10,7 @@ TTKLockedFile::TTKLockedFile()
     m_lock_mode = NoLock;
 }
 
-TTKLockedFile::TTKLockedFile(const QString &name)
+TTKLockedFile::TTKLockedFile(const QString &name) noexcept
     : QFile(name)
 {
 #ifdef Q_OS_WIN
@@ -29,12 +29,12 @@ bool TTKLockedFile::open(OpenMode mode)
     return QFile::open(mode);
 }
 
-bool TTKLockedFile::isLocked() const
+bool TTKLockedFile::isLocked() const noexcept
 {
     return m_lock_mode != NoLock;
 }
 
-TTKLockedFile::LockMode TTKLockedFile::lockMode() const
+TTKLockedFile::LockMode TTKLockedFile::lockMode() const noexcept
 {
     return m_lock_mode;
 }

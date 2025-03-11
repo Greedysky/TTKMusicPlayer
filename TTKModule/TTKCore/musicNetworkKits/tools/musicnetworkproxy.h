@@ -42,47 +42,47 @@ public:
     /*!
      * Set proxy hostName.
      */
-    void setHostName(const QString &name);
+    void setHostName(const QString &name) noexcept;
     /*!
      * Get proxy hostName.
      */
-    QString hostName() const;
+    QString hostName() const noexcept;
 
     /*!
      * Set proxy port.
      */
-    void setPort(int port);
+    void setPort(int port) noexcept;
     /*!
      * Get proxy port.
      */
-    int port() const;
+    int port() const noexcept;
 
     /*!
      * Set proxy type.
      */
-    void setType(int type);
+    void setType(int type) noexcept;
     /*!
      * Get proxy type.
      */
-    int type() const;
+    int type() const noexcept;
 
     /*!
      * Set proxy username.
      */
-    void setUser(const QString &user);
+    void setUser(const QString &user) noexcept;
     /*!
      * Get proxy username.
      */
-    QString user() const;
+    QString user() const noexcept;
 
     /*!
      * Set proxy password.
      */
-    void setPassword(const QString &pwd);
+    void setPassword(const QString &pwd) noexcept;
     /*!
      * Get proxy password.
      */
-    QString password() const;
+    QString password() const noexcept;
 
     /*!
      * Test current proxy available.

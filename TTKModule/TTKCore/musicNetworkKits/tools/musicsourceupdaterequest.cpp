@@ -18,17 +18,17 @@ void MusicSourceUpdateRequest::startToRequest()
     d->startToRequest(QSyncUtils::makeDataBucketUrl() + QUERY_VERSION_URL);
 }
 
-QString MusicSourceUpdateRequest::version() const
+QString MusicSourceUpdateRequest::version() const noexcept
 {
     return m_rawData["version"].toString();
 }
 
-QString MusicSourceUpdateRequest::description() const
+QString MusicSourceUpdateRequest::description() const noexcept
 {
     return m_rawData["data"].toString();
 }
 
-bool MusicSourceUpdateRequest::isLastedVersion() const
+bool MusicSourceUpdateRequest::isLastedVersion() const noexcept
 {
     const QString &v = version();
     if(v.isEmpty())

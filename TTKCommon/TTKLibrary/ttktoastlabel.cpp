@@ -31,13 +31,13 @@ TTKToastLabel::~TTKToastLabel()
     m_timer.stop();
 }
 
-void TTKToastLabel::setFontMargin(int height, int width)
+void TTKToastLabel::setFontMargin(int height, int width) noexcept
 {
     m_margin.setX(height);
     m_margin.setY(width);
 }
 
-int TTKToastLabel::timerInterval() const
+int TTKToastLabel::timerInterval() const noexcept
 {
     return m_timer.interval();
 }

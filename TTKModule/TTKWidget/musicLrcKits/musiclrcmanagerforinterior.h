@@ -39,15 +39,15 @@ public:
     /*!
      * Set lrc per width.
      */
-    inline void setLrcPerWidth(int width) { m_lrcPerWidth = width + LRC_PER_WIDTH; }
+    inline void setLrcPerWidth(int width) noexcept { m_lrcPerWidth = width + LRC_PER_WIDTH; }
     /*!
      * Set adjust font size.
      */
-    inline void setFontSize(int size) { m_gradientFontSize = size; }
+    inline void setFontSize(int size) noexcept { m_gradientFontSize = size; }
     /*!
      * Set adjust transparent by value.
      */
-    inline void setTransparent(int tran) { m_gradientTransparent = tran; }
+    inline void setTransparent(int tran) noexcept { m_gradientTransparent = tran; }
 
 private:
     /*!

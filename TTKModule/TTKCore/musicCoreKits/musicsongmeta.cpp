@@ -180,7 +180,7 @@ void MusicSongMeta::setRating(const QString &rating) noexcept
     songMeta()->m_metaData[TagMeta::RATING] = rating;
 }
 
-void MusicSongMeta::setCover(const QPixmap &cover) noexcept
+void MusicSongMeta::setCover(const QPixmap &cover)
 {
 #if TTK_VERSION >= TTK_VERSION_CHECK(2,5,3,0)
     if(cover.width() > 500 || cover.height() > 500)
@@ -196,7 +196,7 @@ void MusicSongMeta::setCover(const QPixmap &cover) noexcept
 #endif
 }
 
-void MusicSongMeta::setCover(const QByteArray &data) noexcept
+void MusicSongMeta::setCover(const QByteArray &data)
 {
     if(data.isEmpty())
     {

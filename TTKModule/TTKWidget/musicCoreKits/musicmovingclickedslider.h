@@ -38,11 +38,11 @@ public:
     /*!
      * Slider is now moving or not.
      */
-    inline bool isMoving() const { return m_isMoving; }
+    inline bool isMoving() const noexcept { return m_isMoving; }
     /*!
      * Set slider moving or not.
      */
-    inline void setMoving(bool m) { m_isMoving = m; }
+    inline void setMoving(bool m) noexcept { m_isMoving = m; }
 
 Q_SIGNALS:
     /*!

@@ -36,7 +36,7 @@ struct TTK_MODULE_EXPORT MusicSkinRemoteItem
     int m_useCount;
     int m_index;
 
-    MusicSkinRemoteItem()
+    MusicSkinRemoteItem() noexcept
         : m_name(TTK_AUTHOR_NAME),
           m_useCount(8888),
           m_index(0)
@@ -44,7 +44,7 @@ struct TTK_MODULE_EXPORT MusicSkinRemoteItem
 
     }
 
-    inline bool isValid() const
+    inline bool isValid() const noexcept
     {
         return !m_name.isEmpty();
     }
@@ -61,7 +61,7 @@ struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
     QString m_id;
     MusicSkinRemoteItemList m_items;
 
-    inline bool isValid() const
+    inline bool isValid() const noexcept
     {
         return !(m_group.isEmpty() && m_id.isEmpty() && m_items.isEmpty());
     }

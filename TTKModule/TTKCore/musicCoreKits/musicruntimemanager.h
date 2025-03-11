@@ -36,12 +36,12 @@ public:
     /*!
      * Get translator path.
      */
-    QStringList translator() const;
+    QStringList translator() const noexcept;
 
     /*!
      * Check config version is new.
      */
-    bool configVersionCheck() const;
+    bool configVersionCheck() const noexcept;
 
 };
 

@@ -48,7 +48,7 @@ public:
     /*!
      * Get current server id.
     */
-    QString applicationId() const;
+    QString applicationId() const noexcept;
 
 Q_SIGNALS:
     /*!

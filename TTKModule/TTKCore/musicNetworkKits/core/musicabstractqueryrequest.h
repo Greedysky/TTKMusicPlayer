@@ -32,7 +32,7 @@ struct TTK_MODULE_EXPORT MusicResultInfoItem
     QString m_duration;
     QString m_type;
 
-    MusicResultInfoItem()
+    MusicResultInfoItem() noexcept
         : m_songName(TTK_DEFAULT_STR),
           m_artistName(TTK_DEFAULT_STR),
           m_albumName(TTK_DEFAULT_STR),
@@ -42,7 +42,7 @@ struct TTK_MODULE_EXPORT MusicResultInfoItem
 
     }
 
-    MusicResultInfoItem(const TTK::MusicSongInformation &info)
+    MusicResultInfoItem(const TTK::MusicSongInformation &info) noexcept
         : m_songName(info.m_songName),
           m_artistName(info.m_artistName),
           m_albumName(info.m_albumName),
@@ -51,7 +51,7 @@ struct TTK_MODULE_EXPORT MusicResultInfoItem
 
     }
 
-    MusicResultInfoItem(const TTK::MusicSongInformation &info, const QString &type)
+    MusicResultInfoItem(const TTK::MusicSongInformation &info, const QString &type) noexcept
         : MusicResultInfoItem(info)
     {
         m_type = type;
@@ -73,7 +73,7 @@ struct TTK_MODULE_EXPORT MusicResultDataItem
     QString m_time;
     QString m_category;
 
-    MusicResultDataItem()
+    MusicResultDataItem() noexcept
         : m_id(TTK_DEFAULT_STR),
           m_name(TTK_DEFAULT_STR),
           m_title(TTK_DEFAULT_STR),
@@ -87,7 +87,7 @@ struct TTK_MODULE_EXPORT MusicResultDataItem
 
     }
 
-    inline bool isEmpty() const
+    inline bool isEmpty() const noexcept
     {
         return m_name == TTK_DEFAULT_STR || m_nickName == TTK_DEFAULT_STR || m_coverUrl == TTK_DEFAULT_STR || m_description == TTK_DEFAULT_STR || m_category == TTK_DEFAULT_STR;
     }
@@ -151,31 +151,31 @@ public:
     /*!
      * Set query mode.
      */
-    inline void setQueryMode(QueryMode mode) { m_queryMode = mode; }
+    inline void setQueryMode(QueryMode mode) noexcept { m_queryMode = mode; }
     /*!
      * Get query lite flag.
      */
-    inline QueryMode queryMode() const { return m_queryMode; }
+    inline QueryMode queryMode() const noexcept { return m_queryMode; }
     /*!
      * Return the current song query type.
      */
-    inline void setQueryType(QueryType type) { m_queryType = type; }
+    inline void setQueryType(QueryType type) noexcept { m_queryType = type; }
     /*!
      * Return the current song query type.
      */
-    inline QueryType queryType() const { return m_queryType; }
+    inline QueryType queryType() const noexcept { return m_queryType; }
     /*!
      * Return the current song query server.
      */
-    inline QString queryServer() const { return m_queryServer; }
+    inline QString queryServer() const noexcept { return m_queryServer; }
     /*!
      * Return the current song name.
      */
-    inline QString queryValue() const { return m_queryValue; }
+    inline QString queryValue() const noexcept { return m_queryValue; }
     /*!
      * Set the current song container.
      */
-    inline void setItems(const TTK::MusicSongInformationList &items) { m_items = items; }
+    inline void setItems(const TTK::MusicSongInformationList &items) noexcept { m_items = items; }
     /*!
      * Get the current song container.
      */
@@ -183,7 +183,7 @@ public:
     /*!
      * Check the current song container is empty.
      */
-    inline bool isEmpty() const { return m_items.isEmpty(); }
+    inline bool isEmpty() const noexcept { return m_items.isEmpty(); }
 
 Q_SIGNALS:
     /*!

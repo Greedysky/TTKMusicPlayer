@@ -54,13 +54,13 @@ private:
 class TTK_MODULE_EXPORT TTKSpinLockGuard
 {
 public:
-    TTKSpinLockGuard(TTKSpinLock& lock)
+    TTKSpinLockGuard(TTKSpinLock& lock) noexcept
         : m_lock(lock)
     {
         m_lock.lock();
     }
 
-    ~TTKSpinLockGuard()
+    ~TTKSpinLockGuard() noexcept
     {
         m_lock.unlock();
     }

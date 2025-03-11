@@ -65,15 +65,15 @@ public:
     /*!
      * Get rename item artist label state.
      */
-    inline bool isRenameMode() { return m_renameEdit != nullptr; }
+    inline bool isRenameMode() noexcept { return m_renameEdit != nullptr; }
     /*!
      * Set current play index.
      */
-    inline void setCurrentPlayIndex(int index) { m_currentPlayIndex = index; }
+    inline void setCurrentPlayIndex(int index) noexcept { m_currentPlayIndex = index; }
     /*!
      * Get current play index.
      */
-    inline int currentPlayIndex() const { return m_currentPlayIndex; }
+    inline int currentPlayIndex() const noexcept { return m_currentPlayIndex; }
 
 Q_SIGNALS:
     /*!

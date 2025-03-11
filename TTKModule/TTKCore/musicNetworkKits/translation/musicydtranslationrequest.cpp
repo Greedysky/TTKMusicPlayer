@@ -84,7 +84,7 @@ void MusicYDTranslationRequest::downLoadFinished()
     deleteAll();
 }
 
-QString MusicYDTranslationRequest::mapToString(Language type) const
+QString MusicYDTranslationRequest::mapToString(Language type) const noexcept
 {
     switch(type)
     {

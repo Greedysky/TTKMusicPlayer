@@ -44,7 +44,7 @@ public:
     /*!
      * Get decode string.
      */
-    QByteArray decodeString() const;
+    QByteArray decodeString() const noexcept;
 
 private:
     /*!

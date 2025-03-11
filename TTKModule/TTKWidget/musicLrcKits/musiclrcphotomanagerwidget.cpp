@@ -19,7 +19,7 @@ void MusicLrcPhotoItem::updatePixmap(const QString &path)
     setPixmap(QPixmap(path).scaled(size()));
 }
 
-void MusicLrcPhotoItem::setSelected(bool v)
+void MusicLrcPhotoItem::setSelected(bool v) noexcept
 {
     m_isSelected = v;
 }

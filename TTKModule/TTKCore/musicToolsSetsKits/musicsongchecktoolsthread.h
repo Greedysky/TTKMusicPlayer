@@ -38,20 +38,20 @@ public:
     /*!
      * Set music song check tool mode.
      */
-    inline void setMode(TTK::Mode mode) { m_operateMode = mode; }
+    inline void setMode(TTK::Mode mode) noexcept { m_operateMode = mode; }
     /*!
      * Get music song check tool mode.
      */
-    inline TTK::Mode mode() const { return m_operateMode; }
+    inline TTK::Mode mode() const noexcept { return m_operateMode; }
     /*!
      * Set item list.
      */
-    inline void setItemList(const TTKIntList &items) { m_itemIDs = items; }
+    inline void setItemList(const TTKIntList &items) noexcept { m_itemIDs = items; }
 
     /*!
      * Set find file path by given path.
      */
-    void setRenameSongs(MusicSongList *songs);
+    void setRenameSongs(MusicSongList *songs) noexcept;
 
 Q_SIGNALS:
     /*!
@@ -89,20 +89,20 @@ public:
     /*!
      * Set music song check tool mode.
      */
-    inline void setMode(TTK::Mode mode) { m_operateMode = mode; }
+    inline void setMode(TTK::Mode mode) noexcept { m_operateMode = mode; }
     /*!
      * Get music song check tool mode.
      */
-    inline TTK::Mode mode() const { return m_operateMode; }
+    inline TTK::Mode mode() const noexcept { return m_operateMode; }
     /*!
      * Set item list.
      */
-    inline void setItemList(const TTKIntList &items) { m_itemIDs = items; }
+    inline void setItemList(const TTKIntList &items) noexcept { m_itemIDs = items; }
 
     /*!
      * Set find file path by given path.
      */
-    void setDuplicateSongs(MusicSongList *songs);
+    void setDuplicateSongs(MusicSongList *songs) noexcept;
 
 Q_SIGNALS:
     /*!
@@ -140,7 +140,7 @@ public:
     /*!
      * Set find file path by given path.
      */
-    void setQualitySongs(MusicSongList *songs);
+    void setQualitySongs(MusicSongList *songs) noexcept;
 
 Q_SIGNALS:
     /*!

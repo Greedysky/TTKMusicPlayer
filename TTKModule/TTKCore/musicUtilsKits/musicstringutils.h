@@ -78,7 +78,7 @@ namespace TTK
         /*!
          * Check input url path is network path or not.
          */
-        TTK_MODULE_EXPORT bool isNetworkUrl(const QString &path);
+        TTK_MODULE_EXPORT bool isNetworkUrl(const QString &path) noexcept;
 
         /*!
          * Html string to plain.

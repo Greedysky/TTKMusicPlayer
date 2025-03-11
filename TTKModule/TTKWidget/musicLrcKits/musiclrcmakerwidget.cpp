@@ -34,7 +34,7 @@ bool MusicLrcMakerWidgetItem::biggerThan(int value) const
     return m_currentIndex > value;
 }
 
-bool MusicLrcMakerWidgetItem::done() const
+bool MusicLrcMakerWidgetItem::done() const noexcept
 {
     return m_painetLineDone;
 }

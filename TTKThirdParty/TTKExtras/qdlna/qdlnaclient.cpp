@@ -28,7 +28,7 @@ static const QStringList FRIENS_NAMES = {"friendlyname", "friendlyName", "Friend
 class QDlnaClientPrivate : public TTKPrivate<QDlnaClient>
 {
 public:
-    QDlnaClientPrivate();
+    QDlnaClientPrivate() noexcept;
 
     void initialize(const QString &data);
     bool connect();
@@ -42,7 +42,7 @@ public:
 
 };
 
-QDlnaClientPrivate::QDlnaClientPrivate()
+QDlnaClientPrivate::QDlnaClientPrivate() noexcept
     : m_isConnected(false)
 {
 

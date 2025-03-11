@@ -44,7 +44,7 @@ public:
     /*!
      * Set block animation state or not.
      */
-    inline void setBlockAnimation(bool b) { m_blockAnimation = b; }
+    inline void setBlockAnimation(bool b) noexcept { m_blockAnimation = b; }
 
 protected:
     /*!

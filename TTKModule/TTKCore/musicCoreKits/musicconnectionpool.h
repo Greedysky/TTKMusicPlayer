@@ -32,14 +32,14 @@ public:
     /*!
      * Set connection object and type name.
      */
-    inline void setValue(const QString &type, QObject *object)
+    inline void setValue(const QString &type, QObject *object) noexcept
     {
         m_parameters[type] = object;
     }
     /*!
      * Get connection object by type name.
      */
-    inline QObject* value(const QString &type) const
+    inline QObject* value(const QString &type) const noexcept
     {
         return m_parameters[type];
     }

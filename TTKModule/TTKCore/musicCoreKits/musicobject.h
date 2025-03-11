@@ -209,7 +209,7 @@ namespace TTK
         int m_second;
 
         IndexProperty() = default;
-        IndexProperty(int first, int second)
+        IndexProperty(int first, int second) noexcept
             : m_first(first),
               m_second(second)
         {

@@ -283,7 +283,7 @@ qint64 MusicApplication::duration() const
     return m_player->duration();
 }
 
-TTK::PlayMode MusicApplication::playMode() const
+TTK::PlayMode MusicApplication::playMode() const noexcept
 {
     return m_playlist->playbackMode();
 }
