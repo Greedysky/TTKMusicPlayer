@@ -3,9 +3,10 @@
 #ifdef Q_OS_WIN
 #  define WIN32_LEAN_AND_MEAN
 #  include <qt_windows.h>
+#elif defined Q_OS_LINUX
+#  include <QFile>
+#  include <QRegExp>
 #endif
-#include <QFile>
-#include <QRegExp>
 
 TTKPlatformSystem::System TTKPlatformSystem::systemName()
 {
