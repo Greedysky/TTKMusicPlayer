@@ -36,7 +36,7 @@ FFmpegMetaDataModel::FFmpegMetaDataModel(const QString &path, bool readOnly)
         {
             AVPacket pkt;
             av_read_frame(in, &pkt);
-            m_pixmap.loadFromData(QByteArray((const char*)pkt.data, pkt.size));
+            m_image.loadFromData(QByteArray((const char*)pkt.data, pkt.size));
         }
 
         avformat_close_input(&in);
@@ -70,9 +70,9 @@ QList<TagModel*> FFmpegMetaDataModel::tags() const
     return m_tags;
 }
 
-QPixmap FFmpegMetaDataModel::cover() const
+QImage FFmpegMetaDataModel::cover() const
 {
-    return m_pixmap;
+    return m_image;
 }
 
 QString FFmpegMetaDataModel::coverPath() const

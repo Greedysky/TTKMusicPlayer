@@ -12,8 +12,10 @@
 StateHandler* StateHandler::m_instance = nullptr;
 
 StateHandler::StateHandler(QObject *parent)
-    : QObject(parent),
-      m_mutex(QMutex::Recursive)
+    : QObject(parent)
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+    , m_mutex(QMutex::Recursive)
+#endif
 {
     if(m_instance)
         qFatal("StateHandler: only one instance is allowed");

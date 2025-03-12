@@ -24,26 +24,26 @@ QList<TagModel*> VorbisMetaDataModel::tags() const
     return m_tags;
 }
 
-QPixmap VorbisMetaDataModel::cover() const
+QImage VorbisMetaDataModel::cover() const
 {
     if(!m_tag || m_tag->isEmpty())
-        return QPixmap();
+        return QImage();
 
     TagLib::List<TagLib::FLAC::Picture *> list = m_tag->pictureList();
     for(uint i = 0; i < list.size(); ++i)
     {
         if(list[i]->type() == TagLib::FLAC::Picture::FrontCover)
         {
-            QPixmap cover;
+            QImage cover;
             cover.loadFromData(QByteArray(list[i]->data().data(), list[i]->data().size())); //read binary picture data
             return cover;
         }
     }
 
-    return QPixmap();
+    return QImage();
 }
 
-void VorbisMetaDataModel::setCover(const QPixmap &pix)
+void VorbisMetaDataModel::setCover(const QImage &img)
 {
     removeCover();
     if(m_tag)
@@ -54,7 +54,7 @@ void VorbisMetaDataModel::setCover(const QPixmap &pix)
         QByteArray data;
         QBuffer buffer(&data);
         buffer.open(QIODevice::WriteOnly);
-        pix.save(&buffer, "JPEG");
+        img.save(&buffer, "JPEG");
         picture->setMimeType("image/jpeg");
         picture->setDescription("TTK");
         picture->setData(TagLib::ByteVector(data.constData(), data.length()));

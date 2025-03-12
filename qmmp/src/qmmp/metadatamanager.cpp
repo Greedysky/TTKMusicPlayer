@@ -16,8 +16,10 @@
 MetaDataManager* MetaDataManager::m_instance = nullptr;
 
 MetaDataManager::MetaDataManager()
-    : m_settings(QmmpSettings::instance()),
-      m_mutex(QMutex::Recursive)
+    : m_settings(QmmpSettings::instance())
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+    , m_mutex(QMutex::Recursive)
+#endif
 {
 
 }
@@ -94,21 +96,19 @@ MetaDataModel* MetaDataManager::createMetaDataModel(const QString &path, bool re
             return efact->createMetaDataModel(path, readOnly);
         return nullptr;
     }
-    else
+
+    QString scheme = path.section("://", 0, 0);
+    MetaDataModel *model = nullptr;
+    if((fact = Decoder::findByProtocol(scheme)))
     {
-        QString scheme = path.section("://", 0, 0);
-        MetaDataModel *model = nullptr;
-        if((fact = Decoder::findByProtocol(scheme)))
-        {
-            return fact->createMetaDataModel(path, readOnly);
-        }
-        for(EngineFactory *efact : AbstractEngine::enabledFactories())
-        {
-            if(efact->properties().protocols.contains(scheme))
-                model = efact->createMetaDataModel(path, readOnly);
-            if(model)
-                return model;
-        }
+        return fact->createMetaDataModel(path, readOnly);
+    }
+    for(EngineFactory *efact : AbstractEngine::enabledFactories())
+    {
+        if(efact->properties().protocols.contains(scheme))
+            model = efact->createMetaDataModel(path, readOnly);
+        if(model)
+            return model;
     }
     return nullptr;
 }
@@ -170,13 +170,13 @@ bool MetaDataManager::supports(const QString &fileName) const
     return false;
 }
 
-QPixmap MetaDataManager::getCover(const QString &url) const
+QImage MetaDataManager::getCover(const QString &url) const
 {
     QMutexLocker locker(&m_mutex);
     for(int i = 0; i < m_cover_cache.count(); ++i)
     {
         if(m_cover_cache[i]->url == url)
-            return m_cover_cache[i]->coverPixmap;
+            return m_cover_cache[i]->coverImage;
     }
 
     m_cover_cache << createCoverCacheItem(url);
@@ -184,7 +184,7 @@ QPixmap MetaDataManager::getCover(const QString &url) const
     while(m_cover_cache.count() > COVER_CACHE_SIZE)
         delete m_cover_cache.takeFirst();
 
-    return m_cover_cache.back()->coverPixmap;
+    return m_cover_cache.back()->coverImage;
 }
 
 QString MetaDataManager::getCoverPath(const QString &url) const
@@ -231,7 +231,7 @@ QFileInfoList MetaDataManager::findCoverFiles(QDir dir, int depth) const
             file_list.removeAll(fin);
 
         if(QImageReader::imageFormat(fin.filePath()).isEmpty()) //remove unsupported image formats
-            file_list.removeAll(fin.fileName());
+            file_list.removeAll(fin);
     }
     if(!depth || !file_list.isEmpty())
         return file_list;
@@ -260,16 +260,16 @@ MetaDataManager::CoverCacheItem *MetaDataManager::createCoverCacheItem(const QSt
         if(model)
         {
             item->coverPath = model->coverPath();
-            item->coverPixmap = model->cover();
+            item->coverImage = model->cover();
             delete model;
         }
     }
 
-    if(!item->coverPath.isEmpty() && item->coverPixmap.isNull())
-        item->coverPixmap = QPixmap(item->coverPath);
+    if(!item->coverPath.isEmpty() && item->coverImage.isNull())
+        item->coverImage = QImage(item->coverPath);
 
-    if(item->coverPixmap.width() > 1024 || item->coverPixmap.height() > 1024)
-        item->coverPixmap = item->coverPixmap.scaled(1024, 1024, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    if(item->coverImage.width() > 1024 || item->coverImage.height() > 1024)
+        item->coverImage = item->coverImage.scaled(1024, 1024, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
     return item;
 }

@@ -117,11 +117,9 @@ InputSource *InputSource::create(const QString &url, QObject *parent)
         qDebug("InputSource: using %s transport", qPrintable(url.section("://", 0, 0)));
         return factory->create(url, parent);
     }
-    else
-    {
-        qDebug("InputSource: using fake transport");
-        return new EmptyInputSource(url, parent);
-    }
+
+    qDebug("InputSource: using fake transport");
+    return new EmptyInputSource(url, parent);
 }
 
 QList<InputSourceFactory *> InputSource::factories()

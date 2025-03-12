@@ -24,7 +24,7 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
     QString artist, album, genre, date, comment, file;
     double album_peak = 0.0, album_gain = 0.0;
 
-    QTextStream textStream(data);
+    QTextStream textStream(data, QIODevice::ReadOnly);
     textStream.setCodec(codec ? codec : QTextCodec::codecForName("UTF-8"));
 
     while(!textStream.atEnd())
@@ -194,7 +194,7 @@ bool CueParser::isEmpty() const
     return m_tracks.isEmpty();
 }
 
-TrackInfo *CueParser::info(int track) const
+const TrackInfo *CueParser::info(int track) const
 {
     if(track < 1 || track > m_tracks.count())
     {

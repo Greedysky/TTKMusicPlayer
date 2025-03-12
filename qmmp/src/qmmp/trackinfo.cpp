@@ -101,6 +101,11 @@ void TrackInfo::setValue(Qmmp::MetaData key, const QVariant &value)
     m_metaData.isEmpty() ? (m_parts &= ~MetaData) : (m_parts |= MetaData);
 }
 
+void TrackInfo::setValue(Qmmp::MetaData key, const char *value)
+{
+    setValue(key, QString::fromUtf8(value));
+}
+
 void TrackInfo::setValue(Qmmp::TrackProperty key, const QVariant &value)
 {
     QString strValue = value.toString();
@@ -109,6 +114,11 @@ void TrackInfo::setValue(Qmmp::TrackProperty key, const QVariant &value)
     else
         m_properties[key] = strValue;
     m_properties.isEmpty() ? (m_parts &= ~Properties) : (m_parts |= Properties);
+}
+
+void TrackInfo::setValue(Qmmp::TrackProperty key, const char *value)
+{
+    setValue(key, QString::fromUtf8(value));
 }
 
 void TrackInfo::setValue(Qmmp::ReplayGainKey key, double value)

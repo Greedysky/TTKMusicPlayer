@@ -229,7 +229,12 @@ void QmmpAudioEngine::stop()
         m_output->recycler()->cond()->wakeAll();
 
     if(isRunning())
+    {
+        if(m_decoder && m_inputs[m_decoder])
+            m_inputs[m_decoder]->stop();
+
         wait();
+    }
 
     if(m_output)
     {
@@ -374,17 +379,15 @@ void QmmpAudioEngine::run()
                 StateHandler::instance()->dispatch(Qmmp::NormalError);
                 break;
             }
-            else
-                continue;
+
+            continue;
         }
-        else
-        {
-            delay = 0;
-            // decode
-            mutex()->unlock();
-            len = m_decoder->read((m_output_buf + m_output_at), m_output_size - m_output_at);
-            mutex()->lock();
-        }
+
+        delay = 0;
+        // decode
+        mutex()->unlock();
+        len = m_decoder->read((m_output_buf + m_output_at), m_output_size - m_output_at);
+        mutex()->lock();
 
         if(len > 0)
         {

@@ -101,14 +101,14 @@ void SoundCore::seek(qint64 time)
         m_engine->seek(time);
 }
 
-QString SoundCore::path() const
-{
-    return m_path;
-}
-
 bool SoundCore::nextTrackAccepted() const
 {
     return m_nextState == SAME_ENGINE;
+}
+
+QString SoundCore::path() const
+{
+    return m_path;
 }
 
 qint64 SoundCore::duration() const
@@ -126,10 +126,10 @@ void SoundCore::setEqSettings(const EqSettings &settings)
     QmmpSettings::instance()->setEqSettings(settings);
 }
 
-void SoundCore::setVolume(int L, int R)
+void SoundCore::setVolumePerChannel(int left, int right)
 {
     setMuted(false);
-    m_volumeControl->setVolume(L, R);
+    m_volumeControl->setVolume(left, right);
 }
 
 void SoundCore::setMuted(bool mute)
@@ -257,12 +257,10 @@ void SoundCore::startNextSource()
             m_nextState = NO_ENGINE;
             return;
         }
-        else
-        {
-            s->deleteLater();
-            m_handler->dispatch(Qmmp::NormalError);
-            return;
-        }
+
+        s->deleteLater();
+        m_handler->dispatch(Qmmp::NormalError);
+        return;
     }
 
     if(AbstractEngine::isEnabled(m_engine) && m_engine->enqueue(s))

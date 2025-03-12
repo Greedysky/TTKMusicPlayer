@@ -76,6 +76,7 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
         {
             m_shortName = factory->properties().shortName;
             m_priority = 0;
+            m_protocols = factory->properties().protocols;
         }
         else
         {

@@ -60,14 +60,14 @@ QList<TagModel*> MetaDataModel::tags() const
     return QList<TagModel*>();
 }
 
-QPixmap MetaDataModel::cover() const
+QImage MetaDataModel::cover() const
 {
-    return QPixmap();
+    return QImage();
 }
 
-void MetaDataModel::setCover(const QPixmap &pix)
+void MetaDataModel::setCover(const QImage &img)
 {
-    Q_UNUSED(pix);
+    Q_UNUSED(img);
 }
 
 void MetaDataModel::removeCover()

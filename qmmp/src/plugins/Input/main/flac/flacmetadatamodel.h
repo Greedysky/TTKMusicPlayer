@@ -37,9 +37,9 @@ public:
     virtual ~FLACMetaDataModel();
 
     virtual QList<TagModel*> tags() const override final;
-    virtual QPixmap cover() const override final;
+    virtual QImage cover() const override final;
     virtual QString coverPath() const override final;
-    virtual void setCover(const QPixmap &pix) override final;
+    virtual void setCover(const QImage &img) override final;
     virtual void removeCover() override final;
     virtual QString cue() const override final;
     virtual void setCue(const QString &content) override final;

@@ -116,16 +116,16 @@ public:
      */
     virtual QList<TagModel*> tags() const;
     /*!
-     * Returns cover pixmap.
+     * Returns cover image.
      * Subclass should reimplement this function. Default implementation returns empty pixmap.
      */
-    virtual QPixmap cover() const;
+    virtual QImage cover() const;
     /*!
      * Sets cover.
-     * @param pix Cover pixmap.
+     * @param img Cover image.
      * Subclass should reimplement this function. Default implementation does nothing.
      */
-    virtual void setCover(const QPixmap &pix);
+    virtual void setCover(const QImage &img);
     /*!
      * Removes cover.
      * Subclass should reimplement this function. Default implementation does nothing.
@@ -152,7 +152,7 @@ public:
      */
     virtual QString lyrics() const;
     /*!
-     * Remove cue data.
+     * Returns \b true if file is opened in read only mode. Otherwise returns \b false.
      */
     bool isReadOnly() const;
     /*!

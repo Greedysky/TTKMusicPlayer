@@ -22,7 +22,11 @@
 #define STATEHANDLER_H
 
 #include <QHash>
-#include <QMutex>
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+#  include <QMutex>
+#else
+#  include <QRecursiveMutex>
+#endif
 #include "abstractengine.h"
 #include "audioparameters.h"
 
@@ -142,8 +146,11 @@ private:
     QHash<QString, QString> m_streamInfo;
     Qmmp::State m_state = Qmmp::Stopped;
     AudioParameters m_audioParameters;
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
     mutable QMutex m_mutex;
-
+#else
+    mutable QRecursiveMutex m_mutex;
+#endif
 };
 
 #endif

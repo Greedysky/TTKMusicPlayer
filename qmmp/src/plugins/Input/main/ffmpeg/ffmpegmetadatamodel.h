@@ -36,14 +36,14 @@ public:
     virtual ~FFmpegMetaDataModel();
 
     virtual QList<TagModel*> tags() const override final;
-    virtual QPixmap cover() const override final;
+    virtual QImage cover() const override final;
     virtual QString coverPath() const override final;
     virtual QString cue() const override final;
     virtual void setCue(const QString &content) override final;
     virtual void removeCue() override final;
 
 private:
-    QPixmap m_pixmap;
+    QImage m_image;
     QList<TagModel*> m_tags;
     TagLib::APE::Tag *m_tag;
     TagLib::APE::File *m_file = nullptr;

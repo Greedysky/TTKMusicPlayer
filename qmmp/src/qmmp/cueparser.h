@@ -53,7 +53,7 @@ public:
      * \param data Content of CUE file.
      * \param codecName Codec name ("UTF-8" by default).
      */
-    void loadData(const QByteArray &data, const QByteArray &codecName = QByteArray());
+    void loadData(const QByteArray &data, const QByteArray &codecName = "UTF-8");
     /*!
      * Parses CUE file content.
      * \param data Content of CUE file.
@@ -96,7 +96,7 @@ public:
     /*!
      * Returns information for the given \b track.
      */
-    TrackInfo *info(int track) const;
+    const TrackInfo *info(int track) const;
     /*!
      * Sets duration for the given content file.
      * \param file Content file path.

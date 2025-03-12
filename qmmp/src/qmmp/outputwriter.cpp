@@ -20,14 +20,10 @@ OutputWriter::OutputWriter(QObject* parent)
 
 OutputWriter::~OutputWriter()
 {
-    if(m_output)
-        delete m_output;
-    if(m_format_converter)
-        delete m_format_converter;
-    if(m_channel_converter)
-        delete m_channel_converter;
-    if(m_output_buf)
-        delete[] m_output_buf;
+    delete m_output;
+    delete m_format_converter;
+    delete m_channel_converter;
+    delete[] m_output_buf;
 }
 
 bool OutputWriter::initialize(quint32 freq, ChannelMap map)
