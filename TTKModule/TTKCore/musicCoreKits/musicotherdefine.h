@@ -25,10 +25,10 @@
 
 #define TTK_AUTHOR_NAME       "Greedysky"
 
-#define TTK_COLOR_FILE        "color.jpg"
-#define TTK_IMAGE_FILE        "image_cache"
-#define TTK_RECORD_FILE       "record.raw"
-#define TTK_RECORD_DATA_FILE  "record_data.wav"
+#define TTK_COLOR_FILE        TTK::applicationPath() + "color.jpg"
+#define TTK_IMAGE_FILE        TTK::applicationPath() + "image_cache"
+#define TTK_RECORD_FILE       TTK::applicationPath() + "record.raw"
+#define TTK_RECORD_DATA_FILE  TTK::applicationPath() + "record_data.wav"
 
 #define MIN_ITEM_COUNT        4
 #define MAX_IMAGE_COUNT       10

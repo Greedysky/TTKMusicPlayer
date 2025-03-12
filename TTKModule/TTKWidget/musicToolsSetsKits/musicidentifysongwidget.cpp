@@ -113,11 +113,12 @@ void MusicIdentifySongWidget::reDetectButtonClicked()
 
 void MusicIdentifySongWidget::detectedTimeOut()
 {
-    m_recordCore->addWavHeader(TTK_RECORD_DATA_FILE);
+    const QString &path = TTK_RECORD_DATA_FILE;
+    m_recordCore->addWavHeader(qPrintable(path));
 
     TTKSemaphoreLoop loop;
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    m_networkRequest->startToRequest(TTK_RECORD_DATA_FILE);
+    m_networkRequest->startToRequest(path);
     loop.exec();
 
     detectedButtonClicked();
