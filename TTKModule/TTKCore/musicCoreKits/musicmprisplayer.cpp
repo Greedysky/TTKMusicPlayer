@@ -206,12 +206,6 @@ QVariantMap MusicMPRISPlayerCore::metadata() const
         }
     }
 
-
-    if(!MetaDataManager::instance()->getCoverPath(info.path()).isEmpty())
-    {
-        map["mpris:artUrl"] = QUrl::fromLocalFile(MetaDataManager::instance()->getCoverPath(info.path())).toString();
-    }
-
     if(!info.value(Qmmp::ALBUM).isEmpty())
     {
         map["xesam:album"] = info.value(Qmmp::ALBUM);
