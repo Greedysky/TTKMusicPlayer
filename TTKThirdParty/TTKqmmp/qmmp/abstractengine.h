@@ -50,7 +50,7 @@ public:
     virtual ~AbstractEngine() = default;
 
     /*!
-     * Prepares decoder for usage.
+     * Adds \b source to the internal queue.
      * Subclass should reimplement this function.
      */
     virtual bool enqueue(InputSource *source) = 0;

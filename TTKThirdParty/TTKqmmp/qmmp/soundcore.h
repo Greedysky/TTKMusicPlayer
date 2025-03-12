@@ -121,6 +121,10 @@ public:
      */
     bool nextTrackAccepted() const;
     /*!
+     *  This function returns file path or stream url.
+     */
+    QString path() const;
+    /*!
      * Returns a pointer to the SoundCore instance.
      */
     static SoundCore* instance();
@@ -131,7 +135,7 @@ public slots:
      * @param left - volume of the left channel \b [0..100].
      * @param right - volume of the right channel \b [0..100].
      */
-    void setVolume(int left, int right);
+    void setVolumePerChannel(int left, int right);
     /*!
      * Mutes/Restores volume
      * @param mute - state of volume (\b true - mute, \b false - restore)
@@ -177,10 +181,6 @@ public slots:
      *  This function sets the current play position to \p pos in milliseconds.
      */
     void seek(qint64 time);
-    /*!
-     *  This function returns file path or stream url.
-     */
-    QString path() const;
 
 signals:
     /*!
@@ -266,7 +266,7 @@ private:
     VolumeHandler *m_volumeControl = nullptr;
     AbstractEngine *m_engine = nullptr;
     QQueue<InputSource *> m_sources;
-    int m_nextState = NO_ENGINE;
+    NextEngineState m_nextState = NO_ENGINE;
 
 };
 

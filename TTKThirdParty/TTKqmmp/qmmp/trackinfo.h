@@ -118,15 +118,23 @@ public:
      */
     void setValue(Qmmp::MetaData key, const QVariant &value);
     /*!
-     * Sets track property \b key to \b value.
+     * Sets metadata \b key to \b value.
+     */
+    void setValue(Qmmp::MetaData key, const char *value);
+    /*!
+     * Sets track property \b key to \b value. This is an overloaded function.
      */
     void setValue(Qmmp::TrackProperty key, const QVariant &value);
+    /*!
+     * Sets track property \b key to \b value. This is an overloaded function.
+     */
+    void setValue(Qmmp::TrackProperty key, const char *value);
     /*!
      * Sets ReplayGain value \b key to \b value.
      */
     void setValue(Qmmp::ReplayGainKey key, double value);
     /*!
-     * Sets ReplayGain value \b key to \b value (string is converted to double).
+     * Sets ReplayGain value \b key to \b value (string is converted to double). This is an overloaded function.
      */
     void setValue(Qmmp::ReplayGainKey key, const QString &value);
     /*!
@@ -167,7 +175,8 @@ public:
     void clear();
 
     /*!
-     * Decode path for cue url path
+     * Extracts path and track number \b track from URL \b url.
+     * URL example: "scheme:///path#track"
      */
     static QString pathFromUrl(const QString &url, int *track = nullptr);
 
