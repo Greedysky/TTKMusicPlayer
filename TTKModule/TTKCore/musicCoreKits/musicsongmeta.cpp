@@ -411,7 +411,7 @@ bool MusicSongMeta::readInformation()
         const MetaDataModel *model = factory->createMetaDataModel(m_path, true);
         if(model)
         {
-            songMeta()->m_cover = model->cover();
+            songMeta()->m_cover = QPixmap::fromImage(model->cover());
             songMeta()->m_lyrics = model->lyrics();
 
             for(const MetaDataItem &item : model->extraProperties())
@@ -484,7 +484,7 @@ bool MusicSongMeta::saveInformation()
         const QPixmap &pix = cover();
         if(!pix.isNull())
         {
-            model->setCover(pix);
+            model->setCover(pix.toImage());
         }
         else
         {

@@ -4,6 +4,7 @@
 #include "musicplaylist.h"
 #include "ttktime.h"
 
+#include <QBuffer>
 #include <QDBusMessage>
 #include <qmmp/soundcore.h>
 #include <qmmp/metadatamanager.h>
@@ -186,6 +187,26 @@ QVariantMap MusicMPRISPlayerCore::metadata() const
     QVariantMap map;
     TrackInfo info = m_core->trackInfo();
     map["mpris:length"] = qMax(m_core->duration() * TTK_DN_S2MS, qint64(0));
+
+    const QString &coverPath = MetaDataManager::instance()->getCoverPath(info.path());
+    if(!coverPath.isEmpty())
+    {
+        map["mpris:artUrl"] = QUrl::fromLocalFile(coverPath).toString();
+    }
+    else
+    {
+        const QImage &coverImage = MetaDataManager::instance()->getCover(info.path());
+        if(!coverImage.isNull())
+        {
+            QByteArray tmp;
+            QBuffer buffer(&tmp);
+            buffer.open(QIODevice::WriteOnly);
+            coverImage.save(&buffer, "JPEG");
+            map["mpris:artUrl"] = QString("data:image/jpeg;base64,%1").arg(QString::fromLatin1(tmp.toBase64()));
+        }
+    }
+
+
     if(!MetaDataManager::instance()->getCoverPath(info.path()).isEmpty())
     {
         map["mpris:artUrl"] = QUrl::fromLocalFile(MetaDataManager::instance()->getCoverPath(info.path())).toString();

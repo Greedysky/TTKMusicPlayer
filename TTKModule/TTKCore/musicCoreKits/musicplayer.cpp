@@ -95,7 +95,7 @@ void MusicPlayer::setEnhanced(Enhance type)
     else
     {
         m_core->setBalance(0);
-        m_core->setVolume(m_volumeMusic3D, m_volumeMusic3D);
+        m_core->setVolumePerChannel(m_volumeMusic3D, m_volumeMusic3D);
 
         switch(m_enhance)
         {
@@ -220,7 +220,7 @@ void MusicPlayer::update()
         ///3D music settings
         setEnabledEffect(false);
         m_posOnCircle += 0.5f;
-        m_core->setVolume(fabs(TTK_RN_MAX * cosf(m_posOnCircle)), fabs(TTK_RN_MAX * sinf(m_posOnCircle * 0.5f)));
+        m_core->setVolumePerChannel(fabs(TTK_RN_MAX * cosf(m_posOnCircle)), fabs(TTK_RN_MAX * sinf(m_posOnCircle * 0.5f)));
     }
 
     const Qmmp::State state = m_core->state();
