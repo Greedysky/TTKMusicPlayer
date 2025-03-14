@@ -50,10 +50,10 @@ QRect TTKDesktopScreen::availableGeometry(int index)
 #if TTK_QT_VERSION_CHECK(5,0,0)
     Q_UNUSED(index);
     QScreen *screen = QApplication::primaryScreen();
-    return screen->availableGeometry();
+    return screen ? screen->availableGeometry() : QRect();
 #else
     QDesktopWidget *widget = QApplication::desktop();
-    return widget->availableGeometry(index);
+    return widget ? widget->availableGeometry(index) : QRect();
 #endif
 }
 
@@ -64,7 +64,7 @@ QRect TTKDesktopScreen::screenGeometry(int index)
     return (index < 0 || index >= screens.count()) ? QRect() : screens[index]->geometry();
 #else
     QDesktopWidget *widget = QApplication::desktop();
-    return widget->screenGeometry(index);
+    return widget ? widget->screenGeometry(index) : QRect();
 #endif
 }
 
@@ -80,8 +80,35 @@ QRect TTKDesktopScreen::geometry()
     return virtualGeometry.boundingRect();
 #else
     QDesktopWidget *widget = QApplication::desktop();
-    return widget->geometry();
+    return widget ? widget->geometry() : QRect();
 #endif
+}
+
+int TTKDesktopScreen::screenIndex()
+{
+    int index = 0;
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    const int count = QApplication::screens().count();
+#else
+    const int count = QApplication::desktop()->screenCount();
+#endif
+    if(count > 1)
+    {
+        const QPoint &pos = QCursor::pos();
+        for(int i = 0; i < count; ++i)
+        {
+#if TTK_QT_VERSION_CHECK(5,0,0)
+            if(QApplication::screens().at(i)->geometry().contains(pos))
+#else
+            if(QApplication::desktop()->screenGeometry(i).contains(pos))
+#endif
+            {
+                index = i;
+                break;
+            }
+        }
+    }
+    return index;
 }
 
 QPixmap TTKDesktopScreen::grabWidget(QWidget *widget, const QRect &rect)
@@ -112,11 +139,7 @@ static QSize generateDPIValue()
     const QSize defaultSize(DEFAULT_DPI, DEFAULT_DPI);
 #ifdef Q_OS_WIN
 #  if TTK_QT_VERSION_CHECK(5,0,0)
-    if(!qApp)
-    {
-        int count = 0;
-        QApplication(count, nullptr);
-    }
+    QApplication(0, nullptr);
 
     QScreen *screen = QApplication::primaryScreen();
     if(!screen)

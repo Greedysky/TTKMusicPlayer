@@ -57,6 +57,10 @@ public:
      * Get all screen geometry.
      */
     static QRect geometry();
+    /*!
+     * Get screen index in cursor pos.
+     */
+    static int screenIndex();
 
     /*!
      * Grab widget geometry pixmap by given rect.
