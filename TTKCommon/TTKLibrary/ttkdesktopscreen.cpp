@@ -1,8 +1,12 @@
 #include "ttkdesktopscreen.h"
 #include "ttklibrary.h"
-
+#include <QDebug>
 #include <QScreen>
 #include <QApplication>
+#ifdef Q_OS_WIN
+#  define WIN32_LEAN_AND_MEAN
+#  include <qt_windows.h>
+#endif
 #if !TTK_QT_VERSION_CHECK(5,0,0)
 #  include <QDesktopWidget>
 #endif
@@ -139,18 +143,27 @@ static QSize generateDPIValue()
     const QSize defaultSize(DEFAULT_DPI, DEFAULT_DPI);
 #ifdef Q_OS_WIN
 #  if TTK_QT_VERSION_CHECK(5,0,0)
-    QApplication(0, nullptr);
+    MONITORINFOEX miex;
+    miex.cbSize = sizeof(miex);
 
-    QScreen *screen = QApplication::primaryScreen();
-    if(!screen)
+    HMONITOR monitor = MonitorFromWindow(GetDesktopWindow(), MONITOR_DEFAULTTONEAREST);
+    if(!GetMonitorInfo(monitor, &miex))
     {
         return defaultSize;
     }
 
-    const double x = screen->logicalDotsPerInchX();
-    const double y = screen->logicalDotsPerInchY();
+    DEVMODE dm;
+    dm.dmSize = sizeof(dm);
+    dm.dmDriverExtra = 0;
+    if(!EnumDisplaySettings(miex.szDevice, ENUM_CURRENT_SETTINGS, &dm))
+    {
+        return defaultSize;
+    }
 
-    return QSize(x, y);
+    QSize size;
+    size.setWidth(dm.dmPelsWidth * DEFAULT_DPI * 1.0 / (miex.rcMonitor.right - miex.rcMonitor.left));
+    size.setHeight(dm.dmPelsHeight * DEFAULT_DPI * 1.0 / (miex.rcMonitor.bottom - miex.rcMonitor.top));
+    return size;
 #  endif
 #elif defined Q_OS_UNIX
     Display *dp = XOpenDisplay(nullptr);
