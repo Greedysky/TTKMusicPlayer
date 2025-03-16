@@ -1,6 +1,6 @@
 #include "ttkdesktopscreen.h"
 #include "ttklibrary.h"
-#include <QDebug>
+
 #include <QScreen>
 #include <QApplication>
 #ifdef Q_OS_WIN
@@ -140,16 +140,15 @@ static constexpr int DEFAULT_DPI = 96;
 
 static QSize generateDPIValue()
 {
-    const QSize defaultSize(DEFAULT_DPI, DEFAULT_DPI);
+    QSize dpiSize(DEFAULT_DPI, DEFAULT_DPI);
 #ifdef Q_OS_WIN
-#  if TTK_QT_VERSION_CHECK(5,0,0)
     MONITORINFOEX miex;
     miex.cbSize = sizeof(miex);
 
     HMONITOR monitor = MonitorFromWindow(GetDesktopWindow(), MONITOR_DEFAULTTONEAREST);
     if(!GetMonitorInfo(monitor, &miex))
     {
-        return defaultSize;
+        return dpiSize;
     }
 
     DEVMODE dm;
@@ -157,19 +156,16 @@ static QSize generateDPIValue()
     dm.dmDriverExtra = 0;
     if(!EnumDisplaySettings(miex.szDevice, ENUM_CURRENT_SETTINGS, &dm))
     {
-        return defaultSize;
+        return dpiSize;
     }
 
-    QSize size;
-    size.setWidth(dm.dmPelsWidth * DEFAULT_DPI * 1.0 / (miex.rcMonitor.right - miex.rcMonitor.left));
-    size.setHeight(dm.dmPelsHeight * DEFAULT_DPI * 1.0 / (miex.rcMonitor.bottom - miex.rcMonitor.top));
-    return size;
-#  endif
+    dpiSize.setWidth(dm.dmPelsWidth * DEFAULT_DPI * 1.0 / (miex.rcMonitor.right - miex.rcMonitor.left));
+    dpiSize.setHeight(dm.dmPelsHeight * DEFAULT_DPI * 1.0 / (miex.rcMonitor.bottom - miex.rcMonitor.top));
 #elif defined Q_OS_UNIX
     Display *dp = XOpenDisplay(nullptr);
     if(!dp)
     {
-        return defaultSize;
+        return dpiSize;
     }
 
     double dpi = DEFAULT_DPI;
@@ -188,39 +184,51 @@ static QSize generateDPIValue()
     const double x = (DisplayWidth(dp, screen) * 25.4) / DisplayWidthMM(dp, screen);
     const double y = (DisplayHeight(dp, screen) * 25.4) / DisplayHeightMM(dp, screen);
 
-    QSize size;
     if(x < dpi && x != DEFAULT_DPI && TTKStaticCast(int, x) % DEFAULT_DPI != 0 &&
        y < dpi && y != DEFAULT_DPI && TTKStaticCast(int, y) % DEFAULT_DPI != 0)
     {
-        size.setWidth(x + 0.5);
-        size.setHeight(y + 0.5);
+        dpiSize.setWidth(x + 0.5);
+        dpiSize.setHeight(y + 0.5);
     }
     else
     {
-        size.setWidth(dpi + 0.5);
-        size.setHeight(dpi + 0.5);
+        dpiSize.setWidth(dpi + 0.5);
+        dpiSize.setHeight(dpi + 0.5);
     }
 
     XCloseDisplay(dp);
-    return size;
 #endif
-    return defaultSize;
+    return dpiSize;
 }
 
 int TTKDesktopScreen::dotsPerInchX()
 {
-    const QSize dpi(generateDPIValue());
-    return dpi.width();
+    const QSize dpiSize(generateDPIValue());
+    return dpiSize.width();
 }
 
 int TTKDesktopScreen::dotsPerInchY()
 {
-    const QSize dpi(generateDPIValue());
-    return dpi.height();
+    const QSize dpiSize(generateDPIValue());
+    return dpiSize.height();
 }
 
 int TTKDesktopScreen::dotsPerInch()
 {
-    const QSize dpi(generateDPIValue());
-    return (dpi.width() + dpi.height()) / 2;
+    const QSize dpiSize(generateDPIValue());
+    return (dpiSize.width() + dpiSize.height()) / 2;
+}
+
+int TTKDesktopScreen::logicDotsPerInch()
+{
+    QSize dpiSize(DEFAULT_DPI, DEFAULT_DPI);
+#ifdef Q_OS_WIN
+    HDC screen = GetDC(GetDesktopWindow());
+    dpiSize.setWidth(GetDeviceCaps(screen, LOGPIXELSX));
+    dpiSize.setHeight(GetDeviceCaps(screen, LOGPIXELSY));
+    ReleaseDC(GetDesktopWindow(), screen);
+#else
+    dpiSize = generateDPIValue();
+#endif
+    return (dpiSize.width() + dpiSize.height()) / 2;
 }

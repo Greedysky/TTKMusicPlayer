@@ -83,6 +83,10 @@ public:
      * Get local DPI.
      */
     static int dotsPerInch();
+    /*!
+     * Get logic DPI.
+     */
+    static int logicDotsPerInch();
 
 };
 

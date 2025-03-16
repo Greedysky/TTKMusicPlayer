@@ -1,8 +1,25 @@
 ﻿#include "miniblink.h"
 #include "wke.h"
+#include "ttkqtglobal.h"
 
 #include <QFile>
 #include <QApplication>
+
+static double logicDotsPerInch()
+{
+#if TTK_QT_VERSION_CHECK(5,6,0)
+    static constexpr int DEFAULT_DPI = 96;
+
+    QSize dpiSize(DEFAULT_DPI, DEFAULT_DPI);
+    HDC screen = GetDC(GetDesktopWindow());
+    dpiSize.setWidth(GetDeviceCaps(screen, LOGPIXELSX));
+    dpiSize.setHeight(GetDeviceCaps(screen, LOGPIXELSY));
+    ReleaseDC(GetDesktopWindow(), screen);
+    return (dpiSize.width() + dpiSize.height()) / 2.0 / DEFAULT_DPI;
+#else
+    return 1.0;
+#endif
+}
 
 static void onLoadingFinish(wkeWebView, void *param, const wkeString, wkeLoadingResult result, const wkeString)
 {
@@ -107,5 +124,6 @@ void Miniblink::reload()
 void Miniblink::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event);
-    wkeResize(m_webView, width(), height());
+    const double dpi = logicDotsPerInch();
+    wkeResize(m_webView, width() * dpi, height() * dpi);
 }

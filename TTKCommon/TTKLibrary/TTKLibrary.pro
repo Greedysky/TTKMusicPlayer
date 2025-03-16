@@ -31,6 +31,7 @@ TARGET = TTKLibrary
 
 DEFINES += TTK_LIBRARY
 
+win32:LIBS += -lgdi32
 win32:msvc{
     CONFIG += c++11
     LIBS += -luser32
