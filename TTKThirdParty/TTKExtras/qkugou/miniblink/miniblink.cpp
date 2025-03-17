@@ -1,25 +1,9 @@
 ﻿#include "miniblink.h"
 #include "wke.h"
-#include "ttkqtglobal.h"
+#include "ttkqtobject.h"
+#include "ttkdesktopscreen.h"
 
 #include <QFile>
-#include <QApplication>
-
-static double logicDotsPerInch()
-{
-#if TTK_QT_VERSION_CHECK(5,6,0)
-    static constexpr int DEFAULT_DPI = 96;
-
-    QSize dpiSize(DEFAULT_DPI, DEFAULT_DPI);
-    HDC screen = GetDC(GetDesktopWindow());
-    dpiSize.setWidth(GetDeviceCaps(screen, LOGPIXELSX));
-    dpiSize.setHeight(GetDeviceCaps(screen, LOGPIXELSY));
-    ReleaseDC(GetDesktopWindow(), screen);
-    return (dpiSize.width() + dpiSize.height()) / 2.0 / DEFAULT_DPI;
-#else
-    return 1.0;
-#endif
-}
 
 static void onLoadingFinish(wkeWebView, void *param, const wkeString, wkeLoadingResult result, const wkeString)
 {
@@ -54,7 +38,7 @@ bool Miniblink::initialize()
     static bool loaded = false;
     if(!loaded)
     {
-        const QString &dll = QCoreApplication::applicationDirPath() + "/GPlugins/node.dll";
+        const QString &dll = TTK::applicationPath() + "GPlugins/node.dll";
         if(QFile(dll).exists())
         {
             wkeSetWkeDllPath(reinterpret_cast<const wchar_t *>(dll.utf16()));
@@ -124,6 +108,6 @@ void Miniblink::reload()
 void Miniblink::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event);
-    const double dpi = logicDotsPerInch();
+    const double dpi = TTKDesktopScreen::logicDotsPerInch() / 96.0;
     wkeResize(m_webView, width() * dpi, height() * dpi);
 }

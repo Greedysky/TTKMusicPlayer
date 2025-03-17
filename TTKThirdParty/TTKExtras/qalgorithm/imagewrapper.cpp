@@ -1,5 +1,5 @@
 #include "imagewrapper.h"
-#include "random.h"
+#include "ttktime.h"
 
 #include <qmath.h>
 #include <QPainter>
@@ -177,7 +177,7 @@ CubeWavePrivate::CubeWavePrivate()
       m_row(0),
       m_column(0)
 {
-    QAlgorithm::initRandom();
+    TTK::initRandom();
 }
 
 void CubeWavePrivate::initialize(int width, int height)
@@ -211,7 +211,7 @@ void CubeWave::input(const QRect &region)
     d->initialize(region.width(), region.height());
     for(int index = 0; index < d->count(); ++index)
     {
-        d->m_data.push_back(QAlgorithm::random(100));
+        d->m_data.push_back(TTK::random(100));
     }
 }
 

@@ -31,7 +31,6 @@ TARGET = TTKExtras
 
 DEFINES += TTK_LIBRARY
 
-win32:LIBS += -lgdi32
 win32:msvc{
     LIBS += -luser32
     CONFIG += c++11
@@ -43,7 +42,7 @@ win32:msvc{
     }
 }
 
-LIBS += -L$$DESTDIR -lTTKUi
+LIBS += -L$$DESTDIR -lTTKLibrary -lTTKUi
 
 #load extra define
 include($$PWD/../TTKThirdParty.pri)

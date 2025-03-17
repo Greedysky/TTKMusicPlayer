@@ -14,16 +14,6 @@ namespace TTK
     {
         return isalnum(c) || (c == '+') || (c == '/');
     }
-
-    /*!
-     * Bse64 encode.
-     */
-    static TTKString base64Encode(const unsigned char *bytes, unsigned int length);
-    /*!
-     * Bse64 decode.
-     */
-    static TTKString base64Decode(const TTKString &bytes);
-
 }
 
 TTKString TTK::base64Encode(const unsigned char *bytes, unsigned int length)

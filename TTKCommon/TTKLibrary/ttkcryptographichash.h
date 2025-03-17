@@ -99,4 +99,21 @@ private:
 
 };
 
+
+/*! @brief The namespace of the base64 helper.
+ * @author Greedysky <greedysky@163.com>
+ */
+namespace TTK
+{
+    /*!
+     * Base64 encode.
+     */
+    TTK_MODULE_EXPORT TTKString base64Encode(const unsigned char *bytes, unsigned int len);
+    /*!
+     * Base64 dncode.
+     */
+    TTK_MODULE_EXPORT TTKString base64Decode(const TTKString &bytes);
+
+}
+
 #endif // TTKCRYPTOGRAPHICHASH_H

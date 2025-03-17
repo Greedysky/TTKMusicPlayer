@@ -22,8 +22,6 @@ HEADERS += \
     $$PWD/aes.h \
     $$PWD/aes_locl.h \
     $$PWD/cbc128.h \
-    $$PWD/base64.h \
-    $$PWD/random.h \
     $$PWD/aeswrapper.h \
     $$PWD/deswrapper.h \
     $$PWD/imagewrapper.h
@@ -33,8 +31,6 @@ SOURCES += \
     $$PWD/aes_cbc.cpp \
     $$PWD/aes_core.cpp \
     $$PWD/cbc128.cpp \
-    $$PWD/base64.cpp \
-    $$PWD/random.cpp \
     $$PWD/aeswrapper.cpp \
     $$PWD/deswrapper.cpp \
     $$PWD/imagewrapper.cpp

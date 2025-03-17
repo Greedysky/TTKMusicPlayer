@@ -108,9 +108,7 @@ endif()
 set(HEADER_FILES
   qalgorithm/aes.h
   qalgorithm/aes_locl.h
-  qalgorithm/base64.h
   qalgorithm/cbc128.h
-  qalgorithm/random.h
   qalgorithm/deswrapper.h
   qalgorithm/aeswrapper.h
   qalgorithm/imagewrapper.h
@@ -163,9 +161,7 @@ set(SOURCE_FILES
   qalgorithm/aes_cbc.cpp
   qalgorithm/aes_core.cpp
   qalgorithm/aes_ecb.cpp
-  qalgorithm/base64.cpp
   qalgorithm/cbc128.cpp
-  qalgorithm/random.cpp
   qalgorithm/deswrapper.cpp
   qalgorithm/aeswrapper.cpp
   qalgorithm/imagewrapper.cpp
@@ -217,13 +213,13 @@ else()
   list(APPEND SOURCE_FILES qshortcut/qglobalshortcut_x11.cpp)
 endif()
 
-set(QT_LINK_LIBS TTKUi)
+set(QT_LINK_LIBS TTKLibrary TTKUi)
 
 if(TTK_QT_VERSION VERSION_EQUAL "4")
   qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
 
   if(WIN32)
-    list(APPEND QT_LINK_LIBS user32 gdi32)
+    list(APPEND QT_LINK_LIBS user32)
   else()
     list(APPEND QT_LINK_LIBS ${QT_QTWEBKIT_LIBRARY})
   endif()
@@ -233,7 +229,7 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "5")
   qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
 
   if(WIN32)
-    list(APPEND QT_LINK_LIBS user32 gdi32)
+    list(APPEND QT_LINK_LIBS user32)
   else()
     string(COMPARE EQUAL "${QT_WEBKIT_MODULE_TYPE}" "2" QT_RESULT)
     if(${QT_RESULT})
@@ -253,7 +249,7 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "6")
   qt6_wrap_cpp(MOC_FILES ${HEADER_FILES})
 
   if(WIN32)
-    list(APPEND QT_LINK_LIBS user32 gdi32)
+    list(APPEND QT_LINK_LIBS user32)
   else()
     string(COMPARE EQUAL "${QT_WEBKIT_MODULE_TYPE}" "2" QT_RESULT)
     if(${QT_RESULT})

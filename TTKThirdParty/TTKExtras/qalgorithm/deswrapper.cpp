@@ -1,5 +1,5 @@
 #include "deswrapper.h"
-#include "base64.h"
+#include "ttkcryptographichash.h"
 
 namespace QAlgorithm
 {
@@ -352,7 +352,7 @@ QByteArray Des::encrypt(const QByteArray &in, const QByteArray &key)
     TTK_D(Des);
     d->m_mode = Mode::Encrypt;
     char *encData = d->encrypt((char *)in.data(), in.length(), (char *)key.data());
-    const TTKString &str = QAlgorithm::base64Encode((unsigned char *)encData, (in.length() / 8 + 1) * 8);
+    const TTKString &str = TTK::base64Encode((unsigned char *)encData, (in.length() / 8 + 1) * 8);
 
     delete encData;
     return QByteArray(str.data(), str.length());
@@ -362,7 +362,7 @@ QByteArray Des::decrypt(const QByteArray &in, const QByteArray &key)
 {
     TTK_D(Des);
     d->m_mode = Mode::Decrypt;
-    const TTKString &str = QAlgorithm::base64Decode(TTKString(in.data(), in.length()));
+    const TTKString &str = TTK::base64Decode(TTKString(in.data(), in.length()));
     char *encData = d->encrypt((char *)str.data(), str.length(), (char *)key.data());
 
     QByteArray value(encData);

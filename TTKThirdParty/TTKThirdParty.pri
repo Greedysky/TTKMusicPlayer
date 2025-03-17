@@ -22,4 +22,5 @@ INCLUDEPATH += \
     $$PWD/TTKWatcher \
     $$PWD/TTKExtras \
     $$PWD/../TTKCommon \
-    $$PWD/../TTKCommon/base
+    $$PWD/../TTKCommon/base \
+    $$PWD/../TTKCommon/TTKLibrary
