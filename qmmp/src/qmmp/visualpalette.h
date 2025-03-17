@@ -19,6 +19,7 @@
 #ifndef VISUALPALETTE_H
 #define VISUALPALETTE_H
 
+#include <stdint.h>
 #include "qmmp_export.h"
 
 namespace VisualPalette {
