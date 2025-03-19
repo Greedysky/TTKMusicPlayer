@@ -103,17 +103,44 @@
 
 
 // C style format
-using TTKInt8   = signed char;                  /* 8 bit signed */
-using TTKUInt8  = unsigned char;                /* 8 bit unsigned */
-using TTKInt16  = short;                        /* 16 bit signed */
-using TTKUInt16 = unsigned short;               /* 16 bit unsigned */
-using TTKInt32  = int;                          /* 32 bit signed */
-using TTKUInt32 = unsigned int;                 /* 32 bit unsigned */
-using TTKInt64  = long long;                    /* 64 bit signed */
-using TTKUInt64 = unsigned long long;           /* 64 bit unsigned */
+using TTKVoid     = void;                       /* void */
+using TTKVoidPtr  = void *;                     /* void pointer */
+using TTKCVoidPtr = const void *;               /* const void pointer */
+using TTKVoidCPtr = void * const;               /* const void const pointer */
+
+using TTKStrPtr   = char *;                     /* char pointer */
+using TTKCStrPtr  = const char *;               /* const char pointer */
+using TTKCStrCPtr = const char * const;         /* const char const pointer */
+
+using TTKInt8   = signed char;                  /* 8bit signed intergrate */
+using TTKUInt8  = unsigned char;                /* 8bit unsigned intergrate */
+using TTKInt16  = short;                        /* 16bit signed intergrate */
+using TTKUInt16 = unsigned short;               /* 16bit unsigned intergrate */
+using TTKInt32  = int;                          /* 32bit signed intergrate */
+using TTKUInt32 = unsigned int;                 /* 32bit unsigned intergrate */
+using TTKInt64  = long long;                    /* 64bit signed intergrate */
+using TTKUInt64 = unsigned long long;           /* 64bit unsigned intergrate */
+
+using TTKUInt8Ptr  = TTKUInt8 *;                /* 8bit unsigned intergrate pointer */
+using TTKUInt16Ptr = TTKUInt16 *;               /* 16bit unsigned intergrate pointer */
+using TTKUIn32Ptr  = TTKUInt32 *;               /* 32bit unsigned intergrate pointer */
+using TTKUInt64Ptr = TTKUInt64 *;               /* 64bit unsigned intergrate pointer */
+using TTKInt8Ptr   = TTKInt8 *;                 /* 8bit signed intergrate pointer */
+using TTKInt16Ptr  = TTKInt16 *;                /* 16bit signed intergrate pointer */
+using TTKIn32Ptr   = TTKInt32 *;                /* 32bit signed intergrate pointer */
+using TTKInt64Ptr  = TTKInt64 *;                /* 64bit signed intergrate pointer */
+
+using TTKCUInt8Ptr  = const TTKUInt8Ptr;        /* const 8bit unsigned intergrate pointer */
+using TTKCUInt16Ptr = const TTKUInt16Ptr;       /* const 16bit unsigned intergrate pointer */
+using TTKCUIn32Ptr  = const TTKUIn32Ptr;        /* const 32bit unsigned intergrate pointer */
+using TTKCUInt64Ptr = const TTKUInt64Ptr;       /* const 64bit unsigned intergrate pointer */
+using TTKCInt8Ptr   = const TTKInt8Ptr;         /* const 8bit signed intergrate pointer */
+using TTKCInt16Ptr  = const TTKInt16Ptr;        /* const 16bit signed intergrate pointer */
+using TTKCIn32Ptr   = const TTKIn32Ptr;         /* const 32bit signed intergrate pointer */
+using TTKCInt64Ptr  = const TTKInt64Ptr;        /* const 64bit signed intergrate pointer */
 
 using TTKReal   = double;                       /* real */
-using TTKDouble = double;                       /* double */
+using TTKDouble = TTKReal;                      /* double */
 using TTKFloat  = float;                        /* float */
 using TTKBool   = bool;                         /* bool */
 
@@ -127,6 +154,21 @@ using TTKWString = std::wstring;                /* wstring */
 #  pragma GCC diagnostic ignored "-Wparentheses"
 #  pragma GCC diagnostic ignored "-Wunused-result"
 #  pragma GCC diagnostic ignored "-Wunused-function"
+#endif
+
+
+// deprecated function
+#ifdef _MSC_VER
+#  define TTK_DEPRECATED          __declspec(deprecated)
+#  define TTK_DEPRECATED_X(text)  __declspec(deprecated(text))
+#else
+#  define TTK_DEPRECATED          __attribute__((__deprecated__))
+#  define TTK_DEPRECATED_X(text)  __attribute__((__deprecated__(text)))
+#endif
+
+
+#ifndef TTK_AUTO_GEN
+#  define TTK_AUTO_GEN
 #endif
 
 
@@ -203,6 +245,7 @@ using TTKWString = std::wstring;                /* wstring */
 #define TTK_DEFAULT_STR  "-"
 #define TTK_NAN_STR      "NaN"
 #define TTK_NULL_STR     "null"
+
 
 #define URL_PREFIX             "://"
 #define HTTP_PROTOCOL_PREFIX   "http"

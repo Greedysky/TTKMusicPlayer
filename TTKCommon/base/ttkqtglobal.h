@@ -83,16 +83,6 @@ inline T object_cast(const QObject *object) noexcept
 #endif
 
 
-// deprecated function
-#ifdef Q_CC_MSVC
-#  define TTK_DEPRECATED          __declspec(deprecated)
-#  define TTK_DEPRECATED_X(text)  __declspec(deprecated(text))
-#else
-#  define TTK_DEPRECATED          __attribute__((__deprecated__))
-#  define TTK_DEPRECATED_X(text)  __attribute__((__deprecated__(text)))
-#endif
-
-
 #if !TTK_QT_VERSION_CHECK(5,0,0) && defined(Q_CC_GNU)
 #  if defined(__GXX_EXPERIMENTAL_CXX0X__) || TTK_HAS_CXX11
 #    define Q_COMPILER_DEFAULT_MEMBERS

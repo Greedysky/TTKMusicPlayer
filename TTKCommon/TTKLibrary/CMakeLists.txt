@@ -43,6 +43,7 @@ set(HEADER_FILES
   ttkdispatchmanager.h
   ttkfileassociation.h
   ttkfileinterface.h
+  ttkfunctor.h
   ttkglobalinterface.h
   ttkitemdelegate.h
   ttklibrary.h

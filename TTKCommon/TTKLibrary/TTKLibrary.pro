@@ -84,6 +84,7 @@ HEADERS += \
     $$PWD/ttkdispatchmanager.h \
     $$PWD/ttkfileassociation.h \
     $$PWD/ttkfileinterface.h \
+    $$PWD/ttkfunctor.h \
     $$PWD/ttkglobalinterface.h \
     $$PWD/ttkitemdelegate.h \
     $$PWD/ttklibrary.h \
