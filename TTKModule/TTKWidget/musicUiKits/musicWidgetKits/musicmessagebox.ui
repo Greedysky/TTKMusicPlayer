@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>358</width>
-    <height>185</height>
+    <width>418</width>
+    <height>175</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,8 +21,8 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>350</width>
-     <height>177</height>
+     <width>410</width>
+     <height>167</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -51,7 +51,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>332</x>
+     <x>392</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -66,21 +66,37 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>350</width>
-     <height>152</height>
+     <width>410</width>
+     <height>142</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:white;</string>
    </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>104</y>
+      <width>410</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:#F7F7F7;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QPushButton" name="confirmButton">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>142</y>
-     <width>80</width>
-     <height>30</height>
+     <x>240</x>
+     <y>139</y>
+     <width>75</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="text">
@@ -90,10 +106,10 @@
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>142</y>
-     <width>80</width>
-     <height>30</height>
+     <x>330</x>
+     <y>139</y>
+     <width>75</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="text">
@@ -103,8 +119,8 @@
   <widget class="QLabel" name="textLabel">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>39</y>
+     <x>130</x>
+     <y>30</y>
      <width>280</width>
      <height>95</height>
     </rect>
@@ -113,7 +129,7 @@
     <string notr="true">font-size:14px;font-weight:bold;</string>
    </property>
    <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
    </property>
    <property name="wordWrap">
     <bool>true</bool>
@@ -122,14 +138,17 @@
   <widget class="QLabel" name="iconLabel">
    <property name="geometry">
     <rect>
-     <x>12</x>
-     <y>39</y>
-     <width>100</width>
-     <height>100</height>
+     <x>40</x>
+     <y>45</y>
+     <width>75</width>
+     <height>75</height>
     </rect>
    </property>
    <property name="pixmap">
     <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/image/lb_warning</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <zorder>background</zorder>
