@@ -183,7 +183,12 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
     m_lrcForInterior->setCurrentSongName(name);
 
     MusicLrcAnalysis::State state;
-    if(TTK_FILE_SUFFIX(QFileInfo(path)) == KRC_FILE_SUFFIX)
+    if(path.isEmpty())
+    {
+        TTK_INFO_STREAM("Current in none parser mode");
+        state = MusicLrcAnalysis::State::Failed;
+    }
+    else if(TTK_FILE_SUFFIX(QFileInfo(path)) == KRC_FILE_SUFFIX)
     {
         TTK_INFO_STREAM("Current in krc parser mode");
         state = m_lrcAnalysis->loadFromKrcFile(path);

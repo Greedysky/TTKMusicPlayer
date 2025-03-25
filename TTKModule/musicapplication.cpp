@@ -188,6 +188,12 @@ void MusicApplication::loadCurrentSongLrc()
             {
                 // try to load same dir krc file
                 path = nativePath + KRC_FILE;
+
+                if(!QFile::exists(path))
+                {
+                    // no file found
+                    path.clear();
+                }
             }
         }
     }
@@ -237,8 +243,7 @@ QString MusicApplication::containsDownloadItem(bool &contains) const
 }
 
 bool MusicApplication::containsLovestItem() const
-{    qDebug() << currentFilePath();
-
+{
     if(m_songTreeWidget->playRowIndex() != TTK_NORMAL_LEVEL)
     {
         const MusicPlayItem &item = m_playlist->currentItem();
