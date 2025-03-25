@@ -75,26 +75,18 @@ public:
     inline int lineMiddle() const noexcept { return m_lineMax / 2; }
 
     /*!
-     * Set lrc container data from other raw data.
+     * Save lrc data to current lrc file.
      */
-    State setData(const QByteArray &data);
+    void saveData();
     /*!
      * Set lrc container data from other raw data.
      */
     State setData(const TTKIntStringMap &data);
-    /*!
-     * Save lrc data to current lrc file.
-     */
-    void saveData();
 
     /*!
-     * Analysis lrc file to map return the state.
+     * Analysis lyric file to map return the state.
      */
-    State loadFromLrcFile(const QString &path);
-    /*!
-     * Analysis krc file to map return the state.
-     */
-    State loadFromKrcFile(const QString &path);
+    State loadFromFile(const QString &path);
 
     /*!
      * Set song speed by given time, return new time.
@@ -166,6 +158,10 @@ public:
     QStringList dataList() const;
 
 private:
+    /*!
+     * Init parameters.
+     */
+    State initialize();
     /*!
      * Lrc analysis by match lrc line base.
      */

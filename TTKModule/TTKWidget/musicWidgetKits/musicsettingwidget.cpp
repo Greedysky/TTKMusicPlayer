@@ -8,7 +8,7 @@
 #include "musichotkeymanager.h"
 #include "musicapplicationmodule.h"
 #include "musiclrccolorwidget.h"
-#include "musiclrcdefines.h"
+#include "musiclrchelper.h"
 #include "musiclrcmanager.h"
 #include "musicsourceupdatewidget.h"
 #include "musicfileassociationwidget.h"
@@ -223,7 +223,7 @@ void MusicSettingWidget::initialize()
 
     //
     m_ui->fontComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::LrcFamily).toInt());
-    m_ui->fontSizeComboBox->setCurrentIndex(MusicLrcDefines().findInteriorLrcIndex(G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt()));
+    m_ui->fontSizeComboBox->setCurrentIndex(MusicLrcHelper().findInteriorLrcIndex(G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt()));
     m_ui->fontTypeComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::LrcType).toInt());
     m_ui->fontDefaultColorComboBox->setCurrentIndex(TTK_NORMAL_LEVEL);
 
@@ -243,7 +243,7 @@ void MusicSettingWidget::initialize()
     m_ui->showDesktopCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool());
     m_ui->DsingleLineCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineMode).toBool());
     m_ui->DfontComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcFamily).toInt());
-    m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcDefines().findDesktopLrcIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt()));
+    m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcHelper().findDesktopLrcIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt()));
     m_ui->DfontTypeComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcType).toInt());
     m_ui->DfontDefaultColorComboBox->setCurrentIndex(TTK_NORMAL_LEVEL);
 
@@ -964,7 +964,7 @@ void MusicSettingWidget::initDesktopLrcWidget()
     TTK::Widget::generateComboBoxStyle(m_ui->DfontDefaultColorComboBox);
 
     m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
-    m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().desktopLrcSize());
+    m_ui->DfontSizeComboBox->addItems(MusicLrcHelper().desktopLrcSize());
     m_ui->DfontTypeComboBox->addItems({"1", "2", "3", "4"});
     m_ui->DfontDefaultColorComboBox->addItems({tr("DWhite"), tr("DBlue"), tr("DRed"), tr("DBlack"), tr("DYellow"), tr("DPurple"), tr("DGreen")});
 
@@ -1000,7 +1000,7 @@ void MusicSettingWidget::initInteriorLrcWidget()
     TTK::Widget::generateComboBoxStyle(m_ui->fontDefaultColorComboBox);
 
     m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
-    m_ui->fontSizeComboBox->addItems(MusicLrcDefines().interiorLrcSize());
+    m_ui->fontSizeComboBox->addItems(MusicLrcHelper().interiorLrcSize());
     m_ui->fontTypeComboBox->addItems({"1", "2", "3", "4"});
     m_ui->fontDefaultColorComboBox->addItems({tr("Yellow"), tr("Blue"), tr("Gray"), tr("Pink"), tr("Green"), tr("Red"), tr("Purple"), tr("Orange"), tr("Indigo")});
 

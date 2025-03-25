@@ -36,6 +36,7 @@ void MusicWYDownLoadTextRequest::downLoadFinished()
     {
         QJson::Parser json;
         bool ok = false;
+
         const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {

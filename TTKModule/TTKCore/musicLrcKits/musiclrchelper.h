@@ -1,5 +1,5 @@
-#ifndef MUSICLRCDEFINES_H
-#define MUSICLRCDEFINES_H
+#ifndef MUSICLRCHELPER_H
+#define MUSICLRCHELPER_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -22,17 +22,17 @@
 #include <QStringList>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the lrc defines.
+/*! @brief The class of the lrc helper.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLrcDefines
+class TTK_MODULE_EXPORT MusicLrcHelper
 {
-    TTK_DECLARE_MODULE(MusicLrcDefines)
+    TTK_DECLARE_MODULE(MusicLrcHelper)
 public:
     /*!
      * Object constructor.
      */
-    MusicLrcDefines();
+    MusicLrcHelper();
 
     /*!
      * Get Interior lrc size.
@@ -90,4 +90,4 @@ private:
 
 };
 
-#endif // MUSICLRCDEFINES_H
+#endif // MUSICLRCHELPER_H

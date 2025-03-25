@@ -169,36 +169,31 @@ void MusicApplication::loadCurrentSongLrc()
         return;
     }
 
-    const QString &fileName = currentFileName();
-    const QString &prefixPath = TTK::String::lrcDirPrefix() + fileName;
-    QString path = prefixPath + LRC_FILE;
+    const QString &name = currentFileName();
+    const QString &prefixPath = TTK::String::lrcDirPrefix() + name;
+    const QString &nativePath = QFileInfo(currentFilePath()).absoluteDir().absolutePath() + name;
+    const QStringList &formats = {LRC_FILE, KRC_FILE/*, QRC_FILE, KSC_FILE*/};
 
-    if(!QFile::exists(path))
+    QString path;
+    for(const QString &format : formats)
     {
-        // try to load krc file
-        path = prefixPath + KRC_FILE;
-
-        if(!QFile::exists(path))
+        path = prefixPath + format;
+        if(QFile::exists(path))
         {
-            const QString &nativePath = QFileInfo(currentFilePath()).absoluteDir().absolutePath() + fileName;
-            // try to load same dir lrc file
-            path = nativePath + LRC_FILE;
-
-            if(!QFile::exists(path))
-            {
-                // try to load same dir krc file
-                path = nativePath + KRC_FILE;
-
-                if(!QFile::exists(path))
-                {
-                    // no file found
-                    path.clear();
-                }
-            }
+            break;
         }
+
+        // try to load same dir file
+        path = nativePath + format;
+        if(QFile::exists(path))
+        {
+            break;
+        }
+
+        path.clear();
     }
 
-    m_rightAreaWidget->loadCurrentSongLrc(fileName, path);
+    m_rightAreaWidget->loadCurrentSongLrc(name, path);
     //reset current song lrc index.
     TTK_SIGNLE_SHOT(resetCurrentSongLrcIndex, TTK_SLOT);
 }

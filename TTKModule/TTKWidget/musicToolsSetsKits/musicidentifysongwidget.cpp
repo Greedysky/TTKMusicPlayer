@@ -366,16 +366,16 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
 
     if(!m_info.m_artistName.isEmpty())
     {
-        const QString &name = TTK::String::lrcDirPrefix() + TTK::generateSongName(m_info.m_songName, m_info.m_artistName) + LRC_FILE;
-        if(!QFile::exists(name))
+        const QString &path = TTK::String::lrcDirPrefix() + TTK::generateSongName(m_info.m_songName, m_info.m_artistName) + LRC_FILE;
+        if(!QFile::exists(path))
         {
-            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_info.m_lrcUrl, name, this);
+            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_info.m_lrcUrl, path, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToRequest();
             loop.exec();
         }
 
-        m_analysis->loadFromLrcFile(name);
+        m_analysis->loadFromFile(path);
 
         d->startToQueryResult(&m_info, TTK_BN_128);
         if(!m_info.m_songProps.isEmpty())

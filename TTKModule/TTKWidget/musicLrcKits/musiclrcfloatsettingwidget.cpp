@@ -1,7 +1,7 @@
 #include "musiclrcfloatsettingwidget.h"
 #include "musiclrccontainerforinterior.h"
 #include "musicinteriorfloatuiobject.h"
-#include "musiclrcdefines.h"
+#include "musiclrchelper.h"
 
 #include <QButtonGroup>
 
@@ -102,7 +102,7 @@ QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
 void MusicLrcFloatSettingWidget::lrcSizeUpChanged()
 {
     MusicLrcContainerForInterior* line = TTKObjectCast(MusicLrcContainerForInterior*, parent());
-    const MusicLrcDefines lrc;
+    const MusicLrcHelper lrc;
     int v = lrc.findInteriorLrcIndex(line->lrcSize());
         v = lrc.findInteriorNextSize(v);
     line->setLrcSize(v);
@@ -111,7 +111,7 @@ void MusicLrcFloatSettingWidget::lrcSizeUpChanged()
 void MusicLrcFloatSettingWidget::lrcSizeLowChanged()
 {
     MusicLrcContainerForInterior* line = TTKObjectCast(MusicLrcContainerForInterior*, parent());
-    const MusicLrcDefines lrc;
+    const MusicLrcHelper lrc;
     int v = lrc.findInteriorLrcIndex(line->lrcSize());
         v = lrc.findInteriorPreSize(v);
     line->setLrcSize(v);

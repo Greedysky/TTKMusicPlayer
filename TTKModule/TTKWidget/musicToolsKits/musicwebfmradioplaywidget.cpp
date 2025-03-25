@@ -200,7 +200,7 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
 
     const QString &name = TTK::generateSongName(info.m_songName, info.m_artistName).trimmed();
     m_ui->titleWidget->setText(name);
-    m_analysis->loadFromLrcFile(TTK::String::lrcDirPrefix() + name + LRC_FILE);
+    m_analysis->loadFromFile(TTK::String::lrcDirPrefix() + name + LRC_FILE);
 }
 
 void MusicWebFMRadioPlayWidget::picDownloadStateChanged()

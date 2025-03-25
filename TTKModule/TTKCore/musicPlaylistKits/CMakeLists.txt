@@ -19,6 +19,7 @@
 cmake_minimum_required(VERSION 3.0.0)
 
 set_property(GLOBAL PROPERTY TTK_CORE_PLAYLIST_KITS_HEADER_FILES
+  ${TTK_CORE_PLAYLIST_DIR}/musicplaylistmanager.h
   ${TTK_CORE_PLAYLIST_DIR}/musicasxconfigmanager.h
   ${TTK_CORE_PLAYLIST_DIR}/musicdbplconfigmanager.h
   ${TTK_CORE_PLAYLIST_DIR}/musicfplconfigmanager.h
@@ -34,6 +35,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_PLAYLIST_KITS_HEADER_FILES
 )
 
 set_property(GLOBAL PROPERTY TTK_CORE_PLAYLIST_KITS_SOURCE_FILES
+  ${TTK_CORE_PLAYLIST_DIR}/musicplaylistmanager.cpp
   ${TTK_CORE_PLAYLIST_DIR}/musicasxconfigmanager.cpp
   ${TTK_CORE_PLAYLIST_DIR}/musicdbplconfigmanager.cpp
   ${TTK_CORE_PLAYLIST_DIR}/musicfplconfigmanager.cpp

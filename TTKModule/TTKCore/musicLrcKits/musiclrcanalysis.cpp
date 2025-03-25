@@ -13,54 +13,28 @@ MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
 
 }
 
-MusicLrcAnalysis::State MusicLrcAnalysis::setData(const QByteArray &data)
+void MusicLrcAnalysis::saveData()
 {
-    clear();
-
-    QStringList text = QString(data).split(TTK_LINEFEED);
-    if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
-    {
-        text[0].clear();
-        const int perTime = MusicApplication::instance()->duration() / text.count();
-        for(const QString &oneLine : qAsConst(text))
-        {
-            m_lrcContainer.insert(perTime * m_lrcContainer.count(), oneLine);
-        }
-    }
-    else
-    {
-        for(const QString &oneLine : qAsConst(text))
-        {
-            matchLrcLine(oneLine);
-        }
-    }
-
-    if(m_lrcContainer.isEmpty())
-    {
-        return State::Failed;
-    }
-
-    for(int i = 0; i < lineMiddle(); ++i)
-    {
-        m_currentShowLrcContainer << QString();
-    }
-
-    if(m_lrcContainer.find(0) == m_lrcContainer.end())
-    {
-        m_lrcContainer.insert(0, {});
-    }
+    QString data;
+    data.append(QString("[by: %1]\n[offset:0]\n").arg(TTK_APP_NAME));
 
     for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
     {
-        m_currentShowLrcContainer << it.value();
+        data.append(TTKTime::toString(it.key(), "[mm:ss.zzz]"));
+        data.append(it.value() + TTK_LINEFEED);
     }
 
-    for(int i = 0; i < lineMiddle(); ++i)
+    QFile file(m_currentFilePath);
+    if(!file.open(QIODevice::WriteOnly))
     {
-        m_currentShowLrcContainer << QString();
+        return;
     }
 
-    return State::Success;
+    QTextStream outstream(&file);
+    outstream.setCodec("UTF-8");
+    outstream << data;
+    outstream << QtNamespace(endl);
+    file.close();
 }
 
 MusicLrcAnalysis::State MusicLrcAnalysis::setData(const TTKIntStringMap &data)
@@ -72,65 +46,79 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setData(const TTKIntStringMap &data)
     }
 
     m_lrcContainer = data;
-
-    for(int i = 0; i < lineMiddle(); ++i)
-    {
-        m_currentShowLrcContainer << QString();
-    }
-
-    if(m_lrcContainer.find(0) == m_lrcContainer.end())
-    {
-        m_lrcContainer.insert(0, {});
-    }
-
-    for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
-    {
-        m_currentShowLrcContainer << it.value();
-    }
-
-    for(int i = 0; i < lineMiddle(); ++i)
-    {
-        m_currentShowLrcContainer << QString();
-    }
-
-    return State::Success;
+    return initialize();
 }
 
-MusicLrcAnalysis::State MusicLrcAnalysis::loadFromLrcFile(const QString &path)
-{
-    QFile file(m_currentFilePath = path);
-
-    clear();
-    if(!file.open(QIODevice::ReadOnly))
-    {
-        return State::Failed;
-    }
-
-    const State state = setData(file.readAll());
-    file.close();
-
-    return state;
-}
-
-MusicLrcAnalysis::State MusicLrcAnalysis::loadFromKrcFile(const QString &path)
+MusicLrcAnalysis::State MusicLrcAnalysis::loadFromFile(const QString &path)
 {
     clear();
     m_currentFilePath = path;
+    const QString &format = TTK_FILE_SUFFIX(QFileInfo(path));
 
-    MusicLrcFromKrc krc;
-    if(!krc.decode(path))
+    if(format == KRC_FILE_SUFFIX)
     {
-        return State::Failed;
-    }
+        TTK_INFO_STREAM("Current in krc parser mode");
+        MusicLrcFromKrc krc;
+        if(!krc.decode(path))
+        {
+            return MusicLrcAnalysis::State::Failed;
+        }
 
-    const QString &text = QString(krc.decodeString());
-    //The lyrics by line into the lyrics list
-    for(const QString &oneLine : text.split(TTK_WLINEFEED))
+        const QString &text = QString::fromUtf8(krc.decodeString());
+        //The lyrics by line into the lyrics list
+        for(const QString &oneLine : text.split(TTK_WLINEFEED))
+        {
+            matchLrcLine(oneLine);
+        }
+
+        return initialize();
+    }
+    else if(format == LRC_FILE_SUFFIX)
     {
-        matchLrcLine(oneLine);
-    }
+        TTK_INFO_STREAM("Current in lrc parser mode");
+        QFile file(path);
+        if(!file.open(QIODevice::ReadOnly))
+        {
+            return State::Failed;
+        }
 
-    //If the lrcContainer is empty
+        const QByteArray &data = file.readAll();
+        file.close();
+
+        QStringList text = QString::fromUtf8(data).split(TTK_LINEFEED);
+        if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
+        {
+            text[0].clear();
+            const int perTime = MusicApplication::instance()->duration() / text.count();
+            for(const QString &oneLine : qAsConst(text))
+            {
+                m_lrcContainer.insert(perTime * m_lrcContainer.count(), oneLine);
+            }
+        }
+        else
+        {
+            for(const QString &oneLine : qAsConst(text))
+            {
+                matchLrcLine(oneLine);
+            }
+        }
+
+        return initialize();
+    }
+    else if(format == QRC_FILE || format == KSC_FILE)
+    {
+        // TODO
+        return MusicLrcAnalysis::State::Failed;
+    }
+    else
+    {
+        TTK_INFO_STREAM("Current in none parser mode");
+        return MusicLrcAnalysis::State::Failed;
+    }
+}
+
+MusicLrcAnalysis::State MusicLrcAnalysis::initialize()
+{
     if(m_lrcContainer.isEmpty())
     {
         return State::Failed;
@@ -373,30 +361,6 @@ void MusicLrcAnalysis::revertTime(qint64 pos)
         copy.insert(it.key() + pos, it.value());
     }
     m_lrcContainer = copy;
-}
-
-void MusicLrcAnalysis::saveData()
-{
-    QString data;
-    data.append(QString("[by: %1]\n[offset:0]\n").arg(TTK_APP_NAME));
-
-    for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
-    {
-        data.append(TTKTime::toString(it.key(), "[mm:ss.zzz]"));
-        data.append(it.value() + TTK_LINEFEED);
-    }
-
-    QFile file(m_currentFilePath);
-    if(!file.open(QIODevice::WriteOnly))
-    {
-        return;
-    }
-
-    QTextStream outstream(&file);
-    outstream.setCodec("UTF-8");
-    outstream << data;
-    outstream << QtNamespace(endl);
-    file.close();
 }
 
 void MusicLrcAnalysis::clear() noexcept

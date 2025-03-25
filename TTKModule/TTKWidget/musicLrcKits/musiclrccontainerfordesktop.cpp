@@ -2,7 +2,7 @@
 #include "musiclrcmanagerfordesktop.h"
 #include "musicfunctionuiobject.h"
 #include "musicdesktoplrcuiobject.h"
-#include "musiclrcdefines.h"
+#include "musiclrchelper.h"
 #include "musicapplication.h"
 #include "musicrightareawidget.h"
 #include "musicbottomareawidget.h"
@@ -117,7 +117,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
 
 void MusicLrcContainerForDesktop::setLrcBiggerChanged()
 {
-    if(m_currentLrcFontSize > MusicLrcDefines().findDesktopLastSize() - 1)
+    if(m_currentLrcFontSize > MusicLrcHelper().findDesktopLastSize() - 1)
     {
         return;
     }
@@ -126,7 +126,7 @@ void MusicLrcContainerForDesktop::setLrcBiggerChanged()
 
 void MusicLrcContainerForDesktop::setLrcSmallerChanged()
 {
-    if(m_currentLrcFontSize < MusicLrcDefines().findDesktopFirstSize() - 1)
+    if(m_currentLrcFontSize < MusicLrcHelper().findDesktopFirstSize() - 1)
     {
         return;
     }
