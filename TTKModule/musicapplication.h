@@ -328,7 +328,7 @@ private:
 private:
     Ui::MusicApplication *m_ui;
     bool m_quitWindowMode;
-    int m_currentSongTreeIndex;
+    int m_currentPlaylistRow;
     MusicPlayer *m_player;
     MusicPlaylist *m_playlist;
     MusicSongsContainerWidget *m_songTreeWidget;

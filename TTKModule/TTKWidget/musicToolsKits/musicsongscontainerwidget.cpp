@@ -27,17 +27,17 @@ MusicSongsContainerWidget::MusicSongsContainerWidget(QWidget *parent)
       m_playRowIndex(MUSIC_NORMAL_LIST),
       m_lastSearchIndex(MUSIC_NORMAL_LIST),
       m_selectDeleteIndex(MUSIC_NONE_LIST),
-      m_listFunctionWidget(nullptr),
+      m_functionWidget(nullptr),
       m_songSearchWidget(nullptr)
 {
     m_instance = this;
 
     setAcceptDrops(true);
 
-    m_listMaskWidget = new MusicSongsToolBoxMaskWidget(this);
-    setInputModule(m_listMaskWidget);
+    m_topMaskWidget = new MusicSongsToolBoxMaskWidget(this);
+    setInputModule(m_topMaskWidget);
 
-    connect(m_listMaskWidget, SIGNAL(itemIndexChanged(int)), SLOT(itemIndexChanged(int)));
+    connect(m_topMaskWidget, SIGNAL(itemIndexChanged(int)), SLOT(itemIndexChanged(int)));
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
 
     G_CONNECTION_PTR->setValue(className(), this);
@@ -47,8 +47,8 @@ MusicSongsContainerWidget::MusicSongsContainerWidget(QWidget *parent)
 MusicSongsContainerWidget::~MusicSongsContainerWidget()
 {
     G_CONNECTION_PTR->removeValue(this);
-    delete m_listMaskWidget;
-    delete m_listFunctionWidget;
+    delete m_topMaskWidget;
+    delete m_functionWidget;
     delete m_songSearchWidget;
 
     while(!m_containerItems.isEmpty())
@@ -359,7 +359,7 @@ void MusicSongsContainerWidget::removeSearchResult(int &row)
     closeSearchWidget();
 }
 
-void MusicSongsContainerWidget::setCurrentSongTreeIndex(int index)
+void MusicSongsContainerWidget::setPlayRowIndex(int index)
 {
     const int before = m_playRowIndex;
     m_playRowIndex = index;
@@ -1011,17 +1011,17 @@ void MusicSongsContainerWidget::updateCurrentArtist()
 
 void MusicSongsContainerWidget::showFloatWidget()
 {
-    if(m_listFunctionWidget == nullptr)
+    if(m_functionWidget == nullptr)
     {
-        m_listFunctionWidget = new MusicSongsListFunctionWidget(this);
-        connect(m_listFunctionWidget, SIGNAL(deleteObject()), SLOT(deleteFloatWidget()));
+        m_functionWidget = new MusicSongsListFunctionWidget(this);
+        connect(m_functionWidget, SIGNAL(deleteSelfObject()), SLOT(deleteFunctionWidget()));
         resizeWindow();
-        m_listFunctionWidget->show();
+        m_functionWidget->show();
     }
     else
     {
         resizeWindow();
-        m_listFunctionWidget->active();
+        m_functionWidget->active();
     }
 }
 
@@ -1086,23 +1086,23 @@ void MusicSongsContainerWidget::sliderValueChanaged(int value)
     if(value >= 40 * (m_currentIndex + 1) && m_currentIndex > -1 && m_currentIndex < m_containerItems.count())
     {
         MusicSongItem *item = &m_containerItems[m_currentIndex];
-        m_listMaskWidget->setIndex(item->m_itemIndex);
-        m_listMaskWidget->setSongSort(&item->m_sort);
-        m_listMaskWidget->setTitle(QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
-        m_listMaskWidget->setExpand(true);
-        m_listMaskWidget->raise();
-        m_listMaskWidget->show();
+        m_topMaskWidget->setIndex(item->m_itemIndex);
+        m_topMaskWidget->setSongSort(&item->m_sort);
+        m_topMaskWidget->setTitle(QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+        m_topMaskWidget->setExpand(true);
+        m_topMaskWidget->raise();
+        m_topMaskWidget->show();
     }
     else
     {
-        m_listMaskWidget->hide();
+        m_topMaskWidget->hide();
     }
 }
 
-void MusicSongsContainerWidget::deleteFloatWidget()
+void MusicSongsContainerWidget::deleteFunctionWidget()
 {
-    delete m_listFunctionWidget;
-    m_listFunctionWidget = nullptr;
+    delete m_functionWidget;
+    m_functionWidget = nullptr;
 }
 
 void MusicSongsContainerWidget::resizeEvent(QResizeEvent *event)
@@ -1283,9 +1283,9 @@ void MusicSongsContainerWidget::setItemTitle(MusicSongItem *item)
     const QString title(QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
     setTitle(item->m_itemWidget, title);
 
-    if(m_listMaskWidget->isVisible() && m_listMaskWidget->index() == item->m_itemIndex)
+    if(m_topMaskWidget->isVisible() && m_topMaskWidget->index() == item->m_itemIndex)
     {
-        m_listMaskWidget->setTitle(title);
+        m_topMaskWidget->setTitle(title);
     }
 }
 
@@ -1305,9 +1305,9 @@ void MusicSongsContainerWidget::setInputModule(QObject *object) const
 
 void MusicSongsContainerWidget::resizeWindow()
 {
-    if(m_listFunctionWidget)
+    if(m_functionWidget)
     {
-        m_listFunctionWidget->move(width() - m_listFunctionWidget->width() - 15, height() - 40 - m_listFunctionWidget->height());
+        m_functionWidget->move(width() - m_functionWidget->width() - 15, height() - 40 - m_functionWidget->height());
     }
 
     if(m_songSearchWidget)

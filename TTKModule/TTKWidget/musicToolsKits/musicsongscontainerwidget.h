@@ -102,9 +102,9 @@ public:
      */
     inline int playRowIndex() const noexcept { return m_playRowIndex; }
     /*!
-     * Set current song tree index.
+     * Set current song play index.
      */
-    void setCurrentSongTreeIndex(int index);
+    void setPlayRowIndex(int index);
 
     /*!
      * Show current play index.
@@ -246,7 +246,7 @@ private Q_SLOTS:
     /*!
      * Delete the float function widget.
      */
-    void deleteFloatWidget();
+    void deleteFunctionWidget();
 
 private:
     /*!
@@ -298,8 +298,8 @@ private:
     int m_lastSearchIndex;
     int m_selectDeleteIndex;
 
-    MusicSongsToolBoxMaskWidget *m_listMaskWidget;
-    MusicSongsListFunctionWidget *m_listFunctionWidget;
+    MusicSongsToolBoxMaskWidget *m_topMaskWidget;
+    MusicSongsListFunctionWidget *m_functionWidget;
     MusicSongSearchDialog *m_songSearchWidget;
 
     static MusicSongsContainerWidget *m_instance;

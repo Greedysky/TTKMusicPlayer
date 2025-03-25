@@ -51,7 +51,7 @@ Q_SIGNALS:
     /*!
      * Delete self object.
      */
-    void deleteObject();
+    void deleteSelfObject();
 
 private Q_SLOTS:
     /*!
