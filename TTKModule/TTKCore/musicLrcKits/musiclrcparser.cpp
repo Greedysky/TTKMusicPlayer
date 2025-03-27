@@ -1,10 +1,31 @@
-#include "musiclrcfromkrc.h"
+#include "musiclrcparser.h"
+#include "ttkabstractxml.h"
 
 #include <QFile>
 #include <sys/stat.h>
 
 #include "zlib/zconf.h"
 #include "zlib/zlib.h"
+
+const QByteArray &MusicLrcFromInterface::data() const noexcept
+{
+    return m_data;
+}
+
+
+bool MusicLrcFromPlain::decode(const QString &input)
+{
+    QFile file(input);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        return false;
+    }
+
+    m_data = file.readAll();
+    file.close();
+    return true;
+}
+
 
 static constexpr wchar_t key[] = {
     L'@', L'G', L'a', L'w', L'^', L'2',
@@ -14,13 +35,20 @@ static constexpr wchar_t key[] = {
 
 
 MusicLrcFromKrc::MusicLrcFromKrc()
+    : MusicLrcFromInterface(),
+      m_resultBytes(new uchar[TTK_SN_MB2BT])
 {
-    m_resultBytes = new uchar[TTK_SN_MB2BT];
+
 }
 
 MusicLrcFromKrc::~MusicLrcFromKrc()
 {
     delete[] m_resultBytes;
+}
+
+bool MusicLrcFromKrc::decode(const QString &input)
+{
+    return decode(input, {});
 }
 
 bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
@@ -43,6 +71,8 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     }
 
     uchar *src = new uchar[st.st_size];
+    uchar *ptr = src;
+
     if(fread(src, sizeof(uchar), st.st_size, fp) != (size_t)st.st_size)
     {
         TTK_ERROR_STREAM("Fread file error");
@@ -68,7 +98,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     decompression(src, st.st_size, &dstsize);
     createLrc(m_resultBytes, TTKStaticCast(int, dstsize));
 
-    delete[] src;
+    delete[] ptr;
     fclose(fp);
 
     if(!output.isEmpty())
@@ -84,11 +114,6 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
         }
     }
     return true;
-}
-
-QByteArray MusicLrcFromKrc::decodeString() const noexcept
-{
-    return m_data;
 }
 
 int MusicLrcFromKrc::sncasecmp(char *s1, char *s2, size_t n)
@@ -222,3 +247,97 @@ void MusicLrcFromKrc::createLrc(uchar *lrc, int lrclen)
         }
     }
 }
+
+
+bool MusicLrcFromQrc::decode(const QString &input)
+{
+    QFile file(input);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        return false;
+    }
+
+    m_data = file.readAll();
+    file.close();
+
+    TTKAbstractXml xml;
+    if(xml.fromByteArray(m_data))
+    {
+        const QString &data = xml.readAttributeByTagName("Lyric_1", "LyricContent");
+        if(!data.isEmpty())
+        {
+            m_data.clear();
+
+            for(QString &text : data.split(TTK_LINEFEED))
+            {
+                const QRegExp regx("\\[(\\d+),\\d+\\]");
+                if(regx.indexIn(text) != -1)
+                {
+                    text.replace(regx, "[" + TTKTime::toString(regx.cap(1).toInt(), "mm:ss.zzz") + "]");
+                }
+
+                text.remove(QRegExp("\\(\\d+,\\d+\\)"));
+                m_data.append(text.toUtf8() + TTK_LINEFEED);
+            }
+        }
+    }
+    return true;
+}
+
+
+bool MusicLrcFromTrc::decode(const QString &input)
+{
+    QFile file(input);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        return false;
+    }
+
+    m_data = file.readAll();
+    file.close();
+
+    const QString &data = QString::fromUtf8(m_data);
+    m_data.clear();
+
+    for(QString &text : data.split(TTK_LINEFEED))
+    {
+        text.remove(QRegExp("<\\d+>"));
+        m_data.append(text.toUtf8() + TTK_LINEFEED);
+    }
+    return true;
+}
+
+
+bool MusicLrcFromYrc::decode(const QString &input)
+{
+    QFile file(input);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        return false;
+    }
+
+    m_data = file.readAll();
+    file.close();
+
+    const QString &data = QString::fromUtf8(m_data);
+    m_data.clear();
+
+    for(QString &text : data.split(TTK_LINEFEED))
+    {
+        if(text.startsWith("{")) // json info
+        {
+            continue;
+        }
+
+        const QRegExp regx("\\[(\\d+),\\d+\\]");
+        if(regx.indexIn(text) != -1)
+        {
+            text.replace(regx, "[" + TTKTime::toString(regx.cap(1).toInt(), "mm:ss.zzz") + "]");
+        }
+
+        text.remove(QRegExp("\\(\\d+,\\d+,\\d+\\)"));
+        m_data.append(text.toUtf8() + TTK_LINEFEED);
+    }
+    return true;
+}
+

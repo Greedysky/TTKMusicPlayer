@@ -37,6 +37,7 @@
 #define KRC_FILE_SUFFIX          "krc"
 #define QRC_FILE_SUFFIX          "qrc"
 #define TRC_FILE_SUFFIX          "trc"
+#define YRC_FILE_SUFFIX          "yrc"
 #define KSC_FILE_SUFFIX          "ksc"
 // playlist ext
 #define TPL_FILE_SUFFIX          "tkpl"
@@ -74,6 +75,7 @@
 #define KRC_FILE                 TTK_STR_CAT(TTK_DOT, KRC_FILE_SUFFIX)
 #define QRC_FILE                 TTK_STR_CAT(TTK_DOT, QRC_FILE_SUFFIX)
 #define TRC_FILE                 TTK_STR_CAT(TTK_DOT, TRC_FILE_SUFFIX)
+#define YRC_FILE                 TTK_STR_CAT(TTK_DOT, YRC_FILE_SUFFIX)
 #define KSC_FILE                 TTK_STR_CAT(TTK_DOT, KSC_FILE_SUFFIX)
 // file ext
 #define MP3_FILE                 TTK_STR_CAT(TTK_DOT, MP3_FILE_SUFFIX)

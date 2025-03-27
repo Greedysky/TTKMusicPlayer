@@ -1,5 +1,5 @@
 #include "musiclrcanalysis.h"
-#include "musiclrcfromkrc.h"
+#include "musiclrcparser.h"
 #include "musicapplication.h"
 #include "ttktime.h"
 
@@ -53,9 +53,22 @@ MusicLrcAnalysis::State MusicLrcAnalysis::loadFromFile(const QString &path)
 {
     clear();
     m_currentFilePath = path;
+
+    QStringList data;
     const QString &format = TTK_FILE_SUFFIX(QFileInfo(path));
 
-    if(format == KRC_FILE_SUFFIX)
+    if(format == LRC_FILE_SUFFIX)
+    {
+        TTK_INFO_STREAM("Current in lrc parser mode");
+        MusicLrcFromPlain plain;
+        if(!plain.decode(path))
+        {
+            return MusicLrcAnalysis::State::Failed;
+        }
+
+        data = QString::fromUtf8(plain.data()).split(TTK_LINEFEED);
+    }
+    else if(format == KRC_FILE_SUFFIX)
     {
         TTK_INFO_STREAM("Current in krc parser mode");
         MusicLrcFromKrc krc;
@@ -64,57 +77,53 @@ MusicLrcAnalysis::State MusicLrcAnalysis::loadFromFile(const QString &path)
             return MusicLrcAnalysis::State::Failed;
         }
 
-        const QString &text = QString::fromUtf8(krc.decodeString());
-        //The lyrics by line into the lyrics list
-        for(const QString &oneLine : text.split(TTK_WLINEFEED))
-        {
-            matchLrcLine(oneLine);
-        }
-
-        return initialize();
+        data = QString::fromUtf8(krc.data()).split(TTK_WLINEFEED);
     }
-    else if(format == LRC_FILE_SUFFIX)
+    else if(format == QRC_FILE_SUFFIX)
     {
-        TTK_INFO_STREAM("Current in lrc parser mode");
-        QFile file(path);
-        if(!file.open(QIODevice::ReadOnly))
+        TTK_INFO_STREAM("Current in qrc parser mode");
+        MusicLrcFromQrc qrc;
+        if(!qrc.decode(path))
         {
-            return State::Failed;
+            return MusicLrcAnalysis::State::Failed;
         }
 
-        const QByteArray &data = file.readAll();
-        file.close();
-
-        QStringList text = QString::fromUtf8(data).split(TTK_LINEFEED);
-        if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
-        {
-            text[0].clear();
-            const int perTime = MusicApplication::instance()->duration() / text.count();
-            for(const QString &oneLine : qAsConst(text))
-            {
-                m_lrcContainer.insert(perTime * m_lrcContainer.count(), oneLine);
-            }
-        }
-        else
-        {
-            for(const QString &oneLine : qAsConst(text))
-            {
-                matchLrcLine(oneLine);
-            }
-        }
-
-        return initialize();
+        data = QString::fromUtf8(qrc.data()).split(TTK_LINEFEED);
     }
-    else if(format == QRC_FILE || format == KSC_FILE)
+    else if(format == TRC_FILE_SUFFIX)
     {
-        // TODO
-        return MusicLrcAnalysis::State::Failed;
+        TTK_INFO_STREAM("Current in trc parser mode");
+        MusicLrcFromTrc trc;
+        if(!trc.decode(path))
+        {
+            return MusicLrcAnalysis::State::Failed;
+        }
+
+        data = QString::fromUtf8(trc.data()).split(TTK_LINEFEED);
+    }
+    else if(format == YRC_FILE_SUFFIX)
+    {
+        TTK_INFO_STREAM("Current in yrc parser mode");
+        MusicLrcFromYrc yrc;
+        if(!yrc.decode(path))
+        {
+            return MusicLrcAnalysis::State::Failed;
+        }
+
+        data = QString::fromUtf8(yrc.data()).split(TTK_LINEFEED);
     }
     else
     {
         TTK_INFO_STREAM("Current in none parser mode");
         return MusicLrcAnalysis::State::Failed;
     }
+
+    for(const QString &oneLine : qAsConst(data))
+    {
+        matchLrcLine(oneLine);
+    }
+
+    return initialize();
 }
 
 MusicLrcAnalysis::State MusicLrcAnalysis::initialize()
@@ -435,7 +444,6 @@ bool MusicLrcAnalysis::findText(qint64 current, qint64 total, QString &pre, QStr
     pre = m_lrcContainer.value(previous);
     last = m_lrcContainer.value(later);
     interval = later - previous;
-
     return true;
 }
 

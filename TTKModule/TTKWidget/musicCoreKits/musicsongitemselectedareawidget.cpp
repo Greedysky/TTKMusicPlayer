@@ -50,7 +50,7 @@ void MusicSongItemSelectedTableWidget::addCellItems(MusicSongItemList *items)
     }
 }
 
-TTKIntList MusicSongItemSelectedTableWidget::checkedDataList() const
+TTKIntList MusicSongItemSelectedTableWidget::checkedDataItems() const
 {
     TTKIntList list;
     for(int i = 0; i < rowCount(); ++i)
@@ -103,7 +103,7 @@ void MusicSongItemSelectedDialog::addCellItems(MusicSongItemList *items)
 
 void MusicSongItemSelectedDialog::confirmButtonClicked()
 {
-    Q_EMIT itemListChanged(m_ui->itemTableWidget->checkedDataList());
+    Q_EMIT itemListChanged(m_ui->itemTableWidget->checkedDataItems());
     accept();
 }
 

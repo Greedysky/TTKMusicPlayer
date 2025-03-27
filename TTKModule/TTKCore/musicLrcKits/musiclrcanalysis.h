@@ -22,7 +22,6 @@
 #include "musicglobaldefine.h"
 
 static constexpr int MUSIC_LRC_INTERIOR_MAX_LINE = 11;
-static constexpr const char *MUSIC_TTKLRCF = "[TTKLRCF]";
 
 /*! @brief The class of the core lrc analysis.
  * @author Greedysky <greedysky@163.com>

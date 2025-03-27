@@ -1,7 +1,7 @@
 #include "musictransformwidget.h"
 #include "ui_musictransformwidget.h"
 #include "musicwidgetheaders.h"
-#include "musiclrcfromkrc.h"
+#include "musiclrcparser.h"
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
 

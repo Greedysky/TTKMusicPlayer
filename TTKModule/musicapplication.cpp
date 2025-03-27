@@ -172,7 +172,7 @@ void MusicApplication::loadCurrentSongLrc()
     const QString &name = currentFileName();
     const QString &prefixPath = TTK::String::lrcDirPrefix() + name;
     const QString &nativePath = QFileInfo(currentFilePath()).absoluteDir().absolutePath() + name;
-    const QStringList &formats = {LRC_FILE, KRC_FILE/*, QRC_FILE, KSC_FILE*/};
+    const QStringList &formats = {LRC_FILE, KRC_FILE, QRC_FILE, TRC_FILE, YRC_FILE};
 
     QString path;
     for(const QString &format : formats)

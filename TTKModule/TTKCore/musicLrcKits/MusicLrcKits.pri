@@ -21,9 +21,9 @@ INCLUDEPATH += $$PWD
 HEADERS += \
     $$PWD/musiclrchelper.h \
     $$PWD/musiclrcanalysis.h \
-    $$PWD/musiclrcfromkrc.h
+    $$PWD/musiclrcparser.h
 
 SOURCES += \
     $$PWD/musiclrchelper.cpp \
     $$PWD/musiclrcanalysis.cpp \
-    $$PWD/musiclrcfromkrc.cpp
+    $$PWD/musiclrcparser.cpp

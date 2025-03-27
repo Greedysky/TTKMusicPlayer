@@ -21,11 +21,11 @@ cmake_minimum_required(VERSION 3.0.0)
 set_property(GLOBAL PROPERTY TTK_CORE_LRC_KITS_HEADER_FILES
   ${TTK_CORE_LRCMANAGER_DIR}/musiclrchelper.h
   ${TTK_CORE_LRCMANAGER_DIR}/musiclrcanalysis.h
-  ${TTK_CORE_LRCMANAGER_DIR}/musiclrcfromkrc.h
+  ${TTK_CORE_LRCMANAGER_DIR}/musiclrcparser.h
 )
 
 set_property(GLOBAL PROPERTY TTK_CORE_LRC_KITS_SOURCE_FILES
   ${TTK_CORE_LRCMANAGER_DIR}/musiclrchelper.cpp
   ${TTK_CORE_LRCMANAGER_DIR}/musiclrcanalysis.cpp
-  ${TTK_CORE_LRCMANAGER_DIR}/musiclrcfromkrc.cpp
+  ${TTK_CORE_LRCMANAGER_DIR}/musiclrcparser.cpp
 )

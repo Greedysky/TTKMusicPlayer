@@ -42,7 +42,7 @@ public:
     /*!
      * Get checked data items.
      */
-    TTKIntList checkedDataList() const;
+    TTKIntList checkedDataItems() const;
 
 };
 

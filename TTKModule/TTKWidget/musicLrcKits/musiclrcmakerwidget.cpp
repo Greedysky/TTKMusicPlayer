@@ -72,6 +72,7 @@ void MusicLrcMakerWidgetItem::moveDown()
     {
         m_currentIndex = 6;
     }
+
     m_paintIndex = 0;
     m_intervalCount = 5;
     m_painetLineDone = false;
@@ -379,6 +380,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
         {
             m_lrcContainer[i]->setText({});
         }
+
         setItemStyleSheet(0, -3, 90);
         setItemStyleSheet(1, -6, 35);
         setItemStyleSheet(2, -10, 0);
