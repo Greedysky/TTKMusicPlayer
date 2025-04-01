@@ -57,8 +57,6 @@ static QString makeModuleValue(const QString &type, const QString &module) noexc
     return {};
 }
 
-//OVpCbTNnaHljODBhZ0hHUzNvejBGTmFJREdXVzRWWDJwREw4ckNSZGNrbz0=
-//Ukg1OFg2VUIzWDVQbWxYSkdYUHY1d21mOVZ3SlpERHhFYjFyQzREb29NTUFTZW55eVN1YVRnPT0=
 static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModule &module)
 {
     for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
@@ -113,7 +111,7 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
             const QVariantMap &extra = value["extra"].toMap();
             if(!extra.isEmpty())
             {
-                value = extra["extra"].toMap();
+                value = extra;
             }
 
             value = value["quality"].toMap();
@@ -131,7 +129,6 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
     }
 }
 
-//aFB0VHBaY3lpMHNKWTBjVk5Dd3JrZlpkeVRYamhnNDVPVHR0dlZhSTFDVW5rWm5PVjJtcWhrWVJweU09
 static void parseSongPropertyB(TTK::MusicSongInformation *info, const ServerModule &module)
 {
     for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
