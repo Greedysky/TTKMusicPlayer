@@ -311,7 +311,7 @@ MusicFunctionToolBoxWidget::~MusicFunctionToolBoxWidget()
 {
     while(!m_itemList.isEmpty())
     {
-        delete m_itemList.takeLast().m_widgetItem;
+        delete m_itemList.takeLast().m_itemWidget;
     }
     delete m_layout;
     delete m_scrollArea;
@@ -328,18 +328,18 @@ void MusicFunctionToolBoxWidget::addCellItem(QWidget *item, const QString &text)
     //hide before widget
     for(int i = 0; i < m_itemList.count(); ++i)
     {
-        m_itemList[i].m_widgetItem->setExpand(false);
+        m_itemList[i].m_itemWidget->setExpand(false);
     }
 
     // Add item and make sure it stretches the remaining space.
     MusicToolBoxWidgetItem widgetItem;
-    widgetItem.m_widgetItem = initialItem(item, text);
+    widgetItem.m_itemWidget = initialItem(item, text);
     widgetItem.m_itemIndex = m_itemIndexRaise++;
     m_itemList.append(widgetItem);
 
     m_currentIndex = m_itemList.count() - 1;
 
-    m_layout->addWidget(widgetItem.m_widgetItem);
+    m_layout->addWidget(widgetItem.m_itemWidget);
     m_layout->addStretch(5);
 }
 
@@ -347,11 +347,11 @@ void MusicFunctionToolBoxWidget::removeItem(QWidget *item)
 {
     for(int i = 0; i < m_itemList.count(); ++i)
     {
-        MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
+        MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_itemWidget;
         if(it->item() == item)
         {
             m_layout->removeWidget(item);
-            m_itemList.takeAt(i).m_widgetItem->deleteLater();
+            m_itemList.takeAt(i).m_itemWidget->deleteLater();
             m_currentIndex = 0;
             return;
         }
@@ -363,13 +363,13 @@ void MusicFunctionToolBoxWidget::swapItem(int start, int end)
     const MusicToolBoxWidgetItem &widgetItem = m_itemList.takeAt(start);
     m_itemList.insert(end, widgetItem);
 
-    m_layout->removeWidget(widgetItem.m_widgetItem);
+    m_layout->removeWidget(widgetItem.m_itemWidget);
     const int count = m_layout->count();
     if(count > 1)
     {
         m_layout->removeItem(m_layout->itemAt(count - 1));
     }
-    m_layout->insertWidget(end, widgetItem.m_widgetItem);
+    m_layout->insertWidget(end, widgetItem.m_itemWidget);
     m_layout->addStretch(5);
 }
 
@@ -377,7 +377,7 @@ void MusicFunctionToolBoxWidget::setTitle(QWidget *item, const QString &text)
 {
     for(int i = 0; i < m_itemList.count(); ++i)
     {
-        MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
+        MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_itemWidget;
         if(it->item() == item)
         {
             it->setTitle(text);
@@ -410,7 +410,7 @@ void MusicFunctionToolBoxWidget::setCurrentIndex(int index)
     m_currentIndex = index;
     for(int i = 0; i < m_itemList.count(); ++i)
     {
-        m_itemList[i].m_widgetItem->setExpand(i == index);
+        m_itemList[i].m_itemWidget->setExpand(i == index);
     }
 }
 
@@ -419,8 +419,8 @@ void MusicFunctionToolBoxWidget::itemIndexChanged(int index)
     m_currentIndex = foundMappedIndex(index);
     for(int i = 0; i < m_itemList.count(); ++i)
     {
-        const bool hide = (i == m_currentIndex) ? !m_itemList[i].m_widgetItem->isExpand() : false;
-        m_itemList[i].m_widgetItem->setExpand(hide);
+        const bool hide = (i == m_currentIndex) ? !m_itemList[i].m_itemWidget->isExpand() : false;
+        m_itemList[i].m_itemWidget->setExpand(hide);
     }
 }
 

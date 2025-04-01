@@ -203,11 +203,11 @@ class QScrollArea;
 struct TTK_MODULE_EXPORT MusicToolBoxWidgetItem
 {
     int m_itemIndex;
-    MusicFunctionToolBoxWidgetItem *m_widgetItem;
+    MusicFunctionToolBoxWidgetItem *m_itemWidget;
 
     MusicToolBoxWidgetItem() noexcept
         : m_itemIndex(-1),
-          m_widgetItem(nullptr)
+          m_itemWidget(nullptr)
     {
 
     }

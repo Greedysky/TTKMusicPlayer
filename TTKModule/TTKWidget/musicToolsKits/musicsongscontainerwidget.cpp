@@ -453,7 +453,7 @@ void MusicSongsContainerWidget::deleteRowItem(int index)
     if(m_playRowIndex == id)
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
-        m_itemList.front().m_widgetItem->setExpand(false);
+        m_itemList.front().m_itemWidget->setExpand(false);
         MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
     }
     else if(m_playRowIndex > id)
@@ -480,7 +480,7 @@ void MusicSongsContainerWidget::deleteRowItems()
     if(m_playRowIndex != MUSIC_NORMAL_LIST && TTK::playlistRowValid(m_playRowIndex))
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
-        m_itemList.front().m_widgetItem->setExpand(false);
+        m_itemList.front().m_itemWidget->setExpand(false);
         MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
     }
 
@@ -1130,8 +1130,8 @@ void MusicSongsContainerWidget::dragMoveEvent(QDragMoveEvent *event)
             continue;
         }
 
-        QWidget *container = item.m_widgetItem->item();
-        if(item.m_widgetItem->isActive() || (container && container->isVisible()))
+        QWidget *container = item.m_itemWidget->item();
+        if(item.m_itemWidget->isActive() || (container && container->isVisible()))
         {
             contains = true;
         }
@@ -1168,8 +1168,8 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
             continue;
         }
 
-        QWidget *container = item.m_widgetItem->item();
-        if(item.m_widgetItem->isActive() || (container && container->isVisible()))
+        QWidget *container = item.m_itemWidget->item();
+        if(item.m_itemWidget->isActive() || (container && container->isVisible()))
         {
             importSongsByPath(files, foundMappedIndex(item.m_itemIndex));
             break;
@@ -1272,7 +1272,7 @@ void MusicSongsContainerWidget::createWidgetItem(MusicSongItem *item)
     connect(widget, SIGNAL(songListSortBy(int)), SLOT(songListSortBy(int)));
 
     ///connect to items
-    setInputModule(m_itemList.back().m_widgetItem);
+    setInputModule(m_itemList.back().m_itemWidget);
 
     widget->setSongsList(&item->m_songs);
     setTitle(widget, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
