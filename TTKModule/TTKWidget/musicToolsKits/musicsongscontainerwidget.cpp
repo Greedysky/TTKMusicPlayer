@@ -1,4 +1,4 @@
-﻿#include "musicsongscontainerwidget.h"
+#include "musicsongscontainerwidget.h"
 #include "musicsongslistfunctionwidget.h"
 #include "musicsongslistplaytablewidget.h"
 #include "musicsongsearchdialog.h"
@@ -951,7 +951,7 @@ void MusicSongsContainerWidget::setSongPlayCount(int index)
 
 void MusicSongsContainerWidget::appendRecentSongs(int index)
 {
-    if(index < 0 || m_playRowIndex < 0 || m_playRowIndex == MUSIC_NETWORK_LIST || m_playRowIndex == MUSIC_RECENT_LIST)
+    if(index < 0 || m_playRowIndex < MUSIC_NORMAL_LIST || m_playRowIndex == MUSIC_NETWORK_LIST || m_playRowIndex == MUSIC_RECENT_LIST)
     {
         return;
     }
@@ -1122,7 +1122,6 @@ void MusicSongsContainerWidget::dragMoveEvent(QDragMoveEvent *event)
 {
     MusicSongsToolBoxWidget::dragMoveEvent(event);
 
-    bool contains = false;
     for(const MusicToolBoxWidgetItem &item : qAsConst(m_itemList))
     {
         if(!TTK::playlistRowValid(item.m_itemIndex))
@@ -1130,14 +1129,10 @@ void MusicSongsContainerWidget::dragMoveEvent(QDragMoveEvent *event)
             continue;
         }
 
-        QWidget *container = item.m_itemWidget->item();
-        if(item.m_itemWidget->isActive() || (container && container->isVisible()))
-        {
-            contains = true;
-        }
+        item.m_itemWidget->isActive();
     }
 
-    event->setDropAction(contains ? Qt::CopyAction : Qt::IgnoreAction);
+    event->setDropAction(Qt::CopyAction);
     event->accept();
 }
 
@@ -1161,6 +1156,7 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
         }
     }
 
+    bool done = false;
     for(const MusicToolBoxWidgetItem &item : qAsConst(m_itemList))
     {
         if(!TTK::playlistRowValid(item.m_itemIndex))
@@ -1169,11 +1165,19 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
         }
 
         QWidget *container = item.m_itemWidget->item();
-        if(item.m_itemWidget->isActive() || (container && container->isVisible()))
+        const int index = foundMappedIndex(item.m_itemIndex);
+
+        if(item.m_itemWidget->isActive() || (container && container->isVisible()) || index == m_playRowIndex)
         {
-            importSongsByPath(files, foundMappedIndex(item.m_itemIndex));
+            done = true;
+            importSongsByPath(files, index);
             break;
         }
+    }
+
+    if(!done && m_playRowIndex == MUSIC_NONE_LIST)
+    {
+        importSongsByPath(files, MUSIC_NORMAL_LIST);
     }
 
     for(const QString &dir : qAsConst(dirs))
