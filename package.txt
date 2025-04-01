@@ -1,7 +1,7 @@
 adplug-2.3.3	https://github.com/adplug/adplug
 enca-1.19	https://cihar.com/software/enca
-faad2-2.11.1	https://github.com/knik0/faad2
-ffmpeg-3.4.13	http://ffmpeg.org/releases
+faad2-2.11.2	https://github.com/knik0/faad2
+ffmpeg-3.4.14	http://ffmpeg.org/releases
 flac-1.5.0	https://ftp.osuosl.org/pub/xiph/releases/flac
 libgme-0.6.4	https://github.com/libgme/game-music-emu
 libADLMIDI-1.5.1.0	https://github.com/Wohlstand/libADLMIDI
@@ -62,4 +62,4 @@ ttk-1.2.9
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2025-03-03
+///Update time 2025-04-01
