@@ -74,7 +74,7 @@ QHttpConnectionPrivate::QHttpConnectionPrivate()
 
 QHttpConnectionPrivate::~QHttpConnectionPrivate()
 {
-    delete m_socket;
+//    delete m_socket;
     m_socket = nullptr;
 
     free(m_parser);
@@ -142,8 +142,11 @@ QHttpConnection::QHttpConnection(QTcpSocket *socket, QObject *parent)
 
 void QHttpConnection::socketDisconnected()
 {
-    deleteLater();
+    TTK_D(QHttpConnection);
+//    deleteLater();
     invalidateRequest();
+    d->m_socket->deleteLater();
+    deleteLater();
 }
 
 void QHttpConnection::invalidateRequest()
