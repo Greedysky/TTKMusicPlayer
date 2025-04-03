@@ -1156,7 +1156,7 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
         }
     }
 
-    bool done = false;
+    bool contains = false;
     for(const MusicToolBoxWidgetItem &item : qAsConst(m_itemList))
     {
         if(!TTK::playlistRowValid(item.m_itemIndex))
@@ -1164,20 +1164,17 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
             continue;
         }
 
-        QWidget *container = item.m_itemWidget->item();
-        const int index = foundMappedIndex(item.m_itemIndex);
-
-        if(item.m_itemWidget->isActive() || (container && container->isVisible()) || index == m_playRowIndex)
+        if(item.m_itemWidget->isExpand() || item.m_itemWidget->isActive())
         {
-            done = true;
-            importSongsByPath(files, index);
+            contains = true;
+            importSongsByPath(files, foundMappedIndex(item.m_itemIndex));
             break;
         }
     }
 
-    if(!done && m_playRowIndex == MUSIC_NONE_LIST)
+    if(!contains)
     {
-        importSongsByPath(files, MUSIC_NORMAL_LIST);
+        importSongsByPath(files, m_playRowIndex);
     }
 
     for(const QString &dir : qAsConst(dirs))
