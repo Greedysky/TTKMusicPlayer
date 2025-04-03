@@ -111,7 +111,7 @@ QList<TrackInfo*> UADEHelper::createPlayList(TrackInfo::Parts parts)
 
     QFileInfo fin(cleanPath());
     QString title = fin.baseName();
-    if(!filters().contains("*." + fin.suffix().toLower()))
+    if(!filters().contains("*." + fin.suffix(), Qt::CaseInsensitive))
     {
         title = fin.suffix();
     }

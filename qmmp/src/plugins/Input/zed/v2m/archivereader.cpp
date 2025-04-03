@@ -14,10 +14,9 @@ QStringList ArchiveReader::filters()
 
 bool ArchiveReader::isSupported(const QString &path)
 {
-    const QString &filePath = path.toLower();
     for(const QString &suffix : filters())
     {
-        if(filePath.endsWith(suffix.mid(1)))
+        if(path.endsWith(suffix.mid(1), Qt::CaseInsensitive))
         {
             return true;
         }

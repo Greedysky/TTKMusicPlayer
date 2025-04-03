@@ -131,17 +131,18 @@ void HttpStreamReader::handleReadyRead()
         QMap<Qmmp::MetaData, QString> metaData;
         for(const QByteArray &header : m_reply->rawHeaderList())
         {
-            if(header.toLower() == "icy-name")
+            const QByteArray &lower = header.toLower();
+            if(lower == "icy-name")
             {
                 metaData.insert(Qmmp::TITLE, m_reply->rawHeader("icy-name"));
                 info.insert("icy-name", m_reply->rawHeader("icy-name"));
             }
-            else if(header.toLower() == "icy-genre")
+            else if(lower == "icy-genre")
             {
                 metaData.insert(Qmmp::GENRE, m_reply->rawHeader("icy-genre"));
                 info.insert("icy-genre", m_reply->rawHeader("icy-genre"));
             }
-            else if(header.toLower() == "icy-br")
+            else if(lower == "icy-br")
             {
                 object->setProperty(Qmmp::BITRATE, m_reply->rawHeader("icy-br"));
             }

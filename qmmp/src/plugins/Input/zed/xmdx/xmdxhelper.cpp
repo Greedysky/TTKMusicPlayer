@@ -158,7 +158,7 @@ bool MUCFileReader::load(const QString &path)
 
     m_input = new MucomModule;
     m_input->SetRate(sampleRate());
-    m_input->OpenMemory((unsigned char *)buffer.constData(), buffer.length(), path.toLower().endsWith(".mub"));
+    m_input->OpenMemory((unsigned char *)buffer.constData(), buffer.length(), path.endsWith(".mub", Qt::CaseInsensitive));
     m_input->UseFader(true);
     m_input->Play();
 
@@ -223,7 +223,7 @@ bool VGSFileReader::load(const QString &path)
         return false;
     }
 
-    if(path.toLower().endsWith(".mml"))
+    if(path.endsWith(".mml", Qt::CaseInsensitive))
     {
         struct VgsMmlErrorInfo error;
         struct VgsBgmData *data = vgsmml_compile_from_memory((void*)buffer.constData(), buffer.length(), &error);
