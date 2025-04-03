@@ -294,8 +294,8 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     {
         for(const TTK::MusicSongInformation &info : d->items())
         {
-            if(info.m_artistName.toLower().trimmed().contains(songIdentify.m_artistName.toLower().trimmed(), Qt::CaseInsensitive) &&
-               info.m_songName.toLower().trimmed().contains(songIdentify.m_songName.toLower().trimmed(), Qt::CaseInsensitive))
+            if(info.m_artistName.trimmed().contains(songIdentify.m_artistName.trimmed(), Qt::CaseInsensitive) &&
+               info.m_songName.trimmed().contains(songIdentify.m_songName.trimmed(), Qt::CaseInsensitive))
             {
                 m_info = info;
                 break;

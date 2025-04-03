@@ -106,7 +106,7 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
 #ifdef Q_OS_WIN
     for(const QFileInfo &fin : QDir::drives())
     {
-        const QString &path = fin.absoluteDir().absolutePath();
+        const QString &path = fin.absolutePath();
         const int type = GetDriveTypeW(path.toStdWString().c_str());
         if(type == DRIVE_REMOVABLE)
         {

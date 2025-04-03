@@ -279,7 +279,7 @@ void MusicApplicationModule::applyParameter()
 {
 #ifdef Q_OS_WIN
     QFile file(TTK::applicationPath() + TTK_QT_CONFIG);
-    file.open(QFile::ReadWrite);
+    file.open(QIODevice::ReadWrite);
 
     if(!(G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toBool() ? (file.write("[Platforms]\nWindowsArguments = dpiawareness=0\n") != -1) : file.remove()))
     {

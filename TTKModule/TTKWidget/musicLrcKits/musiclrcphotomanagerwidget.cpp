@@ -156,7 +156,7 @@ void MusicLrcPhotoWidget::exportButtonClicked()
         {
             QString suffix = JPG_FILE;
             QFile file(item->path());
-            if(!file.open(QFile::ReadOnly))
+            if(!file.open(QIODevice::ReadOnly))
             {
                 continue;
             }

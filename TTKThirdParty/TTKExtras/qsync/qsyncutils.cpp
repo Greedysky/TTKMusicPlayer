@@ -39,7 +39,7 @@ static TTKStringMap formatHeader(const TTKStringMap &headers)
     TTKStringMap value;
     for(auto it = headers.constBegin(); it != headers.constEnd(); ++it)
     {
-        if(it.key().toLower().startsWith(self_define_header_prefix))
+        if(it.key().startsWith(self_define_header_prefix, Qt::CaseInsensitive))
         {
             value.insert(it.key().toLower(), it.value());
         }
