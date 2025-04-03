@@ -8,14 +8,8 @@
 #include "musicapplication.h"
 
 MusicAbstractSongsListTableWidget::MusicAbstractSongsListTableWidget(QWidget *parent)
-    : MusicAbstractSongsListTableWidget(-1, parent)
-{
-
-}
-
-MusicAbstractSongsListTableWidget::MusicAbstractSongsListTableWidget(int index, QWidget *parent)
     : MusicSmoothMovingTableWidget(parent),
-      m_playlistRow(index),
+      m_playlistRow(-1),
       m_playRowIndex(-1),
       m_songs(nullptr)
 {
@@ -41,21 +35,6 @@ void MusicAbstractSongsListTableWidget::updateSongsList(const MusicSongList &son
 void MusicAbstractSongsListTableWidget::selectRow(int index)
 {
     MusicSmoothMovingTableWidget::selectRow(index);
-}
-
-int MusicAbstractSongsListTableWidget::totalHeight() const
-{
-    int height = 0;
-    for(int i = 0; i < rowCount(); ++i)
-    {
-        height += rowHeight(i);
-    }
-    return height;
-}
-
-void MusicAbstractSongsListTableWidget::setPlaylistRow(int index) noexcept
-{
-    m_playlistRow = index;
 }
 
 void MusicAbstractSongsListTableWidget::removeItemAt()
@@ -203,6 +182,16 @@ void MusicAbstractSongsListTableWidget::showPlayedSongSharedWidget()
     MusicSongSharingWidget widget;
     widget.initialize(MusicSongSharingWidget::Module::Song, item);
     widget.exec();
+}
+
+int MusicAbstractSongsListTableWidget::totalRowHeight() const
+{
+    int height = 0;
+    for(int i = 0; i < rowCount(); ++i)
+    {
+        height += rowHeight(i);
+    }
+    return height;
 }
 
 void MusicAbstractSongsListTableWidget::createMoreMenu(QMenu *menu)

@@ -24,6 +24,59 @@
 
 class QPropertyAnimation;
 
+/*! @brief The class of the slider smooth moving interface.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicSmoothMovingInterface : public QObject
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSmoothMovingInterface)
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicSmoothMovingInterface(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicSmoothMovingInterface();
+
+    /*!
+     * Set current moved scroll bar.
+     */
+    void setScrollBar(QScrollBar *bar);
+    /*!
+     * Get current moved scroll bar.
+     */
+    inline QScrollBar* scrollBar() const noexcept { return m_scrollBar; }
+
+    /*!
+     * Update current scroll bar value.
+     */
+    void updateValue(int value);
+
+public Q_SLOTS:
+    /*!
+     * Time out to start animation.
+     */
+    void timeToAnimation();
+    /*!
+     * Current scroll bar value changed.
+     */
+    void valueChanged(int value);
+
+private:
+    bool m_initialized;
+    int m_previousValue, m_deltaValue;
+    QScrollBar *m_scrollBar;
+    QTimer *m_animationTimer;
+    QPropertyAnimation *m_moveAnimation;
+
+};
+
+
+
+
 /*! @brief The class of the slider smooth moving table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -36,25 +89,11 @@ public:
      * Object constructor.
      */
     explicit MusicSmoothMovingTableWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicSmoothMovingTableWidget();
 
     /*!
      * Set current moved scroll bar.
      */
     void setMovedScrollBar(QScrollBar *bar = nullptr);
-
-public Q_SLOTS:
-    /*!
-     * Time out to start animation.
-     */
-    void timeToAnimation();
-    /*!
-     * Current scroll bar value changed.
-     */
-    void valueChanged(int value);
 
 protected:
     /*!
@@ -62,11 +101,13 @@ protected:
      */
     virtual void wheelEvent(QWheelEvent *event) override;
 
-    bool m_initialized;
-    int m_previousValue, m_deltaValue;
-    QScrollBar *m_scrollBar;
-    QTimer *m_animationTimer;
-    QPropertyAnimation *m_slowAnimation;
+    /*!
+     * Get current moved scroll bar.
+     */
+    inline QScrollBar* scrollBar() const noexcept { return m_interface.scrollBar(); }
+
+private:
+    MusicSmoothMovingInterface m_interface;
 
 };
 
@@ -83,37 +124,20 @@ public:
      * Object constructor.
      */
     explicit MusicSmoothMovingScrollArea(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicSmoothMovingScrollArea();
 
     /*!
      * Set current moved scroll bar.
      */
     void setMovedScrollBar(QScrollBar *bar = nullptr);
 
-public Q_SLOTS:
-    /*!
-     * Time out to start animation.
-     */
-    void timeToAnimation();
-    /*!
-     * Current scroll bar value changed.
-     */
-    void valueChanged(int value);
-
-private:
+protected:
     /*!
      * Override the widget event.
      */
-    virtual void wheelEvent(QWheelEvent *event) override final;
+    virtual void wheelEvent(QWheelEvent *event) override;
 
-    bool m_initialized;
-    int m_previousValue, m_deltaValue;
-    QScrollBar *m_scrollBar;
-    QTimer *m_animationTimer;
-    QPropertyAnimation *m_slowAnimation;
+private:
+    MusicSmoothMovingInterface m_interface;
 
 };
 

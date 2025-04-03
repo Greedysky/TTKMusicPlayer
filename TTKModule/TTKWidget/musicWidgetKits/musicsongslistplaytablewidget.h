@@ -39,7 +39,7 @@ public:
     /*!
      * Object constructor.
      */
-    explicit MusicSongsListPlayTableWidget(int index, QWidget *parent = nullptr);
+    explicit MusicSongsListPlayTableWidget(QWidget *parent = nullptr);
     /*!
      * Object destructor.
      */
@@ -63,6 +63,7 @@ public:
      * Set music sort.
      */
     inline void setSongSort(MusicSongSort *sort) noexcept { m_songSort = sort; }
+
     /*!
      * Update item duration label.
      */

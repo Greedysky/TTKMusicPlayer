@@ -69,7 +69,7 @@ void MusicAbstractDownloadTableWidget::removeItemAt()
         m_songs->removeAt(index);
     }
 
-    setFixedHeight(totalHeight());
+    setFixedHeight(totalRowHeight());
     Q_EMIT updateItemTitle(m_playlistRow);
 }
 

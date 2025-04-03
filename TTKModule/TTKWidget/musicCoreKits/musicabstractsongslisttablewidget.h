@@ -35,7 +35,6 @@ public:
      * Object constructor.
      */
     explicit MusicAbstractSongsListTableWidget(QWidget *parent = nullptr);
-    explicit MusicAbstractSongsListTableWidget(int index, QWidget *parent = nullptr);
     /*!
      * Object destructor.
      */
@@ -55,13 +54,9 @@ public:
     virtual void selectRow(int index);
 
     /*!
-     * Get all rows height.
-     */
-    int totalHeight() const;
-    /*!
      * Set playlist row index.
      */
-    void setPlaylistRow(int index) noexcept;
+    inline void setPlaylistRow(int index) noexcept { m_playlistRow = index; }
 
     /*!
      * Get the current play row.
@@ -133,6 +128,10 @@ public Q_SLOTS:
     void showPlayedSongSharedWidget();
 
 protected:
+    /*!
+     * Get all rows height.
+     */
+    int totalRowHeight() const;
     /*!
      * Create more menu information.
      */

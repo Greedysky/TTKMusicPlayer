@@ -82,7 +82,7 @@ void MusicSongsListFunctionWidget::animationFinished()
     m_currentAnimationValue = m_animation->currentValue().toFloat();
     if(m_currentAnimationValue == 0)
     {
-        TTK_SIGNLE_SHOT(deleteObject, TTK_SIGNAL);
+        TTK_SIGNLE_SHOT(deleteSelfObject, TTK_SIGNAL);
     }
 }
 

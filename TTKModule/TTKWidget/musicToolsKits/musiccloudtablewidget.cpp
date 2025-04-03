@@ -56,7 +56,7 @@ void MusicCloudDownloadTableWidget::addCellItem(int index, const MusicSong &reco
     item->setData(TTK_TIME_ROLE, record.addTimeStr());
     setItem(index, 3, item);
 
-    setFixedHeight(totalHeight());
+    setFixedHeight(totalRowHeight());
 }
 
 
@@ -163,7 +163,7 @@ void MusicCloudUploadTableWidget::addCellItem(int index, const MusicSong &record
     item->setData(TTK_TIME_ROLE, record.addTimeStr());
     setItem(index, 2, item);
 
-    setFixedHeight(totalHeight());
+    setFixedHeight(totalRowHeight());
 }
 
 void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)

@@ -5,41 +5,60 @@
 #include <QWheelEvent>
 #include <QPropertyAnimation>
 
-MusicSmoothMovingTableWidget::MusicSmoothMovingTableWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent),
+MusicSmoothMovingInterface::MusicSmoothMovingInterface(QObject *parent)
+    : QObject(parent),
       m_initialized(true),
       m_previousValue(0),
       m_deltaValue(0),
       m_scrollBar(nullptr),
-      m_slowAnimation(nullptr)
+      m_moveAnimation(nullptr)
 {
-    verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
-
     m_animationTimer = new QTimer(this);
     m_animationTimer->setInterval(100 * TTK_DN_MS);
     connect(m_animationTimer, SIGNAL(timeout()), SLOT(timeToAnimation()));
 }
 
-MusicSmoothMovingTableWidget::~MusicSmoothMovingTableWidget()
+MusicSmoothMovingInterface::~MusicSmoothMovingInterface()
 {
     m_animationTimer->stop();
     delete m_animationTimer;
-    delete m_slowAnimation;
+    delete m_moveAnimation;
 }
 
-void MusicSmoothMovingTableWidget::setMovedScrollBar(QScrollBar *bar)
+void MusicSmoothMovingInterface::setScrollBar(QScrollBar *bar)
 {
-    m_scrollBar = (bar == nullptr) ? verticalScrollBar() : bar;
-    delete m_slowAnimation;
+    m_scrollBar = bar;
+    delete m_moveAnimation;
 
-    m_slowAnimation = new QPropertyAnimation(m_scrollBar, "value", this);
-    m_slowAnimation->setDuration(TTK_DN_S2MS);
+    m_moveAnimation = new QPropertyAnimation(m_scrollBar, "value", this);
+    m_moveAnimation->setDuration(TTK_DN_S2MS);
     connect(m_scrollBar, SIGNAL(valueChanged(int)), SLOT(valueChanged(int)));
 }
 
-void MusicSmoothMovingTableWidget::timeToAnimation()
+void MusicSmoothMovingInterface::updateValue(int value)
 {
-    if(!m_slowAnimation)
+    if(!m_moveAnimation)
+    {
+        return;
+    }
+
+    m_animationTimer->stop();
+    m_moveAnimation->stop();
+
+    if(m_initialized)
+    {
+        m_deltaValue = 0;
+        m_previousValue = m_scrollBar->value();
+        m_initialized = false;
+    }
+
+    m_deltaValue += value;
+    m_animationTimer->start();
+}
+
+void MusicSmoothMovingInterface::timeToAnimation()
+{
+    if(!m_moveAnimation)
     {
         return;
     }
@@ -49,118 +68,50 @@ void MusicSmoothMovingTableWidget::timeToAnimation()
 
     m_deltaValue = (m_deltaValue / 480.0) * (m_deltaValue < 0 ? m_deltaValue + 120 : -m_deltaValue + 120);
 
-    m_slowAnimation->setStartValue(m_previousValue);
-    m_slowAnimation->setEndValue(m_scrollBar->value() + m_deltaValue * TTK_ITEM_SIZE_M / 30);
-    m_slowAnimation->start();
+    m_moveAnimation->setStartValue(m_previousValue);
+    m_moveAnimation->setEndValue(m_scrollBar->value() + m_deltaValue);
+    m_moveAnimation->start();
 }
 
-void MusicSmoothMovingTableWidget::valueChanged(int value)
+void MusicSmoothMovingInterface::valueChanged(int value)
 {
     m_previousValue = value;
+}
+
+
+
+MusicSmoothMovingTableWidget::MusicSmoothMovingTableWidget(QWidget *parent)
+    : MusicAbstractTableWidget(parent)
+{
+    verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
+}
+
+void MusicSmoothMovingTableWidget::setMovedScrollBar(QScrollBar *bar)
+{
+    m_interface.setScrollBar(bar == nullptr ? verticalScrollBar() : bar);
 }
 
 void MusicSmoothMovingTableWidget::wheelEvent(QWheelEvent *event)
 {
     MusicAbstractTableWidget::wheelEvent(event);
-
-    if(!m_slowAnimation)
-    {
-        return;
-    }
-
-    m_animationTimer->stop();
-    m_slowAnimation->stop();
-
-    if(m_initialized)
-    {
-        m_deltaValue = 0;
-        m_previousValue = m_scrollBar->value();
-        m_initialized = false;
-    }
-
-    m_deltaValue += QtWheelDelta(event);
-    m_animationTimer->start();
+    m_interface.updateValue(QtWheelDelta(event));
 }
 
 
 
 MusicSmoothMovingScrollArea::MusicSmoothMovingScrollArea(QWidget *parent)
-    : QScrollArea(parent),
-      m_initialized(true),
-      m_previousValue(0),
-      m_deltaValue(0),
-      m_scrollBar(nullptr),
-      m_slowAnimation(nullptr)
+    : QScrollArea(parent)
 {
-    m_animationTimer = new QTimer(this);
-    m_animationTimer->setInterval(100 * TTK_DN_MS);
-
-    setWidgetResizable(true);
-    setFrameShape(QFrame::NoFrame);
-    setAlignment(Qt::AlignLeft);
-
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
-
-    connect(m_animationTimer, SIGNAL(timeout()), SLOT(timeToAnimation()));
-}
-
-MusicSmoothMovingScrollArea::~MusicSmoothMovingScrollArea()
-{
-    m_animationTimer->stop();
-    delete m_animationTimer;
-    delete m_slowAnimation;
 }
 
 void MusicSmoothMovingScrollArea::setMovedScrollBar(QScrollBar *bar)
 {
-    m_scrollBar = (bar == nullptr) ? verticalScrollBar() : bar;
-    delete m_slowAnimation;
-    m_slowAnimation = new QPropertyAnimation(m_scrollBar, "value", this);
-    m_slowAnimation->setDuration(TTK_DN_S2MS);
-    connect(m_scrollBar, SIGNAL(valueChanged(int)), SLOT(valueChanged(int)));
-}
-
-void MusicSmoothMovingScrollArea::timeToAnimation()
-{
-    if(!m_slowAnimation)
-    {
-        return;
-    }
-
-    m_initialized = true;
-    m_animationTimer->stop();
-
-    m_deltaValue = (m_deltaValue / 480.0) * (m_deltaValue < 0 ? m_deltaValue + 120 : -m_deltaValue + 120);
-
-    m_slowAnimation->setStartValue(m_previousValue);
-    m_slowAnimation->setEndValue(m_scrollBar->value() + m_deltaValue * TTK_ITEM_SIZE_M / 30);
-    m_slowAnimation->start();
-}
-
-void MusicSmoothMovingScrollArea::valueChanged(int value)
-{
-    m_previousValue = value;
+    m_interface.setScrollBar(bar == nullptr ? verticalScrollBar() : bar);
 }
 
 void MusicSmoothMovingScrollArea::wheelEvent(QWheelEvent *event)
 {
     QScrollArea::wheelEvent(event);
-
-    if(!m_slowAnimation)
-    {
-        return;
-    }
-
-    m_animationTimer->stop();
-    m_slowAnimation->stop();
-
-    if(m_initialized)
-    {
-        m_deltaValue = 0;
-        m_previousValue = m_scrollBar->value();
-        m_initialized = false;
-    }
-
-    m_deltaValue += QtWheelDelta(event);
-    m_animationTimer->start();
+    m_interface.updateValue(QtWheelDelta(event));
 }

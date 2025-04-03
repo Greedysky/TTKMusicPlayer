@@ -14,8 +14,8 @@
 #include <qmath.h>
 #include <QAction>
 
-MusicSongsListPlayTableWidget::MusicSongsListPlayTableWidget(int index, QWidget *parent)
-    : MusicAbstractSongsListTableWidget(index, parent),
+MusicSongsListPlayTableWidget::MusicSongsListPlayTableWidget(QWidget *parent)
+    : MusicAbstractSongsListTableWidget(parent),
       m_parent(parent),
       m_dragStartIndex(-1),
       m_mouseMoved(false),
@@ -96,7 +96,7 @@ void MusicSongsListPlayTableWidget::updateSongsList(const MusicSongList &songs)
         setItem(i, 5, item);
     }
 
-    setFixedHeight(totalHeight());
+    setFixedHeight(totalRowHeight());
 }
 
 void MusicSongsListPlayTableWidget::selectRow(int index)
@@ -135,7 +135,7 @@ void MusicSongsListPlayTableWidget::selectRow(int index)
     setRowHeight(index, TTK_ITEM_SIZE_2XL);
     m_playRowIndex = index;
 
-    setFixedHeight(totalHeight());
+    setFixedHeight(totalRowHeight());
 }
 
 void MusicSongsListPlayTableWidget::updateSearchFileName(MusicSongList *songs, const TTKIntList &result)
@@ -161,7 +161,7 @@ void MusicSongsListPlayTableWidget::updateSearchFileName(MusicSongList *songs, c
     }
     else
     {
-        setFixedHeight(totalHeight());
+        setFixedHeight(totalRowHeight());
     }
 }
 
@@ -218,7 +218,7 @@ void MusicSongsListPlayTableWidget::adjustPlayWidgetRow()
     m_songsPlayWidget = nullptr;
 
     m_playRowIndex = -1;
-    setFixedHeight(totalHeight());
+    setFixedHeight(totalRowHeight());
 }
 
 bool MusicSongsListPlayTableWidget::createUploadFileModule()
@@ -454,7 +454,7 @@ void MusicSongsListPlayTableWidget::removeItemAt()
         progress.setValue(deletedList.count() * 2 - i);
     }
 
-    setFixedHeight(totalHeight());
+    setFixedHeight(totalRowHeight());
     Q_EMIT deleteItemAt(deletedList, m_deleteItemWithFile);
 }
 

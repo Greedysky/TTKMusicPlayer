@@ -51,7 +51,7 @@ void MusicDownloadRecordTableWidget::addCellItem(int index, const MusicSong &rec
     item->setData(TTK_TIME_ROLE, record.addTimeStr());
     setItem(index, 3, item);
 
-    setFixedHeight(totalHeight());
+    setFixedHeight(totalRowHeight());
 }
 
 
@@ -59,11 +59,11 @@ void MusicDownloadRecordTableWidget::addCellItem(int index, const MusicSong &rec
 MusicDownloadToolBoxWidget::MusicDownloadToolBoxWidget(QWidget *parent)
     : MusicFunctionToolBoxWidget(parent)
 {
-    MusicDownloadRecordTableWidget *downloadTable = new MusicDownloadRecordTableWidget(this);
+    MusicDownloadRecordTableWidget *recordTable = new MusicDownloadRecordTableWidget(this);
     m_songItems << MusicSongItem();
-    createWidgetItem(downloadTable, tr("Download"), 0);
+    createWidgetItem(recordTable, tr("Download"), 0);
 
-    connect(downloadTable, SIGNAL(updateItemTitle(int)), SLOT(updateItemTitle(int)));
+    connect(recordTable, SIGNAL(updateItemTitle(int)), SLOT(updateItemTitle(int)));
 }
 
 MusicDownloadToolBoxWidget::~MusicDownloadToolBoxWidget()

@@ -1253,7 +1253,7 @@ void MusicSongsContainerWidget::checkTitleNameValid(QString &name)
 
 void MusicSongsContainerWidget::createWidgetItem(MusicSongItem *item)
 {
-    MusicSongsListPlayTableWidget *widget = new MusicSongsListPlayTableWidget(TTK_NORMAL_LEVEL, this);
+    MusicSongsListPlayTableWidget *widget = new MusicSongsListPlayTableWidget(this);
     widget->setMovedScrollBar(m_scrollArea->verticalScrollBar());
     widget->setSongSort(&item->m_sort);
 
