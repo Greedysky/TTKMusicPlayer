@@ -206,7 +206,7 @@ void MusicXFIdentifyRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("data") && value["code"].toInt() == 0)
+            if(value["code"].toInt() == 0)
             {
                 const QVariantList &datas = value["data"].toList();
                 for(const QVariant &var : qAsConst(datas))

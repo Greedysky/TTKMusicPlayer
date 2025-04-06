@@ -90,7 +90,7 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
     if(ok)
     {
         QVariantMap value = data.toMap();
-        if(value["code"].toInt() == 0)
+        if(value["code"].toInt() == 0 || value["code"].toInt() == 200)
         {
             TTK::MusicSongProperty prop;
             prop.m_url = value["data"].toString();

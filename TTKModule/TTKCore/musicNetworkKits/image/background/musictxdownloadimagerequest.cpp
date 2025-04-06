@@ -61,7 +61,7 @@ void MusicTXDownloadBackgroundRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             value = value["music.search.SearchCgiService"].toMap();
 
-            if(value.contains("code") && value["code"].toInt() == 0)
+            if(value["code"].toInt() == 0)
             {
                 value = value["data"].toMap();
                 value = value["body"].toMap();

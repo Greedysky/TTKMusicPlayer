@@ -102,6 +102,8 @@ void MusicSmoothMovingTableWidget::wheelEvent(QWheelEvent *event)
 MusicSmoothMovingScrollArea::MusicSmoothMovingScrollArea(QWidget *parent)
     : QScrollArea(parent)
 {
+    setFrameShape(QFrame::NoFrame);
+
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 }
 
