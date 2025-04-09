@@ -1,5 +1,5 @@
-#ifndef TTKSEMAPHORELOOP_H
-#define TTKSEMAPHORELOOP_H
+#ifndef TTKEVENTLOOP_H
+#define TTKEVENTLOOP_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -23,23 +23,27 @@
 #include <QEventLoop>
 #include "ttkmoduleexport.h"
 
-/*! @brief The class of the semaphore event loop.
+/*! @brief The class of the ttk event loop.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT TTKSemaphoreLoop : public QEventLoop
+class TTK_MODULE_EXPORT TTKEventLoop : public QEventLoop
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKSemaphoreLoop)
+    TTK_DECLARE_MODULE(TTKEventLoop)
 public:
     /*!
      * Object constructor.
      */
-    explicit TTKSemaphoreLoop(QObject *parent = nullptr);
+    explicit TTKEventLoop(QObject *parent = nullptr);
     /*!
      * Object destructor.
      */
-    ~TTKSemaphoreLoop();
+    ~TTKEventLoop();
 
+    /*!
+     * Set timeout msec time.
+     */
+    void setTimeout(int msec);
     /*!
      * Event loop start.
      */
@@ -60,4 +64,4 @@ private:
 
 };
 
-#endif // TTKSEMAPHORELOOP_H
+#endif // TTKEVENTLOOP_H

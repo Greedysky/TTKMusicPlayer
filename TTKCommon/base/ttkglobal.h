@@ -203,7 +203,8 @@ using TTKWString = std::wstring;                /* wstring */
 
 
 // marco cat
-#define TTK_CAT(a, b) a ## b
+#define TTK_CAT(a, b) TTK_CAT_I(a, b)
+#define TTK_CAT_I(a, b) a ## b
 // marco str cat
 #ifndef _MSC_VER
 #  define TTK_STR_CAT(...) TTK_PP_OVERLOAD(__TTK_STR_CAT__, __VA_ARGS__)(__VA_ARGS__)

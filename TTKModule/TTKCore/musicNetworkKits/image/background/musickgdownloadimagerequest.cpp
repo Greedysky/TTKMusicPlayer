@@ -16,7 +16,7 @@ void MusicKGDownloadBackgroundRequest::startToRequest()
 
     MusicAbstractNetwork::deleteAll();
 
-    TTKSemaphoreLoop loop;
+    TTKEventLoop loop;
     MusicKGQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);

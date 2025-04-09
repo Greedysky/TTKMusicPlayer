@@ -4,7 +4,7 @@
 #include "musicwidgetheaders.h"
 #include "musicqmmputils.h"
 #include "musictoastlabel.h"
-#include "ttksemaphoreloop.h"
+#include "ttkeventloop.h"
 
 #include <QProcess>
 #include <QPluginLoader>
@@ -202,7 +202,7 @@ void MusicReplayGainWidget::addFileButtonClicked()
         for(int i = orcount; i < m_paths.count(); ++i)
         {
             m_currentIndex = i;
-            TTKSemaphoreLoop loop;
+            TTKEventLoop loop;
             connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
             QtProcessVoidConnect(m_process, &loop, quit, TTK_SLOT);
             m_process->start(MAKE_GAIN_PATH_FULL, {m_paths[i]});
@@ -225,7 +225,7 @@ void MusicReplayGainWidget::addFilesButtonClicked()
                 m_currentIndex = m_paths.count();
                 m_paths << fin.absoluteFilePath();
 
-                TTKSemaphoreLoop loop;
+                TTKEventLoop loop;
                 connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
                 QtProcessVoidConnect(m_process, &loop, quit, TTK_SLOT);
                 m_process->start(MAKE_GAIN_PATH_FULL, {m_paths.back()});
@@ -275,7 +275,7 @@ void MusicReplayGainWidget::applyButtonClicked()
 
     for(int i = 0; i < m_ui->tableWidget->rowCount(); ++i)
     {
-        TTKSemaphoreLoop loop;
+        TTKEventLoop loop;
         connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
         QtProcessVoidConnect(m_process, &loop, quit, TTK_SLOT);
         m_process->start(MAKE_GAIN_PATH_FULL, {"-g", m_ui->tableWidget->item(i, 2)->text(), m_paths[i]});

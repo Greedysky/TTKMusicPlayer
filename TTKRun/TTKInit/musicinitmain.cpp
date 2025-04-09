@@ -16,5 +16,5 @@ int main(int argc, char *argv[])
     MusicConfigModule config;
     config.initialize();
     TTK_INFO_STREAM("Parameter Init success");
-    return 0;
+    return EXIT_SUCCESS;
 }

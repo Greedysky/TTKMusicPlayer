@@ -90,7 +90,7 @@ qint64 TTK::fetchFileSizeByUrl(const QString &url)
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 
-    TTKSemaphoreLoop loop;
+    TTKEventLoop loop;
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.head(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -128,7 +128,7 @@ void TTK::setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMo
 
 QByteArray TTK::syncNetworkQueryForGet(QNetworkRequest *request)
 {
-    TTKSemaphoreLoop loop;
+    TTKEventLoop loop;
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.get(*request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -148,7 +148,7 @@ QByteArray TTK::syncNetworkQueryForGet(QNetworkRequest *request)
 
 QByteArray TTK::syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &data)
 {
-    TTKSemaphoreLoop loop;
+    TTKEventLoop loop;
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.post(*request, data);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -168,7 +168,7 @@ QByteArray TTK::syncNetworkQueryForPost(QNetworkRequest *request, const QByteArr
 
 QByteArray TTK::syncNetworkQueryForPut(QNetworkRequest *request, const QByteArray &data)
 {
-    TTKSemaphoreLoop loop;
+    TTKEventLoop loop;
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.put(*request, data);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -188,7 +188,7 @@ QByteArray TTK::syncNetworkQueryForPut(QNetworkRequest *request, const QByteArra
 
 QByteArray TTK::syncNetworkQueryForPatch(QNetworkRequest *request, const QByteArray &data)
 {
-    TTKSemaphoreLoop loop;
+    TTKEventLoop loop;
     QNetworkAccessManager manager;
 #if TTK_QT_VERSION_CHECK(5,8,0)
     QNetworkReply *reply = manager.sendCustomRequest(*request, "PATCH", data);

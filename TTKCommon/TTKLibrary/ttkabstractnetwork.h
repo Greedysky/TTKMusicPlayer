@@ -23,7 +23,7 @@
 #include <QSslConfiguration>
 
 #include "ttktime.h"
-#include "ttksemaphoreloop.h"
+#include "ttkeventloop.h"
 
 /*! @brief The namespace of the network data.
  * @author Greedysky <greedysky@163.com>

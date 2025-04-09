@@ -73,7 +73,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
 {
     if(!cloudConfigValid())
     {
-        TTKSemaphoreLoop loop;
+        TTKEventLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
         MusicDataSourceRequest *d = new MusicDataSourceRequest(this);

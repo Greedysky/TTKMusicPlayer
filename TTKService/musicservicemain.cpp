@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
         client.run(args);
 
         TTK_INFO_STREAM("One app has already run");
-        return -1;
+        return EXIT_FAILURE;
     }
 
     MusicConfigModule config;

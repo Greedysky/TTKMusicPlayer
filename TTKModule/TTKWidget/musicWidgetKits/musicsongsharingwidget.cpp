@@ -79,7 +79,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
     {
         case Module::Song:
         {
-            TTKSemaphoreLoop loop;
+            TTKEventLoop loop;
             MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);

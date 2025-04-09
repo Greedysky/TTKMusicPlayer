@@ -49,10 +49,7 @@ public:
      */
     ~_ScopeGuard() noexcept
     {
-        if(m_fun)
-        {
-            m_fun();
-        }
+        m_fun();
     }
 
     TTK_DISABLE_INIT_COPY(_ScopeGuard)

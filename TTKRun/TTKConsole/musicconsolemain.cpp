@@ -16,5 +16,5 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName(TTK_APP_NAME);
 
     MusicConsoleModule console;
-    return console.initialize();
+    return console.initialize() ? EXIT_SUCCESS : EXIT_FAILURE;
 }

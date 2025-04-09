@@ -12,7 +12,7 @@ MusicWYCoverSourceRequest::MusicWYCoverSourceRequest(QObject *parent)
 
 void MusicWYCoverSourceRequest::startToRequest(const QString &url)
 {
-    TTKSemaphoreLoop loop;
+    TTKEventLoop loop;
     MusicWYQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);

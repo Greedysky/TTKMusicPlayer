@@ -46,7 +46,7 @@ void MusicDownloadMetaDataRequest::downLoadFinished()
 
     if(save)
     {
-        TTKSemaphoreLoop loop;
+        TTKEventLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
         MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);

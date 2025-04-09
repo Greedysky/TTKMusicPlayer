@@ -29,7 +29,7 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(className() << __FUNCTION__ << value);
 
-    TTKSemaphoreLoop loop;
+    TTKEventLoop loop;
     MusicWYQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);

@@ -46,6 +46,7 @@ win32{
             $$PWD/TTKLibrary/ttkdesktopscreen.h \
             $$PWD/TTKLibrary/ttkdefer.h \
             $$PWD/TTKLibrary/ttkdispatchmanager.h \
+            $$PWD/TTKLibrary/ttkeventloop.h \
             $$PWD/TTKLibrary/ttkfileassociation.h \
             $$PWD/TTKLibrary/ttkfileinterface.h \
             $$PWD/TTKLibrary/ttkfunctor.h \
@@ -55,7 +56,6 @@ win32{
             $$PWD/TTKLibrary/ttklibraryversion.h \
             $$PWD/TTKLibrary/ttklogoutput.h \
             $$PWD/TTKLibrary/ttkplatformsystem.h \
-            $$PWD/TTKLibrary/ttksemaphoreloop.h \
             $$PWD/TTKLibrary/ttksmartpointer.h \
             $$PWD/TTKLibrary/ttksmartptr.h \
             $$PWD/TTKLibrary/ttkspinlock.h \

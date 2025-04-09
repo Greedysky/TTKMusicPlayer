@@ -41,6 +41,7 @@ set(HEADER_FILES
   ttkdefer.h
   ttkdesktopscreen.h
   ttkdispatchmanager.h
+  ttkeventloop.h
   ttkfileassociation.h
   ttkfileinterface.h
   ttkfunctor.h
@@ -50,7 +51,6 @@ set(HEADER_FILES
   ttklibraryversion.h
   ttklogoutput.h
   ttkplatformsystem.h
-  ttksemaphoreloop.h
   ttksmartptr.h
   ttkspinlock.h
   ttksuperenum.h
@@ -78,12 +78,12 @@ set(SOURCE_FILES
   ttkcryptographichash.cpp
   ttkdesktopscreen.cpp
   ttkdispatchmanager.cpp
+  ttkeventloop.cpp
   ttkfileassociation.cpp
   ttkglobalinterface.cpp
   ttkitemdelegate.cpp
   ttklogoutput.cpp
   ttkplatformsystem.cpp
-  ttksemaphoreloop.cpp
   ttksuperenum.cpp
   ttktabbutton.cpp
   ttkthemelinelabel.cpp

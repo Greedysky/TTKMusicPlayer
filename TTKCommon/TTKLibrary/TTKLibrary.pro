@@ -82,6 +82,7 @@ HEADERS += \
     $$PWD/ttkdefer.h \
     $$PWD/ttkdesktopscreen.h \
     $$PWD/ttkdispatchmanager.h \
+    $$PWD/ttkeventloop.h \
     $$PWD/ttkfileassociation.h \
     $$PWD/ttkfileinterface.h \
     $$PWD/ttkfunctor.h \
@@ -91,7 +92,6 @@ HEADERS += \
     $$PWD/ttklibraryversion.h \
     $$PWD/ttklogoutput.h \
     $$PWD/ttkplatformsystem.h \
-    $$PWD/ttksemaphoreloop.h \
     $$PWD/ttksmartptr.h \
     $$PWD/ttkspinlock.h \
     $$PWD/ttksuperenum.h \
@@ -118,12 +118,12 @@ SOURCES += \
     $$PWD/ttkcryptographichash.cpp \
     $$PWD/ttkdesktopscreen.cpp \
     $$PWD/ttkdispatchmanager.cpp \
+    $$PWD/ttkeventloop.cpp \
     $$PWD/ttkfileassociation.cpp \
     $$PWD/ttkglobalinterface.cpp \
     $$PWD/ttkitemdelegate.cpp \
     $$PWD/ttklogoutput.cpp \
     $$PWD/ttkplatformsystem.cpp \
-    $$PWD/ttksemaphoreloop.cpp \
     $$PWD/ttksuperenum.cpp \
     $$PWD/ttktabbutton.cpp \
     $$PWD/ttkthemelinelabel.cpp \
