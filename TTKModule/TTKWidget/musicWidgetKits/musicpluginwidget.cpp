@@ -2,6 +2,7 @@
 #include "ui_musicqmmppluginwidget.h"
 #include "ui_musicserverpluginwidget.h"
 #include "musicitemdelegate.h"
+#include "musicsettingmanager.h"
 #include "musicpluginproperty.h"
 
 #include "qjson/parser.h"
@@ -399,6 +400,7 @@ void MusicServerPluginTableWidget::save() const
         }
 
         QJson::Serializer s;
+        s.setIndentMode(QJson::IndentFull);
         s.serialize(datas, &file, &ok);
         TTK_INFO_STREAM("Save server unity plugins" << (ok ? "ok" : "failed"));
     }
@@ -460,14 +462,19 @@ void MusicServerPluginTableWidget::addCellItems()
             }
 
             const QVariantMap &value = var.toMap();
-            const QString &name = value["name"].toString();
             const bool option = value["option"].toBool();
+            const QString &name = value["name"].toString();
+            const QString &tips = value["description"].toString() + TTK_SPACE + value["version"].toString();
 
             QTableWidgetItem *item = new QTableWidgetItem;
             item->setData(TTK_CHECKED_ROLE, option ? Qt::Checked : Qt::Unchecked);
             setItem(index, 0, item);
 
                               item = new QTableWidgetItem;
+            if(G_SETTING_PTR->value(MusicSettingManager::UserPermission).toBool())
+            {
+                item->setToolTip(tips);
+            }
             item->setText(name);
             item->setForeground(option ? QColor(0xE6, 0x73, 0x00) : Qt::gray);
             QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);

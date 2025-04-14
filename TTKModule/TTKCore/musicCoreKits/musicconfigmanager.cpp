@@ -27,6 +27,7 @@ bool MusicConfigManager::readBuffer(int &items)
 {
     Q_UNUSED(items);
 
+    G_SETTING_PTR->setValue(MusicSettingManager::UserPermission, readAttributeByTagName("userPermission"));
     G_SETTING_PTR->setValue(MusicSettingManager::ConfigVersion, readAttributeByTagName("configVersion"));
     G_SETTING_PTR->setValue(MusicSettingManager::PlayMode, readAttributeByTagName("playMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::Volume, readAttributeByTagName("playVolume").toInt());
@@ -157,6 +158,7 @@ bool MusicConfigManager::writeBuffer(const int &items)
 {
     Q_UNUSED(items);
 
+    const int userPermission = G_SETTING_PTR->value(MusicSettingManager::UserPermission).toInt();
     const int playMode = G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt();
     const int volume = G_SETTING_PTR->value(MusicSettingManager::Volume).toInt();
     const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
@@ -275,6 +277,7 @@ bool MusicConfigManager::writeBuffer(const int &items)
     QDomElement timeSettingDom = writeDomElement(rootDom, "timeSetting");
     QDomElement downloadSettingDom = writeDomElement(rootDom, "downloadSetting");
 
+    writeDomElement(baseSettingDom, "userPermission", {"value", userPermission});
     writeDomElement(baseSettingDom, "configVersion", {"value", TTK_CONFIG_VERSION_STR});
     writeDomElement(baseSettingDom, "playMode", {"value", playMode});
     writeDomElement(baseSettingDom, "playVolume", {"value", volume});
