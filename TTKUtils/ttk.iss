@@ -5,7 +5,7 @@
 #define MyAppVersion "4.1.3.0"
 #define MyAppPublisher "Greedysky Studio"
 #define MyAppCopyright "Copyright (C) 2015 - 2025 Greedysky Studio"
-#define MyAppURL "http://download.csdn.net/album/detail/3094"
+#define MyAppURL "https://github.com/Greedysky/TTKMusicplayer"
 #define MyAppExeName MyAppNameEN + ".exe"
 
 #define OutputPath "D:\Qt\"
