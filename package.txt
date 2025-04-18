@@ -43,7 +43,7 @@ ttk-1.2.9
 -libken			 https://bitbucket.org/wothke/webken/src/master
 				 http://advsys.net/ken/util/in_ken_src.zip
 -liborganya		 https://github.com/xbmc/audiodecoder.organya
-				 https://github.com/EterCyber/Foobar2000-Input-Pxtone
+				 https://bitbucket.org/wothke/webpixel
 -libpsf			 https://github.com/sasq64/musicplayer
 -libqoa			 https://github.com/phoboslab/qoa 3c5af35033b8346e249f6896c7aba7a6cc4f03f1
 -libs98			 https://github.com/sasq64/musicplayer
