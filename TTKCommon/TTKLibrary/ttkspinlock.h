@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include <thread>
 #include "ttkmoduleexport.h"
 
 /*! @brief The class of the spin lock.
@@ -34,6 +35,7 @@ public:
         while(m_lock.test_and_set(std::memory_order_acquire))
         {
             // wait for spin lock to unlock
+            std::this_thread::yield();
         }
     }
 
