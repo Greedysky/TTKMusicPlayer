@@ -85,16 +85,10 @@ bool MusicJSPFConfigManager::writeBuffer(const MusicSongItemList &items)
         }
     }
 
-    QJson::Serializer s;
     bool ok = false;
+    QJson::Serializer s;
     s.setIndentMode(QJson::IndentFull);
-    const QByteArray &output = s.serialize(datas, &ok);
-    if(!ok)
-    {
-        return false;
-    }
-
-    m_file.write(output);
+    s.serialize(datas, &m_file, &ok);
     m_file.close();
     return true;
 }

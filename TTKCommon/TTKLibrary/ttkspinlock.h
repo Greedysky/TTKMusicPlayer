@@ -39,6 +39,11 @@ public:
         }
     }
 
+    bool try_lock() noexcept
+    {
+        return !m_lock.test_and_set(std::memory_order_acquire);
+    }
+
     void unlock() noexcept
     {
         m_lock.clear(std::memory_order_release);

@@ -26,41 +26,41 @@ template <size_t arg, size_t... rest>
 struct IntegerMax;
 
 template <size_t arg>
-struct IntegerMax<arg> : std::integral_constant<size_t, arg> {};
+struct IntegerMax<arg> : std::integral_constant<size_t, arg> { };
 
 template <size_t arg1, size_t arg2, size_t... rest>
-struct IntegerMax<arg1, arg2, rest...> : std::integral_constant<size_t, arg1 >= arg2 ? IntegerMax<arg1, rest...>::value : IntegerMax<arg2, rest...>::value> {};
+struct IntegerMax<arg1, arg2, rest...> : std::integral_constant<size_t, arg1 >= arg2 ? IntegerMax<arg1, rest...>::value : IntegerMax<arg2, rest...>::value> { };
 
 
 template <typename... Args>
-struct MaxAlign : std::integral_constant<int, IntegerMax<std::alignment_of<Args>::value...>::value> {};
+struct MaxAlign : std::integral_constant<int, IntegerMax<std::alignment_of<Args>::value...>::value> { };
 
 
 template <typename T, typename... List>
-struct Contains : std::true_type {};
+struct Contains : std::true_type { };
 
 template <typename T, typename Head, typename... Rest>
-struct Contains<T, Head, Rest...> : std::conditional< std::is_same<T, Head>::value, std::true_type, Contains<T, Rest...>>::type {};
+struct Contains<T, Head, Rest...> : std::conditional< std::is_same<T, Head>::value, std::true_type, Contains<T, Rest...>>::type { };
 
 template <typename T>
-struct Contains<T> : std::false_type {};
+struct Contains<T> : std::false_type { };
 
 
 template <typename Type, typename... Types>
 struct GetLeftSize;
 
 template <typename Type, typename First, typename... Types>
-struct GetLeftSize<Type, First, Types...> : GetLeftSize<Type, Types...> {};
+struct GetLeftSize<Type, First, Types...> : GetLeftSize<Type, Types...> { };
 
 template <typename Type, typename... Types>
-struct GetLeftSize<Type, Type, Types...> : std::integral_constant<int, sizeof...(Types)> {};
+struct GetLeftSize<Type, Type, Types...> : std::integral_constant<int, sizeof...(Types)> { };
 
 template <typename Type>
-struct GetLeftSize<Type> : std::integral_constant<int, -1> {};
+struct GetLeftSize<Type> : std::integral_constant<int, -1> { };
 
 
 template <typename T, typename... Types>
-struct Index : std::integral_constant<int, sizeof...(Types) - GetLeftSize<T, Types...>::value - 1> {};
+struct Index : std::integral_constant<int, sizeof...(Types) - GetLeftSize<T, Types...>::value - 1> { };
 
 
 template <typename... Args>
@@ -69,41 +69,56 @@ struct VariantHelper;
 template <typename T, typename... Args>
 struct VariantHelper<T, Args...>
 {
-    inline static void Destroy(std::type_index id, void * data)
+    inline static void Destroy(std::type_index id, void *data)
     {
         if(id == std::type_index(typeid(T)))
+        {
             //((T*) (data))->~T();
             reinterpret_cast<T*>(data)->~T();
+        }
         else
+        {
             VariantHelper<Args...>::Destroy(id, data);
+        }
     }
 
     inline static void move(std::type_index old_t, void *old_v, void *new_v)
     {
         if(old_t == std::type_index(typeid(T)))
+        {
             new (new_v) T(std::move(*reinterpret_cast<T*>(old_v)));
+        }
         else
+        {
             VariantHelper<Args...>::move(old_t, old_v, new_v);
+        }
     }
 
     inline static void copy(std::type_index old_t, const void *old_v, void *new_v)
     {
         if(old_t == std::type_index(typeid(T)))
+        {
             new (new_v) T(*reinterpret_cast<const T*>(old_v));
+        }
         else
+        {
             VariantHelper<Args...>::copy(old_t, old_v, new_v);
+        }
     }
 };
 
 template <>
 struct VariantHelper<>
 {
-    inline static void Destroy(std::type_index, void *) {}
-    inline static void move(std::type_index, void *, void *) {}
-    inline static void copy(std::type_index, const void *, void *) {}
+    inline static void Destroy(std::type_index, void *) { }
+    inline static void move(std::type_index, void *, void *) { }
+    inline static void copy(std::type_index, const void *, void *) { }
 };
 
 
+/*! @brief The class of the variant module.
+ * @author Greedysky <greedysky@163.com>
+ */
 template <typename... Types>
 class TTK_MODULE_EXPORT TTKVariant
 {
@@ -123,6 +138,7 @@ public:
     TTKVariant() noexcept
         : m_type(typeid(void))
     {
+
     }
 
     /*!
@@ -217,7 +233,7 @@ public:
         return *(U*) (&m_data);
     }
 
-    template<typename T>
+    template <typename T>
     int indexOf() const noexcept
     {
         return Index<T, Types...>::value;
@@ -229,10 +245,10 @@ private:
 };
 
 
+// compatiblity for std variant
 namespace std
 {
 #if !TTK_HAS_CXX17
-// compatiblity for std variant
 template <typename... Types>
 using variant = TTKVariant<Types...>;
 #endif

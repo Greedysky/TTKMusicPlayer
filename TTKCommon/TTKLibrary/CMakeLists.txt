@@ -47,17 +47,21 @@ set(HEADER_FILES
   ttkfunctor.h
   ttkglobalinterface.h
   ttkitemdelegate.h
+  ttklexicalcast.h
   ttklibrary.h
   ttklibraryversion.h
   ttklogoutput.h
+  ttkoptional.h
   ttkplatformsystem.h
   ttksmartptr.h
   ttkspinlock.h
+  ttkstringview.h
   ttksuperenum.h
   ttktabbutton.h
   ttkthemelinelabel.h
   ttktime.h
   ttktoastlabel.h
+  ttktree.h
   ttkunsortedmap.h
   ttkvariant.h
 )

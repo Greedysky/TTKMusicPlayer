@@ -77,7 +77,7 @@ public:
     {
         if(!isSame<T>())
         {
-            throw std::bad_cast();
+            throw bad_any_cast();
         }
 
         auto ptr = TTKDynamicCast(_Derived<T>*, m_ptr.get());
@@ -98,6 +98,16 @@ public:
     }
 
 private:
+    class bad_any_cast : public std::bad_cast
+    {
+    public:
+        virtual const char *what() const noexcept override final
+        {
+            return "bad any cast";
+        }
+    };
+
+private:
     struct _Base;
     using _BasePtr = std::unique_ptr<_Base>;
 
@@ -115,6 +125,7 @@ private:
         _Derived(U &&value) noexcept
             : m_value(std::forward<U>(value))
         {
+
         }
 
         virtual _BasePtr clone() const noexcept override final
@@ -206,6 +217,7 @@ namespace TTK
 }
 
 
+// compatiblity for std any
 namespace std
 {
 // Non-member functions [any.nonmembers]
@@ -215,7 +227,6 @@ inline void swap(TTKAny &left, TTKAny &right) noexcept
 }
 
 #if !TTK_HAS_CXX17
-// compatiblity for std any
 using any = TTKAny;
 using namespace TTK;
 #endif

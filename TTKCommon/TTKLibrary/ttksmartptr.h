@@ -45,21 +45,21 @@ struct _MakeUnique<_Tp[_Bound]>
 };
 
 /// std::make_unique for single objects
-template<typename _Tp, typename... _Args>
+template <typename _Tp, typename... _Args>
 inline typename _MakeUnique<_Tp>::__single_object make_unique(_Args &&...__args)
 {
     return unique_ptr<_Tp>(new _Tp(std::forward<_Args>(__args)...));
 }
 
 /// std::make_unique for arrays of unknown bound
-template<typename _Tp>
+template <typename _Tp>
 inline typename _MakeUnique<_Tp>::__array make_unique(size_t __num)
 {
     return unique_ptr<_Tp>(new remove_extent_t<_Tp>[__num]());
 }
 
 /// Disable std::make_unique for arrays of known bound
-template<typename _Tp, typename... _Args>
+template <typename _Tp, typename... _Args>
 inline typename _MakeUnique<_Tp>::__invalid_type make_unique(_Args &&...) = delete;
 #endif
 }
@@ -68,7 +68,11 @@ inline typename _MakeUnique<_Tp>::__invalid_type make_unique(_Args &&...) = dele
 class _SharedCount
 {
 public:
-    _SharedCount() noexcept : m_count(1) {}
+    _SharedCount() noexcept 
+        : m_count(1)
+    {
+    
+    }
 
     std::atomic<int> m_count;
 };
@@ -77,8 +81,20 @@ template <typename T>
 class TTKSharedPtr
 {
 public:
-    TTKSharedPtr() noexcept : m_ptr(nullptr), m_ref_count(new _SharedCount) {}
-    TTKSharedPtr(T* ptr) noexcept : m_ptr(ptr), m_ref_count(new _SharedCount) {}
+    TTKSharedPtr() noexcept
+        : m_ptr(nullptr),
+          m_ref_count(new _SharedCount)
+    {
+    
+    }
+
+    TTKSharedPtr(T* ptr) noexcept
+        : m_ptr(ptr),
+          m_ref_count(new _SharedCount)
+    {
+    
+    }
+
     ~TTKSharedPtr() noexcept
     {
         clean();
@@ -94,12 +110,14 @@ public:
         m_ref_count = p.m_ref_count;
         m_ref_count->m_count++;
     }
+
     TTKSharedPtr(const TTKSharedPtr &p) noexcept
     {
         m_ptr = p.m_ptr;
         m_ref_count = p.m_ref_count;
         m_ref_count->m_count++;
     }
+
     TTKSharedPtr& operator=(const TTKSharedPtr &p) noexcept
     {
         clean();
@@ -108,6 +126,7 @@ public:
         m_ref_count->m_count++;
         return *this;
     }
+
     TTKSharedPtr(TTKSharedPtr &&p) noexcept
     {
         m_ptr = p.m_ptr;
@@ -115,6 +134,7 @@ public:
         p.m_ptr = nullptr;
         p.m_ref_count = nullptr;
     }
+
     TTKSharedPtr& operator=(TTKSharedPtr &&p) noexcept
     {
         clean();
@@ -125,11 +145,11 @@ public:
         return *this;
     }
 
-    int use_count() noexcept { return m_ref_count->m_count; }
-    T* get() const noexcept { return m_ptr; }
-    T* operator->() const noexcept { return m_ptr; }
-    T& operator*() const noexcept { return *m_ptr; }
-    operator bool() const noexcept { return m_ptr; }
+    inline int use_count() noexcept { return m_ref_count->m_count; }
+    inline T* get() const noexcept { return m_ptr; }
+    inline T* operator->() const noexcept { return m_ptr; }
+    inline T& operator*() const noexcept { return *m_ptr; }
+    inline operator bool() const noexcept { return m_ptr; }
 
 private:
     void clean() noexcept

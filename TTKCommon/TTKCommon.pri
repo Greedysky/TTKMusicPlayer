@@ -52,18 +52,22 @@ win32{
             $$PWD/TTKLibrary/ttkfunctor.h \
             $$PWD/TTKLibrary/ttkglobalinterface.h \
             $$PWD/TTKLibrary/ttkitemdelegate.h \
+            $$PWD/TTKLibrary/ttklexicalcast.h \
             $$PWD/TTKLibrary/ttklibrary.h \
             $$PWD/TTKLibrary/ttklibraryversion.h \
             $$PWD/TTKLibrary/ttklogoutput.h \
+            $$PWD/TTKLibrary/ttkoptional.h \
             $$PWD/TTKLibrary/ttkplatformsystem.h \
             $$PWD/TTKLibrary/ttksmartpointer.h \
             $$PWD/TTKLibrary/ttksmartptr.h \
             $$PWD/TTKLibrary/ttkspinlock.h \
+            $$PWD/TTKLibrary/ttkstringview.h \
             $$PWD/TTKLibrary/ttksuperenum.h \
             $$PWD/TTKLibrary/ttktabbutton.h \
             $$PWD/TTKLibrary/ttkthemelinelabel.h \
             $$PWD/TTKLibrary/ttktime.h \
             $$PWD/TTKLibrary/ttktoastlabel.h \
+            $$PWD/TTKLibrary/ttktree.h \
             $$PWD/TTKLibrary/ttkunsortedmap.h \
             $$PWD/TTKLibrary/ttkvariant.h
     }

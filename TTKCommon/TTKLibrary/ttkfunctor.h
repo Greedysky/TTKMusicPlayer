@@ -57,40 +57,42 @@ protected:
 template <typename IT, typename OT, typename PT>
 TTKFunctor<IT, OT, PT>::TTKFunctor()
 {
+
 }
 
 template <typename IT, typename OT, typename PT>
 TTKFunctor<IT, OT, PT>::~TTKFunctor()
 {
+
 }
 
 template <typename IT, typename OT, typename PT>
 typename TTKFunctor<IT, OT, PT>::OutputType TTKFunctor<IT, OT, PT>::RunUnsafe(const InputType &input)
 {
-  OT output;
-  RunMain(output, input, OptionType());
-  return output;
+    OT output;
+    RunMain(output, input, OptionType());
+    return output;
 }
 
 template <typename IT, typename OT, typename PT>
 typename TTKFunctor<IT, OT, PT>::OutputType TTKFunctor<IT, OT, PT>::RunUnsafe(const InputType &input, const OptionType &option)
 {
-  OT output;
-  RunMain(output, input, option);
-  return output;
+    OT output;
+    RunMain(output, input, option);
+    return output;
 }
 
 template <typename IT, typename OT, typename PT>
 bool TTKFunctor<IT, OT, PT>::Run(const InputType &input, const OptionType &option)
 {
-  OT output;
-  return RunMain(output, input, option);
+    OT output;
+    return RunMain(output, input, option);
 }
 
 template <typename IT, typename OT, typename PT>
 bool TTKFunctor<IT, OT, PT>::Run(const InputType &input, OutputType &output, const OptionType &option)
 {
-  return RunMain(output, input, option);
+    return RunMain(output, input, option);
 }
 
 #endif // TTKFUNCTOR_H

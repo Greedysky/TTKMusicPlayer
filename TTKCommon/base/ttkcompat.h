@@ -40,11 +40,11 @@ namespace std
 {
 #if !TTK_HAS_CXX14
 /// Alias template for remove_extent
-template<typename _Tp>
+template <typename _Tp>
 using remove_extent_t = typename remove_extent<_Tp>::type;
 
 /// Alias template for remove_all_extents
-template<typename _Tp>
+template <typename _Tp>
 using remove_all_extents_t = typename remove_all_extents<_Tp>::type;
 #endif
 

@@ -88,17 +88,21 @@ HEADERS += \
     $$PWD/ttkfunctor.h \
     $$PWD/ttkglobalinterface.h \
     $$PWD/ttkitemdelegate.h \
+    $$PWD/ttklexicalcast.h \
     $$PWD/ttklibrary.h \
     $$PWD/ttklibraryversion.h \
     $$PWD/ttklogoutput.h \
+    $$PWD/ttkoptional.h \
     $$PWD/ttkplatformsystem.h \
     $$PWD/ttksmartptr.h \
     $$PWD/ttkspinlock.h \
+    $$PWD/ttkstringview.h \
     $$PWD/ttksuperenum.h \
     $$PWD/ttktabbutton.h \
     $$PWD/ttkthemelinelabel.h \
     $$PWD/ttktime.h \
     $$PWD/ttktoastlabel.h \
+    $$PWD/ttktree.h \
     $$PWD/ttkunsortedmap.h \
     $$PWD/ttkvariant.h
 

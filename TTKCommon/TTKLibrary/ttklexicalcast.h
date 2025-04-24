@@ -1,5 +1,5 @@
-#ifndef TTKLIBRARYVERSION_H
-#define TTKLIBRARYVERSION_H
+#ifndef TTKLEXICALCAST_H
+#define TTKLEXICALCAST_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -19,20 +19,37 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "../ttkversion.h"
+#include "ttkmoduleexport.h"
 
-//update time 2025.04.23
-#define TTK_LIBRARY_MAJOR_VERSION 1
-#define TTK_LIBRARY_MINOR_VERSION 3
-#define TTK_LIBRARY_PATCH_VERSION 0
+/*! @brief The class of the ttk lexical cast.
+ * @author Greedysky <greedysky@163.com>
+ */
+namespace TTK
+{
+    template <typename _Output, typename _Input>
+    _Output lexical_cast(const _Input &input)
+    {
+        std::stringstream s;
 
-#define TTK_LIBRARY_VERSION       TTK_VERSION_CHECK(TTK_LIBRARY_MAJOR_VERSION, TTK_LIBRARY_MINOR_VERSION, TTK_LIBRARY_PATCH_VERSION, 0)
-#define TTK_LIBRARY_VERSION_STR   TTK_VERSION_CHECK_STR(TTK_LIBRARY_MAJOR_VERSION, TTK_LIBRARY_MINOR_VERSION, TTK_LIBRARY_PATCH_VERSION, 0)
+        _Output ouput;
+        if(!(s << input && s >> ouput && s.eof()))
+        {
+            throw std::bad_cast();
+        }
+        return ouput;
+    }
+}
 
-#undef TTK_RC_FILEVERSION
-#undef TTK_RC_PRODUCTVERSION
+#ifdef TTK_CAST
+#  define TTKLexicalCast(x, y) (TTK::lexical_cast<x>(y))
+#else
+#  define TTKLexicalCast(x, y) ((x)(y))
+#endif
 
-#define TTK_RC_FILEVERSION        TTK_LIBRARY_MAJOR_VERSION, TTK_LIBRARY_MINOR_VERSION, TTK_LIBRARY_PATCH_VERSION, 0
-#define TTK_RC_PRODUCTVERSION     TTK_LIBRARY_VERSION_STR
+// compatiblity for std lexical_cast
+namespace std
+{
+using namespace TTK;
+}
 
-#endif // TTKLIBRARYVERSION_H
+#endif // TTKLEXICALCAST_H
