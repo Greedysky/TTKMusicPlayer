@@ -132,6 +132,7 @@ struct TTKOptional
 
         return m_value && other ? (*m_value == *other) : false;
     }
+
     bool operator!=(const TTKOptional &other) const { return !operator==(other); }
 
 private:

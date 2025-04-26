@@ -404,7 +404,7 @@ QByteArray Serializer::SerializerPrivate::escapeString(const QString& str)
           result.append(TTKStaticCast(char, unicode));
         } else {
           char escaped[7];
-          qsnprintf(escaped, sizeof(escaped)/sizeof(char), "\\u%04x", unicode);
+          std::snprintf(escaped, sizeof(escaped)/sizeof(char), "\\u%04x", unicode);
           result.append(escaped);
         }
     }
