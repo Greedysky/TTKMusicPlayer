@@ -542,6 +542,33 @@ struct std::hash<TTKU32StringView>
 };
 
 
+namespace literals
+{
+    namespace string_view_literals
+    {
+        inline constexpr TTKStringView operator""sv(const char* s, size_t l) noexcept
+        {
+            return TTKStringView(s, l);
+        }
+
+        inline constexpr TTKWStringView operator""sv(const wchar_t* s, size_t l) noexcept
+        {
+            return TTKWStringView(s, l);
+        }
+
+        inline constexpr TTKU16StringView operator""sv(const char16_t* s, size_t l) noexcept
+        {
+            return TTKU16StringView(s, l);
+        }
+
+        inline constexpr TTKU32StringView operator""sv(const char32_t* s, size_t l) noexcept
+        {
+            return TTKU32StringView(s, l);
+        }
+    }
+}
+
+
 // compatiblity for std string_view
 namespace std
 {

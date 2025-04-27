@@ -61,6 +61,7 @@ win32{
             $$PWD/TTKLibrary/ttksmartpointer.h \
             $$PWD/TTKLibrary/ttksmartptr.h \
             $$PWD/TTKLibrary/ttkspinlock.h \
+            $$PWD/TTKLibrary/ttkstringliterals.h \
             $$PWD/TTKLibrary/ttkstringview.h \
             $$PWD/TTKLibrary/ttksuperenum.h \
             $$PWD/TTKLibrary/ttktabbutton.h \

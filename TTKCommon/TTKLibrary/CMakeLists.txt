@@ -55,6 +55,7 @@ set(HEADER_FILES
   ttkplatformsystem.h
   ttksmartptr.h
   ttkspinlock.h
+  ttkstringliterals.h
   ttkstringview.h
   ttksuperenum.h
   ttktabbutton.h

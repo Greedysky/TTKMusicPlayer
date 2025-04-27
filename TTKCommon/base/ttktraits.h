@@ -1,5 +1,5 @@
-#ifndef TRAITS_H
-#define TRAITS_H
+#ifndef TTKTRAITS_H
+#define TTKTRAITS_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -19,36 +19,51 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#if 1
+#define TTK_DECLARE_HAS_MEMBER(__trait_name__) \
+    template <typename T, typename... Args> \
+    struct has_member_##__trait_name__ \
+    { \
+    private: \
+        template <typename U> \
+        static auto test(int)->decltype(std::declval<U>().__trait_name__(std::declval<Args>() ...), std::true_type()); \
+        template <typename U> \
+        static std::false_type test(...); \
+    public: \
+        static constexpr bool value = std::is_same<decltype(test<T>(0)), std::true_type>::value; \
+    }
+#else
 #define TTK_DECLARE_HAS_MEMBER(__trait_name__, __member_name__) \
-    template <class T> \
+    template <typename T> \
     struct __trait_name__ \
     { \
         typedef typename std::remove_const<T>::type check_type; \
         struct base { void __member_name__() {}}; \
         struct mixin : public base, public check_type {}; \
         template <void (base::*)()> struct aux {}; \
-        template <class U> static std::false_type test(aux<&U::__member_name__>*); \
-        template <class U> static std::true_type test(...); \
+        template <typename U> static std::false_type test(aux<&U::__member_name__>*); \
+        template <typename U> static std::true_type test(...); \
         static constexpr bool value = (sizeof(std::true_type) == sizeof(test<mixin>(0))); \
     }
+#endif
 
 #define TTK_DECLARE_GLOBAL_SIGNATURE(__trait_name__, __func_name__) \
     std::nullptr_t __func_name__(...); \
-    template <class T> \
+    template <typename T> \
     struct __trait_name__ \
     { \
-        template <class U, U> struct helper; \
-        template <class U> static std::uint8_t test(helper<U*, &__func_name__>*); \
-        template <class U> static std::uint16_t test(...); \
+        template <typename U, U> struct helper; \
+        template <typename U> static std::uint8_t test(helper<U*, &__func_name__>*); \
+        template <typename U> static std::uint16_t test(...); \
         static constexpr bool value = sizeof(test<T>(0)) == sizeof(std::uint8_t); \
     }
 
 #define TTK_DECLARE_CLASS_SIGNATURE(__trait_name__, __func_name__) \
-    template <class Void, class Obj, class Func> \
+    template <typename Void, typename Obj, typename Func> \
     struct __trait_name__ : std::false_type {}; \
-    template <class Obj, class Func> \
+    template <typename Obj, typename Func> \
     struct __trait_name__<std::void_t<decltype(static_cast<Func Obj::*>(&Obj::__func_name__))>, Obj, Func> : std::true_type {}; \
-    template <class Obj, class Func> \
+    template <typename Obj, typename Func> \
     using __trait_name__##Check = __trait_name__<void, Obj, Func>;
 
-#endif // TRAITS_H
+#endif // TTKTRAITS_H

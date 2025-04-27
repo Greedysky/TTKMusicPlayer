@@ -58,6 +58,7 @@ HEADERS += \
     $$PWD/../base/ttkqtglobal.h \
     $$PWD/../base/ttkqtobject.h \
     $$PWD/../base/ttksingleton.h \
+    $$PWD/../base/ttktraits.h \
     $$PWD/../ttkobject.h \
     $$PWD/../ttkversion.h
 
@@ -96,6 +97,7 @@ HEADERS += \
     $$PWD/ttkplatformsystem.h \
     $$PWD/ttksmartptr.h \
     $$PWD/ttkspinlock.h \
+    $$PWD/ttkstringliterals.h \
     $$PWD/ttkstringview.h \
     $$PWD/ttksuperenum.h \
     $$PWD/ttktabbutton.h \
