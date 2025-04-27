@@ -18,7 +18,7 @@
 OutputWASAPI *OutputWASAPI::instance = nullptr;
 VolumeWASAPI *OutputWASAPI::volumeControl = nullptr;
 
-OutputWASAPI::DWASAPIChannels OutputWASAPI::m_wasapi_pos[10]  = {
+QList<OutputWASAPI::DSoundChannel> OutputWASAPI::m_wasapi_pos = {
    {Qmmp::CHAN_FRONT_LEFT, SPEAKER_FRONT_LEFT},
    {Qmmp::CHAN_FRONT_RIGHT, SPEAKER_FRONT_RIGHT},
    {Qmmp::CHAN_FRONT_CENTER, SPEAKER_FRONT_CENTER},
@@ -27,8 +27,7 @@ OutputWASAPI::DWASAPIChannels OutputWASAPI::m_wasapi_pos[10]  = {
    {Qmmp::CHAN_REAR_RIGHT, SPEAKER_BACK_RIGHT},
    {Qmmp::CHAN_REAR_CENTER, SPEAKER_BACK_CENTER},
    {Qmmp::CHAN_SIDE_LEFT, SPEAKER_SIDE_LEFT},
-   {Qmmp::CHAN_SIDE_RIGHT, SPEAKER_BACK_RIGHT},
-   {Qmmp::CHAN_NULL, 0}
+   {Qmmp::CHAN_SIDE_RIGHT, SPEAKER_BACK_RIGHT}
 };
 
 OutputWASAPI::OutputWASAPI()
@@ -99,16 +98,25 @@ bool OutputWASAPI::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat fo
     {
         wfex.Format.wBitsPerSample = 16;
         wfex.Samples.wValidBitsPerSample = 16;
+        wfex.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
     }
     else if(format == Qmmp::PCM_S24LE)
     {
         wfex.Format.wBitsPerSample  = 32;
         wfex.Samples.wValidBitsPerSample = 24;
+        wfex.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
     }
     else if(format == Qmmp::PCM_S32LE)
     {
         wfex.Format.wBitsPerSample  = 32;
         wfex.Samples.wValidBitsPerSample = 32;
+        wfex.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
+    }
+    else if(format == Qmmp::PCM_FLOAT)
+    {
+        wfex.Format.wBitsPerSample  = 32;
+        wfex.Samples.wValidBitsPerSample = 32;
+        wfex.SubFormat = KSDATAFORMAT_SUBTYPE_IEEE_FLOAT;
     }
     else
     {
@@ -122,20 +130,17 @@ bool OutputWASAPI::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat fo
 
     //generate channel order
     ChannelMap out_map;
-    int i = 0;
     DWORD mask = 0;
-    while(m_wasapi_pos[i].pos != Qmmp::CHAN_NULL)
+    for(const OutputWASAPI::DSoundChannel &pos : std::as_const(m_wasapi_pos))
     {
-        if(map.contains(m_wasapi_pos[i].pos))
+        if(map.contains(pos.first))
         {
-            mask |= m_wasapi_pos[i].chan_mask;
-            out_map << m_wasapi_pos[i].pos;
+            out_map << pos.first;
+            mask |= pos.second;
         }
-        ++i;
     }
 
     wfex.dwChannelMask = mask;
-    wfex.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
 
     AUDCLNT_SHAREMODE mode = m_exclusive ? AUDCLNT_SHAREMODE_EXCLUSIVE :  AUDCLNT_SHAREMODE_SHARED;
     DWORD streamFlags = 0;

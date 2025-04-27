@@ -21,6 +21,7 @@
 #ifndef OUTPUTWASAPI_H
 #define OUTPUTWASAPI_H
 
+#include <QPair>
 #include <stdio.h>
 #include <windows.h>
 #include <mmdeviceapi.h>
@@ -70,13 +71,8 @@ private:
     bool m_exclusive = false;
     qint64 m_bufferSize = 1000000L; //microseconds
 
-    typedef struct
-    {
-        Qmmp::ChannelPosition pos;
-        DWORD chan_mask;
-    } DWASAPIChannels;
-
-    static DWASAPIChannels m_wasapi_pos[10];
+    using DSoundChannel = QPair<Qmmp::ChannelPosition, DWORD>;
+    static QList<DSoundChannel> m_wasapi_pos; //channel position, mask
 
 };
 
