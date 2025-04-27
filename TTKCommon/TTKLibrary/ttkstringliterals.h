@@ -24,6 +24,9 @@
 #  include <QStringView>
 #endif
 
+/*! @brief The namespace of the string literals.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace Qt
 {
     namespace Literals

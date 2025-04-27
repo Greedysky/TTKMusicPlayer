@@ -542,6 +542,9 @@ struct std::hash<TTKU32StringView>
 };
 
 
+/*! @brief The namespace of the string_view literals.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace literals
 {
     namespace string_view_literals
