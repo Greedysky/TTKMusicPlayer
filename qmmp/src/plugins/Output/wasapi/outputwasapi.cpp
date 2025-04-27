@@ -131,7 +131,7 @@ bool OutputWASAPI::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat fo
     //generate channel order
     ChannelMap out_map;
     DWORD mask = 0;
-    for(const OutputWASAPI::DSoundChannel &pos : std::as_const(m_wasapi_pos))
+    for(const OutputWASAPI::DSoundChannel &pos : qAsConst(m_wasapi_pos))
     {
         if(map.contains(pos.first))
         {

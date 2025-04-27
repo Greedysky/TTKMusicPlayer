@@ -109,7 +109,7 @@ bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForm
     //generate channel order
     ChannelMap out_map;
     DWORD mask = 0;
-    for(const OutputDirectSound::DSoundChannel &pos : std::as_const(m_dsound_pos))
+    for(const OutputDirectSound::DSoundChannel &pos : qAsConst(m_dsound_pos))
     {
         if(map.contains(pos.first))
         {
