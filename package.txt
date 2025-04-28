@@ -55,11 +55,11 @@ ttk-1.2.9
 -libtfmx		 https://github.com/sasq64/musicplayer
 -libuade-3.05	 http://www.zakalwe.fi/uade/
 			 https://gitlab.com/uade-music-player/uade f776abe75d66725f9699ea5728dd24db0e2d17f8
--libv2m-20211104 https://github.com/jgilje/v2m-player
+-libv2m-20250301 https://github.com/jgilje/v2m-player
 -libxmdx		 https://github.com/mistydemeo/mdxmini
 				 https://github.com/mistydemeo/pmdmini
 				 https://github.com/BouKiCHi/foo_input_mucom
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2025-04-16
+///Update time 2025-04-28
