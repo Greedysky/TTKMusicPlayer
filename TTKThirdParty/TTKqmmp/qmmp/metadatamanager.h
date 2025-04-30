@@ -21,10 +21,10 @@
 #ifndef METADATAMANAGER_H
 #define METADATAMANAGER_H
 
-#include <QList>
-#include <QStringList>
-#include <QImage>
 #include <QDir>
+#include <QCache>
+#include <QImage>
+#include <QStringList>
 #if QT_VERSION < QT_VERSION_CHECK(5,14,0)
 #  include <QMutex>
 #else
@@ -123,14 +123,13 @@ private:
 
     struct CoverCacheItem
     {
-        QString url;
         QString coverPath;
         QImage coverImage;
     };
 
     QFileInfoList findCoverFiles(QDir dir, int depth) const;
     CoverCacheItem *createCoverCacheItem(const QString &url) const;
-    mutable QList<CoverCacheItem *> m_cover_cache;
+    mutable QCache<QString, CoverCacheItem> *m_cover_cache;
     QmmpSettings *m_settings = nullptr;
 #if QT_VERSION < QT_VERSION_CHECK(5,14,0)
     mutable QMutex m_mutex;
