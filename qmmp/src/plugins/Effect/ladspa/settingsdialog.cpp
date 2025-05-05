@@ -116,11 +116,6 @@ void SettingsDialog::on_configureButton_clicked()
     dialog->deleteLater();
 }
 
-void SettingsDialog::accept()
-{
-    QDialog::accept();
-}
-
 void SettingsDialog::updateRunningPlugins()
 {
     m_ui.runningListWidget->clear();

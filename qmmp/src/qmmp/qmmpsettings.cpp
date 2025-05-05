@@ -24,7 +24,7 @@ QmmpSettings::QmmpSettings(QObject *parent)
     m_aud_software_volume = settings.value("Output/software_volume", true).toBool();
     m_aud_format = static_cast<Qmmp::AudioFormat>(settings.value("Output/format", Qmmp::PCM_S16LE).toInt());
     m_aud_dithering = settings.value("Output/dithering", true).toBool();
-    m_volume_step = settings.value("Output/volume_step", 5).toInt();
+    m_volume_step = settings.value("Output/volume_step", 10).toInt();
     m_average_bitrate = settings.value("Output/average_bitrate", false).toBool();
     //cover settings
     settings.beginGroup("Cover");

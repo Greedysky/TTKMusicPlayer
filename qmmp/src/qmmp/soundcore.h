@@ -181,6 +181,11 @@ public slots:
      *  This function sets the current play position to \p pos in milliseconds.
      */
     void seek(qint64 time);
+    /*!
+     *  This function seeks relatively from the current playback position.
+     *  @param offset Offset from the current playback possition in millisecnds (positive or negative value).
+     */
+    void seekRelative(qint64 offset);
 
 signals:
     /*!
