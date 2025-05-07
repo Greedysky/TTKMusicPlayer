@@ -27,6 +27,7 @@
 #define TKF_FILE_SUFFIX          "tkf"
 #define TKX_FILE_SUFFIX          "tkx"
 #define TKM_FILE_SUFFIX          "tkm"
+#define TKB_FILE_SUFFIX          "tkb"
 //
 #define SKN_FILE_SUFFIX          "skn"
 #define JPG_FILE_SUFFIX          "jpg"
@@ -63,6 +64,7 @@
 #define TKF_FILE                 TTK_STR_CAT(TTK_DOT, TKF_FILE_SUFFIX)
 #define TKX_FILE                 TTK_STR_CAT(TTK_DOT, TKX_FILE_SUFFIX)
 #define TKM_FILE                 TTK_STR_CAT(TTK_DOT, TKM_FILE_SUFFIX)
+#define TKB_FILE                 TTK_STR_CAT(TTK_DOT, TKB_FILE_SUFFIX)
 //
 #define SKN_FILE                 TTK_STR_CAT(TTK_DOT, SKN_FILE_SUFFIX)
 #define JPG_FILE                 TTK_STR_CAT(TTK_DOT, JPG_FILE_SUFFIX)

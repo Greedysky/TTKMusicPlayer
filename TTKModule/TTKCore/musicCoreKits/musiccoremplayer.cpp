@@ -59,7 +59,9 @@ void MusicCoreMPlayer::closeModule()
         m_process = nullptr;
 
         QString name(MAKE_PLAYER_NAME);
+#ifdef Q_OS_UNIX
         name.chop(strlen(TKX_FILE));
+#endif
         TTK::killProcessByName(name, true);
     }
 }
