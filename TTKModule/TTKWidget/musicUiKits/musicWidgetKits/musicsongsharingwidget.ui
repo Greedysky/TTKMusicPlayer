@@ -165,7 +165,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../../../TTKUi/MusicPlayer.qrc">
+     <iconset resource="../../../../TTKUi/TTKModule.qrc">
       <normaloff>:/image/lb_qq</normaloff>:/image/lb_qq</iconset>
     </property>
    </widget>
@@ -182,7 +182,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../../../TTKUi/MusicPlayer.qrc">
+     <iconset resource="../../../../TTKUi/TTKModule.qrc">
       <normaloff>:/image/lb_qq_space</normaloff>:/image/lb_qq_space</iconset>
     </property>
    </widget>
@@ -237,7 +237,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../../../TTKUi/MusicPlayer.qrc">
+     <iconset resource="../../../../TTKUi/TTKModule.qrc">
       <normaloff>:/image/lb_xinlang</normaloff>:/image/lb_xinlang</iconset>
     </property>
    </widget>
@@ -265,14 +265,14 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../../../TTKUi/MusicPlayer.qrc">
+     <iconset resource="../../../../TTKUi/TTKModule.qrc">
       <normaloff>:/image/lb_weixing</normaloff>:/image/lb_weixing</iconset>
     </property>
    </widget>
   </widget>
  </widget>
  <resources>
-  <include location="../../../../TTKUi/MusicPlayer.qrc"/>
+  <include location="../../../../TTKUi/TTKModule.qrc"/>
  </resources>
  <connections/>
 </ui>

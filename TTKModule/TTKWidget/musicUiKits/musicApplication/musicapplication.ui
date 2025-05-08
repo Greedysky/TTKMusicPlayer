@@ -20,7 +20,7 @@
    <string>天天酷音</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../../TTKUi/MusicPlayer.qrc">
+   <iconset resource="../../../../TTKUi/TTKModule.qrc">
     <normaloff>:/image/lb_app_logo</normaloff>:/image/lb_app_logo</iconset>
   </property>
   <layout class="QHBoxLayout" name="mainLayout">
@@ -1475,7 +1475,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../../../TTKUi/MusicPlayer.qrc"/>
+  <include location="../../../../TTKUi/TTKModule.qrc"/>
  </resources>
  <connections/>
 </ui>

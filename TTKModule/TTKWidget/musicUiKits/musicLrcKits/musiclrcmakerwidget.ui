@@ -81,7 +81,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/lrc/lb_make_background1</pixmap>
+      <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/lrc/lb_make_background1</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_M">
@@ -97,7 +97,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/lrc/lb_make_title</pixmap>
+      <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/lrc/lb_make_title</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_M1">
@@ -139,7 +139,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/lrc/lb_make_arrow</pixmap>
+      <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/lrc/lb_make_arrow</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_M5">
@@ -352,7 +352,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/lrc/lb_make_first</pixmap>
+      <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/lrc/lb_make_first</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_F1">
@@ -368,7 +368,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/lrc/lb_make_background2</pixmap>
+      <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/lrc/lb_make_background2</pixmap>
      </property>
     </widget>
     <widget class="QPushButton" name="stateButton_F">
@@ -594,7 +594,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/lrc/lb_make_second</pixmap>
+      <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/lrc/lb_make_second</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_S1">
@@ -610,7 +610,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/lrc/lb_make_background3</pixmap>
+      <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/lrc/lb_make_background3</pixmap>
      </property>
     </widget>
     <widget class="MusicMovingClickedSlider" name="timeSlider_S">
@@ -715,7 +715,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/lrc/lb_make_third</pixmap>
+      <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/lrc/lb_make_third</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_T1">
@@ -853,7 +853,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/lrc/lb_make_background2</pixmap>
+      <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/lrc/lb_make_background2</pixmap>
      </property>
     </widget>
     <widget class="MusicMovingClickedSlider" name="timeSlider_T">
@@ -895,7 +895,7 @@
       </rect>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/lrc/lb_make_finish</pixmap>
+      <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/lrc/lb_make_finish</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_T4">
@@ -980,7 +980,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../../../TTKUi/MusicPlayer.qrc"/>
+  <include location="../../../../TTKUi/TTKModule.qrc"/>
  </resources>
  <connections/>
 </ui>

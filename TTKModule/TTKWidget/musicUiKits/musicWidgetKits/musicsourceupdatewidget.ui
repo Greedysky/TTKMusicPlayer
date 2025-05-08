@@ -146,7 +146,7 @@ QPushButton::hover{background-color:#DDDDDD;color:#444444;}</string>
     </rect>
    </property>
    <property name="pixmap">
-    <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/toolSets/lb_upgrade_main</pixmap>
+    <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/toolSets/lb_upgrade_main</pixmap>
    </property>
   </widget>
   <zorder>container</zorder>
@@ -154,7 +154,7 @@ QPushButton::hover{background-color:#DDDDDD;color:#444444;}</string>
   <zorder>topTitleCloseButton</zorder>
  </widget>
  <resources>
-  <include location="../../../../TTKUi/MusicPlayer.qrc"/>
+  <include location="../../../../TTKUi/TTKModule.qrc"/>
  </resources>
  <connections/>
 </ui>

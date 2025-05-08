@@ -30,7 +30,7 @@ set(SOURCE_FILES
 )
 
 SET(QRC_FILES
-  ${TTK_UI_DIR}/MusicApp.qrc
+  ${TTK_UI_DIR}/TTKApp.qrc
 )
 
 if(WIN32)

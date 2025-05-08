@@ -49,6 +49,6 @@ HEADERS += \
 
 SOURCES += $$PWD/musicconfigmodule.cpp
 
-RESOURCES += $$PWD/../TTKUi/MusicApp.qrc
+RESOURCES += $$PWD/../TTKUi/TTKApp.qrc
 
 win32:RC_FILE = $$PWD/$${TARGET}.rc

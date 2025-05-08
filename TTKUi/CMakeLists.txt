@@ -21,7 +21,7 @@ cmake_minimum_required(VERSION 3.0.0)
 project(TTKUi)
 
 SET(QRC_FILES
-  ${TTK_UI_DIR}/MusicPlayer.qrc
+  ${TTK_UI_DIR}/TTKModule.qrc
 )
 
 if(TTK_QT_VERSION VERSION_EQUAL "4")

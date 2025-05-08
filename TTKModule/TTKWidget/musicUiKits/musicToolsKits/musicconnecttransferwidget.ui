@@ -236,7 +236,7 @@ QLabel{background:transparent;}</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/toolSets/lb_mobile_computer</pixmap>
+     <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/toolSets/lb_mobile_computer</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -252,7 +252,7 @@ QLabel{background:transparent;}</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/toolSets/lb_mobile_usb</pixmap>
+     <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/toolSets/lb_mobile_usb</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -379,7 +379,7 @@ QLabel{background:transparent;}</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../../../TTKUi/MusicPlayer.qrc"/>
+  <include location="../../../../TTKUi/TTKModule.qrc"/>
  </resources>
  <connections/>
 </ui>

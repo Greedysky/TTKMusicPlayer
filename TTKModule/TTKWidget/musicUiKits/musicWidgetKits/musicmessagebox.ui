@@ -145,7 +145,7 @@
     </rect>
    </property>
    <property name="pixmap">
-    <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/image/lb_warning</pixmap>
+    <pixmap resource="../../../../TTKUi/TTKModule.qrc">:/image/lb_warning</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -161,7 +161,7 @@
   <zorder>textLabel</zorder>
  </widget>
  <resources>
-  <include location="../../../../TTKUi/MusicPlayer.qrc"/>
+  <include location="../../../../TTKUi/TTKModule.qrc"/>
  </resources>
  <connections/>
 </ui>

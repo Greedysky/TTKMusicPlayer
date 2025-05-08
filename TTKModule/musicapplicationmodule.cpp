@@ -71,7 +71,7 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
 
 MusicApplicationModule::~MusicApplicationModule()
 {
-    Q_CLEANUP_RESOURCE(MusicPlayer);
+    Q_CLEANUP_RESOURCE(TTKModule);
     delete m_backupModule;
     delete m_timerAutoModule;
     delete m_screenSaverWidget;
