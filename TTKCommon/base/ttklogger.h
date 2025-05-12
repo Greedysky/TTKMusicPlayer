@@ -42,6 +42,12 @@
     __hit__ = true; \
     __TTK_BASE_STREAM__(level, msg); \
   }
+// log stream condition base macro
+#define __TTK_COND_STREAM__(cond, level, msg) \
+  if(cond) \
+  { \
+    __TTK_BASE_STREAM__(level, msg); \
+  }
 // log stream count base macro
 #define __TTK_COUNT_STREAM__(count, level, msg) \
   static int __last__ = 1; \
@@ -76,6 +82,13 @@
 #define TTK_WARN_STREAM_ONCE(msg)  { __TTK_ONCE_STREAM__("W", msg) }
 #define TTK_ERROR_STREAM_ONCE(msg) { __TTK_ONCE_STREAM__("E", msg) }
 #define TTK_FATAL_STREAM_ONCE(msg) { __TTK_ONCE_STREAM__("F", msg) }
+
+#define TTK_TRACE_STREAM_COND(cond, msg) { __TTK_COND_STREAM__(cond, "T", msg) }
+#define TTK_DEBUG_STREAM_COND(cond, msg) { __TTK_COND_STREAM__(cond, "D", msg) }
+#define TTK_INFO_STREAM_COND(cond, msg)  { __TTK_COND_STREAM__(cond, "I", msg) }
+#define TTK_WARN_STREAM_COND(cond, msg)  { __TTK_COND_STREAM__(cond, "W", msg) }
+#define TTK_ERROR_STREAM_COND(cond, msg) { __TTK_COND_STREAM__(cond, "E", msg) }
+#define TTK_FATAL_STREAM_COND(cond, msg) { __TTK_COND_STREAM__(cond, "F", msg) }
 
 #define TTK_TRACE_STREAM_COUNT(count, msg) { __TTK_COUNT_STREAM__(count, "T", msg) }
 #define TTK_DEBUG_STREAM_COUNT(count, msg) { __TTK_COUNT_STREAM__(count, "D", msg) }
