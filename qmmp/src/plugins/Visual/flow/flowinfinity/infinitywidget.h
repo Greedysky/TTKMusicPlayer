@@ -43,7 +43,7 @@ struct VColor
 struct VInterpol
 {
     unsigned int coord;   /* coordinates of the top left pixel.*/
-    unsigned int weight;  /*32 bits = 4*8= weights of the four corners */
+    unsigned int weight;  /* 32 bits = 4*8= weights of the four corners */
 };
 
 struct VEffect

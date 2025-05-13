@@ -659,7 +659,6 @@ VComplex InfinityWidget::fct(VComplex c, int n, int p1, int p2)   /*p1 et p2:0-4
         an = 0.002;
         co = std::cos(an);
         si = std::sin(an);
-        size = h * 0.25;
         fact = std::cos(std::atan(c.x / (c.y + 0.00001)) * 6) * 0.02 + 1;
         b.x = co * c.x - si * c.y;
         b.y = si * c.x + co * c.y;
