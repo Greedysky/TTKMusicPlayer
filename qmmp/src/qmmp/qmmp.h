@@ -55,6 +55,7 @@
 #define CSTR_TO_QSTR(codec, str, utf) codec->toUnicode(str.toCString(utf)).trimmed()
 
 #ifndef TTK_LIBRARY
+// as_const defined
 #if QT_VERSION < QT_VERSION_CHECK(5,7,0)
 // this adds const to non-const objects (like std::as_const)
 template <typename T>
@@ -64,6 +65,18 @@ template <typename T>
 void qAsConst(const T &&) = delete;
 #elif QT_VERSION >= QT_VERSION_CHECK(6,6,0)
 #  define qAsConst std::as_const
+#endif
+
+#if __cplusplus < 201703L
+namespace std
+{
+// this adds const to non-const objects
+template <typename T>
+Q_DECL_CONSTEXPR typename std::add_const<T>::type &as_const(T &t) noexcept { return t; }
+// prevent rvalue arguments:
+template <typename T>
+void as_const(const T &&) = delete;
+}
 #endif
 
 #if QT_VERSION < QT_VERSION_CHECK(5,10,0)
