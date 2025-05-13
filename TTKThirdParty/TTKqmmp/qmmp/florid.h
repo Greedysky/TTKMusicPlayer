@@ -119,7 +119,7 @@ protected:
     /*!
      * Process current visual data by state.
      */
-    virtual void process(bool state) override final;
+    virtual void processState(bool v) override final;
 
     virtual void hideEvent(QHideEvent *event) override final;
     virtual void showEvent(QShowEvent *event) override final;

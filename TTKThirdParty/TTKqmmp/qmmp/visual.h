@@ -157,11 +157,11 @@ protected:
     /*!
      * Process current visual data.
      */
-    virtual void process(float *left, float *right) = 0;
+    virtual void processData(float *left, float *right) = 0;
     /*!
      * Process current visual data by state.
      */
-    virtual void process(bool state);
+    virtual void processState(bool v);
     /*!
      * Clear current visual data.
      */
