@@ -35,7 +35,7 @@ void OuterRipples::paintEvent(QPaintEvent *)
     }
 }
 
-void OuterRipples::process(float *left, float *)
+void OuterRipples::processData(float *left, float *)
 {
     const int rows = (height() - 2) / m_cellSize.height();
     const int cols = (width() - 2) / m_cellSize.width();

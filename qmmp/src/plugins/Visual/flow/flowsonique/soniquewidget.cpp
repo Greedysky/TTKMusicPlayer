@@ -178,7 +178,7 @@ void SoniqueWidget::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void SoniqueWidget::process(float *left, float *right)
+void SoniqueWidget::processData(float *left, float *right)
 {
     if(!m_sonique)
     {

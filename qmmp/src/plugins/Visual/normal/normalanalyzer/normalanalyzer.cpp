@@ -163,7 +163,7 @@ void NormalAnalyzer::contextMenuEvent(QContextMenuEvent *)
     m_menu->exec(QCursor::pos());
 }
 
-void NormalAnalyzer::process(float *left, float *right)
+void NormalAnalyzer::processData(float *left, float *right)
 {
     const int rows = (height() - 2) / m_cellSize.height();
     const int cols = (width() - 2) / m_cellSize.width() / 2;

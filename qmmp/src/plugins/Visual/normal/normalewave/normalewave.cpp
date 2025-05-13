@@ -97,7 +97,7 @@ void NormalEWave::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void NormalEWave::process(float *left, float *right)
+void NormalEWave::processData(float *left, float *right)
 {
     const int rows = (height() - 2) / m_cellSize.height();
     const int cols = (width() - 2) / m_cellSize.width() / 2;

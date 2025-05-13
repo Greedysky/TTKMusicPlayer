@@ -82,7 +82,7 @@ void NormalHistogram::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void NormalHistogram::process(float *left, float *)
+void NormalHistogram::processData(float *left, float *)
 {
     const int rows = (height() - 2) / m_cellSize.height();
     const int cols = (width() - 2) / m_cellSize.width();

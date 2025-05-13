@@ -25,7 +25,7 @@ void MountainPlugin::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void MountainPlugin::process(float *left, float *)
+void MountainPlugin::processData(float *left, float *)
 {
     constexpr int size = QMMP_VISUAL_NODE_SIZE / 2;
     short dest_l[size];

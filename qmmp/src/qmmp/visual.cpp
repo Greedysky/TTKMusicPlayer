@@ -89,9 +89,9 @@ bool Visual::takeData(float *left, float *right)
     return node != nullptr;
 }
 
-void Visual::process(bool state)
+void Visual::processState(bool v)
 {
-    Q_UNUSED(state);
+    Q_UNUSED(v);
 }
 
 void Visual::clear()
@@ -237,13 +237,13 @@ void Visual::updateVisual()
 
     if(takeData(left, right))
     {
-        process(true);
-        process(left, right);
+        processState(true);
+        processData(left, right);
         update();
     }
     else
     {
-        process(false);
+        processState(false);
     }
 }
 

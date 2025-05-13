@@ -51,7 +51,7 @@ void WaveCrest::paintEvent(QPaintEvent *)
     painter.drawImage(0, 0, m_backgroundImage);
 }
 
-void WaveCrest::process(float *left, float *)
+void WaveCrest::processData(float *left, float *)
 {
     const int rows = height();
     const int cols = width();

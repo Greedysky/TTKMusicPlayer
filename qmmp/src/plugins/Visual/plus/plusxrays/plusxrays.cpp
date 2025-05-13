@@ -116,7 +116,7 @@ void PlusXRays::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void PlusXRays::process(float *left, float *)
+void PlusXRays::processData(float *left, float *)
 {
     const int rows = height();
     const int cols = width();

@@ -154,7 +154,7 @@ void InfinityWidget::contextMenuEvent(QContextMenuEvent *)
     m_menu->exec(QCursor::pos());
 }
 
-void InfinityWidget::process(float *left, float *right)
+void InfinityWidget::processData(float *left, float *right)
 {
     short buf[2][QMMP_VISUAL_NODE_SIZE];
     for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; ++i)

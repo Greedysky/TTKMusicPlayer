@@ -158,7 +158,7 @@ void WaveVoice::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void WaveVoice::process(float *left, float *right)
+void WaveVoice::processData(float *left, float *right)
 {
     const int rows = height();
     const int cols = width();

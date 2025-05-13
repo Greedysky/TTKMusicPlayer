@@ -60,7 +60,7 @@ public:
 private:
     virtual void resizeEvent(QResizeEvent *e) override final;
 
-    virtual void process(float *left, float *right) override final;
+    virtual void processData(float *left, float *right) override final;
 
     int m_index = 0;
     QList<AutismLabel*> m_labels;

@@ -56,7 +56,7 @@ void WaveVolume::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void WaveVolume::process(float *left, float *right)
+void WaveVolume::processData(float *left, float *right)
 {
     const int rows = height();
     const int cols = width();

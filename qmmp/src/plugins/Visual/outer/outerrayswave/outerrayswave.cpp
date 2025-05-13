@@ -36,7 +36,7 @@ void OuterRaysWave::paintEvent(QPaintEvent *)
     }
 }
 
-void OuterRaysWave::process(float *left, float *)
+void OuterRaysWave::processData(float *left, float *)
 {
     const int rows = height();
     const int cols = width();

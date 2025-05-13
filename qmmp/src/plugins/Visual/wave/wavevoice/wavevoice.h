@@ -42,7 +42,7 @@ private:
     virtual void paintEvent(QPaintEvent *e) override final;
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
-    virtual void process(float *left, float *right) override final;
+    virtual void processData(float *left, float *right) override final;
     void createPalette(int row);
     void initialize();
 

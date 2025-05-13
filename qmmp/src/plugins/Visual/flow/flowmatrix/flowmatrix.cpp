@@ -77,7 +77,7 @@ void FlowMatrix::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void FlowMatrix::process(float *left, float *)
+void FlowMatrix::processData(float *left, float *)
 {
     const int rows = height();
     const int cols = width();
@@ -139,11 +139,9 @@ void FlowMatrix::process(float *left, float *)
     }
 }
 
-void FlowMatrix::process(bool state)
+void FlowMatrix::processState(bool v)
 {
-    Visual::process(state);
-
-    if(state)
+    if(v)
     {
         for(Matrix *matrix : qAsConst(m_matrixs))
         {

@@ -55,7 +55,7 @@ void NormalFlowWave::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void NormalFlowWave::process(float *left, float *)
+void NormalFlowWave::processData(float *left, float *)
 {
     const int rows = (height() - 2) / m_cellSize.height();
     const int cols = (width() - 2) / m_cellSize.width();

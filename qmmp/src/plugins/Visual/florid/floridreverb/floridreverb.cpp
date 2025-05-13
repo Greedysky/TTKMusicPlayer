@@ -44,7 +44,7 @@ void FloridReverb::paintEvent(QPaintEvent *e)
     }
 }
 
-void FloridReverb::process(float *left, float *)
+void FloridReverb::processData(float *left, float *)
 { 
     const int rows = (height() - 2) / m_cellSize.height();
     const int cols = (width() - 2) / m_cellSize.width();

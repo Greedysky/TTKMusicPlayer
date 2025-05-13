@@ -121,7 +121,7 @@ void OuterBlurWave::resizeEvent(QResizeEvent *)
     m_cellSize.setWidth(offset < 6 ? 6 : offset);
 }
 
-void OuterBlurWave::process(float *left, float *right)
+void OuterBlurWave::processData(float *left, float *right)
 {
     const int rows = (height() - 2) / m_cellSize.height();
     const int cols = (width() - 2) / m_cellSize.width() / 2;

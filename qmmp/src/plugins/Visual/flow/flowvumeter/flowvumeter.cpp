@@ -69,7 +69,7 @@ void FlowVUMeter::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void FlowVUMeter::process(float *left, float *right)
+void FlowVUMeter::processData(float *left, float *right)
 {
     const int channels = qBound(m_channels, 1, MAX_CHANNELS);
 

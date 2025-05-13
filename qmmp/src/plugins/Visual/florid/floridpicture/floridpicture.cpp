@@ -38,7 +38,7 @@ void FloridPicture::paintEvent(QPaintEvent *)
     }
 }
 
-void FloridPicture::process(float *left, float *)
+void FloridPicture::processData(float *left, float *)
 {
     const int rows = (height() / 5 - 2) / m_cellSize.height();
     const int cols = (width() - 2) / m_cellSize.width();

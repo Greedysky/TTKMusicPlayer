@@ -83,7 +83,7 @@ void GoomWidget::contextMenuEvent(QContextMenuEvent *)
     m_menu->exec(QCursor::pos());
 }
 
-void GoomWidget::process(float *left, float *right)
+void GoomWidget::processData(float *left, float *right)
 {
     if(m_image.size() != size() || !m_goom)
     {

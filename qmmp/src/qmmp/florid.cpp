@@ -93,13 +93,13 @@ void Florid::setImage(const QImage &image)
 void Florid::start()
 {
     Visual::start();
-    process(true);
+    processState(true);
 }
 
 void Florid::stop()
 {
     Visual::stop();
-    process(false);
+    processState(false);
 }
 
 void Florid::mediaUrlChanged()
@@ -148,18 +148,18 @@ void Florid::reRenderImage(QColor &avg, const QImage *input)
    avg.setBlue(b);
 }
 
-void Florid::process(bool state)
+void Florid::processState(bool v)
 {
     if(m_enabledLabel)
     {
-        state ? m_roundLabel->start() : m_roundLabel->stop();
+        v ? m_roundLabel->start() : m_roundLabel->stop();
     }
 }
 
 void Florid::hideEvent(QHideEvent *e)
 {
     Visual::hideEvent(e);
-    process(false);
+    processState(false);
 }
 
 void Florid::showEvent(QShowEvent *e)
@@ -167,7 +167,7 @@ void Florid::showEvent(QShowEvent *e)
     Visual::showEvent(e);
     if(m_running)
     {
-        process(true);
+        processState(true);
     }
 }
 

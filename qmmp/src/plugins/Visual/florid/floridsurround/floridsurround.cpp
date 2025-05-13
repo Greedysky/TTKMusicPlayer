@@ -49,7 +49,7 @@ void FloridSurround::paintEvent(QPaintEvent *e)
     }
 }
 
-void FloridSurround::process(float *left, float *)
+void FloridSurround::processData(float *left, float *)
 {
     const int rows = height();
     const int cols = width();

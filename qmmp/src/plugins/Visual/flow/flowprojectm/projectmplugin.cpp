@@ -71,7 +71,7 @@ void ProjectMPlugin::contextMenuEvent(QContextMenuEvent *)
     m_menu->exec(QCursor::pos());
 }
 
-void ProjectMPlugin::process(float *left, float *right)
+void ProjectMPlugin::processData(float *left, float *right)
 {
     m_projectMWidget->addPCM(left, right);
     m_projectMWidget->update();

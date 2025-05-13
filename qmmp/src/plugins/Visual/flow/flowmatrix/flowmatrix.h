@@ -21,9 +21,6 @@
 
 #include <qmmp/visual.h>
 
-class QTimer;
-class QHideEvent;
-class QShowEvent;
 class Matrix;
 
 /*!
@@ -41,8 +38,8 @@ private:
     virtual void paintEvent(QPaintEvent *e) override final;
     virtual void contextMenuEvent(QContextMenuEvent *) override final;
 
-    virtual void process(float *left, float *right) override final;
-    virtual void process(bool state) override final;
+    virtual void processData(float *left, float *right) override final;
+    virtual void processState(bool v) override final;
 
     int m_x = 0, m_y = 0;
     QPixmap m_pixmap;

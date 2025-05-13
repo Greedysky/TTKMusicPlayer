@@ -89,7 +89,7 @@ void PlusBlurXRays::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void PlusBlurXRays::process(float *left, float *)
+void PlusBlurXRays::processData(float *left, float *)
 {
     const int rows = height();
     const int cols = width();

@@ -244,7 +244,7 @@ void FloridElectric::resizeEvent(QResizeEvent *)
     m_roundLabel->raise();
 }
 
-void FloridElectric::process(float *, float *)
+void FloridElectric::processData(float *, float *)
 {
     m_label->setColor(m_averageColor);
 }

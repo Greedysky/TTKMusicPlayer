@@ -51,7 +51,7 @@ void FloridBass::paintEvent(QPaintEvent *e)
     }
 }
 
-void FloridBass::process(float *left, float *)
+void FloridBass::processData(float *left, float *)
 {
     const int rows = height();
     const int cols = width();

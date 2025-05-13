@@ -42,7 +42,7 @@ public:
 private:
     virtual void contextMenuEvent(QContextMenuEvent *) override final;
 
-    virtual void process(float *left, float *right) override final;
+    virtual void processData(float *left, float *right) override final;
 
     QMenu *m_menu;
     QSplitter *m_splitter;

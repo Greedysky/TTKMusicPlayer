@@ -83,7 +83,7 @@ void FloridAutism::resizeEvent(QResizeEvent *)
     m_roundLabel->raise();
 }
 
-void FloridAutism::process(float *, float *)
+void FloridAutism::processData(float *, float *)
 {
     AutismLabel *label = m_labels[m_index];
     label->setColor(m_averageColor);

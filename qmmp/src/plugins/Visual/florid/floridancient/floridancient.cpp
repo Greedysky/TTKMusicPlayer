@@ -170,7 +170,7 @@ void FloridAncient::resizeEvent(QResizeEvent *)
     m_roundLabel->raise();
 }
 
-void FloridAncient::process(float *left, float *)
+void FloridAncient::processData(float *left, float *)
 {
     for(int i = 0; i < m_labels.count(); ++i)
     {
