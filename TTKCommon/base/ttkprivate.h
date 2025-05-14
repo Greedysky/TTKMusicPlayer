@@ -25,26 +25,26 @@
 
 #define TTK_DECLARE_PRIVATE(Class) \
     friend class Class##Private; \
-    TTKPrivateInterface<Class, Class##Private> ttk_d;
+    TTKPrivateInterface<Class, Class##Private> _d;
 
 #define TTK_DECLARE_PUBLIC(Class) \
     friend class Class;
 
 #define TTK_INIT_PRIVATE(Class) \
-    ttk_d.setPrivate(new Class##Private); \
-    ttk_d.setPublic(this);
+    _d.setPrivate(new Class##Private); \
+    _d.setPublic(this);
 
-#define TTK_INIT_PRIVATE_D(PVT) \
-    ttk_d.setPrivate(&PVT); \
-    ttk_d.setPublic(this);
+#define TTK_INIT_PRIVATE_OBJECT(PVT) \
+    _d.setPrivate(&PVT); \
+    _d.setPublic(this);
 
-#define TTK_D(Class) Class##Private *const d = TTKStaticCast(Class##Private*, ttk_d())
-#define TTK_Q(Class) Class *const q = TTKStaticCast(Class*, ttk_q())
+#define TTK_D(Class) Class##Private *const d = TTKStaticCast(Class##Private*, _d())
+#define TTK_Q(Class) Class *const q = TTKStaticCast(Class*, _q())
 
-template <typename PUB>
 /*! @brief The class of the ttk private base.
  * @author Greedysky <greedysky@163.com>
  */
+template <typename PUB>
 class TTK_MODULE_EXPORT TTKPrivate
 {
 public:
@@ -74,7 +74,7 @@ protected:
     /*!
      *  Get public pointer.
      */
-    inline PUB *ttk_q() const noexcept
+    inline PUB *_q() const noexcept
     {
         return m_qptr;
     }
@@ -85,10 +85,10 @@ private:
 };
 
 
-template <typename PUB, typename PVT>
 /*! @brief The class of the ttk private interface.
  * @author Greedysky <greedysky@163.com>
  */
+template <typename PUB, typename PVT>
 class TTK_MODULE_EXPORT TTKPrivateInterface
 {
     friend class TTKPrivate<PUB>;
@@ -106,6 +106,12 @@ public:
         : m_dptr(pvt)
     {
 
+    }
+
+    TTKPrivateInterface(PVT* pvt, PUB* pub) noexcept
+        : m_dptr(pvt)
+    {
+        setPublic(pub);
     }
 
     /*!

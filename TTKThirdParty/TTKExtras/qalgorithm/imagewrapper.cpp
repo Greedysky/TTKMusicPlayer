@@ -24,7 +24,7 @@ ImageRender::ImageRender()
 
 ImageRender::ImageRender(ImageRenderPrivate &pvt)
 {
-    TTK_INIT_PRIVATE_D(pvt);
+    TTK_INIT_PRIVATE_OBJECT(pvt);
 }
 
 void ImageRender::input(const QRect &region)

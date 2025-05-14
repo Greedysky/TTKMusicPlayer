@@ -33,11 +33,13 @@ QHttpServerPrivate::QHttpServerPrivate() noexcept
 
 bool QHttpServerPrivate::listen(const QHostAddress &address, quint16 port)
 {
-    m_tcpServer = new QTcpServer(ttk_q());
-    bool couldBindToPort = m_tcpServer->listen(address, port);
+    TTK_Q(QHttpServer);
+    m_tcpServer = new QTcpServer(q);
+
+    const bool couldBindToPort = m_tcpServer->listen(address, port);
     if(couldBindToPort)
     {
-        QObject::connect(m_tcpServer, SIGNAL(newConnection()), ttk_q(), SLOT(newConnection()));
+        QObject::connect(m_tcpServer, SIGNAL(newConnection()), q, SLOT(newConnection()));
     }
     else
     {
@@ -48,11 +50,11 @@ bool QHttpServerPrivate::listen(const QHostAddress &address, quint16 port)
 
 void QHttpServerPrivate::create()
 {
+    TTK_Q(QHttpServer);
     while(m_tcpServer->hasPendingConnections())
     {
-        QHttpConnection *connection = new QHttpConnection(m_tcpServer->nextPendingConnection(), ttk_q());
-        QObject::connect(connection, SIGNAL(newRequest(QHttpRequest *, QHttpResponse *)), ttk_q(),
-                         SIGNAL(newRequest(QHttpRequest *, QHttpResponse *)));
+        QHttpConnection *connection = new QHttpConnection(m_tcpServer->nextPendingConnection(), q);
+        QObject::connect(connection, SIGNAL(newRequest(QHttpRequest*, QHttpResponse*)), q, SIGNAL(newRequest(QHttpRequest*, QHttpResponse*)));
     }
 }
 

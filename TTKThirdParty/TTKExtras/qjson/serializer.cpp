@@ -97,11 +97,7 @@ QByteArray Serializer::SerializerPrivate::join(const QList<QByteArray>& list, ch
 QByteArray Serializer::SerializerPrivate::serialize(const QVariant &v, bool *ok, int indentLevel)
 {
   QByteArray str;
-#if TTK_QT_VERSION_CHECK(6,0,0)
-  const int type = v.metaType().id();
-#else
-  const int type = v.type();
-#endif
+  const int type = QtVariantType(v);
 
   if ( ! v.isValid() ) { // invalid or null?
     str = "null";

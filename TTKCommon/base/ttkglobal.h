@@ -103,12 +103,14 @@
 
 
 // C style format
-using TTKVoid     = void;                       /* void */
-using TTKVoidPtr  = void *;                     /* void pointer */
-using TTKCVoidPtr = const void *;               /* const void pointer */
-using TTKVoidCPtr = void * const;               /* const void const pointer */
+using TTKVoid      = void;                      /* void */
+using TTKVoidPtr   = void *;                    /* void pointer */
+using TTKVoidCPtr  = void * const;              /* void const pointer */
+using TTKCVoidPtr  = const void *;              /* const void pointer */
+using TTKCVoidCPtr = const void * const;        /* const void const pointer */
 
 using TTKStrPtr   = char *;                     /* char pointer */
+using TTKStrCPtr  = char * const;               /* char const pointer */
 using TTKCStrPtr  = const char *;               /* const char pointer */
 using TTKCStrCPtr = const char * const;         /* const char const pointer */
 
@@ -130,14 +132,32 @@ using TTKInt16Ptr  = TTKInt16 *;                /* 16bit signed intergrate point
 using TTKIn32Ptr   = TTKInt32 *;                /* 32bit signed intergrate pointer */
 using TTKInt64Ptr  = TTKInt64 *;                /* 64bit signed intergrate pointer */
 
-using TTKCUInt8Ptr  = const TTKUInt8Ptr;        /* const 8bit unsigned intergrate pointer */
-using TTKCUInt16Ptr = const TTKUInt16Ptr;       /* const 16bit unsigned intergrate pointer */
-using TTKCUIn32Ptr  = const TTKUIn32Ptr;        /* const 32bit unsigned intergrate pointer */
-using TTKCUInt64Ptr = const TTKUInt64Ptr;       /* const 64bit unsigned intergrate pointer */
-using TTKCInt8Ptr   = const TTKInt8Ptr;         /* const 8bit signed intergrate pointer */
-using TTKCInt16Ptr  = const TTKInt16Ptr;        /* const 16bit signed intergrate pointer */
-using TTKCIn32Ptr   = const TTKIn32Ptr;         /* const 32bit signed intergrate pointer */
-using TTKCInt64Ptr  = const TTKInt64Ptr;        /* const 64bit signed intergrate pointer */
+using TTKUInt8CPtr  = TTKUInt8 * const;         /* 8bit unsigned intergrate const pointer */
+using TTKUInt16CPtr = TTKUInt16 * const;        /* 16bit unsigned intergrate const pointer */
+using TTKUIn32CPtr  = TTKUInt32 * const;        /* 32bit unsigned intergrate const pointer */
+using TTKUInt64CPtr = TTKUInt64 * const;        /* 64bit unsigned intergrate const pointer */
+using TTKInt8CPtr   = TTKInt8 * const;          /* 8bit signed intergrate const pointer */
+using TTKInt16CPtr  = TTKInt16 * const;         /* 16bit signed intergrate const pointer */
+using TTKIn32CPtr   = TTKInt32 * const;         /* 32bit signed intergrate const pointer */
+using TTKInt64CPtr  = TTKInt64 * const;         /* 64bit signed intergrate const pointer */
+
+using TTKCUInt8Ptr  = const TTKUInt8 *;         /* const 8bit unsigned intergrate pointer */
+using TTKCUInt16Ptr = const TTKUInt16 *;        /* const 16bit unsigned intergrate pointer */
+using TTKCUIn32Ptr  = const TTKUInt32 *;        /* const 32bit unsigned intergrate pointer */
+using TTKCUInt64Ptr = const TTKUInt64 *;        /* const 64bit unsigned intergrate pointer */
+using TTKCInt8Ptr   = const TTKInt8 *;          /* const 8bit signed intergrate pointer */
+using TTKCInt16Ptr  = const TTKInt16 *;         /* const 16bit signed intergrate pointer */
+using TTKCIn32Ptr   = const TTKInt32 *;         /* const 32bit signed intergrate pointer */
+using TTKCInt64Ptr  = const TTKInt64 *;         /* const 64bit signed intergrate pointer */
+
+using TTKCUInt8CPtr  = const TTKUInt8 * const;  /* const 8bit unsigned intergrate const pointer */
+using TTKCUInt16CPtr = const TTKUInt16 * const; /* const 16bit unsigned intergrate const pointer */
+using TTKCUIn32CPtr  = const TTKUInt32 * const; /* const 32bit unsigned intergrate const pointer */
+using TTKCUInt64CPtr = const TTKUInt64 * const; /* const 64bit unsigned intergrate const pointer */
+using TTKCInt8CPtr   = const TTKInt8 * const;   /* const 8bit signed intergrate const pointer */
+using TTKCInt16CPtr  = const TTKInt16 * const;  /* const 16bit signed intergrate const pointer */
+using TTKCIn32CPtr   = const TTKInt32 * const;  /* const 32bit signed intergrate const pointer */
+using TTKCInt64CPtr  = const TTKInt64 * const;  /* const 64bit signed intergrate const pointer */
 
 using TTKReal   = double;                       /* real */
 using TTKDouble = TTKReal;                      /* double */
@@ -164,6 +184,16 @@ using TTKWString = std::wstring;                /* wstring */
 #else
 #  define TTK_DEPRECATED          __attribute__((__deprecated__))
 #  define TTK_DEPRECATED_X(text)  __attribute__((__deprecated__(text)))
+#endif
+
+
+// Avoid "unused parameter" warnings
+#define TTK_UNUSED(x) (void)x;
+
+#ifdef _MSC_VER
+#  define TTK_DECL_UNUSED
+#else
+#  define TTK_DECL_UNUSED   __attribute__((__unused__))
 #endif
 
 
@@ -284,30 +314,30 @@ using TTKWString = std::wstring;                /* wstring */
 
 
 // ttk item size define
-#define TTK_ITEM_SIZE_3XS       5
-#define TTK_ITEM_SIZE_2XS       10
-#define TTK_ITEM_SIZE_XS        18
-#define TTK_ITEM_SIZE_S         25
-#define TTK_ITEM_SIZE_M         30
-#define TTK_ITEM_SIZE_L         40
-#define TTK_ITEM_SIZE_XL        50
-#define TTK_ITEM_SIZE_2XL       60
-#define TTK_ITEM_SIZE_3XL       75
-#define TTK_ITEM_SIZE_4XL       90
-#define TTK_ITEM_SIZE_5XL       105
+#define TTK_ITEM_SIZE_3XS   5
+#define TTK_ITEM_SIZE_2XS   10
+#define TTK_ITEM_SIZE_XS    18
+#define TTK_ITEM_SIZE_S     25
+#define TTK_ITEM_SIZE_M     30
+#define TTK_ITEM_SIZE_L     40
+#define TTK_ITEM_SIZE_XL    50
+#define TTK_ITEM_SIZE_2XL   60
+#define TTK_ITEM_SIZE_3XL   75
+#define TTK_ITEM_SIZE_4XL   90
+#define TTK_ITEM_SIZE_5XL   105
 
 
 // ttk level define
-#define TTK_NONE_LEVEL          -3
-#define TTK_LOW_LEVEL           -2
-#define TTK_NORMAL_LEVEL        -1
-#define TTK_HIGH_LEVEL          999
+#define TTK_NONE_LEVEL      -3
+#define TTK_LOW_LEVEL       -2
+#define TTK_NORMAL_LEVEL    -1
+#define TTK_HIGH_LEVEL      999
 
 
 // ttk buffer define
-#define TTK_LOW_BUFFER          256
-#define TTK_NORMAL_BUFFER       512
-#define TTK_HIGH_BUFFER         1024
+#define TTK_LOW_BUFFER      256
+#define TTK_NORMAL_BUFFER   512
+#define TTK_HIGH_BUFFER     1024
 
 
 // ttk date time number define
@@ -384,6 +414,7 @@ using TTKWString = std::wstring;                /* wstring */
 #define TTK_AN_60           60
 #define TTK_AN_90           90
 #define TTK_AN_120          120
+#define TTK_AN_150          150
 #define TTK_AN_180          180
 #define TTK_AN_270          270
 #define TTK_AN_360          360

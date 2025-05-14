@@ -10,7 +10,7 @@ QSyncDataInterface::QSyncDataInterface(QNetworkAccessManager *networkManager, QO
 QSyncDataInterface::QSyncDataInterface(QSyncDataInterfacePrivate &pvt, QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent)
 {
-    TTK_INIT_PRIVATE_D(pvt);
+    TTK_INIT_PRIVATE_OBJECT(pvt);
     TTK_D(QSyncDataInterface);
     d->m_manager = networkManager;
 }
