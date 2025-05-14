@@ -228,9 +228,12 @@ struct QOverload : QConstOverload<Args...>, QNonConstOverload<Args...>
     { return ptr; }
 };
 
+#if TTK_HAS_CXX14
 template <typename... Args> TTK_CONSTEXPR TTK_DECL_UNUSED QOverload<Args...> qOverload = {};
 template <typename... Args> TTK_CONSTEXPR TTK_DECL_UNUSED QConstOverload<Args...> qConstOverload = {};
 template <typename... Args> TTK_CONSTEXPR TTK_DECL_UNUSED QNonConstOverload<Args...> qNonConstOverload = {};
+#endif
+
 #endif
 
 #endif // TTKQTCOMPAT_H
