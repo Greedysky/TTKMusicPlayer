@@ -153,13 +153,13 @@ QDlnaClient::QDlnaClient(const QString &data)
 
 QString QDlnaClient::server() const
 {
-    TTK_D(QDlnaClient);
+    TTK_D(const QDlnaClient);
     return d->m_serverIP;
 }
 
 QString QDlnaClient::serverName() const
 {
-    TTK_D(QDlnaClient);
+    TTK_D(const QDlnaClient);
     return d->m_friendlyName;
 }
 
@@ -171,13 +171,13 @@ bool QDlnaClient::connect() const
 
 bool QDlnaClient::isConnected() const
 {
-    TTK_D(QDlnaClient);
+    TTK_D(const QDlnaClient);
     return d->m_isConnected;
 }
 
 bool QDlnaClient::open(const QString &url) const
 {
-    TTK_D(QDlnaClient);
+    TTK_D(const QDlnaClient);
     //Later we will send a message to the DLNA server to start the file playing
     QFileInfo fin(url);
     QString play_url = url;
@@ -197,7 +197,7 @@ bool QDlnaClient::open(const QString &url) const
 
 bool QDlnaClient::play(int instance) const
 {
-    TTK_D(QDlnaClient);
+    TTK_D(const QDlnaClient);
     //Start playing the new upload film or music track
     QString body = XML_HEAD;
     body += "<u:Play xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>"+ QString::number(instance) + "</InstanceID><Speed>1</Speed></u:Play>\n";
@@ -208,7 +208,7 @@ bool QDlnaClient::play(int instance) const
 
 bool QDlnaClient::pause(int instance) const
 {
-    TTK_D(QDlnaClient);
+    TTK_D(const QDlnaClient);
     //Called to pause playing a movie or a music track
     QString body = XML_HEAD;
     body += "<u:Pause xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:Pause>\n";
@@ -219,7 +219,7 @@ bool QDlnaClient::pause(int instance) const
 
 bool QDlnaClient::stop(int instance) const
 {
-    TTK_D(QDlnaClient);
+    TTK_D(const QDlnaClient);
     //Called to stop playing a movie or a music track
     QString body = XML_HEAD;
     body += "<u:Stop xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:Stop>\n";
@@ -230,7 +230,7 @@ bool QDlnaClient::stop(int instance) const
 
 bool QDlnaClient::remove(int instance) const
 {
-    TTK_D(QDlnaClient);
+    TTK_D(const QDlnaClient);
     //Called to remove queue track
     QString body = XML_HEAD;
     body += "<u:RemoveAllTracksFromQueue xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:RemoveAllTracksFromQueue>\n";
@@ -246,7 +246,7 @@ static qint64 valueToSecond(const QString &value)
 
 bool QDlnaClient::position(qint64 &position, qint64 &duration, int instance) const
 {
-    TTK_D(QDlnaClient);
+    TTK_D(const QDlnaClient);
     //Returns the current position for the track that is playing on the DLNA server
     QString body = XML_HEAD;
     body += "<u:GetPositionInfo xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:GetPositionInfo>\n";

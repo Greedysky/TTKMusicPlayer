@@ -69,7 +69,7 @@ void QSyncUploadData::request(const QString &time, const QString &bucket, const 
 
 void QSyncUploadData::receiveDataFromServer()
 {
-    TTK_D(QSyncUploadData);
+    TTK_D(const QSyncUploadData);
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply)
     {
@@ -91,6 +91,6 @@ void QSyncUploadData::receiveDataFromServer()
 
 void QSyncUploadData::uploadProgress(qint64 percent, qint64 total)
 {
-    TTK_D(QSyncUploadData);
+    TTK_D(const QSyncUploadData);
     Q_EMIT uploadProgressChanged(d->m_uploadTime, percent, total);
 }

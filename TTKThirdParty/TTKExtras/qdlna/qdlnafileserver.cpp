@@ -40,7 +40,7 @@ QDlnaFileServer::QDlnaFileServer(QObject *parent)
     : QObject(parent)
 {
     TTK_INIT_PRIVATE(QDlnaFileServer);
-    TTK_D(QDlnaFileServer);
+    TTK_D(const QDlnaFileServer);
     connect(d->m_server, SIGNAL(newRequest(QHttpRequest*, QHttpResponse*)), SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
 }
 
@@ -73,7 +73,7 @@ QString QDlnaFileServer::localAddress(const QString &prefix) const
 
 void QDlnaFileServer::handleRequest(QHttpRequest *request, QHttpResponse *response)
 {
-    TTK_D(QDlnaFileServer);
+    TTK_D(const QDlnaFileServer);
     if(d->m_prefix.isEmpty())
     {
         response->writeHead(500);

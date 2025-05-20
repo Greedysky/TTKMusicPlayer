@@ -140,7 +140,7 @@ void QKugouWindow::kugouSongIndexChanged(int index)
 {
     if(index == 0)
     {
-        TTK_D(QKugouWindow);
+        TTK_D(const QKugouWindow);
         const QList<QAbstractButton*> &buttons = d->m_buttonGroup->buttons();
         buttons[index]->setStyleSheet(TTK::UI::PushButtonStyle02);
         setUrl(QKugouUrl::makeSongRecommendUrl());

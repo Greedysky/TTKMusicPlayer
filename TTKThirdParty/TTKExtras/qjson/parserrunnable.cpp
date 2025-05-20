@@ -51,7 +51,7 @@ void ParserRunnable::setData(const QByteArray &data)
 
 void ParserRunnable::run()
 {
-  TTK_D(ParserRunnable);
+  TTK_D(const ParserRunnable);
 
   bool ok = false;
   Parser parser;

@@ -466,7 +466,7 @@ void QJson::Serializer::allowSpecialNumbers(bool allow)
 
 bool QJson::Serializer::specialNumbersAllowed() const
 {
-  TTK_D(Serializer);
+  TTK_D(const Serializer);
   return d->specialNumbersAllowed;
 }
 
@@ -484,12 +484,12 @@ void QJson::Serializer::setDoublePrecision(int precision)
 
 IndentMode QJson::Serializer::indentMode() const
 {
-  TTK_D(Serializer);
+  TTK_D(const Serializer);
   return d->indentMode;
 }
 
 QString QJson::Serializer::errorMessage() const
 {
-  TTK_D(Serializer);
+  TTK_D(const Serializer);
   return d->errorMessage;
 }

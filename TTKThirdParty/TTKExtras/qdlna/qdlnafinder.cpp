@@ -72,7 +72,7 @@ QDlnaFinder::QDlnaFinder(QObject *parent)
     : QObject(parent)
 {
     TTK_INIT_PRIVATE(QDlnaFinder);
-    TTK_D(QDlnaFinder);
+    TTK_D(const QDlnaFinder);
     connect(d->m_udpSock, SIGNAL(readyRead()), SLOT(handleReadyRead()));
 }
 
@@ -84,7 +84,7 @@ void QDlnaFinder::find()
 
 QDlnaClient* QDlnaFinder::client(int index) const
 {
-    TTK_D(QDlnaFinder);
+    TTK_D(const QDlnaFinder);
     if(index < 0 || index >= d->m_clients.count())
     {
         return nullptr;
@@ -95,13 +95,13 @@ QDlnaClient* QDlnaFinder::client(int index) const
 
 QList<QDlnaClient*> QDlnaFinder::clients() const
 {
-    TTK_D(QDlnaFinder);
+    TTK_D(const QDlnaFinder);
     return d->m_clients;
 }
 
 QStringList QDlnaFinder::clientNames() const
 {
-    TTK_D(QDlnaFinder);
+    TTK_D(const QDlnaFinder);
     QStringList names;
     for(QDlnaClient *client : qAsConst(d->m_clients))
     {

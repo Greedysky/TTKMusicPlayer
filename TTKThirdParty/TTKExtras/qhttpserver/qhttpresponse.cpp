@@ -277,6 +277,6 @@ void QHttpResponse::setKeepAlive(bool alive)
 
 bool QHttpResponse::isLast() const
 {
-    TTK_D(QHttpResponse);
+    TTK_D(const QHttpResponse);
     return d->m_last;
 }

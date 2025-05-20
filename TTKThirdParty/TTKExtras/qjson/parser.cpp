@@ -122,13 +122,13 @@ QVariant Parser::parse(const QByteArray &jsonString, bool* ok)
 
 QString Parser::errorString() const
 {
-  TTK_D(Parser);
+  TTK_D(const Parser);
   return d->m_errorMsg;
 }
 
 int Parser::errorLine() const
 {
-  TTK_D(Parser);
+  TTK_D(const Parser);
   return d->m_errorLine;
 }
 
@@ -140,6 +140,6 @@ void QJson::Parser::allowSpecialNumbers(bool allowSpecialNumbers)
 
 bool Parser::specialNumbersAllowed() const
 {
-  TTK_D(Parser);
+  TTK_D(const Parser);
   return d->m_specialNumbersAllowed;
 }

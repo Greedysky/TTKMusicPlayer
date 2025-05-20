@@ -54,7 +54,7 @@ void SerializerRunnable::setJsonObject(const QVariant &json)
 
 void SerializerRunnable::run()
 {
-  TTK_D(SerializerRunnable);
+  TTK_D(const SerializerRunnable);
   Serializer serializer;
   bool ok = false;
   const QByteArray serialized = serializer.serialize( d->json, &ok);

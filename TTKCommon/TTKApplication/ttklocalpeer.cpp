@@ -149,7 +149,7 @@ bool TTKLocalPeer::isClient() const
 
 bool TTKLocalPeer::sendMessage(const QString &message, int timeout) const
 {
-    TTK_D(TTKLocalPeer);
+    TTK_D(const TTKLocalPeer);
     if(!isClient())
     {
         return false;
@@ -198,7 +198,7 @@ bool TTKLocalPeer::sendMessage(const QString &message, int timeout) const
 
 QString TTKLocalPeer::applicationId() const noexcept
 {
-    TTK_D(TTKLocalPeer);
+    TTK_D(const TTKLocalPeer);
     return d->m_id;
 }
 

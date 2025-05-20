@@ -42,7 +42,7 @@ GaussBlur::GaussBlur()
 
 QPixmap GaussBlur::render(const QPixmap &pixmap, int value)
 {
-    TTK_D(ImageRender);
+    TTK_D(const ImageRender);
     QImage image = pixmap.copy(d->m_rectangle).toImage();
 
     const float sigma = 1.0 * value / 2.57;
@@ -191,7 +191,7 @@ bool CubeWavePrivate::isValid(int index, int value) const
     return (index < 0 || index > m_data.count()) ? false : (m_data[index] > value);
 }
 
-int CubeWavePrivate::count()  const
+int CubeWavePrivate::count() const
 {
     return 8 * 8;
 }
@@ -217,7 +217,7 @@ void CubeWave::input(const QRect &region)
 
 QPixmap CubeWave::render(const QPixmap &pixmap, int value)
 {
-    TTK_D(CubeWave);
+    TTK_D(const CubeWave);
     QPixmap pix(d->m_rectangle.size());
 
     pix.fill(Qt::transparent);

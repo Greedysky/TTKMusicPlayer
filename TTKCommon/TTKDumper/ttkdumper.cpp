@@ -35,7 +35,7 @@ public:
     static void errorHandler(int id);
 #endif
 
-    void initialize();
+    void initialize() const;
 
     static QString m_name;
     static QString m_version;
@@ -188,7 +188,7 @@ void TTKDumperPrivate::errorHandler(int id)
     exit(0);
 }
 
-void TTKDumperPrivate::initialize()
+void TTKDumperPrivate::initialize() const
 {
     signal(SIGPIPE, errorHandler);
     signal(SIGSEGV, errorHandler);
@@ -226,6 +226,6 @@ TTKDumper::~TTKDumper() noexcept
 
 void TTKDumper::run()
 {
-    TTK_D(TTKDumper);
+    TTK_D(const TTKDumper);
     d->initialize();
 }

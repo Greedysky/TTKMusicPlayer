@@ -118,7 +118,7 @@ QGlobalShortcut::~QGlobalShortcut()
 
 QKeySequence QGlobalShortcut::shortcut() const
 {
-    TTK_D(QGlobalShortcut);
+    TTK_D(const QGlobalShortcut);
     return QKeySequence(d->m_key | d->m_mods);
 }
 
@@ -140,7 +140,7 @@ void QGlobalShortcut::unsetShortcut()
 
 bool QGlobalShortcut::isEnabled() const
 {
-    TTK_D(QGlobalShortcut);
+    TTK_D(const QGlobalShortcut);
     return d->m_enabled;
 }
 

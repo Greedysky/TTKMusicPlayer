@@ -46,13 +46,13 @@ TTKApplication::TTKApplication(const QString &id, int &argc, char **argv)
 
 bool TTKApplication::isRunning() const
 {
-    TTK_D(TTKApplication);
+    TTK_D(const TTKApplication);
     return d->m_peer->isClient();
 }
 
 QString TTKApplication::id() const noexcept
 {
-    TTK_D(TTKApplication);
+    TTK_D(const TTKApplication);
     return d->m_peer->applicationId();
 }
 
@@ -73,13 +73,13 @@ void TTKApplication::setActivationWindow(QWidget* aw, bool activateOnMessage) co
 
 QWidget* TTKApplication::activationWindow() const noexcept
 {
-    TTK_D(TTKApplication);
+    TTK_D(const TTKApplication);
     return d->m_activeWindow;
 }
 
 bool TTKApplication::sendMessage(const QString &message, int timeout)
 {
-    TTK_D(TTKApplication);
+    TTK_D(const TTKApplication);
     return d->m_peer->sendMessage(message, timeout);
 }
 

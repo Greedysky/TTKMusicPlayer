@@ -54,7 +54,7 @@ void QRCodeQWidget::setMargin(const int margin)
 
 int QRCodeQWidget::margin() const
 {
-    TTK_D(QRCodeQWidget);
+    TTK_D(const QRCodeQWidget);
     return d->m_margin;
 }
 
@@ -68,7 +68,7 @@ void QRCodeQWidget::setIcon(const QString &path, float percent)
 
 QString QRCodeQWidget::icon() const
 {
-    TTK_D(QRCodeQWidget);
+    TTK_D(const QRCodeQWidget);
     return d->m_iconPath;
 }
 
@@ -80,7 +80,7 @@ void QRCodeQWidget::setIconPercent(float percent)
 
 float QRCodeQWidget::iconPercent() const
 {
-    TTK_D(QRCodeQWidget);
+    TTK_D(const QRCodeQWidget);
     return d->m_percent;
 }
 
@@ -93,7 +93,7 @@ void QRCodeQWidget::setCaseSensitive(bool flag)
 
 bool QRCodeQWidget::caseSensitive() const
 {
-    TTK_D(QRCodeQWidget);
+    TTK_D(const QRCodeQWidget);
     return d->m_casesen;
 }
 
@@ -105,7 +105,7 @@ void QRCodeQWidget::setText(const QByteArray &text)
 
 QByteArray QRCodeQWidget::text() const
 {
-    TTK_D(QRCodeQWidget);
+    TTK_D(const QRCodeQWidget);
     return d->m_text;
 }
 
@@ -117,7 +117,7 @@ void QRCodeQWidget::setForegroundColor(const QColor &color)
 
 QColor QRCodeQWidget::foregroundColor() const
 {
-    TTK_D(QRCodeQWidget);
+    TTK_D(const QRCodeQWidget);
     return d->m_foreground;
 }
 
@@ -129,7 +129,7 @@ void QRCodeQWidget::setBackgroundColor(const QColor &color)
 
 QColor QRCodeQWidget::backgroundColor() const
 {
-    TTK_D(QRCodeQWidget);
+    TTK_D(const QRCodeQWidget);
     return d->m_background;
 }
 
@@ -141,7 +141,7 @@ void QRCodeQWidget::setMode(QRencodeMode mode)
 
 QRencodeMode QRCodeQWidget::mode() const
 {
-    TTK_D(QRCodeQWidget);
+    TTK_D(const QRCodeQWidget);
     return d->m_mode;
 }
 
@@ -153,13 +153,13 @@ void QRCodeQWidget::setLevel(QRecLevel level)
 
 QRecLevel QRCodeQWidget::level() const
 {
-    TTK_D(QRCodeQWidget);
+    TTK_D(const QRCodeQWidget);
     return d->m_level;
 }
 
 void QRCodeQWidget::paintEvent(QPaintEvent *event)
 {
-    TTK_D(QRCodeQWidget);
+    TTK_D(const QRCodeQWidget);
     QWidget::paintEvent (event);
     QPainter painter(this);
 

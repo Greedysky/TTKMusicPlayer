@@ -91,7 +91,7 @@ QString QSyncDownloadData::downloadUrl(const QString &bucket, const QString &fil
 
 void QSyncDownloadData::receiveDataFromServer()
 {
-    TTK_D(QSyncDownloadData);
+    TTK_D(const QSyncDownloadData);
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply)
     {
@@ -119,6 +119,6 @@ void QSyncDownloadData::receiveDataFromServer()
 
 void QSyncDownloadData::downloadProgress(qint64 bytesSent, qint64 bytesTotal)
 {
-    TTK_D(QSyncDownloadData);
+    TTK_D(const QSyncDownloadData);
     Q_EMIT downloadProgressChanged(d->m_downloadTime, bytesSent, bytesTotal);
 }
