@@ -89,8 +89,7 @@ static float costable[FFT_BUFFER_SIZE / 2];
  * On error, returns NULL.
  * The pointer should be freed when it is finished with, by fft_close().
  */
-fft_state *
-fft_init(void)
+fft_state *fft_init(void)
 {
     fft_state *state;
     unsigned int i;
@@ -127,8 +126,7 @@ fft_init(void)
  * and the output array is assumed to have (FFT_BUFFER_SIZE / 2 + 1) elements.
  * state is a (non-NULL) pointer returned by fft_init.
  */
-void
-fft_perform(const float *input, float *output, fft_state * state)
+void fft_perform(const float *input, float *output, fft_state * state)
 {
     /* Convert data from sound format to be ready for FFT */
     fft_prepare(input, state->real, state->imag);
@@ -143,8 +141,7 @@ fft_perform(const float *input, float *output, fft_state * state)
 /*
  * Free the state.
  */
-void
-fft_close(fft_state * state)
+void fft_close(fft_state * state)
 {
     if(state)
         free(state);
@@ -157,8 +154,7 @@ fft_close(fft_state * state)
 /*
  * Prepare data to perform an FFT on
  */
-static void
-fft_prepare(const float *input, float *re, float *im)
+static void fft_prepare(const float *input, float *re, float *im)
 {
     unsigned int i;
     float *realptr = re;
@@ -183,8 +179,7 @@ fft_prepare(const float *input, float *re, float *im)
  * FFT_BUFFER_SIZE which would otherwise get float (and then 4* when squared)
  * the contributions.
  */
-static void
-fft_output(const float *re, const float *im, float *output)
+static void fft_output(const float *re, const float *im, float *output)
 {
     float *outputptr = output;
     const float *realptr = re;
@@ -227,8 +222,7 @@ fft_output(const float *re, const float *im, float *output)
 /*
  * Actually perform the FFT
  */
-static void
-fft_calculate(float *re, float *im)
+static void fft_calculate(float *re, float *im)
 {
     unsigned int i, j, k;
     unsigned int exchanges;
@@ -285,8 +279,7 @@ fft_calculate(float *re, float *im)
     }
 }
 
-static int
-reverseBits(unsigned int initial)
+static int reverseBits(unsigned int initial)
 {
     unsigned int reversed = 0, loop;
     for(loop = 0; loop < FFT_BUFFER_SIZE_LOG; ++loop) {

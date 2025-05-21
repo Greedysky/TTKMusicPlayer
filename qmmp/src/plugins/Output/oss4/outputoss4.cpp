@@ -124,7 +124,7 @@ bool OutputOSS4::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     }
 
     ChannelMap oss_map;
-    for(int i = 0; i < chan; i++)
+    for(int i = 0; i < chan; ++i)
     {
         quint32 pos = ((layout >> (i * 4)) & 0x0f);
         oss_map << m_oss_pos[pos];

@@ -20,14 +20,12 @@
 #define _FFT_H_
 
 #define FFT_BUFFER_SIZE_LOG 9
-
 #define FFT_BUFFER_SIZE (1 << FFT_BUFFER_SIZE_LOG)
 
 /*
      modifications compared to original code:
      using float format for input data
 */
-
 
 #ifdef __cplusplus
 extern "C" {
@@ -36,13 +34,10 @@ extern "C" {
 /* FFT library */
     typedef struct _struct_fft_state fft_state;
     fft_state *fft_init(void);
-    void fft_perform(const float *input, float *output,
-                     fft_state * state);
+    void fft_perform(const float *input, float *output, fft_state * state);
     void fft_close(fft_state * state);
-
-
 
 #ifdef __cplusplus
 }
 #endif
-#endif                          /* _FFT_H_ */
+#endif  /* _FFT_H_ */

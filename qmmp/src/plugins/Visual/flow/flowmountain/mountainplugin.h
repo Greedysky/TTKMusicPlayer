@@ -30,14 +30,26 @@ class MountainPlugin : public Visual
 {
     Q_OBJECT
 public:
+    enum Type
+    {
+        Simple,
+        Complex
+    };
+
+public:
     explicit MountainPlugin(QWidget *parent = nullptr);
+
+private slots:
+    void positionChanged(QAction *action);
 
 private:
     virtual void contextMenuEvent(QContextMenuEvent *) override final;
 
     virtual void processData(float *left, float *right) override final;
+    void createMoudle(Type type);
 
-    MountainWidget *m_mountainWidget;
+    Type m_type;
+    MountainWidget *m_mountainWidget = nullptr;
 
 };
 

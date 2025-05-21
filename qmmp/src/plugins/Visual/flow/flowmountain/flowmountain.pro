@@ -10,10 +10,14 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += mountainplugin.h \
            mountainwidget.h \
+           mountainmidwidget.h \
+           mountainsidewidget.h \
            visualflowmountainfactory.h
 
 SOURCES += mountainplugin.cpp \
            mountainwidget.cpp \
+           mountainmidwidget.cpp \
+           mountainsidewidget.cpp \
            visualflowmountainfactory.cpp
 
 win32{

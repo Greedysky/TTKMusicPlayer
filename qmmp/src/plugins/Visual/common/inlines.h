@@ -36,10 +36,7 @@ static inline void calc_freq(short* dest, float *src)
     }
 }
 
-static inline void stereo_from_multichannel(float *l,
-                                              float *r,
-                                              float *s,
-                                              long cnt, int chan)
+static inline void stereo_from_multichannel(float *l, float *r, float *s, long cnt, int chan)
 {
     if(chan == 1)
     {
@@ -61,9 +58,7 @@ static inline void stereo_from_multichannel(float *l,
 
 
 
-static inline void mono_from_multichannel(float *l,
-                                            float *s,
-                                            long cnt, int chan)
+static inline void mono_from_multichannel(float *l, float *s, long cnt, int chan)
 {
     if(chan == 1)
     {

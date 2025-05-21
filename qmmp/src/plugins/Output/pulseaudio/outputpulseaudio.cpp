@@ -91,7 +91,7 @@ bool OutputPulseAudio::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForma
 
     pa_channel_map pa_map;
     pa_map.channels = map.count();
-    for(int i = 0; i < map.count(); i++)
+    for(int i = 0; i < map.count(); ++i)
     {
         pa_map.map[i] = m_pa_channels[map.value(i)];
     }

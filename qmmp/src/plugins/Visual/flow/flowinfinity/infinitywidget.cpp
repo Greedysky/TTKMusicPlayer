@@ -444,27 +444,18 @@ void InfinityWidget::displaySpectral(short *left, short *right)
                 y2 = 0;
             }
 
-            displayLine(w2  + cosw.f[i - step] * (shift + y11),
-                        h2 + sinw.f[i - step] * (shift + y11),
-                        w2  + cosw.f[i] * (shift + y1),
-                        h2 + sinw.f[i] * (shift + y1),
+            displayLine(w2 + cosw.f[i - step] * (shift + y11), h2 + sinw.f[i - step] * (shift + y11),
+                        w2 + cosw.f[i] * (shift + y1), h2 + sinw.f[i] * (shift + y1),
                         effect->spectral_color);
-            displayLine(w2  - cosw.f[i - step] * (shift + y22),
-                        h2 + sinw.f[i - step] * (shift + y22),
-                        w2  - cosw.f[i] * (shift + y2),
-                        h2 + sinw.f[i] * (shift + y2),
+            displayLine(w2 - cosw.f[i - step] * (shift + y22), h2 + sinw.f[i - step] * (shift + y22),
+                        w2 - cosw.f[i] * (shift + y2), h2 + sinw.f[i] * (shift + y2),
                         effect->spectral_color);
             break;
         case 4:
-            displayLine(w2  + cosw.f[i - step] * (shift + y11),
-                        h2 + sinw.f[i - step] * (shift + y11),
-                        w2  + cosw.f[i] * (shift + y1),
-                        h2 + sinw.f[i] * (shift + y1),
-                        effect->spectral_color);
-            displayLine(w2  - cosw.f[i - step] * (shift + y22),
-                        h2 + sinw.f[i - step] * (shift + y22),
-                        w2  - cosw.f[i] * (shift + y2),
-                        h2 + sinw.f[i] * (shift + y2),
+            displayLine(w2 + cosw.f[i - step] * (shift + y11), h2 + sinw.f[i - step] * (shift + y11),
+                        w2 + cosw.f[i] * (shift + y1), h2 + sinw.f[i] * (shift + y1), effect->spectral_color);
+            displayLine(w2 - cosw.f[i - step] * (shift + y22), h2 + sinw.f[i - step] * (shift + y22),
+                        w2 - cosw.f[i] * (shift + y2), h2 + sinw.f[i] * (shift + y2),
                         effect->spectral_color);
             break;
         }
@@ -472,10 +463,8 @@ void InfinityWidget::displaySpectral(short *left, short *right)
 
     if(effect->mode_spectre == 3 || effect->mode_spectre == 4)
     {
-        displayLine(w2  + cosw.f[w - step] * (shift + y1),
-                    h2 + sinw.f[w - step] * (shift + y1),
-                    w2  - cosw.f[w - step] * (shift + y2),
-                    h2 + sinw.f[w - step] * (shift + y2),
+        displayLine(w2 + cosw.f[w - step] * (shift + y1), h2 + sinw.f[w - step] * (shift + y1),
+                    w2 - cosw.f[w - step] * (shift + y2), h2 + sinw.f[w - step] * (shift + y2),
                     effect->spectral_color);
     }
 }
