@@ -56,44 +56,29 @@ namespace Qt
 
             inline QByteArray operator""_ba(const char* str, size_t size) noexcept
             {
-                return operator""_s(str, static_cast<int>(size)).toUtf8();
+                return operator""_s(str, size).toUtf8();
             }
 
             inline QByteArray operator""_ba(const wchar_t* str, size_t size) noexcept
             {
-                return operator""_s(str, static_cast<int>(size)).toUtf8();
+                return operator""_s(str, size).toUtf8();
             }
 
             inline QByteArray operator""_ba(const char16_t* str, size_t size) noexcept
             {
-                return operator""_s(str, static_cast<int>(size)).toUtf8();
+                return operator""_s(str, size).toUtf8();
             }
 
             inline QByteArray operator""_ba(const char32_t* str, size_t size) noexcept
             {
-                return operator""_s(str, static_cast<int>(size)).toUtf8();
+                return operator""_s(str, size).toUtf8();
             }
 #endif
 
-#if TTK_QT_VERSION_CHECK(5,10,0)
-            inline QStringView operator""_sv(const char* str, size_t size) noexcept
-            {
-                return operator""_s(str, static_cast<int>(size));
-            }
-
-            inline QStringView operator""_sv(const wchar_t* str, size_t size) noexcept
-            {
-                return operator""_s(str, static_cast<int>(size));
-            }
-
+#if TTK_QT_VERSION_CHECK(5,10,0) && !TTK_QT_VERSION_CHECK(6,10,0)
             inline QStringView operator""_sv(const char16_t* str, size_t size) noexcept
             {
-                return operator""_s(str, static_cast<int>(size));
-            }
-
-            inline QStringView operator""_sv(const char32_t* str, size_t size) noexcept
-            {
-                return operator""_s(str, static_cast<int>(size));
+                return QStringView(str, size);
             }
 #endif
         }
