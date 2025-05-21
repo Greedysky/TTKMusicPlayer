@@ -1333,4 +1333,19 @@ too high may cause clipping!</source>
         <translation>分贝范围</translation>
     </message>
 </context>
+<context>
+    <name>MountainPlugin</name>
+    <message>
+        <source>Type</source>
+        <translation>类型</translation>
+    </message>
+    <message>
+        <source>Simple</source>
+        <translation>简单模式</translation>
+    </message>
+    <message>
+        <source>Complex</source>
+        <translation>专家模式</translation>
+    </message>
+</context>
 </TS>

@@ -1333,4 +1333,19 @@ too high may cause clipping!</source>
         <translation>分貝範圍</translation>
     </message>
 </context>
+<context>
+    <name>MountainPlugin</name>
+    <message>
+        <source>Type</source>
+        <translation>類型</translation>
+    </message>
+    <message>
+        <source>Simple</source>
+        <translation>簡單模式</translation>
+    </message>
+    <message>
+        <source>Complex</source>
+        <translation>專家模式</translation>
+    </message>
+</context>
 </TS>

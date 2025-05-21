@@ -153,7 +153,7 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
             return false;
         }
 
-        for(int j = 0; j < nm; j++)
+        for(int j = 0; j < nm; ++j)
         {
             if(m_file.read((char*)&v, 2) != 2)
             {
