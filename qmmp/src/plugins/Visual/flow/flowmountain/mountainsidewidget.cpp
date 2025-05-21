@@ -52,7 +52,8 @@ void MountainSideWidget::initializeGL()
     glLoadIdentity();
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    glBlendFunc(GL_SRC_ALPHA,GL_ONE);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
     for(int i = 0; i < NUM_BANDS; ++i)
     {
