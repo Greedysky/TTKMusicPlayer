@@ -47,7 +47,7 @@ QString TTKDumperPrivate::m_version = {};
 TTKDumperFunctor TTKDumperPrivate::m_functor = {};
 
 #ifdef Q_OS_WIN
-void TTKDumperPrivate::initialize()
+void TTKDumperPrivate::initialize() const
 {
     ::SetUnhandledExceptionFilter(errorHandler);
 }
