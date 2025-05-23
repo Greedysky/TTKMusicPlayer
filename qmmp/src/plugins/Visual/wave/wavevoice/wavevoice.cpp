@@ -104,15 +104,15 @@ void WaveVoice::paintEvent(QPaintEvent *)
 
         if(!showTwoChannels)
         {
-            const double left = qBound(0, m_intern_vis_data[i - 1] / 2, level) * 1.0 / level;
+            const double left = qBound(0, m_visualData[i - 1] / 2, level) * 1.0 / level;
             m_backgroundImage.setPixel(m_offset, m_rows - i, VisualPalette::renderPalette(m_palette, left));
         }
         else
         {
-            const double left = qBound(0, m_intern_vis_data[i - 1] / 2, level) * 1.0 / level;
+            const double left = qBound(0, m_visualData[i - 1] / 2, level) * 1.0 / level;
             m_backgroundImage.setPixel(m_offset, m_rows - i, VisualPalette::renderPalette(m_palette, left));
 
-            const double right = qBound(0, m_intern_vis_data[m_rows + i - 1] / 2, level) * 1.0 / level;
+            const double right = qBound(0, m_visualData[m_rows + i - 1] / 2, level) * 1.0 / level;
             m_backgroundImage.setPixel(m_offset, 2 * m_rows - i, VisualPalette::renderPalette(m_palette, right));
         }
     }
@@ -178,31 +178,31 @@ void WaveVoice::processData(float *left, float *right)
         initialize();
     }
 
-    short dest_l[256];
-    short dest_r[256];
+    short destl[256];
+    short destr[256];
 
-    calc_freq(dest_l, left);
-    calc_freq(dest_r, right);
+    calc_freq(destl, left);
+    calc_freq(destr, right);
 
-    double y_scale = (double) 1.25 * m_cols / log(256);
+    const double yscale = (double) 1.25 * m_cols / log(256);
 
     for(int i = 0; i < m_rows; ++i)
     {
         short yl = 0;
         short yr = 0;
-        int magnitude_l = 0;
-        int magnitude_r = 0;
+        int magnitudel = 0;
+        int magnituder = 0;
 
         if(m_xscale[i] == m_xscale[i + 1])
         {
-            yl = dest_l[i];
-            yr = dest_r[i];
+            yl = destl[i];
+            yr = destr[i];
         }
 
         for(int k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
         {
-            yl = qMax(dest_l[k], yl);
-            yr = qMax(dest_r[k], yr);
+            yl = qMax(destl[k], yl);
+            yr = qMax(destr[k], yr);
         }
 
         yl >>= 7; //256
@@ -210,22 +210,22 @@ void WaveVoice::processData(float *left, float *right)
 
         if(yl)
         {
-            magnitude_l = int(log(yl) * y_scale);
-            magnitude_l = qBound(0, magnitude_l, m_cols);
+            magnitudel = int(log(yl) * yscale);
+            magnitudel = qBound(0, magnitudel, m_cols);
         }
 
         if(yr)
         {
-            magnitude_r = int(log(yr) * y_scale);
-            magnitude_r = qBound(0, magnitude_r, m_cols);
+            magnituder = int(log(yr) * yscale);
+            magnituder = qBound(0, magnituder, m_cols);
         }
 
-        m_intern_vis_data[i] -= m_analyzerSize * m_cols / 15;
-        m_intern_vis_data[i] = magnitude_l > m_intern_vis_data[i] ? magnitude_l : m_intern_vis_data[i];
+        m_visualData[i] -= m_analyzerSize * m_cols / 15;
+        m_visualData[i] = magnitudel > m_visualData[i] ? magnitudel : m_visualData[i];
 
         const int j = m_rows + i;
-        m_intern_vis_data[j] -= m_analyzerSize * m_cols / 15;
-        m_intern_vis_data[j] = magnitude_r > m_intern_vis_data[j] ? magnitude_r : m_intern_vis_data[j];
+        m_visualData[j] -= m_analyzerSize * m_cols / 15;
+        m_visualData[j] = magnituder > m_visualData[j] ? magnituder : m_visualData[j];
     }
 }
 
@@ -234,9 +234,9 @@ void WaveVoice::createPalette(int row)
     m_rows = row;
     m_cols = MIN_COLUMN;
 
-    if(m_intern_vis_data)
+    if(m_visualData)
     {
-        delete[] m_intern_vis_data;
+        delete[] m_visualData;
     }
 
     if(m_xscale)
@@ -244,7 +244,7 @@ void WaveVoice::createPalette(int row)
         delete[] m_xscale;
     }
 
-    m_intern_vis_data = new int[m_rows * 2]{0};
+    m_visualData = new int[m_rows * 2]{0};
     m_xscale = new int[m_rows + 1]{0};
 
     for(int i = 0; i < m_rows + 1; ++i)

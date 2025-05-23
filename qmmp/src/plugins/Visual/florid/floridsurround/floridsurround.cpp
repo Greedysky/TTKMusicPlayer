@@ -27,8 +27,8 @@ void FloridSurround::paintEvent(QPaintEvent *e)
         painter.save();
         painter.rotate(startAngle);
 
-        int value1 = m_intern_vis_data[i];
-        int value2 = m_intern_vis_data[i + 1];
+        int value1 = m_visualData[i];
+        int value2 = m_visualData[i + 1];
 
         if(value1 > value2)
         {
@@ -59,12 +59,12 @@ void FloridSurround::processData(float *left, float *)
         m_rows = rows;
         m_cols = cols;
 
-        if(m_intern_vis_data)
+        if(m_visualData)
         {
-            delete[] m_intern_vis_data;
+            delete[] m_visualData;
         }
 
-        m_intern_vis_data = new int[m_cols * 2]{0};
+        m_visualData = new int[m_cols * 2]{0};
     }
 
     const int step = (QMMP_VISUAL_NODE_SIZE << 8) / m_cols;
@@ -73,8 +73,8 @@ void FloridSurround::processData(float *left, float *)
     for(int i = 0; i < m_cols * 2; ++i)
     {
         pos += step;
-        m_intern_vis_data[i] = int(left[pos >> 8] * m_rows / 2);
-        m_intern_vis_data[i] = qBound(-m_rows / 2, m_intern_vis_data[i], m_rows / 2);
-        m_intern_vis_data[m_cols * 2 - i - 1] = m_intern_vis_data[i];
+        m_visualData[i] = int(left[pos >> 8] * m_rows / 2);
+        m_visualData[i] = qBound(-m_rows / 2, m_visualData[i], m_rows / 2);
+        m_visualData[m_cols * 2 - i - 1] = m_visualData[i];
     }
 }

@@ -89,7 +89,7 @@ void WaveCrest::processData(float *left, float *)
     int magnitude = 0;
 
     calc_freq(dest, left);
-    const double y_scale = (double) 1.25 * m_rows / log(256);
+    const double yscale = (double) 1.25 * m_rows / log(256);
 
     if(m_xscale[0] == m_xscale[1])
     {
@@ -105,7 +105,7 @@ void WaveCrest::processData(float *left, float *)
 
     if(y)
     {
-        magnitude = int(log(y) * y_scale);
+        magnitude = int(log(y) * yscale);
         magnitude = qBound(0, magnitude, m_rows);
     }
 

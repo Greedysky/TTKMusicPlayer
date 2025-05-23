@@ -28,9 +28,9 @@ Visual::Visual(QWidget *parent, Qt::WindowFlags f)
 
 Visual::~Visual()
 {
-    if(m_intern_vis_data)
+    if(m_visualData)
     {
-        delete[] m_intern_vis_data;
+        delete[] m_visualData;
     }
 }
 
@@ -50,19 +50,19 @@ void Visual::hideEvent(QHideEvent *)
 void Visual::closeEvent(QCloseEvent *event)
 {
     m_visuals.removeAll(this);
-    if(event->spontaneous() && m_vis_map.key(this))
+    if(event->spontaneous() && m_visualMap.key(this))
     {
-        VisualFactory *factory = m_vis_map.key(this);
-        m_vis_map.remove(factory);
+        VisualFactory *factory = m_visualMap.key(this);
+        m_visualMap.remove(factory);
         Visual::setEnabled(factory, false);
         emit closedByUser();
     }
     else
     {
-        if(m_vis_map.key(this))
+        if(m_visualMap.key(this))
         {
-            VisualFactory *factory = m_vis_map.key(this);
-            m_vis_map.remove(factory);
+            VisualFactory *factory = m_visualMap.key(this);
+            m_visualMap.remove(factory);
         }
     }
     QWidget::closeEvent(event);
@@ -105,7 +105,7 @@ void Visual::clear()
 QList<VisualFactory*> *Visual::m_factories = nullptr;
 QHash<const VisualFactory*, QString> *Visual::m_files = nullptr;
 QList<Visual*> Visual::m_visuals;
-QHash<VisualFactory*, Visual*> Visual::m_vis_map;
+QHash<VisualFactory*, Visual*> Visual::m_visualMap;
 QWidget *Visual::m_parentClass = nullptr;
 QObject *Visual::m_receiver = nullptr;
 const char *Visual::m_member = nullptr;
@@ -137,7 +137,7 @@ void Visual::setEnabled(VisualFactory *factory, bool enable)
     {
         if(!visList.contains(name))
             visList << name;
-        if(!m_vis_map.value(factory) && m_parentClass)
+        if(!m_visualMap.value(factory) && m_parentClass)
         {
             createVisualization(factory, m_parentClass);
         }
@@ -145,11 +145,11 @@ void Visual::setEnabled(VisualFactory *factory, bool enable)
     else
     {
         visList.removeAll(name);
-        if(m_vis_map.value(factory))
+        if(m_visualMap.value(factory))
         {
-            m_visuals.removeAll(m_vis_map.value(factory));
-            m_vis_map.value(factory)->close();
-            m_vis_map.remove(factory);
+            m_visuals.removeAll(m_visualMap.value(factory));
+            m_visualMap.value(factory)->close();
+            m_visualMap.remove(factory);
         }
     }
     settings.setValue("Visualization/enabled_plugins", visList);
@@ -289,7 +289,7 @@ void Visual::createVisualization(VisualFactory *factory, QWidget *parent)
     if(m_receiver && m_member)
         connect(visual, SIGNAL(closedByUser()), m_receiver, m_member);
     visual->setWindowFlags(Qt::Window);
-    m_vis_map.insert(factory, visual);
+    m_visualMap.insert(factory, visual);
     const Qmmp::State st = StateHandler::instance()->state();
     if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
         visual->start();

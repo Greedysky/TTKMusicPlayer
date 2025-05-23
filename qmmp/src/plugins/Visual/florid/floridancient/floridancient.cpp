@@ -152,7 +152,7 @@ void FloridAncient::paintEvent(QPaintEvent *e)
 
         painter.save();
         painter.rotate(startAngle);
-        const int value = m_intern_vis_data[int(offset * 0.6)];
+        const int value = m_visualData[int(offset * 0.6)];
         painter.drawLine(0, LABEL_RADIUS + 5 + value * 0.2, 0, LABEL_RADIUS + 5 + value * 0.3);
 
         painter.restore();
@@ -185,9 +185,9 @@ void FloridAncient::processData(float *left, float *)
         m_rows = rows;
         m_cols = cols;
 
-        if(m_intern_vis_data)
+        if(m_visualData)
         {
-            delete[] m_intern_vis_data;
+            delete[] m_visualData;
         }
 
         if(m_xscale)
@@ -195,7 +195,7 @@ void FloridAncient::processData(float *left, float *)
             delete[] m_xscale;
         }
 
-        m_intern_vis_data = new int[m_cols]{0};
+        m_visualData = new int[m_cols]{0};
         m_xscale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -209,7 +209,7 @@ void FloridAncient::processData(float *left, float *)
     int k, magnitude;
 
     calc_freq(dest, left);
-    const double y_scale = (double) 1.25 * m_rows / log(256);
+    const double yscale = (double) 1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; ++i)
     {
@@ -230,11 +230,11 @@ void FloridAncient::processData(float *left, float *)
 
         if(y)
         {
-            magnitude = int(log(y) * y_scale);
+            magnitude = int(log(y) * yscale);
             magnitude = qBound(0, magnitude, m_rows);
         }
 
-        m_intern_vis_data[i] -= m_analyzerSize * m_rows / 15;
-        m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
+        m_visualData[i] -= m_analyzerSize * m_rows / 15;
+        m_visualData[i] = magnitude > m_visualData[i] ? magnitude : m_visualData[i];
     }
 }

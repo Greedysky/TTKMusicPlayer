@@ -31,7 +31,7 @@ void MountainSideWidget::addBuffer(float *left)
             }
         }
 
-        m_bars[0][i] = value * 10;
+        m_bars[0][i] = value * 15;
     }
 
     MountainWidget::addBuffer(left);

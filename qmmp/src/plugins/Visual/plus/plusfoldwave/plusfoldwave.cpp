@@ -75,7 +75,7 @@ void PlusFoldWave::paintEvent(QPaintEvent *)
             x += rdx; //correct right part position
         }
 
-        int offset = m_intern_vis_data[i] * m_cellSize.height() / 2;
+        int offset = m_visualData[i] * m_cellSize.height() / 2;
         if(abs(offset) > height() / 2)
         {
             offset = height() / 2;
@@ -94,7 +94,7 @@ void PlusFoldWave::paintEvent(QPaintEvent *)
             x1 += rdx; //correct right part position
         }
 
-        int offset1 = m_intern_vis_data[i + 1] * m_cellSize.height() / 2;
+        int offset1 = m_visualData[i + 1] * m_cellSize.height() / 2;
         if(abs(offset1) > height() / 2)
         {
             offset1 = height() / 2;
@@ -124,9 +124,9 @@ void PlusFoldWave::processData(float *left, float *right)
         m_rows = rows;
         m_cols = cols;
 
-        if(m_intern_vis_data)
+        if(m_visualData)
         {
-            delete[] m_intern_vis_data;
+            delete[] m_visualData;
         }
 
         if(m_xscale)
@@ -134,7 +134,7 @@ void PlusFoldWave::processData(float *left, float *right)
             delete[] m_xscale;
         }
 
-        m_intern_vis_data = new int[m_cols * 2]{0};
+        m_visualData = new int[m_cols * 2]{0};
         m_xscale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -143,31 +143,31 @@ void PlusFoldWave::processData(float *left, float *right)
         }
     }
 
-    short dest_l[256];
-    short dest_r[256];
+    short destl[256];
+    short destr[256];
 
-    calc_freq(dest_l, left);
-    calc_freq(dest_r, right);
+    calc_freq(destl, left);
+    calc_freq(destr, right);
 
-    const double y_scale = (double) 1.25 * m_rows / log(256);
+    const double yscale = (double) 1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; ++i)
     {
         short yl = 0;
         short yr = 0;
-        int magnitude_l = 0;
-        int magnitude_r = 0;
+        int magnitudel = 0;
+        int magnituder = 0;
 
         if(m_xscale[i] == m_xscale[i + 1])
         {
-            yl = dest_l[i];
-            yr = dest_r[i];
+            yl = destl[i];
+            yr = destr[i];
         }
 
         for(int k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
         {
-            yl = qMax(dest_l[k], yl);
-            yr = qMax(dest_r[k], yr);
+            yl = qMax(destl[k], yl);
+            yr = qMax(destr[k], yr);
         }
 
         yl >>= 7; //256
@@ -175,21 +175,21 @@ void PlusFoldWave::processData(float *left, float *right)
 
         if(yl)
         {
-            magnitude_l = int(log(yl) * y_scale);
-            magnitude_l = qBound(0, magnitude_l, m_rows);
+            magnitudel = int(log(yl) * yscale);
+            magnitudel = qBound(0, magnitudel, m_rows);
         }
 
         if(yr)
         {
-            magnitude_r = int(log(yr) * y_scale);
-            magnitude_r = qBound(0, magnitude_r, m_rows);
+            magnituder = int(log(yr) * yscale);
+            magnituder = qBound(0, magnituder, m_rows);
         }
 
-        m_intern_vis_data[i] -= m_analyzerSize * m_rows / 15;
-        m_intern_vis_data[i] = magnitude_l > m_intern_vis_data[i] ? magnitude_l : m_intern_vis_data[i];
+        m_visualData[i] -= m_analyzerSize * m_rows / 15;
+        m_visualData[i] = magnitudel > m_visualData[i] ? magnitudel : m_visualData[i];
 
         const int j = m_cols * 2 - i - 1; //mirror index
-        m_intern_vis_data[j] -= m_analyzerSize * m_rows / 15;
-        m_intern_vis_data[j] = magnitude_r > m_intern_vis_data[j] ? magnitude_r : m_intern_vis_data[j];
+        m_visualData[j] -= m_analyzerSize * m_rows / 15;
+        m_visualData[j] = magnituder > m_visualData[j] ? magnituder : m_visualData[j];
     }
 }
