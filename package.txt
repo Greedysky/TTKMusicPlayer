@@ -54,7 +54,7 @@ ttk-1.2.9
 -libstsound		 https://github.com/arnaud-carre/StSound
 -libtfmx		 https://github.com/sasq64/musicplayer
 -libuade-3.05	 http://www.zakalwe.fi/uade/
-			 https://gitlab.com/uade-music-player/uade f776abe75d66725f9699ea5728dd24db0e2d17f8
+			 https://gitlab.com/uade-music-player/uade 55b6677565dd93045f80c6c689a608d93eca3ce9
 -libv2m-20250301 https://github.com/jgilje/v2m-player
 -libxmdx		 https://github.com/mistydemeo/mdxmini
 				 https://github.com/mistydemeo/pmdmini
