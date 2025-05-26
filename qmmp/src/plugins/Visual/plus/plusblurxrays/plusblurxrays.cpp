@@ -75,7 +75,7 @@ void PlusBlurXRays::paintEvent(QPaintEvent *)
         value = y;
     }
 
-    painter.drawImage(0, 0, QImage((unsigned char *)m_image, m_cols, m_rows, QImage::Format_RGB32));
+    painter.drawImage(0, 0, QImage((uchar*)m_image, m_cols, m_rows, QImage::Format_RGB32));
 }
 
 void PlusBlurXRays::contextMenuEvent(QContextMenuEvent *)

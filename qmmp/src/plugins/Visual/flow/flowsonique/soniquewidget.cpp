@@ -105,8 +105,8 @@ SoniqueWidget::~SoniqueWidget()
     closePreset();
 
     delete m_visData;
-    delete m_texture;
-    delete m_visProc;
+    delete[] m_texture;
+    delete[] m_visProc;
     delete m_instance;
 
     kiss_fft_free(m_kiss_cfg);
@@ -153,10 +153,10 @@ void SoniqueWidget::resizeEvent(QResizeEvent *)
         return;
     }
 
-    delete m_visProc;
+    delete[] m_visProc;
     m_visProc = nullptr;
 
-    delete m_texture;
+    delete[] m_texture;
     m_texture = new unsigned int[width() * height()]{0};
 }
 
