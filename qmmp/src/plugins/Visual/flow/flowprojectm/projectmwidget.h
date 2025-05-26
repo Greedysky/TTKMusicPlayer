@@ -67,7 +67,7 @@ public:
     explicit ProjectMWidget(QListWidget *widget, QWidget *parent = nullptr);
     virtual ~ProjectMWidget();
 
-    void addPCM(float *left, float *right);
+    void addBuffer(float *left, float *right);
 
 protected:
     virtual void initializeGL() override final;

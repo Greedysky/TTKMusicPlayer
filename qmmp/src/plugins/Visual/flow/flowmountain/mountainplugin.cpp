@@ -58,32 +58,32 @@ void MountainPlugin::processData(float *left, float *)
         buffer[i] = dest[i] / ((QMMP_VISUAL_NODE_SIZE << 8) / (8.0 / 2));
     }
 
-    m_mountainWidget->addBuffer(buffer);
+    m_container->addBuffer(buffer);
 }
 
 void MountainPlugin::createMoudle(Type type)
 {
     m_type = type;
 
-    if(m_mountainWidget)
+    if(m_container)
     {
-        layout()->removeWidget(m_mountainWidget);
-        m_mountainWidget->hide();
-        m_mountainWidget->deleteLater();
-        m_mountainWidget = nullptr;
+        layout()->removeWidget(m_container);
+        m_container->hide();
+        m_container->deleteLater();
+        m_container = nullptr;
     }
 
     switch(m_type)
     {
     case Type::Simple:
-        m_mountainWidget = new MountainSideWidget(this);
+        m_container = new MountainSideWidget(this);
         break;
     case Type::Complex:
-        m_mountainWidget = new MountainMidWidget(this);
+        m_container = new MountainMidWidget(this);
         break;
     default:
         break;
     }
 
-    layout()->addWidget(m_mountainWidget);
+    layout()->addWidget(m_container);
 }

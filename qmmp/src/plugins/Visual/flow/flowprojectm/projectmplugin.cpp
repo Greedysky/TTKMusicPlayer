@@ -34,12 +34,12 @@ ProjectMPlugin::ProjectMPlugin(QWidget *parent)
             QScrollBar::add-line, QScrollBar::sub-line{ background:none; border:none; } \
             QScrollBar::add-page, QScrollBar::sub-page{ background:none; }");
 #ifdef PROJECTM_4
-    m_projectMWidget = new ProjectM4Widget(m_itemWidget, m_splitter);
+    m_container = new ProjectM4Widget(m_itemWidget, m_splitter);
 #else
-    m_projectMWidget = new ProjectMWidget(m_itemWidget, m_splitter);
+    m_container = new ProjectMWidget(m_itemWidget, m_splitter);
 #endif
     m_splitter->addWidget(m_itemWidget);
-    m_splitter->addWidget(m_projectMWidget);
+    m_splitter->addWidget(m_container);
     m_splitter->setStretchFactor(1, 1);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
@@ -50,20 +50,20 @@ ProjectMPlugin::ProjectMPlugin(QWidget *parent)
     m_menu = new QMenu(this);
     m_menu->addAction(m_screenAction);
 #ifndef PROJECTM_4
-    m_menu->addAction(tr("&Help"), m_projectMWidget, SLOT(showHelp()), tr("F1"))->setCheckable(true);
-    m_menu->addAction(tr("&Show Song Title"), m_projectMWidget, SLOT(showTitle()), tr("F2"))->setCheckable(true);
-    m_menu->addAction(tr("&Show Preset Name"), m_projectMWidget, SLOT(showPresetName()), tr("F3"))->setCheckable(true);
+    m_menu->addAction(tr("&Help"), m_container, SLOT(showHelp()), tr("F1"))->setCheckable(true);
+    m_menu->addAction(tr("&Show Song Title"), m_container, SLOT(showTitle()), tr("F2"))->setCheckable(true);
+    m_menu->addAction(tr("&Show Preset Name"), m_container, SLOT(showPresetName()), tr("F3"))->setCheckable(true);
 #endif
     m_menu->addAction(tr("&Show Menu"), m_itemWidget, SLOT(setVisible(bool)), tr("M"))->setCheckable(true);
     m_menu->addSeparator();
-    m_menu->addAction(tr("&Next Preset"), m_projectMWidget, SLOT(nextPreset()), tr("N"));
-    m_menu->addAction(tr("&Previous Preset"), m_projectMWidget, SLOT(previousPreset()), tr("P"));
+    m_menu->addAction(tr("&Next Preset"), m_container, SLOT(nextPreset()), tr("N"));
+    m_menu->addAction(tr("&Previous Preset"), m_container, SLOT(previousPreset()), tr("P"));
 #ifdef PROJECTM_4
-    m_menu->addAction(tr("&Shuffle"), m_projectMWidget, SLOT(setShuffle(bool)), tr("R"))->setCheckable(true);
+    m_menu->addAction(tr("&Shuffle"), m_container, SLOT(setShuffle(bool)), tr("R"))->setCheckable(true);
 #else
-    m_menu->addAction(tr("&Random Preset"), m_projectMWidget, SLOT(randomPreset()), tr("R"));
+    m_menu->addAction(tr("&Random Preset"), m_container, SLOT(randomPreset()), tr("R"));
 #endif
-    m_menu->addAction(tr("&Lock Preset"), m_projectMWidget, SLOT(lockPreset(bool)), tr("L"))->setCheckable(true);
+    m_menu->addAction(tr("&Lock Preset"), m_container, SLOT(lockPreset(bool)), tr("L"))->setCheckable(true);
 }
 
 void ProjectMPlugin::contextMenuEvent(QContextMenuEvent *)
@@ -73,6 +73,6 @@ void ProjectMPlugin::contextMenuEvent(QContextMenuEvent *)
 
 void ProjectMPlugin::processData(float *left, float *right)
 {
-    m_projectMWidget->addPCM(left, right);
-    m_projectMWidget->update();
+    m_container->addBuffer(left, right);
+    m_container->update();
 }

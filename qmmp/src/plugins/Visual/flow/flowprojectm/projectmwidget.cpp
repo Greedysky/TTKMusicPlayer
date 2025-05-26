@@ -39,7 +39,7 @@ ProjectMWidget::~ProjectMWidget()
     delete m_projectM;
 }
 
-void ProjectMWidget::addPCM(float *left, float *right)
+void ProjectMWidget::addBuffer(float *left, float *right)
 {
     short buf[2][QMMP_VISUAL_NODE_SIZE];
     for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; ++i)

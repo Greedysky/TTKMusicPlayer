@@ -48,9 +48,9 @@ private:
     QSplitter *m_splitter;
     QListWidget *m_itemWidget;
 #ifdef PROJECTM_4
-    ProjectM4Widget *m_projectMWidget;
+    ProjectM4Widget *m_container;
 #else
-    ProjectMWidget *m_projectMWidget;
+    ProjectMWidget *m_container;
 #endif
 
 };

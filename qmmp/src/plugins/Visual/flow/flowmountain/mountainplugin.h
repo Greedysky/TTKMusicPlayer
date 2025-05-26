@@ -49,7 +49,7 @@ private:
     void createMoudle(Type type);
 
     Type m_type;
-    MountainWidget *m_mountainWidget = nullptr;
+    MountainWidget *m_container = nullptr;
 
 };
 

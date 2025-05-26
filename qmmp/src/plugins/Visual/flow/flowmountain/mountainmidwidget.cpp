@@ -32,7 +32,7 @@ void MountainMidWidget::initializeGL()
 
     for(int i = 0; i <= NUM_BANDS; ++i)
     {
-        m_logScale[i] = powf(256,(float) i / NUM_BANDS) - 0.5f;
+        m_logScale[i] = powf(256, (float)i / NUM_BANDS) - 0.5f;
     }
 
     for(int y = 0; y < NUM_BANDS; ++y)
