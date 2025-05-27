@@ -23,6 +23,9 @@
 
 #define MAX_CHANNELS    2
 
+class QMenu;
+class QActionGroup;
+
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -33,7 +36,8 @@ public:
     explicit FlowVUMeter(QWidget *parent = nullptr);
 
 private slots:
-    void rangeChanged(QAction *action);
+    void readSettings();
+    void writeSettings();
 
 private:
     virtual void paintEvent(QPaintEvent *e) override final;
@@ -41,10 +45,15 @@ private:
 
     virtual void processData(float *left, float *right) override final;
 
+    void createMenu();
+
     QPixmap m_pixmap;
     int m_rangeValue = 30;
     const int m_channels = 2;
     float m_values[MAX_CHANNELS] = {0};
+
+    QMenu *m_menu;
+    QActionGroup *m_rangeActions;
 
 };
 

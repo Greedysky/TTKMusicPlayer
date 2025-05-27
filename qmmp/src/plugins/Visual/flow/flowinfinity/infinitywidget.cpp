@@ -249,7 +249,6 @@ void InfinityWidget::createMenu()
         effectMenu->addAction(act);
     }
 
-    QMenu *colorMenu = m_menu->addMenu(tr("Palette Time"));
     m_colorActions = new QActionGroup(this);
     m_colorActions->setExclusive(true);
     m_colorActions->addAction(tr("Slowest"))->setData(500);
@@ -258,6 +257,7 @@ void InfinityWidget::createMenu()
     m_colorActions->addAction(tr("Fast"))->setData(200);
     m_colorActions->addAction(tr("Fastest"))->setData(100);
 
+    QMenu *colorMenu = m_menu->addMenu(tr("Palette Time"));
     for(QAction *act : m_colorActions->actions())
     {
         act->setCheckable(true);

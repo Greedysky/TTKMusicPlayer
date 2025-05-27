@@ -83,7 +83,7 @@ void WaveCrest::processData(float *left, float *)
 
     short y = 0;
     int magnitude = 0;
-    const double yscale = (double) 1.25 * m_rows / log(256);
+    const double yscale = (double)1.25 * m_rows / log(256);
 
     if(m_xscale[0] == m_xscale[1])
     {

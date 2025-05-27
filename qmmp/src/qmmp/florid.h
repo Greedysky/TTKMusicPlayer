@@ -82,10 +82,6 @@ public:
      * Constructor.
      */
     explicit Florid(QWidget *parent = nullptr);
-    /*!
-     * Destructor.
-     */
-    virtual ~Florid() = default;
 
 public slots:
     /*!

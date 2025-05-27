@@ -197,7 +197,7 @@ void FloridAncient::processData(float *left, float *)
     short dest[256];
     calc_freq(dest, left);
 
-    const double yscale = (double) 1.25 * m_rows / log(256);
+    const double yscale = (double)1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; ++i)
     {

@@ -58,9 +58,9 @@ protected:
     int m_currentIndex = -1;
     QStringList m_presetList;
 
-    kiss_fft_cfg m_kiss_cfg;
-    kiss_fft_cpx *m_in_freq_data = nullptr;
-    kiss_fft_cpx *m_out_freq_data = nullptr;
+    kiss_fft_cfg m_kissCfg;
+    kiss_fft_cpx *m_inputFreqData = nullptr;
+    kiss_fft_cpx *m_outFreqData = nullptr;
 
 };
 

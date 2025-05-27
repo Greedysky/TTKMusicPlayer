@@ -2,6 +2,12 @@
 
 #include <QStringList>
 
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
+#  define QtSkipEmptyParts Qt::SkipEmptyParts
+#else
+#  define QtSkipEmptyParts QString::SkipEmptyParts
+#endif
+
 S98Helper::S98Helper(const QString &path)
     : m_path(path)
 {
@@ -66,9 +72,9 @@ bool S98Helper::initialize()
         if(valid || m_info.dwIsV3)
         {
             const QString text(raw + (valid ? strlen(pfx) : 0));
-            for(const QString &v : text.split(char(0xa), QString::SkipEmptyParts))
+            for(const QString &v : text.split(char(0xa), QtSkipEmptyParts))
             {
-                const QStringList &parts = v.split('=', QString::SkipEmptyParts);
+                const QStringList &parts = v.split('=', QtSkipEmptyParts);
                 if(parts.count() < 2)
                 {
                     continue;

@@ -81,7 +81,7 @@ void WaveVolume::processData(float *left, float *right)
 
     short yl = 0, yr = 0;
     int magnitudel = 0, magnituder = 0;
-    const double yscale = (double) 1.25 * m_rows / log(256);
+    const double yscale = (double)1.25 * m_rows / log(256);
 
     if(m_xscale[0] == m_xscale[1])
     {

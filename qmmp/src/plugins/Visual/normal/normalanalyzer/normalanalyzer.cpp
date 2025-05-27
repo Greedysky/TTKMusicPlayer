@@ -178,7 +178,7 @@ void NormalAnalyzer::processData(float *left, float *right)
     calc_freq(destl, left);
     calc_freq(destr, right);
 
-    const double yscale = (double) 1.25 * m_rows / log(256);
+    const double yscale = (double)1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; ++i)
     {
