@@ -46,10 +46,7 @@ OuterBlurWave::OuterBlurWave(QWidget *parent)
 
 OuterBlurWave::~OuterBlurWave()
 {
-    if(m_xscale)
-    {
-        delete[] m_xscale;
-    }
+    delete[] m_xscale;
 }
 
 void OuterBlurWave::start()
@@ -131,15 +128,8 @@ void OuterBlurWave::processData(float *left, float *right)
         m_rows = rows;
         m_cols = cols;
 
-        if(m_visualData)
-        {
-            delete[] m_visualData;
-        }
-
-        if(m_xscale)
-        {
-            delete[] m_xscale;
-        }
+        delete[] m_visualData;
+        delete[] m_xscale;
 
         m_visualData = new int[m_cols * 2]{0};
         m_xscale = new int[m_cols + 1]{0};
@@ -150,9 +140,7 @@ void OuterBlurWave::processData(float *left, float *right)
         }
     }
 
-    short destl[256];
-    short destr[256];
-
+    short destl[256], destr[256];
     calc_freq(destl, left);
     calc_freq(destr, right);
 
@@ -160,10 +148,8 @@ void OuterBlurWave::processData(float *left, float *right)
 
     for(int i = 0; i < m_cols; ++i)
     {
-        short yl = 0;
-        short yr = 0;
-        int magnitudel = 0;
-        int magnituder = 0;
+        short yl = 0, yr = 0;
+        int magnitudel = 0, magnituder = 0;
 
         if(m_xscale[i] == m_xscale[i + 1])
         {

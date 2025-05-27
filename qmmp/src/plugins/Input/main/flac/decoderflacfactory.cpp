@@ -137,20 +137,16 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
             parser.setProperties(info->properties());
             parser.setUrl("flac", filePath);
 
-            if(flacFile)
-                delete flacFile;
-            if(oggFlacFile)
-                delete oggFlacFile;
+            delete flacFile;
+            delete oggFlacFile;
 
             delete info;
             return parser.createPlayList(track);
         }
         else if(track > 0) //cue track is not available
         {
-            if(flacFile)
-                delete flacFile;
-            if(oggFlacFile)
-                delete oggFlacFile;
+            delete flacFile;
+            delete oggFlacFile;
 
             delete info;
             return QList<TrackInfo*>();
@@ -174,10 +170,8 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
 
     }
 
-    if(flacFile)
-        delete flacFile;
-    if(oggFlacFile)
-        delete oggFlacFile;
+    delete flacFile;
+    delete oggFlacFile;
     return QList<TrackInfo*>() << info;
 }
 

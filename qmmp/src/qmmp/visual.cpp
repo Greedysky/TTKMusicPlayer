@@ -28,10 +28,7 @@ Visual::Visual(QWidget *parent, Qt::WindowFlags f)
 
 Visual::~Visual()
 {
-    if(m_visualData)
-    {
-        delete[] m_visualData;
-    }
+    delete[] m_visualData;
 }
 
 void Visual::showEvent(QShowEvent *)

@@ -54,11 +54,11 @@ private:
     void clearImage();
     void createMenu();
 
-    bool m_update = false;
-    QMenu *m_menu;
-    QActionGroup *m_fpsGroup;
     PluginInfo *m_goom = nullptr;
     QImage m_image;
+
+    QMenu *m_menu;
+    QActionGroup *m_fpsActions;
 
 };
 

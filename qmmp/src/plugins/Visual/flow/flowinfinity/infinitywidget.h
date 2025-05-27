@@ -110,9 +110,8 @@ private:
     short m_currentColors[256];
     VColor m_colorTable[NB_PALETTES][256];
 
-    bool m_update = false;
     QMenu *m_menu;
-    QActionGroup *m_effectsGroup, *m_colorsGroup;
+    QActionGroup *m_effectActions, *m_colorActions;
 
 };
 

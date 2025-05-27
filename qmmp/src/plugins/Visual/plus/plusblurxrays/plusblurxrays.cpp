@@ -18,10 +18,7 @@ PlusBlurXRays::PlusBlurXRays(QWidget *parent)
 
 PlusBlurXRays::~PlusBlurXRays()
 {
-    if(m_image)
-    {
-        delete[] m_image;
-    }
+    delete[] m_image;
 }
 
 void PlusBlurXRays::readSettings()
@@ -99,18 +96,11 @@ void PlusBlurXRays::processData(float *left, float *)
         m_rows = rows;
         m_cols = cols;
 
-        if(m_visualData)
-        {
-            delete[] m_visualData;
-        }
+        delete[] m_visualData;
+        delete[] m_image;
 
         m_visualData = new int[m_cols]{0};
         m_imageSize = (m_cols << 2) * (m_rows + 2);
-
-        if(m_image)
-        {
-            delete[] m_image;
-        }
 
         m_image = new unsigned int[m_imageSize]{0};
         m_corner = m_image + m_cols + 1;

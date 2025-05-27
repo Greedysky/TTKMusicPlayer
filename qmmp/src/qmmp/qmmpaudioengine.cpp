@@ -34,8 +34,7 @@ QmmpAudioEngine::~QmmpAudioEngine()
 {
     QmmpAudioEngine::stop();
     reset();
-    if(m_output_buf)
-        delete[] m_output_buf;
+    delete[] m_output_buf;
     m_output_buf = nullptr;
     qDeleteAll(m_effects);
     m_instance = nullptr;
@@ -73,8 +72,7 @@ bool QmmpAudioEngine::play()
 {
     if(isRunning() || m_decoders.isEmpty() || (m_output && m_output->isRunning()))
         return false;
-    if(m_output)
-        delete m_output;
+    delete m_output;
     prepareEffects(m_decoders.head());
     if(!(m_output = createOutput()))
         return false;
@@ -236,11 +234,8 @@ void QmmpAudioEngine::stop()
         wait();
     }
 
-    if(m_output)
-    {
-        delete m_output;
-        m_output = nullptr;
-    }
+    delete m_output;
+    m_output = nullptr;
 
     clearDecoders();
     reset();
@@ -612,8 +607,7 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
 {
     m_ap = d->audioParameters();
     //output buffer for decoder
-    if(m_output_buf)
-        delete[] m_output_buf;
+    delete[] m_output_buf;
     m_bks = QMMP_BLOCK_FRAMES * m_ap.frameSize(); //block size
     m_output_size = m_bks * 4;
     m_sample_size = m_ap.sampleSize();

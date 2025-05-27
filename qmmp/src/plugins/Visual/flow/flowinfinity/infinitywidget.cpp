@@ -80,13 +80,7 @@ void InfinityWidget::readSettings()
     m_colorTime = settings.value("palette_time", 200).toInt();
     settings.endGroup();
 
-    if(m_update)
-    {
-        return;
-    }
-
-    m_update = true;
-    for(QAction *act : m_effectsGroup->actions())
+    for(QAction *act : m_effectActions->actions())
     {
         if(m_effectTime == act->data().toInt())
         {
@@ -95,7 +89,7 @@ void InfinityWidget::readSettings()
         }
     }
 
-    for(QAction *act : m_colorsGroup->actions())
+    for(QAction *act : m_colorActions->actions())
     {
         if(m_colorTime == act->data().toInt())
         {
@@ -109,12 +103,11 @@ void InfinityWidget::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Infinity");
-    QAction *act = m_effectsGroup->checkedAction();
-    settings.setValue("effect_time", act ? act->data().toInt() : 200);
-    act = m_colorsGroup->checkedAction();
-    settings.setValue("palette_time", act ? act->data().toInt() : 200);
+    QAction *act = m_effectActions->checkedAction();
+    settings.setValue("effect_time", m_effectTime = (act ? act->data().toInt() : 200));
+    act = m_colorActions->checkedAction();
+    settings.setValue("palette_time", m_colorTime = (act ? act->data().toInt() : 200));
     settings.endGroup();
-    readSettings();
 }
 
 void InfinityWidget::resizeEvent(QResizeEvent *)
@@ -241,34 +234,34 @@ void InfinityWidget::createMenu()
     m_menu->addAction(m_screenAction);
     m_menu->addSeparator();
 
-    QMenu *effects = m_menu->addMenu(tr("Effect Time"));
-    m_effectsGroup = new QActionGroup(this);
-    m_effectsGroup->setExclusive(true);
-    m_effectsGroup->addAction(tr("Slowest"))->setData(500);
-    m_effectsGroup->addAction(tr("Slow"))->setData(400);
-    m_effectsGroup->addAction(tr("Medium"))->setData(300);
-    m_effectsGroup->addAction(tr("Fast"))->setData(200);
-    m_effectsGroup->addAction(tr("Fastest"))->setData(100);
+    m_effectActions = new QActionGroup(this);
+    m_effectActions->setExclusive(true);
+    m_effectActions->addAction(tr("Slowest"))->setData(500);
+    m_effectActions->addAction(tr("Slow"))->setData(400);
+    m_effectActions->addAction(tr("Medium"))->setData(300);
+    m_effectActions->addAction(tr("Fast"))->setData(200);
+    m_effectActions->addAction(tr("Fastest"))->setData(100);
 
-    for(QAction *act : m_effectsGroup->actions())
+    QMenu *effectMenu = m_menu->addMenu(tr("Effect Time"));
+    for(QAction *act : m_effectActions->actions())
     {
         act->setCheckable(true);
-        effects->addAction(act);
+        effectMenu->addAction(act);
     }
 
-    QMenu *colors = m_menu->addMenu(tr("Palette Time"));
-    m_colorsGroup = new QActionGroup(this);
-    m_colorsGroup->setExclusive(true);
-    m_colorsGroup->addAction(tr("Slowest"))->setData(500);
-    m_colorsGroup->addAction(tr("Slow"))->setData(400);
-    m_colorsGroup->addAction(tr("Medium"))->setData(300);
-    m_colorsGroup->addAction(tr("Fast"))->setData(200);
-    m_colorsGroup->addAction(tr("Fastest"))->setData(100);
+    QMenu *colorMenu = m_menu->addMenu(tr("Palette Time"));
+    m_colorActions = new QActionGroup(this);
+    m_colorActions->setExclusive(true);
+    m_colorActions->addAction(tr("Slowest"))->setData(500);
+    m_colorActions->addAction(tr("Slow"))->setData(400);
+    m_colorActions->addAction(tr("Medium"))->setData(300);
+    m_colorActions->addAction(tr("Fast"))->setData(200);
+    m_colorActions->addAction(tr("Fastest"))->setData(100);
 
-    for(QAction *act : m_colorsGroup->actions())
+    for(QAction *act : m_colorActions->actions())
     {
         act->setCheckable(true);
-        colors->addAction(act);
+        colorMenu->addAction(act);
     }
 }
 

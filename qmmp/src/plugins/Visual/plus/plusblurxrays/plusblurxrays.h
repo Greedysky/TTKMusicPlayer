@@ -41,6 +41,7 @@ private:
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void processData(float *left, float *right) override final;
+
     void blur();
     void drawLine(int x, int y1, int y2);
 

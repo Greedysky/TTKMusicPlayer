@@ -29,6 +29,7 @@ class FloridPicture : public Florid
     Q_OBJECT
 public:
     explicit FloridPicture(QWidget *parent = nullptr);
+    ~FloridPicture();
 
 private:
     virtual void paintEvent(QPaintEvent *e) override final;

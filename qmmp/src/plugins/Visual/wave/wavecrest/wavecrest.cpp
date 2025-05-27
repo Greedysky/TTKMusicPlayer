@@ -13,10 +13,7 @@ WaveCrest::WaveCrest(QWidget *parent)
 
 WaveCrest::~WaveCrest()
 {
-    if(m_xscale)
-    {
-        delete[] m_xscale;
-    }
+    delete[] m_xscale;
 }
 
 void WaveCrest::paintEvent(QPaintEvent *)
@@ -62,10 +59,7 @@ void WaveCrest::processData(float *left, float *)
         m_cols = cols;
         m_offset = 0;
 
-        if(m_xscale)
-        {
-            delete[] m_xscale;
-        }
+        delete[] m_xscale;
 
         m_visData = 0;
         m_xscale = new int[2];
@@ -85,10 +79,10 @@ void WaveCrest::processData(float *left, float *)
     }
 
     short dest[256];
+    calc_freq(dest, left);
+
     short y = 0;
     int magnitude = 0;
-
-    calc_freq(dest, left);
     const double yscale = (double) 1.25 * m_rows / log(256);
 
     if(m_xscale[0] == m_xscale[1])

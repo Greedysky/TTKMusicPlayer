@@ -58,10 +58,7 @@ void SoXResampler::deinit()
         m_soxr = nullptr;
     }
 
-    if(m_out)
-    {
-        delete[] m_out;
-        m_out = nullptr;
-        m_samples = 0;
-    }
+    delete[] m_out;
+    m_out = nullptr;
+    m_samples = 0;
 }

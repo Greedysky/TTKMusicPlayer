@@ -21,10 +21,7 @@ private:
 
 KDMFileReader::~KDMFileReader()
 {
-    if(m_input)
-    {
-        delete m_input;
-    }
+    delete m_input;
 }
 
 bool KDMFileReader::load(const QString &path)
@@ -78,10 +75,7 @@ private:
 
 KSMFileReader::~KSMFileReader()
 {
-    if(m_input)
-    {
-        delete m_input;
-    }
+    delete m_input;
 }
 
 bool KSMFileReader::load(const QString &path)
@@ -133,10 +127,7 @@ private:
 
 SMFileReader::~SMFileReader()
 {
-    if(m_input)
-    {
-        delete m_input;
-    }
+    delete m_input;
 }
 
 bool SMFileReader::load(const QString &path)
@@ -184,10 +175,7 @@ KenHelper::~KenHelper()
 
 void KenHelper::deinit()
 {
-    if(m_input)
-    {
-        delete m_input;
-    }
+    delete m_input;
 }
 
 bool KenHelper::initialize()

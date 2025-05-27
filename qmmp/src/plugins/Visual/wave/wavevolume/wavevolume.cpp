@@ -14,10 +14,7 @@ WaveVolume::WaveVolume(QWidget *parent)
 
 WaveVolume::~WaveVolume()
 {
-    if(m_xscale)
-    {
-        delete[] m_xscale;
-    }
+    delete[] m_xscale;
 }
 
 void WaveVolume::paintEvent(QPaintEvent *)
@@ -66,15 +63,8 @@ void WaveVolume::processData(float *left, float *right)
         m_rows = rows;
         m_cols = cols;
 
-        if(m_visualData)
-        {
-            delete[] m_visualData;
-        }
-
-        if(m_xscale)
-        {
-            delete[] m_xscale;
-        }
+        delete[] m_visualData;
+        delete[] m_xscale;
 
         m_visualData = new int[2]{0};
         m_xscale = new int[2]{0};
@@ -85,18 +75,13 @@ void WaveVolume::processData(float *left, float *right)
         }
     }
 
-    short destl[256];
-    short destr[256];
-
+    short destl[256], destr[256];
     calc_freq(destl, left);
     calc_freq(destr, right);
 
+    short yl = 0, yr = 0;
+    int magnitudel = 0, magnituder = 0;
     const double yscale = (double) 1.25 * m_rows / log(256);
-
-    short yl = 0;
-    short yr = 0;
-    int magnitudel = 0;
-    int magnituder = 0;
 
     if(m_xscale[0] == m_xscale[1])
     {

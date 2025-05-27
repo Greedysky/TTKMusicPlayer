@@ -43,6 +43,7 @@ private:
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void processData(float *left, float *right) override final;
+
     void createPalette(int row);
     void initialize();
 

@@ -4,18 +4,13 @@
 #include "inlines.h"
 
 #include <QMenu>
+#include <QSettings>
 #include <QBoxLayout>
-
-static void actionChecked(QAction *action, int value, int data)
-{
-    action->setData(value);
-    action->setCheckable(true);
-    action->setChecked(data == value);
-}
-
+#include <qmmp/qmmp.h>
 
 MountainPlugin::MountainPlugin(QWidget *parent)
-    : Visual(parent)
+    : Visual(parent),
+      m_type(Type::Complex)
 {
     setWindowTitle(tr("Flow Mountain Widget"));
 
@@ -23,37 +18,52 @@ MountainPlugin::MountainPlugin(QWidget *parent)
     layout->setContentsMargins(0, 0, 0, 0);
     setLayout(layout);
 
-    createMoudle(Type::Complex);
+    createMenu();
+    readSettings();
 }
 
-void MountainPlugin::positionChanged(QAction *action)
+void MountainPlugin::readSettings()
 {
-    createMoudle(static_cast<Type>(action->data().toInt()));
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("Mountain");
+    m_type = settings.value("type", static_cast<int>(Type::Complex)).toInt();
+    settings.endGroup();
+
+    for(QAction *act : m_typeActions->actions())
+    {
+        if(m_type == act->data().toInt())
+        {
+            act->setChecked(true);
+            break;
+        }
+    }
+
+    createMoudle();
+}
+
+void MountainPlugin::writeSettings()
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("Mountain");
+    QAction *act = m_typeActions->checkedAction();
+    settings.setValue("type", m_type = (act ? act->data().toInt() : static_cast<int>(Type::Complex)));
+    settings.endGroup();
+
+    createMoudle();
 }
 
 void MountainPlugin::contextMenuEvent(QContextMenuEvent *)
 {
-    QMenu menu(this);
-    menu.addAction(m_screenAction);
-    menu.addSeparator();
-
-    QMenu positionMenu(tr("Type"), &menu);
-    actionChecked(positionMenu.addAction(tr("Simple")), Type::Simple, m_type);
-    actionChecked(positionMenu.addAction(tr("Complex")), Type::Complex, m_type);
-    connect(&positionMenu, SIGNAL(triggered(QAction*)), this, SLOT(positionChanged(QAction*)));
-    menu.addMenu(&positionMenu);
-    menu.exec(QCursor::pos());
+    m_menu->exec(QCursor::pos());
 }
 
 void MountainPlugin::processData(float *left, float *)
 {
-    constexpr int size = QMMP_VISUAL_NODE_SIZE / 2;
-    short dest[size];
-
+    short dest[256];
     calc_freq(dest, left);
 
-    float buffer[size];
-    for(int i = 0; i < size; ++i)
+    float buffer[256];
+    for(int i = 0; i < QMMP_VISUAL_NODE_SIZE / 2; ++i)
     {
         buffer[i] = dest[i] / ((QMMP_VISUAL_NODE_SIZE << 8) / (8.0 / 2));
     }
@@ -61,10 +71,29 @@ void MountainPlugin::processData(float *left, float *)
     m_container->addBuffer(buffer);
 }
 
-void MountainPlugin::createMoudle(Type type)
+void MountainPlugin::createMenu()
 {
-    m_type = type;
+    m_menu = new QMenu(this);
+    connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
 
+    m_menu->addAction(m_screenAction);
+    m_menu->addSeparator();
+
+    m_typeActions = new QActionGroup(this);
+    m_typeActions->setExclusive(true);
+    m_typeActions->addAction(tr("Simple"))->setData(Type::Simple);
+    m_typeActions->addAction(tr("Complex"))->setData(Type::Complex);
+
+    QMenu *positionMenu = m_menu->addMenu(tr("Type"));
+    for(QAction *act : m_typeActions->actions())
+    {
+        act->setCheckable(true);
+        positionMenu->addAction(act);
+    }
+}
+
+void MountainPlugin::createMoudle()
+{
     if(m_container)
     {
         layout()->removeWidget(m_container);

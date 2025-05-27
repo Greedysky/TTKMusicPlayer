@@ -8,11 +8,8 @@ ChannelConverter::ChannelConverter(ChannelMap out_map)
 
 ChannelConverter::~ChannelConverter()
 {
-    if(m_tmp_buf)
-    {
-        delete[] m_tmp_buf;
-        m_tmp_buf = nullptr;
-    }
+    delete[] m_tmp_buf;
+    m_tmp_buf = nullptr;
 }
 
 void ChannelConverter::configure(quint32 srate, ChannelMap in_map)

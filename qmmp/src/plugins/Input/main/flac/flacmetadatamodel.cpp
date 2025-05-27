@@ -41,13 +41,9 @@ FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
 FLACMetaDataModel::~FLACMetaDataModel()
 {
     qDeleteAll(m_tags);
-    if(m_file)
-    {
-        delete m_file;
-        m_file = nullptr;
-    }
-    if(m_stream)
-        delete m_stream;
+    delete m_file;
+    m_file = nullptr;
+    delete m_stream;
 }
 
 QList<TagModel*> FLACMetaDataModel::tags() const

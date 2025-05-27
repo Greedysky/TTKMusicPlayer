@@ -172,17 +172,11 @@ void LightWaveFormScanner::stop()
         wait();
     }
 
-    if(m_decoder)
-    {
-        delete m_decoder;
-        m_decoder = nullptr;
-    }
+    delete m_decoder;
+    m_decoder = nullptr;
 
-    if(m_input)
-    {
-        delete m_input;
-        m_input = nullptr;
-    }
+    delete m_input;
+    m_input = nullptr;
 }
 
 const QList<int> &LightWaveFormScanner::data() const
@@ -353,33 +347,10 @@ LightWaveForm::LightWaveForm(QWidget *parent)
     connect(m_scanner, SIGNAL(finished()), SLOT(scanFinished()));
     connect(m_scanner, SIGNAL(dataChanged()), SLOT(dataChanged()));
 
-    m_channelsAction = new QAction(tr("Double Channels"), this);
-    m_channelsAction->setCheckable(true);
-    //: Root mean square
-    m_rmsAction = new QAction(tr("Root Mean Square"), this);
-    m_rmsAction->setCheckable(true);
-
-    m_rulerAction = new QAction(tr("Display Ruler"), this);
-    m_rulerAction->setCheckable(true);
-
-    m_logScaleAction = new QAction(tr("Logarithmic Scale"), this);
-    m_logScaleAction->setCheckable(true);
-
-    m_shadeAction = new QAction(tr("Shade Mode"), this);
-    m_shadeAction->setCheckable(true);
-
-    m_cloudAction = new QAction(tr("Cloud Mode"), this);
-    m_cloudAction->setCheckable(true);
-
-    m_pointsAction = new QAction(tr("Points Mode"), this);
-    m_pointsAction->setCheckable(true);
-
-    m_fatAction = new QAction(tr("Fat Mode"), this);
-    m_fatAction->setCheckable(true);
-
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
     connect(SoundCore::instance(), SIGNAL(elapsedChanged(qint64)), SLOT(positionChanged(qint64)));
 
+    createMenu();
     readSettings();
 }
 
@@ -661,28 +632,53 @@ void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
 
     menu.addAction(m_logScaleAction);
 
-    QMenu displayMenu(tr("Display"), &menu);
-    displayMenu.addAction(m_channelsAction);
-    displayMenu.addAction(m_rmsAction);
-    displayMenu.addAction(m_rulerAction);
-    menu.addMenu(&displayMenu);
+    QMenu *displayMenu = menu.addMenu(tr("Display"));
+    displayMenu->addAction(m_channelsAction);
+    displayMenu->addAction(m_rmsAction);
+    displayMenu->addAction(m_rulerAction);
 
-    QMenu modeMenu(tr("Mode"), &menu);
-    modeMenu.addAction(m_shadeAction);
-    modeMenu.addAction(m_cloudAction);
-    modeMenu.addAction(m_pointsAction);
-    modeMenu.addAction(m_fatAction);
-    menu.addMenu(&modeMenu);
+    QMenu *modeMenu = menu.addMenu(tr("Mode"));
+    modeMenu->addAction(m_shadeAction);
+    modeMenu->addAction(m_cloudAction);
+    modeMenu->addAction(m_pointsAction);
+    modeMenu->addAction(m_fatAction);
 
-    QMenu colorMenu(tr("Color"), &menu);
-    colorMenu.addAction(tr("RMS"))->setData(10);
-    colorMenu.addAction(tr("Wave"))->setData(20);
-    colorMenu.addAction(tr("Background"))->setData(30);
-    colorMenu.addAction(tr("Progress"))->setData(40);
-    colorMenu.addAction(tr("Ruler"))->setData(50);
-    connect(&colorMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
-    menu.addMenu(&colorMenu);
+    QMenu *colorMenu = menu.addMenu(tr("Color"));
+    colorMenu->addAction(tr("RMS"))->setData(10);
+    colorMenu->addAction(tr("Wave"))->setData(20);
+    colorMenu->addAction(tr("Background"))->setData(30);
+    colorMenu->addAction(tr("Progress"))->setData(40);
+    colorMenu->addAction(tr("Ruler"))->setData(50);
+    connect(colorMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
+
     menu.exec(QCursor::pos());
+}
+
+void LightWaveForm::createMenu()
+{
+    m_channelsAction = new QAction(tr("Double Channels"), this);
+    m_channelsAction->setCheckable(true);
+    //: Root mean square
+    m_rmsAction = new QAction(tr("Root Mean Square"), this);
+    m_rmsAction->setCheckable(true);
+
+    m_rulerAction = new QAction(tr("Display Ruler"), this);
+    m_rulerAction->setCheckable(true);
+
+    m_logScaleAction = new QAction(tr("Logarithmic Scale"), this);
+    m_logScaleAction->setCheckable(true);
+
+    m_shadeAction = new QAction(tr("Shade Mode"), this);
+    m_shadeAction->setCheckable(true);
+
+    m_cloudAction = new QAction(tr("Cloud Mode"), this);
+    m_cloudAction->setCheckable(true);
+
+    m_pointsAction = new QAction(tr("Points Mode"), this);
+    m_pointsAction->setCheckable(true);
+
+    m_fatAction = new QAction(tr("Fat Mode"), this);
+    m_fatAction->setCheckable(true);
 }
 
 void LightWaveForm::drawWaveform()

@@ -13,10 +13,7 @@ OuterRipples::OuterRipples(QWidget *parent)
 
 OuterRipples::~OuterRipples()
 {
-    if(m_xscale)
-    {
-        delete[] m_xscale;
-    }
+    delete[] m_xscale;
 }
 
 void OuterRipples::paintEvent(QPaintEvent *)
@@ -45,15 +42,8 @@ void OuterRipples::processData(float *left, float *)
         m_rows = rows;
         m_cols = cols;
 
-        if(m_visualData)
-        {
-            delete[] m_visualData;
-        }
-
-        if(m_xscale)
-        {
-            delete[] m_xscale;
-        }
+        delete[] m_visualData;
+        delete[] m_xscale;
 
         m_visualData = new int[m_cols]{0};
         m_xscale = new int[m_cols + 1]{0};
@@ -65,16 +55,14 @@ void OuterRipples::processData(float *left, float *)
     }
 
     short dest[256];
-    short y;
-    int magnitude;
-
     calc_freq(dest, left);
+
     const double yscale = (double) 1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; ++i)
     {
-        y = 0;
-        magnitude = 0;
+        short y = 0;
+        int magnitude = 0;
 
         if(m_xscale[i] == m_xscale[i + 1])
         {

@@ -13,8 +13,7 @@ DecoderWavPack::DecoderWavPack(const QString &path)
 DecoderWavPack::~DecoderWavPack()
 {
     deinit();
-    if(m_output_buf)
-        delete[] m_output_buf;
+    delete[] m_output_buf;
     m_output_buf = nullptr;
 }
 
@@ -142,8 +141,7 @@ void DecoderWavPack::deinit()
     if(m_context)
         WavpackCloseFile(m_context);
     m_context = nullptr;
-    if(m_parser)
-        delete m_parser;
+    delete m_parser;
     m_parser = nullptr;
 }
 

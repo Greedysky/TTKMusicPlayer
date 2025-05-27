@@ -240,15 +240,9 @@ void ReplayGainner::run()
 
 void ReplayGainner::deinit()
 {
-    if(m_decoder)
-    {
-        delete m_decoder;
-        m_decoder = nullptr;
-    }
+    delete m_decoder;
+    m_decoder = nullptr;
 
-    if(m_source)
-    {
-        delete m_source;
-        m_source = nullptr;
-    }
+    delete m_source;
+    m_source = nullptr;
 }

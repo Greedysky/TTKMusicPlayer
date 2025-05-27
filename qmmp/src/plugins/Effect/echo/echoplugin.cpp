@@ -25,10 +25,7 @@ EchoPlugin::EchoPlugin()
 EchoPlugin::~EchoPlugin()
 {
     m_instance = nullptr;
-    if(m_buffer)
-    {
-        delete[] m_buffer;
-    }
+    delete[] m_buffer;
 }
 
 void EchoPlugin::applyEffect(Buffer *b)
@@ -65,11 +62,8 @@ void EchoPlugin::configure(quint32 freq, ChannelMap map)
     if(channels() != map.count() || sampleRate() != freq)
     {
         Effect::configure(freq, map);
-        if(m_buffer)
-        {
-            delete[] m_buffer;
-        }
 
+        delete[] m_buffer;
         m_size = rescale(1000, 1000, sampleRate()) * channels();
         m_buffer = new float[m_size]{0};
     }

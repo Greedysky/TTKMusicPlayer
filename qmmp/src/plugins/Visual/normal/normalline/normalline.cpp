@@ -19,15 +19,8 @@ NormalLine::NormalLine(QWidget *parent)
 
 NormalLine::~NormalLine()
 {
-    if(m_peaks)
-    {
-        delete[] m_peaks;
-    }
-
-    if(m_xscale)
-    {
-        delete[] m_xscale;
-    }
+    delete[] m_peaks;
+    delete[] m_xscale;
 }
 
 void NormalLine::readSettings()
@@ -103,20 +96,9 @@ void NormalLine::processData(float *left, float *right)
         m_rows = rows;
         m_cols = cols;
 
-        if(m_peaks)
-        {
-            delete[] m_peaks;
-        }
-
-        if(m_visualData)
-        {
-            delete[] m_visualData;
-        }
-
-        if(m_xscale)
-        {
-            delete[] m_xscale;
-        }
+        delete[] m_peaks;
+        delete[] m_visualData;
+        delete[] m_xscale;
 
         m_peaks = new double[m_cols * 2]{0};
         m_visualData = new int[m_cols * 2]{0};
@@ -128,9 +110,7 @@ void NormalLine::processData(float *left, float *right)
         }
     }
 
-    short destl[256];
-    short destr[256];
-
+    short destl[256], destr[256];
     calc_freq(destl, left);
     calc_freq(destr, right);
 
@@ -138,10 +118,8 @@ void NormalLine::processData(float *left, float *right)
 
     for(int i = 0; i < m_cols; ++i)
     {
-        short yl = 0;
-        short yr = 0;
-        int magnitudel = 0;
-        int magnituder = 0;
+        short yl = 0, yr = 0;
+        int magnitudel = 0, magnituder = 0;
 
         if(m_xscale[i] == m_xscale[i + 1])
         {

@@ -80,17 +80,11 @@ void SRConverter::deinit()
     }
     m_state = nullptr;
 
-    if(m_data.data_in)
-    {
-        delete[] m_data.data_in;
-        m_data.data_in = nullptr;
-    }
+    delete[] m_data.data_in;
+    m_data.data_in = nullptr;
 
-    if(m_data.data_out)
-    {
-        delete[] m_data.data_out;
-        m_data.data_out = nullptr;
-    }
+    delete[] m_data.data_out;
+    m_data.data_out = nullptr;
 
     m_data.end_of_input = 0;
     m_data.input_frames = 0;

@@ -11,8 +11,7 @@ SIDHelper::SIDHelper(SidDatabase *db)
 
 SIDHelper::~SIDHelper()
 {
-    if(m_tune)
-        delete m_tune;
+    delete m_tune;
     m_tune = nullptr;
 }
 

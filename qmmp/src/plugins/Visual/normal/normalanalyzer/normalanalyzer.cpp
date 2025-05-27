@@ -3,9 +3,8 @@
 
 #include <QMenu>
 #include <QTimer>
-#include <QSettings>
-#include <QActionGroup>
 #include <QPainter>
+#include <QSettings>
 #include <math.h>
 #include <qmmp/qmmp.h>
 
@@ -21,15 +20,8 @@ NormalAnalyzer::NormalAnalyzer(QWidget *parent)
 
 NormalAnalyzer::~NormalAnalyzer()
 {
-    if(m_peaks)
-    {
-        delete[] m_peaks;
-    }
-
-    if(m_xscale)
-    {
-        delete[] m_xscale;
-    }
+    delete[] m_peaks;
+    delete[] m_xscale;
 }
 
 void NormalAnalyzer::readSettings()
@@ -43,15 +35,9 @@ void NormalAnalyzer::readSettings()
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     settings.endGroup();
 
-    if(m_update)
-    {
-        return;
-    }
-
-    m_update = true;
     m_peaksAction->setChecked(m_showPeaks);
 
-    for(QAction *act : m_fpsGroup->actions())
+    for(QAction *act : m_fpsActions->actions())
     {
         if(m_timer->interval() == 1000 / act->data().toInt())
         {
@@ -60,7 +46,7 @@ void NormalAnalyzer::readSettings()
         }
     }
 
-    for(QAction *act : m_peaksFalloffGroup->actions())
+    for(QAction *act : m_peakActions->actions())
     {
         if(m_peakSize == act->data().toDouble())
         {
@@ -69,7 +55,7 @@ void NormalAnalyzer::readSettings()
         }
     }
 
-    for(QAction *act : m_analyzerFalloffGroup->actions())
+    for(QAction *act : m_analyzerActions->actions())
     {
         if(m_analyzerSize == act->data().toDouble())
         {
@@ -78,22 +64,21 @@ void NormalAnalyzer::readSettings()
         }
     }
 
-    //fallback
-    if(!m_fpsGroup->checkedAction())
+    if(!m_fpsActions->checkedAction())
     {
-        m_fpsGroup->actions().at(3)->setChecked(true);
+        m_fpsActions->actions().at(3)->setChecked(true);
         m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     }
 
-    if(!m_peaksFalloffGroup->checkedAction())
+    if(!m_peakActions->checkedAction())
     {
-        m_peaksFalloffGroup->actions().at(1)->setChecked(2);
+        m_peakActions->actions().at(1)->setChecked(2);
         m_peakSize = 0.2;
     }
 
-    if(!m_peaksFalloffGroup->checkedAction())
+    if(!m_peakActions->checkedAction())
     {
-        m_peaksFalloffGroup->actions().at(1)->setChecked(2);
+        m_peakActions->actions().at(1)->setChecked(2);
         m_analyzerSize = 2.2;
     }
 }
@@ -102,16 +87,18 @@ void NormalAnalyzer::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("NormalAnalyzer");
-    QAction *act = m_fpsGroup->checkedAction();
-    settings.setValue("refresh_rate", act ? act->data().toInt() : 30);
-    act = m_peaksFalloffGroup->checkedAction();
-    settings.setValue("peak_falloff", act ? act->data().toDouble() : 0.2);
-    act = m_analyzerFalloffGroup->checkedAction();
-    settings.setValue("analyzer_falloff", act ? act->data().toDouble() : 2.2);
-    settings.setValue("show_peaks", m_peaksAction->isChecked());
+    QAction *act = m_fpsActions->checkedAction();
+    const int fps = act ? act->data().toInt() : 30;
+    settings.setValue("refresh_rate", fps);
+    act = m_peakActions->checkedAction();
+    settings.setValue("peak_falloff", m_peakSize = (act ? act->data().toDouble() : 0.2));
+    act = m_analyzerActions->checkedAction();
+    settings.setValue("analyzer_falloff", m_analyzerSize = (act ? act->data().toDouble() : 2.2));
+    settings.setValue("show_peaks", m_showPeaks = m_peaksAction->isChecked());
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
-    readSettings();
+
+    m_timer->setInterval(1000 / fps);
 }
 
 void NormalAnalyzer::changeColor()
@@ -173,20 +160,9 @@ void NormalAnalyzer::processData(float *left, float *right)
         m_rows = rows;
         m_cols = cols;
 
-        if(m_peaks)
-        {
-            delete[] m_peaks;
-        }
-
-        if(m_visualData)
-        {
-            delete[] m_visualData;
-        }
-
-        if(m_xscale)
-        {
-            delete[] m_xscale;
-        }
+        delete[] m_peaks;
+        delete[] m_visualData;
+        delete[] m_xscale;
 
         m_peaks = new double[m_cols * 2]{0};
         m_visualData = new int[m_cols * 2]{0};
@@ -198,9 +174,7 @@ void NormalAnalyzer::processData(float *left, float *right)
         }
     }
 
-    short destl[256];
-    short destr[256];
-
+    short destl[256], destr[256];
     calc_freq(destl, left);
     calc_freq(destr, right);
 
@@ -208,10 +182,8 @@ void NormalAnalyzer::processData(float *left, float *right)
 
     for(int i = 0; i < m_cols; ++i)
     {
-        short yl = 0;
-        short yr = 0;
-        int magnitudel = 0;
-        int magnituder = 0;
+        short yl = 0, yr = 0;
+        int magnitudel = 0, magnituder = 0;
 
         if(m_xscale[i] == m_xscale[i + 1])
         {
@@ -269,53 +241,51 @@ void NormalAnalyzer::createMenu()
     m_peaksAction = m_menu->addAction(tr("Peaks"));
     m_peaksAction->setCheckable(true);
 
-    QMenu *refreshRate = m_menu->addMenu(tr("Refresh Rate"));
-    m_fpsGroup = new QActionGroup(this);
-    m_fpsGroup->setExclusive(true);
-    m_fpsGroup->addAction(tr("60 fps"))->setData(60);
-    m_fpsGroup->addAction(tr("50 fps"))->setData(50);
-    m_fpsGroup->addAction(tr("40 fps"))->setData(40);
-    m_fpsGroup->addAction(tr("30 fps"))->setData(30);
-    m_fpsGroup->addAction(tr("20 fps"))->setData(20);
+    QMenu *refreshMenu = m_menu->addMenu(tr("Refresh Rate"));
+    m_fpsActions = new QActionGroup(this);
+    m_fpsActions->setExclusive(true);
+    m_fpsActions->addAction(tr("60 fps"))->setData(60);
+    m_fpsActions->addAction(tr("50 fps"))->setData(50);
+    m_fpsActions->addAction(tr("40 fps"))->setData(40);
+    m_fpsActions->addAction(tr("30 fps"))->setData(30);
+    m_fpsActions->addAction(tr("20 fps"))->setData(20);
 
-    for(QAction *act : m_fpsGroup->actions())
+    for(QAction *act : m_fpsActions->actions())
     {
         act->setCheckable(true);
-        refreshRate->addAction(act);
+        refreshMenu->addAction(act);
     }
 
-    QMenu *analyzerFalloff = m_menu->addMenu(tr("Analyzer Falloff"));
-    m_analyzerFalloffGroup = new QActionGroup(this);
-    m_analyzerFalloffGroup->setExclusive(true);
-    m_analyzerFalloffGroup->addAction(tr("Slowest"))->setData(1.2);
-    m_analyzerFalloffGroup->addAction(tr("Slow"))->setData(1.8);
-    m_analyzerFalloffGroup->addAction(tr("Medium"))->setData(2.2);
-    m_analyzerFalloffGroup->addAction(tr("Fast"))->setData(2.4);
-    m_analyzerFalloffGroup->addAction(tr("Fastest"))->setData(2.8);
+    QMenu *analyzerMenu = m_menu->addMenu(tr("Analyzer Falloff"));
+    m_analyzerActions = new QActionGroup(this);
+    m_analyzerActions->setExclusive(true);
+    m_analyzerActions->addAction(tr("Slowest"))->setData(1.2);
+    m_analyzerActions->addAction(tr("Slow"))->setData(1.8);
+    m_analyzerActions->addAction(tr("Medium"))->setData(2.2);
+    m_analyzerActions->addAction(tr("Fast"))->setData(2.4);
+    m_analyzerActions->addAction(tr("Fastest"))->setData(2.8);
 
-    for(QAction *act : m_analyzerFalloffGroup->actions())
+    for(QAction *act : m_analyzerActions->actions())
     {
         act->setCheckable(true);
-        analyzerFalloff->addAction(act);
+        analyzerMenu->addAction(act);
     }
 
-    QMenu *peaksFalloff = m_menu->addMenu(tr("Peaks Falloff"));
-    m_peaksFalloffGroup = new QActionGroup(this);
-    m_peaksFalloffGroup->setExclusive(true);
-    m_peaksFalloffGroup->addAction(tr("Slowest"))->setData(0.05);
-    m_peaksFalloffGroup->addAction(tr("Slow"))->setData(0.1);
-    m_peaksFalloffGroup->addAction(tr("Medium"))->setData(0.2);
-    m_peaksFalloffGroup->addAction(tr("Fast"))->setData(0.4);
-    m_peaksFalloffGroup->addAction(tr("Fastest"))->setData(0.8);
+    QMenu *peakMenu = m_menu->addMenu(tr("Peaks Falloff"));
+    m_peakActions = new QActionGroup(this);
+    m_peakActions->setExclusive(true);
+    m_peakActions->addAction(tr("Slowest"))->setData(0.05);
+    m_peakActions->addAction(tr("Slow"))->setData(0.1);
+    m_peakActions->addAction(tr("Medium"))->setData(0.2);
+    m_peakActions->addAction(tr("Fast"))->setData(0.4);
+    m_peakActions->addAction(tr("Fastest"))->setData(0.8);
 
-    for(QAction *act : m_peaksFalloffGroup->actions())
+    for(QAction *act : m_peakActions->actions())
     {
         act->setCheckable(true);
-        peaksFalloff->addAction(act);
+        peakMenu->addAction(act);
     }
 
     m_menu->addSeparator();
     m_menu->addAction(tr("Color"), this, SLOT(changeColor()));
-
-    update();
 }

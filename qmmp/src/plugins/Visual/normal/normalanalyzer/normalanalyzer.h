@@ -45,19 +45,21 @@ private:
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void processData(float *left, float *right) override final;
+
     void createMenu();
 
     double *m_peaks = nullptr;
     int *m_xscale = nullptr;
     double m_peakSize, m_analyzerSize;
-    bool m_showPeaks, m_update = false;
+    bool m_showPeaks;
 
     QList<QColor> m_colors;
     const QSize m_cellSize = QSize(15, 6);
+
     QMenu *m_menu;
     QAction *m_peaksAction;
-    QActionGroup *m_fpsGroup;
-    QActionGroup *m_analyzerFalloffGroup, *m_peaksFalloffGroup;
+    QActionGroup *m_fpsActions;
+    QActionGroup *m_analyzerActions, *m_peakActions;
 
 };
 

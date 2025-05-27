@@ -4,7 +4,6 @@
 #include <QTimer>
 #include <QPainter>
 #include <QSettings>
-#include <QActionGroup>
 #include <math.h>
 #include <qmmp/qmmp.h>
 
@@ -34,13 +33,7 @@ void GoomWidget::readSettings()
     m_timer->setInterval(1000 / settings.value("refresh_rate", 30).toInt());
     settings.endGroup();
 
-    if(m_update)
-    {
-        return;
-    }
-
-    m_update = true;
-    for(QAction *act : m_fpsGroup->actions())
+    for(QAction *act : m_fpsActions->actions())
     {
         if(m_timer->interval() == 1000 / act->data().toInt())
         {
@@ -54,10 +47,12 @@ void GoomWidget::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Goom");
-    QAction *act = m_fpsGroup->checkedAction();
-    settings.setValue("refresh_rate", act ? act->data().toInt() : 30);
+    QAction *act = m_fpsActions->checkedAction();
+    const int fps = act ? act->data().toInt() : 30;
+    settings.setValue("refresh_rate", fps);
     settings.endGroup();
-    readSettings();
+
+    m_timer->setInterval(1000 / fps);
 }
 
 void GoomWidget::hideEvent(QHideEvent *e)
@@ -118,18 +113,18 @@ void GoomWidget::createMenu()
     m_menu = new QMenu(this);
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
 
-    QMenu *refreshRate = m_menu->addMenu(tr("Refresh Rate"));
-    m_fpsGroup = new QActionGroup(this);
-    m_fpsGroup->setExclusive(true);
-    m_fpsGroup->addAction(tr("60 fps"))->setData(60);
-    m_fpsGroup->addAction(tr("50 fps"))->setData(50);
-    m_fpsGroup->addAction(tr("40 fps"))->setData(40);
-    m_fpsGroup->addAction(tr("30 fps"))->setData(30);
-    m_fpsGroup->addAction(tr("20 fps"))->setData(20);
+    QMenu *refreshMenu = m_menu->addMenu(tr("Refresh Rate"));
+    m_fpsActions = new QActionGroup(this);
+    m_fpsActions->setExclusive(true);
+    m_fpsActions->addAction(tr("60 fps"))->setData(60);
+    m_fpsActions->addAction(tr("50 fps"))->setData(50);
+    m_fpsActions->addAction(tr("40 fps"))->setData(40);
+    m_fpsActions->addAction(tr("30 fps"))->setData(30);
+    m_fpsActions->addAction(tr("20 fps"))->setData(20);
 
-    for(QAction *act : m_fpsGroup->actions())
+    for(QAction *act : m_fpsActions->actions())
     {
         act->setCheckable(true);
-        refreshRate->addAction(act);
+        refreshMenu->addAction(act);
     }
 }

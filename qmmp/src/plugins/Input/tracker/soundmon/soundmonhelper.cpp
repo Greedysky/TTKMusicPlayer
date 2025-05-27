@@ -13,10 +13,7 @@ SoundMonHelper::~SoundMonHelper()
 
 void SoundMonHelper::deinit()
 {
-    if(m_input)
-    {
-        delete m_input;
-    }
+    delete m_input;
 }
 
 bool SoundMonHelper::initialize()

@@ -15,11 +15,7 @@ MixerPlugin::MixerPlugin()
 MixerPlugin::~MixerPlugin()
 {
     m_instance = nullptr;
-    if(m_buffer)
-    {
-        delete[] m_buffer;
-        m_buffer = nullptr;
-    }
+    delete[] m_buffer;
 }
 
 void MixerPlugin::applyEffect(Buffer *b)
@@ -36,11 +32,7 @@ void MixerPlugin::applyEffect(Buffer *b)
 
             if(m_size < b->samples)
             {
-                if(m_buffer)
-                {
-                    delete[] m_buffer;
-                }
-		
+                delete[] m_buffer;
                 m_size = b->samples;
                 m_buffer = new float[b->samples];
             }
@@ -86,11 +78,7 @@ void MixerPlugin::applyEffect(Buffer *b)
 
             if(m_size < b->samples)
             {
-                if(m_buffer)
-                {
-                    delete[] m_buffer;
-                }
-		
+                delete[] m_buffer;
                 m_size = b->samples;
                 m_buffer = new float[b->samples];
             }

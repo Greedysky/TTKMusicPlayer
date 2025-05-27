@@ -21,6 +21,8 @@
 
 #include <qmmp/visual.h>
 
+class QMenu;
+class QActionGroup;
 class MountainWidget;
 
 /*!
@@ -40,16 +42,22 @@ public:
     explicit MountainPlugin(QWidget *parent = nullptr);
 
 private slots:
-    void positionChanged(QAction *action);
+    void readSettings();
+    void writeSettings();
 
 private:
     virtual void contextMenuEvent(QContextMenuEvent *) override final;
 
     virtual void processData(float *left, float *right) override final;
-    void createMoudle(Type type);
 
-    Type m_type;
+    void createMenu();
+    void createMoudle();
+
+    int m_type;
     MountainWidget *m_container = nullptr;
+
+    QMenu *m_menu;
+    QActionGroup *m_typeActions;
 
 };
 

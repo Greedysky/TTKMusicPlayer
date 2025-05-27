@@ -126,11 +126,7 @@ void PlusXRays::processData(float *left, float *)
         m_rows = rows;
         m_cols = cols;
 
-        if(m_visualData)
-        {
-            delete[] m_visualData;
-        }
-
+        delete[] m_visualData;
         m_visualData = new int[m_cols]{0};
     }
 

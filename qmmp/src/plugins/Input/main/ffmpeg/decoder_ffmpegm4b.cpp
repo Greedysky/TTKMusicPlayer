@@ -14,11 +14,9 @@ DecoderFFmpegM4b::DecoderFFmpegM4b(DecoderFactory *factory, const QString &path)
 
 DecoderFFmpegM4b::~DecoderFFmpegM4b()
 {
-    if(m_decoder)
-        delete m_decoder;
+    delete m_decoder;
     m_decoder = nullptr;
-    if(m_buf)
-        delete[] m_buf;
+    delete[] m_buf;
     m_buf = nullptr;
     if(m_input)
         m_input->deleteLater();
@@ -169,8 +167,7 @@ qint64 DecoderFFmpegM4b::read(unsigned char *data, qint64 maxSize)
     len2 = (len2 / m_frameSize) * m_frameSize; //integer number of samples
     m_written += len2;
     //save data of the next track
-    if(m_buf)
-        delete[] m_buf;
+    delete[] m_buf;
     m_bufSize = len - len2;
     m_buf = new char[m_bufSize];
     memmove(m_buf, data + len2, m_bufSize);

@@ -45,6 +45,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *) override final;
 
     virtual void processData(float *left, float *right) override final;
+
     void initialize();
     void closePreset();
     void generatePreset();

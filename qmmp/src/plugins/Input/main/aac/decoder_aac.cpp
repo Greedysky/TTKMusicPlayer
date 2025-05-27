@@ -21,8 +21,7 @@ DecoderAAC::~DecoderAAC()
         m_data = nullptr;
     }
 
-    if(m_input_buf)
-        delete[] m_input_buf;
+    delete[] m_input_buf;
     m_input_buf = nullptr;
     m_bitrate = 0;
 }

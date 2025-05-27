@@ -90,6 +90,7 @@ private:
     virtual void mouseReleaseEvent(QMouseEvent *e) override final;
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
+    void createMenu();
     void drawWaveform();
 
     LightWaveFormScanner *m_scanner = nullptr;
