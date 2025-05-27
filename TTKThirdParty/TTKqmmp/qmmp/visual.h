@@ -171,7 +171,7 @@ protected:
     QTimer *m_timer = nullptr;
     bool m_running = false;
     int m_rows = 0, m_cols = 0;
-    int *m_intern_vis_data = nullptr;
+    int *m_visualData = nullptr;
     QAction *m_screenAction = nullptr;
 
 private:
@@ -181,7 +181,7 @@ private:
     static QList<VisualFactory*> *m_factories;
     static QHash<const VisualFactory*, QString> *m_files;
     static QList<Visual*> m_visuals;
-    static QHash<VisualFactory*, Visual*> m_vis_map; //internal visualization
+    static QHash<VisualFactory*, Visual*> m_visualMap; //internal visualization
     static QWidget *m_parentClass;
     static QObject *m_receiver;
     static const char *m_member;

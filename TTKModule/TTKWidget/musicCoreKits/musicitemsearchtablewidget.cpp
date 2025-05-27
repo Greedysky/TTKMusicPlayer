@@ -4,13 +4,13 @@
 MusicItemSearchTableWidget::MusicItemSearchTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
 {
-    m_actionGroup = new QActionGroup(this);
-    connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(searchActionClicked(QAction*)));
+    m_searchActions = new QActionGroup(this);
+    connect(m_searchActions, SIGNAL(triggered(QAction*)), SLOT(searchActionClicked(QAction*)));
 }
 
 MusicItemSearchTableWidget::~MusicItemSearchTableWidget()
 {
-    delete m_actionGroup;
+    delete m_searchActions;
 }
 
 void MusicItemSearchTableWidget::startToSearchByText(const QString &text)
@@ -49,7 +49,7 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
     }
 
     menu.setStyleSheet(TTK::UI::MenuStyle02);
-    m_actionGroup->addAction(menu.addAction(tr("Download")))->setData(0);
+    m_searchActions->addAction(menu.addAction(tr("Download")))->setData(0);
     menu.addSeparator();
 
     const int row = currentRow();
@@ -60,9 +60,9 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
     }
 
     const TTK::MusicSongInformation &info = songInfos[row];
-    m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_songName)))->setData(1);
-    m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_artistName)))->setData(2);
-    m_actionGroup->addAction(menu.addAction(tr("Search '%1 - %2'").arg(info.m_artistName, info.m_songName)))->setData(3);
+    m_searchActions->addAction(menu.addAction(tr("Search '%1'").arg(info.m_songName)))->setData(1);
+    m_searchActions->addAction(menu.addAction(tr("Search '%1'").arg(info.m_artistName)))->setData(2);
+    m_searchActions->addAction(menu.addAction(tr("Search '%1 - %2'").arg(info.m_artistName, info.m_songName)))->setData(3);
 }
 
 QString MusicItemSearchTableWidget::randSimulation() const noexcept

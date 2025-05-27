@@ -373,19 +373,18 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
-    QMenu uploadMenu(tr("Upload"), &menu);
     menu.setStyleSheet(TTK::UI::MenuStyle02);
 
+    QMenu *uploadMenu = menu.addMenu(tr("Upload"));
     if(m_currentDataItem.isValid() && m_currentDataItem.m_state == MusicCloudDataItem::State::Waited)
     {
-        uploadMenu.addAction(tr("Cancel Upload"), this, SLOT(cancelUploadFilesToServer()));
+        uploadMenu->addAction(tr("Cancel Upload"), this, SLOT(cancelUploadFilesToServer()));
     }
 
-    uploadMenu.addAction(tr("Upload File"), this, SLOT(uploadFilesToServer()));
-    uploadMenu.addAction(tr("Upload Files"), this, SLOT(uploadFileDirToServer()));
-    TTK::Widget::adjustMenuPosition(&uploadMenu);
+    uploadMenu->addAction(tr("Upload File"), this, SLOT(uploadFilesToServer()));
+    uploadMenu->addAction(tr("Upload Files"), this, SLOT(uploadFileDirToServer()));
+    TTK::Widget::adjustMenuPosition(uploadMenu);
 
-    menu.addMenu(&uploadMenu);
     menu.addAction(tr("Delete File"), this, SLOT(deleteFileFromServer()))->setEnabled(!m_uploading);
     menu.addAction(tr("Delete Files"), this, SLOT(deleteFilesFromServer()))->setEnabled(!m_uploading);
     menu.addSeparator();

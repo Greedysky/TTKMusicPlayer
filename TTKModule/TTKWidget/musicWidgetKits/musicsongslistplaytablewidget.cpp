@@ -657,43 +657,42 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     Q_UNUSED(event);
     QMenu menu(this);
     menu.setStyleSheet(TTK::UI::MenuStyle02);
+
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(playClicked()));
     menu.addAction(tr("Play Later"), this, SLOT(addToPlayLater()));
     menu.addAction(tr("Add To Playlist"), this, SLOT(addToPlayedList()));
     menu.addAction(tr("Download More..."), this, SLOT(showDownloadWidget()));
     menu.addSeparator();
 
-    QMenu sortFiles(tr("Sort"), &menu);
-    sortFiles.addAction(tr("Sort By FileName"))->setData(0);
-    sortFiles.addAction(tr("Sort By Singer"))->setData(1);
-    sortFiles.addAction(tr("Sort By FileSize"))->setData(2);
-    sortFiles.addAction(tr("Sort By AddTime"))->setData(3);
-    sortFiles.addAction(tr("Sort By Duration"))->setData(4);
-    sortFiles.addAction(tr("Sort By PlayCount"))->setData(5);
-    TTK::Widget::adjustMenuPosition(&sortFiles);
-    connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(songListSortBy(QAction*)));
+    QMenu *sortFilesMenu = menu.addMenu(tr("Sort"));
+    sortFilesMenu->addAction(tr("Sort By FileName"))->setData(0);
+    sortFilesMenu->addAction(tr("Sort By Singer"))->setData(1);
+    sortFilesMenu->addAction(tr("Sort By FileSize"))->setData(2);
+    sortFilesMenu->addAction(tr("Sort By AddTime"))->setData(3);
+    sortFilesMenu->addAction(tr("Sort By Duration"))->setData(4);
+    sortFilesMenu->addAction(tr("Sort By PlayCount"))->setData(5);
+    TTK::Widget::adjustMenuPosition(sortFilesMenu);
+    connect(sortFilesMenu, SIGNAL(triggered(QAction*)), SLOT(songListSortBy(QAction*)));
 
     if(m_songSort)
     {
-        const QList<QAction*> actions(sortFiles.actions());
+        const QList<QAction*> actions(sortFilesMenu->actions());
         if(-1 < m_songSort->m_type && m_songSort->m_type < actions.count())
         {
             const bool asc = m_songSort->m_order == Qt::AscendingOrder;
             actions[m_songSort->m_type]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
         }
     }
-    menu.addMenu(&sortFiles);
 
     menu.addAction(tr("Found Movie"), this, SLOT(showMovieQueryWidget()));
     menu.addSeparator();
 
     createMoreMenu(&menu);
 
-    QMenu toolMenu(tr("Tools"), &menu);
-    toolMenu.addAction(tr("Make Bell"), this, SLOT(showMakeRingWidget()));
-    toolMenu.addAction(tr("Make Transform"), this, SLOT(showTransformWidget()));
-    menu.addMenu(&toolMenu);
-    TTK::Widget::adjustMenuPosition(&toolMenu);
+    QMenu *toolMenu = menu.addMenu(tr("Tools"));
+    toolMenu->addAction(tr("Make Bell"), this, SLOT(showMakeRingWidget()));
+    toolMenu->addAction(tr("Make Transform"), this, SLOT(showTransformWidget()));
+    TTK::Widget::adjustMenuPosition(toolMenu);
 
     bool status = !(m_songs->isEmpty() || TTK::String::isNetworkUrl(currentSongPath()));
     menu.addAction(tr("Song Info..."), this, SLOT(showFileInformation()))->setEnabled(status);

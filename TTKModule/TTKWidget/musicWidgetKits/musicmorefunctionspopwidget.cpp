@@ -33,12 +33,12 @@ void MusicMoreFunctionsPopWidget::initialize()
     m_containWidget->setFixedSize(110, 190);
     m_menu->removeAction(m_menu->actions().front());
 
-    QActionGroup *group = new QActionGroup(this);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_message_hover"), tr("Message")))->setData(0);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_similar_hover"), tr("Similar")))->setData(1);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_ablum_hover"), tr("Ablum")))->setData(2);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_artist_hover"), tr("Artist")))->setData(3);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_recommend_hover"), tr("Daily")))->setData(4);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_search_hover"), tr("Advance")))->setData(5);
-    connect(group, SIGNAL(triggered(QAction*)), SLOT(functionClicked(QAction*)));
+    QActionGroup *actions = new QActionGroup(this);
+    actions->addAction(m_menu->addAction(QIcon(":/functions/btn_message_hover"), tr("Message")))->setData(0);
+    actions->addAction(m_menu->addAction(QIcon(":/functions/btn_similar_hover"), tr("Similar")))->setData(1);
+    actions->addAction(m_menu->addAction(QIcon(":/functions/btn_ablum_hover"), tr("Ablum")))->setData(2);
+    actions->addAction(m_menu->addAction(QIcon(":/functions/btn_artist_hover"), tr("Artist")))->setData(3);
+    actions->addAction(m_menu->addAction(QIcon(":/functions/btn_recommend_hover"), tr("Daily")))->setData(4);
+    actions->addAction(m_menu->addAction(QIcon(":/functions/btn_search_hover"), tr("Advance")))->setData(5);
+    connect(actions, SIGNAL(triggered(QAction*)), SLOT(functionClicked(QAction*)));
 }

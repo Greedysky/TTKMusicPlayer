@@ -81,7 +81,7 @@ private:
      */
     bool bitrateIsValid(int bitrate);
 
-    QActionGroup *m_actionGroup;
+    QActionGroup *m_qualityActions;
 
 };
 

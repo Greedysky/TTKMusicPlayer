@@ -20,7 +20,6 @@
  ***************************************************************************/
 
 #include <QMenu>
-#include <QActionGroup>
 #include "musicfillitemtablewidget.h"
 #include "musicabstractqueryrequest.h"
 

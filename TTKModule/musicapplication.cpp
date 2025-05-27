@@ -767,22 +767,20 @@ void MusicApplication::createRightMenu()
     QMenu menu(this);
     menu.setStyleSheet(TTK::UI::MenuStyle02);
 
-    QMenu addNewFiles(tr("Add New Files"), &menu);
-    menu.addMenu(&addNewFiles);
-    addNewFiles.addAction(tr("Open Files"), this, SLOT(importSongsByFiles()));
-    addNewFiles.addAction(tr("Open Dir"), this, SLOT(importSongsByDir()));
-    addNewFiles.addAction(tr("Open Url"), this, SLOT(importSongsByUrl()));
-    TTK::Widget::adjustMenuPosition(&addNewFiles);
+    QMenu *addNewFilesMenu = menu.addMenu(tr("Add New Files"));
+    addNewFilesMenu->addAction(tr("Open Files"), this, SLOT(importSongsByFiles()));
+    addNewFilesMenu->addAction(tr("Open Dir"), this, SLOT(importSongsByDir()));
+    addNewFilesMenu->addAction(tr("Open Url"), this, SLOT(importSongsByUrl()));
+    TTK::Widget::adjustMenuPosition(addNewFilesMenu);
 
-    QMenu playbackMode(tr("Playback Mode"), &menu);
-    menu.addMenu(&playbackMode);
+    QMenu *playbackModeMenu = menu.addMenu(tr("Playback Mode"));
 
     QList<QAction*> actions;
-    actions << playbackMode.addAction(tr("Play Once"), this, SLOT(playOnce()));
-    actions << playbackMode.addAction(tr("Single Cycle"), this, SLOT(playOneLoop()));
-    actions << playbackMode.addAction(tr("Order Play"), this, SLOT(playOrder()));
-    actions << playbackMode.addAction(tr("List Cycle"), this, SLOT(playlistLoop()));
-    actions << playbackMode.addAction(tr("Random Play"), this, SLOT(playRandom()));
+    actions << playbackModeMenu->addAction(tr("Play Once"), this, SLOT(playOnce()));
+    actions << playbackModeMenu->addAction(tr("Single Cycle"), this, SLOT(playOneLoop()));
+    actions << playbackModeMenu->addAction(tr("Order Play"), this, SLOT(playOrder()));
+    actions << playbackModeMenu->addAction(tr("List Cycle"), this, SLOT(playlistLoop()));
+    actions << playbackModeMenu->addAction(tr("Random Play"), this, SLOT(playRandom()));
 
     int index = TTK_NORMAL_LEVEL;
     switch(playMode())
@@ -801,15 +799,15 @@ void MusicApplication::createRightMenu()
     }
 
     menu.addSeparator();
-    QMenu remoteControl(tr("Remote Control"), &menu);
-    menu.addMenu(&remoteControl);
-    remoteControl.addAction(tr("Square Remote"), m_topAreaWidget, SLOT(showSquareRemote()));
-    remoteControl.addAction(tr("Rectangle Remote"), m_topAreaWidget, SLOT(showRectangleRemote()));
-    remoteControl.addAction(tr("Simple Style Remote"), m_topAreaWidget, SLOT(showSimpleStyleRemote()));
-    remoteControl.addAction(tr("Complex Style Remote"), m_topAreaWidget, SLOT(showComplexStyleRemote()));
-    remoteControl.addAction(tr("Ripple Remote"), m_topAreaWidget, SLOT(showRippleRemote()));
-    remoteControl.addAction(tr("Delete Remote"), m_topAreaWidget, SLOT(deleteCurrentRemote()));
-    TTK::Widget::adjustMenuPosition(&remoteControl);
+
+    QMenu *remoteControlMenu = menu.addMenu(tr("Remote Control"));
+    remoteControlMenu->addAction(tr("Square Remote"), m_topAreaWidget, SLOT(showSquareRemote()));
+    remoteControlMenu->addAction(tr("Rectangle Remote"), m_topAreaWidget, SLOT(showRectangleRemote()));
+    remoteControlMenu->addAction(tr("Simple Style Remote"), m_topAreaWidget, SLOT(showSimpleStyleRemote()));
+    remoteControlMenu->addAction(tr("Complex Style Remote"), m_topAreaWidget, SLOT(showComplexStyleRemote()));
+    remoteControlMenu->addAction(tr("Ripple Remote"), m_topAreaWidget, SLOT(showRippleRemote()));
+    remoteControlMenu->addAction(tr("Delete Remote"), m_topAreaWidget, SLOT(deleteCurrentRemote()));
+    TTK::Widget::adjustMenuPosition(remoteControlMenu);
 
     menu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationModule, SLOT(showEqualizerWidget()));
     menu.addAction(tr("Sound Effect"), m_applicationModule, SLOT(showSoundEffectWidget()));
@@ -821,12 +819,12 @@ void MusicApplication::createRightMenu()
     window->setIcon(QIcon(m_applicationModule->windowToTop() ? ":/contextMenu/btn_selected" : QString()));
     menu.addAction(tr("Reset Window"), m_applicationModule, SLOT(resetWindowGeometry()));
 
-    QMenu download(tr("Download"), &menu);
-    menu.addMenu(&download);
+    QMenu *downloadMenu = menu.addMenu(tr("Download"));
     index = !G_SETTING_PTR->value(MusicSettingManager::DownloadLimitEnable).toInt();
     actions.clear();
-    actions << download.addAction(tr("Full Download"), MusicRightAreaWidget::instance(), SLOT(changeDownloadFulllyWidget()));
-    actions << download.addAction(tr("Custom"), MusicRightAreaWidget::instance(), SLOT(changeDownloadCustumWidget()));
+    actions << downloadMenu->addAction(tr("Full Download"), MusicRightAreaWidget::instance(), SLOT(changeDownloadFulllyWidget()));
+    actions << downloadMenu->addAction(tr("Custom"), MusicRightAreaWidget::instance(), SLOT(changeDownloadCustumWidget()));
+
     if(index > TTK_NORMAL_LEVEL && index < actions.count())
     {
         actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
@@ -838,12 +836,11 @@ void MusicApplication::createRightMenu()
     }
     menu.addAction(QIcon(":/contextMenu/btn_setting"), tr("Settings"), this, SLOT(showSettingWidget()));
 
-    QMenu information(tr("About"), &menu);
-    menu.addMenu(&information)->setIcon(QIcon(":/contextMenu/btn_about"));
-    information.addAction(QIcon(":/contextMenu/btn_bug_reoprt"), tr("Bug Report"), m_applicationModule, SLOT(showBugReportView()));
-    information.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + TTK_STR_CAT(TTK_VERSION_STR, TTK_VERSION_TIME_STR), m_applicationModule, SLOT(showAboutWidget()));
-
+    QMenu *informationMenu = menu.addMenu(QIcon(":/contextMenu/btn_about"), tr("About"));
+    informationMenu->addAction(QIcon(":/contextMenu/btn_bug_reoprt"), tr("Bug Report"), m_applicationModule, SLOT(showBugReportView()));
+    informationMenu->addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + TTK_STR_CAT(TTK_VERSION_STR, TTK_VERSION_TIME_STR), m_applicationModule, SLOT(showAboutWidget()));
     menu.addSeparator();
+
     menu.addAction(QIcon(":/contextMenu/btn_quit"), tr("Quit"), this, SLOT(quitWindow()));
     menu.exec(QCursor::pos());
 }

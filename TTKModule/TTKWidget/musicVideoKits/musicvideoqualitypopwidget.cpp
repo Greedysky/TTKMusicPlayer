@@ -18,12 +18,12 @@ MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
 MusicVideoQualityPopWidget::~MusicVideoQualityPopWidget()
 {
     G_CONNECTION_PTR->removeValue(this);
-    delete m_actionGroup;
+    delete m_qualityActions;
 }
 
 void MusicVideoQualityPopWidget::setQualityActionState()
 {
-    QList<QAction*> actions = m_actionGroup->actions();
+    QList<QAction*> actions = m_qualityActions->actions();
     if(actions.count() >= 4)
     {
         actions[0]->setEnabled(bitrateIsValid(TTK_BN_250));
@@ -68,17 +68,17 @@ void MusicVideoQualityPopWidget::initialize()
 {
     setTranslucentBackground();
 
-    m_actionGroup = new QActionGroup(this);
-    connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(movieQualityChoiced(QAction*)));
+    m_qualityActions = new QActionGroup(this);
+    connect(m_qualityActions, SIGNAL(triggered(QAction*)), SLOT(movieQualityChoiced(QAction*)));
 
     m_containWidget->setFixedSize(60, 125);
     m_menu->setStyleSheet(TTK::UI::MenuStyle03);
     m_menu->removeAction(m_menu->actions().front());
 
-    m_actionGroup->addAction(m_menu->addAction(tr("ST")))->setData(TTKStaticCast(int, TTK::QueryQuality::Standard));
-    m_actionGroup->addAction(m_menu->addAction(tr("SD")))->setData(TTKStaticCast(int, TTK::QueryQuality::High));
-    m_actionGroup->addAction(m_menu->addAction(tr("HD")))->setData(TTKStaticCast(int, TTK::QueryQuality::Super));
-    m_actionGroup->addAction(m_menu->addAction(tr("SQ")))->setData(TTKStaticCast(int, TTK::QueryQuality::Lossless));
+    m_qualityActions->addAction(m_menu->addAction(tr("ST")))->setData(TTKStaticCast(int, TTK::QueryQuality::Standard));
+    m_qualityActions->addAction(m_menu->addAction(tr("SD")))->setData(TTKStaticCast(int, TTK::QueryQuality::High));
+    m_qualityActions->addAction(m_menu->addAction(tr("HD")))->setData(TTKStaticCast(int, TTK::QueryQuality::Super));
+    m_qualityActions->addAction(m_menu->addAction(tr("SQ")))->setData(TTKStaticCast(int, TTK::QueryQuality::Lossless));
 
     setQualityActionState();
 }

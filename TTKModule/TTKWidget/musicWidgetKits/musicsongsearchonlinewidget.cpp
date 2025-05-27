@@ -219,15 +219,15 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicItemSearchTableWidget::contextMenuEvent(event);
 
     QMenu menu(this);
-    m_actionGroup->addAction(menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play")))->setData(4);
+    m_searchActions->addAction(menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play")))->setData(4);
 
     createContextMenu(menu);
 
-    if(!m_actionGroup->actions().isEmpty())
+    if(!m_searchActions->actions().isEmpty())
     {
         const QString &albumName = (currentRow() != -1 && rowCount() > 0) ? item(currentRow(), 3)->toolTip() : QString();
-        QAction *lastAction = m_actionGroup->actions().back();
-        QAction *action = m_actionGroup->addAction(tr("Search '%1'").arg(albumName));
+        QAction *lastAction = m_searchActions->actions().back();
+        QAction *action = m_searchActions->addAction(tr("Search '%1'").arg(albumName));
         action->setData(5);
         menu.insertAction(lastAction, action);
     }

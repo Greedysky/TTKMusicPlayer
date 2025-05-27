@@ -176,6 +176,7 @@ MusicSpectrumFlowLayoutWidget::MusicSpectrumFlowLayoutWidget(QWidget *parent)
     items << SpectrumInfo(":/spectrum/flow_2", tr("Dazzle"));
     items << SpectrumInfo(":/spectrum/flow_3", tr("Sonique"));
     items << SpectrumInfo(":/spectrum/flow_4", tr("Infinity"));
+    items << SpectrumInfo(":/spectrum/flow_5", tr("MadSpin"));
     items << SpectrumInfo(":/spectrum/flow_5", tr("Mountain"));
     items << SpectrumInfo(":/spectrum/flow_6", tr("Matrix"));
     items << SpectrumInfo(":/spectrum/flow_7", tr("VU Meter"));
@@ -184,7 +185,7 @@ MusicSpectrumFlowLayoutWidget::MusicSpectrumFlowLayoutWidget(QWidget *parent)
 
 QStringList MusicSpectrumFlowLayoutWidget::spectrumTypeList() const
 {
-    return {"flowgoom", "flowprojectm", "flowsonique", "flowinfinity", "flowmountain", "flowmatrix", "flowvumeter"};
+    return {"flowgoom", "flowprojectm", "flowsonique", "flowinfinity", "flowjakdaw", "flowmountain", "flowmatrix", "flowvumeter"};
 }
 
 

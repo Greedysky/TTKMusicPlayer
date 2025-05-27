@@ -293,35 +293,12 @@ WaterWavePrivate::WaterWavePrivate()
 
 WaterWavePrivate::~WaterWavePrivate()
 {
-    if(m_orginPixels)
-    {
-        delete[] m_orginPixels;
-    }
-
-    if(m_newPixels)
-    {
-        delete[] m_newPixels;
-    }
-
-    if(m_buffer1)
-    {
-        delete[] m_buffer1;
-    }
-
-    if(m_buffer2)
-    {
-        delete[] m_buffer2;
-    }
-
-    if(m_sourcePower)
-    {
-        delete[] m_sourcePower;
-    }
-
-    if(m_sourcePosition)
-    {
-        delete[] m_sourcePosition;
-    }
+    delete[] m_orginPixels;
+    delete[] m_newPixels;
+    delete[] m_buffer1;
+    delete[] m_buffer2;
+    delete[] m_sourcePower;
+    delete[] m_sourcePosition;
 }
 
 int* WaterWavePrivate::data()

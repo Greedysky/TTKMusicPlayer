@@ -137,7 +137,8 @@ void MusicLrcContainerForDesktop::toolStyleChanged()
 {
     QMenu menu(this);
     menu.setStyleSheet(TTK::UI::MenuStyle02);
-    createColorMenu(menu);
+
+    createColorMenu(&menu);
     menu.exec(QCursor::pos());
 }
 
@@ -162,24 +163,24 @@ void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
     m_lrcManagers[1]->setText({});
 }
 
-void MusicLrcContainerForDesktop::createColorMenu(QMenu &menu)
+void MusicLrcContainerForDesktop::createColorMenu(QMenu *menu)
 {
-    QActionGroup *group = new QActionGroup(this);
-    group->addAction(menu.addAction(tr("White")))->setData(0 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("Blue")))->setData(1 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("Red")))->setData(2 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("Black")))->setData(3 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("Yellow")))->setData(4 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("Purple")))->setData(5 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("Green")))->setData(6 + LRC_COLOR_OFFSET);
-    connect(group, SIGNAL(triggered(QAction*)), SLOT(changeCurrentLrcColor(QAction*)));
-    menu.addSeparator();
-    menu.addAction(tr("Custom"), this, SLOT(currentLrcCustom()));
+    QActionGroup *actions = new QActionGroup(this);
+    actions->addAction(menu->addAction(tr("White")))->setData(0 + LRC_COLOR_OFFSET);
+    actions->addAction(menu->addAction(tr("Blue")))->setData(1 + LRC_COLOR_OFFSET);
+    actions->addAction(menu->addAction(tr("Red")))->setData(2 + LRC_COLOR_OFFSET);
+    actions->addAction(menu->addAction(tr("Black")))->setData(3 + LRC_COLOR_OFFSET);
+    actions->addAction(menu->addAction(tr("Yellow")))->setData(4 + LRC_COLOR_OFFSET);
+    actions->addAction(menu->addAction(tr("Purple")))->setData(5 + LRC_COLOR_OFFSET);
+    actions->addAction(menu->addAction(tr("Green")))->setData(6 + LRC_COLOR_OFFSET);
+    connect(actions, SIGNAL(triggered(QAction*)), SLOT(changeCurrentLrcColor(QAction*)));
+    menu->addSeparator();
+    menu->addAction(tr("Custom"), this, SLOT(currentLrcCustom()));
 
     const int index = G_SETTING_PTR->value("DLrcColor").toInt() - LRC_COLOR_OFFSET;
-    if(index > -1 && index < group->actions().count())
+    if(index > -1 && index < actions->actions().count())
     {
-        group->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
+        actions->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
     }
 }
 
@@ -396,6 +397,7 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu menu;
     menu.setStyleSheet(TTK::UI::MenuStyle02);
+
     menu.addAction(tr("Lrc Search"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("Lrc Update"), this, SIGNAL(currentLrcUpdated()));
     menu.addAction(tr("Lrc Make"), this, SLOT(showLrcMakedWidget()));
@@ -407,9 +409,8 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("Hide"), this, SLOT(close()));
     menu.addAction(QIcon(":/contextMenu/btn_lock"), m_windowLocked ? tr("Unlock Lrc"): tr("Lock Lrc"), this, SLOT(setWindowLockedChanged()));
 
-    QMenu changColorMenu(tr("Color"), &menu);
-    createColorMenu(changColorMenu);
-    menu.addMenu(&changColorMenu);
+    QMenu *colorMenu = menu.addMenu(tr("Color"));
+    createColorMenu(colorMenu);
 
     menu.addSeparator();
     menu.addAction(tr("Settings"), this, SLOT(currentLrcCustom()));

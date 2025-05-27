@@ -198,7 +198,7 @@ private:
     /*!
      * Create color menu.
      */
-    void createColorMenu(QMenu &menu);
+    void createColorMenu(QMenu *menu);
     /*!
      * Revert lrc time speed by pos.
      */

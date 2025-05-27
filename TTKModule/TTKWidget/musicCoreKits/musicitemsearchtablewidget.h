@@ -59,7 +59,7 @@ protected:
      */
     QString randSimulation() const noexcept;
 
-    QActionGroup *m_actionGroup;
+    QActionGroup *m_searchActions;
 
 };
 

@@ -113,7 +113,7 @@ protected:
     /*!
      * Create color menu.
      */
-    void createColorMenu(QMenu &menu);
+    void createColorMenu(QMenu *menu);
     /*!
      * Set self position.
      */

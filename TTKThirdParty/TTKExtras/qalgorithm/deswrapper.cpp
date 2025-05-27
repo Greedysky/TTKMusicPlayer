@@ -269,7 +269,6 @@ quint64 DesPrivate::des64(quint64 *subkeys, quint64 data)
 
     delete[] pR;
     delete[] pSource;
-
     return out;
 }
 

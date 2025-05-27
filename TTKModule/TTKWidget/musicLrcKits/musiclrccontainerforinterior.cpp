@@ -21,7 +21,6 @@
 
 #include <QClipboard>
 #include <QApplication>
-#include <QActionGroup>
 
 static constexpr int LRC_CHANGED_OFFSET_LIMIT = 20;
 static constexpr int LRC_TIME_LABEL_POSITION = 20;
@@ -393,12 +392,6 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
-    QMenu changColorMenu(tr("Color"), &menu);
-    QMenu changeLrcSize(tr("Lrc Size"), &menu);
-    QMenu changeLrcTimeFast(tr("Time After"), &menu);
-    QMenu changeLrcTimeSlow(tr("Time Before"), &menu);
-    QMenu changeLrcLinkMenu(tr("Lrc Link"), &menu);
-
     menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     const bool hasLrcContainer = !m_lrcAnalysis->isEmpty();
@@ -410,21 +403,24 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen() ? tr("Show Normal Mode") : tr("Show Fullscreen Mode"),
                    MusicBottomAreaWidget::instance(), SLOT(lrcWidgetShowFullScreen()));
     menu.addSeparator();
-    menu.addMenu(&changColorMenu);
-    menu.addMenu(&changeLrcSize);
 
-    menu.addMenu(&changeLrcTimeFast)->setEnabled(hasLrcContainer);
-    menu.addMenu(&changeLrcTimeSlow)->setEnabled(hasLrcContainer);
+    QMenu *colorMenu = menu.addMenu(tr("Color"));
+    QMenu *lrcSizeMenu = menu.addMenu(tr("Lrc Size"));
+    QMenu *lrcTimeFastMenu = menu.addMenu(tr("Time After"));
+    QMenu *lrcTimeSlowMenu = menu.addMenu(tr("Time Before"));
+    lrcTimeFastMenu->setEnabled(hasLrcContainer);
+    lrcTimeSlowMenu->setEnabled(hasLrcContainer);
+
     menu.addAction(tr("Revert Mode"), this, SLOT(revertLrcTimeSpeed()))->setEnabled(hasLrcContainer);
     menu.addAction(tr("Save Mode"), this, SLOT(saveLrcTimeChanged()))->setEnabled(hasLrcContainer);
     menu.addSeparator();
 
-    QActionGroup *group = new QActionGroup(this);
-    group->addAction(changeLrcSize.addAction(tr("Smaller")))->setData(0);
-    group->addAction(changeLrcSize.addAction(tr("Small")))->setData(1);
-    group->addAction(changeLrcSize.addAction(tr("Middle")))->setData(2);
-    group->addAction(changeLrcSize.addAction(tr("Big")))->setData(3);
-    group->addAction(changeLrcSize.addAction(tr("Bigger")))->setData(4);
+    QActionGroup *actions = new QActionGroup(this);
+    actions->addAction(lrcSizeMenu->addAction(tr("Smaller")))->setData(0);
+    actions->addAction(lrcSizeMenu->addAction(tr("Small")))->setData(1);
+    actions->addAction(lrcSizeMenu->addAction(tr("Middle")))->setData(2);
+    actions->addAction(lrcSizeMenu->addAction(tr("Big")))->setData(3);
+    actions->addAction(lrcSizeMenu->addAction(tr("Bigger")))->setData(4);
 
     int index = -1, size = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
     switch(size)
@@ -437,31 +433,31 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
         default: break;
     }
 
-    if(index > -1 && index < group->actions().count())
+    if(index > -1 && index < actions->actions().count())
     {
-        group->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
+        actions->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
     }
-    connect(group, SIGNAL(triggered(QAction*)), SLOT(lrcSizeChanged(QAction*)));
+    connect(actions, SIGNAL(triggered(QAction*)), SLOT(lrcSizeChanged(QAction*)));
 
-    changeLrcSize.addSeparator();
-    changeLrcSize.addAction(tr("Custom"), this, SLOT(currentLrcCustom()));
-    createColorMenu(changColorMenu);
+    lrcSizeMenu->addSeparator();
+    lrcSizeMenu->addAction(tr("Custom"), this, SLOT(currentLrcCustom()));
+    createColorMenu(colorMenu);
 
-    QActionGroup *lrcTimeFastGroup = new QActionGroup(this);
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 0.5s")))->setData(0);
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 1.0s")))->setData(1);
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 2.0s")))->setData(2);
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 5.0s")))->setData(3);
-    connect(lrcTimeFastGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
-    TTK::Widget::adjustMenuPosition(&changeLrcTimeFast);
+    QActionGroup *lrcTimeFastActions = new QActionGroup(this);
+    lrcTimeFastActions->addAction(lrcTimeFastMenu->addAction(tr("After 0.5s")))->setData(0);
+    lrcTimeFastActions->addAction(lrcTimeFastMenu->addAction(tr("After 1.0s")))->setData(1);
+    lrcTimeFastActions->addAction(lrcTimeFastMenu->addAction(tr("After 2.0s")))->setData(2);
+    lrcTimeFastActions->addAction(lrcTimeFastMenu->addAction(tr("After 5.0s")))->setData(3);
+    connect(lrcTimeFastActions, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
+    TTK::Widget::adjustMenuPosition(lrcTimeFastMenu);
     //
-    QActionGroup *lrcTimeSlowGroup = new QActionGroup(this);
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("Before 0.5s")))->setData(4);
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("Before 1.0s")))->setData(5);
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("Before 2.0s")))->setData(6);
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("Before 5.0s")))->setData(7);
-    connect(lrcTimeSlowGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
-    TTK::Widget::adjustMenuPosition(&changeLrcTimeSlow);
+    QActionGroup *lrcTimeSlowActions = new QActionGroup(this);
+    lrcTimeSlowActions->addAction(lrcTimeSlowMenu->addAction(tr("Before 0.5s")))->setData(4);
+    lrcTimeSlowActions->addAction(lrcTimeSlowMenu->addAction(tr("Before 1.0s")))->setData(5);
+    lrcTimeSlowActions->addAction(lrcTimeSlowMenu->addAction(tr("Before 2.0s")))->setData(6);
+    lrcTimeSlowActions->addAction(lrcTimeSlowMenu->addAction(tr("Before 5.0s")))->setData(7);
+    connect(lrcTimeSlowActions, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
+    TTK::Widget::adjustMenuPosition(lrcTimeSlowMenu);
     //
     QAction *artAction = menu.addAction(tr("Art Turn Off"), this, SLOT(artistBackgroundChanged()));
     m_showArtistBackground ? artAction->setText(tr("Art Turn Off")) : artAction->setText(tr("Art Turn On"));
@@ -473,11 +469,11 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     const QString &filePath = m_lrcAnalysis->currentFilePath();
     const bool fileCheck = !filePath.isEmpty() && QFile::exists(filePath);
 
-    changeLrcLinkMenu.addAction(tr("Local Lrc Link"), this, SLOT(showLocalLinkWidget()));
-    QAction *lrcLinkAc = changeLrcLinkMenu.addAction(tr("Link Off"), this, SLOT(linkLrcStateChanged()));
+    QMenu *lrcLinkMenu = menu.addMenu(tr("Lrc Link"));
+    lrcLinkMenu->addAction(tr("Local Lrc Link"), this, SLOT(showLocalLinkWidget()));
+    QAction *lrcLinkAc = lrcLinkMenu->addAction(tr("Link Off"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? lrcLinkAc->setText(tr("Link Off")) : lrcLinkAc->setText(tr("Link On"));
-    TTK::Widget::adjustMenuPosition(&changeLrcLinkMenu);
-    menu.addMenu(&changeLrcLinkMenu);
+    TTK::Widget::adjustMenuPosition(lrcLinkMenu);
 
     menu.addAction(tr("Copy To Clip"), this, SLOT(lrcCopyClipboard()))->setEnabled(fileCheck);
     menu.addAction(tr("Open Lrc File"), this, SLOT(lrcOpenFileDir()))->setEnabled(fileCheck);
@@ -627,26 +623,26 @@ void MusicLrcContainerForInterior::resizeEvent(QResizeEvent *event)
     resizeWindow();
 }
 
-void MusicLrcContainerForInterior::createColorMenu(QMenu &menu)
+void MusicLrcContainerForInterior::createColorMenu(QMenu *menu)
 {
-    QActionGroup *group = new QActionGroup(this);
-    group->addAction(menu.addAction(tr("Yellow")))->setData(0);
-    group->addAction(menu.addAction(tr("Blue")))->setData(1);
-    group->addAction(menu.addAction(tr("Gray")))->setData(2);
-    group->addAction(menu.addAction(tr("Pink")))->setData(3);
-    group->addAction(menu.addAction(tr("Green")))->setData(4);
-    group->addAction(menu.addAction(tr("Red")))->setData(5);
-    group->addAction(menu.addAction(tr("Purple")))->setData(6);
-    group->addAction(menu.addAction(tr("Orange")))->setData(7);
-    group->addAction(menu.addAction(tr("Indigo")))->setData(8);
-    connect(group, SIGNAL(triggered(QAction*)), SLOT(changeCurrentLrcColor(QAction*)));
-    menu.addSeparator();
-    menu.addAction(tr("Custom"), this, SLOT(currentLrcCustom()));
+    QActionGroup *actions = new QActionGroup(this);
+    actions->addAction(menu->addAction(tr("Yellow")))->setData(0);
+    actions->addAction(menu->addAction(tr("Blue")))->setData(1);
+    actions->addAction(menu->addAction(tr("Gray")))->setData(2);
+    actions->addAction(menu->addAction(tr("Pink")))->setData(3);
+    actions->addAction(menu->addAction(tr("Green")))->setData(4);
+    actions->addAction(menu->addAction(tr("Red")))->setData(5);
+    actions->addAction(menu->addAction(tr("Purple")))->setData(6);
+    actions->addAction(menu->addAction(tr("Orange")))->setData(7);
+    actions->addAction(menu->addAction(tr("Indigo")))->setData(8);
+    connect(actions, SIGNAL(triggered(QAction*)), SLOT(changeCurrentLrcColor(QAction*)));
+    menu->addSeparator();
+    menu->addAction(tr("Custom"), this, SLOT(currentLrcCustom()));
 
     const int index = G_SETTING_PTR->value("LrcColor").toInt();
-    if(index > -1 && index < group->actions().count())
+    if(index > -1 && index < actions->actions().count())
     {
-        group->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
+        actions->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
     }
 }
 
