@@ -139,6 +139,5 @@ void MusicAbstractDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event
 
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(removeItemAt()))->setEnabled(status);
     menu.addAction(tr("Delete All"), this, SLOT(clearItems()))->setEnabled(status);
-
     menu.exec(QCursor::pos());
 }

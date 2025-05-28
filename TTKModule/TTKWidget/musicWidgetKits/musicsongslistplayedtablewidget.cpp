@@ -297,6 +297,5 @@ void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(removeItemAt()));
     menu.addSeparator();
-
     menu.exec(QCursor::pos());
 }

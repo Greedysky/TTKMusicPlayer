@@ -158,7 +158,6 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"))->setData(0);
     menu.addAction(tr("Add to list"))->setData(1);
     menu.addAction(tr("Download More..."))->setData(2);
-
     menu.addSeparator();
 
     const TTK::MusicSongInformation &info = songInfos[row];
@@ -167,7 +166,6 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("Search '%1'").arg(info.m_albumName))->setData(5);
     menu.addAction(tr("Search '%1 - %2'").arg(info.m_artistName, info.m_songName))->setData(6);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(menuActionChanged(QAction*)));
-
     menu.exec(QCursor::pos());
 }
 

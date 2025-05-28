@@ -414,7 +414,6 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
 
     menu.addSeparator();
     menu.addAction(tr("Settings"), this, SLOT(currentLrcCustom()));
-
     menu.exec(QCursor::pos());
 }
 

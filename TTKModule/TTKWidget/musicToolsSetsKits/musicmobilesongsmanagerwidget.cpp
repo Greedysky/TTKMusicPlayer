@@ -99,7 +99,6 @@ void MusicMobileSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(openFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(showAlbumQueryWidget()));
     menu.addSeparator();
-
     menu.exec(QCursor::pos());
 }
 

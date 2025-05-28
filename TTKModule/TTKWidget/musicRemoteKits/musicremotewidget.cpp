@@ -211,9 +211,9 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     action = menu.addAction(tr("Ripple Remote"));
     action->setEnabled(!TTKObjectCast(MusicRemoteWidgetForRipple*, this));
     action->setData(Ripple);
+
     menu.addAction(tr("Quit"), this, SLOT(close()));
     connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(remoteTypeChanged(QAction*)));
-
     menu.exec(QCursor::pos());
 }
 

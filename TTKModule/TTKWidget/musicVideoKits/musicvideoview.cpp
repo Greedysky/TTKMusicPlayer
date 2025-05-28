@@ -135,8 +135,8 @@ void MusicVideoView::createRightMenu()
     menu.addAction(tr("Fullscreen"), this, SLOT(fullscreenButtonTrigger()));
     menu.addAction(tr("Download"), this, SIGNAL(downloadButtonClicked()));
     menu.addAction(tr("Share"), this, SIGNAL(shareButtonClicked()));
-    TTK::Widget::adjustMenuPosition(&menu);
 
+    TTK::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 
