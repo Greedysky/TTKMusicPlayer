@@ -26,7 +26,7 @@ void MountainPlugin::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Mountain");
-    m_type = settings.value("type", static_cast<int>(Type::Complex)).toInt();
+    m_type = static_cast<Type>(settings.value("type", Type::Complex).toInt());
     settings.endGroup();
 
     for(QAction *act : m_typeActions->actions())
@@ -46,7 +46,7 @@ void MountainPlugin::writeSettings()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Mountain");
     QAction *act = m_typeActions->checkedAction();
-    settings.setValue("type", m_type = (act ? act->data().toInt() : static_cast<int>(Type::Complex)));
+    settings.setValue("type", m_type = (act ? static_cast<Type>(act->data().toInt()) : Type::Complex));
     settings.endGroup();
 
     createMoudle();

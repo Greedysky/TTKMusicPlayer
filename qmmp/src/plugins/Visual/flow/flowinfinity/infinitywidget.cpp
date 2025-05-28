@@ -231,9 +231,6 @@ void InfinityWidget::createMenu()
     m_menu = new QMenu(this);
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
 
-    m_menu->addAction(m_screenAction);
-    m_menu->addSeparator();
-
     m_effectActions = new QActionGroup(this);
     m_effectActions->setExclusive(true);
     m_effectActions->addAction(tr("Slowest"))->setData(500);

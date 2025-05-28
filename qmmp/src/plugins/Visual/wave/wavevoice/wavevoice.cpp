@@ -35,7 +35,7 @@ void WaveVoice::readSettings()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("WaveVoice");
     m_channelsAction->setChecked(settings.value("show_two_channels", true).toBool());
-    m_palette = static_cast<VisualPalette::Palette>(settings.value("palette", 1).toInt());
+    m_palette = static_cast<VisualPalette::Palette>(settings.value("palette", VisualPalette::PALETTE_DEFAULT).toInt());
     m_rangeValue = settings.value("range", 30).toInt();
     settings.endGroup();
 

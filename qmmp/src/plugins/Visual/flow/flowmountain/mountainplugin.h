@@ -53,7 +53,7 @@ private:
     void createMenu();
     void createMoudle();
 
-    int m_type;
+    Type m_type;
     MountainWidget *m_container = nullptr;
 
     QMenu *m_menu;
