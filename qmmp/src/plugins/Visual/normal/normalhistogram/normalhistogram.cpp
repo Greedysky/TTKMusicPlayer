@@ -75,6 +75,7 @@ void NormalHistogram::contextMenuEvent(QContextMenuEvent *)
 
     menu.addAction(m_screenAction);
     menu.addSeparator();
+
     menu.addAction(tr("Color"), this, SLOT(changeColor()));
     menu.exec(QCursor::pos());
 }

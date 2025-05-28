@@ -5,6 +5,7 @@
 #include <QMenu>
 #include <QPainter>
 #include <QDateTime>
+#include <QLibrary>
 
 typedef VisInfo* (*SoniqueModule)();
 
@@ -172,6 +173,7 @@ void SoniqueWidget::contextMenuEvent(QContextMenuEvent *)
     QMenu menu(this);
     menu.addAction(m_screenAction);
     menu.addSeparator();
+
     menu.addAction(tr("&Next Preset"), this, SLOT(nextPreset()), tr("N"));
     menu.addAction(tr("&Previous Preset"), this, SLOT(previousPreset()), tr("P"));
     menu.addAction(tr("&Random Preset"), this, SLOT(randomPreset()), tr("R"));

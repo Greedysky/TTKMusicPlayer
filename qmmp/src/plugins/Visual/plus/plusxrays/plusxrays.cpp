@@ -111,6 +111,7 @@ void PlusXRays::contextMenuEvent(QContextMenuEvent *)
 
     menu.addAction(m_screenAction);
     menu.addSeparator();
+
     menu.addAction(tr("Color"), this, SLOT(changeColor()));
     menu.addAction(m_gridAction);
     menu.exec(QCursor::pos());

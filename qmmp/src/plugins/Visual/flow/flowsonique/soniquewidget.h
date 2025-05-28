@@ -21,8 +21,9 @@
 
 #include "visual.h"
 #include "kiss_fft.h"
-#include <QLibrary>
 #include <qmmp/visual.h>
+
+class QLibrary;
 
 /*!
  * @author Greedysky <greedysky@163.com>
