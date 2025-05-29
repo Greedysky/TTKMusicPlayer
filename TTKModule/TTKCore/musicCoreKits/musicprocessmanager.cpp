@@ -88,6 +88,16 @@ void MusicProcessServer::run(const QStringList &args) const
     {
         MusicApplication::instance()->importSongsByOutside(parser.value(op2), true);
     }
+    else if(args.count() == 1)
+    {
+        const QString &url = args.front();
+        if(url.startsWith('-'))
+        {
+            return;
+        }
+
+        MusicApplication::instance()->importSongsByOutside(url, true);
+    }
 }
 
 void MusicProcessServer::timeout()

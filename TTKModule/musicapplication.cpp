@@ -206,6 +206,7 @@ void MusicApplication::importSongsByOutside(const QString &path, bool play)
     }
 
     m_songTreeWidget->importSongsByPath({path}, MUSIC_NORMAL_LIST);
+
     if(play)
     {
         playIndexBy(m_playlist->count() - 1, TTK_NORMAL_LEVEL);
