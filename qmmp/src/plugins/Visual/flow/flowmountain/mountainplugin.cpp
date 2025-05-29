@@ -69,6 +69,7 @@ void MountainPlugin::processData(float *left, float *)
     }
 
     m_container->addBuffer(buffer);
+    m_container->update();
 }
 
 void MountainPlugin::createMenu()

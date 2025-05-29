@@ -1,20 +1,15 @@
-#include "projectmplugin.h"
-#ifdef PROJECTM_4
-#include "projectm4widget.h"
-#else
-#include "projectmwidget.h"
-#endif
+#include "soniqueplugin.h"
+#include "soniquewidget.h"
 
 #include <QMenu>
 #include <QSplitter>
 #include <QScrollBar>
 #include <QBoxLayout>
 
-ProjectMPlugin::ProjectMPlugin(QWidget *parent)
+SoniquePlugin::SoniquePlugin(QWidget *parent)
     : Visual(parent)
 {
-    setlocale(LC_NUMERIC, "C"); //fixes problem with non-english locales
-    setWindowTitle(tr("Flow ProjectM Widget"));
+    setWindowTitle(tr("Flow Sonique Widget"));
 
     m_splitter = new QSplitter(Qt::Horizontal, this);
     m_itemWidget = new QListWidget(m_splitter);
@@ -34,11 +29,9 @@ ProjectMPlugin::ProjectMPlugin(QWidget *parent)
             QScrollBar::handle:horizontal:hover{ background:#BBBBBB; } \
             QScrollBar::add-line, QScrollBar::sub-line{ background:none; border:none; } \
             QScrollBar::add-page, QScrollBar::sub-page{ background:none; }");
-#ifdef PROJECTM_4
-    m_container = new ProjectM4Widget(m_itemWidget, m_splitter);
-#else
-    m_container = new ProjectMWidget(m_itemWidget, m_splitter);
-#endif
+    m_container = new SoniqueWidget(m_itemWidget, m_splitter);
+    connect(m_itemWidget, SIGNAL(currentRowChanged(int)), m_container, SLOT(selectPreset(int)));
+
     m_splitter->addWidget(m_itemWidget);
     m_splitter->addWidget(m_container);
     m_splitter->setStretchFactor(1, 1);
@@ -51,29 +44,19 @@ ProjectMPlugin::ProjectMPlugin(QWidget *parent)
     m_menu = new QMenu(this);
     m_menu->addAction(m_screenAction);
     m_menu->addSeparator();
-#ifndef PROJECTM_4
-    m_menu->addAction(tr("&Help"), m_container, SLOT(showHelp()), tr("F1"))->setCheckable(true);
-    m_menu->addAction(tr("&Show Song Title"), m_container, SLOT(showTitle()), tr("F2"))->setCheckable(true);
-    m_menu->addAction(tr("&Show Preset Name"), m_container, SLOT(showPresetName()), tr("F3"))->setCheckable(true);
-#endif
     m_menu->addAction(tr("&Show Menu"), m_itemWidget, SLOT(setVisible(bool)), tr("M"))->setCheckable(true);
     m_menu->addSeparator();
     m_menu->addAction(tr("&Next Preset"), m_container, SLOT(nextPreset()), tr("N"));
     m_menu->addAction(tr("&Previous Preset"), m_container, SLOT(previousPreset()), tr("P"));
-#ifdef PROJECTM_4
-    m_menu->addAction(tr("&Shuffle"), m_container, SLOT(setShuffle(bool)), tr("R"))->setCheckable(true);
-#else
     m_menu->addAction(tr("&Random Preset"), m_container, SLOT(randomPreset()), tr("R"));
-#endif
-    m_menu->addAction(tr("&Lock Preset"), m_container, SLOT(lockPreset(bool)), tr("L"))->setCheckable(true);
 }
 
-void ProjectMPlugin::contextMenuEvent(QContextMenuEvent *)
+void SoniquePlugin::contextMenuEvent(QContextMenuEvent *)
 {
     m_menu->exec(QCursor::pos());
 }
 
-void ProjectMPlugin::processData(float *left, float *right)
+void SoniquePlugin::processData(float *left, float *right)
 {
     m_container->addBuffer(left, right);
     m_container->update();

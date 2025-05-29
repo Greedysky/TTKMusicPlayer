@@ -18,7 +18,6 @@ WaveVoice::WaveVoice(QWidget *parent)
 
     m_channelsAction = new QAction(tr("Double Channels"), this);
     m_channelsAction->setCheckable(true);
-    connect(m_channelsAction, SIGNAL(triggered(bool)), this, SLOT(writeSettings()));
 
     createPalette(MIN_ROW);
     createMenu();

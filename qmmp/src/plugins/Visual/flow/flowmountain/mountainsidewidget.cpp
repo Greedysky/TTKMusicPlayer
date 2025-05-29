@@ -39,8 +39,6 @@ void MountainSideWidget::addBuffer(float *left)
     m_angleX = fmod(20.0f + 0.0f * m_angle, 360.0f);
     m_angleY = fmod(45.0f + 360.0f / 60.0f * m_angle, 360.0f);
     m_angleZ = fmod(0.0f + 0.0f * m_angle, 360.0f);
-
-    update();
 }
 
 void MountainSideWidget::initializeGL()

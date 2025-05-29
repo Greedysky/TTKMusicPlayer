@@ -15,7 +15,6 @@ PlusXRays::PlusXRays(QWidget *parent)
 
     m_gridAction = new QAction(tr("Grid"), this);
     m_gridAction->setCheckable(true);
-    connect(m_gridAction, SIGNAL(triggered(bool)), this, SLOT(changeGridState(bool)));
 
     readSettings();
 }

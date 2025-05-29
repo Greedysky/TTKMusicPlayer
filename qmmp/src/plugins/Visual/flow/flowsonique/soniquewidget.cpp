@@ -83,17 +83,15 @@ static QFileInfoList fileListByPath(const QString &dpath, const QStringList &fil
 }
 
 
-SoniqueWidget::SoniqueWidget(QWidget *parent)
-    : Visual(parent)
+SoniqueWidget::SoniqueWidget(QListWidget *widget, QWidget *parent)
+    : QWidget(parent)
 {
-    setlocale(LC_NUMERIC, "C"); //fixes problem with non-english locales
-    setWindowTitle(tr("Flow Sonique Widget"));
-
     setMinimumSize(580, 320);
     srand(QDateTime::currentMSecsSinceEpoch());
 
     m_visData = new VisData;
     m_instance = new QLibrary;
+    m_itemWidget = widget;
     m_kissCfg = kiss_fft_alloc(FFT_SIZE, 0, nullptr, nullptr);
     m_inputFreqData = (kiss_fft_cpx*)malloc(sizeof(kiss_fft_cpx) * FFT_SIZE);
     m_outFreqData = (kiss_fft_cpx*)malloc(sizeof(kiss_fft_cpx) * FFT_SIZE);
@@ -115,72 +113,7 @@ SoniqueWidget::~SoniqueWidget()
     free(m_outFreqData);
 }
 
-void SoniqueWidget::nextPreset()
-{
-    if(m_presetList.isEmpty())
-    {
-        return;
-    }
-
-    m_currentIndex++;
-    if(m_currentIndex >= m_presetList.count())
-    {
-        m_currentIndex = 0;
-    }
-
-    generatePreset();
-}
-
-void SoniqueWidget::previousPreset()
-{
-    if(m_presetList.isEmpty())
-    {
-        return;
-    }
-
-    m_currentIndex--;
-    if(m_currentIndex < 0)
-    {
-        m_currentIndex = m_presetList.count() - 1;
-    }
-
-    generatePreset();
-}
-
-void SoniqueWidget::resizeEvent(QResizeEvent *)
-{
-    if(!m_sonique)
-    {
-        return;
-    }
-
-    delete[] m_visProc;
-    m_visProc = nullptr;
-
-    delete[] m_texture;
-    m_texture = new unsigned int[width() * height()]{0};
-}
-
-void SoniqueWidget::paintEvent(QPaintEvent *)
-{
-    QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.drawImage(rect(), QImage((uchar*)m_texture, width(), height(), QImage::Format_RGB32));
-}
-
-void SoniqueWidget::contextMenuEvent(QContextMenuEvent *)
-{
-    QMenu menu(this);
-    menu.addAction(m_screenAction);
-    menu.addSeparator();
-
-    menu.addAction(tr("&Next Preset"), this, SLOT(nextPreset()), tr("N"));
-    menu.addAction(tr("&Previous Preset"), this, SLOT(previousPreset()), tr("P"));
-    menu.addAction(tr("&Random Preset"), this, SLOT(randomPreset()), tr("R"));
-    menu.exec(QCursor::pos());
-}
-
-void SoniqueWidget::processData(float *left, float *right)
+void SoniqueWidget::addBuffer(float *left, float *right)
 {
     if(!m_sonique)
     {
@@ -238,13 +171,46 @@ void SoniqueWidget::processData(float *left, float *right)
         {
             m_visProc = new unsigned int[w * h];
         }
+
         customZoomAndBlur(m_texture, m_visProc, w, h);
     }
 
     m_visData->MillSec = QDateTime::currentMSecsSinceEpoch();
     m_sonique->Render(m_texture, w, h, w, m_visData);
+}
 
-    update();
+void SoniqueWidget::nextPreset()
+{
+    if(m_presetList.isEmpty())
+    {
+        return;
+    }
+
+    m_currentIndex++;
+    if(m_currentIndex >= m_presetList.count())
+    {
+        m_currentIndex = 0;
+    }
+
+    m_itemWidget->setCurrentRow(m_currentIndex);
+    generatePreset();
+}
+
+void SoniqueWidget::previousPreset()
+{
+    if(m_presetList.isEmpty())
+    {
+        return;
+    }
+
+    m_currentIndex--;
+    if(m_currentIndex < 0)
+    {
+        m_currentIndex = m_presetList.count() - 1;
+    }
+
+    m_itemWidget->setCurrentRow(m_currentIndex);
+    generatePreset();
 }
 
 void SoniqueWidget::randomPreset()
@@ -255,7 +221,40 @@ void SoniqueWidget::randomPreset()
     }
 
     m_currentIndex = rand() % m_presetList.count();
+    m_itemWidget->setCurrentRow(m_currentIndex);
     generatePreset();
+}
+
+void SoniqueWidget::selectPreset(int index)
+{
+    if(m_presetList.isEmpty())
+    {
+        return;
+    }
+
+    m_currentIndex = index;
+    generatePreset();
+}
+
+void SoniqueWidget::resizeEvent(QResizeEvent *)
+{
+    if(!m_sonique)
+    {
+        return;
+    }
+
+    delete[] m_visProc;
+    m_visProc = nullptr;
+
+    delete[] m_texture;
+    m_texture = new unsigned int[width() * height()]{0};
+}
+
+void SoniqueWidget::paintEvent(QPaintEvent *)
+{
+    QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.drawImage(rect(), QImage((uchar*)m_texture, width(), height(), QImage::Format_RGB32));
 }
 
 void SoniqueWidget::initialize()
@@ -265,6 +264,8 @@ void SoniqueWidget::initialize()
     for(const QFileInfo &fin : folderList)
     {
         m_presetList << fin.absoluteFilePath();
+        m_itemWidget->addItem(fin.fileName());
+        m_itemWidget->setCurrentRow(0, QItemSelectionModel::Select);
     }
 
     randomPreset();

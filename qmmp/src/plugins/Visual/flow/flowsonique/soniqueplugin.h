@@ -16,53 +16,34 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef SONIQUEWIDGET_H
-#define SONIQUEWIDGET_H
+#ifndef SONIQUEPLUGIN_H
+#define SONIQUEPLUGIN_H
 
-#include "visual.h"
-#include "kiss_fft.h"
-#include <QListWidget>
+#include <qmmp/visual.h>
 
-class QLibrary;
+class QMenu;
+class QSplitter;
+class QListWidget;
+class SoniqueWidget;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class SoniqueWidget : public QWidget
+class SoniquePlugin : public Visual
 {
     Q_OBJECT
 public:
-    explicit SoniqueWidget(QListWidget *widget, QWidget *parent = nullptr);
-    virtual ~SoniqueWidget();
-
-    void addBuffer(float *left, float *right);
-
-public slots:
-    void nextPreset();
-    void previousPreset();
-    void randomPreset();
-    void selectPreset(int index);
+    explicit SoniquePlugin(QWidget *parent = nullptr);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *e) override final;
-    virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *) override final;
 
-    void initialize();
-    void closePreset();
-    void generatePreset();
+    virtual void processData(float *left, float *right) override final;
 
-    VisInfo *m_sonique = nullptr;
-    VisData *m_visData = nullptr;
-    unsigned int *m_texture = nullptr;
-    unsigned int *m_visProc = nullptr;
-    QLibrary *m_instance = nullptr;
-    int m_currentIndex = -1;
-    QStringList m_presetList;
+    QMenu *m_menu;
+    QSplitter *m_splitter;
     QListWidget *m_itemWidget;
-
-    kiss_fft_cfg m_kissCfg;
-    kiss_fft_cpx *m_inputFreqData = nullptr;
-    kiss_fft_cpx *m_outFreqData = nullptr;
+    SoniqueWidget *m_container;
 
 };
 

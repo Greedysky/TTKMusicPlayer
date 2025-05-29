@@ -1,5 +1,5 @@
 #include "visualflowsoniquefactory.h"
-#include "soniquewidget.h"
+#include "soniqueplugin.h"
 
 VisualProperties VisualFlowSoniqueFactory::properties() const
 {
@@ -11,7 +11,7 @@ VisualProperties VisualFlowSoniqueFactory::properties() const
 
 Visual *VisualFlowSoniqueFactory::create(QWidget *parent)
 {
-    return new SoniqueWidget(parent);
+    return new SoniquePlugin(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

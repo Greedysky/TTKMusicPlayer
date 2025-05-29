@@ -19,10 +19,10 @@
 #ifndef PROJECTMPLUGIN_H
 #define PROJECTMPLUGIN_H
 
-#include <QSplitter>
 #include <qmmp/visual.h>
 
 class QMenu;
+class QSplitter;
 class QListWidget;
 #ifdef PROJECTM_4
 class ProjectM4Widget;

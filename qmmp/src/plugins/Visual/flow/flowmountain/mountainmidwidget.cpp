@@ -14,7 +14,6 @@ void MountainMidWidget::addBuffer(float *left)
     m_offset = (m_offset + 1) % NUM_BANDS;
 
     MountainWidget::addBuffer(left);
-    update();
 }
 
 void MountainMidWidget::initializeGL()
