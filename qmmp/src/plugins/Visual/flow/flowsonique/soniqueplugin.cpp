@@ -30,7 +30,6 @@ SoniquePlugin::SoniquePlugin(QWidget *parent)
             QScrollBar::add-line, QScrollBar::sub-line{ background:none; border:none; } \
             QScrollBar::add-page, QScrollBar::sub-page{ background:none; }");
     m_container = new SoniqueWidget(m_itemWidget, m_splitter);
-    connect(m_itemWidget, SIGNAL(currentRowChanged(int)), m_container, SLOT(selectPreset(int)));
 
     m_splitter->addWidget(m_itemWidget);
     m_splitter->addWidget(m_container);

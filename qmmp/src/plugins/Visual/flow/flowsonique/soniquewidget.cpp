@@ -91,7 +91,10 @@ SoniqueWidget::SoniqueWidget(QListWidget *widget, QWidget *parent)
 
     m_visData = new VisData;
     m_instance = new QLibrary;
+
     m_itemWidget = widget;
+    connect(widget, SIGNAL(currentRowChanged(int)), this, SLOT(selectPreset(int)));
+
     m_kissCfg = kiss_fft_alloc(FFT_SIZE, 0, nullptr, nullptr);
     m_inputFreqData = (kiss_fft_cpx*)malloc(sizeof(kiss_fft_cpx) * FFT_SIZE);
     m_outFreqData = (kiss_fft_cpx*)malloc(sizeof(kiss_fft_cpx) * FFT_SIZE);
@@ -193,7 +196,6 @@ void SoniqueWidget::nextPreset()
     }
 
     m_itemWidget->setCurrentRow(m_currentIndex);
-    generatePreset();
 }
 
 void SoniqueWidget::previousPreset()
@@ -210,7 +212,6 @@ void SoniqueWidget::previousPreset()
     }
 
     m_itemWidget->setCurrentRow(m_currentIndex);
-    generatePreset();
 }
 
 void SoniqueWidget::randomPreset()
@@ -222,7 +223,6 @@ void SoniqueWidget::randomPreset()
 
     m_currentIndex = rand() % m_presetList.count();
     m_itemWidget->setCurrentRow(m_currentIndex);
-    generatePreset();
 }
 
 void SoniqueWidget::selectPreset(int index)
