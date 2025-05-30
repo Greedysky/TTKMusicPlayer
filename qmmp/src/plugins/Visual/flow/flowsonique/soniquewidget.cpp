@@ -265,7 +265,6 @@ void SoniqueWidget::initialize()
     {
         m_presetList << fin.absoluteFilePath();
         m_itemWidget->addItem(fin.fileName());
-        m_itemWidget->setCurrentRow(0, QItemSelectionModel::Select);
     }
 
     randomPreset();

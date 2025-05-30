@@ -163,5 +163,7 @@ void ProjectMWidget::lockPreset(bool lock)
 
 void ProjectMWidget::setCurrentRow(int row)
 {
+    m_itemWidget->blockSignals(true);
     m_itemWidget->setCurrentRow(row);
+    m_itemWidget->blockSignals(false);
 }
