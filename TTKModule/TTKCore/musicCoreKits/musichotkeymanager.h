@@ -30,6 +30,7 @@ class TTK_MODULE_EXPORT MusicHotKeyManager : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicHotKeyManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicHotKeyManager)
 public:
     /*!
      * Add hotKey by given object.
@@ -91,8 +92,6 @@ public:
 
 private:
     QList<QGlobalShortcut*> m_hotkeys;
-
-    TTK_DECLARE_SINGLETON_CLASS(MusicHotKeyManager)
 
 };
 

@@ -14,6 +14,7 @@ using QtMessageHandler = QtMsgHandler;
 
 class TTKLogOutput
 {
+    TTK_DECLARE_SINGLETON_CLASS(TTKLogOutput)
 public:
     /*!
      * Install log output handler.
@@ -62,7 +63,6 @@ private:
     QMutex m_mutex;
     QtMessageHandler m_defaultHandler;
 
-    TTK_DECLARE_SINGLETON_CLASS(TTKLogOutput)
 };
 
 #define LOG_DIR_PATH QApplication::applicationDirPath() + "/log/"

@@ -34,6 +34,7 @@ class MusicDownloadBackgroundRequest;
 class TTK_MODULE_EXPORT MusicDownLoadQueryFactory
 {
     TTK_DECLARE_MODULE(MusicDownLoadQueryFactory)
+    TTK_DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)
 public:
     /*!
      * Make query request object by type.
@@ -100,9 +101,6 @@ public:
      * Make download art background object by type.
      */
     MusicDownloadBackgroundRequest *makeBackgroundRequest(const QString &name, const QString &path, QObject *parent);
-
-private:
-    TTK_DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)
 
 };
 

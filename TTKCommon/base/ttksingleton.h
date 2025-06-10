@@ -29,6 +29,7 @@ template <typename T>
  */
 class TTK_MODULE_EXPORT TTKSingleton
 {
+    TTK_DISABLE_COPY(TTKSingleton)
 public:
     /*!
      * Get object instance ptr.
@@ -47,7 +48,6 @@ private:
 
     static QMutex m_mutex;
     static QScopedPointer<T> m_instance;
-    TTK_DISABLE_COPY(TTKSingleton)
 
 };
 

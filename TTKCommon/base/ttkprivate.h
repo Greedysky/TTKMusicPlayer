@@ -92,6 +92,7 @@ template <typename PUB, typename PVT>
 class TTK_MODULE_EXPORT TTKPrivateInterface
 {
     friend class TTKPrivate<PUB>;
+    TTK_DISABLE_COPY(TTKPrivateInterface)
 public:
     /*!
      * Object constructor.
@@ -149,7 +150,6 @@ public:
 
 private:
     TTKPrivate<PUB> *m_dptr;
-    TTK_DISABLE_COPY(TTKPrivateInterface)
 
 };
 

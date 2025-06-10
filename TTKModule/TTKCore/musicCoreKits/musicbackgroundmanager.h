@@ -29,6 +29,7 @@ class TTK_MODULE_EXPORT MusicBackgroundManager : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicBackgroundManager)
 public:
     /*!
      * Set current artist name.
@@ -133,8 +134,6 @@ private:
     QStringList m_images;
     QObjectList m_observer;
     QString m_currentArtistName, m_background;
-
-    TTK_DECLARE_SINGLETON_CLASS(MusicBackgroundManager)
 
 };
 

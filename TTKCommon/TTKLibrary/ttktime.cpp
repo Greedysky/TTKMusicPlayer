@@ -43,12 +43,12 @@ TTKTime::TTKTime(int day, int hour, int min, int sec, int msec) noexcept
 
 TTKTime::TTKTime(const TTKTime &other) noexcept
 {
-    copyToThis(other);
+    makeCopy(other);
 }
 
 TTKTime::TTKTime(TTKTime &&other) noexcept
 {
-    copyToThis(other);
+    makeCopy(other);
 }
 
 bool TTKTime::isNull() const noexcept
@@ -141,13 +141,13 @@ QString TTKTime::formatDuration(qint64 time) noexcept
 
 TTKTime& TTKTime::operator= (const TTKTime &other) noexcept
 {
-    copyToThis(other);
+    makeCopy(other);
     return *this;
 }
 
 TTKTime& TTKTime::operator= (TTKTime &&other) noexcept
 {
-    copyToThis(other);
+    makeCopy(other);
     return *this;
 }
 
@@ -236,7 +236,7 @@ void TTKTime::initialize() noexcept
     m_msecond = 0;
 }
 
-void TTKTime::copyToThis(const TTKTime &other) noexcept
+void TTKTime::makeCopy(const TTKTime &other) noexcept
 {
     m_day = other.m_day;
     m_hour = other.m_hour;

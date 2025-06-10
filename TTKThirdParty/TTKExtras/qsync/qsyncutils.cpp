@@ -28,7 +28,6 @@ static QString hmacSha1(QByteArray key, const QByteArray &baseString)
     QByteArray part = innerPadding;
     part.append(baseString);
     total.append(QCryptographicHash::hash(part, QCryptographicHash::Sha1));
-
     return QCryptographicHash::hash(total, QCryptographicHash::Sha1).toBase64();
 }
 

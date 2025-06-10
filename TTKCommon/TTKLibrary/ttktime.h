@@ -180,7 +180,7 @@ private:
     /*!
      * Copy other time data to this obejct;
      */
-    void copyToThis(const TTKTime &other) noexcept;
+    void makeCopy(const TTKTime &other) noexcept;
 
     int m_day, m_hour;
     int m_minute, m_second, m_msecond;

@@ -41,6 +41,7 @@ public:
      * Create cell item by input data.
      */
     void addCellItem(const QString &item, const QString &tip);
+
     /*!
      * Set spectrum item check state.
      */

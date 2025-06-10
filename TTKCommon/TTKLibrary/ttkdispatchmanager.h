@@ -31,6 +31,7 @@ class TTK_MODULE_EXPORT TTKDispatchManager : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(TTKDispatchManager)
+    TTK_DECLARE_SINGLETON_CLASS(TTKDispatchManager)
 public:
     enum class Module
     {
@@ -99,8 +100,6 @@ private:
     QMutex m_mutex;
     QTimer *m_timer;
     QList<TTKDispatchItem*> m_observer;
-
-    TTK_DECLARE_SINGLETON_CLASS(TTKDispatchManager)
 
 };
 

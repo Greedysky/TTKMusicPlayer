@@ -57,6 +57,7 @@
 class TTK_MODULE_EXPORT MusicSingleManager
 {
     TTK_DECLARE_MODULE(MusicSingleManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicSingleManager)
 public:
     /*!
      * Add object by type name.
@@ -82,8 +83,6 @@ private:
     MusicSingleManager() = default;
     
     QMap<QString, QObject*> m_parameter;
-
-    TTK_DECLARE_SINGLETON_CLASS(MusicSingleManager)
 
 };
 

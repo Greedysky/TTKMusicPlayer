@@ -71,6 +71,7 @@ class TTK_MODULE_EXPORT MusicDownLoadManager : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownLoadManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicDownLoadManager)
 public:
     /*!
      * Set mutiple network connection object.
@@ -103,8 +104,6 @@ private Q_SLOTS:
 private:
     QObjectList m_objects;
     QList<MusicDownLoadPairData> m_datas;
-
-    TTK_DECLARE_SINGLETON_CLASS(MusicDownLoadManager)
 
 };
 

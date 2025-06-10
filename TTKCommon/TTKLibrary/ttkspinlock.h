@@ -27,6 +27,7 @@
  */
 class TTK_MODULE_EXPORT TTKSpinLock
 {
+    TTK_DISABLE_COPY(TTKSpinLock)
 public:
     TTKSpinLock() = default;
 
@@ -51,7 +52,6 @@ public:
 
 private:
     std::atomic_flag m_lock = ATOMIC_FLAG_INIT;
-    TTK_DISABLE_COPY(TTKSpinLock)
 
 };
 
@@ -60,6 +60,7 @@ private:
  */
 class TTK_MODULE_EXPORT TTKSpinLockGuard
 {
+    TTK_DISABLE_COPY(TTKSpinLockGuard)
 public:
     TTKSpinLockGuard(TTKSpinLock& lock) noexcept
         : m_lock(lock)
@@ -74,7 +75,6 @@ public:
 
 private:
     TTKSpinLock &m_lock;
-    TTK_DISABLE_COPY(TTKSpinLockGuard)
 
 };
 

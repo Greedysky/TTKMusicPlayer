@@ -6,7 +6,10 @@
 #include <QFile>
 
 static constexpr const char *OS_ACRCLOUD_URL = "acrcloud";
-static constexpr const char *QUERY_URL = "VzBxZCtBUDBKK1R6aHNiTGxMdy84SzlIUVA5a3cvbjdKQ1ZIVGdYRThBS0hZMTlZSnhRQ0Y5N0lZdi9QQ3VveVEyVDdXbll3ZUZvPQ==";
+static constexpr const char *ACR_QUERY_URL = "VzBxZCtBUDBKK1R6aHNiTGxMdy84SzlIUVA5a3cvbjdKQ1ZIVGdYRThBS0hZMTlZSnhRQ0Y5N0lZdi9QQ3VveVEyVDdXbll3ZUZvPQ==";
+static constexpr const char *XF_QUERY_URL = "cFJiZUh0Z3FxalV6NzlBcEhUVmN5VGRzMm5NZ01rbzlWaFUzRE1ubzBoTU53WlI5cEZpNnVxT3l6OEE9";
+static constexpr const char *XF_QUERY_BODY = "VHd2bFMwaTZGNFQxeDBuU0prYXE0SDIzOVYyWlVwMWk=";
+static constexpr const char *XF_QUERY_DATA = "a29sU1NRVExPbzIzRDdiNjRlbWUwdz09";
 
 MusicAbstractIdentifyRequest::MusicAbstractIdentifyRequest(QObject *parent)
     : MusicAbstractNetwork(parent)
@@ -74,7 +77,7 @@ void MusicACRIdentifyRequest::startToRequest(const QString &path)
     file.close();
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false));
+    request.setUrl(TTK::Algorithm::mdII(ACR_QUERY_URL, false));
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request, contentType.toUtf8());
 
@@ -174,11 +177,11 @@ void MusicXFIdentifyRequest::startToRequest(const QString &path)
     file.close();
 
     const QByteArray &timeStamp = QByteArray::number(TTKDateTime::currentTimestamp() / 1000);
-    const QByteArray &audioBody = TTK::Algorithm::mdII("VHd2bFMwaTZGNFQxeDBuU0prYXE0SDIzOVYyWlVwMWk=", false).toUtf8().toBase64();
+    const QByteArray &audioBody = TTK::Algorithm::mdII(XF_QUERY_BODY, false).toUtf8().toBase64();
     const QByteArray &md5 = TTK::Algorithm::md5(m_accessSecret.toUtf8() + timeStamp + audioBody);
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII("cFJiZUh0Z3FxalV6NzlBcEhUVmN5VGRzMm5NZ01rbzlWaFUzRE1ubzBoTU53WlI5cEZpNnVxT3l6OEE9", false));
+    request.setUrl(TTK::Algorithm::mdII(XF_QUERY_URL, false));
     request.setRawHeader("X-CurTime", timeStamp);
     request.setRawHeader("X-Param", audioBody);
     request.setRawHeader("X-Appid", m_accessKey.toUtf8());
@@ -186,7 +189,7 @@ void MusicXFIdentifyRequest::startToRequest(const QString &path)
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 
-    m_reply = m_manager.post(request, TTK::Algorithm::mdII("a29sU1NRVExPbzIzRDdiNjRlbWUwdz09", false).arg(data.toBase64().constData()).toUtf8());
+    m_reply = m_manager.post(request, TTK::Algorithm::mdII(XF_QUERY_DATA, false).arg(data.toBase64().constData()).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }

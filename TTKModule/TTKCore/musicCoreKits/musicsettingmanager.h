@@ -31,6 +31,7 @@ class TTK_MODULE_EXPORT MusicSettingManager : public QObject
     Q_OBJECT
     Q_ENUMS(Config)
     TTK_DECLARE_MODULE(MusicSettingManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicSettingManager)
 public:
     enum Config
     {
@@ -216,8 +217,6 @@ private:
 
     QVariant m_variant;
     QMap<Config, QVariant> m_parameter;
-
-    TTK_DECLARE_SINGLETON_CLASS(MusicSettingManager)
 
 };
 

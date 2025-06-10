@@ -43,14 +43,14 @@ public:
     virtual ~TTKFunctor();
 
 public:
-    OutputType RunUnsafe(const InputType &input);
-    OutputType RunUnsafe(const InputType &input, const OptionType &option);
+    OutputType runUnsafe(const InputType &input);
+    OutputType runUnsafe(const InputType &input, const OptionType &option);
 
-    bool Run(const InputType &input, const OptionType &option = OptionType());
-    bool Run(const InputType &input, OutputType &output, const OptionType &option = OptionType());
+    bool run(const InputType &input, const OptionType &option = OptionType());
+    bool run(const InputType &input, OutputType &output, const OptionType &option = OptionType());
 
 protected:
-    virtual bool RunMain(OutputType &output, const InputType &input, const OptionType &option) = 0;
+    virtual bool runMain(OutputType &output, const InputType &input, const OptionType &option) = 0;
 
 };
 
@@ -67,32 +67,32 @@ TTKFunctor<IT, OT, PT>::~TTKFunctor()
 }
 
 template <typename IT, typename OT, typename PT>
-typename TTKFunctor<IT, OT, PT>::OutputType TTKFunctor<IT, OT, PT>::RunUnsafe(const InputType &input)
+typename TTKFunctor<IT, OT, PT>::OutputType TTKFunctor<IT, OT, PT>::runUnsafe(const InputType &input)
 {
     OT output;
-    RunMain(output, input, OptionType());
+    runMain(output, input, OptionType());
     return output;
 }
 
 template <typename IT, typename OT, typename PT>
-typename TTKFunctor<IT, OT, PT>::OutputType TTKFunctor<IT, OT, PT>::RunUnsafe(const InputType &input, const OptionType &option)
+typename TTKFunctor<IT, OT, PT>::OutputType TTKFunctor<IT, OT, PT>::runUnsafe(const InputType &input, const OptionType &option)
 {
     OT output;
-    RunMain(output, input, option);
+    runMain(output, input, option);
     return output;
 }
 
 template <typename IT, typename OT, typename PT>
-bool TTKFunctor<IT, OT, PT>::Run(const InputType &input, const OptionType &option)
+bool TTKFunctor<IT, OT, PT>::run(const InputType &input, const OptionType &option)
 {
     OT output;
-    return RunMain(output, input, option);
+    return runMain(output, input, option);
 }
 
 template <typename IT, typename OT, typename PT>
-bool TTKFunctor<IT, OT, PT>::Run(const InputType &input, OutputType &output, const OptionType &option)
+bool TTKFunctor<IT, OT, PT>::run(const InputType &input, OutputType &output, const OptionType &option)
 {
-    return RunMain(output, input, option);
+    return runMain(output, input, option);
 }
 
 #endif // TTKFUNCTOR_H

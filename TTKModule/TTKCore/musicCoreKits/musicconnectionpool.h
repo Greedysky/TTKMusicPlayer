@@ -28,6 +28,7 @@
 class TTK_MODULE_EXPORT MusicConnectionPool
 {
     TTK_DECLARE_MODULE(MusicConnectionPool)
+    TTK_DECLARE_SINGLETON_CLASS(MusicConnectionPool)
 public:
     /*!
      * Set connection object and type name.
@@ -61,8 +62,6 @@ private:
     MusicConnectionPool() = default;
     
     QMap<QString, QObject*> m_parameters;
-
-    TTK_DECLARE_SINGLETON_CLASS(MusicConnectionPool)
 
 };
 
