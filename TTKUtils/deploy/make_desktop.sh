@@ -5,11 +5,16 @@ if [ ! -d $path ]; then
   mkdir $path
 fi
 
+curpath=$PWD/deploy
+if [ $# -eq 0 ]; then
+  curpath=$PWD
+fi
+
 datapath=$path/TTKMusicPlayer.desktop
-packpath="$PWD/$datapath"
+packpath="$curpath/$datapath"
 userpath=~/.local/$datapath
-iconpath="$PWD/share/pixmaps/ttkmusicplayer.png"
-execpath="$PWD/../TTKMusicPlayer"
+iconpath="$curpath/share/pixmaps/ttkmusicplayer.png"
+execpath="$curpath/../TTKMusicPlayer"
 
 echo -n "[Desktop Entry]
 Type=Application
