@@ -154,8 +154,8 @@ include_directories(
 )
 
 
-set(TTK_BUILD_DIR "${CMAKE_CACHEFILE_DIR}/bin")
-set(TTK_GENERATE_DIR "${CMAKE_CACHEFILE_DIR}/Generate")
+set(TTK_BUILD_DIR "${CMAKE_BINARY_DIR}/bin")
+set(TTK_GENERATE_DIR "${CMAKE_BINARY_DIR}/Generate")
 
 include_directories(${TTK_GENERATE_DIR})
 
