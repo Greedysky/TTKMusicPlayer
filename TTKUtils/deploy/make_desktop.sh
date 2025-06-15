@@ -1,18 +1,17 @@
 #!/bin/sh
 
-path=share/applications
-if [ ! -d $path ]; then
-  mkdir $path
-fi
-
 curpath=$PWD/deploy
 if [ $# -eq 0 ]; then
   curpath=$PWD
 fi
 
-datapath=$path/TTKMusicPlayer.desktop
-packpath="$curpath/$datapath"
-userpath=~/.local/$datapath
+path=$curpath/share/applications
+if [ ! -d $path ]; then
+  mkdir $path
+fi
+
+packpath=$path/TTKMusicPlayer.desktop
+userpath=~/.local/share/applications
 iconpath="$curpath/share/pixmaps/ttkmusicplayer.png"
 execpath="$curpath/../TTKMusicPlayer"
 
