@@ -1,0 +1,15 @@
+# Author: Greedysky <greedysky@163.com>
+
+name: CI-Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ubuntu:
+    uses: ./.github/workflows/ubuntu.yml
+    secrets: inherit
+
+  linux:
+    uses: ./.github/workflows/linux.yml
+    secrets: inherit

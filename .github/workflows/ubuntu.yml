@@ -1,0 +1,72 @@
+# Author: Greedysky <greedysky@163.com>
+
+name: ubuntu
+
+on:
+  workflow_call:
+
+env:
+  TTK_MODULE: TTKMusicPlayer
+  TTK_VERSTION: 4.1.3.0
+
+jobs:
+  build_linux:
+    name: Build on ubuntu
+    strategy:
+      matrix:
+        qt_version: [5.9.9]
+        os: [ubuntu-22.04, ubuntu-24.04]
+
+    runs-on: ${{matrix.os}}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Qt
+        uses: actions/cache@v4
+        with:
+          path: ${{runner.workspace}}/Qt
+          key: ${{runner.os}}-QtCache-${{matrix.qt_version}}
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{matrix.qt_version}}
+          target: desktop
+          cache: 'true'
+
+      - name: Create build dir
+        run: mkdir build
+        working-directory: ${{runner.workspace}}
+
+      - name: Build project
+        run: |
+          sudo apt install p7zip-full rename
+          qmake -v
+          cmake --version
+          cmake ${GITHUB_WORKSPACE} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5
+          make && make install
+        working-directory: ${{runner.workspace}}/build
+
+      - name: Build package
+        run: |
+          wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z
+          7z x theme.7z
+          mv GTheme ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64.7z ${{env.TTK_MODULE}}
+        working-directory: ${{runner.workspace}}/install
+
+      - name: Build deb package
+        run: |
+          mv ${{env.TTK_MODULE}}/deploy/make_deb.sh .
+          sh make_deb.sh ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64
+        working-directory: ${{runner.workspace}}/install
+
+      - name: Archive artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{env.TTK_VERSTION}}
+          token: ${{secrets.GITHUB_TOKEN}}
+          generate_release_notes: false
+          files: |
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64.7z
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64.deb
