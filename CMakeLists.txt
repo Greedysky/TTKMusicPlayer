@@ -37,6 +37,8 @@ set(CMAKE_AUTORCC OFF)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -pthread -fopenmp -Wall")
 if(WIN32)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows")
+  # Fix "command line is too long" on Windows
+  string(APPEND CMAKE_RC_FLAGS " --use-temp-file")
 endif()
 
 # Build Type
