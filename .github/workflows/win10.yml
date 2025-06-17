@@ -1,6 +1,6 @@
 # Author: Greedysky <greedysky@163.com>
 
-name: linux
+name: win10
 
 on:
   workflow_call:
@@ -11,11 +11,11 @@ env:
 
 jobs:
   build:
-    name: Build on linux
+    name: Build on win64 Qt6
     strategy:
       matrix:
-        qt_version: [5.9.9]
-        os: [ubuntu-22.04]
+        qt_version: [6.5.3]
+        os: [windows-2022]
 
     runs-on: ${{matrix.os}}
     steps:
@@ -31,39 +31,37 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{matrix.qt_version}}
+          host: windows
+          arch: win64_mingw
           target: desktop
+          modules: qt5compat
           cache: 'true'
 
-      - name: Install linuxdeploy
-        uses: miurahr/install-linuxdeploy-action@v1
-        with:
-          plugins: qt appimage
-
       - name: Create build dir
+        shell: bash
         run: mkdir build
         working-directory: ${{runner.workspace}}
 
       - name: Build project
+        shell: cmd
         run: |
-          sudo apt install rename libfuse2 p7zip-full
           qmake -v
           cmake --version
-          cmake ${GITHUB_WORKSPACE} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5
+          cmake %GITHUB_WORKSPACE% -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=6
           make && make install
         working-directory: ${{runner.workspace}}/build
 
       - name: Build package
         run: |
-          wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z
+          bitsadmin /transfer job https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z ${{runner.workspace}}/install/theme.7z
           7z x theme.7z
           mv GTheme ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cd ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          linuxdeploy-x86_64.AppImage --executable=TTKService --appdir=image --plugin=qt
-          rm image/usr/lib/libTTK*.so
-          mv image/usr/lib image/usr/plugins image/usr/translations image/usr/bin/qt.conf ../
-          rm -R image
-          cd ../../
-          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z ${{env.TTK_MODULE}}
+          windeployqt ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/TTKService.exe
+          cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libgcc_s_seh-1.dll ${{env.TTK_MODULE}}
+          cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libstdc++-6.dll ${{env.TTK_MODULE}}
+          cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
+          cp ${{runner.workspace}}/Qt/${{matrix.qt_version}}/mingw_64/bin/Qt6Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win10-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
       - name: Archive artifacts
@@ -72,4 +70,4 @@ jobs:
           tag_name: ${{env.TTK_VERSTION}}
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z
+          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win10-x64.7z
