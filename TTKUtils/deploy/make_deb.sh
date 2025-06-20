@@ -31,10 +31,14 @@ echo -n "#!/bin/bash
 sh /opt/${packname}/install.sh\n" > ${datapath}/postinst
 chmod +x ${datapath}/postinst
 
+# create prerm file
+echo -n "#!/bin/bash
+sh /opt/${packname}/uninstall.sh\n" > ${datapath}/prerm
+chmod +x ${datapath}/prerm
+
 # create postrm file
 echo -n "#!/bin/bash
-rm -rf /opt/${packname}
-rm -f ~/.local/share/applications/${packname}.desktop\n" > ${datapath}/postrm
+rm -rf /opt/${packname}\n" > ${datapath}/postrm
 chmod +x ${datapath}/postrm
 
 # create data path

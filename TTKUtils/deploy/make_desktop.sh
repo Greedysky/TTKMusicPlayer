@@ -12,9 +12,16 @@ if [ ! -d ${deskpath} ]; then
   mkdir -p ${deskpath}
 fi
 
+username=`logname`
+if [ "${username}" = "root" ]; then
+  homepath=/root
+else
+  homepath=/home/${username}
+fi
+
 packvern=4.1.3.0
 packpath=${deskpath}/TTKMusicPlayer.desktop
-userpath=~/.local/share/applications
+userpath=${homepath}/.local/share/applications
 iconpath="${dirpath}/share/pixmaps/ttkmusicplayer.png"
 execpath="${dirpath}/../TTKMusicPlayer"
 
