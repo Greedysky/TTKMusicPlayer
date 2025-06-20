@@ -34,13 +34,18 @@ jobs:
           target: desktop
           cache: 'true'
 
+      - name: Install linuxdeploy
+        uses: miurahr/install-linuxdeploy-action@v1
+        with:
+          plugins: qt appimage
+
       - name: Create build dir
         run: mkdir build
         working-directory: ${{runner.workspace}}
 
       - name: Build project
         run: |
-          sudo apt install p7zip-full rename
+          sudo apt install rename libfuse2 p7zip-full
           qmake -v
           cmake --version
           cmake ${GITHUB_WORKSPACE} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5
@@ -52,6 +57,12 @@ jobs:
           wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z
           7z x theme.7z
           mv GTheme ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          cd ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          linuxdeploy-x86_64.AppImage --executable=TTKService --appdir=image --plugin=qt
+          rm image/usr/lib/libTTK*.so
+          mv image/usr/lib image/usr/plugins image/usr/translations image/usr/bin/qt.conf ../
+          rm -R image
+          cd ../../
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
