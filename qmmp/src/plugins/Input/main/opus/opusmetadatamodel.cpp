@@ -67,8 +67,10 @@ void OpusMetaDataModel::setCover(const QImage &img)
 
         QByteArray data;
         QBuffer buffer(&data);
-        buffer.open(QIODevice::WriteOnly);
-        img.save(&buffer, "JPEG");
+        if(buffer.open(QIODevice::WriteOnly))
+        {
+            img.save(&buffer, "JPEG");
+        }
         picture->setMimeType("image/jpeg");
         picture->setDescription("TTK");
         picture->setData(TagLib::ByteVector(data.constData(), data.length()));

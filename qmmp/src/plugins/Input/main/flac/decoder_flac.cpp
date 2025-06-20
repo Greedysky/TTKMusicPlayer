@@ -283,8 +283,7 @@ bool DecoderFLAC::initialize()
                     qWarning("DecoderFLAC: invalid cuesheet xiph comment");
                     return false;
                 }
-                m_data->input = new QFile(filePath);
-                m_data->input->open(QIODevice::ReadOnly);
+
                 if(tag->contains("DISCNUMBER") && !tag->fieldListMap()["DISCNUMBER"].isEmpty())
                 {
                     TagLib::StringList fld = tag->fieldListMap()["DISCNUMBER"];
@@ -294,6 +293,13 @@ bool DecoderFLAC::initialize()
                     }
                 }
                 addMetaData(m_parser->info(m_track)->metaData()); //send metadata
+
+                m_data->input = new QFile(filePath);
+                if(!m_data->input->open(QIODevice::ReadOnly))
+                {
+                    qWarning("DecoderFLAC: unable to open input file");
+                    return false;
+                }
             }
             else
             {

@@ -90,8 +90,10 @@ ID3v2Tag::ID3v2Tag(QByteArray *array, long offset)
       m_offset(offset)
 {
     m_buf = new QBuffer(array);
-    m_buf->open(QIODevice::ReadOnly);
-    read();
+    if(m_buf->open(QIODevice::ReadOnly))
+    {
+        read();
+    }
 }
 
 ID3v2Tag::~ID3v2Tag()

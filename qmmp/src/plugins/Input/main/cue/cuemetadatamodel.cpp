@@ -88,8 +88,10 @@ void CUEMetaDataModel::setCue(const QString &content)
     }
 
     QFile file(m_cueFilePath);
-    file.open(QIODevice::WriteOnly);
-    file.write(m_codec->fromUnicode(content));
+    if(file.open(QIODevice::WriteOnly))
+    {
+        file.write(m_codec->fromUnicode(content));
+    }
 }
 
 void CUEMetaDataModel::removeCue()

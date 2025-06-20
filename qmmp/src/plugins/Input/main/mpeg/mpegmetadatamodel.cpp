@@ -118,8 +118,10 @@ void MPEGMetaDataModel::setCover(const QImage &img)
 
     QByteArray data;
     QBuffer buffer(&data);
-    buffer.open(QIODevice::WriteOnly);
-    img.save(&buffer, "JPEG");
+    if(buffer.open(QIODevice::WriteOnly))
+    {
+        img.save(&buffer, "JPEG");
+    }
     frame->setMimeType("image/jpeg");
     frame->setDescription("TTK");
     frame->setPicture(TagLib::ByteVector(data.constData(), data.length()));
