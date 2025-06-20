@@ -113,7 +113,10 @@ TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &id)
     d->m_server = new QLocalServer(this);
     const QString &lockName = QDir(QDir::tempPath()).absolutePath() + QLatin1Char('/') + d->m_socketName + QLatin1String("-lockfile");
     d->m_lockFile.setFileName(lockName);
-    d->m_lockFile.open(QIODevice::ReadWrite);
+    if(!d->m_lockFile.open(QIODevice::ReadWrite))
+    {
+        TTK_WARN_STREAM("Application: lock file open failed");
+    }
 }
 
 bool TTKLocalPeer::isClient() const

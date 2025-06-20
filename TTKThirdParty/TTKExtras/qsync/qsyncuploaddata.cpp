@@ -52,8 +52,12 @@ void QSyncUploadData::request(const QString &time, const QString &bucket, const 
     }
 
     QFile file(filePath);
-    file.open(QIODevice::ReadOnly);
-    QByteArray fileData = file.readAll();
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        return;
+    }
+
+    const QByteArray &fileData = file.readAll();
     file.close();
 
     QNetworkReply *reply = d->m_manager->put(request, fileData);

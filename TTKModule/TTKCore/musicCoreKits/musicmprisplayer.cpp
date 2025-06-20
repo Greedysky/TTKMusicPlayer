@@ -200,9 +200,11 @@ QVariantMap MusicMPRISPlayerCore::metadata() const
         {
             QByteArray tmp;
             QBuffer buffer(&tmp);
-            buffer.open(QIODevice::WriteOnly);
-            coverImage.save(&buffer, "JPEG");
-            map["mpris:artUrl"] = QString("data:image/jpeg;base64,%1").arg(QString::fromLatin1(tmp.toBase64()));
+            if(buffer.open(QIODevice::WriteOnly))
+            {
+                coverImage.save(&buffer, "JPEG");
+                map["mpris:artUrl"] = QString("data:image/jpeg;base64,%1").arg(QString::fromLatin1(tmp.toBase64()));
+            }
         }
     }
 

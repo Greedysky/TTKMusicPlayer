@@ -279,19 +279,18 @@ void MusicApplicationModule::applyParameter()
 {
 #ifdef Q_OS_WIN
     QFile file(TTK::applicationPath() + TTK_QT_CONFIG);
-    file.open(QIODevice::ReadWrite);
-
-    if(!(G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toBool() ? (file.write("[Platforms]\nWindowsArguments = dpiawareness=0\n") != -1) : file.remove()))
+    if(file.open(QIODevice::ReadWrite))
     {
-        G_SETTING_PTR->setValue(MusicSettingManager::OtherHighDpiScalingEnable, Qt::PartiallyChecked);
+        if(!(G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toBool() ? (file.write("[Platforms]\nWindowsArguments = dpiawareness=0\n") != -1) : file.remove()))
+        {
+            G_SETTING_PTR->setValue(MusicSettingManager::OtherHighDpiScalingEnable, Qt::PartiallyChecked);
+        }
+        file.close();
     }
-    file.close();
 
-    //
     MusicPlatformManager manager;
     manager.windowsStartUpMode(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
 
-    //
     TTKConcurrent(
     {
         TTKFileAssociation association;

@@ -89,12 +89,12 @@ void QDeviceWatcherPrivate::parseDeviceInfo()
     if (buffer.isOpen())
         buffer.close();
     buffer.setBuffer(&data);
-    buffer.open(QIODevice::ReadOnly);
+    if (!buffer.open(QIODevice::ReadOnly))
+        return;
     while(!buffer.atEnd()) { //buffer.canReadLine() always false?
         parseLine(buffer.readLine().trimmed());
     }
     buffer.close();
-
 }
 
 #if CONFIG_THREAD
@@ -115,7 +115,8 @@ void QDeviceWatcherPrivate::run()
         if (buffer.isOpen())
             buffer.close();
         buffer.setBuffer(&data);
-        buffer.open(QIODevice::ReadOnly);
+        if (buffer.open(QIODevice::ReadOnly))
+            return;
         QByteArray line = buffer.readLine();
         while(!line.isNull()) {
             parseLine(line.trimmed());

@@ -127,7 +127,10 @@ void TTKLogOutput::open()
     }
     while(m_file.size() >= LOG_MAXSIZE);
 
-    m_file.open(QIODevice::WriteOnly | QIODevice::Append);
+    if(!m_file.open(QIODevice::WriteOnly | QIODevice::Append))
+    {
+        TTK_ERROR_STREAM("Open log file failed: " << m_file.fileName());
+    }
 }
 
 void TTKLogOutput::save(const QString &message)

@@ -195,7 +195,11 @@ QByteArray TTK::syncNetworkQueryForPatch(QNetworkRequest *request, const QByteAr
 #else
     QBuffer *buffer = new QBuffer;
     buffer->setData(data);
-    buffer->open(QIODevice::ReadOnly);
+    if(!buffer->open(QIODevice::ReadOnly))
+    {
+        delete buffer;
+        return {};
+    }
 
     QNetworkReply *reply = manager.sendCustomRequest(*request, "PATCH", buffer);
     buffer->setParent(reply);
