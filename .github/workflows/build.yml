@@ -21,3 +21,7 @@ jobs:
   win10:
     uses: ./.github/workflows/win10.yml
     secrets: inherit
+
+  doxygen:
+    uses: ./.github/workflows/doxygen.yml
+    secrets: inherit

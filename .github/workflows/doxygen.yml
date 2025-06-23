@@ -1,0 +1,40 @@
+# Author: Greedysky <greedysky@163.com>
+
+name: doxygen
+
+on:
+  workflow_call:
+
+env:
+  TTK_MODULE: TTKMusicPlayer
+  TTK_VERSTION: 4.1.3.0
+
+jobs:
+  build:
+    name: Build on document by doxygen
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build package
+        run: |
+          sudo apt install graphviz doxygen
+          cd ${GITHUB_WORKSPACE}
+          doxygen Doxyfile
+          echo -n '<!DOCTYPE html>
+          <html>
+            <body>
+              <script>window.location.href="html/index.html"</script>
+            </body>
+          </html>' > TTKDocs/main.html
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-document.7z TTKDocs
+        working-directory: ${{runner.workspace}}
+
+      - name: Archive artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{env.TTK_VERSTION}}
+          token: ${{secrets.GITHUB_TOKEN}}
+          generate_release_notes: false
+          files: ${{runner.workspace}}/${{env.TTK_MODULE}}/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-document.7z

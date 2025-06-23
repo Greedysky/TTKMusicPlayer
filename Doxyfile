@@ -102,9 +102,9 @@ WARN_LOGFILE           =
 INPUT                  = .
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.h \
-                         *.cpp \
+                         *.hpp \
                          *.c \
-                         *.hpp
+                         *.cpp
 RECURSIVE              = YES
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       =
@@ -154,9 +154,9 @@ HTML_TIMESTAMP         = YES
 HTML_DYNAMIC_SECTIONS  = YES
 HTML_INDEX_NUM_ENTRIES = 100
 GENERATE_DOCSET        = YES
-DOCSET_FEEDNAME        = "TTKMusicPlayer docs"
-DOCSET_BUNDLE_ID       = org.TTKMusicPlayer.TTKMusicPlayer
-DOCSET_PUBLISHER_ID    = org.TTKMusicPlayer.Publisher
+DOCSET_FEEDNAME        = "Doxygen generated docs"
+DOCSET_BUNDLE_ID       = org.doxygen.Project
+DOCSET_PUBLISHER_ID    = org.doxygen.Publisher
 DOCSET_PUBLISHER_NAME  = Publisher
 GENERATE_HTMLHELP      = NO
 CHM_FILE               =
@@ -167,14 +167,14 @@ BINARY_TOC             = NO
 TOC_EXPAND             = NO
 GENERATE_QHP           = NO
 QCH_FILE               =
-QHP_NAMESPACE          = org.TTKMusicPlayer.Project
+QHP_NAMESPACE          = org.doxygen.Project
 QHP_VIRTUAL_FOLDER     = doc
 QHP_CUST_FILTER_NAME   =
 QHP_CUST_FILTER_ATTRS  =
 QHP_SECT_FILTER_ATTRS  =
 QHG_LOCATION           =
 GENERATE_ECLIPSEHELP   = NO
-ECLIPSE_DOC_ID         = org.TTKMusicPlayer.Project
+ECLIPSE_DOC_ID         = org.doxygen.Project
 DISABLE_INDEX          = NO
 GENERATE_TREEVIEW      = NO
 ENUM_VALUES_PER_LINE   = 4
