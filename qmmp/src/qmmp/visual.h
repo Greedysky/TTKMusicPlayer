@@ -143,12 +143,12 @@ protected:
     virtual void hideEvent(QHideEvent *event) override;
     /*!
      * QWidget's close event. Reimplementation should call base function.
-     * @param event QCloseEvent insatance.
+     * @param event QCloseEvent instance.
      */
     virtual void closeEvent(QCloseEvent *event) override final;
     /*!
      * Takes visualization data. Caller should allocate \b QMMP_VISUAL_NODE_SIZE
-     * bytes for each channel. If buffer for right channel is not specified,
+     * samples for each channel. If buffer for right channel is not specified,
      * this function will average data from left and right channels.
      * @param left Left channel buffer.
      * @param right Right channel buffer.
