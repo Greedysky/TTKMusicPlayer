@@ -34,7 +34,7 @@ QList<TrackInfo*> DecoderTFMXFactory::createPlayList(const QString &path, TrackI
     if(path.contains("://")) //is it one track?
     {
         int track = -1;
-        QString filePath = TrackInfo::pathFromUrl(path, &track);
+        const QString &filePath = TrackInfo::pathFromUrl(path, &track);
 
         QList<TrackInfo*> playlist = createPlayList(filePath, parts, ignoredPaths);
         if(playlist.isEmpty() || track <= 0 || track > playlist.count())
