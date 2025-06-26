@@ -151,29 +151,24 @@ void WaveVoice::processData(float *left, float *right)
 
         if(m_xscale[i] == m_xscale[i + 1])
         {
-            yl = destl[i];
-            yr = destr[i];
+            yl = destl[i] >> 7; //128
+            yr = destr[i] >> 7; //128
         }
 
         for(int k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
         {
-            yl = qMax(destl[k], yl);
-            yr = qMax(destr[k], yr);
+            yl = qMax(short(destl[k] >> 7), yl);
+            yr = qMax(short(destr[k] >> 7), yr);
         }
 
-        yl >>= 7; //256
-        yr >>= 7;
-
-        if(yl)
+        if(yl > 0)
         {
-            magnitudel = int(log(yl) * yscale);
-            magnitudel = qBound(0, magnitudel, m_cols);
+            magnitudel = qBound(0, int(log(yl) * yscale), m_cols);
         }
 
-        if(yr)
+        if(yr > 0)
         {
-            magnituder = int(log(yr) * yscale);
-            magnituder = qBound(0, magnituder, m_cols);
+            magnituder = qBound(0, int(log(yr) * yscale), m_cols);
         }
 
         m_visualData[i] -= m_analyzerSize * m_cols / 15;

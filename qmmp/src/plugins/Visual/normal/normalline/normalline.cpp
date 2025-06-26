@@ -106,7 +106,11 @@ void NormalLine::processData(float *left, float *right)
 
         for(int i = 0; i < m_cols + 1; ++i)
         {
-            m_xscale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+            m_xscale[i] = pow(255.0, float(i) / m_cols);
+            if(i > 0 && m_xscale[i - 1] >= m_xscale[i]) //avoid several bars in a row with the same frequency
+            {
+                m_xscale[i] = qMin(m_xscale[i - 1] + 1, m_cols);
+            }
         }
     }
 
@@ -123,29 +127,24 @@ void NormalLine::processData(float *left, float *right)
 
         if(m_xscale[i] == m_xscale[i + 1])
         {
-            yl = destl[i];
-            yr = destr[i];
+            yl = destl[i] >> 7; //128
+            yr = destr[i] >> 7; //128
         }
 
         for(int k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
         {
-            yl = qMax(destl[k], yl);
-            yr = qMax(destr[k], yr);
+            yl = qMax(short(destl[k] >> 7), yl);
+            yr = qMax(short(destr[k] >> 7), yr);
         }
 
-        yl >>= 7; //256
-        yr >>= 7;
-
-        if(yl)
+        if(yl > 0)
         {
-            magnitudel = int(log(yl) * yscale);
-            magnitudel = qBound(0, magnitudel, m_rows);
+            magnitudel = qBound(0, int(log(yl) * yscale), m_rows);
         }
 
-        if(yr)
+        if(yr > 0)
         {
-            magnituder = int(log(yr) * yscale);
-            magnituder = qBound(0, magnituder, m_rows);
+            magnituder = qBound(0, int(log(yr) * yscale), m_rows);
         }
 
         m_visualData[i] -= m_analyzerSize * m_rows / 15;

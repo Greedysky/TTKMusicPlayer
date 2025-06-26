@@ -4,6 +4,8 @@
 #include <QPainter>
 #include <math.h>
 
+static constexpr int CHANNELS = 2;
+
 WaveCrest::WaveCrest(QWidget *parent)
     : Visual(parent)
 {
@@ -62,7 +64,7 @@ void WaveCrest::processData(float *left, float *)
         delete[] m_xscale;
 
         m_visData = 0;
-        m_xscale = new int[2];
+        m_xscale = new int[CHANNELS]{0};
 
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
         m_backgroundImage.fill(Qt::black);
@@ -72,37 +74,38 @@ void WaveCrest::processData(float *left, float *)
             m_backgroundImage.setPixel(i, m_rows / 2, qRgb(0xff, 0xff, 0xff));
         }
 
-        for(int i = 0; i < 2; ++i)
+        for(int i = 0; i < CHANNELS; ++i)
         {
-            m_xscale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+            m_xscale[i] = pow(255.0, float(i) / m_cols);
+            if(i > 0 && m_xscale[i - 1] >= m_xscale[i]) //avoid several bars in a row with the same frequency
+            {
+                m_xscale[i] = qMin(m_xscale[i - 1] + 1, m_cols);
+            }
         }
     }
 
-    short dest[256];
-    calc_freq(dest, left);
+    short destl[256];
+    calc_freq(destl, left);
 
-    short y = 0;
-    int magnitude = 0;
+    short yl = 0;
+    int i = 0, magnitudel = 0;
     const double yscale = (double)1.25 * m_rows / log(256);
 
-    if(m_xscale[0] == m_xscale[1])
+    if(m_xscale[i] == m_xscale[i + 1])
     {
-        y = dest[0];
+        yl = destl[i] >> 7; //128
     }
 
-    for(int k = m_xscale[0]; k < m_xscale[1]; ++k)
+    for(int k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
     {
-        y = qMax(dest[k], y);
+        yl = qMax(short(destl[k] >> 7), yl);
     }
 
-    y >>= 7; //256
-
-    if(y)
+    if(yl > 0)
     {
-        magnitude = int(log(y) * yscale);
-        magnitude = qBound(0, magnitude, m_rows);
+        magnitudel = qBound(0, int(log(yl) * yscale), m_rows);
     }
 
     m_visData -= m_analyzerSize * m_rows / 15;
-    m_visData = magnitude > m_visData ? magnitude : m_visData;
+    m_visData = magnitudel > m_visData ? magnitudel : m_visData;
 }

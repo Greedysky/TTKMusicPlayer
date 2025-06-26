@@ -98,39 +98,40 @@ void NormalHistogram::processData(float *left, float *)
 
         for(int i = 0; i < m_cols + 1; ++i)
         {
-            m_xscale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+            m_xscale[i] = pow(255.0, float(i) / m_cols);
+            if(i > 0 && m_xscale[i - 1] >= m_xscale[i]) //avoid several bars in a row with the same frequency
+            {
+                m_xscale[i] = qMin(m_xscale[i - 1] + 1, m_cols);
+            }
         }
     }
 
-    short dest[256];
-    calc_freq(dest, left);
+    short destl[256];
+    calc_freq(destl, left);
 
     const double yscale = (double)1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; ++i)
     {
-        short y = 0;
-        int magnitude = 0;
+        short yl = 0;
+        int magnitudel = 0;
 
         if(m_xscale[i] == m_xscale[i + 1])
         {
-            y = dest[i];
+            yl = destl[i] >> 7; //128
         }
 
         for(int k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
         {
-            y = qMax(dest[k], y);
+            yl = qMax(short(destl[k] >> 7), yl);
         }
 
-        y >>= 7; //256
-
-        if(y)
+        if(yl > 0)
         {
-            magnitude = int(log(y) * yscale);
-            magnitude = qBound(0, magnitude, m_rows);
+            magnitudel = qBound(0, int(log(yl) * yscale), m_rows);
         }
 
         m_visualData[i] -= m_analyzerSize * m_rows / 15;
-        m_visualData[i] = magnitude > m_visualData[i] ? magnitude : m_visualData[i];
+        m_visualData[i] = magnitudel > m_visualData[i] ? magnitudel : m_visualData[i];
     }
 }

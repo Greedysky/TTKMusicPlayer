@@ -62,4 +62,4 @@ ttk-1.2.10
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2025-06-04
+///Update time 2025-06-26

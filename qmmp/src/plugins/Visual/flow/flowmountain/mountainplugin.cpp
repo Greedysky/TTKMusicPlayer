@@ -59,13 +59,13 @@ void MountainPlugin::contextMenuEvent(QContextMenuEvent *)
 
 void MountainPlugin::processData(float *left, float *)
 {
-    short dest[256];
-    calc_freq(dest, left);
+    short destl[256];
+    calc_freq(destl, left);
 
     float buffer[256];
     for(int i = 0; i < QMMP_VISUAL_NODE_SIZE / 2; ++i)
     {
-        buffer[i] = dest[i] / ((QMMP_VISUAL_NODE_SIZE << 8) / (8.0 / 2));
+        buffer[i] = destl[i] / ((QMMP_VISUAL_NODE_SIZE << 8) / (8.0 / 2));
     }
 
     m_container->addBuffer(buffer);
