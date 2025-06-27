@@ -163,7 +163,7 @@ void MusicVideoSearchTableWidget::removeItems()
     setColumnCount(9);
 }
 
-void MusicVideoSearchTableWidget::createResultItem(const MusicResultInfoItem &songItem)
+void MusicVideoSearchTableWidget::createResultItem(const MusicResultInfoItem &result)
 {
     const int count = rowCount();
     setRowCount(count + 1);
@@ -175,18 +175,18 @@ void MusicVideoSearchTableWidget::createResultItem(const MusicResultInfoItem &so
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(songItem.m_songName);
+    item->setToolTip(result.m_songName);
     item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 5));
     item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(songItem.m_artistName);
+    item->setToolTip(result.m_artistName);
     item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 5));
     item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 2, item);
 
-                      item = new QTableWidgetItem(songItem.m_duration);
+                      item = new QTableWidgetItem(result.m_duration);
     item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 3, item);
 
@@ -196,7 +196,7 @@ void MusicVideoSearchTableWidget::createResultItem(const MusicResultInfoItem &so
 
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(":/tiny/lb_server_type"));
-    item->setToolTip(songItem.m_type);
+    item->setToolTip(result.m_type);
     setItem(count, 5, item);
 
                       item = new QTableWidgetItem;

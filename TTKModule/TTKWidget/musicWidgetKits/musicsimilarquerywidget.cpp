@@ -12,14 +12,14 @@ MusicSimilarQueryTableWidget::~MusicSimilarQueryTableWidget()
     removeItems();
 }
 
-void MusicSimilarQueryTableWidget::createResultItem(const MusicResultInfoItem &songItem)
+void MusicSimilarQueryTableWidget::createResultItem(const MusicResultInfoItem &result)
 {
     if(rowCount() >= (SONG_PAGE_SIZE / 2))
     {
         return;
     }
 
-    MusicItemQueryTableWidget::createResultItem(songItem);
+    MusicItemQueryTableWidget::createResultItem(result);
 }
 
 

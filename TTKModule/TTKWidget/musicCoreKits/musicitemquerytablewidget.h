@@ -80,7 +80,7 @@ public Q_SLOTS:
     /*!
      * Create search result items.
      */
-    virtual void createResultItem(const MusicResultInfoItem &songItem) override;
+    virtual void createResultItem(const MusicResultInfoItem &result) override;
     /*!
      * Menu action type changed.
      */

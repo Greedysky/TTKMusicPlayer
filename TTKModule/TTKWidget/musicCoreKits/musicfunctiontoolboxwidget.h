@@ -297,7 +297,7 @@ protected:
     QVBoxLayout *m_layout;
     QScrollArea *m_scrollArea;
     QWidget *m_contentsWidget;
-    MusicToolBoxWidgetItemList m_itemList;
+    MusicToolBoxWidgetItemList m_items;
 
 };
 

@@ -59,7 +59,7 @@ private:
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
 
-    QList<QWidget*> m_items;
+    QWidgetList m_items;
     QGridLayout *m_gridLayout;
 
 };

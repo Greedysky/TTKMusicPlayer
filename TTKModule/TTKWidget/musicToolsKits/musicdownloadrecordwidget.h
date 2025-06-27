@@ -80,7 +80,7 @@ private:
      */
     virtual MusicFunctionToolBoxWidgetItem* initialItem(QWidget *item, const QString &text) override final;
 
-    MusicSongItemList m_songItems;
+    MusicSongItemList m_items;
 
 };
 

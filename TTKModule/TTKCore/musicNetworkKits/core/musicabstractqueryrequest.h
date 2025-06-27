@@ -193,7 +193,7 @@ Q_SIGNALS:
     /*!
      * Create the current items by song name artist name and time.
      */
-    void createResultItem(const MusicResultInfoItem &songItem);
+    void createResultItem(const MusicResultInfoItem &result);
 
 public Q_SLOTS:
     /*!

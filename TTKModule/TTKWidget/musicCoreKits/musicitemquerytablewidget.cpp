@@ -201,7 +201,7 @@ void MusicItemQueryTableWidget::removeItems()
     setColumnCount(8);
 }
 
-void MusicItemQueryTableWidget::createResultItem(const MusicResultInfoItem &songItem)
+void MusicItemQueryTableWidget::createResultItem(const MusicResultInfoItem &result)
 {
     const int count = rowCount();
     setRowCount(count + 1);
@@ -212,27 +212,27 @@ void MusicItemQueryTableWidget::createResultItem(const MusicResultInfoItem &song
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(TTK::generateSongName(songItem.m_songName, songItem.m_artistName));
+    item->setToolTip(TTK::generateSongName(result.m_songName, result.m_artistName));
     item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 31));
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(songItem.m_albumName);
+    item->setToolTip(result.m_albumName);
     item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 31));
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 2, item);
 
-                      item = new QTableWidgetItem(songItem.m_duration);
+                      item = new QTableWidgetItem(result.m_duration);
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(":/tiny/lb_server_type"));
-    item->setToolTip(songItem.m_type);
+    item->setToolTip(result.m_type);
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;

@@ -3,7 +3,7 @@
 
 MusicSongCheckToolsRenameThread::MusicSongCheckToolsRenameThread(QObject *parent)
     : TTKAbstractThread(parent),
-      m_songItems(nullptr),
+      m_items(nullptr),
       m_operateMode(TTK::Mode::Check)
 {
 
@@ -11,18 +11,18 @@ MusicSongCheckToolsRenameThread::MusicSongCheckToolsRenameThread(QObject *parent
 
 void MusicSongCheckToolsRenameThread::setRenameSongs(MusicSongList *songs) noexcept
 {
-    m_songItems = songs;
+    m_items = songs;
 }
 
 void MusicSongCheckToolsRenameThread::run()
 {
-    if(m_songItems && !m_songItems->isEmpty())
+    if(m_items && !m_items->isEmpty())
     {
         if(m_operateMode == TTK::Mode::Check)
         {
             m_datas.clear();
             MusicSongMeta meta;
-            for(const MusicSong &song : qAsConst(*m_songItems))
+            for(const MusicSong &song : qAsConst(*m_items))
             {
                 if(!m_running)
                 {
@@ -43,7 +43,7 @@ void MusicSongCheckToolsRenameThread::run()
         }
         else
         {
-            for(const int index : qAsConst(m_itemIDs))
+            for(const int index : qAsConst(m_ids))
             {
                 if(!m_running)
                 {
@@ -65,23 +65,23 @@ void MusicSongCheckToolsRenameThread::run()
 MusicSongCheckToolsDuplicateThread::MusicSongCheckToolsDuplicateThread(QObject *parent)
     : TTKAbstractThread(parent)
 {
-    m_songItems = nullptr;
+    m_items = nullptr;
 }
 
 void MusicSongCheckToolsDuplicateThread::setDuplicateSongs(MusicSongList *songs) noexcept
 {
-    m_songItems = songs;
+    m_items = songs;
 }
 
 void MusicSongCheckToolsDuplicateThread::run()
 {
-    if(m_songItems && !m_songItems->isEmpty())
+    if(m_items && !m_items->isEmpty())
     {
         if(m_operateMode == TTK::Mode::Check)
         {
             m_datas.clear();
             MusicSongMeta meta;
-            for(const MusicSong &song : qAsConst(*m_songItems))
+            for(const MusicSong &song : qAsConst(*m_items))
             {
                 if(!m_running)
                 {
@@ -99,7 +99,7 @@ void MusicSongCheckToolsDuplicateThread::run()
         }
         else
         {
-            for(const int index : qAsConst(m_itemIDs))
+            for(const int index : qAsConst(m_ids))
             {
                 if(!m_running)
                 {
@@ -120,21 +120,21 @@ void MusicSongCheckToolsDuplicateThread::run()
 MusicSongCheckToolsQualityThread::MusicSongCheckToolsQualityThread(QObject *parent)
     : TTKAbstractThread(parent)
 {
-    m_songItems = nullptr;
+    m_items = nullptr;
 }
 
 void MusicSongCheckToolsQualityThread::setQualitySongs(MusicSongList *songs) noexcept
 {
-    m_songItems = songs;
+    m_items = songs;
 }
 
 void MusicSongCheckToolsQualityThread::run()
 {
     MusicSongCheckToolsQualityList items;
-    if(m_songItems && !m_songItems->isEmpty())
+    if(m_items && !m_items->isEmpty())
     {
         MusicSongMeta meta;
-        for(const MusicSong &song : qAsConst(*m_songItems))
+        for(const MusicSong &song : qAsConst(*m_items))
         {
             if(!m_running)
             {

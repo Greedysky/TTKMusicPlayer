@@ -262,9 +262,9 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
 
 void MusicSongsToolBoxWidget::setSongSort(QWidget *item, MusicSongSort *sort)
 {
-    for(int i = 0; i < m_itemList.count(); ++i)
+    for(int i = 0; i < m_items.count(); ++i)
     {
-        MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_itemWidget;
+        MusicFunctionToolBoxWidgetItem *it = m_items[i].m_itemWidget;
         if(it->item() == item)
         {
             TTKObjectCast(MusicSongsToolBoxWidgetItem*, it)->setSongSort(sort);
@@ -276,9 +276,9 @@ void MusicSongsToolBoxWidget::setSongSort(QWidget *item, MusicSongSort *sort)
 int MusicSongsToolBoxWidget::makeValidIndex() const
 {
     int index = MUSIC_NORMAL_LIST;
-    for(int i = 0; i < m_itemList.count(); ++i)
+    for(int i = 0; i < m_items.count(); ++i)
     {
-        if(TTK::playlistRowValid(i) && m_itemList[i].m_itemWidget->isExpand())
+        if(TTK::playlistRowValid(i) && m_items[i].m_itemWidget->isExpand())
         {
             index = i;
             break;

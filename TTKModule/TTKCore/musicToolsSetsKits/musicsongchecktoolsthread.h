@@ -46,7 +46,7 @@ public:
     /*!
      * Set item list.
      */
-    inline void setItemList(const TTKIntList &items) noexcept { m_itemIDs = items; }
+    inline void setItemList(const TTKIntList &items) noexcept { m_ids = items; }
 
     /*!
      * Set find file path by given path.
@@ -65,10 +65,10 @@ private:
      */
     virtual void run() override final;
 
-    MusicSongList *m_songItems;
-    TTKIntList m_itemIDs;
-    MusicSongCheckToolsRenameList m_datas;
+    TTKIntList m_ids;
+    MusicSongList *m_items;
     TTK::Mode m_operateMode;
+    MusicSongCheckToolsRenameList m_datas;
 
 };
 
@@ -97,7 +97,7 @@ public:
     /*!
      * Set item list.
      */
-    inline void setItemList(const TTKIntList &items) noexcept { m_itemIDs = items; }
+    inline void setItemList(const TTKIntList &items) noexcept { m_ids = items; }
 
     /*!
      * Set find file path by given path.
@@ -116,10 +116,10 @@ private:
      */
     virtual void run() override final;
 
-    MusicSongList *m_songItems;
-    TTKIntList m_itemIDs;
-    MusicSongCheckToolsDuplicateList m_datas;
+    TTKIntList m_ids;
+    MusicSongList *m_items;
     TTK::Mode m_operateMode;
+    MusicSongCheckToolsDuplicateList m_datas;
 
 };
 
@@ -154,7 +154,7 @@ private:
      */
     virtual void run() override final;
 
-    MusicSongList *m_songItems;
+    MusicSongList *m_items;
 
 };
 

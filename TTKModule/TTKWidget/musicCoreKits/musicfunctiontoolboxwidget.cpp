@@ -309,9 +309,9 @@ MusicFunctionToolBoxWidget::MusicFunctionToolBoxWidget(QWidget *parent)
 
 MusicFunctionToolBoxWidget::~MusicFunctionToolBoxWidget()
 {
-    while(!m_itemList.isEmpty())
+    while(!m_items.isEmpty())
     {
-        delete m_itemList.takeLast().m_itemWidget;
+        delete m_items.takeLast().m_itemWidget;
     }
     delete m_layout;
     delete m_scrollArea;
@@ -326,18 +326,18 @@ void MusicFunctionToolBoxWidget::addCellItem(QWidget *item, const QString &text)
     }
 
     //hide before widget
-    for(int i = 0; i < m_itemList.count(); ++i)
+    for(int i = 0; i < m_items.count(); ++i)
     {
-        m_itemList[i].m_itemWidget->setExpand(false);
+        m_items[i].m_itemWidget->setExpand(false);
     }
 
     // Add item and make sure it stretches the remaining space.
     MusicToolBoxWidgetItem widgetItem;
     widgetItem.m_itemWidget = initialItem(item, text);
     widgetItem.m_itemIndex = m_itemIndexRaise++;
-    m_itemList.append(widgetItem);
+    m_items.append(widgetItem);
 
-    m_currentIndex = m_itemList.count() - 1;
+    m_currentIndex = m_items.count() - 1;
 
     m_layout->addWidget(widgetItem.m_itemWidget);
     m_layout->addStretch(5);
@@ -345,13 +345,13 @@ void MusicFunctionToolBoxWidget::addCellItem(QWidget *item, const QString &text)
 
 void MusicFunctionToolBoxWidget::removeItem(QWidget *item)
 {
-    for(int i = 0; i < m_itemList.count(); ++i)
+    for(int i = 0; i < m_items.count(); ++i)
     {
-        MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_itemWidget;
+        MusicFunctionToolBoxWidgetItem *it = m_items[i].m_itemWidget;
         if(it->item() == item)
         {
             m_layout->removeWidget(item);
-            m_itemList.takeAt(i).m_itemWidget->deleteLater();
+            m_items.takeAt(i).m_itemWidget->deleteLater();
             m_currentIndex = 0;
             return;
         }
@@ -360,8 +360,8 @@ void MusicFunctionToolBoxWidget::removeItem(QWidget *item)
 
 void MusicFunctionToolBoxWidget::swapItem(int start, int end)
 {
-    const MusicToolBoxWidgetItem &widgetItem = m_itemList.takeAt(start);
-    m_itemList.insert(end, widgetItem);
+    const MusicToolBoxWidgetItem &widgetItem = m_items.takeAt(start);
+    m_items.insert(end, widgetItem);
 
     m_layout->removeWidget(widgetItem.m_itemWidget);
     const int count = m_layout->count();
@@ -375,9 +375,9 @@ void MusicFunctionToolBoxWidget::swapItem(int start, int end)
 
 void MusicFunctionToolBoxWidget::setTitle(QWidget *item, const QString &text)
 {
-    for(int i = 0; i < m_itemList.count(); ++i)
+    for(int i = 0; i < m_items.count(); ++i)
     {
-        MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_itemWidget;
+        MusicFunctionToolBoxWidgetItem *it = m_items[i].m_itemWidget;
         if(it->item() == item)
         {
             it->setTitle(text);
@@ -402,25 +402,25 @@ int MusicFunctionToolBoxWidget::currentIndex() const noexcept
 
 int MusicFunctionToolBoxWidget::count() const noexcept
 {
-    return m_itemList.count();
+    return m_items.count();
 }
 
 void MusicFunctionToolBoxWidget::setCurrentIndex(int index)
 {
     m_currentIndex = index;
-    for(int i = 0; i < m_itemList.count(); ++i)
+    for(int i = 0; i < m_items.count(); ++i)
     {
-        m_itemList[i].m_itemWidget->setExpand(i == index);
+        m_items[i].m_itemWidget->setExpand(i == index);
     }
 }
 
 void MusicFunctionToolBoxWidget::itemIndexChanged(int index)
 {
     m_currentIndex = foundMappedIndex(index);
-    for(int i = 0; i < m_itemList.count(); ++i)
+    for(int i = 0; i < m_items.count(); ++i)
     {
-        const bool hide = (i == m_currentIndex) ? !m_itemList[i].m_itemWidget->isExpand() : false;
-        m_itemList[i].m_itemWidget->setExpand(hide);
+        const bool hide = (i == m_currentIndex) ? !m_items[i].m_itemWidget->isExpand() : false;
+        m_items[i].m_itemWidget->setExpand(hide);
     }
 }
 
@@ -448,9 +448,9 @@ void MusicFunctionToolBoxWidget::mousePressEvent(QMouseEvent *event)
 int MusicFunctionToolBoxWidget::foundMappedIndex(int index)
 {
     int id = -1;
-    for(int i = 0; i < m_itemList.count(); ++i)
+    for(int i = 0; i < m_items.count(); ++i)
     {
-        if(m_itemList[i].m_itemIndex == index)
+        if(m_items[i].m_itemIndex == index)
         {
             id = i;
             break;

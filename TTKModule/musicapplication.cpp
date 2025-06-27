@@ -1106,12 +1106,12 @@ void MusicApplication::readSystemConfigFromFile()
 {
     int value = TTK_NORMAL_LEVEL;
     //Path configuration song
-    MusicSongItemList songs;
+    MusicSongItemList items;
     {
         MusicTKPLConfigManager manager;
         if(manager.fromFile(PLAYLIST_PATH_FULL))
         {
-            manager.readBuffer(songs);
+            manager.readBuffer(items);
         }
     }
 
@@ -1123,7 +1123,7 @@ void MusicApplication::readSystemConfigFromFile()
 
     manager.readBuffer();
     m_applicationModule->loadNetWorkSetting();
-    const bool success = m_songTreeWidget->addSongItemList(songs);
+    const bool success = m_songTreeWidget->addSongItemList(items);
 
     switch(TTKStaticCast(TTK::PlayMode, G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt()))
     {
@@ -1192,9 +1192,9 @@ void MusicApplication::readSystemConfigFromFile()
     //add new music file to playlist
     value = lastPlayIndex[1].toInt();
     m_playlist->add(value, m_songTreeWidget->songsFilePath(value));
-    if(TTK_NORMAL_LEVEL < value && value < songs.count())
+    if(TTK_NORMAL_LEVEL < value && value < items.count())
     {
-        m_ui->musicPlayedList->append(songs[value].m_songs);
+        m_ui->musicPlayedList->append(items[value].m_songs);
     }
 
     applyParameter();
