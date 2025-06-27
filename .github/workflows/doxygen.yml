@@ -2,8 +2,7 @@
 
 name: doxygen
 
-on:
-  workflow_call:
+on: workflow_call
 
 env:
   TTK_MODULE: TTKMusicPlayer

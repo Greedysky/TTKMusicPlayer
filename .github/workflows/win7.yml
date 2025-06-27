@@ -2,8 +2,7 @@
 
 name: win7
 
-on:
-  workflow_call:
+on: workflow_call
 
 env:
   TTK_MODULE: TTKMusicPlayer
