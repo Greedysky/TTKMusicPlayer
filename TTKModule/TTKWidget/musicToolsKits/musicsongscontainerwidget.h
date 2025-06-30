@@ -278,6 +278,10 @@ private:
      */
     void createWidgetItem(MusicSongItem *item);
     /*!
+     * Create container item.
+     */
+    MusicSongItem* createContainerItem(const MusicSongItem &item);
+    /*!
      * Set item title.
      */
     void setItemTitle(MusicSongItem *item);

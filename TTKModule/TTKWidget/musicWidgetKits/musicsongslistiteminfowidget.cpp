@@ -13,7 +13,7 @@ MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
 
-    setWindowFlags(windowFlags() | Qt::Tool);
+    setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
 
     m_ui->songNameValue->setStyleSheet(TTK::UI::ColorStyle03);
     m_ui->artlistValue->setStyleSheet(TTK::UI::ColorStyle03);

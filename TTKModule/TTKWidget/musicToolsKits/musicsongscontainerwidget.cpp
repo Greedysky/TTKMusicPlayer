@@ -98,19 +98,19 @@ void MusicSongsContainerWidget::updateSongItem(const MusicSongItem &item)
 
 bool MusicSongsContainerWidget::addSongItemList(const MusicSongItemList &items)
 {
-    TTKIntSet inDeed;
-    inDeed << MUSIC_NORMAL_LIST << MUSIC_LOVEST_LIST << MUSIC_NETWORK_LIST << MUSIC_RECENT_LIST;
+    TTKIntSet inNeed;
+    inNeed << MUSIC_NORMAL_LIST << MUSIC_LOVEST_LIST << MUSIC_NETWORK_LIST << MUSIC_RECENT_LIST;
     for(const MusicSongItem &item : qAsConst(items))
     {
-        inDeed.remove(item.m_itemIndex);
+        inNeed.remove(item.m_itemIndex);
     }
     //
-    if(!inDeed.isEmpty())
+    if(!inNeed.isEmpty())
     {
         //if less than four count(0, 1, 2, 3), find and add default items
         m_containerItems << items;
         //
-        for(const int item : qAsConst(inDeed))
+        for(const int item : qAsConst(inNeed))
         {
             MusicSongItem it;
             switch(item)
@@ -155,24 +155,16 @@ bool MusicSongsContainerWidget::addSongItemList(const MusicSongItemList &items)
         createWidgetItem(&m_containerItems[i]);
     }
 
-    return inDeed.isEmpty();
+    return inNeed.isEmpty();
 }
 
 void MusicSongsContainerWidget::appendSongItemList(const MusicSongItemList &items)
 {
     for(int i = 0; i < items.count(); ++i)
     {
-        m_containerItems << items[i];
-
-        MusicSongItem *item = &m_containerItems.back();
-        item->m_itemIndex = ++m_itemIndexRaise;
-
-        QString name = item->m_itemName;
-        item->m_itemName.clear();
-        checkTitleNameValid(name);
-        item->m_itemName = name;
-
-        createWidgetItem(item);
+        MusicSongItem item = items[i];
+        checkTitleNameValid(item.m_itemName);
+        createContainerItem(item);
     }
 }
 
@@ -409,9 +401,6 @@ void MusicSongsContainerWidget::addNewRowItem()
 {
     if(m_containerItems.count() <= ITEM_MAX_COUNT)
     {
-        QString name = tr("Default Item");
-        checkTitleNameValid(name);
-
         int id = 0;
         for(const MusicSongItem &item : qAsConst(m_containerItems))
         {
@@ -423,10 +412,10 @@ void MusicSongsContainerWidget::addNewRowItem()
 
         MusicSongItem item;
         item.m_id = id + 1;
-        item.m_itemName = name;
+        item.m_itemName = tr("Default Item");
 
-        m_containerItems << item;
-        createWidgetItem(&m_containerItems.back());
+        checkTitleNameValid(item.m_itemName);
+        createContainerItem(item);
     }
     else
     {
@@ -1181,19 +1170,14 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
 
     for(const QString &dir : qAsConst(dirs))
     {
-        {
-            MusicSongItem item;
-            item.m_itemName = QFileInfo(dir).baseName();
-            checkTitleNameValid(item.m_itemName);
+        MusicSongItem item;
+        item.m_itemName = QFileInfo(dir).baseName();
 
-            m_containerItems << item;
-        }
-
-        MusicSongItem *item = &m_containerItems.back();
-        createWidgetItem(item);
+        checkTitleNameValid(item.m_itemName);
+        item = *createContainerItem(item);
 
         const QStringList &files = TTK::File::fileListByPath(dir, MusicFormats::supportMusicInputFilterFormats());
-        importSongsByPath(files, foundMappedIndex(item->m_itemIndex));
+        importSongsByPath(files, foundMappedIndex(item.m_itemIndex));
     }
 }
 
@@ -1280,6 +1264,14 @@ void MusicSongsContainerWidget::createWidgetItem(MusicSongItem *item)
 
     widget->setSongsList(&item->m_songs);
     setTitle(widget, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+}
+
+MusicSongItem* MusicSongsContainerWidget::createContainerItem(const MusicSongItem &item)
+{
+    m_containerItems << item;
+    MusicSongItem *it = &m_containerItems.back();
+    createWidgetItem(it);
+    return it;
 }
 
 void MusicSongsContainerWidget::setItemTitle(MusicSongItem *item)
