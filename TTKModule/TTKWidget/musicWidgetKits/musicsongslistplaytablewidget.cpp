@@ -115,8 +115,8 @@ void MusicSongsListPlayTableWidget::selectRow(int index)
     }
 
     QString durationLabel;
-    const QString &name = !m_songs->isEmpty() ? m_songs->at(index).name() : QString();
-    const QString &path = !m_songs->isEmpty() ? m_songs->at(index).path() : QString();
+    const QString &name = songName(index);
+    const QString &path = songPath(index);
 
     m_songsPlayWidget = new MusicSongsListPlayWidget(index, this);
     m_songsPlayWidget->initialize(name, path, durationLabel);
@@ -188,7 +188,7 @@ void MusicSongsListPlayTableWidget::adjustPlayWidgetRow()
         return;
     }
 
-    const QString &name = !m_songs->isEmpty() ? m_songs->at(m_playRowIndex).name() : QString();
+    const QString &name = songName(m_playRowIndex);
 
     setRowHeight(m_playRowIndex, TTK_ITEM_SIZE_M);
 

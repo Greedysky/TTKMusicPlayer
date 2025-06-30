@@ -58,7 +58,7 @@ void MusicPlaylistBackupTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
 
-    const QString &path = m_songs->at(currentRow()).path();
+    const QString &path = currentSongPath();
     MusicSongsContainerWidget::instance()->addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
 }
 

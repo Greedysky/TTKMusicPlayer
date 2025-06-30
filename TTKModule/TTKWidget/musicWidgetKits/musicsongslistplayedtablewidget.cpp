@@ -77,7 +77,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
         delete takeItem(index, i);
     }
 
-    const QString &name = !m_songs->isEmpty() ? m_songs->at(index).name() : QString();
+    const QString &name = songName(index);
 
     m_songsPlayWidget = new MusicSongsListPlayedWidget(index, this);
     m_songsPlayWidget->initialize(name);
@@ -132,7 +132,7 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
         return;
     }
 
-    const QString &name = !m_songs->isEmpty() ? m_songs->at(m_playRowIndex).name() : QString();
+    const QString &name = songName(m_playRowIndex);
 
     removeCellWidget(m_playRowIndex, 0);
     delete takeItem(m_playRowIndex, 0);

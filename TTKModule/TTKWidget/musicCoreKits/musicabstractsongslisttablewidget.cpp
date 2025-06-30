@@ -73,8 +73,14 @@ void MusicAbstractSongsListTableWidget::openFileDir()
         return;
     }
 
-    const QString &path = !m_songs->isEmpty() ? m_songs->at(currentRow()).path() : QString();
-    if(!TTK::Url::openUrl(QFileInfo(path).absoluteFilePath()))
+    const QString &path = currentSongPath();
+    if(TTK::String::isNetworkUrl(path))
+    {
+        TTK_INFO_STREAM("Current song path is url stream");
+        return;
+    }
+
+    if(!TTK::Url::openUrl(TTK::trackRelatedPath(path)))
     {
         MusicToastLabel::popup(tr("The file has been moved or does not exist"));
     }

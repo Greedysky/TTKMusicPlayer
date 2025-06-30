@@ -275,7 +275,7 @@ void MusicLrcContainerForInterior::artistBackgroundChanged()
 
 void MusicLrcContainerForInterior::lrcOpenFileDir() const
 {
-    TTK::Url::openUrl(QFileInfo(m_lrcAnalysis->currentFilePath()).absoluteFilePath());
+    TTK::Url::openUrl(m_lrcAnalysis->currentFilePath());
 }
 
 void MusicLrcContainerForInterior::lrcCopyClipboard() const
