@@ -33,7 +33,7 @@ DEFINES += QMMP_LIBRARY
 
 #Version
 TTK_VERSION = 4.1.3.0
-QMMP_VERSION = 1.7.6
+QMMP_VERSION = 1.7.7
 CONFIG += USE_STATIC_LIBRARY
 
 #Comment/uncomment this if you want to change plugins list
