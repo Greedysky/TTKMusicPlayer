@@ -400,7 +400,8 @@ bool MusicSongMeta::readInformation()
             return false;
         }
 
-        QString description;
+        QPixmap cover;
+        QString lyrics, rating, description;
         const DecoderProperties &properties = factory->properties();
 
         description += "ShortName: " + properties.shortName + TTK_LINEFEED;
@@ -411,14 +412,14 @@ bool MusicSongMeta::readInformation()
         const MetaDataModel *model = factory->createMetaDataModel(m_path, true);
         if(model)
         {
-            songMeta()->m_cover = QPixmap::fromImage(model->cover());
-            songMeta()->m_lyrics = model->lyrics();
+            cover = QPixmap::fromImage(model->cover());
+            lyrics = model->lyrics();
 
             for(const MetaDataItem &item : model->extraProperties())
             {
                 if(item.name() == "Rating")
                 {
-                    songMeta()->m_metaData[TagMeta::RATING] = item.value().toString();
+                    rating = item.value().toString();
                 }
 
                 QString value = item.value().toString();
@@ -446,7 +447,25 @@ bool MusicSongMeta::readInformation()
             delete model;
         }
 
-        songMeta()->m_metaData[TagMeta::DESCRIPTION] = description;
+        for(MusicMeta *meta : qAsConst(m_songMetas))
+        {
+            if(!cover.isNull())
+            {
+                meta->m_cover = cover;
+            }
+
+            if(!lyrics.isEmpty())
+            {
+                meta->m_lyrics = lyrics;
+            }
+
+            if(!rating.isEmpty())
+            {
+                meta->m_metaData[TagMeta::RATING] = rating;
+            }
+
+            meta->m_metaData[TagMeta::DESCRIPTION] = description;
+        }
     }
 
     return !m_songMetas.isEmpty();
