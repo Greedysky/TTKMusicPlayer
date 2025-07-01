@@ -324,7 +324,7 @@ bool DecoderCDAudio::readFromCache(QList<CDATrack> *tracks, uint disc_id)
     path += QString("/cddbcache/%1").arg(disc_id, 0, 16);
     if(!QFile::exists(path))
         return false;
-    QSettings settings(path, QSettings::IniFormat);
+    const QSettings settings(path, QSettings::IniFormat);
     int count = settings.value("count").toInt();
     if(count != tracks->count())
         return false;
@@ -380,7 +380,7 @@ bool DecoderCDAudio::initialize()
 
     if(device_path.isEmpty() || device_path == "/") //try default path from config
     {
-        QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+        const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
         device_path = settings.value("CDAudio/device").toString();
         m_path = QString("cdda://%1#%2").arg(device_path).arg(track);
     }

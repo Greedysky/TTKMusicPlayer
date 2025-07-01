@@ -170,7 +170,7 @@ qint64 OutputDirectSound::latency()
     return m_latency;
 }
 
-qint64 OutputDirectSound::writeAudio(unsigned char *data, qint64 len)
+qint64 OutputDirectSound::writeAudio(unsigned char *data, qint64 maxSize)
 {
     unsigned char *ptr = nullptr, *ptr2 = nullptr;
     DWORD size = 0, size2 = 0;
@@ -189,7 +189,7 @@ qint64 OutputDirectSound::writeAudio(unsigned char *data, qint64 len)
         usleep(5000);
         return 0;
     }
-    DWORD lockSize = qMin((DWORD)len, available); //required size
+    DWORD lockSize = qMin((DWORD)maxSize, available); //required size
 
     HRESULT result = m_dsBuffer->Lock(m_dsBufferAt, lockSize,
                                       (void**)&ptr, (DWORD*)&size,
@@ -308,7 +308,7 @@ DWORD OutputDirectSound::bytesToWrite()
 VolumeDirectSound::VolumeDirectSound()
 {
     OutputDirectSound::volumeControl = this;
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_volume.left = settings.value("DirectSound/left_volume", 100).toInt();
     m_volume.right = settings.value("DirectSound/right_volume", 100).toInt();
     m_muted = settings.value("DirectSound/muted", false).toBool();

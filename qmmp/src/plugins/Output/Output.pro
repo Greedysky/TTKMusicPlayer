@@ -1,7 +1,7 @@
 include($$PWD/../plugins.pri)
 
 TEMPLATE = subdirs
-SUBDIRS += null
+SUBDIRS += null qtmultimedia
 
 win32{
     SUBDIRS += waveout directsound wasapi

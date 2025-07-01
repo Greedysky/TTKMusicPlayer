@@ -17,7 +17,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.levelSlider->setRange(3, 30);
     m_ui.cutOffSlider->setRange(50, 500);
 
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_level = settings.value("Subwoofer/level", 10).toUInt();
     m_cutoff = settings.value("Subwoofer/cutoff", 250).toUInt();
 

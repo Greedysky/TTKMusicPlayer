@@ -122,14 +122,13 @@ qint64 OutputWaveOut::latency()
     return (m_totalWritten / m_frameSize - mmtime.u.sample) * 1000 / sampleRate();
 }
 
-qint64 OutputWaveOut::writeAudio(unsigned char *data, qint64 len)
+qint64 OutputWaveOut::writeAudio(unsigned char *data, qint64 maxSize)
 {
     HGLOBAL    hg;
     HGLOBAL    hg2;
     LPWAVEHDR  wh;
     void*      allocptr;
-    len = qMin(len, (qint64)1024);
-
+    maxSize = qMin(maxSize, (qint64)1024);
 
     while(PlayedWaveHeadersCount > 0)                        // free used blocks ...
         free_memory();
@@ -140,20 +139,20 @@ qint64 OutputWaveOut::writeAudio(unsigned char *data, qint64 len)
         return 0;
     }
 
-    if((hg2 = GlobalAlloc (GMEM_MOVEABLE, len)) == nullptr)   // allocate some memory for a copy of the buffer
+    if((hg2 = GlobalAlloc (GMEM_MOVEABLE, maxSize)) == nullptr)   // allocate some memory for a copy of the buffer
     {
         qWarning("OutputWaveOut: GlobalAlloc failed");
         return 0;
     }
 
     allocptr = GlobalLock (hg2);
-    CopyMemory (allocptr, data, len);                         // Here we can call any modification output functions we want....
+    CopyMemory (allocptr, data, maxSize);                         // Here we can call any modification output functions we want....
 
     if((hg = GlobalAlloc (GMEM_MOVEABLE | GMEM_ZEROINIT, sizeof (WAVEHDR))) == nullptr) // now make a header and WRITE IT!
         return -1;
 
     wh                   = (wavehdr_tag*)GlobalLock (hg);
-    wh->dwBufferLength   = len;
+    wh->dwBufferLength   = maxSize;
     wh->lpData           = (CHAR *)allocptr;
 
     if(waveOutPrepareHeader (dev, wh, sizeof (WAVEHDR)) != MMSYSERR_NOERROR)
@@ -174,8 +173,8 @@ qint64 OutputWaveOut::writeAudio(unsigned char *data, qint64 len)
     ScheduledBlocks++;
     LeaveCriticalSection (&cs);
 
-    m_totalWritten += len;
-    return len;
+    m_totalWritten += maxSize;
+    return maxSize;
 }
 
 void OutputWaveOut::drain()

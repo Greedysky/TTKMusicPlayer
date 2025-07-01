@@ -126,7 +126,7 @@ void Output::setCurrentFactory(const OutputFactory *factory)
     if(file(factory).isEmpty())
         return;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.setValue ("Output/current_plugin", factory->properties().shortName);
+    settings.setValue("Output/current_plugin", factory->properties().shortName);
 }
 
 OutputFactory *Output::currentFactory()

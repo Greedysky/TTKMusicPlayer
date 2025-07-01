@@ -14,7 +14,7 @@ SRConverter::SRConverter()
         SRC_LINEAR
     };
 
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_sampleRate = settings.value("SRC/sample_rate", 48000).toInt();
     m_engine = converter_type_array[settings.value("SRC/engine", 0).toInt()];
     memset(&m_data, 0, sizeof(SRC_DATA));

@@ -16,7 +16,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 #endif
     m_ui.intensitySlider->setRange(0, 100);
 
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_intensity = settings.value("Crystalizer/intensity", DEFAULT_INTENSITY).toUInt();
     m_ui.intensitySlider->setValue(m_intensity);
 }

@@ -28,8 +28,8 @@ QmmpSettings::QmmpSettings(QObject *parent)
     m_average_bitrate = settings.value("Output/average_bitrate", false).toBool();
     //cover settings
     settings.beginGroup("Cover");
-    m_cover_inc = settings.value("include", (QStringList() << "*.jpg" << "*.png" << "*.webp")).toStringList();
-    m_cover_exclude = settings.value("exclude", (QStringList() << "*back*")).toStringList();
+    m_cover_inc = settings.value("include", QStringList({"*.jpg", "*.png", "*.webp"})).toStringList();
+    m_cover_exclude = settings.value("exclude", QStringList({"*back*"})).toStringList();
     m_cover_depth = settings.value("depth", 0).toInt();
     m_cover_use_files = settings.value("use_files", true).toBool();
     settings.endGroup();

@@ -30,6 +30,7 @@ The TTKMusicplayer qmmp plugins
  * oss
  * oss4
  * pulseaudio
+ * qtmultimedia
  * wasapi
  * waveout
 ### Effect

@@ -43,7 +43,7 @@ public:
     virtual bool initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format) override final;
 
     virtual qint64 latency() override final;
-    virtual qint64 writeAudio(unsigned char *data, qint64 size) override final;
+    virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override final;
     virtual void drain() override final;
     virtual void suspend() override final;
     virtual void resume() override final;

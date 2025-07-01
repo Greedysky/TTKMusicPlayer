@@ -260,7 +260,7 @@ void SoniqueWidget::paintEvent(QPaintEvent *)
 void SoniqueWidget::initialize()
 {
     const QString &dir = Qmmp::ttkPluginPath() + "/config/sonique";
-    const QFileInfoList folderList(fileListByPath(dir, QStringList() << "*.svp"));
+    const QFileInfoList folderList(fileListByPath(dir, {"*.svp"}));
     for(const QFileInfo &fin : folderList)
     {
         m_presetList << fin.absoluteFilePath();
@@ -308,7 +308,7 @@ void SoniqueWidget::generatePreset()
     m_sonique = module();
 
     const QString &dir = QFileInfo(m_presetList[m_currentIndex]).absolutePath();
-    const QFileInfoList iniList(fileListByPath(dir, QStringList() << "*.ini"));
+    const QFileInfoList iniList(fileListByPath(dir, {"*.ini"}));
     if(!iniList.isEmpty())
     {
         char *init_path = iniList.front().absoluteFilePath().toLocal8Bit().data();

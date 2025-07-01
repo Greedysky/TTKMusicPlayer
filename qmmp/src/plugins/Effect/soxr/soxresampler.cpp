@@ -6,7 +6,7 @@
 SoXResampler::SoXResampler()
     : Effect()
 {
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_sampleRate = settings.value("SOXR/sample_rate", 48000).toInt();
     m_quality = soxr_quality_spec(settings.value("SOXR/quality", SOXR_HQ).toInt(), 0);
 }

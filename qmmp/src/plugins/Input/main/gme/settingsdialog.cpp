@@ -15,7 +15,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_ui.fadeoutCheckBox->setChecked(settings.value("GME/fadeout", false).toBool());
     m_ui.fadeoutSpinBox->setValue(settings.value("GME/fadeout_length", 7000).toInt());
 }

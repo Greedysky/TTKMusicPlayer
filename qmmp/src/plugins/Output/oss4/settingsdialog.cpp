@@ -57,7 +57,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         }
     }
 
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_ui.deviceComboBox->setEditText(settings.value("OSS4/device", DEFAULT_DEV).toString());
     connect(m_ui.deviceComboBox, SIGNAL(activated(int)), SLOT(setText(int)));
 }

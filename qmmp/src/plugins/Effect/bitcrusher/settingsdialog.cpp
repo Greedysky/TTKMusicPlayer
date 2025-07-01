@@ -14,7 +14,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_ui.depthValue->setValue(settings.value("Bitcrusher/depth", 32).toDouble());
     m_ui.downsampleValue->setValue(settings.value("Bitcrusher/downsample", 1.0).toDouble());
 }

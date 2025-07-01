@@ -16,7 +16,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     }
 #endif
 
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     const QString default_device = settings.value("QTMULTIMEDIA/device").toString();
 
 	//Default item always has index = 0

@@ -4,7 +4,7 @@
 
 GMEHelper::GMEHelper()
 {
-     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+     const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
      m_fade_length = settings.value("GME/fadeout_length", 7000).toInt();
      if(settings.value("GME/fadeout", false).toBool())
          m_fade_length = 0;

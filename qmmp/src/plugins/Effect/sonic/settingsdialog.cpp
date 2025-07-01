@@ -16,7 +16,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 #endif
     m_ui.ratioSlider->setRange(12, 100);  // (0.25, 2)
 
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_ui.ratioSlider->setValue(settings.value("Sonic/ratio", DEFAULT_RATIO).toInt());
 }
 

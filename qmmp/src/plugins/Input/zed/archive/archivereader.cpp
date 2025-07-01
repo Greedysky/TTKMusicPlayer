@@ -34,7 +34,7 @@ QStringList ArchiveReader::list(const QString &path)
     const QString &unpack = archive::unpackPath();
     if(unpack.isEmpty())
     {
-        return QStringList();
+        return {};
     }
 
     const QString &cache = unpack + QFileInfo(path).fileName() + "/";

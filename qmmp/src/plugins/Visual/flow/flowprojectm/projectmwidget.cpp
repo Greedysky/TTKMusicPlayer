@@ -95,7 +95,7 @@ void ProjectMWidget::initializeGL()
         m_projectM = new ProjectMWrapper(settings, projectM::FLAG_DISABLE_PLAYLIST_LOAD);
 
         const RatingList list = {3, 3};
-        const QFileInfoList folderList(fileListByPath(PROJECTM_PRESET_PATH, QStringList() << "*.prjm" << "*.milk"));
+        const QFileInfoList folderList(fileListByPath(PROJECTM_PRESET_PATH, {"*.prjm", "*.milk"}));
         for(const QFileInfo &fin : folderList)
         {
             m_projectM->addPresetURL(fin.absoluteFilePath().toStdString(), fin.fileName().toStdString(), list);

@@ -1,8 +1,8 @@
 #include "settingsdialog.h"
 
 #include <QSettings>
-#include <QAbstractButton>
 #include <qmmp/qmmp.h>
+#include <QAbstractButton>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -14,7 +14,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_ui.srSpinBox->setValue(settings.value("SRC/sample_rate", 48000).toInt());
     m_ui.engineComboBox->setCurrentIndex(settings.value("SRC/engine", 0).toInt());
 }

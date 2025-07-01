@@ -14,7 +14,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_level = settings.value("Stereo/intensity", 4.0).toDouble();
     m_ui.intensitySlider->setValue(m_level * 100 / 10.0);
 }

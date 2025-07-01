@@ -69,7 +69,7 @@ QList<QColor> ColorWidget::readColorConfig(const QString &value)
 {
     if(value.isEmpty())
     {
-        return QList<QColor>() << QColor(0, 0xFF, 0xFF);
+        return {QColor(0, 0xFF, 0xFF)};
     }
 
     QList<QColor> colors;

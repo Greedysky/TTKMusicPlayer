@@ -1,3 +1,5 @@
+#include "settingsdialog.h"
+
 #include <QSettings>
 #include <qmmp/qmmp.h>
 #include <initguid.h>
@@ -6,7 +8,6 @@
 #include <mmdeviceapi.h>
 #include <mmreg.h>
 #include <functiondiscoverykeys.h>
-#include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -20,7 +21,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 #endif
     enumDevices();
 
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QString id = settings.value("WASAPI/device", "default").toString();
     int index = m_ui.deviceComboBox->findData(id);
     m_ui.deviceComboBox->setCurrentIndex(qMax(index, 0));

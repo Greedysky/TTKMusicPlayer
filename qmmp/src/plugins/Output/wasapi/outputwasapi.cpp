@@ -34,7 +34,7 @@ OutputWASAPI::OutputWASAPI()
     : Output()
 {
     instance = this;
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_id = settings.value("WASAPI/device", "default").toString();
     m_bufferSize = settings.value("WASAPI/buffer_size", 1000).toInt() * 1000LL;
     m_exclusive = settings.value("WASAPI/exclusive_mode", false).toBool();
@@ -197,7 +197,7 @@ qint64 OutputWASAPI::latency()
     return frames * 1000 / sampleRate();
 }
 
-qint64 OutputWASAPI::writeAudio(unsigned char *data, qint64 len)
+qint64 OutputWASAPI::writeAudio(unsigned char *data, qint64 maxSize)
 {
     UINT32 frames = 0;
     BYTE *pData = nullptr;
@@ -207,15 +207,15 @@ qint64 OutputWASAPI::writeAudio(unsigned char *data, qint64 len)
 
     UINT32 framesAvailable = m_bufferFrames - frames;
 
-    UINT32 framesToWrite = qMin(framesAvailable, (UINT32)len / m_frameSize);
+    UINT32 framesToWrite = qMin(framesAvailable, (UINT32)maxSize / m_frameSize);
 
     //wait until buffer is not full
     if(framesToWrite == 0)
     {
-        usleep(len * 1000000L / sampleRate() / m_frameSize / 2);
+        usleep(maxSize * 1000000L / sampleRate() / m_frameSize / 2);
         m_pAudioClient->GetCurrentPadding(&frames);
         framesAvailable = m_bufferFrames - frames;
-        framesToWrite = qMin(framesAvailable, (UINT32)len / m_frameSize);
+        framesToWrite = qMin(framesAvailable, (UINT32)maxSize / m_frameSize);
     }
 
     if(format() == Qmmp::PCM_S24LE)
@@ -299,7 +299,7 @@ void OutputWASAPI::uninitialize()
 VolumeWASAPI::VolumeWASAPI()
 {
     OutputWASAPI::volumeControl = this;
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_volume.left = settings.value("WASAPI/left_volume", 100).toInt();
     m_volume.right = settings.value("WASAPI/right_volume", 100).toInt();
     m_muted = settings.value("WASAPI/muted", false).toBool();

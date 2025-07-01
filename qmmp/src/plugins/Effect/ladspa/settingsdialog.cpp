@@ -3,10 +3,10 @@
 #include "ladspabutton.h"
 #include "ladspahost.h"
 
-#include <QStandardItemModel>
-#include <QFormLayout>
 #include <QLabel>
+#include <QFormLayout>
 #include <qmmp/qmmp.h>
+#include <QStandardItemModel>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

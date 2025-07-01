@@ -1,7 +1,7 @@
 #include "settingsdialog.h"
 
-#include <qmmp/qmmp.h>
 #include <QSettings>
+#include <qmmp/qmmp.h>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

@@ -5,7 +5,7 @@
 OutputOSS::OutputOSS()
     : Output()
 {
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_audio_device = settings.value("OSS/device", "/dev/dsp").toString();
 }
 
@@ -108,7 +108,7 @@ void OutputOSS::reset()
 
 VolumeOSS::VolumeOSS()
 {
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_mixer_device = settings.value("OSS/mixer_device","/dev/mixer").toString();
     openMixer();
 }

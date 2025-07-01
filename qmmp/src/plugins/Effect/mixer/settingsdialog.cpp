@@ -14,8 +14,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    m_ui.type->addItems(QStringList() << tr("NullMix") <<tr("MonoToStereo") << tr("StereoToMono"));
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    m_ui.type->addItems({tr("NullMix"), tr("MonoToStereo"), tr("StereoToMono")});
     m_ui.type->setCurrentIndex(settings.value("ChannelMixer/type", MixerPlugin::Null).toInt());
 }
 

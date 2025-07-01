@@ -83,7 +83,7 @@ void CUEMetaDataModel::setCue(const QString &content)
 {
     if(!m_codec)
     {
-        QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+        const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
         m_codec = QTextCodec::codecForName(settings.value("CUE/encoding", "UTF-8").toByteArray());
     }
 

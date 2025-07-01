@@ -481,7 +481,7 @@ void LightWaveForm::typeChanged(QAction *action)
 
     ColorWidget dialog;
     dialog.setSingleMode(true);
-    dialog.setColors(QList<QColor>() << m_colors[type]);
+    dialog.setColors({m_colors[type]});
     if(dialog.exec())
     {
         const QList<QColor> &colors = dialog.colors();

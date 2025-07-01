@@ -8,7 +8,7 @@ CrystalizerPlugin::CrystalizerPlugin()
     : Effect()
 {
     m_instance = this;
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_intensity = settings.value("Crystalizer/intensity", DEFAULT_INTENSITY).toUInt();
 }
 

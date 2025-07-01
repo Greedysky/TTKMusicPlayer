@@ -8,7 +8,7 @@ MixerPlugin::MixerPlugin()
     : Effect()
 {
     m_instance = this;
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_type = (MixerType)settings.value("ChannelMixer/type", MixerPlugin::Null).toInt();
 }
 

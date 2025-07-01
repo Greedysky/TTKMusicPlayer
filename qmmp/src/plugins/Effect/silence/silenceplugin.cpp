@@ -24,7 +24,7 @@ SilencePlugin::SilencePlugin()
     : Effect()
 {
     m_instance = this;
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_threshold = settings.value("Silence/threshold", -40).toDouble();
 }
 

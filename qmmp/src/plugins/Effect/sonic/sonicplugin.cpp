@@ -53,7 +53,7 @@ void SonicPlugin::configure(quint32 srate, ChannelMap map)
     sonicSetVolume(m_stream, 1);
     sonicSetQuality(m_stream, 0);
 
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     setRatio(settings.value("Sonic/ratio", DEFAULT_RATIO).toInt());
 }
 

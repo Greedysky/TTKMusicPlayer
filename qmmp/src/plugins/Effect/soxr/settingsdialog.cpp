@@ -1,8 +1,8 @@
 #include "settingsdialog.h"
 
 #include <QSettings>
-#include <QAbstractButton>
 #include <qmmp/qmmp.h>
+#include <QAbstractButton>
 #include <soxr.h>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
@@ -15,7 +15,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_ui.srSpinBox->setValue(settings.value("SOXR/sample_rate", 48000).toInt());
 
     m_ui.qualityComboBox->addItem(tr("Quick"), SOXR_QQ);

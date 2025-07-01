@@ -83,7 +83,7 @@ void ProjectM4Widget::initializeGL()
         projectm_playlist_set_shuffle(m_playlistHandle, false);
         projectm_playlist_set_preset_switched_event_callback(m_playlistHandle, &ProjectM4Widget::presetSwitchedEvent, this);
 
-        const QFileInfoList folderList(fileListByPath(PROJECTM_PRESET_PATH, QStringList() << "*.prjm" << "*.milk"));
+        const QFileInfoList folderList(fileListByPath(PROJECTM_PRESET_PATH, {"*.prjm", "*.milk"});
         for(const QFileInfo &fin : folderList)
         {
             projectm_playlist_add_preset(m_playlistHandle, qPrintable(fin.absoluteFilePath()), false);
