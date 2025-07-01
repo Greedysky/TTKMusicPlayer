@@ -214,6 +214,11 @@ QString MusicAbstractSongsListTableWidget::currentSongPath() const
 
 QString MusicAbstractSongsListTableWidget::songPath(int index) const
 {
+    if(rowCount() == 0 || index < 0)
+    {
+        return {};
+    }
+
     return !m_songs->isEmpty() ? m_songs->at(index).path().trimmed() : QString();
 }
 

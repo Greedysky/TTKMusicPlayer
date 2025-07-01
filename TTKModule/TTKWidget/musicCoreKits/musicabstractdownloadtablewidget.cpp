@@ -84,7 +84,7 @@ void MusicAbstractDownloadTableWidget::itemDoubleClicked(int row, int column)
     }
 
     const QString &path = currentSongPath();
-    MusicSongsContainerWidget::instance()->addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
+    MusicSongsContainerWidget::instance()->addSongToPlaylist({QFile::exists(path) ? path : QString()});
 }
 
 void MusicAbstractDownloadTableWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)

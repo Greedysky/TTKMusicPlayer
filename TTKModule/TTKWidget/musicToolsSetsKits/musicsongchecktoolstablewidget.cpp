@@ -172,7 +172,7 @@ void MusicSongCheckToolsDuplicateTableWidget::playSong()
     if(it)
     {
         const QString &path = it->data(TTK_DATA_ROLE).toString();
-        MusicSongsContainerWidget::instance()->addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
+        MusicSongsContainerWidget::instance()->addSongToPlaylist({QFile::exists(path) ? path : QString()});
     }
 }
 
@@ -289,7 +289,7 @@ void MusicSongCheckToolsQualityTableWidget::playSong()
     if(it)
     {
         const QString &path = it->data(TTK_DATA_ROLE).toString();
-        MusicSongsContainerWidget::instance()->addSongToPlaylist(QFile::exists(path) ? QStringList(path) : QStringList());
+        MusicSongsContainerWidget::instance()->addSongToPlaylist({QFile::exists(path) ? path : QString()});
     }
 }
 
