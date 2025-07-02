@@ -70,6 +70,7 @@ protected:
      */
     void startToRequest(const QString &suffix);
 
+    int m_tryTimes;
     int m_currentIndex;
     MusicSkinRemoteGroupList m_groups;
     MusicBackgroundListWidget *m_backgroundList;

@@ -11,6 +11,7 @@
 
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     : QWidget(parent),
+      m_tryTimes(3),
       m_currentIndex(-1),
       m_downloadRequest(nullptr)
 {
@@ -132,6 +133,13 @@ void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, c
 
 void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)
 {
+    if(bytes.isEmpty() && m_tryTimes-- > 0)
+    {
+        TTK_INFO_STREAM("Retry to request daily skin data");
+        m_downloadRequest->startToRequest();
+        return;
+    }
+
     MusicBackgroundRemoteWidget::downLoadFinished(bytes);
     startToRequest(TKM_FILE);
 }
@@ -243,6 +251,13 @@ void MusicBackgroundOnlineWidget::currentTypeChanged(int index)
 
 void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)
 {
+    if(bytes.isEmpty() && m_tryTimes-- > 0)
+    {
+        TTK_INFO_STREAM("Retry to request online skin data");
+        m_downloadRequest->startToRequest();
+        return;
+    }
+
     MusicBackgroundRemoteWidget::downLoadFinished(bytes);
     m_typeBox->blockSignals(true);
 
