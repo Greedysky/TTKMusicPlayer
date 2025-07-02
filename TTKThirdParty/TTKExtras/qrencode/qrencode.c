@@ -656,7 +656,7 @@ QRcode *QRcode_encodeStringMQR(const char *string, int version, QRecLevel level,
     if(version == 0) {
         version = 1;
     }
-    for(i = version; i <= MQRSPEC_VERSION_MAX ; i++) {
+    for(i = version; i <= MQRSPEC_VERSION_MAX; i++) {
         QRcode *code = QRcode_encodeStringReal(string, i, level, 1, hint, casesensitive);
         if(code != NULL) return code;
     }

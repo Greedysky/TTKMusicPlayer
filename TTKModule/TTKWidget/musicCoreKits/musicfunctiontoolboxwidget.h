@@ -149,7 +149,7 @@ public:
     /*!
      * Get item widget expand state.
      */
-    bool isExpand() const ;
+    bool isExpand() const;
 
     /*!
      * Get item widget is in active state.

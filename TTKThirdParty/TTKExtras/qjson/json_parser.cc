@@ -170,7 +170,7 @@ namespace yy {
             case '"':
               return yyr;
             }
-      do_not_strip_quotes: ;
+      do_not_strip_quotes:;
       }
 
     return yystr;
@@ -1085,6 +1085,6 @@ void yy::json_parser::error (const yy::location& yyloc, const TTKString& error)
   qjsonDebug() << yyloc.begin.column;
   qjsonDebug() << yyloc.end.line;
   qjsonDebug() << yyloc.end.column;*/
-  qjsonDebug() << "json_parser::error [line" << yyloc.end.line << "] -" << error.c_str() ;
+  qjsonDebug() << "json_parser::error [line" << yyloc.end.line << "] -" << error.c_str();
   driver->setError(QString::fromLatin1(error.c_str()), yyloc.end.line);
 }

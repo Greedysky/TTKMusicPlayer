@@ -64,7 +64,6 @@ void MusicDownloadQueueRequest::clear() noexcept
     m_queue.clear();
 }
 
-
 void MusicDownloadQueueRequest::downLoadFinished()
 {
     if(m_isAbort || !m_request || !m_reply || !m_file)

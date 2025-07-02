@@ -193,8 +193,8 @@ static HWND dw_create_internal_window(const void* userData)
         qWarning("QDeviceWatcherPrivate: Failed to create internal window: %d", TTKStaticCast(int, GetLastError()));
 #if CONFIG_NOTIFICATION
     } else {
-        DEV_BROADCAST_DEVICEINTERFACE NotificationFilter ;
-        ZeroMemory(&NotificationFilter, sizeof(NotificationFilter)) ;
+        DEV_BROADCAST_DEVICEINTERFACE NotificationFilter;
+        ZeroMemory(&NotificationFilter, sizeof(NotificationFilter));
         NotificationFilter.dbcc_size = sizeof(DEV_BROADCAST_DEVICEINTERFACE);
         NotificationFilter.dbcc_devicetype = DBT_DEVTYP_DEVICEINTERFACE;
         NotificationFilter.dbcc_classguid = InterfaceClassGuid;

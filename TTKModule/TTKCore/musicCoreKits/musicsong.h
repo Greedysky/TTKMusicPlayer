@@ -43,7 +43,7 @@ public:
      * Object constructor.
      */
     MusicSong() noexcept;
-    explicit MusicSong(const QString &path, bool track = false) ;
+    explicit MusicSong(const QString &path, bool track = false);
     MusicSong(const QString &path, const QString &duration, const QString &name = {}, bool track = false);
 
     /*!
