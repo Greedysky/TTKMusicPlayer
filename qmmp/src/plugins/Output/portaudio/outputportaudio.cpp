@@ -48,15 +48,21 @@ bool OutputPortAudio::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat
     // Using paFramesPerBufferUnspecified with alsa gives warnings about underrun
     const int buffer = settings.value("PORTAUDIO/buffer", paFramesPerBufferUnspecified).toInt();
 
-    for(int i = 0; i < Pa_GetDeviceCount(); ++i)
+    for(int index = 0; index < Pa_GetDeviceCount(); ++index)
     {
-        const PaDeviceInfo *deviceInfo = Pa_GetDeviceInfo(i);
+        const PaDeviceInfo *deviceInfo = Pa_GetDeviceInfo(index);
         if(deviceInfo->name == device_name)
         {
-            m_device = i;
+            m_device = index;
             qDebug("OutputPortAudio: Device name is %s, buffer size is %d", deviceInfo->name, buffer);
             break;
         }
+    }
+
+    if(m_device == paNoDevice)
+    {
+        qWarning("OutputPortAudio: Current device is invalid");
+        return false;
     }
 
     PaStreamParameters params;

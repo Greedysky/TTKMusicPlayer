@@ -30,13 +30,13 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     const int buffer = settings.value("PORTAUDIO/buffer", paFramesPerBufferUnspecified).toInt();
     m_ui.bufferSizeSpinBox->setValue(buffer);
 
-    for(int i = 0; i < Pa_GetDeviceCount(); ++i)
+    for(int index = 0; index < Pa_GetDeviceCount(); ++index)
     {
-        const PaDeviceInfo *deviceInfo = Pa_GetDeviceInfo(i);
+        const PaDeviceInfo *deviceInfo = Pa_GetDeviceInfo(index);
         m_ui.deviceComboBox->addItem(deviceInfo->name);
         if(deviceInfo->name == device_name)
         {
-            m_ui.deviceComboBox->setCurrentIndex(i);
+            m_ui.deviceComboBox->setCurrentIndex(index);
         }
     }
 
@@ -47,7 +47,6 @@ void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue("PORTAUDIO/buffer", m_ui.bufferSizeSpinBox->value());
-    //0 index means default value, we save empty string for it.
     settings.setValue("PORTAUDIO/device", m_ui.deviceComboBox->currentIndex() ? m_ui.deviceComboBox->currentText() : "default");
     QDialog::accept();
 }
