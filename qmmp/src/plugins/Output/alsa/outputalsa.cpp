@@ -12,7 +12,7 @@ OutputALSA::OutputALSA()
     : Output()
 {
     const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    const QString dev_name = settings.value("ALSA/device", "default").toString();
+    const QString &dev_name = settings.value("ALSA/device", "default").toString();
     m_use_mmap = settings.value("ALSA/use_mmap", false).toBool();
     pcm_name = strdup(dev_name.toLatin1().data());
 
@@ -391,8 +391,8 @@ VolumeALSA::VolumeALSA()
     //alsa mixer
     m_mixer = nullptr;
     const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    const QString card = settings.value("ALSA/mixer_card", "hw:0").toString();
-    const QString dev = settings.value("ALSA/mixer_device", "PCM").toString();
+    const QString &card = settings.value("ALSA/mixer_card", "hw:0").toString();
+    const QString &dev = settings.value("ALSA/mixer_device", "PCM").toString();
     setupMixer(card, dev);
 }
 

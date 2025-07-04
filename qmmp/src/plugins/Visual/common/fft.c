@@ -35,7 +35,10 @@
 #endif
 
 #include "fft.h"
+
+#include <stdlib.h>
 #include <math.h>
+
 #ifndef PI
 #ifdef M_PI
 #define PI M_PI

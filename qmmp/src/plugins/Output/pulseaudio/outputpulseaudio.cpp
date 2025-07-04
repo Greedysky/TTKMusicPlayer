@@ -155,11 +155,11 @@ bool OutputPulseAudio::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForma
     op = pa_context_get_sink_input_info(m_ctx, pa_stream_get_index(m_stream), OutputPulseAudio::info_cb, &success);
     if(!process(op) || !success)
     {
-        qWarning("OutputPulseAudio:pa_context_get_sink_input_info: %s", pa_strerror(pa_context_errno(m_ctx)));
+        qWarning("OutputPulseAudio: pa_context_get_sink_input_info: %s", pa_strerror(pa_context_errno(m_ctx)));
         return false;
     }
 
-    Output::configure(freq, map, format);
+    configure(freq, map, format);
     return true;
 }
 

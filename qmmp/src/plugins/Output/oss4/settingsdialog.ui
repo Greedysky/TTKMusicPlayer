@@ -19,7 +19,7 @@
   <property name="maximumSize">
    <size>
     <width>276</width>
-    <height>64</height>
+    <height>68</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
     <number>6</number>
    </property>
    <property name="topMargin">
-    <number>9</number>
+    <number>6</number>
    </property>
    <property name="rightMargin">
     <number>6</number>

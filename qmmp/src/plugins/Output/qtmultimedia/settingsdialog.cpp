@@ -6,7 +6,7 @@
 #include <QAudioDeviceInfo>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
-    : QDialog (parent)
+    : QDialog(parent)
 {
     m_ui.setupUi(this);
 #ifdef Q_OS_UNIX
@@ -17,7 +17,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 #endif
 
     const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    const QString default_device = settings.value("QTMULTIMEDIA/device").toString();
+    const QString &default_device = settings.value("QTMULTIMEDIA/device").toString();
 
 	//Default item always has index = 0
     m_ui.deviceComboBox->addItem(tr("Default"));

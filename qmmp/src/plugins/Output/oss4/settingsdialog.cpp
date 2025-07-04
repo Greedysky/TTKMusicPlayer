@@ -20,7 +20,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     oss_sysinfo info;
     if((mixer_fd = ::open(DEFAULT_MIXER, O_RDWR)) < 0)
     {
-        qWarning("SettingsDialog: %s", strerror(errno));
+        qWarning("SettingsDialog: %s %s", DEFAULT_MIXER, strerror(errno));
         return;
     }
 

@@ -8,7 +8,7 @@ unix:!mac{
         QT += multimedia
     }
 }
-win32:QT += multimedia
+win32|mac:QT += multimedia
 
 DESTDIR = $$PLUGINS_PREFIX/Output
 
