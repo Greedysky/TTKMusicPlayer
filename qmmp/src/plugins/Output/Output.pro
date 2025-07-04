@@ -8,5 +8,9 @@ win32{
 }
 
 unix{
-    SUBDIRS += alsa pulseaudio oss oss4
+    SUBDIRS += pulseaudio portaudio
+}
+
+unix:!mac{
+    SUBDIRS += alsa oss oss4
 }
