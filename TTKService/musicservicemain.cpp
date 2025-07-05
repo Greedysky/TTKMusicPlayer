@@ -8,7 +8,9 @@
 #include "ttkglobalinterface.h"
 
 #ifdef Q_OS_UNIX
-#  include <malloc.h>
+#  ifndef __APPLE__
+#    include <malloc.h>
+#  endif
 #  include "musicmprisplayer.h"
 #endif
 
@@ -118,7 +120,7 @@ int main(int argc, char *argv[])
     mpris.run();
 #endif
 
-#ifdef Q_OS_UNIX
+#if defined(Q_OS_UNIX) && !defined(__APPLE__)
     // memory free
     mallopt(M_MMAP_THRESHOLD, 1024 * 1024);   // 1MB mmap
     mallopt(M_TRIM_THRESHOLD, 2 * 1024 * 1024); // 2MB brk
