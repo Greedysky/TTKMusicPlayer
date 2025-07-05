@@ -21,6 +21,8 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
+#include <cstdint>
+
 #include "ui_settingsdialog.h"
 
 /**

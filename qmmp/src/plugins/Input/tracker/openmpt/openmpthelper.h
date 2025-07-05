@@ -19,6 +19,8 @@
 #ifndef OPENMPTHELPER_H
 #define OPENMPTHELPER_H
 
+#include <cstdint>
+
 #include <QMap>
 #include <QFile>
 #include <libopenmpt/libopenmpt.h>
