@@ -43,6 +43,10 @@ unix:!mac{
     SSL_DEPANDS = $$DESTDIR/libssleay32.so
     exists($$SSL_DEPANDS):LIBS += -L$$DESTDIR -lssl
 }
+mac{
+    SSL_DEPANDS = $$DESTDIR/libssl.dylib
+    exists($$SSL_DEPANDS):LIBS += -L$$DESTDIR -lssl
+}
 
 win32{
     LIBS += -lIphlpapi -lVersion
@@ -59,6 +63,7 @@ win32{
              QMAKE_LFLAGS_WINDOWS += /SUBSYSTEM:WINDOWS,5.01
              QMAKE_LFLAGS_CONSOLE += /SUBSYSTEM:CONSOLE,5.01
         }
+
         LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lttkzip -lzlib -luser32
     }
 
@@ -68,6 +73,7 @@ win32{
         }else{
             QMAKE_CXXFLAGS += -std=c++11
         }
+
         QMAKE_CXXFLAGS += -Wunused-function -Wunused-result -Wswitch
         LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lttkzip -lzlib
     }
@@ -85,8 +91,13 @@ unix:!mac{
     }else{
         QMAKE_CXXFLAGS += -std=c++11
     }
+
     QMAKE_CXXFLAGS += -Wunused-function -Wunused-result -Wswitch
     LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lttkzip -lzlib
+}
+
+mac{
+    QT += multimedia
 }
 
 DEFINES += TTK_LIBRARY QMMP_LIBRARY

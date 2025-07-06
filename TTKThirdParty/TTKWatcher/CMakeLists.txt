@@ -41,6 +41,8 @@ endif()
 
 if(WIN32)
   list(APPEND QT_LINK_LIBS user32)
+elseif(APPLE)
+  list(APPEND QT_LINK_LIBS "-framework DiskArbitration -framework IOKit -framework CoreServices")
 endif()
 
 if(TTK_QT_VERSION VERSION_EQUAL "4")

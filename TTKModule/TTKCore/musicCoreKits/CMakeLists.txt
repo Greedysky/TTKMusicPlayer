@@ -64,7 +64,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_KITS_SOURCE_FILES
   ${TTK_CORE_DIR}/musicprocessmanager.cpp
 )
 
-if(UNIX)
+if(UNIX AND NOT APPLE)
   set_property(GLOBAL APPEND PROPERTY TTK_CORE_KITS_HEADER_FILES ${TTK_CORE_DIR}/musicmprisplayer.h)
   set_property(GLOBAL APPEND PROPERTY TTK_CORE_KITS_SOURCE_FILES ${TTK_CORE_DIR}/musicmprisplayer.cpp)
 endif()

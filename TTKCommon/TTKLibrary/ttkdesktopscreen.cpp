@@ -10,7 +10,7 @@
 #if !TTK_QT_VERSION_CHECK(5,0,0)
 #  include <QDesktopWidget>
 #endif
-#ifdef Q_OS_UNIX
+#if defined Q_OS_LINUX && defined Q_WS_X11
 #  include <QRegExp>
 #  include <X11/Xlib.h>
 #endif
@@ -130,7 +130,8 @@ QPixmap TTKDesktopScreen::grabWindow(int x, int y, int w, int h)
     widget.setVisible(false);
     widget.setGeometry(geometry());
 #if TTK_QT_VERSION_CHECK(5,0,0)
-    return QApplication::primaryScreen()->grabWindow(widget.winId(), x, y, w, h);
+    QScreen *screen = QApplication::primaryScreen();
+    return screen ? screen->grabWindow(widget.winId(), x, y, w, h) : QPixmap();
 #else
     return QPixmap::grabWindow(widget.winId(), x, y, w, h);
 #endif
@@ -161,7 +162,7 @@ static QSize generateDPIValue()
 
     dpiSize.setWidth(dm.dmPelsWidth * DEFAULT_DPI * 1.0 / (miex.rcMonitor.right - miex.rcMonitor.left));
     dpiSize.setHeight(dm.dmPelsHeight * DEFAULT_DPI * 1.0 / (miex.rcMonitor.bottom - miex.rcMonitor.top));
-#elif defined Q_OS_UNIX
+#elif defined Q_OS_LINUX && defined Q_WS_X11
     Display *dp = XOpenDisplay(nullptr);
     if(!dp)
     {
@@ -197,6 +198,29 @@ static QSize generateDPIValue()
     }
 
     XCloseDisplay(dp);
++#elif defined Q_OS_MAC
+    if(!qApp)
+    {
+        int count = 0;
+        QApplication(count, nullptr);
+    }
+
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    QScreen *screen = QApplication::primaryScreen();
+    if(screen)
+    {
+        dpiSize.setWidth(screen->logicalDotsPerInchX());
+        dpiSize.setHeight(screen->logicalDotsPerInchY());
+    }
+    // fallback below if no screen
+#else
+    QDesktopWidget* desktop = QApplication::desktop();
+    if(desktop)
+    {
+        dpiSize.setWidth(screen->logicalDpiX());
+        dpiSize.setHeight(screen->logicalDpiY());
+    }
+#endif
 #endif
     return dpiSize;
 }

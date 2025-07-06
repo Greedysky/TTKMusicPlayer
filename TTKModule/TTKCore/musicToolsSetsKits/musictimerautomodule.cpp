@@ -124,7 +124,7 @@ void MusicTimerAutoModule::setShutdown()
         AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, TTKStaticCast(PTOKEN_PRIVILEGES, nullptr), nullptr);
         ExitWindowsEx(EWX_SHUTDOWN | EWX_POWEROFF, 0);
     }
-#elif defined Q_OS_UNIX
+#elif defined Q_OS_LINUX
     /* first disable all our signals */
     sigset_t set;
     sigfillset(&set);
@@ -138,11 +138,9 @@ void MusicTimerAutoModule::setShutdown()
     sync();
     TTK::Core::sleep(3 * TTK_DN_S2MS);
     /* shutdown */
-#if defined(__APPLE__)
-    system("shutdown -h now");
-#else
     reboot(RB_POWER_OFF);
-#endif
+#elif defined Q_OS_MAC
+    system("shutdown -h now");
 #endif
     TTK_INFO_STREAM("Shutdown now");
 }

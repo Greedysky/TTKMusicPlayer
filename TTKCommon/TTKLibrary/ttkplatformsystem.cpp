@@ -124,7 +124,7 @@ TTKPlatformSystem::System TTKPlatformSystem::systemName()
         file.close();
     }
     return System::Linux;
-#elif defined Q_OS_MACOS
+#elif defined Q_OS_MAC
     return System::Mac;
 #endif
     return System::Unkown;

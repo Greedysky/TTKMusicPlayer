@@ -201,11 +201,23 @@ if(TTK_QT_VERSION VERSION_EQUAL "4")
 
     if(WIN32)
       set(QT_USE_QTMULTIMEDIA ON)
+    elseif(APPLE)
+      set(QT_USE_QTDBUS ON)
+      set(QT_USE_QTMULTIMEDIA ON)
     else()
       set(QT_USE_QTDBUS ON)
     endif()
 
     include(${QT_USE_FILE})
+
+#    if(APPLE)
+#      set(QT_QTCORE_LIBRARY Qt4::QtCore)
+#      set(QT_QTGUI_LIBRARY Qt4::QtDBus)
+#      set(QT_QTNETWORK_LIBRARY Qt4::QtNetwork)
+#      set(QT_QTXML_LIBRARY Qt4::QtXml)
+#      set(QT_QTDBUS_LIBRARY Qt4::QtDBus)
+#      set(QT_QTMULTIMEDIA_LIBRARY Qt4::QtMultimedia)
+#    endif()
 
     if(WIN32)
       get_filename_component(${QT_LIBRARY_DIR} ${QT_QMAKE_EXECUTABLE} PATH)
@@ -255,7 +267,7 @@ else()
 endif()
 
 
-if(UNIX)
+if(UNIX AND NOT APPLE)
   find_program(RENAME_EXECUTABLE rename /usr/bin)
   if(RENAME_EXECUTABLE)
     message(STATUS "Found rename executable: " ${RENAME_EXECUTABLE})
@@ -272,7 +284,7 @@ find_library(TTK_QMMP_LIBRARY
 
 # qmmp include
 include_directories(${TTK_THIRDPARTY_DIR}/TTKqmmp)
-if(TTK_QT_VERSION VERSION_EQUAL "4" AND UNIX)
+if(TTK_QT_VERSION VERSION_EQUAL "4" AND UNIX AND NOT APPLE)
   include_directories(
     /usr/include/QtMultimediaKit
     /usr/include/QtMobility)

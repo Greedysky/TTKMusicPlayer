@@ -54,6 +54,10 @@ bool QDeviceWatcherPrivate::initialize()
     //get sDevices
     //FSGetVolumeInfo()
     mSession = DASessionCreate(kCFAllocatorDefault);
+    if (!mSession) {
+        qWarning("Failed to create Disk Arbitration session");
+        return false;
+    }
 
     DARegisterDiskAppearedCallback(mSession, nullptr, onDiskAppear, this);
     DARegisterDiskDisappearedCallback(mSession, nullptr, onDiskDisappear, this);

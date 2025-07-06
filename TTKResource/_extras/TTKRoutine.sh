@@ -14,7 +14,14 @@ if [ "${dirpath%${tmp}}" != "/" ]; then
   dirpath=$PWD/${dirpath}
 fi
 
-export LD_LIBRARY_PATH=${dirpath}:${dirpath}/lib:${dirpath}/4.1.3.0
+case "$(uname)" in
+  Darwin)
+    export DYLD_LIBRARY_PATH="${dirpath}:${dirpath}/lib:${dirpath}/4.1.3.0:$DYLD_LIBRARY_PATH"
+    ;;
+  *)
+    export LD_LIBRARY_PATH="${dirpath}:${dirpath}/lib:${dirpath}/4.1.3.0"
+    ;;
+esac
 export QT_PLUGIN_PATH=${dirpath}/plugins:$QT_PLUGIN_PATH
 
 ${appname} "$@"

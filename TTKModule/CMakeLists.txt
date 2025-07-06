@@ -137,7 +137,9 @@ if(TTK_QT_VERSION VERSION_EQUAL "4")
   qt4_wrap_ui(UIC_FILES ${UI_FILES})
   qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
 
-  if(UNIX)
+  if(APPLE)
+    list(APPEND QT_LINK_LIBS ${QT_QTDBUS_LIBRARY})
+  elseif(UNIX)
     list(APPEND QT_LINK_LIBS ${QT_QTDBUS_LIBRARY} QtMultimediaKit)
   endif()
 
