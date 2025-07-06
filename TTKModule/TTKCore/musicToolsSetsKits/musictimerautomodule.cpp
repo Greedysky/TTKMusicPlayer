@@ -138,7 +138,11 @@ void MusicTimerAutoModule::setShutdown()
     sync();
     TTK::Core::sleep(3 * TTK_DN_S2MS);
     /* shutdown */
+#if defined(__APPLE__)
+    system("shutdown -h now");
+#else
     reboot(RB_POWER_OFF);
+#endif
 #endif
     TTK_INFO_STREAM("Shutdown now");
 }
