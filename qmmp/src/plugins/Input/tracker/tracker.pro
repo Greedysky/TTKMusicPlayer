@@ -11,4 +11,4 @@ SUBDIRS += stsound
 SUBDIRS += tfmx
 SUBDIRS += xmp
 
-unix:SUBDIRS += uade
+unix:!mac:SUBDIRS += uade

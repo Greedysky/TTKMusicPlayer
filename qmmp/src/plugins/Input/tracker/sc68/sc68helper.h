@@ -19,9 +19,8 @@
 #ifndef SC68HELPER_H
 #define SC68HELPER_H
 
-#include <cstdint>
-
 #include <QFile>
+#include <cstdint>
 #include <qmmp/trackinfo.h>
 extern "C" {
 #include <libsc68/sc68/sc68.h>

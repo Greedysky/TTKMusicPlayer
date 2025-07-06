@@ -23,10 +23,6 @@ contains(CONFIG, GME_PLUGIN){
     SUBDIRS += gme
 }
 
-contains(CONFIG, ADLMIDI_PLUGIN){
-    SUBDIRS += adlmidi
-}
-
 contains(CONFIG, OPUS_PLUGIN){
     SUBDIRS += opus
 }
@@ -41,4 +37,8 @@ contains(CONFIG, SID_PLUGIN){
 
 contains(CONFIG, CDAUDIO_PLUGIN){
     SUBDIRS += cdaudio
+}
+
+!mac:contains(CONFIG, ADLMIDI_PLUGIN){
+    SUBDIRS += adlmidi
 }

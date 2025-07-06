@@ -22,7 +22,6 @@
 #define SETTINGSDIALOG_H
 
 #include <cstdint>
-
 #include "ui_settingsdialog.h"
 
 /**

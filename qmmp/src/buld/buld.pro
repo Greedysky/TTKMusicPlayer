@@ -22,7 +22,7 @@ unix{
 
 TEMPLATE = app
 
-SOURCES += main.cpp\
+SOURCES += main.cpp \
         mainwindow.cpp \
         musicplaylist.cpp \
         musicplayer.cpp
