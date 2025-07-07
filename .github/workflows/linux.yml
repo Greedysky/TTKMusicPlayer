@@ -44,7 +44,7 @@ jobs:
 
       - name: Build project
         run: |
-          sudo apt install rename libfuse2 p7zip-full
+          sudo apt install libfuse2 p7zip-full
           qmake -v
           cmake --version
           cmake ${GITHUB_WORKSPACE} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5

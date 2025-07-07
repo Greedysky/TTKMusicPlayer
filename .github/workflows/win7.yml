@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         qt_version: [5.15.2]
-        os: [windows-2019]
+        os: [windows-2022]
 
     runs-on: ${{matrix.os}}
     steps:
