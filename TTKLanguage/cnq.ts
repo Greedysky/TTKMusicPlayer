@@ -1259,6 +1259,18 @@ too high may cause clipping!</source>
         <source>Use surround sound</source>
         <translation>使用环绕音效</translation>
     </message>
+    <message>
+        <source>PortAudio Plugin Settings</source>
+        <translation>PortAudio插件设置</translation>
+    </message>
+    <message>
+        <source>Buffer:</source>
+        <translation>缓存：</translation>
+    </message>
+    <message>
+        <source>Qt Multimedia Plugin Settings</source>
+        <translation>Qt Multimedia插件设置</translation>
+    </message>
 </context>
 <context>
     <name>SoniqueWidget</name>

@@ -10,7 +10,7 @@
 #if !TTK_QT_VERSION_CHECK(5,0,0)
 #  include <QDesktopWidget>
 #endif
-#if defined Q_OS_LINUX && defined Q_WS_X11
+#if defined Q_OS_LINUX
 #  include <QRegExp>
 #  include <X11/Xlib.h>
 #endif
@@ -162,7 +162,7 @@ static QSize generateDPIValue()
 
     dpiSize.setWidth(dm.dmPelsWidth * DEFAULT_DPI * 1.0 / (miex.rcMonitor.right - miex.rcMonitor.left));
     dpiSize.setHeight(dm.dmPelsHeight * DEFAULT_DPI * 1.0 / (miex.rcMonitor.bottom - miex.rcMonitor.top));
-#elif defined Q_OS_LINUX && defined Q_WS_X11
+#elif defined Q_OS_LINUX
     Display *dp = XOpenDisplay(nullptr);
     if(!dp)
     {
@@ -198,7 +198,7 @@ static QSize generateDPIValue()
     }
 
     XCloseDisplay(dp);
-+#elif defined Q_OS_MAC
+#elif defined Q_OS_MAC
     if(!qApp)
     {
         int count = 0;
