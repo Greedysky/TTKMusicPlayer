@@ -14,11 +14,16 @@ SOURCES += decoderv2mfactory.cpp \
 
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lv2m
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -lv2m$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lv2m
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lv2m
 }

@@ -20,11 +20,16 @@ FORMS   += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libopenmpt/include
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libopenmpt/lib -lopenmpt
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libopenmpt/lib -lopenmpt$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libopenmpt/lib -lopenmpt
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lopenmpt
 }

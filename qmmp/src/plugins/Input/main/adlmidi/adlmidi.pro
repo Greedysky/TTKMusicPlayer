@@ -18,11 +18,16 @@ FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libadlmidi/include
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libadlmidi/lib -lADLMIDI
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libadlmidi/lib -lADLMIDI$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libadlmidi/lib -lADLMIDI
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lADLMIDI
 }

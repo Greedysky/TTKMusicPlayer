@@ -13,13 +13,18 @@ SOURCES += decoderaacfactory.cpp \
 INCLUDEPATH += $$EXTRA_PREFIX/libfaad2/include \
                $$EXTRA_PREFIX/libtaglib/include
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libfaad2/lib -lfaad \
+            -L$$EXTRA_PREFIX/libtaglib/lib -ltag
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libfaad2/lib -lfaad$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libfaad2/lib -lfaad \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lfaad -ltag
 }

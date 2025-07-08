@@ -14,11 +14,16 @@ SOURCES += decoders98factory.cpp \
 
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -ls98
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -ls98$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -ls98
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -ls98
 }

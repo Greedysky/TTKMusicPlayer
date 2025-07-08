@@ -12,11 +12,16 @@ SOURCES += decoderkenfactory.cpp \
 
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lken
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -lken$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lken
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lken
 }

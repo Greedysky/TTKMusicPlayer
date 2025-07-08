@@ -14,11 +14,16 @@ SOURCES += decoderbuzzicfactory.cpp \
 
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lbuzzic
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -lbuzzic$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lbuzzic
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lbuzzic
 }

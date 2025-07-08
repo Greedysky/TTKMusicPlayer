@@ -18,12 +18,17 @@ FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libenca/include
 
-unix{
-   QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-   LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca$$STATIC_LIBRARY_SUFFIX
+contains(CONFIG, WITH_ENCA){
+    DEFINES += WITH_ENCA
+    win32:LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca
 }
 
-contains(CONFIG, WITH_ENCA){
-   DEFINES += WITH_ENCA
-   win32:LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca
+unix{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
+    LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca$$STATIC_LIBRARY_SUFFIX
+}
+
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lenca
 }

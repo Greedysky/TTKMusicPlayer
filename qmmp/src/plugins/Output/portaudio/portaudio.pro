@@ -12,6 +12,12 @@ SOURCES += outputportaudiofactory.cpp \
 
 FORMS += settingsdialog.ui
 
-QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-
 LIBS += -lportaudio
+
+unix{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
+}
+
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+}

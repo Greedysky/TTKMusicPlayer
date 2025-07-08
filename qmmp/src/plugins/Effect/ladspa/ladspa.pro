@@ -24,4 +24,8 @@ LIBS += -L/usr/lib \
 
 linux-g++|linux-g++-32|linux-g++-64:LIBS += -ldl
 
-QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
+!mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
+}else{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+}

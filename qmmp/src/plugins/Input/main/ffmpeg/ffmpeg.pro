@@ -19,15 +19,20 @@ SOURCES += decoderffmpegfactory.cpp \
 INCLUDEPATH += $$EXTRA_PREFIX/libffmpeg/include \
                $$EXTRA_PREFIX/libtaglib/include
 
-unix{
-    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
-            -L$$EXTRA_PREFIX/libffmpeg/lib -lavcodec -lavformat -lavutil -lswresample
-}
+DEFINES += __STDC_CONSTANT_MACROS
 
 win32{
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
             -L$$EXTRA_PREFIX/libffmpeg/lib -lavcodec.dll -lavformat.dll -lavutil.dll -lswresample.dll
 }
 
-DEFINES += __STDC_CONSTANT_MACROS
+unix{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
+    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
+            -L$$EXTRA_PREFIX/libffmpeg/lib -lavcodec -lavformat -lavutil -lswresample
+}
+
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -ltag -lavcodec -lavformat -lavutil -lswresample
+}

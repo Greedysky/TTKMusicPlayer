@@ -20,6 +20,10 @@ unix{
     LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
 
+mac{
+    LIBS += -ltag
+}
+
 TEMPLATE = app
 
 SOURCES += main.cpp \
@@ -27,8 +31,8 @@ SOURCES += main.cpp \
         musicplaylist.cpp \
         musicplayer.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS += mainwindow.h \
         musicplaylist.h \
         musicplayer.h
 
-FORMS    += mainwindow.ui
+FORMS += mainwindow.ui

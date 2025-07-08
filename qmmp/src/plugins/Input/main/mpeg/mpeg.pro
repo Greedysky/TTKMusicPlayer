@@ -22,13 +22,18 @@ INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
 HEADERS += decoder_mpg123.h
 SOURCES += decoder_mpg123.cpp
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
+            -L$$EXTRA_PREFIX/libmpg123/lib -lmpg123 -lshlwapi
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libmpg123/lib -lmpg123$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
-            -L$$EXTRA_PREFIX/libmpg123/lib -lmpg123 -lshlwapi
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -ltag -lmpg123
 }

@@ -14,6 +14,12 @@ INCLUDEPATH += $$EXTRA_PREFIX/libopusfile/include \
                $$EXTRA_PREFIX/libogg/include \
                $$EXTRA_PREFIX/libtaglib/include
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libopusfile/lib -lopusfile -lopus \
+            -L$$EXTRA_PREFIX/libtaglib/lib -ltag -lm \
+            -L$$EXTRA_PREFIX/libogg/lib -logg
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libopusfile/lib -lopusfile$$STATIC_LIBRARY_SUFFIX -lopus$$STATIC_LIBRARY_SUFFIX \
@@ -21,8 +27,7 @@ unix{
             -L$$EXTRA_PREFIX/libogg/lib -logg$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libopusfile/lib -lopusfile -lopus \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag -lm \
-            -L$$EXTRA_PREFIX/libogg/lib -logg
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lopusfile -lopus -ltag -logg
 }

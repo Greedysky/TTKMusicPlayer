@@ -14,6 +14,13 @@ INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
                $$EXTRA_PREFIX/libogg/include \
                $$EXTRA_PREFIX/libvorbis/include
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libvorbis/lib -lvorbisfile -lvorbis \
+            -L$$EXTRA_PREFIX/libogg/lib -logg \
+            -L$$EXTRA_PREFIX/libtaglib/lib -ltag -lm
+    LD_FLAGS += -no-undefined
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libvorbis/lib -lvorbisfile$$STATIC_LIBRARY_SUFFIX -lvorbis$$STATIC_LIBRARY_SUFFIX \
@@ -21,9 +28,7 @@ unix{
             -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libvorbis/lib -lvorbisfile -lvorbis \
-            -L$$EXTRA_PREFIX/libogg/lib -logg \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag -lm
-    LD_FLAGS += -no-undefined
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lvorbisfile -logg -ltag
 }

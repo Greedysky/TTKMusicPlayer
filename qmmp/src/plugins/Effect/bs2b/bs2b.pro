@@ -22,3 +22,8 @@ unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libbs2b/lib -lbs2b$$STATIC_LIBRARY_SUFFIX
 }
+
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lbs2b
+}

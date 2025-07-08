@@ -60,7 +60,7 @@ QStringList Qmmp::findPlugins(const QString &prefix)
 {
     QDir pluginDir(pluginPath() + "/" + prefix);
     QStringList paths;
-    for(const QFileInfo &fin : pluginDir.entryInfoList({"*.dll", "*.so"}, QDir::Files))
+    for(const QFileInfo &fin : pluginDir.entryInfoList({"*.dll", "*.so", "*.dylib"}, QDir::Files))
     {
         paths << fin.canonicalFilePath();
     }

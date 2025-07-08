@@ -13,11 +13,16 @@ SOURCES += decoderxsffactory.cpp \
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include \
                $$EXTRA_PREFIX/libttk/include/libxsf/mgba \
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lxsf
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -lxsf$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lxsf
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lxsf
 }

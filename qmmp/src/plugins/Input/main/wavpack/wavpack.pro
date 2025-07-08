@@ -12,11 +12,16 @@ SOURCES += decoderwavpackfactory.cpp \
 
 INCLUDEPATH += $$EXTRA_PREFIX/libwavpack/include
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libwavpack/lib -lwavpack
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libwavpack/lib -lwavpack$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libwavpack/lib -lwavpack
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -lwavpack
 }

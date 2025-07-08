@@ -19,11 +19,16 @@ FORMS   += settingsdialog.ui
 INCLUDEPATH += $$EXTRA_PREFIX/libadplug/include \
                $$EXTRA_PREFIX/libadplug/include/libbinio
 
+win32{
+    LIBS += -L$$EXTRA_PREFIX/libadplug/lib -ladplug -lbinio
+}
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libadplug/lib -ladplug$$STATIC_LIBRARY_SUFFIX -lbinio$$STATIC_LIBRARY_SUFFIX
 }
 
-win32{
-    LIBS += -L$$EXTRA_PREFIX/libadplug/lib -ladplug -lbinio
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+    LIBS += -ladplug -lbinio
 }

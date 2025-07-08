@@ -34,9 +34,12 @@
 #    define SUNVOX_CALL __stdcall
 #  endif
 #  define LIBRARY_NAME  Qmmp::pluginPath() + "/../sunvox.dll"
-#else
+#elif defined Q_OS_LINUX
 #  define SUNVOX_CALL
 #  define LIBRARY_NAME  "sunvox.so"
+#elif defined Q_OS_MAC
+#  define SUNVOX_CALL
+#  define LIBRARY_NAME  "sunvox.dylib"
 #endif
 #define LIBRARY_CNAME Qmmp::pluginPath() + "/../sunvox.bak"
 

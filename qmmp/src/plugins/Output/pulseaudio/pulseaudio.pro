@@ -8,6 +8,12 @@ HEADERS += outputpulseaudiofactory.h \
 SOURCES += outputpulseaudiofactory.cpp \
            outputpulseaudio.cpp
 
-QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-
 LIBS += -lpulse
+
+unix{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
+}
+
+mac{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
+}

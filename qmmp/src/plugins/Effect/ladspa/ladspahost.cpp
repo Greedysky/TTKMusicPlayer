@@ -123,8 +123,11 @@ void LADSPAHost::findModules(const QString &path)
     QDir dir(path);
     dir.setFilter(QDir::Files | QDir::Hidden);
     dir.setSorting(QDir::Name);
+#ifdef Q_OS_LINUX
     const QFileInfoList &files = dir.entryInfoList({"*.so"});
-
+#else
+    const QFileInfoList &files = dir.entryInfoList({"*.dylib"});
+#endif
     for(const QFileInfo &fin : qAsConst(files))
     {
         void *library = dlopen(qPrintable(fin.absoluteFilePath()), RTLD_LAZY);
