@@ -21,6 +21,7 @@
 #include "musicpvcounterrequest.h"
 #include "musicsourceupdaterequest.h"
 #include "musicscreensaverwidget.h"
+#include "musichotkeymanager.h"
 #include "ttklibrary.h"
 #include "ttklogoutput.h"
 #include "ttkconcurrent.h"
@@ -72,6 +73,7 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
 MusicApplicationModule::~MusicApplicationModule()
 {
     Q_CLEANUP_RESOURCE(TTKModule);
+    G_HOTKEY_PTR->unsetShortcut();
     m_deviceWatcher->stop();
     //
     delete m_backupModule;

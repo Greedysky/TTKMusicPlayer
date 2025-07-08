@@ -7,6 +7,25 @@
 #include "musicfileutils.h"
 #include "ttkversion.h"
 
+static QString shortcutMessage()
+{
+    return QString("    %1 (%2)\n").arg("Ctrl+B", "Switch to play state") +
+           QString("    %1 (%2)\n").arg("Ctrl+Left", "Play previous") +
+           QString("    %1 (%2)\n").arg("Ctrl+Right", "Play next") +
+           QString("    %1 (%2)\n").arg("Ctrl+Up", "Volume up") +
+           QString("    %1 (%2)\n").arg("Ctrl+Down", "Volume down") +
+           QString("    %1 (%2)\n").arg("Ctrl+1", "Play random") +
+           QString("    %1 (%2)\n").arg("Ctrl+2", "Playlist loop") +
+           QString("    %1 (%2)\n").arg("Ctrl+3", "Play one loop") +
+           QString("    %1 (%2)\n").arg("Ctrl+4", "Play once") +
+           QString("    %1 (%2)\n").arg("Alt+1", "Enhanced off") +
+           QString("    %1 (%2)\n").arg("Alt+2", "Enhanced 3D") +
+           QString("    %1 (%2)\n").arg("Alt+3", "Enhanced NICAM") +
+           QString("    %1 (%2)\n").arg("Alt+4", "Enhanced subwoofer") +
+           QString("    %1 (%2)\n").arg("Alt+5", "Enhanced cocal") +
+           QString("    %1 (%2)\n").arg("Ctrl+Q", "Quit");
+}
+
 MusicConsoleModule::MusicConsoleModule(QObject *parent)
     : QObject(parent),
       m_volume(100),
@@ -41,6 +60,7 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
 
 MusicConsoleModule::~MusicConsoleModule()
 {
+    G_HOTKEY_PTR->unsetShortcut();
     delete m_player;
     delete m_playlist;
 }
@@ -51,6 +71,7 @@ bool MusicConsoleModule::initialize()
             text += "Offical web page: https://github.com/Greedysky/TTKMusicPlayer\n";
             text += "Copyright(C) 2015 - 2025 Greedysky All Rights Reserved\n";
             text += "TTKMusicPlayer imitates Kugou UI, the music player uses of qmmp core library based on Qt for windows and linux\n\n";
+            text += "Global shortcuts:\n" + shortcutMessage() + "\n";
 
     TTKCommandLineOption op0("-h", "--help", "Show command line help options");
     TTKCommandLineOption op1("-u", "--url", "Music play url path");
@@ -316,8 +337,8 @@ void MusicConsoleModule::setEnhancedVocal()
 void MusicConsoleModule::print(qint64 position, qint64 duration) const
 {
     const MusicPlayItem &item = m_playlist->currentItem();
-    TTK_LOG_STREAM(QString("Music Name: %1, Time:[%2/%3], Volume:%4, PlaybackMode:%5, Enhance:%6")
-                .arg(item.m_path, TTKTime::formatDuration(position), TTKTime::formatDuration(duration))
+    TTK_LOG_STREAM(QString("Time:[%1/%2], Volume:%3, PlaybackMode:%4, Enhance:%5 Music Path: %6")
+                .arg(TTKTime::formatDuration(position), TTKTime::formatDuration(duration))
                 .arg(m_player->volume())
-                .arg(m_playbackMode, m_enhanced));
+                .arg(m_playbackMode, m_enhanced, item.m_path));
 }
