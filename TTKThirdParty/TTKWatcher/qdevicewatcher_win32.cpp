@@ -229,7 +229,6 @@ static void dw_destroy_internal_window(HWND hwnd)
 }
 
 
-
 QDeviceWatcherPrivate::~QDeviceWatcherPrivate()
 {
     stop();
@@ -237,7 +236,8 @@ QDeviceWatcherPrivate::~QDeviceWatcherPrivate()
 
 bool QDeviceWatcherPrivate::start()
 {
-    initialize();
+    if (!initialize())
+        return false;
     hwnd = dw_create_internal_window(this);
 
     if (!hwnd) {

@@ -48,7 +48,7 @@ bool QDeviceWatcherPrivate::start()
 #elif CONFIG_TCPSOCKET
     connect(tcp_socket, SIGNAL(readyRead()), SLOT(parseDeviceInfo()));
 #else
-    this->QThread::start();
+    QThread::start();
 #endif
     return true;
 }

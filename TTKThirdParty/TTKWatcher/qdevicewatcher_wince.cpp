@@ -31,10 +31,9 @@ bool QDeviceWatcherPrivate::start()
 {
     if (!initialize())
         return false;
-    this->QThread::start();
+    QThread::start();
     return true;
 }
-
 
 bool QDeviceWatcherPrivate::stop()
 {

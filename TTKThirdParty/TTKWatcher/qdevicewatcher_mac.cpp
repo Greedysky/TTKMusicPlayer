@@ -12,6 +12,7 @@ static void onDiskAppear(DADiskRef disk, void *context)
     QString disk_name = DADiskGetBSDName(disk);
     if (sDevices.contains(disk_name))
         return;
+
     sDevices.append(disk_name);
     QDeviceWatcherPrivate *p = TTKStaticCast(QDeviceWatcherPrivate*, context);
     p->emitDeviceAdded(disk_name);
@@ -32,8 +33,10 @@ QDeviceWatcherPrivate::~QDeviceWatcherPrivate()
 
 bool QDeviceWatcherPrivate::start()
 {
-    initialize();
+    if (!initialize())
+        return false;
     QThread::start();
+    return true;
 }
 
 bool QDeviceWatcherPrivate::stop()
@@ -43,6 +46,7 @@ bool QDeviceWatcherPrivate::stop()
     //DAUnregisterApprovalCallback
     DAUnregisterCallback(mSession, (void*)onDiskAppear, this);
     DAUnregisterCallback(mSession, (void*)onDiskDisappear, this);
+    return true;
 }
 
 void QDeviceWatcherPrivate::parseDeviceInfo()
@@ -61,6 +65,7 @@ bool QDeviceWatcherPrivate::initialize()
 
     DARegisterDiskAppearedCallback(mSession, nullptr, onDiskAppear, this);
     DARegisterDiskDisappearedCallback(mSession, nullptr, onDiskDisappear, this);
+    return true;
 }
 
 void QDeviceWatcherPrivate::run()
