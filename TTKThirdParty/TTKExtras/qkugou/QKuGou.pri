@@ -43,7 +43,7 @@ win32{
                     QT += webenginewidgets
                     DEFINES -= TTK_WEBKIT
                     DEFINES += TTK_WEBENGINE
-                        BROWSER_TYPE = 3
+                    BROWSER_TYPE = 3
                 }
             }
         }
@@ -61,7 +61,7 @@ win32{
                     QT += webenginewidgets
                     DEFINES -= TTK_WEBKIT
                     DEFINES += TTK_WEBENGINE
-                        BROWSER_TYPE = 3
+                    BROWSER_TYPE = 3
                 }
             }
         }

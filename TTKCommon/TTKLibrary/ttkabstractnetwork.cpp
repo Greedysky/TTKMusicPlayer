@@ -39,7 +39,7 @@ void TTKAbstractNetwork::downLoadFinished()
 
 void TTKAbstractNetwork::replyError(QNetworkReply::NetworkError error)
 {
-    TTK_ERROR_STREAM("Abnormal network connection, code" << error);
+    TTK_ERROR_STREAM("Abnormal network connection, module" << this << "code" << error);
     Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
