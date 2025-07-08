@@ -217,8 +217,8 @@ static QSize generateDPIValue()
     QDesktopWidget* desktop = QApplication::desktop();
     if(desktop)
     {
-        dpiSize.setWidth(screen->logicalDpiX());
-        dpiSize.setHeight(screen->logicalDpiY());
+        dpiSize.setWidth(desktop->logicalDpiX());
+        dpiSize.setHeight(desktop->logicalDpiY());
     }
 #endif
 #endif
