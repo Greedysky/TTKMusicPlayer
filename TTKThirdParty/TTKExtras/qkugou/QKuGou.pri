@@ -47,6 +47,24 @@ win32{
                 }
             }
         }
+
+        mac{
+            exists($$[QT_INSTALL_LIBS]/libQt5WebKit.dylib){
+                QT += webkit webkitwidgets
+                DEFINES += TTK_WEBKIT
+                BROWSER_TYPE = 2
+            }
+
+            #5.6 or later use webengine
+            greaterThan(QT_MINOR_VERSION, 5){
+                exists($$[QT_INSTALL_LIBS]/libQt5WebEngine.dylib){
+                    QT += webenginewidgets
+                    DEFINES -= TTK_WEBKIT
+                    DEFINES += TTK_WEBENGINE
+                        BROWSER_TYPE = 3
+                }
+            }
+        }
     }
 }
 

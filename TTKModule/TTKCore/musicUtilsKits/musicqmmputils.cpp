@@ -14,8 +14,10 @@ QString TTK::TTKQmmp::pluginPath(const QString &module, const QString &format)
     QString path = TTK::applicationPath();
 #ifdef Q_OS_WIN
     path = path + QString("plugins/%1/%2.dll").arg(module, format);
-#elif defined Q_OS_UNIX
+#elif defined Q_OS_LINUX
     path = path + QString("plugins/%1/lib%2.so").arg(module, format);
+#elif defined Q_OS_MAC
+    path = path + QString("plugins/%1/lib%2.dylib").arg(module, format);
 #endif
     return path;
 }
