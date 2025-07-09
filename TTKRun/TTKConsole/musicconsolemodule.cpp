@@ -190,7 +190,7 @@ void MusicConsoleModule::positionChanged(qint64 position)
 
 void MusicConsoleModule::currentIndexChanged(int index)
 {
-    TTK_LOG_STREAM("Current Play Indedx: " << index);
+    TTK_LOG_STREAM("Current Play Index: " << index);
     TTK_SIGNLE_SHOT(TTK_DN_S2MS, this, resetVolume, TTK_SLOT);
 
     if(index == TTK_NORMAL_LEVEL)

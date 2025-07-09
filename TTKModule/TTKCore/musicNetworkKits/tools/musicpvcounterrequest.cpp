@@ -1,5 +1,4 @@
 #include "musicpvcounterrequest.h"
-#include "ttkabstractxml.h"
 
 #include "qsync/qsyncutils.h"
 
@@ -48,29 +47,34 @@ void MusicPVCounterRequest::startToRequest()
 
 void MusicPVCounterRequest::downLoadFinished()
 {
-    bool ok = false;
     TTK_INFO_STREAM(className() << __FUNCTION__);
 
+    QString pv = TTK_DEFAULT_STR;
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        TTKAbstractXml xml;
-        if(xml.fromByteArray(m_reply->readAll()))
+        QJson::Parser json;
+        bool ok = false;
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
+        if(ok)
         {
-            const QStringList &data = xml.readMultiTextByTagName("tspan");
-            if(!data.isEmpty())
+            QVariantMap value = data.toMap();
+            if(value.contains("data"))
             {
-                ok = true;
-                Q_EMIT downLoadDataChanged(data.join(""));
+                value = value["data"].toMap();
+
+                if(value.contains("page_pv"))
+                {
+                    pv = value["page_pv"].toString();
+                }
+                else if(value.contains("site_pv"))
+                {
+                    pv = value["site_pv"].toString();
+                }
             }
         }
     }
 
-    if(!ok)
-    {
-        TTK_ERROR_STREAM("PV counter data error");
-        Q_EMIT downLoadDataChanged(TTK_DEFAULT_STR);
-    }
-
+    Q_EMIT downLoadDataChanged(pv);
     deleteAll();
 }
