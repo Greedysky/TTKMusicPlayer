@@ -22,7 +22,7 @@
 #include <QPropertyAnimation>
 #include "musicglobaldefine.h"
 
-class QDeviceWatcher;
+//class QDeviceWatcher;
 class MusicBackupModule;
 class MusicTimerAutoModule;
 class MusicMobileDevicesWidget;
@@ -179,7 +179,7 @@ private:
     MusicBackupModule *m_backupModule;
     MusicTimerAutoModule *m_timerAutoModule;
     MusicMobileDevicesWidget *m_mobileDeviceWidget;
-    QDeviceWatcher *m_deviceWatcher;
+//    QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;
 
     MusicResourceRequest *m_resourceRequest;

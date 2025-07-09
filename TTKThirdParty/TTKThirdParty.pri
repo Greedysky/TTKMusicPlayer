@@ -19,7 +19,6 @@
 INCLUDEPATH += \
     $$PWD \
     $$PWD/Zlib \
-    $$PWD/TTKWatcher \
     $$PWD/TTKExtras \
     $$PWD/../TTKCommon \
     $$PWD/../TTKCommon/base \

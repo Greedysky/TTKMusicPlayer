@@ -29,7 +29,7 @@
 #include "ttkfileassociation.h"
 #include "ttkplatformsystem.h"
 
-#include "qdevicewatcher.h"
+//#include "qdevicewatcher.h"
 #include "qsync/qsyncconfig.h"
 
 static constexpr int MARGIN_SIDE = 10;
@@ -57,11 +57,11 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_backupModule = new MusicBackupModule;
     m_timerAutoModule = new MusicTimerAutoModule(this);
 
-    m_deviceWatcher = new QDeviceWatcher(this);
-    connect(m_deviceWatcher, SIGNAL(deviceChanged(bool)), SLOT(deviceChanged(bool)));
-    connect(m_deviceWatcher, SIGNAL(deviceAdded(QString)), SLOT(deviceNameChanged(QString)));
-    m_deviceWatcher->appendEventReceiver(this);
-    m_deviceWatcher->start();
+//    m_deviceWatcher = new QDeviceWatcher(this);
+//    connect(m_deviceWatcher, SIGNAL(deviceChanged(bool)), SLOT(deviceChanged(bool)));
+//    connect(m_deviceWatcher, SIGNAL(deviceAdded(QString)), SLOT(deviceNameChanged(QString)));
+//    m_deviceWatcher->appendEventReceiver(this);
+//    m_deviceWatcher->start();
 
     m_resourceRequest = new MusicResourceRequest(this);
     m_counterRequest = new MusicPVCounterRequest(this);
@@ -74,14 +74,14 @@ MusicApplicationModule::~MusicApplicationModule()
 {
     Q_CLEANUP_RESOURCE(TTKModule);
     G_HOTKEY_PTR->unsetShortcut();
-    m_deviceWatcher->stop();
+//    m_deviceWatcher->stop();
     //
     delete m_backupModule;
     delete m_timerAutoModule;
     delete m_screenSaverWidget;
     delete m_quitAnimation;
     delete m_sideAnimation;
-    delete m_deviceWatcher;
+//    delete m_deviceWatcher;
     delete m_mobileDeviceWidget;
     delete m_quitContainer;
     delete m_resourceRequest;

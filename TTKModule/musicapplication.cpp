@@ -34,10 +34,15 @@ MusicApplication::MusicApplication(QWidget *parent)
 {
     m_instance = this;
 
+    TTK_INFO_STREAM("Create Application Module");
     m_applicationModule = new MusicApplicationModule(this);
+    TTK_INFO_STREAM("Create TopAreaWidget");
     m_topAreaWidget = new MusicTopAreaWidget(this);
+    TTK_INFO_STREAM("Create BottomAreaWidget");
     m_bottomAreaWidget = new MusicBottomAreaWidget(this);
+    TTK_INFO_STREAM("Create RightAreaWidget");
     m_rightAreaWidget = new MusicRightAreaWidget(this);
+    TTK_INFO_STREAM("Create LeftAreaWidget");
     m_leftAreaWidget = new MusicLeftAreaWidget(this);
 
     m_ui->setupUi(this);
@@ -45,8 +50,11 @@ MusicApplication::MusicApplication(QWidget *parent)
     setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
     setMaximumSize(size.width(), size.height());
 
+    TTK_INFO_STREAM("Create MusicPlayer");
     m_player = new MusicPlayer(this);
+    TTK_INFO_STREAM("Create MusicPlaylist");
     m_playlist = new MusicPlaylist(this);
+    TTK_INFO_STREAM("Create MusicSongsContainerWidget");
     m_songTreeWidget = new MusicSongsContainerWidget(this);
     m_ui->songsContainer->addWidget(m_songTreeWidget);
 
@@ -76,6 +84,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     m_ui->musicTimeWidget->setInputModule(this);
 
+    TTK_INFO_STREAM("Create shortcut modules");
     G_HOTKEY_PTR->addHotKey(this, SLOT(switchToPlayState()));
     G_HOTKEY_PTR->addHotKey(this, SLOT(showSettingWidget()));
     G_HOTKEY_PTR->addHotKey(this, SLOT(playPrevious()));
@@ -96,7 +105,10 @@ MusicApplication::MusicApplication(QWidget *parent)
     // Objects Mouse tracking
     setObjectsTracking({m_ui->background, m_ui->songsContainer});
 
+    TTK_INFO_STREAM("Load application config from local");
     readSystemConfigFromFile();
+
+    TTK_INFO_STREAM("Show main window");
     TTK_SIGNLE_SHOT(m_rightAreaWidget, showSongMainWidget, TTK_SLOT);
 }
 

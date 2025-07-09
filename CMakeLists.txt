@@ -155,7 +155,6 @@ set(TTK_RESOURCE_DIR "${TTK_BASE_DIR}/TTKResource")
 include_directories(
   ${TTK_THIRDPARTY_DIR}
   ${TTK_THIRDPARTY_DIR}/Zlib
-  ${TTK_THIRDPARTY_DIR}/TTKWatcher
   ${TTK_THIRDPARTY_DIR}/TTKExtras
 )
 

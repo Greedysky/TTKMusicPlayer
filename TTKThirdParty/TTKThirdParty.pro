@@ -18,4 +18,4 @@
 
 TEMPLATE = subdirs
 CONFIG += ordered
-SUBDIRS += Zlib TTKWatcher TTKExtras
+SUBDIRS += Zlib TTKExtras

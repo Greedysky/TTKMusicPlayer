@@ -117,7 +117,7 @@ if(WIN32)
   list(APPEND SOURCE_FILES ${PROJECT_NAME}.rc)
 endif()
 
-set(QT_LINK_LIBS ${TTK_QMMP_LIBRARY} TTKLibrary TTKUi TTKExtras TTKWatcher TTKDumper ttkzip zlib)
+set(QT_LINK_LIBS ${TTK_QMMP_LIBRARY} TTKLibrary TTKUi TTKExtras TTKDumper ttkzip zlib)
 
 if(WIN32)
   list(APPEND QT_LINK_LIBS Iphlpapi Version ole32 uuid)
