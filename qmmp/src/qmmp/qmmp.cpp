@@ -1,6 +1,7 @@
 #include "qmmp.h"
 
 #include <QDir>
+#include <QDebug>
 #include <QTextCodec>
 #include <QCoreApplication>
 
@@ -47,23 +48,31 @@ QString Qmmp::strVersion()
 QString Qmmp::pluginPath()
 {
     const QByteArray &path = qgetenv("QMMP_PLUGINS");
+    qDebug() << __FUNCTION__ << "Qmmp plugin path by QMMP_PLUGINS is: " << path.data();
     if(!path.isEmpty())
     {
         return path;
     }
 		
     QDir dir(QCoreApplication::applicationDirPath() + "/plugins");
+    qDebug() << __FUNCTION__ << "Qmmp plugin path by canonical path is: " << dir.canonicalPath();
+    qDebug() << __FUNCTION__ << "Qmmp plugin path by absolute path is: " << dir.absolutePath();
     return dir.canonicalPath();
 }
 
 QStringList Qmmp::findPlugins(const QString &prefix)
 {
     QDir pluginDir(pluginPath() + "/" + prefix);
+    qDebug() << __FUNCTION__ << "Qmmp plugin dir absolute path is: " << pluginDir.absolutePath();
     QStringList paths;
     for(const QFileInfo &fin : pluginDir.entryInfoList({"*.dll", "*.so", "*.dylib"}, QDir::Files))
     {
+        qDebug() << __FUNCTION__ << "Qmmp plugin canonical path: " << fin.canonicalFilePath();
+        qDebug() << __FUNCTION__ << "Qmmp plugin absolute path: " << fin.absolutePath();
+        qDebug() << __FUNCTION__ << "Qmmp plugin absolute file path: " << fin.absoluteFilePath();
         paths << fin.canonicalFilePath();
     }
+    qDebug() << __FUNCTION__ << "Qmmp plugins path: " << paths;
     return paths;
 }
 
