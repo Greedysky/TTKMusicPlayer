@@ -23,6 +23,13 @@ void MusicWidgetRenderer::setBackgroundPixmap(const QSize &size)
     }
     else
     {
-        m_background->setPixmap(QPixmap(G_BACKGROUND_PTR->backgroundUrl()).scaled(size));
+        QPixmap pix(G_BACKGROUND_PTR->backgroundUrl());
+        if(pix.isNull())
+        {
+            TTK_ERROR_STREAM("Load current pixmap data error, path is" << G_BACKGROUND_PTR->backgroundUrl());
+            return;
+        }
+
+        m_background->setPixmap(pix.scaled(size));
     }
 }

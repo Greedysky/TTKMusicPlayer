@@ -1118,6 +1118,7 @@ void MusicApplication::readSystemConfigFromFile()
     MusicConfigManager manager;
     if(!manager.fromFile(COFIG_PATH_FULL))
     {
+        TTK_ERROR_STREAM("Load config file error:" << COFIG_PATH_FULL);
         return;
     }
 
@@ -1249,6 +1250,7 @@ void MusicApplication::writeSystemConfigToFile()
     MusicConfigManager manager;
     if(!manager.load(COFIG_PATH_FULL))
     {
+        TTK_ERROR_STREAM("Load config file error:" << COFIG_PATH_FULL);
         return;
     }
 

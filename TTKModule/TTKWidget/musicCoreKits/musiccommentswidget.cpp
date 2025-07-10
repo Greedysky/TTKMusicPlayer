@@ -141,8 +141,10 @@ void MusicCommentsItem::downLoadFinished(const QByteArray &bytes)
     }
 
     QPixmap pix;
-    pix.loadFromData(bytes);
-    m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));
+    if(pix.loadFromData(bytes))
+    {
+        m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));
+    }
 }
 
 

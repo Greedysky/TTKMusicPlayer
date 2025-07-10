@@ -74,10 +74,13 @@ void MusicAbstractItemQueryWidget::downLoadFinished(const QByteArray &bytes)
             pix.loadFromData(bytes);
         }
 
-        QPixmap cv(":/image/lb_playlist_cover");
-        pix = pix.scaled(QSize(180, 180));
-        TTK::Image::fusionPixmap(cv, pix, QPoint(0, 0));
-        m_iconLabel->setPixmap(cv);
+        if(!pix.isNull())
+        {
+            QPixmap cv(":/image/lb_playlist_cover");
+            pix = pix.scaled(QSize(180, 180));
+            TTK::Image::fusionPixmap(cv, pix, QPoint(0, 0));
+            m_iconLabel->setPixmap(cv);
+        }
     }
 }
 
