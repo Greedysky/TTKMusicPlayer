@@ -9,7 +9,7 @@ HEADERS += normalhistogram.h \
 SOURCES += normalhistogram.cpp \
            visualnormalhistogramfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

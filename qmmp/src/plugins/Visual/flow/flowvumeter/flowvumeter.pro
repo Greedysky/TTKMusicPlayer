@@ -10,7 +10,7 @@ SOURCES += flowvumeter.cpp \
 
 RESOURCES += flowvumeter.qrc
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

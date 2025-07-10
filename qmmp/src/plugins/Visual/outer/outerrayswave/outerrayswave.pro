@@ -8,7 +8,7 @@ HEADERS += outerrayswave.h \
 SOURCES += outerrayswave.cpp \
            visualouterrayswavefactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

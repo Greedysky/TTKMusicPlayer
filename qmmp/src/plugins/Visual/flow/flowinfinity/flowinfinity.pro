@@ -8,7 +8,7 @@ HEADERS += infinitywidget.h \
 SOURCES += infinitywidget.cpp \
            visualflowinfinityfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

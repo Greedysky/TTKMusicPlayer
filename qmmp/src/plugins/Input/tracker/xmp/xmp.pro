@@ -23,7 +23,7 @@ win32{
     LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp
 }
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp$$STATIC_LIBRARY_SUFFIX
 }

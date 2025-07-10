@@ -12,7 +12,7 @@ SOURCES += matrix.cpp \
 
 RESOURCES += flowmatrix.qrc
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

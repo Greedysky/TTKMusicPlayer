@@ -8,7 +8,7 @@ HEADERS += floridelectric.h \
 SOURCES += floridelectric.cpp \
            visualfloridelectricfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

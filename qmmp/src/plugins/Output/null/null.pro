@@ -8,7 +8,7 @@ HEADERS += outputnullfactory.h \
 SOURCES += outputnullfactory.cpp \
            outputnull.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

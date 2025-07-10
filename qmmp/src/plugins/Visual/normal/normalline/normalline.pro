@@ -9,7 +9,7 @@ HEADERS += normalline.h \
 SOURCES += normalline.cpp \
            visualnormallinefactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

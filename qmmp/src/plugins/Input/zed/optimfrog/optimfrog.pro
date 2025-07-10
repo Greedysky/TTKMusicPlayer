@@ -14,7 +14,7 @@ SOURCES += decoderoptimfrogfactory.cpp \
 
 INCLUDEPATH += $$EXTRA_PREFIX/liboptimfrog/include
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/liboptimfrog/lib -lOptimFROG
 }

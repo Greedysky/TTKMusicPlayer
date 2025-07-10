@@ -8,7 +8,7 @@ HEADERS += floridautism.h \
 SOURCES += floridautism.cpp \
            visualfloridautismfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

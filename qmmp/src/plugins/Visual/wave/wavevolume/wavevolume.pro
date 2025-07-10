@@ -8,7 +8,7 @@ HEADERS += wavevolume.h \
 SOURCES += wavevolume.cpp \
            visualwavevolumefactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

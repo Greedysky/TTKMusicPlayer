@@ -16,7 +16,7 @@ win32:msvc:{
                ../../src/qmmp/visual.h
 }
 
-unix{
+unix:!mac{
     LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
 

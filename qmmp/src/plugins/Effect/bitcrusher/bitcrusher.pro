@@ -12,7 +12,7 @@ SOURCES += bitcrusherplugin.cpp \
 
 FORMS += settingsdialog.ui
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

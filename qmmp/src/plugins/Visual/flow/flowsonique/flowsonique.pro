@@ -13,7 +13,7 @@ SOURCES += soniquewidget.cpp \
            kiss_fft.c \
            visualflowsoniquefactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

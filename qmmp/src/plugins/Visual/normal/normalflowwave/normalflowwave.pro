@@ -9,7 +9,7 @@ HEADERS += normalflowwave.h \
 SOURCES += normalflowwave.cpp \
            visualnormalflowwavefactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

@@ -9,7 +9,7 @@ HEADERS += plusfoldwave.h \
 SOURCES += plusfoldwave.cpp \
            visualplusfoldwavefactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

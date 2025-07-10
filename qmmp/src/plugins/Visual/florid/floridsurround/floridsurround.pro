@@ -8,7 +8,7 @@ HEADERS += floridsurround.h \
 SOURCES += floridsurround.cpp \
            visualfloridsurroundfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

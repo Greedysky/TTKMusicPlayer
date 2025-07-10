@@ -24,7 +24,7 @@ win32{
     LIBS += -lglu32 -lopengl32
 }
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

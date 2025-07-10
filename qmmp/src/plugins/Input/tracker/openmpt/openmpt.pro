@@ -24,7 +24,7 @@ win32{
     LIBS += -L$$EXTRA_PREFIX/libopenmpt/lib -lopenmpt
 }
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libopenmpt/lib -lopenmpt$$STATIC_LIBRARY_SUFFIX
 }

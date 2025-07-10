@@ -12,7 +12,7 @@ SOURCES += crystalizerplugin.cpp \
 
 FORMS += settingsdialog.ui
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

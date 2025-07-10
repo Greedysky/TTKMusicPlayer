@@ -16,7 +16,7 @@ win32{
     LIBS += -L$$EXTRA_PREFIX/libwavpack/lib -lwavpack
 }
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libwavpack/lib -lwavpack$$STATIC_LIBRARY_SUFFIX
 }
