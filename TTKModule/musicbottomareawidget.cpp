@@ -12,12 +12,14 @@ MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
 
 MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     : QWidget(parent),
+      m_isAvailable(false),
       m_systemCloseConfig(false),
       m_lrcWidgetShowFullScreen(true)
 {
     m_instance = this;
 
     createSystemTrayIcon();
+
     m_platformExtras = new MusicPlatformExtras(this);
     m_blurModule = new MusicBlurSpecturmModule(this);
 }
@@ -67,14 +69,23 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
 
 void MusicBottomAreaWidget::createSystemTrayIcon()
 {
+    m_isAvailable = QSystemTrayIcon::isSystemTrayAvailable();
     m_systemTray = new QSystemTrayIcon(MusicApplication::instance());
     m_systemTray->setIcon(QIcon(":/image/lb_app_logo"));
     m_systemTray->setToolTip(tr("TTKMusicPlayer"));
 
     m_systemTrayMenu = new MusicSystemTrayMenu(MusicApplication::instance());
 
-    m_systemTray->setContextMenu(m_systemTrayMenu);
-    m_systemTray->show();
+    if(m_isAvailable)
+    {
+        m_systemTray->setContextMenu(m_systemTrayMenu);
+        m_systemTray->show();
+    }
+    else
+    {
+        TTK_INFO_STREAM("Current no systemtray available");
+    }
+
     connect(m_systemTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 }
 

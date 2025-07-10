@@ -134,6 +134,7 @@ private:
     void createSystemTrayIcon();
 
     Ui::MusicApplication *m_ui;
+    bool m_isAvailable;
     bool m_systemCloseConfig;
     bool m_lrcWidgetShowFullScreen;
     QSystemTrayIcon *m_systemTray;
