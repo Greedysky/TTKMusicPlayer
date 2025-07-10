@@ -9,7 +9,7 @@ HEADERS += lightwaveform.h \
 SOURCES += lightwaveform.cpp \
            lightwaveformfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

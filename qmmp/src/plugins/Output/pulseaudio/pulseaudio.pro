@@ -10,7 +10,7 @@ SOURCES += outputpulseaudiofactory.cpp \
 
 LIBS += -lpulse
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

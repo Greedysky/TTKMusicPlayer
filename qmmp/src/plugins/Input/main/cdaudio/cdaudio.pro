@@ -23,7 +23,7 @@ win32{
     contains(CONFIG, WITH_LIBCDDB): LIBS += -L$$EXTRA_PREFIX/libcddb/lib -lcddb -lm -lwinmm -mwindows -liconv -lws2_32 -lregex
 }
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libcdio/lib -lcdio$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libcdio/lib -lcdio_paranoia$$STATIC_LIBRARY_SUFFIX -lcdio_cdda$$STATIC_LIBRARY_SUFFIX

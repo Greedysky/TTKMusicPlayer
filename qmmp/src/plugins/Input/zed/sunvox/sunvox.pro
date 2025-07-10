@@ -12,7 +12,7 @@ SOURCES += decodersunvoxfactory.cpp \
            sunvoxmetadatamodel.cpp \
            sunvoxhelper.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

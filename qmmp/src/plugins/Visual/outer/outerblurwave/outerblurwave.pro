@@ -9,7 +9,7 @@ HEADERS += outerblurwave.h \
 SOURCES += outerblurwave.cpp \
            visualouterblurwavefactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

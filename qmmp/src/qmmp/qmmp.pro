@@ -104,7 +104,7 @@ win32{
     LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag
 }
 
-unix{
+unix:!mac{
     LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
 

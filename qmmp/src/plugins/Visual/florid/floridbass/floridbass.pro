@@ -8,7 +8,7 @@ HEADERS += floridbass.h \
 SOURCES += floridbass.cpp \
            visualfloridbassfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

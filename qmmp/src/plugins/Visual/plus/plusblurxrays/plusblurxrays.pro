@@ -9,7 +9,7 @@ HEADERS += plusblurxrays.h \
 SOURCES += plusblurxrays.cpp \
            visualplusblurxraysfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

@@ -38,7 +38,7 @@ win32{
     LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lglu32 -lopengl32
 }
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     contains(DEFINES, PROJECTM_4){
         LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM-4$$STATIC_LIBRARY_SUFFIX -lprojectM-4-playlist$$STATIC_LIBRARY_SUFFIX

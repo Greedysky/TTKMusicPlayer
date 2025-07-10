@@ -9,7 +9,7 @@ HEADERS += plusxrays.h \
 SOURCES += plusxrays.cpp \
            visualplusxraysfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

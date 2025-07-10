@@ -9,7 +9,7 @@ HEADERS += normalewave.h \
 SOURCES += normalewave.cpp \
            visualnormalewavefactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

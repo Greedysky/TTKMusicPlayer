@@ -16,7 +16,7 @@ win32{
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -lfc14
 }
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -lfc14$$STATIC_LIBRARY_SUFFIX
 }

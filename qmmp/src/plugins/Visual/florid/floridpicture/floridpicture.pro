@@ -8,7 +8,7 @@ HEADERS += floridpicture.h \
 SOURCES += floridpicture.cpp \
            visualfloridpicturefactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

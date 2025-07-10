@@ -8,7 +8,7 @@ HEADERS += mufflerplugin.h \
 SOURCES += mufflerplugin.cpp \
            effectmufflerfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

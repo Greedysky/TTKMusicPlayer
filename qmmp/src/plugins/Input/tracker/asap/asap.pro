@@ -16,7 +16,7 @@ win32{
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -lasap
 }
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -lasap$$STATIC_LIBRARY_SUFFIX
 }

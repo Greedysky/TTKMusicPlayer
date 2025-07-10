@@ -9,7 +9,7 @@ HEADERS += normalanalyzer.h \
 SOURCES += normalanalyzer.cpp \
            visualnormalanalyzerfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

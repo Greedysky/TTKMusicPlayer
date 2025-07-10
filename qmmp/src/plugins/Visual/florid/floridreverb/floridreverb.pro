@@ -8,7 +8,7 @@ HEADERS += floridreverb.h \
 SOURCES += floridreverb.cpp \
            visualfloridreverbfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 

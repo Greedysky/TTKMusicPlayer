@@ -23,7 +23,7 @@ contains(CONFIG, WITH_ENCA){
     win32:LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca
 }
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca$$STATIC_LIBRARY_SUFFIX
 }

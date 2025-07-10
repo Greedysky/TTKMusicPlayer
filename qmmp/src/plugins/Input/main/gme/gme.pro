@@ -20,7 +20,7 @@ win32{
     LIBS += -L$$EXTRA_PREFIX/libgme/lib -lgme
 }
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libgme/lib -lgme$$STATIC_LIBRARY_SUFFIX
 }

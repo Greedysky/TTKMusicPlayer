@@ -8,7 +8,7 @@ HEADERS += outerripples.h \
 SOURCES += outerripples.cpp \
            visualouterripplesfactory.cpp
 
-unix{
+unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
 
