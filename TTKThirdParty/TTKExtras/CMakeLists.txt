@@ -223,6 +223,14 @@ endif()
 
 set(QT_LINK_LIBS TTKLibrary TTKUi)
 
+# qglobalshortcut_mac.cpp needs this.
+# Notice, it cannot work on recent macOS versions,
+# so either additional implementation is needed, using
+# modern API, or at least a dummy fallback.
+if(APPLE)
+  list(APPEND QT_LINK_LIBS "-framework Carbon")
+endif()
+
 if(TTK_QT_VERSION VERSION_EQUAL "4")
   qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
 
