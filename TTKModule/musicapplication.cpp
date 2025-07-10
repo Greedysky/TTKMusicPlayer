@@ -1127,15 +1127,20 @@ void MusicApplication::readSystemConfigFromFile()
         }
     }
 
+    TTK_INFO_STREAM("Song items size: " << items.size());
     MusicConfigManager manager;
     if(!manager.fromFile(COFIG_PATH_FULL))
     {
+        TTK_INFO_STREAM("Load file error: " << COFIG_PATH_FULL);
         return;
     }
 
-    manager.readBuffer();
+    TTK_INFO_STREAM("Song config path: " << COFIG_PATH_FULL);
+    TTK_INFO_STREAM("Load status: " << manager.readBuffer());
+
     m_applicationModule->loadNetWorkSetting();
     const bool success = m_songTreeWidget->addSongItemList(items);
+    TTK_INFO_STREAM("Add song items status: " << success);
 
     switch(TTKStaticCast(TTK::PlayMode, G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt()))
     {
@@ -1146,24 +1151,31 @@ void MusicApplication::readSystemConfigFromFile()
         case TTK::PlayMode::Once: playOnce();break;
         default:break;
     }
+    TTK_INFO_STREAM("Create play mode: " << (int)m_playlist->playbackMode());
 
     value = G_SETTING_PTR->value(MusicSettingManager::RemoteWidgetMode).toInt();
+    TTK_INFO_STREAM("Create remote mode: " << value);
     if(value != 0)
     {
         m_topAreaWidget->remoteTypeChanged(value);
+        TTK_INFO_STREAM("Create remote done");
     }
 
     //The size of the volume of the allocation of songs
     volumeChanged(G_SETTING_PTR->value(MusicSettingManager::Volume).toInt());
+    TTK_INFO_STREAM("Set volume value: " << m_player->volume());
 
     //Configure playback mode
+    TTK_INFO_STREAM("Set song enhance option: " << G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt());
     m_ui->musicEnhancedButton->setEnhancedSongConfig(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt());
     m_applicationModule->soundEffectChanged();
+    TTK_INFO_STREAM("Set song enhance done, and equalizer option: " << G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt());
     if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt() == 1)
     {
         m_player->setEqualizerConfig();
     }
 
+    TTK_INFO_STREAM("Set hotkey option: " << G_SETTING_PTR->value(MusicSettingManager::HotkeyEnable).toBool());
     //music hotkey
     if(G_SETTING_PTR->value(MusicSettingManager::HotkeyEnable).toBool())
     {
@@ -1180,7 +1192,7 @@ void MusicApplication::readSystemConfigFromFile()
         //
         G_HOTKEY_PTR->setEnabled(true);
     }
-
+    TTK_INFO_STREAM("Set hotkeys done");
     //musicSetting
     G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, false);
     //Just always set fade false, because it is not finished yet.
@@ -1193,24 +1205,29 @@ void MusicApplication::readSystemConfigFromFile()
     m_rightAreaWidget->setInteriorLrcVisible(true);
 
     //Set the desktop lrc should be shown
+    TTK_INFO_STREAM("Set desktop lrc module");
     m_rightAreaWidget->setWindowLrcTypeChanged();
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, manager.readShowDesktopLrcGeometry());
 
+    TTK_INFO_STREAM("Set background parameter");
     //Set the current background color and alpha value
     m_topAreaWidget->setBackgroundParameter();
 
     //Configuration from next time also stopped at the last record.
     const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
+    TTK_INFO_STREAM("Read last play index:" << lastPlayIndex);
     //add new music file to playlist
     value = lastPlayIndex[1].toInt();
+    TTK_INFO_STREAM("Get last play info:" << value << " " << m_songTreeWidget->songsFilePath(value));
     m_playlist->add(value, m_songTreeWidget->songsFilePath(value));
+    TTK_INFO_STREAM("Add last play item");
     if(TTK_NORMAL_LEVEL < value && value < items.count())
-    {
+     {
         m_ui->musicPlayedList->append(items[value].m_songs);
     }
-
+    TTK_INFO_STREAM("Apeend all play items");
     applyParameter();
-
+    TTK_INFO_STREAM("Apply parameters");
     if(success && lastPlayIndex[0] == "1")
     {
         TTK_SIGNLE_SHOT(m_songTreeWidget, updateCurrentIndex, TTK_SLOT);
@@ -1220,35 +1237,42 @@ void MusicApplication::readSystemConfigFromFile()
         m_playlist->setCurrentIndex(m_currentPlaylistRow, m_songTreeWidget->mapFilePathBySongIndex(m_currentPlaylistRow, index));
         m_playlist->blockSignals(false);
         m_ui->musicPlayedList->selectCurrentIndex();
+        TTK_INFO_STREAM("Generate playlist done");
     }
 
+    TTK_INFO_STREAM("Automatic play module");
     //Configure automatic playback
     if(G_SETTING_PTR->value(MusicSettingManager::StartUpPlayMode).toInt() == 1)
     {
         switchToPlayState();
     }
 
+    TTK_INFO_STREAM("Set current play state:" << isPlaying());
     m_bottomAreaWidget->setCurrentPlayState(isPlaying());
     m_rightAreaWidget->setCurrentPlayState(isPlaying());
     m_topAreaWidget->setCurrentPlayState(isPlaying());
 
+    TTK_INFO_STREAM("Set desktop lrc locked:" << G_SETTING_PTR->value(MusicSettingManager::DLrcLockedMode).toInt());
     //Set the lrc color the user set
     m_bottomAreaWidget->lockDesktopLrc(G_SETTING_PTR->value(MusicSettingManager::DLrcLockedMode).toInt());
 
     //init or reset the window
     value = G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toInt();
+    TTK_INFO_STREAM("Set desktop lrc module status:" << value);
     m_bottomAreaWidget->setDestopLrcVisible(value);
     m_rightAreaWidget->setDestopLrcVisible(value);
 
     //Reset geometry
     setGeometry(manager.readWindowGeometry());
 
+    TTK_INFO_STREAM("Reset window concise:" << G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool());
     //Reset window concise
     if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
         windowConciseChanged();
     }
 
+    TTK_INFO_STREAM("Update check on:" << G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toBool());
     //Update check on
     if(G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toBool())
     {

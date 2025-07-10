@@ -150,9 +150,12 @@ bool MusicSongsContainerWidget::addSongItemList(const MusicSongItemList &items)
         m_containerItems = items;
     }
 
+    TTK_INFO_STREAM("Create container items:" << m_containerItems.size());
     for(int i = 0; i < m_containerItems.count(); ++i)
     {
+        TTK_INFO_STREAM("Create container item:" << m_containerItems[i].m_itemName);
         createWidgetItem(&m_containerItems[i]);
+        TTK_INFO_STREAM("Create container item:" << m_containerItems[i].m_itemName << "done");
     }
 
     return inNeed.isEmpty();
