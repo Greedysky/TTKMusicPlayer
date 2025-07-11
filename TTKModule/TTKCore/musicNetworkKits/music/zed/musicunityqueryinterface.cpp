@@ -84,12 +84,11 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["code"].toInt() == 0 || value["code"].toInt() == 200)
         {
             TTK::MusicSongProperty prop;
@@ -155,12 +154,11 @@ static void parseSongPropertyB(TTK::MusicSongInformation *info, const ServerModu
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value.contains("url"))
         {
             TTK::MusicSongProperty prop;
@@ -194,12 +192,11 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        const QVariantList &datas = data.toList();
+        const QVariantList &datas = json.toVariant().toList();
         for(const QVariant &var : qAsConst(datas))
         {
             if(var.isNull())

@@ -25,12 +25,11 @@ void ReqBLInterface::parseFromMovieInfo(TTK::MusicSongInformation *info, QString
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["code"].toInt() == 0 && value.contains("data"))
         {
             const QVariantList &datas = value["data"].toList();
@@ -62,12 +61,11 @@ void ReqBLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, con
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["code"].toInt() == 0 && value.contains("data"))
         {
             value = value["data"].toMap();

@@ -37,12 +37,11 @@ void MusicResourceRequest::downLoadFinished()
             dir.mkdir(QUERY_RESOURCE_DIR);
         }
 
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            const QVariantList &datas = data.toList();
+            const QVariantList &datas = json.toVariant().toList();
             for(const QVariant &var : qAsConst(datas))
             {
                 const QVariantMap &value = var.toMap();

@@ -95,12 +95,11 @@ void MusicACRIdentifyRequest::downLoadFinished()
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value.contains("metadata"))
             {
                 value = value["metadata"].toMap();
@@ -143,12 +142,11 @@ void MusicACRIdentifyRequest::downLoadKeyFinished(const QByteArray &bytes)
     }
     else
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(bytes, &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            const QVariantMap &value = data.toMap();
+            const QVariantMap &value = json.toVariant().toMap();
             m_accessKey = value["key"].toString();
             m_accessSecret = value["secret"].toString();
         }
@@ -203,12 +201,11 @@ void MusicXFIdentifyRequest::downLoadFinished()
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value["code"].toInt() == 0)
             {
                 const QVariantList &datas = value["data"].toList();
@@ -243,12 +240,11 @@ void MusicXFIdentifyRequest::downLoadKeyFinished(const QByteArray &bytes)
     }
     else
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(bytes, &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            const QVariantMap &value = data.toMap();
+            const QVariantMap &value = json.toVariant().toMap();
             m_accessKey = value["xfid"].toString();
             m_accessSecret = value["xfkey"].toString();
         }

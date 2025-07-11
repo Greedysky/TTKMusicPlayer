@@ -37,12 +37,11 @@ void MusicBingTranslationRequest::startToRequest(const QString &data)
                 regx.setMinimal(true);
                 const QString &buffer = ((regx.indexIn(bytes) != -1) ? regx.cap(1) : QString());
 
-                QJson::Parser json;
-                bool ok = false;
-                const QVariant &data = json.parse("[" + buffer.toUtf8() + "]", &ok);
-                if(ok)
+                QJsonParseError ok;
+                const QJsonDocument &json = QJsonDocument::fromJson("[" + buffer.toUtf8() + "]", &ok);
+                if(QJsonParseError::NoError == ok.error)
                 {
-                    const QVariantList &datas = data.toList();
+                    const QVariantList &datas = json.toVariant().toList();
                     if(datas.count() > 2)
                     {
                         key = datas[0].toString();
@@ -80,12 +79,11 @@ void MusicBingTranslationRequest::downLoadFinished()
     MusicAbstractTranslationRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            for(const QVariant &var : data.toList())
+            for(const QVariant &var : json.toVariant().toList())
             {
                 if(var.isNull())
                 {

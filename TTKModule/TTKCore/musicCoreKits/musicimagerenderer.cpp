@@ -26,7 +26,7 @@ void MusicImageRenderer::run()
 #endif
     QImage image;
     image.loadFromData(m_buffer);
-    if(!image.isNull() || m_size.isValid())
+    if(!image.isNull() && m_size.isValid())
     {
         QImage cv(":/image/lb_album_cover");
         cv = cv.scaled(m_size);

@@ -33,6 +33,13 @@ win32{
     LIBS += -luser32
 }
 unix:SOURCES += $$PWD/qglobalshortcut_x11.cpp
-mac:SOURCES += $$PWD/qglobalshortcut_mac.cpp
+mac{
+    SOURCES += $$PWD/qglobalshortcut_mac.cpp
+    # qglobalshortcut_mac.cpp needs this.
+    # Notice, it cannot work on recent macOS versions,
+    # so either additional implementation is needed, using
+    # modern API, or at least a dummy fallback.
+    LIBS += -framework Carbon
+}
 
 SOURCES += $$PWD/qglobalshortcut.cpp

@@ -73,12 +73,11 @@ void MusicKWQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        const QVariantMap &value = data.toMap();
+        const QVariantMap &value = json.toVariant().toMap();
         if(!value.isEmpty())
         {
             item.m_coverUrl = value["pic"].toString();
@@ -98,12 +97,11 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
     MusicQueryPlaylistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value["code"].toInt() == 200 && value.contains("data"))
             {
                 value = value["data"].toMap();
@@ -139,12 +137,11 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value.contains("musiclist"))
             {
                 const QVariantList &datas = value["musiclist"].toList();
@@ -195,12 +192,11 @@ void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            const QVariantMap &value = data.toMap();
+            const QVariantMap &value = json.toVariant().toMap();
             if(value["result"].toString() == "ok")
             {
                 MusicResultDataItem item;

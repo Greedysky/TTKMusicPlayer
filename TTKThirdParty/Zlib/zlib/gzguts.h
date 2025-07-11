@@ -34,6 +34,10 @@
 #  include <stddef.h>
 #endif
 
+#ifdef __APPLE__
+#include <unistd.h> /* close, read, write etc. */
+#endif
+
 #if defined(__TURBOC__) || defined(_MSC_VER) || defined(_WIN32)
 #  include <io.h>
 #endif

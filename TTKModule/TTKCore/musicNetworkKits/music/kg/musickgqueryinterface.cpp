@@ -35,12 +35,11 @@ void ReqKGInterface::parseFromSongAlbumLrc(TTK::MusicSongInformation *info)
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["errcode"].toInt() == 0 && value.contains("data"))
         {
             value = value["data"].toMap();
@@ -84,12 +83,11 @@ void ReqKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *item, const QSt
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["error_code"].toInt() == 0 && value.contains("data"))
         {
             QVariantList datas = value["data"].toList();
@@ -141,12 +139,11 @@ static void parseSongPropertyV1(TTK::MusicSongInformation *info, const QString &
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(!bytes.isEmpty())
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(bytes, &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            const QVariantMap &value = data.toMap();
+            const QVariantMap &value = json.toVariant().toMap();
             if(value.contains("status") && value["status"].toInt() == 1)
             {
                 TTK::MusicSongProperty prop;
@@ -185,12 +182,11 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(!bytes.isEmpty())
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(bytes, &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            const QVariantMap &value = data.toMap();
+            const QVariantMap &value = json.toVariant().toMap();
             if(value.contains("status") && value["status"].toInt() == 1)
             {
                 const QVariantList &datas = value["url"].toList();
@@ -220,12 +216,11 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(!bytes.isEmpty())
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(bytes, &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value.contains("data") && value["err_code"].toInt() == 0)
             {
                 value = value["data"].toMap();

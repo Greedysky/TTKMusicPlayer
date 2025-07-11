@@ -5,8 +5,7 @@
 #include "musicsettingmanager.h"
 #include "musicpluginproperty.h"
 
-#include "qjson/parser.h"
-#include "qjson/serializer.h"
+#include "qjson/json.h"
 
 #include <qmmp/decoderfactory.h>
 #include <qmmp/effectfactory.h>
@@ -372,12 +371,11 @@ void MusicServerPluginTableWidget::save() const
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    QJsonDocument json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantList datas = data.toList();
+        QVariantList datas = json.toVariant().toList();
         for(int i = 0; i < datas.count(); ++i)
         {
             QVariant &var = datas[i];
@@ -399,9 +397,9 @@ void MusicServerPluginTableWidget::save() const
             return;
         }
 
-        QJson::Serializer s;
-        s.setIndentMode(QJson::IndentFull);
-        s.serialize(datas, &file, &ok);
+        json = QJsonDocument::fromVariant(datas);
+        const qint64 ok = file.write(json.toJson(QJsonDocument::Indented));
+        file.close();
         TTK_INFO_STREAM("Save server unity plugins" << (ok ? "ok" : "failed"));
     }
 }
@@ -445,13 +443,12 @@ void MusicServerPluginTableWidget::addCellItems()
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
         int index = 0;
-        const QVariantList &datas = data.toList();
+        const QVariantList &datas = json.toVariant().toList();
         setRowCount(datas.count());
 
         for(const QVariant &var : qAsConst(datas))

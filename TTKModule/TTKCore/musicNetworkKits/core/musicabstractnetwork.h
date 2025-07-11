@@ -27,7 +27,7 @@
 #include "musicalgorithmutils.h"
 #include "musicsettingmanager.h"
 
-#include "qjson/parser.h"
+#include "qjson/json.h"
 
 /*! @brief The class of the abstract network.
  * @author Greedysky <greedysky@163.com>
