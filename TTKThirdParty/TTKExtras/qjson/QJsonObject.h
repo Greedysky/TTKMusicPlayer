@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QtCore/QVariantMap>
 #include <QtCore/QMap>
 
-class QJsonObject : public QJsonRoot {
+class Q_DECL_EXPORT QJsonObject : public QJsonRoot {
 	friend class QJsonDocument;
 	friend class QJsonValue;
 	friend class QJsonValueRef;

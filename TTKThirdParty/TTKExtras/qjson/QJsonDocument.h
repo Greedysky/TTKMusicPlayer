@@ -34,7 +34,7 @@ class QJsonArray;
 class QJsonParseError;
 class QJsonRoot;
 
-class QJsonDocument {
+class Q_DECL_EXPORT QJsonDocument {
 public:
 	enum DataValidation {
 		Validate         = 0,

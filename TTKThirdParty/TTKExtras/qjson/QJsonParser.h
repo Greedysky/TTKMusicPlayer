@@ -33,7 +33,7 @@ class QJsonObject;
 class QJsonArray;
 class QJsonValue;
 
-class QJsonParser {
+class Q_DECL_EXPORT QJsonParser {
 	friend class QJsonDocument;
 
 public:

@@ -29,9 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class QJsonObject;
 class QJsonArray;
 
-class QJsonRoot {
+class Q_DECL_EXPORT QJsonRoot {
 public:
-	virtual ~QJsonRoot() {};
+    virtual ~QJsonRoot() {}
 
 public:
 	virtual QJsonRoot *clone() const = 0;

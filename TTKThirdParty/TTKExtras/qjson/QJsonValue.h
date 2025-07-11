@@ -33,7 +33,7 @@ class QJsonRoot;
 class QJsonArray;
 class QJsonObject;
 
-class QJsonValue {
+class Q_DECL_EXPORT QJsonValue {
 public:
 	enum Type {
 		Null      = 0x0,

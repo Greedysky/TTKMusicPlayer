@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "QJsonValue.h"
 class QJsonRoot;
 
-class QJsonValueRef {
+class Q_DECL_EXPORT QJsonValueRef {
 public:
 	QJsonValueRef(QJsonArray *array, int idx);
 
