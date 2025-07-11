@@ -72,12 +72,11 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
     {
         m_totalSize = m_pageSize;
 
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value["code"].toInt() == 200 && value.contains("djRadios"))
             {
                 const QVariantList &datas = value["djRadios"].toList();
@@ -116,12 +115,11 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value["code"].toInt() == 200 && value.contains("programs"))
             {
                 bool categoryFound = false;

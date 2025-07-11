@@ -107,12 +107,11 @@ static void parseSongPropertyV1(TTK::MusicSongInformation *info, int bitrate)
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["code"].toInt() == 200 && value.contains("data"))
         {
             value = value["data"].toMap();
@@ -158,12 +157,11 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, int bitrate)
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["code"].toInt() == 200 && value.contains("data"))
         {
             const QVariantList &datas = value["data"].toList();
@@ -224,12 +222,11 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, int bitrate)
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["code"].toInt() == 200 && value.contains("data"))
         {
             const QVariantList &datas = value["data"].toList();

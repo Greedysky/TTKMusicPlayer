@@ -55,12 +55,11 @@ void MusicYDTranslationRequest::downLoadFinished()
     MusicAbstractTranslationRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value["code"].toInt() == 200)
             {
                 const QVariantList &datas = value["text"].toList();

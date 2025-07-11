@@ -44,12 +44,11 @@ void MusicKWQueryArtistRequest::downLoadFinished()
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll().replace("'", "\""), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll().replace("'", "\""), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value.contains("abslist"))
             {
                 m_totalSize = value["TOTAL"].toInt();
@@ -121,12 +120,11 @@ void MusicKWQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) cons
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes.replace("'", "\""), &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes.replace("'", "\""), &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        const QVariantMap &value = data.toMap();
+        const QVariantMap &value = json.toVariant().toMap();
         item->m_time = value["birthday"].toString();
         item->m_nickName = value["aartist"].toString();
         item->m_coverUrl = value["hts_pic"].toString();

@@ -19,17 +19,21 @@
 INCLUDEPATH += $$PWD
 
 HEADERS += \
-    $$PWD/parser.h \
-    $$PWD/parserrunnable.h \
-    $$PWD/qobjecthelper.h \
-    $$PWD/serializer.h \
-    $$PWD/serializerrunnable.h
+    $$PWD/json.h \
+    $$PWD/QJsonArray.h \
+    $$PWD/QJsonDocument.h \
+    $$PWD/QJsonObject.h \
+    $$PWD/QJsonParseError.h \
+    $$PWD/QJsonValue.h \
+    $$PWD/QJsonValueRef.h \
+    $$PWD/QJsonParser.h \
+    $$PWD/QJsonRoot.h
 
 SOURCES += \
-    $$PWD/parser.cpp \
-    $$PWD/qobjecthelper.cpp \
-    $$PWD/json_scanner.cpp \
-    $$PWD/json_parser.cc \
-    $$PWD/parserrunnable.cpp \
-    $$PWD/serializer.cpp \
-    $$PWD/serializerrunnable.cpp
+    $$PWD/QJsonArray.cpp \
+    $$PWD/QJsonDocument.cpp \
+    $$PWD/QJsonObject.cpp \
+    $$PWD/QJsonParseError.cpp \
+    $$PWD/QJsonValue.cpp \
+    $$PWD/QJsonValueRef.cpp \
+    $$PWD/QJsonParser.cpp

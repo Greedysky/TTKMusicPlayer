@@ -22,12 +22,11 @@ void ReqWYInterface::parseFromMovieProperty(QString &url, const QString &id, int
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["code"].toInt() == 200)
         {
             const QVariantList &datas = value["urls"].toList();
@@ -104,12 +103,11 @@ void MusicWYQueryMovieRequest::downLoadFinished()
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value["code"].toInt() == 200)
             {
                 value = value["result"].toMap();
@@ -190,12 +188,11 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["code"].toInt() == 200)
         {
             value = value["data"].toMap();
@@ -267,12 +264,11 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["code"].toInt() == 200)
         {
             value = value["data"].toMap();
@@ -376,12 +372,11 @@ void MusicWYQueryArtistMovieRequest::downLoadFinished()
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value["code"].toInt() == 200 && value.contains("mvs"))
             {
                 TTK_NETWORK_QUERY_CHECK();
@@ -429,12 +424,11 @@ void MusicWYQueryArtistMovieRequest::parseFromArtistMoviesCount(qint64 id)
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        const QVariantMap &value = data.toMap();
+        const QVariantMap &value = json.toVariant().toMap();
         if(value["code"].toInt() == 200 && value.contains("mvs"))
         {
             m_totalSize = value["mvs"].toList().count();

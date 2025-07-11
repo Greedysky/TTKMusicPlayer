@@ -35,13 +35,12 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished()
         const QByteArray &bytes = m_reply->readAll();
         if(bytes != "NO_PIC")
         {
-            QJson::Parser json;
-            bool ok = false;
-            const QVariant &data = json.parse(bytes, &ok);
-            if(ok)
+            QJsonParseError ok;
+            const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+            if(QJsonParseError::NoError == ok.error)
             {
                 QString lastUrl;
-                QVariantMap value = data.toMap();
+                QVariantMap value = json.toVariant().toMap();
 
                 const QVariantList &datas = value["array"].toList();
                 for(const QVariant &var : qAsConst(datas))

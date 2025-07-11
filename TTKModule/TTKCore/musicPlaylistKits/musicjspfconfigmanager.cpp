@@ -1,7 +1,6 @@
 #include "musicjspfconfigmanager.h"
 
-#include "qjson/parser.h"
-#include "qjson/serializer.h"
+#include "qjson/json.h"
 
 MusicJSPFConfigManager::MusicJSPFConfigManager()
     : MusicPlaylistRenderer()
@@ -15,15 +14,14 @@ bool MusicJSPFConfigManager::readBuffer(MusicSongItemList &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(m_file.readAll(), &ok);
-    if(!ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(m_file.readAll(), &ok);
+    if(QJsonParseError::NoError != ok.error)
     {
         return false;
     }
 
-    QVariantMap value = data.toMap();
+    QVariantMap value = json.toVariant().toMap();
     const QVariantList &datas = value["trackList"].toList();
     for(const QVariant &var : qAsConst(datas))
     {
@@ -85,10 +83,8 @@ bool MusicJSPFConfigManager::writeBuffer(const MusicSongItemList &items)
         }
     }
 
-    bool ok = false;
-    QJson::Serializer s;
-    s.setIndentMode(QJson::IndentFull);
-    s.serialize(datas, &m_file, &ok);
+    const QJsonDocument &json = QJsonDocument::fromVariant(datas);
+    m_file.write(json.toJson(QJsonDocument::Indented));
     m_file.close();
     return true;
 }

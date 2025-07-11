@@ -68,12 +68,11 @@ void MusicKGQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
         return;
     }
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
     {
-        QVariantMap value = data.toMap();
+        QVariantMap value = json.toVariant().toMap();
         if(value["errcode"].toInt() == 0 && value.contains("data"))
         {
             value = value["data"].toMap();
@@ -113,12 +112,11 @@ void MusicKGQueryPlaylistRequest::downLoadFinished()
     MusicQueryPlaylistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value["errcode"].toInt() == 0)
             {
                 value = value["data"].toMap();
@@ -161,12 +159,11 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(reply->readAll(), &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            QVariantMap value = json.toVariant().toMap();
             if(value["errcode"].toInt() == 0 && value.contains("data"))
             {
                 value = value["data"].toMap();

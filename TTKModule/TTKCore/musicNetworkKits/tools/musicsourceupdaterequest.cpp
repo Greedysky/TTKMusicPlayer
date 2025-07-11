@@ -49,15 +49,14 @@ void MusicSourceUpdateRequest::downLoadFinished(const QByteArray &bytes)
     }
     else
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(bytes, &ok);
-        if(!ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+        if(QJsonParseError::NoError != ok.error)
         {
             return;
         }
 
-        m_rawData = data.toMap();
+        m_rawData = json.toVariant().toMap();
         Q_EMIT downLoadDataChanged({});
     }
 }

@@ -117,12 +117,11 @@ void MusicCloudManagerTableWidget::downLoadKeyFinished(const QByteArray &bytes)
     }
     else
     {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(bytes, &ok);
-        if(ok)
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            QVariantMap value = data.toMap();
+            const QVariantMap &value = json.toVariant().toMap();
             QSyncConfig::NAME = value["key"].toString();
             QSyncConfig::KEY = value["secret"].toByteArray();
         }
