@@ -31,5 +31,5 @@ unix:!mac{
 
 mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
-    LIBS += -lcdio -lcdio_paranoia -lcdio_cdda
+    LIBS += -lcdio -lcdio_paranoia -lcdio_cdda -lcddb
 }
