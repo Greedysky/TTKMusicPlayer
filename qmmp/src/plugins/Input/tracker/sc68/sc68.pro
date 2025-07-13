@@ -23,5 +23,5 @@ unix:!mac{
 
 mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
-    LIBS += -lopenmpt
+    LIBS += -lsc68
 }
