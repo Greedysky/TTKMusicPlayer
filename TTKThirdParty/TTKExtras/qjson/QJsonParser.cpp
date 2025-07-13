@@ -17,12 +17,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "QJsonParser.h"
+
+#if QT_VERSION < 0x050000
+
 #include "QJsonArray.h"
 #include "QJsonObject.h"
 #include "QJsonValue.h"
-
-
-#if QT_VERSION < 0x050000
 
 #include <cctype>
 #include <QScopedPointer>

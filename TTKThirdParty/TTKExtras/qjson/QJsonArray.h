@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class QJsonValue;
 class QJsonValueRef;
 
-class QJsonArray : public QJsonRoot {
+class Q_DECL_EXPORT QJsonArray : public QJsonRoot {
 	friend class QJsonDocument;
 	friend class QJsonValue;
 	friend class QJsonValueRef;

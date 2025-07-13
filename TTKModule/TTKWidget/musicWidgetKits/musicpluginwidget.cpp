@@ -398,7 +398,11 @@ void MusicServerPluginTableWidget::save() const
         }
 
         json = QJsonDocument::fromVariant(datas);
+#if TTK_QT_VERSION_CHECK(5,0,0) && !TTK_QT_VERSION_CHECK(5,1,0)
+        const qint64 ok = file.write(json.toJson());
+#else
         const qint64 ok = file.write(json.toJson(QJsonDocument::Indented));
+#endif
         file.close();
         TTK_INFO_STREAM("Save server unity plugins" << (ok ? "ok" : "failed"));
     }

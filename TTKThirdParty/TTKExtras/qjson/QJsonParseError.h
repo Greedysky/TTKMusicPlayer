@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QtCore/QString>
 
-class QJsonParseError {
+class Q_DECL_EXPORT QJsonParseError {
 public:
 	enum ParseError {
 		NoError 			   = 0,

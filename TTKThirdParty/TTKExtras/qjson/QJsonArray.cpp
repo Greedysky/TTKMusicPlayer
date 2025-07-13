@@ -17,11 +17,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "QJsonArray.h"
+
+#if QT_VERSION < 0x050000
+
 #include "QJsonValueRef.h"
 #include "QJsonValue.h"
 #include <QtCore/QStringList>
-
-#if QT_VERSION < 0x050000
 
 //------------------------------------------------------------------------------
 // Name: QJsonArray

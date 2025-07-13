@@ -17,6 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "QJsonDocument.h"
+
+#if QT_VERSION < 0x050000
+
 #include "QJsonObject.h"
 #include "QJsonArray.h"
 #include "QJsonParser.h"
@@ -26,8 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QtCore/QTextStream>
 #include <QtCore/QTextCodec>
 #include <QtCore/QtCore>
-
-#if QT_VERSION < 0x050000
 
 //------------------------------------------------------------------------------
 // Name: QJsonDocument

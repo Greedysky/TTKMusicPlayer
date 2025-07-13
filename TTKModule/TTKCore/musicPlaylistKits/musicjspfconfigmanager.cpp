@@ -84,7 +84,11 @@ bool MusicJSPFConfigManager::writeBuffer(const MusicSongItemList &items)
     }
 
     const QJsonDocument &json = QJsonDocument::fromVariant(datas);
+#if TTK_QT_VERSION_CHECK(5,0,0) && !TTK_QT_VERSION_CHECK(5,1,0)
+    m_file.write(json.toJson());
+#else
     m_file.write(json.toJson(QJsonDocument::Indented));
+#endif
     m_file.close();
     return true;
 }
