@@ -51,6 +51,7 @@ bool OutputPortAudio::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat
     for(int index = 0; index < Pa_GetDeviceCount(); ++index)
     {
         const PaDeviceInfo *deviceInfo = Pa_GetDeviceInfo(index);
+        qDebug("OutputPortAudio: Device name is %s, current device index is %d", deviceInfo->name, index);
         if(deviceInfo->name == device_name)
         {
             m_device = index;
@@ -59,6 +60,7 @@ bool OutputPortAudio::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat
         }
     }
 
+    qDebug("OutputPortAudio: GetDefaultOutputDevice index is %d", Pa_GetDefaultOutputDevice());
     if(m_device == paNoDevice)
     {
         qWarning("OutputPortAudio: Current device is invalid");
