@@ -38,15 +38,16 @@ void MusicResourceRequest::downLoadFinished()
         }
 
         QJsonParseError ok;
-        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        QJsonDocument json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
         if(QJsonParseError::NoError == ok.error)
         {
-            const QVariantList &datas = json.toVariant().toList();
+            const QVariant data = json.toVariant();
+            const QVariantList datas = data.toList();
             for(const QVariant &var : qAsConst(datas))
             {
-                const QVariantMap &value = var.toMap();
-                const QString &key = value["key"].toString();
-                const QString &path = APPCACHE_DIR_FULL + key;
+                const QVariantMap value = var.toMap();
+                const QString key = value["key"].toString();
+                const QString path = APPCACHE_DIR_FULL + key;
 
                 if(QDateTime::fromString(value["time"].toString(), TTK_DATE_FORMAT) > QFileInfo(path).lastModified())
                 {
@@ -56,6 +57,7 @@ void MusicResourceRequest::downLoadFinished()
             }
         }
     }
+
 
     deleteAll();
 }
