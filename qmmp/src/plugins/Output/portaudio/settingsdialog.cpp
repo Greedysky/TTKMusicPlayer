@@ -41,12 +41,17 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     }
 
     Pa_Terminate();
+
+    if(m_ui.deviceComboBox->count() != 0 && m_ui.deviceComboBox->currentIndex() == -1)
+    {
+        m_ui.deviceComboBox->setCurrentIndex(0); // choose first one
+    }
 }
 
 void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue("PORTAUDIO/buffer", m_ui.bufferSizeSpinBox->value());
-    settings.setValue("PORTAUDIO/device", m_ui.deviceComboBox->currentIndex() ? m_ui.deviceComboBox->currentText() : "default");
+    settings.setValue("PORTAUDIO/device", m_ui.deviceComboBox->currentText());
     QDialog::accept();
 }
