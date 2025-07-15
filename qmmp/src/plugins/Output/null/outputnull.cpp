@@ -15,10 +15,13 @@ bool OutputNull::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
         m_bytes_per_second = freq * map.count();
         break;
     case Qmmp::PCM_S24LE:
+    case Qmmp::PCM_S24BE:
     case Qmmp::PCM_S32LE:
+    case Qmmp::PCM_S32BE:
          m_bytes_per_second = freq * map.count() * 4;
         break;
     case Qmmp::PCM_S16LE:
+    case Qmmp::PCM_S16BE:
     default:
          m_bytes_per_second = freq * map.count() * 2;
     }

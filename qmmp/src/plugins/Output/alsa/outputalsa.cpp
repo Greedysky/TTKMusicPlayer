@@ -99,11 +99,20 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     case Qmmp::PCM_S16LE:
         alsa_format = SND_PCM_FORMAT_S16_LE;
         break;
+    case Qmmp::PCM_S16BE:
+        alsa_format = SND_PCM_FORMAT_S16_BE;
+        break;
     case Qmmp::PCM_S24LE:
         alsa_format = SND_PCM_FORMAT_S24_LE;
         break;
+    case Qmmp::PCM_S24BE:
+        alsa_format = SND_PCM_FORMAT_S24_BE;
+        break;
     case Qmmp::PCM_S32LE:
         alsa_format = SND_PCM_FORMAT_S32_LE;
+        break;
+    case Qmmp::PCM_S32BE:
+        alsa_format = SND_PCM_FORMAT_S32_BE;
         break;
     case Qmmp::PCM_FLOAT:
         alsa_format = SND_PCM_FORMAT_FLOAT;

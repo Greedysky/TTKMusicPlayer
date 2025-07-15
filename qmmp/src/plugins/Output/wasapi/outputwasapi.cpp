@@ -94,19 +94,19 @@ bool OutputWASAPI::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat fo
     wfex.Format.nSamplesPerSec  = freq;
     wfex.Format.cbSize = sizeof(WAVEFORMATEXTENSIBLE);
 
-    if(format == Qmmp::PCM_S16LE)
+    if(format == Qmmp::PCM_S16LE || format == Qmmp::PCM_S16BE)
     {
         wfex.Format.wBitsPerSample = 16;
         wfex.Samples.wValidBitsPerSample = 16;
         wfex.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
     }
-    else if(format == Qmmp::PCM_S24LE)
+    else if(format == Qmmp::PCM_S24LE || format == Qmmp::PCM_S24BE)
     {
         wfex.Format.wBitsPerSample  = 32;
         wfex.Samples.wValidBitsPerSample = 24;
         wfex.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
     }
-    else if(format == Qmmp::PCM_S32LE)
+    else if(format == Qmmp::PCM_S32LE || format == Qmmp::PCM_S32BE)
     {
         wfex.Format.wBitsPerSample  = 32;
         wfex.Samples.wValidBitsPerSample = 32;
@@ -218,7 +218,7 @@ qint64 OutputWASAPI::writeAudio(unsigned char *data, qint64 maxSize)
         framesToWrite = qMin(framesAvailable, (UINT32)maxSize / m_frameSize);
     }
 
-    if(format() == Qmmp::PCM_S24LE)
+    if(format() == Qmmp::PCM_S24LE || format() == Qmmp::PCM_S24BE)
     {
         for(DWORD i = 0; i < framesToWrite * channels(); ++i)
         {

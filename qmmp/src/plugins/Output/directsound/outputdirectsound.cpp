@@ -72,19 +72,19 @@ bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForm
     wfex.Format.nSamplesPerSec  = freq;
     wfex.Format.cbSize = sizeof(WAVEFORMATEXTENSIBLE);
 
-    if(format == Qmmp::PCM_S16LE)
+    if(format == Qmmp::PCM_S16LE || ormat == Qmmp::PCM_S16BE)
     {
         wfex.Format.wBitsPerSample = 16;
         wfex.Samples.wValidBitsPerSample = 16;
         wfex.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
     }
-    else if(format == Qmmp::PCM_S24LE)
+    else if(format == Qmmp::PCM_S24LE || ormat == Qmmp::PCM_S24BE)
     {
         wfex.Format.wBitsPerSample  = 32;
         wfex.Samples.wValidBitsPerSample = 24;
         wfex.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
     }
-    else if(format == Qmmp::PCM_S32LE)
+    else if(format == Qmmp::PCM_S32LE || ormat == Qmmp::PCM_S32BE)
     {
         wfex.Format.wBitsPerSample  = 32;
         wfex.Samples.wValidBitsPerSample = 32;

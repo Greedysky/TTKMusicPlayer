@@ -28,30 +28,52 @@ bool OutputQtMultimedia::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFor
     QAudioFormat qformat;
     qformat.setCodec("audio/pcm");
     qformat.setSampleRate(freq);
-    qformat.setByteOrder(QAudioFormat::LittleEndian);
     qformat.setChannelCount(map.size());
     qformat.setSampleType(QAudioFormat::SignedInt);
 
     //Size of sample representation in input data. For 24-bit is 4, high byte is ignored.
     const qint64 bytes_per_sample = AudioParameters::sampleSize(format);
 
+    QAudioFormat::Endian byteOrder = QAudioFormat::LittleEndian;
     switch(format)
     {
-    case Qmmp::PCM_S8:
-        qformat.setSampleSize(8);
-        break;
     case Qmmp::PCM_S16LE:
-        qformat.setSampleSize(16);
-        break;
     case Qmmp::PCM_S24LE:
-        qformat.setSampleSize(24);
-        break;
     case Qmmp::PCM_S32LE:
-        qformat.setSampleSize(32);
+        byteOrder = QAudioFormat::LittleEndian;
+        break;
+    case Qmmp::PCM_S16BE:
+    case Qmmp::PCM_S24BE:
+    case Qmmp::PCM_S32BE:
+        byteOrder = QAudioFormat::BigEndian;
         break;
     default:
         break;
     }
+    qformat.setByteOrder(byteOrder);
+
+    int sampleSize = 16;
+    switch(format)
+    {
+    case Qmmp::PCM_S8:
+        sampleSize = 8;
+        break;
+    case Qmmp::PCM_S16LE:
+    case Qmmp::PCM_S16BE:
+        sampleSize = 16;
+        break;
+    case Qmmp::PCM_S24LE:
+    case Qmmp::PCM_S24BE:
+        sampleSize = 24;
+        break;
+    case Qmmp::PCM_S32LE:
+    case Qmmp::PCM_S32BE:
+        sampleSize = 32;
+        break;
+    default:
+        break;
+    }
+    qformat.setSampleSize(sampleSize);
 
     if(!qformat.isValid())
         return false;

@@ -43,6 +43,7 @@ bool OutputWriter::initialize(quint32 freq, ChannelMap map)
         m_output = nullptr;
         return false;
     }
+
     m_frequency = m_output->sampleRate();
     m_chan_map = m_output->channelMap();
     m_channels = m_chan_map.count();
