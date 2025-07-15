@@ -89,12 +89,15 @@ bool OutputPortAudio::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat
         params.sampleFormat = paUInt8;
         break;
     case Qmmp::PCM_S16LE:
+    case Qmmp::PCM_S16BE:
         params.sampleFormat = paInt16;
         break;
     case Qmmp::PCM_S24LE:
+    case Qmmp::PCM_S24BE:
         params.sampleFormat = paInt24;
         break;
     case Qmmp::PCM_S32LE:
+    case Qmmp::PCM_S32BE:
         params.sampleFormat = paInt32;
         break;
     case Qmmp::PCM_FLOAT:

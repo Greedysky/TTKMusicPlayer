@@ -272,11 +272,11 @@ bool DecoderFFmpeg::initialize()
         break;
     case AV_SAMPLE_FMT_S16:
     case AV_SAMPLE_FMT_S16P:
-        format = Qmmp::PCM_S16LE;
+        format = Qmmp::PCM_S16;
         break;
     case AV_SAMPLE_FMT_S32:
     case AV_SAMPLE_FMT_S32P:
-        format = Qmmp::PCM_S32LE;
+        format = Qmmp::PCM_S32;
         break;
     case AV_SAMPLE_FMT_FLT:
     case AV_SAMPLE_FMT_FLTP:

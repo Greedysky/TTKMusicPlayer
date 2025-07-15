@@ -89,11 +89,20 @@ bool OutputOSS4::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     case Qmmp::PCM_S32LE:
         p = AFMT_S32_LE;
         break;
+    case Qmmp::PCM_S32BE:
+        p = AFMT_S32_BE;
+        break;
     case Qmmp::PCM_S24LE:
         p = AFMT_S24_LE;
         break;
+    case Qmmp::PCM_S24BE:
+        p = AFMT_S24_BE;
+        break;
     case Qmmp::PCM_S16LE:
         p = AFMT_S16_LE;
+        break;
+    case Qmmp::PCM_S16BE:
+        p = AFMT_S16_BE;
         break;
     case Qmmp::PCM_S8:
         p = AFMT_S8;

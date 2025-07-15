@@ -31,7 +31,7 @@ bool DecoderAdPlug::initialize()
     m_length = m_helper->totalTime();
     m_divisor = (rate * channels * (m_helper->depth() / 8)) / 1000.0;
 
-    configure(rate, channels, Qmmp::PCM_S16LE);
+    configure(rate, channels, Qmmp::PCM_S16);
     qDebug("DecoderAdPlug: initialize success");
     return true;
 }

@@ -203,14 +203,14 @@ protected:
      * @param map Map of channels.
      * @param f Audio format.
      */
-    void configure(quint32 srate, const ChannelMap &map, Qmmp::AudioFormat f = Qmmp::PCM_S16LE);
+    void configure(quint32 srate, const ChannelMap &map, Qmmp::AudioFormat f = Qmmp::PCM_S16);
     /*!
      * Use this function inside initialize() reimplementation to tell other plugins about audio parameters.
      * @param srate Sample rate.
      * @param channels Number of channels (internal channel sequence).
      * @param f Audio format.
      */
-    void configure(quint32 srate, int channels, Qmmp::AudioFormat f = Qmmp::PCM_S16LE);
+    void configure(quint32 srate, int channels, Qmmp::AudioFormat f = Qmmp::PCM_S16);
     /*!
      * Use this function inside initialize() reimplementation to tell other plugins about audio parameters.
      * @param p Audio parameters.

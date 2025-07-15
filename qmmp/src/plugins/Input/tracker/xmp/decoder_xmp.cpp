@@ -91,7 +91,7 @@ bool DecoderXMP::initialize()
     xmp_start_player(m_ctx, m_srate, 0);
     readSettings();
 
-    configure(m_srate, 2, Qmmp::PCM_S16LE);
+    configure(m_srate, 2, Qmmp::PCM_S16);
     qDebug("DecoderXMP: initialize success");
     return true;
 }

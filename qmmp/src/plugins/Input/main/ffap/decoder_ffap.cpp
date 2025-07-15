@@ -68,13 +68,13 @@ bool DecoderFFap::initialize()
         format = Qmmp::PCM_S8;
         break;
     case 16:
-        format = Qmmp::PCM_S16LE;
+        format = Qmmp::PCM_S16;
         break;
     case 24:
-        format = Qmmp::PCM_S24LE;
+        format = Qmmp::PCM_S24;
         break;
     case 32:
-        format = Qmmp::PCM_S32LE;
+        format = Qmmp::PCM_S32;
         break;
     default:
         deinit();

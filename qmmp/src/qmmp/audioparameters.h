@@ -133,7 +133,7 @@ public:
 private:
     quint32 m_srate = 0;
     ChannelMap m_chan_map;
-    Qmmp::AudioFormat m_format = Qmmp::PCM_S16LE;
+    Qmmp::AudioFormat m_format = Qmmp::PCM_S16;
     int m_sz = 2;
     int m_precision = 16;
 

@@ -96,7 +96,7 @@ bool DecoderAAC::initialize()
     m_input_at -= res;
 
     setProperty(Qmmp::FORMAT_NAME, "AAC");
-    configure(freq, chan, Qmmp::PCM_S16LE);
+    configure(freq, chan, Qmmp::PCM_S16);
     qDebug("DecoderAAC: initialize success");
     return true;
 }

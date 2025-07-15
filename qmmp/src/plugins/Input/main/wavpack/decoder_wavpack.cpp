@@ -89,15 +89,15 @@ bool DecoderWavPack::initialize()
         break;
     case 12:
     case 16:
-        configure(freq, chmap, Qmmp::PCM_S16LE);
+        configure(freq, chmap, Qmmp::PCM_S16);
         break;
     case 20:
     case 24:
     case 32:
 #ifdef MODE_FLOAT
-        configure(freq, chmap, (WavpackGetMode(m_context) & MODE_FLOAT) ? Qmmp::PCM_FLOAT : Qmmp::PCM_S32LE);
+        configure(freq, chmap, (WavpackGetMode(m_context) & MODE_FLOAT) ? Qmmp::PCM_FLOAT : Qmmp::PCM_S32);
 #else
-        configure(freq, chmap, Qmmp::PCM_S32LE);
+        configure(freq, chmap, Qmmp::PCM_S32);
 #endif
         break;
     default:

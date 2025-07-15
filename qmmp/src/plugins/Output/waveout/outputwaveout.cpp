@@ -105,7 +105,7 @@ bool OutputWaveOut::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat f
 
     waveOutReset (dev);
     InitializeCriticalSection (&cs);
-    configure(freq, map, Qmmp::PCM_S16LE);
+    configure(freq, map, Qmmp::PCM_S16);
     m_frameSize = channels() * sampleSize();
     return true;
 }
