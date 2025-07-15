@@ -75,7 +75,7 @@ QString MusicAbstractDownLoadRequest::mapCurrentQueryData() const
         case TTK::Download::Cover: return DOWNLOAD_KEY_COVER;
         case TTK::Download::Background: return DOWNLOAD_KEY_BACKGROUND;
         case TTK::Download::Video: return DOWNLOAD_KEY_VIDEO;
-        case TTK::Download::Other: return DOWNLOAD_KEY_OTHER;
+        case TTK::Download::Extra: return DOWNLOAD_KEY_EXTRA;
         default: return {};
     }
 }

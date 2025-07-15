@@ -50,7 +50,7 @@ void MusicResourceRequest::downLoadFinished()
 
                 if(QDateTime::fromString(value["time"].toString(), TTK_DATE_FORMAT) > QFileInfo(path).lastModified())
                 {
-                    MusicDownloadDataRequest *d = new MusicDownloadDataRequest(QSyncUtils::makeDataBucketUrl() + key, path, TTK::Download::Other, this);
+                    MusicDownloadDataRequest *d = new MusicDownloadDataRequest(QSyncUtils::makeDataBucketUrl() + key, path, TTK::Download::Extra, this);
                     d->startToRequest();
                 }
             }

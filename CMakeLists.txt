@@ -52,6 +52,7 @@ endif()
 if(NOT ("${CMAKE_C_COMPILER_ID}" MATCHES "Clang"))
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 endif()
+
 if(WIN32)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows")
   # Fix "command line is too long" on Windows

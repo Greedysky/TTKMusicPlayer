@@ -31,7 +31,7 @@ namespace TTK
         Cover,             /*!< type of dwonlaod cover*/
         Background,        /*!< type of dwonlaod background*/
         Video,             /*!< type of dwonlaod video*/
-        Other              /*!< type of dwonlaod other user mod*/
+        Extra              /*!< type of dwonlaod extra user module*/
     };
 
     enum class Record
@@ -48,6 +48,6 @@ static constexpr const char *DOWNLOAD_KEY_LRC = "DownloadLrc";
 static constexpr const char *DOWNLOAD_KEY_COVER = "DownloadCover";
 static constexpr const char *DOWNLOAD_KEY_BACKGROUND = "DownloadBackground";
 static constexpr const char *DOWNLOAD_KEY_VIDEO = "DownloadVideo";
-static constexpr const char *DOWNLOAD_KEY_OTHER = "DownloadOther";
+static constexpr const char *DOWNLOAD_KEY_EXTRA = "DownloadExtra";
 
 #endif // MUSICNETWORKDEFINES_H
