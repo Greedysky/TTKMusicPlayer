@@ -107,7 +107,7 @@ void MusicDownloadDataRequest::downloadProgress(qint64 bytesReceived, qint64 byt
 {
     MusicAbstractDownLoadRequest::downloadProgress(bytesReceived, bytesTotal);
     /// only download music data or other type can that show progress
-    if(m_downloadType == TTK::Download::Music || m_downloadType == TTK::Download::Other)
+    if(m_downloadType == TTK::Download::Music || m_downloadType == TTK::Download::Extra)
     {
         const QString &total = TTK::Number::sizeByteToLabel(bytesTotal);
         Q_EMIT downloadProgressChanged(bytesTotal != 0 ? bytesReceived * 100.0 / bytesTotal : 0, total, m_createTime);
