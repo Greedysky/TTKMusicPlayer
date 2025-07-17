@@ -39,7 +39,7 @@ win32:msvc{
 }
 
 LIBS += -L$$DESTDIR -lTTKCore -lTTKLibrary
-unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lttkzip -lzlib
+unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lttkzip -lzlib
 
 INCLUDEPATH += \
     $$PWD/../../TTKCommon \

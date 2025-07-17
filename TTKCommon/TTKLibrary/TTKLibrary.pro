@@ -31,10 +31,11 @@ TARGET = TTKLibrary
 
 DEFINES += TTK_LIBRARY
 
-win32:LIBS += -lgdi32
+win32:LIBS += -lgdi32 -lpsapi
 win32:msvc{
     CONFIG += c++11
     LIBS += -luser32
+    DEFINES += _CRT_SECURE_NO_WARNINGS
 }else{
     equals(QT_MAJOR_VERSION, 6){ #Qt6
         QT += core5compat
@@ -83,6 +84,7 @@ HEADERS += \
     $$PWD/ttkdefer.h \
     $$PWD/ttkdesktopscreen.h \
     $$PWD/ttkdispatchmanager.h \
+    $$PWD/ttkdumper.h \
     $$PWD/ttkeventloop.h \
     $$PWD/ttkfileassociation.h \
     $$PWD/ttkfileinterface.h \
@@ -95,6 +97,7 @@ HEADERS += \
     $$PWD/ttklogoutput.h \
     $$PWD/ttkoptional.h \
     $$PWD/ttkplatformsystem.h \
+    $$PWD/ttkprocess.h \
     $$PWD/ttksmartptr.h \
     $$PWD/ttkspinlock.h \
     $$PWD/ttkstringliterals.h \
@@ -124,12 +127,14 @@ SOURCES += \
     $$PWD/ttkcryptographichash.cpp \
     $$PWD/ttkdesktopscreen.cpp \
     $$PWD/ttkdispatchmanager.cpp \
+    $$PWD/ttkdumper.cpp \
     $$PWD/ttkeventloop.cpp \
     $$PWD/ttkfileassociation.cpp \
     $$PWD/ttkglobalinterface.cpp \
     $$PWD/ttkitemdelegate.cpp \
     $$PWD/ttklogoutput.cpp \
     $$PWD/ttkplatformsystem.cpp \
+    $$PWD/ttkprocess.cpp \
     $$PWD/ttksuperenum.cpp \
     $$PWD/ttktabbutton.cpp \
     $$PWD/ttkthemelinelabel.cpp \

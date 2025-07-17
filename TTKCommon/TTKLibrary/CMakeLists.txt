@@ -41,6 +41,7 @@ set(HEADER_FILES
   ttkdefer.h
   ttkdesktopscreen.h
   ttkdispatchmanager.h
+  ttkdumper.h
   ttkeventloop.h
   ttkfileassociation.h
   ttkfileinterface.h
@@ -53,6 +54,7 @@ set(HEADER_FILES
   ttklogoutput.h
   ttkoptional.h
   ttkplatformsystem.h
+  ttkprocess.h
   ttksmartptr.h
   ttkspinlock.h
   ttkstringliterals.h
@@ -83,12 +85,14 @@ set(SOURCE_FILES
   ttkcryptographichash.cpp
   ttkdesktopscreen.cpp
   ttkdispatchmanager.cpp
+  ttkdumper.cpp
   ttkeventloop.cpp
   ttkfileassociation.cpp
   ttkglobalinterface.cpp
   ttkitemdelegate.cpp
   ttklogoutput.cpp
   ttkplatformsystem.cpp
+  ttkprocess.cpp
   ttksuperenum.cpp
   ttktabbutton.cpp
   ttkthemelinelabel.cpp
@@ -102,7 +106,7 @@ SET(QRC_FILES
 
 if(WIN32)
   list(APPEND SOURCE_FILES ${PROJECT_NAME}.rc)
-  list(APPEND QT_LINK_LIBS gdi32)
+  list(APPEND QT_LINK_LIBS gdi32 psapi)
 endif()
 
 if(TTK_QT_VERSION VERSION_EQUAL "4")

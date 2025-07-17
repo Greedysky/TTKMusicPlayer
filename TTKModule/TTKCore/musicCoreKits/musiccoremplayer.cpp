@@ -1,6 +1,6 @@
 #include "musiccoremplayer.h"
 #include "musicabstractnetwork.h"
-#include "miniprocess.h"
+#include "ttkprocess.h"
 
 #include <QProcess>
 

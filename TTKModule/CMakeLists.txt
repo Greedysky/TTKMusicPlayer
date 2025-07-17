@@ -23,8 +23,6 @@ project(TTKCore)
 add_subdirectory(TTKCore)
 add_subdirectory(TTKWidget)
 
-include_directories(${TTK_COMMON_DUMPER_DIR})
-
 get_property(TTK_CORE_KITS_HEADER_FILES GLOBAL PROPERTY "TTK_CORE_KITS_HEADER_FILES")
 get_property(TTK_CORE_LRC_KITS_HEADER_FILES GLOBAL PROPERTY "TTK_CORE_LRC_KITS_HEADER_FILES")
 get_property(TTK_WIDGET_LRC_KITS_HEADER_FILES GLOBAL PROPERTY "TTK_WIDGET_LRC_KITS_HEADER_FILES")
@@ -117,7 +115,7 @@ if(WIN32)
   list(APPEND SOURCE_FILES ${PROJECT_NAME}.rc)
 endif()
 
-set(QT_LINK_LIBS ${TTK_QMMP_LIBRARY} TTKLibrary TTKUi TTKExtras TTKWatcher TTKDumper ttkzip zlib)
+set(QT_LINK_LIBS ${TTK_QMMP_LIBRARY} TTKLibrary TTKUi TTKExtras TTKWatcher ttkzip zlib)
 
 if(WIN32)
   list(APPEND QT_LINK_LIBS Iphlpapi Version ole32 uuid)

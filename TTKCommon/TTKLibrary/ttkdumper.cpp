@@ -1,6 +1,5 @@
 #include "ttkdumper.h"
 #include "ttkversion.h"
-#include "miniprocess.h"
 
 #ifdef Q_OS_WIN
 #  define WIN32_LEAN_AND_MEAN

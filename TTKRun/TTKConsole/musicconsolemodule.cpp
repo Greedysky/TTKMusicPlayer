@@ -176,7 +176,7 @@ bool MusicConsoleModule::initialize()
         return false;
     }
 
-    TTK_LOG_STREAM("Music Files count: " << m_playlist->count() << TTK_LINEFEED);
+    TTK_LOG_STREAM("Music files count: " << m_playlist->count() << TTK_LINEFEED);
 
     m_player->play();
     m_player->setVolume(m_volume);
@@ -190,8 +190,8 @@ void MusicConsoleModule::positionChanged(qint64 position)
 
 void MusicConsoleModule::currentIndexChanged(int index)
 {
-    TTK_LOG_STREAM("Current Play Index: " << index);
-    TTK_SIGNLE_SHOT(TTK_DN_S2MS, this, resetVolume, TTK_SLOT);
+    TTK_LOG_STREAM("Current play index: " << index);
+//    TTK_SIGNLE_SHOT(TTK_DN_S2MS, this, resetVolume, TTK_SLOT);
 
     if(index == TTK_NORMAL_LEVEL)
     {
@@ -245,10 +245,10 @@ void MusicConsoleModule::playNext()
     m_player->setVolume(m_volume);
 }
 
-void MusicConsoleModule::resetVolume()
-{
-    m_player->setVolume(m_volume);
-}
+//void MusicConsoleModule::resetVolume()
+//{
+//    m_player->setVolume(m_volume);
+//}
 
 void MusicConsoleModule::volumeDown()
 {
@@ -337,7 +337,7 @@ void MusicConsoleModule::setEnhancedVocal()
 void MusicConsoleModule::print(qint64 position, qint64 duration) const
 {
     const MusicPlayItem &item = m_playlist->currentItem();
-    TTK_LOG_STREAM(QString("Time:[%1/%2], Volume:%3, PlaybackMode:%4, Enhance:%5 Music Path: %6")
+    TTK_LOG_STREAM(QString("Time:[%1/%2], Volume:%3, PlaybackMode:%4, Enhance:%5, Music Path: %6")
                 .arg(TTKTime::formatDuration(position), TTKTime::formatDuration(duration))
                 .arg(m_player->volume())
                 .arg(m_playbackMode, m_enhanced, item.m_path));

@@ -1,5 +1,5 @@
-#ifndef MINIPROCESS_H
-#define MINIPROCESS_H
+#ifndef TTKDUMPER_H
+#define TTKDUMPER_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -19,22 +19,41 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkmoduleexport.h"
+#include "ttkprivate.h"
+#include "ttkprocess.h"
 
-/*! @brief The namespace of the process utils.
+#if defined(_MSC_VER)
+#  pragma warning(disable:4091)
+#  pragma warning(disable:4100)
+#endif
+
+#include <functional>
+
+class TTKDumperPrivate;
+
+using TTKDumperFunctor = std::function<void(void)>;
+
+/*! @brief The class of the ttk dumper.
  * @author Greedysky <greedysky@163.com>
  */
-namespace TTK
+class TTK_MODULE_EXPORT TTKDumper
 {
+public:
     /*!
-     * Kill process by name.
+     * Object constructor.
      */
-    TTK_MODULE_EXPORT void killProcessByName(const QString &process, bool more = false);
+    TTKDumper() noexcept;
+    TTKDumper(const TTKDumperFunctor &functor) noexcept;
+    ~TTKDumper() noexcept;
+
     /*!
-     * Kill process by name list.
+     * Run module.
      */
-    TTK_MODULE_EXPORT void killProcessByName(const QStringList &processes, bool more = false);
+    void run();
 
-}
+private:
+    TTK_DECLARE_PRIVATE(TTKDumper)
 
-#endif // MINIPROCESS_H
+};
+
+#endif // TTKDUMPER_H

@@ -19,8 +19,7 @@
 INCLUDEPATH += \
     $$PWD \
     $$PWD/base \
-    $$PWD/TTKLibrary \
-    $$PWD/TTKDumper
+    $$PWD/TTKLibrary
 
 win32{
     QT += xml network
@@ -46,6 +45,7 @@ win32{
             $$PWD/TTKLibrary/ttkdesktopscreen.h \
             $$PWD/TTKLibrary/ttkdefer.h \
             $$PWD/TTKLibrary/ttkdispatchmanager.h \
+            $$PWD/TTKLibrary/ttkdumper.h \
             $$PWD/TTKLibrary/ttkeventloop.h \
             $$PWD/TTKLibrary/ttkfileassociation.h \
             $$PWD/TTKLibrary/ttkfileinterface.h \
@@ -58,6 +58,7 @@ win32{
             $$PWD/TTKLibrary/ttklogoutput.h \
             $$PWD/TTKLibrary/ttkoptional.h \
             $$PWD/TTKLibrary/ttkplatformsystem.h \
+            $$PWD/TTKLibrary/ttkprocess.h \
             $$PWD/TTKLibrary/ttksmartpointer.h \
             $$PWD/TTKLibrary/ttksmartptr.h \
             $$PWD/TTKLibrary/ttkspinlock.h \

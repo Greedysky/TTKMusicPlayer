@@ -1,4 +1,4 @@
-#include "miniprocess.h"
+#include "ttkprocess.h"
 #include <QStringList>
 
 #ifdef Q_OS_WIN

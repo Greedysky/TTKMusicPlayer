@@ -64,7 +64,7 @@ win32{
              QMAKE_LFLAGS_CONSOLE += /SUBSYSTEM:CONSOLE,5.01
         }
 
-        LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lttkzip -lzlib -luser32
+        LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lttkzip -lzlib -luser32
     }
 
     gcc{
@@ -75,7 +75,7 @@ win32{
         }
 
         QMAKE_CXXFLAGS += -Wunused-function -Wunused-result -Wswitch
-        LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lttkzip -lzlib
+        LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lttkzip -lzlib
     }
 }
 
@@ -93,7 +93,7 @@ unix:!mac{
     }
 
     QMAKE_CXXFLAGS += -Wunused-function -Wunused-result -Wswitch
-    LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lttkzip -lzlib
+    LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lttkzip -lzlib
 }
 
 mac{

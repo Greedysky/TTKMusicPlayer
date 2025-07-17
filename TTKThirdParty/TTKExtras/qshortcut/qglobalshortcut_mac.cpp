@@ -121,7 +121,10 @@ quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
         }
 
         UCKeyToCharTableIndex *charTable = TTKReinterpretCast(UCKeyToCharTableIndex*, data + table[i].keyToCharTableIndexOffset);
-        if(charTable->keyToCharTableIndexFormat != kUCKeyToCharTableIndexFormat) continue;
+        if(charTable->keyToCharTableIndexFormat != kUCKeyToCharTableIndexFormat)
+        {
+            continue;
+        }
 
         for(quint32 j=0; j < charTable->keyToCharTableCount; j++)
         {

@@ -22,7 +22,6 @@ project(TTKService)
 
 include_directories(${TTK_CONFIG_DIR})
 include_directories(${TTK_COMMON_APP_DIR})
-include_directories(${TTK_COMMON_DUMPER_DIR})
 
 set(TTKAPPLICATION_HEADER_FILES
   ${TTK_COMMON_APP_DIR}/ttklocalpeer.h
