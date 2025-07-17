@@ -27,11 +27,10 @@ bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message
     {
         EventHotKeyID keyID;
         GetEventParameter(event, kEventParamDirectObject, typeEventHotKeyID, nullptr, sizeof(keyID), nullptr, &keyID);
-        activateShortcut(hkeyID.signature, hkeyID.id);
+        activateShortcut(keyID.signature, keyID.id);
     }
     return false;
 }
-#endif
 
 quint32 QGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifiers)
 {
@@ -92,8 +91,6 @@ quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
     else if(key == Qt::Key_Right)      return kVK_RightArrow;
     else if(key == Qt::Key_Down)       return kVK_DownArrow;
     else if(key == Qt::Key_Up)         return kVK_UpArrow;
-    default: break;
-    }
 
     CFDataRef currentLayoutData;
     TISInputSourceRef currentKeyboard = TISCopyCurrentASCIICapableKeyboardLayoutInputSource();
@@ -122,7 +119,10 @@ quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
         }
 
         UCKeyToCharTableIndex *charTable = TTKReinterpretCast(UCKeyToCharTableIndex*, data + table[i].keyToCharTableIndexOffset);
-        if(charTable->keyToCharTableIndexFormat != kUCKeyToCharTableIndexFormat) continue;
+        if(charTable->keyToCharTableIndexFormat != kUCKeyToCharTableIndexFormat)
+        {
+            continue;
+        }
 
         for(quint32 j=0; j < charTable->keyToCharTableCount; j++)
         {
