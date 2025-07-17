@@ -326,6 +326,7 @@ void MusicApplicationModule::applyParameter()
     });
 #endif
     //
+    TTK::initiailizeLog(TTK_APP_NAME);
     G_SETTING_PTR->value(MusicSettingManager::OtherLogTrackEnable).toBool() ? TTK::installLogHandler() : TTK::removeLogHandler();
     //
     if(!m_screenSaverWidget)
