@@ -33,7 +33,6 @@ bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message
     }
     return false;
 }
-#endif
 
 quint32 QGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifiers)
 {
