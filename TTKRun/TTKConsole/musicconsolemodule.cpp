@@ -67,7 +67,7 @@ MusicConsoleModule::~MusicConsoleModule()
 
 bool MusicConsoleModule::initialize()
 {
-    QString text = TTK_LINEFEED TTK_APP_NAME "Console Module" "v" TTK_VERSION_STR TTK_LINEFEED;
+    QString text = QString("\n%1 Console Module v%2\n").arg(TTK_APP_NAME, TTK_VERSION_STR);
             text += "Offical web page: https://github.com/Greedysky/TTKMusicPlayer\n";
             text += "Copyright(C) 2015 - 2025 Greedysky All Rights Reserved\n";
             text += "TTKMusicPlayer imitates Kugou UI, the music player uses of qmmp core library based on Qt for windows and linux\n\n";
