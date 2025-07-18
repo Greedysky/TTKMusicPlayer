@@ -37,9 +37,9 @@ public:
     TTKRunObject() = default;
 
     /*!
-     * To run main window.
+     * To execute main window.
      */
-    void run(int argc, char **argv) const;
+    void execute(int argc, char **argv) const;
 
 };
 

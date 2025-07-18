@@ -47,9 +47,9 @@ public:
     ~TTKDumper() noexcept;
 
     /*!
-     * Run module.
+     * Execute module.
      */
-    void run();
+    void execute();
 
 private:
     TTK_DECLARE_PRIVATE(TTKDumper)

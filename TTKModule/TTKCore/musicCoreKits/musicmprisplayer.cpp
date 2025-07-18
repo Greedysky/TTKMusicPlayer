@@ -29,7 +29,7 @@ MusicMPRISPlayer::~MusicMPRISPlayer()
     delete m_player;
 }
 
-void MusicMPRISPlayer::run()
+void MusicMPRISPlayer::execute()
 {
     ///do nothing
 }

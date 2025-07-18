@@ -168,7 +168,7 @@ void MusicMobileSongsManagerWidget::findExtraDevicePath(const QString &dir)
     m_thread->setFindFilePath(dir);
     m_thread->stop();
     m_thread->start();
-    m_ui->loadingLabel->run(true);
+    m_ui->loadingLabel->execute(true);
 }
 
 void MusicMobileSongsManagerWidget::selectedAllItems(bool checked)
@@ -228,7 +228,7 @@ void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &pat
 
     m_containerItems = path;
     m_ui->songlistTable->addCellItems(m_containerItems);
-    m_ui->loadingLabel->run(false);
+    m_ui->loadingLabel->execute(false);
 }
 
 void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)

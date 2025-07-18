@@ -40,9 +40,9 @@ public:
     ~MusicTimerAutoModule();
 
     /*!
-     * Run module.
+     * Execute module.
      */
-    void run();
+    void execute();
 
 private Q_SLOTS:
     /*!

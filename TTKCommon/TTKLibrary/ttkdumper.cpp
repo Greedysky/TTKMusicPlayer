@@ -223,7 +223,7 @@ TTKDumper::~TTKDumper() noexcept
     }
 }
 
-void TTKDumper::run()
+void TTKDumper::execute()
 {
     TTK_D(const TTKDumper);
     d->initialize();

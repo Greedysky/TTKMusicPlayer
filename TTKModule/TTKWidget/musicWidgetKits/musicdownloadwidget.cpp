@@ -147,7 +147,7 @@ void MusicDownloadWidget::initialize(const QString &name)
        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadNormalFinished()));
     }
 
-    m_ui->loadingLabel->run(true);
+    m_ui->loadingLabel->execute(true);
     controlEnabled(true);
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 200));
 
@@ -160,7 +160,7 @@ void MusicDownloadWidget::initialize(const TTK::MusicSongInformation &info)
     m_info = info;
     m_queryType = MusicAbstractQueryRequest::QueryType::Music;
 
-    m_ui->loadingLabel->run(true);
+    m_ui->loadingLabel->execute(true);
     controlEnabled(true);
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_artistName, info.m_songName), Qt::ElideRight, 200));
 
@@ -188,7 +188,7 @@ void MusicDownloadWidget::initialize(MusicAbstractQueryRequest *request, int row
     m_queryType = request->queryType();
     m_networkRequest = request;
 
-    m_ui->loadingLabel->run(true);
+    m_ui->loadingLabel->execute(true);
     controlEnabled(true);
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(m_info.m_artistName, m_info.m_songName), Qt::ElideRight, 200));
 
@@ -408,7 +408,7 @@ void MusicDownloadWidget::addCellItems(const TTK::MusicSongPropertyList &props)
         }
     }
 
-    m_ui->loadingLabel->run(false);
+    m_ui->loadingLabel->execute(false);
 
     int delta = m_ui->viewArea->rowCount();
         delta = ((delta == 0) ? 0 : (delta - 1) * TTK_ITEM_SIZE_S) - 2 * TTK_ITEM_SIZE_S;

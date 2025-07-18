@@ -59,7 +59,6 @@ win32{
             $$PWD/TTKLibrary/ttkoptional.h \
             $$PWD/TTKLibrary/ttkplatformsystem.h \
             $$PWD/TTKLibrary/ttkprocess.h \
-            $$PWD/TTKLibrary/ttksmartpointer.h \
             $$PWD/TTKLibrary/ttksmartptr.h \
             $$PWD/TTKLibrary/ttkspinlock.h \
             $$PWD/TTKLibrary/ttkstringliterals.h \

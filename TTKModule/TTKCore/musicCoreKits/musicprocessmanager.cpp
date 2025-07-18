@@ -5,7 +5,7 @@
 #define MEMORY_SIZE 512 * TTK_SN_KB2B
 #define MEMORY_KEY  TTK_STR_CAT(TTK_AUTHOR_NAME, TTK_DEFAULT_STR, TTK_APP_NAME)
 
-void MusicProcessClient::run(const QStringList &args) const
+void MusicProcessClient::execute(const QStringList &args) const
 {
     QSharedMemory client;
     client.setKey(MEMORY_KEY);
@@ -47,9 +47,8 @@ MusicProcessServer::~MusicProcessServer()
     m_memory.detach();
 }
 
-void MusicProcessServer::run(const QStringList &args) const
+void MusicProcessServer::execute(const QStringList &args) const
 {
-    TTK_INFO_STREAM("Command line args:" << args);
     if(args.isEmpty())
     {
         return;
@@ -96,6 +95,7 @@ void MusicProcessServer::run(const QStringList &args) const
             return;
         }
 
+        // for direct play url
         MusicApplication::instance()->importSongsByOutside(url, true);
     }
 }
@@ -112,5 +112,5 @@ void MusicProcessServer::timeout()
     memset(m_memory.data(), 0, MEMORY_SIZE);
     m_memory.unlock();
 
-    run(buffer.split(TTK_SPLITER));
+    execute(buffer.split(TTK_SPLITER));
 }

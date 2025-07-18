@@ -31,9 +31,9 @@ class TTK_MODULE_EXPORT MusicProcessClient
     TTK_DECLARE_MODULE(MusicProcessClient)
 public:
     /*!
-     * Run.
+     * execute module.
      */
-    void run(const QStringList &args) const;
+    void execute(const QStringList &args) const;
 
 };
 
@@ -56,9 +56,9 @@ public:
     ~MusicProcessServer();
 
     /*!
-     * Run.
+     * execute module.
      */
-    void run(const QStringList &args) const;
+    void execute(const QStringList &args) const;
 
 private Q_SLOTS:
     /*!

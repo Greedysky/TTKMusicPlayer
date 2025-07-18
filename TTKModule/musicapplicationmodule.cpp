@@ -333,9 +333,9 @@ void MusicApplicationModule::applyParameter()
     {
         m_screenSaverWidget = new MusicScreenSaverBackgroundWidget;
     }
-    m_screenSaverWidget->run();
+    m_screenSaverWidget->execute();
     //
-    m_backupModule->run();
+    m_backupModule->execute();
 }
 
 void MusicApplicationModule::quit()
@@ -426,7 +426,7 @@ void MusicApplicationModule::resetWindowGeometry()
 
 void MusicApplicationModule::runTimerAutoModule()
 {
-    m_timerAutoModule->run();
+    m_timerAutoModule->execute();
 }
 
 void MusicApplicationModule::deviceNameChanged(const QString &name)

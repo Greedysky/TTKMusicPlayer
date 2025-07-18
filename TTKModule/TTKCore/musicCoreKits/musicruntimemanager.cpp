@@ -104,7 +104,7 @@ QString TTK::languageQmmp(int index)
 }
 
 
-void MusicRunTimeManager::run() const
+void MusicRunTimeManager::execute() const
 {
     TTK_INFO_STREAM("MusicApplication Run");
 

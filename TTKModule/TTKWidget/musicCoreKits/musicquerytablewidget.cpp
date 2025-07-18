@@ -92,5 +92,5 @@ void MusicQueryTableWidget::resizeEvent(QResizeEvent *event)
 
 void MusicQueryTableWidget::setLoadingStatus(bool status) const
 {
-    m_loadingLabel->run(status);
+    m_loadingLabel->execute(status);
 }

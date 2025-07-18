@@ -93,9 +93,9 @@ public:
     ~MusicBackupModule();
 
     /*!
-     * Run module.
+     * Execute module.
      */
-    void run();
+    void execute();
 
 private:
     QList<MusicAbstractBackup*> m_modules;

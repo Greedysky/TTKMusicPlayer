@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     if(app.isRunning())
     {
         MusicProcessClient client;
-        client.run(args);
+        client.execute(args);
 
         TTK_INFO_STREAM("One app has already run");
         return EXIT_FAILURE;
@@ -82,10 +82,10 @@ int main(int argc, char *argv[])
     config.valid();
 
     TTKDumper dumper(std::bind(cleanupCache));
-    dumper.run();
+    dumper.execute();
 
     MusicRunTimeManager manager;
-    manager.run();
+    manager.execute();
 
     if(!manager.configVersionCheck())
     {
@@ -110,12 +110,12 @@ int main(int argc, char *argv[])
     w.show();
 
     MusicProcessServer server;
-    server.run(args);
+    server.execute(args);
 
 #ifdef Q_OS_LINUX
     // unix mpris module
     MusicMPRISPlayer mpris;
-    mpris.run();
+    mpris.execute();
 #endif
 
 #ifdef Q_OS_LINUX
