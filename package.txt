@@ -4,7 +4,7 @@ faad2-2.11.2	https://github.com/knik0/faad2
 ffmpeg-3.4.14	http://ffmpeg.org/releases
 flac-1.5.0	https://ftp.osuosl.org/pub/xiph/releases/flac
 libgme-0.6.4	https://github.com/libgme/game-music-emu
-libADLMIDI-1.5.1.0	https://github.com/Wohlstand/libADLMIDI
+libADLMIDI-1.6.0	https://github.com/Wohlstand/libADLMIDI
 libbinio-1.5	https://github.com/adplug/libbinio
 libbs2b-3.1.0	https://sourceforge.net/projects/bs2b
 libcddb-1.3.2	https://sourceforge.net/projects/libcddb
@@ -16,7 +16,7 @@ libogg-1.3.6	https://ftp.osuosl.org/pub/xiph/releases/ogg
 libopenmpt-0.4.49	https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1(v4.1.4)	https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
-libsidplayfp-2.3.1.patch(v2.14.0)	https://github.com/libsidplayfp/libsidplayfp
+libsidplayfp-2.3.1.patch(v2.15.0)	https://github.com/libsidplayfp/libsidplayfp
 libsndfile-1.2.2	https://github.com/libsndfile/libsndfile
 libvorbis-1.3.7	https://ftp.osuosl.org/pub/xiph/releases/vorbis
 mp3gain-1_5_2(v1_6_2)	http://mp3gain.sourceforge.net/download.php
@@ -27,17 +27,17 @@ opusfile-0.12	https://www.opus-codec.org/downloads
 soxr-0.1.3	https://sourceforge.net/projects/soxr
 speex-1.2.1	https://ftp.osuosl.org/pub/xiph/releases/speex
 sunvox-2.1.2b	https://warmplace.ru/soft/sunvox/sunvox_lib.php
-taglib-1.13.1(v2.1.0)	https://github.com/taglib/taglib
+taglib-1.13.1(v2.1.1)	https://github.com/taglib/taglib
 wavpack-5.8.1	https://www.wavpack.com/downloads.html
 libxmp-4.6.3.patch	https://github.com/libxmp/libxmp
 zlib-1.3.1	https://github.com/madler/zlib
-7zip-24.09	https://www.7-zip.org/download.html
+7zip-25.00	https://www.7-zip.org/download.html
 
 ttk-1.2.10
 -libasap-6.0.3	 https://sourceforge.net/projects/asap
 -libayfly		 https://github.com/l29ah/ayfly
 -libdca			 https://github.com/DeaDBeeF-Player/deadbeef/tree/master/plugins/dca
--libfc14-1.0.3	 https://github.com/mschwendt/libfc14audiodecoder
+-libfc14-1.0.6	 https://github.com/mschwendt/libfc14audiodecoder
 -libgoom-2k4	 https://sourceforge.net/projects/goom
 -libhively		 https://github.com/sasq64/musicplayer
 -libken			 https://bitbucket.org/wothke/webken/src/master
@@ -54,12 +54,12 @@ ttk-1.2.10
 -libstsound		 https://github.com/arnaud-carre/StSound
 -libtfmx		 https://github.com/sasq64/musicplayer
 -libuade-3.05	 http://www.zakalwe.fi/uade/
-			 https://gitlab.com/uade-music-player/uade 55b6677565dd93045f80c6c689a608d93eca3ce9
--libv2m-20250301 https://github.com/jgilje/v2m-player
+			 https://gitlab.com/uade-music-player/uade c697dd03f1a1d96ec17ed86b1435fe4854f0174b
+-libv2m-20250707 https://github.com/jgilje/v2m-player
 -libxmdx		 https://github.com/mistydemeo/mdxmini
 				 https://github.com/mistydemeo/pmdmini
 				 https://github.com/BouKiCHi/foo_input_mucom
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2025-06-26
+///Update time 2025-07-18
