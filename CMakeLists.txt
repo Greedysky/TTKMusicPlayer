@@ -21,8 +21,8 @@ cmake_minimum_required(VERSION 3.0.0)
 project(TTKMusicPlayer)
 
 set(TTK_MAJOR_VERSION 4)
-set(TTK_MINOR_VERSION 1)
-set(TTK_PATCH_VERSION 3)
+set(TTK_MINOR_VERSION 2)
+set(TTK_PATCH_VERSION 0)
 set(TTK_VERSION "${TTK_MAJOR_VERSION}.${TTK_MINOR_VERSION}.${TTK_PATCH_VERSION}.0")
 
 # Find includes in the build directories
