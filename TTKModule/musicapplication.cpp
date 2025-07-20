@@ -209,7 +209,10 @@ void MusicApplication::importSongsByOutside(const QString &path, bool play)
 
     if(play)
     {
-        playIndexBy(m_playlist->count() - 1, TTK_NORMAL_LEVEL);
+        m_currentPlaylistRow = MUSIC_NONE_LIST;
+        m_songTreeWidget->setCurrentIndex(MUSIC_NORMAL_LIST);
+        const int index = m_songTreeWidget->mapSongIndexByFilePath(MUSIC_NORMAL_LIST, path);
+        playIndexBy(index, TTK_NORMAL_LEVEL);
     }
 }
 
@@ -646,7 +649,7 @@ void MusicApplication::playIndexBy(int row)
 
     if(row != -1)
     {
-        setPlayIndex();
+        generatePlaylistItems();
         m_currentPlaylistRow = row;
         m_playlist->setCurrentIndex(m_currentPlaylistRow, m_songTreeWidget->mapFilePathBySongIndex(m_currentPlaylistRow, row));
     }
@@ -664,7 +667,7 @@ void MusicApplication::playIndexBy(int row, int)
 
     if(m_currentPlaylistRow != m_songTreeWidget->currentIndex() || m_playlist->isEmpty())
     {
-        setPlayIndex();
+        generatePlaylistItems();
         const MusicSongItemList &items = m_songTreeWidget->items();
         const int index = m_songTreeWidget->currentIndex();
         if(0 <= index && index < items.count())
@@ -682,7 +685,7 @@ void MusicApplication::playIndexClicked(int row, int column)
 {
     if(m_currentPlaylistRow == m_songTreeWidget->currentIndex())
     {
-        setPlayIndex();
+        generatePlaylistItems();
         const MusicSongItemList &items = m_songTreeWidget->items();
         const int index = m_songTreeWidget->currentIndex();
         if(0 <= index && index < items.count())
@@ -1095,7 +1098,7 @@ bool MusicApplication::eventFilter(QObject *object, QEvent *event)
     return TTKAbstractMoveResizeWidget::eventFilter(object, event);
 }
 
-void MusicApplication::setPlayIndex()
+void MusicApplication::generatePlaylistItems()
 {
     m_currentPlaylistRow = m_songTreeWidget->currentIndex();
     m_playlist->add(m_currentPlaylistRow, m_songTreeWidget->songsFilePath(m_currentPlaylistRow));
