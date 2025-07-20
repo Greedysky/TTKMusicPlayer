@@ -239,6 +239,8 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "5")
 
   if(WIN32)
     find_package(Qt5WinExtras REQUIRED)
+  elseif(APPLE)
+    find_package(Qt5DBus REQUIRED)
   else()
     find_package(Qt5DBus REQUIRED)
     find_package(Qt5X11Extras REQUIRED)
