@@ -240,13 +240,11 @@ QString MpegFileTagModel::value(Qmmp::MetaData key) const
             str = m_tag->artist();
             break;
         case Qmmp::ALBUMARTIST:
-            if(m_type == TagLib::MPEG::File::ID3v2 &&
-                    !m_file->ID3v2Tag()->frameListMap()["TPE2"].isEmpty())
+            if(m_type == TagLib::MPEG::File::ID3v2 && !m_file->ID3v2Tag()->frameListMap()["TPE2"].isEmpty())
             {
                 str = m_file->ID3v2Tag()->frameListMap()["TPE2"].front()->toString();
             }
-            else if(m_type == TagLib::MPEG::File::APE &&
-                    !m_file->APETag()->itemListMap()["ALBUM ARTIST"].isEmpty())
+            else if(m_type == TagLib::MPEG::File::APE && !m_file->APETag()->itemListMap()["ALBUM ARTIST"].isEmpty())
             {
                 str = m_file->APETag()->itemListMap()["ALBUM ARTIST"].toString();
             }
@@ -421,11 +419,12 @@ QString MpegFileTagModel::lyrics() const
     if(m_tag && m_type == TagLib::MPEG::File::ID3v2)
     {
         TagLib::ID3v2::Tag *id3v2_tag = static_cast<TagLib::ID3v2::Tag *>(m_tag);
-        const TagLib::ID3v2::FrameListMap& items = id3v2_tag->frameListMap();
+        const TagLib::ID3v2::FrameListMap &items = id3v2_tag->frameListMap();
 
         const bool utf = m_codec->name().contains("UTF");
         if(!items["USLT"].isEmpty())
             return m_codec->toUnicode(items["USLT"].front()->toString().toCString(utf));
+
         else if(!items["SYLT"].isEmpty())
             return m_codec->toUnicode(items["SYLT"].front()->toString().toCString(utf));
     }

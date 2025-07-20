@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2025 by Ilya Kotov                                 *
+ *   Copyright (C) 2025 by Ilya Kotov                                      *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,21 +21,59 @@
 #ifndef SNDFILEMETADATAMODEL_H
 #define SNDFILEMETADATAMODEL_H
 
+#include <taglib/wavfile.h>
+#include <taglib/aifffile.h>
+#include <taglib/id3v2tag.h>
+#include <taglib/tfilestream.h>
 #include <qmmp/metadatamodel.h>
 
-/*!
- * @author Greedysky <greedysky@163.com>
- */
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class SndFileMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(SndFileMetaDataModel)
 public:
-    explicit SndFileMetaDataModel(const QString &path);
+    SndFileMetaDataModel(const QString &path, bool readOnly);
+    ~SndFileMetaDataModel();
 
-    virtual QList<MetaDataItem> extraProperties() const override final;
+    virtual QList<TagModel*> tags() const override final;
+    virtual QImage cover() const override final;
+    virtual void setCover(const QImage &img) override final;
+    virtual void removeCover() override final;
+    virtual QString lyrics() const override final;
 
 private:
-    QString m_path;
+    QList<TagModel*> m_tags;
+    TagLib::FileStream *m_stream  = nullptr;
+    TagLib::RIFF::WAV::File *m_wavFile = nullptr;
+    TagLib::RIFF::AIFF::File *m_aiffFile = nullptr;
+};
+
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
+class SndFileTagModel : public TagModel
+{
+public:
+    SndFileTagModel(TagLib::RIFF::WAV::File *file);
+    SndFileTagModel(TagLib::RIFF::AIFF::File *file);
+    ~SndFileTagModel() = default;
+
+    virtual QString name() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
+    virtual bool exists() const override final;
+    virtual void create() override final;
+    virtual void remove() override final;
+    virtual void save() override final;
+
+    QString lyrics() const;
+
+private:
+    TagLib::RIFF::WAV::File *m_wavFile = nullptr;
+    TagLib::RIFF::AIFF::File *m_aiffFile = nullptr;
+    TagLib::ID3v2::Tag *m_tag = nullptr;
 
 };
 
