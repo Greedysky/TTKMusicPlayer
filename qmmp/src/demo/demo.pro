@@ -4,7 +4,7 @@ include($$PWD/../../qmmp.pri)
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = app
+TARGET = demo
 DESTDIR = $$OUT_PWD/../../bin/$$TTK_VERSION
 
 LIBS += -L$$DESTDIR -lTTKqmmp
