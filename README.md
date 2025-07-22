@@ -65,6 +65,8 @@ The TTKMusicplayer qmmp plugins
  * floridsurround
  * flowgoom
  * flowinfinity
+ * flowjakdaw
+ * flowmadspin
  * flowmatrix
  * flowmountain
  * flowprojectm

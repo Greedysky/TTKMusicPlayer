@@ -61,7 +61,15 @@ void PlusXRays::paintEvent(QPaintEvent *)
 
     if(m_gridAction->isChecked())
     {
-        painter.setPen(QPen(QColor(255, 255, 255, 50), 1));
+        QLinearGradient line(0, 0, 0, height());
+        for(int i = 0; i < m_colors.count(); ++i)
+        {
+            QColor color = m_colors[i];
+            color.setAlpha(50);
+            line.setColorAt((i + 1) * 1.0 / m_colors.count(), color);
+        }
+        painter.setPen(QPen(line, 1));
+
         int per = width() / 8;
 
         for(int w = 0; w < width(); ++w)
@@ -81,7 +89,6 @@ void PlusXRays::paintEvent(QPaintEvent *)
     {
         line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
     }
-
     painter.setPen(QPen(line, 1));
 
     for(int i = 0; i < m_cols; ++i)

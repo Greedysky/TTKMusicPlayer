@@ -1,2 +1,3 @@
 TEMPLATE = subdirs
-SUBDIRS += flowgoom flowprojectm flowmatrix flowsonique flowmountain flowinfinity flowvumeter
+SUBDIRS += flowgoom flowinfinity flowjakdaw flowmadspin flowmatrix
+SUBDIRS += flowmountain flowprojectm flowsonique flowvumeter

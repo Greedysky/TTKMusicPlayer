@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/data">
+        <file alias="star">resource/star.bmp</file>
+        <file alias="line">resource/line.bmp</file>
+    </qresource>
+</RCC>
