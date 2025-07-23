@@ -146,7 +146,6 @@ int MusicAudioRecorderModule::addWavHeader(const char *fileName) const
 
     fclose(input);
     fclose(output);
-
     return fileLen;
 }
 

@@ -44,7 +44,7 @@ class QmmpCopyModule():
     def run(self):
         src_dirs = os.listdir(self._src_directory)
         dst_dirs = os.listdir(self._dst_directory)
-        app_name = "app.exe" if self.is_windows() else "app"
+        app_name = "demo.exe" if self.is_windows() else "demo"
         
         # find all supported versions
         for version in self._versions:
