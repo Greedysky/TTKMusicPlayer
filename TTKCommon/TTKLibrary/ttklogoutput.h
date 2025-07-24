@@ -27,6 +27,10 @@
 namespace TTK
 {
     /*!
+     * Initiailize log module.
+     */
+    TTK_MODULE_EXPORT void initiailizeLog(const QString &module);
+    /*!
      * Install log output handler.
      */
     TTK_MODULE_EXPORT void installLogHandler();

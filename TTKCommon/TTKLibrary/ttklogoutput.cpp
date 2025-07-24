@@ -17,6 +17,10 @@ class TTKLogOutput
     TTK_DECLARE_SINGLETON_CLASS(TTKLogOutput)
 public:
     /*!
+     * Initiailize log module.
+     */
+    void initialize(const QString &module);
+    /*!
      * Install log output handler.
      */
     void install();
@@ -59,7 +63,7 @@ private:
 
 private:
     QFile m_file;
-    QString m_dateTime;
+    QString m_module, m_dateTime;
     QMutex m_mutex;
     QtMessageHandler m_defaultHandler;
 
@@ -84,6 +88,18 @@ TTKLogOutput::~TTKLogOutput()
     }
 }
 
+void TTKLogOutput::initialize(const QString &module)
+{
+    if(!module.isEmpty())
+    {
+        m_module = module + "_";
+    }
+    else
+    {
+        m_module.clear();
+    }
+}
+
 void TTKLogOutput::install()
 {
     const QString &path = LOG_DIR_PATH;
@@ -94,13 +110,22 @@ void TTKLogOutput::install()
     }
 
     open();
-    m_defaultHandler = qInstallMessageHandler(TTKLogOutput::loggerHandler);
+
+    if(!m_defaultHandler)
+    {
+        m_defaultHandler = qInstallMessageHandler(TTKLogOutput::loggerHandler);
+    }
 }
 
 void TTKLogOutput::uninstall()
 {
-    m_defaultHandler = nullptr;
-    qInstallMessageHandler(m_defaultHandler);
+    if(m_defaultHandler)
+    {
+        m_defaultHandler = nullptr;
+        qInstallMessageHandler(m_defaultHandler);
+
+        m_file.close();
+    }
 }
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
@@ -118,7 +143,7 @@ void TTKLogOutput::loggerHandler(QtMsgType type, const char *message)
 void TTKLogOutput::open()
 {
     m_dateTime = QDate::currentDate().toString(TTK_DATE_FORMAT);
-    const QString &fileName = LOG_DIR_PATH + m_dateTime;
+    const QString &fileName = LOG_DIR_PATH + m_module + m_dateTime;
 
     int index = 1;
     do
@@ -173,6 +198,11 @@ void TTKLogOutput::write(QtMsgType type, const QMessageLogContext &context, cons
     m_mutex.unlock();
 }
 
+
+void TTK::initiailizeLog(const QString &module)
+{
+    TTKSingleton<TTKLogOutput>::instance()->initialize(module);
+}
 
 void TTK::installLogHandler()
 {

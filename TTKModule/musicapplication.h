@@ -313,9 +313,9 @@ private:
     virtual bool eventFilter(QObject *object, QEvent *event) override final;
 
     /*!
-     * Set music current play index.
+     * Generate playlist items.
      */
-    void setPlayIndex();
+    void generatePlaylistItems();
     /*!
      * Read system config from file.
      */

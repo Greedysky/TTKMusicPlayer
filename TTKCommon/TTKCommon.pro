@@ -18,4 +18,4 @@
 
 TEMPLATE = subdirs
 CONFIG += ordered
-SUBDIRS += config TTKLibrary TTKDumper
+SUBDIRS += config TTKLibrary

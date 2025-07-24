@@ -29,9 +29,9 @@ class TTK_MODULE_EXPORT MusicRunTimeManager
     TTK_DECLARE_MODULE(MusicRunTimeManager)
 public:
     /*!
-     * Run.
+     * Execute module.
      */
-    void run() const;
+    void execute() const;
 
     /*!
      * Get translator path.

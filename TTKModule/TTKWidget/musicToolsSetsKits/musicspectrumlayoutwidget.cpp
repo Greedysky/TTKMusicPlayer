@@ -175,16 +175,18 @@ MusicSpectrumFlowLayoutWidget::MusicSpectrumFlowLayoutWidget(QWidget *parent)
     items << SpectrumInfo(":/spectrum/flow_1", tr("Goom"));
     items << SpectrumInfo(":/spectrum/flow_2", tr("Dazzle"));
     items << SpectrumInfo(":/spectrum/flow_3", tr("Sonique"));
-    items << SpectrumInfo(":/spectrum/flow_4", tr("Infinity"));
-    items << SpectrumInfo(":/spectrum/flow_5", tr("Mountain"));
-    items << SpectrumInfo(":/spectrum/flow_6", tr("Matrix"));
-    items << SpectrumInfo(":/spectrum/flow_7", tr("VU Meter"));
+    items << SpectrumInfo(":/spectrum/flow_4", tr("Jakdaw"));
+    items << SpectrumInfo(":/spectrum/flow_5", tr("MadSpin"));
+    items << SpectrumInfo(":/spectrum/flow_6", tr("Infinity"));
+    items << SpectrumInfo(":/spectrum/flow_7", tr("Mountain"));
+    items << SpectrumInfo(":/spectrum/flow_8", tr("Matrix"));
+    items << SpectrumInfo(":/spectrum/flow_9", tr("VU Meter"));
     addCellItems(items);
 }
 
 QStringList MusicSpectrumFlowLayoutWidget::spectrumTypeList() const
 {
-    return {"flowgoom", "flowprojectm", "flowsonique", "flowinfinity", "flowmountain", "flowmatrix", "flowvumeter"};
+    return {"flowgoom", "flowprojectm", "flowsonique", "flowjakdaw", "flowmadspin", "flowinfinity", "flowmountain", "flowmatrix", "flowvumeter"};
 }
 
 

@@ -3,6 +3,6 @@
 int main(int argc, char *argv[])
 {
     TTKRunObject object;
-    object.run(argc, argv);
+    object.execute(argc, argv);
     return EXIT_SUCCESS;
 }

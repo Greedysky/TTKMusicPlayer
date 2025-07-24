@@ -84,7 +84,7 @@ bool MusicGifLabelWidget::infinited() const noexcept
     return m_infinited;
 }
 
-void MusicGifLabelWidget::run(bool run)
+void MusicGifLabelWidget::execute(bool run)
 {
     if(run)
     {
@@ -270,17 +270,17 @@ MusicGifLabelMaskWidget::~MusicGifLabelMaskWidget()
     delete m_loadingLabel;
 }
 
-void MusicGifLabelMaskWidget::run(bool run)
+void MusicGifLabelMaskWidget::execute(bool run)
 {
     if(run)
     {
-        m_loadingLabel->run(true);
+        m_loadingLabel->execute(true);
         raise();
         show();
     }
     else if(m_loadingLabel->isRunning())
     {
-        m_loadingLabel->run(false);
+        m_loadingLabel->execute(false);
         lower();
         hide();
     }

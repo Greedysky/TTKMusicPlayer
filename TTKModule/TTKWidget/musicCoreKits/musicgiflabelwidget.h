@@ -84,9 +84,9 @@ public:
     bool infinited() const noexcept;
 
     /*!
-     * Run the gif.
+     * Execute the gif.
      */
-    void run(bool run);
+    void execute(bool run);
     /*!
      * Get current running state.
      */
@@ -144,9 +144,9 @@ public:
     ~MusicGifLabelMaskWidget();
 
     /*!
-     * Run the gif.
+     * Execute the gif.
      */
-    void run(bool run);
+    void execute(bool run);
     /*!
      * Get current running state.
      */

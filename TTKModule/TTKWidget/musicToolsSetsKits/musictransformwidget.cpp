@@ -163,7 +163,7 @@ void MusicTransformWidget::transformFinish()
     }
 
     setCheckedControl(true);
-    m_ui->loadingLabel->run(false);
+    m_ui->loadingLabel->execute(false);
 }
 
 void MusicTransformWidget::folderBoxChecked()

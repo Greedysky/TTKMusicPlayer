@@ -391,7 +391,7 @@ void MusicLocalManagerWidget::refreshItems()
         G_SETTING_PTR->setValue(MusicSettingManager::MediaLibraryPath, path);
     }
 
-    m_loadingLabel->run(true);
+    m_loadingLabel->execute(true);
     const QStringList &files = TTK::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
     m_sizeLabel->setText(tr("   (Songs Totol: %1)").arg(files.size()));
 
@@ -425,7 +425,7 @@ void MusicLocalManagerWidget::refreshItems()
 
     m_songTableWidget->addCellItems(m_containerItems);
     updateStatisticWidget(m_tabButton->currentIndex(), m_containerItems);
-    m_loadingLabel->run(false);
+    m_loadingLabel->execute(false);
 }
 
 void MusicLocalManagerWidget::updateMediaLibraryPath()

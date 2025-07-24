@@ -261,7 +261,9 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "5")
       list(APPEND QT_LINK_LIBS Qt5::WebEngineWidgets)
     endif()
 
-    list(APPEND QT_LINK_LIBS Qt5::X11Extras)
+    if(NOT APPLE)
+      list(APPEND QT_LINK_LIBS Qt5::X11Extras)
+    endif()
   endif()
 
   list(APPEND QT_LINK_LIBS Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network Qt5::Xml)

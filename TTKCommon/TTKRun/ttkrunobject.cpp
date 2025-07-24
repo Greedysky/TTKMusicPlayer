@@ -27,7 +27,7 @@ static bool endWith(const TTKString &value, const TTKString &tail)
 }
 
 
-void TTKRunObject::run(int argc, char **argv) const
+void TTKRunObject::execute(int argc, char **argv) const
 {
     TTKString args;
     for(int i = 0; i < argc; ++i)

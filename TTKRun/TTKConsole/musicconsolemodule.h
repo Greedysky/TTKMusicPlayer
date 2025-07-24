@@ -72,7 +72,7 @@ private Q_SLOTS:
     /*!
      * Reset player volume.
      */
-    void resetVolume();
+//    void resetVolume();
     /*!
      * Set current player volume down.
      */

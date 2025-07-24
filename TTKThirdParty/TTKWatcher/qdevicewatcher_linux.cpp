@@ -115,7 +115,7 @@ void QDeviceWatcherPrivate::run()
         if (buffer.isOpen())
             buffer.close();
         buffer.setBuffer(&data);
-        if (buffer.open(QIODevice::ReadOnly))
+        if (!buffer.open(QIODevice::ReadOnly))
             return;
         QByteArray line = buffer.readLine();
         while(!line.isNull()) {

@@ -30,7 +30,7 @@ MusicTimerAutoModule::~MusicTimerAutoModule()
     m_timer.stop();
 }
 
-void MusicTimerAutoModule::run()
+void MusicTimerAutoModule::execute()
 {
     m_timer.start(TTK_DN_S2MS);
 

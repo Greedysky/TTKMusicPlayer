@@ -48,9 +48,9 @@ public:
     ~MusicMPRISPlayer();
 
     /*!
-     * Run module.
+     * Execute module.
      */
-    void run();
+    void execute();
 
 private:
     MusicMPRISPlayerRoot *m_root;

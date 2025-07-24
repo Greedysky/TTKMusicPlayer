@@ -448,7 +448,7 @@ MusicScreenSaverBackgroundWidget::~MusicScreenSaverBackgroundWidget()
     delete m_backgroundTimer;
 }
 
-void MusicScreenSaverBackgroundWidget::run()
+void MusicScreenSaverBackgroundWidget::execute()
 {
     if(m_runningTimer->isActive())
     {

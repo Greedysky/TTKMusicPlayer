@@ -71,7 +71,7 @@ MusicBackupModule::~MusicBackupModule()
     qDeleteAll(m_modules);
 }
 
-void MusicBackupModule::run()
+void MusicBackupModule::execute()
 {
     if(G_SETTING_PTR->value(MusicSettingManager::OtherPlaylistAutoSaveEnable).toBool())
     {

@@ -19,7 +19,7 @@ else
   homepath=/home/${username}
 fi
 
-packvern=4.1.3.0
+packvern=4.2.0.0
 packpath=${deskpath}/TTKMusicPlayer.desktop
 userpath=${homepath}/.local/share/applications
 iconpath="${dirpath}/share/pixmaps/ttkmusicplayer.png"

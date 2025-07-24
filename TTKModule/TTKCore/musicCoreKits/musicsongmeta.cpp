@@ -482,7 +482,7 @@ bool MusicSongMeta::saveInformation()
     MetaDataModel *model = factory->createMetaDataModel(m_path, false);
     if(model)
     {
-        const QList<TagModel* > &tags = model->tags();
+        const QList<TagModel*> &tags = model->tags();
         if(!tags.isEmpty())
         {
             TagModel *tagModel = tags.front();
