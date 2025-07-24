@@ -348,8 +348,9 @@ int freeData(VisImage *image)
 
 int loadTextrue(VisImage *image, const QString &bmp, GLuint texture)
 {
-    QString tmp("/tmp/_tmp.bmp");
+    QString tmp("color.raw");
     QFile::copy(":/data/" + bmp, tmp);
+    QFile::setPermissions(tmp, QFile::ReadOwner | QFile::WriteOwner);
 
     if(bitmap::loadData(image, qPrintable(tmp)) == 0)
     {
