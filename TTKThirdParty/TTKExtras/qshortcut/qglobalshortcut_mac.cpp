@@ -12,8 +12,13 @@ static bool q_mac_handler_installed = false;
 OSStatus q_mac_handle_hot_key(EventHandlerCallRef nextHandler, EventRef event, void *data)
 {
     // pass event to the app event filter
+    Q_UNUSED(nextHandler);
     Q_UNUSED(data);
-    qApp->macEventFilter(nextHandler, event);
+#if !TTK_QT_VERSION_CHECK(5,0,0)
+    QAbstractEventDispatcher::instance()->filterEvent((void*)event);
+#else
+    QAbstractEventDispatcher::instance()->filterNativeEvent({}, (void*)event, nullptr);
+#endif
     return noErr;
 }
 
