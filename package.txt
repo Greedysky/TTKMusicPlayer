@@ -54,7 +54,7 @@ ttk-1.2.10
 -libstsound		 https://github.com/arnaud-carre/StSound
 -libtfmx		 https://github.com/sasq64/musicplayer
 -libuade-3.05	 http://www.zakalwe.fi/uade/
-			 https://gitlab.com/uade-music-player/uade c697dd03f1a1d96ec17ed86b1435fe4854f0174b
+			 https://gitlab.com/uade-music-player/uade 2b238cebd3cdcbb3ebcd06c01bbe1bf547585a53
 -libv2m-20250707 https://github.com/jgilje/v2m-player
 -libxmdx		 https://github.com/mistydemeo/mdxmini
 				 https://github.com/mistydemeo/pmdmini
@@ -62,4 +62,4 @@ ttk-1.2.10
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2025-07-18
+///Update time 2025-07-25
