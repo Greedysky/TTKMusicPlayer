@@ -1360,4 +1360,98 @@ too high may cause clipping!</source>
         <translation>专家模式</translation>
     </message>
 </context>
+<context>
+    <name>JakdawWidget</name>
+    <message>
+        <source>Zoom Mode</source>
+        <translation>放缩模式</translation>
+    </message>
+    <message>
+        <source>Plotter Color</source>
+        <translation>绘图仪颜色</translation>
+    </message>
+    <message>
+        <source>Plotter Type</source>
+        <translation>绘图仪形状</translation>
+    </message>
+    <message>
+        <source>Zoom Ripple</source>
+        <translation>缩放波纹</translation>
+    </message>
+    <message>
+        <source>Blur Only</source>
+        <translation>仅模糊</translation>
+    </message>
+    <message>
+        <source>Zoom Rotate</source>
+        <translation>缩放旋转</translation>
+    </message>
+    <message>
+        <source>Scroll</source>
+        <translation>滚动</translation>
+    </message>
+    <message>
+        <source>Into Screen</source>
+        <translation>屏幕</translation>
+    </message>
+    <message>
+        <source>Ripple</source>
+        <translation>波纹</translation>
+    </message>
+    <message>
+        <source>Random</source>
+        <translation>随机</translation>
+    </message>
+    <message>
+        <source>On Music</source>
+        <translation>音乐</translation>
+    </message>
+    <message>
+        <source>Lines</source>
+        <translation>线</translation>
+    </message>
+    <message>
+        <source>Dots</source>
+        <translation>点</translation>
+    </message>
+    <message>
+        <source>Solid</source>
+        <translation>立方体</translation>
+    </message>
+    <message>
+        <source>Nothing</source>
+        <translation>无</translation>
+    </message>
+</context>
+<context>
+    <name>MadSpinPlugin</name>
+    <message>
+        <source>Number</source>
+        <translation>个数变化</translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation>速度变化</translation>
+    </message>
+    <message>
+        <source>Slowest</source>
+        <translation>最慢</translation>
+    </message>
+    <message>
+        <source>Slow</source>
+        <translation>慢</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>中等</translation>
+    </message>
+    <message>
+        <source>Fast</source>
+        <translation>快</translation>
+    </message>
+    <message>
+        <source>Fastest</source>
+        <translation>最快</translation>
+    </message>
+</context>
 </TS>
