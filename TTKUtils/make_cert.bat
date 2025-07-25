@@ -17,8 +17,9 @@ set sources[9]=C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64
 set sources[10]=C:\Program Files (x86)\Windows Kits\10\bin\10.0.20348.0\x64
 set sources[11]=C:\Program Files (x86)\Windows Kits\11\bin\10.0.22000.0\x64
 set sources[12]=C:\Program Files (x86)\Windows Kits\11\bin\10.0.22621.0\x64
+set sources[13]=C:\Program Files (x86)\Windows Kits\11\bin\10.0.26100.0\x64
 
-for /L %%n in (0,1,12) do (
+for /L %%n in (0,1,13) do (
    if exist "!sources[%%n]!\makecert.exe" set base=!sources[%%n]!
 )
 
