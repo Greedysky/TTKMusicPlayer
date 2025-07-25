@@ -233,7 +233,7 @@ err:
     return -1;
 }
 
-int loadData(VisImage *image, const char *name)
+static int loadData(VisImage *image, const char *name)
 {
     /* File read vars */
     FILE * fp = fopen(name, "rb");
@@ -337,7 +337,7 @@ int loadData(VisImage *image, const char *name)
     return error ? -1 : 0;
 }
 
-int freeData(VisImage *image)
+static int freeData(VisImage *image)
 {
     if(image->buffer)
     {
@@ -346,7 +346,7 @@ int freeData(VisImage *image)
     }
 }
 
-int loadTextrue(VisImage *image, const QString &bmp, GLuint texture)
+static int loadTextrue(VisImage *image, const QString &bmp, GLuint texture)
 {
     QString tmp("color.raw");
     QFile::copy(":/data/" + bmp, tmp);
@@ -358,7 +358,7 @@ int loadTextrue(VisImage *image, const QString &bmp, GLuint texture)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexImage2D(GL_TEXTURE_2D, 0, 3, image->width, image->height, 0, GL_RGB, GL_UNSIGNED_BYTE, image->buffer);
-        qDebug("Load %s bitmap resource", qPrintable(bmp));
+        qDebug("Load %s bitmap resource success", qPrintable(bmp));
     }
 
     bitmap::freeData(image);
