@@ -55,7 +55,7 @@ MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)
 
     if(m_formatFile.sampleSize() != 16)
     {
-        TTK_INFO_STREAM(QString("Audio device doesn't support 16 bit support %d bit samples, example cannot run %1").arg(m_formatFile.sampleSize()));
+        TTK_INFO_STREAM(QString("Audio device doesn't support 16 bit support %1 bit samples, example cannot run").arg(m_formatFile.sampleSize()));
     }
 }
 
