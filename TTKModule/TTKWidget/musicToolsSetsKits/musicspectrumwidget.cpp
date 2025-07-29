@@ -72,9 +72,9 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 MusicSpectrumWidget::~MusicSpectrumWidget()
 {
     TTKRemoveSingleWidget(className());
-    for(const MusicSpectrum &type : qAsConst(m_types))
+    for(const MusicSpectrum &spem : qAsConst(m_spectrums))
     {
-        TTK::TTKQmmp::enabledVisualPlugin(type.m_module, false);
+        TTK::TTKQmmp::enabledVisualPlugin(spem.m_module, false);
     }
     delete m_ui;
 }
@@ -149,56 +149,56 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
             widget->setWindowFlags(Qt::Window);
             m_spectrumLayout->addWidget(widget);
 #else
-            MusicSpectrum type;
-            for(int i = 0; i < m_types.count(); ++i)
+            MusicSpectrum spem;
+            for(int i = 0; i < m_spectrums.count(); ++i)
             {
-                if(m_types[i].m_object == widget)
+                if(m_spectrums[i].m_object == widget)
                 {
-                    type = m_types.takeAt(i);
+                    spem = m_spectrums.takeAt(i);
                     break;
                 }
             }
 
-            if(type.m_module.isEmpty())
+            if(spem.m_module.isEmpty())
             {
                 return;
             }
 
-            TTK::TTKQmmp::enabledVisualPlugin(type.m_module, false);
+            TTK::TTKQmmp::enabledVisualPlugin(spem.m_module, false);
 
             bool state = true;
-            switch(type.m_type)
+            switch(spem.m_type)
             {
                 case MusicSpectrum::Module::Normal:
                 {
-                    createSpectrumWidget(MusicSpectrum::Module::Normal, state, type.m_module, m_spectrumLayout);
+                    createSpectrumWidget(MusicSpectrum::Module::Normal, state, spem.m_module, m_spectrumLayout);
                     break;
                 }
                 case MusicSpectrum::Module::Plus:
                 {
-                    createSpectrumWidget(MusicSpectrum::Module::Plus, state, type.m_module, m_spectrumLayout);
+                    createSpectrumWidget(MusicSpectrum::Module::Plus, state, spem.m_module, m_spectrumLayout);
                     break;
                 }
                 case MusicSpectrum::Module::Wave:
                 {
-                    createSpectrumWidget(MusicSpectrum::Module::Wave, state, type.m_module, m_spectrumLayout);
+                    createSpectrumWidget(MusicSpectrum::Module::Wave, state, spem.m_module, m_spectrumLayout);
                     break;
                 }
                 case MusicSpectrum::Module::Flow:
                 {
                     m_lastFlowName.clear();
-                    createFlowWidget(MusicSpectrum::Module::Flow, state, type.m_module, m_spectrumLayout);
+                    createFlowWidget(MusicSpectrum::Module::Flow, state, spem.m_module, m_spectrumLayout);
                     break;
                 }
                 case MusicSpectrum::Module::Florid:
                 {
                     m_lastFloridName.clear();
-                    createFloridWidget(MusicSpectrum::Module::Florid, state, type.m_module, m_spectrumLayout);
+                    createFloridWidget(MusicSpectrum::Module::Florid, state, spem.m_module, m_spectrumLayout);
                     break;
                 }
                 case MusicSpectrum::Module::Light:
                 {
-                    createLightWidget(MusicSpectrum::Module::Light, state, type.m_module, m_spectrumLayout);
+                    createLightWidget(MusicSpectrum::Module::Light, state, spem.m_module, m_spectrumLayout);
                     break;
                 }
                 default: break;
@@ -233,15 +233,15 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, b
 
         if(!vs->isEmpty())
         {
-            MusicSpectrum type;
-            type.m_module = name;
-            type.m_object = vs->back();
-            type.m_type = spectrum;
-            m_types << type;
-            layout->addWidget(type.m_object);
-            type.m_object->setStyleSheet(TTK::UI::MenuStyle02);
+            MusicSpectrum spem;
+            spem.m_module = name;
+            spem.m_object = vs->back();
+            spem.m_type = spectrum;
+            m_spectrums << spem;
+            layout->addWidget(spem.m_object);
+            spem.m_object->setStyleSheet(TTK::UI::MenuStyle02);
 
-            connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
+            connect(spem.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
         }
         else
         {
@@ -254,8 +254,8 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, b
         const int index = findSpectrumWidget(name);
         if(index != -1)
         {
-            const MusicSpectrum &type = m_types.takeAt(index);
-            layout->removeWidget(type.m_object);
+            const MusicSpectrum &spem = m_spectrums.takeAt(index);
+            layout->removeWidget(spem.m_object);
             TTK::TTKQmmp::enabledVisualPlugin(name, false);
         }
     }
@@ -283,8 +283,8 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
     const int index = findSpectrumWidget(*module);
     if(index != -1)
     {
-        const MusicSpectrum &type = m_types.takeAt(index);
-        layout->removeWidget(type.m_object);
+        const MusicSpectrum &spem = m_spectrums.takeAt(index);
+        layout->removeWidget(spem.m_object);
         TTK::TTKQmmp::enabledVisualPlugin(*module, false);
     }
 
@@ -307,20 +307,20 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
     if(!vs->isEmpty())
     {
         *module = name;
-        MusicSpectrum type;
-        type.m_module = name;
-        type.m_object = vs->back();
-        type.m_type = spectrum;
-        m_types << type;
-        layout->addWidget(type.m_object);
-        type.m_object->setStyleSheet(TTK::UI::MenuStyle02);
+        MusicSpectrum spem;
+        spem.m_module = name;
+        spem.m_object = vs->back();
+        spem.m_type = spectrum;
+        m_spectrums << spem;
+        layout->addWidget(spem.m_object);
+        spem.m_object->setStyleSheet(TTK::UI::MenuStyle02);
 
         if(florid)
         {
-            TTKObjectCast(Florid*, type.m_object)->setImage(MusicTopAreaWidget::instance()->originImage());
-            connect(MusicTopAreaWidget::instance(), SIGNAL(originImageChanged(QImage)), type.m_object, SLOT(setImage(QImage)));
+            TTKObjectCast(Florid*, spem.m_object)->setImage(MusicTopAreaWidget::instance()->originImage());
+            connect(MusicTopAreaWidget::instance(), SIGNAL(originImageChanged(QImage)), spem.m_object, SLOT(setImage(QImage)));
         }
-        connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
+        connect(spem.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
     }
     else
     {
@@ -342,11 +342,11 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
             if(obj && (factory = TTKObjectCast(LightFactory*, obj)))
             {
                 Light *lightWidget = factory->create(this);
-                MusicSpectrum type;
-                type.m_module = name;
-                type.m_object = lightWidget;
-                type.m_type = spectrum;
-                m_types << type;
+                MusicSpectrum spem;
+                spem.m_module = name;
+                spem.m_object = lightWidget;
+                spem.m_type = spectrum;
+                m_spectrums << spem;
                 layout->addWidget(lightWidget);
             }
         }
@@ -357,7 +357,7 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
             return;
         }
 
-        Light *light = TTKObjectCast(Light*, m_types[index].m_object);
+        Light *light = TTKObjectCast(Light*, m_spectrums[index].m_object);
         if(!light)
         {
             return;
@@ -388,9 +388,9 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
         const int index = findSpectrumWidget(name);
         if(index != -1)
         {
-            const MusicSpectrum &type = m_types.takeAt(index);
-            layout->removeWidget(type.m_object);
-            delete type.m_object;
+            const MusicSpectrum &spem = m_spectrums.takeAt(index);
+            layout->removeWidget(spem.m_object);
+            delete spem.m_object;
         }
     }
 }
@@ -402,9 +402,9 @@ int MusicSpectrumWidget::findSpectrumWidget(const QString &name)
         return -1;
     }
 
-    for(int i = 0; i < m_types.count(); ++i)
+    for(int i = 0; i < m_spectrums.count(); ++i)
     {
-        if(m_types[i].m_module.contains(name))
+        if(m_spectrums[i].m_module.contains(name))
         {
             return i;
         }

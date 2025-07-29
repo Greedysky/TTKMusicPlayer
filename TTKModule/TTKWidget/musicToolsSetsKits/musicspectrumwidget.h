@@ -135,7 +135,7 @@ private:
     QLayout *m_spectrumLayout;
     QString m_lastFlowName;
     QString m_lastFloridName;
-    MusicSpectrumList m_types;
+    MusicSpectrumList m_spectrums;
 
 };
 

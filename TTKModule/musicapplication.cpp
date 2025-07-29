@@ -1055,6 +1055,12 @@ void MusicApplication::mouseMoveEvent(QMouseEvent *event)
 {
     TTKAbstractMoveResizeWidget::mouseMoveEvent(event);
 
+    // ignore if the window mode is concise
+    if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
+    {
+        return;
+    }
+
     if(m_ui->background->isRunning())
     {
         setFixedSize(G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
