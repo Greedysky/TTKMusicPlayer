@@ -93,7 +93,7 @@ private Q_SLOTS:
      */
     void applyButtonClicked();
     /*!
-     * Music gain input value changed.
+     * Media gain input value changed.
      */
     void lineTextChanged(const QString &text);
     /*!

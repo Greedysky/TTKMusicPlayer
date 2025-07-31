@@ -45,7 +45,7 @@ void MusicDownloadDataRequest::startToRequest(const QString &url)
     connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 
-    /// only download music data can that show progress
+    /// only download media data can that show progress
     if(m_downloadType == TTK::Download::Music && !m_redirection)
     {
         m_createTime = TTKDateTime::currentTimestamp();
@@ -106,7 +106,7 @@ void MusicDownloadDataRequest::handleReadyRead()
 void MusicDownloadDataRequest::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
     MusicAbstractDownLoadRequest::downloadProgress(bytesReceived, bytesTotal);
-    /// only download music data or other type can that show progress
+    /// only download media data or other type can that show progress
     if(m_downloadType == TTK::Download::Music || m_downloadType == TTK::Download::Extra)
     {
         const QString &total = TTK::Number::sizeByteToLabel(bytesTotal);

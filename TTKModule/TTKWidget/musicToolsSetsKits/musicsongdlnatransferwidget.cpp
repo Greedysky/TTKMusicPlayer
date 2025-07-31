@@ -1,6 +1,6 @@
 #include "musicsongdlnatransferwidget.h"
 #include "ui_musicsongdlnatransferwidget.h"
-#include "musicsongscontainerwidget.h"
+#include "musicplayedlistpopwidget.h"
 #include "musictoastlabel.h"
 
 #include "qdlna/qdlnafinder.h"
@@ -127,22 +127,16 @@ void MusicSongDlnaTransferWidget::playSongClicked()
         return;
     }
 
-    MusicSongItemList items;
-    MusicSongsContainerWidget::instance()->querySongItemList(items);
-
-    if(items.empty())
-    {
-        return;
-    }
-
-    MusicSongList *songs = &items[0].m_songs;
-    if(m_currentPlayIndex < 0 || m_currentPlayIndex >= songs->count())
+    QString path = MusicPlayedListPopWidget::instance()->currentMediaPath(m_currentPlayIndex);
+    if(path.isEmpty())
     {
         m_currentPlayIndex = 0;
+        path = MusicPlayedListPopWidget::instance()->currentMediaPath(m_currentPlayIndex);
+        if(path.isEmpty())
+        {
+            return;
+        }
     }
-
-    const MusicSong &song = (*songs)[m_currentPlayIndex];
-    const QFileInfo fin(song.path());
 
     if(m_state == TTK::PlayState::Playing)
     {
@@ -160,6 +154,7 @@ void MusicSongDlnaTransferWidget::playSongClicked()
             return;
         }
 
+        const QFileInfo fin(path);
         m_dlnaFileServer->setPrefixPath(fin.path());
         client->open(m_dlnaFileServer->localAddress(client->server()) + fin.fileName());
 

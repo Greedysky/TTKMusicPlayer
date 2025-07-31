@@ -46,13 +46,13 @@ public:
     ~MusicFileInformationWidget();
 
     /*!
-     * Set music file song information.
+     * Set media file song information.
      */
     void initialize(const QString &name);
 
 public Q_SLOTS:
     /*!
-     * Open the music at local path.
+     * Open the media at local path.
      */
     void openFileDir();
     /*!
@@ -80,11 +80,11 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QString &bytes);
     /*!
-     * Music modify tag start.
+     * Media modify tag start.
      */
     void editTag();
     /*!
-     * Music modify tag save.
+     * Media modify tag save.
      */
     void saveTag();
 

@@ -79,7 +79,7 @@ public Q_SLOTS:
      */
     virtual void removeItemAt();
     /*!
-     * Music item has been clicked.
+     * Item has been clicked.
      */
     void playClicked();
     /*!
@@ -87,11 +87,11 @@ public Q_SLOTS:
      */
     void clearItems();
     /*!
-     * Open the music at local path.
+     * Open the media at local path.
      */
     void openFileDir();
     /*!
-     * Open music file information widget.
+     * Open media file information widget.
      */
     void showFileInformation();
     /*!
@@ -99,19 +99,19 @@ public Q_SLOTS:
      */
     void showMovieQueryWidget();
     /*!
-     * Open music album query widget.
+     * Open media album query widget.
      */
     void showAlbumQueryWidget();
     /*!
-     * Open music similar query widget.
+     * Open media similar query widget.
      */
     void showSimilarQueryWidget();
     /*!
-     * Open music song shared widget.
+     * Open media song shared widget.
      */
     void showSongSharedWidget();
     /*!
-     * Open music song download widget.
+     * Open media song download widget.
      */
     void showDownloadWidget();
     /*!
@@ -119,11 +119,11 @@ public Q_SLOTS:
      */
     void showPlayedMovieQueryWidget();
     /*!
-     * Open music similar query widget in play widget.
+     * Open media similar query widget in play widget.
      */
     void showPlayedSimilarQueryWidget();
     /*!
-     * Open music song shared widget in play widget.
+     * Open media song shared widget in play widget.
      */
     void showPlayedSongSharedWidget();
 

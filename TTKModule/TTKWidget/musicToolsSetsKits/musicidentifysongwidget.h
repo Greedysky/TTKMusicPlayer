@@ -65,15 +65,15 @@ public Q_SLOTS:
      */
     void detectedTimeOut();
     /*!
-     * Set music song to play.
+     * Set media song to play.
      */
     void playSongClicked();
     /*!
-     * Set music song to download.
+     * Set media song to download.
      */
     void showDownloadWidget();
     /*!
-     * Set music song to share.
+     * Set media song to share.
      */
     void showSongShareWidget();
     /*!

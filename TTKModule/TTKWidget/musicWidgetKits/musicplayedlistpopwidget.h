@@ -77,7 +77,7 @@ public:
     void setPlaylist(MusicPlaylist *playlist);
 
     /*!
-     * Clear music data list.
+     * Clear media data list.
      */
     void clear();
     /*!
@@ -90,60 +90,64 @@ public:
     void updatePlayedList(const TTK::IndexPropertyList &indexs);
 
     /*!
-     * Remove music from data list.
+     * Remove media from data list.
      */
     void remove(int index);
     /*!
-     * Remove music from data list.
+     * Remove media from data list.
      */
     void remove(int playlistRow, const QString &path);
     /*!
-     * Remove music from data list.
+     * Remove media from data list.
      */
     void remove(int playlistRow, const MusicSong &song);
     /*!
-     * Remove music from data list.
+     * Remove media from data list.
      */
     void remove(int playlistRow, const MusicSongList &songs);
 
     /*!
-     * Append music to data list.
+     * Append media to data list.
      */
     void append(const MusicSongList &songs);
     /*!
-     * Append music to data list.
+     * Append media to data list.
      */
     void append(int playlistRow, const MusicSong &song);
     /*!
-     * Append music to data list.
+     * Append media to data list.
      */
     void append(int playlistRow, const MusicSongList &songs);
 
     /*!
-     * Insert music after played music index.
+     * Insert media after played index.
      */
     void insert(int playlistRow, const MusicSong &song);
     /*!
-     * Insert music by given index.
+     * Insert media by given index.
      */
     void insert(int playlistRow, const MusicSongList &songs);
     /*!
-     * Insert music by given index.
+     * Insert media by given index.
      */
     void insert(int playlistRow, int index, const MusicSong &song);
     /*!
-     * Insert music by given index.
+     * Insert media by given index.
      */
     void insert(int playlistRow, int index, const MusicSongList &song);
 
     /*!
-     * Set current select played music index.
+     * Get current play media path.
      */
-    void selectCurrentIndex();
+    QString currentMediaPath(int index) const;
     /*!
-     * Set current select played music index.
+     * Set current select played media index.
      */
-    void selectCurrentIndex(int playlistRow, const MusicSong &song);
+    void selectCurrentMedia();
+    /*!
+     * Set current select played media index.
+     */
+    void selectCurrentMedia(int playlistRow, const MusicSong &song);
 
 public Q_SLOTS:
     /*!

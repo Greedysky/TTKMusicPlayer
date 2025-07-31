@@ -151,7 +151,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Query selected quality music finished.
+     * Query selected quality media finished.
      */
     void downLoadNormalFinished();
     /*!

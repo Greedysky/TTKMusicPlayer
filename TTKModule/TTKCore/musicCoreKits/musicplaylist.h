@@ -93,7 +93,7 @@ public:
      */
     MusicPlayItem currentItem() const noexcept;
     /*!
-     * Get current play music media path.
+     * Get current play media path.
      */
     QString currentMediaPath() const;
     /*!
@@ -102,11 +102,11 @@ public:
     bool isSameMediaPath(const QString &path) const;
 
     /*!
-     * Get all music media path.
+     * Get all media path.
      */
     const MusicPlayItemList& mediaList() const noexcept;
     /*!
-     * Get queue music media path.
+     * Get queue media path.
      */
     const MusicPlayItemList& queueList() const noexcept;
 
@@ -138,37 +138,37 @@ public:
     int find(int playlistRow, const QString &content, int from = 0);
 
     /*!
-     * Add music media, not append remember.
+     * Add media, not append remember.
      */
     void add(int playlistRow, const QString &content);
     /*!
-     * Add music media list, not append remember.
+     * Add media list, not append remember.
      */
     void add(int playlistRow, const QStringList &items);
 
     /*!
-     * Append music medias.
+     * Append medias.
      */
     void append(int playlistRow, const QString &content);
     /*!
-     * Append music medias.
+     * Append medias.
      */
     void append(int playlistRow, const QStringList &items);
     /*!
-     * Append music media by index and content.
+     * Append media by index and content.
      */
     void appendQueue(int playlistRow, const QString &content);
 
     /*!
-     * Remove music media from current medias by index pos.
+     * Remove media from current medias by index pos.
      */
     bool remove(int pos);
     /*!
-     * Remove music media from current medias by index pos.
+     * Remove media from current medias by index pos.
      */
     int remove(int playlistRow, const QString &content);
     /*!
-     * Remove music all queue media.
+     * Remove all queue media.
      */
     void removeQueue() noexcept;
 

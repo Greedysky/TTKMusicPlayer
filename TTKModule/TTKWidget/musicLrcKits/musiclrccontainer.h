@@ -142,7 +142,7 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Clear all music lrc manager.
+     * Clear all media lrc manager.
      */
     void clearAllMusicLRCManager();
 

@@ -36,11 +36,11 @@ public:
     explicit MusicSongCheckToolsRenameThread(QObject *parent = nullptr);
 
     /*!
-     * Set music song check tool mode.
+     * Set media song check tool mode.
      */
     inline void setMode(TTK::Mode mode) noexcept { m_operateMode = mode; }
     /*!
-     * Get music song check tool mode.
+     * Get media song check tool mode.
      */
     inline TTK::Mode mode() const noexcept { return m_operateMode; }
     /*!
@@ -87,11 +87,11 @@ public:
     explicit MusicSongCheckToolsDuplicateThread(QObject *parent = nullptr);
 
     /*!
-     * Set music song check tool mode.
+     * Set media song check tool mode.
      */
     inline void setMode(TTK::Mode mode) noexcept { m_operateMode = mode; }
     /*!
-     * Get music song check tool mode.
+     * Get media song check tool mode.
      */
     inline TTK::Mode mode() const noexcept { return m_operateMode; }
     /*!

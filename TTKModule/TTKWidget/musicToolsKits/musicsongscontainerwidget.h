@@ -50,45 +50,45 @@ public:
     static MusicSongsContainerWidget *instance();
 
     /*!
-     * Update music datas from container.
+     * Update media datas from container.
      */
     void updateSongItem(const MusicSongItem &item);
     /*!
-     * Add music datas into container.
+     * Add media datas into container.
      */
     bool addSongItemList(const MusicSongItemList &items);
     /*!
-     * Append music datas into container.
+     * Append media datas into container.
      */
     void appendSongItemList(const MusicSongItemList &items);
     /*!
-     * Query music datas from container.
+     * Query media datas from container.
      */
     inline const MusicSongItemList& items() const noexcept { return m_containerItems; }
 
     /*!
-     * Input imported music urls into container.
+     * Input imported media urls into container.
      */
     void importSongsByUrl(const QString &path, int playlistRow);
     /*!
-     * Input imported music datas into container.
+     * Input imported media datas into container.
      */
     void importSongsByPath(const QStringList &files, int playlistRow);
 
     /*!
-     * Get music songs file name by index.
+     * Get media songs file name by index.
      */
     QStringList songsFileName(int index) const;
     /*!
-     * Get music songs file path by index.
+     * Get media songs file path by index.
      */
     QStringList songsFilePath(int index) const;
     /*!
-     * Map music song index by file path.
+     * Map media song index by file path.
      */
     int mapSongIndexByFilePath(int playlistRow, const QString &path) const;
     /*!
-     * Map music file path by song index.
+     * Map media file path by song index.
      */
     QString mapFilePathBySongIndex(int playlistRow, int index) const;
 
@@ -145,23 +145,23 @@ public Q_SLOTS:
      */
     void swapDragItemIndex(int start, int end);
     /*!
-     * Add music to played list and play later.
+     * Add media to played list and play later.
      */
     void addToPlayLater(int index);
     /*!
-     * Add music to played list.
+     * Add media to played list.
      */
     void addToPlayedList(int index);
     /*!
-     * Import music songs by files.
+     * Import media songs by files.
      */
     void importSongsByFiles(int index = TTK_LOW_LEVEL);
     /*!
-     * Import music songs by dir.
+     * Import media songs by dir.
      */
     void importSongsByDir(int index = TTK_LOW_LEVEL);
     /*!
-     * Open music songs check test tools.
+     * Open media songs check test tools.
      */
     void showSongCheckToolsWidget();
     /*!
@@ -178,15 +178,15 @@ public Q_SLOTS:
      */
     void updateCurrentIndex();
     /*!
-     * Add or remove music song to lovest list by row.
+     * Add or remove media song to lovest list by row.
      */
     void songToLovestListAt(bool state, int row);
     /*!
-     * Add or remove music list song to lovest list by row.
+     * Add or remove media list song to lovest list by row.
      */
     void addSongToLovestList(bool state, int row);
     /*!
-     * Add current network music buffer to playlist.
+     * Add current network media buffer to playlist.
      */
     void addSongBufferToPlaylist(const MusicResultDataItem &item);
     /*!
@@ -210,15 +210,15 @@ public Q_SLOTS:
      */
     void isSearchedResultEmpty(bool &empty);
     /*!
-     * Set current music song play count by given song index.
+     * Set current media song play count by given song index.
      */
     void setSongPlayCount(int index);
     /*!
-     * Input recent imported music datas into container.
+     * Input recent imported media datas into container.
      */
     void appendRecentSongs(int index);
     /*!
-     * Query music datas from container.
+     * Query media datas from container.
      */
     void querySongItemList(MusicSongItemList &songs);
     /*!
@@ -230,7 +230,7 @@ public Q_SLOTS:
      */
     void showFloatWidget();
     /*!
-     * Music list songs sort by type.
+     * Media list songs sort by type.
      */
     void songListSortBy(int index);
 

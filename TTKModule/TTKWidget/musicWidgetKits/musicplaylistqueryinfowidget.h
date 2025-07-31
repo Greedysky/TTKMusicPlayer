@@ -50,7 +50,7 @@ public:
     virtual void resizeWidget() override final;
 
     /*!
-     * Set music playlist item.
+     * Set media playlist item.
      */
     void setResultDataItem(const MusicResultDataItem &item, QObject *obj);
     /*!

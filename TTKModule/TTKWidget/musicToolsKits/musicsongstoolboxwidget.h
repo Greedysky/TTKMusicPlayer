@@ -42,7 +42,7 @@ public:
     ~MusicSongsToolBoxTopWidget();
 
     /*!
-     * Set music sort.
+     * Set media sort.
      */
     inline void setSongSort(MusicSongSort *sort) noexcept { m_songSort = sort; }
 
@@ -64,23 +64,23 @@ Q_SIGNALS:
      */
     void changRowItemName(int index, const QString &name);
     /*!
-     * Add new music file or files to list.
+     * Add new media file or files to list.
      */
     void addNewFiles(int index);
     /*!
-     * Add new music dir to list.
+     * Add new media dir to list.
      */
     void addNewDir(int index);
     /*!
-     * Music list songs sort by type.
+     * Media list songs sort by type.
      */
     void songListSortBy(int index);
     /*!
-     * Add music to played list and play later.
+     * Add media to played list and play later.
      */
     void addToPlayLater(int index);
     /*!
-     * Add music to played list.
+     * Add media to played list.
      */
     void addToPlayedList(int index);
 
@@ -102,15 +102,15 @@ public Q_SLOTS:
      */
     void changItemName(const QString &name);
     /*!
-     * Add new music file or files to list.
+     * Add new media file or files to list.
      */
     void addNewFilesChanged();
     /*!
-     * Add new music dir to list.
+     * Add new media dir to list.
      */
     void addNewDirChanged();
     /*!
-     * Export music songs by item.
+     * Export media songs by item.
      */
     void exportSongsItem();
     /*!
@@ -118,15 +118,15 @@ public Q_SLOTS:
      */
     void showMenu();
     /*!
-     * Music list songs sort by type.
+     * Media list songs sort by type.
      */
     void songListSortBy(QAction *action);
     /*!
-     * Add music to played list and play later.
+     * Add media to played list and play later.
      */
     void addToPlayLater();
     /*!
-     * Add music to played list.
+     * Add media to played list.
      */
     void addToPlayedList();
 
@@ -189,7 +189,7 @@ public:
     explicit MusicSongsToolBoxWidgetItem(int index, const QString &text, QWidget *parent = nullptr);
 
     /*!
-     * Set music sort.
+     * Set media sort.
      */
     void setSongSort(MusicSongSort *sort);
 
@@ -211,23 +211,23 @@ Q_SIGNALS:
      */
     void changRowItemName(int index, const QString &name);
     /*!
-     * Add new music file or files to list.
+     * Add new media file or files to list.
      */
     void addNewFiles(int index);
     /*!
-     * Add new music dir to list.
+     * Add new media dir to list.
      */
     void addNewDir(int index);
     /*!
-     * Music list songs sort by type.
+     * Media list songs sort by type.
      */
     void songListSortBy(int index);
     /*!
-     * Add music to played list and play later.
+     * Add media to played list and play later.
      */
     void addToPlayLater(int index);
     /*!
-     * Add music to played list.
+     * Add media to played list.
      */
     void addToPlayedList(int index);
 
@@ -248,7 +248,7 @@ public:
     explicit MusicSongsToolBoxWidget(QWidget *parent = nullptr);
 
     /*!
-     * Set music sort.
+     * Set media sort.
      */
     void setSongSort(QWidget *item, MusicSongSort *sort);
 

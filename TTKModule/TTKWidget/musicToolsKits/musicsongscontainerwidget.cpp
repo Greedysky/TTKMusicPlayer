@@ -910,7 +910,7 @@ void MusicSongsContainerWidget::itemIndexSwaped(int start, int end, int play, Mu
 
     if(m_currentIndex == m_playRowIndex)
     {
-        MusicPlayedListPopWidget::instance()->selectCurrentIndex(m_currentIndex, songs[play]);
+        MusicPlayedListPopWidget::instance()->selectCurrentMedia(m_currentIndex, songs[play]);
     }
 }
 

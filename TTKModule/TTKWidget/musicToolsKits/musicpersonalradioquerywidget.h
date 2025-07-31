@@ -51,7 +51,7 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Set music playlist item.
+     * Set media playlist item.
      */
     void setResultDataItem(const MusicResultDataItem &item);
 

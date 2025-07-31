@@ -82,7 +82,7 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Add selected music song path to list.
+     * Add selected media song path to list.
      */
     void playSong();
     /*!
@@ -120,7 +120,7 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Add selected music song path to list.
+     * Add selected media song path to list.
      */
     void playSong();
     /*!

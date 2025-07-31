@@ -45,7 +45,7 @@ public:
     ~MusicCloudFileInformationWidget();
 
     /*!
-     * Set music file song information.
+     * Set media file song information.
      */
     void setFileInformation(QSyncDataItem *data);
 

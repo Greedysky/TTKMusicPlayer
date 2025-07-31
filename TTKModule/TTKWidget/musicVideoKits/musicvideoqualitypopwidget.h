@@ -49,7 +49,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Query music media information data.
+     * Query media information data.
      */
     void queryMediaProps(TTK::MusicSongPropertyList &props);
     /*!

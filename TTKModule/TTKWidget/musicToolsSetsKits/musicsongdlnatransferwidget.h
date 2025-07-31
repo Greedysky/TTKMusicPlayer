@@ -57,15 +57,15 @@ public Q_SLOTS:
      */
     void scanFinished();
     /*!
-     * Set music to play.
+     * Set media to play.
      */
     void playSongClicked();
     /*!
-     * Set music to previous.
+     * Set media to previous.
      */
     void playPrevious();
     /*!
-     * Set music to next.
+     * Set media to next.
      */
     void playNext();
 

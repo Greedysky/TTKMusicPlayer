@@ -41,16 +41,16 @@ public:
     ~MusicSongMeta() noexcept;
 
     /*!
-     * Read music file to anaylsis.
+     * Read media file to anaylsis.
      */
     bool read(const QString &url);
     /*!
-     * Save music tags to music file.
+     * Save media tags to file.
      */
     bool save();
 
     /*!
-     * Read music file path.
+     * Read media file path.
      */
     QString filePath() const noexcept;
     /*!
@@ -99,7 +99,7 @@ public:
      */
     QString channel() noexcept;
     /*!
-     * Read music description.
+     * Read media description.
      */
     QString description() noexcept;
 
@@ -175,21 +175,21 @@ public:
 
 public:
     /*!
-     * Set music song meta index offset.
+     * Set media song meta index offset.
      */
     void setSongMetaIndex(int index) noexcept;
     /*!
-     * Get music song meta count.
+     * Get media song meta count.
      */
     int songMetaCount() const noexcept;
 
 private:
     /*!
-     * Clear music song meta.
+     * Clear media song meta.
      */
     void clearSongMeta() noexcept;
     /*!
-     * Get music song meta pointer.
+     * Get media song meta pointer.
      */
     MusicMeta *songMeta() noexcept;
     /*!

@@ -103,7 +103,7 @@ public Q_SLOTS:
      */
     virtual void createResultItem(const MusicResultInfoItem &result) override final;
     /*!
-     * Get music media information data.
+     * Get media information data.
      */
     void queryMediaProps(TTK::MusicSongPropertyList &props);
     /*!

@@ -44,7 +44,7 @@ public:
     ~MusicSongsListItemInfoWidget();
 
     /*!
-     * Set music song information.
+     * Set media song information.
      */
     void initialize(int index, const MusicSong &song);
 

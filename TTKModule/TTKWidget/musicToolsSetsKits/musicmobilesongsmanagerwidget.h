@@ -96,7 +96,7 @@ public Q_SLOTS:
      */
     void selectedAllItems(bool checked);
     /*!
-     * Music song audition play.
+     * Media song audition play.
      */
     void auditionButtonClick();
     /*!

@@ -93,7 +93,7 @@ private:
     virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
-     * Add search music to play list by index.
+     * Add search media to play list by index.
      */
     void addSearchMusicToPlaylist(int row, bool play);
     /*!

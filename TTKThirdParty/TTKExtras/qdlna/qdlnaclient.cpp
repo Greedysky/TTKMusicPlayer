@@ -86,6 +86,7 @@ bool QDlnaClientPrivate::connect()
     const QString &request = QDlna::makeRequest("GET", m_smp, 0, {}, m_serverIP, m_serverPort);
     const QString &response = QDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
     TTK_INFO_STREAM(m_serverIP << m_serverPort << m_smp << response);
+
     if(!QDlna::isValid(response))
     {
         return false;
@@ -105,6 +106,7 @@ bool QDlnaClientPrivate::connect()
             break;
         }
     }
+    //
     if(m_friendlyName.isEmpty())
     {
         return false;
@@ -191,7 +193,6 @@ bool QDlnaClient::open(const QString &url) const
     body += "</u:SetAVTransportURI>\n";
     body += XML_FOOT + "\n";
     const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI", d->m_serverIP,d->m_serverPort) + body;
-    TTK_INFO_STREAM(request);
     return QDlna::isValid(QDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
 
@@ -202,6 +203,7 @@ bool QDlnaClient::play(int instance) const
     QString body = XML_HEAD;
     body += "<u:Play xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>"+ QString::number(instance) + "</InstanceID><Speed>1</Speed></u:Play>\n";
     body += XML_FOOT + "\n";
+
     const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Play", d->m_serverIP, d->m_serverPort) + body;
     return QDlna::isValid(QDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
@@ -213,6 +215,7 @@ bool QDlnaClient::pause(int instance) const
     QString body = XML_HEAD;
     body += "<u:Pause xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:Pause>\n";
     body += XML_FOOT + "\n";
+
     const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Pause", d->m_serverIP, d->m_serverPort) + body;
     return QDlna::isValid(QDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
@@ -224,6 +227,7 @@ bool QDlnaClient::stop(int instance) const
     QString body = XML_HEAD;
     body += "<u:Stop xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:Stop>\n";
     body += XML_FOOT + "\n";
+
     const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Stop", d->m_serverIP, d->m_serverPort) + body;
     return QDlna::isValid(QDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
@@ -235,6 +239,7 @@ bool QDlnaClient::remove(int instance) const
     QString body = XML_HEAD;
     body += "<u:RemoveAllTracksFromQueue xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:RemoveAllTracksFromQueue>\n";
     body += XML_FOOT + "\n";
+
     const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#RemoveAllTracksFromQueue", d->m_serverIP, d->m_serverPort) + body;
     return QDlna::isValid(QDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request));
 }
@@ -251,6 +256,7 @@ bool QDlnaClient::position(qint64 &position, qint64 &duration, int instance) con
     QString body = XML_HEAD;
     body += "<u:GetPositionInfo xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:GetPositionInfo>\n";
     body += XML_FOOT + "\n";
+
     const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#GetPositionInfo", d->m_serverIP, d->m_serverPort) + body;
     const QString &response =  QDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
     if(!QDlna::isValid(response))

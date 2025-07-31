@@ -60,7 +60,7 @@ public:
     void updateSearchFileName(MusicSongList *songs, const TTKIntList &result);
 
     /*!
-     * Set music sort.
+     * Set media sort.
      */
     inline void setSongSort(MusicSongSort *sort) noexcept { m_songSort = sort; }
 
@@ -95,7 +95,7 @@ Q_SIGNALS:
      */
     void itemIndexSwaped(int start, int end, int play, MusicSongList &songs);
     /*!
-     * Add or remove music list song to lovest list by row.
+     * Add or remove media list song to lovest list by row.
      */
     void addSongToLovestList(bool state, int row);
     /*!
@@ -103,7 +103,7 @@ Q_SIGNALS:
      */
     void showFloatWidget();
     /*!
-     * Music list songs sort by type.
+     * Media list songs sort by type.
      */
     void songListSortBy(int index);
 
@@ -133,23 +133,23 @@ public Q_SLOTS:
      */
     void setChangSongName();
     /*!
-     * Open music make ring widget.
+     * Open media make ring widget.
      */
     void showMakeRingWidget();
     /*!
-     * Open music transform widget.
+     * Open media transform widget.
      */
     void showTransformWidget();
     /*!
-     * Open music song search query.
+     * Open media song search query.
      */
     void searchQueryByName(QAction *action);
     /*!
-     * Add music to played list and play later.
+     * Add media to played list and play later.
      */
     void addToPlayLater();
     /*!
-     * Add music to played list.
+     * Add media to played list.
      */
     void addToPlayedList();
     /*!
@@ -157,7 +157,7 @@ public Q_SLOTS:
      */
     void itemRenameFinished(const QString &name);
     /*!
-     * Music list songs sort by type.
+     * Media list songs sort by type.
      */
     void songListSortBy(QAction *action);
 

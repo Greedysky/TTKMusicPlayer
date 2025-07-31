@@ -36,10 +36,10 @@ public:
     enum class Enhance
     {
         Off,        /*!< enhance off, no any effect*/
-        M3D,        /*!< 3d music effect*/
-        NICAM,      /*!< nicam music effect*/
-        Subwoofer,  /*!< subwoofer music effect*/
-        Vocal       /*!< vocal music effect*/
+        M3D,        /*!< 3d media effect*/
+        NICAM,      /*!< nicam media effect*/
+        Subwoofer,  /*!< subwoofer media effect*/
+        Vocal       /*!< vocal media effect*/
     };
 
     /*!
@@ -96,11 +96,11 @@ public:
     void setMuted(bool muted);
 
     /*!
-     * Set current music enhanced effect.
+     * Set current media enhanced effect.
      */
     void setEnhanced(Enhance type);
     /*!
-     * Get current music enhanced effect.
+     * Get current media enhanced effect.
      */
     Enhance enhanced() const noexcept;
 

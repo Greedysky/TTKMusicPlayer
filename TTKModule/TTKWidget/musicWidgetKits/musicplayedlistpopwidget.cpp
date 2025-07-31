@@ -228,16 +228,21 @@ void MusicPlayedListPopWidget::insert(int playlistRow, int index, const MusicSon
     }
 }
 
-void MusicPlayedListPopWidget::selectCurrentIndex()
+QString MusicPlayedListPopWidget::currentMediaPath(int index) const
+{
+    return (index < 0 || index > m_songList.count()) ? QString() : m_songList[index].path();
+}
+
+void MusicPlayedListPopWidget::selectCurrentMedia()
 {
     const int index = m_playlist->currentIndex();
     m_tableWidget->selectRow(index);
 }
 
-void MusicPlayedListPopWidget::selectCurrentIndex(int playlistRow, const MusicSong &song)
+void MusicPlayedListPopWidget::selectCurrentMedia(int playlistRow, const MusicSong &song)
 {
     m_playlist->setCurrentIndex(playlistRow, song.path());
-    selectCurrentIndex();
+    selectCurrentMedia();
 }
 
 void MusicPlayedListPopWidget::popupMenu()

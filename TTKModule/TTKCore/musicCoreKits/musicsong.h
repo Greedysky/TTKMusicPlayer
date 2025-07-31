@@ -47,77 +47,77 @@ public:
     MusicSong(const QString &path, const QString &duration, const QString &name = {}, bool track = false);
 
     /*!
-     * Get music title name.
+     * Get media title name.
      */
     QString title() const noexcept;
     /*!
-     * Get music artist name.
+     * Get media artist name.
      */
     QString artist() const noexcept;
 
     /*!
-     * Set music add time string.
+     * Set media add time string.
      */
     inline void setAddTimeStr(const QString &t) noexcept { m_addTimeStr = t; }
     /*!
-     * Get music add time string.
+     * Get media add time string.
      */
     inline QString addTimeStr() const noexcept { return m_addTimeStr; }
     /*!
-     * Set music size string.
+     * Set media size string.
      */
     inline void setSizeStr(const QString &s) noexcept { m_sizeStr = s; }
     /*!
-     * Get music size string.
+     * Get media size string.
      */
     inline QString sizeStr() const noexcept { return m_sizeStr; }
 
     /*!
-     * Set music name.
+     * Set media name.
      */
     inline void setName(const QString &n) noexcept { m_name = n; }
     /*!
-     * Get music name.
+     * Get media name.
      */
     inline QString name() const noexcept { return m_name; }
     /*!
-     * Set music path.
+     * Set media path.
      */
     inline void setPath(const QString &p) noexcept { m_path = p; }
     /*!
-     * Get music path.
+     * Get media path.
      */
     inline QString path() const noexcept { return m_path; }
     /*!
-     * Set music format.
+     * Set media format.
      */
     inline void setFormat(const QString &t) noexcept { m_format = t; }
     /*!
-     * Get music format.
+     * Get media format.
      */
     inline QString format() const noexcept { return m_format; }
     /*!
-     * Set music duration.
+     * Set media duration.
      */
     inline void setDuration(const QString &t) noexcept { m_duration = t; }
     /*!
-     * Get music duration.
+     * Get media duration.
      */
     inline QString duration() const noexcept { return m_duration; }
     /*!
-     * Get music size.
+     * Get media size.
      */
     inline qint64 size() const noexcept { return m_size; }
     /*!
-     * Set music play count.
+     * Set media play count.
      */
     inline void setPlayCount(const int c) noexcept { m_playCount = c; }
     /*!
-     * Get music play count.
+     * Get media play count.
      */
     inline int playCount() const noexcept { return m_playCount; }
     /*!
-     * Set music sort type.
+     * Set media sort type.
      */
     inline void setSort(const Sort s) noexcept { m_sort = s; }
 

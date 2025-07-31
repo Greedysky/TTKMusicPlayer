@@ -95,11 +95,11 @@ public Q_SLOTS:
      */
     void changItemName(const QString &name);
     /*!
-     * Reset current music love icon state.
+     * Reset current media love icon state.
      */
     void currentLoveStateClicked();
     /*!
-     * Reset current music download icon state.
+     * Reset current media download icon state.
      */
     void currentDownloadStateClicked();
 

@@ -381,7 +381,7 @@ void MusicApplication::showCurrentSong()
         m_rightAreaWidget->loadCurrentSongLrc(name, name);
     }
 
-    m_ui->musicPlayedList->selectCurrentIndex();
+    m_ui->musicPlayedList->selectCurrentMedia();
     m_songTreeWidget->appendRecentSongs(index);
     m_songTreeWidget->setSongPlayCount(index);
     m_ui->musicSongTitle->setText(name);
@@ -1217,7 +1217,7 @@ void MusicApplication::readSystemConfigFromFile()
         m_playlist->blockSignals(true);
         m_playlist->setCurrentIndex(m_currentPlaylistRow, m_songTreeWidget->mapFilePathBySongIndex(m_currentPlaylistRow, index));
         m_playlist->blockSignals(false);
-        m_ui->musicPlayedList->selectCurrentIndex();
+        m_ui->musicPlayedList->selectCurrentMedia();
     }
 
     //Configure automatic playback

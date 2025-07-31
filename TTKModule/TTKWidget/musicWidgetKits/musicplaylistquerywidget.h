@@ -45,7 +45,7 @@ public:
     ~MusicPlaylistQueryItemWidget();
 
     /*!
-     * Set music results item.
+     * Set media results item.
      */
     void setResultDataItem(const MusicResultDataItem &item);
 

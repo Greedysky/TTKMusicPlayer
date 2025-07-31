@@ -45,7 +45,7 @@ public:
 
 private:
     /*!
-     * Read Music File Path.
+     * Read media File Path.
      */
     MusicSongList readMusicFilePath(const QDomNode &node) const;
 

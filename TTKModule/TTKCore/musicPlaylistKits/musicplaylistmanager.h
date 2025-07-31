@@ -29,11 +29,11 @@ class TTK_MODULE_EXPORT MusicPlaylistManager
     TTK_DECLARE_MODULE(MusicPlaylistManager)
 public:
     /*!
-     * Write music playlist data to file.
+     * Write media playlist data to file.
      */
     void writeSongItem(const QString &path, const MusicSongItemList &item);
     /*!
-     * Read music playlist data from file.
+     * Read media playlist data from file.
      */
     void readSongItems(const QStringList &paths, MusicSongItemList &items);
 
