@@ -78,20 +78,20 @@ public:
     void loadCurrentSongLrc();
 
     /*!
-     * Import outside music datas into container.
+     * Import outside media datas into container.
      */
     void importSongsByOutside(const QString &path, bool play);
 
     /*!
-     * Get music current song item download contains.
+     * Get media current song item download contains.
      */
     QString containsDownloadItem(bool &contains) const;
     /*!
-     * Get music current song lovest item contains.
+     * Get media current song lovest item contains.
      */
     bool containsLovestItem() const;
     /*!
-     * Get music list current song lovest item contains.
+     * Get media list current song lovest item contains.
      */
     bool containsLovestItem(int index) const;
     /*!
@@ -188,52 +188,52 @@ public Q_SLOTS:
     void volumeChanged(int volume);
 
     /*!
-     * Import music songs.
+     * Import media songs.
      */
     void importSongsPopup();
     /*!
-     * Import music songs by files.
+     * Import media songs by files.
      */
     void importSongsByFiles(int index = TTK_LOW_LEVEL);
     /*!
-     * Import music songs by dir.
+     * Import media songs by dir.
      */
     void importSongsByDir(int index = TTK_LOW_LEVEL);
     /*!
-     * Import music songs by url.
+     * Import media songs by url.
      */
     void importSongsByUrl();
     /*!
-     * Import music songs by item list.
+     * Import media songs by item list.
      */
     void importSongsItemList();
     /*!
-     * Export music songs by item.
+     * Export media songs by item.
      */
     void exportSongsItem(int index);
     /*!
-     * Export music songs by item list.
+     * Export media songs by item list.
      */
     void exportSongsItemList();
 
     /*!
-     * Set current music play list sort.
+     * Set current media play list sort.
      */
     void playSortBy(int row);
     /*!
-     * Set played list row index music to play.
+     * Set played list row index media to play.
      */
     void playedIndexBy(int row);
     /*!
-     * Set current row index music to play.
+     * Set current row index media to play.
      */
     void playIndexBy(int row);
     /*!
-     * Set current row index music to play.
+     * Set current row index media to play.
      */
     void playIndexBy(int row, int column);
     /*!
-     * Set current row index music to play.
+     * Set current row index media to play.
      */
     void playIndexClicked(int row, int column);
     /*!
@@ -250,7 +250,7 @@ public Q_SLOTS:
      */
     void currentPlayLocation();
     /*!
-     * Add music song to lovest list.
+     * Add media song to lovest list.
      */
     void addSongToLovestList(bool state = true);
     /*!

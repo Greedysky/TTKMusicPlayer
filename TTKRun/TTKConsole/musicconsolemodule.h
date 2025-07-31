@@ -104,23 +104,23 @@ private Q_SLOTS:
     void playOnce();
 
     /*!
-     * Set current music enhanced off, no any effect.
+     * Set current media enhanced off, no any effect.
      */
     void setEnhancedOff();
     /*!
-     * Set current music 3d music effect.
+     * Set current media 3d effect.
      */
     void setEnhanced3D();
     /*!
-     * Set current music nicam music effect.
+     * Set current media nicam effect.
      */
     void setEnhancedNICAM();
     /*!
-     * Set current music subwoofer music effect.
+     * Set current media subwoofer effect.
      */
     void setEnhancedSubwoofer();
     /*!
-     * Set current music vocal music effect.
+     * Set current media vocal effect.
      */
     void setEnhancedVocal();
 

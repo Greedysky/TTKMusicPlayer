@@ -40,7 +40,7 @@ public:
     void startToRequest();
 
     /*!
-     * Get music song information.
+     * Get media song information.
      */
     inline const TTK::MusicSongInformation& item() const noexcept { return m_item; }
 

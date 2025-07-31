@@ -74,9 +74,9 @@ bool MusicConsoleModule::initialize()
             text += "Global shortcuts:\n" + shortcutMessage() + "\n";
 
     TTKCommandLineOption op0("-h", "--help", "Show command line help options");
-    TTKCommandLineOption op1("-u", "--url", "Music play url path");
-    TTKCommandLineOption op2("-d", "--dir", "Music play dir path");
-    TTKCommandLineOption op3("-l", "--playlist", "Music playlist url path");
+    TTKCommandLineOption op1("-u", "--url", "Media play url path");
+    TTKCommandLineOption op2("-d", "--dir", "Media play dir path");
+    TTKCommandLineOption op3("-l", "--playlist", "Media playlist url path");
 
     TTKCommandLineParser parser;
     parser.addOption(op0);
@@ -97,7 +97,7 @@ bool MusicConsoleModule::initialize()
         const QString &path = parser.value(op1);
         if(path.isEmpty())
         {
-            TTK_LOG_STREAM("Music play url path is empty");
+            TTK_LOG_STREAM("Media play url path is empty");
             return false;
         }
         else
@@ -112,7 +112,7 @@ bool MusicConsoleModule::initialize()
         const QString &path = parser.value(op2);
         if(path.isEmpty())
         {
-            TTK_LOG_STREAM("Music play dir path is empty");
+            TTK_LOG_STREAM("Media play dir path is empty");
             return false;
         }
         else
@@ -134,21 +134,21 @@ bool MusicConsoleModule::initialize()
         const QString &path = parser.value(op3);
         if(path.isEmpty())
         {
-            TTK_LOG_STREAM("Music playlist path is empty");
+            TTK_LOG_STREAM("Media playlist path is empty");
             return false;
         }
         else
         {
             if(TTK_FILE_SUFFIX(QFileInfo(path)) != TPL_FILE_SUFFIX)
             {
-                TTK_LOG_STREAM("Music playlist format not support");
+                TTK_LOG_STREAM("Media playlist format not support");
                 return false;
             }
 
             MusicTKPLConfigManager manager;
             if(!manager.fromFile(path))
             {
-                TTK_LOG_STREAM("Music playlist read error");
+                TTK_LOG_STREAM("Media playlist read error");
                 return false;
             }
 
@@ -176,7 +176,7 @@ bool MusicConsoleModule::initialize()
         return false;
     }
 
-    TTK_LOG_STREAM("Music files count: " << m_playlist->count() << TTK_LINEFEED);
+    TTK_LOG_STREAM("Media files count: " << m_playlist->count() << TTK_LINEFEED);
 
     m_player->play();
     m_player->setVolume(m_volume);
@@ -197,7 +197,7 @@ void MusicConsoleModule::currentIndexChanged(int index)
     {
         m_player->stop();
         TTK_SIGNLE_SHOT(TTK_DN_S2MS, qApp, quit, TTK_SLOT);
-        TTK_LOG_STREAM("Music play end and application quit now");
+        TTK_LOG_STREAM("Media play end and application quit now");
     }
 }
 
@@ -337,7 +337,7 @@ void MusicConsoleModule::setEnhancedVocal()
 void MusicConsoleModule::print(qint64 position, qint64 duration) const
 {
     const MusicPlayItem &item = m_playlist->currentItem();
-    TTK_LOG_STREAM(QString("Time:[%1/%2], Volume:%3, PlaybackMode:%4, Enhance:%5, Music Path: %6")
+    TTK_LOG_STREAM(QString("Time:[%1/%2], Volume:%3, PlaybackMode:%4, Enhance:%5, Media Path: %6")
                 .arg(TTKTime::formatDuration(position), TTKTime::formatDuration(duration))
                 .arg(m_player->volume())
                 .arg(m_playbackMode, m_enhanced, item.m_path));
