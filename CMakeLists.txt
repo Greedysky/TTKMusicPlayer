@@ -41,10 +41,11 @@ endif()
 set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Release Debug)
 
 # Add a compiler flag
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror=return-type -std=c++11 -pthread -Wall")
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O0 -pthread -Wall -pedantic")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -pedantic")
 else()
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -pthread -Wall")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
   add_definitions(-DQT_NO_DEBUG)
 endif()
 
