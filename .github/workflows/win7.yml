@@ -51,7 +51,7 @@ jobs:
 
       - name: Build package
         run: |
-          bitsadmin /transfer job https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z ${{runner.workspace}}/install/theme.7z
+          curl -O https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z -L ${{runner.workspace}}/install/theme.7z
           7z x theme.7z
           mv GTheme ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           windeployqt ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/TTKService.exe
