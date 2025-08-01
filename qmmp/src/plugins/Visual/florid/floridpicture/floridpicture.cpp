@@ -24,7 +24,7 @@ void FloridPicture::paintEvent(QPaintEvent *)
     if(!m_image.isNull())
     {
         painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-        painter.drawImage(0, 0, m_image.scaled(size()));
+        painter.drawImage(0, 0, m_image.scaled(size(), Qt::KeepAspectRatioByExpanding));
 
         const int h = height() / 5;
         painter.fillRect(0, height() - h, width(), h, QColor(0, 0, 0, 100));
@@ -62,10 +62,6 @@ void FloridPicture::processData(float *left, float *)
         for(int i = 0; i < m_cols + 1; ++i)
         {
             m_xscale[i] = pow(255.0, float(i) / m_cols);
-            if(i > 0 && m_xscale[i - 1] >= m_xscale[i]) //avoid several bars in a row with the same frequency
-            {
-                m_xscale[i] = qMin(m_xscale[i - 1] + 1, m_cols);
-            }
         }
     }
 
@@ -81,12 +77,12 @@ void FloridPicture::processData(float *left, float *)
 
         if(m_xscale[i] == m_xscale[i + 1])
         {
-            yl = destl[i] >> 7; //128
+            yl = (i >= 256 ? 0 : (destl[i] >> 7)); //128
         }
 
         for(int k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
         {
-            yl = qMax(short(destl[k] >> 7), yl);
+            yl = (k >= 256 ? 0 : qMax(short(destl[k] >> 7), yl));
         }
 
         if(yl > 0)

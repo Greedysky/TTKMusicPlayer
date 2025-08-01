@@ -74,10 +74,6 @@ void WaveVolume::processData(float *left, float *right)
         for(int i = 0; i < CHANNELS; ++i)
         {
             m_xscale[i] = pow(255.0, float(i) / m_cols);
-            if(i > 0 && m_xscale[i - 1] >= m_xscale[i]) //avoid several bars in a row with the same frequency
-            {
-                m_xscale[i] = qMin(m_xscale[i - 1] + 1, m_cols);
-            }
         }
     }
 
@@ -91,14 +87,14 @@ void WaveVolume::processData(float *left, float *right)
 
     if(m_xscale[i] == m_xscale[i + 1])
     {
-        yl = destl[i] >> 7; //128
-        yr = destr[i] >> 7; //128
+        yl = (i >= 256 ? 0 : (destl[i] >> 7)); //128
+        yr = (i >= 256 ? 0 : (destr[i] >> 7)); //128
     }
 
     for(int k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
     {
-        yl = qMax(short(destl[k] >> 7), yl);
-        yr = qMax(short(destr[k] >> 7), yr);
+        yl = (k >= 256 ? 0 : qMax(short(destl[k] >> 7), yl));
+        yr = (k >= 256 ? 0 : qMax(short(destr[k] >> 7), yl));
     }
 
     if(yl > 0)
