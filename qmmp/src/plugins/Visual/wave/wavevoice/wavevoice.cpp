@@ -158,7 +158,7 @@ void WaveVoice::processData(float *left, float *right)
         for(int k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
         {
             yl = (k >= 256 ? 0 : qMax(short(destl[k] >> 7), yl));
-            yr = (k >= 256 ? 0 : qMax(short(destr[k] >> 7), yl));
+            yr = (k >= 256 ? 0 : qMax(short(destr[k] >> 7), yr));
         }
 
         if(yl > 0)
