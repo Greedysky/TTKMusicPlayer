@@ -19,7 +19,7 @@ bool ArchiveReader::isSupported(const QString &path)
 {
     for(const QString &suffix : filters())
     {
-        if(path.endsWith(suffix.mid(1), Qt::CaseInsensitive))
+        if(path.endsWith(suffix.midRef(1), Qt::CaseInsensitive))
         {
             return true;
         }
