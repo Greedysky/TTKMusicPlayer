@@ -3,12 +3,10 @@
 #include "musicruntimemanager.h"
 #include "musicconfigmodule.h"
 #include "musicprocessmanager.h"
-#include "ttkdumper.h"
-#include "ttkdesktopscreen.h"
-#include "ttkglobalinterface.h"
+#include "ttkinitialization.h"
+#include "ttkprocess.h"
 
 #ifdef Q_OS_LINUX
-#  include <malloc.h>
 #  include "musicmprisplayer.h"
 #endif
 
@@ -30,33 +28,13 @@ static void cleanupCache()
     TTK_INFO_STREAM("Application cache cleanup");
 }
 
-static void loadApplicationScaleFactor()
-{
-#if TTK_QT_VERSION_CHECK(6,0,0)
-   // do nothing
-#elif TTK_QT_VERSION_CHECK(5,4,0)
-#  if TTK_QT_VERSION_CHECK(5,12,0)
-      QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-      QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-#    if TTK_QT_VERSION_CHECK(5,14,0)
-        QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
-#    endif
-#  elif TTK_QT_VERSION_CHECK(5,6,0)
-      const float dpi = TTKDesktopScreen::dotsPerInch() / 96.0;
-      qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
-#  endif
-#endif
-}
 
 int main(int argc, char *argv[])
 {
-    loadApplicationScaleFactor();
+    TTK::loadApplicationScaleFactor();
 
     TTKApplication app(argc, argv);
-
-    QCoreApplication::setOrganizationName(TTK_APP_NAME);
-    QCoreApplication::setOrganizationDomain(TTK_APP_COME_NAME);
-    QCoreApplication::setApplicationName(TTK_APP_NAME);
+    TTKInitialization ttk(cleanupCache);
 
     // parse command line args
     QStringList args;
@@ -78,11 +56,12 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
+    ttk.generateFont();
+    ttk.codecForLocale();
+    ttk.execute(args);
+
     MusicConfigModule config;
     config.valid();
-
-    TTKDumper dumper(std::bind(cleanupCache));
-    dumper.execute();
 
     MusicRunTimeManager manager;
     manager.execute();
@@ -104,8 +83,6 @@ int main(int argc, char *argv[])
         app.installTranslator(translator);
     }
 
-    TTK::setApplicationFont();
-
     MusicApplication w;
     w.show();
 
@@ -116,12 +93,6 @@ int main(int argc, char *argv[])
     // unix mpris module
     MusicMPRISPlayer mpris;
     mpris.execute();
-#endif
-
-#ifdef Q_OS_LINUX
-    // memory free
-    mallopt(M_MMAP_THRESHOLD, 1024 * 1024);   // 1MB mmap
-    mallopt(M_TRIM_THRESHOLD, 2 * 1024 * 1024); // 2MB brk
 #endif
     return app.exec();
 }

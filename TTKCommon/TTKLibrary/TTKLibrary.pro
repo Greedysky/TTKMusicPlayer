@@ -90,6 +90,7 @@ HEADERS += \
     $$PWD/ttkfileinterface.h \
     $$PWD/ttkfunctor.h \
     $$PWD/ttkglobalinterface.h \
+    $$PWD/ttkinitialization.h \
     $$PWD/ttkitemdelegate.h \
     $$PWD/ttklexicalcast.h \
     $$PWD/ttklibrary.h \
@@ -131,6 +132,7 @@ SOURCES += \
     $$PWD/ttkeventloop.cpp \
     $$PWD/ttkfileassociation.cpp \
     $$PWD/ttkglobalinterface.cpp \
+    $$PWD/ttkinitialization.cpp \
     $$PWD/ttkitemdelegate.cpp \
     $$PWD/ttklogoutput.cpp \
     $$PWD/ttkplatformsystem.cpp \

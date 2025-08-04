@@ -40,10 +40,6 @@ namespace TTK
          * Set string from unicode string by format.
          */
         TTK_MODULE_EXPORT QByteArray fromUnicode(const QString &chars, const char *format = "GBK");
-        /*!
-         * Set local codec by format.
-         */
-        TTK_MODULE_EXPORT void setLocalCodec(const char *format = "UTF-8");
 
     }
 }

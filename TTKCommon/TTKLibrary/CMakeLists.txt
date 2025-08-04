@@ -47,6 +47,7 @@ set(HEADER_FILES
   ttkfileinterface.h
   ttkfunctor.h
   ttkglobalinterface.h
+  ttkinitialization.h
   ttkitemdelegate.h
   ttklexicalcast.h
   ttklibrary.h
@@ -89,6 +90,7 @@ set(SOURCE_FILES
   ttkeventloop.cpp
   ttkfileassociation.cpp
   ttkglobalinterface.cpp
+  ttkinitialization.cpp
   ttkitemdelegate.cpp
   ttklogoutput.cpp
   ttkplatformsystem.cpp
