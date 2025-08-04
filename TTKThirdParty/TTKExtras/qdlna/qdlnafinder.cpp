@@ -132,9 +132,16 @@ void QDlnaFinder::handleReadyRead()
             --tryTimes;
             client->connect();
             qApp->processEvents();
-        } while(!client->isConnected() && tryTimes > 0);
+        }
+        while(!client->isConnected() && tryTimes > 0);
+
+        if(!client->isConnected())
+        {
+            delete client;
+            continue;
+        }
 
         d->m_clients.push_back(client);
-        Q_EMIT finished();
     }
+    Q_EMIT finished();
 }

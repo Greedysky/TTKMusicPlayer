@@ -69,8 +69,8 @@ QString makeRequest(const QString &methord, const QString &url, int length, cons
 
 QString removeHttpHeader(const QString &data)
 {
-    const QStringList &data_list = data.split("\r\n\r\n");
-    return (data_list.count() >= 2) ? data_list[1] : QString();
+    const QStringList &datas = data.split("\r\n\r\n");
+    return (datas.count() >= 2) ? datas[1] : QString();
 }
 
 bool isValid(const QString &data)

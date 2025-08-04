@@ -59,7 +59,7 @@ public Q_SLOTS:
     /*!
      * Set media to play.
      */
-    void playSongClicked();
+    void playSongAction();
     /*!
      * Set media to previous.
      */
@@ -68,6 +68,12 @@ public Q_SLOTS:
      * Set media to next.
      */
     void playNext();
+
+private Q_SLOTS:
+    /*!
+     * Player one second time out.
+     */
+    void timeout();
 
 private:
     /*!
@@ -79,6 +85,7 @@ private:
     Ui::MusicSongDlnaTransferWidget *m_ui;
     TTK::PlayState m_state;
     int m_currentPlayIndex;
+    QTimer *m_timer;
     QDlnaFinder *m_dlnaFinder;
     QDlnaFileServer *m_dlnaFileServer;
 

@@ -26,6 +26,19 @@
  */
 namespace QDlna
 {
+    struct PositionInfo
+    {
+        qint64 position = 0;
+        qint64 duration = 0;
+    };
+
+    struct TransportInfo
+    {
+        QString state;
+        QString status;
+        int speed = 1;
+    };
+
     /*!
      * Make socket get reply.
      */

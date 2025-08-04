@@ -57,17 +57,21 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->deviceComboBox->addItem(tr("No connections"));
     m_ui->deviceComboBox->setEnabled(false);
 
+    m_timer = new QTimer(this);
     m_dlnaFinder = new QDlnaFinder(this);
     m_dlnaFileServer = new QDlnaFileServer(this);
 
     startToScan();
-    m_dlnaFileServer->start();
 
-    connect(m_ui->playButton, SIGNAL(clicked()), SLOT(playSongClicked()));
+    m_dlnaFileServer->start();
+    m_timer->setInterval(TTK_DN_S2MS);
+
+    connect(m_ui->playButton, SIGNAL(clicked()), SLOT(playSongAction()));
     connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(playPrevious()));
     connect(m_ui->nextButton, SIGNAL(clicked()), SLOT(playNext()));
     connect(m_ui->refreshButton, SIGNAL(clicked()), SLOT(startToScan()));
     connect(m_dlnaFinder, SIGNAL(finished()), SLOT(scanFinished()));
+    connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
 }
 
 MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
@@ -82,7 +86,13 @@ MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
         TTK_INFO_STREAM("Stop DLNA module");
     }
 
+    if(m_timer->isActive())
+    {
+        m_timer->stop();
+    }
+    delete m_timer;
     delete m_dlnaFinder;
+    delete m_dlnaFileServer;
     delete m_ui;
 }
 
@@ -93,31 +103,24 @@ void MusicSongDlnaTransferWidget::startToScan()
 
 void MusicSongDlnaTransferWidget::scanFinished()
 {
-    bool init = false;
-    for(const QString &name : m_dlnaFinder->clientNames())
+    const QStringList &clients = m_dlnaFinder->clientNames();
+    if(!clients.isEmpty())
     {
-        if(!name.isEmpty())
-        {
-            if(!init)
-            {
-                m_ui->deviceComboBox->clear();
-                m_ui->deviceComboBox->setEnabled(true);
-                init = true;
-            }
-            m_ui->deviceComboBox->addItem(name);
-        }
+        m_ui->deviceComboBox->clear();
+        m_ui->deviceComboBox->setEnabled(true);
     }
 
-    if(m_ui->deviceComboBox->currentText() == tr("No connections"))
+    for(const QString &name : qAsConst(clients))
     {
-        MusicToastLabel::popup(tr("Can not find any clients"));
+        m_ui->deviceComboBox->addItem(name);
     }
 }
 
-void MusicSongDlnaTransferWidget::playSongClicked()
+void MusicSongDlnaTransferWidget::playSongAction()
 {
     if(m_ui->deviceComboBox->currentText() == tr("No connections"))
     {
+        MusicToastLabel::popup(tr("Can not find any clients"));
         return;
     }
 
@@ -127,20 +130,14 @@ void MusicSongDlnaTransferWidget::playSongClicked()
         return;
     }
 
-    QString path = MusicPlayedListPopWidget::instance()->currentMediaPath(m_currentPlayIndex);
-    if(path.isEmpty())
-    {
-        m_currentPlayIndex = 0;
-        path = MusicPlayedListPopWidget::instance()->currentMediaPath(m_currentPlayIndex);
-        if(path.isEmpty())
-        {
-            return;
-        }
-    }
-
     if(m_state == TTK::PlayState::Playing)
     {
-        client->pause();
+        if(!client->pause())
+        {
+            MusicToastLabel::popup(tr("Do DLNA operation failed"));
+            return;
+        }
+
         m_state = TTK::PlayState::Paused;
         m_ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
     }
@@ -148,29 +145,58 @@ void MusicSongDlnaTransferWidget::playSongClicked()
     {
         if(m_state == TTK::PlayState::Paused)
         {
-            client->play();
+            if(!client->play())
+            {
+                MusicToastLabel::popup(tr("Do DLNA operation failed"));
+                return;
+            }
+
             m_state = TTK::PlayState::Playing;
             m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
             return;
         }
 
-        const QFileInfo fin(path);
+        m_timer->stop();
+        QString path = MusicPlayedListPopWidget::instance()->currentMediaPath(m_currentPlayIndex);
+        if(path.isEmpty())
+        {
+            // fallback set index to default one
+            m_currentPlayIndex = 0;
+            path = MusicPlayedListPopWidget::instance()->currentMediaPath(m_currentPlayIndex);
+            if(path.isEmpty())
+            {
+                return;
+            }
+        }
+
+        QFileInfo fin(path);
         m_dlnaFileServer->setPrefixPath(fin.path());
-        client->open(m_dlnaFileServer->localAddress(client->server()) + fin.fileName());
+        if(!client->openUri(m_dlnaFileServer->localAddress(client->server()), fin.fileName()))
+        {
+            MusicToastLabel::popup(tr("Do DLNA operation failed"));
+            return;
+        }
 
         if(client->play())
         {
+            m_timer->start();
             m_state = TTK::PlayState::Playing;
             m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
 
-            qint64 position = 0, duration = 0;
-            if(client->position(position, duration))
+            QDlna::PositionInfo info;
+            if(client->positionInfo(info))
             {
-                TTK_INFO_STREAM(position << " " << duration);
+                TTK_INFO_STREAM(info.position << " " << info.duration);
+            }
+
+            if(client->mediaInfo())
+            {
+
             }
         }
         else
         {
+            MusicToastLabel::popup(tr("Do DLNA operation failed"));
             m_state = TTK::PlayState::Stopped;
             m_ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
         }
@@ -181,25 +207,36 @@ void MusicSongDlnaTransferWidget::playPrevious()
 {
     m_currentPlayIndex--;
     m_state = TTK::PlayState::Stopped;
-
-    playSongClicked();
+    playSongAction();
 }
 
 void MusicSongDlnaTransferWidget::playNext()
 {
     m_currentPlayIndex++;
     m_state = TTK::PlayState::Stopped;
+    playSongAction();
+}
 
-    playSongClicked();
+void MusicSongDlnaTransferWidget::timeout()
+{
+    QDlnaClient *client = getClient();
+    if(!client)
+    {
+        return;
+    }
+
+    QDlna::TransportInfo info;
+    if(client->transportInfo(info))
+    {
+        TTK_ERROR_STREAM(tr("Do DLNA operation failed"));
+        return;
+    }
+
+    TTK_INFO_STREAM(info.state << " " << info.status << " " << info.speed);
 }
 
 QDlnaClient *MusicSongDlnaTransferWidget::getClient() const
 {
     const int index = m_ui->deviceComboBox->currentIndex();
-    if(index < 0)
-    {
-        return nullptr;
-    }
-
-    return m_dlnaFinder->client(index);
+    return index < 0 ? nullptr : m_dlnaFinder->client(index);
 }
