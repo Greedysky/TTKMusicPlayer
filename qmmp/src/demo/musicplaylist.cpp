@@ -82,7 +82,8 @@ bool MusicPlaylist::insertMedia(int index, const QString &content)
     {
         return false;
     }
-    m_mediaList.insert(index,content);
+
+    m_mediaList.insert(index, content);
     return true;
 }
 
@@ -92,6 +93,7 @@ bool MusicPlaylist::insertMedia(int index, const QStringList &items)
     {
         return false;
     }
+
     for(int i = 0; i < items.count(); ++i)
     {
         m_mediaList.insert(m_mediaList.count() + i, items[i]);
@@ -99,13 +101,14 @@ bool MusicPlaylist::insertMedia(int index, const QStringList &items)
     return true;
 }
 
-bool MusicPlaylist::removeMedia(int pos)
+bool MusicPlaylist::removeMedia(int index)
 {
-    if(pos < 0 || pos >= m_mediaList.count())
+    if(index < 0 || index >= m_mediaList.count())
     {
         return false;
     }
-    m_mediaList.removeAt(pos);
+
+    m_mediaList.removeAt(index);
     emit removeCurrentMedia();
     return true;
 }

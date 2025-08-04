@@ -50,7 +50,7 @@ public:
     void addMedia(const QStringList &items);
     bool insertMedia(int index, const QString &content);
     bool insertMedia(int index, const QStringList &items);
-    bool removeMedia(int pos);
+    bool removeMedia(int index);
     bool removeMedia(int start, int end);
 
 Q_SIGNALS:
