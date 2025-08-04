@@ -94,14 +94,14 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
     }
 }
 
-void MusicSongsListPlayedTableWidget::setQueueState(int row) const
+void MusicSongsListPlayedTableWidget::setQueueState(int index) const
 {
-    if(row < 0 || row >= rowCount())
+    if(index < 0 || index >= rowCount())
     {
         return;
     }
 
-    QTableWidgetItem *it = item(row, 0);
+    QTableWidgetItem *it = item(index, 0);
     if(it)
     {
         it->setIcon(QIcon(":/tiny/lb_playlater"));

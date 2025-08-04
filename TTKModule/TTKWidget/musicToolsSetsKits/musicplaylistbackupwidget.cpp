@@ -274,8 +274,8 @@ void MusicPlaylistBackupWidget::restoreButtonClicked()
         return;
     }
 
-    int index = m_listWidget->currentRow();
-    if(index < 0 || index > m_items.count())
+    const int index = m_listWidget->currentRow();
+    if(index < 0 || index >= m_items.count())
     {
         return;
     }

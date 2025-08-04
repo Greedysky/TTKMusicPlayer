@@ -362,6 +362,7 @@ void MusicScreenSaverWidget::downLoadFinished(const QString &bytes)
         {
             return;
         }
+
         m_backgroundList->addCellItem(this, bytes, index, statusVector[index]);
     }
 }

@@ -230,7 +230,7 @@ void MusicPlayedListPopWidget::insert(int playlistRow, int index, const MusicSon
 
 QString MusicPlayedListPopWidget::currentMediaPath(int index) const
 {
-    return (index < 0 || index > m_songList.count()) ? QString() : m_songList[index].path();
+    return (index < 0 || index >= m_songList.count()) ? QString() : m_songList[index].path();
 }
 
 void MusicPlayedListPopWidget::selectCurrentMedia()

@@ -162,7 +162,7 @@ public:
     /*!
      * Remove media from current medias by index pos.
      */
-    bool remove(int pos);
+    bool remove(int index);
     /*!
      * Remove media from current medias by index pos.
      */

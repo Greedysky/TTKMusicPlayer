@@ -327,12 +327,7 @@ MusicMeta *MusicSongMeta::songMeta() noexcept
         m_offset = 0;
     }
 
-    if(m_offset < 0 || m_offset >= songMetaCount())
-    {
-        return nullptr;
-    }
-
-    return m_songMetas[m_offset];
+    return (m_offset < 0 || m_offset >= songMetaCount()) ? nullptr : m_songMetas[m_offset];
 }
 
 QString MusicSongMeta::formatString(TagMeta::Type type) noexcept

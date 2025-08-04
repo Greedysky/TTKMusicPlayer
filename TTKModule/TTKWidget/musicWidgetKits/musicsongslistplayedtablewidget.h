@@ -52,7 +52,7 @@ public:
     /*!
      * Set play queue state.
      */
-    void setQueueState(int row) const;
+    void setQueueState(int index) const;
     /*!
      * Clear play queue state.
      */

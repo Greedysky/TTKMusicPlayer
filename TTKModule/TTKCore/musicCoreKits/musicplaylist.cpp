@@ -216,14 +216,14 @@ void MusicPlaylist::appendQueue(int playlistRow, const QString &content)
     m_queueList << MusicPlayItem(index + m_queueList.count(), content);
 }
 
-bool MusicPlaylist::remove(int pos)
+bool MusicPlaylist::remove(int index)
 {
-    if(pos < 0 || pos >= m_mediaList.count())
+    if(index < 0 || index >= m_mediaList.count())
     {
         return false;
     }
 
-    m_mediaList.removeAt(pos);
+    m_mediaList.removeAt(index);
     removeQueue();
     return true;
 }
