@@ -100,7 +100,7 @@ bool DecoderSID::initialize()
     rs->create(m_player->info().maxsids());
 
     SidConfig cfg = m_player->config();
-    cfg.frequency    = settings.value("sample_rate", 44100).toInt();
+    cfg.frequency    = settings.value("sample_rate", 48000).toInt();
     cfg.samplingMethod = (SidConfig::sampling_method_t)settings.value("resampling_method", SidConfig::INTERPOLATE).toInt();
     cfg.playback     = SidConfig::STEREO;
     cfg.sidEmulation = rs;
@@ -118,6 +118,10 @@ bool DecoderSID::initialize()
         qWarning("DecoderSID: unable to load tune, error: %s", m_player->error());
         return false;
     }
+
+#if (LIBSIDPLAYFP_VERSION_MAJ > 2) || ((LIBSIDPLAYFP_VERSION_MAJ == 2) && (LIBSIDPLAYFP_VERSION_MIN >= 15))
+    m_player->initMixer(true);
+#endif
 
     configure(cfg.frequency, 2, Qmmp::PCM_S16LE);
     m_length_in_bytes = audioParameters().sampleRate() * audioParameters().frameSize() * m_length;
@@ -146,6 +150,14 @@ qint64 DecoderSID::read(unsigned char *data, qint64 maxSize)
     maxSize -= maxSize % 4;
     if(maxSize <= 0)
         return 0;
-    m_read_bytes += maxSize;
-    return m_player->play((short *)data, maxSize / 2) * 2;
+
+#if (LIBSIDPLAYFP_VERSION_MAJ > 2) || ((LIBSIDPLAYFP_VERSION_MAJ == 2) && (LIBSIDPLAYFP_VERSION_MIN >= 15))
+    const int cycles = maxSize * 1000000 / m_player->config().frequency; //ms
+    const int samples = m_player->play(cycles);
+    const int decoded_bytes = m_player->mix((short *)data, samples) * 2;
+#else
+    const int decoded_bytes = m_player->play((short *)data, maxSize / 2) * 2;
+#endif
+    m_read_bytes += decoded_bytes;
+    return decoded_bytes;
 }

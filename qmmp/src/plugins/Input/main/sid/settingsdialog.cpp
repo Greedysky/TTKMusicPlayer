@@ -25,7 +25,7 @@ SettingsDialog::SettingsDialog(SidDatabase *db, QWidget *parent)
 
     m_ui.sampleRateComboBox->addItem(tr("44100 Hz"), 44100);
     m_ui.sampleRateComboBox->addItem(tr("48000 Hz"), 48000);
-    int i = m_ui.sampleRateComboBox->findData(settings.value("sample_rate", 44100).toInt());
+    int i = m_ui.sampleRateComboBox->findData(settings.value("sample_rate", 48000).toInt());
     m_ui.sampleRateComboBox->setCurrentIndex(i);
 
     m_ui.emuComboBox->addItem("ReSID", "resid");
