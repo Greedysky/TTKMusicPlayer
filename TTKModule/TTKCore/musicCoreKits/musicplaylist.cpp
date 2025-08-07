@@ -94,11 +94,11 @@ int MusicPlaylist::currentIndex() const noexcept
 
 MusicPlayItem MusicPlaylist::currentItem() const noexcept
 {
-    if(m_currentIndex == -1 || m_currentIndex >= m_mediaList.count())
+    if(m_mediaList.isEmpty() || m_currentIndex == -1 || m_currentIndex >= m_mediaList.count())
     {
         return MusicPlayItem();
     }
-    return m_mediaList.isEmpty() ? MusicPlayItem() : m_mediaList[m_currentIndex];
+    return m_mediaList[m_currentIndex];
 }
 
 QString MusicPlaylist::currentMediaPath() const

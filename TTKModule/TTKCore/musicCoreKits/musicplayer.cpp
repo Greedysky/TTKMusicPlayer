@@ -142,6 +142,7 @@ void MusicPlayer::play()
 
     m_timer.start();
     m_durationTimes = 0;
+
     generateDuration();
     Q_EMIT positionChanged(0);
 }

@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include "ttktime.h"
-#include "musicstringutils.h"
+#include "musicsonghelper.h"
 
 /*! @brief The class of the music song info.
  * @author Greedysky <greedysky@163.com>
@@ -189,39 +189,9 @@ TTK_DECLARE_LIST(MusicSongItem);
 namespace TTK
 {
     /*!
-     * Check current song playlist row is valid or not.
-     */
-    TTK_MODULE_EXPORT bool playlistRowValid(int index) noexcept;
-    /*!
-     * Remove track info in path.
-     */
-    TTK_MODULE_EXPORT QString trackRelatedPath(const QString &path);
-
-    /*!
-     * Generate song name.
-     */
-    TTK_MODULE_EXPORT QString generateSongName(const QString &title, const QString &artist) noexcept;
-    /*!
-     * Get song title name.
-     */
-    TTK_MODULE_EXPORT QString generateSongTitle(const QString &name, const QString &key = TTK_DEFAULT_STR);
-    /*!
-     * Get song artist name.
-     */
-    TTK_MODULE_EXPORT QString generateSongArtist(const QString &name, const QString &key = TTK_DEFAULT_STR);
-    /*!
      * Generate song playlist.
      */
     TTK_MODULE_EXPORT MusicSongList generateSongList(const QString &path);
-
-    /*!
-     * Generate network song play time.
-    */
-    TTK_MODULE_EXPORT QString generateNetworkSongTime(const QString &path);
-    /*!
-     * Generate network song path.
-    */
-    TTK_MODULE_EXPORT QString generateNetworkSongPath(const QString &path);
 
 }
 

@@ -31,6 +31,7 @@ HEADERS += \
     $$PWD/musicplatformmanager.h \
     $$PWD/musiccoremplayer.h \
     $$PWD/musicsong.h \
+    $$PWD/musicsonghelper.h \
     $$PWD/musicsongmeta.h \
     $$PWD/musicbackgroundmanager.h \
     $$PWD/musiccategoryconfigmanager.h  \
@@ -52,6 +53,7 @@ SOURCES += \
     $$PWD/musiccoremplayer.cpp \
     $$PWD/musicsingleton.cpp \
     $$PWD/musicsong.cpp \
+    $$PWD/musicsonghelper.cpp \
     $$PWD/musicsongmeta.cpp \
     $$PWD/musicbackgroundmanager.cpp \
     $$PWD/musiccategoryconfigmanager.cpp \

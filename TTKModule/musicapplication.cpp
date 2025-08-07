@@ -925,7 +925,7 @@ void MusicApplication::removeItemAt(const QStringList &path, bool remove, bool c
 
         if(contains)
         {
-            //The corresponding item is deleted from the Playlist
+            //The corresponding item is deleted from the playlist
             m_player->stop();
             switchToPlayState();
 

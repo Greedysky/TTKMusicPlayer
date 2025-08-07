@@ -18,13 +18,13 @@ MusicMPRISPlayer::MusicMPRISPlayer(QObject *parent)
     m_root = new MusicMPRISPlayerRoot(this);
     m_player = new MusicMPRISPlayerCore(this);
     //
-    connection.registerService("org.mpris.MediaPlayer2." TTK_APP_NAME);
+    connection.registerService(TTK_STR_CAT("org.mpris.MediaPlayer2.", TTK_APP_NAME));
     connection.registerObject("/org/mpris/MediaPlayer2", this);
 }
 
 MusicMPRISPlayer::~MusicMPRISPlayer()
 {
-    QDBusConnection::sessionBus().unregisterService("org.mpris.MediaPlayer2." TTK_APP_NAME);
+    QDBusConnection::sessionBus().unregisterService(TTK_STR_CAT("org.mpris.MediaPlayer2.", TTK_APP_NAME));
     delete m_root;
     delete m_player;
 }
