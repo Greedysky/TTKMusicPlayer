@@ -33,14 +33,26 @@ int main(int argc, char *argv[])
 {
     TTK::loadApplicationScaleFactor();
 
+#ifndef Q_OS_LINUX
     TTKApplication app(argc, argv);
+#else
+    // Fixes this: https://bugreports.qt.io/browse/QTBUG-96214
+    constexpr const char* WEB_SECURITY = "--disable-web-security";
+    constexpr const char* SECCOMP_SECURITY = "--disable-seccomp-filter-sandbox";
+    std::vector<char*> newArgv(argv, argv + argc);
+    newArgv.push_back(const_cast<char*>(WEB_SECURITY));
+    newArgv.push_back(const_cast<char*>(SECCOMP_SECURITY));
+    newArgv.push_back(nullptr);
+    int newArgc = argc + 2;
+    TTKApplication app(newArgc, newArgv.data());
+#endif
     TTKInitialization ttk(cleanupCache);
 
     // parse command line args
     QStringList args;
     for(int i = 0; i < argc; ++i)
     {
-        const QString &&arg = QString::fromLocal8Bit(argv[i]);
+        const QString &arg = QString::fromLocal8Bit(argv[i]);
         if(!arg.endsWith(TTK_APP_NAME) && !arg.endsWith(TTK_SERVICE_NAME) && !arg.endsWith(TTK_APP_RUN_NAME) && !arg.endsWith(TTK_SERVICE_RUN_NAME))
         {
             args << arg;
