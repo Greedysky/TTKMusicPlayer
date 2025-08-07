@@ -36,11 +36,6 @@ echo -n "#!/bin/bash
 sh /opt/${packname}/uninstall.sh\n" > ${datapath}/prerm
 chmod +x ${datapath}/prerm
 
-# create postrm file
-echo -n "#!/bin/bash
-rm -rf /opt/${packname}\n" > ${datapath}/postrm
-chmod +x ${datapath}/postrm
-
 # create data path
 mv ${packname} ${rootpath}
 

@@ -27,10 +27,13 @@
  */
 namespace TTK
 {
+    /*!
+     * Load application scale factor, start before qApp.
+     */
     TTK_MODULE_EXPORT void loadApplicationScaleFactor();
 }
 
-#define RegisterOrganization(ORG) \
+#define TTKRegisterOrganization(ORG) \
     QCoreApplication::setOrganizationName(ORG ## _NAME); \
     QCoreApplication::setOrganizationDomain(ORG ## _COME_NAME); \
     QCoreApplication::setApplicationName(ORG ## _NAME);

@@ -32,7 +32,7 @@ void TTK::loadApplicationScaleFactor()
 
 TTKInitialization::TTKInitialization(const TTKCleanFunctor &functor)
 {
-    RegisterOrganization(TTK_APP);
+    TTKRegisterOrganization(TTK_APP);
 
     m_dumper = new TTKDumper(functor);
     m_dumper->execute();

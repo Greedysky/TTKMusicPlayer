@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    RegisterOrganization(TTK_APP);
+    TTKRegisterOrganization(TTK_APP);
 
     ToolFM w;
     w.startToRequest();

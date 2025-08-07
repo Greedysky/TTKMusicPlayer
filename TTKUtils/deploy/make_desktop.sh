@@ -46,4 +46,5 @@ MimeType=application/x-ogg;audio/mp3;audio/mpeg;audio/flac;audio/x-flac;audio/op
 X-KDE-StartupNotify=false\n" > ${packpath}
 
 cp -rv ${packpath} ${userpath}
+rm -R ${deskpath}
 chmod +x ${userpath}

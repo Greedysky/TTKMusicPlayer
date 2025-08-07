@@ -21,4 +21,7 @@ cmake_minimum_required(VERSION 3.0.0)
 add_subdirectory(TTKInit)
 add_subdirectory(TTKApp)
 add_subdirectory(TTKConsole)
-add_subdirectory(TTKTools)
+
+if(TTK_BUILD_TOOLS)
+  add_subdirectory(TTKTools)
+endif()
