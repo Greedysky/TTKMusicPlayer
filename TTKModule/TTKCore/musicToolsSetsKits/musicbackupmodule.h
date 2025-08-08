@@ -32,7 +32,7 @@ public:
     /*!
      * Object constructor.
      */
-    explicit MusicAbstractBackup(int interval, QObject *parent = nullptr);
+    explicit MusicAbstractBackup(int msec, QObject *parent = nullptr);
 
     /*!
      * Strat backup now.

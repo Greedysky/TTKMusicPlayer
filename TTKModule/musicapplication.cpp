@@ -929,10 +929,17 @@ void MusicApplication::removeItemAt(const QStringList &path, bool remove, bool c
             m_player->stop();
             switchToPlayState();
 
-            const QString &removeParh = playlistRow == MUSIC_NETWORK_LIST ? TTK::generateNetworkSongPath(item.m_path) : item.m_path;
-            if(remove && !QFile::remove(removeParh))
+            if(remove)
             {
-                G_DISPATCH_PTR->dispatch(TTKDispatchManager::Module::FileRemove, removeParh);
+                if(playlistRow != MUSIC_NETWORK_LIST)
+                {
+                    G_DISPATCH_PTR->dispatch(TTKDispatchManager::Module::FileRemove, item.m_path);
+                }
+                else
+                {
+                    G_DISPATCH_PTR->dispatch(TTKDispatchManager::Module::FileRemove, TTK::generateNetworkSongPath(item.m_path));
+                    G_DISPATCH_PTR->dispatch(TTKDispatchManager::Module::FileRemove, TTK::generateNetworkSongMetaPath(item.m_path));
+                }
             }
         }
     }

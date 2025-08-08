@@ -14,8 +14,8 @@
 static constexpr int SS_COUNT = 10;
 static constexpr int LINE_SPACING_SIZE = 160;
 
-static constexpr const char *SS_SCREEN_DIR = "Screen";
-static constexpr const char *SS_SCREENSAVER_URL = "ScreenSaver";
+static constexpr const char *SS_SCREEN_DIR = "Screen/";
+static constexpr const char *SS_SCREENSAVER_URL = "ScreenSaver/";
 static constexpr const char *SS_WALLPAPER_NAME = "wallpaper.png";
 static constexpr const char *SS_WALLBAR_NAME = "wallbar.png";
 static constexpr const char *SS_WALLNAIL_NAME = "thumbnail.png";
@@ -390,8 +390,8 @@ void MusicScreenSaverWidget::initialize()
     MusicDownloadQueueDataList datas;
     for(int index = 0; index < SS_COUNT; ++index)
     {
-        const QString &url = QSyncUtils::makeDataBucketUrl() + QString("%1/%2/").arg(SS_SCREENSAVER_URL).arg(index);
-        const QString &prefix = QString("%1%2/%3/").arg(APPCACHE_DIR_FULL, SS_SCREEN_DIR).arg(index);
+        const QString &url = QSyncUtils::makeDataBucketUrl() + QString("%1%2/").arg(SS_SCREENSAVER_URL).arg(index);
+        const QString &prefix = QString("%1%2%3/").arg(APPCACHE_DIR_FULL, SS_SCREEN_DIR).arg(index);
         QDir().mkpath(prefix);
 
         MusicDownloadQueueData wallData;
@@ -497,7 +497,7 @@ void MusicScreenSaverBackgroundWidget::backgroundTimeout()
     if(!intVector.isEmpty())
     {
         const int index = intVector[TTK::random(intVector.count())];
-        const QString &prefix = QString("%1%2/%3/").arg(APPCACHE_DIR_FULL, SS_SCREEN_DIR).arg(index);
+        const QString &prefix = QString("%1%2%3/").arg(APPCACHE_DIR_FULL, SS_SCREEN_DIR).arg(index);
 
         QPixmap background(prefix + SS_WALLPAPER_NAME);
         const QPixmap bar(prefix + SS_WALLBAR_NAME);

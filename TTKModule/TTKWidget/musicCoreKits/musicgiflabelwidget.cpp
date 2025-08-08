@@ -64,9 +64,9 @@ MusicGifLabelWidget::Module MusicGifLabelWidget::type() const noexcept
     return m_type;
 }
 
-void MusicGifLabelWidget::setInterval(int value)
+void MusicGifLabelWidget::setInterval(int msec)
 {
-    m_timer->setInterval(value);
+    m_timer->setInterval(msec);
 }
 
 int MusicGifLabelWidget::interval() const

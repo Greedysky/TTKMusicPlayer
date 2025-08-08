@@ -19,81 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include "musicresultinfo.h"
 #include "musicpagequeryrequest.h"
-
-/*! @brief The class of the search result info item.
- * @author Greedysky <greedysky@163.com>
- */
-struct TTK_MODULE_EXPORT MusicResultInfoItem
-{
-    QString m_songName;
-    QString m_artistName;
-    QString m_albumName;
-    QString m_duration;
-    QString m_type;
-
-    MusicResultInfoItem() noexcept
-        : m_songName(TTK_DEFAULT_STR),
-          m_artistName(TTK_DEFAULT_STR),
-          m_albumName(TTK_DEFAULT_STR),
-          m_duration(TTK_DEFAULT_STR),
-          m_type(TTK_DEFAULT_STR)
-    {
-
-    }
-
-    MusicResultInfoItem(const TTK::MusicSongInformation &info) noexcept
-        : m_songName(info.m_songName),
-          m_artistName(info.m_artistName),
-          m_albumName(info.m_albumName),
-          m_duration(info.m_duration)
-    {
-
-    }
-
-    MusicResultInfoItem(const TTK::MusicSongInformation &info, const QString &type) noexcept
-        : MusicResultInfoItem(info)
-    {
-        m_type = type;
-    }
-};
-
-/*! @brief The class of the search result data item.
- * @author Greedysky <greedysky@163.com>
- */
-struct TTK_MODULE_EXPORT MusicResultDataItem
-{
-    QString m_id;
-    QString m_name;
-    QString m_title;
-    QString m_nickName;
-    QString m_coverUrl;
-    QString m_count;
-    QString m_description;
-    QString m_time;
-    QString m_category;
-
-    MusicResultDataItem() noexcept
-        : m_id(TTK_DEFAULT_STR),
-          m_name(TTK_DEFAULT_STR),
-          m_title(TTK_DEFAULT_STR),
-          m_nickName(TTK_DEFAULT_STR),
-          m_coverUrl(TTK_DEFAULT_STR),
-          m_count(TTK_DEFAULT_STR),
-          m_description(TTK_DEFAULT_STR),
-          m_time(TTK_DEFAULT_STR),
-          m_category(TTK_DEFAULT_STR)
-    {
-
-    }
-
-    inline bool isEmpty() const noexcept
-    {
-        return m_name == TTK_DEFAULT_STR || m_nickName == TTK_DEFAULT_STR || m_coverUrl == TTK_DEFAULT_STR || m_description == TTK_DEFAULT_STR || m_category == TTK_DEFAULT_STR;
-    }
-};
-TTK_DECLARE_LIST(MusicResultDataItem);
-
 
 static constexpr const char *QUERY_WY_INTERFACE = "WangYi";
 static constexpr const char *QUERY_KW_INTERFACE = "KuWo";

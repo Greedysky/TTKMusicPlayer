@@ -68,7 +68,7 @@ public:
     /*!
      * Set the gif interval.
      */
-    void setInterval(int value);
+    void setInterval(int msec);
     /*!
      * Get the gif interval.
      */

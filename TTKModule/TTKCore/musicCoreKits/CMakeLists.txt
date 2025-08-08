@@ -42,6 +42,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_KITS_HEADER_FILES
   ${TTK_CORE_DIR}/musicbackgroundconfigmanager.h
   ${TTK_CORE_DIR}/musicimagerenderer.h
   ${TTK_CORE_DIR}/musicprocessmanager.h
+  ${TTK_CORE_DIR}/musicresultinfo.h
 )
 
 set_property(GLOBAL PROPERTY TTK_CORE_KITS_SOURCE_FILES

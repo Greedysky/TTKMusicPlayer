@@ -42,7 +42,8 @@ HEADERS += \
     $$PWD/musicbackgroundconfigmanager.h \
     $$PWD/musicconfigmanager.h \
     $$PWD/musicimagerenderer.h \
-    $$PWD/musicprocessmanager.h
+    $$PWD/musicprocessmanager.h \
+    $$PWD/musicresultinfo.h
 
 SOURCES += \
     $$PWD/musicformats.cpp \

@@ -47,7 +47,7 @@ public:
     /*!
      * Set rotating widget interval.
      */
-    void setInterval(int value);
+    void setInterval(int msec);
 
 public Q_SLOTS:
     /*!

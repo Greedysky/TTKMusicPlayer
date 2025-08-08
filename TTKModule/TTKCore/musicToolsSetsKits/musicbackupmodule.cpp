@@ -4,10 +4,10 @@
 #include "musicsongscontainerwidget.h"
 #include "musicfileutils.h"
 
-MusicAbstractBackup::MusicAbstractBackup(int interval, QObject *parent)
+MusicAbstractBackup::MusicAbstractBackup(int msec, QObject *parent)
     : QObject(parent)
 {
-    m_timer.setInterval(interval);
+    m_timer.setInterval(msec);
     connect(&m_timer, SIGNAL(timeout()), SLOT(runBackup()));
 }
 

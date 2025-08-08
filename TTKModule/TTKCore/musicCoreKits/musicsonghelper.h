@@ -21,6 +21,8 @@
 
 #include "musicstringutils.h"
 
+class MusicResultDataItem;
+
 /*! @brief The namespace of the song helper.
  * @author Greedysky <greedysky@163.com>
  */
@@ -56,6 +58,14 @@ namespace TTK
      * Generate network song path.
     */
     TTK_MODULE_EXPORT QString generateNetworkSongPath(const QString &path);
+    /*!
+     * Generate network song meta path.
+    */
+    TTK_MODULE_EXPORT QString generateNetworkSongMetaPath(const QString &path);
+    /*!
+     * Generate network song meta.
+    */
+    TTK_MODULE_EXPORT void generateNetworkSongMeta(const QString &id, const MusicResultDataItem &item);
 
 }
 

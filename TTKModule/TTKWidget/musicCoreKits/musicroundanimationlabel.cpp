@@ -20,9 +20,9 @@ void MusicRoundAnimationLabel::setPixmap(const QPixmap &pix) noexcept
     m_pixmap = pix;
 }
 
-void MusicRoundAnimationLabel::setInterval(int value)
+void MusicRoundAnimationLabel::setInterval(int msec)
 {
-    m_timer.setInterval(value);
+    m_timer.setInterval(msec);
 }
 
 void MusicRoundAnimationLabel::start()

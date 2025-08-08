@@ -198,19 +198,13 @@ void MusicSongsContainerWidget::importSongsByUrl(const QString &path, int playli
     {
         closeSearchWidgetInNeed();
 
-        MusicSongItem *item = &m_containerItems[MUSIC_NETWORK_LIST];
-        const QString &prefix = TTK::String::splitToken(path, TTK_SEPARATOR, "?");
-        const QByteArray &md5 = TTK::Algorithm::md5(path.toUtf8());
-        const MusicSong song(path + "#" + md5 + "." + TTK::String::splitToken(path), TTK_DEFAULT_STR, TTK::String::pefix(prefix));
-
-        if(item->m_songs.contains(song))
-        {
-            return;
-        }
-
-        item->m_songs << song;
-        item->m_itemWidget->updateSongsList(item->m_songs);
-        setItemTitle(item);
+        MusicResultDataItem item;
+        item.m_id = path;
+        item.m_nickName = path;
+        item.m_description = TTK::String::splitToken(path);
+        item.m_name = TTK::String::splitToken(path, "?", TTK_SEPARATOR, false);
+        item.m_title = MUSIC_PLAY_LATER;
+        addSongBufferToPlaylist(item);
     }
     else
     {
@@ -811,6 +805,9 @@ void MusicSongsContainerWidget::addSongBufferToPlaylist(const MusicResultDataIte
         it->m_itemWidget->updateSongsList(it->m_songs);
         setItemTitle(it);
         index = it->m_songs.count() - 1;
+
+        // write song meta info to file
+        TTK::generateNetworkSongMeta(md5, item);
     }
 
     if(item.m_title == MUSIC_PLAY_NOW)
@@ -877,7 +874,15 @@ void MusicSongsContainerWidget::removeItemAt(const TTKIntList &index, bool fileR
 
         if(fileRemove)
         {
-            QFile::remove(currentIndex == MUSIC_NETWORK_LIST ? TTK::generateNetworkSongPath(song.path()) : song.path());
+            if(currentIndex != MUSIC_NETWORK_LIST)
+            {
+                QFile::remove(song.path());
+            }
+            else
+            {
+                QFile::remove(TTK::generateNetworkSongPath(song.path()));
+                QFile::remove(TTK::generateNetworkSongMetaPath(song.path()));
+            }
         }
     }
 
