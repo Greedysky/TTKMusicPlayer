@@ -7,7 +7,7 @@ TTKDispatchManager::TTKDispatchManager()
     : QObject(nullptr)
 {
     m_timer = new QTimer(this);
-    m_timer->setInterval(5 * TTK_DN_S2MS);
+    m_timer->setInterval(2 * TTK_DN_S2MS);
 
     connect(m_timer, SIGNAL(timeout()), SLOT(activeFunctions()));
     m_timer->start();
@@ -18,6 +18,11 @@ TTKDispatchManager::~TTKDispatchManager()
     m_timer->stop();
     delete m_timer;
     qDeleteAll(m_observer);
+}
+
+void TTKDispatchManager::setInterval(int msec)
+{
+    m_timer->setInterval(msec);
 }
 
 void TTKDispatchManager::dispatch(Module type)
@@ -92,7 +97,8 @@ void TTKDispatchManager::activeFunctions()
         {
             if(!item->m_args.isEmpty())
             {
-                state = QFile::remove(item->m_args.front().toString());
+                const QString &path = item->m_args.front().toString();
+                state = path.isEmpty() ? false : QFile::remove(path);
             }
             break;
         }
@@ -109,6 +115,10 @@ void TTKDispatchManager::activeFunctions()
         if(item->isValid())
         {
             m_observer << item;
+        }
+        else
+        {
+            delete item;
         }
     }
     m_mutex.unlock();

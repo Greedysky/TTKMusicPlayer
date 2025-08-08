@@ -40,6 +40,12 @@ public:
     };
 
     /*!
+     * Set the function interval.
+     */
+    void setInterval(int msec);
+
+public:
+    /*!
      * Set dispatch.
      */
     void dispatch(Module type);
