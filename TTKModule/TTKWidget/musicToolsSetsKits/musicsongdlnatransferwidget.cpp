@@ -183,15 +183,20 @@ void MusicSongDlnaTransferWidget::playSongAction()
             m_state = TTK::PlayState::Playing;
             m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
 
-            QDlna::PositionInfo info;
-            if(client->positionInfo(info))
             {
-                TTK_INFO_STREAM(info.position << " " << info.duration);
+                QDlna::PositionInfo info;
+                if(client->positionInfo(info))
+                {
+                    TTK_INFO_STREAM(info.position << " " << info.duration);
+                }
             }
 
-            if(client->mediaInfo())
             {
-
+                QDlna::MediaInfo info;
+                if(client->mediaInfo(info))
+                {
+                    TTK_INFO_STREAM(info.duration << " " << info.nextURI << " " << info.medium);
+                }
             }
         }
         else
@@ -228,11 +233,8 @@ void MusicSongDlnaTransferWidget::timeout()
     QDlna::TransportInfo info;
     if(client->transportInfo(info))
     {
-        TTK_ERROR_STREAM(tr("Do DLNA operation failed"));
-        return;
+        TTK_INFO_STREAM(info.state << " " << info.status << " " << info.speed);
     }
-
-    TTK_INFO_STREAM(info.state << " " << info.status << " " << info.speed);
 }
 
 QDlnaClient *MusicSongDlnaTransferWidget::getClient() const

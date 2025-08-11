@@ -26,6 +26,7 @@ class QDlnaClientPrivate;
 namespace QDlna {
 struct PositionInfo;
 struct TransportInfo;
+struct MediaInfo;
 }
 
 /*! @brief The class of the dlna client.
@@ -45,10 +46,11 @@ public:
 public:
     bool openUri(const QString &url, const QString &name, int instance = 0) const;
     bool openUris(const QString &url, const QString &name, int instance = 0) const;
+    bool nextUri(const QString &url, const QString &name, int instance = 0) const;
 
     bool positionInfo(QDlna::PositionInfo &info, int instance = 0) const;
     bool transportInfo(QDlna::TransportInfo &info, int instance = 0) const;
-    bool mediaInfo(int instance = 0) const;
+    bool mediaInfo(QDlna::MediaInfo &info, int instance = 0) const;
 
     bool play(int instance = 0) const;
     bool pause(int instance = 0) const;
@@ -56,6 +58,7 @@ public:
     bool remove(int instance = 0) const;
     bool previous(int instance = 0) const;
     bool next(int instance = 0) const;
+    bool setPlayMode(const QString &mode, int instance) const;
 
 private:
     TTK_DECLARE_PRIVATE(QDlnaClient)

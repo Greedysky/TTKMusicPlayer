@@ -216,8 +216,117 @@ bool QDlnaClient::openUris(const QString &url, const QString &name, int instance
     body += XML_FOOT + "\n";
 
     const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#AddURIToQueue", d->m_address,d->m_port) + body;
-      TTK_INFO_STREAM(QDlna::makeSocketGetReply(d->m_address, d->m_port, request));
     return QDlna::isValid(QDlna::makeSocketGetReply(d->m_address, d->m_port, request));
+}
+
+bool QDlnaClient::nextUri(const QString &url, const QString &name, int instance) const
+{
+    TTK_D(const QDlnaClient);
+    //Later we will send a message to the DLNA server to next start the file playing
+    const QFileInfo fin(url + name);
+    QString play_url = url + QUrl::toPercentEncoding(name);
+    QString body = XML_HEAD;
+
+    body += "<u:SetNextAVTransportURI xmlns:u=\""+ AVTSCHEMA + "\">\n";
+    body += "<InstanceID>" + QString::number(instance) + "</InstanceID>\n";
+    body += "<NextURI>" + play_url + "</NextURI>\n";
+    body += "<NextURIMetaData>" + META_DATA.arg(fin.baseName(), fin.owner(), "audio", "audio/mp3", play_url) + "</NextURIMetaData>\n";
+    body += "</u:SetNextAVTransportURI>\n";
+    body += XML_FOOT + "\n";
+
+    const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#SetNextAVTransportURI", d->m_address,d->m_port) + body;
+    return QDlna::isValid(QDlna::makeSocketGetReply(d->m_address, d->m_port, request));
+}
+
+static qint64 valueToSecond(const QString &value)
+{
+    return QDateTime::fromString(value, TTK_TIMES_FORMAT).toMSecsSinceEpoch() / 1000;
+}
+
+bool QDlnaClient::positionInfo(QDlna::PositionInfo &info, int instance) const
+{
+    TTK_D(const QDlnaClient);
+    //Returns the current position info
+    QString body = XML_HEAD;
+    body += "<u:GetPositionInfo xmlns:u=\""+ AVTSCHEMA + "\">\n";
+    body += "<InstanceID>" + QString::number(instance) + "</InstanceID>\n";
+    body += "</u:GetPositionInfo>\n";
+    body += XML_FOOT + "\n";
+
+    const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#GetPositionInfo", d->m_address, d->m_port) + body;
+    const QString &response =  QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
+    if(!QDlna::isValid(response))
+    {
+        return false;
+    }
+
+    QDlnaXml xml;
+    if(!xml.fromString(QDlna::removeHttpHeader(response)))
+    {
+        return false;
+    }
+
+    info.position = valueToSecond(xml.readTagNameValue("Relime"));
+    info.duration = valueToSecond(xml.readTagNameValue("TrackDuration"));
+    return true;
+}
+
+bool QDlnaClient::transportInfo(QDlna::TransportInfo &info, int instance) const
+{
+    TTK_D(const QDlnaClient);
+    //Returns the current transport info
+    QString body = XML_HEAD;
+    body += "<u:GetTransportInfo xmlns:u=\""+ AVTSCHEMA + "\">\n";
+    body += "<InstanceID>" + QString::number(instance) + "</InstanceID>\n";
+    body += "</u:GetTransportInfo>\n";
+    body += XML_FOOT + "\n";
+
+    const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#GetTransportInfo", d->m_address, d->m_port) + body;
+    const QString &response =  QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
+    if(!QDlna::isValid(response))
+    {
+        return false;
+    }
+
+    QDlnaXml xml;
+    if(!xml.fromString(QDlna::removeHttpHeader(response)))
+    {
+        return false;
+    }
+
+    info.state = xml.readTagNameValue("CurrentTransportState");
+    info.status = xml.readTagNameValue("CurrentTransportStatus");
+    info.speed = xml.readTagNameValue("CurrentSpeed").toInt();
+    return true;
+}
+
+bool QDlnaClient::mediaInfo(QDlna::MediaInfo &info, int instance) const
+{
+    TTK_D(const QDlnaClient);
+    //Returns the current media info
+    QString body = XML_HEAD;
+    body += "<u:GetMediaInfo xmlns:u=\""+ AVTSCHEMA + "\">\n";
+    body += "<InstanceID>" + QString::number(instance) + "</InstanceID>\n";
+    body += "</u:GetMediaInfo>\n";
+    body += XML_FOOT + "\n";
+
+    const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#GetMediaInfo", d->m_address, d->m_port) + body;
+    const QString &response =  QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
+    if(!QDlna::isValid(response))
+    {
+        return false;
+    }
+
+    QDlnaXml xml;
+    if(!xml.fromString(QDlna::removeHttpHeader(response)))
+    {
+        return false;
+    }
+
+    info.duration = xml.readTagNameValue("MediaDuration");
+    info.nextURI = xml.readTagNameValue("NextURI");
+    info.medium = xml.readTagNameValue("PlayMedium");
+    return true;
 }
 
 bool QDlnaClient::play(int instance) const
@@ -305,91 +414,18 @@ bool QDlnaClient::next(int instance) const
     return QDlna::isValid(QDlna::makeSocketGetReply(d->m_address, d->m_port, request));
 }
 
-static qint64 valueToSecond(const QString &value)
-{
-    return QDateTime::fromString(value, TTK_TIMES_FORMAT).toMSecsSinceEpoch() / 1000;
-}
-
-bool QDlnaClient::positionInfo(QDlna::PositionInfo &info, int instance) const
+bool QDlnaClient::setPlayMode(const QString &mode, int instance) const
 {
     TTK_D(const QDlnaClient);
-    //Returns the current position info
+    //Called to set play mode
+    // allowed NewPlayMode = "NORMAL", "REPEAT_ONE", "REPEAT_ALL", "RANDOM"
     QString body = XML_HEAD;
-    body += "<u:GetPositionInfo xmlns:u=\""+ AVTSCHEMA + "\">\n";
+    body += "<u:SetPlayMode xmlns:u=\""+ AVTSCHEMA + "\">\n";
     body += "<InstanceID>" + QString::number(instance) + "</InstanceID>\n";
-    body += "</u:GetPositionInfo>\n";
+    body += "<NewPlayMode>" + mode + "</NewPlayMode>\n";
+    body += "</u:SetPlayMode>\n";
     body += XML_FOOT + "\n";
 
-    const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#GetPositionInfo", d->m_address, d->m_port) + body;
-    const QString &response =  QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
-    if(!QDlna::isValid(response))
-    {
-        return false;
-    }
-
-    QDlnaXml xml;
-    if(!xml.fromString(QDlna::removeHttpHeader(response)))
-    {
-        return false;
-    }
-
-    info.position = valueToSecond(xml.readTagNameValue("Relime"));
-    info.duration = valueToSecond(xml.readTagNameValue("TrackDuration"));
-    return true;
-}
-
-bool QDlnaClient::transportInfo(QDlna::TransportInfo &info, int instance) const
-{
-    TTK_D(const QDlnaClient);
-    //Returns the current transport info
-    QString body = XML_HEAD;
-    body += "<u:GetTransportInfo xmlns:u=\""+ AVTSCHEMA + "\">\n";
-    body += "<InstanceID>" + QString::number(instance) + "</InstanceID>\n";
-    body += "</u:GetTransportInfo>\n";
-    body += XML_FOOT + "\n";
-
-    const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#GetTransportInfo", d->m_address, d->m_port) + body;
-    const QString &response =  QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
-    if(!QDlna::isValid(response))
-    {
-        return false;
-    }
-
-    QDlnaXml xml;
-    if(!xml.fromString(QDlna::removeHttpHeader(response)))
-    {
-        return false;
-    }
-
-    info.state = valueToSecond(xml.readTagNameValue("CurrentTransportState"));
-    info.status = valueToSecond(xml.readTagNameValue("CurrentTransportStatus"));
-    info.speed = valueToSecond(xml.readTagNameValue("CurrentSpeed"));
-    return true;
-}
-
-bool QDlnaClient::mediaInfo(int instance) const
-{
-    TTK_D(const QDlnaClient);
-    //Returns the current transport info
-    QString body = XML_HEAD;
-    body += "<u:GetMediaInfo xmlns:u=\""+ AVTSCHEMA + "\">\n";
-    body += "<InstanceID>" + QString::number(instance) + "</InstanceID>\n";
-    body += "</u:GetMediaInfo>\n";
-    body += XML_FOOT + "\n";
-
-    const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#GetMediaInfo", d->m_address, d->m_port) + body;
-    const QString &response =  QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
-    if(!QDlna::isValid(response))
-    {
-        return false;
-    }
-
-    TTK_INFO_STREAM(response);
-
-    QDlnaXml xml;
-    if(!xml.fromString(QDlna::removeHttpHeader(response)))
-    {
-        return false;
-    }
-    return true;
+    const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#SetPlayMode", d->m_address,d->m_port) + body;
+    return QDlna::isValid(QDlna::makeSocketGetReply(d->m_address, d->m_port, request));
 }

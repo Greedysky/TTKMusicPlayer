@@ -39,6 +39,13 @@ namespace QDlna
         int speed = 1;
     };
 
+    struct MediaInfo
+    {
+        QString duration;
+        QString nextURI;
+        QString medium;
+    };
+
     /*!
      * Make socket get reply.
      */
