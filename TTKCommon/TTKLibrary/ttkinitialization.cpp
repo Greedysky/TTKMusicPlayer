@@ -30,6 +30,12 @@ void TTK::loadApplicationScaleFactor()
 }
 
 
+TTKInitialization::TTKInitialization()
+    : TTKInitialization(nullptr)
+{
+
+}
+
 TTKInitialization::TTKInitialization(const TTKCleanFunctor &functor)
 {
     TTKRegisterOrganization(TTK_APP);

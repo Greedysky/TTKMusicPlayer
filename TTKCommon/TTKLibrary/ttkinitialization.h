@@ -47,7 +47,8 @@ typedef void (*TTKCleanFunctor)(void);
 class TTK_MODULE_EXPORT TTKInitialization
 {
 public:
-    TTKInitialization(const TTKCleanFunctor &functor = nullptr);
+    TTKInitialization();
+    TTKInitialization(const TTKCleanFunctor &functor);
     ~TTKInitialization();
 
     /*!
