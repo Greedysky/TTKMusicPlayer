@@ -28,10 +28,6 @@
 namespace TTK
 {
     /*!
-     * Set application font.
-     */
-    TTK_MODULE_EXPORT void setApplicationFont();
-    /*!
      * Set widget border shadow.
      */
     TTK_MODULE_EXPORT void setBorderShadow(QWidget *widget, QPainter *painter);

@@ -1,29 +1,9 @@
 #include "ttkglobalinterface.h"
 
 #include <QWidget>
-#include <QApplication>
-#include <QFontDatabase>
 
 static constexpr int WIDTH = 4;
 static constexpr int HEIGHT = 4;
-
-void TTK::setApplicationFont()
-{
-    QFont font = QApplication::font();
-    for(const QString &family : QFontDatabase().families())
-    {
-        if(family == "微软雅黑" ||
-           family == QString::fromUtf8("微软雅黑") ||
-           family == QString::fromLocal8Bit("微软雅黑") ||
-           family == "Microsoft YaHei")
-        {
-            font.setFamily(family);
-            QApplication::setFont(font);
-            TTK_INFO_STREAM("TTK application use 'Microsoft YaHei' font");
-            break;
-        }
-    }
-}
 
 void TTK::setBorderShadow(QWidget *widget, QPainter *painter)
 {

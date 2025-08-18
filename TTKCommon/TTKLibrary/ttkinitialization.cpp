@@ -61,7 +61,7 @@ void TTKInitialization::generateFont()
         {
             font.setFamily(family);
             QApplication::setFont(font);
-            TTK_INFO_STREAM("TTK application use 'Microsoft YaHei' font");
+            TTK_INFO_STREAM("TTK application uses 'Microsoft YaHei' font");
             break;
         }
     }
