@@ -3,9 +3,9 @@
 #include "tagextractor.h"
 #include "settingsdialog.h"
 #include "decoder_mpg123.h"
+#include <qmmp/qmmptextcodec.h>
 
 #include <QSettings>
-#include <QTextCodec>
 #include <taglib/apetag.h>
 #include <taglib/textidentificationframe.h>
 
@@ -120,7 +120,6 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
 
         for(int i = 0; i < 3; ++i)
         {
-            QTextCodec *codec = nullptr;
             TagLib::Tag *tag = nullptr;
             QByteArray codecName;
 
@@ -142,23 +141,20 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
                 break;
             }
 
-            if(codecName.contains("UTF"))
-                codec = QTextCodec::codecForName("UTF-8");
-            else if(!codecName.isEmpty())
-                codec = QTextCodec::codecForName(codecName);
+            if(codecName.contains("UTF") || codecName.isEmpty())
+                codecName = "UTF-8";
 
-            if(!codec)
-                codec = QTextCodec::codecForName("UTF-8");
-
-            if(tag && codec && !tag->isEmpty())
+            if(tag && !tag->isEmpty())
             {
                 if((tag == fileRef.ID3v1Tag() || tag == fileRef.ID3v2Tag()) && settings.value("detect_encoding", false).toBool())
                 {
-                    QTextCodec *detectedCodec = TagExtractor::detectCharset(tag);
-                    codec = detectedCodec ? detectedCodec : codec;
+                    QByteArray detectedCharset = TagExtractor::detectCharset(tag);
+                    if(!detectedCharset.isEmpty())
+                        codecName = detectedCharset;
                 }
 
-                bool utf = codec->name().contains("UTF");
+                QmmpTextCodec *codec = new QmmpTextCodec(codecName);
+                const bool utf = codec->name().contains("UTF");
 
                 QMap<Qmmp::MetaData, QString> tags;
                 tags.insert(Qmmp::ARTIST, CSTR_TO_QSTR(codec, tag->artist(), utf));
@@ -196,6 +192,7 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
                         tags.insert(Qmmp::COMPOSER, CSTR_TO_QSTR(codec, fld.toString(), true));
                 }
 
+                delete codec;
                 metaData << tags;
 
                 if(!merge)

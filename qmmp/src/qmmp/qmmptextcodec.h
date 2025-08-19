@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2025 by Ilya Kotov                                 *
+ *   Copyright (C) 2021-2025 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,34 +18,60 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+#ifndef QMMPTEXTCODEC_H
+#define QMMPTEXTCODEC_H
 
-#include "ui_settingsdialog.h"
+#include <QByteArray>
+#include <QStringList>
+#include "qmmp_export.h"
 
-/**
-    @author Ilya Kotov <forkotov02@ya.ru>
-*/
-class SettingsDialog : public QDialog
+class QmmpTextCodecPrivate;
+
+/*! @brief The QmmpTextCodec class provides text encoding conversion.
+ * @author Ilya Kotov <forkotov02@ya.ru>
+ */
+class QMMP_EXPORT QmmpTextCodec
 {
-    Q_OBJECT
 public:
-    explicit SettingsDialog(QWidget *parent = nullptr);
+    /*!
+     * Constructor.
+     * @param charset Conversion charset.
+     */
+    QmmpTextCodec(const QByteArray &charset);
+    /*!
+     * Destructor.
+     */
+    ~QmmpTextCodec();
 
-    enum TagType
-    {
-        ID3v1 = 0,
-        ID3v2,
-        APE,
-        Disabled
-    };
+    /*!
+     * This function returns coversion charset.
+     */
+    QByteArray name() const;
+    /*!
+     * This function converts text encoding from coversion charset to unicode.
+     * @param a Text array.
+     */
+    QString toUnicode(const QByteArray &a) const;
+    /*!
+     * This function converts text encoding from coversion charset to unicode.
+     * @param chars Text array.
+     */
+    QString toUnicode(const char *chars) const;
+    /*!
+     * This function converts text encoding from unicode to conversion charset.
+     * @param str Input string.
+     */
+    QByteArray fromUnicode(const QString &str) const;
 
-public slots:
-    virtual void accept() override final;
+    /*!
+     * This function returns a list of the supported charsets.
+     */
+    static QStringList availableCharsets();
 
 private:
-    Ui::SettingsDialog m_ui;
+    QmmpTextCodecPrivate *d_ptr;
+    Q_DECLARE_PRIVATE(QmmpTextCodec)
 
 };
 
-#endif
+#endif // QMMPTEXTCODEC_H

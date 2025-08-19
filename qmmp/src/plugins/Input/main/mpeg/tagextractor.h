@@ -42,7 +42,7 @@ public:
 
     const QMap<Qmmp::MetaData, QString> id3v2tag() const;
 
-    static QTextCodec *detectCharset(const TagLib::Tag *tag);
+    static QByteArray detectCharset(const TagLib::Tag *tag);
 
 private:
     QIODevice *m_input;

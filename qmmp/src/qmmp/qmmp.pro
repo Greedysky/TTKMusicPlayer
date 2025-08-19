@@ -48,6 +48,7 @@ HEADERS += \
     qmmp_export.h \
     trackinfo.h \
     cueparser.h \
+    qmmptextcodec.h \
     regularexpression.h \
     format.h
 
@@ -89,6 +90,7 @@ SOURCES += recycler.cpp \
     florid.cpp \
     trackinfo.cpp \
     cueparser.cpp \
+    qmmptextcodec.cpp \
     regularexpression.cpp \
     format.cpp
 

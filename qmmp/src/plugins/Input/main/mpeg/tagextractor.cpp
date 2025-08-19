@@ -1,10 +1,10 @@
 #include "tagextractor.h"
 #include "checker.h"
+#include <qmmp/qmmptextcodec.h>
 
 #include <QSet>
 #include <QBuffer>
 #include <QSettings>
-#include <QTextCodec>
 
 TagExtractor::TagExtractor(QIODevice *input)
     : m_input(input)
@@ -27,23 +27,20 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag() const
     settings.beginGroup("MPEG");
     QByteArray codecName = settings.value("ID3v2_encoding", "UTF-8").toByteArray();
 
-    QTextCodec *codec = nullptr;
-    if(codecName.contains("UTF"))
-        codec = QTextCodec::codecForName("UTF-8");
-    else if(!codecName.isEmpty())
-        codec = QTextCodec::codecForName(codecName);
-
-    if(!codec)
-        codec = QTextCodec::codecForName("UTF-8");
+    if(codecName.contains("UTF") || codecName.isEmpty())
+        codecName = "UTF-8";
 
     if(settings.value("detect_encoding", false).toBool())
     {
-        QTextCodec *detectedCodec = detectCharset(&tag);
-        codec = detectedCodec ? detectedCodec : codec;
+        QByteArray detectedCharset = TagExtractor::detectCharset(&tag);
+        if(!detectedCharset.isEmpty())
+            codecName = detectedCharset;
     }
     settings.endGroup();
 
-    bool utf = codec->name().contains("UTF");
+    QmmpTextCodec *codec = new QmmpTextCodec(codecName);
+    const bool utf = codec->name().contains("UTF");
+
     QMap<Qmmp::MetaData, QString> tags;
     tags.insert(Qmmp::ARTIST, CSTR_TO_QSTR(codec, tag.artist(), utf));
     tags.insert(Qmmp::ALBUM, CSTR_TO_QSTR(codec, tag.album(), utf));
@@ -63,10 +60,12 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag() const
         TagLib::String disc = tag.frameListMap()["TPOS"].front()->toString();
         tags.insert(Qmmp::DISCNUMBER, QString(disc.toCString()).trimmed());
     }
+
+    delete codec;
     return tags;
 }
 
-QTextCodec *TagExtractor::detectCharset(const TagLib::Tag *tag)
+QByteArray TagExtractor::detectCharset(const TagLib::Tag *tag)
 {
     if(tag->title().isLatin1() && tag->album().isLatin1() && tag->artist().isLatin1())
     {
@@ -77,11 +76,11 @@ QTextCodec *TagExtractor::detectCharset(const TagLib::Tag *tag)
         charsets << checker.detect(tag->artist().toCString());
 
         if(charsets.contains("GBK"))
-            return QTextCodec::codecForName("GBK");
+            return "GBK";
         else if(charsets.contains("GB18030"))
-            return QTextCodec::codecForName("GB18030");
+            return "GB18030";
     }
-    return QTextCodec::codecForName("UTF-8");
+    return "UTF-8";
 }
 
 

@@ -25,7 +25,7 @@
 #include <taglib/tfilestream.h>
 #include <qmmp/metadatamodel.h>
 
-class QTextCodec;
+class QmmpTextCodec;
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
@@ -71,7 +71,7 @@ public:
     QString lyrics() const;
 
 private:
-    QTextCodec *m_codec;
+    QmmpTextCodec *m_codec;
     TagLib::MPEG::File *m_file;
     TagLib::Tag *m_tag;
     TagLib::MPEG::File::TagTypes m_type;

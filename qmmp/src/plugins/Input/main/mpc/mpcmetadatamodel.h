@@ -25,7 +25,7 @@
 #include <taglib/tfilestream.h>
 #include <qmmp/metadatamodel.h>
 
-class QTextCodec;
+class QmmpTextCodec;
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
@@ -63,7 +63,7 @@ public:
     virtual void save() override final;
 
 private:
-    QTextCodec *m_codec;
+    QmmpTextCodec *m_codec;
     TagLib::MPC::File *m_file;
     TagLib::Tag *m_tag;
     TagLib::MPC::File::TagTypes m_type;

@@ -1,6 +1,6 @@
 #include "mpcmetadatamodel.h"
+#include <qmmp/qmmptextcodec.h>
 
-#include <QTextCodec>
 #include <taglib/apetag.h>
 #include <taglib/id3v1tag.h>
 
@@ -34,12 +34,12 @@ MPCFileTagModel::MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::Tag
     if(m_type == TagLib::MPC::File::ID3v1)
     {
         m_tag = m_file->ID3v1Tag();
-        m_codec = QTextCodec::codecForName("GB18030");
+        m_codec = new QmmpTextCodec("GB18030");
     }
     else
     {
         m_tag = m_file->APETag();
-        m_codec = QTextCodec::codecForName("UTF-8");
+        m_codec = new QmmpTextCodec("UTF-8");
     }
 }
 
@@ -66,7 +66,7 @@ QString MPCFileTagModel::value(Qmmp::MetaData key) const
 {
     if(m_tag)
     {
-        bool utf = m_codec->name().contains("UTF");
+        const bool utf = m_codec->name().contains("UTF");
         TagLib::String str;
         switch((int) key)
         {

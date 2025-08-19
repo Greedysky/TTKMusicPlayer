@@ -1,8 +1,8 @@
 #include "settingsdialog.h"
 
 #include <QSettings>
-#include <QTextCodec>
 #include <qmmp/qmmp.h>
+#include <qmmp/qmmptextcodec.h>
 #include <qmmp/regularexpression.h>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
@@ -17,12 +17,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
-    findCodecs();
-    for(const QTextCodec *codec : qAsConst(m_codecs))
-    {
-        m_ui.id3v1EncComboBox->addItem(codec->name());
-        m_ui.id3v2EncComboBox->addItem(codec->name());
-    }
+    m_ui.id3v1EncComboBox->addItems(QmmpTextCodec::availableCharsets());
+    m_ui.id3v2EncComboBox->addItems(QmmpTextCodec::availableCharsets());
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("MPEG");
@@ -54,43 +50,4 @@ void SettingsDialog::accept()
     settings.setValue("detect_encoding", m_ui.detectEncodingCheckBox->isChecked());
     settings.endGroup();
     QDialog::accept();
-}
-
-void SettingsDialog::findCodecs()
-{
-    QMap<QString, QTextCodec *> codecMap;
-    RegularExpression iso8859RegExp("ISO[- ]8859-([0-9]+).*");
-
-    for(const int mib : QTextCodec::availableMibs())
-    {
-        QTextCodec *codec = QTextCodec::codecForMib(mib);
-
-        QString sortKey = codec->name().toUpper();
-        int rank;
-
-        if(sortKey.startsWith("UTF-8"))
-        {
-            rank = 1;
-        }
-        else if(sortKey.startsWith("UTF-16"))
-        {
-            rank = 2;
-        }
-        else if(iso8859RegExp.hasMatch(sortKey))
-        {
-            if(iso8859RegExp.value(1).length() == 1)
-                rank = 3;
-            else
-                rank = 4;
-        }
-        else
-        {
-            rank = 5;
-        }
-
-        sortKey.prepend(QChar('0' + rank));
-        codecMap.insert(sortKey, codec);
-    }
-
-    m_codecs = codecMap.values();
 }

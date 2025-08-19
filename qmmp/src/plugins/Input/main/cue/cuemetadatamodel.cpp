@@ -4,6 +4,7 @@
 #  include <enca.h>
 #endif
 #include <QSettings>
+#include <qmmp/qmmptextcodec.h>
 #include <qmmp/metadatamanager.h>
 
 CUEMetaDataModel::CUEMetaDataModel(bool readOnly, const QString &path)
@@ -19,6 +20,15 @@ CUEMetaDataModel::CUEMetaDataModel(bool readOnly, const QString &path)
     const int track = path.section("#", -1).toInt();
     m_dataFilePath = file.dataFilePath(track);
     m_cueFilePath = file.cueFilePath();
+}
+
+CUEMetaDataModel::~CUEMetaDataModel()
+{
+    if(m_codec)
+    {
+        delete m_codec;
+        m_codec = nullptr;
+    }
 }
 
 QList<MetaDataItem> CUEMetaDataModel::extraProperties() const
@@ -58,7 +68,7 @@ QString CUEMetaDataModel::cue() const
     EncaAnalyser analyser = nullptr;
     if(settings.value("use_enca", false).toBool())
     {
-        analyser = enca_analyser_alloc(settings.value("enca_lang").toByteArray ().constData());
+        analyser = enca_analyser_alloc(settings.value("enca_lang").toByteArray().constData());
 
         if(analyser)
         {
@@ -66,14 +76,14 @@ QString CUEMetaDataModel::cue() const
             EncaEncoding encoding = enca_analyse(analyser, (uchar *)buffer.constData(), buffer.length());
             if(encoding.charset != ENCA_CS_UNKNOWN)
             {
-                m_codec = QTextCodec::codecForName(enca_charset_name(encoding.charset,ENCA_NAME_STYLE_ENCA));
+                m_codec = new QmmpTextCodec(enca_charset_name(encoding.charset,ENCA_NAME_STYLE_ENCA));
             }
             enca_analyser_free(analyser);
         }
     }
 #endif
     if(!m_codec)
-        m_codec = QTextCodec::codecForName(settings.value("encoding", "UTF-8").toByteArray());
+        m_codec = new QmmpTextCodec(settings.value("encoding", "UTF-8").toByteArray());
     settings.endGroup();
 
     return m_codec->toUnicode(buffer);
@@ -84,7 +94,7 @@ void CUEMetaDataModel::setCue(const QString &content)
     if(!m_codec)
     {
         const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-        m_codec = QTextCodec::codecForName(settings.value("CUE/encoding", "UTF-8").toByteArray());
+        m_codec = new QmmpTextCodec(settings.value("CUE/encoding", "UTF-8").toByteArray());
     }
 
     QFile file(m_cueFilePath);

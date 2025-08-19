@@ -44,12 +44,9 @@ QString RegularExpression::escape(const QString &str)
 
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
 RegularExpression::operator QRegularExpression () const
-{
-    return m_regular;
-}
 #else
 RegularExpression::operator QRegExp () const
+#endif
 {
     return m_regular;
 }
-#endif

@@ -24,6 +24,7 @@
 #include <qmmp/metadatamodel.h>
 
 class CueFile;
+class QmmpTextCodec;
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
@@ -32,6 +33,7 @@ class CUEMetaDataModel : public MetaDataModel
 {
 public:
     explicit CUEMetaDataModel(bool readOnly, const QString &path);
+    ~CUEMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override final;
     virtual QString coverPath() const override final;
@@ -41,7 +43,7 @@ public:
 
 private:
     QString m_dataFilePath, m_cueFilePath;
-    mutable QTextCodec *m_codec = nullptr;
+    mutable QmmpTextCodec *m_codec = nullptr;
 
 };
 

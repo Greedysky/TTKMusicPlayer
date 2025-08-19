@@ -1,9 +1,9 @@
 #include "mpegmetadatamodel.h"
 #include "tagextractor.h"
+#include <qmmp/qmmptextcodec.h>
 
 #include <QBuffer>
 #include <QSettings>
-#include <QTextCodec>
 #include <taglib/apetag.h>
 #include <taglib/id3v1tag.h>
 #include <taglib/id3v2tag.h>
@@ -166,35 +166,37 @@ MpegFileTagModel::MpegFileTagModel(TagLib::MPEG::File *file, TagLib::MPEG::File:
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("MPEG");
+
+    QByteArray codecName;
     if(m_type == TagLib::MPEG::File::ID3v1)
     {
         m_tag = m_file->ID3v1Tag();
-        m_codec = QTextCodec::codecForName(settings.value("ID3v1_encoding", "GB18030").toByteArray());
-        if(!m_codec)
-            m_codec = QTextCodec::codecForName("GB18030");
+        if((codecName = settings.value("ID3v1_encoding", "GB18030").toByteArray()).isEmpty())
+            codecName = "GB18030";
     }
     else if(m_type == TagLib::MPEG::File::ID3v2)
     {
         m_tag = m_file->ID3v2Tag();
-        m_codec = QTextCodec::codecForName(settings.value("ID3v2_encoding", "UTF-8").toByteArray());
-        if(!m_codec)
-            m_codec = QTextCodec::codecForName("UTF-8");
+        if((codecName = settings.value("ID3v2_encoding", "UTF-8").toByteArray()).isEmpty())
+            codecName = "UTF-8";
     }
     else
     {
         m_tag = m_file->APETag();
-        m_codec = QTextCodec::codecForName("UTF-8");
+        codecName = "UTF-8";
     }
 
-    if(!m_codec || m_codec->name().startsWith("UTF"))
-        m_codec = QTextCodec::codecForName("UTF-8");
+    if(codecName.contains("UTF") || codecName.isEmpty())
+        codecName = "UTF-8";
 
-    if((m_type == TagLib::MPEG::File::ID3v1 || m_type == TagLib::MPEG::File::ID3v2) && settings.value("detect_encoding", false).toBool())
+    if(m_tag && (m_type == TagLib::MPEG::File::ID3v1 || m_type == TagLib::MPEG::File::ID3v2) && settings.value("detect_encoding", false).toBool())
     {
-        QTextCodec *detectedCodec = TagExtractor::detectCharset(m_tag);
-        m_codec = detectedCodec ? detectedCodec : m_codec;
+        QByteArray detectedCharset = TagExtractor::detectCharset(m_tag);
+        if(!detectedCharset.isEmpty())
+            codecName = detectedCharset;
     }
 
+    m_codec = new QmmpTextCodec(codecName);
     settings.endGroup();
 }
 

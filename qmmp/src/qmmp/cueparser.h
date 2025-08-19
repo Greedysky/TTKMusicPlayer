@@ -23,9 +23,10 @@
 
 #include <QByteArray>
 #include <QStringList>
-#include <QTextCodec>
 #include <QFileInfo>
 #include "trackinfo.h"
+
+class QmmpTextCodec;
 
 /*! @brief The CueParser class provides CUE parser.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -59,7 +60,7 @@ public:
      * \param data Content of CUE file.
      * \param codec Codec.
      */
-    void loadData(const QByteArray &data, QTextCodec *codec);
+    void loadData(const QByteArray &data, QmmpTextCodec *codec);
     /*!
      * Creates playlist using parsed CUE metadata.
      * \param track Track number to return (-1 for all playlist or 1..n for specific track)

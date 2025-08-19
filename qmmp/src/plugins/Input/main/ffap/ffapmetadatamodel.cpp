@@ -1,9 +1,9 @@
 #include "ffapmetadatamodel.h"
+#include <qmmp/qmmptextcodec.h>
+#include <qmmp/metadatamanager.h>
 
-#include <QTextCodec>
 #include <taglib/apetag.h>
 #include <taglib/id3v1tag.h>
-#include <qmmp/metadatamanager.h>
 
 FFapMetaDataModel::FFapMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(true)
@@ -63,12 +63,12 @@ FFapFileTagModel::FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::T
     if(m_type == TagLib::APE::File::ID3v1)
     {
         m_tag = m_file->ID3v1Tag();
-        m_codec = QTextCodec::codecForName("GB18030");
+        m_codec = new QmmpTextCodec("GB18030");
     }
     else
     {
         m_tag = m_file->APETag();
-        m_codec = QTextCodec::codecForName("UTF-8");
+        m_codec = new QmmpTextCodec("UTF-8");
     }
 }
 
@@ -91,7 +91,7 @@ QString FFapFileTagModel::value(Qmmp::MetaData key) const
 {
     if(m_tag)
     {
-        bool utf = m_codec->name().contains("UTF");
+        const bool utf = m_codec->name().contains("UTF");
         TagLib::String str;
         switch((int) key)
         {
