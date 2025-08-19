@@ -422,7 +422,7 @@ bool MusicLrcAnalysis::findText(qint64 current, qint64 total, QString &pre, QStr
     //After get the current time in the lyrics of the two time points
     qint64 previous = 0;
     qint64 later = 0;
-    //Keys () method returns a list of lrcContainer
+    //Keys() method returns a list of lrcContainer
     for(const qint64 value : m_lrcContainer.keys())
     {
         if(current >= value)

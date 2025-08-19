@@ -16,7 +16,7 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT += core gui network
+QT += core gui network xml
 greaterThan(QT_MAJOR_VERSION, 4){ #Qt5
     QT += widgets
 }

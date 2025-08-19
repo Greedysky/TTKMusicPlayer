@@ -170,7 +170,7 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
         painter.setPen(Qt::NoPen);
         painter.fillRect(0, 0, width(), height(), d->m_background);
 
-        const double scale = (width () - 2.0 * d->m_margin) / qrcode->width;
+        const double scale = (width() - 2.0 * d->m_margin) / qrcode->width;
         painter.setBrush(d->m_foreground);
 
         for(int x = 0; x < qrcode->width; ++x)
@@ -190,16 +190,16 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
 
         /// draw icon
         painter.setBrush(d->m_background);
-        const double icon_width = (width () - 2.0 * d->m_margin) * d->m_percent;
+        const double icon_width = (width() - 2.0 * d->m_margin) * d->m_percent;
         const double icon_height = icon_width;
-        const double wrap_x = (width () - icon_width) / 2.0;
-        const double wrap_y = (width () - icon_height) / 2.0;
+        const double wrap_x = (width() - icon_width) / 2.0;
+        const double wrap_y = (width() - icon_height) / 2.0;
         const QRectF wrap(wrap_x - 5, wrap_y - 5, icon_width + 10, icon_height + 10);
         painter.drawRoundedRect(wrap, 10, 10);
 
         QPixmap image(d->m_iconPath);
         const QRectF target(wrap_x, wrap_y, icon_width, icon_height);
-        const QRectF source(0, 0, image.width (), image.height ());
+        const QRectF source(0, 0, image.width(), image.height());
         painter.drawPixmap(target, image, source);
     }
     qrcode = nullptr;

@@ -215,7 +215,7 @@ QString QJsonDocument::toJson(const QJsonValue &v, JsonFormat format, int indent
 		break;
 	case QJsonValue::Double:
 	{
-		double d = v.toDouble ();
+        double d = v.toDouble();
 		if (qIsFinite(d)) {
 			// +2 to format to ensure the expected precision
 			ss <<  QByteArray::number(d, 'g', 15 + 2); // ::digits10 is 15

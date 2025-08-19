@@ -7,7 +7,11 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     TTKRegisterOrganization(TTK_APP);
 
-    ToolFM w;
-    w.startToRequest();
+    ToolQTFM qtfm;
+    qtfm.startToRequest();
+
+    ToolXIFM xifm;
+    xifm.startToRequest();
+
     return app.exec();
 }

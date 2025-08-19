@@ -25,14 +25,14 @@
 /*! @brief The class of the qingting fm radio tool.
  * @author Greedysky <greedysky@163.com>
  */
-class ToolFM : public MusicPageQueryRequest
+class ToolQTFM : public MusicPageQueryRequest
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit ToolFM(QObject *parent = nullptr);
+    explicit ToolQTFM(QObject *parent = nullptr);
 
     /*!
      * Start to download radio data.
@@ -52,5 +52,32 @@ private:
     void startToListRequest(int id, MusicFMChannelList *channels);
 
 };
+
+
+/*! @brief The class of the xiph fm radio tool.
+ * @author Greedysky <greedysky@163.com>
+ */
+class ToolXIFM : public MusicAbstractNetwork
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit ToolXIFM(QObject *parent = nullptr);
+
+    /*!
+     * Start to download radio data.
+     */
+    void startToRequest();
+
+private Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override final;
+
+};
+
 
 #endif // TOOLFM_H
