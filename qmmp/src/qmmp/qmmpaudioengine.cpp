@@ -360,7 +360,7 @@ void QmmpAudioEngine::run()
             if(StateHandler::instance()->dispatch(info))
                 m_trackInfo = QSharedPointer<TrackInfo>(new TrackInfo(info));
         }
-        //wait more data
+        //wait for more data
         if(m_inputs[m_decoder]->isWaiting())
         {
             mutex()->unlock();
