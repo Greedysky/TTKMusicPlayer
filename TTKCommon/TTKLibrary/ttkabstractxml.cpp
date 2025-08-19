@@ -183,27 +183,21 @@ QByteArray TTKAbstractXml::toByteArray() const
     return m_document ? m_document->toByteArray() : QByteArray();
 }
 
-void TTKAbstractXml::createProcessingInstruction() const
+QString TTKAbstractXml::readAttributeByTagName(const QString &node, const QString &attrName) const
 {
-    const QDomNode &node = m_document->createProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
-    m_document->appendChild(node);
-}
-
-QString TTKAbstractXml::readAttributeByTagName(const QString &tagName, const QString &attrName) const
-{
-    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    const QDomNodeList &nodes = findDomNodes(node);
     return nodes.isEmpty() ? QString() : nodes.item(0).toElement().attribute(attrName);
 }
 
-QString TTKAbstractXml::readTextByTagName(const QString &tagName) const
+QString TTKAbstractXml::readTextByTagName(const QString &node) const
 {
-    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    const QDomNodeList &nodes = findDomNodes(node);
     return nodes.isEmpty() ? QString() : nodes.item(0).toElement().text();
 }
 
-TTKXmlNode TTKAbstractXml::readNodeByTagName(const QString &tagName) const
+TTKXmlNode TTKAbstractXml::readNodeByTagName(const QString &node) const
 {
-    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    const QDomNodeList &nodes = findDomNodes(node);
     if(nodes.isEmpty())
     {
         return {};
@@ -223,9 +217,9 @@ TTKXmlNode TTKAbstractXml::readNodeByTagName(const QString &tagName) const
     return v;
 }
 
-QStringList TTKAbstractXml::readMultiAttributeByTagName(const QString &tagName, const QString &attrName) const
+QStringList TTKAbstractXml::readMultiAttributeByTagName(const QString &node, const QString &attrName) const
 {
-    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    const QDomNodeList &nodes = findDomNodes(node);
     if(nodes.isEmpty())
     {
         return {};
@@ -239,9 +233,9 @@ QStringList TTKAbstractXml::readMultiAttributeByTagName(const QString &tagName, 
     return v;
 }
 
-QStringList TTKAbstractXml::readMultiTextByTagName(const QString &tagName) const
+QStringList TTKAbstractXml::readMultiTextByTagName(const QString &node) const
 {
-    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    const QDomNodeList &nodes = findDomNodes(node);
     if(nodes.isEmpty())
     {
         return {};
@@ -255,9 +249,9 @@ QStringList TTKAbstractXml::readMultiTextByTagName(const QString &tagName) const
     return v;
 }
 
-TTKXmlNodeList TTKAbstractXml::readMultiNodeByTagName(const QString &tagName) const
+TTKXmlNodeList TTKAbstractXml::readMultiNodeByTagName(const QString &node) const
 {
-    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    const QDomNodeList &nodes = findDomNodes(node);
     if(nodes.isEmpty())
     {
         return {};
@@ -368,6 +362,17 @@ QDomElement TTKAbstractXml::writeDomMultiElement(QDomElement &element, const QSt
     const QDomText &domText = m_document->createTextNode(text);
     domElement.appendChild(domText);
     return domElement;
+}
+
+QDomNodeList TTKAbstractXml::findDomNodes(const QString &node) const
+{
+    return m_document->elementsByTagName(node);
+}
+
+void TTKAbstractXml::createProcessingInstruction() const
+{
+    const QDomNode &node = m_document->createProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
+    m_document->appendChild(node);
 }
 
 void TTKAbstractXml::writeAttribute(QDomElement &element, const TTKXmlAttr &attr) const

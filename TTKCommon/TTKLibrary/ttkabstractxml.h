@@ -150,37 +150,34 @@ public:
      */
     QByteArray toByteArray() const;
 
-    /*!
-     * Create processing instruction in header.
-     */
-    void createProcessingInstruction() const;
-
+public:
     /*!
      * Read xml attribute by tagName and attribute name.
      */
-    QString readAttributeByTagName(const QString &tagName, const QString &attrName = "value") const;
+    QString readAttributeByTagName(const QString &node, const QString &attrName = "value") const;
     /*!
      * Read xml attribute's text by tagName.
      */
-    QString readTextByTagName(const QString &tagName) const;
+    QString readTextByTagName(const QString &node) const;
     /*!
      * Read xml node by tagName.
      */
-    TTKXmlNode readNodeByTagName(const QString &tagName) const;
+    TTKXmlNode readNodeByTagName(const QString &node) const;
 
     /*!
      * Read xml multi attribute by tagName and attribute name.
      */
-    QStringList readMultiAttributeByTagName(const QString &tagName, const QString &attrName = "value") const;
+    QStringList readMultiAttributeByTagName(const QString &node, const QString &attrName = "value") const;
     /*!
      * Read xml multi attribute's text by tagName.
      */
-    QStringList readMultiTextByTagName(const QString &tagName) const;
+    QStringList readMultiTextByTagName(const QString &node) const;
     /*!
      * Read xml multi node by tagName.
      */
-    TTKXmlNodeList readMultiNodeByTagName(const QString &tagName) const;
+    TTKXmlNodeList readMultiNodeByTagName(const QString &node) const;
 
+public:
     /*!
      * Create xml node nodes by node name.
      */
@@ -227,6 +224,16 @@ public:
      * Write xml elements nodes by node name keys name values and attribute's text.
      */
     QDomElement writeDomMultiElement(QDomElement &element, const QString &node, const TTKXmlAttrList &attrs, const QString &text) const;
+
+    /*!
+     * Write xml element node by node name.
+     */
+    QDomNodeList findDomNodes(const QString &node) const;
+
+    /*!
+     * Create processing instruction in header.
+     */
+    void createProcessingInstruction() const;
 
     /*!
      * Write xml element node key name and value.
