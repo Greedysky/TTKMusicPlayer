@@ -162,7 +162,7 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
             prop.m_format = suffix;
             prop.m_bitrate = bitrate;
 
-            if(prop.m_url.isEmpty() || info->m_songProps.contains(prop))
+            if(prop.isEmpty() || info->m_songProps.contains(prop))
             {
                 return;
             }
