@@ -3,7 +3,6 @@
 #include <QSettings>
 #include <qmmp/qmmp.h>
 #include <qmmp/qmmptextcodec.h>
-#include <qmmp/regularexpression.h>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

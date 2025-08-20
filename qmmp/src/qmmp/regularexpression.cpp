@@ -1,12 +1,9 @@
 #include "regularexpression.h"
 
 RegularExpression::RegularExpression(const QString &pattern)
+    : m_regular(pattern)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-    m_regular = QRegularExpression(pattern);
-#else
-    m_regular = QRegExp(pattern);
-#endif
+
 }
 
 bool RegularExpression::hasMatch(const QString &str)
