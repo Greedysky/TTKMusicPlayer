@@ -11,8 +11,8 @@
 #  include <QDesktopWidget>
 #endif
 #if defined Q_OS_LINUX
-#  include <QRegExp>
 #  include <X11/Xlib.h>
+#  include "ttkregularexpression.h"
 #endif
 
 TTKDesktopScreen::TaskbarInfo TTKDesktopScreen::screenTaskbar(int index)
@@ -174,10 +174,10 @@ static QSize generateDPIValue()
     if(resource)
     {
         const QString data(resource);
-        const QRegExp regx("Xft.dpi:\t(\\d+)");
-        if(regx.indexIn(data) != -1)
+        TTKRegularExpression regx("Xft.dpi:\t(\\d+)");
+        if(regx.match(data) != -1)
         {
-            dpi = regx.cap(1).toDouble();
+            dpi = regx.captured(1).toDouble();
         }
     }
 

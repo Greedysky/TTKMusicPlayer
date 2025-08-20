@@ -403,7 +403,7 @@ void MusicApplicationModule::showSpectrumWidget()
 void MusicApplicationModule::setWindowToTop()
 {
     m_setWindowToTop = !m_setWindowToTop;
-    Qt::WindowFlags flags = MusicApplication::instance()->windowFlags();
+    const Qt::WindowFlags flags = MusicApplication::instance()->windowFlags();
     MusicApplication::instance()->setWindowFlags(m_setWindowToTop ? (flags | Qt::WindowStaysOnTopHint) : (flags & ~Qt::WindowStaysOnTopHint));
     MusicApplication::instance()->show();
 }

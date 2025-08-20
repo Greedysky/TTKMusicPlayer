@@ -56,6 +56,7 @@ set(HEADER_FILES
   ttkoptional.h
   ttkplatformsystem.h
   ttkprocess.h
+  ttkregularexpression.h
   ttksmartptr.h
   ttkspinlock.h
   ttkstringliterals.h
@@ -95,6 +96,7 @@ set(SOURCE_FILES
   ttklogoutput.cpp
   ttkplatformsystem.cpp
   ttkprocess.cpp
+  ttkregularexpression.cpp
   ttksuperenum.cpp
   ttktabbutton.cpp
   ttkthemelinelabel.cpp

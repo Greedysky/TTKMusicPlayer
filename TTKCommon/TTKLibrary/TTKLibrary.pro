@@ -99,6 +99,7 @@ HEADERS += \
     $$PWD/ttkoptional.h \
     $$PWD/ttkplatformsystem.h \
     $$PWD/ttkprocess.h \
+    $$PWD/ttkregularexpression.h \
     $$PWD/ttksmartptr.h \
     $$PWD/ttkspinlock.h \
     $$PWD/ttkstringliterals.h \
@@ -137,6 +138,7 @@ SOURCES += \
     $$PWD/ttklogoutput.cpp \
     $$PWD/ttkplatformsystem.cpp \
     $$PWD/ttkprocess.cpp \
+    $$PWD/ttkregularexpression.cpp \
     $$PWD/ttksuperenum.cpp \
     $$PWD/ttktabbutton.cpp \
     $$PWD/ttkthemelinelabel.cpp \

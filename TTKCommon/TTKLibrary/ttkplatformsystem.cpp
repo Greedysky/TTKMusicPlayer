@@ -5,7 +5,7 @@
 #  include <qt_windows.h>
 #elif defined Q_OS_LINUX
 #  include <QFile>
-#  include <QRegExp>
+#  include "ttkregularexpression.h"
 #endif
 
 TTKPlatformSystem::System TTKPlatformSystem::systemName()
@@ -99,10 +99,10 @@ TTKPlatformSystem::System TTKPlatformSystem::systemName()
     QFile file("/etc/lsb-release");
     if(file.open(QIODevice::ReadOnly))
     {
-        const QRegExp regx("DISTRIB_ID=(\\w+)");
-        if(regx.indexIn(QString(file.readAll())) != -1)
+        TTKRegularExpression regx("DISTRIB_ID=(\\w+)");
+        if(regx.match(QString(file.readAll())) != -1)
         {
-            const QString &system = regx.cap(1).toLower();
+            const QString &system = regx.captured(1).toLower();
 
             if(system == "ubuntu")
             {
