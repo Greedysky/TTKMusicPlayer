@@ -37,7 +37,6 @@ namespace Ui {
 class TTK_MODULE_EXPORT MusicBottomAreaWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBottomAreaWidget)
 public:
     /*!
      * Object constructor.

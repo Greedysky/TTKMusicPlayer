@@ -31,7 +31,6 @@ class QPropertyAnimation;
 class TTK_MODULE_EXPORT MusicSongsListFunctionWidget : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsListFunctionWidget)
 public:
     /*!
      * Object constructor.

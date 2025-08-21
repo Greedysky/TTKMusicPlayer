@@ -35,7 +35,6 @@ class QLabel;
 class TTK_MODULE_EXPORT MusicDownloadTableItem : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadTableItem)
 public:
     /*!
      * Object constructor.
@@ -71,7 +70,6 @@ private:
 class TTK_MODULE_EXPORT MusicDownloadTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadTableWidget)
 public:
     /*!
      * Object constructor.
@@ -109,7 +107,6 @@ private:
 class TTK_MODULE_EXPORT MusicDownloadWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadWidget)
 public:
     /*!
      * Object constructor.

@@ -30,7 +30,6 @@ class MusicItemRenameEidt;
 class TTK_MODULE_EXPORT MusicSongsToolBoxTopWidget : public MusicFunctionToolBoxTopWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsToolBoxTopWidget)
 public:
     /*!
      * Object constructor.
@@ -153,7 +152,6 @@ private:
 class TTK_MODULE_EXPORT MusicSongsToolBoxMaskWidget : public MusicSongsToolBoxTopWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsToolBoxMaskWidget)
 public:
     /*!
      * Object constructor.
@@ -181,7 +179,6 @@ private:
 class TTK_MODULE_EXPORT MusicSongsToolBoxWidgetItem : public MusicFunctionToolBoxWidgetItem
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsToolBoxWidgetItem)
 public:
     /*!
      * Object constructor.
@@ -240,7 +237,6 @@ Q_SIGNALS:
 class TTK_MODULE_EXPORT MusicSongsToolBoxWidget : public MusicFunctionToolBoxWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsToolBoxWidget)
 public:
     /*!
      * Object constructor.

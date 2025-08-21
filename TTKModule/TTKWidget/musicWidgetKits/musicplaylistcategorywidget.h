@@ -31,7 +31,6 @@ struct CategoryProperty;
 class TTK_MODULE_EXPORT MusicPlaylistCategoryItem : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlaylistCategoryItem)
 public:
     /*!
      * Object constructor.
@@ -72,7 +71,6 @@ private:
 class TTK_MODULE_EXPORT MusicPlaylistCategoryWidget : public QFrame, public TTKAbstractResizeInterface
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlaylistCategoryWidget)
 public:
     /*!
      * Object constructor.

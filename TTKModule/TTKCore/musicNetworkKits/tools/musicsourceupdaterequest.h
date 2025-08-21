@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT MusicSourceUpdateRequest : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSourceUpdateRequest)
 public:
     /*!
      * Object constructor.

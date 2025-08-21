@@ -52,7 +52,7 @@ void MusicKWDownLoadCoverRequest::startToRequest()
     if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly) || m_url.isEmpty())
     {
         Q_EMIT downLoadDataChanged("The kuwo cover file create failed");
-        TTK_ERROR_STREAM(className() << "file create failed");
+        TTK_ERROR_STREAM(metaObject()->className() << "file create failed");
         deleteAll();
         return;
     }
@@ -67,7 +67,7 @@ void MusicKWDownLoadCoverRequest::startToRequest()
         if(bytes.isEmpty())
         {
             Q_EMIT downLoadDataChanged("The kuwo cover url redirection failed");
-            TTK_ERROR_STREAM(className() << "url redirection failed");
+            TTK_ERROR_STREAM(metaObject()->className() << "url redirection failed");
             deleteAll();
             return;
         }
@@ -96,7 +96,7 @@ void MusicKWDownLoadCoverRequest::downLoadFinished()
         m_file->write(m_reply->readAll());
         m_file->flush();
         m_file->close();
-        TTK_INFO_STREAM(className() << "download has finished");
+        TTK_INFO_STREAM(metaObject()->className() << "download has finished");
     }
 
     Q_EMIT downLoadDataChanged(mapCurrentQueryData());

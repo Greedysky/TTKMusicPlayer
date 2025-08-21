@@ -13,7 +13,7 @@ MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
       m_parent(TTKObjectCast(MusicApplication*, parent))
 {
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(MusicNetworkThread::className(), className());
+    connect(G_NETWORK_PTR, SIGNAL(networkConnectionStateChanged(bool)), this, SLOT(networkConnectionStateChanged(bool)));
 }
 
 void MusicDownloadStatusModule::checkMetaDataValid(bool mode)

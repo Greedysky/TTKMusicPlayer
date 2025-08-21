@@ -27,7 +27,6 @@
  */
 class TTK_MODULE_EXPORT MusicXSPFConfigManager : public TTKAbstractXml, public MusicPlaylistInterface
 {
-    TTK_DECLARE_MODULE(MusicXSPFConfigManager)
 public:
     /*!
      * Object constructor.

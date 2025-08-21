@@ -53,7 +53,6 @@ TTK_DECLARE_LIST(MusicFunctionItem);
 class TTK_MODULE_EXPORT MusicFunctionTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicFunctionTableWidget)
 public:
     /*!
      * Object constructor.
@@ -89,7 +88,6 @@ private:
 class TTK_MODULE_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSettingWidget)
 public:
     enum class Lrc
     {

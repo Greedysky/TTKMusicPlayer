@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT TTKTabButton : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKTabButton)
 public:
     /*!
      * Object constructor.

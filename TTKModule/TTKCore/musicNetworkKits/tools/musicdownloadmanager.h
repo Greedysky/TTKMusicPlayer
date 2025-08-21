@@ -70,7 +70,6 @@ struct TTK_MODULE_EXPORT MusicDownLoadPairData
 class TTK_MODULE_EXPORT MusicDownLoadManager : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownLoadManager)
     TTK_DECLARE_SINGLETON_CLASS(MusicDownLoadManager)
 public:
     /*!

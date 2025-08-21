@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicOpenFileWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicOpenFileWidget)
 public:
     /*!
      * Object constructor.

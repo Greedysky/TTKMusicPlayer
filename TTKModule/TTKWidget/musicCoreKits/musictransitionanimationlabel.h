@@ -34,7 +34,6 @@ class ImageRender;
 class TTK_MODULE_EXPORT MusicTransitionAnimationLabel : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTransitionAnimationLabel)
 public:
     enum class Module
     {

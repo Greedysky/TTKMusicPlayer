@@ -31,7 +31,6 @@ class MusicItemSearchEdit;
 class TTK_MODULE_EXPORT MusicAdvancedSearchedWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAdvancedSearchedWidget)
 public:
     /*!
      * Object constructor.

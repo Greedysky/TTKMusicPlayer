@@ -41,7 +41,6 @@ namespace TTK
  */
 class TTK_MODULE_EXPORT MusicDownloadRecordConfigManager : public TTKAbstractXml, public TTKAbstractReadWriteInterface<MusicSongList>
 {
-    TTK_DECLARE_MODULE(MusicDownloadRecordConfigManager)
 public:
     /*!
      * Object constructor.

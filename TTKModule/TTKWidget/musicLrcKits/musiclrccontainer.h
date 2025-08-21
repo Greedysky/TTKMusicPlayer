@@ -36,7 +36,6 @@ static constexpr const char *LRC_DESKTOP_PREFIX = "D";
 class TTK_MODULE_EXPORT MusicLrcContainer : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcContainer)
 public:
     /*!
      * Object constructor.

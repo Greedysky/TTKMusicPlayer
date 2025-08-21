@@ -31,7 +31,6 @@ class MusicGifLabelWidget;
 class TTK_MODULE_EXPORT MusicQueryTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQueryTableWidget)
 public:
     /*!
      * Object constructor.

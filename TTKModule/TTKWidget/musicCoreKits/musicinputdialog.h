@@ -31,7 +31,6 @@ class MusicInputDialog;
 class TTK_MODULE_EXPORT MusicInputDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicInputDialog)
 public:
     /*!
      * Object constructor.

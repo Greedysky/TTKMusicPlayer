@@ -26,7 +26,6 @@
  */
 class TTK_MODULE_EXPORT MusicPlaylistManager
 {
-    TTK_DECLARE_MODULE(MusicPlaylistManager)
 public:
     /*!
      * Write media playlist data to file.

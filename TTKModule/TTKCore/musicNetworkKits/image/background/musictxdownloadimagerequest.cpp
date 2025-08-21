@@ -31,7 +31,7 @@ MusicTXDownloadBackgroundRequest::MusicTXDownloadBackgroundRequest(const QString
 
 void MusicTXDownloadBackgroundRequest::startToRequest()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicAbstractNetwork::deleteAll();
 
@@ -47,7 +47,7 @@ void MusicTXDownloadBackgroundRequest::startToRequest()
 
 void MusicTXDownloadBackgroundRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicAbstractDownloadImageRequest::downLoadFinished();
     QString id;
@@ -86,7 +86,7 @@ void MusicTXDownloadBackgroundRequest::downLoadFinished()
 
     if(id.isEmpty())
     {
-        TTK_INFO_STREAM(className() << __FUNCTION__);
+        TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
         Q_EMIT downLoadDataChanged({});
         deleteAll();
         return;
@@ -97,7 +97,7 @@ void MusicTXDownloadBackgroundRequest::downLoadFinished()
 
 void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicAbstractDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -120,7 +120,7 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
         }
     }
 
-    TTK_INFO_STREAM(className() << "download image size" << m_counter);
+    TTK_INFO_STREAM(metaObject()->className() << "download image size" << m_counter);
     Q_EMIT downLoadDataChanged(QString::number(m_counter));
     //
     if(m_counter == 0)
@@ -131,7 +131,7 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
 
 void MusicTXDownloadBackgroundRequest::downLoadUrl(const QString &id)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << id);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << id);
 
     MusicAbstractNetwork::deleteAll();
 

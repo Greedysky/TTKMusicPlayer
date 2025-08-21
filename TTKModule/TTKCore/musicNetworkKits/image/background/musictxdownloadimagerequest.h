@@ -27,7 +27,6 @@
  */
 class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKAbstractXml, public TTKAbstractReadInterface<QStringList>
 {
-    TTK_DECLARE_MODULE(MusicTXImageConfigManager)
 public:
     /*!
      * Object constructor.
@@ -48,7 +47,6 @@ public:
 class TTK_MODULE_EXPORT MusicTXDownloadBackgroundRequest : public MusicAbstractDownloadImageRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTXDownloadBackgroundRequest)
 public:
     /*!
      * Object constructor provide artist name and save local path.

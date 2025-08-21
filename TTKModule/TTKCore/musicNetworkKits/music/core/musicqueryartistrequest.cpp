@@ -9,7 +9,7 @@ MusicQueryArtistRequest::MusicQueryArtistRequest(QObject *parent)
 
 void MusicQueryArtistRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << value);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
     MusicAbstractQueryRequest::downLoadFinished();
     m_queryValue = value;

@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT TTKAbstractThread : public QThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKAbstractThread)
 public:
     /*!
      * Object constructor.

@@ -33,7 +33,6 @@ class MusicPlaylistFoundCategoryPopWidget;
 class TTK_MODULE_EXPORT MusicPlaylistQueryItemWidget : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlaylistQueryItemWidget)
 public:
     /*!
      * Object constructor.
@@ -84,7 +83,6 @@ private:
 class TTK_MODULE_EXPORT MusicPlaylistQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlaylistQueryWidget)
 public:
     /*!
      * Object constructor.

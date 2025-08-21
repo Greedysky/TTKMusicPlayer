@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT MusicAbstractTableWidget : public TTKAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractTableWidget)
 public:
     /*!
      * Object constructor.

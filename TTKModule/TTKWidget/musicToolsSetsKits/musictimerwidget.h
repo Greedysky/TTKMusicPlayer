@@ -31,7 +31,6 @@ class MusicTimerWidget;
 class TTK_MODULE_EXPORT MusicTimerWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTimerWidget)
 public:
     /*!
      * Object constructor.

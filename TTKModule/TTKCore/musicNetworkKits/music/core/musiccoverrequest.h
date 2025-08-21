@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicCoverRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCoverRequest)
 public:
     /*!
      * Object constructor.

@@ -36,7 +36,6 @@ class MusicMPRISPlayerCore;
 class TTK_MODULE_EXPORT MusicMPRISPlayer : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicMPRISPlayer)
 public:
     /*!
      * Object constructor.

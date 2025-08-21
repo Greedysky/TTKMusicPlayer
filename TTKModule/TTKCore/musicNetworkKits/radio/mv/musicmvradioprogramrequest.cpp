@@ -106,7 +106,7 @@ MusicMVRadioProgramRequest::MusicMVRadioProgramRequest(QObject *parent)
 
 void MusicMVRadioProgramRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicAbstractMVRadioRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

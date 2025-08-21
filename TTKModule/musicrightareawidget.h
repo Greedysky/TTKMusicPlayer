@@ -41,7 +41,6 @@ namespace Ui {
 class TTK_MODULE_EXPORT MusicRightAreaWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRightAreaWidget)
 public:
     enum FunctionModule
     {

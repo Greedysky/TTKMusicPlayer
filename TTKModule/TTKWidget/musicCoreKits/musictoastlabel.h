@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicToastLabel : public TTKToastLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicToastLabel)
 public:
     /*!
      * Object constructor.

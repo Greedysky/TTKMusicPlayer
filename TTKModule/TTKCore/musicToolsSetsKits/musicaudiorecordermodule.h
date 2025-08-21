@@ -31,7 +31,6 @@
 class TTK_MODULE_EXPORT MusicAudioRecorderModule : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAudioRecorderModule)
 public:
     /*!
      * Object constructor.

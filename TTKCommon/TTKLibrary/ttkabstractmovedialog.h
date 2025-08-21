@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT TTKAbstractMoveDialog : public QDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKAbstractMoveDialog)
 public:
     /*!
      * Object constructor.

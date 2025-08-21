@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicMoveButton : public QPushButton
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicMoveButton)
 public:
     /*!
      * Object constructor.
@@ -65,7 +64,6 @@ private:
 class TTK_MODULE_EXPORT MusicCutSliderWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCutSliderWidget)
 public:
     /*!
      * Object constructor.

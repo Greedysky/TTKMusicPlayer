@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT TTKClickedLabel : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKClickedLabel)
 public:
     /*!
      * Object constructor.

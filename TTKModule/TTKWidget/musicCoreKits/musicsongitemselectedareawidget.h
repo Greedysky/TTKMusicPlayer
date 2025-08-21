@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicSongItemSelectedTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongItemSelectedTableWidget)
 public:
     /*!
      * Object constructor.
@@ -57,7 +56,6 @@ class MusicSongItemSelectedDialog;
 class TTK_MODULE_EXPORT MusicSongItemSelectedDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongItemSelectedDialog)
 public:
     /*!
      * Object constructor.
@@ -99,7 +97,6 @@ class TTKClickedLabel;
 class TTK_MODULE_EXPORT MusicSongItemSelectedAreaWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongItemSelectedAreaWidget)
 public:
     /*!
      * Object constructor.

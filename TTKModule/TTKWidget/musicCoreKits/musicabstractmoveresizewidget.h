@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicAbstractMoveResizePlainWidget : public TTKAbstractMoveResizeWidget, protected MusicWidgetRenderer
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractMoveResizePlainWidget)
 public:
     /*!
      * Object constructor.

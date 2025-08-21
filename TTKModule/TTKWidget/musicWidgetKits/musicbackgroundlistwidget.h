@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT MusicBackgroundListItem : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBackgroundListItem)
 public:
     /*!
      * Object constructor.
@@ -135,7 +134,6 @@ private:
 class TTK_MODULE_EXPORT MusicBackgroundListWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBackgroundListWidget)
 public:
     enum Module
     {

@@ -33,7 +33,6 @@ class MusicSongsListPlayedTableWidget;
 class TTK_MODULE_EXPORT MusicPlayedListTopContainerWidget : public QFrame
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlayedListTopContainerWidget)
 public:
     /*!
      * Object constructor.
@@ -55,7 +54,6 @@ private:
 class TTK_MODULE_EXPORT MusicPlayedListPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlayedListPopWidget)
 public:
     /*!
      * Object constructor.

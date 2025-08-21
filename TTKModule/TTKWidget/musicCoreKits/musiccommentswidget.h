@@ -31,7 +31,6 @@ class MusicPageQueryWidget;
 class TTK_MODULE_EXPORT MusicCommentsItem : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCommentsItem)
 public:
     /*!
      * Object constructor.
@@ -67,7 +66,6 @@ private:
 class TTK_MODULE_EXPORT MusicCommentsWidget : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCommentsWidget)
 public:
     /*!
      * Object constructor.

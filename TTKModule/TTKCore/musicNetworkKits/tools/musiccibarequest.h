@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicCiBaRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCiBaRequest)
 public:
     /*!
      * Object constructor.

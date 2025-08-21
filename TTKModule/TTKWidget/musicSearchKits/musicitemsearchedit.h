@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicItemSearchEdit : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicItemSearchEdit)
 public:
     /*!
      * Object constructor.
@@ -61,7 +60,6 @@ private:
 class TTK_MODULE_EXPORT MusicItemQueryEdit : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicItemQueryEdit)
 public:
     /*!
      * Object constructor.

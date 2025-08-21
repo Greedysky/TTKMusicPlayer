@@ -30,7 +30,6 @@ static constexpr int RENAME_WIDTH = 240;
 class TTK_MODULE_EXPORT MusicFunctionToolBoxTopWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicFunctionToolBoxTopWidget)
 public:
     /*!
      * Object constructor.
@@ -116,7 +115,6 @@ protected:
 class TTK_MODULE_EXPORT MusicFunctionToolBoxWidgetItem : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicFunctionToolBoxWidgetItem)
 public:
     /*!
      * Object constructor.
@@ -185,7 +183,6 @@ protected:
 class TTK_MODULE_EXPORT MusicNormalToolBoxWidgetItem : public MusicFunctionToolBoxWidgetItem
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicNormalToolBoxWidgetItem)
 public:
     /*!
      * Object constructor.
@@ -221,7 +218,6 @@ TTK_DECLARE_LIST(MusicToolBoxWidgetItem);
 class TTK_MODULE_EXPORT MusicFunctionToolBoxWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicFunctionToolBoxWidget)
 public:
     /*!
      * Object constructor.

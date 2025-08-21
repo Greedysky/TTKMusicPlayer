@@ -30,7 +30,6 @@ class QProcess;
 class TTK_MODULE_EXPORT MusicCoreMPlayer : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCoreMPlayer)
 public:
     enum class Module
     {

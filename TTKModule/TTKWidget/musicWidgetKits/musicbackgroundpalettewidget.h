@@ -32,7 +32,6 @@ class MusicBackgroundPaletteWidget;
 class TTK_MODULE_EXPORT MusicBackgroundPalette : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBackgroundPalette)
 public:
     /*!
      * Object constructor.
@@ -80,7 +79,6 @@ private:
 class TTK_MODULE_EXPORT MusicBackgroundPaletteWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBackgroundPaletteWidget)
 public:
     /*!
      * Object constructor.

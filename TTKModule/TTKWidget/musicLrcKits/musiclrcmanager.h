@@ -96,7 +96,6 @@ namespace TTK
 class TTK_MODULE_EXPORT MusicLrcManager : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcManager)
 public:
     /*!
      * Object constructor.

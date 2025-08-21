@@ -26,7 +26,6 @@
  */
 class TTK_MODULE_EXPORT MusicThunderSkinConfigManager : public TTKAbstractXml, public TTKAbstractReadInterface<MusicSkinRemoteGroupList>
 {
-    TTK_DECLARE_MODULE(MusicThunderSkinConfigManager)
 public:
     /*!
      * Object constructor.
@@ -47,7 +46,6 @@ public:
 class TTK_MODULE_EXPORT MusicDownloadThunderSkinRequest : public MusicAbstractDownloadSkinRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadThunderSkinRequest)
 public:
     /*!
      * Object constructor.

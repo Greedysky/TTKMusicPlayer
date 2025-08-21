@@ -3,7 +3,6 @@
 #include "musicsongslistplaytablewidget.h"
 #include "musicsongsearchdialog.h"
 #include "musicmessagebox.h"
-#include "musicconnectionpool.h"
 #include "musicprogresswidget.h"
 #include "musicsongchecktoolswidget.h"
 #include "musicplayedlistpopwidget.h"
@@ -39,14 +38,10 @@ MusicSongsContainerWidget::MusicSongsContainerWidget(QWidget *parent)
 
     connect(m_topMaskWidget, SIGNAL(itemIndexChanged(int)), SLOT(itemIndexChanged(int)));
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
-
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(MusicQueryTableWidget::className(), className());
 }
 
 MusicSongsContainerWidget::~MusicSongsContainerWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
     delete m_topMaskWidget;
     delete m_functionWidget;
     delete m_songSearchWidget;

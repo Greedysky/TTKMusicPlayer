@@ -29,7 +29,6 @@ static constexpr int LRC_PER_WIDTH = 670;
 class TTK_MODULE_EXPORT MusicLrcManagerForInterior : public MusicLrcManager
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcManagerForInterior)
 public:
     /*!
      * Object constructor.

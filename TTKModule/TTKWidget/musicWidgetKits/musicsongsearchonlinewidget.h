@@ -31,7 +31,6 @@ class QPushButton;
 class TTK_MODULE_EXPORT MusicSongSearchTableWidget : public MusicItemSearchTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongSearchTableWidget)
 public:
     /*!
      * Object constructor.
@@ -103,7 +102,6 @@ private:
 class TTK_MODULE_EXPORT MusicSongSearchOnlineWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongSearchOnlineWidget)
 public:
     /*!
      * Object constructor.

@@ -215,7 +215,7 @@ MusicWebDJRadioWidget::MusicWebDJRadioWidget(QWidget *parent)
       m_programWidget(nullptr),
       m_queryWidget(nullptr)
 {
-    setObjectName(className());
+    setObjectName(MusicWebDJRadioWidget::metaObject()->className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle10));
 
     initFirstWidget();

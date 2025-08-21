@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicKWCoverSourceRequest : public MusicCoverRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKWCoverSourceRequest)
 public:
     /*!
      * Object constructor.
@@ -58,7 +57,6 @@ private:
 class TTK_MODULE_EXPORT MusicKWDownLoadCoverRequest : public MusicAbstractDownLoadRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKWDownLoadCoverRequest)
 public:
     /*!
      * Object constructor provide download url save local path and download type.

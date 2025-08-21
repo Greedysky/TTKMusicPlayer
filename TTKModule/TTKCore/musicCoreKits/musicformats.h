@@ -26,7 +26,6 @@
  */
 class TTK_MODULE_EXPORT MusicFormats
 {
-    TTK_DECLARE_MODULE(MusicFormats)
 public:
     /*!
      * Check song is track valid or not.

@@ -33,7 +33,6 @@ class MusicDownloadBackgroundRequest;
  */
 class TTK_MODULE_EXPORT MusicDownLoadQueryFactory
 {
-    TTK_DECLARE_MODULE(MusicDownLoadQueryFactory)
     TTK_DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)
 public:
     /*!

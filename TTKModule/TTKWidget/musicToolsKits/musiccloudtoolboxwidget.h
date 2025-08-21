@@ -32,7 +32,6 @@ class MusicAbstractDownloadTableWidget;
 class TTK_MODULE_EXPORT MusicCloudToolBoxWidget : public MusicFunctionToolBoxWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudToolBoxWidget)
 public:
     /*!
      * Object constructor.

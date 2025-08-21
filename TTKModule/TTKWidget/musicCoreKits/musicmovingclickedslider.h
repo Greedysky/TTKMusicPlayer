@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicMovingClickedSlider : public TTKClickedSlider
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicMovingClickedSlider)
 public:
     /*!
      * Object constructor.

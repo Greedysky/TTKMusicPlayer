@@ -75,7 +75,6 @@ TTK_DECLARE_LIST(MusicSkinRemoteGroup);
 class TTK_MODULE_EXPORT MusicAbstractDownloadSkinRequest : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractDownloadSkinRequest)
 public:
     /*!
      * Object constructor.

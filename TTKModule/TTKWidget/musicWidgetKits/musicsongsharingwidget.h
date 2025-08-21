@@ -57,7 +57,6 @@ class MusicSongSharingWidget;
 class TTK_MODULE_EXPORT MusicSongSharingWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongSharingWidget)
 public:
     enum class Module
     {

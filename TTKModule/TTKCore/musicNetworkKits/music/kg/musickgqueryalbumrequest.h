@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicKGQueryAlbumRequest : public MusicQueryAlbumRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKGQueryAlbumRequest)
 public:
     /*!
      * Object constructor.
@@ -59,7 +58,6 @@ public Q_SLOTS:
 class TTK_MODULE_EXPORT MusicKGQueryArtistAlbumRequest : public MusicQueryAlbumRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKGQueryArtistAlbumRequest)
 public:
     /*!
      * Object constructor.

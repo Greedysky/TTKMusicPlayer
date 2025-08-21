@@ -88,7 +88,7 @@ void MusicACRIdentifyRequest::startToRequest(const QString &path)
 
 void MusicACRIdentifyRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     m_items.clear();
     MusicAbstractNetwork::downLoadFinished();
@@ -194,7 +194,7 @@ void MusicXFIdentifyRequest::startToRequest(const QString &path)
 
 void MusicXFIdentifyRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     m_items.clear();
     MusicAbstractNetwork::downLoadFinished();

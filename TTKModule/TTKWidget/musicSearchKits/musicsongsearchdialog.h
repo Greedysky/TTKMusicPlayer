@@ -30,7 +30,6 @@ class MusicItemSearchEdit;
 class TTK_MODULE_EXPORT MusicSongSearchDialog : public QDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongSearchDialog)
 public:
     /*!
      * Object constructor.

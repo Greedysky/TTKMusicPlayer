@@ -32,7 +32,6 @@ class MusicSoundEffectsWidget;
 class TTK_MODULE_EXPORT MusicSoundEffectsItemWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSoundEffectsItemWidget)
 public:
     /*!
      * Object constructor.

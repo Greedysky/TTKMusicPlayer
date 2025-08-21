@@ -104,7 +104,7 @@ void MusicToplistQueryCategoryPopWidget::initialize()
     setText(tr("All"));
 
     const QString &style = TTK::UI::BorderStyle02 + TTK::UI::BackgroundStyle10;
-    setObjectName(className());
+    setObjectName(MusicToplistQueryCategoryPopWidget::metaObject()->className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), style));
 
     m_menu->setStyleSheet(TTK::UI::MenuStyle05);

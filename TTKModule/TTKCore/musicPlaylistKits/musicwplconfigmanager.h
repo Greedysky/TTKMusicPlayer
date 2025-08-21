@@ -27,7 +27,6 @@
  */
 class TTK_MODULE_EXPORT MusicWPLConfigManager : public TTKAbstractXml, public MusicPlaylistInterface
 {
-    TTK_DECLARE_MODULE(MusicWPLConfigManager)
 public:
     /*!
      * Object constructor.

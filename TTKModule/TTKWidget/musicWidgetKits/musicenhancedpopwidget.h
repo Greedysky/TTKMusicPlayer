@@ -30,7 +30,6 @@ class QPropertyAnimation;
 class TTK_MODULE_EXPORT MusicEnhancedToolButton : public QToolButton
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicEnhancedToolButton)
 public:
     /*!
      * Object constructor.
@@ -79,7 +78,6 @@ private:
 class TTK_MODULE_EXPORT MusicEnhancedPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicEnhancedPopWidget)
 public:
     /*!
      * Object constructor.

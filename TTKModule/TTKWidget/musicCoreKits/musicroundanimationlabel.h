@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT MusicRoundAnimationLabel : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRoundAnimationLabel)
 public:
     /*!
      * Object constructor.

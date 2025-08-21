@@ -30,7 +30,6 @@ class TTKClickedSlider;
 class TTK_MODULE_EXPORT MusicSystemTrayMenu : public QMenu
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSystemTrayMenu)
 public:
     /*!
      * Object constructor.

@@ -37,7 +37,6 @@ static constexpr const char *DJ_HOT_DATA_URL = "NEZ4U1hlQnQ4SW1MQnNidE9ycytIWTZL
 class TTK_MODULE_EXPORT MusicAbstractDJRadioRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractDJRadioRequest)
 public:
     /*!
      * Object constructor.

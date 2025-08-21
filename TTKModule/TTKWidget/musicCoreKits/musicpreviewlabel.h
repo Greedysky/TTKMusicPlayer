@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicColorPreviewLabel : public TTKClickedLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicColorPreviewLabel)
 public:
     /*!
      * Object constructor.
@@ -76,7 +75,6 @@ struct TTK_MODULE_EXPORT MusicPreviewLabelItem
 class TTK_MODULE_EXPORT MusicPreviewLabel : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPreviewLabel)
 public:
     /*!
      * Object constructor.

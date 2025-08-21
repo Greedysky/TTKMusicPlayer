@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicArtistAlbumsItemWidget : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicArtistAlbumsItemWidget)
 public:
     /*!
      * Object constructor.
@@ -78,7 +77,6 @@ class MusicPageQueryWidget;
 class TTK_MODULE_EXPORT MusicArtistMvsQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicArtistMvsQueryWidget)
 public:
     /*!
      * Object constructor.
@@ -130,7 +128,6 @@ private:
 class TTK_MODULE_EXPORT MusicArtistAlbumsQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicArtistAlbumsQueryWidget)
 public:
     /*!
      * Object constructor.
@@ -182,7 +179,6 @@ private:
 class TTK_MODULE_EXPORT MusicArtistQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicArtistQueryWidget)
 public:
     /*!
      * Object constructor.

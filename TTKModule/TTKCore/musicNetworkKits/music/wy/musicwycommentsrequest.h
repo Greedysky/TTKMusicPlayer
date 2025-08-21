@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicWYSongCommentsRequest : public MusicCommentsRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWYSongCommentsRequest)
 public:
     /*!
      * Object constructor.
@@ -59,7 +58,6 @@ public Q_SLOTS:
 class TTK_MODULE_EXPORT MusicWYPlaylistCommentsRequest : public MusicCommentsRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWYPlaylistCommentsRequest)
 public:
     /*!
      * Object constructor.

@@ -60,6 +60,10 @@ public:
      * Object constructor.
      */
     explicit MusicCloudUploadTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicCloudUploadTableWidget();
 
 Q_SIGNALS:
     /*!

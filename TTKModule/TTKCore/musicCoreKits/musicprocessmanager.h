@@ -28,7 +28,6 @@
  */
 class TTK_MODULE_EXPORT MusicProcessClient
 {
-    TTK_DECLARE_MODULE(MusicProcessClient)
 public:
     /*!
      * execute module.
@@ -44,7 +43,6 @@ public:
 class TTK_MODULE_EXPORT MusicProcessServer : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicProcessServer)
 public:
     /*!
      * Object constructor.

@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT TTKEventLoop : public QEventLoop
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKEventLoop)
 public:
     /*!
      * Object constructor.

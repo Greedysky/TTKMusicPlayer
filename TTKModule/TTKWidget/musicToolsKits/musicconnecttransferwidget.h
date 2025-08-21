@@ -35,7 +35,6 @@ class MusicConnectTransferThread;
 class TTK_MODULE_EXPORT MusicConnectTransferWidget : public MusicAbstractMoveDialog, private MusicItemSearchInterface<MusicSongList>
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicConnectTransferWidget)
 public:
     /*!
      * Object constructor.

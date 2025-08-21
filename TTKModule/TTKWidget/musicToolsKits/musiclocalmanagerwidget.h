@@ -45,7 +45,6 @@ using MusicSongStatisticItem = QMap<QString, int>;
 class TTK_MODULE_EXPORT MusicLocalManagerStatisticTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalManagerStatisticTableWidget)
 public:
     /*!
      * Object constructor.
@@ -74,7 +73,6 @@ public:
 class TTK_MODULE_EXPORT MusicLocalManagerSongsTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalManagerSongsTableWidget)
 public:
     /*!
      * Object constructor.
@@ -117,7 +115,6 @@ class MusicGifLabelValueWidget;
 class TTK_MODULE_EXPORT MusicLocalManagerWidget : public QWidget, public TTKAbstractResizeInterface, private MusicItemSearchInterface<MusicSongInfoItemList>
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalManagerWidget)
 public:
     /*!
      * Object constructor.

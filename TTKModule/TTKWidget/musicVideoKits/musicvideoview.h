@@ -32,7 +32,6 @@ class MusicBarrageWidget;
 class TTK_MODULE_EXPORT MusicViewWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicViewWidget)
 public:
     /*!
      * Object constructor.
@@ -74,7 +73,6 @@ private:
 class TTK_MODULE_EXPORT MusicVideoView : public QAbstractScrollArea
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicVideoView)
 public:
     /*!
      * Object constructor.

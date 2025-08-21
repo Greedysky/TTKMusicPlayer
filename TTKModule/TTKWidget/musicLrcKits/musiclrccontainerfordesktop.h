@@ -35,7 +35,6 @@ class MusicLRCManagerForDesktop;
 class TTK_MODULE_EXPORT MusicLrcContainerForDesktop : public MusicLrcContainer
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcContainerForDesktop)
 public:
     /*!
      * Object constructor.
@@ -159,7 +158,6 @@ protected:
 class TTK_MODULE_EXPORT MusicLrcContainerHorizontalDesktop : public MusicLrcContainerForDesktop
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcContainerHorizontalDesktop)
 public:
     /*!
      * Object constructor.
@@ -192,7 +190,6 @@ private:
 class TTK_MODULE_EXPORT MusicLrcContainerVerticalDesktop : public MusicLrcContainerForDesktop
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcContainerVerticalDesktop)
 public:
     /*!
      * Object constructor.

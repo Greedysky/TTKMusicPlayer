@@ -27,7 +27,6 @@
  */
 class TTK_MODULE_EXPORT TTKTime
 {
-    TTK_DECLARE_MODULE(TTKTime)
 public:
     /*!
      * Object constructor.

@@ -26,7 +26,6 @@
  */
 class TTK_MODULE_EXPORT MusicTXTConfigManager : public MusicPlaylistRenderer, public MusicPlaylistInterface
 {
-    TTK_DECLARE_MODULE(MusicTXTConfigManager)
 public:
     /*!
      * Object constructor.

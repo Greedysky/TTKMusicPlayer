@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicPVCounterRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPVCounterRequest)
 public:
     /*!
      * Object constructor.

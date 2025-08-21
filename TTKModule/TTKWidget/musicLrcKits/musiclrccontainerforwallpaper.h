@@ -31,7 +31,6 @@ class MusicTransitionAnimationLabel;
 class TTK_MODULE_EXPORT MusicLrcContainerForWallpaper : public MusicLrcContainer
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcContainerForWallpaper)
 public:
     /*!
      * Object constructor.

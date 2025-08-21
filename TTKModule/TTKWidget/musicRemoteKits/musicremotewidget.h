@@ -32,7 +32,6 @@ class TTKClickedSlider;
 class TTK_MODULE_EXPORT MusicRemoteWidget : public TTKAbstractMoveWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRemoteWidget)
 public:
     enum Module
     {

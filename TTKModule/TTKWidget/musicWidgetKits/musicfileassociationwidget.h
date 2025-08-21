@@ -33,7 +33,6 @@ class MusicFileAssociationWidget;
 class TTK_MODULE_EXPORT MusicFileAssociationTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicFileAssociationTableWidget)
 public:
     /*!
      * Object constructor.
@@ -70,7 +69,6 @@ private:
 class TTK_MODULE_EXPORT MusicFileAssociationWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicFileAssociationWidget)
 public:
     /*!
      * Object constructor.

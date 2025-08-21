@@ -33,7 +33,6 @@ class MusicLrcPosterWidget;
 class TTK_MODULE_EXPORT MusicLrcPosterItemWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcPosterItemWidget)
 public:
     enum class Format
     {
@@ -172,7 +171,6 @@ private:
 class TTK_MODULE_EXPORT MusicLrcPosterTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcPosterTableWidget)
 public:
     /*!
      * Object constructor.
@@ -205,7 +203,6 @@ public Q_SLOTS:
 class TTK_MODULE_EXPORT MusicLrcPosterThemeListWidget : public QListWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcPosterThemeListWidget)
 public:
     /*!
      * Object constructor.
@@ -227,7 +224,6 @@ private:
 class TTK_MODULE_EXPORT MusicLrcPosterWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcPosterWidget)
 public:
     /*!
      * Object constructor.

@@ -30,7 +30,6 @@ static constexpr const char *MV_CATEGORY_URL = "US93a3pGUVMzNmdBUDRtUGUyMk42WFZz
 class TTK_MODULE_EXPORT MusicAbstractMVRadioRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractMVRadioRequest)
 public:
     /*!
      * Object constructor.

@@ -31,7 +31,6 @@ class MusicSongSuggestRequest;
 class TTK_MODULE_EXPORT MusicSongSearchInteriorEdit : public MusicSearchEdit
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongSearchInteriorEdit)
 public:
     /*!
      * Object constructor.

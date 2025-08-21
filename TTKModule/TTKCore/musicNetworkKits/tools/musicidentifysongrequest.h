@@ -37,7 +37,6 @@ TTK_DECLARE_LIST(MusicSongIdentifyData);
 class TTK_MODULE_EXPORT MusicAbstractIdentifyRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractIdentifyRequest)
 public:
     /*!
      * Object constructor.
@@ -84,7 +83,6 @@ protected:
 class TTK_MODULE_EXPORT MusicACRIdentifyRequest : public MusicAbstractIdentifyRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicACRIdentifyRequest)
 public:
     /*!
      * Object constructor.
@@ -117,7 +115,6 @@ private Q_SLOTS:
 class TTK_MODULE_EXPORT MusicXFIdentifyRequest : public MusicAbstractIdentifyRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicXFIdentifyRequest)
 public:
     /*!
      * Object constructor.

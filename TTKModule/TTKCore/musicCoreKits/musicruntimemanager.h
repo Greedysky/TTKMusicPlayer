@@ -26,7 +26,6 @@
  */
 class TTK_MODULE_EXPORT MusicRunTimeManager
 {
-    TTK_DECLARE_MODULE(MusicRunTimeManager)
 public:
     /*!
      * Execute module.

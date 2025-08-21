@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicAbstractDownloadImageRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractDownloadImageRequest)
 public:
     /*!
      * Object constructor provide artist name and save local path.

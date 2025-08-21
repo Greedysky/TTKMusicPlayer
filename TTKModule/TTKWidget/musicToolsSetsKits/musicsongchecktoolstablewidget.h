@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicSongCheckToolsRenameTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongCheckToolsRenameTableWidget)
 public:
     /*!
      * Object constructor.
@@ -62,7 +61,6 @@ private:
 class TTK_MODULE_EXPORT MusicSongCheckToolsDuplicateTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongCheckToolsDuplicateTableWidget)
 public:
     /*!
      * Object constructor.
@@ -100,7 +98,6 @@ private:
 class TTK_MODULE_EXPORT MusicSongCheckToolsQualityTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongCheckToolsQualityTableWidget)
 public:
     /*!
      * Object constructor.

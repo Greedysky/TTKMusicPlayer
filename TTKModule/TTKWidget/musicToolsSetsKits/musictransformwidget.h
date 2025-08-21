@@ -33,7 +33,6 @@ class MusicTransformWidget;
 class TTK_MODULE_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTransformWidget)
 public:
     enum class Module
     {

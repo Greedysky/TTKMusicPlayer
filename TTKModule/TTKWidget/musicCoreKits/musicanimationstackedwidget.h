@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT MusicAnimationStackedWidget : public QStackedWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAnimationStackedWidget)
 public:
     enum class Module
     {

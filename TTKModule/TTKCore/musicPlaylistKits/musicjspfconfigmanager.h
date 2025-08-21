@@ -26,7 +26,6 @@
  */
 class TTK_MODULE_EXPORT MusicJSPFConfigManager : public MusicPlaylistRenderer, public MusicPlaylistInterface
 {
-    TTK_DECLARE_MODULE(MusicJSPFConfigManager)
 public:
     /*!
      * Object constructor.

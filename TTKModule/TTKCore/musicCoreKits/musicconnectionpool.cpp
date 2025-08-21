@@ -31,11 +31,7 @@ void MusicConnectionPool::connect(const QString &from, const QString &to)
         return;
     }
 
-    if(from == MusicNetworkThread::className() && to == MusicDownloadStatusModule::className())
-    {
-        QObject::connect(first, SIGNAL(networkConnectionStateChanged(bool)), second, SLOT(networkConnectionStateChanged(bool)));
-    }
-    else if(from == MusicPlayer::className() && to == MusicLrcMakerWidget::className())
+    if(from == MusicPlayer::className() && to == MusicLrcMakerWidget::className())
     {
         QObject::connect(first, SIGNAL(positionChanged(qint64)), second, SLOT(positionChanged(qint64)));
         QObject::connect(first, SIGNAL(durationChanged(qint64)), second, SLOT(durationChanged(qint64)));

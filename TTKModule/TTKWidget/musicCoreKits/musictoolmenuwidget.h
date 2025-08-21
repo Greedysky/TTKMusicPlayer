@@ -31,7 +31,6 @@
 class TTK_MODULE_EXPORT MusicToolMenu : public QMenu
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicToolMenu)
 public:
     /*!
      * Object constructor.
@@ -60,7 +59,6 @@ private:
 class TTK_MODULE_EXPORT MusicToolMenuWidget : public QToolButton
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicToolMenuWidget)
 public:
     /*!
      * Object constructor.

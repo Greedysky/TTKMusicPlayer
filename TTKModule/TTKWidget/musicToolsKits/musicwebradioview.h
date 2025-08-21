@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicWebFMRadioWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebFMRadioWidget)
 public:
     /*!
      * Object constructor.

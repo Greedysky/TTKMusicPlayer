@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicMVRadioProgramRequest : public MusicAbstractMVRadioRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicMVRadioProgramRequest)
 public:
     /*!
      * Object constructor.

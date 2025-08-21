@@ -30,7 +30,6 @@
 class TTK_MODULE_EXPORT MusicBarrageAnimation : public QPropertyAnimation
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBarrageAnimation)
 public:
     /*!
      * Object constructor.
@@ -68,7 +67,6 @@ class MusicBarrageRequest;
 class TTK_MODULE_EXPORT MusicBarrageWidget : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBarrageWidget)
 public:
     /*!
      * Object constructor.

@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicKGDownloadBackgroundRequest : public MusicAbstractDownloadImageRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKGDownloadBackgroundRequest)
 public:
     /*!
      * Object constructor provide artist name and save local path.

@@ -81,7 +81,6 @@ public Q_SLOTS:
  */
 class TTK_MODULE_EXPORT MusicBackupModule
 {
-    TTK_DECLARE_MODULE(MusicBackupModule)
 public:
     /*!
      * Object constructor.

@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT MusicAbstractSongsListTableWidget : public MusicSmoothMovingTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractSongsListTableWidget)
 public:
     /*!
      * Object constructor.

@@ -152,7 +152,7 @@ MusicKGQueryMovieRequest::MusicKGQueryMovieRequest(QObject *parent)
 
 void MusicKGQueryMovieRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << offset);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
 
     if(needToUnity())
     {
@@ -181,7 +181,7 @@ void MusicKGQueryMovieRequest::startToSearch(const QString &value)
 
 void MusicKGQueryMovieRequest::startToSearchByID(const QString &value)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << value);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
     deleteAll();
     m_queryValue = value;
@@ -191,7 +191,7 @@ void MusicKGQueryMovieRequest::startToSearchByID(const QString &value)
 
 void MusicKGQueryMovieRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -252,7 +252,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
 
 void MusicKGQueryMovieRequest::downLoadSingleFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicQueryMovieRequest::downLoadFinished();
 
@@ -286,7 +286,7 @@ MusicKGQueryArtistMovieRequest::MusicKGQueryArtistMovieRequest(QObject *parent)
 
 void MusicKGQueryArtistMovieRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << offset);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
 
     deleteAll();
     m_totalSize = 0;
@@ -303,7 +303,7 @@ void MusicKGQueryArtistMovieRequest::startToPage(int offset)
 
 void MusicKGQueryArtistMovieRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

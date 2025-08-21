@@ -29,7 +29,6 @@ class MusicAbstractPlatformExtras;
 class TTK_MODULE_EXPORT MusicPlatformExtras : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlatformExtras)
 public:
     /*!
      * Object constructor.

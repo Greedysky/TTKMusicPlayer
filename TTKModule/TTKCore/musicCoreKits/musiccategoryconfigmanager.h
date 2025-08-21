@@ -48,7 +48,6 @@ TTK_DECLARE_LIST(MusicResultsCategory);
  */
 class TTK_MODULE_EXPORT MusicCategoryConfigManager : public TTKAbstractXml, public TTKAbstractReadInterface<MusicResultsCategoryList>
 {
-    TTK_DECLARE_MODULE(MusicCategoryConfigManager)
 public:
     enum class Category
     {

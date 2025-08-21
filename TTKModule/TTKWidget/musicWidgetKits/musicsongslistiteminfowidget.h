@@ -32,7 +32,6 @@ class MusicSongsListItemInfoWidget;
 class TTK_MODULE_EXPORT MusicSongsListItemInfoWidget : public TTKAbstractMoveWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsListItemInfoWidget)
 public:
     /*!
      * Object constructor.

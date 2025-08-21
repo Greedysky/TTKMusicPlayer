@@ -32,7 +32,6 @@ class QPropertyAnimation;
 class TTK_MODULE_EXPORT MusicBackgroundWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBackgroundWidget)
 public:
     /*!
      * Object constructor.
@@ -61,7 +60,6 @@ private:
 class TTK_MODULE_EXPORT MusicLineBackgroundWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLineBackgroundWidget)
 public:
     /*!
      * Object constructor.
@@ -90,7 +88,6 @@ private:
 class TTK_MODULE_EXPORT MusicAbstractAnimationWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractAnimationWidget)
 public:
     /*!
      * Object constructor.
@@ -145,7 +142,6 @@ protected:
 class TTK_MODULE_EXPORT MusicFuntionAnimationWidget : public MusicAbstractAnimationWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicFuntionAnimationWidget)
 public:
     /*!
      * Object constructor.
@@ -173,7 +169,6 @@ private:
 class TTK_MODULE_EXPORT MusicOptionAnimationWidget : public MusicAbstractAnimationWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicOptionAnimationWidget)
 public:
     /*!
      * Object constructor.
@@ -210,7 +205,6 @@ private:
 class TTK_MODULE_EXPORT MusicSkinAnimationWidget : public MusicAbstractAnimationWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSkinAnimationWidget)
 public:
     /*!
      * Object constructor.

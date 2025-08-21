@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicSimilarQueryTableWidget : public MusicItemQueryTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSimilarQueryTableWidget)
 public:
     /*!
      * Object constructor.
@@ -54,7 +53,6 @@ public Q_SLOTS:
 class TTK_MODULE_EXPORT MusicSimilarQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSimilarQueryWidget)
 public:
     /*!
      * Object constructor.

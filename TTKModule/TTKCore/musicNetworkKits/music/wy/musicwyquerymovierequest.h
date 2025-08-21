@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicWYQueryMovieRequest : public MusicUnityQueryMovieRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWYQueryMovieRequest)
 public:
     /*!
      * Object constructor.
@@ -79,7 +78,6 @@ private:
 class TTK_MODULE_EXPORT MusicWYQueryArtistMovieRequest : public MusicQueryMovieRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWYQueryArtistMovieRequest)
 public:
     /*!
      * Object constructor.

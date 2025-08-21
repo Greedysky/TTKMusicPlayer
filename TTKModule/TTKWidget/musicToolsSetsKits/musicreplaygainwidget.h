@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicReplayGainTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicReplayGainTableWidget)
 public:
     /*!
      * Object constructor.

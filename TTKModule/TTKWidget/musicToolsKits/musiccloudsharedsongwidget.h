@@ -31,7 +31,6 @@ class MusicCloudManagerWidget;
 class TTK_MODULE_EXPORT MusicCloudSharedSongWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudSharedSongWidget)
 public:
     /*!
      * Object constructor.

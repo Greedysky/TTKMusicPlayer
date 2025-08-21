@@ -33,7 +33,6 @@ class MusicDownloadQueueRequest;
 class TTK_MODULE_EXPORT MusicScreenSaverHoverItem : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicScreenSaverHoverItem)
 public:
     /*!
      * Object constructor.
@@ -87,7 +86,6 @@ private:
 class TTK_MODULE_EXPORT MusicScreenSaverListItem : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicScreenSaverListItem)
 public:
     /*!
      * Object constructor.
@@ -129,7 +127,6 @@ private:
 class TTK_MODULE_EXPORT MusicScreenSaverListWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicScreenSaverListWidget)
 public:
     /*!
      * Object constructor.
@@ -168,7 +165,6 @@ private:
 class TTK_MODULE_EXPORT MusicScreenSaverWidget : public QWidget, public TTKAbstractResizeInterface
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicScreenSaverWidget)
 public:
     /*!
      * Object constructor.
@@ -229,7 +225,6 @@ private:
 class TTK_MODULE_EXPORT MusicScreenSaverBackgroundWidget : public MusicTransitionAnimationLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicScreenSaverBackgroundWidget)
 public:
     /*!
      * Object constructor.

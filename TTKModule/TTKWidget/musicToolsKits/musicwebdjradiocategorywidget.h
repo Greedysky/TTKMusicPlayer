@@ -31,7 +31,6 @@ class MusicDJRadioCategoryRequest;
 class TTK_MODULE_EXPORT MusicWebDJRadioCategoryItemWidget : public TTKClickedLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebDJRadioCategoryItemWidget)
 public:
     /*!
      * Object constructor.
@@ -76,7 +75,6 @@ private:
 class TTK_MODULE_EXPORT MusicWebDJRadioCategoryWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebDJRadioCategoryWidget)
 public:
     /*!
      * Object constructor.

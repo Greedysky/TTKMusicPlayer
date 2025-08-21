@@ -30,7 +30,6 @@
 class TTK_MODULE_EXPORT TTKAbstractTableWidget : public QTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKAbstractTableWidget)
 public:
     /*!
      * Object constructor.

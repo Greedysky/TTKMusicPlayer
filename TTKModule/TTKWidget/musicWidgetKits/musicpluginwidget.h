@@ -34,7 +34,6 @@ class QTreeWidgetItem;
 class TTK_MODULE_EXPORT MusicQmmpPluginWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQmmpPluginWidget)
 public:
     /*!
      * Object constructor.
@@ -68,7 +67,6 @@ private:
 class TTK_MODULE_EXPORT MusicServerPluginTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicServerPluginTableWidget)
 public:
     /*!
      * Object constructor.
@@ -105,7 +103,6 @@ private:
 class TTK_MODULE_EXPORT MusicServerPluginWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicServerPluginWidget)
 public:
     /*!
      * Object constructor.

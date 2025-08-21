@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicPlaylistBackupTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlaylistBackupTableWidget)
 public:
     /*!
      * Object constructor.
@@ -67,7 +66,6 @@ class QListWidget;
 class TTK_MODULE_EXPORT MusicPlaylistBackupWidget : public QWidget, public TTKAbstractResizeInterface
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSonglistManagerWidget)
 public:
     /*!
      * Object constructor.

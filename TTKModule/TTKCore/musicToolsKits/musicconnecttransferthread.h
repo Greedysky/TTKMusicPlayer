@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicConnectTransferThread : public TTKAbstractThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicConnectTransferThread)
 public:
     /*!
      * Object constructor.

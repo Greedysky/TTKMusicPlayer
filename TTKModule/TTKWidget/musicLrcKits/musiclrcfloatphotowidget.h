@@ -31,7 +31,6 @@ class QPushButton;
 class TTK_MODULE_EXPORT MusicLrcFloatPhotoItem : public TTKClickedLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcFloatPhotoItem)
 public:
     /*!
      * Object constructor.
@@ -98,7 +97,6 @@ private:
 class TTK_MODULE_EXPORT MusicLrcFloatPhotoWidget : public MusicAbstractFloatWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcFloatPhotoWidget)
 public:
     /*!
      * Object constructor.

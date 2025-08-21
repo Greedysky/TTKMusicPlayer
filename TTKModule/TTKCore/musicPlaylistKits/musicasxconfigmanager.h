@@ -27,7 +27,6 @@
  */
 class TTK_MODULE_EXPORT MusicASXConfigManager : public TTKAbstractXml, public MusicPlaylistInterface
 {
-    TTK_DECLARE_MODULE(MusicASXConfigManager)
 public:
     /*!
      * Object constructor.

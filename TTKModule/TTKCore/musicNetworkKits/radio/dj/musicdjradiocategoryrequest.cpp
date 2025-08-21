@@ -22,7 +22,7 @@ void MusicDJRadioCategoryRequest::startToRequest()
 
 void MusicDJRadioCategoryRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     m_items.clear();
     MusicAbstractDJRadioRequest::downLoadFinished();

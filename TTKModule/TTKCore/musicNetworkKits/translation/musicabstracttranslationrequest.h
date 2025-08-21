@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicAbstractTranslationRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractTranslationRequest)
 public:
     enum class Language
     {

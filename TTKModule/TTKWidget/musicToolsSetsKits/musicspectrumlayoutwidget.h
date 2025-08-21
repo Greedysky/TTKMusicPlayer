@@ -30,7 +30,6 @@
 class TTK_MODULE_EXPORT MusicSpectrumLayoutItem : public TTKClickedLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSpectrumLayoutItem)
 public:
     /*!
      * Object constructor.
@@ -67,7 +66,6 @@ private:
 class TTK_MODULE_EXPORT MusicSpectrumLayoutWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSpectrumLayoutWidget)
 public:
     /*!
      * Object constructor.
@@ -125,7 +123,6 @@ protected:
 class TTK_MODULE_EXPORT MusicSpectrumNormalLayoutWidget : public MusicSpectrumLayoutWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSpectrumNormalLayoutWidget)
 public:
     /*!
      * Object constructor.
@@ -147,7 +144,6 @@ private:
 class TTK_MODULE_EXPORT MusicSpectrumPlusLayoutWidget : public MusicSpectrumLayoutWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSpectrumPlusLayoutWidget)
 public:
     /*!
      * Object constructor.
@@ -169,7 +165,6 @@ private:
 class TTK_MODULE_EXPORT MusicSpectrumFlowLayoutWidget : public MusicSpectrumLayoutWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSpectrumFlowLayoutWidget)
 public:
     /*!
      * Object constructor.
@@ -191,7 +186,6 @@ private:
 class TTK_MODULE_EXPORT MusicSpectrumWaveLayoutWidget : public MusicSpectrumLayoutWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSpectrumWaveLayoutWidget)
 public:
     /*!
      * Object constructor.
@@ -213,7 +207,6 @@ private:
 class TTK_MODULE_EXPORT MusicSpectrumFloridLayoutWidget : public MusicSpectrumLayoutWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSpectrumFloridLayoutWidget)
 public:
     /*!
      * Object constructor.

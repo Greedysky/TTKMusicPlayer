@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicAbstractMoveWidget : public TTKAbstractMoveWidget, protected MusicWidgetRenderer
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractMoveWidget)
 public:
     /*!
      * Object constructor.
@@ -59,7 +58,6 @@ public Q_SLOTS:
 class TTK_MODULE_EXPORT MusicAbstractMovePlainWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractMovePlainWidget)
 public:
     /*!
      * Object constructor.

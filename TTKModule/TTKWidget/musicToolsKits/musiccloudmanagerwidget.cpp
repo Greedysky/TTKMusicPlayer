@@ -161,10 +161,10 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItemList &i
 
 void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
 {
-    if(time == TTK_NAN_STR)
-    {
-        Q_EMIT uploadFileError(m_currentDataItem);
-    }
+//    if(time == TTK_NAN_STR)
+//    {
+//        Q_EMIT uploadFileError(m_currentDataItem);
+//    }
 
     const int row = FindUploadItemRow(time);
     if(row != -1)

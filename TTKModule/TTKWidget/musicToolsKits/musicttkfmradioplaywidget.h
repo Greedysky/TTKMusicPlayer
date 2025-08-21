@@ -38,7 +38,6 @@ class MusicTTKFMRadioInformationWidget;
 class TTK_MODULE_EXPORT MusicTTKFMRadioInformationWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTTKFMRadioInformationWidget)
 public:
     /*!
      * Object constructor.
@@ -75,7 +74,6 @@ private:
 class TTK_MODULE_EXPORT MusicTTKFMRadioPlayWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTTKFMRadioPlayWidget)
 public:
     /*!
      * Object constructor.

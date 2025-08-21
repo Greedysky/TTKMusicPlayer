@@ -11,7 +11,7 @@ void MusicKWDownLoadTextRequest::startToRequest()
     if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) || m_url.isEmpty())
     {
         Q_EMIT downLoadDataChanged("The kuwo text file create failed");
-        TTK_ERROR_STREAM(className() << "file create failed");
+        TTK_ERROR_STREAM(metaObject()->className() << "file create failed");
         deleteAll();
         return;
     }
@@ -60,11 +60,11 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
             outstream << lrcData;
             outstream << QtNamespace(endl);
             m_file->close();
-            TTK_INFO_STREAM(className() << "download has finished");
+            TTK_INFO_STREAM(metaObject()->className() << "download has finished");
         }
         else
         {
-            TTK_ERROR_STREAM(className() << "download file error");
+            TTK_ERROR_STREAM(metaObject()->className() << "download file error");
             m_file->remove();
             m_file->close();
         }

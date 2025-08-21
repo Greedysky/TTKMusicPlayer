@@ -30,7 +30,6 @@ class TTKCheckBoxItemDelegate;
 class TTK_MODULE_EXPORT MusicFillItemTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicFillItemTableWidget)
 public:
     /*!
      * Object constructor.

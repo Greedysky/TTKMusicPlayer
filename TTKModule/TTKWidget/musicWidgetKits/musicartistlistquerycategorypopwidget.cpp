@@ -104,7 +104,7 @@ void MusicArtistListQueryCategoryPopWidget::initialize()
     setText(tr("All"));
 
     QString style = TTK::UI::BorderStyle02 + TTK::UI::BackgroundStyle10;
-    setObjectName(className());
+    setObjectName(MusicArtistListQueryCategoryPopWidget::metaObject()->className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), style));
 
     m_menu->setStyleSheet(TTK::UI::MenuStyle05);

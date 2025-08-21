@@ -33,7 +33,6 @@
 class TTK_MODULE_EXPORT MusicAbstractItemQueryWidget : public QWidget, public TTKAbstractResizeInterface
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractItemQueryWidget)
 public:
     /*!
      * Object constructor.

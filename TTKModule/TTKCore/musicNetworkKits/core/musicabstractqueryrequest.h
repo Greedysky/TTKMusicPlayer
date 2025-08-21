@@ -33,7 +33,6 @@ static constexpr const char *QUERY_KG_INTERFACE = "KuGou";
 class TTK_MODULE_EXPORT MusicAbstractQueryRequest : public MusicPageQueryRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractQueryRequest)
 public:
     enum class QueryServer
     {

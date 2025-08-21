@@ -30,7 +30,6 @@ class QPropertyAnimation;
 class TTK_MODULE_EXPORT MusicSmoothMovingInterface : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSmoothMovingInterface)
 public:
     /*!
      * Object constructor.
@@ -83,7 +82,6 @@ private:
 class TTK_MODULE_EXPORT MusicSmoothMovingTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSmoothMovingTableWidget)
 public:
     /*!
      * Object constructor.
@@ -118,7 +116,6 @@ private:
 class TTK_MODULE_EXPORT MusicSmoothMovingScrollArea : public QScrollArea
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSmoothMovingScrollArea)
 public:
     /*!
      * Object constructor.

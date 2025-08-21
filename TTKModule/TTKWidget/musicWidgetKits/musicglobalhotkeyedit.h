@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicGlobalHotKeyEdit : public QLineEdit
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicGlobalHotKeyEdit)
 public:
     /*!
      * Object constructor.

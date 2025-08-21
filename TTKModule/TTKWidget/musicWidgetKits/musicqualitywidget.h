@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicQualityWidget : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQualityWidget)
 public:
     /*!
      * Object constructor.

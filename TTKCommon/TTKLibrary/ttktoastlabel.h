@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT TTKToastLabel : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKToastLabel)
 public:
     /*!
      * Object constructor.

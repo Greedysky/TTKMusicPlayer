@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicLrcPhotoItem : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcPhotoItem)
 public:
     /*!
      * Object constructor.
@@ -77,7 +76,6 @@ private:
 class TTK_MODULE_EXPORT MusicLrcPhotoWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcPhotoWidget)
 public:
     /*!
      * Object constructor.
@@ -133,7 +131,6 @@ class MusicLrcPhotoManagerWidget;
 class TTK_MODULE_EXPORT MusicLrcPhotoManagerWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcPhotoManagerWidget)
 public:
     /*!
      * Object constructor.

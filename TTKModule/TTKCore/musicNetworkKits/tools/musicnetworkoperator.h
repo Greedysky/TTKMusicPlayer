@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicNetworkOperator : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicNetworkOperator)
 public:
     /*!
      * Object constructor.

@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicKGQueryMovieRequest : public MusicUnityQueryMovieRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKGQueryMovieRequest)
 public:
     /*!
      * Object constructor.
@@ -69,7 +68,6 @@ private Q_SLOTS:
 class TTK_MODULE_EXPORT MusicKGQueryArtistMovieRequest : public MusicQueryMovieRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKGQueryArtistMovieRequest)
 public:
     /*!
      * Object constructor.

@@ -36,7 +36,6 @@ class MusicSourceUpdateWidget;
 class TTK_MODULE_EXPORT MusicSourceUpdateNotifyWidget : public MusicAbstractMovePlainWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSourceUpdateNotifyWidget)
 public:
     /*!
      * Object constructor.
@@ -69,7 +68,6 @@ private:
 class TTK_MODULE_EXPORT MusicSourceUpdateWidget : public TTKAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSourceUpdateWidget)
 public:
     /*!
      * Object constructor.

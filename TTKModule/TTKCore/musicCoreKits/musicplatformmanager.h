@@ -26,7 +26,6 @@
  */
 class TTK_MODULE_EXPORT MusicPlatformManager
 {
-    TTK_DECLARE_MODULE(MusicPlatformManager)
 public:
 #ifdef Q_OS_WIN
     /*!

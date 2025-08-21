@@ -29,7 +29,6 @@ class QPushButton;
 class TTK_MODULE_EXPORT MusicSongSearchPopTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongSearchPopTableWidget)
 public:
     /*!
      * Object constructor.
@@ -75,7 +74,6 @@ public Q_SLOTS:
 class TTK_MODULE_EXPORT MusicSongSearchPopWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongSearchPopWidget)
 public:
     /*!
      * Object constructor.

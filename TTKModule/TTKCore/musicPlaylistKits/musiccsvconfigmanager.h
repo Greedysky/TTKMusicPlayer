@@ -26,7 +26,6 @@
  */
 class TTK_MODULE_EXPORT MusicCSVConfigManager : public MusicPlaylistRenderer, public MusicPlaylistInterface
 {
-    TTK_DECLARE_MODULE(MusicCSVConfigManager)
 public:
     /*!
      * Object constructor.

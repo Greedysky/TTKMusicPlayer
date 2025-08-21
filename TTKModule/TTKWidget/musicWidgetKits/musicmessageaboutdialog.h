@@ -32,7 +32,6 @@ namespace Ui {
 class TTK_MODULE_EXPORT MusicMessageAboutDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicMessageAboutDialog)
 public:
     /*!
      * Object constructor.

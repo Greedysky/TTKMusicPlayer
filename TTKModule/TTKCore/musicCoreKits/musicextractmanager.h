@@ -28,7 +28,6 @@ struct MusicBackgroundImage;
  */
 class TTK_MODULE_EXPORT MusicExtractManager
 {
-    TTK_DECLARE_MODULE(MusicExtractManager)
 public:
     /*!
      * Transfer file to image data.

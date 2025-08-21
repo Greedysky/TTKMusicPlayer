@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT MusicAbstractDownLoadRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractDownLoadRequest)
 public:
     /*!
      * Object constructor provide download url save local path and download type.

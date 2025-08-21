@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicDJRadioProgramCategoryRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDJRadioProgramCategoryRequest)
 public:
     /*!
      * Object constructor.

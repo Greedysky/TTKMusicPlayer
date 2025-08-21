@@ -27,7 +27,6 @@
  */
 class TTK_MODULE_EXPORT MusicConnectionPool
 {
-    TTK_DECLARE_MODULE(MusicConnectionPool)
     TTK_DECLARE_SINGLETON_CLASS(MusicConnectionPool)
 public:
     /*!

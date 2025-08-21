@@ -11,7 +11,7 @@ MusicYDTranslationRequest::MusicYDTranslationRequest(QObject *parent)
 
 void MusicYDTranslationRequest::startToRequest(const QString &data)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicAbstractNetwork::deleteAll();
 
@@ -32,7 +32,7 @@ void MusicYDTranslationRequest::startToRequest(const QString &data)
 
     if(sid.isEmpty())
     {
-        TTK_INFO_STREAM(className() << "downLoadFinished");
+        TTK_INFO_STREAM(metaObject()->className() << "downLoadFinished");
         Q_EMIT downLoadDataChanged({});
         deleteAll();
         return;
@@ -50,7 +50,7 @@ void MusicYDTranslationRequest::startToRequest(const QString &data)
 
 void MusicYDTranslationRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicAbstractTranslationRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

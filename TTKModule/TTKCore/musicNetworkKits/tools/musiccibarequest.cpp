@@ -38,7 +38,7 @@ QString MusicCiBaRequest::image() const noexcept
 
 void MusicCiBaRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

@@ -105,7 +105,7 @@ MusicEnhancedPopWidget::~MusicEnhancedPopWidget()
 
 void MusicEnhancedPopWidget::setEnhancedSongConfig(int type)
 {
-    setObjectName(className());
+    setObjectName(metaObject()->className());
     QString style = TTK::UI::BtnMagic;
     switch(type)
     {

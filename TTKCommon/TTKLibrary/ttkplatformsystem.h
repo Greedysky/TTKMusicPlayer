@@ -26,7 +26,6 @@
  */
 class TTK_MODULE_EXPORT TTKPlatformSystem
 {
-    TTK_DECLARE_MODULE(TTKPlatformSystem)
 public:
     enum class System
     {

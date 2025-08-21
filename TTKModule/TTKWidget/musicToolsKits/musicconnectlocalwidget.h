@@ -32,7 +32,6 @@ class MusicAnimationStackedWidget;
 class TTK_MODULE_EXPORT MusicConnectLocalWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicConnectLocalWidget)
 public:
     /*!
      * Object constructor.

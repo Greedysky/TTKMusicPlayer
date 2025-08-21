@@ -65,7 +65,6 @@ struct TTK_MODULE_EXPORT MusicBackgroundImage
  */
 class TTK_MODULE_EXPORT MusicSkinConfigManager : public TTKAbstractXml, public TTKAbstractReadWriteInterface<MusicSkinItem>
 {
-    TTK_DECLARE_MODULE(MusicSkinConfigManager)
 public:
     /*!
      * Object constructor.

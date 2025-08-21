@@ -30,7 +30,6 @@ class MusicToplistQueryCategoryPopWidget;
 class TTK_MODULE_EXPORT MusicToplistQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicToplistQueryWidget)
 public:
     /*!
      * Object constructor.

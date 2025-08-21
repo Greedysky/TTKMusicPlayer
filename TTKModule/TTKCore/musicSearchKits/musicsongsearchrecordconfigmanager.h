@@ -37,7 +37,6 @@ TTK_DECLARE_LIST(MusicSearchRecord);
  */
 class TTK_MODULE_EXPORT MusicSongSearchRecordConfigManager : public TTKAbstractXml, public TTKAbstractReadWriteInterface<MusicSearchRecordList>
 {
-    TTK_DECLARE_MODULE(MusicSongSearchRecordConfigManager)
 public:
     /*!
      * Object constructor.

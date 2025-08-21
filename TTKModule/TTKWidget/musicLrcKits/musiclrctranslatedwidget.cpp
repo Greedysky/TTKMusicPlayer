@@ -5,7 +5,7 @@
 MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     : QLabel(parent)
 {
-    setObjectName(className());
+    setObjectName(MusicLrcTranslatedWidget::metaObject()->className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle07));
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);

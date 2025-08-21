@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT MusicRatingLabel : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRatingLabel)
 public:
     /*!
      * Object constructor.

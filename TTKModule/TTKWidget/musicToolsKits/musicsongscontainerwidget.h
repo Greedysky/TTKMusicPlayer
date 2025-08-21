@@ -33,7 +33,6 @@ class MusicSongsListFunctionWidget;
 class TTK_MODULE_EXPORT MusicSongsContainerWidget : public MusicSongsToolBoxWidget, private MusicItemSearchInterface<MusicSongItemList>
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsContainerWidget)
 public:
     /*!
      * Object constructor.

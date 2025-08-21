@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicNetworkThread : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicNetworkThread)
     TTK_DECLARE_SINGLETON_CLASS(MusicNetworkThread)
 public:
     /*!

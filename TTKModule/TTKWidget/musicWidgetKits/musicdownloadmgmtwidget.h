@@ -31,7 +31,6 @@ class MusicDownloadResetWidget;
 class TTK_MODULE_EXPORT MusicDownloadResetWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadResetWidget)
 public:
     /*!
      * Object constructor.
@@ -72,7 +71,6 @@ private:
 class TTK_MODULE_EXPORT MusicDownloadMgmtWidget : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadMgmtWidget)
 public:
     /*!
      * Object constructor.

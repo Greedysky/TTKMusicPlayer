@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicAbstractMoveDialog : public TTKAbstractMoveDialog, protected MusicWidgetRenderer
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractMoveDialog)
 public:
     /*!
      * Object constructor.

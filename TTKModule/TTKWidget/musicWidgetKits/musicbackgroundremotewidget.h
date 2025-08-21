@@ -32,7 +32,6 @@ class MusicDownloadQueueRequest;
 class TTK_MODULE_EXPORT MusicBackgroundRemoteWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBackgroundRemoteWidget)
 public:
     /*!
      * Object constructor.
@@ -87,7 +86,6 @@ protected:
 class TTK_MODULE_EXPORT MusicBackgroundDailyWidget : public MusicBackgroundRemoteWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBackgroundDailyWidget)
 public:
     /*!
      * Object constructor.
@@ -120,7 +118,6 @@ public Q_SLOTS:
 class TTK_MODULE_EXPORT MusicBackgroundOnlineWidget : public MusicBackgroundRemoteWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBackgroundOnlineWidget)
 public:
     /*!
      * Object constructor.

@@ -56,7 +56,6 @@
  */
 class TTK_MODULE_EXPORT MusicSingleManager
 {
-    TTK_DECLARE_MODULE(MusicSingleManager)
     TTK_DECLARE_SINGLETON_CLASS(MusicSingleManager)
 public:
     /*!

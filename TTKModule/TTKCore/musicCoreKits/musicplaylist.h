@@ -63,7 +63,6 @@ static constexpr int PLAY_PREVIOUS_LEVEL = -321;
 class TTK_MODULE_EXPORT MusicPlaylist : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlaylist)
 public:
     /*!
      * Object constructor.

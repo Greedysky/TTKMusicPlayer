@@ -40,7 +40,6 @@ class QProgressBar;
 class TTK_MODULE_EXPORT TTKAbstractItemDelegate : public QItemDelegate
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKAbstractItemDelegate)
 public:
     enum Module
     {
@@ -87,7 +86,6 @@ protected:
 class TTK_MODULE_EXPORT TTKCheckBoxItemDelegate : public TTKAbstractItemDelegate
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKCheckBoxItemDelegate)
 public:
     /*!
      * Object constructor.
@@ -122,7 +120,6 @@ private:
 class TTK_MODULE_EXPORT TTKProgressBarItemDelegate : public TTKAbstractItemDelegate
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKProgressBarItemDelegate)
 public:
     /*!
      * Object constructor.
@@ -150,7 +147,6 @@ private:
 class TTK_MODULE_EXPORT TTKLabelItemDelegate : public TTKAbstractItemDelegate
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKLabelItemDelegate)
 public:
     /*!
      * Object constructor.
@@ -183,7 +179,6 @@ private:
 class TTK_MODULE_EXPORT TTKPushButtonItemDelegate : public TTKAbstractItemDelegate
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKPushButtonItemDelegate)
 public:
     /*!
      * Object constructor.

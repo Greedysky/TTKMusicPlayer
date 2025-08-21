@@ -29,7 +29,6 @@ class QPushButton;
 class TTK_MODULE_EXPORT MusicLrcFloatSettingWidget : public MusicAbstractFloatWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcFloatSettingWidget)
 public:
     /*!
      * Object constructor.

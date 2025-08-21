@@ -28,7 +28,6 @@
  */
 class TTK_MODULE_EXPORT TTKFileAssociation
 {
-    TTK_DECLARE_MODULE(TTKFileAssociation)
 public:
     /*!
      * Add file association by suffix.

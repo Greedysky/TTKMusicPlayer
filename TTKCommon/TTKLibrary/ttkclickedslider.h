@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT TTKClickedSlider : public QSlider
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKClickedSlider)
 public:
     /*!
      * Object constructor.

@@ -54,7 +54,6 @@ TTK_DECLARE_LIST(MusicDeviceInfoItem);
 class TTK_MODULE_EXPORT MusicDeviceInfoModule : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDeviceInfoModule)
 public:
     /*!
      * Object constructor.

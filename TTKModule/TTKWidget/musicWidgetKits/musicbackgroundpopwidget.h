@@ -29,7 +29,6 @@ class TTKClickedSlider;
 class TTK_MODULE_EXPORT MusicBackgroundPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBackgroundPopWidget)
 public:
     /*!
      * Object constructor.

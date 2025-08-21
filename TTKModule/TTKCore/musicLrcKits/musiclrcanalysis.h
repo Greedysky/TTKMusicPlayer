@@ -29,7 +29,6 @@ static constexpr int MUSIC_LRC_INTERIOR_MAX_LINE = 11;
 class TTK_MODULE_EXPORT MusicLrcAnalysis : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcAnalysis)
 public:
     enum class State
     {

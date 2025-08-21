@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT TTKAbstractMoveWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKAbstractMoveWidget)
 public:
     /*!
      * Object constructor.

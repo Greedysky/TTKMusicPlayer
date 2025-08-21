@@ -28,7 +28,6 @@
  */
 class TTK_MODULE_EXPORT MusicConfigManager : public TTKAbstractXml, public TTKAbstractReadWriteInterface<int>
 {
-    TTK_DECLARE_MODULE(MusicConfigManager)
 public:
     /*!
      * Object constructor.

@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicImageRenderer : public TTKAbstractThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicImageRenderer)
 public:
     /*!
      * Object constructor.

@@ -31,7 +31,6 @@ class MusicLrcSearchWidget;
 class TTK_MODULE_EXPORT MusicLrcSearchWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcSearchWidget)
 public:
     /*!
      * Object constructor.

@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicDownloadBingSkinRequest : public MusicAbstractDownloadSkinRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadBingSkinRequest)
 public:
     /*!
      * Object constructor.

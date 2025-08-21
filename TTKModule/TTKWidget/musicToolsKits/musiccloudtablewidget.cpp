@@ -77,6 +77,13 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
     setFixedHeight(0);
+
+    G_CONNECTION_PTR->setValue(className(), this);
+}
+
+MusicCloudUploadTableWidget::~MusicCloudUploadTableWidget()
+{
+    G_CONNECTION_PTR->removeValue(this);
 }
 
 void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item)

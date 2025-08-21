@@ -39,7 +39,6 @@ namespace TTK
 class TTK_MODULE_EXPORT MusicDJRadioProgramRequest : public MusicAbstractDJRadioRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDJRadioProgramRequest)
 public:
     /*!
      * Object constructor.

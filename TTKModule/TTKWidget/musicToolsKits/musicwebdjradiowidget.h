@@ -32,7 +32,6 @@ class MusicWebDJRadioQueryWidget;
 class TTK_MODULE_EXPORT MusicWebDJRadioProgramTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebDJRadioProgramTableWidget)
 public:
     /*!
      * Object constructor.
@@ -88,7 +87,6 @@ private:
 class TTK_MODULE_EXPORT MusicWebDJRadioProgramWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebDJRadioProgramWidget)
 public:
     /*!
      * Object constructor.
@@ -121,7 +119,6 @@ private:
 class TTK_MODULE_EXPORT MusicWebDJRadioWidget : public QStackedWidget, public TTKAbstractResizeInterface
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebDJRadioWidget)
 public:
     /*!
      * Object constructor.

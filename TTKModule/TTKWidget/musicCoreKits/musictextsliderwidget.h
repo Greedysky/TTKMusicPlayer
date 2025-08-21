@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicTextSliderWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTextSliderWidget)
 public:
     /*!
      * Object constructor.

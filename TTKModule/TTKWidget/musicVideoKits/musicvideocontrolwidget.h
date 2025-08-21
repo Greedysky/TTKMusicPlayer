@@ -36,7 +36,6 @@ class MusicSearchEdit;
 class TTK_MODULE_EXPORT MusicVideoControlWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicVideoControlWidget)
 public:
     /*!
      * Object constructor.

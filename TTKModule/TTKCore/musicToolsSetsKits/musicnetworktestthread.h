@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicNetworkTestThread : public TTKAbstractThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicNetworkTestThread)
 public:
     /*!
      * Object constructor.

@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicSongCheckToolsRenameThread : public TTKAbstractThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongCheckToolsRenameThread)
 public:
     /*!
      * Object constructor.
@@ -79,7 +78,6 @@ private:
 class TTK_MODULE_EXPORT MusicSongCheckToolsDuplicateThread : public TTKAbstractThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongCheckToolsDuplicateThread)
 public:
     /*!
      * Object constructor.
@@ -130,7 +128,6 @@ private:
 class TTK_MODULE_EXPORT MusicSongCheckToolsQualityThread : public TTKAbstractThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongCheckToolsQualityThread)
 public:
     /*!
      * Object constructor.

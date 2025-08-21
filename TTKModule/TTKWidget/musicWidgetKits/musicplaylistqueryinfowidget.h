@@ -33,7 +33,6 @@ class MusicPlaylistQueryCommentsWidget;
 class TTK_MODULE_EXPORT MusicPlaylistQueryInfoWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlaylistQueryInfoWidget)
 public:
     /*!
      * Object constructor.

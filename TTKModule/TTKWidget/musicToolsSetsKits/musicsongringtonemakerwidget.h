@@ -33,7 +33,6 @@ class MusicCoreMPlayer;
 class TTK_MODULE_EXPORT MusicSongRingtoneMaker : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongRingtoneMaker)
 public:
     /*!
      * Object constructor.

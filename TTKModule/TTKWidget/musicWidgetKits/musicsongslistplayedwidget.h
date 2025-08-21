@@ -32,7 +32,6 @@ class MusicGifLabelWidget;
 class TTK_MODULE_EXPORT MusicSongsListPlayedWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsListPlayedWidget)
 public:
     /*!
      * Object constructor.

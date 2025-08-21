@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicDownloadBirdSkinRequest : public MusicAbstractDownloadSkinRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadBirdSkinRequest)
 public:
     /*!
      * Object constructor.

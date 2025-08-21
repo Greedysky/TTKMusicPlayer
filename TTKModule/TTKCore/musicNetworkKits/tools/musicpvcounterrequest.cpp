@@ -47,7 +47,7 @@ void MusicPVCounterRequest::startToRequest()
 
 void MusicPVCounterRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     QString pv = TTK_DEFAULT_STR;
     MusicAbstractNetwork::downLoadFinished();

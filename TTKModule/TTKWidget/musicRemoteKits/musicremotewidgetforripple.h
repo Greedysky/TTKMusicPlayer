@@ -29,7 +29,6 @@ class MusicMarqueeWidget;
 class TTK_MODULE_EXPORT MusicRemoteWidgetForRipple : public MusicRemoteWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRemoteWidgetForRipple)
 public:
     /*!
      * Object constructor.

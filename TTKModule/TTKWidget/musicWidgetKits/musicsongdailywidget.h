@@ -31,7 +31,6 @@ class MusicCiBaRequest;
 class TTK_MODULE_EXPORT MusicSongDailyWidget : public QFrame, public TTKAbstractResizeInterface
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongDailyWidget)
 public:
     /*!
      * Object constructor.

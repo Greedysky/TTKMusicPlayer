@@ -38,7 +38,6 @@ TTK_DECLARE_LIST(MusicDownloadQueueData);
 class TTK_MODULE_EXPORT MusicDownloadQueueRequest : public MusicAbstractDownLoadRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadQueueRequest)
 public:
     /*!
      * Object constructor.

@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicDataSourceRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDataSourceRequest)
 public:
     /*!
      * Object constructor.

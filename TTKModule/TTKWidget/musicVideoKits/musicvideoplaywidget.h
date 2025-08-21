@@ -37,7 +37,6 @@ class MusicItemQueryEdit;
 class TTK_MODULE_EXPORT MusicVideoPlayWidget : public TTKAbstractMoveWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicVideoPlayWidget)
 public:
     /*!
      * Object constructor.

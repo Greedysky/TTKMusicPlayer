@@ -29,7 +29,6 @@
 class TTK_MODULE_EXPORT MusicBlurSpecturmModule : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBlurSpecturmModule)
 public:
     /*!
      * Object constructor.

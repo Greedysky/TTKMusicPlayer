@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicRecommendQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRecommendQueryWidget)
 public:
     /*!
      * Object constructor.

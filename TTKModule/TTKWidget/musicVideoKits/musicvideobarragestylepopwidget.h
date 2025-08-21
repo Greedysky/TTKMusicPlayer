@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicVideoBarrageStylePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicVideoBarrageStylePopWidget)
 public:
     /*!
      * Object constructor.

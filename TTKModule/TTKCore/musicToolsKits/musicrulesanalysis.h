@@ -27,7 +27,6 @@
  */
 class TTK_MODULE_EXPORT MusicRulesAnalysis
 {
-    TTK_DECLARE_MODULE(MusicRulesAnalysis)
 public:
     /*!
      * Get all rule filters.

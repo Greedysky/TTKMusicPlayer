@@ -38,7 +38,6 @@ TTK_DECLARE_LIST(MusicLocalDataItem);
 class TTK_MODULE_EXPORT MusicLrcLocalLinkTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcLocalLinkTableWidget)
 public:
     /*!
      * Object constructor.

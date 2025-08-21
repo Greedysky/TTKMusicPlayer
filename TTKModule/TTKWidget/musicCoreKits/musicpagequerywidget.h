@@ -29,7 +29,6 @@ class TTKClickedLabel;
 class TTK_MODULE_EXPORT MusicPageQueryWidget : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPageQueryWidget)
 public:
     /*!
      * Object constructor.

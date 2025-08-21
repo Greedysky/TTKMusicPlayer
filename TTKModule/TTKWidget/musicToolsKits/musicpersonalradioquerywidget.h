@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicPersonalRadioQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPersonalRadioQueryWidget)
 public:
     /*!
      * Object constructor.

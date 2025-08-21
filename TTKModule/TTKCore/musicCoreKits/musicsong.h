@@ -27,7 +27,6 @@
  */
 class TTK_MODULE_EXPORT MusicSong
 {
-    TTK_DECLARE_MODULE(MusicSong)
 public:
     enum class Sort
     {

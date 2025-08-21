@@ -53,7 +53,6 @@ private:
 class TTK_MODULE_EXPORT MusicDownloadToolBoxWidget : public MusicFunctionToolBoxWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadToolBoxWidget)
 public:
     /*!
      * Object constructor.

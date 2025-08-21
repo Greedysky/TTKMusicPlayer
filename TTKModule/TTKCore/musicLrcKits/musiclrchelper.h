@@ -27,7 +27,6 @@
  */
 class TTK_MODULE_EXPORT MusicLrcHelper
 {
-    TTK_DECLARE_MODULE(MusicLrcHelper)
 public:
     /*!
      * Object constructor.

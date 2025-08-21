@@ -104,7 +104,6 @@ private:
  */
 class TTK_MODULE_EXPORT TTKAbstractXml
 {
-    TTK_DECLARE_MODULE(TTKAbstractXml)
 public:
     /*!
      * Object constructor.

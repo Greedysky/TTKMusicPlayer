@@ -33,7 +33,6 @@ class MusicCloudFileInformationWidget;
 class TTK_MODULE_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
 public:
     /*!
      * Object constructor.

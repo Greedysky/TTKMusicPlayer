@@ -33,7 +33,6 @@ class MusicLrcManagerForInterior;
 class TTK_MODULE_EXPORT MusicLrcMakerWidgetItem : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcMakerWidgetItem)
 public:
     /*!
      * Object constructor.

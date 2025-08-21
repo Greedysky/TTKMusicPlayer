@@ -29,7 +29,6 @@ class TTKClickedSlider;
 class TTK_MODULE_EXPORT MusicVolumePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicVolumePopWidget)
 public:
     /*!
      * Object constructor.

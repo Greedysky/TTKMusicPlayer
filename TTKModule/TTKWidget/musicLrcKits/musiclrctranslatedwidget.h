@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicLrcTranslatedWidget : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcTranslatedWidget)
 public:
     /*!
      * Object constructor.

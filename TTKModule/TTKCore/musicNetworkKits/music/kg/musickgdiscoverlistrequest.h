@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicKGDiscoverListRequest : public MusicDiscoverListRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKGDiscoverListRequest)
 public:
     /*!
      * Object constructor.

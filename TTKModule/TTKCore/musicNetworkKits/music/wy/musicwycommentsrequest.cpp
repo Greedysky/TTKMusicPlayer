@@ -9,7 +9,7 @@ MusicWYSongCommentsRequest::MusicWYSongCommentsRequest(QObject *parent)
 
 void MusicWYSongCommentsRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << offset);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
 
     deleteAll();
     m_totalSize = 0;
@@ -27,7 +27,7 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
 
 void MusicWYSongCommentsRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << value);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
     TTKEventLoop loop;
     MusicWYQueryRequest query(this), *d = &query;
@@ -45,7 +45,7 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
 
 void MusicWYSongCommentsRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicCommentsRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -97,7 +97,7 @@ MusicWYPlaylistCommentsRequest::MusicWYPlaylistCommentsRequest(QObject *parent)
 
 void MusicWYPlaylistCommentsRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << offset);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
 
     deleteAll();
     m_totalSize = 0;
@@ -115,7 +115,7 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
 
 void MusicWYPlaylistCommentsRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicCommentsRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

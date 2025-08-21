@@ -1,5 +1,4 @@
 #include "musicnetworkthread.h"
-#include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "ttkconcurrent.h"
 
@@ -13,8 +12,6 @@ MusicNetworkThread::MusicNetworkThread()
       m_networkState(true)
 {
     connect(&m_timer, SIGNAL(timeout()), SLOT(networkStateChanged()));
-
-    G_CONNECTION_PTR->setValue(className(), this);
 }
 
 MusicNetworkThread::~MusicNetworkThread()

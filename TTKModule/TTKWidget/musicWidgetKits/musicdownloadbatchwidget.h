@@ -32,7 +32,6 @@ class MusicDownloadBatchWidget;
 class TTK_MODULE_EXPORT MusicDownloadBatchTableItem : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadBatchTableItem)
 public:
     /*!
      * Object constructor.
@@ -94,7 +93,6 @@ private:
 class TTK_MODULE_EXPORT MusicDownloadBatchTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadBatchTableWidget)
 public:
     /*!
      * Object constructor.
@@ -136,7 +134,6 @@ private:
 class TTK_MODULE_EXPORT MusicDownloadBatchWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadBatchWidget)
 public:
     /*!
      * Object constructor.

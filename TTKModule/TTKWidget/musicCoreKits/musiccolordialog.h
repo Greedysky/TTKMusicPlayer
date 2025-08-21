@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicHlPalette : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicHlPalette)
 public:
     /*!
      * Object constructor.
@@ -87,7 +86,6 @@ private:
 class TTK_MODULE_EXPORT MusicHlSaturationPalette : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicHlSaturationPalette)
 public:
     /*!
      * Object constructor.
@@ -144,7 +142,6 @@ class MusicColorDialog;
 class TTK_MODULE_EXPORT MusicColorDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicColorDialog)
 public:
     /*!
      * Object constructor.

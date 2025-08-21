@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicWebMVRadioInfoTableWidget : public MusicItemQueryTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebMVRadioInfoTableWidget)
 public:
     /*!
      * Object constructor.
@@ -67,7 +66,6 @@ private:
 class TTK_MODULE_EXPORT MusicWebMVRadioInfoWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebMVRadioInfoWidget)
 public:
     /*!
      * Object constructor.

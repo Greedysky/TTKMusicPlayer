@@ -48,7 +48,6 @@ TTK_DECLARE_LIST(MusicFMCategory);
  */
 class TTK_MODULE_EXPORT MusicFMConfigManager : public TTKAbstractXml, public TTKAbstractReadWriteInterface<MusicFMCategoryList>
 {
-    TTK_DECLARE_MODULE(MusicFMConfigManager)
 public:
     /*!
      * Object constructor.

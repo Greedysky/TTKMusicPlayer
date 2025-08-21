@@ -30,7 +30,6 @@ class TTKProgressBarItemDelegate;
 class TTK_MODULE_EXPORT MusicAbstractDownloadTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractDownloadTableWidget)
 public:
     /*!
      * Object constructor.

@@ -28,7 +28,6 @@
  */
 class TTK_MODULE_EXPORT MusicWidgetRenderer
 {
-    TTK_DECLARE_MODULE(MusicWidgetRenderer)
 public:
     /*!
      * Object constructor.

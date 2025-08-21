@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT TTKClickedGroup : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKClickedGroup)
 public:
     /*!
      * Object constructor.

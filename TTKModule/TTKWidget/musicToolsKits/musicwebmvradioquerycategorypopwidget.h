@@ -28,7 +28,6 @@
 class TTK_MODULE_EXPORT MusicWebMVRadioQueryCategoryItem : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebMVRadioQueryCategoryItem)
 public:
     /*!
      * Object constructor.
@@ -65,7 +64,6 @@ private:
 class TTK_MODULE_EXPORT MusicWebMVRadioQueryCategoryPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebMVRadioQueryCategoryPopWidget)
 public:
     /*!
      * Object constructor.

@@ -33,7 +33,6 @@ class MusicArtistListQueryCategoryPopWidget;
 class TTK_MODULE_EXPORT MusicArtistListQueryItemWidget : public TTKClickedLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicArtistListQueryItemWidget)
 public:
     /*!
      * Object constructor.
@@ -70,7 +69,6 @@ private:
 class TTK_MODULE_EXPORT MusicArtistListQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicArtistListQueryWidget)
 public:
     /*!
      * Object constructor.

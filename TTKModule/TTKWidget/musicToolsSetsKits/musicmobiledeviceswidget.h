@@ -29,7 +29,6 @@ class QToolButton;
 class TTK_MODULE_EXPORT MusicMobileDevicesWidget : public TTKClickedLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicMobileDevicesWidget)
 public:
     /*!
      * Object constructor.

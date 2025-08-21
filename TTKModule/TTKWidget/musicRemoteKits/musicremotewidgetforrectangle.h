@@ -29,7 +29,6 @@ class MusicMarqueeWidget;
 class TTK_MODULE_EXPORT MusicRemoteWidgetForRectangle : public MusicRemoteWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRemoteWidgetForRectangle)
 public:
     /*!
      * Object constructor.

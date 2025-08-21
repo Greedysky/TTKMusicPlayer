@@ -47,7 +47,6 @@ enum class Direction;
 class TTK_MODULE_EXPORT TTKAbstractMoveResizeWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKAbstractMoveResizeWidget)
 public:
     /*!
      * Object constructor.

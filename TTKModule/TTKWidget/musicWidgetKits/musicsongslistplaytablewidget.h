@@ -34,7 +34,6 @@ class MusicLineEditItemDelegate;
 class TTK_MODULE_EXPORT MusicSongsListPlayTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsListPlayTableWidget)
 public:
     /*!
      * Object constructor.

@@ -35,7 +35,6 @@
 class TTK_MODULE_EXPORT MusicAbstractNetwork : public TTKAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractNetwork)
 public:
     /*!
      * Object constructor.

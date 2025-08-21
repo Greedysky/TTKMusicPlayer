@@ -87,7 +87,6 @@ private:
  */
 class TTK_MODULE_EXPORT TTKCommandLineParser
 {
-    TTK_DECLARE_MODULE(TTKCommandLineParser)
 public:
     /*!
      * Object constructor.

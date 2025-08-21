@@ -26,7 +26,6 @@
  */
 class TTK_MODULE_EXPORT MusicLrcFromInterface
 {
-    TTK_DECLARE_MODULE(MusicLrcFromInterface)
 public:
     /*!
      * Object destructor.
@@ -53,7 +52,6 @@ protected:
  */
 class TTK_MODULE_EXPORT MusicLrcFromPlain : public MusicLrcFromInterface
 {
-    TTK_DECLARE_MODULE(MusicLrcFromPlain)
 public:
     /*!
      * Decode file to lrc by input file.
@@ -68,7 +66,6 @@ public:
  */
 class TTK_MODULE_EXPORT MusicLrcFromKrc : public MusicLrcFromInterface
 {
-    TTK_DECLARE_MODULE(MusicLrcFromKrc)
 public:
     /*!
      * Object constructor.
@@ -116,7 +113,6 @@ protected:
  */
 class TTK_MODULE_EXPORT MusicLrcFromQrc : public MusicLrcFromInterface
 {
-    TTK_DECLARE_MODULE(MusicLrcFromQrc)
 public:
     /*!
      * Decode file to lrc by input file.
@@ -131,7 +127,6 @@ public:
  */
 class TTK_MODULE_EXPORT MusicLrcFromTrc : public MusicLrcFromInterface
 {
-    TTK_DECLARE_MODULE(MusicLrcFromTrc)
 public:
     /*!
      * Decode file to lrc by input file.
@@ -146,7 +141,6 @@ public:
  */
 class TTK_MODULE_EXPORT MusicLrcFromYrc : public MusicLrcFromInterface
 {
-    TTK_DECLARE_MODULE(MusicLrcFromYrc)
 public:
     /*!
      * Decode file to lrc by input file.

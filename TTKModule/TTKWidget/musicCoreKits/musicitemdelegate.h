@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicLineEditItemDelegate : public QItemDelegate
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLineEditItemDelegate)
 public:
     /*!
      * Object constructor.

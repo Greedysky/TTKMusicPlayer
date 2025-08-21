@@ -175,7 +175,7 @@ void MusicCommentsWidget::initialize(bool plain)
 {
     m_plain = plain;
 
-    setObjectName(className());
+    setObjectName(metaObject()->className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle07));
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);

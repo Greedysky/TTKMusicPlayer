@@ -35,7 +35,6 @@ class MusicXFIdentifyRequest;
 class TTK_MODULE_EXPORT MusicIdentifySongWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicIdentifySongRequest)
 public:
     /*!
      * Object constructor.

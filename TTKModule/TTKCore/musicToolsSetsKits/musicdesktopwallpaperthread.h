@@ -37,7 +37,6 @@ class QTimer;
 class TTK_MODULE_EXPORT MusicDesktopWallpaperThread : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDesktopWallpaperThread)
 public:
     /*!
      * Object constructor.

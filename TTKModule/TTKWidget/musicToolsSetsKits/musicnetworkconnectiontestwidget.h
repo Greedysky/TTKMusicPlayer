@@ -29,7 +29,6 @@ class MusicNetworkTestThread;
 class TTK_MODULE_EXPORT MusicNetworkConnectionItem : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicNetworkConnectionItem)
 public:
     /*!
      * Object constructor.

@@ -36,7 +36,6 @@ class MusicBackgroundRemoteWidget;
 class TTK_MODULE_EXPORT MusicBackgroundSkinDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBackgroundSkinDialog)
 public:
     /*!
      * Object constructor.

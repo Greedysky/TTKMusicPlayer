@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicQueryMovieRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQueryMovieRequest)
 public:
     /*!
      * Object constructor.

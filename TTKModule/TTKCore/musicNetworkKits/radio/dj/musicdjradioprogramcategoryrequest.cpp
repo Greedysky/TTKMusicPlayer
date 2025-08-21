@@ -10,7 +10,7 @@ MusicDJRadioProgramCategoryRequest::MusicDJRadioProgramCategoryRequest(QObject *
 
 void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << offset);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
 
     deleteAll();
     m_totalSize = 0;
@@ -28,7 +28,7 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 
 void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << value);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
     deleteAll();
 
@@ -44,7 +44,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
 
 void MusicDJRadioProgramCategoryRequest::startToSearchByID(const QString &value)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << value);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
     m_queryValue = value;
     startToPage(0);
@@ -52,7 +52,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearchByID(const QString &value)
 
 void MusicDJRadioProgramCategoryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
@@ -65,7 +65,7 @@ void MusicDJRadioProgramCategoryRequest::startToQueryResult(TTK::MusicSongInform
 
 void MusicDJRadioProgramCategoryRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicAbstractQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -109,7 +109,7 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
 
 void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
 {
-    TTK_INFO_STREAM(className() << __FUNCTION__);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicAbstractQueryRequest::downLoadFinished();
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());

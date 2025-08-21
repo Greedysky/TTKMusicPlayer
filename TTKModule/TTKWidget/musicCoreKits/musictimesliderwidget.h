@@ -31,7 +31,6 @@ class MusicMovingLabelSlider;
 class TTK_MODULE_EXPORT MusicTimeSliderWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTimeSliderWidget)
 public:
     /*!
      * Object constructor.

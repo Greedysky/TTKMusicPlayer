@@ -27,7 +27,6 @@
 class TTK_MODULE_EXPORT MusicPlayBackModePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlayBackModePopWidget)
 public:
     /*!
      * Object constructor.

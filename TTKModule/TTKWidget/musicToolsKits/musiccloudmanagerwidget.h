@@ -196,7 +196,6 @@ private:
 class TTK_MODULE_EXPORT MusicCloudManagerWidget : public QWidget, public TTKAbstractResizeInterface
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudManagerWidget)
 public:
     /*!
      * Object constructor.

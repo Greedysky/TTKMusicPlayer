@@ -29,7 +29,6 @@ struct MusicMeta;
  */
 class TTK_MODULE_EXPORT MusicSongMeta
 {
-    TTK_DECLARE_MODULE(MusicSongMeta)
 public:
     /*!
      * Object constructor.

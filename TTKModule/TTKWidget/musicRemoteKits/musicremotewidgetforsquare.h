@@ -29,7 +29,6 @@ class QGraphicsOpacityEffect;
 class TTK_MODULE_EXPORT MusicRemoteWidgetForSquare : public MusicRemoteWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRemoteWidgetForSquare)
 public:
     /*!
      * Object constructor.

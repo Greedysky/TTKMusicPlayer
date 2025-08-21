@@ -33,7 +33,6 @@ class MusicItemRenameEidt;
 class TTK_MODULE_EXPORT MusicSongsListPlayWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsListPlayWidget)
 public:
     /*!
      * Object constructor by index.

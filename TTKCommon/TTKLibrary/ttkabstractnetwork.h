@@ -45,7 +45,6 @@ namespace TTK
 class TTK_MODULE_EXPORT TTKAbstractNetwork : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKAbstractNetwork)
 public:
     /*!
      * Object constructor.

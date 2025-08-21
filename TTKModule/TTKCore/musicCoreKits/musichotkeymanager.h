@@ -29,7 +29,6 @@ class QGlobalShortcut;
 class TTK_MODULE_EXPORT MusicHotKeyManager : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicHotKeyManager)
     TTK_DECLARE_SINGLETON_CLASS(MusicHotKeyManager)
 public:
     /*!

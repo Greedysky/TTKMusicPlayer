@@ -30,7 +30,6 @@ class QTimer;
 class TTK_MODULE_EXPORT MusicGifLabelWidget : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicGifLabelWidget)
 public:
     enum class Module
     {
@@ -132,7 +131,6 @@ private:
 class TTK_MODULE_EXPORT MusicGifLabelMaskWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicGifLabelMaskWidget)
 public:
     /*!
      * Object constructor.
@@ -169,7 +167,6 @@ protected:
 class TTK_MODULE_EXPORT MusicGifLabelValueWidget : public MusicGifLabelMaskWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicGifLabelValueWidget)
 public:
     /*!
      * Object constructor.

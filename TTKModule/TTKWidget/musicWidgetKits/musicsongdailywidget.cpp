@@ -7,7 +7,7 @@
 MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     : QFrame(parent)
 {
-    setObjectName(className());
+    setObjectName(MusicSongDailyWidget::metaObject()->className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle10));
 
     m_container = new QLabel(this);

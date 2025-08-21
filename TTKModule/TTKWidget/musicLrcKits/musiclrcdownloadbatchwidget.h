@@ -33,7 +33,6 @@ class MusicLrcDownloadBatchWidget;
 class TTK_MODULE_EXPORT MusicLrcDownloadBatchTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcDownloadBatchTableWidget)
 public:
     /*!
      * Object constructor.

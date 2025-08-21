@@ -29,7 +29,6 @@ class QToolButton;
 class TTK_MODULE_EXPORT MusicLrcFloatPlayWidget : public MusicAbstractFloatWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcFloatPlayWidget)
 public:
     /*!
      * Object constructor.

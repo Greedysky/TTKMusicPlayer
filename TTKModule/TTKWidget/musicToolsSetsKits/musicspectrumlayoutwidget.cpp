@@ -84,7 +84,7 @@ void MusicSpectrumLayoutWidget::initialize()
     m_exclusive = false;
 
     const QString &style = TTK::UI::BorderStyle02 + TTK::UI::BackgroundStyle10;
-    setObjectName(className());
+    setObjectName(MusicSpectrumLayoutWidget::metaObject()->className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), style));
 
     m_containWidget->setFixedSize(240, 440);

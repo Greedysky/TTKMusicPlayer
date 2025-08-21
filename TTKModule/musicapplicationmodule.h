@@ -42,7 +42,6 @@ enum class Direction;
 class TTK_MODULE_EXPORT MusicApplicationModule : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicApplicationModule)
 public:
     /*!
      * Object constructor.

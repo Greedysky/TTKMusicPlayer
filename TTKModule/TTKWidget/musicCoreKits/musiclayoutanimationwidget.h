@@ -31,7 +31,6 @@ class QPropertyAnimation;
 class TTK_MODULE_EXPORT MusicLayoutAnimationWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLayoutAnimationWidget)
 public:
     /*!
      * Object constructor.
@@ -94,7 +93,6 @@ protected:
 class TTK_MODULE_EXPORT MusicVLayoutAnimationWidget : public MusicLayoutAnimationWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicVLayoutAnimationWidget)
 public:
     /*!
      * Object constructor.
@@ -121,7 +119,6 @@ private:
 class TTK_MODULE_EXPORT MusicHLayoutAnimationWidget : public MusicLayoutAnimationWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicHLayoutAnimationWidget)
 public:
     /*!
      * Object constructor.
