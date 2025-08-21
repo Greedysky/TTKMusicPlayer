@@ -10,6 +10,9 @@
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
 #  include <QRegularExpression>
+#  define RegularExpression QRegularExpression
+#else
+#  define RegularExpression QRegExp
 #endif
 
 #if defined(Q_OS_WIN)
@@ -79,11 +82,8 @@ TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &id)
 #endif
         prefix = d->m_id.section(QLatin1Char('/'), -1);
     }
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    prefix.remove(QRegularExpression("[^a-zA-Z]"));
-#else
-    prefix.remove(QRegExp("[^a-zA-Z]"));
-#endif
+
+    prefix.remove(RegularExpression("[^a-zA-Z]"));
     prefix.truncate(6);
 
     const QByteArray &idc = d->m_id.toUtf8();

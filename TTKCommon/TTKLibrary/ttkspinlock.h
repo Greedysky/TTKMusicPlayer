@@ -29,8 +29,14 @@ class TTK_MODULE_EXPORT TTKSpinLock
 {
     TTK_DISABLE_COPY(TTKSpinLock)
 public:
+    /*!
+     * Object constructor.
+     */
     TTKSpinLock() = default;
 
+    /*!
+     * Spink locker to lock.
+     */
     void lock() noexcept
     {
         while(m_lock.test_and_set(std::memory_order_acquire))
@@ -40,11 +46,17 @@ public:
         }
     }
 
+    /*!
+     * Spink locker to try lock.
+     */
     bool try_lock() noexcept
     {
         return !m_lock.test_and_set(std::memory_order_acquire);
     }
 
+    /*!
+     * Spink locker to unlock.
+     */
     void unlock() noexcept
     {
         m_lock.clear(std::memory_order_release);
@@ -62,12 +74,18 @@ class TTK_MODULE_EXPORT TTKSpinLockGuard
 {
     TTK_DISABLE_COPY(TTKSpinLockGuard)
 public:
+    /*!
+     * Object constructor.
+     */
     TTKSpinLockGuard(TTKSpinLock& lock) noexcept
         : m_lock(lock)
     {
         m_lock.lock();
     }
 
+    /*!
+     * Object destructor.
+     */
     ~TTKSpinLockGuard() noexcept
     {
         m_lock.unlock();

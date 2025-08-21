@@ -39,17 +39,38 @@ public:
     using OptionType = PT;
 
 public:
+    /*!
+     * Object constructor.
+     */
     TTKFunctor();
+    /*!
+     * Object destructor.
+     */
     virtual ~TTKFunctor();
 
 public:
+    /*!
+     * Functor execute in unsafe mode.
+     */
     OutputType executeUnsafe(const InputType &input);
+    /*!
+     * Functor execute in unsafe mode.
+     */
     OutputType executeUnsafe(const InputType &input, const OptionType &option);
 
+    /*!
+     * Functor execute in safe mode.
+     */
     bool execute(const InputType &input, const OptionType &option = OptionType());
+    /*!
+     * Functor execute in safe mode.
+     */
     bool execute(const InputType &input, OutputType &output, const OptionType &option = OptionType());
 
 protected:
+    /*!
+     * Functor execute main interface.
+     */
     virtual bool executeMain(OutputType &output, const InputType &input, const OptionType &option) = 0;
 
 };

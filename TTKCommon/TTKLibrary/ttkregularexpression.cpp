@@ -2,6 +2,9 @@
 
 TTKRegularExpression::TTKRegularExpression(const QString &pattern)
     : m_regular(pattern)
+#if TTK_QT_VERSION_CHECK(5,0,0) && !TTK_QT_VERSION_CHECK(5,1,0)
+    , m_match(m_regular.match({}))
+#endif
 {
 
 }
@@ -18,7 +21,7 @@ void TTKRegularExpression::setPattern(const QString &v)
 
 bool TTKRegularExpression::hasMatch(const QString &str)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if TTK_QT_VERSION_CHECK(5,0,0)
     m_match = m_regular.match(str);
     return m_match.hasMatch();
 #else
@@ -28,7 +31,7 @@ bool TTKRegularExpression::hasMatch(const QString &str)
 
 int TTKRegularExpression::match(const QString &str, int pos)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if TTK_QT_VERSION_CHECK(5,0,0)
     m_match = m_regular.match(str, pos);
     return m_match.capturedEnd();
 #else
@@ -38,7 +41,7 @@ int TTKRegularExpression::match(const QString &str, int pos)
 
 bool TTKRegularExpression::greedinessOption() const
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if TTK_QT_VERSION_CHECK(5,0,0)
     const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
     return flags & QRegularExpression::InvertedGreedinessOption;
 #else
@@ -48,7 +51,7 @@ bool TTKRegularExpression::greedinessOption() const
 
 void TTKRegularExpression::setGreedinessOption(bool v)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if TTK_QT_VERSION_CHECK(5,0,0)
     const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
     m_regular.setPatternOptions(v ? (flags | QRegularExpression::InvertedGreedinessOption) : (flags & ~QRegularExpression::InvertedGreedinessOption));
 #else
@@ -58,7 +61,7 @@ void TTKRegularExpression::setGreedinessOption(bool v)
 
 QString TTKRegularExpression::captured(int index) const
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if TTK_QT_VERSION_CHECK(5,0,0)
     return m_match.captured(index);
 #else
     return m_regular.cap(index);
@@ -67,7 +70,7 @@ QString TTKRegularExpression::captured(int index) const
 
 int TTKRegularExpression::capturedLength() const
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if TTK_QT_VERSION_CHECK(5,0,0)
     return m_match.capturedLength();
 #else
     return m_regular.matchedLength();
@@ -76,14 +79,14 @@ int TTKRegularExpression::capturedLength() const
 
 QString TTKRegularExpression::escape(const QString &str)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if TTK_QT_VERSION_CHECK(5,0,0)
     return QRegularExpression::escape(str);
 #else
     return QRegExp::escape(str);
 #endif
 }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if TTK_QT_VERSION_CHECK(5,0,0)
 TTKRegularExpression::operator QRegularExpression &()
 #else
 TTKRegularExpression::operator QRegExp &()
@@ -92,7 +95,7 @@ TTKRegularExpression::operator QRegExp &()
     return m_regular;
 }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if TTK_QT_VERSION_CHECK(5,0,0)
 TTKRegularExpression::operator const QRegularExpression &() const
 #else
 TTKRegularExpression::operator const QRegExp &() const
