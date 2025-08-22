@@ -87,7 +87,7 @@ public Q_SLOTS:
     /*!
      * Upload data to sync finshed.
      */
-    void uploadFileFinished(const QString &time);
+    void uploadFileFinished(const QString &time, bool state);
     /*!
      * Delete data to sync finshed.
      */
@@ -168,7 +168,7 @@ private:
     /*!
      * Find upload item row.
      */
-    int FindUploadItemRow(const QString &time) const;
+    int findUploadItemRow(const QString &time) const;
     /*!
      * Find waited item row.
      */

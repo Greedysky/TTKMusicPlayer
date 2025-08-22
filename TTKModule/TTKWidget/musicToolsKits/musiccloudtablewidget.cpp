@@ -95,8 +95,11 @@ void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item
     record.setName(item.m_data.m_name);
     record.setPath(item.m_path);
     record.setSizeStr(TTK::Number::sizeByteToLabel(item.m_data.m_size));
+    record.setAddTimeStr(QString::number(TTKDateTime::currentTimestamp()));
+    m_songs->append(record);
 
     addCellItem(count - 1, record);
+    Q_EMIT updateItemTitle(m_playlistRow);
 }
 
 void MusicCloudUploadTableWidget::reuploadFile()

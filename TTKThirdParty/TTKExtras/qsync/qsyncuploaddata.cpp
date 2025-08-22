@@ -79,17 +79,17 @@ void QSyncUploadData::receiveDataFromServer()
     {
         if(reply->error() == QNetworkReply::NoError)
         {
-            Q_EMIT uploadFileFinished(d->m_uploadTime);
+            Q_EMIT uploadFileFinished(d->m_uploadTime, true);
         }
         else
         {
-            Q_EMIT uploadFileFinished(TTK_NAN_STR);
+            Q_EMIT uploadFileFinished(d->m_uploadTime, false);
         }
         reply->deleteLater();
     }
     else
     {
-        Q_EMIT uploadFileFinished(TTK_NAN_STR);
+        Q_EMIT uploadFileFinished(d->m_uploadTime, false);
     }
 }
 

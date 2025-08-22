@@ -51,7 +51,7 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
 
     connect(m_syncListData, SIGNAL(receiveFinshed(QSyncDataItemList)), SLOT(receiveDataFinshed(QSyncDataItemList)));
     connect(m_syncDeleteData, SIGNAL(deleteFileFinished(bool)), SLOT(deleteFileFinished(bool)));
-    connect(m_syncUploadData, SIGNAL(uploadFileFinished(QString)), SLOT(uploadFileFinished(QString)));
+    connect(m_syncUploadData, SIGNAL(uploadFileFinished(QString,bool)), SLOT(uploadFileFinished(QString,bool)));
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicCloudUploadTableWidget::className());
@@ -159,29 +159,28 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItemList &i
     Q_EMIT updataSizeLabel(m_totalFileSzie);
 }
 
-void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
+void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time, bool state)
 {
-//    if(time == TTK_NAN_STR)
-//    {
-//        Q_EMIT uploadFileError(m_currentDataItem);
-//    }
-
-    const int row = FindUploadItemRow(time);
+    const int row = findUploadItemRow(time);
     if(row != -1)
     {
-        QTableWidgetItem *it = item(row, 0);
-        if(it)
+        if(state)
         {
-            MusicCloudDataItem data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
-            data.m_state = MusicCloudDataItem::State::Successed;
-            it->setData(TTK_DATA_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
-            m_totalFileSzie += data.m_data.m_size;
+            QTableWidgetItem *it = item(row, 0);
+            if(it)
+            {
+                MusicCloudDataItem data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
+                data.m_state = MusicCloudDataItem::State::Successed;
+                it->setData(TTK_DATA_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
+                m_totalFileSzie += data.m_data.m_size;
+                Q_EMIT updataSizeLabel(m_totalFileSzie);
+            }
         }
-        Q_EMIT updataSizeLabel(m_totalFileSzie);
-    }
-    else
-    {
-        Q_EMIT uploadFileError(m_currentDataItem);
+        else
+        {
+            removeRow(row);
+            Q_EMIT uploadFileError(m_currentDataItem);
+        }
     }
 
     startToUploadFile();
@@ -327,17 +326,19 @@ void MusicCloudManagerTableWidget::reuploadFilesToServer(const QStringList &item
 
 void MusicCloudManagerTableWidget::uploadProgress(const QString &time, qint64 percent, qint64 total)
 {
-    if(total != 0)
+    if(total <= 0)
     {
-        const int value = TTKStaticCast(int, (percent * 1.0 / total) * 100);
-        const int row = FindUploadItemRow(time);
-        if(row != -1)
+        return;
+    }
+
+    const int value = TTKStaticCast(int, (percent * 1.0 / total) * 100);
+    const int row = findUploadItemRow(time);
+    if(row != -1)
+    {
+        QTableWidgetItem *it = item(row, 2);
+        if(it)
         {
-            QTableWidgetItem *it = item(row, 2);
-            if(it)
-            {
-                it->setData(TTK_PROGRESS_ROLE, value);
-            }
+            it->setData(TTK_PROGRESS_ROLE, value);
         }
     }
 }
@@ -513,7 +514,7 @@ void MusicCloudManagerTableWidget::startToUploadFile()
     m_syncUploadData->request(m_currentDataItem.m_id, SYNC_MUSIC_BUCKET, m_currentDataItem.m_data.m_name, m_currentDataItem.m_path);
 }
 
-int MusicCloudManagerTableWidget::FindUploadItemRow(const QString &time) const
+int MusicCloudManagerTableWidget::findUploadItemRow(const QString &time) const
 {
     for(int i = 0; i < rowCount(); ++i)
     {

@@ -42,7 +42,7 @@ Q_SIGNALS:
     /*!
      * Uplaod file finshed.
      */
-    void uploadFileFinished(const QString &time);
+    void uploadFileFinished(const QString &time, bool state);
     /*!
      * Show upload progress.
      */
