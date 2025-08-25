@@ -113,16 +113,22 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
                 value = extra;
             }
 
-            value = value["quality"].toMap();
-            if(value.isEmpty())
+            const QVariantMap &quality = value["quality"].toMap();
+            if(!quality.isEmpty())
             {
-                return;
+                if(quality["target"].toString().contains(module.m_quality, Qt::CaseInsensitive) &&
+                   quality["result"].toString().contains(module.m_quality, Qt::CaseInsensitive))
+                {
+                    info->m_songProps.append(prop);
+                }
             }
-
-            if(value["target"].toString().contains(module.m_quality, Qt::CaseInsensitive) &&
-               value["result"].toString().contains(module.m_quality, Qt::CaseInsensitive))
+            else
             {
-                info->m_songProps.append(prop);
+                const QString &quality = value["quality"].toString();
+                if(quality.contains(module.m_quality, Qt::CaseInsensitive))
+                {
+                    info->m_songProps.append(prop);
+                }
             }
         }
     }
