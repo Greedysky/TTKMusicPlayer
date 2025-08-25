@@ -43,6 +43,7 @@ HEADERS += \
     $$PWD/qmmp/dithering_p.h \
     $$PWD/qmmp/visualbuffer_p.h \
     $$PWD/qmmp/tagmeta.h \
+    $$PWD/qmmp/qmmptextcodec.h \
     $$PWD/qmmp/regularexpression.h \
     $$PWD/qmmp/lightfactory.h \
     $$PWD/qmmp/florid.h \
