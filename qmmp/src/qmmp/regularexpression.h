@@ -32,29 +32,69 @@
 class QMMP_EXPORT RegularExpression
 {
 public:
+    /*!
+     * Object constructor.
+     */
     RegularExpression() = default;
     explicit RegularExpression(const QString &pattern);
 
-    bool hasMatch(const QString &str);
-    QString value(int index) const;
+    /*!
+     * Returns the pattern string of the regular expression.
+     */
+    QString pattern() const;
+    /*!
+     * Sets the pattern string of the regular expression to pattern.
+     */
+    void setPattern(const QString &v);
 
+    /*!
+     * Returns true if the regular expression matched against the subject string, or false otherwise.
+     */
+    bool hasMatch(const QString &str);
+
+    /*!
+     * Searches the byte array ba, from byte position from (default 0, i.e. from the first byte).
+     */
+    int match(const QString &str, int pos = 0);
+
+    /*!
+     * Returns the substring captured by the nth capturing group.
+     */
+    QString captured(int index) const;
+
+    /*!
+     * Returns the length of the substring captured by the nth capturing group.
+     */
+    int capturedLength() const;
+
+    /*!
+     * Returns the greediness option.
+     */
+    bool greedinessOption() const;
+
+    /*!
+     * Set the greediness option.
+     */
+    void setGreedinessOption(bool v);
+
+    /*!
+     * Escapes all characters of string.
+     */
     static QString escape(const QString &str);
 
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-    operator QRegularExpression () const;
+    operator QRegularExpression &();
+    operator const QRegularExpression &() const;
 private:
     QRegularExpression m_regular;
-#  if QT_VERSION >= QT_VERSION_CHECK(5,1,0)
     QRegularExpressionMatch m_match;
-#  else
-    QString m_match;
-#  endif
 #else
-    operator QRegExp () const;
+    operator QRegExp &();
+    operator const QRegExp &() const;
 private:
     QRegExp m_regular;
 #endif
 
 };
 
-#endif
+#endif // REGULAREXPRESSION_H
