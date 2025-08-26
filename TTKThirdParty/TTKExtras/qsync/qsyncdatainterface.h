@@ -54,11 +54,7 @@ protected:
     /*!
      * Pretty encode the data into url.
      */
-    QString pathEncode(const QString &data) const;
-    /*!
-     * Pretty decode the data into url.
-     */
-    QString pathDecode(const QString &data) const;
+    QString urlPathEncode(const QString &data) const;
 
 protected:
     /*!

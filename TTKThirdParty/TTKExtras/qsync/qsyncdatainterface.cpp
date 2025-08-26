@@ -17,23 +17,10 @@ QSyncDataInterface::QSyncDataInterface(QSyncDataInterfacePrivate &pvt, QNetworkA
 
 void QSyncDataInterface::replyError(QNetworkReply::NetworkError error)
 {
-    TTK_ERROR_STREAM("Sync network error" << error);
+    TTK_ERROR_STREAM("Sync network error, code is " << error);
 }
 
-QString QSyncDataInterface::pathEncode(const QString &data) const
+QString QSyncDataInterface::urlPathEncode(const QString &data) const
 {
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    return QUrl(data).toString(QUrl::FullyEncoded);
-#else
     return QUrl(data).toEncoded();
-#endif
-}
-
-QString QSyncDataInterface::pathDecode(const QString &data) const
-{
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    return QUrl(data).toString();
-#else
-    return QByteArray::fromPercentEncoding(data.toUtf8());
-#endif
 }

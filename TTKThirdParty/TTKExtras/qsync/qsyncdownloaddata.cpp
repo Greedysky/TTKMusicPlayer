@@ -74,7 +74,7 @@ QString QSyncDownloadData::downloadUrl(const QString &bucket, const QString &fil
 {
     const qint64 deadline = QDateTime::currentDateTimeUtc().addSecs(60 * 30).toMSecsSinceEpoch() / 1000;
 
-    const QString &encodeKey = pathEncode(fileName);
+    const QString &encodeKey = urlPathEncode(fileName);
     const QString &method = "GET";
     const QString &resource = TTK_SEPARATOR + bucket + TTK_SEPARATOR + fileName;
     const QString &host = bucket + TTK_DOT + QSyncConfig::HOST;

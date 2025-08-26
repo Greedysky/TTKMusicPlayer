@@ -2,6 +2,8 @@
 #include "musicapplication.h"
 #include "ttkcommandline.h"
 
+#include <QUrl>
+
 #define MEMORY_SIZE 512 * TTK_SN_KB2B
 #define MEMORY_KEY  TTK_STR_CAT(TTK_AUTHOR_NAME, TTK_DEFAULT_STR, TTK_APP_NAME)
 
@@ -9,7 +11,6 @@ void MusicProcessClient::execute(const QStringList &args) const
 {
     QSharedMemory client;
     client.setKey(MEMORY_KEY);
-
     client.attach();
 
     if(client.size() <= 0)
@@ -18,8 +19,8 @@ void MusicProcessClient::execute(const QStringList &args) const
     }
 
     client.lock();
-    const QString &data = args.join(TTK_SPLITER);
-    memcpy(client.data(), data.toUtf8().constData(), data.length());
+    const QByteArray &data = QUrl::toPercentEncoding(args.join(TTK_SPLITER));
+    memcpy(client.data(), data.constData(), data.length());
     client.unlock();
     client.detach();
 }
@@ -102,7 +103,7 @@ void MusicProcessServer::execute(const QStringList &args) const
 
 void MusicProcessServer::timeout()
 {
-    const QString &buffer = QString::fromUtf8((char*)m_memory.data());
+    const QByteArray &buffer = QByteArray((char*)m_memory.data());
     if(buffer.isEmpty())
     {
         return;
@@ -112,5 +113,5 @@ void MusicProcessServer::timeout()
     memset(m_memory.data(), 0, MEMORY_SIZE);
     m_memory.unlock();
 
-    execute(buffer.split(TTK_SPLITER));
+    execute(QUrl::fromPercentEncoding(buffer).split(TTK_SPLITER));
 }

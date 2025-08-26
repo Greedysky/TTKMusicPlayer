@@ -79,11 +79,7 @@ QByteArray TTK::Url::urlDecode(QByteArray &data)
 
 QString TTK::Url::urlPrettyEncode(QString &data)
 {
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    data = QUrl(data).toString(QUrl::FullyEncoded);
-#else
     data = QUrl(data).toEncoded();
-#endif
     return data;
 }
 
@@ -92,18 +88,14 @@ QString TTK::Url::urlPrettyDecode(QString &data)
 #if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl(data).toString();
 #else
-    data = QByteArray::fromPercentEncoding(data.toUtf8());
+    data = QUrl::fromPercentEncoding(data.toUtf8());
 #endif
     return data;
 }
 
 QByteArray TTK::Url::urlPrettyEncode(QByteArray &data)
 {
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    data = QUrl(data).toString(QUrl::FullyEncoded).toUtf8();
-#else
     data = QUrl(data).toEncoded();
-#endif
     return data;
 }
 

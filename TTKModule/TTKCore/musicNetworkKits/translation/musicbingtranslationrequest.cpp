@@ -66,8 +66,8 @@ void MusicBingTranslationRequest::startToRequest(const QString &data)
     TTK::makeUserAgentHeader(&request);
     TTK::makeContentTypeHeader(&request);
 
-    auto vvv = TTK::Algorithm::mdII(PARAM_URL, false).arg(key, token, mapToString(Language::Auto), mapToString(Language::Chinese), data).toUtf8();
-    m_reply = m_manager.post(request, TTK::Url::urlPrettyEncode(vvv));
+    auto v = TTK::Algorithm::mdII(PARAM_URL, false).arg(key, token, mapToString(Language::Auto), mapToString(Language::Chinese), data).toUtf8();
+    m_reply = m_manager.post(request, TTK::Url::urlPrettyEncode(v));
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
