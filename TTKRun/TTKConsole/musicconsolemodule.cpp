@@ -60,7 +60,6 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
 
 MusicConsoleModule::~MusicConsoleModule()
 {
-    G_HOTKEY_PTR->unsetShortcut();
     delete m_player;
     delete m_playlist;
 }

@@ -142,6 +142,11 @@ void TTKLogOutput::loggerHandler(QtMsgType type, const char *message)
 
 void TTKLogOutput::open()
 {
+    if(m_file.isOpen())
+    {
+        return;
+    }
+
     m_dateTime = QDate::currentDate().toString(TTK_DATE_FORMAT);
     const QString &fileName = LOG_DIR_PATH + m_module + m_dateTime;
 
