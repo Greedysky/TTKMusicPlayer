@@ -12,16 +12,16 @@ MusicDownloadBirdSkinRequest::MusicDownloadBirdSkinRequest(QObject *parent)
 
 void MusicDownloadBirdSkinRequest::startToRequest()
 {
-    MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
-    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startToRequest(TTK::Algorithm::mdII(MAIN_URL, false));
+    MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
+    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    req->startToRequest(TTK::Algorithm::mdII(MAIN_URL, false));
 }
 
 void MusicDownloadBirdSkinRequest::startToRequest(const QString &id)
 {
-    MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
-    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadItemsFinished(QByteArray)));
-    d->startToRequest(TTK::Algorithm::mdII(QUERY_URL, false).arg(id));
+    MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
+    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadItemsFinished(QByteArray)));
+    req->startToRequest(TTK::Algorithm::mdII(QUERY_URL, false).arg(id));
 }
 
 void MusicDownloadBirdSkinRequest::downLoadFinished(const QByteArray &bytes)

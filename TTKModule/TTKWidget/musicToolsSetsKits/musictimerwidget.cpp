@@ -236,7 +236,7 @@ void MusicTimerWidget::initThreeWidget()
 void MusicTimerWidget::saveParameterSettings()
 {
     writeParemeter();
-    MusicApplicationModule::instance()->runTimerAutoModule();
+    MusicApplicationModule::instance()->executeTimerAutoModule();
     close();
 }
 

@@ -117,10 +117,10 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
 
     if(TTK::isCoverValid(data.m_coverUrl))
     {
-        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->setHeader("id", index);
-        d->startToRequest(data.m_coverUrl);
+        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        req->setHeader("id", index);
+        req->startToRequest(data.m_coverUrl);
     }
 }
 

@@ -289,7 +289,7 @@ void MusicPlaylistBackupWidget::currentDateChanged(const QString &text)
     m_timeBox->clear();
     m_timeBox->blockSignals(false);
 
-    QDir dir(ROOT_PATH + text);
+    const QDir dir(ROOT_PATH + text);
     for(const QFileInfo &fin : dir.entryInfoList(QDir::Files, QDir::Time | QDir::Reversed))
     {
         m_timeBox->addItem(TTKDateTime::format(fin.baseName().toULongLong(), TTK_TIMES_FORMAT), fin.baseName());
@@ -349,7 +349,7 @@ void MusicPlaylistBackupWidget::currentItemChanged(int index)
 
 void MusicPlaylistBackupWidget::initialize()
 {
-    QDir dir(ROOT_PATH);
+    const QDir dir(ROOT_PATH);
     if(dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Time | QDir::Reversed).isEmpty())
     {
         MusicPlaylistBackupModule module;

@@ -49,9 +49,9 @@ void MusicDownloadMetaDataRequest::downLoadFinished()
         TTKEventLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
-        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startToRequest(m_songMeta.comment());
+        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        req->startToRequest(m_songMeta.comment());
         loop.exec();
     }
 

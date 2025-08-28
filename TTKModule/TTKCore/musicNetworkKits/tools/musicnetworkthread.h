@@ -34,6 +34,7 @@ public:
      * Strat thread now.
      */
     void start();
+
     /*!
      * Set flag wheather to block current network.
      */

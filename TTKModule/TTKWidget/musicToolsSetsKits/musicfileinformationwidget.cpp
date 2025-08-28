@@ -183,9 +183,9 @@ void MusicFileInformationWidget::openDynamicImage()
     {
         m_ui->dynamicPixButton->setText(tr("Static"));
 
-        MusicWYCoverSourceRequest *d = new MusicWYCoverSourceRequest(this);
-        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
-        d->startToRequest(QFileInfo(m_path).baseName());
+        MusicWYCoverSourceRequest *req = new MusicWYCoverSourceRequest(this);
+        connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+        req->startToRequest(QFileInfo(m_path).baseName());
     }
     else
     {

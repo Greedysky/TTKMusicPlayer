@@ -96,22 +96,23 @@ QPixmap MusicBackgroundSkinDialog::setBackgroundUrl(QString &name)
 
 bool MusicBackgroundSkinDialog::isValid(QString &name, QString &path)
 {
-    if(!QFile::exists(path))
+    if(QFile::exists(path))
     {
-        QString orPath = QString("%1%2%3").arg(THEME_DIR_FULL, name, TKM_FILE);
-        if(QFile::exists(orPath))
-        {
-            QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TKM_FILE));
-        }
-        else
-        {
-            name = "theme-1";
-            orPath = QString("%1%2%3").arg(THEME_DIR_FULL, name, TKM_FILE);
-            QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TKM_FILE));
-        }
-        return false;
+        return true;
     }
-    return true;
+
+    QString orPath = QString("%1%2%3").arg(THEME_DIR_FULL, name, TKM_FILE);
+    if(QFile::exists(orPath))
+    {
+        QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TKM_FILE));
+    }
+    else
+    {
+        name = "theme-1";
+        orPath = QString("%1%2%3").arg(THEME_DIR_FULL, name, TKM_FILE);
+        QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TKM_FILE));
+    }
+    return false;
 }
 
 QString MusicBackgroundSkinDialog::cpoyArtistFileToLocal(const QString &path)
@@ -217,10 +218,10 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
     {
         return;
     }
-    //
+
     m_dailyBackgroundList->abort();
     m_onlineBackgroundList->abort();
-    //
+
     if(index == 2)
     {
         m_dailyBackgroundList->initialize();
@@ -229,7 +230,7 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
     {
         m_onlineBackgroundList->initialize();
     }
-    //
+
     m_ui->stackedWidget->setIndex(0, 0);
     m_ui->stackedWidget->start(index);
 }

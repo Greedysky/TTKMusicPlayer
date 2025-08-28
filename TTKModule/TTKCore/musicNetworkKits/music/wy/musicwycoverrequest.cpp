@@ -13,13 +13,13 @@ MusicWYCoverSourceRequest::MusicWYCoverSourceRequest(QObject *parent)
 void MusicWYCoverSourceRequest::startToRequest(const QString &url)
 {
     TTKEventLoop loop;
-    MusicWYQueryRequest query(this), *d = &query;
-    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    d->startToSearch(url);
+    MusicWYQueryRequest query(this), *req = &query;
+    connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
+    req->startToSearch(url);
     loop.exec();
 
-    if(d->isEmpty())
+    if(req->isEmpty())
     {
         TTK_INFO_STREAM(metaObject()->className() << "downLoadFinished");
         Q_EMIT downLoadDataChanged({});
@@ -31,7 +31,7 @@ void MusicWYCoverSourceRequest::startToRequest(const QString &url)
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_SONG_PATH_V3_URL, false),
                       TTK::Algorithm::mdII(WY_COVER_URL, false),
-                      TTK::Algorithm::mdII(WY_COVER_DATA_URL, false).arg(d->items().front().m_songId));
+                      TTK::Algorithm::mdII(WY_COVER_DATA_URL, false).arg(req->items().front().m_songId));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

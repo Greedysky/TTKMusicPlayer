@@ -252,8 +252,8 @@ bool MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &i
         manager.writeBuffer(records);
     }
 
-    MusicDownloadMetaDataRequest *d = new MusicDownloadMetaDataRequest(prop.m_url, downloadPath, parent);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), parent, SLOT(downloadFinished()));
+    MusicDownloadMetaDataRequest *req = new MusicDownloadMetaDataRequest(prop.m_url, downloadPath, parent);
+    connect(req, SIGNAL(downLoadDataChanged(QString)), parent, SLOT(downloadFinished()));
 
     MusicSongMeta meta;
     meta.setComment(info.m_coverUrl);
@@ -263,8 +263,8 @@ bool MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &i
     meta.setTrackNum(info.m_trackNumber);
     meta.setYear(info.m_year);
 
-    d->setSongMeta(meta);
-    d->startToRequest();
+    req->setSongMeta(meta);
+    req->startToRequest();
     return true;
 }
 
@@ -313,9 +313,9 @@ bool MusicDownloadWidget::startToRequestMovie(const TTK::MusicSongInformation &i
         }
     }
 
-    MusicDownloadDataRequest *d = new MusicDownloadDataRequest(prop.m_url, downloadPath, TTK::Download::Video, parent);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), parent, SLOT(downloadFinished()));
-    d->startToRequest();
+    MusicDownloadDataRequest *req = new MusicDownloadDataRequest(prop.m_url, downloadPath, TTK::Download::Video, parent);
+    connect(req, SIGNAL(downLoadDataChanged(QString)), parent, SLOT(downloadFinished()));
+    req->startToRequest();
     return true;
 }
 

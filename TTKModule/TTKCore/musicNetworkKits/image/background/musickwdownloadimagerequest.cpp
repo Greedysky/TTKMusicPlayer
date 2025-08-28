@@ -62,9 +62,9 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished()
                         }
 
                         lastUrl = url;
-                        MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2-%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(foundCount()).arg(SKN_FILE), TTK::Download::Background, this);
-                        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
-                        d->startToRequest();
+                        MusicDownloadDataRequest *req = new MusicDownloadDataRequest(url, QString("%1%2-%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(foundCount()).arg(SKN_FILE), TTK::Download::Background, this);
+                        connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
+                        req->startToRequest();
                     }
                 }
             }

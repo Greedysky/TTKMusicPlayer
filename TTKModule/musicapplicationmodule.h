@@ -146,9 +146,9 @@ public Q_SLOTS:
      */
     void resetWindowGeometry();
     /*!
-     * Run timer auto module.
+     * Execute timer auto module.
      */
-    void runTimerAutoModule();
+    void executeTimerAutoModule();
     /*!
      * Detect mobile devices name changed.
      */

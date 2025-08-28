@@ -58,9 +58,9 @@ void MusicArtistAlbumsItemWidget::setResultDataItem(const MusicResultDataItem &i
 
     if(TTK::isCoverValid(item.m_coverUrl))
     {
-        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startToRequest(item.m_coverUrl);
+        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        req->startToRequest(item.m_coverUrl);
     }
 }
 
@@ -309,12 +309,12 @@ void MusicArtistQueryWidget::setCurrentValue(const QString &value)
 void MusicArtistQueryWidget::setCurrentID(const QString &id)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(id);
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeArtistRequest(this);
-    m_queryTableWidget->setQueryInput(d);
+    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeArtistRequest(this);
+    m_queryTableWidget->setQueryInput(req);
     m_queryTableWidget->startToSearchByText(id);
 
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryArtistFinished()));
-    connect(d, SIGNAL(createArtistItem(MusicResultDataItem)), SLOT(createArtistItem(MusicResultDataItem)));
+    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryArtistFinished()));
+    connect(req, SIGNAL(createArtistItem(MusicResultDataItem)), SLOT(createArtistItem(MusicResultDataItem)));
 }
 
 void MusicArtistQueryWidget::resizeWidget()
@@ -417,13 +417,13 @@ void MusicArtistQueryWidget::queryAllFinished()
 
 void MusicArtistQueryWidget::queryArtistFinished()
 {
-    const MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
-    if(!d)
+    const MusicAbstractQueryRequest *req = m_queryTableWidget->queryInput();
+    if(!req)
     {
         return;
     }
 
-    const TTK::MusicSongInformationList &songInfos = d->items();
+    const TTK::MusicSongInformationList &songInfos = req->items();
     if(songInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));
@@ -444,9 +444,9 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
     {
         if(TTK::isCoverValid(item.m_coverUrl))
         {
-            MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-            connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-            d->startToRequest(item.m_coverUrl);
+            MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+            connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+            req->startToRequest(item.m_coverUrl);
         }
 
         const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;

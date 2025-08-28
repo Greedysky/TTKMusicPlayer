@@ -103,7 +103,7 @@ void TTKLogOutput::initialize(const QString &module)
 void TTKLogOutput::install()
 {
     const QString &path = LOG_DIR_PATH;
-    QDir dir(path);
+    const QDir dir(path);
     if(!dir.exists())
     {
         dir.mkdir(path);

@@ -59,9 +59,9 @@ void MusicBarrageRequest::downLoadFinished()
 
                     if(!cid.isEmpty())
                     {
-                        MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
-                        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SIGNAL(downLoadRawDataChanged(QByteArray)));
-                        d->startToRequest(TTK::Algorithm::mdII(QUERY_URL, false).arg(cid));
+                        MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
+                        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SIGNAL(downLoadRawDataChanged(QByteArray)));
+                        req->startToRequest(TTK::Algorithm::mdII(QUERY_URL, false).arg(cid));
 
                         deleteAll();
                         return;

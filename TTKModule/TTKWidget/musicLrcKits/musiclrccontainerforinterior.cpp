@@ -381,11 +381,11 @@ void MusicLrcContainerForInterior::translatedLrcData()
         return;
     }
 
-    MusicTranslationRequest *d = new MusicTranslationRequest(this);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
-    d->setHeader("name", path);
-    d->setHeader("data", m_lrcAnalysis->dataString());
-    d->startToRequest();
+    MusicTranslationRequest *req = new MusicTranslationRequest(this);
+    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
+    req->setHeader("name", path);
+    req->setHeader("data", m_lrcAnalysis->dataString());
+    req->startToRequest();
 }
 
 void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)

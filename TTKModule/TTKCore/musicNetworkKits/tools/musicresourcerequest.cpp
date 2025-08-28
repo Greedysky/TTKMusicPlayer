@@ -31,7 +31,7 @@ void MusicResourceRequest::downLoadFinished()
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QDir dir(APPCACHE_DIR_FULL);
+        const QDir dir(APPCACHE_DIR_FULL);
         if(!dir.exists(QUERY_RESOURCE_DIR))
         {
             dir.mkdir(QUERY_RESOURCE_DIR);
@@ -50,8 +50,8 @@ void MusicResourceRequest::downLoadFinished()
 
                 if(QDateTime::fromString(value["time"].toString(), TTK_DATE_FORMAT) > QFileInfo(path).lastModified())
                 {
-                    MusicDownloadDataRequest *d = new MusicDownloadDataRequest(QSyncUtils::makeDataBucketUrl() + key, path, TTK::Download::Extra, this);
-                    d->startToRequest();
+                    MusicDownloadDataRequest *req = new MusicDownloadDataRequest(QSyncUtils::makeDataBucketUrl() + key, path, TTK::Download::Extra, this);
+                    req->startToRequest();
                 }
             }
         }

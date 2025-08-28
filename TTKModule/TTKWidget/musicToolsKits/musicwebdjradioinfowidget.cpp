@@ -14,11 +14,11 @@ MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
     m_queryTableWidget = new MusicItemQueryTableWidget(this);
     m_queryTableWidget->hide();
 
-    MusicAbstractQueryRequest *d = new MusicDJRadioProgramCategoryRequest(this);
-    m_queryTableWidget->setQueryInput(d);
+    MusicAbstractQueryRequest *req = new MusicDJRadioProgramCategoryRequest(this);
+    m_queryTableWidget->setQueryInput(req);
 
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
-    connect(d, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createProgramCategoryItem(MusicResultDataItem)));
+    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(req, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createProgramCategoryItem(MusicResultDataItem)));
 }
 
 void MusicWebDJRadioInfoWidget::setCurrentValue(const QString &value)
@@ -64,9 +64,9 @@ void MusicWebDJRadioInfoWidget::createProgramCategoryItem(const MusicResultDataI
     {
         if(TTK::isCoverValid(item.m_coverUrl))
         {
-            MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-            connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-            d->startToRequest(item.m_coverUrl);
+            MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+            connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+            req->startToRequest(item.m_coverUrl);
         }
 
         const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;

@@ -31,21 +31,21 @@ void MusicTranslationRequest::downLoadDataFinished(const QString &bytes)
 
 void MusicTranslationRequest::findAllPlugins()
 {
-    MusicAbstractTranslationRequest *d = nullptr;
+    MusicAbstractTranslationRequest *req = nullptr;
     switch(++m_pluginSelector)
     {
-        case 0: d = new MusicWYTranslationRequest(this); break;
-        case 1: d = new MusicBingTranslationRequest(this); break;
-        case 2: d = new MusicYDTranslationRequest(this); break;
-        case 3: d = new MusicBDTranslationRequest(this); break;
+        case 0: req = new MusicWYTranslationRequest(this); break;
+        case 1: req = new MusicBingTranslationRequest(this); break;
+        case 2: req = new MusicYDTranslationRequest(this); break;
+        case 3: req = new MusicBDTranslationRequest(this); break;
         default: deleteLater(); break;
     }
 
-    if(d)
+    if(req)
     {
-        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished(QString)));
+        connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished(QString)));
         //
-        d->setHeader("name", header("name"));
-        d->startToRequest(header("data").toString());
+        req->setHeader("name", header("name"));
+        req->startToRequest(header("data").toString());
     }
 }

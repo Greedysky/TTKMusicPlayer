@@ -96,11 +96,11 @@ MusicWebMVRadioInfoWidget::MusicWebMVRadioInfoWidget(QWidget *parent)
     m_queryTableWidget = new MusicWebMVRadioInfoTableWidget(this);
     m_queryTableWidget->hide();
 
-    MusicAbstractQueryRequest *d = new MusicMVRadioProgramRequest(this);
-    m_queryTableWidget->setQueryInput(d);
+    MusicAbstractQueryRequest *req = new MusicMVRadioProgramRequest(this);
+    m_queryTableWidget->setQueryInput(req);
 
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
-    connect(d, SIGNAL(createMVRadioItem(MusicResultDataItem)), SLOT(createMVRadioProgramItem(MusicResultDataItem)));
+    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(req, SIGNAL(createMVRadioItem(MusicResultDataItem)), SLOT(createMVRadioProgramItem(MusicResultDataItem)));
 }
 
 void MusicWebMVRadioInfoWidget::setCurrentValue(const QString &value)
@@ -140,9 +140,9 @@ void MusicWebMVRadioInfoWidget::createMVRadioProgramItem(const MusicResultDataIt
     {
         if(TTK::isCoverValid(item.m_coverUrl))
         {
-            MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-            connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-            d->startToRequest(item.m_coverUrl);
+            MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+            connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+            req->startToRequest(item.m_coverUrl);
         }
 
         const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;

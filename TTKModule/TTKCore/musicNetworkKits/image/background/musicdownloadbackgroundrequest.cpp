@@ -43,21 +43,21 @@ void MusicDownloadBackgroundRequest::downLoadFinished(const QString &bytes)
 
 void MusicDownloadBackgroundRequest::findAllPlugins()
 {
-    MusicAbstractDownloadImageRequest *d = nullptr;
+    MusicAbstractDownloadImageRequest *req = nullptr;
     switch(++m_pluginSelector)
     {
-        case 0: d = new MusicKGDownloadBackgroundRequest(m_name, m_path, this); break;
-        case 1: d = new MusicKWDownloadBackgroundRequest(m_name, m_path, this); break;
-        case 2: d = new MusicTXDownloadBackgroundRequest(m_name, m_path, this); break;
-        case 3: d = new MusicBPDownloadBackgroundRequest(m_name, m_path, this); break;
+        case 0: req = new MusicKGDownloadBackgroundRequest(m_name, m_path, this); break;
+        case 1: req = new MusicKWDownloadBackgroundRequest(m_name, m_path, this); break;
+        case 2: req = new MusicTXDownloadBackgroundRequest(m_name, m_path, this); break;
+        case 3: req = new MusicBPDownloadBackgroundRequest(m_name, m_path, this); break;
         default: break;
     }
 
-    if(d)
+    if(req)
     {
-        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+        connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
         //
-        d->setRemainCount(MAX_IMAGE_COUNT - m_findCount);
-        d->startToRequest();
+        req->setRemainCount(MAX_IMAGE_COUNT - m_findCount);
+        req->startToRequest();
     }
 }

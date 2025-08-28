@@ -10,11 +10,11 @@ MusicToplistQueryWidget::MusicToplistQueryWidget(QWidget *parent)
     m_queryTableWidget = new MusicItemQueryTableWidget(this);
     m_queryTableWidget->hide();
 
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeToplistRequest(this);
-    m_queryTableWidget->setQueryInput(d);
+    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeToplistRequest(this);
+    m_queryTableWidget->setQueryInput(req);
 
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
-    connect(d, SIGNAL(createToplistItem(MusicResultDataItem)), SLOT(createToplistItem(MusicResultDataItem)));
+    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(req, SIGNAL(createToplistItem(MusicResultDataItem)), SLOT(createToplistItem(MusicResultDataItem)));
 }
 
 MusicToplistQueryWidget::~MusicToplistQueryWidget()
@@ -182,9 +182,9 @@ void MusicToplistQueryWidget::createToplistItem(const MusicResultDataItem &item)
 
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
-        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startToRequest(item.m_coverUrl);
+        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        req->startToRequest(item.m_coverUrl);
     }
 }
 

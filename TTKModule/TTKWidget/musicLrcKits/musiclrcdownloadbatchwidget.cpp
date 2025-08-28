@@ -147,18 +147,18 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         }
 
         TTKEventLoop loop;
-        MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-        connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-        d->startToSearch(song->name().trimmed());
+        MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+        connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
+        req->startToSearch(song->name().trimmed());
         loop.exec();
 
-        if(!d->isEmpty())
+        if(!req->isEmpty())
         {
-            const TTK::MusicSongInformation &info = d->items().front();
-            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            d->startToRequest();
+            const TTK::MusicSongInformation &info = req->items().front();
+            MusicAbstractDownLoadRequest *req = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, this);
+            connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            req->startToRequest();
             loop.exec();
 
             it->setForeground(QColor(0, 0xFF, 0));

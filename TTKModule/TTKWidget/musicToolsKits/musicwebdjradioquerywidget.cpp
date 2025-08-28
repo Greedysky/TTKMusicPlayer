@@ -55,9 +55,9 @@ void MusicWebDJRadioQueryItemWidget::setResultDataItem(const MusicResultDataItem
 
     if(TTK::isCoverValid(item.m_coverUrl))
     {
-        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startToRequest(item.m_coverUrl);
+        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        req->startToRequest(item.m_coverUrl);
     }
 }
 

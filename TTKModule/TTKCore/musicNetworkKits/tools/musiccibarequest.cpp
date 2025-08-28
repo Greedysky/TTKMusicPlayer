@@ -50,9 +50,9 @@ void MusicCiBaRequest::downLoadFinished()
             m_rawData = json.toVariant().toMap();
             TTK_ERROR_STREAM("Download ciba data finish");
 
-            MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
-            connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SIGNAL(downLoadRawDataChanged(QByteArray)));
-            d->startToRequest(image());
+            MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
+            connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SIGNAL(downLoadRawDataChanged(QByteArray)));
+            req->startToRequest(image());
         }
     }
 

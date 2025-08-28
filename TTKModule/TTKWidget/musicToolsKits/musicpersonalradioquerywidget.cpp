@@ -13,15 +13,15 @@ MusicPersonalRadioQueryWidget::MusicPersonalRadioQueryWidget(QWidget *parent)
 
 void MusicPersonalRadioQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicQueryPlaylistRequest *d = new MusicWYQueryPlaylistRequest(this);
-    m_queryTableWidget->setQueryInput(d);
+    MusicQueryPlaylistRequest *req = new MusicWYQueryPlaylistRequest(this);
+    m_queryTableWidget->setQueryInput(req);
 
     MusicResultDataItem item;
     item.m_id = value;
-    d->startToQueryInfo(item);
+    req->startToQueryInfo(item);
     setResultDataItem(item);
 
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
 void MusicPersonalRadioQueryWidget::resizeWidget()
@@ -78,9 +78,9 @@ void MusicPersonalRadioQueryWidget::setResultDataItem(const MusicResultDataItem 
 
     if(TTK::isCoverValid(item.m_coverUrl))
     {
-        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startToRequest(item.m_coverUrl);
+        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        req->startToRequest(item.m_coverUrl);
     }
 
     QWidget *topLineWidget = new QWidget(topFuncWidget);

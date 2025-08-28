@@ -13,9 +13,9 @@ MusicSourceUpdateRequest::MusicSourceUpdateRequest(QObject *parent)
 
 void MusicSourceUpdateRequest::startToRequest()
 {
-    MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
-    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startToRequest(QSyncUtils::makeDataBucketUrl() + QUERY_VERSION_URL);
+    MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
+    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    req->startToRequest(QSyncUtils::makeDataBucketUrl() + QUERY_VERSION_URL);
 }
 
 QString MusicSourceUpdateRequest::version() const noexcept

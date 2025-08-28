@@ -59,9 +59,9 @@ void MusicSongSharingWidget::initialize(Module type, const MusicSongSharingWidge
 
     if(TTK::isCoverValid(data.m_cover))
     {
-        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startToRequest(data.m_cover);
+        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        req->startToRequest(data.m_cover);
     }
 
     const QString &name = data.m_name;
@@ -80,22 +80,22 @@ void MusicSongSharingWidget::confirmButtonClicked()
         case Module::Song:
         {
             TTKEventLoop loop;
-            MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-            d->startToSearch(m_ui->sharedName->text().trimmed());
+            MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+            connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
+            req->startToSearch(m_ui->sharedName->text().trimmed());
             loop.exec();
 
-            if(d->isEmpty())
+            if(req->isEmpty())
             {
                 TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, shareTimeout, TTK_SLOT);
                 break;
             }
 
-            const TTK::MusicSongInformation &info = d->items().front();
+            const TTK::MusicSongInformation &info = req->items().front();
             m_data.m_id = info.m_songId;
             m_data.m_cover = info.m_coverUrl;
-            m_data.m_server = d->queryServer();
+            m_data.m_server = req->queryServer();
 
             sendToShare(WY_SG_SHARE, KG_SG_SHARE, KW_SG_SHARE);
             break;

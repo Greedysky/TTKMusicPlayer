@@ -25,12 +25,12 @@ void MusicAlbumQueryWidget::setCurrentValue(const QString &value)
 
 void MusicAlbumQueryWidget::setCurrentID(const QString &id)
 {
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
-    m_queryTableWidget->setQueryInput(d);
+    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
+    m_queryTableWidget->setQueryInput(req);
     m_queryTableWidget->startToSearchByText(id);
 
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAlbumFinished()));
-    connect(d, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createAlbumItem(MusicResultDataItem)));
+    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAlbumFinished()));
+    connect(req, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createAlbumItem(MusicResultDataItem)));
 }
 
 void MusicAlbumQueryWidget::resizeWidget()
@@ -87,13 +87,13 @@ void MusicAlbumQueryWidget::queryAllFinished()
 
 void MusicAlbumQueryWidget::queryAlbumFinished()
 {
-    const MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
-    if(!d)
+    const MusicAbstractQueryRequest *req = m_queryTableWidget->queryInput();
+    if(!req)
     {
         return;
     }
 
-    const TTK::MusicSongInformationList &songInfos = d->items();
+    const TTK::MusicSongInformationList &songInfos = req->items();
     if(songInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_album_found"));
@@ -114,9 +114,9 @@ void MusicAlbumQueryWidget::createAlbumItem(const MusicResultDataItem &item)
     {
         if(TTK::isCoverValid(item.m_coverUrl))
         {
-            MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-            connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-            d->startToRequest(item.m_coverUrl);
+            MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+            connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+            req->startToRequest(item.m_coverUrl);
         }
 
         QStringList list{item.m_count, item.m_category, item.m_description, item.m_time};

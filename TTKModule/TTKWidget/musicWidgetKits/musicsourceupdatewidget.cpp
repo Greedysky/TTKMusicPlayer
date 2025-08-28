@@ -54,9 +54,9 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     connect(updateButton, SIGNAL(clicked()), SLOT(updateSourceClicked()));
     connect(nextTimeButton, SIGNAL(clicked()), SLOT(close()));
 
-    MusicSourceUpdateRequest *d = new MusicSourceUpdateRequest(this);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
-    d->startToRequest();
+    MusicSourceUpdateRequest *req = new MusicSourceUpdateRequest(this);
+    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
+    req->startToRequest();
 }
 
 MusicSourceUpdateNotifyWidget::~MusicSourceUpdateNotifyWidget()
@@ -72,14 +72,14 @@ void MusicSourceUpdateNotifyWidget::updateSourceClicked()
 
 void MusicSourceUpdateNotifyWidget::downLoadFinished()
 {
-    MusicSourceUpdateRequest *d = TTKObjectCast(MusicSourceUpdateRequest*, sender());
-    if(!d)
+    MusicSourceUpdateRequest *req = TTKObjectCast(MusicSourceUpdateRequest*, sender());
+    if(!req)
     {
         close();
         return;
     }
 
-    const QString &version = d->version();
+    const QString &version = req->version();
     if(TTK::Core::appVersionCheck(TTK_VERSION_STR, version))
     {
         show();
@@ -123,9 +123,9 @@ MusicSourceUpdateWidget::~MusicSourceUpdateWidget()
 
 void MusicSourceUpdateWidget::start()
 {
-    MusicSourceUpdateRequest *d = new MusicSourceUpdateRequest(this);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
-    d->startToRequest();
+    MusicSourceUpdateRequest *req = new MusicSourceUpdateRequest(this);
+    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
+    req->startToRequest();
 }
 
 void MusicSourceUpdateWidget::upgradeButtonClicked()
@@ -135,14 +135,14 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
 
 void MusicSourceUpdateWidget::downLoadFinished()
 {
-    MusicSourceUpdateRequest *d = TTKObjectCast(MusicSourceUpdateRequest*, sender());
-    if(!d)
+    MusicSourceUpdateRequest *req = TTKObjectCast(MusicSourceUpdateRequest*, sender());
+    if(!req)
     {
         return;
     }
 
-    const QString &version = d->version();
-    const QString &description = d->description();
+    const QString &version = req->version();
+    const QString &description = req->description();
 
     QString text;
     if(TTK::Core::appVersionCheck(TTK_VERSION_STR, version))

@@ -1139,6 +1139,7 @@ void MusicApplication::readSystemConfigFromFile()
     }
 
     manager.readBuffer();
+
     m_applicationModule->loadNetWorkSetting();
     const bool success = m_songTreeWidget->addSongItemList(items);
 
@@ -1169,7 +1170,7 @@ void MusicApplication::readSystemConfigFromFile()
         m_player->setEqualizerConfig();
     }
 
-    //music hotkey
+    //global hotkey
     if(G_SETTING_PTR->value(MusicSettingManager::HotkeyEnable).toBool())
     {
         QStringList hotkeys = G_SETTING_PTR->value(MusicSettingManager::HotkeyValue).toString().split(TTK_SPLITER);

@@ -285,14 +285,14 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     textLabel->setAlignment(Qt::AlignCenter);
     //
     TTKEventLoop loop;
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    d->startToSearch(textLabel->text().trimmed());
+    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+    connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    req->startToSearch(textLabel->text().trimmed());
     loop.exec();
 
-    if(!d->isEmpty())
+    if(!req->isEmpty())
     {
-        for(const TTK::MusicSongInformation &info : d->items())
+        for(const TTK::MusicSongInformation &info : req->items())
         {
             if(info.m_artistName.trimmed().contains(songIdentify.m_artistName.trimmed(), Qt::CaseInsensitive) &&
                info.m_songName.trimmed().contains(songIdentify.m_songName.trimmed(), Qt::CaseInsensitive))
@@ -310,9 +310,9 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         const QString &name = ART_DIR_FULL + m_info.m_artistName + SKN_FILE;
         if(!QFile::exists(name))
         {
-            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(m_info.m_coverUrl, name, TTK::Download::Cover, this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            d->startToRequest();
+            MusicDownloadDataRequest *req = new MusicDownloadDataRequest(m_info.m_coverUrl, name, TTK::Download::Cover, this);
+            connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            req->startToRequest();
             loop.exec();
         }
         iconLabel->setPixmap(QPixmap(name).scaled(iconLabel->size()));
@@ -369,15 +369,15 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         const QString &path = TTK::String::lrcDirPrefix() + TTK::generateSongName(m_info.m_songName, m_info.m_artistName) + LRC_FILE;
         if(!QFile::exists(path))
         {
-            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_info.m_lrcUrl, path, this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            d->startToRequest();
+            MusicAbstractDownLoadRequest *req = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_info.m_lrcUrl, path, this);
+            connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            req->startToRequest();
             loop.exec();
         }
 
         m_analysis->loadFromFile(path);
 
-        d->startToQueryResult(&m_info, TTK_BN_128);
+        req->startToQueryResult(&m_info, TTK_BN_128);
         if(!m_info.m_songProps.isEmpty())
         {
             m_player->setMedia(MusicCoreMPlayer::Module::Music, m_info.m_songProps.front().m_url);

@@ -151,9 +151,9 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     QString name = TTK::String::lrcDirPrefix() + TTK::generateSongName(info.m_songName, info.m_artistName) + LRC_FILE;
     if(!QFile::exists(name))
     {
-        MusicWYDownLoadTextRequest* d = new MusicWYDownLoadTextRequest(info.m_lrcUrl, name, this);
-        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
-        d->startToRequest();
+        MusicWYDownLoadTextRequest *req = new MusicWYDownLoadTextRequest(info.m_lrcUrl, name, this);
+        connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
+        req->startToRequest();
     }
     else
     {
@@ -163,9 +163,9 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     name = ART_DIR_FULL + info.m_artistName + SKN_FILE;
     if(!QFile::exists(name))
     {
-        MusicDownloadDataRequest *d = new MusicDownloadDataRequest(info.m_coverUrl, name, TTK::Download::Cover, this);
-        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
-        d->startToRequest();
+        MusicDownloadDataRequest *req = new MusicDownloadDataRequest(info.m_coverUrl, name, TTK::Download::Cover, this);
+        connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
+        req->startToRequest();
     }
     else
     {

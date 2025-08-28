@@ -97,10 +97,10 @@ void MusicAbstractItemQueryWidget::shareButtonClicked()
     item.m_name = m_currentPlaylistItem.m_name;
     item.m_cover = m_currentPlaylistItem.m_coverUrl;
 
-    const MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
-    if(d)
+    const MusicAbstractQueryRequest *req = m_queryTableWidget->queryInput();
+    if(req)
     {
-        item.m_server  = d->queryServer();
+        item.m_server  = req->queryServer();
     }
 
     MusicSongSharingWidget widget(this);
@@ -209,14 +209,14 @@ void MusicAbstractItemQueryWidget::initSecondWidget()
 
 void MusicAbstractItemQueryWidget::setSongCountText()
 {
-    const MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
-    if(!d)
+    const MusicAbstractQueryRequest *req = m_queryTableWidget->queryInput();
+    if(!req)
     {
         return;
     }
 
     if(m_songButton)
     {
-        m_songButton->setText(tr("SongItems") + QString("(%1)").arg(d->items().count()));
+        m_songButton->setText(tr("SongItems") + QString("(%1)").arg(req->items().count()));
     }
 }

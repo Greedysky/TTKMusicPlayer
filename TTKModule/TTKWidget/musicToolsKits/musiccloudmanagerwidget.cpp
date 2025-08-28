@@ -76,9 +76,9 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
         TTKEventLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
-        MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
-        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadKeyFinished(QByteArray)));
-        d->startToRequest(QSyncUtils::makeDataBucketUrl() + QUERY_CLOUD_URL);
+        MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
+        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadKeyFinished(QByteArray)));
+        req->startToRequest(QSyncUtils::makeDataBucketUrl() + QUERY_CLOUD_URL);
         loop.exec();
     }
 
@@ -293,8 +293,8 @@ void MusicCloudManagerTableWidget::downloadFileFromServer()
         fileName = baseName + QString("(%1)").arg(index++);
     } while(index < 99);
 
-    MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, downloadPath, TTK::Download::Music, TTK::Record::CloudDownload, this);
-    d->startToRequest();
+    MusicDownloadDataRequest *req = new MusicDownloadDataRequest(url, downloadPath, TTK::Download::Music, TTK::Record::CloudDownload, this);
+    req->startToRequest();
 }
 
 void MusicCloudManagerTableWidget::cancelUploadFilesToServer()

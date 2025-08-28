@@ -17,13 +17,13 @@ void MusicWYTranslationRequest::startToRequest(const QString &data)
     MusicAbstractNetwork::deleteAll();
 
     TTKEventLoop loop;
-    MusicWYQueryRequest query(this), *d = &query;
-    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    d->startToSearch(QFileInfo(header("name").toString()).baseName());
+    MusicWYQueryRequest query(this), *req = &query;
+    connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
+    req->startToSearch(QFileInfo(header("name").toString()).baseName());
     loop.exec();
 
-    if(d->isEmpty())
+    if(req->isEmpty())
     {
         TTK_INFO_STREAM(metaObject()->className() << "downLoadFinished");
         Q_EMIT downLoadDataChanged({});
@@ -32,7 +32,7 @@ void MusicWYTranslationRequest::startToRequest(const QString &data)
     }
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(d->items().front().m_songId));
+    request.setUrl(TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(req->items().front().m_songId));
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 

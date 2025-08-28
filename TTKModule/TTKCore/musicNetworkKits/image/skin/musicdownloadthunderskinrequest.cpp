@@ -75,9 +75,9 @@ MusicDownloadThunderSkinRequest::MusicDownloadThunderSkinRequest(QObject *parent
 
 void MusicDownloadThunderSkinRequest::startToRequest()
 {
-    MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
-    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startToRequest(TTK::Algorithm::mdII(QUERY_URL, false));
+    MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
+    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    req->startToRequest(TTK::Algorithm::mdII(QUERY_URL, false));
 }
 
 void MusicDownloadThunderSkinRequest::downLoadFinished(const QByteArray &bytes)

@@ -382,14 +382,14 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
     }
     else if(index == 2)
     {
-        MusicAbstractQueryRequest *d = m_tableWidget->queryInput();
-        if(!d)
+        MusicAbstractQueryRequest *req = m_tableWidget->queryInput();
+        if(!req)
         {
             return;
         }
 
         MusicDownloadBatchWidget widget;
-        widget.initialize(d, list);
+        widget.initialize(req, list);
         widget.exec();
     }
 }

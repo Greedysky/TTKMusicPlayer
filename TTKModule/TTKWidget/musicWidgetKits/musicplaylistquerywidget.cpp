@@ -84,9 +84,9 @@ void MusicPlaylistQueryItemWidget::setResultDataItem(const MusicResultDataItem &
 
     if(TTK::isCoverValid(item.m_coverUrl))
     {
-        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startToRequest(item.m_coverUrl);
+        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        req->startToRequest(item.m_coverUrl);
     }
 }
 
@@ -263,14 +263,14 @@ void MusicPlaylistQueryWidget::currentPlaylistClicked(const MusicResultDataItem 
     delete m_infoWidget;
     m_infoWidget = new MusicPlaylistQueryInfoWidget(this);
 
-    MusicQueryPlaylistRequest *d = TTKObjectCast(MusicQueryPlaylistRequest*, G_DOWNLOAD_QUERY_PTR->makePlaylistRequest(this));
+    MusicQueryPlaylistRequest *req = TTKObjectCast(MusicQueryPlaylistRequest*, G_DOWNLOAD_QUERY_PTR->makePlaylistRequest(this));
     MusicResultDataItem info(item);
     if(info.isEmpty())
     {
-        d->startToQueryInfo(info);
+        req->startToQueryInfo(info);
     }
 
-    m_infoWidget->setQueryInput(d);
+    m_infoWidget->setQueryInput(req);
     m_infoWidget->setResultDataItem(info, this);
     m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(1);

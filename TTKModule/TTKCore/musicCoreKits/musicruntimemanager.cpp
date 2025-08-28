@@ -36,7 +36,7 @@ quint64 TTK::directorySize(const QString &dirName)
     quint64 size = 0;
     if(QFileInfo(dirName).isDir())
     {
-        QDir dir(dirName);
+        const QDir dir(dirName);
         const QFileInfoList &fileList = dir.entryInfoList(QDir::Files | QDir::Dirs |  QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot);
         for(const QFileInfo &fin : qAsConst(fileList))
         {

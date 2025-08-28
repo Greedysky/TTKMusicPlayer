@@ -34,29 +34,29 @@ void MusicDownloadStatusModule::checkMetaDataValid(bool mode)
         return;
     }
 
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-    d->setHeader("mode", mode);
-    d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    d->startToSearch(m_parent->currentFileName());
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(currentMetaDataDownload()));
+    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+    req->setHeader("mode", mode);
+    req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
+    req->startToSearch(m_parent->currentFileName());
+    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(currentMetaDataDownload()));
 }
 
 void MusicDownloadStatusModule::currentMetaDataDownload()
 {
-    MusicAbstractQueryRequest *d = TTKObjectCast(MusicAbstractQueryRequest*, sender());
-    if(!G_NETWORK_PTR->isOnline() || !d)   //no network connection
+    MusicAbstractQueryRequest *req = TTKObjectCast(MusicAbstractQueryRequest*, sender());
+    if(!G_NETWORK_PTR->isOnline() || !req)   //no network connection
     {
         return;
     }
 
-    const TTK::MusicSongInformationList &songInfos = d->items();
+    const TTK::MusicSongInformationList &songInfos = req->items();
     if(songInfos.isEmpty())
     {
         showDownLoadInfoFinished("find error");
         return;
     }
 
-    const QString &fileName = d->queryValue();
+    const QString &fileName = req->queryValue();
     const QString &songName = TTK::generateSongTitle(fileName);
     const QString &artistName = TTK::generateSongArtist(fileName);
 
@@ -70,7 +70,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
         }
     }
 
-    const bool mode = d->header("mode").toBool();
+    const bool mode = req->header("mode").toBool();
     if(mode || !checkLrcValid())
     {
         ///download lrc

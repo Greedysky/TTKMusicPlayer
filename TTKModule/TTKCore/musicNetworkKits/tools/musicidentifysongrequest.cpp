@@ -22,9 +22,9 @@ bool MusicAbstractIdentifyRequest::queryCloudKey()
     TTKEventLoop loop;
     connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
-    MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
-    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadKeyFinished(QByteArray)));
-    d->startToRequest(QSyncUtils::makeDataBucketUrl() + OS_ACRCLOUD_URL);
+    MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
+    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadKeyFinished(QByteArray)));
+    req->startToRequest(QSyncUtils::makeDataBucketUrl() + OS_ACRCLOUD_URL);
     loop.exec();
 
     return !m_accessKey.isEmpty() && !m_accessSecret.isEmpty();

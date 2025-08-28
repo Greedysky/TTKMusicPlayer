@@ -29,16 +29,16 @@ void MusicKGSongCommentsRequest::startToSearch(const QString &value)
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
     TTKEventLoop loop;
-    MusicKGQueryRequest query(this), *d = &query;
-    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    d->startToSearch(value);
+    MusicKGQueryRequest query(this), *req = &query;
+    connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
+    req->startToSearch(value);
     loop.exec();
 
     m_id.clear();
-    if(!d->isEmpty())
+    if(!req->isEmpty())
     {
-        MusicCommentsRequest::startToSearch(d->items().front().m_songId);
+        MusicCommentsRequest::startToSearch(req->items().front().m_songId);
     }
 }
 

@@ -17,13 +17,13 @@ void MusicKGDownloadBackgroundRequest::startToRequest()
     MusicAbstractNetwork::deleteAll();
 
     TTKEventLoop loop;
-    MusicKGQueryRequest query(this), *d = &query;
-    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    d->startToSearch(m_name);
+    MusicKGQueryRequest query(this), *req = &query;
+    connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
+    req->startToSearch(m_name);
     loop.exec();
 
-    if(d->isEmpty())
+    if(req->isEmpty())
     {
         TTK_INFO_STREAM(metaObject()->className() << "downLoadFinished");
         Q_EMIT downLoadDataChanged({});
@@ -32,7 +32,7 @@ void MusicKGDownloadBackgroundRequest::startToRequest()
     }
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(d->items().front().m_songId));
+    request.setUrl(TTK::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(req->items().front().m_songId));
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 
@@ -102,9 +102,9 @@ void MusicKGDownloadBackgroundRequest::parseFromBackgroundProperty(const QVarian
                 continue;
             }
 
-            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2-%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(foundCount()).arg(SKN_FILE), TTK::Download::Background, this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
-            d->startToRequest();
+            MusicDownloadDataRequest *req = new MusicDownloadDataRequest(url, QString("%1%2-%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(foundCount()).arg(SKN_FILE), TTK::Download::Background, this);
+            connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
+            req->startToRequest();
         }
     }
 }

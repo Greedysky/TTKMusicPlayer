@@ -66,7 +66,7 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_counterRequest = new MusicPVCounterRequest(this);
     m_sourceUpdateRequest = new MusicSourceUpdateRequest(this);
 
-    runTimerAutoModule();
+    executeTimerAutoModule();
 }
 
 MusicApplicationModule::~MusicApplicationModule()
@@ -422,7 +422,7 @@ void MusicApplicationModule::resetWindowGeometry()
     w->setGeometry((rect.width() - WINDOW_WIDTH_MIN) / 2, (rect.height() - WINDOW_HEIGHT_MIN) / 2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 }
 
-void MusicApplicationModule::runTimerAutoModule()
+void MusicApplicationModule::executeTimerAutoModule()
 {
     m_timerAutoModule->execute();
 }

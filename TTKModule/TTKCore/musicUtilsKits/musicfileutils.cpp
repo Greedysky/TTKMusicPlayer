@@ -6,7 +6,7 @@
 
 QStringList TTK::File::fileListByPath(const QString &dpath, const QStringList &filter, bool recursively)
 {
-    QDir dir(dpath);
+    const QDir dir(dpath);
     if(TTK::Core::isBreakPointEnabled() || !dir.exists())
     {
         return {};
@@ -33,7 +33,7 @@ QStringList TTK::File::fileListByPath(const QString &dpath, const QStringList &f
 
 QFileInfoList TTK::File::fileInfoListByPath(const QString &dpath, const QStringList &filter, bool recursively)
 {
-    QDir dir(dpath);
+    const QDir dir(dpath);
     if(TTK::Core::isBreakPointEnabled() || !dir.exists())
     {
         return {};
