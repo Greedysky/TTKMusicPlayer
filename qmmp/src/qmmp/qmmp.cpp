@@ -52,7 +52,7 @@ QString Qmmp::pluginPath()
         return path;
     }
 		
-    QDir dir(QCoreApplication::applicationDirPath() + "/plugins");
+    const QDir dir(QCoreApplication::applicationDirPath() + "/plugins");
     return dir.canonicalPath();
 }
 
@@ -69,7 +69,7 @@ QStringList Qmmp::findPlugins(const QString &prefix)
 
 QString Qmmp::ttkPluginPath()
 {
-    QDir dir(QCoreApplication::applicationDirPath() + "/GPlugins");
+    const QDir dir(QCoreApplication::applicationDirPath() + "/GPlugins");
     return dir.canonicalPath();
 }
 

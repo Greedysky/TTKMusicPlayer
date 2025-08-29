@@ -2,7 +2,7 @@
 
 QFileInfoList fileListByPath(const QString &dpath, const QStringList &filter)
 {
-    QDir dir(dpath);
+    const QDir dir(dpath);
     if(!dir.exists())
     {
         return QFileInfoList();
