@@ -153,8 +153,8 @@ public Q_SLOTS:
     virtual void downLoadFinished(const MusicSkinRemoteGroupList &bytes) override final;
 
 private:
-    QWidget *m_functionsWidget;
     QComboBox *m_typeBox;
+    QWidget *m_functionsWidget;
 
 };
 

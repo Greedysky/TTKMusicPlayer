@@ -148,6 +148,7 @@ void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroupList
 
 MusicBackgroundOnlineWidget::MusicBackgroundOnlineWidget(QWidget *parent)
     : MusicBackgroundRemoteWidget(parent),
+      m_typeBox(nullptr),
       m_functionsWidget(nullptr)
 {
     m_backgroundList->setType(MusicBackgroundListWidget::OnlineModule);
