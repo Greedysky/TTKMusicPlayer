@@ -269,11 +269,11 @@ public Q_SLOTS:
      */
     void applyParameter();
     /*!
-     * Remove love item from indexs.
+     * Remove love item from rows.
      */
     void removeLoveItemAt(const QString &path, bool current);
     /*!
-     * Delete items from indexs.
+     * Delete items from rows.
      */
     void removeItemAt(const QStringList &path, bool remove, bool current, int playlistRow);
     /*!

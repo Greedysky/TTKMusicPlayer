@@ -77,16 +77,16 @@ void MusicLrcSearchWidget::lrcSearchButtonClicked() const
 
 void MusicLrcSearchWidget::lrcSearchDownloadClicked()
 {
-    TTKIntList list = m_ui->tableWidget->checkedIndexList();
-    list.removeOne(m_ui->tableWidget->rowCount() - 1);
+    TTKIntList rows = m_ui->tableWidget->checkedItemRows();
+    rows.removeOne(m_ui->tableWidget->rowCount() - 1);
 
-    if(list.isEmpty())
+    if(rows.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 
-    for(const int row : qAsConst(list))
+    for(const int row : qAsConst(rows))
     {
         m_ui->tableWidget->downloadQueryResult(row);
     }

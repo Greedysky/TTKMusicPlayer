@@ -56,17 +56,17 @@ void MusicAbstractDownloadTableWidget::removeItemAt()
        return;
     }
 
-    const TTKIntList deletedList(selectedIndexList());
-    if(deletedList.isEmpty())
+    const TTKIntList deletedRows(selectedRows());
+    if(deletedRows.isEmpty())
     {
         return;
     }
 
-    for(int i = deletedList.count() - 1; i >= 0; --i)
+    for(int i = deletedRows.count() - 1; i >= 0; --i)
     {
-        const int index = deletedList[i];
-        removeRow(index);
-        m_songs->removeAt(index);
+        const int row = deletedRows[i];
+        removeRow(row);
+        m_songs->removeAt(row);
     }
 
     setFixedHeight(totalRowHeight());

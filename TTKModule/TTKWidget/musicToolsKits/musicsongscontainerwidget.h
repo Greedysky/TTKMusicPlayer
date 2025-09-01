@@ -193,13 +193,13 @@ public Q_SLOTS:
      */
     void addSongToPlaylist(const QStringList &items);
     /*!
-     * Remove items from indexs and check remove file or not.
+     * Remove items from rows and check remove file or not.
      */
-    void removeItemAt(const TTKIntList &del, bool fileRemove);
+    void removeItemAt(const TTKIntList &rows, bool fileRemove);
     /*!
      * Swap the current play index when user drag and drop.
      */
-    void itemIndexSwaped(int start, int end, int play, MusicSongList &songs);
+    void itemRowSwaped(int start, int end, int play, MusicSongList &songs);
     /*!
      * Check is current play stack widget.
      */
@@ -293,9 +293,9 @@ private:
      */
     void resizeWindow();
     /*!
-     * Update current played list.
+     * Update current played rows.
      */
-    void updatePlayedList(int start, int end);
+    void updatePlayedRows(int start, int end);
 
     int m_playRowIndex;
     int m_lastSearchIndex;

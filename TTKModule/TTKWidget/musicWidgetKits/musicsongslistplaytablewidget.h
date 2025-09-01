@@ -54,7 +54,7 @@ public:
     virtual void selectRow(int index) override final;
 
     /*!
-     * Set current search result indexs.
+     * Set current search result rows.
      */
     void updateSearchFileName(MusicSongList *songs, const TTKIntList &result);
 
@@ -86,13 +86,13 @@ Q_SIGNALS:
      */
     void isSearchedResultEmpty(bool &empty);
     /*!
-     * Delete items from indexs and check remove file or not.
+     * Delete items from rows and check remove file or not.
      */
-    void deleteItemAt(const TTKIntList &index, bool fileRemove);
+    void deleteItemAt(const TTKIntList &rows, bool fileRemove);
     /*!
-     * Swap the current play index when user drag and drop.
+     * Swap the current play row when user drag and drop.
      */
-    void itemIndexSwaped(int start, int end, int play, MusicSongList &songs);
+    void itemRowSwaped(int start, int end, int play, MusicSongList &songs);
     /*!
      * Add or remove media list song to lovest list by row.
      */

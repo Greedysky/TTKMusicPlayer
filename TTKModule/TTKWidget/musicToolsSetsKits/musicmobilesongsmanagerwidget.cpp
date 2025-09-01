@@ -164,7 +164,7 @@ MusicMobileSongsManagerWidget::~MusicMobileSongsManagerWidget()
 
 void MusicMobileSongsManagerWidget::findExtraDevicePath(const QString &dir)
 {
-    TTK_INFO_STREAM("Start fetch result");
+    TTK_INFO_STREAM("Start fetch result:" << dir);
     m_thread->setFindFilePath(dir);
     m_thread->stop();
     m_thread->start();
@@ -186,7 +186,7 @@ void MusicMobileSongsManagerWidget::selectedAllItems(bool checked)
 
 void MusicMobileSongsManagerWidget::auditionButtonClick()
 {
-    if(m_ui->songlistTable->selectedItems().count() > 0)
+    if(m_ui->songlistTable->selectedRows().count() > 0)
     {
         selectedItemsToPlaylist();
         return;
@@ -266,19 +266,16 @@ void MusicMobileSongsManagerWidget::clearItems()
 
 void MusicMobileSongsManagerWidget::selectedItemsToPlaylist()
 {
-    TTKIntSet auditionRow; //if selected multi rows
-    for(QTableWidgetItem *item : m_ui->songlistTable->selectedItems())
+    TTKIntList rows;
+    for(const int row : m_ui->songlistTable->selectedRows())
     {
-        int row = item->row();
-        mappedSearchRow(m_ui->searchLineEdit->text().length(), row);
-        auditionRow.insert(row);
+        int r = row;
+        mappedSearchRow(m_ui->searchLineEdit->text().length(), r);
+        rows << r;
     }
 
-    TTKIntList indexs = auditionRow.values();
-    std::sort(indexs.begin(), indexs.end());
-
     QStringList items;
-    for(const int index : qAsConst(indexs))
+    for(const int index : qAsConst(rows))
     {
         items << m_containerItems[index];
     }

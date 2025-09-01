@@ -20,32 +20,32 @@ MusicFillItemTableWidget::~MusicFillItemTableWidget()
     delete m_checkBoxDelegate;
 }
 
-TTKIntList MusicFillItemTableWidget::checkedIndexList() const
+TTKIntList MusicFillItemTableWidget::checkedItemRows() const
 {
-    TTKIntList list;
+    TTKIntList rows;
     for(int i = 0; i < rowCount(); ++i)
     {
         const QTableWidgetItem *it = item(i, 0);
         if(it && it->data(TTK_CHECKED_ROLE) == Qt::Checked)
         {
-            list << i;
+            rows << i;
         }
     }
-    return list;
+    return rows;
 }
 
-TTKIntList MusicFillItemTableWidget::uncheckedIndexList() const
+TTKIntList MusicFillItemTableWidget::uncheckedItemRows() const
 {
-    TTKIntList list;
+    TTKIntList rows;
     for(int i = 0; i < rowCount(); ++i)
     {
         const QTableWidgetItem *it = item(i, 0);
         if(it && it->data(TTK_CHECKED_ROLE) == Qt::Unchecked)
         {
-            list << i;
+            rows << i;
         }
     }
-    return list;
+    return rows;
 }
 
 void MusicFillItemTableWidget::itemCellClicked(int row, int column)

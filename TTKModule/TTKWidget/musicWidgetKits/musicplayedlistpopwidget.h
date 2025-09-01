@@ -83,9 +83,9 @@ public:
      */
     void clearQueueState();
     /*!
-     * Update current played item list.
+     * Update current played item rows.
      */
-    void updatePlayedList(const TTK::IndexPropertyList &indexs);
+    void updatePlayedRows(const TTK::IndexPropertyList &rows);
 
     /*!
      * Remove media from data list.
@@ -153,9 +153,9 @@ public Q_SLOTS:
      */
     virtual void popupMenu() override final;
     /*!
-     * Remove items from indexs.
+     * Remove items from rows.
      */
-    void removeItemAt(const TTKIntList &index);
+    void removeItemAt(const TTKIntList &rows);
     /*!
      * Remove all items from list.
      */

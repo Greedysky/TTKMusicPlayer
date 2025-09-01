@@ -147,27 +147,27 @@ void MusicPlaylist::clear()
     removeQueue();
 }
 
-static void updatePlayItems(const TTK::IndexPropertyList &indexs, MusicPlayItemList &items)
+static void updatePlayItems(const TTK::IndexPropertyList &rows, MusicPlayItemList &items)
 {
     for(MusicPlayItem &item : items)
     {
-        for(const TTK::IndexProperty &index : qAsConst(indexs))
+        for(const TTK::IndexProperty &row : qAsConst(rows))
         {
-            if(item.m_playlistRow != index.m_first)
+            if(item.m_playlistRow != row.m_first)
             {
                 continue;
             }
 
-            item.m_playlistRow = index.m_second;
+            item.m_playlistRow = row.m_second;
             break;
         }
     }
 }
 
-void MusicPlaylist::update(const TTK::IndexPropertyList &indexs)
+void MusicPlaylist::update(const TTK::IndexPropertyList &rows)
 {
-    updatePlayItems(indexs, m_mediaList);
-    updatePlayItems(indexs, m_queueList);
+    updatePlayItems(rows, m_mediaList);
+    updatePlayItems(rows, m_queueList);
 }
 
 int MusicPlaylist::find(const MusicPlayItem &item) const

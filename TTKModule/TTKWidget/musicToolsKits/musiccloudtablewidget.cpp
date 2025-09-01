@@ -132,9 +132,9 @@ void MusicCloudUploadTableWidget::reuploadFiles()
     }
 
     QStringList datas;
-    for(const int index : selectedIndexList())
+    for(const int row : selectedRows())
     {
-        QTableWidgetItem *it = item(index, 0);
+        QTableWidgetItem *it = item(row, 0);
         if(it == nullptr)
         {
             continue;

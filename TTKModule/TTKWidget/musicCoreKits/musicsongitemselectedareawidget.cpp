@@ -52,16 +52,16 @@ void MusicSongItemSelectedTableWidget::addCellItems(MusicSongItemList *items)
 
 TTKIntList MusicSongItemSelectedTableWidget::checkedDataItems() const
 {
-    TTKIntList list;
+    TTKIntList rows;
     for(int i = 0; i < rowCount(); ++i)
     {
         const QTableWidgetItem *it = item(i, 0);
         if(it && it->data(TTK_CHECKED_ROLE) == Qt::Checked)
         {
-            list << it->data(TTK_DATA_ROLE).toInt();
+            rows << it->data(TTK_DATA_ROLE).toInt();
         }
     }
-    return list;
+    return rows;
 }
 
 

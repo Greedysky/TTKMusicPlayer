@@ -44,22 +44,17 @@ TTKAbstractTableWidget::TTKAbstractTableWidget(QWidget *parent)
     connect(this, SIGNAL(cellClicked(int,int)), SLOT(itemCellClicked(int,int)));
 }
 
-TTKAbstractTableWidget::~TTKAbstractTableWidget()
+TTKIntList TTKAbstractTableWidget::selectedRows() const
 {
-
-}
-
-TTKIntList TTKAbstractTableWidget::selectedIndexList() const
-{
-    TTKIntSet rows;
+    TTKIntSet indexes;
     for(const QModelIndex &index : selectedIndexes())
     {
-        rows.insert(index.row());
+        indexes.insert(index.row());
     }
 
-    TTKIntList indexs = rows.values();
-    std::sort(indexs.begin(), indexs.end());
-    return indexs;
+    TTKIntList rows = indexes.values();
+    std::sort(rows.begin(), rows.end());
+    return rows;
 }
 
 void TTKAbstractTableWidget::itemCellEntered(int row, int column)

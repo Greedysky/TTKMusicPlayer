@@ -25,7 +25,7 @@ MusicFileAssociationTableWidget::MusicFileAssociationTableWidget(QWidget *parent
 void MusicFileAssociationTableWidget::save() const
 {
     QStringList formats;
-    const TTKIntList &unsupports = uncheckedIndexList();
+    const TTKIntList &unsupports = uncheckedItemRows();
 
     for(int i = 0; i < unsupports.count(); ++i)
     {

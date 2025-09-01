@@ -65,7 +65,7 @@ void MusicSongCheckToolsWidget::renameButtonCheckClicked()
         m_ui->renameLoadingLabel->hide();
         m_ui->renameReCheckButton->show();
 
-        m_renameThread->setItemList(m_ui->renameTableWidget->checkedIndexList());
+        m_renameThread->setItemList(m_ui->renameTableWidget->checkedItemRows());
         m_renameThread->setMode(TTK::Mode::Apply);
         m_renameThread->stop();
         m_renameThread->start();
@@ -102,7 +102,7 @@ void MusicSongCheckToolsWidget::renameCheckFinished(const MusicSongCheckToolsRen
         m_ui->renameTableWidget->removeItems();
         m_ui->renameTableWidget->addCellItems(items);
     }
-    else if(m_renameThread->mode() == TTK::Mode::Apply && !m_ui->renameTableWidget->checkedIndexList().isEmpty())
+    else if(m_renameThread->mode() == TTK::Mode::Apply && !m_ui->renameTableWidget->checkedItemRows().isEmpty())
     {
         MusicToastLabel::popup(tr("Rename apply finished"));
     }
@@ -185,7 +185,7 @@ void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
         m_ui->duplicateLoadingLabel->hide();
         m_ui->duplicateReCheckButton->show();
 
-        m_duplicateThread->setItemList(m_ui->duplicateTableWidget->checkedIndexList());
+        m_duplicateThread->setItemList(m_ui->duplicateTableWidget->checkedItemRows());
         m_duplicateThread->setMode(TTK::Mode::Apply);
         m_duplicateThread->stop();
         m_duplicateThread->start();
@@ -221,7 +221,7 @@ void MusicSongCheckToolsWidget::duplicateCheckFinished(const MusicSongCheckTools
         m_ui->duplicateTableWidget->removeItems();
         m_ui->duplicateTableWidget->addCellItems(items);
     }
-    else if(m_duplicateThread->mode() == TTK::Mode::Apply && !m_ui->duplicateTableWidget->checkedIndexList().isEmpty())
+    else if(m_duplicateThread->mode() == TTK::Mode::Apply && !m_ui->duplicateTableWidget->checkedItemRows().isEmpty())
     {
         MusicToastLabel::popup(tr("Duplicate apply finished"));
     }

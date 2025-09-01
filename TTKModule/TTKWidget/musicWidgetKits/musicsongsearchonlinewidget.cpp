@@ -357,10 +357,10 @@ void MusicSongSearchOnlineWidget::resizeWindow()
 
 void MusicSongSearchOnlineWidget::buttonClicked(int index)
 {
-    TTKIntList list = m_tableWidget->checkedIndexList();
-    list.removeOne(m_tableWidget->rowCount() - 1);
+    TTKIntList rows = m_tableWidget->checkedItemRows();
+    rows.removeOne(m_tableWidget->rowCount() - 1);
 
-    if(list.isEmpty())
+    if(rows.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first"));
         return;
@@ -368,14 +368,14 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
 
     if(index == 0)
     {
-        for(int i = 0; i < list.count(); ++i)
+        for(int i = 0; i < rows.count(); ++i)
         {
-            m_tableWidget->addSearchMusicToPlaylist(list[i], i == 0);
+            m_tableWidget->addSearchMusicToPlaylist(rows[i], i == 0);
         }
     }
     else if(index == 1)
     {
-        for(int row : qAsConst(list))
+        for(int row : qAsConst(rows))
         {
             m_tableWidget->addSearchMusicToPlaylist(row, false);
         }
@@ -389,7 +389,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
         }
 
         MusicDownloadBatchWidget widget;
-        widget.initialize(req, list);
+        widget.initialize(req, rows);
         widget.exec();
     }
 }

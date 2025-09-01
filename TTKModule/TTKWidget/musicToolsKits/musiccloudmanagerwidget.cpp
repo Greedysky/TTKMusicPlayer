@@ -237,19 +237,19 @@ void MusicCloudManagerTableWidget::deleteFilesFromServer()
     }
 
     selectAll();
-    const TTKIntList deletedList(selectedIndexList());
+    const TTKIntList deletedRows(selectedRows());
 
-    for(int i = deletedList.count() - 1; i >= 0; --i)
+    for(int i = deletedRows.count() - 1; i >= 0; --i)
     {
-        const int index = deletedList[i];
-        QTableWidgetItem *it = item(index, 0);
+        const int row = deletedRows[i];
+        QTableWidgetItem *it = item(row, 0);
         if(it == nullptr)
         {
             continue;
         }
 
         const MusicCloudDataItem &data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
-        removeRow(index);
+        removeRow(row);
 
         m_syncDeleteData->request(SYNC_MUSIC_BUCKET, data.m_data.m_name);
         m_totalFileSzie -= data.m_data.m_size;

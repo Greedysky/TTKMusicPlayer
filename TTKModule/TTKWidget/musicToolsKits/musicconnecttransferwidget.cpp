@@ -111,8 +111,8 @@ void MusicConnectTransferWidget::addCellItems(const MusicSongList &songs)
 QStringList MusicConnectTransferWidget::selectedFiles() const
 {
     QStringList paths;
-    const TTKIntList &list = m_ui->listTableWidget->checkedIndexList();
-    if(list.isEmpty())
+    const TTKIntList &rows = m_ui->listTableWidget->checkedItemRows();
+    if(rows.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first"));
         return paths;
@@ -123,7 +123,7 @@ QStringList MusicConnectTransferWidget::selectedFiles() const
         return paths;
     }
 
-    for(int row : qAsConst(list))
+    for(int row : qAsConst(rows))
     {
         mappedSearchRow(m_ui->searchLineEdit->text().length(), row);
         paths << m_containerItems[row].path();
@@ -134,16 +134,16 @@ QStringList MusicConnectTransferWidget::selectedFiles() const
 
 void MusicConnectTransferWidget::itemSelectedChanged()
 {
-    const TTKIntList &list = m_ui->listTableWidget->checkedIndexList();
+    const TTKIntList &rows = m_ui->listTableWidget->checkedItemRows();
     qint64 size = 0;
 
-    for(int i = 0; i < list.count(); ++i)
+    for(int i = 0; i < rows.count(); ++i)
     {
-        size += m_containerItems[list[i]].size();
+        size += m_containerItems[rows[i]].size();
     }
 
     const double dSize = (size * TTK_RN_MAX / TTK_SN_MB2B) * 1.0 / TTK_RN_MAX;
-    m_ui->selectCountLabel->setText(m_selectCountLabel.arg(list.count()).arg(dSize));
+    m_ui->selectCountLabel->setText(m_selectCountLabel.arg(rows.count()).arg(dSize));
 }
 
 void MusicConnectTransferWidget::currentPlaylistSelected(int index)

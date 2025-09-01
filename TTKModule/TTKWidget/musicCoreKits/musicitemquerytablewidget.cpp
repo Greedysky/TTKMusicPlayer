@@ -62,36 +62,36 @@ void MusicItemQueryTableWidget::itemDoubleClicked(int row, int column)
 void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 {
     TTK::MusicSongInformationList songInfos(m_networkRequest->items());
-    const TTKIntList &list = checkedIndexList();
-    if(list.isEmpty())
+    const TTKIntList &rows = checkedItemRows();
+    if(rows.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 
-    for(int i = 0; i < list.count(); ++i)
+    for(int i = 0; i < rows.count(); ++i)
     {
-        const int index = list[i];
-        if(index >= songInfos.count())
+        const int row = rows[i];
+        if(row >= songInfos.count())
         {
             continue;
         }
 
-        downloadDataFrom(&songInfos[index], play && (i == 0 /* first item row */));
+        downloadDataFrom(&songInfos[row], play && (i == 0 /* first item row */));
     }
 }
 
 void MusicItemQueryTableWidget::downloadBatchData()
 {
-    const TTKIntList &list = checkedIndexList();
-    if(list.isEmpty())
+    const TTKIntList &rows = checkedItemRows();
+    if(rows.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 
     MusicDownloadBatchWidget widget;
-    widget.initialize(m_networkRequest, list);
+    widget.initialize(m_networkRequest, rows);
     widget.exec();
 }
 

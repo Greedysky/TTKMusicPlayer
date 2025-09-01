@@ -445,7 +445,7 @@ void MusicSongsContainerWidget::deleteRowItem(int index)
     removeItem(item->m_itemWidget);
     delete item->m_itemWidget;
 
-    updatePlayedList(id, -1);
+    updatePlayedRows(id, -1);
 }
 
 void MusicSongsContainerWidget::deleteRowItems()
@@ -570,7 +570,7 @@ void MusicSongsContainerWidget::swapDragItemIndex(int start, int end)
     const MusicSongItem &item = m_containerItems.takeAt(start);
     m_containerItems.insert(end, item);
 
-    updatePlayedList(start, end);
+    updatePlayedRows(start, end);
 }
 
 void MusicSongsContainerWidget::addToPlayLater(int index)
@@ -840,9 +840,9 @@ void MusicSongsContainerWidget::addSongToPlaylist(const QStringList &items)
     MusicApplication::instance()->playIndexClicked(index, 0);
 }
 
-void MusicSongsContainerWidget::removeItemAt(const TTKIntList &index, bool fileRemove)
+void MusicSongsContainerWidget::removeItemAt(const TTKIntList &rows, bool fileRemove)
 {
-    if(index.isEmpty() || hasSearchResult())
+    if(rows.isEmpty() || hasSearchResult())
     {
         return;
     }
@@ -850,9 +850,9 @@ void MusicSongsContainerWidget::removeItemAt(const TTKIntList &index, bool fileR
     const int currentIndex = m_selectDeleteIndex != MUSIC_NONE_LIST ? m_selectDeleteIndex : m_currentIndex;
     MusicSongItem *item = &m_containerItems[currentIndex];
     QStringList deleteFiles;
-    for(int i = index.count() - 1; i >= 0; --i)
+    for(int i = rows.count() - 1; i >= 0; --i)
     {
-        const MusicSong &song = item->m_songs.takeAt(index[i]);
+        const MusicSong &song = item->m_songs.takeAt(rows[i]);
         deleteFiles << song.path();
         if(currentIndex != m_playRowIndex && currentIndex == MUSIC_LOVEST_LIST)
         {
@@ -888,7 +888,7 @@ void MusicSongsContainerWidget::removeItemAt(const TTKIntList &index, bool fileR
     TTKObjectCast(MusicSongsListPlayTableWidget*, item->m_itemWidget)->createUploadFileModule();
 }
 
-void MusicSongsContainerWidget::itemIndexSwaped(int start, int end, int play, MusicSongList &songs)
+void MusicSongsContainerWidget::itemRowSwaped(int start, int end, int play, MusicSongList &songs)
 {
     MusicSongList *names = &m_containerItems[m_currentIndex].m_songs;
     if(start > end)
@@ -1254,7 +1254,7 @@ void MusicSongsContainerWidget::createWidgetItem(MusicSongItem *item)
     connect(widget, SIGNAL(isCurrentPlaylistRow(bool&)), SLOT(isCurrentPlaylistRow(bool&)));
     connect(widget, SIGNAL(isSearchedResultEmpty(bool&)), SLOT(isSearchedResultEmpty(bool&)));
     connect(widget, SIGNAL(deleteItemAt(TTKIntList,bool)), SLOT(removeItemAt(TTKIntList,bool)));
-    connect(widget, SIGNAL(itemIndexSwaped(int,int,int,MusicSongList&)), SLOT(itemIndexSwaped(int,int,int,MusicSongList&)));
+    connect(widget, SIGNAL(itemRowSwaped(int,int,int,MusicSongList&)), SLOT(itemRowSwaped(int,int,int,MusicSongList&)));
     connect(widget, SIGNAL(addSongToLovestList(bool,int)), SLOT(addSongToLovestList(bool,int)));
     connect(widget, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));
     connect(widget, SIGNAL(songListSortBy(int)), SLOT(songListSortBy(int)));
@@ -1312,7 +1312,7 @@ void MusicSongsContainerWidget::resizeWindow()
     }
 }
 
-void MusicSongsContainerWidget::updatePlayedList(int begin, int end)
+void MusicSongsContainerWidget::updatePlayedRows(int begin, int end)
 {
     for(const MusicSongItem &item : qAsConst(m_containerItems))
     {
@@ -1348,6 +1348,6 @@ void MusicSongsContainerWidget::updatePlayedList(int begin, int end)
         }
     }
 
-    MusicPlayedListPopWidget::instance()->updatePlayedList(items);
+    MusicPlayedListPopWidget::instance()->updatePlayedRows(items);
 }
 

@@ -123,9 +123,9 @@ public:
     void clear();
 
     /*!
-     * Update item playlist row.
+     * Update item playlist rows.
      */
-    void update(const TTK::IndexPropertyList &indexs);
+    void update(const TTK::IndexPropertyList &rows);
 
     /*!
      * Find item index at container.

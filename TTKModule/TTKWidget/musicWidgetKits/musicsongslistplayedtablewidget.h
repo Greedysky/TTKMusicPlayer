@@ -68,9 +68,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Delete items from indexs .
+     * Delete items from rows.
      */
-    void deleteItemAt(const TTKIntList &index);
+    void deleteItemAt(const TTKIntList &rows);
 
 public Q_SLOTS:
     /*!

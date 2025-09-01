@@ -75,9 +75,9 @@ void MusicPlayedListPopWidget::clearQueueState()
     m_tableWidget->clearQueueState();
 }
 
-void MusicPlayedListPopWidget::updatePlayedList(const TTK::IndexPropertyList &indexs)
+void MusicPlayedListPopWidget::updatePlayedRows(const TTK::IndexPropertyList &rows)
 {
-    m_playlist->update(indexs);
+    m_playlist->update(rows);
 }
 
 void MusicPlayedListPopWidget::remove(int index)
@@ -255,9 +255,9 @@ void MusicPlayedListPopWidget::popupMenu()
     m_menu->exec(pos);
 }
 
-void MusicPlayedListPopWidget::removeItemAt(const TTKIntList &index)
+void MusicPlayedListPopWidget::removeItemAt(const TTKIntList &rows)
 {
-    if(index.isEmpty())
+    if(rows.isEmpty())
     {
         return;
     }
@@ -267,9 +267,9 @@ void MusicPlayedListPopWidget::removeItemAt(const TTKIntList &index)
     const int id = m_tableWidget->playRowIndex();
     bool contains = false;
 
-    for(int i = index.count() - 1; i >= 0; --i)
+    for(int i = rows.count() - 1; i >= 0; --i)
     {
-        const int row = index[i];
+        const int row = rows[i];
         if(id == row)
         {
             contains = true;
@@ -297,9 +297,9 @@ void MusicPlayedListPopWidget::removeItemAt(const TTKIntList &index)
     else
     {
         int offset = 0;
-        for(int i = 0; i < index.count(); ++i)
+        for(int i = 0; i < rows.count(); ++i)
         {
-            if(index[i] >= id)
+            if(rows[i] >= id)
             {
                 break;
             }

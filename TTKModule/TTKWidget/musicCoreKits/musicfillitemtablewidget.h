@@ -41,13 +41,13 @@ public:
     ~MusicFillItemTableWidget();
 
     /*!
-     * Get checked items.
+     * Get checked item rows.
      */
-    TTKIntList checkedIndexList() const;
+    TTKIntList checkedItemRows() const;
     /*!
-     * Get unchecked items.
+     * Get unchecked item rows.
      */
-    TTKIntList uncheckedIndexList() const;
+    TTKIntList uncheckedItemRows() const;
 
 public Q_SLOTS:
     /*!

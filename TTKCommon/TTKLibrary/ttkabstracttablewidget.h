@@ -35,15 +35,11 @@ public:
      * Object constructor.
      */
     explicit TTKAbstractTableWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~TTKAbstractTableWidget();
 
     /*!
-     * Get selected item index list.
+     * Get selected item rows.
      */
-    TTKIntList selectedIndexList() const;
+    TTKIntList selectedRows() const;
 
 public Q_SLOTS:
     /*!
