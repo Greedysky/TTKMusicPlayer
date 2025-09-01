@@ -460,18 +460,18 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
         }
     }
 
-    MusicSongInfoItemList data;
+    MusicSongInfoItemList items;
     for(const int index : qAsConst(result))
     {
-        data.append(m_containerItems[index]);
+        items.append(m_containerItems[index]);
     }
 
     m_searchResultLevel = column;
     m_searchResultItems.insert(column, result);
 
     m_songTableWidget->removeItems();
-    m_songTableWidget->addCellItems(data);
-    updateStatisticWidget(m_tabButton->currentIndex(), data);
+    m_songTableWidget->addCellItems(items);
+    updateStatisticWidget(m_tabButton->currentIndex(), items);
 }
 
 void MusicLocalManagerWidget::itemDoubleClicked(int row, int column)

@@ -242,17 +242,17 @@ void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
         }
     }
 
-    QStringList data;
+    QStringList items;
     for(const int index : qAsConst(result))
     {
-        data.append(m_containerItems[index]);
+        items.append(m_containerItems[index]);
     }
 
     m_searchResultLevel = column;
     m_searchResultItems.insert(column, result);
 
     clearItems();
-    m_ui->songlistTable->addCellItems(data);
+    m_ui->songlistTable->addCellItems(items);
 }
 
 void MusicMobileSongsManagerWidget::clearItems()

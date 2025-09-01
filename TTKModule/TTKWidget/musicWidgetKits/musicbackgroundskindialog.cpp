@@ -342,11 +342,11 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem()
 
 void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget *item, const QString &dir, bool state)
 {
-    TTKIntList data;
-    findThemeListByPath(dir, data);
-    std::sort(data.begin(), data.end());
+    TTKIntList items;
+    findThemeListByPath(dir, items);
+    std::sort(items.begin(), items.end());
 
-    for(const int index : qAsConst(data))
+    for(const int index : qAsConst(items))
     {
         const QFileInfo fin(QString("%1theme-%2%3").arg(dir).arg(index).arg(TKM_FILE));
         item->addCellItem(fin.baseName(), fin.filePath(), state);
@@ -364,9 +364,9 @@ void MusicBackgroundSkinDialog::cpoyFileFromLocal(const QString &path)
     }
 }
 
-void MusicBackgroundSkinDialog::findThemeListByPath(const QString &dir, TTKIntList &data)
+void MusicBackgroundSkinDialog::findThemeListByPath(const QString &dir, TTKIntList &items)
 {
-    data.clear();
+    items.clear();
     const QStringList files(QDir(dir).entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
 
     for(const QString &path : qAsConst(files))
@@ -384,20 +384,20 @@ void MusicBackgroundSkinDialog::findThemeListByPath(const QString &dir, TTKIntLi
         }
 
         const QString &fileName = list.back();
-        data << fileName.trimmed().toInt();
+        items << fileName.trimmed().toInt();
     }
 }
 
 int MusicBackgroundSkinDialog::cpoyFileToLocalIndex()
 {
-    TTKIntList data;
-    findThemeListByPath(USER_THEME_DIR_FULL, data);
-    std::sort(data.begin(), data.end(), std::greater<int>());
+    TTKIntList items;
+    findThemeListByPath(USER_THEME_DIR_FULL, items);
+    std::sort(items.begin(), items.end(), std::greater<int>());
 
     int index = CURRENT_ITEMS_COUNT;
-    if(!data.isEmpty())
+    if(!items.isEmpty())
     {
-        index = data.front();
+        index = items.front();
         if(index < CURRENT_ITEMS_COUNT)
         {
             index = CURRENT_ITEMS_COUNT;

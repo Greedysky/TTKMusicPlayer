@@ -151,7 +151,6 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItemList &i
         data.m_state = MusicCloudDataItem::State::Successed;
         data.m_data = item;
         m_totalFileSzie += item.m_size;
-
         addCellItem(data);
     }
 

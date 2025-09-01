@@ -191,14 +191,14 @@ void MusicConnectTransferWidget::searchResultChanged(int, int column)
         }
     }
 
-    MusicSongList data;
+    MusicSongList items;
     for(const int index : qAsConst(result))
     {
-        data.append(m_containerItems[index]);
+        items.append(m_containerItems[index]);
     }
 
     m_searchResultLevel = column;
     m_searchResultItems.insert(column, result);
 
-    addCellItems(data);
+    addCellItems(items);
 }
