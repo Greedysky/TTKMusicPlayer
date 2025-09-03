@@ -22,16 +22,16 @@
 #include "ttksingleton.h"
 #include "musicnetworkdefines.h"
 
-/*! @brief The class of the download manager pair.
+/*! @brief The class of the download manger data.
  * @author Greedysky <greedysky@163.com>
  */
-struct TTK_MODULE_EXPORT MusicDownLoadPairData
+struct TTK_MODULE_EXPORT MusicDownLoadData
 {
     qint64 m_timestamp;
     QObject *m_object;
     TTK::Record m_type;
 
-    MusicDownLoadPairData() noexcept
+    MusicDownLoadData() noexcept
         : m_timestamp(-1),
           m_object(nullptr),
           m_type(TTK::Record::NormalDownload)
@@ -39,13 +39,13 @@ struct TTK_MODULE_EXPORT MusicDownLoadPairData
 
     }
 
-    MusicDownLoadPairData(qint64 t) noexcept
-        : MusicDownLoadPairData()
+    MusicDownLoadData(qint64 t) noexcept
+        : MusicDownLoadData()
     {
         m_timestamp = t;
     }
 
-    MusicDownLoadPairData(qint64 t, QObject *object, TTK::Record type) noexcept
+    MusicDownLoadData(qint64 t, QObject *object, TTK::Record type) noexcept
         : m_timestamp(t),
           m_object(object),
           m_type(type)
@@ -53,12 +53,12 @@ struct TTK_MODULE_EXPORT MusicDownLoadPairData
 
     }
 
-    inline bool operator< (const MusicDownLoadPairData &other) const noexcept
+    inline bool operator< (const MusicDownLoadData &other) const noexcept
     {
         return m_timestamp < other.m_timestamp;
     }
 
-    inline bool operator== (const MusicDownLoadPairData &other) const noexcept
+    inline bool operator== (const MusicDownLoadData &other) const noexcept
     {
         return m_timestamp == other.m_timestamp;
     }
@@ -84,15 +84,15 @@ public:
     /*!
      * Set data network connection object.
      */
-    void connectNetworkData(const MusicDownLoadPairData &pair);
+    void connectNetworkData(const MusicDownLoadData &data);
     /*!
      * Reset data network connection object.
      */
-    void reconnectNetworkData(const MusicDownLoadPairData &pair);
+    void reconnectNetworkData(const MusicDownLoadData &data);
     /*!
      * Remove data network connection object.
      */
-    void removeNetworkData(const MusicDownLoadPairData &pair);
+    void removeNetworkData(const MusicDownLoadData &data);
 
 private Q_SLOTS:
     /*!
@@ -102,7 +102,7 @@ private Q_SLOTS:
 
 private:
     QObjectList m_objects;
-    QList<MusicDownLoadPairData> m_datas;
+    QList<MusicDownLoadData> m_datas;
 
 };
 

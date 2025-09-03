@@ -23,10 +23,10 @@ void MusicDownLoadManager::removeMultiNetwork(QObject *object)
     }
 }
 
-void MusicDownLoadManager::connectNetworkData(const MusicDownLoadPairData &pair)
+void MusicDownLoadManager::connectNetworkData(const MusicDownLoadData &data)
 {
     QString className;
-    switch(pair.m_type)
+    switch(data.m_type)
     {
         case TTK::Record::NormalDownload: className = MusicDownloadRecordTableWidget::className(); break;
         case TTK::Record::CloudDownload:  className = MusicCloudDownloadTableWidget::className(); break;
@@ -35,33 +35,33 @@ void MusicDownLoadManager::connectNetworkData(const MusicDownLoadPairData &pair)
     }
 
     const QObject *to = G_CONNECTION_PTR->value(className);
-    if(to && pair.m_object)
+    if(to && data.m_object)
     {
-        connect(pair.m_object, SIGNAL(createDownloadItem(QString, qint64)), to, SLOT(createDownloadItem(QString, qint64)));
-        connect(pair.m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to, SLOT(downloadProgressChanged(float, QString, qint64)));
+        connect(data.m_object, SIGNAL(createDownloadItem(QString, qint64)), to, SLOT(createDownloadItem(QString, qint64)));
+        connect(data.m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to, SLOT(downloadProgressChanged(float, QString, qint64)));
     }
 
-    connect(pair.m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), SLOT(downloadProgressChanged(float, QString, qint64)));
-    m_datas << pair;
+    connect(data.m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), SLOT(downloadProgressChanged(float, QString, qint64)));
+    m_datas << data;
 }
 
-void MusicDownLoadManager::reconnectNetworkData(const MusicDownLoadPairData &pair)
+void MusicDownLoadManager::reconnectNetworkData(const MusicDownLoadData &data)
 {
-    const int index = m_datas.indexOf(pair);
+    const int index = m_datas.indexOf(data);
     if(index != -1)
     {
-        MusicDownLoadPairData *p = &m_datas[index];
-        disconnect(p->m_object, SIGNAL(createDownloadItem(QString, qint64)), pair.m_object, SLOT(createDownloadItem(QString, qint64)));
-        disconnect(p->m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), pair.m_object, SLOT(downloadProgressChanged(float, QString, qint64)));
+        MusicDownLoadData *p = &m_datas[index];
+        disconnect(p->m_object, SIGNAL(createDownloadItem(QString, qint64)), data.m_object, SLOT(createDownloadItem(QString, qint64)));
+        disconnect(p->m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), data.m_object, SLOT(downloadProgressChanged(float, QString, qint64)));
 
-        connect(p->m_object, SIGNAL(createDownloadItem(QString, qint64)), pair.m_object, SLOT(createDownloadItem(QString, qint64)));
-        connect(p->m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), pair.m_object, SLOT(downloadProgressChanged(float, QString, qint64)));
+        connect(p->m_object, SIGNAL(createDownloadItem(QString, qint64)), data.m_object, SLOT(createDownloadItem(QString, qint64)));
+        connect(p->m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), data.m_object, SLOT(downloadProgressChanged(float, QString, qint64)));
     }
 }
 
-void MusicDownLoadManager::removeNetworkData(const MusicDownLoadPairData &pair)
+void MusicDownLoadManager::removeNetworkData(const MusicDownLoadData &data)
 {
-    const int index = m_datas.indexOf(pair);
+    const int index = m_datas.indexOf(data);
     if(index != -1)
     {
         m_datas.takeAt(index);
@@ -73,6 +73,6 @@ void MusicDownLoadManager::downloadProgressChanged(float percent, const QString 
     Q_UNUSED(total);
     if(percent >= 100)
     {
-        removeNetworkData(MusicDownLoadPairData(time));
+        removeNetworkData(MusicDownLoadData(time));
     }
 }
