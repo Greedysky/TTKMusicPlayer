@@ -9,9 +9,10 @@
             <value key="3778678" value="热歌榜"/>
         </tag>
         <tag value="全球媒体榜">
-            <value key="991319590" value="云音乐说唱榜"/>
+            <value key="991319590" value="云音乐中文说唱榜"/>
             <value key="71384707" value="云音乐古典榜"/>
             <value key="1978921795" value="云音乐电音榜"/>
+            <value key="14028249541" value="云音乐全球说唱榜"/>
             <value key="13372522766" value="潮流风向榜"/>
             <value key="12911403728" value="音乐合伙人推荐榜"/>
             <value key="12911589513" value="音乐合伙人热歌榜"/>
@@ -61,7 +62,7 @@
             <value key="8703220480" value="蔚来车友爱听榜"/>
             <value key="8702982391" value="极氪车友爱听榜"/>
             <value key="8532443277" value="蛋仔派对听歌榜"/>
-            <value key="9651277674" value="Suno AI新歌榜"/>
+            <value key="9651277674" value="AI新歌榜"/>
             <value key="10131772880" value="昊铂车友爱听榜"/>
             <value key="10162841534" value="埃安车友爱听榜"/>
             <value key="12225155968" value="欧美RnB榜"/>
@@ -142,15 +143,9 @@
             <value key="344" value="儿童故事榜"/>
         </tag>
         <tag value="场景榜">
-            <value key="279" value="秋日思念榜"/>
             <value key="328" value="车载歌曲榜"/>
             <value key="297" value="跑步健身榜"/>
-            <value key="295" value="宝宝哄睡榜"/>
-            <value key="283" value="睡前放松榜"/>
-            <value key="282" value="熬夜修仙榜"/>
-            <value key="264" value="Vlog必备榜"/>
             <value key="255" value="KTV点唱榜"/>
-            <value key="281" value="通勤路上榜"/>
         </tag>
     </KuWo>
 <TTKMusicPlayer>
