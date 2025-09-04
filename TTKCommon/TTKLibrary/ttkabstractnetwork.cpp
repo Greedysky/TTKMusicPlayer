@@ -99,7 +99,7 @@ qint64 TTK::fetchFileSizeByUrl(const QString &url)
 
     if(reply->error() != QNetworkReply::NoError)
     {
-        TTK_INFO_STREAM(reply->error() << reply->errorString());
+        TTK_INFO_STREAM(reply->error() << reply->errorString() << reply->readAll());
         return size;
     }
 
@@ -137,7 +137,7 @@ QByteArray TTK::syncNetworkQueryForGet(QNetworkRequest *request)
 
     if(reply->error() != QNetworkReply::NoError)
     {
-        TTK_INFO_STREAM(reply->error() << reply->errorString());
+        TTK_INFO_STREAM(reply->error() << reply->errorString() << reply->readAll());
         return {};
     }
 
@@ -157,7 +157,7 @@ QByteArray TTK::syncNetworkQueryForPost(QNetworkRequest *request, const QByteArr
 
     if(reply->error() != QNetworkReply::NoError)
     {
-        TTK_INFO_STREAM(reply->error() << reply->errorString());
+        TTK_INFO_STREAM(reply->error() << reply->errorString() << reply->readAll());
         return {};
     }
 
@@ -177,7 +177,7 @@ QByteArray TTK::syncNetworkQueryForPut(QNetworkRequest *request, const QByteArra
 
     if(reply->error() != QNetworkReply::NoError)
     {
-        TTK_INFO_STREAM(reply->error() << reply->errorString());
+        TTK_INFO_STREAM(reply->error() << reply->errorString() << reply->readAll());
         return {};
     }
 
@@ -210,7 +210,7 @@ QByteArray TTK::syncNetworkQueryForPatch(QNetworkRequest *request, const QByteAr
 
     if(reply->error() != QNetworkReply::NoError)
     {
-        TTK_INFO_STREAM(reply->error() << reply->errorString());
+        TTK_INFO_STREAM(reply->error() << reply->errorString() << reply->readAll());
         return {};
     }
 
