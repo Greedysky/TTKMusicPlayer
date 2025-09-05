@@ -9,8 +9,8 @@ MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
     setAttribute(Qt::WA_TranslucentBackground);
 
-    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    setGeometry(windowSize.width() - 266 - 15, windowSize.height() - 85 - 55, 266, 85);
+    const QSize &size = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    setGeometry(size.width() - 266 - 15, size.height() - 85 - 55, 266, 85);
     setPixmap(QPixmap(":/toolSets/lb_mobile_devices"));
 
     m_closeButton = new QToolButton(this);

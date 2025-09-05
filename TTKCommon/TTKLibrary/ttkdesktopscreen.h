@@ -46,21 +46,26 @@ public:
     static TaskbarInfo screenTaskbar(int index = 0);
 
     /*!
-     * Get available geometry by given screen index.
+     * Get all screen geometry.
      */
-    static QRect availableGeometry(int index = 0);
+    static QRect geometry();
     /*!
      * Get screen geometry by given screen index.
      */
     static QRect screenGeometry(int index = 0);
     /*!
-     * Get all screen geometry.
+     * Get available geometry by given screen index.
      */
-    static QRect geometry();
+    static QRect availableGeometry(int index = 0);
+
     /*!
-     * Get screen index in cursor pos.
+     * Get current screen index in cursor pos.
      */
-    static int screenIndex();
+    static int currentIndex();
+    /*!
+     * Get current screen geometry in cursor pos.
+     */
+    static QRect currentGeometry();
 
     /*!
      * Grab widget geometry pixmap by given rect.

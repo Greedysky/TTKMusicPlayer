@@ -98,8 +98,8 @@ void MusicApplicationModule::cleanup()
     {
         m_direction = TTK::Direction::No;
         MusicApplication *w = MusicApplication::instance();
-        const QRect &rect = TTKDesktopScreen::screenGeometry();
-        w->move((rect.width() - w->width()) / 2, w->y());
+        const QRect &rect = TTKDesktopScreen::currentGeometry();
+        w->move(rect.x() + (rect.width() - w->width()) / 2, rect.y() + w->y());
     }
 }
 
@@ -184,8 +184,9 @@ void MusicApplicationModule::sideAnimationByOn()
 #elif defined Q_OS_UNIX
     const int gap = TTKPlatformSystem::systemName() == TTKPlatformSystem::System::LinuxUbuntu ? 3 : 2;
 #endif
-    const QRect &rect = TTKDesktopScreen::screenGeometry();
-    const TTK::Direction direction = TTKDesktopScreen::screenTaskbar().m_direction;
+    const int index = TTKDesktopScreen::currentIndex();
+    const QRect &rect = TTKDesktopScreen::screenGeometry(index);
+    const TTK::Direction direction = TTKDesktopScreen::screenTaskbar(index).m_direction;
 
     if(direction != TTK::Direction::Left && -MARGIN_SIDE <= lpx && lpx <= MARGIN_SIDE)
     {
@@ -233,7 +234,7 @@ void MusicApplicationModule::sideAnimationByOff()
     }
 
     MusicApplication *w = MusicApplication::instance();
-    const QRect &rect = TTKDesktopScreen::screenGeometry();
+    const QRect &rect = TTKDesktopScreen::currentGeometry();
 
     switch(m_direction)
     {
@@ -410,7 +411,7 @@ void MusicApplicationModule::resetWindowGeometry()
 {
     m_direction = TTK::Direction::No;
 
-    const QRect &rect = TTKDesktopScreen::screenGeometry();
+    const QRect &rect = TTKDesktopScreen::currentGeometry();
     G_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, rect.size());
     G_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
 
@@ -419,7 +420,10 @@ void MusicApplicationModule::resetWindowGeometry()
     {
         w->showNormal();
     }
-    w->setGeometry((rect.width() - WINDOW_WIDTH_MIN) / 2, (rect.height() - WINDOW_HEIGHT_MIN) / 2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+
+    w->setGeometry(rect.x() + (rect.width() - WINDOW_WIDTH_MIN) / 2,
+                   rect.y() + (rect.height() - WINDOW_HEIGHT_MIN) / 2,
+                   WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 }
 
 void MusicApplicationModule::executeTimerAutoModule()

@@ -9,6 +9,7 @@
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
 #include "ttkclickedslider.h"
+#include "ttkdesktopscreen.h"
 
 MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     : TTKAbstractMoveWidget(parent)
@@ -219,6 +220,6 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicRemoteWidget::adjustPosition(QWidget *w)
 {
-    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    w->move(windowSize.width() - w->width() - 150, w->height() + 70);
+    const QRect &rect = TTKDesktopScreen::currentGeometry();
+    w->move(rect.x() + rect.width() - w->width() - 150, rect.y() + w->height() + 70);
 }

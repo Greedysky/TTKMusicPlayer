@@ -157,9 +157,9 @@ void MusicLrcContainerForWallpaper::changeCurrentLrcColor()
 
 void MusicLrcContainerForWallpaper::updateBackground(const QPixmap &pix)
 {
-    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    m_background->setFixedSize(windowSize);
-    m_background->setPixmap(pix.scaled(windowSize));
+    const QSize &size = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    m_background->setFixedSize(size);
+    m_background->setPixmap(pix.scaled(size));
 }
 
 void MusicLrcContainerForWallpaper::updateAnimationLrc()

@@ -134,8 +134,10 @@ void MusicVideoPlayWidget::popupMode(bool popup)
 
     if(popup)
     {
-        const QSize &size = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-        setGeometry((size.width() - WINDOW_WIDTH) / 2, (size.height() - WINDOW_HEIGHT) / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+        const QRect &rect = TTKDesktopScreen::currentGeometry();
+        setGeometry(rect.x() + (rect.width() - WINDOW_WIDTH) / 2,
+                    rect.y() + (rect.height() - WINDOW_HEIGHT) / 2,
+                    WINDOW_WIDTH, WINDOW_HEIGHT);
         resizeGeometry(0, 0);
         setParent(nullptr);
         show();
@@ -187,7 +189,7 @@ void MusicVideoPlayWidget::resizeGeometry(bool resize)
 
     QSize s = size();
 #ifdef Q_OS_UNIX
-    const QRect &rect = TTKDesktopScreen::screenGeometry();
+    const QRect &rect = TTKDesktopScreen::currentGeometry();
     if(isFullScreen() && !rect.isNull())
     {
         s = rect.size();

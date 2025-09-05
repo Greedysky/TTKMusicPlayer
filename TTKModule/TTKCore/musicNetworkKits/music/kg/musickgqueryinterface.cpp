@@ -234,7 +234,7 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &
                     TTK::MusicSongProperty prop;
                     prop.m_url = url;
                     prop.m_size = TTK::Number::sizeByteToLabel(value["filesize"].toInt());
-                    prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;;
+                    prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
                     prop.m_bitrate = bitrate;
                     info->m_songProps.append(prop);
                 }

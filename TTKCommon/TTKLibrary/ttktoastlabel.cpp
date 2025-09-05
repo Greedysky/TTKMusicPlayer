@@ -52,13 +52,13 @@ void TTKToastLabel::popup(QWidget *parent)
 {
     if(!parent)
     {
-        const QSize &windowSize = TTKDesktopScreen::screenGeometry().size();
-        move((windowSize.width() - width()) / 2, windowSize.height() - 200);
+        const QRect &rect = TTKDesktopScreen::currentGeometry();
+        move(rect.x() + (rect.width() - width()) / 2, rect.y() + rect.height() - 200);
     }
     else
     {
-        const QPoint &globalPoint = parent->mapToGlobal(QPoint(0, 0));
-        move(globalPoint.x() + (parent->width() - width()) / 2, globalPoint.y() + (parent->height() - height()) / 2);
+        const QPoint &point = parent->mapToGlobal(QPoint(0, 0));
+        move(point.x() + (parent->width() - width()) / 2, point.y() + (parent->height() - height()) / 2);
     }
     show();
 }

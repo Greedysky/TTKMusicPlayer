@@ -77,8 +77,8 @@ void TTK::Widget::adjustMenuPosition(QMenu *menu)
 
 void TTK::Widget::adjustWidgetPosition(QWidget *widget)
 {
-    const QRect &rect = TTKDesktopScreen::screenGeometry();
-    widget->move((rect.width() - widget->width()) / 2, (rect.height() - widget->height()) / 2);
+    const QRect &rect = TTKDesktopScreen::currentGeometry();
+    widget->move(rect.x() + (rect.width() - widget->width()) / 2, rect.y() + (rect.height() - widget->height()) / 2);
 }
 
 void TTK::Widget::setTransparent(QWidget *widget, int alpha)

@@ -49,29 +49,6 @@ TTKDesktopScreen::TaskbarInfo TTKDesktopScreen::screenTaskbar(int index)
     return info;
 }
 
-QRect TTKDesktopScreen::availableGeometry(int index)
-{
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    Q_UNUSED(index);
-    QScreen *screen = QApplication::primaryScreen();
-    return screen ? screen->availableGeometry() : QRect();
-#else
-    QDesktopWidget *widget = QApplication::desktop();
-    return widget ? widget->availableGeometry(index) : QRect();
-#endif
-}
-
-QRect TTKDesktopScreen::screenGeometry(int index)
-{
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    const QList<QScreen*> &screens = QApplication::screens();
-    return (index < 0 || index >= screens.count()) ? QRect() : screens[index]->geometry();
-#else
-    QDesktopWidget *widget = QApplication::desktop();
-    return widget ? widget->screenGeometry(index) : QRect();
-#endif
-}
-
 QRect TTKDesktopScreen::geometry()
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
@@ -88,7 +65,29 @@ QRect TTKDesktopScreen::geometry()
 #endif
 }
 
-int TTKDesktopScreen::screenIndex()
+QRect TTKDesktopScreen::screenGeometry(int index)
+{
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    const QList<QScreen*> &screens = QApplication::screens();
+    return (index < 0 || index >= screens.count()) ? QRect() : screens[index]->geometry();
+#else
+    QDesktopWidget *widget = QApplication::desktop();
+    return widget ? widget->screenGeometry(index) : QRect();
+#endif
+}
+
+QRect TTKDesktopScreen::availableGeometry(int index)
+{
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    const QList<QScreen*> &screens = QApplication::screens();
+    return (index < 0 || index >= screens.count()) ? QRect() : screens[index]->availableGeometry();
+#else
+    QDesktopWidget *widget = QApplication::desktop();
+    return widget ? widget->availableGeometry(index) : QRect();
+#endif
+}
+
+int TTKDesktopScreen::currentIndex()
 {
     int index = 0;
 #if TTK_QT_VERSION_CHECK(5,0,0)
@@ -113,6 +112,12 @@ int TTKDesktopScreen::screenIndex()
         }
     }
     return index;
+}
+
+QRect TTKDesktopScreen::currentGeometry()
+{
+    const int index = currentIndex();
+    return screenGeometry(index);
 }
 
 QPixmap TTKDesktopScreen::grabWidget(QWidget *widget, const QRect &rect)
@@ -205,7 +210,7 @@ static QSize generateDPIValue()
         QApplication(count, nullptr);
     }
 
-#if TTK_QT_VERSION_CHECK(5,0,0)
+#  if TTK_QT_VERSION_CHECK(5,0,0)
     QScreen *screen = QApplication::primaryScreen();
     if(screen)
     {
@@ -213,14 +218,14 @@ static QSize generateDPIValue()
         dpiSize.setHeight(screen->logicalDotsPerInchY());
     }
     // fallback below if no screen
-#else
+#  else
     QDesktopWidget* desktop = QApplication::desktop();
     if(desktop)
     {
         dpiSize.setWidth(desktop->logicalDpiX());
         dpiSize.setHeight(desktop->logicalDpiY());
     }
-#endif
+#  endif
 #endif
     return dpiSize;
 }

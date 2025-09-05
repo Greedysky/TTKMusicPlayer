@@ -19,8 +19,8 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     setMouseTracking(true);
     blockOption(true);
 
-    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    setGeometry(windowSize.width() - 240, windowSize.height() - 150, 220, 100);
+    const QSize &size = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    setGeometry(size.width() - 240, size.height() - 150, 220, 100);
 
     QVBoxLayout *vLayout = new QVBoxLayout(m_container);
     vLayout->setContentsMargins(5, 5, 5, 5);

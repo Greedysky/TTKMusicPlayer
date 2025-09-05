@@ -473,7 +473,7 @@ void MusicScreenSaverBackgroundWidget::runningTimeout()
     if(!m_isRunning)
     {
         m_isRunning = true;
-        setGeometry(TTKDesktopScreen::screenGeometry());
+        setGeometry(TTKDesktopScreen::currentGeometry());
         setParent(nullptr);
         showFullScreen();
 

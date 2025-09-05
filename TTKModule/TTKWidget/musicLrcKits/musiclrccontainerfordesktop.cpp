@@ -423,8 +423,8 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
     : MusicLrcContainerForDesktop(parent)
 {
     m_verticalWindow = false;
-    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    m_widgetWidth = windowSize.width() - 300;
+    const QSize &size = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    m_widgetWidth = size.width() - 300;
     m_geometry.setX(m_widgetWidth);
     m_geometry.setY(60);
 
@@ -438,7 +438,7 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
     m_lrcManagers << new MusicLrcManagerHorizontalDesktop(desktopWidget)
                   << new MusicLrcManagerHorizontalDesktop(desktopWidget);
 
-    move(200,  windowSize.height() - height() - 200);
+    move(200,  size.height() - height() - 200);
     setFixedSize(m_geometry.x(), 2 * m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT);
     desktopWidget->setGeometry(0, TOOLBAR_MAIN_HEIGHT, m_geometry.x(), 2 * m_geometry.y() + TOOLBAR_MAIN_HEIGHT);
 
@@ -504,8 +504,8 @@ MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *pare
     : MusicLrcContainerForDesktop(parent)
 {
     m_verticalWindow = true;
-    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    m_widgetWidth = windowSize.height() - 150;
+    const QSize &size = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    m_widgetWidth = size.height() - 150;
     m_geometry.setX(m_widgetWidth);
     m_geometry.setY(60);
 
