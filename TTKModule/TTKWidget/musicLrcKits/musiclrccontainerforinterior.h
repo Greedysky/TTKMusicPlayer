@@ -70,9 +70,9 @@ public:
      */
     QString text() const;
     /*!
-     * Set song speed by given time, return new time.
+     * Find song time position by given time, return new time.
      */
-    qint64 setSongTimeSpeed(qint64 time);
+    qint64 findTimePosition(qint64 time);
     /*!
      * Init function label widget.
      */
@@ -129,13 +129,13 @@ public Q_SLOTS:
      */
     void lrcSizeChanged(QAction *action);
     /*!
-     * Set lrc time speed changed by action.
+     * Set lrc time position changed by action.
      */
-    void lrcTimeSpeedChanged(QAction *action);
+    void lrcTimePositionChanged(QAction *action);
     /*!
-     * Revert lrc time speed.
+     * Revert lrc time position.
      */
-    void revertLrcTimeSpeed();
+    void revertTimePosition();
     /*!
      * Save lrc time changed to current lrc file.
      */
@@ -199,9 +199,9 @@ private:
      */
     void createColorMenu(QMenu *menu);
     /*!
-     * Revert lrc time speed by pos.
+     * Set lrc time position by pos.
      */
-    void revertTimeSpeed(qint64 pos);
+    void setTimePosition(qint64 pos);
     /*!
      * Create no lrc current information.
      */
@@ -242,7 +242,7 @@ private:
     bool m_lrcDisplayAll, m_showArtistBackground;
     int m_animationFreshTime, m_lrcSizeProperty;
 
-    qint64 m_changeSpeedValue;
+    qint64 m_timePositionOffset;
     QWidget *m_functionLabel;
     MusicLrcFloatWidget *m_lrcFloatWidget;
     MusicLrcFloatPlayWidget *m_floatPlayWidget;

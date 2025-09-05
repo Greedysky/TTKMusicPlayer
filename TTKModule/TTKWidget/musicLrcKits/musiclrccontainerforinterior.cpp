@@ -36,7 +36,7 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
       m_showArtistBackground(true),
       m_animationFreshTime(0),
       m_lrcSizeProperty(-1),
-      m_changeSpeedValue(0),
+      m_timePositionOffset(0),
       m_floatPlayWidget(nullptr),
       m_commentsWidget(nullptr),
       m_translatedWidget(nullptr)
@@ -140,9 +140,9 @@ QString MusicLrcContainerForInterior::text() const
     return m_lrcManagers[m_lrcAnalysis->lineMiddle()]->text();
 }
 
-qint64 MusicLrcContainerForInterior::setSongTimeSpeed(qint64 time)
+qint64 MusicLrcContainerForInterior::findTimePosition(qint64 time)
 {
-    return m_lrcAnalysis->setSongTimeSpeed(time);
+    return m_lrcAnalysis->findTimePosition(time);
 }
 
 void MusicLrcContainerForInterior::setLrcSize(int size)
@@ -233,7 +233,7 @@ void MusicLrcContainerForInterior::lrcSizeChanged(QAction *action)
     }
 }
 
-void MusicLrcContainerForInterior::lrcTimeSpeedChanged(QAction *action)
+void MusicLrcContainerForInterior::lrcTimePositionChanged(QAction *action)
 {
     int timeValue = 0;
     switch(action->data().toInt())
@@ -249,17 +249,18 @@ void MusicLrcContainerForInterior::lrcTimeSpeedChanged(QAction *action)
         default: break;
     }
 
-    m_changeSpeedValue += timeValue;
-    revertTimeSpeed(timeValue);
+    m_timePositionOffset += timeValue;
+    setTimePosition(timeValue);
 }
 
-void MusicLrcContainerForInterior::revertLrcTimeSpeed()
+void MusicLrcContainerForInterior::revertTimePosition()
 {
-    if(m_changeSpeedValue == 0)
+    if(m_timePositionOffset == 0)
     {
         return;
     }
-    revertTimeSpeed(-m_changeSpeedValue);
+
+    setTimePosition(-m_timePositionOffset);
 }
 
 void MusicLrcContainerForInterior::saveLrcTimeChanged()
@@ -411,7 +412,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     lrcTimeFastMenu->setEnabled(hasLrcContainer);
     lrcTimeSlowMenu->setEnabled(hasLrcContainer);
 
-    menu.addAction(tr("Revert Mode"), this, SLOT(revertLrcTimeSpeed()))->setEnabled(hasLrcContainer);
+    menu.addAction(tr("Revert Mode"), this, SLOT(revertTimePosition()))->setEnabled(hasLrcContainer);
     menu.addAction(tr("Save Mode"), this, SLOT(saveLrcTimeChanged()))->setEnabled(hasLrcContainer);
     menu.addSeparator();
 
@@ -448,7 +449,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     lrcTimeFastActions->addAction(lrcTimeFastMenu->addAction(tr("After 1.0s")))->setData(1);
     lrcTimeFastActions->addAction(lrcTimeFastMenu->addAction(tr("After 2.0s")))->setData(2);
     lrcTimeFastActions->addAction(lrcTimeFastMenu->addAction(tr("After 5.0s")))->setData(3);
-    connect(lrcTimeFastActions, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
+    connect(lrcTimeFastActions, SIGNAL(triggered(QAction*)), SLOT(lrcTimePositionChanged(QAction*)));
     TTK::Widget::adjustMenuPosition(lrcTimeFastMenu);
     //
     QActionGroup *lrcTimeSlowActions = new QActionGroup(this);
@@ -456,7 +457,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     lrcTimeSlowActions->addAction(lrcTimeSlowMenu->addAction(tr("Before 1.0s")))->setData(5);
     lrcTimeSlowActions->addAction(lrcTimeSlowMenu->addAction(tr("Before 2.0s")))->setData(6);
     lrcTimeSlowActions->addAction(lrcTimeSlowMenu->addAction(tr("Before 5.0s")))->setData(7);
-    connect(lrcTimeSlowActions, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
+    connect(lrcTimeSlowActions, SIGNAL(triggered(QAction*)), SLOT(lrcTimePositionChanged(QAction*)));
     TTK::Widget::adjustMenuPosition(lrcTimeSlowMenu);
     //
     QAction *artAction = menu.addAction(tr("Art Turn Off"), this, SLOT(artistBackgroundChanged()));
@@ -646,25 +647,25 @@ void MusicLrcContainerForInterior::createColorMenu(QMenu *menu)
     }
 }
 
-void MusicLrcContainerForInterior::revertTimeSpeed(qint64 pos)
+void MusicLrcContainerForInterior::setTimePosition(qint64 pos)
 {
-    m_lrcAnalysis->revertTime(pos);
-    const qint64 beforeTime = setSongTimeSpeed(m_currentTime);
+    m_lrcAnalysis->setTimePosition(pos);
+    const qint64 beforeTime = findTimePosition(m_currentTime);
     updateCurrentLrc(beforeTime);
 
-    if(m_changeSpeedValue + pos == 0)
+    if(m_timePositionOffset + pos == 0)
     {
-        m_changeSpeedValue = 0;
+        m_timePositionOffset = 0;
     }
 
     QString message;
-    if(m_changeSpeedValue > 0)
+    if(m_timePositionOffset > 0)
     {
-        message = tr("After %1s").arg(m_changeSpeedValue * 1.0 / TTK_DN_S2MS);
+        message = tr("After %1s").arg(m_timePositionOffset * 1.0 / TTK_DN_S2MS);
     }
-    else if(m_changeSpeedValue < 0)
+    else if(m_timePositionOffset < 0)
     {
-        message = tr("Before %1s").arg(-m_changeSpeedValue * 1.0 / TTK_DN_S2MS);
+        message = tr("Before %1s").arg(-m_timePositionOffset * 1.0 / TTK_DN_S2MS);
     }
     else
     {

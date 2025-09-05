@@ -697,12 +697,12 @@ void MusicApplication::playIndexClicked(int row, int column)
     playIndexBy(row, column);
 }
 
-void MusicApplication::playAnyTimeAt(int time)
+void MusicApplication::playAnyTimePosition(int time)
 {
     //Drag the progress indicator to rewind or fast-forward through the current song
     m_player->setPosition(time);
     //Set lrc corrent to show
-    m_rightAreaWidget->setSongTimeSpeed(time);
+    m_rightAreaWidget->findTimePosition(time);
 }
 
 void MusicApplication::showSettingWidget()
@@ -964,8 +964,7 @@ void MusicApplication::resetCurrentSongLrcIndex()
     const int pos = m_player->position();
     if(pos != -1)
     {
-        //Set lrc corrent to show
-        m_rightAreaWidget->setSongTimeSpeed(pos);
+        m_rightAreaWidget->findTimePosition(pos);
     }
 }
 

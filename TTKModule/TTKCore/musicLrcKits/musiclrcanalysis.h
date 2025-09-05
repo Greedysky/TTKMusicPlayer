@@ -87,22 +87,22 @@ public:
     State loadFromFile(const QString &path);
 
     /*!
-     * Set song speed by given time, return new time.
+     * Set lrc time by pos, both + or - the same pos.
      */
-    qint64 setSongTimeSpeed(qint64 time);
+    void setTimePosition(qint64 pos);
     /*!
-     * Revert lrc time by pos, both + or - the same pos.
+     * Find song time position by given time, return new time.
      */
-    void revertTime(qint64 pos);
+    qint64 findTimePosition(qint64 time);
 
     /*!
      * Set current middle index.
      */
-    inline void setCurrentIndex(int index) noexcept { m_currentLrcIndex = index; }
+    inline void setCurrentIndex(int index) noexcept { m_currentIndex = index; }
     /*!
      * Get current middle index.
      */
-    inline int currentIndex() const noexcept { return m_currentLrcIndex; }
+    inline int currentIndex() const noexcept { return m_currentIndex; }
     /*!
      * Set current file path.
      */
@@ -177,7 +177,7 @@ private:
      */
     void matchLrcLine(const QString &oneLine, const QString &cap, const QString &first, const QString &second, const QString &third);
 
-    int m_lineMax, m_currentLrcIndex;
+    int m_lineMax, m_currentIndex;
     QString m_currentFilePath;
     TTKIntStringMap m_lrcContainer;
     QStringList m_currentShowLrcContainer;

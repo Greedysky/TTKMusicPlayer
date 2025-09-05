@@ -236,9 +236,9 @@ public Q_SLOTS:
      */
     void playIndexClicked(int row, int column);
     /*!
-     * Set song speed and slow by given pos.
+     * Set song time position by given pos.
      */
-    void playAnyTimeAt(int time);
+    void playAnyTimePosition(int time);
 
     /*!
      * Show setting widget.

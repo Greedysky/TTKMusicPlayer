@@ -128,9 +128,9 @@ public:
      */
     void loadCurrentSongLrc(const QString &name, const QString &path) const;
     /*!
-     * Set song time speed by given time.
+     * Find song time position by given time.
      */
-    void setSongTimeSpeed(qint64 time) const;
+    void findTimePosition(qint64 time) const;
     /*!
      * Check the current song meta data valid.
      */

@@ -170,13 +170,13 @@ private Q_SLOTS:
      */
     void updateAnimationLrc();
     /*!
-     * Set lrc time speed changed slower.
+     * Set lrc time position changed slower.
      */
-    void lrcSpeedSlower();
+    void lrcPositionSlower();
     /*!
-     * Set lrc time speed changed faster.
+     * Set lrc time position changed faster.
      */
-    void lrcSpeedFaster();
+    void lrcPositionFaster();
 
 private:
     /*!

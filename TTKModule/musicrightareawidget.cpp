@@ -206,9 +206,9 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
     }
 }
 
-void MusicRightAreaWidget::setSongTimeSpeed(qint64 time) const
+void MusicRightAreaWidget::findTimePosition(qint64 time) const
 {
-    m_lrcForInterior->setSongTimeSpeed(time);
+    m_lrcForInterior->findTimePosition(time);
 }
 
 void MusicRightAreaWidget::checkMetaDataValid(bool mode) const

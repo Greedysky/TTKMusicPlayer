@@ -8,7 +8,7 @@
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent),
       m_lineMax(0),
-      m_currentLrcIndex(0)
+      m_currentIndex(0)
 {
 
 }
@@ -331,7 +331,17 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, QString cap, const Q
     m_lrcContainer.insert(totalTime, oneLine);
 }
 
-qint64 MusicLrcAnalysis::setSongTimeSpeed(qint64 time)
+void MusicLrcAnalysis::setTimePosition(qint64 pos)
+{
+    TTKIntStringMap copy;
+    for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
+    {
+        copy.insert(it.key() + pos, it.value());
+    }
+    m_lrcContainer = copy;
+}
+
+qint64 MusicLrcAnalysis::findTimePosition(qint64 time)
 {
     const QList<qint64> keys(m_lrcContainer.keys());
     qint64 beforeTime = 0;
@@ -352,36 +362,27 @@ qint64 MusicLrcAnalysis::setSongTimeSpeed(qint64 time)
             time = afterTime;
             break;
         }
+
         beforeTime = afterTime;
     }
 
-    if((m_currentLrcIndex = index - 1) < 0)
+    if((m_currentIndex = index - 1) < 0)
     {
-        m_currentLrcIndex = 0;
+        m_currentIndex = 0;
     }
     return time;
 }
 
-void MusicLrcAnalysis::revertTime(qint64 pos)
-{
-    TTKIntStringMap copy;
-    for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
-    {
-        copy.insert(it.key() + pos, it.value());
-    }
-    m_lrcContainer = copy;
-}
-
 void MusicLrcAnalysis::clear() noexcept
 {
-    m_currentLrcIndex = 0;
+    m_currentIndex = 0;
     m_lrcContainer.clear();
     m_currentShowLrcContainer.clear();
 }
 
 bool MusicLrcAnalysis::isValid() const noexcept
 {
-    return (!isEmpty()) && (m_currentLrcIndex + m_lineMax <= m_currentShowLrcContainer.count());
+    return !isEmpty() && (m_currentIndex + m_lineMax <= m_currentShowLrcContainer.count());
 }
 
 bool MusicLrcAnalysis::isEmpty() const noexcept
@@ -396,7 +397,7 @@ int MusicLrcAnalysis::count() const noexcept
 
 QString MusicLrcAnalysis::text(int index) const
 {
-    index = m_currentLrcIndex + index;
+    index = m_currentIndex + index;
     if(m_currentShowLrcContainer.count() <= index)
     {
         index = m_currentShowLrcContainer.count() - 1;
