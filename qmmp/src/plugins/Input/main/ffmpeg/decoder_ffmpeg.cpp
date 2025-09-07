@@ -226,6 +226,11 @@ bool DecoderFFmpeg::initialize()
         AVChannel ch = av_channel_layout_channel_from_index(&m_codecContext->ch_layout, i);
         map << m_ff_channels.value(ch, Qmmp::CHAN_NULL);
     }
+    //ffmpeg does not provide channel order, using internal channel order instead
+    if(map.count(Qmmp::CHAN_NULL) == m_codecContext->ch_layout.nb_channels)
+    {
+        map = ChannelMap(m_codecContext->ch_layout.nb_channels);
+    }
 #else
     if(m_codecContext->channels == 1)
     {
