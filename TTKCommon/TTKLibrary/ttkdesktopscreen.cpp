@@ -87,14 +87,19 @@ QRect TTKDesktopScreen::availableGeometry(int index)
 #endif
 }
 
+int TTKDesktopScreen::count()
+{
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    return QApplication::screens().count();
+#else
+    return QApplication::desktop()->screenCount();
+#endif
+}
+
 int TTKDesktopScreen::currentIndex()
 {
     int index = 0;
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    const int count = QApplication::screens().count();
-#else
-    const int count = QApplication::desktop()->screenCount();
-#endif
+    const int count = TTKDesktopScreen::count();
     if(count > 1)
     {
         const QPoint &pos = QCursor::pos();

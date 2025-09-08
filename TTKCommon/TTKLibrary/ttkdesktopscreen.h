@@ -59,6 +59,10 @@ public:
     static QRect availableGeometry(int index = 0);
 
     /*!
+     * Get current screen count.
+     */
+    static int count();
+    /*!
      * Get current screen index in cursor pos.
      */
     static int currentIndex();
