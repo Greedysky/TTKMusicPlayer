@@ -20,6 +20,11 @@ cmake_minimum_required(VERSION 3.0.0)
 
 project(TTKLibrary)
 
+set(TTK_CTL_MAJOR_VERSION 1)
+set(TTK_CTL_MINOR_VERSION 4)
+set(TTK_CTL_PATCH_VERSION 2)
+set(TTK_CTL_VERSION "${TTK_CTL_MAJOR_VERSION}.${TTK_CTL_MINOR_VERSION}.${TTK_CTL_PATCH_VERSION}.0")
+
 set(HEADER_FILES
   ttkabstractbufferinterface.h
   ttkabstractmovedialog.h
@@ -136,3 +141,26 @@ else()
   add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES} ${MOC_FILES})
 endif()
 target_link_libraries(${PROJECT_NAME} ${QT_LINK_LIBS})
+
+# install CTL module
+if(TTK_INSTALL_CTL)
+  set(TTK_CTL_PATH "${TTK_INSTALL_DIR}/${PROJECT_NAME}/lib")
+  if(WIN32)
+    set(TTK_CTL_MODULE "lib${PROJECT_NAME}.a")
+  elseif(APPLE)
+    set(TTK_CTL_MODULE "lib${PROJECT_NAME}.dylib")
+  else()
+    set(TTK_CTL_MODULE "lib${PROJECT_NAME}.so")
+  endif()
+
+  file(GLOB_RECURSE INSTALL_HEADERS "${TTK_COMMON_BASE_DIR}/*.h" "${TTK_COMMON_LIB_DIR}/*.h")
+  install(FILES ${INSTALL_HEADERS} DESTINATION "${TTK_INSTALL_DIR}/${PROJECT_NAME}/include")
+  install(FILES ${LIBRARY_OUTPUT_PATH}/${TTK_CTL_MODULE} DESTINATION ${TTK_CTL_PATH})
+  # configure ttkconfig file
+  install(FILES ${TTK_GENERATE_DIR}/ttklibrary.pc DESTINATION ${TTK_CTL_PATH}/pkgconfig)
+  install(FILES ${TTK_GENERATE_DIR}/ttklibraryConfig.cmake DESTINATION ${TTK_CTL_PATH}/cmake)
+endif()
+
+# configure CTL files
+configure_file(cmake/ttklibrary.pc.in ${TTK_GENERATE_DIR}/ttklibrary.pc @ONLY)
+configure_file(cmake/ttklibraryConfig.cmake.in ${TTK_GENERATE_DIR}/ttklibraryConfig.cmake @ONLY)

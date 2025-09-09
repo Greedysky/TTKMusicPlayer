@@ -1,0 +1,10 @@
+prefix=@TTK_INSTALL_DIR@/TTKLibrary
+exec_prefix=${prefix}/bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: TTKLibrary
+Description: TTK common tools library
+Version: @TTK_CTL_VERSION@
+Libs: -L${libdir} -lTTKLibrary
+Cflags: -I${includedir}
