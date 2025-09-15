@@ -79,6 +79,7 @@ HEADERS += \
     $$PWD/ttkclickedslider.h \
     $$PWD/ttkcommandline.h \
     $$PWD/ttkconcurrent.h \
+    $$PWD/ttkconcurrentdata.h \
     $$PWD/ttkconcurrentqueue.h \
     $$PWD/ttkcryptographichash.h \
     $$PWD/ttkdefer.h \

@@ -229,7 +229,7 @@ void TTKCryptographicHash::xxteaUintDecrypt(xxtea_uint *v, xxtea_uint len, xxtea
     }
 }
 
-uchar *TTKCryptographicHash::fixKeyLength(uchar *key, xxtea_uint keyLength)
+uchar* TTKCryptographicHash::fixKeyLength(uchar *key, xxtea_uint keyLength)
 {
     uchar *tmp = (uchar *)malloc(16);
     memcpy(tmp, key, keyLength);
@@ -264,7 +264,7 @@ xxtea_uint *TTKCryptographicHash::xxteaToUintArray(uchar *data, xxtea_uint len, 
     return result;
 }
 
-uchar *TTKCryptographicHash::xxteaToByteArray(xxtea_uint *data, xxtea_uint len, int includeLength, xxtea_uint *retLength)
+uchar* TTKCryptographicHash::xxteaToByteArray(xxtea_uint *data, xxtea_uint len, int includeLength, xxtea_uint *retLength)
 {
     xxtea_uint i, n, m;
     uchar *result;
@@ -292,7 +292,7 @@ uchar *TTKCryptographicHash::xxteaToByteArray(xxtea_uint *data, xxtea_uint len, 
     return result;
 }
 
-uchar *TTKCryptographicHash::doXxteaEncrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *retLength)
+uchar* TTKCryptographicHash::doXxteaEncrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *retLength)
 {
     uchar *result;
     xxtea_uint *v, *k, vlen, klen;
@@ -309,7 +309,7 @@ uchar *TTKCryptographicHash::doXxteaEncrypt(uchar *data, xxtea_uint len, uchar *
     return result;
 }
 
-uchar *TTKCryptographicHash::doXxteaDecrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *retLength)
+uchar* TTKCryptographicHash::doXxteaDecrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *retLength)
 {
     uchar *result;
     xxtea_uint *v, *k, vlen, klen;
@@ -326,7 +326,7 @@ uchar *TTKCryptographicHash::doXxteaDecrypt(uchar *data, xxtea_uint len, uchar *
     return result;
 }
 
-uchar *TTKCryptographicHash::xxteaEncrypt(uchar *data, xxtea_uint dataLength, uchar *key, xxtea_uint keyLength, xxtea_uint *retLength)
+uchar* TTKCryptographicHash::xxteaEncrypt(uchar *data, xxtea_uint dataLength, uchar *key, xxtea_uint keyLength, xxtea_uint *retLength)
 {
     uchar *result;
     *retLength = 0;
@@ -345,7 +345,7 @@ uchar *TTKCryptographicHash::xxteaEncrypt(uchar *data, xxtea_uint dataLength, uc
     return result;
 }
 
-uchar *TTKCryptographicHash::xxteaDecrypt(uchar *data, xxtea_uint dataLength, uchar *key, xxtea_uint keyLength, xxtea_uint *retLength)
+uchar* TTKCryptographicHash::xxteaDecrypt(uchar *data, xxtea_uint dataLength, uchar *key, xxtea_uint keyLength, xxtea_uint *retLength)
 {
     uchar *result;
     *retLength = 0;

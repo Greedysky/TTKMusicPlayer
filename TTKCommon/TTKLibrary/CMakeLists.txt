@@ -41,6 +41,7 @@ set(HEADER_FILES
   ttkclickedslider.h
   ttkcommandline.h
   ttkconcurrent.h
+  ttkconcurrentdata.h
   ttkconcurrentqueue.h
   ttkcryptographichash.h
   ttkdefer.h

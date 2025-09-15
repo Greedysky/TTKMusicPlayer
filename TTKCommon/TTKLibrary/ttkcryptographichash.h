@@ -61,11 +61,11 @@ private:
     /*!
      * Do XXTEA encrypt.
      */
-    uchar *doXxteaEncrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *retLength);
+    uchar* doXxteaEncrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *retLength);
     /*!
      * Do XXTEA decrypt.
      */
-    uchar *doXxteaDecrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *retLength);
+    uchar* doXxteaDecrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *retLength);
     /*!
      * XXTEA uint encrypt.
      */
@@ -77,24 +77,24 @@ private:
     /*!
      * Fix key length.
      */
-    uchar *fixKeyLength(uchar *key, xxtea_uint keyLength);
+    uchar* fixKeyLength(uchar *key, xxtea_uint keyLength);
     /*!
      * XXTEA to uint array.
      */
-    xxtea_uint *xxteaToUintArray(uchar *data, xxtea_uint len, int includeLength, xxtea_uint *retLength);
+    xxtea_uint* xxteaToUintArray(uchar *data, xxtea_uint len, int includeLength, xxtea_uint *retLength);
     /*!
      * XXTEA to byte array.
      */
-    uchar *xxteaToByteArray(xxtea_uint *data, xxtea_uint len, int includeLength, xxtea_uint *retLength);
+    uchar* xxteaToByteArray(xxtea_uint *data, xxtea_uint len, int includeLength, xxtea_uint *retLength);
 
     /*!
      * XXTEA encrypt by uchar * data.
      */
-    uchar *xxteaEncrypt(uchar *data, xxtea_uint dataLength, uchar *key, xxtea_uint keyLength, xxtea_uint *retLengthgth);
+    uchar* xxteaEncrypt(uchar *data, xxtea_uint dataLength, uchar *key, xxtea_uint keyLength, xxtea_uint *retLengthgth);
     /*!
      * XXTEA decrypt by uchar * data.
      */
-    uchar *xxteaDecrypt(uchar *data, xxtea_uint dataLength, uchar *key, xxtea_uint keyLength, xxtea_uint *retLengthgth);
+    uchar* xxteaDecrypt(uchar *data, xxtea_uint dataLength, uchar *key, xxtea_uint keyLength, xxtea_uint *retLengthgth);
 
 };
 

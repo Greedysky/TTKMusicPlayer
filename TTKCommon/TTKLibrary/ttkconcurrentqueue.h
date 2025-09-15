@@ -182,7 +182,7 @@ private:
     /*!
      * Push data into container.
      */
-    inline bool push(const T& value, bool block = true)
+    inline bool push(const T &value, bool block = true)
     {
         if(block)
         {
@@ -212,7 +212,7 @@ private:
     /*!
      * Push data into container.
      */
-    inline bool push(T&& value, bool block = true)
+    inline bool push(T &&value, bool block = true)
     {
         if(block)
         {
@@ -242,7 +242,7 @@ private:
     /*!
      * Pop data from container.
      */
-    inline bool pop(T& value, bool block = true)
+    inline bool pop(T &value, bool block = true)
     {
         if(block)
         {
