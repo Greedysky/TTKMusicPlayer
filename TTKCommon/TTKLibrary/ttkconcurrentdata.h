@@ -52,6 +52,9 @@ public:
 
     }
 
+    /*!
+     * Set unblocked data.
+     */
     bool setUnblockedData(const T &value)
     {
       std::unique_lock<std::mutex> lock(m_mutex);
@@ -64,6 +67,9 @@ public:
       return true;
     }
 
+    /*!
+     * Get unblocked data.
+     */
     bool unblockedData(T &value)
     {
       std::unique_lock<std::mutex> lock(m_mutex);
@@ -76,23 +82,35 @@ public:
       return true;
     }
 
+    /*!
+     * Set blocked data.
+     */
     void setBlockedData(const T &value)
     {
       std::lock_guard<std::mutex> lock(m_mutex);
       m_data = value;
     }
 
+    /*!
+     * Get blocked data.
+     */
     T blockedData() const
     {
       std::lock_guard<std::mutex> lock(m_mutex);
       return m_data;
     }
 
+    /*!
+     * Get raw data.
+     */
     T* raw()
     {
       return &m_data;
     }
 
+    /*!
+     * Get raw mutex.
+     */
     std::mutex& mutex()
     {
       return m_mutex;
