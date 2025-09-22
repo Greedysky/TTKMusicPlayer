@@ -86,6 +86,7 @@ static void parseSongPropertyX(TTK::MusicSongInformation *info, const ServerModu
         return;
     }
 
+    bool found = false;
     QJsonParseError ok;
     const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
     if(QJsonParseError::NoError == ok.error)
@@ -108,8 +109,14 @@ static void parseSongPropertyX(TTK::MusicSongInformation *info, const ServerModu
                 }
             }
 
+            found = true;
             info->m_songProps.append(prop);
         }
+    }
+
+    if(!found)
+    {
+        TTK_INFO_STREAM(bytes);
     }
 }
 
@@ -140,6 +147,7 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
         return;
     }
 
+    bool found = false;
     QJsonParseError ok;
     const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
     if(QJsonParseError::NoError == ok.error)
@@ -172,9 +180,15 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
             if(quality["target"].toString().contains(module.m_quality, Qt::CaseInsensitive) &&
                quality["result"].toString().contains(module.m_quality, Qt::CaseInsensitive))
             {
+                found = true;
                 info->m_songProps.append(prop);
             }
         }
+    }
+
+    if(!found)
+    {
+        TTK_INFO_STREAM(bytes);
     }
 }
 
@@ -204,6 +218,7 @@ static void parseSongPropertyB(TTK::MusicSongInformation *info, const ServerModu
         return;
     }
 
+    bool found = false;
     QJsonParseError ok;
     const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
     if(QJsonParseError::NoError == ok.error)
@@ -219,9 +234,15 @@ static void parseSongPropertyB(TTK::MusicSongInformation *info, const ServerModu
 
             if(!prop.isEmpty())
             {
+                found = true;
                 info->m_songProps.append(prop);
             }
         }
+    }
+
+    if(!found)
+    {
+        TTK_INFO_STREAM(bytes);
     }
 }
 
@@ -252,6 +273,7 @@ static void parseSongPropertyC(TTK::MusicSongInformation *info, const ServerModu
         return;
     }
 
+    bool found = false;
     QJsonParseError ok;
     const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
     if(QJsonParseError::NoError == ok.error)
@@ -277,9 +299,15 @@ static void parseSongPropertyC(TTK::MusicSongInformation *info, const ServerModu
             const QString &quality = value["quality"].toString();
             if(quality.contains(module.m_quality, Qt::CaseInsensitive))
             {
+                found = true;
                 info->m_songProps.append(prop);
             }
         }
+    }
+
+    if(!found)
+    {
+        TTK_INFO_STREAM(bytes);
     }
 }
 
