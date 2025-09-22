@@ -73,10 +73,6 @@ public:
      * Find song time position by given time, return new time.
      */
     qint64 findTimePosition(qint64 time);
-    /*!
-     * Init function label widget.
-     */
-    void initFunctionLabel();
 
     /*!
      * Set lrc display expand option.
@@ -167,13 +163,9 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     /*!
-     * Get translated lrc finished.
+     * Show video movie widget.
      */
-    void queryTranslatedLrcFinished(const QString &bytes);
-    /*!
-     * Video button clicked.
-     */
-    void showSongMovieClicked();
+    void showSongMovieWidget();
     /*!
      * Animation finished.
      */
@@ -194,6 +186,11 @@ private:
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override final;
     virtual void paintEvent(QPaintEvent *event) override final;
     virtual void resizeEvent(QResizeEvent *event) override final;
+
+    /*!
+     * Init function label widget.
+     */
+    void initFunctionLabel();
     /*!
      * Create color menu.
      */

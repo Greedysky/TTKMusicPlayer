@@ -22,6 +22,9 @@
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
 
+class MusicLrcAnalysis;
+class MusicGifLabelWidget;
+
 /*! @brief The class of the lrc translate widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -39,20 +42,34 @@ public:
     ~MusicLrcTranslatedWidget();
 
     /*!
-     * Set current translated string.
+     * Set current song name.
      */
-    void setPlainText(const QString &name, const QString &text);
+    void setCurrentSongName(const QString &name);
+
+    /*!
+     * Set lrc analysis model.
+     */
+    inline void setLrcAnalysisModel(MusicLrcAnalysis *analysis) noexcept { m_lrcAnalysis = analysis; }
+
+private Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    void downLoadFinished(const QString &bytes);
 
 private:
     /*!
      * Override the widget event.
      */
+    virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void mousePressEvent(QMouseEvent *event) override final;
     virtual void mouseMoveEvent(QMouseEvent *event) override final;
     virtual void mouseReleaseEvent(QMouseEvent *event) override final;
     virtual void wheelEvent(QWheelEvent *event) override final;
 
+    MusicLrcAnalysis *m_lrcAnalysis;
     QLabel *m_titleName, *m_plainText;
+    MusicGifLabelWidget *m_loadingLabel;
 
 };
 

@@ -33,6 +33,11 @@ namespace TTK
             background-image:url(:/lrc/btn_translation_normal); } \
             QPushButton:hover{ background-image:url(:/lrc/btn_translation_hover); }";
 
+        static constexpr const char *InteriorMicrophone = " \
+            QPushButton{ border:none; \
+            background-image:url(:/lrc/btn_microphone_normal); } \
+            QPushButton:hover{ background-image:url(:/lrc/btn_microphone_hover); }";
+
         static constexpr const char *InteriorMessage = " \
             QPushButton{ border:none; \
             background-image:url(:/lrc/btn_message_normal); } \

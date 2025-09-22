@@ -3,7 +3,6 @@
 #include "musiclrcfloatwidget.h"
 #include "musiclrcfloatplaywidget.h"
 #include "musiclrclocallinkwidget.h"
-#include "musictranslationrequest.h"
 #include "musictoastlabel.h"
 #include "musiclrcanalysis.h"
 #include "musicurlutils.h"
@@ -242,10 +241,10 @@ void MusicLrcContainerForInterior::lrcTimePositionChanged(QAction *action)
         case 1: timeValue = -1.0 * TTK_DN_S2MS; break;
         case 2: timeValue = -2.0 * TTK_DN_S2MS; break;
         case 3: timeValue = -5.0 * TTK_DN_S2MS; break;
-        case 4: timeValue = 0.5 * TTK_DN_S2MS; break;
-        case 5: timeValue = 1.0 * TTK_DN_S2MS; break;
-        case 6: timeValue = 2.0 * TTK_DN_S2MS; break;
-        case 7: timeValue = 5.0 * TTK_DN_S2MS; break;
+        case 4: timeValue = +0.5 * TTK_DN_S2MS; break;
+        case 5: timeValue = +1.0 * TTK_DN_S2MS; break;
+        case 6: timeValue = +2.0 * TTK_DN_S2MS; break;
+        case 7: timeValue = +5.0 * TTK_DN_S2MS; break;
         default: break;
     }
 
@@ -303,8 +302,10 @@ void MusicLrcContainerForInterior::showSongCommentsWidget()
     m_commentsWidget = new MusicLrcCommentsWidget(this);
     m_commentsWidget->initialize(true);
     m_commentsWidget->setGeometry(0, height() / 5, width(), height() * 4 / 5);
-    m_commentsWidget->setCurrentSongName(m_currentSongName);
     m_commentsWidget->show();
+
+    MusicToastLabel::popup(tr("Loading now ... "));
+    m_commentsWidget->setCurrentSongName(m_currentSongName);
 }
 
 void MusicLrcContainerForInterior::showLrcPosterWidget()
@@ -314,41 +315,7 @@ void MusicLrcContainerForInterior::showLrcPosterWidget()
     widget.exec();
 }
 
-void MusicLrcContainerForInterior::queryTranslatedLrcFinished(const QString &bytes)
-{
-    QString text;
-
-    if(bytes.startsWith(TTK_AUTHOR_NAME))
-    {
-        // The original and translated lrc have been merged
-        text = bytes;
-        text.remove(0, strlen(TTK_AUTHOR_NAME));
-    }
-    else
-    {
-        const QStringList &orts = m_lrcAnalysis->dataList();
-        const QStringList &trts = bytes.split(TTK_LINEFEED);
-
-        if(orts.count() > trts.count())
-        {
-            return;
-        }
-
-        for(int i = 0; i < orts.count(); ++i)
-        {
-            text += orts[i].trimmed() + TTK_WLINEFEED;
-            text += trts[i].trimmed() + TTK_WLINEFEED;
-        }
-    }
-
-    delete m_translatedWidget;
-    m_translatedWidget = new MusicLrcTranslatedWidget(this);
-    m_translatedWidget->setPlainText(m_currentSongName, text);
-    m_translatedWidget->setGeometry(0, height() / 5.0, width(), height() * 4 / 5.0);
-    m_translatedWidget->show();
-}
-
-void MusicLrcContainerForInterior::showSongMovieClicked()
+void MusicLrcContainerForInterior::showSongMovieWidget()
 {
     if(m_currentSongName.isEmpty())
     {
@@ -382,11 +349,14 @@ void MusicLrcContainerForInterior::translatedLrcData()
         return;
     }
 
-    MusicTranslationRequest *req = new MusicTranslationRequest(this);
-    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
-    req->setHeader("name", path);
-    req->setHeader("data", m_lrcAnalysis->dataString());
-    req->startToRequest();
+    delete m_translatedWidget;
+    m_translatedWidget = new MusicLrcTranslatedWidget(this);
+    m_translatedWidget->setLrcAnalysisModel(m_lrcAnalysis);
+    m_translatedWidget->setGeometry(0, height() / 5.0, width(), height() * 4 / 5.0);
+    m_translatedWidget->show();
+
+    MusicToastLabel::popup(tr("Loading now ... "));
+    m_translatedWidget->setCurrentSongName(m_currentSongName);
 }
 
 void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
@@ -624,6 +594,70 @@ void MusicLrcContainerForInterior::resizeEvent(QResizeEvent *event)
     resizeWindow();
 }
 
+void MusicLrcContainerForInterior::initFunctionLabel()
+{
+    m_functionLabel = new QWidget(this);
+    m_functionLabel->setFixedHeight(40);
+    m_functionLabel->lower();
+
+    QHBoxLayout *functionLayout = new QHBoxLayout(m_functionLabel);
+    functionLayout->setContentsMargins(0, 0, 0, 0);
+
+    QPushButton *transButton = new QPushButton(this);
+    QPushButton *microButton = new QPushButton(this);
+    QPushButton *movieButton = new QPushButton(this);
+    QPushButton *messageButton = new QPushButton(this);
+    QPushButton *photoButton = new QPushButton(this);
+
+#ifdef Q_OS_UNIX
+    transButton->setFocusPolicy(Qt::NoFocus);
+    microButton->setFocusPolicy(Qt::NoFocus);
+    movieButton->setFocusPolicy(Qt::NoFocus);
+    messageButton->setFocusPolicy(Qt::NoFocus);
+    photoButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
+    transButton->setFixedSize(30, 30);
+    microButton->setFixedSize(30, 30);
+    movieButton->setFixedSize(30, 30);
+    messageButton->setFixedSize(30, 30);
+    photoButton->setFixedSize(30, 30);
+
+    transButton->setStyleSheet(TTK::UI::InteriorTranslation);
+    microButton->setStyleSheet(TTK::UI::InteriorMicrophone);
+    movieButton->setStyleSheet(TTK::UI::InteriorMovie);
+    messageButton->setStyleSheet(TTK::UI::InteriorMessage);
+    photoButton->setStyleSheet(TTK::UI::InteriorPhoto);
+
+    transButton->setCursor(Qt::PointingHandCursor);
+    microButton->setCursor(Qt::PointingHandCursor);
+    movieButton->setCursor(Qt::PointingHandCursor);
+    messageButton->setCursor(Qt::PointingHandCursor);
+    photoButton->setCursor(Qt::PointingHandCursor);
+
+    transButton->setToolTip(tr("Translation"));
+    microButton->setToolTip(tr("Microphone"));
+    movieButton->setToolTip(tr("Movie"));
+    messageButton->setToolTip(tr("Message"));
+    photoButton->setToolTip(tr("Photo"));
+
+    connect(transButton, SIGNAL(clicked()), SLOT(translatedLrcData()));
+    connect(movieButton, SIGNAL(clicked()), SLOT(showSongMovieWidget()));
+    connect(messageButton, SIGNAL(clicked()), SLOT(showSongCommentsWidget()));
+    connect(photoButton, SIGNAL(clicked()), m_lrcFloatWidget, SLOT(showArtistPhotoWidget()));
+
+    functionLayout->addStretch(1);
+    functionLayout->addWidget(transButton);
+    functionLayout->addWidget(microButton);
+    functionLayout->addWidget(movieButton);
+    functionLayout->addWidget(messageButton);
+    functionLayout->addWidget(photoButton);
+    functionLayout->addStretch(1);
+    m_functionLabel->setLayout(functionLayout);
+
+    layout()->addWidget(m_functionLabel);
+}
+
 void MusicLrcContainerForInterior::createColorMenu(QMenu *menu)
 {
     QActionGroup *actions = new QActionGroup(this);
@@ -704,63 +738,6 @@ void MusicLrcContainerForInterior::initCurrentLrc(const QString &str)
         m_lrcManagers[i]->setText({});
     }
     m_lrcManagers[m_lrcAnalysis->lineMiddle()]->setText(str);
-}
-
-void MusicLrcContainerForInterior::initFunctionLabel()
-{
-    m_functionLabel = new QWidget(this);
-    m_functionLabel->setFixedHeight(40);
-    m_functionLabel->lower();
-
-    QHBoxLayout *functionLayout = new QHBoxLayout(m_functionLabel);
-    functionLayout->setContentsMargins(0, 0, 0, 0);
-
-    QPushButton *transButton = new QPushButton(this);
-    QPushButton *movieButton = new QPushButton(this);
-    QPushButton *messageButton = new QPushButton(this);
-    QPushButton *photoButton = new QPushButton(this);
-
-#ifdef Q_OS_UNIX
-    transButton->setFocusPolicy(Qt::NoFocus);
-    movieButton->setFocusPolicy(Qt::NoFocus);
-    messageButton->setFocusPolicy(Qt::NoFocus);
-    photoButton->setFocusPolicy(Qt::NoFocus);
-#endif
-
-    transButton->setFixedSize(30, 30);
-    movieButton->setFixedSize(30, 30);
-    messageButton->setFixedSize(30, 30);
-    photoButton->setFixedSize(30, 30);
-
-    transButton->setStyleSheet(TTK::UI::InteriorTranslation);
-    movieButton->setStyleSheet(TTK::UI::InteriorMovie);
-    messageButton->setStyleSheet(TTK::UI::InteriorMessage);
-    photoButton->setStyleSheet(TTK::UI::InteriorPhoto);
-
-    transButton->setCursor(Qt::PointingHandCursor);
-    movieButton->setCursor(Qt::PointingHandCursor);
-    messageButton->setCursor(Qt::PointingHandCursor);
-    photoButton->setCursor(Qt::PointingHandCursor);
-
-    transButton->setToolTip(tr("Translation"));
-    movieButton->setToolTip(tr("Movie"));
-    messageButton->setToolTip(tr("Message"));
-    photoButton->setToolTip(tr("Photo"));
-
-    connect(transButton, SIGNAL(clicked()), SLOT(translatedLrcData()));
-    connect(movieButton, SIGNAL(clicked()), SLOT(showSongMovieClicked()));
-    connect(messageButton, SIGNAL(clicked()), SLOT(showSongCommentsWidget()));
-    connect(photoButton, SIGNAL(clicked()), m_lrcFloatWidget, SLOT(showArtistPhotoWidget()));
-
-    functionLayout->addStretch(1);
-    functionLayout->addWidget(transButton);
-    functionLayout->addWidget(movieButton);
-    functionLayout->addWidget(messageButton);
-    functionLayout->addWidget(photoButton);
-    functionLayout->addStretch(1);
-    m_functionLabel->setLayout(functionLayout);
-
-    layout()->addWidget(m_functionLabel);
 }
 
 void MusicLrcContainerForInterior::setItemStyleSheet()
