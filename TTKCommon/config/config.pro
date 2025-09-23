@@ -55,7 +55,7 @@ greaterThan(QT_MAJOR_VERSION, 4){ #Qt5
     HAVE_STRLCPY = 0
 }
 
-# configure ttkconfig file
+# configure ttk config file
 ttkconfig.input = $$PWD/ttkconfig.h.qmake
 ttkconfig.output = $$OUT_PWD/../../Generate/ttkconfig.h
 QMAKE_SUBSTITUTES += ttkconfig

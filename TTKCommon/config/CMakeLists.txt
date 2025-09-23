@@ -60,5 +60,5 @@ else()
   message(STATUS "-- string.h hasn't strlcpy function module, use compat module")
 endif()
 
-# configure ttkconfig file
+# configure ttk config file
 configure_file(ttkconfig.h.cmake ${TTK_GENERATE_DIR}/ttkconfig.h @ONLY)

@@ -6,12 +6,12 @@
 #  TTK_EXECUTABLE   - the main executable
 
 # - Config file for the project package
-# In Binary dir
+# In binary directory
 if(EXISTS "@PROJECT_BINARY_DIR@/CMakeCache.txt")
     set(TTK_INCLUDE_DIRS   @TTK_COMMON_BASE_DIR@ @TTK_COMMON_LIB_DIR@)
     set(TTK_LIBRARY_PATH   @LIBRARY_OUTPUT_PATH@)
     set(TTK_LIBRARIES      @LIBRARY_OUTPUT_PATH@/@TTK_CTL_MODULE@)
-else() 
+else()
     set(TTK_INCLUDE_DIRS   @TTK_INSTALL_DIR@/TTKLibrary/include)
     set(TTK_LIBRARY_PATH   @TTK_INSTALL_DIR@/TTKLibrary/lib)
     set(TTK_LIBRARIES      @TTK_CTL_PATH@/@TTK_CTL_MODULE@)

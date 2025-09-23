@@ -157,11 +157,11 @@ if(TTK_INSTALL_CTL)
   file(GLOB_RECURSE INSTALL_HEADERS "${TTK_COMMON_BASE_DIR}/*.h" "${TTK_COMMON_LIB_DIR}/*.h")
   install(FILES ${INSTALL_HEADERS} DESTINATION "${TTK_INSTALL_DIR}/${PROJECT_NAME}/include")
   install(FILES ${LIBRARY_OUTPUT_PATH}/${TTK_CTL_MODULE} DESTINATION ${TTK_CTL_PATH})
-  # configure ttkconfig file
-  install(FILES ${TTK_GENERATE_DIR}/ttklibrary.pc DESTINATION ${TTK_CTL_PATH}/pkgconfig)
-  install(FILES ${TTK_GENERATE_DIR}/ttklibraryConfig.cmake DESTINATION ${TTK_CTL_PATH}/cmake)
+  # configure ttk config file
+  install(FILES ${TTK_GENERATE_DIR}/${PROJECT_NAME}.pc DESTINATION ${TTK_CTL_PATH}/pkgconfig)
+  install(FILES ${TTK_GENERATE_DIR}/${PROJECT_NAME}Config.cmake DESTINATION ${TTK_CTL_PATH}/cmake/${PROJECT_NAME})
 endif()
 
 # configure CTL files
-configure_file(cmake/ttklibrary.pc.in ${TTK_GENERATE_DIR}/ttklibrary.pc @ONLY)
-configure_file(cmake/ttklibraryConfig.cmake.in ${TTK_GENERATE_DIR}/ttklibraryConfig.cmake @ONLY)
+configure_file(cmake/${PROJECT_NAME}.pc.in ${TTK_GENERATE_DIR}/${PROJECT_NAME}.pc @ONLY)
+configure_file(cmake/${PROJECT_NAME}Config.cmake.in ${TTK_GENERATE_DIR}/${PROJECT_NAME}Config.cmake @ONLY)
