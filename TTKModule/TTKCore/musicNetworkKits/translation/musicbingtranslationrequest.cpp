@@ -4,6 +4,7 @@
 static constexpr const char *QUERY_URL = "SUVwbklrTjVFYXdsSUJ3MHRZb21KVDRXL1ZwU1RtSVRNWURYdDZwczMxZnVXenhr";
 static constexpr const char *TRANSLATION_URL = "Rm9rVXJIeFNOTDlrV2l5Yld0UGsweGd1V0JZbTFBMVZvQmpKaGhLUmtIT1VhOGtzM0RhVCthdnRhUVNMUGRLYU5LWkJLbVRWQjZoQ2QzYW1wUVIxWkxibnN6VDJ4Q05RNWV6V0NnPT0=";
 static constexpr const char *PARAM_URL = "cmFWcURkeGhWb2thdWJIMG5JS3BGQmVseW9XeFU5b0Era3V6V1JMa2IxRmRqY2lFRnpUbkM3TDlsUFVjbUNWdA==";
+static constexpr const char *UA_URL = "TWlxK2t4SCthVk1rMjBSWGdOMUdPWVVzSmJSeUtubmsxN1dualdvay8wL0tEVFdETG1BUTJmRlZObUtNM29wVXI1WTNaN1QxSVJNRHFMM1hhclVscEpxbjJpT1FvdnRRZjNtNlZvcnNTcmovQkE3c0s4cVNzUT09";
 
 MusicBingTranslationRequest::MusicBingTranslationRequest(QObject *parent)
     : MusicAbstractTranslationRequest(parent)
@@ -63,8 +64,8 @@ void MusicBingTranslationRequest::startToRequest(const QString &data)
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(TRANSLATION_URL, false).arg(ig));
     TTK::setSslConfiguration(&request);
-    TTK::makeUserAgentHeader(&request);
     TTK::makeContentTypeHeader(&request);
+    TTK::makeUserAgentHeader(&request, TTK::Algorithm::mdII(UA_URL, false).toUtf8());
 
     auto v = TTK::Algorithm::mdII(PARAM_URL, false).arg(key, token, mapToString(Language::Auto), mapToString(Language::Chinese), data).toUtf8();
     m_reply = m_manager.post(request, TTK::Url::urlPrettyEncode(v));

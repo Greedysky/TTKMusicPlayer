@@ -35,8 +35,8 @@ void MusicTranslationRequest::findAllPlugins()
     switch(++m_pluginSelector)
     {
         case 0: req = new MusicWYTranslationRequest(this); break;
-        case 1: req = new MusicBingTranslationRequest(this); break;
-        case 2: req = new MusicYDTranslationRequest(this); break;
+        case 1: req = new MusicYDTranslationRequest(this); break;
+        case 2: req = new MusicBingTranslationRequest(this); break;
         case 3: req = new MusicBDTranslationRequest(this); break;
         default: deleteLater(); break;
     }
