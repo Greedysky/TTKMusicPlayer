@@ -1,17 +1,18 @@
 # - Config file for the TTKLibrary package
 # It defines the following variables
-#  TTKLIBRARY_INCLUDE_DIRS - include directories for TTKLibrary
-#  TTKLIBRARY_LIBRARIES    - libraries to link against
-#  TTKLIBRARY_EXECUTABLE   - the bar executable
+#  TTK_INCLUDE_DIRS - include directories for TTKLibrary
+#  TTK_LIBRARY_PATH - libraries to link directory
+#  TTK_LIBRARIES    - libraries to link against
+#  TTK_EXECUTABLE   - the main executable
 
 # - Config file for the project package
 # In Binary dir
 if(EXISTS "@PROJECT_BINARY_DIR@/CMakeCache.txt")
-    set(TTKLIBRARY_INCLUDE_DIRS   @TTK_COMMON_BASE_DIR@ @TTK_COMMON_LIB_DIR@)
-    set(TTKLIBRARY_LIBRARY_PATH   @LIBRARY_OUTPUT_PATH@)
-    set(TTKLIBRARY_LIBRARIES      @LIBRARY_OUTPUT_PATH@/@TTK_CTL_MODULE@)
+    set(TTK_INCLUDE_DIRS   @TTK_COMMON_BASE_DIR@ @TTK_COMMON_LIB_DIR@)
+    set(TTK_LIBRARY_PATH   @LIBRARY_OUTPUT_PATH@)
+    set(TTK_LIBRARIES      @LIBRARY_OUTPUT_PATH@/@TTK_CTL_MODULE@)
 else() 
-    set(TTKLIBRARY_INCLUDE_DIRS   @TTK_INSTALL_DIR@/TTKLibrary/include)
-    set(TTKLIBRARY_LIBRARY_PATH   @TTK_INSTALL_DIR@/TTKLibrary/lib)
-    set(TTKLIBRARY_LIBRARIES      @TTK_CTL_PATH@/@TTK_CTL_MODULE@)
+    set(TTK_INCLUDE_DIRS   @TTK_INSTALL_DIR@/TTKLibrary/include)
+    set(TTK_LIBRARY_PATH   @TTK_INSTALL_DIR@/TTKLibrary/lib)
+    set(TTK_LIBRARIES      @TTK_CTL_PATH@/@TTK_CTL_MODULE@)
 endif()
