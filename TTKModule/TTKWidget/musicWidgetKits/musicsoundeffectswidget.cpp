@@ -91,7 +91,7 @@ void MusicSoundEffectsItemWidget::setPluginEnabled()
     {
         m_enabled = true;
         m_openButton->setIcon(QIcon(":/tiny/btn_effect_off"));
-        TTK::TTKQmmp::enabledEffectPlugin(true, m_property.m_type);
+        TTK::TTKQmmp::setEffectEnabled(m_property.m_type, true);
 
         m_settingButton->setEnabled(m_property.m_hasSettings);
         m_openButton->setToolTip(tr("Off"));
@@ -100,7 +100,7 @@ void MusicSoundEffectsItemWidget::setPluginEnabled()
     {
         m_enabled = false;
         m_openButton->setIcon(QIcon(":/tiny/btn_effect_on"));
-        TTK::TTKQmmp::enabledEffectPlugin(false, m_property.m_type);
+        TTK::TTKQmmp::setEffectEnabled(m_property.m_type, false);
         m_settingButton->setEnabled(false);
         m_openButton->setToolTip(tr("On"));
     }
@@ -208,7 +208,7 @@ void MusicSoundEffectsWidget::readSoundEffect()
 
     const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
     const QStringList &effects = value.split(";", QtSkipEmptyParts);
-    for(const MusicPluginProperty &property : TTK::TTKQmmp::effectPlugins())
+    for(const MusicPluginProperty &property : TTK::TTKQmmp::effectModules())
     {
         MusicSoundEffectsItemWidget *item = new MusicSoundEffectsItemWidget(property, this);
         m_items.push_back(item);

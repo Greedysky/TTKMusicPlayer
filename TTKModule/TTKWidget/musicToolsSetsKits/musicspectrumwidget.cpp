@@ -74,7 +74,7 @@ MusicSpectrumWidget::~MusicSpectrumWidget()
     TTKRemoveSingleWidget(className());
     for(const MusicSpectrum &spem : qAsConst(m_spectrums))
     {
-        TTK::TTKQmmp::enabledVisualPlugin(spem.m_module, false);
+        TTK::TTKQmmp::setVisualEnabled(spem.m_module, false);
     }
     delete m_ui;
 }
@@ -164,7 +164,7 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
                 return;
             }
 
-            TTK::TTKQmmp::enabledVisualPlugin(spem.m_module, false);
+            TTK::TTKQmmp::setVisualEnabled(spem.m_module, false);
 
             bool state = true;
             switch(spem.m_type)
@@ -222,7 +222,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, b
     if(state)
     {
         const int before = Visual::visuals()->count();
-        TTK::TTKQmmp::enabledVisualPlugin(name, true);
+        TTK::TTKQmmp::setVisualEnabled(name, true);
         const QList<Visual*> *vs = Visual::visuals();
         if(before == vs->count())
         {
@@ -256,7 +256,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, b
         {
             const MusicSpectrum &spem = m_spectrums.takeAt(index);
             layout->removeWidget(spem.m_object);
-            TTK::TTKQmmp::enabledVisualPlugin(name, false);
+            TTK::TTKQmmp::setVisualEnabled(name, false);
         }
     }
 }
@@ -285,7 +285,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
     {
         const MusicSpectrum &spem = m_spectrums.takeAt(index);
         layout->removeWidget(spem.m_object);
-        TTK::TTKQmmp::enabledVisualPlugin(*module, false);
+        TTK::TTKQmmp::setVisualEnabled(*module, false);
     }
 
     if(!state)
@@ -295,7 +295,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
     }
 
     const int before = Visual::visuals()->count();
-    TTK::TTKQmmp::enabledVisualPlugin(name, true);
+    TTK::TTKQmmp::setVisualEnabled(name, true);
     const QList<Visual*> *vs = Visual::visuals();
     if(before == vs->count())
     {

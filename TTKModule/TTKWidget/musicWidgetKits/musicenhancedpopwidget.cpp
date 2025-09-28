@@ -133,7 +133,8 @@ void MusicEnhancedPopWidget::setEnhancedSongConfig(int type)
         G_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, 0);
     }
 
-    TTK::TTKQmmp::enabledEffectPlugin(false);
+    TTK::TTKQmmp::setEffectsEnabled(false);
+
     Q_EMIT enhancedSongChanged(type);
     m_menu->close();
 }

@@ -174,6 +174,10 @@ private Q_SLOTS:
      * Get all lrcs from tr container.
      */
     void translatedLrcData();
+    /*!
+     * Set voice remove modo.
+     */
+    void voiceRemoveMode();
 
 private:
     /*!
@@ -240,7 +244,7 @@ private:
     int m_animationFreshTime, m_lrcSizeProperty;
 
     qint64 m_timePositionOffset;
-    QWidget *m_functionLabel;
+    QWidget *m_functionLabel, *m_mufflerButton;
     MusicLrcFloatWidget *m_lrcFloatWidget;
     MusicLrcFloatPlayWidget *m_floatPlayWidget;
     TTKClickedLabel *m_noLrcCurrentInfo;

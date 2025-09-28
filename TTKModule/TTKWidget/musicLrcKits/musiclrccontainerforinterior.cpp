@@ -16,6 +16,7 @@
 #include "musictopareawidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicwidgetheaders.h"
+#include "musicqmmputils.h"
 #include "ttkclickedlabel.h"
 
 #include <QClipboard>
@@ -359,6 +360,13 @@ void MusicLrcContainerForInterior::translatedLrcData()
     m_translatedWidget->setCurrentSongName(m_currentSongName);
 }
 
+void MusicLrcContainerForInterior::voiceRemoveMode()
+{
+    const bool v = TTK::TTKQmmp::isEffectEnabled("muffler");
+    m_mufflerButton->setStyleSheet(v ? TTK::UI::InteriorMicrophone : TTK::UI::InteriorMicrophoneOn);
+    TTK::TTKQmmp::setEffectEnabled("muffler", !v);
+}
+
 void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
@@ -560,32 +568,34 @@ void MusicLrcContainerForInterior::mouseDoubleClickEvent(QMouseEvent *event)
 void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
-    if(m_mouseLeftPressed)
+    if(!m_mouseLeftPressed)
     {
-        QLinearGradient linearGradient(0, 0, width(), 0);
-        linearGradient.setColorAt(0.0, QColor(255, 254, 161));
-        linearGradient.setColorAt(0.3, Qt::transparent);
-        linearGradient.setColorAt(0.7, Qt::transparent);
-        linearGradient.setColorAt(1.0, QColor(255, 254, 161));
-
-        const int line = (height() - m_functionLabel->height()) / 2;
-        QPainter painter(this);
-        painter.setPen(QPen(linearGradient, 1));
-        painter.drawLine(LRC_TIME_LABEL_POSITION, line, width() - LRC_TIME_LABEL_POSITION, line);
-
-        qint64 v = m_lrcAnalysis->currentIndex() - 1;
-        if(v < 0)
-        {
-            v = 0;
-        }
-        else if(v >= m_lrcAnalysis->count())
-        {
-            v = m_lrcAnalysis->count() - m_lrcAnalysis->lineMiddle() + 2;
-        }
-
-        v = m_lrcAnalysis->findTime(v);
-        painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION / 2, TTKTime::formatDuration(v));
+        return;
     }
+
+    QLinearGradient linearGradient(0, 0, width(), 0);
+    linearGradient.setColorAt(0.0, QColor(255, 254, 161));
+    linearGradient.setColorAt(0.3, Qt::transparent);
+    linearGradient.setColorAt(0.7, Qt::transparent);
+    linearGradient.setColorAt(1.0, QColor(255, 254, 161));
+
+    const int line = (height() - m_functionLabel->height()) / 2;
+    QPainter painter(this);
+    painter.setPen(QPen(linearGradient, 1));
+    painter.drawLine(LRC_TIME_LABEL_POSITION, line, width() - LRC_TIME_LABEL_POSITION, line);
+
+    qint64 v = m_lrcAnalysis->currentIndex() - 1;
+    if(v < 0)
+    {
+        v = 0;
+    }
+    else if(v >= m_lrcAnalysis->count())
+    {
+        v = m_lrcAnalysis->count() - m_lrcAnalysis->lineMiddle() + 2;
+    }
+
+    v = m_lrcAnalysis->findTime(v);
+    painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION / 2, TTKTime::formatDuration(v));
 }
 
 void MusicLrcContainerForInterior::resizeEvent(QResizeEvent *event)
@@ -603,52 +613,54 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     QHBoxLayout *functionLayout = new QHBoxLayout(m_functionLabel);
     functionLayout->setContentsMargins(0, 0, 0, 0);
 
-    QPushButton *transButton = new QPushButton(this);
-    QPushButton *microButton = new QPushButton(this);
-    QPushButton *movieButton = new QPushButton(this);
-    QPushButton *messageButton = new QPushButton(this);
-    QPushButton *photoButton = new QPushButton(this);
+    QPushButton *transButton = new QPushButton(m_functionLabel);
+    QPushButton *mufflerButton = new QPushButton(m_functionLabel);
+    QPushButton *movieButton = new QPushButton(m_functionLabel);
+    QPushButton *messageButton = new QPushButton(m_functionLabel);
+    QPushButton *photoButton = new QPushButton(m_functionLabel);
 
+    m_mufflerButton = mufflerButton;
 #ifdef Q_OS_UNIX
     transButton->setFocusPolicy(Qt::NoFocus);
-    microButton->setFocusPolicy(Qt::NoFocus);
+    mufflerButton->setFocusPolicy(Qt::NoFocus);
     movieButton->setFocusPolicy(Qt::NoFocus);
     messageButton->setFocusPolicy(Qt::NoFocus);
     photoButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     transButton->setFixedSize(30, 30);
-    microButton->setFixedSize(30, 30);
+    mufflerButton->setFixedSize(30, 30);
     movieButton->setFixedSize(30, 30);
     messageButton->setFixedSize(30, 30);
     photoButton->setFixedSize(30, 30);
 
     transButton->setStyleSheet(TTK::UI::InteriorTranslation);
-    microButton->setStyleSheet(TTK::UI::InteriorMicrophone);
+    mufflerButton->setStyleSheet(TTK::UI::InteriorMicrophone);
     movieButton->setStyleSheet(TTK::UI::InteriorMovie);
     messageButton->setStyleSheet(TTK::UI::InteriorMessage);
     photoButton->setStyleSheet(TTK::UI::InteriorPhoto);
 
     transButton->setCursor(Qt::PointingHandCursor);
-    microButton->setCursor(Qt::PointingHandCursor);
+    mufflerButton->setCursor(Qt::PointingHandCursor);
     movieButton->setCursor(Qt::PointingHandCursor);
     messageButton->setCursor(Qt::PointingHandCursor);
     photoButton->setCursor(Qt::PointingHandCursor);
 
     transButton->setToolTip(tr("Translation"));
-    microButton->setToolTip(tr("Microphone"));
+    mufflerButton->setToolTip(tr("VoiceRemove"));
     movieButton->setToolTip(tr("Movie"));
     messageButton->setToolTip(tr("Message"));
     photoButton->setToolTip(tr("Photo"));
 
     connect(transButton, SIGNAL(clicked()), SLOT(translatedLrcData()));
+    connect(mufflerButton, SIGNAL(clicked()), SLOT(voiceRemoveMode()));
     connect(movieButton, SIGNAL(clicked()), SLOT(showSongMovieWidget()));
     connect(messageButton, SIGNAL(clicked()), SLOT(showSongCommentsWidget()));
     connect(photoButton, SIGNAL(clicked()), m_lrcFloatWidget, SLOT(showArtistPhotoWidget()));
 
     functionLayout->addStretch(1);
     functionLayout->addWidget(transButton);
-    functionLayout->addWidget(microButton);
+    functionLayout->addWidget(mufflerButton);
     functionLayout->addWidget(movieButton);
     functionLayout->addWidget(messageButton);
     functionLayout->addWidget(photoButton);

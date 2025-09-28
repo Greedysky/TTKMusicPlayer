@@ -35,22 +35,34 @@ namespace TTK
         TTK_MODULE_EXPORT QString pluginPath(const QString &module, const QString &format);
 
         /*!
-         * Enable effect module control.
+         * Get the visual plugin is enabled or not.
          */
-        TTK_MODULE_EXPORT void enabledEffectPlugin(bool enabled, const QString &name = {});
+        TTK_MODULE_EXPORT bool isVisualEnabled(const QString &name);
         /*!
-         * Check effect is valid.
+         * Set whether the visual plugin is enabled.
          */
-        TTK_MODULE_EXPORT MusicPluginPropertyList effectPlugins();
-        /*!
-         * Show effect setting control.
-         */
-        TTK_MODULE_EXPORT void showEffectSetting(const QString &name);
+        TTK_MODULE_EXPORT void setVisualEnabled(const QString &name, bool enabled);
 
         /*!
-         * Enable visual module control.
+         * Get the effect plugin is enabled or not.
          */
-        TTK_MODULE_EXPORT void enabledVisualPlugin(const QString &name, bool enabled);
+        TTK_MODULE_EXPORT bool isEffectEnabled(const QString &name);
+        /*!
+         * Set whether the effect plugin is enabled.
+         */
+        TTK_MODULE_EXPORT void setEffectEnabled(const QString &name, bool enabled);
+        /*!
+         * Set whether the all effect plugins is enabled.
+         */
+        TTK_MODULE_EXPORT void setEffectsEnabled(bool enabled);
+        /*!
+         * Get all effect plugin's property.
+         */
+        TTK_MODULE_EXPORT MusicPluginPropertyList effectModules();
+        /*!
+         * Show effect setting control widget.
+         */
+        TTK_MODULE_EXPORT void showEffectSetting(const QString &name);
 
         /*!
          * Update base config.

@@ -209,6 +209,8 @@
         <file alias="btn_photo_hover">../TTKResource/lrc/btn_photo_hover.png</file>
         <file alias="btn_microphone_hover">../TTKResource/lrc/btn_microphone_hover.png</file>
         <file alias="btn_microphone_normal">../TTKResource/lrc/btn_microphone_normal.png</file>
+        <file alias="btn_microphone_on_hover">../TTKResource/lrc/btn_microphone_on_hover.png</file>
+        <file alias="btn_microphone_on_normal">../TTKResource/lrc/btn_microphone_on_normal.png</file>
         <file alias="lb_make_background1">../TTKResource/lrc/lb_make_background1.png</file>
         <file alias="lb_make_background2">../TTKResource/lrc/lb_make_background2.png</file>
         <file alias="lb_make_background3">../TTKResource/lrc/lb_make_background3.png</file>

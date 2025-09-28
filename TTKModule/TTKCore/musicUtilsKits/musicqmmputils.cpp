@@ -22,15 +22,47 @@ QString TTK::TTKQmmp::pluginPath(const QString &module, const QString &format)
     return path;
 }
 
-void TTK::TTKQmmp::enabledEffectPlugin(bool enabled, const QString &name)
+bool TTK::TTKQmmp::isVisualEnabled(const QString &name)
+{
+    for(VisualFactory *factory : Visual::factories())
+    {
+        if(factory->properties().shortName == name)
+        {
+            return Visual::isEnabled(factory);
+        }
+    }
+    return false;
+}
+
+void TTK::TTKQmmp::setVisualEnabled(const QString &name, bool enabled)
+{
+    for(VisualFactory *factory : Visual::factories())
+    {
+        if(factory->properties().shortName == name)
+        {
+            Visual::setEnabled(factory, enabled);
+            break;
+        }
+    }
+}
+
+bool TTK::TTKQmmp::isEffectEnabled(const QString &name)
 {
     for(EffectFactory *factory : Effect::factories())
     {
-        if(name.isEmpty())
+        if(factory->properties().shortName == name)
         {
-            Effect::setEnabled(factory, enabled);
+            return Effect::isEnabled(factory);
         }
-        else if(factory->properties().shortName == name)
+    }
+    return false;
+}
+
+void TTK::TTKQmmp::setEffectEnabled(const QString &name, bool enabled)
+{
+    for(EffectFactory *factory : Effect::factories())
+    {
+        if(factory->properties().shortName == name)
         {
             Effect::setEnabled(factory, enabled);
             break;
@@ -38,7 +70,15 @@ void TTK::TTKQmmp::enabledEffectPlugin(bool enabled, const QString &name)
     }
 }
 
-MusicPluginPropertyList TTK::TTKQmmp::effectPlugins()
+void TTK::TTKQmmp::setEffectsEnabled(bool enabled)
+{
+    for(EffectFactory *factory : Effect::factories())
+    {
+        Effect::setEnabled(factory, enabled);
+    }
+}
+
+MusicPluginPropertyList TTK::TTKQmmp::effectModules()
 {
     MusicPluginPropertyList properties;
     for(EffectFactory *factory : Effect::factories())
@@ -70,18 +110,6 @@ void TTK::TTKQmmp::showEffectSetting(const QString &name)
                 dialog->exec();
                 dialog->deleteLater();
             }
-            break;
-        }
-    }
-}
-
-void TTK::TTKQmmp::enabledVisualPlugin(const QString &name, bool enabled)
-{
-    for(VisualFactory *v : Visual::factories())
-    {
-        if(v->properties().shortName == name)
-        {
-            Visual::setEnabled(v, enabled);
             break;
         }
     }

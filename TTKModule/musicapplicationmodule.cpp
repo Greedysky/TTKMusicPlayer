@@ -274,7 +274,7 @@ void MusicApplicationModule::soundEffectChanged()
     const QStringList &effects = value.split(";", QtSkipEmptyParts);
     for(const QString &effect : qAsConst(effects))
     {
-        TTK::TTKQmmp::enabledEffectPlugin(true, effect);
+        TTK::TTKQmmp::setEffectEnabled(effect, true);
     }
 }
 
