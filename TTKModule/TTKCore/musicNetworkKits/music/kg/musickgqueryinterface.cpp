@@ -264,7 +264,7 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &
     }
 }
 
-static void parseSongPropertyV4(TTK::MusicSongInformation *info, const QString &hash, int bitrate)
+static void parseSongPropertyUnity(TTK::MusicSongInformation *info, const QString &hash, int bitrate)
 {
     for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
     {
@@ -289,10 +289,20 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
         return;
     }
 
-    parseSongPropertyV1(info, hash, bitrate);
-    parseSongPropertyV2(info, hash, bitrate);
-    parseSongPropertyV3(info, hash, bitrate);
-    parseSongPropertyV4(info, hash, bitrate);
+    if(G_SETTING_PTR->value(MusicSettingManager::DownloadServerPriority).toBool())
+    {
+        parseSongPropertyUnity(info, hash, bitrate);
+        parseSongPropertyV1(info, hash, bitrate);
+        parseSongPropertyV2(info, hash, bitrate);
+        parseSongPropertyV3(info, hash, bitrate);
+    }
+    else
+    {
+        parseSongPropertyV1(info, hash, bitrate);
+        parseSongPropertyV2(info, hash, bitrate);
+        parseSongPropertyV3(info, hash, bitrate);
+        parseSongPropertyUnity(info, hash, bitrate);
+    }
 }
 
 void ReqKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)

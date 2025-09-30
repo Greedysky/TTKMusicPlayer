@@ -502,10 +502,13 @@ MusicServerPluginWidget::MusicServerPluginWidget(QWidget *parent)
 
     m_ui->confirmButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->selectAllCheckButton->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->priorityCheckButton->setStyleSheet(TTK::UI::CheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
     m_ui->selectAllCheckButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->priorityCheckButton->setFocusPolicy(Qt::NoFocus);
 #endif
+    m_ui->priorityCheckButton->setChecked(G_SETTING_PTR->value(MusicSettingManager::DownloadServerPriority).toBool());
 
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
     connect(m_ui->selectAllCheckButton, SIGNAL(clicked(bool)), m_ui->itemTableWidget, SLOT(checkedItemsStatus(bool)));
@@ -514,5 +517,6 @@ MusicServerPluginWidget::MusicServerPluginWidget(QWidget *parent)
 void MusicServerPluginWidget::confirmButtonClicked()
 {
     m_ui->itemTableWidget->save();
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerPriority, m_ui->priorityCheckButton->isChecked() ? 1 : 0);
     accept();
 }

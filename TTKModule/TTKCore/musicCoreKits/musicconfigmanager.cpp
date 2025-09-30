@@ -150,6 +150,7 @@ bool MusicConfigManager::readBuffer(int &items)
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, readAttributeByTagName("downloadServerIndex").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadDownloadLimitSize, readAttributeByTagName("downloadDownloadLimitSize"));
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadUploadLimitSize, readAttributeByTagName("downloadUploadLimitSize"));
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerPriority, readAttributeByTagName("downloadServerPriority"));
 
     return true;
 }
@@ -262,6 +263,7 @@ bool MusicConfigManager::writeBuffer(const int &items)
     const int downloadServerIndex = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
     const QString &downloadDownloadLimitSize = G_SETTING_PTR->value(MusicSettingManager::DownloadDownloadLimitSize).toString();
     const QString &downloadUploadLimitSize = G_SETTING_PTR->value(MusicSettingManager::DownloadUploadLimitSize).toString();
+    const int downloadServerPriority = G_SETTING_PTR->value(MusicSettingManager::DownloadServerPriority).toInt();
 
     createProcessingInstruction();
     QDomElement rootDom = createRoot(TTK_APP_NAME);
@@ -380,6 +382,7 @@ bool MusicConfigManager::writeBuffer(const int &items)
     writeDomElement(downloadSettingDom, "downloadServerIndex", {"value", downloadServerIndex});
     writeDomElement(downloadSettingDom, "downloadDownloadLimitSize", {"value", downloadDownloadLimitSize});
     writeDomElement(downloadSettingDom, "downloadUploadLimitSize", {"value", downloadUploadLimitSize});
+    writeDomElement(downloadSettingDom, "downloadServerPriority", {"value", downloadServerPriority});
 
     save();
     return true;

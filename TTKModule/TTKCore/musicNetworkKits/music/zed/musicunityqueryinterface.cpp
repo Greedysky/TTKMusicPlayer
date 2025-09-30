@@ -116,7 +116,7 @@ static void parseSongPropertyX(TTK::MusicSongInformation *info, const ServerModu
 
     if(!found)
     {
-        TTK_INFO_STREAM(bytes);
+        TTK_INFO_STREAM("Not found metainfo, buffer is" << bytes);
     }
 }
 
@@ -188,7 +188,7 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
 
     if(!found)
     {
-        TTK_INFO_STREAM(bytes);
+        TTK_INFO_STREAM("Not found metainfo, buffer is" << bytes);
     }
 }
 
@@ -242,7 +242,7 @@ static void parseSongPropertyB(TTK::MusicSongInformation *info, const ServerModu
 
     if(!found)
     {
-        TTK_INFO_STREAM(bytes);
+        TTK_INFO_STREAM("Not found metainfo, buffer is" << bytes);
     }
 }
 
@@ -307,7 +307,7 @@ static void parseSongPropertyC(TTK::MusicSongInformation *info, const ServerModu
 
     if(!found)
     {
-        TTK_INFO_STREAM(bytes);
+        TTK_INFO_STREAM("Not found metainfo, buffer is" << bytes);
     }
 }
 
@@ -328,6 +328,7 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
         return;
     }
 
+    bool found = false;
     QJsonParseError ok;
     const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
     if(QJsonParseError::NoError == ok.error)
@@ -373,6 +374,7 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
                 v.m_bitrate = bitrate;
                 v.m_url = TTK::Algorithm::mdII(v.m_url, false).arg(server, id, quality);
 
+                found = true;
                 if(module == QUERY_MODULE_X)
                 {
                     parseSongPropertyX(info, v);
@@ -391,5 +393,10 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
                 }
             }
         }
+    }
+
+    if(!found)
+    {
+        TTK_INFO_STREAM("Not found available server unity plugins");
     }
 }

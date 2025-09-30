@@ -113,5 +113,6 @@
         <downloadServerIndex value="0"/>
         <downloadDownloadLimitSize value="100"/>
         <downloadUploadLimitSize value="100"/>
+        <downloadServerPriority value="0"/>
     </downloadSetting>
 </TTKMusicPlayer>

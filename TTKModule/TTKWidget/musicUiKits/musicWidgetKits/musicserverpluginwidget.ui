@@ -107,12 +107,25 @@
      <rect>
       <x>17</x>
       <y>180</y>
-      <width>80</width>
+      <width>60</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
      <string>全选</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="priorityCheckButton">
+    <property name="geometry">
+     <rect>
+      <x>95</x>
+      <y>180</y>
+      <width>90</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>插件优先</string>
     </property>
    </widget>
   </widget>
