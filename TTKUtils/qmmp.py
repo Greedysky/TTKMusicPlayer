@@ -33,7 +33,7 @@ class QmmpCopyModule():
         self._win_qt4_verion = "4_8_7"
         self._win_qt5_verion = "5_5_1"
         self._win_qt6_verion = "6_2_4"
-        self._versions = (self._win_qt4_verion, "5_0_2", "5_1_1", "5_2_1", "5_3_2", "5_4_2", self._win_qt5_verion, "5_6_3", "5_7_1", "5_8_0", "5_9_9", "5_10_1", "5_11_3", "5_12_12", "5_13_2", "5_14_2", "5_15_2" if not self.is_windows() else "5_15_17", "6_0_4", "6_1_3", self._win_qt6_verion, "6_3_2", "6_4_3", "6_5_3", "6_6_3", "6_7_3", "6_8_3", "6_9_2")
+        self._versions = (self._win_qt4_verion, "5_0_2", "5_1_1", "5_2_1", "5_3_2", "5_4_2", self._win_qt5_verion, "5_6_3", "5_7_1", "5_8_0", "5_9_9", "5_10_1", "5_11_3", "5_12_12", "5_13_2", "5_14_2", "5_15_2" if not self.is_windows() else "5_15_17", "6_0_4", "6_1_3", self._win_qt6_verion, "6_3_2", "6_4_3", "6_5_3", "6_6_3", "6_7_3", "6_8_3", "6_9_3", "6_10_0")
 
     def is_windows(self):
         return _get_system_type() == "windows"
