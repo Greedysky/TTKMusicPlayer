@@ -22,7 +22,7 @@
 #define WAVPACKMETADATAMODEL_H
 
 extern "C" {
-#include <wavpack.h>
+#include <wavpack/wavpack.h>
 }
 #include <qmmp/metadatamodel.h>
 

@@ -22,7 +22,7 @@
 #define DECODER_WAVPACK_H
 
 extern "C" {
-#include <wavpack.h>
+#include <wavpack/wavpack.h>
 }
 #include <qmmp/decoder.h>
 
