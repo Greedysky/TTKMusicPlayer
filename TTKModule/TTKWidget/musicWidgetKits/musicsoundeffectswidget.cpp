@@ -214,11 +214,17 @@ void MusicSoundEffectsWidget::readSoundEffect()
         m_items.push_back(item);
         layout->addWidget(item);
 
-        if(effects.contains(property.m_type))
+        if(TTK::TTKQmmp::isEffectEnabled(property.m_type))
         {
             item->setPluginEnabled(true);
         }
+        else
+        {
+            item->setPluginEnabled(effects.contains(property.m_type));
+        }
     }
+
+    writeSoundEffect();
 }
 
 void MusicSoundEffectsWidget::writeSoundEffect()
