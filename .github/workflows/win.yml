@@ -1,6 +1,6 @@
 # Author: Greedysky <greedysky@163.com>
 
-name: win10
+name: win
 
 on: workflow_call
 
@@ -10,11 +10,11 @@ env:
 
 jobs:
   build:
-    name: Build on win64 Qt6
+    name: Build on win64 Qt5
     strategy:
       matrix:
-        qt_version: [6.5.3]
-        os: [windows-latest]
+        qt_version: [5.15.2]
+        os: [windows-2022]
 
     runs-on: ${{matrix.os}}
     steps:
@@ -31,9 +31,8 @@ jobs:
         with:
           version: ${{matrix.qt_version}}
           host: windows
-          arch: win64_mingw
+          arch: win64_mingw81
           target: desktop
-          modules: qt5compat
           cache: 'true'
 
       - name: Create build dir
@@ -46,7 +45,7 @@ jobs:
         run: |
           qmake -v
           cmake --version
-          cmake %GITHUB_WORKSPACE% -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=6
+          cmake ${{github.workspace}} -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5
           make && make install
         working-directory: ${{runner.workspace}}/build
 
@@ -59,8 +58,8 @@ jobs:
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libgcc_s_seh-1.dll ${{env.TTK_MODULE}}
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libstdc++-6.dll ${{env.TTK_MODULE}}
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
-          cp ${{runner.workspace}}/Qt/${{matrix.qt_version}}/mingw_64/bin/Qt6Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win10-x64.7z ${{env.TTK_MODULE}}
+          cp ${{runner.workspace}}/Qt/${{matrix.qt_version}}/mingw81_64/bin/Qt5Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
       - name: Archive artifacts
@@ -69,4 +68,4 @@ jobs:
           tag_name: ${{env.TTK_VERSTION}}
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win10-x64.7z
+          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-x64.7z

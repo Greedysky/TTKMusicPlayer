@@ -6,21 +6,5 @@ on: workflow_dispatch
 
 jobs:
   ubuntu:
-    uses: ./.github/workflows/ubuntu.yml
-    secrets: inherit
-
-  linux:
     uses: ./.github/workflows/linux.yml
-    secrets: inherit
-
-  win7:
-    uses: ./.github/workflows/win7.yml
-    secrets: inherit
-
-  win10:
-    uses: ./.github/workflows/win10.yml
-    secrets: inherit
-
-  doxygen:
-    uses: ./.github/workflows/doxygen.yml
     secrets: inherit
