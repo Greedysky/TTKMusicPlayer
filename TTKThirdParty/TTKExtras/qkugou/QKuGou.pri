@@ -17,16 +17,16 @@
 # ***************************************************************************
 
 #browser type defined
-BROWSER_TYPE = 0
+TTK_WEB_MODULE = 0
 
 win32{
     DEFINES += TTK_MINIBLINK
-    BROWSER_TYPE = 1
+    TTK_WEB_MODULE = 1
 }else{
     equals(QT_MAJOR_VERSION, 4){
         DEFINES += TTK_WEBKIT
         QT += webkit webkitwidgets
-        BROWSER_TYPE = 2
+        TTK_WEB_MODULE = 2
     }
 
     equals(QT_MAJOR_VERSION, 5){
@@ -34,7 +34,7 @@ win32{
             exists($$[QT_INSTALL_LIBS]/libQt5WebKit.so){
                 QT += webkit webkitwidgets
                 DEFINES += TTK_WEBKIT
-                BROWSER_TYPE = 2
+                TTK_WEB_MODULE = 2
             }
 
             #5.6 or later use webengine
@@ -43,7 +43,7 @@ win32{
                     QT += webenginewidgets
                     DEFINES -= TTK_WEBKIT
                     DEFINES += TTK_WEBENGINE
-                    BROWSER_TYPE = 3
+                    TTK_WEB_MODULE = 3
                 }
             }
         }
@@ -52,7 +52,7 @@ win32{
             exists($$[QT_INSTALL_LIBS]/libQt5WebKit.dylib){
                 QT += webkit webkitwidgets
                 DEFINES += TTK_WEBKIT
-                BROWSER_TYPE = 2
+                TTK_WEB_MODULE = 2
             }
 
             #5.6 or later use webengine
@@ -61,17 +61,17 @@ win32{
                     QT += webenginewidgets
                     DEFINES -= TTK_WEBKIT
                     DEFINES += TTK_WEBENGINE
-                    BROWSER_TYPE = 3
+                    TTK_WEB_MODULE = 3
                 }
             }
         }
     }
 }
 
-equals(BROWSER_TYPE, 1): message("Found Qt web component, build in KuGou module by Qt miniblink")
-equals(BROWSER_TYPE, 2): message("Found Qt web component, build in KuGou module by Qt webkit")
-equals(BROWSER_TYPE, 3): message("Found Qt web component, build in KuGou module by Qt webengine")
-equals(BROWSER_TYPE, 0): message("Not found Qt web component, build in KuGou module by none web component")
+equals(TTK_WEB_MODULE, 1): message("Found Qt web component, build in KuGou module by Qt miniblink")
+equals(TTK_WEB_MODULE, 2): message("Found Qt web component, build in KuGou module by Qt webkit")
+equals(TTK_WEB_MODULE, 3): message("Found Qt web component, build in KuGou module by Qt webengine")
+equals(TTK_WEB_MODULE, 0): message("Not found Qt web component, build in KuGou module by none web component")
 
 INCLUDEPATH += $$PWD
 
