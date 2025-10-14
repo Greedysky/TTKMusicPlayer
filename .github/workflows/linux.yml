@@ -410,6 +410,10 @@ jobs:
 
       - name: Build ttk music player package
         run: |
+          # add dependency for openssl
+          wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z
+          7z x openssl.7z
+          cp linux64/* ${{env.TTK_MODULE}}/lib
           # add dependency for theme
           wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z
           7z x theme.7z
@@ -426,9 +430,14 @@ jobs:
           rm demo
           # add dependency libraries and so on
           linuxdeploy-x86_64.AppImage --executable=TTKService --appdir=image --plugin=qt
-          rm image/usr/lib/libTTK*.so
+          rm image/usr/lib/libTTK*.so image/usr/lib/libttkzip.so image/usr/lib/libzlib.so
           mv image/usr/lib image/usr/plugins image/usr/translations image/usr/bin/qt.conf ../
           rm -rf image
+          # add dependency for nss and webkit
+          cp /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so ../lib
+          cp /usr/lib/x86_64-linux-gnu/nss/libsoftokn3.so ../lib
+          cp ${{runner.workspace}}/Qt/${{matrix.qt_version}}/gcc_64/libexec/* .
+          cp ${{runner.workspace}}/Qt/${{matrix.qt_version}}/gcc_64/resources/* .
           cd ../../
           # add portable binary package
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z ${{env.TTK_MODULE}}

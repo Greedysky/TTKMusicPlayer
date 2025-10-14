@@ -19,7 +19,7 @@ case "$(uname)" in
     export DYLD_LIBRARY_PATH="${dirpath}:${dirpath}/lib:${dirpath}/4.2.0.0:$DYLD_LIBRARY_PATH"
     ;;
   *)
-    export LD_LIBRARY_PATH="${dirpath}:${dirpath}/lib:${dirpath}/4.2.0.0"
+    export LD_LIBRARY_PATH="${dirpath}:${dirpath}/lib:${dirpath}/4.2.0.0:$LD_LIBRARY_PATH"
     ;;
 esac
 export QT_PLUGIN_PATH=${dirpath}/plugins:$QT_PLUGIN_PATH

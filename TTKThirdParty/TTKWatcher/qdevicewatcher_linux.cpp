@@ -79,7 +79,7 @@ void QDeviceWatcherPrivate::parseDeviceInfo()
     data.resize(UEVENT_BUFFER_SIZE * 2);
     data.fill(0);
     size_t len = read(socket_notifier->socket(), data.data(), UEVENT_BUFFER_SIZE * 2);
-    qDebug("read fro socket %d bytes", len);
+    qDebug("read fro socket %ld bytes", len);
     data.resize(len);
     //socket_notifier->setEnabled(true); //for win
 #elif CONFIG_TCPSOCKET
@@ -109,7 +109,7 @@ void QDeviceWatcherPrivate::run()
         data.resize(UEVENT_BUFFER_SIZE * 2);
         data.fill(0);
         size_t len = recv(netlink_socket, data.data(), data.length(), 0);
-        qDebug("read fro socket %d bytes", len);
+        qDebug("read fro socket %ld bytes", len);
         data.resize(len);
         data = data.replace(0, '\n').trimmed();
         if (buffer.isOpen())
