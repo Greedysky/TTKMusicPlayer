@@ -161,6 +161,9 @@ jobs:
         run: |
           7z x ffmpeg-3.4.14.7z -olibffmpeg
           cd libffmpeg
+          # fix operand type mismatch for `shr'
+          wget https://raw.githubusercontent.com/FFmpeg/FFmpeg/refs/heads/master/libavcodec/x86/mathops.h
+          mv mathops.h libavcodec/x86/mathops.h
           export PKG_CONFIG_PATH=${{env.QMMP_DEPS_PATH}}/libspeex/lib/pkgconfig:$PKG_CONFIG_PATH
           ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libffmpeg --enable-shared --disable-static --disable-debug --disable-doc --disable-avdevice --disable-x86asm --disable-network --disable-encoders --disable-indevs --disable-outdevs --disable-iconv --disable-bsfs --disable-programs --disable-d3d11va --disable-dxva2 --disable-muxers --disable-parsers --disable-filters --disable-decoders --enable-decoder=wmav1 --enable-decoder=wmav2 --enable-decoder=ape --enable-decoder=tta --enable-decoder=aac --enable-decoder=alac --enable-decoder=ra_144 --enable-decoder=ra_288 --enable-decoder=shorten --enable-decoder=eac3 --enable-decoder=dca --enable-decoder=truehd --enable-decoder=twinvq --enable-decoder=tak --enable-decoder=adpcm_adx --enable-decoder=pcm_alaw --enable-decoder=pcm_s16be --enable-decoder=pcm_s16le --enable-decoder=gsm --enable-decoder=amrnb --enable-decoder=amrwb --enable-decoder=opus --enable-decoder=ac3 --enable-decoder=mp2 --enable-decoder=mp3 --enable-decoder=dsd_lsbf --enable-decoder=dsd_msbf --enable-decoder=vorbis --enable-decoder=flac --enable-decoder=libspeex --enable-libspeex --extra-cflags="-fPIC -O3" --extra-cxxflags="-fPIC -O3"
           make -j2 && make install
