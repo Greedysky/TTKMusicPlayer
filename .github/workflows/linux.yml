@@ -348,15 +348,21 @@ jobs:
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
-      - name: Rename all libraries name
-        run: find . -type f -name "*.a" -exec rename 's/\.a$/_static.a/' {} +
-        working-directory: ${{env.QMMP_DEPS_PATH}}
+      - name: Build thirdParty libraries package
+        run: |
+          # rename all libraries name to static
+          find . -type f -name "*.a" -exec rename 's/\.a$/_static.a/' {} +
+          # add portable binary package
+          7z a thirdParty-libraries-linux-x64.7z
+        working-directory: ${{github.workspace}}/extra
 
-      - name: Upload thirdParty libraries
-        uses: actions/upload-artifact@v4
+      - name: Archive artifacts
+        uses: softprops/action-gh-release@v2
         with:
-          name: thirdParty-libraries
-          path: ${{github.workspace}}/extra
+          tag_name: continuous-build
+          token: ${{secrets.GITHUB_TOKEN}}
+          generate_release_notes: false
+          files: ${{github.workspace}}/extra/thirdParty-libraries-linux-x64.7z
 
       - name: Build qmmp project
         run: |
@@ -379,13 +385,17 @@ jobs:
           # copy uadecore
           cp ${{env.QMMP_DEPS_PATH}}/libttk/bin/uadecore bin/${{env.TTK_VERSTION}}
           mv bin ${{runner.workspace}}/qmmp
+          # add portable binary package
+          7z a qmmp-linux-x64.7z ${{runner.workspace}}/qmmp
         working-directory: ${{github.workspace}}
 
-      - name: Upload qmmp library
-        uses: actions/upload-artifact@v4
+      - name: Archive artifacts
+        uses: softprops/action-gh-release@v2
         with:
-          name: qmmp-library
-          path: ${{runner.workspace}}/qmmp
+          tag_name: continuous-build
+          token: ${{secrets.GITHUB_TOKEN}}
+          generate_release_notes: false
+          files: ${{github.workspace}}/qmmp-linux-x64.7z
 
       - name: Clean up qmmp build
         run: |
@@ -443,8 +453,10 @@ jobs:
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
-      - name: Upload ttk music player package
-        uses: actions/upload-artifact@v4
+      - name: Archive artifacts
+        uses: softprops/action-gh-release@v2
         with:
-          name: ttkmusicplayer
-          path: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z
+          tag_name: continuous-build
+          token: ${{secrets.GITHUB_TOKEN}}
+          generate_release_notes: false
+          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z
