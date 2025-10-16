@@ -29,7 +29,7 @@
 | Linux    | 4.x GCC & 5.x GCC | ![Linux](https://img.shields.io/badge/build-passing-brightgreen.svg)   |
 | Windows  | 4.x GCC & 5.x GCC | ![Windows](https://img.shields.io/badge/build-passing-brightgreen.svg) |
 | Windows  | MSVC              | ![Windows](https://img.shields.io/badge/build-unknown-lightgrey.svg)   |
-| OS X     | Clang             | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg)       |
+| OS X     | Clang             | ![OSX](https://img.shields.io/badge/build-passing-brightgreen.svg)     |
 
 # 開發者
 
