@@ -49,6 +49,7 @@ jobs:
           sudo apt install libfuse2 p7zip-full
           sudo apt install texinfo rename
           sudo apt install portaudio19-dev
+          sudo apt install libnss3
 
       - name: Create thirdParty dir
         run: mkdir thirdParty
@@ -257,7 +258,13 @@ jobs:
 
       - name: Build library for libprojectm
         run: |
-          7z x libprojectm-2.2.1.7z -olibprojectm
+          if [ ${{matrix.os}} == "ubuntu-22.04" ]; then
+            echo "projectm build for ubuntu 22.04"
+            7z x libprojectm-2.2.1.7z -olibprojectm
+          else
+            echo "projectm build for ubuntu 24.04"
+            7z x -snld libprojectm-2.2.1.7z -olibprojectm
+          fi
           cd libprojectm
           ./autogen.sh
           ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libprojectm CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
@@ -427,8 +434,13 @@ jobs:
           mv image/usr/lib image/usr/plugins image/usr/translations image/usr/bin/qt.conf ../
           rm -rf image
           # add dependency for nss and webkit
-          cp /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so ../lib
-          cp /usr/lib/x86_64-linux-gnu/nss/libsoftokn3.so ../lib
+          if [ ${{matrix.os}} == "ubuntu-24.04" ]; then
+            cp /usr/lib/x86_64-linux-gnu/libnssckbi.so ../lib
+            cp /usr/lib/x86_64-linux-gnu/libsoftokn3.so ../lib
+          else
+            cp /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so ../lib
+            cp /usr/lib/x86_64-linux-gnu/nss/libsoftokn3.so ../lib
+          fi
           cp ${{runner.workspace}}/Qt/${{matrix.qt_version}}/gcc_64/libexec/* .
           cp ${{runner.workspace}}/Qt/${{matrix.qt_version}}/gcc_64/resources/* .
           cd ../../
@@ -437,7 +449,7 @@ jobs:
           7z x openssl.7z
           cp linux64/* ${{env.TTK_MODULE}}/lib
           # add portable binary package
-          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z ${{env.TTK_MODULE}}
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
       - name: Archive artifacts
@@ -446,4 +458,4 @@ jobs:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z
+          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64.7z
