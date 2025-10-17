@@ -1,6 +1,6 @@
 # Author: Greedysky <greedysky@163.com>
 
-name: linux
+name: win
 
 on: workflow_call
 
@@ -10,14 +10,14 @@ env:
 
 jobs:
   build:
-    name: Build on linux
+    name: Build on win64 Qt5
     strategy:
       matrix:
-        qt_version: [5.9.9]
-        os: [ubuntu-22.04]
+        qt_version: [5.15.2]
+        os: [windows-2022]
 
     env:
-      QMMP_DEPS_PATH: ${{github.workspace}}/extra/gcc
+      QMMP_DEPS_PATH: D:/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
 
     runs-on: ${{matrix.os}}
     steps:
@@ -35,21 +35,24 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{matrix.qt_version}}
+          host: windows
+          arch: win64_mingw81
           target: desktop
-          modules: qtwebengine
           cache: 'true'
 
-      - name: Install linuxdeploy
-        uses: miurahr/install-linuxdeploy-action@v1
+      - name: Install MSYS2
+        uses: msys2/setup-msys2@v2
         with:
-          plugins: qt appimage
-
-      - name: Install dependencies
-        run: |
-          sudo apt install libfuse2 p7zip-full
-          sudo apt install texinfo rename
-          sudo apt install portaudio19-dev
-          sudo apt install libnss3
+          msystem: mingw64
+          install: >-
+            p7zip
+            libtool
+            gcc
+            make
+            autoconf
+            automake
+            texinfo
+            pkg-config
 
       - name: Create thirdParty dir
         run: mkdir thirdParty
@@ -57,7 +60,7 @@ jobs:
 
       - name: Install thirdParty dependencies
         run: |
-          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-extra-pkg.7z
+          curl -O https://github.com/Greedysky/Resource/releases/download/1.0.0.0/qmmp-extra-pkg.7z -L ${{runner.workspace}}/thirdParty/qmmp-extra-pkg.7z
           7z x qmmp-extra-pkg.7z
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -66,11 +69,12 @@ jobs:
           7z x libADLMIDI-1.6.1.7z -olibadlmidi
           cd libadlmidi
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libadlmidi -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DUSE_NUKED_EMULATOR=OFF -DUSE_OPAL_EMULATOR=OFF -DUSE_JAVA_EMULATOR=OFF -DUSE_ESFMU_EMULATOR=OFF -DUSE_MAME_EMULATOR=OFF -DUSE_YMFM_EMULATOR=OFF
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libadlmidi -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DUSE_NUKED_EMULATOR=OFF -DUSE_OPAL_EMULATOR=OFF -DUSE_JAVA_EMULATOR=OFF -DUSE_ESFMU_EMULATOR=OFF -DUSE_MAME_EMULATOR=OFF -DUSE_YMFM_EMULATOR=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libbinio
+        shell: msys2 {0}
         run: |
           7z x libbinio-1.5.7z -olibbinio
           cd libbinio
@@ -80,6 +84,7 @@ jobs:
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libadplug
+        shell: msys2 {0}
         run: |
           7z x adplug-2.4.7z -olibadplug
           cd libadplug
@@ -93,11 +98,12 @@ jobs:
           7z x libsndfile-1.2.2.7z -olibsndfile
           cd libsndfile
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libsndfile -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libsndfile -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libbs2b
+        shell: msys2 {0}
         run: |
           7z x libbs2b-3.1.0.7z -olibbs2b
           cd libbs2b
@@ -107,6 +113,7 @@ jobs:
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libcddb
+        shell: msys2 {0}
         run: |
           7z x libcddb-1.3.2.7z -olibcddb
           cd libcddb
@@ -115,6 +122,7 @@ jobs:
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libcdio
+        shell: msys2 {0}
         run: |
           7z x libcdio-2.1.0.7z -olibcdio
           cd libcdio
@@ -124,6 +132,7 @@ jobs:
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libcdio-paranoia
+        shell: msys2 {0}
         run: |
           7z x libcdio-paranoia-10.2+2.0.1.7z -olibcdio-paranoia
           cd libcdio-paranoia
@@ -133,6 +142,7 @@ jobs:
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libenca
+        shell: msys2 {0}
         run: |
           7z x enca-1.19.7z -olibenca
           cd libenca
@@ -145,11 +155,12 @@ jobs:
           7z x faad2-2.11.2.7z -olibfaad2
           cd libfaad2
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libspeex
+        shell: msys2 {0}
         run: |
           7z x speex-1.2.1.7z -olibspeex
           cd libspeex
@@ -159,11 +170,12 @@ jobs:
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libffmpeg
+        shell: msys2 {0}
         run: |
           7z x ffmpeg-3.4.14.7z -olibffmpeg
           cd libffmpeg
           # fix operand type mismatch for `shr'
-          wget https://raw.githubusercontent.com/FFmpeg/FFmpeg/refs/heads/master/libavcodec/x86/mathops.h
+          curl -O https://raw.githubusercontent.com/FFmpeg/FFmpeg/refs/heads/master/libavcodec/x86/mathops.h -L ${{runner.workspace}}/thirdParty/libffmpeg/mathops.h
           mv mathops.h libavcodec/x86/mathops.h
           export PKG_CONFIG_PATH=${{env.QMMP_DEPS_PATH}}/libspeex/lib/pkgconfig:$PKG_CONFIG_PATH
           ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libffmpeg --enable-shared --disable-static --disable-debug --disable-doc --disable-avdevice --disable-x86asm --disable-network --disable-encoders --disable-indevs --disable-outdevs --disable-iconv --disable-bsfs --disable-programs --disable-d3d11va --disable-dxva2 --disable-muxers --disable-parsers --disable-filters --disable-decoders --enable-decoder=wmav1 --enable-decoder=wmav2 --enable-decoder=ape --enable-decoder=tta --enable-decoder=aac --enable-decoder=alac --enable-decoder=ra_144 --enable-decoder=ra_288 --enable-decoder=shorten --enable-decoder=eac3 --enable-decoder=dca --enable-decoder=truehd --enable-decoder=twinvq --enable-decoder=tak --enable-decoder=adpcm_adx --enable-decoder=pcm_alaw --enable-decoder=pcm_s16be --enable-decoder=pcm_s16le --enable-decoder=gsm --enable-decoder=amrnb --enable-decoder=amrwb --enable-decoder=opus --enable-decoder=ac3 --enable-decoder=mp2 --enable-decoder=mp3 --enable-decoder=dsd_lsbf --enable-decoder=dsd_msbf --enable-decoder=vorbis --enable-decoder=flac --enable-decoder=libspeex --enable-libspeex --extra-cflags="-fPIC -O3" --extra-cxxflags="-fPIC -O3"
@@ -171,6 +183,7 @@ jobs:
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libogg
+        shell: msys2 {0}
         run: |
           7z x libogg-1.3.6.7z -olibogg
           cd libogg
@@ -183,7 +196,7 @@ jobs:
           7z x flac-1.5.0.7z -olibflac
           cd libflac
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libflac -DCMAKE_PREFIX_PATH=${{env.QMMP_DEPS_PATH}}/libogg -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DENABLE_64_BIT_WORDS=OFF -DENABLE_MULTITHREADING=OFF -DWITH_FORTIFY_SOURCE=OFF -DWITH_STACK_PROTECTOR=OFF
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libflac -DCMAKE_PREFIX_PATH=${{env.QMMP_DEPS_PATH}}/libogg -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DENABLE_64_BIT_WORDS=OFF -DENABLE_MULTITHREADING=OFF -DWITH_FORTIFY_SOURCE=OFF -DWITH_STACK_PROTECTOR=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -192,7 +205,7 @@ jobs:
           7z x libgme-0.6.4.7z -olibgme
           cd libgme
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -203,7 +216,7 @@ jobs:
           # add extern constants patch
           sed -i 's/const/extern const/g' libmpcdec/requant.h
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libmpcdec -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DSHARED=OFF
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libmpcdec -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DSHARED=OFF
           make -j2 && make install
           # fix missing install library
           mkdir ${{env.QMMP_DEPS_PATH}}/libmpcdec/lib
@@ -211,6 +224,7 @@ jobs:
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libmpg123
+        shell: msys2 {0}
         run: |
           7z x mpg123-1.33.3.7z -olibmpg123
           cd libmpg123
@@ -219,6 +233,7 @@ jobs:
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libopenmpt
+        shell: msys2 {0}
         run: |
           7z x libopenmpt-0.4.51.7z -olibopenmpt
           cd libopenmpt
@@ -230,14 +245,15 @@ jobs:
         run: |
           7z x OptimFROG_x64_5100.7z -oliboptimfrog
           cd liboptimfrog
-          unzip OptimFROG_Linux_x64_5100.zip
-          cd OptimFROG_Linux_x64_5100/SDK
+          unzip OptimFROG_Win_x86_5100.zip
+          cd OptimFROG_Win_x86_5100/SDK
           mkdir -p liboptimfrog/include
           mv Library liboptimfrog/lib && mv OptimFROG liboptimfrog/include
           mv liboptimfrog ${{env.QMMP_DEPS_PATH}}/liboptimfrog
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libopus
+        shell: msys2 {0}
         run: |
           7z x opus-1.5.2.7z -olibopus
           cd libopus
@@ -246,6 +262,7 @@ jobs:
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libopusfile
+        shell: msys2 {0}
         run: |
           7z x opusfile-0.12.7z -olibopusfile
           cd libopusfile
@@ -257,6 +274,7 @@ jobs:
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libprojectm
+        shell: msys2 {0}
         run: |
           if [ ${{matrix.os}} == "ubuntu-22.04" ]; then
             echo "projectm build for ubuntu 22.04"
@@ -285,11 +303,12 @@ jobs:
           7z x libsamplerate-0.2.2.7z -olibsamplerate
           cd libsamplerate
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libsamplerate -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libsamplerate -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libsidplayfp
+        shell: msys2 {0}
         run: |
           7z x libsidplayfp-2.3.1.patch.7z -olibsidplayfp
           cd libsidplayfp
@@ -302,7 +321,7 @@ jobs:
           7z x soxr-0.1.3.7z -olibsoxr
           cd libsoxr
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libsoxr -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_SHARED_LIBS=OFF
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libsoxr -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_SHARED_LIBS=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -311,7 +330,7 @@ jobs:
           7z x taglib-1.13.1.7z -olibtaglib
           cd libtaglib
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libtaglib -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DWITH_ZLIB=OFF
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libtaglib -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DWITH_ZLIB=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -320,7 +339,7 @@ jobs:
           7z x libvorbis-1.3.7.7z -olibvorbis
           cd libvorbis
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libvorbis -DCMAKE_PREFIX_PATH=${{env.QMMP_DEPS_PATH}}/libogg -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libvorbis -DCMAKE_PREFIX_PATH=${{env.QMMP_DEPS_PATH}}/libogg -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -329,11 +348,12 @@ jobs:
           7z x wavpack-5.8.1.7z -olibwavpack
           cd libwavpack
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libwavpack -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libwavpack -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libxmp
+        shell: msys2 {0}
         run: |
           7z x libxmp-4.6.3-patch.7z -olibxmp
           cd libxmp
@@ -346,7 +366,7 @@ jobs:
           7z x sunvox-2.1.2b.7z -olibsunvox
           cd libsunvox
           mkdir ${{env.QMMP_DEPS_PATH}}/libsunvox
-          mv linux/lib_x86_64/sunvox.so ${{env.QMMP_DEPS_PATH}}/libsunvox
+          mv windows/lib_x86_64/sunvox.dll ${{env.QMMP_DEPS_PATH}}/libsunvox
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libttk
@@ -354,7 +374,7 @@ jobs:
           7z x ttk-1.2.12.7z -olibttk
           cd libttk
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libttk -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libttk -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -363,7 +383,7 @@ jobs:
           # rename all libraries name to static
           find . -type f -name "*.a" -exec rename 's/\.a$/_static.a/' {} +
           # add portable binary package
-          7z a thirdParty-libraries-linux-x64.7z
+          7z a thirdParty-libraries-win-x64.7z
         working-directory: ${{github.workspace}}/extra
 
       - name: Archive artifacts
@@ -372,106 +392,4 @@ jobs:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{github.workspace}}/extra/thirdParty-libraries-linux-x64.7z
-
-      - name: Build qmmp project
-        run: |
-          qmake -v
-          qmake qmmp/
-          make -j2
-        working-directory: ${{github.workspace}}
-
-      - name: Build qmmp package
-        run: |
-          # copy ffmpeg libraries
-          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libavcodec.so.57.107.100 bin/${{env.TTK_VERSTION}}/libavcodec.so.57
-          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libavformat.so.57.83.100 bin/${{env.TTK_VERSTION}}/libavformat.so.57
-          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libavutil.so.55.78.100 bin/${{env.TTK_VERSTION}}/libavutil.so.55
-          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libswresample.so.2.9.100 bin/${{env.TTK_VERSTION}}/libswresample.so.2
-          # copy sunvox libraries
-          cp ${{env.QMMP_DEPS_PATH}}/libsunvox/sunvox.so bin/${{env.TTK_VERSTION}}
-          # copy optimfrog libraries
-          cp ${{env.QMMP_DEPS_PATH}}/liboptimfrog/lib/libOptimFROG.so.0 bin/${{env.TTK_VERSTION}}
-          # copy uadecore
-          cp ${{env.QMMP_DEPS_PATH}}/libttk/bin/uadecore bin/${{env.TTK_VERSTION}}
-          mv bin ${{runner.workspace}}/qmmp
-          # add portable binary package
-          7z a qmmp-linux-x64.7z ${{runner.workspace}}/qmmp
-        working-directory: ${{github.workspace}}
-
-      - name: Archive artifacts
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: continuous-build
-          token: ${{secrets.GITHUB_TOKEN}}
-          generate_release_notes: false
-          files: ${{github.workspace}}/qmmp-linux-x64.7z
-
-      - name: Clean up qmmp build
-        run: |
-          rm -rf ${{github.workspace}}
-          rm -rf ${{runner.workspace}}/thirdParty
-        working-directory: ${{runner.workspace}}
-
-      - name: Clone ttk music player module
-        run: git clone https://github.com/Greedysky/TTKMusicPlayer.git
-        working-directory: ${{runner.workspace}}
-
-      - name: Create build dir
-        run: mkdir build
-        working-directory: ${{runner.workspace}}
-
-      - name: Build ttk music player project
-        run: |
-          cmake --version
-          cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}}/libTTKqmmp.so
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/build
-
-      - name: Build ttk music player package
-        run: |
-          # add dependency for theme
-          wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z
-          7z x theme.7z
-          mv GTheme ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          # add dependency for global plugins
-          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-linux.7z
-          7z x qmmp-gplugins-linux.7z
-          mv GPlugins ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          # add dependency for qmmp library
-          cp -rf ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}}
-          cd ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          mv uadecore GPlugins/config/uade
-          # remove usless qmmp demo bin
-          rm demo
-          # add dependency libraries and so on
-          linuxdeploy-x86_64.AppImage --executable=TTKService --appdir=image --plugin=qt
-          rm image/usr/lib/libTTK*.so image/usr/lib/libttkzip.so image/usr/lib/libzlib.so
-          mv image/usr/lib image/usr/plugins image/usr/translations image/usr/bin/qt.conf ../
-          rm -rf image
-          # add dependency for nss and webkit
-          if [ ${{matrix.os}} == "ubuntu-24.04" ]; then
-            cp /usr/lib/x86_64-linux-gnu/libnssckbi.so ../lib
-            cp /usr/lib/x86_64-linux-gnu/libsoftokn3.so ../lib
-          else
-            cp /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so ../lib
-            cp /usr/lib/x86_64-linux-gnu/nss/libsoftokn3.so ../lib
-          fi
-          cp ${{runner.workspace}}/Qt/${{matrix.qt_version}}/gcc_64/libexec/* .
-          cp ${{runner.workspace}}/Qt/${{matrix.qt_version}}/gcc_64/resources/* .
-          cd ../../
-          # add dependency for openssl
-          wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z
-          7z x openssl.7z
-          cp linux64/* ${{env.TTK_MODULE}}/lib
-          # add portable binary package
-          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z ${{env.TTK_MODULE}}
-        working-directory: ${{runner.workspace}}/install
-
-      - name: Archive artifacts
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: continuous-build
-          token: ${{secrets.GITHUB_TOKEN}}
-          generate_release_notes: false
-          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z
+          files: ${{github.workspace}}/extra/thirdParty-libraries-win-x64.7z

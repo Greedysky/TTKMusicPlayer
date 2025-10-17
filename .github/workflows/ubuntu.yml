@@ -57,7 +57,7 @@ jobs:
 
       - name: Install thirdParty dependencies
         run: |
-          wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/qmmp-extra-pkg.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-extra-pkg.7z
           7z x qmmp-extra-pkg.7z
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -419,7 +419,7 @@ jobs:
           7z x theme.7z
           mv GTheme ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           # add dependency for global plugins
-          wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/qmmp-gplugins-linux.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-linux.7z
           7z x qmmp-gplugins-linux.7z
           mv GPlugins ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           # add dependency for qmmp library
