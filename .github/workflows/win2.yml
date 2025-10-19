@@ -1,0 +1,103 @@
+# Author: Greedysky <greedysky@163.com>
+
+name: win
+
+on: workflow_call
+
+env:
+  TTK_MODULE: TTKMusicPlayer
+  TTK_VERSTION: 4.2.0.0
+
+jobs:
+  build:
+    name: Build on win64 Qt5
+    strategy:
+      matrix:
+        qt_version: [5.15.2]
+        os: [windows-2022]
+
+    env:
+      QMMP_DEPS_PATH: ${{github.workspace}}/extra/gcc
+
+    runs-on: ${{matrix.os}}
+    steps:
+      - name: Clone qmmp module
+        run: git clone -b plugins https://github.com/Greedysky/TTKMusicPlayer.git
+        working-directory: ${{runner.workspace}}
+
+      - name: Cache Qt
+        uses: actions/cache@v4
+        with:
+          path: ${{runner.workspace}}/Qt
+          key: ${{runner.os}}-QtCache-${{matrix.qt_version}}
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{matrix.qt_version}}
+          host: windows
+          arch: win32_mingw81
+          target: desktop
+          cache: 'true'
+
+      - name: Create thirdParty library dir
+        run: mkdir extra
+        working-directory: ${{github.workspace}}
+
+      - name: Install thirdParty dependencies
+        run: |
+          curl -O https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/thirdParty-libraries-win-x86.7z -L thirdParty-libraries-win-x86.7z
+          7z x thirdParty-libraries-win-x86.7z
+          curl -O https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-extra-pkg.7z -L qmmp-extra-pkg.7z
+          7z x qmmp-extra-pkg.7z
+        working-directory: ${{github.workspace}}/extra
+
+      - name: Build library for liboptimfrog
+        run: |
+          7z x OptimFROG_x64_5100.7z -oliboptimfrog
+          cd liboptimfrog
+          unzip OptimFROG_Win_x86_5100.zip
+          cd OptimFROG_Win_x86_5100/SDK
+          mkdir -p liboptimfrog/include
+          mv Library liboptimfrog/lib && mv OptimFROG liboptimfrog/include
+          mv liboptimfrog ${{env.QMMP_DEPS_PATH}}/liboptimfrog
+        working-directory: ${{github.workspace}}/extra
+
+      - name: Build library for libsunvox
+        run: |
+          7z x sunvox-2.1.2b.7z -olibsunvox
+          cd libsunvox
+          mkdir ${{env.QMMP_DEPS_PATH}}/libsunvox
+          mv windows/lib_x86/sunvox.dll ${{env.QMMP_DEPS_PATH}}/libsunvox
+        working-directory: ${{github.workspace}}/extra
+
+      - name: Build qmmp project
+        run: |
+          qmake -v
+          qmake qmmp/
+          make -j2
+        working-directory: ${{github.workspace}}
+
+      - name: Build qmmp package
+        run: |
+          # copy ffmpeg libraries
+          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/bin/avcodec-57 bin/${{env.TTK_VERSTION}}/avcodec-57
+          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/bin/avformat-57.dll bin/${{env.TTK_VERSTION}}/avformat-57.dll
+          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/bin/avutil-55.dll bin/${{env.TTK_VERSTION}}/avutil-55.dll
+          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/bin/swresample-2.dll bin/${{env.TTK_VERSTION}}/swresample-2.dll
+          # copy sunvox libraries
+          cp ${{env.QMMP_DEPS_PATH}}/libsunvox/sunvox.dll bin/${{env.TTK_VERSTION}}
+          # copy optimfrog libraries
+          cp ${{env.QMMP_DEPS_PATH}}/liboptimfrog/lib/OptimFROG.dll bin/${{env.TTK_VERSTION}}
+          mv bin ${{runner.workspace}}/qmmp
+          # add portable binary package
+          7z a qmmp-win-x86.7z ${{runner.workspace}}/qmmp
+        working-directory: ${{github.workspace}}
+
+      - name: Archive artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: continuous-build
+          token: ${{secrets.GITHUB_TOKEN}}
+          generate_release_notes: false
+          files: ${{github.workspace}}/qmmp-win-x86.7z
