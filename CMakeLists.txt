@@ -281,13 +281,13 @@ endif()
 
 set(QT_INSTALL_LIBS ${QT_LIBRARY_DIR})
 set(QT_INSTALL_BINS ${QT_BINARY_DIR})
-get_filename_component(QT_INSTAL_DIR "${QT_INSTALL_LIBS}/../.." ABSOLUTE)
+get_filename_component(QT_INSTALL_DIR "${QT_INSTALL_LIBS}/../.." ABSOLUTE)
 
 message(STATUS "Found QT_BINARY_DIR: " ${QT_BINARY_DIR})
 message(STATUS "Found QT_LIBRARY_DIR: " ${QT_LIBRARY_DIR})
 message(STATUS "Found QT_INCLUDE_DIR: " ${QT_INCLUDE_DIR})
 message(STATUS "Found QT_PLUGINS_DIR: " ${QT_PLUGINS_DIR})
-message(STATUS "Found QT_INSTAL_DIR: " ${QT_INSTAL_DIR})
+message(STATUS "Found QT_INSTALL_DIR: " ${QT_INSTALL_DIR})
 message(STATUS "Found QT_INSTALL_LIBS: " ${QT_INSTALL_LIBS})
 message(STATUS "Found QT_INSTALL_BINS: " ${QT_INSTALL_BINS})
 
