@@ -336,29 +336,29 @@ jobs:
           # fix missing install library
           mkdir ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
           mv bin ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
-          mv includ ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
+          mv include ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
           mv lib ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
         working-directory: ${{runner.workspace}}/thirdParty
 
-      - name: Build library for libprojectm
-        shell: msys2 {0}
-        run: |
-          7z x libprojectm-2.2.1.7z -olibprojectm
-          cd libprojectm
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./autogen.sh
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
-          make -j2 && make install
-          # fix missing install headers
-          mkdir ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-          mv ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/projectM.hpp ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-          cp config.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-          cp src/libprojectM/Common.hpp ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-          cp src/libprojectM/dlldefs.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-          cp src/libprojectM/event.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-          cp src/libprojectM/fatal.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-          cp src/libprojectM/PCM.hpp ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-        working-directory: ${{runner.workspace}}/thirdParty
+#      - name: Build library for libprojectm
+#        shell: msys2 {0}
+#        run: |
+#          7z x libprojectm-2.2.1.7z -olibprojectm
+#          cd libprojectm
+#          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
+#          ./autogen.sh
+#          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+#          make -j2 && make install
+#          # fix missing install headers
+#          mkdir ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+#          mv ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/projectM.hpp ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+#          cp config.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+#          cp src/libprojectM/Common.hpp ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+#          cp src/libprojectM/dlldefs.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+#          cp src/libprojectM/event.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+#          cp src/libprojectM/fatal.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+#          cp src/libprojectM/PCM.hpp ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+#        working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libsamplerate
         run: |
