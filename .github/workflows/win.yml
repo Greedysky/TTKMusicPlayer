@@ -25,7 +25,7 @@ jobs:
     runs-on: ${{matrix.os}}
     steps:
       - name: Clone qmmp module
-        run: git clone -b plugins https://github.com/Greedysky/TTKMusicPlayer.git
+        run: git clone -b plugins https://github.com/Greedysky/${{env.TTK_MODULE}}.git
         working-directory: ${{runner.workspace}}
 
       - name: Cache Qt
@@ -70,7 +70,7 @@ jobs:
 
       - name: Install thirdParty dependencies
         run: |
-          curl -L https://github.com/Greedysky/TTKMusicPlayer/releases/download/continuous-build/qmmp-extra-pkg.7z -o qmmp-extra-pkg.7z
+          curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-extra-pkg.7z -o qmmp-extra-pkg.7z
           7z x qmmp-extra-pkg.7z
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -143,9 +143,9 @@ jobs:
           ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libcddb CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --without-cdio
           # fix build for regex
           echo "#define HAVE_REGEX_H 1" >> config.h
-          cp /d/a/TTKMusicPlayer/mingw32/opt/include/regex.h include/cddb
+          cp /d/a/${{env.TTK_MODULE}}/mingw32/opt/include/regex.h include/cddb
           mkdir -p lib/.libs
-          cp /d/a/TTKMusicPlayer/mingw32/opt/lib/libregex.a lib/.libs
+          cp /d/a/${{env.TTK_MODULE}}/mingw32/opt/lib/libregex.a lib/.libs
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -252,6 +252,8 @@ jobs:
           [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
           cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           mingw32-make -j2 && mingw32-make install
+          # fix install headers
+          mv ${{env.WIN_QMMP_DEPS_PATH}}/libgme/lib/libgme-static.a ${{env.WIN_QMMP_DEPS_PATH}}/libgme/lib/libgme.a
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libmpcdec
@@ -296,6 +298,8 @@ jobs:
           cd OptimFROG_Win_x86_5100/SDK
           mkdir -p liboptimfrog/include
           mv Library liboptimfrog/lib && mv OptimFROG liboptimfrog/include
+          mkdir -p liboptimfrog/bin
+          mv liboptimfrog/lib/OptimFROG.dll liboptimfrog/bin/libOptimFROG.dll
           mv liboptimfrog ${{env.UNIX_QMMP_DEPS_PATH}}/liboptimfrog
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -346,7 +350,6 @@ jobs:
           7z x libprojectm-2.2.1.7z -olibprojectm
           cd libprojectm
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          gcc --version
           ./autogen.sh
           ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm CFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" CXXFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" LDFLAGS="-L. -lopengl32" --enable-static
           make -j2 && make install
@@ -474,3 +477,55 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
           files: ${{github.workspace}}/extra/thirdParty-libraries-win-x86.7z
+
+      - name: Build qmmp project
+        run: |
+          qmake -v
+          qmake qmmp/
+          make -j2
+        working-directory: ${{github.workspace}}
+
+      - name: Build qmmp package
+        run: |
+          # copy ffmpeg libraries
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/avcodec-57.dll bin/${{env.TTK_VERSTION}}
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/avformat-57.dll bin/${{env.TTK_VERSTION}}
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/avutil-55.dll bin/${{env.TTK_VERSTION}}
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/swresample-2.dll bin/${{env.TTK_VERSTION}}
+          # copy sunvox libraries
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/libsunvox/sunvox.dll bin/${{env.TTK_VERSTION}}
+          # copy optimfrog libraries
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/liboptimfrog/bin/libOptimFROG.dll bin/${{env.TTK_VERSTION}}
+          mv bin ${{runner.workspace}}/qmmp
+          # add portable binary package
+          7z a qmmp-win-x86.7z ${{runner.workspace}}/qmmp
+        working-directory: ${{github.workspace}}
+
+      - name: Archive artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: continuous-build
+          token: ${{secrets.GITHUB_TOKEN}}
+          generate_release_notes: false
+          files: ${{github.workspace}}/qmmp-win-x86.7z
+
+      - name: Clean up qmmp build
+        run: |
+          rm -rf ${{github.workspace}}
+          rm -rf ${{runner.workspace}}/thirdParty
+        working-directory: ${{runner.workspace}}
+
+      - name: Clone ttk music player module
+        run: git clone https://github.com/Greedysky/${{env.TTK_MODULE}}.git
+        working-directory: ${{runner.workspace}}
+
+      - name: Create build dir
+        run: mkdir build
+        working-directory: ${{runner.workspace}}
+
+      - name: Build ttk music player project
+        run: |
+          cmake --version
+          cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}}/libTTKqmmp.a
+          make -j2 && make install
+        working-directory: ${{runner.workspace}}/build

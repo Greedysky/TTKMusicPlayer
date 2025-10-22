@@ -22,7 +22,7 @@ jobs:
     runs-on: ${{matrix.os}}
     steps:
       - name: Clone qmmp module
-        run: git clone -b plugins https://github.com/Greedysky/TTKMusicPlayer.git
+        run: git clone -b plugins https://github.com/Greedysky/${{env.TTK_MODULE}}.git
         working-directory: ${{runner.workspace}}
 
       - name: Cache Qt
@@ -386,7 +386,7 @@ jobs:
         working-directory: ${{runner.workspace}}
 
       - name: Clone ttk music player module
-        run: git clone https://github.com/Greedysky/TTKMusicPlayer.git
+        run: git clone https://github.com/Greedysky/${{env.TTK_MODULE}}.git
         working-directory: ${{runner.workspace}}
 
       - name: Create build dir
