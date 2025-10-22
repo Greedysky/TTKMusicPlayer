@@ -322,43 +322,38 @@ jobs:
           sed -i 's/<opus_/<opus\/opus_/g' ${{env.UNIX_QMMP_DEPS_PATH}}/libopusfile/include/opus/opusfile.h
         working-directory: ${{runner.workspace}}/thirdParty
 
-      - name: Build library for glew
-        run: |
-          curl -L https://downloads.sourceforge.net/sourceforge/glew/glew/2.2.0/glew-2.2.0.zip -o glew.zip
-          7z x glew.zip
-          cd glew-2.2.0
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake build/cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libprojectm -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_UTILS=OFF
-          mingw32-make -j2
-          # fix missing install library
-          mkdir ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
-          mv bin ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
-          mv include ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
-          mv lib ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
-        working-directory: ${{runner.workspace}}/thirdParty
-
-#      - name: Build library for libprojectm
-#        shell: msys2 {0}
+#      - name: Build library for glew
 #        run: |
-#          7z x libprojectm-2.2.1.7z -olibprojectm
-#          cd libprojectm
-#          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-#          ./autogen.sh
-#          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
-#          make -j2 && make install
-#          # fix missing install headers
-#          mkdir ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-#          mv ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/projectM.hpp ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-#          cp config.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-#          cp src/libprojectM/Common.hpp ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-#          cp src/libprojectM/dlldefs.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-#          cp src/libprojectM/event.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-#          cp src/libprojectM/fatal.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-#          cp src/libprojectM/PCM.hpp ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+#          curl -L https://downloads.sourceforge.net/sourceforge/glew/glew/2.2.0/glew-2.2.0.zip -o glew.zip
+#          7z x glew.zip
+#          cd glew-2.2.0
+#          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+#          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
+#          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
+#          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
+#          cmake build/cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libprojectm -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_UTILS=OFF
+#          mingw32-make -j2
+#          # fix missing install library
+#          mkdir ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
+#          mv bin ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
+#          mv include ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
+#          mv lib ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
 #        working-directory: ${{runner.workspace}}/thirdParty
+
+      - name: Build library for libprojectm
+        shell: msys2 {0}
+        run: |
+          7z x libprojectm-2.2.1.7z -olibprojectm
+          cd libprojectm
+          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
+          gcc --version
+          ./autogen.sh
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm CFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" CXXFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" LDFLAGS="-L. -lopengl32" --enable-static
+          make -j2 && make install
+          # fix install headers
+          mkdir ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+          mv ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/*.h* ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+        working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libsamplerate
         run: |
