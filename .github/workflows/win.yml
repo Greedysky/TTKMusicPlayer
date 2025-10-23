@@ -10,16 +10,23 @@ env:
 
 jobs:
   build:
-    name: Build on win32 Qt5
+    name: Build on Qt5
     strategy:
       matrix:
-        qt_version: [5.15.2]
         os: [windows-2022]
+        arch: [32, 64]
+        include:
+        - arch: 32
+          target: x86
+        - arch: 64
+          target: x64
 
     env:
-      WIN_MINGW_PATH: D:\a\TTKMusicPlayer\mingw32\bin
+      QT_VERSION: 5.15.2
+      WIN_MINGW_PATH: D:\a\TTKMusicPlayer\mingw\bin
       WIN_QMMP_DEPS_PATH: D:\a\TTKMusicPlayer\TTKMusicPlayer\extra\gcc
-      UNIX_MINGW_PATH: /d/a/TTKMusicPlayer/mingw32/bin
+      UNIX_MINGW_PATH: /d/a/TTKMusicPlayer/mingw/bin
+      UNIX_MINGW_OPT_PATH: /d/a/TTKMusicPlayer/mingw/opt
       UNIX_QMMP_DEPS_PATH: /d/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
 
     runs-on: ${{matrix.os}}
@@ -32,21 +39,32 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{runner.workspace}}/Qt
-          key: ${{runner.os}}-QtCache-${{matrix.qt_version}}
+          key: ${{runner.os}}-QtCache-${{env.QT_VERSION}}
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: ${{matrix.qt_version}}
+          version: ${{env.QT_VERSION}}
           host: windows
-          arch: win32_mingw81
+          arch: win${{matrix.arch}}_mingw81
           target: desktop
           cache: 'true'
+
+      - name: Add patch for Qt5.15.2
+        shell: bash
+        run: |
+          # fix missing <limits> include
+          # see QTBUG-89977 https://bugreports.qt.io/browse/QTBUG-89977
+          # see QTBUG-90395 https://bugreports.qt.io/browse/QTBUG-90395
+          # see QTBUG-93452 https://bugreports.qt.io/browse/QTBUG-93452
+          # see here https://codereview.qt-project.org/c/qt/qtbase/+/330713
+          sed -i "46i\#include <limits>" "${{env.QT_ROOT_DIR}}\include\QtCore\qfloat16.h"
+        working-directory: ${{runner.workspace}}
 
       - name: Install MSYS2
         uses: msys2/setup-msys2@v2
         with:
-          msystem: mingw32
+          msystem: mingw${{matrix.arch}}
           update: true
           install: >-
             p7zip
@@ -57,10 +75,19 @@ jobs:
             automake
             pkg-config
 
-      - name: Install MinGW32 8.1.0
+      - name: Install MinGW 8.1.0
         run: |
-          curl -L https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw81/qt.tools.win32_mingw810/8.1.0-1-202411201005i686-8.1.0-gdb-11.2.0-release-posix-dwarf-rt_v6-rev0.7z -o 8.1.0-release-posix-seh.7z 
-          7z x 8.1.0-release-posix-seh.7z -omingw32
+          if(${{matrix.arch}} -eq 32)
+          {
+            curl -L https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw81/qt.tools.win32_mingw810/8.1.0-1-202411201005i686-8.1.0-gdb-11.2.0-release-posix-dwarf-rt_v6-rev0.7z -o 8.1.0-mingw.7z
+          }
+          else
+          {
+            curl -L https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw81/qt.tools.win64_mingw810/8.1.0-1-202411201005x86_64-8.1.0-gdb-11.2.0-release-posix-seh-rt_v6-rev0.7z -o 8.1.0-mingw.7z
+          }
+          7z x 8.1.0-mingw.7z -omingw
+          # remove default installed mingw64
+          mv C:\mingw64 C:\mingw64_usless
         working-directory: ${{runner.workspace}}
 
       - name: Create thirdParty dir
@@ -79,11 +106,9 @@ jobs:
           7z x libADLMIDI-1.6.1.7z -olibadlmidi
           cd libadlmidi
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libadlmidi -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DUSE_NUKED_EMULATOR=OFF -DUSE_OPAL_EMULATOR=OFF -DUSE_JAVA_EMULATOR=OFF -DUSE_ESFMU_EMULATOR=OFF -DUSE_MAME_EMULATOR=OFF -DUSE_YMFM_EMULATOR=OFF
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libadlmidi -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DUSE_NUKED_EMULATOR=OFF -DUSE_OPAL_EMULATOR=OFF -DUSE_JAVA_EMULATOR=OFF -DUSE_ESFMU_EMULATOR=OFF -DUSE_MAME_EMULATOR=OFF -DUSE_YMFM_EMULATOR=OFF
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -115,11 +140,9 @@ jobs:
           7z x libsndfile-1.2.2.7z -olibsndfile
           cd libsndfile
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libsndfile -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libsndfile -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -143,10 +166,12 @@ jobs:
           ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libcddb CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --without-cdio
           # fix build for regex
           echo "#define HAVE_REGEX_H 1" >> config.h
-          cp /d/a/${{env.TTK_MODULE}}/mingw32/opt/include/regex.h include/cddb
+          cp ${{env.UNIX_MINGW_OPT_PATH}}/include/regex.h include/cddb
           mkdir -p lib/.libs
-          cp /d/a/${{env.TTK_MODULE}}/mingw32/opt/lib/libregex.a lib/.libs
+          cp ${{env.UNIX_MINGW_OPT_PATH}}/lib/libregex.a lib/.libs
           make -j2 && make install
+          # fix install library
+          cp ${{env.UNIX_MINGW_OPT_PATH}}/lib/libregex.a ${{env.UNIX_QMMP_DEPS_PATH}}/libcddb/lib
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libcdio
@@ -186,11 +211,9 @@ jobs:
           7z x faad2-2.11.2.7z -olibfaad2
           cd libfaad2
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -233,11 +256,9 @@ jobs:
           7z x flac-1.5.0.7z -olibflac
           cd libflac
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libflac -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DENABLE_64_BIT_WORDS=OFF -DENABLE_MULTITHREADING=OFF -DWITH_FORTIFY_SOURCE=OFF -DWITH_STACK_PROTECTOR=OFF -D_OGG_INCLUDE_DIRS=${{env.WIN_QMMP_DEPS_PATH}}/libogg/include -D_OGG_LIBRARY_DIRS=${{env.WIN_QMMP_DEPS_PATH}}/libogg/lib
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libflac -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DENABLE_64_BIT_WORDS=OFF -DENABLE_MULTITHREADING=OFF -DWITH_FORTIFY_SOURCE=OFF -DWITH_STACK_PROTECTOR=OFF -D_OGG_INCLUDE_DIRS=${{env.WIN_QMMP_DEPS_PATH}}/libogg/include -D_OGG_LIBRARY_DIRS=${{env.WIN_QMMP_DEPS_PATH}}/libogg/lib
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -246,11 +267,9 @@ jobs:
           7z x libgme-0.6.4.7z -olibgme
           cd libgme
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           mingw32-make -j2 && mingw32-make install
           # fix install headers
           mv ${{env.WIN_QMMP_DEPS_PATH}}/libgme/lib/libgme-static.a ${{env.WIN_QMMP_DEPS_PATH}}/libgme/lib/libgme.a
@@ -261,11 +280,9 @@ jobs:
           7z x libmpcdec_r475.7z -olibmpcdec
           cd libmpcdec
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libmpcdec -DCMAKE_C_FLAGS="-fPIC -O3" -DSHARED=OFF
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libmpcdec -DCMAKE_C_FLAGS="-fPIC -O3" -DSHARED=OFF
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -331,10 +348,8 @@ jobs:
 #          curl -L https://downloads.sourceforge.net/sourceforge/glew/glew/2.2.0/glew-2.2.0.zip -o glew.zip
 #          7z x glew.zip
 #          cd glew-2.2.0
-#          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-#          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-#          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-#          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
+#          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+#          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
 #          cmake build/cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libprojectm -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_UTILS=OFF
 #          mingw32-make -j2
 #          # fix missing install library
@@ -355,6 +370,7 @@ jobs:
           make -j2 && make install
           # fix install headers
           mkdir ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+          mv src/libprojectM/win32-dirent.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
           mv ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/*.h* ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -363,11 +379,9 @@ jobs:
           7z x libsamplerate-0.2.2.7z -olibsamplerate
           cd libsamplerate
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libsamplerate -DCMAKE_C_FLAGS="-fPIC -O3"
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libsamplerate -DCMAKE_C_FLAGS="-fPIC -O3"
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -386,11 +400,9 @@ jobs:
           7z x soxr-0.1.3.7z -olibsoxr
           cd libsoxr
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libsoxr -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_SHARED_LIBS=OFF
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libsoxr -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DWITH_OPENMP=OFF -DBUILD_SHARED_LIBS=OFF
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -399,11 +411,9 @@ jobs:
           7z x taglib-1.13.1.7z -olibtaglib
           cd libtaglib
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libtaglib -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DWITH_ZLIB=OFF
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libtaglib -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DWITH_ZLIB=OFF
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -412,11 +422,9 @@ jobs:
           7z x libvorbis-1.3.7.7z -olibvorbis
           cd libvorbis
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libvorbis -DCMAKE_PREFIX_PATH=${{env.WIN_QMMP_DEPS_PATH}}/libogg -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libvorbis -DCMAKE_PREFIX_PATH=${{env.WIN_QMMP_DEPS_PATH}}/libogg -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -425,11 +433,9 @@ jobs:
           7z x wavpack-5.8.1.7z -olibwavpack
           cd libwavpack
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libwavpack -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libwavpack -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -456,18 +462,16 @@ jobs:
           7z x ttk-1.2.12.7z -olibttk
           cd libttk
           mkdir build && cd build
-          $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-          $newPath = ($oldPath -split ";") -ne "C:\mingw64\bin" -join ";"
-          $newPath = "${{env.WIN_MINGW_PATH}};" + $newPath
-          [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Process)
-          cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libttk -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libttk -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build thirdParty libraries package
         run: |
           # add portable binary package
-          7z a thirdParty-libraries-win-x86.7z
+          7z a thirdParty-libraries-win-${{matrix.target}}.7z
         working-directory: ${{github.workspace}}/extra
 
       - name: Archive artifacts
@@ -476,13 +480,15 @@ jobs:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{github.workspace}}/extra/thirdParty-libraries-win-x86.7z
+          files: ${{github.workspace}}/extra/thirdParty-libraries-win-${{matrix.target}}.7z
 
       - name: Build qmmp project
         run: |
           qmake -v
-          qmake qmmp/
-          make -j2
+          qmake qmmp
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          mingw32-make -j2
         working-directory: ${{github.workspace}}
 
       - name: Build qmmp package
@@ -498,7 +504,7 @@ jobs:
           cp ${{env.WIN_QMMP_DEPS_PATH}}/liboptimfrog/bin/libOptimFROG.dll bin/${{env.TTK_VERSTION}}
           mv bin ${{runner.workspace}}/qmmp
           # add portable binary package
-          7z a qmmp-win-x86.7z ${{runner.workspace}}/qmmp
+          7z a qmmp-win-${{matrix.target}}.7z ${{runner.workspace}}/qmmp
         working-directory: ${{github.workspace}}
 
       - name: Archive artifacts
@@ -507,12 +513,13 @@ jobs:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{github.workspace}}/qmmp-win-x86.7z
+          files: ${{github.workspace}}/qmmp-win-${{matrix.target}}.7z
 
       - name: Clean up qmmp build
+        shell: bash
         run: |
-          rm -rf ${{github.workspace}}
-          rm -rf ${{runner.workspace}}/thirdParty
+          rm -rf "${{github.workspace}}"
+          rm -rf "${{runner.workspace}}/thirdParty"
         working-directory: ${{runner.workspace}}
 
       - name: Clone ttk music player module
@@ -520,12 +527,52 @@ jobs:
         working-directory: ${{runner.workspace}}
 
       - name: Create build dir
+        shell: bash
         run: mkdir build
         working-directory: ${{runner.workspace}}
 
       - name: Build ttk music player project
         run: |
           cmake --version
-          cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}}/libTTKqmmp.a
-          make -j2 && make install
+          $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+          [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
+          cmake ${{github.workspace}} -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DCMAKE_PREFIX_PATH=${{env.QT_ROOT_DIR}} -DTTK_QT_VERSION=5 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}}/libTTKqmmp.a
+          mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/build
+
+      - name: Build ttk music player package
+        run: |
+          # add dependency for openssl
+          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z -o openssl.7z
+          7z x openssl.7z
+          cp win${{matrix.arch}}/*.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          # add dependency for theme
+          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z -o theme.7z
+          7z x theme.7z
+          mv GTheme ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          # add dependency for global plugins
+          curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-win.7z -o qmmp-gplugins-win.7z
+          7z x qmmp-gplugins-win.7z
+          mv GPlugins ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          # add dependency for qmmp library
+          cp -rf ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}}
+          cd ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          # add dependency libraries and so on
+          windeployqt ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/TTKService.exe
+          cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libgcc_s_seh-1.dll ${{env.TTK_MODULE}}
+          cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libstdc++-6.dll ${{env.TTK_MODULE}}
+          cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
+          cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          # remove usless library dependency
+          Get-ChildItem -Filter "*.a" -Recurse | Remove-Item -Force
+          # add portable binary package
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.7z ${{env.TTK_MODULE}}
+        working-directory: ${{runner.workspace}}/install
+
+      - name: Archive artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{env.TTK_VERSTION}}
+          token: ${{secrets.GITHUB_TOKEN}}
+          generate_release_notes: false
+          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.7z

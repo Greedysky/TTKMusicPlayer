@@ -10,13 +10,13 @@ env:
 
 jobs:
   build:
-    name: Build on linux
+    name: Build on Qt5
     strategy:
       matrix:
-        qt_version: [5.9.9]
         os: [ubuntu-22.04]
 
     env:
+      QT_VERSION: 5.9.9
       QMMP_DEPS_PATH: ${{github.workspace}}/extra/gcc
 
     runs-on: ${{matrix.os}}
@@ -29,12 +29,12 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{runner.workspace}}/Qt
-          key: ${{runner.os}}-QtCache-${{matrix.qt_version}}
+          key: ${{runner.os}}-QtCache-${{env.QT_VERSION}}
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: ${{matrix.qt_version}}
+          version: ${{env.QT_VERSION}}
           target: desktop
           modules: qtwebengine
           cache: 'true'
@@ -445,8 +445,8 @@ jobs:
             cp /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so ../lib
             cp /usr/lib/x86_64-linux-gnu/nss/libsoftokn3.so ../lib
           fi
-          cp ${{runner.workspace}}/Qt/${{matrix.qt_version}}/gcc_64/libexec/* .
-          cp ${{runner.workspace}}/Qt/${{matrix.qt_version}}/gcc_64/resources/* .
+          cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/gcc_64/libexec/* .
+          cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/gcc_64/resources/* .
           cd ../../
           # add dependency for openssl
           wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z
