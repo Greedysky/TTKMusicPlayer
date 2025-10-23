@@ -130,7 +130,8 @@ bool PxFileReader::load(const QString &path)
         return false;
     }
 
-    pxtnVOMITPREPARATION prep = {0};
+    pxtnVOMITPREPARATION prep;
+    memset(&prep, 0, sizeof(prep));
 //        prep.flags |= pxtnVOMITPREPFLAG_loop; // don't loop
     prep.start_pos_float = 0;
     prep.master_volume = 1.0f; //(volume / 100.0f);
@@ -145,7 +146,8 @@ bool PxFileReader::load(const QString &path)
 
 void PxFileReader::seek(qint64 time)
 {
-    pxtnVOMITPREPARATION prep = {0};
+    pxtnVOMITPREPARATION prep;
+    memset(&prep, 0, sizeof(prep));
     prep.start_pos_sample = sampleRate() * time / 1000;
     prep.master_volume = 1.0f; //(volume / 100.0f);
     m_pxs->moo_preparation(&prep);

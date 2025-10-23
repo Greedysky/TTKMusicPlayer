@@ -33,8 +33,8 @@ static const char* findExtension(const char *path, int *offset)
 
 static bool loadMDAT(TfmxState *state, const char *mdatName, const char *smplName)
 {
-    TfmxData mdat = {0};
-    TfmxData smpl = {0};
+    TfmxData mdat = {0, 0, 0};
+    TfmxData smpl = {0, 0, 0};
 
     // first load mdat to memory
     QFile mdatFile(mdatName);
@@ -69,7 +69,7 @@ static bool loadTFM(TfmxState *state, const char *path)
         return false;
     }
 
-    TfmxData mdat = {0};
+    TfmxData mdat = {0, 0, 0};
     const QByteArray &mdatBuffer = mdatFile.readAll();
     mdat.data = (U8*)mdatBuffer.data();
 
@@ -99,7 +99,7 @@ static bool loadTFM(TfmxState *state, const char *path)
     mdat.data += 8;  // skipping res
     mdat.size = sOffset - 20 - sizeof(TFMXHeader);
 
-    TfmxData smpl = {0};
+    TfmxData smpl = {0, 0, 0};
     smpl.data = raw + sOffset;
     smpl.size = tOffset - sOffset;
 

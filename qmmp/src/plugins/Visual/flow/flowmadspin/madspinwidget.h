@@ -29,6 +29,9 @@
 #    define QtOpenGLWidget QGLWidget
 #  endif
 #else
+#  if defined Q_OS_WIN && defined QT_OPENGL_ES_2
+#    undef QT_OPENGL_ES_2
+#  endif
 #  include <QGLWidget>
 #  define QtOpenGLWidget QGLWidget
 #endif

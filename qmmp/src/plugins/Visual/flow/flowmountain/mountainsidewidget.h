@@ -21,6 +21,13 @@
 
 #include "mountainwidget.h"
 
+#ifdef NUM_BANDS
+#  undef NUM_BANDS
+#endif
+#ifdef BAR_SPACING
+#  undef BAR_SPACING
+#endif
+
 #define NUM_BANDS 16
 #define BAR_SPACING 0.2
 

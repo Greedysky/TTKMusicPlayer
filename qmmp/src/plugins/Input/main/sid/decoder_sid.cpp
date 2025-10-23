@@ -84,7 +84,7 @@ bool DecoderSID::initialize()
         m_length = settings.value("use_length", false).toBool() ? (settings.value("song_length", 180).toInt() * 1000) : (QFileInfo(filePath).size() * 8.0 / bitrate());
     }
 
-    qDebug("DecoderSID: song length: %d", m_length);
+    qDebug("DecoderSID: song length: %ld", m_length);
 
     sidbuilder *rs = nullptr;
     if(settings.value("engine", "residfp").toString() == "residfp")

@@ -49,7 +49,7 @@ void CrossfadePlugin::applyEffect(Buffer *b)
                 m_buffer = (float *)realloc(m_buffer, m_bufferSize * sizeof(float));
                 if(!m_buffer)
                 {
-                    qWarning("CrossfadePlugin: unable to allocate  %zu bytes", m_bufferSize);
+                    qWarning("CrossfadePlugin: unable to allocate %u bytes", m_bufferSize);
                     m_bufferSize = 0;
                     if(buffer)
                     {

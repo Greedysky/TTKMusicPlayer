@@ -36,6 +36,7 @@ static void blurThen(uint32_t *table, int &index, int w, int h, int x, int y, tr
 // Transform functions ---------------------------------------------------------
 static uint32_t zoomNothing(int w, int h, int x, int y)
 {
+    Q_UNUSED(h);
     return (y * w) + x;
 }
 

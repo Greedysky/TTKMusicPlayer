@@ -337,7 +337,7 @@ static int loadData(VisImage *image, const char *name)
     return error ? -1 : 0;
 }
 
-static int freeData(VisImage *image)
+static void freeData(VisImage *image)
 {
     if(image->buffer)
     {
@@ -346,7 +346,7 @@ static int freeData(VisImage *image)
     }
 }
 
-static int loadTextrue(VisImage *image, const QString &bmp, GLuint texture)
+static void loadTextrue(VisImage *image, const QString &bmp, GLuint texture)
 {
     QString tmp("color.raw");
     QFile::copy(":/data/" + bmp, tmp);
