@@ -74,7 +74,7 @@ bool DecoderSndFileFactory::canDecode(QIODevice *input) const
                 }
                 else if(!memcmp(buf, "JUNK", 4) || !memcmp(buf, "bext", 4) || !memcmp(buf, "fact", 4))
                 {
-                    size_t size = buf[4] | buf[5] << 8 | buf[6] << 16 | buf[7] << 24;
+                    const size_t size = buf[4] | buf[5] << 8 | buf[6] << 16 | buf[7] << 24;
                     if(!input->seek(input->pos() + size + 8))
                         break;
                 }
