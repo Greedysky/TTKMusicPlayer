@@ -555,16 +555,28 @@ jobs:
           7z x qmmp-gplugins-win.7z
           mv GPlugins ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           # add dependency for qmmp library
-          cp -rf ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}}
-          cd ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          cp ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}} -Recurse -Container -Force
           # add dependency libraries and so on
           windeployqt ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/TTKService.exe
-          cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libgcc_s_seh-1.dll ${{env.TTK_MODULE}}
+          if(${{matrix.arch}} -eq 32)
+          {
+            cp ${{env.WIN_MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+            cp ${{env.WIN_MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}} -Force
+            cp ${{env.WIN_MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}} -Force
+            cp ${{env.WIN_MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}
+            rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libgcc_s_seh-1.dll
+          }
+          else
+          {
+            cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libgcc_s_seh-1.dll ${{env.TTK_MODULE}}
+          }
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libstdc++-6.dll ${{env.TTK_MODULE}}
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5WinExtras.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           # remove usless library dependency
-          Get-ChildItem -Filter "*.a" -Recurse | Remove-Item -Force
+          ls -Filter "*.a" -Recurse | Remove-Item -Force
           # add portable binary package
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
@@ -572,7 +584,7 @@ jobs:
       - name: Archive artifacts
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{env.TTK_VERSTION}}
+          tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
           files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.7z

@@ -312,6 +312,12 @@ find_library(TTK_QMMP_LIBRARY
   PATHS ${LIBRARY_OUTPUT_PATH}
 )
 
+if(TTK_QMMP_LIBRARY)
+  message(STATUS "Found TTKqmmp library: " ${TTK_QMMP_LIBRARY})
+else()
+  message(FATAL_ERROR "Could not find TTKqmmp library")
+endif()
+
 # qmmp include
 include_directories(${TTK_THIRDPARTY_DIR}/TTKqmmp)
 if(TTK_QT_VERSION VERSION_EQUAL "4" AND UNIX AND NOT APPLE)

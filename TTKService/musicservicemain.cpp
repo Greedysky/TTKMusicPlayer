@@ -68,8 +68,6 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    TTK_INFO_STREAM(__GNUC__ << __GNUC_MINOR__ << __GNUC_PATCHLEVEL__);
-
     ttk.generateFont();
     ttk.codecForLocale();
     ttk.execute(args);
