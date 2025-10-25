@@ -12,7 +12,7 @@ static unsigned int      ScheduledBlocks        = 0;
 static int               PlayedWaveHeadersCount = 0;          // free index
 static WAVEHDR*          PlayedWaveHeaders [MAX_WAVEBLOCKS];
 
-static void CALLBACK wave_callback(HWAVE hWave, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)
+static void CALLBACK wave_callback(HWAVE hWave, UINT uMsg, DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
 {
     Q_UNUSED(hWave);
     Q_UNUSED(dwInstance);
@@ -76,7 +76,7 @@ bool OutputWaveOut::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat f
     fmt.nBlockAlign     = fmt.nChannels * fmt.wBitsPerSample/8;
     fmt.nAvgBytesPerSec = fmt.nSamplesPerSec * fmt.nChannels * fmt.wBitsPerSample/8;
 
-    switch(waveOutOpen (&dev, deviceID, &fmt, (DWORD)wave_callback, 0, CALLBACK_FUNCTION))
+    switch(waveOutOpen (&dev, deviceID, &fmt, (DWORD_PTR)wave_callback, 0, CALLBACK_FUNCTION))
     {
     case MMSYSERR_ALLOCATED:
         qWarning("OutputWaveOut: Device is already open.");
