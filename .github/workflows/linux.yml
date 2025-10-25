@@ -222,10 +222,8 @@ jobs:
 
       - name: Build library for liboptimfrog
         run: |
-          7z x OptimFROG_x64_5100.7z -oliboptimfrog
-          cd liboptimfrog
-          unzip OptimFROG_Linux_x64_5100.zip
-          cd OptimFROG_Linux_x64_5100/SDK
+          7z x OptimFROG_5100.7z -oliboptimfrog
+          cd liboptimfrog/linux64/SDK
           mkdir -p liboptimfrog/include
           mv Library liboptimfrog/lib && mv OptimFROG liboptimfrog/include
           mv liboptimfrog ${{env.QMMP_DEPS_PATH}}/liboptimfrog
