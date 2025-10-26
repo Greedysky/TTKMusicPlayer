@@ -551,6 +551,8 @@ jobs:
           # add dependency for global plugins
           curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-win.7z -o qmmp-gplugins-win.7z
           7z x qmmp-gplugins-win.7z
+          # copy old openssl library for avplayer
+          cp win32.old/*.dll GPlugins
           mv GPlugins ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           # add dependency for qmmp library
           cp ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}} -Recurse -Container -Force
@@ -577,6 +579,9 @@ jobs:
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           # remove usless library dependency
           ls -Filter "*.a" -Recurse | Remove-Item -Force
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/D3D*.dll
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/opengl32sw.dll
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/translations -Recurse
           # add portable binary package
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
