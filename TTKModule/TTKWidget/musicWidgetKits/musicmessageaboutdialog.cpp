@@ -38,7 +38,11 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
                                 QString("Built on %1 (%2)\n").arg(buildTime, md5.constData()) +
                                 QString("Based on Qt %1(%2)\n").arg(QT_VERSION_STR,
 #ifdef Q_OS_WIN
+#  if __i386__
                                 "MinGW 32bit"));
+#  else
+                                "MinGW 64bit"));
+#  endif
 #else
                                 "GCC x86_64"));
 #endif
