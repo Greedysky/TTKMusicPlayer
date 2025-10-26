@@ -84,7 +84,7 @@ jobs:
           7z x adplug-2.4.7z -olibadplug
           cd libadplug
           export PKG_CONFIG_PATH=${{env.QMMP_DEPS_PATH}}/libadplug/lib/pkgconfig:$PKG_CONFIG_PATH
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libadplug CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libadplug CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -110,7 +110,7 @@ jobs:
         run: |
           7z x libcddb-1.3.2.7z -olibcddb
           cd libcddb
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libcddb CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --without-cdio
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libcddb CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --without-cdio
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -119,7 +119,7 @@ jobs:
           7z x libcdio-2.1.0.7z -olibcdio
           cd libcdio
           ./autogen.sh
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libcdio CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-cxx --disable-example-progs --disable-cddb --without-cd-drive --without-cd-info --without-cdda-player --without-iso-info --without-iso-read --without-cd-read
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libcdio CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-cxx --disable-example-progs --disable-cddb --without-cd-drive --without-cd-info --without-cdda-player --without-iso-info --without-iso-read --without-cd-read
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -128,7 +128,7 @@ jobs:
           7z x libcdio-paranoia-10.2+2.0.1.7z -olibcdio-paranoia
           cd libcdio-paranoia
           export PKG_CONFIG_PATH=${{env.QMMP_DEPS_PATH}}/libcdio/lib/pkgconfig:$PKG_CONFIG_PATH
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libcdio CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-cxx --disable-example-progs
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libcdio CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-cxx --disable-example-progs
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -136,7 +136,7 @@ jobs:
         run: |
           7z x enca-1.19.7z -olibenca
           cd libenca
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libenca CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libenca CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -154,7 +154,7 @@ jobs:
           7z x speex-1.2.1.7z -olibspeex
           cd libspeex
           ./autogen.sh
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libspeex CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libspeex CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -173,7 +173,7 @@ jobs:
         run: |
           7z x libogg-1.3.6.7z -olibogg
           cd libogg
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libogg CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libogg CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -191,7 +191,7 @@ jobs:
           7z x libgme-0.6.4.7z -olibgme
           cd libgme
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.QMMP_DEPS_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_SHARED_LIBS=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -208,7 +208,7 @@ jobs:
         run: |
           7z x mpg123-1.33.3.7z -olibmpg123
           cd libmpg123
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libmpg123 CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libmpg123 CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -216,7 +216,7 @@ jobs:
         run: |
           7z x libopenmpt-0.4.51.7z -olibopenmpt
           cd libopenmpt
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libopenmpt CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --without-zlib --without-mpg123 --without-ogg --without-vorbis --without-vorbisfile --without-pulseaudio --without-portaudio --without-portaudiocpp --without-sndfile --without-flac
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libopenmpt CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --without-zlib --without-mpg123 --without-ogg --without-vorbis --without-vorbisfile --without-pulseaudio --without-portaudio --without-portaudiocpp --without-sndfile --without-flac
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -233,7 +233,7 @@ jobs:
         run: |
           7z x opus-1.5.2.7z -olibopus
           cd libopus
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-extra-programs
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-extra-programs
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -242,7 +242,7 @@ jobs:
           7z x opusfile-0.12.7z -olibopusfile
           cd libopusfile
           export PKG_CONFIG_PATH=${{env.QMMP_DEPS_PATH}}/libogg/lib/pkgconfig:${{env.QMMP_DEPS_PATH}}/libopusfile/lib/pkgconfig:$PKG_CONFIG_PATH
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-http --disable-doc
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-http --disable-doc
           make -j2 && make install
           # add opus header patch
           sed -i 's/<opus_/<opus\/opus_/g' ${{env.QMMP_DEPS_PATH}}/libopusfile/include/opus/opusfile.h
@@ -259,7 +259,7 @@ jobs:
           fi
           cd libprojectm
           ./autogen.sh
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libprojectm CFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" CXXFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" --enable-static
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libprojectm CFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" CXXFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" --enable-static --disable-shared
           make -j2 && make install
           # fix install headers
           mkdir ${{env.QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
@@ -279,7 +279,7 @@ jobs:
         run: |
           7z x libsidplayfp-2.3.1.patch.7z -olibsidplayfp
           cd libsidplayfp
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libsidplayfp CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libsidplayfp CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -323,7 +323,7 @@ jobs:
         run: |
           7z x libxmp-4.6.3-patch.7z -olibxmp
           cd libxmp
-          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libxmp CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-depackers --disable-prowizard
+          ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libxmp CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-depackers --disable-prowizard
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 

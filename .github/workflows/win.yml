@@ -131,7 +131,7 @@ jobs:
           cd libadplug
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           export PKG_CONFIG_PATH=${{env.UNIX_QMMP_DEPS_PATH}}/libadplug/lib/pkgconfig:$PKG_CONFIG_PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libadplug CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libadplug CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -163,7 +163,7 @@ jobs:
           7z x libcddb-1.3.2.7z -olibcddb
           cd libcddb
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libcddb CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --without-cdio
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libcddb CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --without-cdio
           # fix build for regex
           echo "#define HAVE_REGEX_H 1" >> config.h
           cp ${{env.UNIX_MINGW_OPT_PATH}}/include/regex.h include/cddb
@@ -181,7 +181,7 @@ jobs:
           cd libcdio
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           ./autogen.sh
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libcdio CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-cxx --disable-example-progs --disable-cddb --without-cd-drive --without-cd-info --without-cdda-player --without-iso-info --without-iso-read --without-cd-read
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libcdio CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-cxx --disable-example-progs --disable-cddb --without-cd-drive --without-cd-info --without-cdda-player --without-iso-info --without-iso-read --without-cd-read
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -192,7 +192,7 @@ jobs:
           cd libcdio-paranoia
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           export PKG_CONFIG_PATH=${{env.UNIX_QMMP_DEPS_PATH}}/libcdio/lib/pkgconfig:$PKG_CONFIG_PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libcdio CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-cxx --disable-example-progs
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libcdio CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-cxx --disable-example-progs
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -202,7 +202,7 @@ jobs:
           7z x enca-1.19.7z -olibenca
           cd libenca
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libenca CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libenca CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -224,7 +224,7 @@ jobs:
           cd libspeex
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           ./autogen.sh
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libspeex CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libspeex CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -247,7 +247,7 @@ jobs:
           7z x libogg-1.3.6.7z -olibogg
           cd libogg
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libogg CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libogg CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -269,10 +269,8 @@ jobs:
           mkdir build && cd build
           $envPath = "${{env.WIN_MINGW_PATH}};" + [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
           [Environment]::SetEnvironmentVariable("PATH", $envPath, [System.EnvironmentVariableTarget]::Process)
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_SHARED_LIBS=OFF
           mingw32-make -j2 && mingw32-make install
-          # fix install headers
-          mv ${{env.WIN_QMMP_DEPS_PATH}}/libgme/lib/libgme-static.a ${{env.WIN_QMMP_DEPS_PATH}}/libgme/lib/libgme.a
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libmpcdec
@@ -292,7 +290,7 @@ jobs:
           7z x mpg123-1.33.3.7z -olibmpg123
           cd libmpg123
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libmpg123 CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libmpg123 CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -302,7 +300,7 @@ jobs:
           7z x libopenmpt-0.4.51.7z -olibopenmpt
           cd libopenmpt
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libopenmpt CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --without-zlib --without-mpg123 --without-ogg --without-vorbis --without-vorbisfile --without-pulseaudio --without-portaudio --without-portaudiocpp --without-sndfile --without-flac
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libopenmpt CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --without-zlib --without-mpg123 --without-ogg --without-vorbis --without-vorbisfile --without-pulseaudio --without-portaudio --without-portaudiocpp --without-sndfile --without-flac
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -324,7 +322,7 @@ jobs:
           7z x opus-1.5.2.7z -olibopus
           cd libopus
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-extra-programs
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-extra-programs
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -335,7 +333,7 @@ jobs:
           cd libopusfile
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           export PKG_CONFIG_PATH=${{env.UNIX_QMMP_DEPS_PATH}}/libogg/lib/pkgconfig:${{env.UNIX_QMMP_DEPS_PATH}}/libopusfile/lib/pkgconfig:$PKG_CONFIG_PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-http --disable-doc
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-http --disable-doc
           make -j2 && make install
           # add opus header patch
           sed -i 's/<opus_/<opus\/opus_/g' ${{env.UNIX_QMMP_DEPS_PATH}}/libopusfile/include/opus/opusfile.h
@@ -364,7 +362,7 @@ jobs:
           cd libprojectm
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           ./autogen.sh
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm CFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" CXXFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" LDFLAGS="-L. -lopengl32" --enable-static
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm CFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" CXXFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" LDFLAGS="-L. -lopengl32" --enable-static --disable-shared
           make -j2 && make install
           # fix install headers
           mkdir ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
@@ -389,7 +387,7 @@ jobs:
           7z x libsidplayfp-2.3.1.patch.7z -olibsidplayfp
           cd libsidplayfp
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libsidplayfp CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libsidplayfp CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
@@ -443,7 +441,7 @@ jobs:
           7z x libxmp-4.6.3-patch.7z -olibxmp
           cd libxmp
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libxmp CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-depackers --disable-prowizard
+          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libxmp CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-depackers --disable-prowizard
           make -j2 && make install
         working-directory: ${{runner.workspace}}/thirdParty
 
