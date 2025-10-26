@@ -5,6 +5,18 @@ name: CI-Build
 on: workflow_dispatch
 
 jobs:
-  win7:
+  ubuntu:
+    uses: ./.github/workflows/ubuntu.yml
+    secrets: inherit
+
+  linux:
+    uses: ./.github/workflows/linux.yml
+    secrets: inherit
+
+  win:
     uses: ./.github/workflows/win.yml
+    secrets: inherit
+
+  doxygen:
+    uses: ./.github/workflows/doxygen.yml
     secrets: inherit

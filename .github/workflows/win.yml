@@ -552,10 +552,10 @@ jobs:
           curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-win.7z -o qmmp-gplugins-win.7z
           7z x qmmp-gplugins-win.7z
           mv GPlugins ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          # remove usless qmmp demo bin
-          rm demo.exe
           # add dependency for qmmp library
           cp ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}} -Recurse -Container -Force
+          # remove usless qmmp demo bin
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/demo.exe
           # add dependency libraries and so on
           windeployqt ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/TTKService.exe
           if(${{matrix.arch}} -eq 32)

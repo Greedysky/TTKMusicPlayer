@@ -262,8 +262,8 @@ jobs:
           ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libprojectm CFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" CXXFLAGS="-fPIC -O3 -DDISABLE_NATIVE_PRESETS" --enable-static
           make -j2 && make install
           # fix install headers
-          mkdir ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-          mv ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/*.h* ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+          mkdir ${{env.QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
+          mv ${{env.QMMP_DEPS_PATH}}/libprojectm/include/*.h* ${{env.QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libsamplerate
