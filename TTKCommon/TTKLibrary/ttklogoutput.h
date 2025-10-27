@@ -38,6 +38,14 @@ namespace TTK
      * Remove log output handler.
      */
     TTK_MODULE_EXPORT void removeLogHandler();
+    /*!
+     * Set max size for log file.
+     */
+    TTK_MODULE_EXPORT void setLogMaxSize(size_t maxSize = 5 * 1024 * 1024);
+    /*!
+     * Remove log file after max second.
+     */
+    TTK_MODULE_EXPORT void removeLogHistory(size_t maxSecond = 7 * 24 * 3600);
 
 }
 

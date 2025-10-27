@@ -4,8 +4,6 @@
 #include <QDir>
 #include <QApplication>
 
-#define LOG_MAXSIZE  5 * 1024 * 1024
-
 #if !TTK_QT_VERSION_CHECK(5,0,0)
 class QMessageLogContext {};
 using QtMessageHandler = QtMsgHandler;
@@ -28,6 +26,15 @@ public:
      * Uninstall log output handler.
      */
     void uninstall();
+
+    /*!
+     * Set max size for log file.
+     */
+    void setMaxSize(size_t maxSize) noexcept;
+    /*!
+     * Remove log file after max second.
+     */
+    void removeHistory(size_t maxSecond) noexcept;
 
     /*!
      * Log output handler.
@@ -64,6 +71,7 @@ private:
 private:
     QFile m_file;
     QString m_module, m_dateTime;
+    int m_maxSize, m_maxSecond;
     QMutex m_mutex;
     QtMessageHandler m_defaultHandler;
 
@@ -74,6 +82,8 @@ private:
 TTKLogOutput::TTKLogOutput()
     : m_file(),
       m_dateTime(),
+      m_maxSize(),
+      m_maxSecond(),
       m_mutex(),
       m_defaultHandler(nullptr)
 {
@@ -100,6 +110,30 @@ void TTKLogOutput::initialize(const QString &module)
     }
 }
 
+static void removeFiles(const QString &path, const qint64 time)
+{
+    QDir dir(path);
+    for(const QFileInfo &fin : dir.entryInfoList())
+    {
+        const QString &fileName = fin.fileName();
+        if(fileName == "." || fileName == "..")
+        {
+            continue;
+        }
+
+#if TTK_QT_VERSION_CHECK(5,10,0)
+        const qint64 old = fin.birthTime().toMSecsSinceEpoch();
+#else
+        const qint64 old = fin.created().toMSecsSinceEpoch();
+#endif
+        const qint64 current = QDateTime::currentMSecsSinceEpoch();
+        if(current - old > time)
+        {
+            QFile::remove(fin.absoluteFilePath());
+        }
+    }
+}
+
 void TTKLogOutput::install()
 {
     const QString &path = LOG_DIR_PATH;
@@ -109,6 +143,10 @@ void TTKLogOutput::install()
         dir.mkdir(path);
     }
 
+    // remove old history
+    removeFiles(path, m_maxSecond);
+
+    // open new log handler
     open();
 
     if(!m_defaultHandler)
@@ -126,6 +164,16 @@ void TTKLogOutput::uninstall()
 
         m_file.close();
     }
+}
+
+void TTKLogOutput::setMaxSize(size_t maxSize) noexcept
+{
+    m_maxSize = maxSize;
+}
+
+void TTKLogOutput::removeHistory(size_t maxSecond) noexcept
+{
+    m_maxSecond = maxSecond;
 }
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
@@ -155,7 +203,7 @@ void TTKLogOutput::open()
     {
         m_file.setFileName(fileName + QString("_%1.log").arg(index++));
     }
-    while(m_file.size() >= LOG_MAXSIZE);
+    while(m_file.size() >= m_maxSize);
 
     if(!m_file.open(QIODevice::WriteOnly | QIODevice::Append))
     {
@@ -189,7 +237,7 @@ void TTKLogOutput::write(QtMsgType type, const QMessageLogContext &context, cons
     if(m_file.isOpen())
     {
         const QString &date = QDate::currentDate().toString(TTK_DATE_FORMAT);
-        const bool moreLarge = m_file.size() >= LOG_MAXSIZE;
+        const bool moreLarge = m_file.size() >= m_maxSize;
         const bool nextDate = date.compare(m_dateTime, Qt::CaseInsensitive) != 0;
 
         if(moreLarge || nextDate)
@@ -217,4 +265,14 @@ void TTK::installLogHandler()
 void TTK::removeLogHandler()
 {
     TTKSingleton<TTKLogOutput>::instance()->uninstall();
+}
+
+void TTK::setLogMaxSize(size_t maxSize)
+{
+    TTKSingleton<TTKLogOutput>::instance()->setMaxSize(maxSize);
+}
+
+void TTK::removeLogHistory(size_t maxSecond)
+{
+    TTKSingleton<TTKLogOutput>::instance()->removeHistory(maxSecond);
 }

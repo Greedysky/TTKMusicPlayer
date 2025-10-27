@@ -77,17 +77,18 @@ bool TTK::File::copyPath(const QString &srcPath, const QString &dstPath, bool ov
         return false;
     }
 
-    for(const QFileInfo &fileInfo : QDir(srcPath).entryInfoList())
+    const QDir dir(srcPath);
+    for(const QFileInfo &fin : dir.entryInfoList())
     {
-        const QString &fileName = fileInfo.fileName();
+        const QString &fileName = fin.fileName();
         if(fileName == "." || fileName == "..")
         {
             continue;
         }
 
-        if(fileInfo.isDir())
+        if(fin.isDir())
         {
-            if(!TTK::File::copyPath(fileInfo.filePath(), dstDir.filePath(fileName), overwrite))
+            if(!TTK::File::copyPath(fin.filePath(), dstDir.filePath(fileName), overwrite))
             {
                 return false;
             }
@@ -99,7 +100,7 @@ bool TTK::File::copyPath(const QString &srcPath, const QString &dstPath, bool ov
                 dstDir.remove(fileName);
             }
 
-            if(!QFile::copy(fileInfo.filePath(), dstDir.filePath(fileName)))
+            if(!QFile::copy(fin.filePath(), dstDir.filePath(fileName)))
             {
                 return false;
             }
