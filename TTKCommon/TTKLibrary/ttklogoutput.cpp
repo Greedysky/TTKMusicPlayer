@@ -82,8 +82,8 @@ private:
 TTKLogOutput::TTKLogOutput()
     : m_file(),
       m_dateTime(),
-      m_maxSize(),
-      m_maxSecond(),
+      m_maxSize(5 * 1024 * 1024),
+      m_maxSecond(7 * 24 * 3600),
       m_mutex(),
       m_defaultHandler(nullptr)
 {
@@ -127,7 +127,7 @@ static void removeFiles(const QString &path, const qint64 time)
         const qint64 old = fin.created().toMSecsSinceEpoch();
 #endif
         const qint64 current = QDateTime::currentMSecsSinceEpoch();
-        if(current - old > time)
+        if((current - old) / 1000 > time)
         {
             QFile::remove(fin.absoluteFilePath());
         }

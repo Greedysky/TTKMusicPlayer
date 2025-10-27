@@ -41,11 +41,11 @@ namespace TTK
     /*!
      * Set max size for log file.
      */
-    TTK_MODULE_EXPORT void setLogMaxSize(size_t maxSize = 5 * 1024 * 1024);
+    TTK_MODULE_EXPORT void setLogMaxSize(size_t maxSize);
     /*!
      * Remove log file after max second.
      */
-    TTK_MODULE_EXPORT void removeLogHistory(size_t maxSecond = 7 * 24 * 3600);
+    TTK_MODULE_EXPORT void removeLogHistory(size_t maxSecond);
 
 }
 
