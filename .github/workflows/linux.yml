@@ -329,10 +329,10 @@ jobs:
 
       - name: Build library for libsunvox
         run: |
-          7z x sunvox-2.1.2b.7z -olibsunvox
+          7z x sunvox-2.1.3.7z -olibsunvox
           cd libsunvox
           mkdir ${{env.QMMP_DEPS_PATH}}/libsunvox
-          mv linux/lib_x86_64/sunvox.so ${{env.QMMP_DEPS_PATH}}/libsunvox
+          mv linux/x64/sunvox.so ${{env.QMMP_DEPS_PATH}}/libsunvox
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libttk

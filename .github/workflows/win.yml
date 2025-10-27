@@ -447,10 +447,10 @@ jobs:
 
       - name: Build library for libsunvox
         run: |
-          7z x sunvox-2.1.2b.7z -olibsunvox
+          7z x sunvox-2.1.3.7z -olibsunvox
           cd libsunvox
           mkdir ${{env.WIN_QMMP_DEPS_PATH}}/libsunvox
-          mv windows/lib_x86_64/sunvox.dll ${{env.WIN_QMMP_DEPS_PATH}}/libsunvox
+          mv windows/${{matrix.target}}/sunvox.dll ${{env.WIN_QMMP_DEPS_PATH}}/libsunvox
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libttk
@@ -549,9 +549,7 @@ jobs:
           # add dependency for global plugins
           curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-win.7z -o qmmp-gplugins-win.7z
           7z x qmmp-gplugins-win.7z
-          # copy old openssl library for avplayer
-          cp win32.old/*.dll GPlugins
-          mv GPlugins ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          mv GPlugins_${{matrix.target}} ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/GPlugins
           # add dependency for qmmp library
           cp ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}} -Recurse -Container -Force
           # remove usless qmmp demo bin
@@ -573,13 +571,46 @@ jobs:
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libstdc++-6.dll ${{env.TTK_MODULE}}
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5OpenGL.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5WinExtras.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           # remove usless library dependency
           ls -Filter "*.a" -Recurse | Remove-Item -Force
-          #rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/D3D*.dll
-          #rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/opengl32sw.dll
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/D3D*.dll
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/opengl32sw.dll
           rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/translations -Recurse
+        working-directory: ${{runner.workspace}}/install
+
+      - name: Add output path for install package
+        shell: bash
+        run: |
+          sed -i "11d" "${{github.workspace}}/TTKUtils/ttk.iss"
+          sed -i "11i\#define OutputPath \"${{runner.workspace}}/install\"" "${{github.workspace}}/TTKUtils/ttk.iss"
+          cat "${{github.workspace}}/TTKUtils/ttk.iss"
+        working-directory: ${{runner.workspace}}
+
+      - name: Install Inno Setup 6
+        run: |
+          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/InnoSetup.7z -o InnoSetup.7z
+          7z x InnoSetup.7z
+        working-directory: ${{runner.workspace}}
+
+#      - name: Build ttk music player install package
+#        run: |
+#          iscc.exe ${{github.workspace}}/TTKUtils/ttk.iss
+#          mv ${{runner.workspace}}/install/v${{env.TTK_VERSTION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.exe
+#        working-directory: ${{runner.workspace}}/InnoSetup
+
+#      - name: Archive artifacts
+#        uses: softprops/action-gh-release@v2
+#        with:
+#          tag_name: continuous-build
+#          token: ${{secrets.GITHUB_TOKEN}}
+#          generate_release_notes: false
+#          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.exe
+
+      - name: Build ttk music player portable package
+        run: |
           # add portable configuration
           cp ${{github.workspace}}/TTKUtils/ttk_portable ${{env.TTK_MODULE}}
           "便携模式运行 TTKMusicPlayer.exe`r`n删除 ttk_portable 禁用便携模式" > ${{env.TTK_MODULE}}/说明.txt
