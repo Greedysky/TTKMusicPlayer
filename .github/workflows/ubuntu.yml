@@ -416,7 +416,7 @@ jobs:
           rm demo
           # add dependency libraries and so on
           linuxdeploy-x86_64.AppImage --executable=TTKService --appdir=image --plugin=qt
-          rm image/usr/lib/libTTK*.so image/usr/lib/libttkzip.so image/usr/lib/libzlib.so
+          rm image/usr/translations/*.qm image/usr/lib/libTTK*.so image/usr/lib/libttkzip.so image/usr/lib/libzlib.so
           mv image/usr/lib image/usr/plugins image/usr/translations image/usr/bin/qt.conf ../
           rm -rf image
           # add dependency for nss and webkit

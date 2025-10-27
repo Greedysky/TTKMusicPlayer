@@ -577,9 +577,12 @@ jobs:
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           # remove usless library dependency
           ls -Filter "*.a" -Recurse | Remove-Item -Force
-          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/D3D*.dll
-          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/opengl32sw.dll
+          #rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/D3D*.dll
+          #rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/opengl32sw.dll
           rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/translations -Recurse
+          # add portable configuration
+          cp ${{github.workspace}}/TTKUtils/ttk_portable ${{env.TTK_MODULE}}
+          "便携模式运行 TTKMusicPlayer.exe`r`n删除 ttk_portable 禁用便携模式" > ${{env.TTK_MODULE}}/说明.txt
           # add portable binary package
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
