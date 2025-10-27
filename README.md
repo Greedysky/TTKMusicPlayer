@@ -22,6 +22,7 @@ Usage
  * Qt stable version is tested on Qt4.x for windows-mingw 32bit
  * Qt stable version is tested on Qt4.x for ubuntu-linux-gcc 64bit
  * Qt stable version is tested on Qt5.x for windows-mingw 32bit
+ * Qt stable version is tested on Qt5.x for windows-mingw 64bit
  * Qt stable version is tested on Qt5.x for ubuntu-linux-gcc 64bit
 
 | Platform | Qt & Compiler     | Status                                                                 |
