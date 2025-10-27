@@ -31,9 +31,9 @@ INCLUDEPATH += $$EXTRA_PREFIX/libprojectm/include
 
 win32{
     contains(DEFINES, PROJECTM_4){
-        LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM-4.dll -lprojectM-4-playlist.dll
+        LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM-4 -lprojectM-4-playlist
     }else{
-        LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM.dll
+        LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM
     }
     LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lglu32 -lopengl32
 }
