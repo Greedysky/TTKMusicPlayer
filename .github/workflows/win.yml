@@ -592,22 +592,22 @@ jobs:
       - name: Install Inno Setup 6
         run: |
           curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/InnoSetup.7z -o InnoSetup.7z
-          7z x InnoSetup.7z
+          7z x InnoSetup.7z -oInnoSetup
         working-directory: ${{runner.workspace}}
 
-#      - name: Build ttk music player install package
-#        run: |
-#          iscc.exe ${{github.workspace}}/TTKUtils/ttk.iss
-#          mv ${{runner.workspace}}/install/v${{env.TTK_VERSTION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.exe
-#        working-directory: ${{runner.workspace}}/InnoSetup
+      - name: Build ttk music player install package
+        run: |
+          iscc.exe ${{github.workspace}}/TTKUtils/ttk.iss
+          mv ${{runner.workspace}}/install/v${{env.TTK_VERSTION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.exe
+        working-directory: ${{runner.workspace}}/InnoSetup
 
-#      - name: Archive artifacts
-#        uses: softprops/action-gh-release@v2
-#        with:
-#          tag_name: continuous-build
-#          token: ${{secrets.GITHUB_TOKEN}}
-#          generate_release_notes: false
-#          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.exe
+      - name: Archive artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: continuous-build
+          token: ${{secrets.GITHUB_TOKEN}}
+          generate_release_notes: false
+          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.exe
 
       - name: Build ttk music player portable package
         run: |
