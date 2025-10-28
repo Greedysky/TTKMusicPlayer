@@ -64,8 +64,10 @@ void MusicPlaylistFoundCategoryPopWidget::setCategory(const QString &server, QOb
 {
     MusicResultsCategoryList categorys;
     MusicCategoryConfigManager manager(server);
-    manager.fromFile(MusicCategoryConfigManager::Category::PlayList);
-    manager.readBuffer(categorys);
+    if(manager.fromFile(MusicCategoryConfigManager::Category::PlayList))
+    {
+        manager.readBuffer(categorys);
+    }
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
     QWidget *containWidget = new QWidget(m_containWidget);

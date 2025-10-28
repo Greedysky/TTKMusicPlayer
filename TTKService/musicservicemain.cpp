@@ -59,6 +59,8 @@ int main(int argc, char *argv[])
         }
     }
 
+    ttk.execute(args);
+
     if(app.isRunning())
     {
         MusicProcessClient client;
@@ -68,15 +70,14 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    ttk.generateFont();
-    ttk.codecForLocale();
-    ttk.execute(args);
-
     MusicConfigModule config;
     config.valid();
 
     MusicRunTimeManager manager;
     manager.execute();
+
+    ttk.generateFont();
+    ttk.codecForLocale();
 
     if(!manager.configVersionCheck())
     {

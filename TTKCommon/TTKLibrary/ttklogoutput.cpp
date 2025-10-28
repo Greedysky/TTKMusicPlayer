@@ -136,6 +136,11 @@ static void removeFiles(const QString &path, const qint64 time)
 
 void TTKLogOutput::install()
 {
+    if(m_defaultHandler)
+    {
+        return;
+    }
+
     const QString &path = LOG_DIR_PATH;
     const QDir dir(path);
     if(!dir.exists())
@@ -149,10 +154,7 @@ void TTKLogOutput::install()
     // open new log handler
     open();
 
-    if(!m_defaultHandler)
-    {
-        m_defaultHandler = qInstallMessageHandler(TTKLogOutput::loggerHandler);
-    }
+    m_defaultHandler = qInstallMessageHandler(TTKLogOutput::loggerHandler);
 }
 
 void TTKLogOutput::uninstall()

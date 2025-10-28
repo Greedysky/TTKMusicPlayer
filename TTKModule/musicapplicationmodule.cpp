@@ -280,11 +280,13 @@ void MusicApplicationModule::soundEffectChanged()
 
 void MusicApplicationModule::applyParameter()
 {
+    bool config = false;
 #ifdef Q_OS_WIN
     QFile file(TTK::applicationPath() + TTK_QT_CONFIG);
     if(file.open(QIODevice::ReadWrite))
     {
-        if(!(G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toBool() ? (file.write("[Platforms]\nWindowsArguments = dpiawareness=0\n") != -1) : file.remove()))
+        config = G_SETTING_PTR->value(MusicSettingManager::OtherHighDpiScalingEnable).toBool();
+        if(!(config ? (file.write("[Platforms]\nWindowsArguments = dpiawareness=0\n") != -1) : file.remove()))
         {
             G_SETTING_PTR->setValue(MusicSettingManager::OtherHighDpiScalingEnable, Qt::PartiallyChecked);
         }
@@ -325,8 +327,8 @@ void MusicApplicationModule::applyParameter()
     });
 #endif
     //
-    TTK::initiailizeLog(TTK_APP_NAME);
-    G_SETTING_PTR->value(MusicSettingManager::OtherLogTrackEnable).toBool() ? TTK::installLogHandler() : TTK::removeLogHandler();
+    config = G_SETTING_PTR->value(MusicSettingManager::OtherLogTrackEnable).toBool();
+    config ? TTK::installLogHandler() : TTK::removeLogHandler();
     //
     if(!m_screenSaverWidget)
     {

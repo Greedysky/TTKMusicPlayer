@@ -87,14 +87,12 @@ TTKAbstractXml::TTKAbstractXml()
 
 TTKAbstractXml::~TTKAbstractXml()
 {
-    delete m_file;
-    delete m_document;
+    close();
 }
 
 bool TTKAbstractXml::load(const QString &name)
 {
-    delete m_file;
-    delete m_document;
+    close();
 
     m_file = new QFile(name);
     m_document = new QDomDocument;
@@ -112,6 +110,14 @@ void TTKAbstractXml::save() const
     m_document->save(out, 4);
 }
 
+void TTKAbstractXml::close()
+{
+    delete m_file;
+    delete m_document;
+    m_file = nullptr;
+    m_document = nullptr;
+}
+
 bool TTKAbstractXml::reset()
 {
     if(!m_file || !m_document)
@@ -124,8 +130,7 @@ bool TTKAbstractXml::reset()
 
 bool TTKAbstractXml::fromFile(const QString &name)
 {
-    delete m_file;
-    delete m_document;
+    close();
 
     m_file = new QFile(name);
     m_document = new QDomDocument;
@@ -147,10 +152,8 @@ bool TTKAbstractXml::fromFile(const QString &name)
 
 bool TTKAbstractXml::fromString(const QString &data)
 {
-    delete m_file;
-    delete m_document;
+    close();
 
-    m_file = nullptr;
     m_document = new QDomDocument;
 #if TTK_QT_VERSION_CHECK(6,5,0)
     return TTKStaticCast(bool, m_document->setContent(data));
@@ -161,10 +164,8 @@ bool TTKAbstractXml::fromString(const QString &data)
 
 bool TTKAbstractXml::fromByteArray(const QByteArray &data)
 {
-    delete m_file;
-    delete m_document;
+    close();
 
-    m_file = nullptr;
     m_document = new QDomDocument;
 #if TTK_QT_VERSION_CHECK(6,5,0)
     return TTKStaticCast(bool, m_document->setContent(data));

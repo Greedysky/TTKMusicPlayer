@@ -249,8 +249,10 @@ void MusicPlaylistCategoryWidget::initialize()
 
     MusicResultsCategoryList categorys;
     MusicCategoryConfigManager manager(server);
-    manager.fromFile(MusicCategoryConfigManager::Category::PlayList);
-    manager.readBuffer(categorys);
+    if(manager.fromFile(MusicCategoryConfigManager::Category::PlayList))
+    {
+        manager.readBuffer(categorys);
+    }
 
     if(items.count() != categorys.count() - 1)
     {

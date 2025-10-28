@@ -6,6 +6,7 @@
 #include "musicfileutils.h"
 #include "musiccodecutils.h"
 #include "ttkversion.h"
+#include "ttklogoutput.h"
 
 #include <QFont>
 #include <QApplication>
@@ -106,6 +107,16 @@ QString TTK::languageQmmp(int index)
 
 void MusicRunTimeManager::execute() const
 {
+    MusicConfigManager manager;
+    if(manager.fromFile(COFIG_PATH_FULL))
+    {
+        manager.readBuffer();
+    }
+
+    // initiailize log module
+    TTK::initiailizeLog(TTK_APP_NAME);
+    G_SETTING_PTR->value(MusicSettingManager::OtherLogTrackEnable).toBool() ? TTK::installLogHandler() : TTK::removeLogHandler();
+
     TTK_INFO_STREAM("MusicApplication Run");
 
     TTK::TTKQmmp::updateBaseConfig();
@@ -127,10 +138,6 @@ void MusicRunTimeManager::execute() const
 
     //detect the current network state
     G_NETWORK_PTR->start();
-
-    MusicConfigManager manager;
-    manager.fromFile(COFIG_PATH_FULL);
-    manager.readBuffer();
 
     TTK::checkCacheSize();
     G_NETWORK_PTR->setBlockNetwork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toBool());

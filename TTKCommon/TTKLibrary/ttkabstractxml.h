@@ -123,6 +123,10 @@ public:
      */
     void save() const;
     /*!
+     * Close xml stream.
+     */
+    void close();
+    /*!
      * Reset xml stream data.
      */
     bool reset();
