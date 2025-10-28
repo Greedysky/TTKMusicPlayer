@@ -3,6 +3,8 @@
 #include <QSettings>
 #include <qmath.h>
 
+#include <cmath>
+
 BitcrusherPlugin *BitcrusherPlugin::m_instance = nullptr;
 
 BitcrusherPlugin::BitcrusherPlugin()
