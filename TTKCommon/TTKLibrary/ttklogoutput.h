@@ -38,6 +38,7 @@ namespace TTK
      * Remove log output handler.
      */
     TTK_MODULE_EXPORT void removeLogHandler();
+
     /*!
      * Set max size for log file.
      */
@@ -45,7 +46,11 @@ namespace TTK
     /*!
      * Remove log file after max second.
      */
-    TTK_MODULE_EXPORT void removeLogHistory(size_t maxSecond);
+    TTK_MODULE_EXPORT void setExpireSecond(size_t maxSecond);
+    /*!
+     * Set log output dir path.
+     */
+    TTK_MODULE_EXPORT void setOutputPath(const QString &dir);
 
 }
 
