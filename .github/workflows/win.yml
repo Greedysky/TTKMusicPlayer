@@ -585,7 +585,7 @@ jobs:
         shell: bash
         run: |
           sed -i "11d" "${{github.workspace}}/TTKUtils/ttk.iss"
-          sed -i "11i\#define OutputPath \"${{runner.workspace}}/install\"" "${{github.workspace}}/TTKUtils/ttk.iss"
+          sed -i "11i\#define OutputPath \"${{env.UNIX_MINGW_PATH}}/../../install/\"" "${{github.workspace}}/TTKUtils/ttk.iss"
           cat "${{github.workspace}}/TTKUtils/ttk.iss"
         working-directory: ${{runner.workspace}}
 
