@@ -115,7 +115,8 @@ void MusicRunTimeManager::execute() const
 
     // initiailize log module
     TTK::initiailizeLog(TTK_APP_NAME);
-    G_SETTING_PTR->value(MusicSettingManager::OtherLogTrackEnable).toBool() ? TTK::installLogHandler() : TTK::removeLogHandler();
+    const bool config = G_SETTING_PTR->value(MusicSettingManager::OtherLogTrackEnable).toBool();
+    config ? TTK::installLogHandler() : TTK::removeLogHandler();
 
     TTK_INFO_STREAM("MusicApplication Run");
 

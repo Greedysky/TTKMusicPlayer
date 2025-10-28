@@ -49,7 +49,7 @@ public:
 
 private:
     /*!
-     * Check current dir is exist, no, just create it.
+     * Check current dir is exist or not, if not, just create it.
      */
     void directoryExist(const QString &name) const;
     /*!

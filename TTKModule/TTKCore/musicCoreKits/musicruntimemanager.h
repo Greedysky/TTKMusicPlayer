@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the app run time needed.
+/*! @brief The class of the app run time manager.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicRunTimeManager

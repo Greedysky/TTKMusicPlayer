@@ -23,8 +23,8 @@ jobs:
 
     env:
       QT_VERSION: 5.15.2
-      WIN_MINGW_PATH: D:\a\TTKMusicPlayer\mingw\bin
-      WIN_QMMP_DEPS_PATH: D:\a\TTKMusicPlayer\TTKMusicPlayer\extra\gcc
+      WIN_MINGW_PATH: D:/a/TTKMusicPlayer/mingw/bin
+      WIN_QMMP_DEPS_PATH: D:/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
       UNIX_MINGW_PATH: /d/a/TTKMusicPlayer/mingw/bin
       UNIX_MINGW_OPT_PATH: /d/a/TTKMusicPlayer/mingw/opt
       UNIX_QMMP_DEPS_PATH: /d/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
@@ -585,8 +585,7 @@ jobs:
         shell: bash
         run: |
           sed -i "11d" "${{github.workspace}}/TTKUtils/ttk.iss"
-          sed -i "11i\#define OutputPath \"${{env.UNIX_MINGW_PATH}}/../../install/\"" "${{github.workspace}}/TTKUtils/ttk.iss"
-          cat "${{github.workspace}}/TTKUtils/ttk.iss"
+          sed -i "11i\#define OutputPath \"${{env.WIN_MINGW_PATH}}/../../install/\"" "${{github.workspace}}/TTKUtils/ttk.iss"
         working-directory: ${{runner.workspace}}
 
       - name: Install Inno Setup 6
@@ -597,17 +596,10 @@ jobs:
 
       - name: Build ttk music player install package
         run: |
-          iscc.exe ${{github.workspace}}/TTKUtils/ttk.iss
-          mv ${{runner.workspace}}/install/v${{env.TTK_VERSTION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.exe
-        working-directory: ${{runner.workspace}}/InnoSetup
-
-      - name: Archive artifacts
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: continuous-build
-          token: ${{secrets.GITHUB_TOKEN}}
-          generate_release_notes: false
-          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.exe
+          # reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "${{runner.workspace}}/InnoSetup/iscc.exe" /t REG_SZ /d "WIN7RTM RUNASADMIN" /f
+          ${{runner.workspace}}/InnoSetup/iscc.exe ${{github.workspace}}/TTKUtils/ttk.iss
+          mv v${{env.TTK_VERSTION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.exe
+        working-directory: ${{runner.workspace}}/install
 
       - name: Build ttk music player portable package
         run: |
@@ -624,4 +616,6 @@ jobs:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.7z
+          files: |
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.7z
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-win7-${{matrix.target}}.exe

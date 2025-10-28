@@ -438,10 +438,18 @@ jobs:
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
+      - name: Build deb package
+        run: |
+          mv ${{env.TTK_MODULE}}/deploy/make_deb.sh .
+          sh make_deb.sh ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64
+        working-directory: ${{runner.workspace}}/install
+
       - name: Archive artifacts
         uses: softprops/action-gh-release@v2
         with:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64.7z
+          files: |
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64.7z
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-${{matrix.os}}-x64.deb
