@@ -245,7 +245,7 @@ jobs:
           ./configure --prefix=${{env.QMMP_DEPS_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-http --disable-doc
           make -j2 && make install
           # add opus header patch
-          sed -i 's/<opus_/<opus\/opus_/g' ${{env.QMMP_DEPS_PATH}}/libopusfile/include/opus/opusfile.h
+          sed -i "s/<opus_/<opus\/opus_/g" ${{env.QMMP_DEPS_PATH}}/libopusfile/include/opus/opusfile.h
         working-directory: ${{runner.workspace}}/thirdParty
 
       - name: Build library for libprojectm
