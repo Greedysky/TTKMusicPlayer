@@ -20,7 +20,6 @@
  ***************************************************************************/
 
 #include <QLabel>
-#include <qmath.h>
 #include "ttkmoduleexport.h"
 
 /*! @brief The class of the rating label.

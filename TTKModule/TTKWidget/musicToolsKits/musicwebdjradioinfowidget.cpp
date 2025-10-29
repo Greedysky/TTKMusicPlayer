@@ -3,8 +3,6 @@
 #include "musicdownloadqueryfactory.h"
 #include "musiccoverrequest.h"
 
-#include <qmath.h>
-
 MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent)
 {

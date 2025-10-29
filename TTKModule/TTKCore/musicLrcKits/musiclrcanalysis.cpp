@@ -3,7 +3,7 @@
 #include "musicapplication.h"
 #include "ttktime.h"
 
-#include <qmath.h>
+#include <cmath>
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent),
@@ -294,7 +294,7 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, const QString &cap, 
 
     const int milliseconds = regx.cap(0).toInt();
     const int length = QString::number(milliseconds).length();
-    const qint64 totalTime = minutes * TTK_DN_M2MS + seconds * TTK_DN_S2MS + milliseconds * pow(10, 3 - length);
+    const qint64 totalTime = minutes * TTK_DN_M2MS + seconds * TTK_DN_S2MS + milliseconds * std::pow(10, 3 - length);
     m_lrcContainer.insert(totalTime, oneLine);
 }
 
@@ -327,7 +327,7 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, QString cap, const Q
     const int seconds = list[1].toInt();
     const int milliseconds = list[2].toInt();
     const int length = QString::number(milliseconds).length();
-    const qint64 totalTime = minutes * TTK_DN_M2MS + seconds * TTK_DN_S2MS + milliseconds * pow(10, 3 - length);
+    const qint64 totalTime = minutes * TTK_DN_M2MS + seconds * TTK_DN_S2MS + milliseconds * std::pow(10, 3 - length);
     m_lrcContainer.insert(totalTime, oneLine);
 }
 

@@ -7,9 +7,8 @@
 #include "musicbackgroundconfigmanager.h"
 #include "ttkdesktopscreen.h"
 
+#include <cmath>
 #include "qalgorithm/imagewrapper.h"
-
-#include <qmath.h>
 
 static constexpr int ITEM_WIDTH = 275;
 static constexpr int ITEM_HEIGHT = 330;
@@ -371,14 +370,14 @@ void MusicLrcPosterItemWidget::drawTheme8(QPainter *painter)
     //
     painter->translate(0, 0);
     QPixmap borer(":/lrc/lb_poster_letter_line");
-    for(int i = 0; i <= ceil(ITEM_WIDTH/borer.width()); ++i)
+    for(int i = 0; i <= std::ceil(ITEM_WIDTH/borer.width()); ++i)
     {
         painter->drawPixmap(borer.width() * i, 0, borer.width(), borer.height(), borer);
         painter->drawPixmap(borer.width() * i, offset - borer.height(), borer.width(), borer.height(), borer);
     }
     painter->translate(borer.height(), 0);
     painter->rotate(TTK_AN_90);
-    for(int i = 0; i <= ceil(offset/borer.width()); ++i)
+    for(int i = 0; i <= std::ceil(offset/borer.width()); ++i)
     {
         painter->drawPixmap(borer.width() * i, 0, borer.width(), borer.height(), borer);
         painter->drawPixmap(borer.width() * i, borer.height() - ITEM_WIDTH, borer.width(), borer.height(), borer);
@@ -428,14 +427,14 @@ void MusicLrcPosterItemWidget::drawTheme9(QPainter *painter)
     //
     painter->translate(0, 0);
     QPixmap borer(":/lrc/lb_poster_letter_line");
-    for(int i = 0; i <= ceil(ITEM_WIDTH/borer.width()); ++i)
+    for(int i = 0; i <= std::ceil(ITEM_WIDTH/borer.width()); ++i)
     {
         painter->drawPixmap(borer.width() * i, 0, borer.width(), borer.height(), borer);
         painter->drawPixmap(borer.width() * i, offset - borer.height(), borer.width(), borer.height(), borer);
     }
     painter->translate(borer.height(), 0);
     painter->rotate(TTK_AN_90);
-    for(int i = 0; i <= ceil(offset/borer.width()); ++i)
+    for(int i = 0; i <= std::ceil(offset/borer.width()); ++i)
     {
         painter->drawPixmap(borer.width() * i, 0, borer.width(), borer.height(), borer);
         painter->drawPixmap(borer.width() * i, borer.height() - ITEM_WIDTH, borer.width(), borer.height(), borer);

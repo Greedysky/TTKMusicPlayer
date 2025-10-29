@@ -4,6 +4,7 @@
 #include "musiccoverrequest.h"
 #include "musicratinglabel.h"
 
+#include <cmath>
 #include "qrencode/qrcodewidget.h"
 
 MusicPlaylistQueryInfoWidget::MusicPlaylistQueryInfoWidget(QWidget *parent)
@@ -160,7 +161,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     const int number = 7 + TTK::random(3);
     numberLabel->setText(QString("%1.%2").arg(number).arg(TTK::random(10)));
     topRightLayout->addWidget(numberLabel, 0, 0);
-    topRightLayout->addWidget(new MusicRatingLabel(ceil(number / 2.0), topRightWidget), 0, 1, 1, 6);
+    topRightLayout->addWidget(new MusicRatingLabel(std::ceil(number / 2.0), topRightWidget), 0, 1, 1, 6);
 
     QLabel *numberTextLabel = new QLabel(tr("Score:"), topRightWidget);
     topRightLayout->addWidget(numberTextLabel, 1, 0);

@@ -1,8 +1,6 @@
 #include "musicsongslistplayedtablewidget.h"
 #include "musicsongslistplayedwidget.h"
 
-#include <qmath.h>
-
 MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent),
       m_songsPlayWidget(nullptr)

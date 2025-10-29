@@ -46,7 +46,7 @@ QPixmap GaussBlur::render(const QPixmap &pixmap, int value)
     QImage image = pixmap.copy(d->m_rectangle).toImage();
 
     const float sigma = 1.0 * value / 2.57;
-    const float deno = 1.0 / (sigma * sqrt(2.0 * M_PI));
+    const float deno = 1.0 / (sigma * std::sqrt(2.0 * M_PI));
     const float nume = -1.0 / (2.0 * sigma * sigma);
 
     float* gaussMatrix = (float*)malloc(sizeof(float)* (value + value + 1));
@@ -182,8 +182,8 @@ CubeWavePrivate::CubeWavePrivate()
 
 void CubeWavePrivate::initialize(int width, int height)
 {
-    m_column = ceil(width * 1.0 / 8);
-    m_row = ceil(height * 1.0  / 8);
+    m_column = std::ceil(width * 1.0 / 8);
+    m_row = std::ceil(height * 1.0  / 8);
 }
 
 bool CubeWavePrivate::isValid(int index, int value) const

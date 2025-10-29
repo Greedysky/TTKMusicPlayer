@@ -1,6 +1,6 @@
 #include "musicpagequeryrequest.h"
 
-#include <qmath.h>
+#include <cmath>
 
 MusicPageQueryRequest::MusicPageQueryRequest(QObject *parent)
     : MusicAbstractNetwork(parent),
@@ -18,5 +18,5 @@ void MusicPageQueryRequest::startToPage(int offset)
 
 int MusicPageQueryRequest::pageTotalSize() const noexcept
 {
-    return ceil(totalSize() * 1.0 / pageSize());
+    return std::ceil(totalSize() * 1.0 / pageSize());
 }

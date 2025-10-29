@@ -5,7 +5,7 @@
 #include "musicwidgetheaders.h"
 #include "musicimageutils.h"
 
-#include <qmath.h>
+#include <cmath>
 #include <QTimer>
 
 MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
@@ -238,7 +238,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
 void MusicLrcFloatPhotoWidget::showArtistImage() const
 {
     m_previous->setEnabled(m_currentIndex != 0);
-    int page = ceil(m_images.count() * 1.0 / MIN_ITEM_COUNT) - 1;
+    int page = std::ceil(m_images.count() * 1.0 / MIN_ITEM_COUNT) - 1;
     if(page < 0)
     {
         page = 0;
@@ -280,7 +280,7 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
 
 void MusicLrcFloatPhotoWidget::imageNext()
 {
-    int page = ceil(m_images.count() * 1.0 / MIN_ITEM_COUNT) - 1;
+    int page = std::ceil(m_images.count() * 1.0 / MIN_ITEM_COUNT) - 1;
     if(page < 0)
     {
         page = 0;

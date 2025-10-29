@@ -1,7 +1,6 @@
 #include "musiccutsliderwidget.h"
 #include "musicuiobject.h"
 
-#include <qmath.h>
 #include <QPainter>
 #include <QMouseEvent>
 
@@ -173,7 +172,7 @@ void MusicCutSliderWidget::paintEvent(QPaintEvent *event)
 
     const int leftX = m_leftControl->geometry().x();
     const int rightX = m_rightControl->geometry().x();
-    painter.fillRect(leftX < rightX ? leftX + PAINT_BUTTON_WIDTH / 2 : rightX + PAINT_BUTTON_WIDTH / 2, lineStartHeight, abs(leftX -rightX), PAINT_SLIDER_HEIGHT, QColor(TTK::UI::Color01));
+    painter.fillRect(leftX < rightX ? leftX + PAINT_BUTTON_WIDTH / 2 : rightX + PAINT_BUTTON_WIDTH / 2, lineStartHeight, std::abs(leftX -rightX), PAINT_SLIDER_HEIGHT, QColor(TTK::UI::Color01));
     painter.fillRect(m_position - PAINT_HANDER / 2, lineStartHeight + (PAINT_SLIDER_HEIGHT - PAINT_HANDER) / 2, PAINT_HANDER, PAINT_HANDER, QColor(0, 0, 0));
 
 }

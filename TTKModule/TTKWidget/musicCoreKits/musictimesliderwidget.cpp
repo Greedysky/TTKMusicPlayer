@@ -2,7 +2,7 @@
 #include "musicmovinglabelslider.h"
 #include "musicgiflabelwidget.h"
 
-#include <qmath.h>
+#include <cmath>
 
 MusicTimeSliderWidget::MusicTimeSliderWidget(QWidget *parent)
     : QWidget(parent)
@@ -67,7 +67,7 @@ void MusicTimeSliderWidget::sliderMovedAt(int pos) const
     if(max > 0)
     {
         const float delta = m_slider->width() * (-0.015 / 800) + 0.0275;
-        m_label->move(ceil(qint64(pos) * m_slider->width() * (1.0 - delta) / max) - 1, 5);
+        m_label->move(std::ceil(qint64(pos) * m_slider->width() * (1.0 - delta) / max) - 1, 5);
     }
 }
 

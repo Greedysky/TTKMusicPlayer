@@ -3,7 +3,7 @@
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 
-#include <qmath.h>
+#include <cmath>
 #include <qmmp/soundcore.h>
 
 MusicPlayer::MusicPlayer(QObject *parent)
@@ -221,7 +221,7 @@ void MusicPlayer::update()
         ///3D music settings
         setEnabledEffect(false);
         m_posOnCircle += 0.5f;
-        m_core->setVolumePerChannel(fabs(TTK_RN_MAX * cosf(m_posOnCircle)), fabs(TTK_RN_MAX * sinf(m_posOnCircle * 0.5f)));
+        m_core->setVolumePerChannel(std::fabs(TTK_RN_MAX * std::cos(m_posOnCircle)), std::fabs(TTK_RN_MAX * std::sin(m_posOnCircle * 0.5f)));
     }
 
     const Qmmp::State state = m_core->state();

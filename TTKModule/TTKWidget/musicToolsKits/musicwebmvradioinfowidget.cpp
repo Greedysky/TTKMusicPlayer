@@ -5,7 +5,6 @@
 #include "musicdownloadwidget.h"
 #include "musicrightareawidget.h"
 
-#include <qmath.h>
 Q_DECLARE_METATYPE(TTK::MusicSongInformation)
 
 MusicWebMVRadioInfoTableWidget::MusicWebMVRadioInfoTableWidget(QWidget *parent)
