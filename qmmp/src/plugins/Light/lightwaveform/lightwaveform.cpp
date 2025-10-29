@@ -6,7 +6,7 @@
 #include <QSettings>
 #include <QMouseEvent>
 
-#include <math.h>
+#include <cmath>
 #include <qmmp/buffer.h>
 #include <qmmp/decoder.h>
 #include <qmmp/soundcore.h>

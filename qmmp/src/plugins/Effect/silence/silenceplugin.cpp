@@ -3,6 +3,8 @@
 #include <QSettings>
 #include <qmath.h>
 
+#include <cmath>
+
 static float* alignFrame(int channels, float* begin, float* sample, bool end)
 {
     if(!sample)
