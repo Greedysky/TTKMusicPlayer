@@ -91,7 +91,7 @@ struct spek_pipeline * spek_pipeline_open(
         p->coss = (float*)malloc(p->nfft * sizeof(float));
         const float cf = 2.0f * (float)M_PI / (p->nfft - 1.0f);
         for (int i = 0; i < p->nfft; ++i) {
-            p->coss[i] = cosf(cf * i);
+            p->coss[i] = std::cos(cf * i);
         }
         p->input_size = p->nfft * (NFFT * 2 + 1);
         p->input = (float*)malloc(p->input_size * sizeof(float));

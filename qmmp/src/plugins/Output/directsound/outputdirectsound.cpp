@@ -1,8 +1,8 @@
 #include <QSettings>
 #include <iostream>
 #include <unistd.h>
+#include <cmath>
 #include <qmmp/buffer.h>
-#include <math.h>
 #include "outputdirectsound.h"
 
 #define INPUT_BUFFER_SIZE (128 * 1024)
@@ -332,9 +332,9 @@ void VolumeDirectSound::setVolume(const VolumeSettings &vol)
         double voldB = -100.0, pandB = 0;
         if(maxVol)
         {
-            voldB = 20.0*log(maxVol/100.0)/log(10);
-            int balance = (vol.right - vol.left)*100.0/maxVol;
-            pandB = balance ? 20.0*log((100.0 - fabs(balance))/100.0)/log(10) : 0;
+            voldB = 20.0 * std::log(maxVol / 100.0) / std::log(10);
+            int balance = (vol.right - vol.left) * 100.0 / maxVol;
+            pandB = balance ? 20.0 * std::log((100.0 - std::fabs(balance)) /100.0) / std::log(10) : 0;
             if(balance > 0)
                 pandB = -pandB;
         }
@@ -353,8 +353,8 @@ VolumeSettings VolumeDirectSound::volume() const
         double voldB = v / 100.0;
         OutputDirectSound::instance->secondaryBuffer()->GetPan(&v);
         double pandB = v / 100.0;
-        int volume = 100 * pow(10, voldB / 20.0);
-        int balance = 100 - 100 * pow(10, abs(pandB) / 20.0);
+        int volume = 100 * std::pow(10, voldB / 20.0);
+        int balance = 100 - 100 * std::pow(10, std::abs(pandB) / 20.0);
         if(pandB > 0)
             balance = -balance;
 

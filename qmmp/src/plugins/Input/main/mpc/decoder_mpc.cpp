@@ -1,6 +1,6 @@
 #include "decoder_mpc.h"
 
-#include <qmath.h>
+#include <cmath>
 
 static mpc_int32_t mpc_callback_read(mpc_reader *reader, void *buffer, mpc_int32_t size)
 {
@@ -85,8 +85,8 @@ bool DecoderMPC::initialize()
     QMap<Qmmp::ReplayGainKey, double> rg_info; //replay gain information
     rg_info[Qmmp::REPLAYGAIN_ALBUM_GAIN] = data()->info.gain_album/256.0;
     rg_info[Qmmp::REPLAYGAIN_TRACK_GAIN] = data()->info.gain_title/256.0;
-    rg_info[Qmmp::REPLAYGAIN_ALBUM_PEAK] = pow(10, data()->info.peak_album/256.0/20.0);
-    rg_info[Qmmp::REPLAYGAIN_TRACK_PEAK] = pow(10, data()->info.peak_title/256.0/20.0);
+    rg_info[Qmmp::REPLAYGAIN_ALBUM_PEAK] = std::pow(10, data()->info.peak_album/256.0/20.0);
+    rg_info[Qmmp::REPLAYGAIN_TRACK_PEAK] = std::pow(10, data()->info.peak_title/256.0/20.0);
     setReplayGainInfo(rg_info);
 
     m_totalTime = mpc_streaminfo_get_length(&data()->info) * 1000;

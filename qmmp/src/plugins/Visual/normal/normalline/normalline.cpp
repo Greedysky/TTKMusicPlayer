@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QSettings>
 #include <QPainter>
-#include <math.h>
+#include <cmath>
 #include <qmmp/qmmp.h>
 
 NormalLine::NormalLine(QWidget *parent)
@@ -106,7 +106,7 @@ void NormalLine::processData(float *left, float *right)
 
         for(int i = 0; i < m_cols + 1; ++i)
         {
-            m_xscale[i] = pow(255.0, float(i) / m_cols);
+            m_xscale[i] = std::pow(255.0, float(i) / m_cols);
         }
     }
 
@@ -114,7 +114,7 @@ void NormalLine::processData(float *left, float *right)
     calc_freq(destl, left);
     calc_freq(destr, right);
 
-    const double yscale = (double)1.25 * m_rows / log(256);
+    const double yscale = (double)1.25 * m_rows / std::log(256);
 
     for(int i = 0; i < m_cols; ++i)
     {
@@ -135,12 +135,12 @@ void NormalLine::processData(float *left, float *right)
 
         if(yl > 0)
         {
-            magnitudel = qBound(0, int(log(yl) * yscale), m_rows);
+            magnitudel = qBound(0, int(std::log(yl) * yscale), m_rows);
         }
 
         if(yr > 0)
         {
-            magnituder = qBound(0, int(log(yr) * yscale), m_rows);
+            magnituder = qBound(0, int(std::log(yr) * yscale), m_rows);
         }
 
         m_visualData[i] -= m_analyzerSize * m_rows / 15;

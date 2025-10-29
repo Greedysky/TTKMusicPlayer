@@ -4,7 +4,6 @@
 #include <QMenu>
 #include <QSettings>
 #include <QPainter>
-#include <math.h>
 #include <qmmp/qmmp.h>
 
 PlusBlurXRays::PlusBlurXRays(QWidget *parent)

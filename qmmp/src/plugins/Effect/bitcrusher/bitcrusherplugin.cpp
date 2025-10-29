@@ -1,9 +1,7 @@
 #include "bitcrusherplugin.h"
 
-#include <QSettings>
-#include <qmath.h>
-
 #include <cmath>
+#include <QSettings>
 
 BitcrusherPlugin *BitcrusherPlugin::m_instance = nullptr;
 

@@ -31,7 +31,7 @@ StateHandler::~StateHandler()
 void StateHandler::dispatch(qint64 elapsed, int bitrate)
 {
     m_mutex.lock();
-    if(qAbs(m_elapsed - elapsed) > TICK_INTERVAL)
+    if(std::abs(m_elapsed - elapsed) > TICK_INTERVAL)
     {
         m_elapsed = elapsed;
         emit elapsedChanged(elapsed);

@@ -1,4 +1,4 @@
-#include <math.h>
+#include <cmath>
 #include <QSettings>
 #include "outputpulseaudio.h"
 

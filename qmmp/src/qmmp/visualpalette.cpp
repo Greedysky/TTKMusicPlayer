@@ -1,8 +1,8 @@
 #include "visualpalette.h"
-#include <qmath.h>
 
 #include <QColor>
 #include <QVector>
+#include <qmath.h>
 
 #define GRADIENT_TABLE_SIZE 256
 
@@ -132,9 +132,9 @@ static uint32_t rainbow(double level)
     const double h = M_PI * 2 * level / 256;
     const double s = (level <= 127) ? (key * level) : (key * (256 - level));
 
-    double r = level - s * cos(h) * 0.201424 + s * sin(h) * 0.612372;
-    double g = level - s * cos(h) * 0.201424 - s * sin(h) * 0.612372;
-    double b = level + s * cos(h) * 0.402848 + s * sin(h) * 0.0;
+    double r = level - s * std::cos(h) * 0.201424 + s * std::sin(h) * 0.612372;
+    double g = level - s * std::cos(h) * 0.201424 - s * std::sin(h) * 0.612372;
+    double b = level + s * std::cos(h) * 0.402848 + s * std::sin(h) * 0.0;
 
     if(r < 0) r = 0; else if(r >= 256) r = 255;
     if(g < 0) g = 0; else if(g >= 256) g = 255;
@@ -153,7 +153,7 @@ static uint32_t sox(double level)
     double r = 0.0;
     if(level >= 0.13 && level < 0.73)
     {
-        r = sin((level - 0.13) / 0.60 * M_PI / 2.0);
+        r = std::sin((level - 0.13) / 0.60 * M_PI / 2.0);
     }
     else if(level >= 0.73)
     {
@@ -163,7 +163,7 @@ static uint32_t sox(double level)
     double g = 0.0;
     if(level >= 0.6 && level < 0.91)
     {
-        g = sin((level - 0.6) / 0.31 * M_PI / 2.0);
+        g = std::sin((level - 0.6) / 0.31 * M_PI / 2.0);
     }
     else if(level >= 0.91)
     {
@@ -173,7 +173,7 @@ static uint32_t sox(double level)
     double b = 0.0;
     if(level < 0.60)
     {
-        b = 0.5 * sin(level / 0.6 * M_PI);
+        b = 0.5 * std::sin(level / 0.6 * M_PI);
     }
     else if(level >= 0.78)
     {
@@ -294,14 +294,14 @@ static uint32_t cubeHelix(double level)
     const double phi = 2. * M_PI * (cubehelix_start / 3. + gray * cubehelix_cycles);
 
     // gamma correction
-    gray = pow(gray, 1 / gamma);
+    gray = std::pow(gray, 1 / gamma);
 
     const double a = cubehelix_saturation * gray * (1. - gray) / 2.;
 
     // compute
-    const double r = gray + a * (-0.14861 * cos(phi) + 1.78277 * sin(phi));
-    const double g = gray + a * (-0.29227 * cos(phi) - 0.90649 * sin(phi));
-    const double b = gray + a * ( 1.97294 * cos(phi));
+    const double r = gray + a * (-0.14861 * std::cos(phi) + 1.78277 * std::sin(phi));
+    const double g = gray + a * (-0.29227 * std::cos(phi) - 0.90649 * std::sin(phi));
+    const double b = gray + a * ( 1.97294 * std::cos(phi));
 
     // Pack RGB values into a 32-bit uint.
     const uint32_t rc = (uint32_t)(r * 255 + 0.5);

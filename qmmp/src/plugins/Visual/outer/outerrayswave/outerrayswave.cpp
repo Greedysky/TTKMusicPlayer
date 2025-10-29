@@ -2,7 +2,6 @@
 
 #include <QTimer>
 #include <QPainter>
-#include <math.h>
 
 OuterRaysWave::OuterRaysWave(QWidget *parent)
     : Visual(parent)

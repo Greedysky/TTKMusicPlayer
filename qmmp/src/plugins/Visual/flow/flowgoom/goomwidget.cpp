@@ -4,7 +4,6 @@
 #include <QTimer>
 #include <QPainter>
 #include <QSettings>
-#include <math.h>
 #include <qmmp/qmmp.h>
 
 GoomWidget::GoomWidget(QWidget *parent)

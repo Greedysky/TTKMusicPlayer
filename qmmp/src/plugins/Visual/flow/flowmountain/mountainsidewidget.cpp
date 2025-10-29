@@ -1,6 +1,6 @@
 #include "mountainsidewidget.h"
 
-#include <math.h>
+#include <cmath>
 
 static constexpr const int ranges[] = {0, 1, 2, 3, 5, 7, 10, 14, 20, 28, 40, 54, 74, 101, 137, 187, 255};
 
@@ -36,9 +36,9 @@ void MountainSideWidget::addBuffer(float *left)
 
     MountainWidget::addBuffer(left);
 
-    m_angleX = fmod(20.0f + 0.0f * m_angle, 360.0f);
-    m_angleY = fmod(45.0f + 360.0f / 60.0f * m_angle, 360.0f);
-    m_angleZ = fmod(0.0f + 0.0f * m_angle, 360.0f);
+    m_angleX = std::fmod(20.0f + 0.0f * m_angle, 360.0f);
+    m_angleY = std::fmod(45.0f + 360.0f / 60.0f * m_angle, 360.0f);
+    m_angleZ = std::fmod(0.0f + 0.0f * m_angle, 360.0f);
 }
 
 void MountainSideWidget::initializeGL()

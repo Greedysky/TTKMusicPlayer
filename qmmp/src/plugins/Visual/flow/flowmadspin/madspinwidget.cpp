@@ -1,6 +1,6 @@
 #include "madspinwidget.h"
 
-#include <math.h>
+#include <cmath>
 #include <QFile>
 #include <QDateTime>
 
@@ -454,14 +454,14 @@ void MadSpinWidget::paintGL()
             const float aa = trail - line * 1.0f;
             const float a = (aa + m_frame) / 33.33333f;
 
-            const double csab = cos(a / b);
-            const double csapb = cos(a + b);
-            const double snab = sin(a / b);
-            const double snapb = sin(a + b);
+            const double csab = std::cos(a / b);
+            const double csapb = std::cos(a + b);
+            const double snab = std::sin(a / b);
+            const double snapb = std::sin(a + b);
 
-            const double sa = sin(a * .1f);
-            const double ca = cos(a * .1f);
-            const double s5 = sin(a * .05f);
+            const double sa = std::sin(a * .1f);
+            const double ca = std::cos(a * .1f);
+            const double s5 = std::sin(a * .05f);
 
             double x = sa * snapb * ampl * csab + ca * (csapb * ampl * b * csab + s5 * (ampl * (csab + 2 * snapb)));
             double y = sa * csapb * ampl * csab + ca * (csapb * ampl * b * snab + s5 * (ampl * (csab + 2 * csapb)));
@@ -480,9 +480,9 @@ void MadSpinWidget::paintGL()
             const double s1b = ((point * 1.0f) / m_stars) * 0.5f;
             const double s1a = ((m_buffer[(int) (point / m_stars * 220)] + (m_total / 200.0f)) / 4.0f);
 
-            const double s2r = sin(m_frame / 400.0f);
-            const double s2g = cos(m_frame / 200.0f);
-            const double s2b = cos(m_frame / 300.0f);
+            const double s2r = std::sin(m_frame / 400.0f);
+            const double s2g = std::cos(m_frame / 200.0f);
+            const double s2b = std::cos(m_frame / 300.0f);
             const double s2a = (m_buffer[(int)(point / m_stars * 220)] / 2.0f);
 
             if(s1a > 0.008f)

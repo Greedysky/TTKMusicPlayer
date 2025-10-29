@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <QDateTime>
 #include <QSettings>
-#include <qmath.h>
+#include <cmath>
 #include <qmmp/qmmp.h>
 
 static constexpr int DECAY_RATE = 1;
@@ -53,8 +53,8 @@ static uint32_t zoomRotate(int w, int h, int x, int y)
     x -= (w >> 1);
     y -= (h >> 1);
 
-    int nx = x * cos(ang) + y * sin(ang);
-    int ny = y * cos(ang) - x * sin(ang);
+    int nx = x * std::cos(ang) + y * std::sin(ang);
+    int ny = y * std::cos(ang) - x * std::sin(ang);
 
     nx /= 1.2;
     ny /= 1.2;
@@ -80,11 +80,11 @@ static uint32_t zoomRipple(int w, int h, int x, int y)
     x -= (w >> 1);
     y -= (h >> 1);
 
-    double dist = sqrt(x * x + y * y);
-    dist *= 3.14 * ZOOM_RIPPLESIZE / sqrt(w * w + h * h);
+    double dist = std::sqrt(x * x + y * y);
+    dist *= 3.14 * ZOOM_RIPPLESIZE / std::sqrt(w * w + h * h);
 
-    int nx = x * (ZOOM_ZOOMFACT + ZOOM_RIPPLEFACT * sin(dist));
-    int ny = y * (ZOOM_ZOOMFACT + ZOOM_RIPPLEFACT * sin(dist));
+    int nx = x * (ZOOM_ZOOMFACT + ZOOM_RIPPLEFACT * std::sin(dist));
+    int ny = y * (ZOOM_ZOOMFACT + ZOOM_RIPPLEFACT * std::sin(dist));
 
     nx += (w >> 1);
     ny += (h >> 1);

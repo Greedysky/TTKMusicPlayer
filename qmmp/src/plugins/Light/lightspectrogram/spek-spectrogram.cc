@@ -5,7 +5,7 @@
 #include "spek-spectrogram.h"
 #include <qmmp/soundcore.h>
 
-#include <math.h>
+#include <cmath>
 #include <QMenu>
 #include <QGridLayout>
 #include <QPushButton>

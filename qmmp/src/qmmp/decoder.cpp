@@ -1,7 +1,6 @@
 #include <QStringList>
 #include <QSettings>
 #include <QDir>
-#include <math.h>
 #include <algorithm>
 #include "qmmpplugincache_p.h"
 #include "output.h"

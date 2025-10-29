@@ -1,4 +1,4 @@
-#include <math.h>
+#include <cmath>
 #include <qmmp/inputsourcefactory.h>
 #include <qmmp/decoderfactory.h>
 #include <qmmp/audioconverter.h>
@@ -185,8 +185,8 @@ void ReplayGainner::run()
             {
                 out_left[i] = float_buf[i*2]*32768.0;
                 out_right[i] = float_buf[i*2+1]*32768.0;
-                max = qMax(fabs(out_left[i]), max);
-                max = qMax(fabs(out_right[i]), max);
+                max = qMax(std::fabs(out_left[i]), max);
+                max = qMax(std::fabs(out_right[i]), max);
             }
         }
         else if(ap.channels() == 1)
@@ -194,7 +194,7 @@ void ReplayGainner::run()
             for(uint i = 0; i < samples; ++i)
             {
                 out_left[i] = float_buf[i]*32768.0;
-                max = qMax(fabs(out_left[i]), max);
+                max = qMax(std::fabs(out_left[i]), max);
             }
         }
 

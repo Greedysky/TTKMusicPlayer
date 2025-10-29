@@ -1,6 +1,6 @@
 #include "mountainmidwidget.h"
 
-#include <math.h>
+#include <cmath>
 
 MountainMidWidget::MountainMidWidget(QWidget *parent)
     : MountainWidget(parent)
@@ -31,7 +31,7 @@ void MountainMidWidget::initializeGL()
 
     for(int i = 0; i <= NUM_BANDS; ++i)
     {
-        m_logScale[i] = powf(256, (float)i / NUM_BANDS) - 0.5f;
+        m_logScale[i] = std::pow(256, (float)i / NUM_BANDS) - 0.5f;
     }
 
     for(int y = 0; y < NUM_BANDS; ++y)
@@ -99,7 +99,7 @@ void MountainMidWidget::generateLogGraph(const float *freq, float *graph)
         sum *=(float) NUM_BANDS / 12;
 
         /* convert to dB */
-        float val = 20 * log10f(sum);
+        float val = 20 * std::log10(sum);
 
         /* scale(-DB_RANGE, 0.0) to(0.0, 1.0) */
         val = 1 + val / DB_RANGE;

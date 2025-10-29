@@ -36,7 +36,7 @@ static inline float logMeter(float power, double lower_db, double upper_db, doub
 static inline float logScale(float sample)
 {
     const int v = sample > 0.0 ? 1 : -1;
-    return v * logMeter(20.0f * log10(v * sample), -192.0, 0.0, 8.0);
+    return v * logMeter(20.0f * std::log10(v * sample), -192.0, 0.0, 8.0);
 }
 
 static inline QRgb colorContrast(const QRgb color)

@@ -66,7 +66,7 @@ void FlowVUMeter::paintEvent(QPaintEvent *)
     const float offset = M_PI * (value / (m_rangeValue * 2.5) - 0.75);
 
     painter.setPen(QPen(Qt::white, 2));
-    painter.drawLine(x, y, x + radius * cos(offset), y + radius * sin(offset));
+    painter.drawLine(x, y, x + radius * std::cos(offset), y + radius * std::sin(offset));
 }
 
 void FlowVUMeter::contextMenuEvent(QContextMenuEvent *)
@@ -95,7 +95,7 @@ void FlowVUMeter::processData(float *left, float *right)
     for(int i = 0; i < channels; ++i)
     {
         m_values[i] = 0;
-        const float db = m_rangeValue + (20.0f * log10f(peaks[i]));
+        const float db = m_rangeValue + (20.0f * std::log10(peaks[i]));
 
         if(db > m_values[i])
         {

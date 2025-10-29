@@ -1,8 +1,8 @@
 #include "wavecrest.h"
 #include "inlines.h"
 
+#include <cmath>
 #include <QPainter>
-#include <math.h>
 
 static constexpr int CHANNELS = 2;
 
@@ -76,7 +76,7 @@ void WaveCrest::processData(float *left, float *)
 
         for(int i = 0; i < CHANNELS; ++i)
         {
-            m_xscale[i] = pow(255.0, float(i) / m_cols);
+            m_xscale[i] = std::pow(255.0, float(i) / m_cols);
         }
     }
 
@@ -85,7 +85,7 @@ void WaveCrest::processData(float *left, float *)
 
     short yl = 0;
     int i = 0, magnitudel = 0;
-    const double yscale = (double)1.25 * m_rows / log(256);
+    const double yscale = (double)1.25 * m_rows / std::log(256);
 
     if(m_xscale[i] == m_xscale[i + 1])
     {
@@ -99,7 +99,7 @@ void WaveCrest::processData(float *left, float *)
 
     if(yl > 0)
     {
-        magnitudel = qBound(0, int(log(yl) * yscale), m_rows);
+        magnitudel = qBound(0, int(std::log(yl) * yscale), m_rows);
     }
 
     m_visData -= m_analyzerSize * m_rows / 15;

@@ -1,7 +1,7 @@
 #include "sonicplugin.h"
 
+#include <cmath>
 #include <QSettings>
-#include <qmath.h>
 
 SonicPlugin *SonicPlugin::m_instance = nullptr;
 
@@ -24,7 +24,7 @@ void SonicPlugin::applyEffect(Buffer *b)
     if(samples > b->size)
     {
         delete[] b->data;
-        b->size = ceil(samples * 1.0 / b->size) * QMMP_BLOCK_FRAMES * channels();
+        b->size = std::ceil(samples * 1.0 / b->size) * QMMP_BLOCK_FRAMES * channels();
         b->data = new float[b->size];
         b->samples = b->size;
     }

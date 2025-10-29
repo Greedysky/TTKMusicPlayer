@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QSettings>
 #include <QPainter>
-#include <math.h>
+#include <cmath>
 #include <qmmp/qmmp.h>
 
 PlusFoldWave::PlusFoldWave(QWidget *parent)
@@ -73,7 +73,7 @@ void PlusFoldWave::paintEvent(QPaintEvent *)
         }
 
         int offset = m_visualData[i] * m_cellSize.height() / 2;
-        if(abs(offset) > height() / 2)
+        if(std::abs(offset) > height() / 2)
         {
             offset = height() / 2;
         }
@@ -92,7 +92,7 @@ void PlusFoldWave::paintEvent(QPaintEvent *)
         }
 
         int offset1 = m_visualData[i + 1] * m_cellSize.height() / 2;
-        if(abs(offset1) > height() / 2)
+        if(std::abs(offset1) > height() / 2)
         {
             offset1 = height() / 2;
         }
@@ -129,7 +129,7 @@ void PlusFoldWave::processData(float *left, float *right)
 
         for(int i = 0; i < m_cols + 1; ++i)
         {
-            m_xscale[i] = pow(255.0, float(i) / m_cols);
+            m_xscale[i] = std::pow(255.0, float(i) / m_cols);
         }
     }
 
@@ -137,7 +137,7 @@ void PlusFoldWave::processData(float *left, float *right)
     calc_freq(destl, left);
     calc_freq(destr, right);
 
-    const double yscale = (double)1.25 * m_rows / log(256);
+    const double yscale = (double)1.25 * m_rows / std::log(256);
 
     for(int i = 0; i < m_cols; ++i)
     {
@@ -158,12 +158,12 @@ void PlusFoldWave::processData(float *left, float *right)
 
         if(yl > 0)
         {
-            magnitudel = qBound(0, int(log(yl) * yscale), m_rows);
+            magnitudel = qBound(0, int(std::log(yl) * yscale), m_rows);
         }
 
         if(yr > 0)
         {
-            magnituder = qBound(0, int(log(yr) * yscale), m_rows);
+            magnituder = qBound(0, int(std::log(yr) * yscale), m_rows);
         }
 
         m_visualData[i] -= m_analyzerSize * m_rows / 15;

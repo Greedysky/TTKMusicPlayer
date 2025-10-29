@@ -1,7 +1,6 @@
 #include "stereoplugin.h"
 
 #include <QSettings>
-#include <math.h>
 
 StereoPlugin *StereoPlugin::m_instance = nullptr;
 

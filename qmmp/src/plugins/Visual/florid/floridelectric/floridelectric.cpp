@@ -1,8 +1,8 @@
 #include "floridelectric.h"
 
+#include <cmath>
 #include <QPainter>
 #include <QPropertyAnimation>
-#include <qmath.h>
 
 ElectricPointLabel::ElectricPointLabel(QWidget *parent)
     : QWidget(parent)
@@ -62,8 +62,8 @@ void ElectricPointLabel::posValueChanged(const QVariant &value)
 
     const QPoint &startPoint = m_posAnimation->startValue().toPoint();
     const QPoint &endPoint = m_posAnimation->endValue().toPoint();
-    const int totalLength = sqrt(pow(startPoint.x() - endPoint.x(), 2) + pow(startPoint.y() - endPoint.y(), 2));
-    const int currentLength = sqrt(pow(startPoint.x() - m_offset.x(), 2) + pow(startPoint.y() - m_offset.y(), 2));
+    const int totalLength = std::sqrt(std::pow(startPoint.x() - endPoint.x(), 2) + std::pow(startPoint.y() - endPoint.y(), 2));
+    const int currentLength = std::sqrt(std::pow(startPoint.x() - m_offset.x(), 2) + std::pow(startPoint.y() - m_offset.y(), 2));
     const float delta = (totalLength - currentLength) * 1.0 / totalLength;
     m_opacity = delta;
 

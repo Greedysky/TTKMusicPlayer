@@ -4,7 +4,7 @@
 #include <QMenu>
 #include <QSettings>
 #include <QPainter>
-#include <math.h>
+#include <cmath>
 #include <qmmp/qmmp.h>
 
 #define MIN_ROW     270
@@ -142,7 +142,7 @@ void WaveVoice::processData(float *left, float *right)
     calc_freq(destl, left);
     calc_freq(destr, right);
 
-    const double yscale = (double)1.25 * m_cols / log(256);
+    const double yscale = (double)1.25 * m_cols / std::log(256);
 
     for(int i = 0; i < m_rows; ++i)
     {
@@ -163,12 +163,12 @@ void WaveVoice::processData(float *left, float *right)
 
         if(yl > 0)
         {
-            magnitudel = qBound(0, int(log(yl) * yscale), m_cols);
+            magnitudel = qBound(0, int(std::log(yl) * yscale), m_cols);
         }
 
         if(yr > 0)
         {
-            magnituder = qBound(0, int(log(yr) * yscale), m_cols);
+            magnituder = qBound(0, int(std::log(yr) * yscale), m_cols);
         }
 
         m_visualData[i] -= m_analyzerSize * m_cols / 15;
@@ -243,7 +243,7 @@ void WaveVoice::createPalette(int row)
 
     for(int i = 0; i < m_rows + 1; ++i)
     {
-        m_xscale[i] = pow(255.0, float(i) / m_rows);
+        m_xscale[i] = std::pow(255.0, float(i) / m_rows);
     }
 }
 

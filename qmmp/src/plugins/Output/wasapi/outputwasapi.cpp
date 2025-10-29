@@ -7,7 +7,7 @@
 #include <mmdeviceapi.h>
 #include <mmreg.h>
 #include <functiondiscoverykeys.h>
-#include <math.h>
+#include <cmath>
 #include <qmmp/buffer.h>
 #include "outputwasapi.h"
 

@@ -1,7 +1,6 @@
 #include "srconverter.h"
 
 #include <QSettings>
-#include <math.h>
 
 SRConverter::SRConverter()
     : Effect()

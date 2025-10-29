@@ -145,7 +145,7 @@ void SoniqueWidget::addBuffer(float *left, float *right)
 
         for(int i = 0; i < SPECTRUM_SIZE; ++i)
         {
-            const int value = sqrt(pow((((m_outFreqData[i].r) / 512) * 2), 2) + pow((((m_outFreqData[i].i) / 512) * 2), 2)) * 512;
+            const int value = std::sqrt(std::pow((((m_outFreqData[i].r) / 512) * 2), 2) + std::pow((((m_outFreqData[i].i) / 512) * 2), 2)) * 512;
             m_visData->Spectrum[0][i] = std::min(255, value);
         }
 
@@ -160,7 +160,7 @@ void SoniqueWidget::addBuffer(float *left, float *right)
 
         for(int i = 0; i < SPECTRUM_SIZE; ++i)
         {
-            const int value = sqrt(pow((((m_outFreqData[i].r) / 512) * 2), 2) + pow((((m_outFreqData[i].i) / 512) * 2), 2)) * 512;
+            const int value = std::sqrt(std::pow((((m_outFreqData[i].r) / 512) * 2), 2) + std::pow((((m_outFreqData[i].i) / 512) * 2), 2)) * 512;
             m_visData->Spectrum[1][i] = std::min(255, value);
         }
     }

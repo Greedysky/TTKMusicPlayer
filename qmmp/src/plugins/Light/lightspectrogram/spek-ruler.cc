@@ -1,7 +1,7 @@
 #include "spek-ruler.h"
 #include "spek.h"
 
-#include <math.h>
+#include <cmath>
 #include <QFontMetrics>
 
 SpekRuler::SpekRuler(
@@ -33,7 +33,7 @@ void SpekRuler::draw(QPainter &dc)
     // Select the factor to use, we want some space between the labels.
     int factor = 0;
     for (int i = 0; m_factors[i]; ++i) {
-        if (fabs(m_scale * m_factors[i]) >= m_spacing * len) {
+        if (std::fabs(m_scale * m_factors[i]) >= m_spacing * len) {
             factor = m_factors[i];
             break;
         }
@@ -45,7 +45,7 @@ void SpekRuler::draw(QPainter &dc)
 
     if (factor > 0) {
         for (int tick = m_min_units + factor; tick < m_max_units; tick += factor) {
-            if (fabs(m_scale * (m_max_units - tick)) < len * 1.2) {
+            if (std::fabs(m_scale * (m_max_units - tick)) < len * 1.2) {
                 break;
             }
             draw_tick(dc, tick);

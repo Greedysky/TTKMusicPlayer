@@ -66,8 +66,8 @@ void AncientLabel::posValueChanged(const QVariant &value)
 
     const QPoint &startPoint = m_posAnimation->startValue().toPoint();
     const QPoint &endPoint = m_posAnimation->endValue().toPoint();
-    const int totalLength = sqrt(pow(startPoint.x() - endPoint.x(), 2) + pow(startPoint.y() - endPoint.y(), 2));
-    const int currentLength = sqrt(pow(startPoint.x() - m_offset.x(), 2) + pow(startPoint.y() - m_offset.y(), 2));
+    const int totalLength = std::sqrt(std::pow(startPoint.x() - endPoint.x(), 2) + std::pow(startPoint.y() - endPoint.y(), 2));
+    const int currentLength = std::sqrt(std::pow(startPoint.x() - m_offset.x(), 2) + std::pow(startPoint.y() - m_offset.y(), 2));
     m_opacity = (totalLength - currentLength) * 1.0 / totalLength;
 
     update();
@@ -190,14 +190,14 @@ void FloridAncient::processData(float *left, float *)
 
         for(int i = 0; i < m_cols + 1; ++i)
         {
-            m_xscale[i] = pow(255.0, float(i) / m_cols);
+            m_xscale[i] = std::pow(255.0, float(i) / m_cols);
         }
     }
 
     short destl[256];
     calc_freq(destl, left);
 
-    const double yscale = (double)1.25 * m_rows / log(256);
+    const double yscale = (double)1.25 * m_rows / std::log(256);
 
     for(int i = 0; i < m_cols; ++i)
     {
@@ -216,7 +216,7 @@ void FloridAncient::processData(float *left, float *)
 
         if(yl > 0)
         {
-            magnitudel = qBound(0, int(log(yl) * yscale), m_rows);
+            magnitudel = qBound(0, int(std::log(yl) * yscale), m_rows);
         }
 
         m_visualData[i] -= m_analyzerSize * m_rows / 15;

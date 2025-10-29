@@ -59,14 +59,14 @@ void FloridReverb::processData(float *left, float *)
 
         for(int i = 0; i < m_cols + 1; ++i)
         {
-            m_xscale[i] = pow(255.0, float(i) / m_cols);
+            m_xscale[i] = std::pow(255.0, float(i) / m_cols);
         }
     }
 
     short destl[256];
     calc_freq(destl, left);
 
-    const double yscale = (double)1.25 * m_rows / log(256);
+    const double yscale = (double)1.25 * m_rows / std::log(256);
 
     for(int i = 0; i < m_cols; ++i)
     {
@@ -85,7 +85,7 @@ void FloridReverb::processData(float *left, float *)
 
         if(yl > 0)
         {
-            magnitudel = qBound(0, int(log(yl) * yscale), m_rows);
+            magnitudel = qBound(0, int(std::log(yl) * yscale), m_rows);
         }
 
         m_visualData[i] -= m_analyzerSize * m_rows / 15;

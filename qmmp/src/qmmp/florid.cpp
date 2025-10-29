@@ -4,7 +4,6 @@
 #include <QBitmap>
 #include <QPainter>
 #include <soundcore.h>
-#include <math.h>
 
 RoundAnimationLabel::RoundAnimationLabel(QWidget *parent)
     : QWidget(parent)

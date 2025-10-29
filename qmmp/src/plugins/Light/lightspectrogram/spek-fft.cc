@@ -1,4 +1,4 @@
-#include <math.h>
+#include <cmath>
 
 #define __STDC_CONSTANT_MACROS
 extern "C" {

@@ -1,7 +1,6 @@
 #include "soxresampler.h"
 
 #include <QSettings>
-#include <math.h>
 
 SoXResampler::SoXResampler()
     : Effect()
