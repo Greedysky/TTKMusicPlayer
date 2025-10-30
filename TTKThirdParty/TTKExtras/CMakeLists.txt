@@ -194,24 +194,32 @@ set(SOURCE_FILES
   qjson/QJsonParser.cpp
 )
 
+set(QT_LINK_LIBS TTKLibrary TTKUi)
+
 if(WIN32)
   list(APPEND SOURCE_FILES qshortcut/qglobalshortcut_win.cpp ${PROJECT_NAME}.rc)
   list(APPEND HEADER_FILES qkugou/miniblink/miniblink.h)
   list(APPEND SOURCE_FILES qkugou/miniblink/miniblink.cpp)
 elseif(APPLE)
-  list(APPEND SOURCE_FILES qshortcut/qglobalshortcut_mac.cpp)
+  set(MACOS_VERSION "unknown")
+  execute_process(COMMAND /usr/libexec/PlistBuddy -c "Print ProductVersion" /System/Library/CoreServices/SystemVersion.plist OUTPUT_VARIABLE MACOS_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
+  message(STATUS "Detected macOS version: ${MACOS_VERSION}")
+
+  # macOS version greater than 10.5 use qglobalshortcut_osx.cpp
+  # see https://leopard-adc.pepas.com/documentation/Carbon/Reference/KeyboardLayoutServices/Reference/reference.html
+  if(MACOS_VERSION VERSION_GREATER_EQUAL "10.5")
+    list(APPEND SOURCE_FILES qshortcut/qglobalshortcut_osx.cpp)
+  else()
+    list(APPEND SOURCE_FILES qshortcut/qglobalshortcut_mac.cpp)
+  endif()
+
+  # qglobalshortcut_mac.cpp needs this.
+  # Notice, it cannot work on recent macOS versions,
+  # so either additional implementation is needed, using
+  # modern API, or at least a dummy fallback.
+  list(APPEND QT_LINK_LIBS "-framework Carbon")
 else()
   list(APPEND SOURCE_FILES qshortcut/qglobalshortcut_x11.cpp)
-endif()
-
-set(QT_LINK_LIBS TTKLibrary TTKUi)
-
-# qglobalshortcut_mac.cpp needs this.
-# Notice, it cannot work on recent macOS versions,
-# so either additional implementation is needed, using
-# modern API, or at least a dummy fallback.
-if(APPLE)
-  list(APPEND QT_LINK_LIBS "-framework Carbon")
 endif()
 
 if(TTK_QT_VERSION VERSION_EQUAL "4")

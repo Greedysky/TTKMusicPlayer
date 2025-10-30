@@ -28,18 +28,40 @@ HEADERS += \
     $$PWD/qglobalshortcut.h \
     $$PWD/qglobalshortcut_p.h
 
+SOURCES += $$PWD/qglobalshortcut.cpp
+
 win32{
     SOURCES += $$PWD/qglobalshortcut_win.cpp
     LIBS += -luser32
 }
-unix:SOURCES += $$PWD/qglobalshortcut_x11.cpp
+unix:!mac:SOURCES += $$PWD/qglobalshortcut_x11.cpp
 mac{
-    SOURCES += $$PWD/qglobalshortcut_mac.cpp
+    MACOS_VERSION = $$system(/usr/libexec/PlistBuddy -c "Print ProductVersion" /System/Library/CoreServices/SystemVersion.plist)
+    message(Detected macOS version: $$MACOS_VERSION)
+
+    MACOS_VERSION = $$split(MACOS_VERSION, ".")
+    MAJOR_VERSION = $$member(MACOS_VERSION, 0)
+    MINOR_VERSION = $$member(MACOS_VERSION, 1)
+
+    # macOS version greater than 10.5 use qglobalshortcut_osx.cpp
+    # see https://leopard-adc.pepas.com/documentation/Carbon/Reference/KeyboardLayoutServices/Reference/reference.html
+    greaterThan(MAJOR_VERSION, 10){
+        SOURCES += $$PWD/qglobalshortcut_osx.cpp
+    }else{
+        equals(MINOR_VERSION, 10){
+            greaterThan(MINOR_VERSION, 4){
+                SOURCES += $$PWD/qglobalshortcut_osx.cpp
+            }else{
+                SOURCES += $$PWD/qglobalshortcut_mac.cpp
+            }
+        }else{
+            SOURCES += $$PWD/qglobalshortcut_mac.cpp
+        }
+    }
+
     # qglobalshortcut_mac.cpp needs this.
     # Notice, it cannot work on recent macOS versions,
     # so either additional implementation is needed, using
     # modern API, or at least a dummy fallback.
     LIBS += -framework Carbon
 }
-
-SOURCES += $$PWD/qglobalshortcut.cpp
