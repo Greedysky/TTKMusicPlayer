@@ -18,8 +18,10 @@ jobs:
         include:
         - arch: 32
           target: x86
+          collection: libgcc_s_dw2-1
         - arch: 64
           target: x64
+          collection: libgcc_s_seh-1
 
     env:
       QT_VERSION: 5.15.2
@@ -528,20 +530,9 @@ jobs:
           rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/demo.exe
           # add dependency libraries and so on
           windeployqt ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/TTKService.exe
-          if(${{matrix.arch}} -eq 32)
-          {
-            cp ${{env.WIN_MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-            cp ${{env.WIN_MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}} -Force
-            cp ${{env.WIN_MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}} -Force
-            cp ${{env.WIN_MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}
-            rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libgcc_s_seh-1.dll
-          }
-          else
-          {
-            cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libgcc_s_seh-1.dll ${{env.TTK_MODULE}}
-          }
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libstdc++-6.dll ${{env.TTK_MODULE}}
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
+          cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/${{matrix.collection}}.dll ${{env.TTK_MODULE}}
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5OpenGL.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5WinExtras.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}

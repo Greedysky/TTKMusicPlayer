@@ -433,7 +433,7 @@ jobs:
       - name: Build qmmp project
         run: |
           qmake -v
-          qmake qmmp
+          qmake -spec ${{env.QT_ROOT_DIR}}/mkspecs/win32-g++ qmmp
           mingw32-make -j2
         working-directory: ${{github.workspace}}
 
@@ -483,3 +483,64 @@ jobs:
           cmake ${{github.workspace}} -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DCMAKE_PREFIX_PATH=${{env.QT_ROOT_DIR}} -DTTK_QT_VERSION=5 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}}/libTTKqmmp.a
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/build
+
+      - name: Build ttk music player package
+        run: |
+          # add dependency for openssl
+          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z -o openssl.7z
+          7z x openssl.7z
+          cp win32/*.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          # add dependency for theme
+          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z -o theme.7z
+          7z x theme.7z
+          mv GTheme ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          # add dependency for global plugins
+          curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-win.7z -o qmmp-gplugins-win.7z
+          7z x qmmp-gplugins-win.7z
+          mv GPlugins_x86 ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/GPlugins
+          # add dependency for qmmp library
+          cp ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}} -Recurse -Container -Force
+          # remove usless qmmp demo bin
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/demo.exe
+          # add dependency libraries and so on
+          # remove usless library dependency
+          ls -Filter "*.a" -Recurse | Remove-Item -Force
+        working-directory: ${{runner.workspace}}/install
+
+      - name: Add output path for install package
+        shell: bash
+        run: |
+          sed -i "11d" "${{github.workspace}}/TTKUtils/ttk.iss"
+          sed -i "11i#define OutputPath \"${{env.WIN_MINGW_PATH}}/../../install/\"" "${{github.workspace}}/TTKUtils/ttk.iss"
+        working-directory: ${{runner.workspace}}
+
+      - name: Install Inno Setup 6
+        run: |
+          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/InnoSetup.7z -o InnoSetup.7z
+          7z x InnoSetup.7z -oInnoSetup
+        working-directory: ${{runner.workspace}}
+
+      - name: Build ttk music player install package
+        run: |
+          ${{runner.workspace}}/InnoSetup/iscc.exe ${{github.workspace}}/TTKUtils/ttk.iss
+          mv v${{env.TTK_VERSTION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-winXP-x86.exe
+        working-directory: ${{runner.workspace}}/install
+
+      - name: Build ttk music player portable package
+        run: |
+          # add portable configuration
+          cp ${{github.workspace}}/TTKUtils/ttk_portable ${{env.TTK_MODULE}}
+          "便携模式运行 TTKMusicPlayer.exe`r`n删除 ttk_portable 禁用便携模式" > ${{env.TTK_MODULE}}/说明.txt
+          # add portable binary package
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-winXP-x86.7z ${{env.TTK_MODULE}}
+        working-directory: ${{runner.workspace}}/install
+
+      - name: Archive artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: continuous-build
+          token: ${{secrets.GITHUB_TOKEN}}
+          generate_release_notes: false
+          files: |
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-winXP-x86.7z
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-winXP-x86.exe
