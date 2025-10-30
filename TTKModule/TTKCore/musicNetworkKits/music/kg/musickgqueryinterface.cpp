@@ -274,7 +274,7 @@ static void parseSongPropertyUnity(TTK::MusicSongInformation *info, const QStrin
         }
     }
 
-    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v4 module");
+    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in unity module");
 
     if(bitrate == TTK_BN_128 || bitrate == TTK_BN_320 || bitrate == TTK_BN_1000)
     {

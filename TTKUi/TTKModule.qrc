@@ -404,6 +404,7 @@
         <file alias="btn_saver_enable_hover">../TTKResource/toolSets/btn_saver_enable_hover.png</file>
         <file alias="btn_saver_disable">../TTKResource/toolSets/btn_saver_disable.png</file>
         <file alias="btn_saver_disable_hover">../TTKResource/toolSets/btn_saver_disable_hover.png</file>
+        <file alias="btn_plugins_normal">../TTKResource/toolSets/btn_plugins_normal.png</file>
     </qresource>
     <qresource prefix="/tiny">
         <file alias="lb_resize_normal">../TTKResource/tiny/lb_resize_normal.png</file>

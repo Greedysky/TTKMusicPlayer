@@ -346,9 +346,9 @@ MusicServerPluginTableWidget::MusicServerPluginTableWidget(QWidget *parent)
     QHeaderView *headerView = horizontalHeader();
     headerView->resizeSection(0, 30);
 #ifdef Q_OS_UNIX
-    headerView->resizeSection(1, 219);
+    headerView->resizeSection(1, 234);
 #else
-    headerView->resizeSection(1, 222);
+    headerView->resizeSection(1, 237);
 #endif
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
 

@@ -1,6 +1,6 @@
 #include "musicwyqueryinterface.h"
+#include "musicunityqueryinterface.h"
 #include "musicurlutils.h"
-#include "musicabstractnetwork.h"
 
 #include "qalgorithm/aeswrapper.h"
 
@@ -254,11 +254,40 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, int bitrate)
     }
 }
 
+static void parseSongPropertyUnity(TTK::MusicSongInformation *info, int bitrate)
+{
+    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
+    {
+        if(prop.m_bitrate == bitrate)
+        {
+            return;
+        }
+    }
+
+    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in unity module");
+
+    if(bitrate == TTK_BN_128 || bitrate == TTK_BN_320 || bitrate == TTK_BN_1000)
+    {
+        ReqUnityInterface::parseFromSongProperty(info, QUERY_WY_INTERFACE, info->m_songId, bitrate);
+    }
+}
+
 static void parseSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
-    parseSongPropertyV1(info, bitrate);
-    parseSongPropertyV2(info, bitrate);
-    parseSongPropertyV3(info, bitrate);
+    if(G_SETTING_PTR->value(MusicSettingManager::DownloadServerPriority).toBool())
+    {
+        parseSongPropertyUnity(info, bitrate);
+        parseSongPropertyV1(info, bitrate);
+        parseSongPropertyV2(info, bitrate);
+        parseSongPropertyV3(info, bitrate);
+    }
+    else
+    {
+        parseSongPropertyV1(info, bitrate);
+        parseSongPropertyV2(info, bitrate);
+        parseSongPropertyV3(info, bitrate);
+        parseSongPropertyUnity(info, bitrate);
+    }
 }
 
 void ReqWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)

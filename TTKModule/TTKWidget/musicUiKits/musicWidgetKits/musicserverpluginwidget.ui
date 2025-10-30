@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>288</width>
-    <height>243</height>
+    <width>300</width>
+    <height>263</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>280</width>
-     <height>235</height>
+     <width>292</width>
+     <height>255</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -48,7 +48,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>262</x>
+     <x>274</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -63,8 +63,8 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>280</width>
-     <height>210</height>
+     <width>292</width>
+     <height>230</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -75,8 +75,8 @@
      <rect>
       <x>10</x>
       <y>15</y>
-      <width>260</width>
-      <height>150</height>
+      <width>272</width>
+      <height>170</height>
      </rect>
     </property>
    </widget>
@@ -86,8 +86,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>195</x>
-      <y>175</y>
+      <x>207</x>
+      <y>195</y>
       <width>75</width>
       <height>26</height>
      </rect>
@@ -106,7 +106,7 @@
     <property name="geometry">
      <rect>
       <x>17</x>
-      <y>180</y>
+      <y>200</y>
       <width>60</width>
       <height>16</height>
      </rect>
@@ -118,8 +118,8 @@
    <widget class="QCheckBox" name="priorityCheckButton">
     <property name="geometry">
      <rect>
-      <x>95</x>
-      <y>180</y>
+      <x>100</x>
+      <y>200</y>
       <width>90</width>
       <height>16</height>
      </rect>

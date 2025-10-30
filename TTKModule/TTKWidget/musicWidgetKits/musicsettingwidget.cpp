@@ -823,7 +823,7 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadLrcDirButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->downloadCacheCleanButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->downloadRuleButton->setStyleSheet(TTK::UI::PushButtonStyle04);
-    m_ui->downloadServerPluginButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->downloadServerPluginButton->setStyleSheet(TTK::UI::PushButtonStyle08);
     m_ui->downloadDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadLrcDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadCacheCleanButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -860,6 +860,7 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_wangyiyun"), tr("WangYi Music"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("KuWo Music"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("KuGou Music"));
+    m_ui->downloadServerPluginButton->setIcon(QIcon(":/toolSets/btn_plugins_normal"));
 
     const QStringList &rules = MusicRulesAnalysis::rules();
     QMenu *menu = new QMenu(m_ui->downloadRuleButton);

@@ -1344,12 +1344,15 @@ font-weight:bold;</string>
       <rect>
        <x>305</x>
        <y>227</y>
-       <width>80</width>
+       <width>23</width>
        <height>23</height>
       </rect>
      </property>
-     <property name="text">
+     <property name="toolTip">
       <string>第三方插件</string>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
