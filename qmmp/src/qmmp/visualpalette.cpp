@@ -2,7 +2,7 @@
 
 #include <QColor>
 #include <QVector>
-#include <qmath.h>
+#include <cmath>
 
 #define GRADIENT_TABLE_SIZE 256
 
