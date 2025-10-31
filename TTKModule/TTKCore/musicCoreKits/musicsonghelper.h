@@ -21,7 +21,7 @@
 
 #include "musicstringutils.h"
 
-class MusicResultDataItem;
+struct MusicResultDataItem;
 
 /*! @brief The namespace of the song helper.
  * @author Greedysky <greedysky@163.com>
