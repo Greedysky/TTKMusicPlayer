@@ -1,5 +1,5 @@
 #include <assert.h>
-#include <math.h>
+#include <cmath>
 #include <pthread.h>
 #include <stdint.h>
 #include <string.h>

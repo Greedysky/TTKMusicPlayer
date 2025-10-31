@@ -1,6 +1,6 @@
 #include "subwooferplugin.h"
 
-#include <qmath.h>
+#include <cmath>
 #include <QSettings>
 
 static BiquadSCoefs coefs[STAGE_LENGTH] = {
