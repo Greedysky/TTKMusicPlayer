@@ -459,7 +459,7 @@ jobs:
       - name: Build qmmp project
         run: |
           qmake -v
-          qmake qmmp
+          qmake "CONFIG+=release" qmmp
           mingw32-make -j2
         working-directory: ${{github.workspace}}
 
