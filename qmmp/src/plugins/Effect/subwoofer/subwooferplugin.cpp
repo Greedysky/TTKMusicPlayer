@@ -3,6 +3,10 @@
 #include <cmath>
 #include <QSettings>
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846	/* pi */
+#endif
+
 static BiquadSCoefs coefs[STAGE_LENGTH] = {
     {1.0, 1.931851652578, 1.0, 0.0, 0.0, 1.0},
     {1.0, 1.414213562373, 1.0, 0.0, 0.0, 1.0},

@@ -4,6 +4,9 @@
 #include <QVector>
 #include <cmath>
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846	/* pi */
+#endif
 #define GRADIENT_TABLE_SIZE 256
 
 static bool __globalTableInit__ = false;
