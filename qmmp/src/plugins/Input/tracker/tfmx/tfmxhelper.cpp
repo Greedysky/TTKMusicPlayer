@@ -230,7 +230,6 @@ void TFMXHelper::deinit()
 
 bool TFMXHelper::initialize()
 {
-    const int track = m_path.section("#", -1).toInt();
     const QString &path = cleanPath();
 
     TfmxState_init(m_state);
@@ -241,6 +240,7 @@ bool TFMXHelper::initialize()
         return false;
     }
 
+    const int track = m_path.section("#", -1).toInt();
     const int count = TFMXGetSubSongs(m_state);
     if(track > count || track < 0)
     {

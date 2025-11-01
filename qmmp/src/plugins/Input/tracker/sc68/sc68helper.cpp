@@ -21,7 +21,6 @@ void SC68Helper::deinit()
 
 bool SC68Helper::initialize()
 {
-    const int track = m_path.section("#", -1).toInt();
     const QString &path = cleanPath();
 
     sc68_init(nullptr);
@@ -45,6 +44,7 @@ bool SC68Helper::initialize()
         return false;
     }
 
+    const int track = m_path.section("#", -1).toInt();
     if(track > info.tracks || track < 0)
     {
         qWarning("SC68Helper: track number is out of range");

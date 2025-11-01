@@ -10,12 +10,12 @@ DecoderGME::DecoderGME(const QString &path)
 
 bool DecoderGME::initialize()
 {
-    int track = m_path.section("#", -1).toInt();
     m_emu = m_helper.load(m_path);
     if(!m_emu)
         return false;
 
     const int count = gme_track_count(m_emu);
+    int track = m_path.section("#", -1).toInt();
     if(track > count || track < 0)
     {
         qWarning("DecoderGME: track number is out of range");

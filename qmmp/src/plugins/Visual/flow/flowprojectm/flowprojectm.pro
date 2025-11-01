@@ -3,6 +3,8 @@ include($$PWD/../../Visual.pri)
 #DEFINES += PROJECTM_31
 #DEFINES += PROJECTM_4
 
+freebsd:DEFINES += PROJECTM_31
+
 lessThan(QT_MAJOR_VERSION, 6){
     QT += opengl
 }else{
