@@ -89,7 +89,7 @@ jobs:
           }
           7z x 8.1.0-mingw.7z -omingw
           # remove default installed mingw64
-          mv C:\mingw64 C:\mingw64_usless
+          mv C:\mingw64 C:\mingw64_useless
           # set environment variable
           echo "${{env.WIN_MINGW_PATH}};" >> $env:GITHUB_PATH
         working-directory: ${{runner.workspace}}
@@ -465,6 +465,20 @@ jobs:
 
       - name: Build qmmp package
         run: |
+          # add dependency for theme
+          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z -o theme.7z
+          7z x theme.7z
+          mv GTheme bin/${{env.TTK_VERSTION}}
+          # add dependency for openssl
+          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z -o openssl.7z
+          7z x openssl.7z
+          cp win${{matrix.arch}}/*.dll bin/${{env.TTK_VERSTION}}
+          # add dependency for global plugins
+          curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-win.7z -o qmmp-gplugins-win.7z
+          7z x qmmp-gplugins-win.7z
+          mv GPlugins_${{matrix.target}} bin/${{env.TTK_VERSTION}}/GPlugins
+          # remove useless qmmp demo bin
+          rm bin/${{env.TTK_VERSTION}}/demo.exe
           # copy ffmpeg libraries
           cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/avcodec-57.dll bin/${{env.TTK_VERSTION}}
           cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/avformat-57.dll bin/${{env.TTK_VERSTION}}
@@ -476,7 +490,7 @@ jobs:
           cp ${{env.WIN_QMMP_DEPS_PATH}}/liboptimfrog/bin/libOptimFROG.dll bin/${{env.TTK_VERSTION}}
           mv bin ${{runner.workspace}}/qmmp
           # add portable binary package
-          7z a qmmp-win-mingw810-${{matrix.target}}.7z ${{runner.workspace}}/qmmp
+          7z a qmmp-qt5-win-mingw810-${{matrix.target}}.7z ${{runner.workspace}}/qmmp
         working-directory: ${{github.workspace}}
 
       - name: Archive artifacts
@@ -485,7 +499,7 @@ jobs:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{github.workspace}}/qmmp-win-mingw810-${{matrix.target}}.7z
+          files: ${{github.workspace}}/qmmp-qt5-win-mingw810-${{matrix.target}}.7z
 
       - name: Clean up qmmp build
         shell: bash
@@ -512,22 +526,8 @@ jobs:
 
       - name: Build ttk music player package
         run: |
-          # add dependency for openssl
-          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z -o openssl.7z
-          7z x openssl.7z
-          cp win${{matrix.arch}}/*.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          # add dependency for theme
-          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z -o theme.7z
-          7z x theme.7z
-          mv GTheme ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          # add dependency for global plugins
-          curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-win.7z -o qmmp-gplugins-win.7z
-          7z x qmmp-gplugins-win.7z
-          mv GPlugins_${{matrix.target}} ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/GPlugins
           # add dependency for qmmp library
           cp ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}} -Recurse -Container -Force
-          # remove usless qmmp demo bin
-          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/demo.exe
           # add dependency libraries and so on
           windeployqt ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/TTKService.exe
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/libstdc++-6.dll ${{env.TTK_MODULE}}
@@ -537,7 +537,7 @@ jobs:
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5OpenGL.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5WinExtras.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/mingw81_${{matrix.arch}}/bin/Qt5Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          # remove usless library dependency
+          # remove useless library dependency
           ls -Filter "*.a" -Recurse | Remove-Item -Force
           rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/D3D*.dll
           rm ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}/opengl32sw.dll

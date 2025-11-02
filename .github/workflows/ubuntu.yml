@@ -361,6 +361,16 @@ jobs:
 
       - name: Build qmmp package
         run: |
+          # add dependency for theme
+          wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z
+          7z x theme.7z
+          mv GTheme bin/${{env.TTK_VERSTION}}
+          # add dependency for global plugins
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-linux.7z
+          7z x qmmp-gplugins-linux.7z
+          mv GPlugins bin/${{env.TTK_VERSTION}}
+          # remove useless qmmp demo bin
+          rm bin/${{env.TTK_VERSTION}}/demo
           # copy ffmpeg libraries
           cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libavcodec.so.57.107.100 bin/${{env.TTK_VERSTION}}/libavcodec.so.57
           cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libavformat.so.57.83.100 bin/${{env.TTK_VERSTION}}/libavformat.so.57
@@ -371,10 +381,8 @@ jobs:
           # copy optimfrog libraries
           cp ${{env.QMMP_DEPS_PATH}}/liboptimfrog/lib/libOptimFROG.so.0 bin/${{env.TTK_VERSTION}}
           # copy uadecore
-          cp ${{env.QMMP_DEPS_PATH}}/libttk/bin/uadecore bin/${{env.TTK_VERSTION}}
+          cp ${{env.QMMP_DEPS_PATH}}/libttk/bin/uadecore bin/${{env.TTK_VERSTION}}/GPlugins/config/uade
           mv bin ${{runner.workspace}}/qmmp
-          # add portable binary package
-          7z a qmmp-linux-x64.7z ${{runner.workspace}}/qmmp
         working-directory: ${{github.workspace}}
 
       - name: Clean up qmmp build
@@ -400,20 +408,9 @@ jobs:
 
       - name: Build ttk music player package
         run: |
-          # add dependency for theme
-          wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z
-          7z x theme.7z
-          mv GTheme ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          # add dependency for global plugins
-          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-linux.7z
-          7z x qmmp-gplugins-linux.7z
-          mv GPlugins ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           # add dependency for qmmp library
           cp -rf ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}}
           cd ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          mv uadecore GPlugins/config/uade
-          # remove usless qmmp demo bin
-          rm demo
           # add dependency libraries and so on
           linuxdeploy-x86_64.AppImage --executable=TTKService --appdir=image --plugin=qt
           rm image/usr/translations/*.qm image/usr/lib/libTTK*.so image/usr/lib/libttkzip.so image/usr/lib/libzlib.so
