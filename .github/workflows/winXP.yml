@@ -20,11 +20,8 @@ jobs:
       QT_ROOT_DIR: D:/a/TTKMusicPlayer/Qt/4.8.7
       QT_BIN_DIR: D:/a/TTKMusicPlayer/Qt/4.8.7/bin
       QT_LIB_DIR: D:/a/TTKMusicPlayer/Qt/4.8.7/lib
-      QT_PLUGIN_PATH: D:/a/TTKMusicPlayer/Qt/4.8.7/plugins
-      WIN_MINGW_PATH: D:/a/TTKMusicPlayer/mingw/Tools/mingw492_32/bin
+      MINGW_PATH: D:/a/TTKMusicPlayer/mingw/bin
       WIN_QMMP_DEPS_PATH: D:/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
-      UNIX_MINGW_PATH: /d/a/TTKMusicPlayer/mingw/Tools/mingw492_32/bin
-      UNIX_MINGW_OPT_PATH: /d/a/TTKMusicPlayer/mingw/Tools/mingw492_32/opt
       UNIX_QMMP_DEPS_PATH: /d/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
 
     runs-on: ${{matrix.os}}
@@ -39,17 +36,17 @@ jobs:
           path: ${{runner.workspace}}/Qt
           key: ${{runner.os}}-QtCache-${{env.QT_VERSION}}
 
-      - name: Install Qt4 and MinGW 4.9.2
+      - name: Install Qt4 and MinGW492_32
         run: |
           curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/Qt4.7z -o Qt4.7z
           7z x Qt4.7z -oQt
           "[Paths]`nPrefix = ${{env.QT_ROOT_DIR}}" > ${{env.QT_BIN_DIR}}/qt.conf
-          curl -L https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win32_mingw492/4.9.2-1i686-4.9.2-release-posix-dwarf-rt_v3-rev1.7z -o 4.9.2-mingw.7z
-          7z x 4.9.2-mingw.7z -omingw
+          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/mingw492_32.7z -o mingw.7z
+          7z x mingw.7z -omingw
           # remove default installed mingw64
           mv C:\mingw64 C:\mingw64_useless
           # set environment variable
-          echo "${{env.WIN_MINGW_PATH}};${{env.QT_BIN_DIR}};${{env.QT_LIB_DIR}};" >> $env:GITHUB_PATH
+          echo "${{env.MINGW_PATH}};${{env.QT_BIN_DIR}};${{env.QT_LIB_DIR}};" >> $env:GITHUB_PATH
         working-directory: ${{runner.workspace}}
 
       - name: Install MSYS2
@@ -68,369 +65,14 @@ jobs:
 
       - name: Create thirdParty dir
         shell: bash
-        run: mkdir thirdParty
+        run: mkdir -p ${{env.UNIX_QMMP_DEPS_PATH}}
         working-directory: ${{runner.workspace}}
 
       - name: Install thirdParty dependencies
         run: |
-          curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-extra-pkg.7z -o qmmp-extra-pkg.7z
-          7z x qmmp-extra-pkg.7z
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libadlmidi
-        run: |
-          7z x libADLMIDI-1.6.1.7z -olibadlmidi
-          cd libadlmidi
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libadlmidi -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3" -DUSE_NUKED_EMULATOR=OFF -DUSE_OPAL_EMULATOR=OFF -DUSE_JAVA_EMULATOR=OFF -DUSE_ESFMU_EMULATOR=OFF -DUSE_MAME_EMULATOR=OFF -DUSE_YMFM_EMULATOR=OFF
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libbinio
-        shell: msys2 {0}
-        run: |
-          7z x libbinio-1.5.7z -olibbinio
-          cd libbinio
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          autoreconf --install
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libadplug CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --enable-maintainer-mode
-          make -j2 && make install
-          find ${{env.UNIX_QMMP_DEPS_PATH}}/libadplug -type f -name "*.la" -exec rm {} +
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libadplug
-        shell: msys2 {0}
-        run: |
-          7z x adplug-2.4.7z -olibadplug
-          cd libadplug
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          export PKG_CONFIG_PATH=${{env.UNIX_QMMP_DEPS_PATH}}/libadplug/lib/pkgconfig:$PKG_CONFIG_PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libadplug CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libsndfile
-        run: |
-          7z x libsndfile-1.2.2.7z -olibsndfile
-          cd libsndfile
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libsndfile -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3"
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libbs2b
-        shell: msys2 {0}
-        run: |
-          7z x libbs2b-3.1.0.7z -olibbs2b
-          cd libbs2b
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          export PKG_CONFIG_PATH=${{env.UNIX_QMMP_DEPS_PATH}}/libsndfile/lib/pkgconfig:$PKG_CONFIG_PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libbs2b CFLAGS="-O3" CXXFLAGS="-O3" --enable-static CPPFLAGS="-I${{env.UNIX_QMMP_DEPS_PATH}}/libsndfile/include" LDFLAGS="-L${{env.UNIX_QMMP_DEPS_PATH}}/libsndfile/lib -lm"
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libcddb
-        shell: msys2 {0}
-        run: |
-          7z x libcddb-1.3.2.7z -olibcddb
-          cd libcddb
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libcddb CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared --without-cdio
-          # fix build for regex
-          echo "#define HAVE_REGEX_H 1" >> config.h
-          cp ${{env.UNIX_MINGW_OPT_PATH}}/include/regex.h include/cddb
-          mkdir -p lib/.libs
-          cp ${{env.UNIX_MINGW_OPT_PATH}}/lib/libregex.a lib/.libs
-          make -j2 && make install
-          # fix install library
-          cp ${{env.UNIX_MINGW_OPT_PATH}}/lib/libregex.a ${{env.UNIX_QMMP_DEPS_PATH}}/libcddb/lib
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libcdio
-        shell: msys2 {0}
-        run: |
-          7z x libcdio-2.1.0.7z -olibcdio
-          cd libcdio
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./autogen.sh
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libcdio CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared --disable-cxx --disable-example-progs --disable-cddb --without-cd-drive --without-cd-info --without-cdda-player --without-iso-info --without-iso-read --without-cd-read
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libcdio-paranoia
-        shell: msys2 {0}
-        run: |
-          7z x libcdio-paranoia-10.2+2.0.1.7z -olibcdio-paranoia
-          cd libcdio-paranoia
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          export PKG_CONFIG_PATH=${{env.UNIX_QMMP_DEPS_PATH}}/libcdio/lib/pkgconfig:$PKG_CONFIG_PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libcdio CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared --disable-cxx --disable-example-progs
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libenca
-        shell: msys2 {0}
-        run: |
-          7z x enca-1.19.7z -olibenca
-          cd libenca
-          # remove build for bin and test
-          sed -i "199s/=.*/= lib/g" Makefile.in
-          sed -i "384s/=.*/= lib/g" Makefile.in
-          sed -i "385s/=.*/= lib/g" Makefile.in
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libenca CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libfaad2
-        run: |
-          7z x faad2-2.11.2.7z -olibfaad2
-          cd libfaad2
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3"
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libspeex
-        shell: msys2 {0}
-        run: |
-          7z x speex-1.2.1.7z -olibspeex
-          cd libspeex
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./autogen.sh
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libspeex CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libffmpeg
-        shell: msys2 {0}
-        run: |
-          7z x ffmpeg-3.4.14.7z -olibffmpeg
-          cd libffmpeg
-          # fix operand type mismatch for `shr'
-          curl -L https://raw.githubusercontent.com/FFmpeg/FFmpeg/refs/heads/master/libavcodec/x86/mathops.h -o libavcodec/x86/mathops.h
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          export PKG_CONFIG_PATH=${{env.UNIX_QMMP_DEPS_PATH}}/libspeex/lib/pkgconfig:$PKG_CONFIG_PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libffmpeg --enable-shared --disable-static --disable-debug --disable-doc --disable-avdevice --disable-x86asm --disable-network --disable-encoders --disable-indevs --disable-outdevs --disable-iconv --disable-bsfs --disable-programs --disable-d3d11va --disable-dxva2 --disable-muxers --disable-parsers --disable-filters --disable-decoders --enable-decoder=wmav1 --enable-decoder=wmav2 --enable-decoder=ape --enable-decoder=tta --enable-decoder=aac --enable-decoder=alac --enable-decoder=ra_144 --enable-decoder=ra_288 --enable-decoder=shorten --enable-decoder=eac3 --enable-decoder=dca --enable-decoder=truehd --enable-decoder=twinvq --enable-decoder=tak --enable-decoder=adpcm_adx --enable-decoder=pcm_alaw --enable-decoder=pcm_s16be --enable-decoder=pcm_s16le --enable-decoder=gsm --enable-decoder=amrnb --enable-decoder=amrwb --enable-decoder=opus --enable-decoder=ac3 --enable-decoder=mp2 --enable-decoder=mp3 --enable-decoder=dsd_lsbf --enable-decoder=dsd_msbf --enable-decoder=vorbis --enable-decoder=flac --enable-decoder=libspeex --enable-libspeex --extra-cflags="-O3" --extra-cxxflags="-O3"
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libogg
-        shell: msys2 {0}
-        run: |
-          7z x libogg-1.3.6.7z -olibogg
-          cd libogg
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libogg CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libflac
-        run: |
-          7z x flac-1.5.0.7z -olibflac
-          cd libflac
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libflac -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3" -DENABLE_64_BIT_WORDS=OFF -DENABLE_MULTITHREADING=OFF -DWITH_FORTIFY_SOURCE=OFF -DWITH_STACK_PROTECTOR=OFF -D_OGG_INCLUDE_DIRS=${{env.WIN_QMMP_DEPS_PATH}}/libogg/include -D_OGG_LIBRARY_DIRS=${{env.WIN_QMMP_DEPS_PATH}}/libogg/lib
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libgme
-        run: |
-          7z x libgme-0.6.4.7z -olibgme
-          cd libgme
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libgme -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3" -DBUILD_SHARED_LIBS=OFF
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libmpcdec
-        run: |
-          7z x libmpcdec_r475.7z -olibmpcdec
-          cd libmpcdec
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libmpcdec -DCMAKE_C_FLAGS="-O3" -DSHARED=OFF
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libmpg123
-        shell: msys2 {0}
-        run: |
-          7z x mpg123-1.33.3.7z -olibmpg123
-          cd libmpg123
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libmpg123 CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libopenmpt
-        shell: msys2 {0}
-        run: |
-          7z x libopenmpt-0.4.51.7z -olibopenmpt
-          cd libopenmpt
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libopenmpt CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared --without-zlib --without-mpg123 --without-ogg --without-vorbis --without-vorbisfile --without-pulseaudio --without-portaudio --without-portaudiocpp --without-sndfile --without-flac
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for liboptimfrog
-        shell: msys2 {0}
-        run: |
-          7z x OptimFROG_5100.7z -oliboptimfrog
-          cd liboptimfrog/win32/SDK
-          mkdir -p liboptimfrog/include
-          mv Library liboptimfrog/lib && mv OptimFROG liboptimfrog/include
-          mkdir -p liboptimfrog/bin
-          mv liboptimfrog/lib/OptimFROG.dll liboptimfrog/bin/libOptimFROG.dll
-          mv liboptimfrog ${{env.UNIX_QMMP_DEPS_PATH}}/liboptimfrog
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libopus
-        shell: msys2 {0}
-        run: |
-          7z x opus-1.5.2.7z -olibopus
-          cd libopus
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libopusfile CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared --disable-extra-programs
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libopusfile
-        shell: msys2 {0}
-        run: |
-          7z x opusfile-0.12.7z -olibopusfile
-          cd libopusfile
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          export PKG_CONFIG_PATH=${{env.UNIX_QMMP_DEPS_PATH}}/libogg/lib/pkgconfig:${{env.UNIX_QMMP_DEPS_PATH}}/libopusfile/lib/pkgconfig:$PKG_CONFIG_PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libopusfile CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared --disable-http --disable-doc
-          make -j2 && make install
-          # add opus header patch
-          sed -i "s/<opus_/<opus\/opus_/g" ${{env.UNIX_QMMP_DEPS_PATH}}/libopusfile/include/opus/opusfile.h
-        working-directory: ${{runner.workspace}}/thirdParty
-
-#      - name: Build library for glew
-#        run: |
-#          curl -L https://downloads.sourceforge.net/sourceforge/glew/glew/2.2.0/glew-2.2.0.zip -o glew.zip
-#          7z x glew.zip
-#          cd glew-2.2.0
-#          cmake build/cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libprojectm -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3" -DBUILD_UTILS=OFF
-#          mingw32-make -j2
-#          # fix missing install library
-#          mkdir ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
-#          mv bin ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
-#          mv include ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
-#          mv lib ${{env.WIN_QMMP_DEPS_PATH}}/libprojectm
-#        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libprojectm
-        shell: msys2 {0}
-        run: |
-          7z x libprojectm-2.2.1.7z -olibprojectm
-          cd libprojectm
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./autogen.sh
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm CFLAGS="-O3 -DDISABLE_NATIVE_PRESETS" CXXFLAGS="-O3 -DDISABLE_NATIVE_PRESETS" LDFLAGS="-L. -lopengl32" --enable-static --disable-shared
-          make -j2 && make install
-          # fix install headers
-          mkdir ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-          mv src/libprojectM/win32-dirent.h ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-          mv ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/*.h* ${{env.UNIX_QMMP_DEPS_PATH}}/libprojectm/include/libprojectM
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libsamplerate
-        run: |
-          7z x libsamplerate-0.2.2.7z -olibsamplerate
-          cd libsamplerate
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libsamplerate -DCMAKE_C_FLAGS="-O3"
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libsidplayfp
-        shell: msys2 {0}
-        run: |
-          7z x libsidplayfp-2.3.1.patch.7z -olibsidplayfp
-          cd libsidplayfp
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libsidplayfp CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libsoxr
-        run: |
-          7z x soxr-0.1.3.7z -olibsoxr
-          cd libsoxr
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libsoxr -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3" -DWITH_OPENMP=OFF -DBUILD_SHARED_LIBS=OFF
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libtaglib
-        run: |
-          7z x taglib-1.13.1.7z -olibtaglib
-          cd libtaglib
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libtaglib -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3" -DWITH_ZLIB=OFF
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libvorbis
-        run: |
-          7z x libvorbis-1.3.7.7z -olibvorbis
-          cd libvorbis
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libvorbis -DCMAKE_PREFIX_PATH=${{env.WIN_QMMP_DEPS_PATH}}/libogg -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3"
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libwavpack
-        run: |
-          7z x wavpack-5.8.1.7z -olibwavpack
-          cd libwavpack
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libwavpack -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3"
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libxmp
-        shell: msys2 {0}
-        run: |
-          7z x libxmp-4.6.3-patch.7z -olibxmp
-          cd libxmp
-          export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_QMMP_DEPS_PATH}}/libxmp CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared --disable-depackers --disable-prowizard
-          make -j2 && make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libsunvox
-        run: |
-          7z x sunvox-2.1.3.7z -olibsunvox
-          cd libsunvox
-          mkdir ${{env.WIN_QMMP_DEPS_PATH}}/libsunvox
-          mv windows/x86/sunvox.dll ${{env.WIN_QMMP_DEPS_PATH}}/libsunvox
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build library for libttk
-        run: |
-          7z x ttk-1.2.12.7z -olibttk
-          cd libttk
-          mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_QMMP_DEPS_PATH}}/libttk -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3"
-          mingw32-make -j2 && mingw32-make install
-        working-directory: ${{runner.workspace}}/thirdParty
-
-      - name: Build thirdParty libraries package
-        run: |
-          # add portable binary package
-          7z a thirdParty-libraries-win-mingw492-x86.7z
+          curl -L https://github.com/Greedysky/TTKMusicPlayer/releases/download/continuous-build/thirdParty-libraries-win-mingw492-x86.7z -o thirdParty-libraries.7z
+          7z x thirdParty-libraries.7z
         working-directory: ${{github.workspace}}/extra
-
-      - name: Archive artifacts
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: continuous-build
-          token: ${{secrets.GITHUB_TOKEN}}
-          generate_release_notes: false
-          files: ${{github.workspace}}/extra/thirdParty-libraries-win-mingw492-x86.7z
 
       - name: Build qmmp project
         run: |
@@ -466,7 +108,7 @@ jobs:
           cp ${{env.WIN_QMMP_DEPS_PATH}}/liboptimfrog/bin/libOptimFROG.dll bin/${{env.TTK_VERSTION}}
           mv bin ${{runner.workspace}}/qmmp
           # add portable binary package
-          7z a qmmp-qt4-win-mingw492-x86.7z ${{runner.workspace}}/qmmp
+          7z a qmmp-qt4-win-mingw492-x86.7z ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}}
         working-directory: ${{github.workspace}}/qmmp
 
       - name: Archive artifacts
@@ -515,12 +157,12 @@ jobs:
           cp ${{env.QT_BIN_DIR}}/QtOpenGL4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           cp ${{env.QT_BIN_DIR}}/QtSvg4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           cp ${{env.QT_BIN_DIR}}/QtXml4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cp ${{env.WIN_MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}
-          cp ${{env.WIN_MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}
-          cp ${{env.WIN_MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
-          cp ${{env.WIN_MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cp ${{env.WIN_MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cp ${{env.WIN_MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          cp ${{env.MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}
+          cp ${{env.MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}
+          cp ${{env.MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
+          cp ${{env.MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          cp ${{env.MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          cp ${{env.MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
           # remove useless library dependency
           ls -Filter "*.a" -Recurse | Remove-Item -Force
         working-directory: ${{runner.workspace}}/install

@@ -1,0 +1,17 @@
+# Author: Greedysky <greedysky@163.com>
+
+name: CI-Build-Library
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  ubuntu:
+    uses: ./.github/workflows/linux_library.yml
+    secrets: inherit
+
+  win:
+    uses: ./.github/workflows/win_library.yml
+    secrets: inherit
