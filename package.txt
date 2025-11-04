@@ -14,7 +14,7 @@ libmpg123-1.33.3	https://sourceforge.net/projects/mpg123
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.6	https://ftp.osuosl.org/pub/xiph/releases/ogg
 libopenmpt-0.4.51	https://lib.openmpt.org/libopenmpt
-libprojectm-2.2.1(v4.1.4)	https://github.com/projectM-visualizer/projectm
+libprojectm-2.2.1(v4.1.5)	https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
 libsidplayfp-2.3.1.patch(v2.15.2)	https://github.com/libsidplayfp/libsidplayfp
 libsndfile-1.2.2	https://github.com/libsndfile/libsndfile

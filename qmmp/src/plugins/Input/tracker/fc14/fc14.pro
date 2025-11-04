@@ -13,25 +13,28 @@ SOURCES += decoderfc14factory.cpp \
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
 win32{
-    DEFINES += LIBFC_VERSION1
+    LIB_VERSION = $$system(type $$EXTRA_PREFIX/libttk/include/libfc14/fc14audiodecoder.h | find "fc14dec_reinit")
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -lfc14
 }
 
 unix:!mac{
-    DEFINES += LIBFC_VERSION1
+    LIB_VERSION = $$system(grep -r "fc14dec_reinit" $$EXTRA_PREFIX/libttk/include/libfc14/fc14audiodecoder.h)
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -lfc14$$STATIC_LIBRARY_SUFFIX
 }
 
 mac{
-    # There's no version header file provided, so we can only detect the ABI.
-    FC_VERSION = $$system(grep -r "fc14dec_reinit" /opt/local/include/fc14audiodecoder.h)
-    isEmpty(FC_VERSION){
-        DEFINES += LIBFC_VERSION1
-    }else{
-        DEFINES += LIBFC_VERSION2
-    }
-
+    LIB_VERSION = $$system(grep -r "fc14dec_reinit" /opt/local/include/fc14audiodecoder.h)
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.dylib
     LIBS += -lfc14audiodecoder
+}
+
+# Check version
+# Note: There's no version header file provided, so we can only detect the ABI.
+isEmpty(LIB_VERSION){
+    DEFINES += LIBFC_VERSION1
+    message("Found libfc14audiodecoder version 1.x")
+}else{
+    DEFINES += LIBFC_VERSION2
+    message("Found libfc14audiodecoder version 2.x")
 }
