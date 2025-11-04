@@ -278,12 +278,15 @@ jobs:
         run: |
           7z x opus-1.5.2.7z -olibopus
           cd libopus
+          if [ ${{matrix.version}} -lt 1310 ]; then
+            # add opus missing ssp library patch
+            # see https://github.com/msys2/MINGW-packages/issues/8240
+            # sed -i 's/Libs.private.*/& -lssp/' opus.pc.in
+            sed -i 's/libopus_la_LDFLAGS =.*/& -lssp/' Makefile.in
+          fi
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./configure --prefix=${{env.UNIX_INSTALL_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" LDFLAGS="-L. -lssp" --enable-static --disable-shared --disable-extra-programs
+          ./configure --prefix=${{env.UNIX_INSTALL_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-extra-programs
           make -j2 && make install
-          # add opus missing ssp library patch
-          # see https://github.com/msys2/MINGW-packages/issues/8240
-          sed -i 's/Libs.private.*/& -lssp/' ${{env.UNIX_INSTALL_PATH}}/libopusfile/lib/pkgconfig/opus.pc
         working-directory: ${{runner.workspace}}
 
       - name: Build library for libopusfile
