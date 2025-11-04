@@ -9,7 +9,7 @@ mac{
 
 exists($$LIB_PKG_PATH){
     win32{
-        LIB_VERSION = $$system(findstr /r "Version:" $$LIB_PKG_PATH)
+        LIB_VERSION = $$system(findstr /r "Version:" $$replace(LIB_PKG_PATH, /, \\))
         !isEmpty(LIB_VERSION){
             LIB_VERSION = $$split(LIB_VERSION, " ")
             LIB_VERSION = $$member(LIB_VERSION, 1)

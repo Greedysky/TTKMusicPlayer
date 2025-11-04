@@ -13,7 +13,8 @@ SOURCES += decoderfc14factory.cpp \
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
 win32{
-    LIB_VERSION = $$system(type $$EXTRA_PREFIX/libttk/include/libfc14/fc14audiodecoder.h | find "fc14dec_reinit")
+    LIB_INCLUDE = $$EXTRA_PREFIX/libttk/include/libfc14/fc14audiodecoder.h
+    LIB_VERSION = $$system(findstr /r "fc14dec_reinit" $$replace(LIB_INCLUDE, /, \\))
     LIBS += -L$$EXTRA_PREFIX/libttk/lib -lfc14
 }
 
