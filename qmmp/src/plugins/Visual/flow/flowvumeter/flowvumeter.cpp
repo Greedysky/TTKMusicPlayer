@@ -127,4 +127,3 @@ void FlowVUMeter::createMenu()
         rangeMenu->addAction(act);
     }
 }
-

@@ -40,7 +40,7 @@ void MountainMidWidget::initializeGL()
         for(int x = 0; x < NUM_BANDS; ++x)
         {
             const float xf = (float)x / (NUM_BANDS - 1);
-            m_colors[x][y][0] = (1 - xf) *(1 - yf);
+            m_colors[x][y][0] = (1 - xf) * (1 - yf);
             m_colors[x][y][1] = xf;
             m_colors[x][y][2] = yf;
         }
@@ -68,8 +68,8 @@ void MountainMidWidget::generateLogGraph(const float *freq, float *graph)
     {
         /* sum up values in freq array between m_logScale[i] and m_logScale[i + 1],
            including fractional parts */
-        int a = ceilf(m_logScale[i]);
-        int b = floorf(m_logScale[i + 1]);
+        int a = std::ceil(m_logScale[i]);
+        int b = std::floor(m_logScale[i + 1]);
         float sum = 0;
 
         if(b < a)

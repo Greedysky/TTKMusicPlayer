@@ -331,7 +331,7 @@ VolumeSettings VolumeWASAPI::volume() const
     {
         float level = 0;
         OutputWASAPI::instance->simpleAudioVolume()->GetMasterVolume(&level);
-        vol.left = ceilf(level * 100.0f);
+        vol.left = std::ceil(level * 100.0f);
         vol.right = vol.left;
         return vol;
     }

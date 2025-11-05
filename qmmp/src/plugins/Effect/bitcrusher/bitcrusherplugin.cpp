@@ -34,7 +34,7 @@ void BitcrusherPlugin::applyEffect(Buffer *b)
         {
             if(m_accumulator >= 1.0)
             {
-                m_buffer[channel] = floorf((data[i] * gain) * scale + 0.5) / scale / gain;
+                m_buffer[channel] = std::floor((data[i] * gain) * scale + 0.5) / scale / gain;
             }
 
             data[i++] = m_buffer[channel];

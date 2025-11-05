@@ -2,8 +2,8 @@
 #include "inlines.h"
 
 #include <QMenu>
-#include <QSettings>
 #include <QPainter>
+#include <QSettings>
 #include <cmath>
 #include <qmmp/qmmp.h>
 

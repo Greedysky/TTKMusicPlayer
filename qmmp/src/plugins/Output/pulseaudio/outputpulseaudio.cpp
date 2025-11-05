@@ -404,12 +404,12 @@ VolumeSettings VolumePulseAudio::cvolumeToVolumeSettings(const pa_cvolume &v)
     VolumeSettings volume;
     if(v.channels == 2)
     {
-        volume.left = ceilf(float(v.values[0]) * 100 / PA_VOLUME_NORM);
-        volume.right = ceilf(float(v.values[1]) * 100 / PA_VOLUME_NORM);
+        volume.left = std::ceil(float(v.values[0]) * 100 / PA_VOLUME_NORM);
+        volume.right = std::ceil(float(v.values[1]) * 100 / PA_VOLUME_NORM);
     }
     else
     {
-        volume.left = ceilf(float(pa_cvolume_avg(&v)) * 100 / PA_VOLUME_NORM);
+        volume.left = std::ceil(float(pa_cvolume_avg(&v)) * 100 / PA_VOLUME_NORM);
         volume.right = volume.left;
     }
     return volume;
