@@ -30,23 +30,22 @@ jobs:
         run: git clone -b plugins https://github.com/Greedysky/${{env.TTK_MODULE}}.git
         working-directory: ${{runner.workspace}}
 
-      - name: Cache Qt
-        uses: actions/cache@v4
-        with:
-          path: ${{runner.workspace}}/Qt
-          key: ${{runner.os}}-QtCache-${{env.QT_VERSION}}
-
-      - name: Install Qt4 and MinGW492_32
+      - name: Install Qt
         run: |
-          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/Qt4.7z -o Qt4.7z
-          7z x Qt4.7z -oQt
+          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/Qt4.7z -o Qt.7z
+          7z x Qt.7z -oQt
           "[Paths]`nPrefix = ${{env.QT_ROOT_DIR}}" > ${{env.QT_BIN_DIR}}/qt.conf
+          echo "${{env.QT_BIN_DIR}};" >> $env:GITHUB_PATH
+        working-directory: ${{runner.workspace}}
+
+      - name: Install MinGW492_32
+        run: |
           curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/mingw492_32.7z -o mingw.7z
           7z x mingw.7z -omingw
           # remove default installed mingw64
           mv C:\mingw64 C:\mingw64_useless
           # set environment variable
-          echo "${{env.MINGW_PATH}};${{env.QT_BIN_DIR}};${{env.QT_LIB_DIR}};" >> $env:GITHUB_PATH
+          echo "${{env.MINGW_PATH}};" >> $env:GITHUB_PATH
         working-directory: ${{runner.workspace}}
 
       - name: Install MSYS2
