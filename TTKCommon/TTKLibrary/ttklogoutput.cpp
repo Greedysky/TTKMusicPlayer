@@ -243,12 +243,21 @@ void TTKLogOutput::write(QtMsgType type, const QMessageLogContext &context, cons
 
     m_mutex.lock();
 
+    // output to console
 #if TTK_QT_VERSION_CHECK(5,0,0)
-    m_defaultHandler(type, context, message);
+    if(type == QtDebugMsg || type == QtWarningMsg || type == QtInfoMsg)
 #else
-    m_defaultHandler(type, message.toUtf8().constData());
+    if(type == QtDebugMsg || type == QtWarningMsg)
 #endif
+    {
+        QTextStream(stdout) << message << QtNamespace(endl);
+    }
+    else
+    {
+        QTextStream(stderr) << message << QtNamespace(endl);
+    }
 
+    // output to file
     if(m_file.isOpen())
     {
         const QString &date = QDate::currentDate().toString(TTK_DATE_FORMAT);
