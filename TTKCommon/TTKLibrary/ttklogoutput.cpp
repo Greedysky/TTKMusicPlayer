@@ -244,7 +244,7 @@ void TTKLogOutput::write(QtMsgType type, const QMessageLogContext &context, cons
     m_mutex.lock();
 
     // output to console
-#if TTK_QT_VERSION_CHECK(5,0,0)
+#if TTK_QT_VERSION_CHECK(5,5,0)
     if(type == QtDebugMsg || type == QtWarningMsg || type == QtInfoMsg)
 #else
     if(type == QtDebugMsg || type == QtWarningMsg)
