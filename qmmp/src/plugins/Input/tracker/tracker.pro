@@ -1,3 +1,5 @@
+include($$PWD/../../plugins.pri)
+
 TEMPLATE = subdirs
 
 SUBDIRS += asap
@@ -12,3 +14,7 @@ SUBDIRS += tfmx
 SUBDIRS += xmp
 
 unix:!mac:SUBDIRS += uade
+
+contains(CONFIG, VGMSTREAM_PLUGIN){
+    SUBDIRS += vgmstream
+}

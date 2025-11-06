@@ -67,6 +67,7 @@ CONFIG += SID_PLUGIN
 
 #tracker features
 CONFIG += TRACKER_PLUGIN
+#CONFIG += VGMSTREAM_PLUGIN
 
 #zed features
 CONFIG += ZED_PLUGIN

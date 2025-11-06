@@ -62,7 +62,7 @@ QList<TrackInfo*> DecoderXMDXFactory::createPlayList(const QString &path, TrackI
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "XMDX");
+        info->setValue(Qmmp::FORMAT_NAME, "XMDX Game");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;

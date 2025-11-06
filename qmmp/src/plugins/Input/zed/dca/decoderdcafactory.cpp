@@ -53,7 +53,7 @@ QList<TrackInfo*> DecoderDCAFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "DTS Audio");
+        info->setValue(Qmmp::FORMAT_NAME, "DTS Coherent Acoustics");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;

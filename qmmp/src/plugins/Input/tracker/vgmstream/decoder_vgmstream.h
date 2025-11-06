@@ -16,43 +16,31 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef S98HELPER_H
-#define S98HELPER_H
+#ifndef DECODER_VGMSTREAM_H
+#define DECODER_VGMSTREAM_H
 
-#include <QFile>
-#include <qmmp/trackinfo.h>
-#include <libs98/s98.h>
+#include <qmmp/decoder.h>
+
+class VgmstreamHelper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class S98Helper
+class DecoderVgmstream : public Decoder
 {
 public:
-    explicit S98Helper(const QString &path);
-    ~S98Helper();
+    explicit DecoderVgmstream(const QString &path);
+    virtual ~DecoderVgmstream();
 
-    void deinit();
-    bool initialize();
-
-    inline void seek(qint64 time) { m_input->SetPosition(time); }
-    inline qint64 totalTime() const { return m_info.dwLength; }
-
-    inline int bitrate() const { return 8; }
-    inline int sampleRate() const { return 44100; }
-    inline int channels() const { return 2; }
-    inline int depth() const { return 16; }
-
-    qint64 read(unsigned char *data, qint64 maxSize);
-
-    inline bool hasMetaData() const { return !m_metaData.isEmpty(); }
-    inline QString metaData(const char *key) const { return m_metaData[key]; }
+    // Standard Decoder API
+    virtual bool initialize() override final;
+    virtual qint64 totalTime() const override final;
+    virtual int bitrate() const override final;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+    virtual void seek(qint64 time) override final;
 
 private:
-    QString m_path;
-    SOUNDINFO m_info;
-    s98File *m_input = nullptr;
-    QMap<QString, QString> m_metaData;
+    VgmstreamHelper *m_helper = nullptr;
 
 };
 

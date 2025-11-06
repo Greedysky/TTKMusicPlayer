@@ -48,14 +48,14 @@ QList<TrackInfo*> DecoderS98Factory::createPlayList(const QString &path, TrackIn
         return QList<TrackInfo*>();
     }
 
-    if((parts & TrackInfo::MetaData) && helper.hasTags())
+    if((parts & TrackInfo::MetaData) && helper.hasMetaData())
     {
-        info->setValue(Qmmp::TITLE, helper.tag("title"));
-        info->setValue(Qmmp::ARTIST, helper.tag("artist"));
-        info->setValue(Qmmp::COMMENT, helper.tag("comment"));
-        info->setValue(Qmmp::GENRE, helper.tag("genre"));
-        info->setValue(Qmmp::COMPOSER, helper.tag("s98by"));
-        info->setValue(Qmmp::YEAR, helper.tag("year"));
+        info->setValue(Qmmp::TITLE, helper.metaData("title"));
+        info->setValue(Qmmp::ARTIST, helper.metaData("artist"));
+        info->setValue(Qmmp::COMMENT, helper.metaData("comment"));
+        info->setValue(Qmmp::GENRE, helper.metaData("genre"));
+        info->setValue(Qmmp::COMPOSER, helper.metaData("s98by"));
+        info->setValue(Qmmp::YEAR, helper.metaData("year"));
     }
 
     if(parts & TrackInfo::Properties)

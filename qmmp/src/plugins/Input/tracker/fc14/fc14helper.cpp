@@ -41,12 +41,8 @@ bool FC14Helper::initialize()
 #ifdef LIBFC_VERSION1
     if(!fc14dec_init(m_input, (void*)buffer.constData(), buffer.length()))
 #else
-    int track = m_path.section("#", -1).toInt() - 1;
-    if(track < 0)
-    {
-        track = 0;
-    }
-    if(!fc14dec_init(m_input, (void*)buffer.constData(), buffer.length(), track))
+    const int track = m_path.section("#", -1).toInt() - 1;
+    if(!fc14dec_init(m_input, (void*)buffer.constData(), buffer.length(), track < 0 ? 0 : track))
 #endif
     {
         qWarning("FC14Helper: fc14dec_init error");

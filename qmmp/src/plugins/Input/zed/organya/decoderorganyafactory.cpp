@@ -53,7 +53,7 @@ QList<TrackInfo*> DecoderOrganyaFactory::createPlayList(const QString &path, Tra
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "Organya");
+        info->setValue(Qmmp::FORMAT_NAME, "Cave Story's org");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;

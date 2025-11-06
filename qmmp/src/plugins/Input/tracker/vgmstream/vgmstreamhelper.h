@@ -16,43 +16,55 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef S98HELPER_H
-#define S98HELPER_H
+#ifndef VGMSTREAMHELPER_H
+#define VGMSTREAMHELPER_H
 
-#include <QFile>
+#include <QFileInfo>
+#include <QStringList>
 #include <qmmp/trackinfo.h>
-#include <libs98/s98.h>
+extern "C" {
+#include <stdio_file.h>
+#include <libvgmstream.h>
+}
+
+struct decode_info
+{
+    int position;
+    int totalsamples;
+    libvgmstream_t *stream;
+};
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class S98Helper
+class VgmstreamHelper
 {
 public:
-    explicit S98Helper(const QString &path);
-    ~S98Helper();
+    explicit VgmstreamHelper(const QString &path);
+    ~VgmstreamHelper();
 
     void deinit();
     bool initialize();
 
-    inline void seek(qint64 time) { m_input->SetPosition(time); }
-    inline qint64 totalTime() const { return m_info.dwLength; }
+    void seek(qint64 time);
+    inline qint64 totalTime() const { return m_info->totalsamples * 1000 / sampleRate(); }
 
-    inline int bitrate() const { return 8; }
-    inline int sampleRate() const { return 44100; }
-    inline int channels() const { return 2; }
+    inline int bitrate() const { return m_info->stream->format->stream_bitrate / 1000; }
+    inline int sampleRate() const { return m_info->stream->format->sample_rate; }
+    inline int channels() const { return m_info->stream->format->channels; }
     inline int depth() const { return 16; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
-    inline bool hasMetaData() const { return !m_metaData.isEmpty(); }
-    inline QString metaData(const char *key) const { return m_metaData[key]; }
+    QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
+    QString cleanPath() const;
+
+    static QStringList filters();
 
 private:
     QString m_path;
-    SOUNDINFO m_info;
-    s98File *m_input = nullptr;
-    QMap<QString, QString> m_metaData;
+    decode_info *m_info = nullptr;
+    QMap<Qmmp::MetaData, QString> m_metaData;
 
 };
 

@@ -294,7 +294,7 @@ QList<TrackInfo*> TFMXHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::SAMPLERATE, sampleRate());
             info->setValue(Qmmp::CHANNELS, channels());
             info->setValue(Qmmp::BITS_PER_SAMPLE, depth());
-            info->setValue(Qmmp::FORMAT_NAME, "TFMX");
+            info->setValue(Qmmp::FORMAT_NAME, "Final Music System Tracker");
         }
 
         TFMXSetSubSong(m_state, i - 1);

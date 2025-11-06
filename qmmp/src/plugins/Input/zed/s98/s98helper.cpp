@@ -80,7 +80,7 @@ bool S98Helper::initialize()
                     continue;
                 }
 
-                m_tags.insert(parts.front().toLower(), parts.back());
+                m_metaData.insert(parts.front().toLower(), parts.back());
             }
         }
         else
@@ -90,8 +90,8 @@ bool S98Helper::initialize()
             const int index = text.indexOf("Copyright");	// some contain this..
             if(index != -1)
             {
-                m_tags.insert("title", text.left(index));
-                m_tags.insert("comment", text.mid(index));
+                m_metaData.insert("title", text.left(index));
+                m_metaData.insert("comment", text.mid(index));
             }
         }
     }

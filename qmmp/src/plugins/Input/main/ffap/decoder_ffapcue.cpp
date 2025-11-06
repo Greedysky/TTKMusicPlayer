@@ -54,6 +54,7 @@ bool DecoderFFapCUE::initialize()
         qWarning("DecoderFFapCUE: %s", qPrintable(m_input->errorString()));
         return false;
     }
+
     QMap<Qmmp::MetaData, QString> metaData = m_parser->info(m_track)->metaData();
     addMetaData(metaData); //send metadata
 

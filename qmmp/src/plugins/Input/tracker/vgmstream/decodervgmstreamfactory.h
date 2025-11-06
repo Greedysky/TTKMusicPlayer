@@ -16,43 +16,26 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef S98HELPER_H
-#define S98HELPER_H
+#ifndef DECODERVGMSTREAMFACTORY_H
+#define DECODERVGMSTREAMFACTORY_H
 
-#include <QFile>
-#include <qmmp/trackinfo.h>
-#include <libs98/s98.h>
+#include <qmmp/decoderfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class S98Helper
+class DecoderVgmstreamFactory : public QObject, DecoderFactory
 {
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.DecoderFactoryInterface.1.0")
+    Q_INTERFACES(DecoderFactory)
 public:
-    explicit S98Helper(const QString &path);
-    ~S98Helper();
-
-    void deinit();
-    bool initialize();
-
-    inline void seek(qint64 time) { m_input->SetPosition(time); }
-    inline qint64 totalTime() const { return m_info.dwLength; }
-
-    inline int bitrate() const { return 8; }
-    inline int sampleRate() const { return 44100; }
-    inline int channels() const { return 2; }
-    inline int depth() const { return 16; }
-
-    qint64 read(unsigned char *data, qint64 maxSize);
-
-    inline bool hasMetaData() const { return !m_metaData.isEmpty(); }
-    inline QString metaData(const char *key) const { return m_metaData[key]; }
-
-private:
-    QString m_path;
-    SOUNDINFO m_info;
-    s98File *m_input = nullptr;
-    QMap<QString, QString> m_metaData;
+    virtual bool canDecode(QIODevice *input) const override final;
+    virtual DecoderProperties properties() const override final;
+    virtual Decoder *create(const QString &path, QIODevice *input) override final;
+    virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) override final;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override final;
+    virtual QDialog *createSettings(QWidget *parent) override final;
 
 };
 
