@@ -49,8 +49,8 @@ public:
 
     inline double compression() const { return 1000.0 * bitrate() / sampleRate() / channels() / depth(); }
 
-    inline bool hasTags() const { return !m_tags.isEmpty(); }
-    inline QString tag(const char *key) const { return m_tags[key]; }
+    inline bool hasMetaData() const { return !m_metaData.isEmpty(); }
+    inline QString metaData(const char *key) const { return m_metaData[key]; }
 
 private:
     void *m_input = nullptr;
@@ -59,7 +59,7 @@ private:
     OptimFROG_Info m_info;
     bool m_signed = false;
 
-    QMap<QString, QString> m_tags;
+    QMap<QString, QString> m_metaData;
 
     static QIODevice *VFS(void *instance) { return reinterpret_cast<QIODevice *>(instance); }
 

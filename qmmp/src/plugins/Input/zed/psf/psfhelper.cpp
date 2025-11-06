@@ -85,31 +85,31 @@ bool PSFHelper::initialize()
         }
         else if(!strncasecmp(info.title[i], "Name:", 5) || !strncasecmp(info.title[i], "Song:", 5))
         {
-            m_tags.insert("title", info.info[i]);
+            m_metaData.insert("title", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Artist:", 7))
         {
-            m_tags.insert("artist", info.info[i]);
+            m_metaData.insert("artist", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Year:", 5))
         {
-            m_tags.insert("year", info.info[i]);
+            m_metaData.insert("year", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Game:", 5))
         {
-            m_tags.insert("game", info.info[i]);
+            m_metaData.insert("game", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Fade:", 5))
         {
-            m_tags.insert("fade", info.info[i]);
+            m_metaData.insert("fade", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Ripper:", 7))
         {
-            m_tags.insert("ripper", info.info[i]);
+            m_metaData.insert("ripper", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Copyright:", 10))
         {
-            m_tags.insert("copyright", info.info[i]);
+            m_metaData.insert("copyright", info.info[i]);
         }
         else
         {
@@ -119,7 +119,7 @@ bool PSFHelper::initialize()
                 char name[colon - info.title[i] + 1];
                 memcpy(name, info.title[i], colon - info.title[i]);
                 name[colon - info.title[i]] = 0;
-                m_tags.insert("title", info.info[i]);
+                m_metaData.insert("title", info.info[i]);
             }
         }
     }

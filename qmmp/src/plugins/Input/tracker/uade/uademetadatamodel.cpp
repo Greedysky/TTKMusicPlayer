@@ -12,16 +12,16 @@ QList<MetaDataItem> UADEMetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
     UADEHelper helper(m_path);
-    if(!(helper.initialize() && helper.hasTags()))
+    if(!(helper.initialize() && helper.hasMetaData()))
     {
         return ep;
     }
 
-    ep << MetaDataItem("Module MD5", helper.tag("modulemd5"));
-    ep << MetaDataItem("Module Name", helper.tag("modulename"));
-    ep << MetaDataItem("Module Path", helper.tag("modulepath"));
-    ep << MetaDataItem("Format", helper.tag("format"));
-    ep << MetaDataItem("Format Name", helper.tag("formatname"));
-    ep << MetaDataItem("Player Name", helper.tag("playername"));
+    ep << MetaDataItem("Module MD5", helper.metaData("modulemd5"));
+    ep << MetaDataItem("Module Name", helper.metaData("modulename"));
+    ep << MetaDataItem("Module Path", helper.metaData("modulepath"));
+    ep << MetaDataItem("Format", helper.metaData("format"));
+    ep << MetaDataItem("Format Name", helper.metaData("formatname"));
+    ep << MetaDataItem("Player Name", helper.metaData("playername"));
     return ep;
 }

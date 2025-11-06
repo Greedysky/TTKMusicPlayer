@@ -15,7 +15,7 @@ void UADEHelper::deinit()
 {
     if(m_state)
     {
-        m_tags.clear();
+        m_metaData.clear();
         uade_stop(m_state);
         uade_cleanup_state(m_state);
     }
@@ -62,12 +62,12 @@ bool UADEHelper::initialize()
     const struct uade_song_info *info = uade_get_song_info(m_state);
     if(info)
     {
-        m_tags.insert("modulemd5", info->modulemd5);
-        m_tags.insert("modulepath", info->modulefname);
-        m_tags.insert("formatname", info->formatname);
-        m_tags.insert("modulename", info->modulename);
-        m_tags.insert("playername", info->playername);
-        m_tags.insert("format", info->detectioninfo.ext);
+        m_metaData.insert("modulemd5", info->modulemd5);
+        m_metaData.insert("modulepath", info->modulefname);
+        m_metaData.insert("formatname", info->formatname);
+        m_metaData.insert("modulename", info->modulename);
+        m_metaData.insert("playername", info->playername);
+        m_metaData.insert("format", info->detectioninfo.ext);
     }
     return true;
 }

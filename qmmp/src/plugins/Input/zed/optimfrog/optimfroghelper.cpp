@@ -108,7 +108,7 @@ bool OptimFROGHelper::initialize()
     for(uInt32_t i = 0; i < ofr_tags.keyCount; ++i)
     {
         const QString key(ofr_tags.keys[i]);
-        m_tags.insert(key.toLower(), QString(ofr_tags.values[i]));
+        m_metaData.insert(key.toLower(), QString(ofr_tags.values[i]));
     }
 
     OptimFROG_freeTags(&ofr_tags);

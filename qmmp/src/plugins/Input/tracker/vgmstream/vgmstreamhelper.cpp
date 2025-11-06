@@ -1,7 +1,5 @@
 #include "vgmstreamhelper.h"
 
-#include <QDebug>
-
 struct vfs_info
 {
     FILE *file;
@@ -69,15 +67,12 @@ static const char *vgm_get_name(void *user_data)
 }
 
 static libstreamfile_t *vfs_open(const char *const filename);
-static libstreamfile_t *vgm_open(void *user_data, const char *const filename)
+static libstreamfile_t *vgm_open(void *, const char *const filename)
 {
     if(!filename)
     {
         return nullptr;
     }
-
-//    vfs_info *info = (vfs_info *)user_data;
-//    info->file = stdio_open(filename);
 
     return vfs_open(filename);
 }
@@ -204,55 +199,55 @@ bool VgmstreamHelper::initialize()
     if(0)
     {
         const QString &path = QFileInfo(cleanPath()).absoluteFilePath() + "/!tags.m3u";
-        libstreamfile_t* sf_tags = vfs_open(QmmpPrintable(path));
-        libvgmstream_tags_t* tags = libvgmstream_tags_init(sf_tags);
+        libstreamfile_t* sf = vfs_open(QmmpPrintable(path));
+        libvgmstream_tags_t* tags = libvgmstream_tags_init(sf);
         libvgmstream_tags_find(tags, QmmpPrintable(cleanPath()));
 
         while(libvgmstream_tags_next_tag(tags))
         {
-             const char* tag_key = tags->key;
-             const char* tag_val = tags->val;
+             const char* key = tags->key;
+             const char* value = tags->val;
 
-             if(strcasecmp(tag_key, "TITLE") == 0)
+             if(strcasecmp(key, "TITLE") == 0)
              {
-                 m_metaData[Qmmp::TITLE] = tag_val;
+                 m_metaData[Qmmp::TITLE] = value;
              }
-             else if(strcasecmp(tag_key, "ARTIST") == 0)
+             else if(strcasecmp(key, "ARTIST") == 0)
              {
-                 m_metaData[Qmmp::ARTIST] = tag_val;
+                 m_metaData[Qmmp::ARTIST] = value;
              }
-             else if(strcasecmp(tag_key, "ALBUMARTIST") == 0)
+             else if(strcasecmp(key, "ALBUMARTIST") == 0)
              {
-                 m_metaData[Qmmp::ALBUMARTIST] = tag_val;
+                 m_metaData[Qmmp::ALBUMARTIST] = value;
              }
-             else if(strcasecmp(tag_key, "ALBUM") == 0)
+             else if(strcasecmp(key, "ALBUM") == 0)
              {
-                 m_metaData[Qmmp::ALBUM] = tag_val;
+                 m_metaData[Qmmp::ALBUM] = value;
              }
-             else if(strcasecmp(tag_key, "COMMENT") == 0)
+             else if(strcasecmp(key, "COMMENT") == 0)
              {
-                 m_metaData[Qmmp::COMMENT] = tag_val;
+                 m_metaData[Qmmp::COMMENT] = value;
              }
-             else if(strcasecmp(tag_key, "GENRE") == 0)
+             else if(strcasecmp(key, "GENRE") == 0)
              {
-                 m_metaData[Qmmp::GENRE] = tag_val;
+                 m_metaData[Qmmp::GENRE] = value;
              }
-             else if(strcasecmp(tag_key, "COMPOSER") == 0)
+             else if(strcasecmp(key, "COMPOSER") == 0)
              {
-                 m_metaData[Qmmp::COMPOSER] = tag_val;
+                 m_metaData[Qmmp::COMPOSER] = value;
              }
-             else if(strcasecmp(tag_key, "YEAR") == 0)
+             else if(strcasecmp(key, "YEAR") == 0)
              {
-                 m_metaData[Qmmp::YEAR] = tag_val;
+                 m_metaData[Qmmp::YEAR] = value;
              }
-             else if(strcasecmp(tag_key, "TRACK") == 0)
+             else if(strcasecmp(key, "TRACK") == 0)
              {
-                 m_metaData[Qmmp::TRACK] = tag_val;
+                 m_metaData[Qmmp::TRACK] = value;
              }
          }
 
          libvgmstream_tags_free(tags);
-         libstreamfile_close(sf_tags);
+         libstreamfile_close(sf);
     }
     return m_info->stream;
 }

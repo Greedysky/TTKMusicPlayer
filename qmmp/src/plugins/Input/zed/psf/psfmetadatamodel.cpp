@@ -12,14 +12,14 @@ QList<MetaDataItem> PSFMetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
     PSFHelper helper(m_path);
-    if(!(helper.initialize() && helper.hasTags()))
+    if(!(helper.initialize() && helper.hasMetaData()))
     {
         return ep;
     }
 
-    ep << MetaDataItem("Game", helper.tag("game"));
-    ep << MetaDataItem("Fade", helper.tag("fade"));
-    ep << MetaDataItem("Ripper", helper.tag("ripper"));
-    ep << MetaDataItem("Copyright", helper.tag("copyright"));
+    ep << MetaDataItem("Game", helper.metaData("game"));
+    ep << MetaDataItem("Fade", helper.metaData("fade"));
+    ep << MetaDataItem("Ripper", helper.metaData("ripper"));
+    ep << MetaDataItem("Copyright", helper.metaData("copyright"));
     return ep;
 }

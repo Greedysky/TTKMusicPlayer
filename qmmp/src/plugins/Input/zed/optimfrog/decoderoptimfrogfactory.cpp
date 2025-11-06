@@ -58,24 +58,24 @@ QList<TrackInfo*> DecoderOptimFROGFactory::createPlayList(const QString &path, T
         info->setDuration(helper.totalTime());
     }
 
-    if((parts & TrackInfo::MetaData) && helper.hasTags())
+    if((parts & TrackInfo::MetaData) && helper.hasMetaData())
     {
         QString value;
-        value = helper.tag("title");
+        value = helper.metaData("title");
         info->setValue(Qmmp::TITLE, value.replace('\n', "<br>"));
-        value = helper.tag("artist");
+        value = helper.metaData("artist");
         info->setValue(Qmmp::ARTIST, value.replace('\n', "<br>"));
-        value = helper.tag("album");
+        value = helper.metaData("album");
         info->setValue(Qmmp::ALBUM, value.replace('\n', "<br>"));
-        value = helper.tag("comment");
+        value = helper.metaData("comment");
         info->setValue(Qmmp::COMMENT, value.replace('\n', "<br>"));
-        value = helper.tag("genre");
+        value = helper.metaData("genre");
         info->setValue(Qmmp::GENRE, value.replace('\n', "<br>"));
-        value = helper.tag("composer");
+        value = helper.metaData("composer");
         info->setValue(Qmmp::COMPOSER, value.replace('\n', "<br>"));
-        value = helper.tag("year");
+        value = helper.metaData("year");
         info->setValue(Qmmp::YEAR, value.replace('\n', "<br>"));
-        value = helper.tag("track");
+        value = helper.metaData("track");
         info->setValue(Qmmp::TRACK, value.replace('\n', "<br>"));
     }
 
