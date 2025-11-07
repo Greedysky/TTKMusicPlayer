@@ -12,7 +12,7 @@ SOURCES += decoderxmpfactory.cpp \
            xmpmetadatamodel.cpp \
            settingsdialog.cpp
 
-FORMS   += settingsdialog.ui
+FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libxmp/include
 

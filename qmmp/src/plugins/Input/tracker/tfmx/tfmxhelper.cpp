@@ -314,14 +314,16 @@ QString TFMXHelper::cleanPath() const
 
 QStringList TFMXHelper::filters()
 {
-    QStringList filters;
-    filters << "*.tfm";
-    // pair suffix section
-    filters << "*.tfmx"; // (tfmx, smpl)
-    filters << "*.mdat"; // (mdat, smpl))
-    filters << "*.tfx";  // (tfx, (smp, sam))
-    // pair prefix section
-    filters << "tfmx.*"; // (tfmx, smpl)
-    filters << "mdat.*"; // (mdat, smpl)
+    const QStringList filters =
+    {
+        "*.tfm",
+        // pair suffix section
+        "*.tfmx", // (tfmx, smpl)
+        "*.mdat", // (mdat, smpl))
+        "*.tfx",  // (tfx, (smp, sam))
+        // pair prefix section
+        "tfmx.*", // (tfmx, smpl)
+        "mdat.*"  // (mdat, smpl)
+    };
     return filters;
 }

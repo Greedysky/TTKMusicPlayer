@@ -1,6 +1,7 @@
 #include "decodervgmstreamfactory.h"
 #include "vgmstreamhelper.h"
 #include "decoder_vgmstream.h"
+#include "settingsdialog.h"
 
 bool DecoderVgmstreamFactory::canDecode(QIODevice *input) const
 {
@@ -78,8 +79,7 @@ MetaDataModel* DecoderVgmstreamFactory::createMetaDataModel(const QString &path,
 
 QDialog *DecoderVgmstreamFactory::createSettings(QWidget *parent)
 {
-    Q_UNUSED(parent);
-    return nullptr;
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

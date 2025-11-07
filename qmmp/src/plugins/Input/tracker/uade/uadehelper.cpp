@@ -156,52 +156,54 @@ QString UADEHelper::cleanPath() const
 
 QStringList UADEHelper::filters()
 {
-    QStringList filters;
-    filters << "*.aam" << "*.amc" << "*.aon" << "*.aon8" << "*.aps" << "*.ash" << "*.ast" << "*.avp";
-    filters << "*.bd" << "*.bds" << "*.bsi" << "*.bss" << "*.bye";
-    filters << "*.cm" << "*.core" << "*.cust";
-    filters << "*.dh" << "*.dl" << "*.dlm1" << "*.dlm2" << "*.dln" << "*.dm" << "*.dm2" << "*.dmu" << "*.doda" << "*.dsc" << "*.dsr" << "*.dss" << "*.dw" << "*.dz";
-    filters << "*.ea" << "*.ems" << "*.emsv6" << "*.ex";
-    filters << "*.fp" << "*.fred" << "*.fw";
-    filters << "*.glue" << "*.gmc" << "*.gray";
-    filters << "*.hd" << "*.hip" << "*.hip7" << "*.hipc" << "*.hot";
-    filters << "*.ims" << "*.is" << "*.is20";
-    filters << "*.jam" << "*.jcb" << "*.jcbo" << "*.jd" << "*.jmf" << "*.jo" << "*.jpo" << "*.jt";
-    filters << "*.kh" << "*.kim" << "*.kris";
-    filters << "*.lion" << "*.lme";
-    filters << "*.ma" << "*.mc" << "*.mcmd" << "*.mco" << "*.md" << "*.mii" << "*.mk2" << "*.mkii" << "*.ml" << "*.mm8" << "*.mmdc" << "*.mok" << "*.mon" << "*.mosh" << "*.mso" << "*.mug" << "*.mug2" << "*.mw";
-    filters << "*.ntp";
-    filters << "*.pap" << "*.pn" << "*.ps" << "*.psa" << "*.psf" << "*.pt" << "*.ptm" << "*.puma" << "*.pvp";
-    filters << "*.rh" << "*.rho" << "*.riff" << "*.rmc";
-    filters << "*.s7g" << "*.sa" << "*.sas"  << "*.sb" << "*.sc" << "*.scn" << "*.scr" << "*.sct" << "*.scumm" << "*.sdr" << "*.sg" << "*.sid1" << "*.sid2" << "*.sm" << "*.sm3" << "*.smn" << "*.smpro" << "*.sng" << "*.snk" << "*.soc" << "*.sog" << "*.spl" << "*.sqt" << "*.ss" << "*.sun" << "*.syn" << "*.synmod";
-    filters << "*.tcb" << "*.tf" << "*.tfmx" << "*.thx" << "*.tits" << "*.tme" << "*.tro" << "*.tronic" << "*.tw";
-    filters << "*.ufo";
-    filters << "*.vss";
-    filters << "*.wb";
-    // dir section
-    filters << "*.smus"; // (Instruments)
-    filters << "*.snx";  // (Instruments)
-    filters << "*.tiny"; // (Instruments)
-    // pair suffix section
-    filters << "*.adsc"; // (adsc, as)
-    filters << "*.dat";  // (dat, ssd)
-    filters << "*.dum";  // (dum, ins)
-    filters << "*.osp";  // (osp, smp)
-    // pair prefix section
-    filters << "dns.*";  // (dns, smp)
-    filters << "jpn.*";  // (jpn, smp)
-    filters << "jpnd.*"; // (jpnd, jpns)
-    filters << "max.*";  // (thm, smp)
-    filters << "mcr.*";  // (mcr, mcs)
-    filters << "mfp.*";  // (mfp, smp)
-    filters << "npp.*";  // (npp, smp)
-    filters << "pat.*";  // (pat, smp, WantedTeam.bin)
-    filters << "qpa.*";  // (qpa, smp)
-    filters << "qts.*";  // (qts, smp)
-    filters << "sjs.*";  // (sjs, smp)
-    filters << "thm.*";  // (thm, smp)
-    filters << "tmk.*";  // (tmk, smp)
-    filters << "tpu.*";  // (tpu, smp)
-    filters << "uds.*";  // (uds, smp)
+    const QStringList filters =
+    {
+        "*.aam", "*.amc", "*.aon", "*.aon8", "*.aps", "*.ash", "*.ast", "*.avp",
+        "*.bd", "*.bds", "*.bsi", "*.bss", "*.bye",
+        "*.cm", "*.core", "*.cust",
+        "*.dh", "*.dl", "*.dlm1", "*.dlm2", "*.dln", "*.dm", "*.dm2", "*.dmu", "*.doda", "*.dsc", "*.dsr", "*.dss", "*.dw", "*.dz",
+        "*.ea", "*.ems", "*.emsv6", "*.ex",
+        "*.fp", "*.fred", "*.fw",
+        "*.glue", "*.gmc", "*.gray",
+        "*.hd", "*.hip", "*.hip7", "*.hipc", "*.hot",
+        "*.ims", "*.is", "*.is20",
+        "*.jam", "*.jcb", "*.jcbo", "*.jd", "*.jmf", "*.jo", "*.jpo", "*.jt",
+        "*.kh", "*.kim", "*.kris",
+        "*.lion", "*.lme",
+        "*.ma", "*.mc", "*.mcmd", "*.mco", "*.md", "*.mii", "*.mk2", "*.mkii", "*.ml", "*.mm8", "*.mmdc", "*.mok", "*.mon", "*.mosh", "*.mso", "*.mug", "*.mug2", "*.mw",
+        "*.ntp",
+        "*.pap", "*.pn", "*.ps", "*.psa", "*.psf", "*.pt", "*.ptm", "*.puma", "*.pvp",
+        "*.rh", "*.rho", "*.riff", "*.rmc",
+        "*.s7g", "*.sa", "*.sas", "*.sb", "*.sc", "*.scn", "*.scr", "*.sct", "*.scumm", "*.sdr", "*.sg", "*.sid1", "*.sid2", "*.sm", "*.sm3", "*.smn", "*.smpro", "*.sng", "*.snk", "*.soc", "*.sog", "*.spl", "*.sqt", "*.ss", "*.sun", "*.syn", "*.synmod",
+        "*.tcb", "*.tf", "*.tfmx", "*.thx", "*.tits", "*.tme", "*.tro", "*.tronic", "*.tw",
+        "*.ufo",
+        "*.vss",
+        "*.wb",
+        // dir section
+        "*.smus", // (Instruments)
+        "*.snx",  // (Instruments)
+        "*.tiny", // (Instruments)
+        // pair suffix section
+        "*.adsc", // (adsc, as)
+        "*.dat",  // (dat, ssd)
+        "*.dum",  // (dum, ins)
+        "*.osp",  // (osp, smp)
+        // pair prefix section
+        "dns.*",  // (dns, smp)
+        "jpn.*",  // (jpn, smp)
+        "jpnd.*", // (jpnd, jpns)
+        "max.*",  // (thm, smp)
+        "mcr.*",  // (mcr, mcs)
+        "mfp.*",  // (mfp, smp)
+        "npp.*",  // (npp, smp)
+        "pat.*",  // (pat, smp, WantedTeam.bin)
+        "qpa.*",  // (qpa, smp)
+        "qts.*",  // (qts, smp)
+        "sjs.*",  // (sjs, smp)
+        "thm.*",  // (thm, smp)
+        "tmk.*",  // (tmk, smp)
+        "tpu.*",  // (tpu, smp)
+        "uds.*"   // (uds, smp)
+    };
     return filters;
 }

@@ -16,7 +16,7 @@ SOURCES += decoderopenmptfactory.cpp \
            archivereader.cpp \
            settingsdialog.cpp
 
-FORMS   += settingsdialog.ui
+FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libopenmpt/include
 

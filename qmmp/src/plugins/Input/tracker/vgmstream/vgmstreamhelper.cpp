@@ -1,12 +1,12 @@
 #include "vgmstreamhelper.h"
 
+#include <QSettings>
+
 struct vfs_info
 {
     FILE *file;
     int64_t offset;
-    char *uri;
-    char *name;
-    char *host;
+    char *path;
 };
 
 static void vgm_seek(void *user_data, off_t offset)
@@ -31,21 +31,22 @@ static int vgm_read(void *user_data, uint8_t *dst, int64_t offset, int length)
     return read;
 }
 
-static void vgm_close(struct libstreamfile_t *libsf)
+static void vgm_close(struct libstreamfile_t *sf)
 {
-    if(!libsf)
+    if(!sf)
     {
         return;
     }
 
-    vfs_info *info = (vfs_info *)libsf->user_data;
+    vfs_info *info = (vfs_info *)sf->user_data;
     if(info && info->file)
     {
         stdio_close(info->file);
         info->file = nullptr;
     }
 
-    free(libsf);
+    free(info);
+    free(sf);
 }
 
 static int64_t vgm_get_size(void *user_data)
@@ -63,7 +64,7 @@ static off_t vgm_get_offset(void *user_data)
 static const char *vgm_get_name(void *user_data)
 {
     vfs_info *info = (vfs_info *)user_data;
-    return info->uri;
+    return info->path;
 }
 
 static libstreamfile_t *vfs_open(const char *const filename);
@@ -87,14 +88,14 @@ static libstreamfile_t *vfs_open(const char *const filename)
     vfs_info *info = (vfs_info *)calloc(1, sizeof(vfs_info));
     info->file = stdio_open(filename);
     info->offset = 0;
-    info->uri = strdup(filename);
+    info->path = strdup(filename);
 
     if(!info->file)
     {
         /* Allow vgmstream's virtual files. */
         if(!libvgmstream_is_virtual_filename(filename))
         {
-            qWarning("vfs_open: open file failed");
+            qWarning("vfs_open: open file failed, %s", filename);
             free(info);
             return nullptr;
         }
@@ -107,29 +108,6 @@ static libstreamfile_t *vfs_open(const char *const filename)
     sf->get_size = vgm_get_size;
     sf->get_name = vgm_get_name;
     sf->user_data = info;
-
-//    // path is a URI, not a filesystem path.
-//    // Characters such as # are percent-encoded.
-//    // G_URI_FLAGS_NONE will decode percent-encoded characters
-//    // in all parts of the URI.
-//    priv->uri = g_uri_parse(path, G_URI_FLAGS_NONE, NULL);
-//    if (!priv->uri) goto fail;
-
-//    // From <https://docs.gtk.org/glib/struct.Uri.html#file-uris>:
-//    //
-//    // > Note that Windows and Unix both define special rules for parsing file:// URIs
-//    // > (involving non-UTF-8 character sets on Unix,
-//    // > and the interpretation of path separators on Windows).
-//    // > GUri does not implement these rules.
-//    // > Use g_filename_from_uri() and g_filename_to_uri()
-//    // > if you want to properly convert between file:// URIs and local filenames.
-//    //
-//    // Since vgmstream normally expects filesystem paths (filenames),
-//    // let's give it a filesystem path if we can.
-//    //
-//    // g_filename_from_uri will return NULL if the URI is not a file:// URI.
-//    // In that case, we'll fall back to using the GUri* instead.
-//    priv->filename = g_filename_from_uri(path, &priv->hostname, NULL);
     return sf;
 }
 
@@ -163,14 +141,16 @@ bool VgmstreamHelper::initialize()
         return false;
     }
 
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+
     libvgmstream_config_t cfg;
     memset(&cfg, 0, sizeof(libvgmstream_config_t));
-    cfg.allow_play_forever = true;
-    cfg.play_forever = false;
-    cfg.loop_count = 2.0;
-    cfg.fade_time = 10;
-    cfg.fade_delay = 0;
-    cfg.force_loop = 0;
+    cfg.allow_play_forever = settings.value("Vgmstream/loop_forever", false).toBool();
+    cfg.play_forever = settings.value("Vgmstream/loop_forever", false).toBool();
+    cfg.loop_count = settings.value("Vgmstream/loop_count", 2).toInt();
+    cfg.fade_time = settings.value("Vgmstream/fade_time", 10.0).toDouble();
+    cfg.fade_delay = settings.value("Vgmstream/fade_delay", 10.0).toDouble();
+    cfg.force_loop = settings.value("Vgmstream/force_loop", false).toBool();
 
     const int track = m_path.section("#", -1).toInt() - 1;
     m_info->stream = libvgmstream_create(sf, track < 0 ? 0 : track, &cfg);
@@ -196,17 +176,17 @@ bool VgmstreamHelper::initialize()
         m_metaData[Qmmp::TITLE] = title;
     }
 
-    if(0)
+    const QString &path = QFileInfo(cleanPath()).absoluteFilePath() + "/!tags.m3u";
+    if(settings.value("Vgmstream/use_tagfile", true).toBool() && QFile::exists(path))
     {
-        const QString &path = QFileInfo(cleanPath()).absoluteFilePath() + "/!tags.m3u";
-        libstreamfile_t* sf = vfs_open(QmmpPrintable(path));
-        libvgmstream_tags_t* tags = libvgmstream_tags_init(sf);
+        libstreamfile_t *sf = vfs_open(QmmpPrintable(path));
+        libvgmstream_tags_t *tags = libvgmstream_tags_init(sf);
         libvgmstream_tags_find(tags, QmmpPrintable(cleanPath()));
 
         while(libvgmstream_tags_next_tag(tags))
         {
-             const char* key = tags->key;
-             const char* value = tags->val;
+             const char *key = tags->key;
+             const char *value = tags->val;
 
              if(strcasecmp(key, "TITLE") == 0)
              {
@@ -329,9 +309,9 @@ QString VgmstreamHelper::cleanPath() const
 
 QStringList VgmstreamHelper::filters()
 {
-    static const QStringList filters = {
+    const QStringList filters =
+    {
         //"", /* vgmstream can play extensionless files too, but plugins must accept them manually */
-
         "*.208",
         "*.2dx",
         "*.2dx9",

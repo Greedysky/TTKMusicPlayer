@@ -14,7 +14,7 @@ SOURCES += decoderadplugfactory.cpp \
            adplugmetadatamodel.cpp \
            settingsdialog.cpp
 
-FORMS   += settingsdialog.ui
+FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libadplug/include \
                $$EXTRA_PREFIX/libadplug/include/libbinio

@@ -5,11 +5,15 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 
 HEADERS += decodervgmstreamfactory.h \
            decoder_vgmstream.h \
-           vgmstreamhelper.h
+           vgmstreamhelper.h \
+           settingsdialog.h
 
 SOURCES += decodervgmstreamfactory.cpp \
            decoder_vgmstream.cpp \
-           vgmstreamhelper.cpp
+           vgmstreamhelper.cpp \
+           settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libvgmstream/include
 

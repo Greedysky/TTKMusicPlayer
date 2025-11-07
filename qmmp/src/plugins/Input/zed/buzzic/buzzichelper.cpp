@@ -52,7 +52,7 @@ QString BuzzicHelper::instruments() const
 
     for(uint32_t i = 0; i < instrumentCount(); ++i)
     {
-        const char* v = Buzzic2IntrumentName(m_input, i);
+        const char *v = Buzzic2IntrumentName(m_input, i);
         if(v)
         {
             name += v;
