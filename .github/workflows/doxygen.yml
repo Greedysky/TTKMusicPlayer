@@ -35,7 +35,7 @@ jobs:
       - name: Archive artifacts
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{env.TTK_VERSTION}}
+          tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
           files: ${{runner.workspace}}/${{env.TTK_MODULE}}/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-document.7z
