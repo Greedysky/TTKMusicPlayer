@@ -1271,6 +1271,10 @@ too high may cause clipping!</source>
         <source>Qt Multimedia Plugin Settings</source>
         <translation>Qt Multimedia插件设置</translation>
     </message>
+    <message>
+        <source>Muffler Plugin Settings</source>
+        <translation>人声移除插件设置</translation>
+    </message>
 </context>
 <context>
     <name>SoniqueWidget</name>
