@@ -34,49 +34,49 @@ namespace Qt
         namespace StringLiterals
         {
 #if !TTK_QT_VERSION_CHECK(6,4,0)
-            inline QString operator""_s(const char* str, size_t size) noexcept
+            inline QString operator""_s(const char *str, size_t size) noexcept
             {
                 return QString::fromUtf8(str, static_cast<int>(size));
             }
 
-            inline QString operator""_s(const wchar_t* str, size_t size) noexcept
+            inline QString operator""_s(const wchar_t *str, size_t size) noexcept
             {
                 return QString::fromWCharArray(str, static_cast<int>(size));
             }
 
-            inline QString operator""_s(const char16_t* str, size_t size) noexcept
+            inline QString operator""_s(const char16_t *str, size_t size) noexcept
             {
                 return QString::fromUtf16(str, static_cast<int>(size));
             }
 
-            inline QString operator""_s(const char32_t* str, size_t size) noexcept
+            inline QString operator""_s(const char32_t *str, size_t size) noexcept
             {
                 return QString::fromUcs4(str, static_cast<int>(size));
             }
 
-            inline QByteArray operator""_ba(const char* str, size_t size) noexcept
+            inline QByteArray operator""_ba(const char *str, size_t size) noexcept
             {
                 return operator""_s(str, size).toUtf8();
             }
 
-            inline QByteArray operator""_ba(const wchar_t* str, size_t size) noexcept
+            inline QByteArray operator""_ba(const wchar_t *str, size_t size) noexcept
             {
                 return operator""_s(str, size).toUtf8();
             }
 
-            inline QByteArray operator""_ba(const char16_t* str, size_t size) noexcept
+            inline QByteArray operator""_ba(const char16_t *str, size_t size) noexcept
             {
                 return operator""_s(str, size).toUtf8();
             }
 
-            inline QByteArray operator""_ba(const char32_t* str, size_t size) noexcept
+            inline QByteArray operator""_ba(const char32_t *str, size_t size) noexcept
             {
                 return operator""_s(str, size).toUtf8();
             }
 #endif
 
 #if TTK_QT_VERSION_CHECK(5,10,0) && !TTK_QT_VERSION_CHECK(6,10,0)
-            inline QStringView operator""_sv(const char16_t* str, size_t size) noexcept
+            inline QStringView operator""_sv(const char16_t *str, size_t size) noexcept
             {
                 return QStringView(str, size);
             }

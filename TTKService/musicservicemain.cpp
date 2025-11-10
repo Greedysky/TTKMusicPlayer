@@ -37,8 +37,8 @@ int main(int argc, char *argv[])
     TTKApplication app(argc, argv);
 #else
     // Fixes this: https://bugreports.qt.io/browse/QTBUG-96214
-    constexpr const char* WEB_SECURITY = "--disable-web-security";
-    constexpr const char* SECCOMP_SECURITY = "--disable-seccomp-filter-sandbox";
+    constexpr const char *WEB_SECURITY = "--disable-web-security";
+    constexpr const char *SECCOMP_SECURITY = "--disable-seccomp-filter-sandbox";
     std::vector<char*> newArgv(argv, argv + argc);
     newArgv.push_back(const_cast<char*>(WEB_SECURITY));
     newArgv.push_back(const_cast<char*>(SECCOMP_SECURITY));
