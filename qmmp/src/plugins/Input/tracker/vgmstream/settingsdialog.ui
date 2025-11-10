@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Vgmsteam+ Plugin Settings</string>
+   <string>Vgmsteam Plugin Settings</string>
   </property>
   <layout class="QGridLayout">
    <property name="leftMargin">

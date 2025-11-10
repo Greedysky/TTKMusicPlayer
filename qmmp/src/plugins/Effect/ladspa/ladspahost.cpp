@@ -17,6 +17,7 @@ LADSPAHost::LADSPAHost(QObject *parent)
     : QObject(parent)
 {
     m_instance = this;
+
     loadModules();
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);

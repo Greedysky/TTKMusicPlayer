@@ -20,6 +20,7 @@
 QmmpAudioEngine::QmmpAudioEngine(QObject *parent)
     : AbstractEngine(parent)
 {
+    m_instance = this;
     m_converter = new AudioConverter;
     m_settings = QmmpSettings::instance();
 
@@ -27,7 +28,6 @@ QmmpAudioEngine::QmmpAudioEngine(QObject *parent)
     connect(m_settings,SIGNAL(audioSettingsChanged()), SLOT(updateAudioSettings()));
     connect(m_settings, SIGNAL(eqSettingsChanged()), SLOT(updateEqSettings()));
     reset();
-    m_instance = this;
 }
 
 QmmpAudioEngine::~QmmpAudioEngine()

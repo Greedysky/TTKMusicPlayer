@@ -1,11 +1,13 @@
 #include "effectmufflerfactory.h"
 #include "mufflerplugin.h"
+#include "settingsdialog.h"
 
 EffectProperties EffectMufflerFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("Voice Removal Plugin");
     properties.shortName = "muffler";
+    properties.hasSettings = true;
     return properties;
 }
 
@@ -16,8 +18,7 @@ Effect *EffectMufflerFactory::create()
 
 QDialog *EffectMufflerFactory::createSettings(QWidget *parent)
 {
-    Q_UNUSED(parent);
-    return nullptr;
+    return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

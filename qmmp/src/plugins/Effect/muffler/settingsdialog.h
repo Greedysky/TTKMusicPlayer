@@ -16,32 +16,29 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef MUFFLERPLUGIN_H
-#define MUFFLERPLUGIN_H
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
-#include <QMutex>
-#include <qmmp/effect.h>
-
-#define DEFAULT_RATIO 10
+#include "ui_settingsdialog.h"
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class MufflerPlugin : public Effect
+class SettingsDialog : public QDialog
 {
+    Q_OBJECT
 public:
-    MufflerPlugin();
+    explicit SettingsDialog(QWidget *parent = nullptr);
 
-    virtual void applyEffect(Buffer *b) override final;
+public slots:
+    virtual void accept() override final;
 
-    void setRatio(int ratio);
-
-    static MufflerPlugin* instance();
+private slots:
+    void on_ratioSlider_valueChanged(int value);
 
 private:
-    QMutex m_mutex;
-    double m_ratio = 1.0;
-    static MufflerPlugin *m_instance;
+    Ui::SettingsDialog m_ui;
+
 };
 
 #endif

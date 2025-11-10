@@ -26,7 +26,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     int index = m_ui.qualityComboBox->findData(settings.value("SOXR/quality", SOXR_HQ).toInt());
     if(index >= 0 && index < m_ui.qualityComboBox->count())
+    {
         m_ui.qualityComboBox->setCurrentIndex(index);
+    }
 }
 
 void SettingsDialog::accept()

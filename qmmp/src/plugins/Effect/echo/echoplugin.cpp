@@ -16,6 +16,7 @@ EchoPlugin::EchoPlugin()
     : Effect()
 {
     m_instance = this;
+
     const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_delay = settings.value("Echo/delay", 500).toUInt();
     m_feedback = settings.value("Echo/feedback", 50).toUInt();
