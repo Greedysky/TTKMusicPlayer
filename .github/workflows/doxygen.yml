@@ -19,7 +19,6 @@ jobs:
       - name: Build package
         run: |
           sudo apt install graphviz doxygen
-          cd ${{github.workspace}}
           doxygen Doxyfile
           # add main html page
           echo -n '<!DOCTYPE html>
@@ -30,7 +29,7 @@ jobs:
           </html>' > TTKDocs/main.html
           # add package
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-document.7z TTKDocs
-        working-directory: ${{runner.workspace}}
+        working-directory: ${{github.workspace}}
 
       - name: Archive artifacts
         uses: softprops/action-gh-release@v2
@@ -38,4 +37,4 @@ jobs:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{runner.workspace}}/${{env.TTK_MODULE}}/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-document.7z
+          files: ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-document.7z
