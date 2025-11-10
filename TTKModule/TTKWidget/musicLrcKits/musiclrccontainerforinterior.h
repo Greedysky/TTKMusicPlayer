@@ -175,9 +175,9 @@ private Q_SLOTS:
      */
     void translatedLrcData();
     /*!
-     * Set voice remove modo.
+     * Update voice remove mode.
      */
-    void voiceRemoveMode();
+    void updateVoiceRemove(bool v = true);
 
 private:
     /*!

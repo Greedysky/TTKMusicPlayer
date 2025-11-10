@@ -38,12 +38,12 @@ public:
         ScreenSize = 0x1000,                      /*!< Screen Size Parameter*/
         WidgetPosition = 0x1001,                  /*!< Widget Position Parameter*/
         WidgetSize = 0x1002,                      /*!< Widget Size Parameter*/
-        UserPermission = 0x1003,                  /*!< User Permission Parameter*/
         //
         ConfigVersion = 0x2000,                   /*!< Config Version Parameter*/
         PlayMode = 0x2001,                        /*!< Play Mode Parameter*/
         Volume = 0x2002,                          /*!< Volume Parameter*/
         LastPlayIndex = 0x2003,                   /*!< Last Play Index Parameter*/
+        UserPermission = 0x2004,                  /*!< User Permission Parameter*/
         //
         LanguageIndex = 0x3000,                   /*!< Language Index Parameter*/
         StartUpMode = 0x3001,                     /*!< Start Up Mode Parameter*/

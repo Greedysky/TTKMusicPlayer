@@ -31,10 +31,10 @@ public:
           m_factory(factory)
     {
         MusicPluginProperty property;
-        property.m_name = factory->properties().name;
-        property.m_hasSettings = factory->properties().hasSettings;
-        property.m_description = factory->properties().description;
         property.m_type = path;
+        property.m_name = factory->properties().name;
+        property.m_description = factory->properties().description;
+        property.m_hasSettings = factory->properties().hasSettings;
         initialize(Decoder::isEnabled(factory), true, property);
     }
 
@@ -43,9 +43,9 @@ public:
           m_factory(factory)
     {
         MusicPluginProperty property;
+        property.m_type = path;
         property.m_name = factory->properties().name;
         property.m_hasSettings = factory->properties().hasSettings;
-        property.m_type = path;
         initialize(Effect::isEnabled(factory), false, property);
     }
 
@@ -54,9 +54,9 @@ public:
           m_factory(factory)
     {
         MusicPluginProperty property;
+        property.m_type = path;
         property.m_name = factory->properties().name;
         property.m_hasSettings = factory->properties().hasSettings;
-        property.m_type = path;
         initialize(Visual::isEnabled(factory), false, property);
     }
 
@@ -65,9 +65,9 @@ public:
           m_factory(factory)
     {
         MusicPluginProperty property;
+        property.m_type = path;
         property.m_name = factory->properties().name;
         property.m_hasSettings = factory->properties().hasSettings;
-        property.m_type = path;
         initialize(InputSource::isEnabled(factory), true, property);
     }
 
@@ -76,9 +76,9 @@ public:
           m_factory(factory)
     {
         MusicPluginProperty property;
+        property.m_type = path;
         property.m_name = factory->properties().name;
         property.m_hasSettings = factory->properties().hasSettings;
-        property.m_type = path;
         initialize(Output::currentFactory() == factory, true, property);
     }
 

@@ -170,6 +170,16 @@ void MusicSoundEffectsWidget::setInputModule(QObject *object)
     connect(m_ui->eqEffectButton, SIGNAL(clicked()), object, SLOT(showEqualizerWidget()));
 }
 
+void MusicSoundEffectsWidget::initSoundEffectConfig()
+{
+    const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
+    const QStringList &effects = value.split(";", QtSkipEmptyParts);
+    for(const QString &effect : qAsConst(effects))
+    {
+        TTK::TTKQmmp::setEffectEnabled(effect, true);
+    }
+}
+
 void MusicSoundEffectsWidget::equalizerButtonChanged(bool state)
 {
     m_ui->eqButton->setText(state ? tr("Off") : tr("On"));
@@ -206,25 +216,13 @@ void MusicSoundEffectsWidget::readSoundEffect()
     layout->setSpacing(10);
     m_ui->effectContainer->setLayout(layout);
 
-    const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
-    const QStringList &effects = value.split(";", QtSkipEmptyParts);
     for(const MusicPluginProperty &property : TTK::TTKQmmp::effectModules())
     {
         MusicSoundEffectsItemWidget *item = new MusicSoundEffectsItemWidget(property, this);
         m_items.push_back(item);
+        item->setPluginEnabled(TTK::TTKQmmp::isEffectEnabled(property.m_type));
         layout->addWidget(item);
-
-        if(TTK::TTKQmmp::isEffectEnabled(property.m_type))
-        {
-            item->setPluginEnabled(true);
-        }
-        else
-        {
-            item->setPluginEnabled(effects.contains(property.m_type));
-        }
     }
-
-    writeSoundEffect();
 }
 
 void MusicSoundEffectsWidget::writeSoundEffect()
@@ -237,5 +235,6 @@ void MusicSoundEffectsWidget::writeSoundEffect()
             value.append(item->type() + ";");
         }
     }
+
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedEffectValue, value);
 }

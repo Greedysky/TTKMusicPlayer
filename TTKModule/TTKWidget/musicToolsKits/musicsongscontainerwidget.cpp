@@ -31,10 +31,9 @@ MusicSongsContainerWidget::MusicSongsContainerWidget(QWidget *parent)
 {
     m_instance = this;
 
-    setAcceptDrops(true);
-
     m_topMaskWidget = new MusicSongsToolBoxMaskWidget(this);
     setInputModule(m_topMaskWidget);
+    setAcceptDrops(true);
 
     connect(m_topMaskWidget, SIGNAL(itemIndexChanged(int)), SLOT(itemIndexChanged(int)));
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));

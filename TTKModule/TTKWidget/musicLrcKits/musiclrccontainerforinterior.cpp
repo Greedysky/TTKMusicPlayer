@@ -103,6 +103,8 @@ void MusicLrcContainerForInterior::applyParameter()
     }
 
     setLrcSize(size);
+    // update state
+    updateVoiceRemove(false);
 }
 
 void MusicLrcContainerForInterior::updateCurrentLrc(qint64 time)
@@ -360,11 +362,15 @@ void MusicLrcContainerForInterior::translatedLrcData()
     m_translatedWidget->setCurrentSongName(m_currentSongName);
 }
 
-void MusicLrcContainerForInterior::voiceRemoveMode()
+void MusicLrcContainerForInterior::updateVoiceRemove(bool v)
 {
-    const bool v = TTK::TTKQmmp::isEffectEnabled("muffler");
-    m_mufflerButton->setStyleSheet(v ? TTK::UI::InteriorMicrophone : TTK::UI::InteriorMicrophoneOn);
-    TTK::TTKQmmp::setEffectEnabled("muffler", !v);
+    const bool state = TTK::TTKQmmp::isEffectEnabled("muffler");
+    m_mufflerButton->setStyleSheet((v ? state : !state) ? TTK::UI::InteriorMicrophone : TTK::UI::InteriorMicrophoneOn);
+
+    if(v)
+    {
+        TTK::TTKQmmp::setEffectEnabled("muffler", !state);
+    }
 }
 
 void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
@@ -653,7 +659,7 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     photoButton->setToolTip(tr("Photo"));
 
     connect(transButton, SIGNAL(clicked()), SLOT(translatedLrcData()));
-    connect(mufflerButton, SIGNAL(clicked()), SLOT(voiceRemoveMode()));
+    connect(mufflerButton, SIGNAL(clicked()), SLOT(updateVoiceRemove()));
     connect(movieButton, SIGNAL(clicked()), SLOT(showSongMovieWidget()));
     connect(messageButton, SIGNAL(clicked()), SLOT(showSongCommentsWidget()));
     connect(photoButton, SIGNAL(clicked()), m_lrcFloatWidget, SLOT(showArtistPhotoWidget()));

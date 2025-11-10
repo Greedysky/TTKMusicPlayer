@@ -5,15 +5,15 @@
 #include "musicspectrumwidget.h"
 #include "musictimerautomodule.h"
 #include "musicbackupmodule.h"
-#include "musicmessagebox.h"
-#include "musictoastlabel.h"
 #include "musicequalizerdialog.h"
 #include "musicplatformmanager.h"
 #include "musicsourceupdatewidget.h"
 #include "musicsoundeffectswidget.h"
+#include "musicmessagebox.h"
 #include "musicmessageaboutdialog.h"
 #include "musicapplication.h"
 #include "musictopareawidget.h"
+#include "musicrightareawidget.h"
 #include "musicimageutils.h"
 #include "musicgiflabelwidget.h"
 #include "musicfileutils.h"
@@ -268,14 +268,9 @@ void MusicApplicationModule::sideAnimationByOff()
     m_direction = TTK::Direction::No;
 }
 
-void MusicApplicationModule::soundEffectChanged()
+void MusicApplicationModule::setSoundEffectConfig()
 {
-    const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
-    const QStringList &effects = value.split(";", QtSkipEmptyParts);
-    for(const QString &effect : qAsConst(effects))
-    {
-        TTK::TTKQmmp::setEffectEnabled(effect, true);
-    }
+    MusicSoundEffectsWidget::initSoundEffectConfig();
 }
 
 void MusicApplicationModule::applyParameter()
@@ -467,14 +462,16 @@ void MusicApplicationModule::showEqualizerWidget()
 
 void MusicApplicationModule::showSoundEffectWidget()
 {
-    if(!closeCurrentEqualizer())
-    {
-        return;
-    }
+//    if(!closeCurrentEqualizer())
+//    {
+//        return;
+//    }
 
     MusicSoundEffectsWidget widget;
     widget.setInputModule(this);
     widget.exec();
+
+    MusicRightAreaWidget::instance()->applyParameter();
 }
 
 bool MusicApplicationModule::closeCurrentEqualizer()

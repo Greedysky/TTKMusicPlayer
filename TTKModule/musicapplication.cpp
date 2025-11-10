@@ -1163,7 +1163,7 @@ void MusicApplication::readSystemConfigFromFile()
 
     //Configure playback mode
     m_ui->musicEnhancedButton->setEnhancedSongConfig(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt());
-    m_applicationModule->soundEffectChanged();
+    m_applicationModule->setSoundEffectConfig();
     if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt() == 1)
     {
         m_player->setEqualizerConfig();

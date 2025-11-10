@@ -96,6 +96,11 @@ public:
      */
     void setInputModule(QObject *object);
 
+    /*!
+     * Init sound effect config.
+     */
+    static void initSoundEffectConfig();
+
 Q_SIGNALS:
     /*!
      * Read equalizer effect from config file.
