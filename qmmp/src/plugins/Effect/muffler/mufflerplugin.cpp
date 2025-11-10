@@ -10,7 +10,7 @@ MufflerPlugin::MufflerPlugin()
     m_instance = this;
 
     const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    m_ratio = settings.value("Muffler/ratio", DEFAULT_RATIO).toInt();
+    setRatio(settings.value("Muffler/ratio", DEFAULT_RATIO).toInt());
 }
 
 void MufflerPlugin::applyEffect(Buffer *b)
@@ -25,7 +25,7 @@ void MufflerPlugin::applyEffect(Buffer *b)
     for(size_t i = 0; i < b->samples; i += 2)
     {
         data[i] -= data[i + 1] * m_ratio;
-        data[i + 1] = data[i] * m_ratio;
+        data[i + 1] = data[i];
     }
     m_mutex.unlock();
 }

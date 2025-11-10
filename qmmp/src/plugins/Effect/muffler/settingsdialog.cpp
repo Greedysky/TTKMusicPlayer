@@ -22,15 +22,14 @@ void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue("Muffler/ratio", m_ui.ratioSlider->value());
-
-    if(MufflerPlugin::instance())
-    {
-        MufflerPlugin::instance()->setRatio(m_ui.ratioSlider->value());
-    }
     QDialog::accept();
 }
 
 void SettingsDialog::on_ratioSlider_valueChanged(int value)
 {
+    if(MufflerPlugin::instance())
+    {
+        MufflerPlugin::instance()->setRatio(m_ui.ratioSlider->value());
+    }
     m_ui.ratioLabel->setText(QString::number(value * 1.0 / DEFAULT_RATIO, 'f', 2));
 }
