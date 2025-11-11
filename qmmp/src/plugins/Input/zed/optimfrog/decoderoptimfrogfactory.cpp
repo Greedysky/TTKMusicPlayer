@@ -54,7 +54,7 @@ QList<TrackInfo*> DecoderOptimFROGFactory::createPlayList(const QString &path, T
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "OptimFROG Lossless");
+        info->setValue(Qmmp::FORMAT_NAME, "OptimFROG");
         info->setDuration(helper.totalTime());
     }
 

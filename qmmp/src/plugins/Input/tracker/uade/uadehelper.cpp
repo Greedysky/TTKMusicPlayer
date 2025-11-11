@@ -139,7 +139,7 @@ QList<TrackInfo*> UADEHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::SAMPLERATE, sampleRate());
             info->setValue(Qmmp::CHANNELS, channels());
             info->setValue(Qmmp::BITS_PER_SAMPLE, depth());
-            info->setValue(Qmmp::FORMAT_NAME, "Unix Amiga Delitracker Emulator");
+            info->setValue(Qmmp::FORMAT_NAME, "UADE");
         }
 
         info->setPath("uade://" + cleanPath() + QString("#%1").arg(i));

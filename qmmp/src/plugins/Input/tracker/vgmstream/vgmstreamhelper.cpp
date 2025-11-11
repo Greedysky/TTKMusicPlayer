@@ -292,7 +292,7 @@ QList<TrackInfo*> VgmstreamHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::SAMPLERATE, sampleRate());
             info->setValue(Qmmp::CHANNELS, channels());
             info->setValue(Qmmp::BITS_PER_SAMPLE, depth());
-            info->setValue(Qmmp::FORMAT_NAME, "Video Game Music");
+            info->setValue(Qmmp::FORMAT_NAME, "VGMStream");
         }
 
         info->setPath("vgm://" + cleanPath() + QString("#%1").arg(i));
