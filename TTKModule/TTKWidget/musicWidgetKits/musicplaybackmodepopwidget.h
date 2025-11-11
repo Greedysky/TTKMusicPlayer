@@ -34,7 +34,7 @@ public:
     explicit MusicPlayBackModePopWidget(QWidget *parent = nullptr);
 
     /*!
-     * Create all widget in layout.
+     * Init widget and parameter.
      */
     void initialize();
 

@@ -98,7 +98,7 @@ public:
     ~MusicWebDJRadioProgramWidget();
 
     /*!
-     * Init parameters.
+     * Init widget and parameter.
      */
     void initialize();
     /*!
@@ -130,7 +130,7 @@ public:
     ~MusicWebDJRadioWidget();
 
     /*!
-     * Init parameters.
+     * Init widget and parameter.
      */
     void initialize();
     /*!

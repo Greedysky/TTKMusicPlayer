@@ -67,12 +67,12 @@ private:
     virtual void leaveEvent(QEvent *event) override final;
     virtual void enterEvent(QtEnterEvent *event) override final;
     /*!
-     * Create all widget in layout.
+     * Init widget and parameter.
      */
     void initialize();
 
     bool m_menuShown;
-    TTKClickedSlider *m_volumeSlider;
+    TTKClickedSlider *m_slider;
 
 };
 

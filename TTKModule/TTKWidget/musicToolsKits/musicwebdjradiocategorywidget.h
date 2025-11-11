@@ -86,7 +86,7 @@ public:
     ~MusicWebDJRadioCategoryWidget();
 
     /*!
-     * Init parameters.
+     * Init widget and parameter.
      */
     void initialize();
     /*!

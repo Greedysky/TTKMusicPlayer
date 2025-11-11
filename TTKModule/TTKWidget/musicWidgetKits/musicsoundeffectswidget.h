@@ -97,9 +97,9 @@ public:
     void setInputModule(QObject *object);
 
     /*!
-     * Init sound effect config.
+     * Update sound effect config.
      */
-    static void initSoundEffectConfig();
+    static void updateConfig(bool v);
 
 Q_SIGNALS:
     /*!
@@ -123,13 +123,9 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Read sound effect function.
+     * Init widget and parameter.
      */
-    void readSoundEffect();
-    /*!
-     * Write sound effect function.
-     */
-    void writeSoundEffect();
+    void initialize();
 
     Ui::MusicSoundEffectsWidget *m_ui;
     QList<MusicSoundEffectsItemWidget*> m_items;

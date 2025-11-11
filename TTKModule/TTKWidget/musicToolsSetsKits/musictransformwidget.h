@@ -85,7 +85,7 @@ private:
      */
     QString transformSongName() const;
     /*!
-     * Init control parameter.
+     * Init widget and parameter.
      */
     void initialize();
     /*!

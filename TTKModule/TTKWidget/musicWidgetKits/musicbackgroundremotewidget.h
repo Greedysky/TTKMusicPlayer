@@ -93,7 +93,7 @@ public:
     explicit MusicBackgroundDailyWidget(QWidget *parent = nullptr);
 
     /*!
-     * Init parameters.
+     * Init widget and parameter.
      */
     void initialize();
 
@@ -129,7 +129,7 @@ public:
     ~MusicBackgroundOnlineWidget();
 
     /*!
-     * Init parameters.
+     * Init widget and parameter.
      */
     void initialize();
 

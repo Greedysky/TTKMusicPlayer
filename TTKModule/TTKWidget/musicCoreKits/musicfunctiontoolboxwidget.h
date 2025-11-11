@@ -162,7 +162,7 @@ Q_SIGNALS:
 
 protected:
     /*!
-     * Init parameter.
+     * Init widget and parameter.
      */
     void initialize();
     /*!

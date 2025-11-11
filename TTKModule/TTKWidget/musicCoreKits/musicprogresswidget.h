@@ -58,7 +58,7 @@ private:
     virtual void paintEvent(QPaintEvent *event) override final;
     virtual void resizeEvent(QResizeEvent *event) override final;
     /*!
-     * Create all widget in layout.
+     * Init widget and parameter.
      */
     void initialize();
 

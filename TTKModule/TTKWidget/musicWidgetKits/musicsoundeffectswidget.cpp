@@ -141,7 +141,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
 #endif
 
     TTK::Widget::generateVScrollAreaStyle(m_ui->scrollArea, m_ui->effectContainer);
-    readSoundEffect();
+    initialize();
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicPlayer::className());
@@ -150,7 +150,6 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
 MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
 {
     G_CONNECTION_PTR->removeValue(this);
-    writeSoundEffect();
     qDeleteAll(m_items);
     delete m_ui;
 }
@@ -170,13 +169,29 @@ void MusicSoundEffectsWidget::setInputModule(QObject *object)
     connect(m_ui->eqEffectButton, SIGNAL(clicked()), object, SLOT(showEqualizerWidget()));
 }
 
-void MusicSoundEffectsWidget::initSoundEffectConfig()
+void MusicSoundEffectsWidget::updateConfig(bool v)
 {
-    const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
-    const QStringList &effects = value.split(";", QtSkipEmptyParts);
-    for(const QString &effect : qAsConst(effects))
+    if(v)
     {
-        TTK::TTKQmmp::setEffectEnabled(effect, true);
+        const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
+        const QStringList &effects = value.split(";", QtSkipEmptyParts);
+        for(const QString &effect : qAsConst(effects))
+        {
+            TTK::TTKQmmp::setEffectEnabled(effect, true);
+        }
+    }
+    else
+    {
+        QString value;
+        for(const MusicPluginProperty &property : TTK::TTKQmmp::effectModules())
+        {
+            if(TTK::TTKQmmp::isEffectEnabled(property.m_type))
+            {
+                value.append(property.m_type + ";");
+            }
+        }
+
+        G_SETTING_PTR->setValue(MusicSettingManager::EnhancedEffectValue, value);
     }
 }
 
@@ -209,7 +224,7 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
     }
 }
 
-void MusicSoundEffectsWidget::readSoundEffect()
+void MusicSoundEffectsWidget::initialize()
 {
     QVBoxLayout *layout = new QVBoxLayout(m_ui->effectContainer);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -223,18 +238,4 @@ void MusicSoundEffectsWidget::readSoundEffect()
         item->setPluginEnabled(TTK::TTKQmmp::isEffectEnabled(property.m_type));
         layout->addWidget(item);
     }
-}
-
-void MusicSoundEffectsWidget::writeSoundEffect()
-{
-    QString value;
-    for(const MusicSoundEffectsItemWidget *item : qAsConst(m_items))
-    {
-        if(item->pluginEnabled())
-        {
-            value.append(item->type() + ";");
-        }
-    }
-
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedEffectValue, value);
 }

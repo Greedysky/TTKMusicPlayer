@@ -28,20 +28,20 @@ namespace TTK
 {
     namespace UI
     {
+        static constexpr const char *InteriorMicrophone = " \
+            QToolButton{ border:none; \
+            background-image:url(:/lrc/btn_microphone_normal); } \
+            QToolButton:hover{ background-image:url(:/lrc/btn_microphone_hover); }";
+
+        static constexpr const char *InteriorMicrophoneOn = " \
+            QToolButton{ border:none; \
+            background-image:url(:/lrc/btn_microphone_on_normal); } \
+            QToolButton:hover{ background-image:url(:/lrc/btn_microphone_on_hover); }";
+
         static constexpr const char *InteriorTranslation = " \
             QPushButton{ border:none; \
             background-image:url(:/lrc/btn_translation_normal); } \
             QPushButton:hover{ background-image:url(:/lrc/btn_translation_hover); }";
-
-        static constexpr const char *InteriorMicrophone = " \
-            QPushButton{ border:none; \
-            background-image:url(:/lrc/btn_microphone_normal); } \
-            QPushButton:hover{ background-image:url(:/lrc/btn_microphone_hover); }";
-
-        static constexpr const char *InteriorMicrophoneOn = " \
-            QPushButton{ border:none; \
-            background-image:url(:/lrc/btn_microphone_on_normal); } \
-            QPushButton:hover{ background-image:url(:/lrc/btn_microphone_on_hover); }";
 
         static constexpr const char *InteriorMessage = " \
             QPushButton{ border:none; \

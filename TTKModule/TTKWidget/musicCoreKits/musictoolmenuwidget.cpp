@@ -39,8 +39,8 @@ MusicToolMenuWidget::MusicToolMenuWidget(QWidget *parent)
 
 MusicToolMenuWidget::~MusicToolMenuWidget()
 {
-    delete m_containWidget;
     delete m_menu;
+    delete m_containWidget;
 }
 
 void MusicToolMenuWidget::setTranslucentBackground()

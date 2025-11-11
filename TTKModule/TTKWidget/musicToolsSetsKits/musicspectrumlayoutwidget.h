@@ -102,7 +102,7 @@ protected:
      */
     virtual QStringList spectrumTypeList() const = 0;
     /*!
-     * Create all widget in layout.
+     * Init widget and parameter.
      */
     void initialize();
     /*!

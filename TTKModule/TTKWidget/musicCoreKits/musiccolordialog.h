@@ -43,7 +43,7 @@ public:
     void setColor(const QColor &color);
 
     /*!
-     * Init parameter.
+     * Init widget and parameter.
      */
     void initialize();
 

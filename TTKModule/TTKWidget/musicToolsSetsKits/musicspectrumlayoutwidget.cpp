@@ -99,7 +99,6 @@ void MusicSpectrumLayoutWidget::initialize()
     QWidget *containWidget = new QWidget(scrollArea);
     containWidget->setStyleSheet(TTK::UI::BackgroundStyle10);
     m_containLayout = new QVBoxLayout(containWidget);
-
     m_containLayout->setContentsMargins(5, 0, 0, 0);
     m_containLayout->setSpacing(20);
     containWidget->setLayout(m_containLayout);

@@ -72,7 +72,7 @@ public Q_SLOTS:
      */
     void searchResultChanged(int row, int column);
     /*!
-     * Create the left button column
+     * Init widget and parameter.
      */
     void initialize();
 

@@ -87,7 +87,7 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Create all widget in layout.
+     * Init widget and parameter.
      */
     void initialize();
 

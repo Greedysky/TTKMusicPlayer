@@ -16,14 +16,14 @@ MusicVolumePopWidget::MusicVolumePopWidget(QWidget *parent)
 
 MusicVolumePopWidget::~MusicVolumePopWidget()
 {
-    delete m_volumeSlider;
+    delete m_slider;
 }
 
 void MusicVolumePopWidget::setValue(int value)
 {
-    m_volumeSlider->blockSignals(true);
-    m_volumeSlider->setValue(value);
-    m_volumeSlider->blockSignals(false);
+    m_slider->blockSignals(true);
+    m_slider->setValue(value);
+    m_slider->blockSignals(false);
 
     QString style = TTK::UI::BtnSound;
     if(66 < value && value <=100)
@@ -42,13 +42,14 @@ void MusicVolumePopWidget::setValue(int value)
     {
         style += "QToolButton{ margin-left:-80px; }";
     }
+
     setStyleSheet(style);
     setToolTip(QString::number(value));
 }
 
 int MusicVolumePopWidget::value() const
 {
-    return m_volumeSlider->value();
+    return m_slider->value();
 }
 
 void MusicVolumePopWidget::leaveEvent(QEvent *event)
@@ -82,13 +83,13 @@ void MusicVolumePopWidget::initialize()
     layout->setContentsMargins(0, 9, 0, 9);
     layout->setSpacing(0);
 
-    m_volumeSlider = new TTKClickedSlider(Qt::Vertical, this);
-    m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
-    m_volumeSlider->setRange(0, 100);
-    m_volumeSlider->setStyleSheet(TTK::UI::SliderStyle02);
+    m_slider = new TTKClickedSlider(Qt::Vertical, this);
+    m_slider->setCursor(QCursor(Qt::PointingHandCursor));
+    m_slider->setRange(0, 100);
+    m_slider->setStyleSheet(TTK::UI::SliderStyle02);
 
-    connect(m_volumeSlider, SIGNAL(valueChanged(int)), SIGNAL(volumeChanged(int)));
+    connect(m_slider, SIGNAL(valueChanged(int)), SIGNAL(volumeChanged(int)));
 
-    layout->addWidget(m_volumeSlider);
+    layout->addWidget(m_slider);
     m_containWidget->setLayout(layout);
 }

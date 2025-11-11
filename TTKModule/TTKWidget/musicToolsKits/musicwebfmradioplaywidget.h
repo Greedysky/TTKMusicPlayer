@@ -97,7 +97,7 @@ private:
     virtual void closeEvent(QCloseEvent *event) override final;
 
     /*!
-     * Init parameters.
+     * Init widget and parameter.
      */
     void initialize();
 
