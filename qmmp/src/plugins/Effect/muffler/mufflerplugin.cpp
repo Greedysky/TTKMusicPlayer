@@ -1,16 +1,9 @@
 #include "mufflerplugin.h"
 
-#include <QSettings>
-
-MufflerPlugin *MufflerPlugin::m_instance = nullptr;
-
 MufflerPlugin::MufflerPlugin()
     : Effect()
 {
-    m_instance = this;
 
-    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    setRatio(settings.value("Muffler/ratio", DEFAULT_RATIO).toInt());
 }
 
 void MufflerPlugin::applyEffect(Buffer *b)
@@ -20,24 +13,14 @@ void MufflerPlugin::applyEffect(Buffer *b)
         return;
     }
 
-    m_mutex.lock();
+    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    // range limits to (0.0 - 1.0);
+    const double ratio = settings.value("Muffler/ratio", DEFAULT_RATIO).toInt() * 1.0 / DEFAULT_RATIO;
+
     float *data = b->data;
     for(size_t i = 0; i < b->samples; i += 2)
     {
-        data[i] -= data[i + 1] * m_ratio;
+        data[i] -= data[i + 1] * ratio;
         data[i + 1] = data[i];
     }
-    m_mutex.unlock();
-}
-
-void MufflerPlugin::setRatio(int ratio)
-{
-    m_mutex.lock();
-    m_ratio = ratio * 1.0 / DEFAULT_RATIO; // (0.0 - 1.0)
-    m_mutex.unlock();
-}
-
-MufflerPlugin* MufflerPlugin::instance()
-{
-    return m_instance;
 }

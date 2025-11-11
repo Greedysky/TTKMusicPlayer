@@ -19,10 +19,10 @@
 #ifndef MUFFLERPLUGIN_H
 #define MUFFLERPLUGIN_H
 
-#include <QMutex>
+#include <QSettings>
 #include <qmmp/effect.h>
 
-#define DEFAULT_RATIO 10
+#define DEFAULT_RATIO 100
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -34,14 +34,6 @@ public:
 
     virtual void applyEffect(Buffer *b) override final;
 
-    void setRatio(int ratio);
-
-    static MufflerPlugin* instance();
-
-private:
-    QMutex m_mutex;
-    double m_ratio = 1.0;
-    static MufflerPlugin *m_instance;
 };
 
 #endif

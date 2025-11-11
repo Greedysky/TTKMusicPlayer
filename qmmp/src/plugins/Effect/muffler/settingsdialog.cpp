@@ -1,7 +1,6 @@
 #include "settingsdialog.h"
 #include "mufflerplugin.h"
 
-#include <QSettings>
 #include <QAbstractButton>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
@@ -27,9 +26,5 @@ void SettingsDialog::accept()
 
 void SettingsDialog::on_ratioSlider_valueChanged(int value)
 {
-    if(MufflerPlugin::instance())
-    {
-        MufflerPlugin::instance()->setRatio(m_ui.ratioSlider->value());
-    }
     m_ui.ratioLabel->setText(QString::number(value * 1.0 / DEFAULT_RATIO, 'f', 2));
 }
