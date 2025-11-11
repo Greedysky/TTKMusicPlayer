@@ -92,30 +92,11 @@ public:
     ~MusicSoundEffectsWidget();
 
     /*!
-     * Set input connection.
-     */
-    void setInputModule(QObject *object);
-
-    /*!
      * Update sound effect config.
      */
     static void updateConfig(bool v);
 
-Q_SIGNALS:
-    /*!
-     * Read equalizer effect from config file.
-     */
-    void setEqualizerConfig();
-
 public Q_SLOTS:
-    /*!
-     * Equalizer button state changed.
-     */
-    void equalizerButtonChanged(bool state);
-    /*!
-     * Equalizer button state changed.
-     */
-    void equalizerButtonChanged();
     /*!
      * State combobox index changed.
      */

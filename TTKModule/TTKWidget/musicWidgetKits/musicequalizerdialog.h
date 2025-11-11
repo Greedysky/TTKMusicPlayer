@@ -45,13 +45,13 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Current equlizer parameters changed.
-     */
-    void setEqualizerEffect(const TTKIntList &effect);
-    /*!
      * Set equlizer enable state changed.
      */
     void setEnabledEffect(bool enabled);
+    /*!
+     * Current equlizer parameters changed.
+     */
+    void setEqualizerEffect(const TTKIntList &effect);
 
 public Q_SLOTS:
     /*!

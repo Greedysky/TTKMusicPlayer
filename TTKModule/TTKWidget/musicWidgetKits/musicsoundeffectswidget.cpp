@@ -1,9 +1,7 @@
 #include "musicsoundeffectswidget.h"
 #include "ui_musicsoundeffectswidget.h"
 #include "musicsettingmanager.h"
-#include "musicconnectionpool.h"
 #include "musicwidgetheaders.h"
-#include "musicplayer.h"
 
 MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProperty &property, QWidget *parent)
     : QWidget(parent),
@@ -131,42 +129,14 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->stateComboBox->addItems({tr("OperatorAll"), tr("All Off")});
     connect(m_ui->stateComboBox, SIGNAL(currentIndexChanged(int)), SLOT(stateComboBoxChanged(int)));
 
-    m_ui->eqButton->setStyleSheet(TTK::UI::PushButtonStyle04);
-    m_ui->eqButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->eqEffectButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->eqEffectButton->setStyleSheet(TTK::UI::PushButtonStyle04);
-#ifdef Q_OS_UNIX
-    m_ui->eqButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->eqEffectButton->setFocusPolicy(Qt::NoFocus);
-#endif
-
     TTK::Widget::generateVScrollAreaStyle(m_ui->scrollArea, m_ui->effectContainer);
     initialize();
-
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicPlayer::className());
 }
 
 MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
     qDeleteAll(m_items);
     delete m_ui;
-}
-
-void MusicSoundEffectsWidget::setInputModule(QObject *object)
-{
-    if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
-    {
-        m_ui->eqButton->setText(tr("Off"));
-    }
-    else
-    {
-        m_ui->eqButton->setText(tr("On"));
-    }
-
-    connect(m_ui->eqButton, SIGNAL(clicked()), SLOT(equalizerButtonChanged()));
-    connect(m_ui->eqEffectButton, SIGNAL(clicked()), object, SLOT(showEqualizerWidget()));
 }
 
 void MusicSoundEffectsWidget::updateConfig(bool v)
@@ -193,20 +163,6 @@ void MusicSoundEffectsWidget::updateConfig(bool v)
 
         G_SETTING_PTR->setValue(MusicSettingManager::EnhancedEffectValue, value);
     }
-}
-
-void MusicSoundEffectsWidget::equalizerButtonChanged(bool state)
-{
-    m_ui->eqButton->setText(state ? tr("Off") : tr("On"));
-}
-
-void MusicSoundEffectsWidget::equalizerButtonChanged()
-{
-    const int state = !G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt();
-    equalizerButtonChanged(state);
-
-    G_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, state);
-    Q_EMIT setEqualizerConfig();
 }
 
 void MusicSoundEffectsWidget::stateComboBoxChanged(int index)

@@ -468,7 +468,6 @@ void MusicApplicationModule::showSoundEffectWidget()
 //    }
 
     MusicSoundEffectsWidget widget;
-    widget.setInputModule(this);
     widget.exec();
 
     MusicRightAreaWidget::instance()->applyParameter();

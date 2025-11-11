@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>368</width>
-    <height>448</height>
+    <height>408</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>4</x>
      <y>4</y>
      <width>360</width>
-     <height>440</height>
+     <height>400</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -64,7 +64,7 @@
      <x>4</x>
      <y>29</y>
      <width>360</width>
-     <height>415</height>
+     <height>375</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -78,45 +78,6 @@
       <width>100</width>
       <height>25</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="eqLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>375</y>
-      <width>55</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>均衡器: </string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="eqButton">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>372</y>
-      <width>35</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>禁用</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="eqEffectButton">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>372</y>
-      <width>35</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>调整</string>
     </property>
    </widget>
    <widget class="QScrollArea" name="scrollArea">

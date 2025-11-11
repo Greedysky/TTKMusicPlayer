@@ -6,7 +6,6 @@
 #include "musiclrclocallinkwidget.h"
 #include "musicvideoqualitypopwidget.h"
 #include "musicvideosearchtablewidget.h"
-#include "musicsoundeffectswidget.h"
 #include "musiccloudtablewidget.h"
 #include "musiccloudmanagerwidget.h"
 
@@ -40,14 +39,6 @@ void MusicConnectionPool::connect(const QString &from, const QString &to)
     {
         QObject::connect(first, SIGNAL(setEnabledEffect(bool)), second, SLOT(setEnabledEffect(bool)));
         QObject::connect(first, SIGNAL(setEqualizerEffect(TTKIntList)), second, SLOT(setEqualizerEffect(TTKIntList)));
-    }
-    else if(from == MusicEqualizerDialog::className() && to == MusicSoundEffectsWidget::className())
-    {
-        QObject::connect(first, SIGNAL(setEnabledEffect(bool)), second, SLOT(equalizerButtonChanged(bool)));
-    }
-    else if(from == MusicSoundEffectsWidget::className() && to == MusicPlayer::className())
-    {
-        QObject::connect(first, SIGNAL(setEqualizerConfig()), second, SLOT(setEqualizerConfig()));
     }
     else if(from == MusicLrcLocalLinkWidget::className() && to == MusicDownloadStatusModule::className())
     {

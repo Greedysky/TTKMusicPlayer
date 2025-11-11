@@ -3,7 +3,6 @@
 #include "musicsettingmanager.h"
 #include "musicmagicwidgetuiobject.h"
 #include "musicconnectionpool.h"
-#include "musicsoundeffectswidget.h"
 #include "musicplayer.h"
 #include "ttkclickedgroup.h"
 
@@ -50,7 +49,6 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicPlayer::className());
-    G_CONNECTION_PTR->connect(className(), MusicSoundEffectsWidget::className());
 }
 
 MusicEqualizerDialog::~MusicEqualizerDialog()
