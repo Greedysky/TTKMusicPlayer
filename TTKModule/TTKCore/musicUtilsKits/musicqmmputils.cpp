@@ -139,10 +139,24 @@ void TTK::TTKQmmp::updateBlurConfig()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("OuterBlurWave");
-
     QString colors = G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString();
     settings.setValue("colors", colors.remove(";"));
     const double opacity = (G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumTransparent).toInt() + 50) / 150.0;
     settings.setValue("opacity", opacity);
+    settings.endGroup();
+}
+
+void TTK::TTKQmmp::updateVoiceConfig(bool update, int &value)
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("Muffler");
+    if(update)
+    {
+        settings.setValue("ratio", value);
+    }
+    else
+    {
+        value = settings.value("ratio", 100).toInt();
+    }
     settings.endGroup();
 }

@@ -72,6 +72,11 @@ namespace TTK
          * Update blur spectrum config.
          */
         TTK_MODULE_EXPORT void updateBlurConfig();
+        /*!
+         * Update voice effect config.
+         */
+        TTK_MODULE_EXPORT void updateVoiceConfig(bool update, int &value);
+
 
     }
 }

@@ -93,9 +93,9 @@ public:
     void sideAnimationByOff();
 
     /*!
-     * Set sound effect config.
+     * Update sound effect config.
      */
-    void setSoundEffectConfig();
+    void updateSoundEffectConfig(bool v);
 
     /*!
      * Apply settings parameters.

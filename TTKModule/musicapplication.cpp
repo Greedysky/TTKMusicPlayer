@@ -1163,7 +1163,7 @@ void MusicApplication::readSystemConfigFromFile()
 
     //Configure playback mode
     m_ui->musicEnhancedButton->setEnhancedSongConfig(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt());
-    m_applicationModule->setSoundEffectConfig();
+    m_applicationModule->updateSoundEffectConfig(true);
     if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt() == 1)
     {
         m_player->setEqualizerConfig();
@@ -1269,6 +1269,8 @@ void MusicApplication::writeSystemConfigToFile()
         TTK_ERROR_STREAM("Load config file error:" << COFIG_PATH_FULL);
         return;
     }
+
+    m_applicationModule->updateSoundEffectConfig(false);
 
     G_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, TTKStaticCast(int, m_player->enhanced()));

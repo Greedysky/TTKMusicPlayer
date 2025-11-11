@@ -22,6 +22,7 @@
 #include "musiclrccontainer.h"
 
 class TTKClickedLabel;
+class MusicVoicePopWidget;
 class MusicLrcFloatWidget;
 class MusicLrcFloatPlayWidget;
 class MusicLrcCommentsWidget;
@@ -174,10 +175,6 @@ private Q_SLOTS:
      * Get all lrcs from tr container.
      */
     void translatedLrcData();
-    /*!
-     * Update voice remove mode.
-     */
-    void updateVoiceRemove(bool v = true);
 
 private:
     /*!
@@ -244,7 +241,8 @@ private:
     int m_animationFreshTime, m_lrcSizeProperty;
 
     qint64 m_timePositionOffset;
-    QWidget *m_functionLabel, *m_mufflerButton;
+    QWidget *m_functionLabel;
+    MusicVoicePopWidget *m_mufflerButton;
     MusicLrcFloatWidget *m_lrcFloatWidget;
     MusicLrcFloatPlayWidget *m_floatPlayWidget;
     TTKClickedLabel *m_noLrcCurrentInfo;

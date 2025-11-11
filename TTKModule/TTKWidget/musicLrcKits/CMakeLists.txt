@@ -40,6 +40,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_LRC_KITS_HEADER_FILES
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccolorwidget.h
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcposterwidget.h
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcdownloadbatchwidget.h
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musicvoicepopwidget.h
 )
 
 set_property(GLOBAL PROPERTY TTK_WIDGET_LRC_KITS_SOURCE_FILES
@@ -64,4 +65,5 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_LRC_KITS_SOURCE_FILES
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrccolorwidget.cpp
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcposterwidget.cpp
   ${TTK_WIDGET_LRCMANAGER_DIR}/musiclrcdownloadbatchwidget.cpp
+  ${TTK_WIDGET_LRCMANAGER_DIR}/musicvoicepopwidget.cpp
 )

@@ -6,6 +6,7 @@
 #include "musictoastlabel.h"
 #include "musiclrcanalysis.h"
 #include "musicurlutils.h"
+#include "musicvoicepopwidget.h"
 #include "musicinteriorlrcuiobject.h"
 #include "musicrightareawidget.h"
 #include "musiclrccommentswidget.h"
@@ -16,7 +17,6 @@
 #include "musictopareawidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicwidgetheaders.h"
-#include "musicqmmputils.h"
 #include "ttkclickedlabel.h"
 
 #include <QClipboard>
@@ -104,7 +104,7 @@ void MusicLrcContainerForInterior::applyParameter()
 
     setLrcSize(size);
     // update state
-    updateVoiceRemove(false);
+    m_mufflerButton->updateVoiceRemove(false);
 }
 
 void MusicLrcContainerForInterior::updateCurrentLrc(qint64 time)
@@ -362,17 +362,6 @@ void MusicLrcContainerForInterior::translatedLrcData()
     m_translatedWidget->setCurrentSongName(m_currentSongName);
 }
 
-void MusicLrcContainerForInterior::updateVoiceRemove(bool v)
-{
-    const bool state = TTK::TTKQmmp::isEffectEnabled("muffler");
-    m_mufflerButton->setStyleSheet((v ? state : !state) ? TTK::UI::InteriorMicrophone : TTK::UI::InteriorMicrophoneOn);
-
-    if(v)
-    {
-        TTK::TTKQmmp::setEffectEnabled("muffler", !state);
-    }
-}
-
 void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
@@ -620,53 +609,47 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     functionLayout->setContentsMargins(0, 0, 0, 0);
 
     QPushButton *transButton = new QPushButton(m_functionLabel);
-    QPushButton *mufflerButton = new QPushButton(m_functionLabel);
     QPushButton *movieButton = new QPushButton(m_functionLabel);
     QPushButton *messageButton = new QPushButton(m_functionLabel);
     QPushButton *photoButton = new QPushButton(m_functionLabel);
+    m_mufflerButton = new MusicVoicePopWidget(m_functionLabel);
 
-    m_mufflerButton = mufflerButton;
 #ifdef Q_OS_UNIX
     transButton->setFocusPolicy(Qt::NoFocus);
-    mufflerButton->setFocusPolicy(Qt::NoFocus);
     movieButton->setFocusPolicy(Qt::NoFocus);
     messageButton->setFocusPolicy(Qt::NoFocus);
     photoButton->setFocusPolicy(Qt::NoFocus);
+    m_mufflerButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     transButton->setFixedSize(30, 30);
-    mufflerButton->setFixedSize(30, 30);
     movieButton->setFixedSize(30, 30);
     messageButton->setFixedSize(30, 30);
     photoButton->setFixedSize(30, 30);
 
     transButton->setStyleSheet(TTK::UI::InteriorTranslation);
-    mufflerButton->setStyleSheet(TTK::UI::InteriorMicrophone);
     movieButton->setStyleSheet(TTK::UI::InteriorMovie);
     messageButton->setStyleSheet(TTK::UI::InteriorMessage);
     photoButton->setStyleSheet(TTK::UI::InteriorPhoto);
 
     transButton->setCursor(Qt::PointingHandCursor);
-    mufflerButton->setCursor(Qt::PointingHandCursor);
     movieButton->setCursor(Qt::PointingHandCursor);
     messageButton->setCursor(Qt::PointingHandCursor);
     photoButton->setCursor(Qt::PointingHandCursor);
 
     transButton->setToolTip(tr("Translation"));
-    mufflerButton->setToolTip(tr("VoiceRemove"));
     movieButton->setToolTip(tr("Movie"));
     messageButton->setToolTip(tr("Message"));
     photoButton->setToolTip(tr("Photo"));
 
     connect(transButton, SIGNAL(clicked()), SLOT(translatedLrcData()));
-    connect(mufflerButton, SIGNAL(clicked()), SLOT(updateVoiceRemove()));
     connect(movieButton, SIGNAL(clicked()), SLOT(showSongMovieWidget()));
     connect(messageButton, SIGNAL(clicked()), SLOT(showSongCommentsWidget()));
     connect(photoButton, SIGNAL(clicked()), m_lrcFloatWidget, SLOT(showArtistPhotoWidget()));
 
     functionLayout->addStretch(1);
     functionLayout->addWidget(transButton);
-    functionLayout->addWidget(mufflerButton);
+    functionLayout->addWidget(m_mufflerButton);
     functionLayout->addWidget(movieButton);
     functionLayout->addWidget(messageButton);
     functionLayout->addWidget(photoButton);

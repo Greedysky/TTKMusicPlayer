@@ -268,9 +268,9 @@ void MusicApplicationModule::sideAnimationByOff()
     m_direction = TTK::Direction::No;
 }
 
-void MusicApplicationModule::setSoundEffectConfig()
+void MusicApplicationModule::updateSoundEffectConfig(bool v)
 {
-    MusicSoundEffectsWidget::initSoundEffectConfig();
+    MusicSoundEffectsWidget::updateConfig(v);
 }
 
 void MusicApplicationModule::applyParameter()

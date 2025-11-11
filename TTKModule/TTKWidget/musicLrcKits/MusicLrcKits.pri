@@ -39,7 +39,8 @@ HEADERS += \
     $$PWD/musiclrccommentswidget.h \
     $$PWD/musiclrctranslatedwidget.h \
     $$PWD/musiclrcposterwidget.h \
-    $$PWD/musiclrcdownloadbatchwidget.h
+    $$PWD/musiclrcdownloadbatchwidget.h \
+    $$PWD/musicvoicepopwidget.h
 
 SOURCES += \
     $$PWD/musiclrcmanager.cpp \
@@ -62,4 +63,5 @@ SOURCES += \
     $$PWD/musiclrccommentswidget.cpp \
     $$PWD/musiclrctranslatedwidget.cpp \
     $$PWD/musiclrcposterwidget.cpp \
-    $$PWD/musiclrcdownloadbatchwidget.cpp
+    $$PWD/musiclrcdownloadbatchwidget.cpp \
+    $$PWD/musicvoicepopwidget.cpp
