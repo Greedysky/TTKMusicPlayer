@@ -465,6 +465,25 @@
     </message>
 </context>
 <context>
+    <name>SoniquePlugin</name>
+    <message>
+        <source>&amp;Show Menu</source>
+        <translation>頻譜菜單列表</translation>
+    </message>
+    <message>
+        <source>&amp;Next Preset</source>
+        <translation>下壹個邊框模式</translation>
+    </message>
+    <message>
+        <source>&amp;Previous Preset</source>
+        <translation>上壹個邊框模式</translation>
+    </message>
+    <message>
+        <source>&amp;Random Preset</source>
+        <translation>隨機邊框模式</translation>
+    </message>
+</context>
+<context>
     <name>ReplayGainWidget</name>
     <message>
         <source>ReplayGain Scanner</source>
@@ -536,10 +555,6 @@
     <message>
         <source>Sample Rate Converter Plugin Settings</source>
         <translation>取樣率轉換插件設定</translation>
-    </message>
-    <message>
-        <source>Sample Rate (Hz):</source>
-        <translation>取樣率 (Hz)：</translation>
     </message>
     <message>
         <source>Interpolation Engine:</source>
@@ -1072,8 +1087,8 @@ too high may cause clipping!</source>
         <translation>XMP插件設置</translation>
     </message>
     <message>
-        <source>Sample rate:</source>
-        <translation>取樣率：</translation>
+        <source>Sample Rate (Hz):</source>
+        <translation>取樣率 (Hz)：</translation>
     </message>
     <message>
         <source>Amplification factor:</source>
@@ -1106,18 +1121,6 @@ too high may cause clipping!</source>
     <message>
         <source>Use Paula mixer in Amiga modules</source>
         <translation>Amiga模塊中使用Paula混音器</translation>
-    </message>
-    <message>
-        <source>22050 Hz</source>
-        <translation>22050 Hz</translation>
-    </message>
-    <message>
-        <source>44100 Hz</source>
-        <translation>44100赫茲</translation>
-    </message>
-    <message>
-        <source>48000 Hz</source>
-        <translation>48000赫茲</translation>
     </message>
     <message>
         <source>Nearest neighbor</source>
@@ -1274,6 +1277,22 @@ too high may cause clipping!</source>
     <message>
         <source>Muffler Plugin Settings</source>
         <translation>人聲移除插件設置</translation>
+    </message>
+    <message>
+        <source>TFMX Plugin Settings</source>
+        <translation>TFMX插件設置</translation>
+    </message>
+    <message>
+        <source>Stereo Panning:</source>
+        <translation>立體平移:</translation>
+    </message>
+    <message>
+        <source>Min duration(s):</source>
+        <translation>最短時間(秒)</translation>
+    </message>
+    <message>
+        <source>End shorts immediately</source>
+        <translation>時間過短立即結束</translation>
     </message>
 </context>
 <context>

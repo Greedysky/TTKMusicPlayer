@@ -90,7 +90,7 @@ TTKMusicPlayer can meet your most demands
  * XMP File(*.abk *.dsym *.emod *.fnk *.gtk *.ims *.liq *.mfp *.mgt *.rtm *.tcb *.xmf)
  * Another Slight Atari File(*.cm3 *.cmc *.cmr *.cms *.dlt *.dmc *.fc *.mpd *.mpt *.rmt *.sap *.tm2 *.tm8 *.tmc)
  * DTS Coherent Acoustics File(*.dts *.cpt)
- * Future Composer File(*.fc *.fc13 *.fc14 *.smod)
+ * Future Composer File(*.fc *.fc13 *.fc14 *.fc3 *.fc4 *.smod)
  * OptimFrog File(*.ofr *.ofs)
  * Audio Overload File(*.pcm *.msu *.spu *.psf *.ssf *.qsf *.dsf *.psf2 *.minipsf *.minissf *.miniqsf *.minidsf *.minipsf2 *.2sf *.mini2sf *.gsf *.minigsf *.usf *.miniusf *.ncsf *.minincsf *.snsf *.minisnsf)
  * Quite OK Audio File(*.qoa)
@@ -107,7 +107,7 @@ TTKMusicPlayer can meet your most demands
  * Ken Silverman's Audio File(*.kdm *.ksm *.sm *.snd)
  * XMDX Game Audio File(*.mdx *.pdx *.m *.mub *.muc *.vgs *.bgm *.mml)
  * Cave Story's org Audio File(*.org *.pttune *.ptcop)
- * Final Music System Tracker Module File(*.tfm *.tfmx *.mdat *.tfx)
+ * TFMX Module File(*.tfm *.tfmx *.mdat *.tfx *.hip *.hipc *.hip7 *.mcmd)
  * Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, jspf, asx, fpl, dbpl, csv, txt)
  * Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing Screenshots.
  * Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function.

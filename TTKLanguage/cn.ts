@@ -459,7 +459,7 @@
 <context>
     <name>MusicApplicationModule</name>
     <message>
-        <location filename="../TTKModule/musicapplicationmodule.cpp" line="482"/>
+        <location filename="../TTKModule/musicapplicationmodule.cpp" line="481"/>
         <source>We are opening the magic sound, if you want to close?</source>
         <translation>打开均衡器将关闭神奇音效，是否继续？</translation>
     </message>
@@ -1269,102 +1269,102 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="29"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="28"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="34"/>
         <source>Custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="34"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="34"/>
         <source>Classical</source>
         <translation>古典</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="34"/>
         <source>Club</source>
         <translation>俱乐部</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="34"/>
         <source>Dance</source>
         <translation>舞曲</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="34"/>
         <source>Bass</source>
         <translation>增强低音</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="34"/>
         <source>Soprano</source>
         <translation>增强高音</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
         <source>BassSoprano</source>
         <translation>增强高低音</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
         <source>Headset</source>
         <translation>耳机</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
         <source>Hall</source>
         <translation>大厅</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
         <source>Scene</source>
         <translation>现场</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
         <source>Pop</source>
         <translation>流行</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="35"/>
         <source>Repaglinide</source>
         <translation>瑞格</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="37"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
         <source>Party</source>
         <translation>派对</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="37"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
         <source>Rock</source>
         <translation>摇滚</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="37"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
         <source>Oscar</source>
         <translation>斯卡</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="37"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
         <source>Mild</source>
         <translation>温和</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="37"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
         <source>SoftRock</source>
         <translation>温和摇滚</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="37"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicequalizerdialog.cpp" line="36"/>
         <source>Electronics</source>
         <translation>电子</translation>
     </message>
@@ -2174,43 +2174,43 @@
     <message>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="65"/>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="135"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="969"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="952"/>
         <source>No song is playing now</source>
         <translation>当前没有正在播放的歌曲哦</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="130"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="964"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="947"/>
         <source>No lrc data file found</source>
         <translation>还未找到相应的歌词哦</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="392"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="381"/>
         <source>Color</source>
         <translation>配色方案</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="393"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="382"/>
         <source>Lrc Size</source>
         <translation>歌词大小</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="394"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="383"/>
         <source>Time After</source>
         <translation>歌词提前</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="395"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="384"/>
         <source>Time Before</source>
         <translation>歌词延后</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="457"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="446"/>
         <source>Lrc Link</source>
         <translation>歌词关联</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="383"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="372"/>
         <source>Lrc Search</source>
         <translation>搜索歌词</translation>
     </message>
@@ -2221,252 +2221,247 @@
         <translation>正在加载请稍候 ... </translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="384"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="373"/>
         <source>Lrc Update</source>
         <translation>更新歌词</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="385"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="736"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="374"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="719"/>
         <source>Lrc Make</source>
         <translation>歌词制作</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="386"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="375"/>
         <source>Lrc Poster</source>
         <translation>歌词图片</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="388"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="377"/>
         <source>Show Normal Mode</source>
         <translation>切换到普通模式</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="388"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="377"/>
         <source>Show Fullscreen Mode</source>
         <translation>切换到全屏模式</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="399"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="388"/>
         <source>Revert Mode</source>
         <translation>还原歌词改变</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="400"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="389"/>
         <source>Save Mode</source>
         <translation>保存歌词改变</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="404"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="393"/>
         <source>Smaller</source>
         <translation>偏小</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="405"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="394"/>
         <source>Small</source>
         <translation>小号</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="406"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="395"/>
         <source>Middle</source>
         <translation>中等</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="407"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="396"/>
         <source>Big</source>
         <translation>大号</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="408"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="397"/>
         <source>Bigger</source>
         <translation>偏大</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="428"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="693"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="417"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="676"/>
         <source>Custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="432"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="421"/>
         <source>After 0.5s</source>
         <translation>提前0.5秒</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="433"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="422"/>
         <source>After 1.0s</source>
         <translation>提前1.0秒</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="434"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="423"/>
         <source>After 2.0s</source>
         <translation>提前2.0秒</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="435"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="424"/>
         <source>After 5.0s</source>
         <translation>提前5.0秒</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="440"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="429"/>
         <source>Before 0.5s</source>
         <translation>延后0.5秒</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="441"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="430"/>
         <source>Before 1.0s</source>
         <translation>延后1.0秒</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="442"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="431"/>
         <source>Before 2.0s</source>
         <translation>延后2.0秒</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="443"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="432"/>
         <source>Before 5.0s</source>
         <translation>延后5.0秒</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="447"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="448"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="436"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="437"/>
         <source>Art Turn Off</source>
         <translation>关闭写真</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="448"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="437"/>
         <source>Art Turn On</source>
         <translation>打开写真</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="449"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="450"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="438"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="439"/>
         <source>Lrc Turn Off</source>
         <translation>关闭歌词</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="450"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="439"/>
         <source>Lrc Turn On</source>
         <translation>打开歌词</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="451"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="440"/>
         <source>Set As Background</source>
         <translation>设为背景皮肤</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="458"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="447"/>
         <source>Local Lrc Link</source>
         <translation>本地关联</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="459"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="460"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="448"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="449"/>
         <source>Link Off</source>
         <translation>取消关联</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="460"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="449"/>
         <source>Link On</source>
         <translation>打开关联</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="463"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="452"/>
         <source>Copy To Clip</source>
         <translation>复制到剪切板</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="464"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="453"/>
         <source>Open Lrc File</source>
         <translation>游览歌词文件</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="467"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="456"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="656"/>
-        <source>VoiceRemove</source>
-        <translation>随心唱</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="682"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="665"/>
         <source>Yellow</source>
         <translation>活力黄</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="683"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="666"/>
         <source>Blue</source>
         <translation>清爽蓝</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="684"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="667"/>
         <source>Gray</source>
         <translation>高雅灰</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="685"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="668"/>
         <source>Pink</source>
         <translation>可爱粉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="686"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="669"/>
         <source>Green</source>
         <translation>田野绿</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="687"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="670"/>
         <source>Red</source>
         <translation>热血红</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="688"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="671"/>
         <source>Purple</source>
         <translation>魅力紫</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="689"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="672"/>
         <source>Orange</source>
         <translation>欢乐橙</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="690"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="673"/>
         <source>Indigo</source>
         <translation>松柏青</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="716"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="699"/>
         <source>After %1s</source>
         <translation>提前%1秒</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="720"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="703"/>
         <source>Before %1s</source>
         <translation>延后%1秒</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="724"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="707"/>
         <source>Restore</source>
         <translation>已还原</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="655"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="640"/>
         <source>Translation</source>
         <translation>歌词翻译</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="657"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="641"/>
         <source>Movie</source>
         <translation>MV视频</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="659"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="643"/>
         <source>Photo</source>
         <translation>歌手写真</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="658"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="642"/>
         <source>Message</source>
         <translation>歌曲评论</translation>
     </message>
@@ -6250,18 +6245,18 @@ Copyright© 2015 - 2025 Greedysky All Rights Reserved
 <context>
     <name>MusicSoundEffectsItemWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="36"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="34"/>
         <source>Sets</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="43"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="105"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="41"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="103"/>
         <source>On</source>
         <translation>开启</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="97"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="95"/>
         <source>Off</source>
         <translation>关闭</translation>
     </message>
@@ -6280,46 +6275,19 @@ Copyright© 2015 - 2025 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsoundeffectswidget.ui" line="93"/>
-        <source>均衡器: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsoundeffectswidget.ui" line="106"/>
-        <source>禁用</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsoundeffectswidget.ui" line="119"/>
-        <source>调整</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="127"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="125"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="131"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="129"/>
         <source>OperatorAll</source>
         <translation>操作全部</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="131"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="129"/>
         <source>All Off</source>
         <translation>全部关闭</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="162"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="185"/>
-        <source>Off</source>
-        <translation>关闭</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="166"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="185"/>
-        <source>On</source>
-        <translation>开启</translation>
     </message>
 </context>
 <context>
@@ -6381,37 +6349,37 @@ Copyright© 2015 - 2025 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumFloridLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="218"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="217"/>
         <source>Reverb</source>
         <translation>迷幻混响</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="219"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="218"/>
         <source>Autism</source>
         <translation>孤独患者</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="220"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="219"/>
         <source>Bass</source>
         <translation>爆炸低音</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="221"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="220"/>
         <source>Surround</source>
         <translation>动感环绕</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="222"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="221"/>
         <source>Ancient</source>
         <translation>纯美古风</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="223"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="222"/>
         <source>Electric</source>
         <translation>激燃电音</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="224"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="223"/>
         <source>Picture</source>
         <translation>空灵轻音</translation>
     </message>
@@ -6419,47 +6387,47 @@ Copyright© 2015 - 2025 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumFlowLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="175"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="174"/>
         <source>Goom</source>
         <translation>古姆</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="176"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="175"/>
         <source>Dazzle</source>
         <translation>炫彩</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="177"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="176"/>
         <source>Sonique</source>
         <translation>索妮可</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="178"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="177"/>
         <source>Jakdaw</source>
         <translation>寒鸦</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="179"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="178"/>
         <source>MadSpin</source>
         <translation>疯狂旋转</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="180"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="179"/>
         <source>Infinity</source>
         <translation>无垠</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="181"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="180"/>
         <source>Mountain</source>
         <translation>高山</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="182"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="181"/>
         <source>Matrix</source>
         <translation>矩阵</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="183"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="182"/>
         <source>VU Meter</source>
         <translation>音量表</translation>
     </message>
@@ -6467,27 +6435,27 @@ Copyright© 2015 - 2025 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumNormalLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="137"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="136"/>
         <source>Analyzer</source>
         <translation>块状</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="138"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="137"/>
         <source>EWave</source>
         <translation>波纹</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="139"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="138"/>
         <source>FlowWave</source>
         <translation>波频</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="140"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="139"/>
         <source>Histogram</source>
         <translation>柱状</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="141"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="140"/>
         <source>Line</source>
         <translation>线条</translation>
     </message>
@@ -6495,17 +6463,17 @@ Copyright© 2015 - 2025 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumPlusLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="156"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="155"/>
         <source>FoldWave</source>
         <translation>叠纹</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="157"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="156"/>
         <source>XRays</source>
         <translation>射线</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="158"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="157"/>
         <source>BlurXRays</source>
         <translation>模纹</translation>
     </message>
@@ -6513,22 +6481,22 @@ Copyright© 2015 - 2025 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumWaveLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="198"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="197"/>
         <source>Voice</source>
         <translation>声谱</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="199"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="198"/>
         <source>Crest</source>
         <translation>包络</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="200"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="199"/>
         <source>Volume</source>
         <translation>音量表</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="201"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="200"/>
         <source>WaveForm</source>
         <translation>全包络</translation>
     </message>
@@ -7292,6 +7260,14 @@ Copyright© 2015 - 2025 Greedysky All Rights Reserved
         <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="201"/>
         <source>Audio play time out</source>
         <translation>连接超时，请重试</translation>
+    </message>
+</context>
+<context>
+    <name>MusicVoicePopWidget</name>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musicvoicepopwidget.cpp" line="74"/>
+        <source>VoiceRemove</source>
+        <translation>随心唱</translation>
     </message>
 </context>
 <context>

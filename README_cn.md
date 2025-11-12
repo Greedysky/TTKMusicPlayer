@@ -90,7 +90,7 @@ TTKMusicPlayer的一些特性
  * XMP File(*.abk *.dsym *.emod *.fnk *.gtk *.ims *.liq *.mfp *.mgt *.rtm *.tcb *.xmf)
  * Another Slight Atari File(*.cm3 *.cmc *.cmr *.cms *.dlt *.dmc *.fc *.mpd *.mpt *.rmt *.sap *.tm2 *.tm8 *.tmc)
  * DTS Coherent Acoustics File(*.dts *.cpt)
- * Future Composer File(*.fc *.fc13 *.fc14 *.smod)
+ * Future Composer File(*.fc *.fc13 *.fc14 *.fc3 *.fc4 *.smod)
  * OptimFrog File(*.ofr *.ofs)
  * Audio Overload File(*.pcm *.msu *.spu *.psf *.ssf *.qsf *.dsf *.psf2 *.minipsf *.minissf *.miniqsf *.minidsf *.minipsf2 *.2sf *.mini2sf *.gsf *.minigsf *.usf *.miniusf *.ncsf *.minincsf *.snsf *.minisnsf)
  * Quite OK Audio File(*.qoa)
@@ -107,7 +107,7 @@ TTKMusicPlayer的一些特性
  * Ken Silverman's Audio File(*.kdm *.ksm *.sm *.snd)
  * XMDX Game Audio File(*.mdx *.pdx *.m *.mub *.muc *.vgs *.bgm *.mml)
  * Cave Story's org Audio File(*.org *.pttune *.ptcop)
- * Final Music System Tracker Module File(*.tfm *.tfmx *.mdat *.tfx)
+ * TFMX Module File(*.tfm *.tfmx *.mdat *.tfx *.hip *.hipc *.hip7 *.mcmd)
  * 支持的播放列表格式(tkpl, m3u, m3u8, pls, wpl, xspf, jspf, asx, fpl, dbpl, csv, txt)
  * 华丽流星炫酷的界面设计，跨平台有良好的性能表现。
  * 搜索和高速下载。歌曲搜索精度优化，智能节省带宽，可以禁用网络功能，支持多个国内音乐平台曲库。

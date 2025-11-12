@@ -66,7 +66,7 @@
  *
  * DTS Coherent Acoustics File(*.dts *.cpt)
  *
- * Future Composer File(*.fc *.fc13 *.fc14 *.smod)
+ * Future Composer File(*.fc *.fc13 *.fc14 *.fc3 *.fc4 *.smod)
  *
  * OptimFrog File(*.ofr *.ofs)
  *
@@ -100,7 +100,7 @@
  *
  * Cave Story's org Audio File(*.org *.pttune *.ptcop)
  *
- * Final Music System Tracker Module File(*.tfm *.tfmx *.mdat *.tfx)
+ * TFMX Module File(*.tfm *.tfmx *.mdat *.tfx *.hip *.hipc *.hip7 *.mcmd)
  *
  * Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, jspf, asx, fpl, dbpl, csv, txt)
  *

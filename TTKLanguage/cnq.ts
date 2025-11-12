@@ -465,6 +465,25 @@
     </message>
 </context>
 <context>
+    <name>SoniquePlugin</name>
+    <message>
+        <source>&amp;Show Menu</source>
+        <translation>频谱菜单列表</translation>
+    </message>
+    <message>
+        <source>&amp;Next Preset</source>
+        <translation>下一个边框模式</translation>
+    </message>
+    <message>
+        <source>&amp;Previous Preset</source>
+        <translation>上一个边框模式</translation>
+    </message>
+    <message>
+        <source>&amp;Random Preset</source>
+        <translation>随机边框模式</translation>
+    </message>
+</context>
+<context>
     <name>ReplayGainWidget</name>
     <message>
         <source>ReplayGain Scanner</source>
@@ -1072,10 +1091,6 @@ too high may cause clipping!</source>
         <translation>XMP插件设置</translation>
     </message>
     <message>
-        <source>Sample rate:</source>
-        <translation>取样率：</translation>
-    </message>
-    <message>
         <source>Amplification factor:</source>
         <translation>扩音比率：</translation>
     </message>
@@ -1106,18 +1121,6 @@ too high may cause clipping!</source>
     <message>
         <source>Use Paula mixer in Amiga modules</source>
         <translation>Amiga模块中使用Paula混音器</translation>
-    </message>
-    <message>
-        <source>22050 Hz</source>
-        <translation>22050 Hz</translation>
-    </message>
-    <message>
-        <source>44100 Hz</source>
-        <translation>44100赫兹</translation>
-    </message>
-    <message>
-        <source>48000 Hz</source>
-        <translation>48000赫兹</translation>
     </message>
     <message>
         <source>Nearest neighbor</source>
@@ -1274,6 +1277,22 @@ too high may cause clipping!</source>
     <message>
         <source>Muffler Plugin Settings</source>
         <translation>人声移除插件设置</translation>
+    </message>
+    <message>
+        <source>TFMX Plugin Settings</source>
+        <translation>TFMX插件设置</translation>
+    </message>
+    <message>
+        <source>Stereo Panning:</source>
+        <translation>立体平移:</translation>
+    </message>
+    <message>
+        <source>Min duration(s):</source>
+        <translation>最短时间(秒)</translation>
+    </message>
+    <message>
+        <source>End shorts immediately</source>
+        <translation>时间过短立即结束</translation>
     </message>
 </context>
 <context>
