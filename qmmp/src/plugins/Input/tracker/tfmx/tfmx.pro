@@ -4,11 +4,15 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 
 HEADERS += decodertfmxfactory.h \
            decoder_tfmx.h \
-           tfmxhelper.h
+           tfmxhelper.h \
+           settingsdialog.h
 
 SOURCES += decodertfmxfactory.cpp \
            decoder_tfmx.cpp \
-           tfmxhelper.cpp
+           tfmxhelper.cpp \
+           settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 

@@ -7,7 +7,6 @@ bool Format::isTrack(const QString &url)
     QStringList list;
     list << "ape://";
     list << "cue://";
-    list << "fc14://";
     list << "ffmpeg://";
     list << "flac://";
     list << "gme://";

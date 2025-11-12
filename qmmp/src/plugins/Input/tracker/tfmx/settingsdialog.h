@@ -16,45 +16,25 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef TFMXHELPER_H
-#define TFMXHELPER_H
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
-#include <QFileInfo>
-#include <QStringList>
-#include <qmmp/trackinfo.h>
-#include <libtfmx/tfmxaudiodecoder.h>
+#include "ui_settingsdialog.h"
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class TFMXHelper
+class SettingsDialog : public QDialog
 {
+    Q_OBJECT
 public:
-    explicit TFMXHelper(const QString &path);
-    ~TFMXHelper();
+    explicit SettingsDialog(QWidget *parent = nullptr);
 
-    void deinit();
-    bool initialize();
-
-    inline void seek(qint64 time) { tfmxdec_seek(m_input, time); }
-    inline qint64 totalTime() const { return tfmxdec_duration(m_input); }
-
-    inline int bitrate() const { return 8; }
-    inline int sampleRate() const { return m_sampleRate; }
-    inline int channels() const { return 2; }
-    inline int depth() const { return 16; }
-
-    qint64 read(unsigned char *data, qint64 maxSize);
-
-    QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
-    QString cleanPath() const;
-
-    static QStringList filters();
+public slots:
+    virtual void accept() override final;
 
 private:
-    QString m_path;
-    int m_sampleRate;
-    void *m_input = nullptr;
+    Ui::SettingsDialog m_ui;
 
 };
 

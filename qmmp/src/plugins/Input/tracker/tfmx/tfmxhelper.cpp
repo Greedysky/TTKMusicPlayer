@@ -1,217 +1,12 @@
 #include "tfmxhelper.h"
 
-static const char* findFilenameStart(const char *path, int *offset)
-{
-    for(size_t i = strlen(path) - 1; i > 0; --i)
-    {
-        const char c = path[i];
-        if(c == '/' || c == '\\')
-        {
-            *offset = (int)(i + 1);
-            return &path[i + 1];
-        }
-    }
-
-    *offset = 0;
-    return path;
-}
-
-static const char* findExtension(const char *path, int *offset)
-{
-    for(size_t i = strlen(path) - 1; i > 0; --i)
-    {
-        if(path[i] == '.')
-        {
-            *offset = (int)(i + 1);
-            return &path[i];
-        }
-    }
-
-    *offset = 0;
-    return path;
-}
-
-static bool loadMDAT(TfmxState *state, const char *mdatName, const char *smplName)
-{
-    TfmxData mdat = {0, 0, 0};
-    TfmxData smpl = {0, 0, 0};
-
-    // first load mdat to memory
-    QFile mdatFile(mdatName);
-    if(!mdatFile.open(QIODevice::ReadOnly))
-    {
-        return false;
-    }
-
-    const QByteArray &mdatBuffer = mdatFile.readAll();
-    mdat.size = mdatBuffer.length();
-    mdat.data = (U8*)mdatBuffer.data();
-
-    // Load sample file to memory
-    QFile smplFile(smplName);
-    if(!smplFile.open(QIODevice::ReadOnly))
-    {
-        return false;
-    }
-
-    const QByteArray &smplBuffer = smplFile.readAll();
-    smpl.size = smplBuffer.length();
-    smpl.data = (U8*)smplBuffer.data();
-    return LoadTFMXFile(state, &mdat, &smpl);
-}
-
-static bool loadTFM(TfmxState *state, const char *path)
-{
-    // first load mdat to memory
-    QFile mdatFile(path);
-    if(!mdatFile.open(QIODevice::ReadOnly))
-    {
-        return false;
-    }
-
-    TfmxData mdat = {0, 0, 0};
-    const QByteArray &mdatBuffer = mdatFile.readAll();
-    mdat.data = (U8*)mdatBuffer.data();
-
-    if(mdat.size <= 0)
-    {
-        return false;
-    }
-
-    // validate that the size is valid
-    if(mdat.size < sizeof(TFMXHeader) + 8 + (3 * 4))
-    {
-        qWarning("The file is too small (can't contain a full tfx file)");
-        return false;
-    }
-
-    U8 *raw = mdat.data;
-    if(strncmp("TFMX-MOD", (S8*)mdat.data, 8) != 0)
-    {
-        qWarning("The file doesn't have correct header data");
-        return false;
-    }
-
-    mdat.data += 8;
-    const U32 sOffset = *((U32*)mdat.data);
-    mdat.data += 4;
-    const U32 tOffset = *((U32*)mdat.data);
-    mdat.data += 8;  // skipping res
-    mdat.size = sOffset - 20 - sizeof(TFMXHeader);
-
-    TfmxData smpl = {0, 0, 0};
-    smpl.data = raw + sOffset;
-    smpl.size = tOffset - sOffset;
-
-    if(mdat.size > 0x10000)
-    {
-        mdat.size = 0x10000;
-    }
-    return LoadTFMXFile(state, &mdat, &smpl);
-}
-
-static int TFMXLoad(TfmxState *state, const char *path)
-{
-    int sOffset = 0;
-    int eOffset = 0;
-    bool status = false;
-
-    const char *filename = findFilenameStart(path, &sOffset);
-    const char *extension = findExtension(path, &eOffset);
-
-    if(strncasecmp(filename, "mdat.", 5) == 0)
-    {
-        // first check if we have mdat.<filename>,smpl.<filename> which is the orignal Amiga naming
-        char *smplName = strdup(path);
-        // Case-preserving conversion of "mdat" to "smpl"
-        smplName[sOffset + 0] ^= 'm' ^ 's';
-        smplName[sOffset + 1] ^= 'd' ^ 'm';
-        smplName[sOffset + 2] ^= 'a' ^ 'p';
-        smplName[sOffset + 3] ^= 't' ^ 'l';
-
-        status = loadMDAT(state, path, smplName);
-        free(smplName);
-    }
-    else if(strncasecmp(extension, ".mdat", 5) == 0)
-    {
-        // check if we have <filename>.mdat., <filename>.smpl
-        char *smplName = strdup(path);
-        // Case-preserving conversion of "mdat" to "smpl"
-        smplName[eOffset + 0] ^= 'm' ^ 's';
-        smplName[eOffset + 1] ^= 'd' ^ 'm';
-        smplName[eOffset + 2] ^= 'a' ^ 'p';
-        smplName[eOffset + 3] ^= 't' ^ 'l';
-
-        status = loadMDAT(state, path, smplName);
-        free(smplName);
-    }
-    else if(strncasecmp(filename, "tfmx.", 5) == 0)
-    {
-        // first check if we have tfmx.<filename>,smpl.<filename> which is the orignal Amiga naming
-        char *smplName = strdup(path);
-        // Case-preserving conversion of "tfmx" to "smpl"
-        smplName[sOffset + 0] ^= 't' ^ 's';
-        smplName[sOffset + 1] ^= 'f' ^ 'm';
-        smplName[sOffset + 2] ^= 'm' ^ 'p';
-        smplName[sOffset + 2] ^= 'x' ^ 'l';
-
-        status = loadMDAT(state, path, smplName);
-        free(smplName);
-    }
-    else if(strncasecmp(extension, ".tfmx", 5) == 0)
-    {
-        // Check for <filename>.tfmx, <filename>.sam
-        char *smplName = strdup(path);
-        // Case-preserving conversion of "tfmx" to "smpl"
-        smplName[eOffset + 0] ^= 't' ^ 's';
-        smplName[eOffset + 1] ^= 'f' ^ 'm';
-        smplName[eOffset + 2] ^= 'm' ^ 'p';
-        smplName[eOffset + 2] ^= 'x' ^ 'l';
-
-        status = loadMDAT(state, path, smplName);
-        free(smplName);
-    }
-    else if(strncasecmp(extension, ".tfx", 4) == 0)
-    {
-        if(!status)
-        {
-            // Check for <filename>.tfx, <filename>.sam
-            char *smplName = strdup(path);
-            // Case-preserving conversion of "tfx" to "sam"
-            smplName[eOffset + 0] ^= 't' ^ 's';
-            smplName[eOffset + 1] ^= 'f' ^ 'a';
-            smplName[eOffset + 2] ^= 'x' ^ 'm';
-
-            status = loadMDAT(state, path, smplName);
-            free(smplName);
-        }
-
-        if(!status)
-        {
-            // Check for <filename>.tfx, <filename>.smp
-            char *smplName = strdup(path);
-            // Case-preserving conversion of "tfx" to "smp"
-            smplName[eOffset + 0] ^= 't' ^ 's';
-            smplName[eOffset + 1] ^= 'f' ^ 'm';
-            smplName[eOffset + 2] ^= 'x' ^ 'p';
-
-            status = loadMDAT(state, path, smplName);
-            free(smplName);
-        }
-    }
-    else if(strncasecmp(extension, ".tfm", 3) == 0)
-    {
-        // Check for <filename>.tfm which is a single format
-        status = loadTFM(state, path);
-    }
-    return status;
-}
-
+#include <QSettings>
 
 TFMXHelper::TFMXHelper(const QString &path)
-    : m_path(path)
+    : m_path(path),
+      m_sampleRate(44100)
 {
-    m_state = (TfmxState*)calloc(sizeof(TfmxState), 1);
+
 }
 
 TFMXHelper::~TFMXHelper()
@@ -221,10 +16,9 @@ TFMXHelper::~TFMXHelper()
 
 void TFMXHelper::deinit()
 {
-    if(m_state)
+    if(m_input)
     {
-        TFMXQuit(m_state);
-        free(m_state);
+        tfmxdec_delete(m_input);
     }
 }
 
@@ -232,42 +26,55 @@ bool TFMXHelper::initialize()
 {
     const QString &path = cleanPath();
 
-    TfmxState_init(m_state);
-
-    if(!TFMXLoad(m_state, QmmpPrintable(path)))
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly))
     {
-        qWarning("TFMXHelper: Unable to open file");
+        qWarning("TFMXHelper: open file failed");
         return false;
     }
 
-    const int track = m_path.section("#", -1).toInt();
-    const int count = TFMXGetSubSongs(m_state);
-    if(track > count || track < 0)
+    const QByteArray &buffer = file.readAll();
+    file.close();
+
+    m_input = tfmxdec_new();
+
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("TFMX");
+    switch(settings.value("sample_rate", 1).toInt())
     {
-        qWarning("TFMXHelper: track number is out of range");
+        case 0: m_sampleRate = 22050; break;
+        case 1: m_sampleRate = 44100; break;
+        case 2: m_sampleRate = 48000; break;
+        default: m_sampleRate = 44100; break;
+    }
+    const int panning = settings.value("panning", 75).toInt();
+    const int secs = settings.value("min_duration", 10).toInt();
+    const bool flag = settings.value("end_shorts", true).toBool();
+    settings.endGroup();
+
+    tfmxdec_set_path(m_input, QmmpPrintable(path));
+    tfmxdec_end_shorts(m_input, flag ? 1 : 0, secs);
+    tfmxdec_mixer_init(m_input, sampleRate(), depth(), channels(), 0x0000, panning);
+
+    const int track = m_path.section("#", -1).toInt() - 1;
+    if(!tfmxdec_init(m_input, (void*)buffer.constData(), buffer.length(), track))
+    {
+        qWarning("TFMXHelper: tfmxdec_init error");
         return false;
     }
-
-    TFMXSetSubSong(m_state, (track == 0 ? count : track) - 1);
-    TFMXRewind(m_state);
     return true;
 }
 
-qint64 TFMXHelper::read(unsigned char *data, qint64)
+qint64 TFMXHelper::read(unsigned char *data, qint64 maxSize)
 {
-    if(TFMXTryToMakeBlock(m_state) < 0)
-    {
-        return 0;
-    }
-
-    TFMXGetBlock(m_state, data);
-    return TFMXGetBlockSize(m_state);
+    tfmxdec_buffer_fill(m_input, data, maxSize);
+    return tfmxdec_song_end(m_input) ? 0 : maxSize;
 }
 
 QList<TrackInfo*> TFMXHelper::createPlayList(TrackInfo::Parts parts)
 {
     QList<TrackInfo*> playlist;
-    if(!m_state)
+    if(!m_input)
     {
         return playlist;
     }
@@ -279,12 +86,45 @@ QList<TrackInfo*> TFMXHelper::createPlayList(TrackInfo::Parts parts)
         title = fin.suffix();
     }
 
-    for(int i = 1; i <= TFMXGetSubSongs(m_state); ++i)
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("TFMX");
+    const int secs = settings.value("min_duration", 10).toInt();
+    settings.endGroup();
+
+    const int songs = tfmxdec_songs(m_input);
+    for(int i = 1; i <= songs; ++i)
     {
+        tfmxdec_reinit(m_input, i - 1);
+        const int duration = totalTime();
+        if(songs > 1 && (duration / 1000) < secs)
+        {
+            continue;
+        }
+
         TrackInfo *info = new TrackInfo();
         if(parts & TrackInfo::MetaData)
         {
-            info->setValue(Qmmp::TITLE, title);
+            const char *v = tfmxdec_get_title(m_input);
+            if(v && strlen(v) > 0)
+            {
+                info->setValue(Qmmp::TITLE, v);
+            }
+            else
+            {
+                info->setValue(Qmmp::TITLE, title);
+            }
+
+            v = tfmxdec_get_artist(m_input);
+            if(v && strlen(v) > 0)
+            {
+                info->setValue(Qmmp::ARTIST, v);
+            }
+
+            v = tfmxdec_get_game(m_input);
+            if(v && strlen(v) > 0)
+            {
+                info->setValue(Qmmp::ALBUM, v);
+            }
             info->setValue(Qmmp::TRACK, i);
         }
 
@@ -294,14 +134,11 @@ QList<TrackInfo*> TFMXHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::SAMPLERATE, sampleRate());
             info->setValue(Qmmp::CHANNELS, channels());
             info->setValue(Qmmp::BITS_PER_SAMPLE, depth());
-            info->setValue(Qmmp::FORMAT_NAME, "TFMX");
+            info->setValue(Qmmp::FORMAT_NAME, tfmxdec_format_name(m_input));
         }
 
-        TFMXSetSubSong(m_state, i - 1);
-        TFMXRewind(m_state);
-
         info->setPath("tfmx://" + cleanPath() + QString("#%1").arg(i));
-        info->setDuration(totalTime());
+        info->setDuration(duration);
         playlist << info;
     }
     return playlist;
@@ -317,12 +154,13 @@ QStringList TFMXHelper::filters()
     const QStringList filters =
     {
         "*.tfm",
+        "*.tfmx",
+        "*.fc", "*.fc13", "*.fc14", "*.fc3", "*.fc4", ".smod",
+        "*.hip", "*.hipc", "*.hip7", "*.mcmd",
         // pair suffix section
-        "*.tfmx", // (tfmx, smpl)
         "*.mdat", // (mdat, smpl))
         "*.tfx",  // (tfx, (smp, sam))
         // pair prefix section
-        "tfmx.*", // (tfmx, smpl)
         "mdat.*"  // (mdat, smpl)
     };
     return filters;

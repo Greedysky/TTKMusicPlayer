@@ -43,11 +43,11 @@ SoniquePlugin::SoniquePlugin(QWidget *parent)
     m_menu = new QMenu(this);
     m_menu->addAction(m_screenAction);
     m_menu->addSeparator();
-    m_menu->addAction(tr("&Show Menu"), m_itemWidget, SLOT(setVisible(bool)), tr("M"))->setCheckable(true);
+    m_menu->addAction(tr("&Show Menu"), m_itemWidget, SLOT(setVisible(bool)), {"M"})->setCheckable(true);
     m_menu->addSeparator();
-    m_menu->addAction(tr("&Next Preset"), m_container, SLOT(nextPreset()), tr("N"));
-    m_menu->addAction(tr("&Previous Preset"), m_container, SLOT(previousPreset()), tr("P"));
-    m_menu->addAction(tr("&Random Preset"), m_container, SLOT(randomPreset()), tr("R"));
+    m_menu->addAction(tr("&Next Preset"), m_container, SLOT(nextPreset()), {"N"});
+    m_menu->addAction(tr("&Previous Preset"), m_container, SLOT(previousPreset()), {"P"});
+    m_menu->addAction(tr("&Random Preset"), m_container, SLOT(randomPreset()), {"R"});
 }
 
 void SoniquePlugin::contextMenuEvent(QContextMenuEvent *)
