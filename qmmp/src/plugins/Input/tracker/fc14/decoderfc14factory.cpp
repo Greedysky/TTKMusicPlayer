@@ -4,14 +4,18 @@
 
 bool DecoderFC14Factory::canDecode(QIODevice *input) const
 {
-    const QFile * const file = qobject_cast<QFile*>(input);
-    if(!file)
+    // At least 0xb80 is needed for some modules that start with machine code player.
+    constexpr int peekSize = 0xb80;
+    char buf[peekSize];
+    if(input->peek(buf, peekSize) != peekSize)
     {
         return false;
     }
 
-    FC14Helper helper(file->fileName());
-    return helper.initialize();
+    void *ctx = fc14dec_new();
+    const int v = fc14dec_detect(ctx, buf, peekSize);
+    fc14dec_delete(ctx);
+    return v;
 }
 
 DecoderProperties DecoderFC14Factory::properties() const
@@ -19,12 +23,9 @@ DecoderProperties DecoderFC14Factory::properties() const
     DecoderProperties properties;
     properties.name = tr("FC14 Plugin");
     properties.shortName = "fc14";
-    properties.filters << "*.fc" << "*.fc13" << "*.fc14" << "*.smod";
-#ifdef LIBFC_VERSION2
-    properties.filters << "*.hip" << "*.hip7" << "*.hipc" << "*.mcmd";
-#endif
+    properties.filters << "*.fc" << "*.fc3" << "*.fc4" << "*.fc13" << "*.fc14" << "*.smod";
     properties.description = "Future Composer Audio File";
-    properties.protocols << "file" << "fc14";
+    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }
@@ -35,41 +36,36 @@ Decoder *DecoderFC14Factory::create(const QString &path, QIODevice *input)
     return new DecoderFC14(path);
 }
 
-QList<TrackInfo*> DecoderFC14Factory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
+QList<TrackInfo*> DecoderFC14Factory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    if(path.contains("://")) //is it one track?
+    TrackInfo *info = new TrackInfo(path);
+    if(parts == TrackInfo::Parts())
     {
-        int track = -1;
-        const QString &filePath = TrackInfo::pathFromUrl(path, &track);
-
-        QList<TrackInfo*> playlist = createPlayList(filePath, parts, ignoredPaths);
-        if(playlist.isEmpty() || track <= 0 || track > playlist.count())
-        {
-            qDeleteAll(playlist);
-            playlist.clear();
-            return playlist;
-        }
-
-        TrackInfo *info = playlist.takeAt(track - 1);
-        qDeleteAll(playlist);
-        playlist.clear();
-        return playlist << info;
-    }
-    else
-    {
-        if(ignoredPaths)
-        {
-            ignoredPaths->push_back(path);
-        }
+        return QList<TrackInfo*>() << info;
     }
 
     FC14Helper helper(path);
     if(!helper.initialize())
     {
-        qWarning("DecoderFC14Factory: unable to open file");
+        delete info;
         return QList<TrackInfo*>();
     }
-    return helper.createPlayList(parts);
+
+    if(parts & TrackInfo::MetaData)
+    {
+        info->setValue(Qmmp::COMMENT, helper.comment());
+    }
+
+    if(parts & TrackInfo::Properties)
+    {
+        info->setValue(Qmmp::BITRATE, helper.bitrate());
+        info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
+        info->setValue(Qmmp::CHANNELS, helper.channels());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
+        info->setValue(Qmmp::FORMAT_NAME, "Future Composer");
+        info->setDuration(helper.totalTime());
+    }
+    return QList<TrackInfo*>() << info;
 }
 
 MetaDataModel* DecoderFC14Factory::createMetaDataModel(const QString &path, bool readOnly)

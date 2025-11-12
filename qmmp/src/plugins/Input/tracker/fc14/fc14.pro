@@ -33,9 +33,9 @@ mac{
 # Check version
 # Note: There's no version header file provided, so we can only detect the ABI.
 isEmpty(LIB_VERSION){
-    DEFINES += LIBFC_VERSION1
+    DEFINES += LIBFC_VERSION_OLD
     message("Found libfc14audiodecoder version 1.x")
 }else{
-    DEFINES += LIBFC_VERSION2
+    DEFINES += LIBFC_VERSION_NEW
     message("Found libfc14audiodecoder version 2.x")
 }

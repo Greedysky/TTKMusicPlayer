@@ -20,7 +20,7 @@
 #define FC14HELPER_H
 
 #include <QFile>
-#include <qmmp/trackinfo.h>
+#include <qmmp/qmmp.h>
 #include <libfc14/fc14audiodecoder.h>
 
 /*!
@@ -46,9 +46,6 @@ public:
     qint64 read(unsigned char *data, qint64 maxSize);
 
     inline QString comment() const { return fc14dec_format_name(m_input); }
-
-    QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
-    QString cleanPath() const;
 
 private:
     QString m_path;
