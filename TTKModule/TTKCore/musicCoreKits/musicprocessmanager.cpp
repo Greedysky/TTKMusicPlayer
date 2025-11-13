@@ -55,6 +55,8 @@ void MusicProcessServer::execute(const QStringList &args) const
         return;
     }
 
+    TTK_INFO_STREAM("Args: " << args);
+
     TTKCommandLineOption op0("-h", "--help", "Show command line help options");
     TTKCommandLineOption op1("-List", "--file-to-list", "Add file to playlist");
     TTKCommandLineOption op2("-Open", "--file-to-list-play", "Add file to playlist and play it");

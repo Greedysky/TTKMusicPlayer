@@ -75,6 +75,10 @@ public:
     void codecForLocale();
 
     /*!
+     * Check argument is valid or not.
+     */
+    bool argumentValid(const QString &arg);
+    /*!
      * Execute module.
      */
     void execute();

@@ -114,6 +114,15 @@ void TTKInitialization::codecForLocale()
 #endif
 }
 
+bool TTKInitialization::argumentValid(const QString &arg)
+{
+    return !arg.endsWith("AppImage") &&
+           !arg.endsWith(TTK_APP_NAME) &&
+           !arg.endsWith(TTK_SERVICE_NAME) &&
+           !arg.endsWith(TTK_APP_RUN_NAME) &&
+           !arg.endsWith(TTK_SERVICE_RUN_NAME);
+}
+
 void TTKInitialization::execute()
 {
     execute(QCoreApplication::arguments());
