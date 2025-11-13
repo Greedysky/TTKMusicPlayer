@@ -8,7 +8,7 @@ MusicConfigModule::MusicConfigModule(QObject *parent)
 
 }
 
-void MusicConfigModule::valid() const
+void MusicConfigModule::execute() const
 {
     checkDirectoryExist();
     checkFileNeededExist();
@@ -16,7 +16,7 @@ void MusicConfigModule::valid() const
 
 void MusicConfigModule::initialize() const
 {
-    valid();
+    execute();
 
     copyFileOverwrite(":/data/config.xml", TTK_COFIG_PATH_FULL);
     copyFileOverwrite(":/data/playlist.tkpl", TTK_PLAYLIST_PATH_FULL);

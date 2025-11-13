@@ -27,10 +27,18 @@
  */
 namespace TTK
 {
+    enum Attribute
+    {
+        UseLog = 0x01,      /*!< Use log option */
+        ScaleFactor = 0x02, /*!< Use scale factor option */
+        UseXCB = 0x04,      /*!< Use xcb (x11 only) option */
+        All = 0x07,         /*!< Use all option */
+    };
+
     /*!
-     * Load application scale factor, start before qApp.
+     * Initialization before qApp.
      */
-    TTK_MODULE_EXPORT void loadApplicationScaleFactor();
+    TTK_MODULE_EXPORT void initialize(TTK::Attribute attr);
 }
 
 #define TTKRegisterOrganization(ORG) \

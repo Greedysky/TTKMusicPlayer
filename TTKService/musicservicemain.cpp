@@ -31,7 +31,7 @@ static void cleanupCache()
 
 int main(int argc, char *argv[])
 {
-    TTK::loadApplicationScaleFactor();
+    TTK::initialize(TTK::Attribute::All);
 
 #ifndef Q_OS_LINUX
     TTKApplication app(argc, argv);
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     }
 
     MusicConfigModule config;
-    config.valid();
+    config.execute();
 
     MusicRunTimeManager manager;
     manager.execute();

@@ -1,5 +1,6 @@
 #include "ttkinitialization.h"
 #include "ttkdesktopscreen.h"
+#include "ttklogoutput.h"
 #include "ttkversion.h"
 #include "ttkdumper.h"
 
@@ -11,10 +12,34 @@
 #  include <malloc.h>
 #endif
 
-void TTK::loadApplicationScaleFactor()
+#if !TTK_QT_VERSION_CHECK(5,1,0)
+bool qEnvironmentVariableIsSet(const char *v) noexcept
 {
+#ifdef Q_CC_MSVC
+    size_t s = 0;
+    (void)getenv_s(&s, 0, 0, v);
+    return s != 0;
+#else
+    return ::getenv(v) != nullptr;
+#endif
+}
+#endif
+
+void TTK::initialize(TTK::Attribute attr)
+{
+    if(attr & TTK::Attribute::UseLog)
+    {
+        // initiailize log module
+        TTK::initiailizeLog(TTK_APP_NAME);
+        TTK::installLogHandler();
+    }
+
+    TTK_INFO_STREAM("TTK Application start, flag value is" << attr);
+
+    if(attr & TTK::Attribute::ScaleFactor)
+    {
 #if TTK_QT_VERSION_CHECK(6,0,0)
-   // do nothing
+    // do nothing
 #elif TTK_QT_VERSION_CHECK(5,4,0)
 #  if TTK_QT_VERSION_CHECK(5,12,0)
       QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -26,6 +51,18 @@ void TTK::loadApplicationScaleFactor()
       const float dpi = TTKDesktopScreen::dotsPerInch() / 96.0;
       qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
 #  endif
+#endif
+    }
+
+#ifdef Q_OS_UNIX
+    if(attr & TTK::Attribute::UseXCB)
+    {
+        // froce using xcb on XWayland
+        if(qgetenv("XDG_SESSION_TYPE") == "wayland" && !qEnvironmentVariableIsSet("QT_QPA_PLATFORM"))
+        {
+            qputenv("QT_QPA_PLATFORM", "xcb");
+        }
+    }
 #endif
 }
 

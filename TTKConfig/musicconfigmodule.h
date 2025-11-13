@@ -37,7 +37,8 @@ public:
     /*!
      * Check current setting file's validation.
      */
-    void valid() const;
+    void execute() const;
+
     /*!
      * Init parameters.
      */
