@@ -52,7 +52,7 @@ ttk-1.2.11
 -libsoundmon	 http://www.brianpostma.com (unfortunately down now)
 				 https://github.com/arnaud-neny/rePlayer
 -libstsound		 https://github.com/arnaud-carre/StSound
--libtfmx		 https://github.com/sasq64/musicplayer
+-libtfmx		 https://github.com/mschwendt/libtfmxaudiodecoder
 -libuade-3.05	 http://www.zakalwe.fi/uade/
 			 https://gitlab.com/uade-music-player/uade 2b238cebd3cdcbb3ebcd06c01bbe1bf547585a53
 -libv2m-20250811 https://github.com/jgilje/v2m-player
@@ -62,4 +62,4 @@ ttk-1.2.11
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2025-11-03
+///Update time 2025-11-11

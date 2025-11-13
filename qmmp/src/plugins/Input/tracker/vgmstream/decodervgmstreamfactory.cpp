@@ -23,6 +23,7 @@ DecoderProperties DecoderVgmstreamFactory::properties() const
     properties.filters << VgmstreamHelper::filters();
     properties.description = "Video Game Music Steams File";
     properties.protocols << "file" << "vgm";
+    properties.hasSettings = true;
     properties.noInput = true;
     return properties;
 }

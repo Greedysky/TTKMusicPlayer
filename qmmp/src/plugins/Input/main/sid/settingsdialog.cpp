@@ -23,8 +23,8 @@ SettingsDialog::SettingsDialog(SidDatabase *db, QWidget *parent)
     m_ui.useLengthCheckBox->setChecked(settings.value("use_length", false).toBool());
     m_ui.defaultLengthSpinBox->setValue(settings.value("song_length", 180).toInt());
 
-    m_ui.sampleRateComboBox->addItem(tr("44100 Hz"), 44100);
-    m_ui.sampleRateComboBox->addItem(tr("48000 Hz"), 48000);
+    m_ui.sampleRateComboBox->addItem("44100", 44100);
+    m_ui.sampleRateComboBox->addItem("48000", 48000);
     int i = m_ui.sampleRateComboBox->findData(settings.value("sample_rate", 48000).toInt());
     m_ui.sampleRateComboBox->setCurrentIndex(i);
 

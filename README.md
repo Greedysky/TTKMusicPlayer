@@ -125,5 +125,6 @@ The TTKMusicplayer qmmp plugins
  * s98
  * sunvox
  * v2m
+ * vgmstream
  * xmdx
  * xsf

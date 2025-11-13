@@ -13,9 +13,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
-    m_ui.srateComboBox->addItem(tr("22050 Hz"), 22050);
-    m_ui.srateComboBox->addItem(tr("44100 Hz"), 44100);
-    m_ui.srateComboBox->addItem(tr("48000 Hz"), 48000);
+    m_ui.srateComboBox->addItem("22050", 22050);
+    m_ui.srateComboBox->addItem("44100", 44100);
+    m_ui.srateComboBox->addItem("48000", 48000);
+
     m_ui.intTypeComboBox->addItem(tr("Nearest neighbor"), XMP_INTERP_NEAREST);
     m_ui.intTypeComboBox->addItem(tr("Linear"), XMP_INTERP_LINEAR);
     m_ui.intTypeComboBox->addItem(tr("Cubic spline"), XMP_INTERP_SPLINE);

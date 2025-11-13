@@ -113,24 +113,6 @@
        <height>16777215</height>
       </size>
      </property>
-     <property name="currentIndex">
-      <number>1</number>
-     </property>
-     <item>
-      <property name="text">
-       <string>22050</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>44100</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>48000</string>
-      </property>
-     </item>
     </widget>
    </item>
   </layout>
