@@ -24,9 +24,9 @@ jobs:
             collection: libgcc_s_seh-1
 
     env:
-      QT_VERSION: 5.15.17
-      QT_ROOT_DIR: D:/a/TTKMusicPlayer/Qt/5.15.17/mingw810_${{matrix.arch}}
-      QT_BIN_DIR: D:/a/TTKMusicPlayer/Qt/5.15.17/mingw810_${{matrix.arch}}/bin
+      QT_VERSION: 5.15.18
+      QT_ROOT_DIR: D:/a/TTKMusicPlayer/Qt/5.15.18/mingw810_${{matrix.arch}}
+      QT_BIN_DIR: D:/a/TTKMusicPlayer/Qt/5.15.18/mingw810_${{matrix.arch}}/bin
       MINGW_PATH: D:/a/TTKMusicPlayer/mingw/bin
       WIN_QMMP_DEPS_PATH: D:/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
       UNIX_QMMP_DEPS_PATH: /d/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
@@ -39,9 +39,9 @@ jobs:
 
       - name: Install Qt
         run: |
-          curl -L https://github.com/Greedysky/buildQt/releases/download/5.15.17/Qt_5.15.17-shared-release_mingw810_${{matrix.arch}}.7z -o Qt.7z
+          curl -L https://github.com/Greedysky/buildQt/releases/download/5.15.18/Qt_5.15.18-shared-release_mingw810_${{matrix.arch}}.7z -o Qt.7z
           7z x Qt.7z -oQt
-          mv Qt/5.15.17-shared Qt/5.15.17
+          mv Qt/5.15.18-shared Qt/5.15.18
           # set environment variable
           echo "${{env.QT_BIN_DIR}};" >> $env:GITHUB_PATH
         working-directory: ${{runner.workspace}}
