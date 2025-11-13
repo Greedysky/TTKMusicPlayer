@@ -37,23 +37,23 @@ public:
     enum class Color
     {
         Null = -1,   /*!< color null */
-        IYellow,     /*!< interior color yellow */
-        IBlue,       /*!< interior color blue */
-        IGray,       /*!< interior color gray */
-        IPink,       /*!< interior color pink */
-        IGreen,      /*!< interior color green */
-        IRed,        /*!< interior color red */
-        IPurple,     /*!< interior color purple */
-        IOrange,     /*!< interior color orange */
-        IIndigo,     /*!< interior color indigo */
+        IYellow,     /*!< Interior color yellow */
+        IBlue,       /*!< Interior color blue */
+        IGray,       /*!< Interior color gray */
+        IPink,       /*!< Interior color pink */
+        IGreen,      /*!< Interior color green */
+        IRed,        /*!< Interior color red */
+        IPurple,     /*!< Interior color purple */
+        IOrange,     /*!< Interior color orange */
+        IIndigo,     /*!< Interior color indigo */
 
-        DWhite,      /*!< desktop color white */
-        DBlue,       /*!< desktop color blue */
-        DRed,        /*!< desktop color red */
-        DBlack,      /*!< desktop color black */
-        DYellow,     /*!< desktop color yellow */
-        DPurple,     /*!< desktop color purple */
-        DGreen       /*!< desktop color green */
+        DWhite,      /*!< Desktop color white */
+        DBlue,       /*!< Desktop color blue */
+        DRed,        /*!< Desktop color red */
+        DBlack,      /*!< Desktop color black */
+        DYellow,     /*!< Desktop color yellow */
+        DPurple,     /*!< Desktop color purple */
+        DGreen       /*!< Desktop color green */
     };
 
     /*!

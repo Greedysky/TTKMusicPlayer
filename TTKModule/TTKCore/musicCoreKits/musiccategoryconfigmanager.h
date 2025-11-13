@@ -51,10 +51,10 @@ class TTK_MODULE_EXPORT MusicCategoryConfigManager : public TTKAbstractXml, publ
 public:
     enum class Category
     {
-        PlayList,        /*!< PlayList Category*/
-        TopList,         /*!< TopList Category*/
-        ArtistList,      /*!< ArtistList Category*/
-        MovieList,       /*!< MovieList Category*/
+        PlayList,        /*!< PlayList category */
+        TopList,         /*!< TopList category */
+        ArtistList,      /*!< ArtistList category */
+        MovieList,       /*!< MovieList category */
     };
 
     /*!

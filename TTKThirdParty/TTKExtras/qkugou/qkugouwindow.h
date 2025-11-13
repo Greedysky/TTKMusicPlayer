@@ -33,11 +33,11 @@ class TTK_MODULE_EXPORT QKugouWindow : public QLabel
 public:
     enum Module
     {
-        None,   /*!< KuGou None*/
-        Song,   /*!< KuGou Song*/
-        Radio,  /*!< KuGou Radio*/
-        Movie,  /*!< Kugou Movie*/
-        Single  /*!< KuGou Single*/
+        None,   /*!< KuGou none */
+        Song,   /*!< KuGou song */
+        Radio,  /*!< KuGou radio */
+        Movie,  /*!< Kugou movie */
+        Single  /*!< KuGou single */
     };
 
     /*!

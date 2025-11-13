@@ -91,28 +91,28 @@ class TTK_MODULE_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
 public:
     enum class Lrc
     {
-        Interior, /*!< lrc interior type*/
-        Desktop   /*!< lrc desktop type*/
+        Interior, /*!< lrc interior type */
+        Desktop   /*!< lrc desktop type */
     };
 
     enum class Proxy
     {
-        Test,   /*!< proxy test type*/
-        Apply   /*!< proxy apply type*/
+        Test,   /*!< proxy test type */
+        Apply   /*!< proxy apply type */
     };
 
     enum SettingType
     {
-        Normal,        /*!< Normal Setting Type*/
-        Hotkey,        /*!< Hotkey Setting Type*/
-        Download,      /*!< Download Setting Type*/
-        Spectrum,      /*!< Spectrum Setting Type*/
-        Other,         /*!< Other Setting Type*/
-        DesktopLrc,    /*!< DesktopLrc Setting Type*/
-        InteriorLrc,   /*!< InteriorLrc Setting Type*/
-        SoundEffect,   /*!< SoundEffect Setting Type*/
-        Audio,         /*!< Audio Setting Type*/
-        Network,       /*!< Network Setting Type*/
+        Normal,        /*!< Normal setting type */
+        Hotkey,        /*!< Hotkey setting type */
+        Download,      /*!< Download setting type */
+        Spectrum,      /*!< Spectrum setting type */
+        Other,         /*!< Other setting type */
+        DesktopLrc,    /*!< DesktopLrc setting type */
+        InteriorLrc,   /*!< InteriorLrc setting type */
+        SoundEffect,   /*!< SoundEffect setting type */
+        Audio,         /*!< Audio setting type */
+        Network,       /*!< Network setting type */
     };
 
     /*!

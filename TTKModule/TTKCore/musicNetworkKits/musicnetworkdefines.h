@@ -26,20 +26,20 @@ namespace TTK
 {
     enum class Download
     {
-        Music,             /*!< type of dwonlaod music*/
-        Lrc,               /*!< type of dwonlaod lrc*/
-        Cover,             /*!< type of dwonlaod cover*/
-        Background,        /*!< type of dwonlaod background*/
-        Video,             /*!< type of dwonlaod video*/
-        Extra              /*!< type of dwonlaod extra user module*/
+        Music,             /*!< Type of dwonlaod music */
+        Lrc,               /*!< Type of dwonlaod lrc */
+        Cover,             /*!< Type of dwonlaod cover */
+        Background,        /*!< Type of dwonlaod background */
+        Video,             /*!< Type of dwonlaod video */
+        Extra              /*!< Type of dwonlaod extra user module */
     };
 
     enum class Record
     {
-        NormalDownload,    /*!< Local Download File Config*/
-        CloudDownload,     /*!< Cloud Download File Config*/
-        CloudUpload,       /*!< Cloud Upload Failed File Config*/
-        Null               /*!< None File Config*/
+        NormalDownload,    /*!< Local download file config */
+        CloudDownload,     /*!< Cloud download file config */
+        CloudUpload,       /*!< Cloud upload failed file config */
+        Null               /*!< None file config */
     };
 }
 

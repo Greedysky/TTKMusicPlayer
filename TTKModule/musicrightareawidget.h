@@ -45,35 +45,35 @@ public:
     enum FunctionModule
     {
         // kugou main submoudle
-        KugGouSongWidget,       /*!< insert kugou song widget*/
-        KugGouRadioWidget,      /*!< insert kugou radio widget*/
-        kugouPlaylistWidget,    /*!< insert kugou playlist widget*/
-        kugouMovieWidget,       /*!< insert kugou movie widget*/
-        VideoWidget,            /*!< insert video widget*/
-        LrcWidget,              /*!< insert lrc display widget*/
+        KugGouSongWidget,       /*!< Insert kugou song widget */
+        KugGouRadioWidget,      /*!< Insert kugou radio widget */
+        kugouPlaylistWidget,    /*!< Insert kugou playlist widget */
+        kugouMovieWidget,       /*!< Insert kugou movie widget */
+        VideoWidget,            /*!< Insert video widget */
+        LrcWidget,              /*!< Insert lrc display widget */
         // kugou song submoudle
-        RecommendWidget,        /*!< insert recommend found widget*/
-        ToplistWidget,          /*!< insert toplist found widget*/
-        ArtistCategoryWidget,   /*!< insert artist category found widget*/
-        PlaylistCategoryWidget, /*!< insert playlist category found widget*/
+        RecommendWidget,        /*!< Insert recommend found widget */
+        ToplistWidget,          /*!< Insert toplist found widget */
+        ArtistCategoryWidget,   /*!< Insert artist category found widget */
+        PlaylistCategoryWidget, /*!< Insert playlist category found widget */
         // other moudle
-        SearchWidget,           /*!< insert search display widget*/
-        SearchSingleWidget,     /*!< insert search single display widget*/
-        SimilarWidget,          /*!< insert similar found widget*/
-        AlbumWidget,            /*!< insert album found widget*/
-        ArtistWidget,           /*!< insert artist found widget*/
-        PlaylistWidget,         /*!< insert playlist found widget*/
-        SongDailyWidget,        /*!< insert song daily widget*/
-        AdvancedSearchWidget,   /*!< insert advanced search widget*/
-        IndentifyWidget,        /*!< insert indentify songs widget*/
-        KuiSheWidget,           /*!< insert kugou kuishe widget*/
-        WebDJRadioWidget,       /*!< insert web dj radio widget*/
-        WebMVRadioWidget,       /*!< insert web mv radio widget*/
-        WebPVRadioWidget,       /*!< insert web pv radio widget*/
-        LocalManagerWidget,     /*!< insert local manager widget*/
-        CloudManagerWidget,     /*!< insert cloud manager widget*/
-        ScreenSaverWidget,      /*!< insert screen saver widget*/
-        PlaylistBackupWidget,   /*!< insert playlist backup widget*/
+        SearchWidget,           /*!< Insert search display widget */
+        SearchSingleWidget,     /*!< Insert search single display widget */
+        SimilarWidget,          /*!< Insert similar found widget */
+        AlbumWidget,            /*!< Insert album found widget */
+        ArtistWidget,           /*!< Insert artist found widget */
+        PlaylistWidget,         /*!< Insert playlist found widget */
+        SongDailyWidget,        /*!< Insert song daily widget */
+        AdvancedSearchWidget,   /*!< Insert advanced search widget */
+        IndentifyWidget,        /*!< Insert indentify songs widget */
+        KuiSheWidget,           /*!< Insert kugou kuishe widget */
+        WebDJRadioWidget,       /*!< Insert web dj radio widget */
+        WebMVRadioWidget,       /*!< Insert web mv radio widget */
+        WebPVRadioWidget,       /*!< Insert web pv radio widget */
+        LocalManagerWidget,     /*!< Insert local manager widget */
+        CloudManagerWidget,     /*!< Insert cloud manager widget */
+        ScreenSaverWidget,      /*!< Insert screen saver widget */
+        PlaylistBackupWidget,   /*!< Insert playlist backup widget */
     };
 
     /*!

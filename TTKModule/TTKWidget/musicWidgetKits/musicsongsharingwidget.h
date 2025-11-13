@@ -60,12 +60,12 @@ class TTK_MODULE_EXPORT MusicSongSharingWidget : public MusicAbstractMoveDialog
 public:
     enum class Module
     {
-        Song,       /*!< song type*/
-        Movie,      /*!< Movie type*/
-        Artist,     /*!< artist type*/
-        Album,      /*!< album type*/
-        Playlist,   /*!< playlist type*/
-        Null        /*!< null type*/
+        Song,       /*!< song type */
+        Movie,      /*!< Movie type */
+        Artist,     /*!< artist type */
+        Album,      /*!< album type */
+        Playlist,   /*!< playlist type */
+        Null        /*!< null type */
     };
 
     struct Item

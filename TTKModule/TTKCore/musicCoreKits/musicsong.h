@@ -30,12 +30,12 @@ class TTK_MODULE_EXPORT MusicSong
 public:
     enum class Sort
     {
-        ByFileName,      /*!< Sort by file name*/
-        BySinger,        /*!< Sort by singer name*/
-        ByFileSize,      /*!< Sort by file size*/
-        ByAddTime,       /*!< Sort by add time*/
-        ByDuration,      /*!< Sort by duration*/
-        ByPlayCount      /*!< Sort by play count*/
+        ByFileName,      /*!< Sort by file name */
+        BySinger,        /*!< Sort by singer name */
+        ByFileSize,      /*!< Sort by file size */
+        ByAddTime,       /*!< Sort by add time */
+        ByDuration,      /*!< Sort by duration */
+        ByPlayCount      /*!< Sort by play count */
     };
 
     /*!

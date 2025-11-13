@@ -3,10 +3,7 @@
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
 #include "musicqmmputils.h"
-#include "musicfileutils.h"
-#include "musiccodecutils.h"
 #include "ttkversion.h"
-#include "ttklogoutput.h"
 
 #include <QFont>
 #include <QApplication>
@@ -107,18 +104,13 @@ QString TTK::languageQmmp(int index)
 
 void MusicRunTimeManager::execute() const
 {
+    TTK_INFO_STREAM("MusicApplication Run");
+    // read config
     MusicConfigManager manager;
     if(manager.fromFile(COFIG_PATH_FULL))
     {
         manager.readBuffer();
     }
-
-    // initiailize log module
-    TTK::initiailizeLog(TTK_APP_NAME);
-    const bool config = G_SETTING_PTR->value(MusicSettingManager::OtherLogTrackEnable).toBool();
-    config ? TTK::installLogHandler() : TTK::removeLogHandler();
-
-    TTK_INFO_STREAM("MusicApplication Run");
 
     TTK::TTKQmmp::updateBaseConfig();
 

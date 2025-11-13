@@ -35,12 +35,12 @@ class TTK_MODULE_EXPORT MusicRemoteWidget : public TTKAbstractMoveWidget
 public:
     enum Module
     {
-        Null = 0,       /*!< Romote Null module*/
-        Square,         /*!< Romote Square module*/
-        Rectangle,      /*!< Romote Rectangle module*/
-        SimpleStyle,    /*!< Romote SimpleStyle module*/
-        ComplexStyle,   /*!< Romote ComplexStyle module*/
-        Ripple          /*!< Romote Ripple module*/
+        Null = 0,       /*!< Romote null module */
+        Square,         /*!< Romote square module */
+        Rectangle,      /*!< Romote rectangle module */
+        SimpleStyle,    /*!< Romote simpleStyle module */
+        ComplexStyle,   /*!< Romote complexStyle module */
+        Ripple          /*!< Romote ripple module */
     };
 
     /*!

@@ -36,23 +36,23 @@ class TTK_MODULE_EXPORT MusicLrcPosterItemWidget : public QWidget
 public:
     enum class Format
     {
-        Type01,    /*!< thmeme 1*/
-        Type02,    /*!< thmeme 2*/
-        Type03,    /*!< thmeme 3*/
-        Type04,    /*!< thmeme 4*/
-        Type05,    /*!< thmeme 5*/
-        Type06,    /*!< thmeme 6*/
-        Type07,    /*!< thmeme 7*/
-        Type08,    /*!< thmeme 8*/
-        Type09,    /*!< thmeme 9*/
-        Type10,    /*!< thmeme 10*/
-        Type11,    /*!< thmeme 11*/
-        Type12,    /*!< thmeme 12*/
-        Type13,    /*!< thmeme 13*/
-        Type14,    /*!< thmeme 14*/
-        Type15,    /*!< thmeme 15*/
-        Type16,    /*!< thmeme 16*/
-        Type17     /*!< thmeme 17*/
+        Type01,    /*!< Theme type 1 */
+        Type02,    /*!< Theme type 2 */
+        Type03,    /*!< Theme type 3 */
+        Type04,    /*!< Theme type 4 */
+        Type05,    /*!< Theme type 5 */
+        Type06,    /*!< Theme type 6 */
+        Type07,    /*!< Theme type 7 */
+        Type08,    /*!< Theme type 8 */
+        Type09,    /*!< Theme type 9 */
+        Type10,    /*!< Theme type 10 */
+        Type11,    /*!< Theme type 11 */
+        Type12,    /*!< Theme type 12 */
+        Type13,    /*!< Theme type 13 */
+        Type14,    /*!< Theme type 14 */
+        Type15,    /*!< Theme type 15 */
+        Type16,    /*!< Theme type 16 */
+        Type17     /*!< Theme type 17 */
     };
 
     /*!

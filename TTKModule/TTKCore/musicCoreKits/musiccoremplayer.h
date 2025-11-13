@@ -33,11 +33,11 @@ class TTK_MODULE_EXPORT MusicCoreMPlayer : public QObject
 public:
     enum class Module
     {
-        Null,   /*!< no module*/
-        Radio,  /*!< radio module*/
-        Music,  /*!< music module*/
-        Video,  /*!< video module*/
-        Movie,  /*!< movie module*/
+        Null,   /*!< no module */
+        Radio,  /*!< radio module */
+        Music,  /*!< music module */
+        Video,  /*!< video module */
+        Movie,  /*!< movie module */
     };
 
     /*!

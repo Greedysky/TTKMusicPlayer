@@ -35,11 +35,11 @@ class TTK_MODULE_EXPORT MusicPlayer : public QObject
 public:
     enum class Enhance
     {
-        Off,        /*!< enhance off, no any effect*/
-        M3D,        /*!< 3d media effect*/
-        NICAM,      /*!< nicam media effect*/
-        Subwoofer,  /*!< subwoofer media effect*/
-        Vocal       /*!< vocal media effect*/
+        Off,        /*!< enhance off, no any effect */
+        M3D,        /*!< 3d media effect */
+        NICAM,      /*!< nicam media effect */
+        Subwoofer,  /*!< subwoofer media effect */
+        Vocal       /*!< vocal media effect */
     };
 
     /*!

@@ -26,7 +26,6 @@ set_property(GLOBAL PROPERTY TTK_CORE_UTILS_KITS_HEADER_FILES
   ${TTK_CORE_UTILS_DIR}/musicalgorithmutils.h
   ${TTK_CORE_UTILS_DIR}/musicurlutils.h
   ${TTK_CORE_UTILS_DIR}/musicqmmputils.h
-  ${TTK_CORE_UTILS_DIR}/musiccodecutils.h
   ${TTK_CORE_UTILS_DIR}/musicfileutils.h
   ${TTK_CORE_UTILS_DIR}/musicimageutils.h
 )
@@ -39,7 +38,6 @@ set_property(GLOBAL PROPERTY TTK_CORE_UTILS_KITS_SOURCE_FILES
   ${TTK_CORE_UTILS_DIR}/musicalgorithmutils.cpp
   ${TTK_CORE_UTILS_DIR}/musicurlutils.cpp
   ${TTK_CORE_UTILS_DIR}/musicqmmputils.cpp
-  ${TTK_CORE_UTILS_DIR}/musiccodecutils.cpp
   ${TTK_CORE_UTILS_DIR}/musicfileutils.cpp
   ${TTK_CORE_UTILS_DIR}/musicimageutils.cpp
 )

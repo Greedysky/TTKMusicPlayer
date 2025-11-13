@@ -32,26 +32,26 @@ class TTK_MODULE_EXPORT MusicLrcAnalysis : public QObject
 public:
     enum class State
     {
-        Success,    /*!< open file success*/
-        Failed      /*!< open file failed*/
+        Success,    /*!< open file success */
+        Failed      /*!< open file failed */
     };
 
     enum class Format
     {
-        Type01,     /*!< [xx:xx.xxx]*/
-        Type02,     /*!< [xx:xx.xx]*/
-        Type03,     /*!< [xx:xx.x]*/
-        Type04,     /*!< [xx:xx:xxx]*/
-        Type05,     /*!< [xx:xx:xx]*/
-        Type06,     /*!< [xx:xx:x]*/
-        Type07,     /*!< [xx:xx]*/
-        Type08,     /*!< [xx.xx.xxx]*/
-        Type09,     /*!< [xx.xx.xx]*/
-        Type10,     /*!< [xx.xx.x]*/
-        Type11,     /*!< [xx.xx:xxx]*/
-        Type12,     /*!< [xx.xx:xx]*/
-        Type13,     /*!< [xx.xx:x]*/
-        Type14      /*!< [xx.xx]*/
+        Type01,     /*!< [xx:xx.xxx] */
+        Type02,     /*!< [xx:xx.xx] */
+        Type03,     /*!< [xx:xx.x] */
+        Type04,     /*!< [xx:xx:xxx] */
+        Type05,     /*!< [xx:xx:xx] */
+        Type06,     /*!< [xx:xx:x] */
+        Type07,     /*!< [xx:xx] */
+        Type08,     /*!< [xx.xx.xxx] */
+        Type09,     /*!< [xx.xx.xx] */
+        Type10,     /*!< [xx.xx.x] */
+        Type11,     /*!< [xx.xx:xxx] */
+        Type12,     /*!< [xx.xx:xx] */
+        Type13,     /*!< [xx.xx:x] */
+        Type14      /*!< [xx.xx] */
     };
 
     /*!

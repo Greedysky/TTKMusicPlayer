@@ -36,23 +36,23 @@ class TTK_MODULE_EXPORT MusicAbstractQueryRequest : public MusicPageQueryRequest
 public:
     enum class QueryServer
     {
-        WY,     /*!< wangyi query server*/
-        KW,     /*!< kuwo query server*/
-        KG      /*!< kugou query server*/
+        WY,     /*!< wangyi query server */
+        KW,     /*!< kuwo query server */
+        KG      /*!< kugou query server */
     };
 
     enum class QueryType
     {
-        Music,  /*!< query music*/
-        Movie,  /*!< query movie*/
-        Lrc,    /*!< query lrc*/
-        Other   /*!< query external*/
+        Music,  /*!< query music */
+        Movie,  /*!< query movie */
+        Lrc,    /*!< query lrc */
+        Other   /*!< query external */
     };
 
     enum class QueryMode
     {
-        Normal,     /*!< query normal*/
-        Meta        /*!< query meta*/
+        Normal,     /*!< query normal */
+        Meta        /*!< query meta */
     };
 
     /*!

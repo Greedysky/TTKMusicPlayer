@@ -36,8 +36,8 @@ class TTK_MODULE_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
 public:
     enum class Module
     {
-        Music,  /*!< Music module*/
-        Krc     /*!< Krc module*/
+        Music,  /*!< Music module */
+        Krc     /*!< Krc module */
     };
 
     /*!

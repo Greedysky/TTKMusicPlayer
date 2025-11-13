@@ -28,8 +28,8 @@ namespace TTK
 {
     enum class Mode
     {
-        Check,      /*!< Song Check Mode*/
-        Apply       /*!< Song Apply Mode*/
+        Check,      /*!< Song check mode */
+        Apply       /*!< Song apply mode */
     };
 }
 
