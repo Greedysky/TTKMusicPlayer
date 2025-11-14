@@ -1,23 +1,23 @@
 #!/bin/sh
 
-SOURCE="$1/_extras"
-OUTPUT="$2"
+source="$1/_extras"
+output="$2"
 
 #make output dir
-mkdir -p "${OUTPUT}"
+mkdir -p "${output}"
 
 #copy
-cp -rv "${SOURCE}/TTKInit.sh" "${OUTPUT}/TTKInit.sh"
-cp -rv "${SOURCE}/TTKMusicPlayer.sh" "${OUTPUT}/../TTKMusicPlayer.sh"
-cp -rv "${SOURCE}/TTKRoutine.sh" "${OUTPUT}/../TTKRoutine.sh"
-cp -rv "${SOURCE}/TTKConsole.sh" "${OUTPUT}/TTKConsole.sh"
-cp -rv "${SOURCE}/TTKService.sh" "${OUTPUT}/TTKService.sh"
-cp -rv "${SOURCE}/TTKRoutineCopy.sh" "${OUTPUT}/TTKRoutineCopy.sh"
+cp -rv "${source}/TTKInit.sh" "${output}/TTKInit.sh"
+cp -rv "${source}/TTKMusicPlayer.sh" "${output}/../TTKMusicPlayer.sh"
+cp -rv "${source}/TTKRoutine.sh" "${output}/../TTKRoutine.sh"
+cp -rv "${source}/TTKConsole.sh" "${output}/TTKConsole.sh"
+cp -rv "${source}/TTKService.sh" "${output}/TTKService.sh"
+cp -rv "${source}/TTKRoutineCopy.sh" "${output}/TTKRoutineCopy.sh"
 
 #chmod
-chmod +x "${OUTPUT}/TTKInit.sh"
-chmod +x "${OUTPUT}/../TTKMusicPlayer.sh"
-chmod +x "${OUTPUT}/../TTKRoutine.sh"
-chmod +x "${OUTPUT}/TTKConsole.sh"
-chmod +x "${OUTPUT}/TTKService.sh"
-chmod +x "${OUTPUT}/TTKRoutineCopy.sh"
+chmod +x "${output}/TTKInit.sh"
+chmod +x "${output}/../TTKMusicPlayer.sh"
+chmod +x "${output}/../TTKRoutine.sh"
+chmod +x "${output}/TTKConsole.sh"
+chmod +x "${output}/TTKService.sh"
+chmod +x "${output}/TTKRoutineCopy.sh"

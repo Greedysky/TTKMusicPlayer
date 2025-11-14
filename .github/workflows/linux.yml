@@ -133,7 +133,7 @@ jobs:
           # add dependency libraries and so on
           linuxdeploy-x86_64.AppImage --executable=TTKService --appdir=image --plugin=qt
           rm image/usr/translations/*.qm image/usr/lib/libTTK*.so image/usr/lib/libttkzip.so image/usr/lib/libzlib.so
-          mv image/usr/lib image/usr/plugins image/usr/translations image/usr/bin/qt.conf ../
+          mv image/usr/lib image/usr/plugins image/usr/translations image/usr/bin/qt.conf ..
           rm -rf image
           # add dependency for nss and webkit
           if [ ${{matrix.os}} == "ubuntu-24.04" ]; then
@@ -145,7 +145,7 @@ jobs:
           fi
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/gcc_64/libexec/* .
           cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/gcc_64/resources/* .
-          cd ../../
+          cd ../..
           # add dependency for openssl
           wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z
           7z x openssl.7z
@@ -154,10 +154,27 @@ jobs:
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
+      - name: Build appimage package
+        run: |
+          mv ${{env.TTK_MODULE}} usr
+          mkdir ${{env.TTK_MODULE}}
+          mv usr ${{env.TTK_MODULE}}
+          cd ${{env.TTK_MODULE}}
+          mv usr/doc usr/README.txt .
+          ln -s usr/${{env.TTK_MODULE}} AppRun
+          cp usr/deploy/share/pixmaps/ttkmusicplayer.png logo.png
+          sh usr/deploy/make_desktop_raw.sh ${{env.TTK_MODULE}}.desktop logo ${{env.TTK_MODULE}}
+          cd ..
+          linuxdeploy-plugin-appimage-x86_64.AppImage --appdir=${{env.TTK_MODULE}}
+          mv ${{env.TTK_MODULE}}*.AppImage ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.AppImage
+        working-directory: ${{runner.workspace}}/install
+
       - name: Archive artifacts
         uses: softprops/action-gh-release@v2
         with:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z
+          files: |
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.AppImage

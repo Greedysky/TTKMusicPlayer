@@ -33,7 +33,7 @@ jobs:
           7z x libADLMIDI-1.6.1.7z -olibadlmidi
           cd libadlmidi
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libadlmidi -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DUSE_NUKED_EMULATOR=OFF -DUSE_OPAL_EMULATOR=OFF -DUSE_JAVA_EMULATOR=OFF -DUSE_ESFMU_EMULATOR=OFF -DUSE_MAME_EMULATOR=OFF -DUSE_YMFM_EMULATOR=OFF
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libadlmidi -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DUSE_NUKED_EMULATOR=OFF -DUSE_OPAL_EMULATOR=OFF -DUSE_JAVA_EMULATOR=OFF -DUSE_ESFMU_EMULATOR=OFF -DUSE_MAME_EMULATOR=OFF -DUSE_YMFM_EMULATOR=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
@@ -60,7 +60,7 @@ jobs:
           7z x libsndfile-1.2.2.7z -olibsndfile
           cd libsndfile
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libsndfile -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libsndfile -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
@@ -112,7 +112,7 @@ jobs:
           7z x faad2-2.11.2.7z -olibfaad2
           cd libfaad2
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
@@ -149,7 +149,7 @@ jobs:
           7z x flac-1.5.0.7z -olibflac
           cd libflac
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libflac -DCMAKE_PREFIX_PATH=${{env.INSTALL_PATH}}/libogg -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DENABLE_64_BIT_WORDS=OFF -DENABLE_MULTITHREADING=OFF -DWITH_FORTIFY_SOURCE=OFF -DWITH_STACK_PROTECTOR=OFF
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libflac -DCMAKE_PREFIX_PATH=${{env.INSTALL_PATH}}/libogg -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DENABLE_64_BIT_WORDS=OFF -DENABLE_MULTITHREADING=OFF -DWITH_FORTIFY_SOURCE=OFF -DWITH_STACK_PROTECTOR=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
@@ -158,7 +158,7 @@ jobs:
           7z x libgme-0.6.4.7z -olibgme
           cd libgme
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_SHARED_LIBS=OFF
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_SHARED_LIBS=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
@@ -167,7 +167,7 @@ jobs:
           7z x libmpcdec_r475.7z -olibmpcdec
           cd libmpcdec
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libmpcdec -DCMAKE_C_FLAGS="-fPIC -O3" -DSHARED=OFF
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libmpcdec -DCMAKE_C_FLAGS="-fPIC -O3" -DSHARED=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
@@ -238,7 +238,7 @@ jobs:
           7z x libsamplerate-0.2.2.7z -olibsamplerate
           cd libsamplerate
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libsamplerate -DCMAKE_C_FLAGS="-fPIC -O3"
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libsamplerate -DCMAKE_C_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
@@ -255,7 +255,7 @@ jobs:
           7z x soxr-0.1.3.7z -olibsoxr
           cd libsoxr
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libsoxr -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_SHARED_LIBS=OFF
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libsoxr -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_SHARED_LIBS=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
@@ -264,7 +264,7 @@ jobs:
           7z x taglib-1.13.1.7z -olibtaglib
           cd libtaglib
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libtaglib -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DWITH_ZLIB=OFF
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libtaglib -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DWITH_ZLIB=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
@@ -273,7 +273,7 @@ jobs:
           7z x libvorbis-1.3.7.7z -olibvorbis
           cd libvorbis
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libvorbis -DCMAKE_PREFIX_PATH=${{env.INSTALL_PATH}}/libogg -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libvorbis -DCMAKE_PREFIX_PATH=${{env.INSTALL_PATH}}/libogg -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
@@ -282,7 +282,7 @@ jobs:
           7z x wavpack-5.8.1.7z -olibwavpack
           cd libwavpack
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libwavpack -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libwavpack -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
@@ -307,7 +307,7 @@ jobs:
           7z x ttk-1.2.12.7z -olibttk
           cd libttk
           mkdir build && cd build
-          cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libttk -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libttk -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
