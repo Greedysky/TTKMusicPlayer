@@ -54,13 +54,6 @@ QList<TrackInfo*> DecoderVgmstreamFactory::createPlayList(const QString &path, T
         playlist.clear();
         return playlist << info;
     }
-    else
-    {
-        if(ignoredPaths)
-        {
-            ignoredPaths->push_back(path);
-        }
-    }
 
     VgmstreamHelper helper(path);
     if(!helper.initialize())

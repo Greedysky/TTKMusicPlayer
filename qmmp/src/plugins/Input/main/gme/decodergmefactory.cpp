@@ -55,13 +55,6 @@ QList<TrackInfo*> DecoderGMEFactory::createPlayList(const QString &path, TrackIn
         playlist.clear();
         return playlist << info;
     }
-    else
-    {
-        if(ignoredPaths)
-        {
-            ignoredPaths->push_back(path);
-        }
-    }
 
     GMEHelper helper;
     Music_Emu *emu = helper.load(path);

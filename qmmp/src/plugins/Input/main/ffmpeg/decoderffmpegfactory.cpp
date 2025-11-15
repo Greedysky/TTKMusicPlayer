@@ -244,7 +244,7 @@ Decoder *DecoderFFmpegFactory::create(const QString &path, QIODevice *input)
         return new DecoderFFmpeg(path, input);
 }
 
-QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
+QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     int trackNumber = -1; //cue/m4b track
     QString filePath = path;
@@ -253,13 +253,6 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
     {
         filePath = TrackInfo::pathFromUrl(path, &trackNumber);
         parts = TrackInfo::AllParts; //extract all metadata for single  cue/m4b track
-    }
-    else
-    {
-        if(ignoredPaths)
-        {
-            ignoredPaths->push_back(path);
-        }
     }
 
     TrackInfo *info = new TrackInfo(filePath);

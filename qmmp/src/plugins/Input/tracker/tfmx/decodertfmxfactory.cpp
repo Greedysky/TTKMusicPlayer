@@ -58,13 +58,6 @@ QList<TrackInfo*> DecoderTFMXFactory::createPlayList(const QString &path, TrackI
         playlist.clear();
         return playlist << info;
     }
-    else
-    {
-        if(ignoredPaths)
-        {
-            ignoredPaths->push_back(path);
-        }
-    }
 
     TFMXHelper helper(path);
     if(!helper.initialize())

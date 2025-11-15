@@ -53,7 +53,7 @@ Decoder *DecoderSIDFactory::create(const QString &path, QIODevice *input)
     return new DecoderSID(&m_db, path);
 }
 
-QList<TrackInfo*> DecoderSIDFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
+QList<TrackInfo*> DecoderSIDFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     SIDHelper helper(&m_db);
     helper.load(path);
@@ -78,13 +78,6 @@ QList<TrackInfo*> DecoderSIDFactory::createPlayList(const QString &path, TrackIn
         qDeleteAll(playlist);
         playlist.clear();
         return playlist << info;
-    }
-    else
-    {
-        if(ignoredPaths)
-        {
-            ignoredPaths->push_back(path);
-        }
     }
     return playlist;
 }

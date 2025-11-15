@@ -34,7 +34,7 @@ Decoder *DecoderFLACFactory::create(const QString &path, QIODevice *input)
     return new DecoderFLAC(path, input);
 }
 
-QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
+QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     int track = -1; //cue track
     QString filePath = path;
@@ -43,13 +43,6 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
     {
         filePath = TrackInfo::pathFromUrl(path, &track);
         parts = TrackInfo::AllParts; //extract all metadata for single cue track
-    }
-    else
-    {
-        if(ignoredPaths)
-        {
-            ignoredPaths->push_back(path);
-        }
     }
 
     TrackInfo *info = new TrackInfo(filePath);

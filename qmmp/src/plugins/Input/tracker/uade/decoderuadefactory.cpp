@@ -53,13 +53,6 @@ QList<TrackInfo*> DecoderUADEFactory::createPlayList(const QString &path, TrackI
         playlist.clear();
         return playlist << info;
     }
-    else
-    {
-        if(ignoredPaths)
-        {
-            ignoredPaths->push_back(path);
-        }
-    }
 
     UADEHelper helper(path);
     if(!helper.initialize())
