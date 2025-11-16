@@ -83,12 +83,14 @@ public:
     static QString escape(const QString &str);
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
+    const QRegularExpression &value() const;
     operator QRegularExpression &();
     operator const QRegularExpression &() const;
 private:
     QRegularExpression m_regular;
     QRegularExpressionMatch m_match;
 #else
+    const QRegExp &value() const;
     operator QRegExp &();
     operator const QRegExp &() const;
 private:

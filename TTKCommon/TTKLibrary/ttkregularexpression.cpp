@@ -87,6 +87,15 @@ QString TTKRegularExpression::escape(const QString &str)
 }
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
+const QRegularExpression &TTKRegularExpression::value() const
+#else
+const QRegExp &TTKRegularExpression::value() const
+#endif
+{
+    return m_regular;
+}
+
+#if TTK_QT_VERSION_CHECK(5,0,0)
 TTKRegularExpression::operator QRegularExpression &()
 #else
 TTKRegularExpression::operator QRegExp &()
