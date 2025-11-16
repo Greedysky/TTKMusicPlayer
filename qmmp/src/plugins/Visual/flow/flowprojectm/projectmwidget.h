@@ -22,7 +22,7 @@
 #include <QtGlobal>
 #include <QListWidget>
 #if QT_VERSION >= QT_VERSION_CHECK(5,4,0)
-#  ifdef Q_OS_UNIX
+#  if QT_VERSION >= QT_VERSION_CHECK(6,0,0) || defined Q_OS_UNIX
 #    include <QOpenGLWidget>
 #    define QtOpenGLWidget QOpenGLWidget
 #  else

@@ -13,7 +13,7 @@ SOURCES += decoderxmdxfactory.cpp \
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lxmdx -lws2_32
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lxmdx
 }
 
 unix:!mac{

@@ -15,7 +15,7 @@ SOURCES += decoderuadefactory.cpp \
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -luade -lws2_32
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -luade
 }
 
 unix:!mac{

@@ -17,7 +17,7 @@ FORMS += settingsdialog.ui
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -ltfmx -lws2_32
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -ltfmx
 }
 
 unix:!mac{

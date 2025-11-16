@@ -3,6 +3,7 @@
 #include <QMenu>
 #include <QPainter>
 #include <QSettings>
+#include <QActionGroup>
 #include <qmath.h>
 #include <qmmp/qmmp.h>
 

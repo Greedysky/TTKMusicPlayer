@@ -15,7 +15,7 @@ RCC_DIR=./.build/rcc
 
 DEFINES += QT_NO_CAST_FROM_BYTEARRAY QT_STRICT_ITERATORS
 
-equals(QT_MAJOR_VERSION, 5){
+greaterThan(QT_MAJOR_VERSION, 4){
 CONFIG -= depend_includepath
 QT += widgets
 unix:DEFINES += QMMP_WS_X11

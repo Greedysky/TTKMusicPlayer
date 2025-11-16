@@ -17,7 +17,7 @@ INCLUDEPATH += $$EXTRA_PREFIX/libopusfile/include \
 win32{
     LIBS += -L$$EXTRA_PREFIX/libopusfile/lib -lopusfile -lopus \
             -L$$EXTRA_PREFIX/libtaglib/lib -ltag -lm \
-            -L$$EXTRA_PREFIX/libogg/lib -logg
+            -L$$EXTRA_PREFIX/libogg/lib -logg -lssp
 }
 
 unix:!mac{

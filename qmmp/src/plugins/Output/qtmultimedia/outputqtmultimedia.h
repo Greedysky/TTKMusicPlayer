@@ -28,8 +28,14 @@
     @author Ilya Kotov <forkotov02@ya.ru>
 */
 class QIODevice;
-class QAudioOutput;
 class OutputControl;
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+class QAudioOutput;
+using AudioOutput = QAudioOutput;
+#else
+class QAudioSink;
+using AudioOutput = QAudioSink;
+#endif
 
 class OutputQtMultimedia : public Output
 {
@@ -47,7 +53,7 @@ public:
     virtual void resume() override final;
 
 private:
-    QAudioOutput *m_output = nullptr;
+    AudioOutput *m_output = nullptr;
     OutputControl *m_control = nullptr;
     QIODevice *m_buffer = nullptr;
     qint64 m_bytes_per_second = 0;
@@ -61,7 +67,7 @@ class OutputControl : public QObject
 {
     Q_OBJECT
 public:
-    explicit OutputControl(QAudioOutput *o);
+    explicit OutputControl(AudioOutput *o);
 
 public slots:
     void suspend();
@@ -69,7 +75,7 @@ public slots:
     void stop();
 
 private:
-    QAudioOutput *m_output;
+    AudioOutput *m_output;
 
 };
 

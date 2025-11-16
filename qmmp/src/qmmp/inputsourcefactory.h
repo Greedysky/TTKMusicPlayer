@@ -25,7 +25,6 @@
 #include "regularexpression.h"
 
 class QDialog;
-class QStringList;
 class InputSource;
 
 /*! @brief Structure to store transport plugin properies.

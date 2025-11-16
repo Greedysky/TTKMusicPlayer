@@ -3,7 +3,12 @@
 #include <QSettings>
 #include <qmmp/qmmp.h>
 #include <QAbstractButton>
-#include <QAudioDeviceInfo>
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#  include <QAudioDeviceInfo>
+#else
+#  include <QAudioDevice>
+#  include <QMediaDevices>
+#endif
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -23,17 +28,25 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.deviceComboBox->addItem(tr("Default"));
     m_ui.deviceComboBox->setCurrentIndex(0);
 
+    int index = 1;
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     const QList<QAudioDeviceInfo> &devices = QAudioDeviceInfo::availableDevices(QAudio::AudioOutput);
-	int index = 1;
     for(const QAudioDeviceInfo &info : devices)
 	{
-        m_ui.deviceComboBox->addItem(info.deviceName());
-        if(info.deviceName() == default_device)
+        const QString &device_name = info.deviceName();
+#else
+    const QList<QAudioDevice> &devices = QMediaDevices::audioOutputs();
+    for(const QAudioDevice &info : devices)
+    {
+        const QString &device_name = info.id();
+#endif
+        m_ui.deviceComboBox->addItem(device_name);
+        if(device_name == default_device)
         {
             m_ui.deviceComboBox->setCurrentIndex(index);
         }
 		++index;
-	}
+    }
 }
 
 void SettingsDialog::accept()

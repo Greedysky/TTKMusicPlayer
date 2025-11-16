@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QDateTime>
 #include <QSettings>
+#include <QActionGroup>
 #include <qmath.h>
 #include <qmmp/qmmp.h>
 

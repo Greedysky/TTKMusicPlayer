@@ -23,7 +23,7 @@ void ProjectMWrapper::presetSwitchedEvent(bool isHardCut, unsigned int index) co
 #endif
 {
     Q_UNUSED(isHardCut);
-    emit currentPresetChanged(index);
+    emit const_cast<ProjectMWrapper*>(this)->currentPresetChanged(index);
 }
 
 

@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QPainter>
 #include <QSettings>
+#include <QActionGroup>
 #include <cmath>
 #include <qmmp/qmmp.h>
 

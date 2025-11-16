@@ -16,6 +16,11 @@ static constexpr const char *MPushButtonStyle01 = " \
 
 #define WIDTH  4
 #define HEIGHT 4
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
+#  define QtSkipEmptyParts Qt::SkipEmptyParts
+#else
+#  define QtSkipEmptyParts QString::SkipEmptyParts
+#endif
 
 ColorWidget::ColorWidget(QWidget *parent)
     : QDialog(parent),
@@ -73,7 +78,7 @@ QList<QColor> ColorWidget::readColorConfig(const QString &value)
     }
 
     QList<QColor> colors;
-    const QStringList &rgbs = value.split(';', QString::SkipEmptyParts);
+    const QStringList &rgbs = value.split(';', QtSkipEmptyParts);
     for(const QString &rgb : rgbs)
     {
         const QStringList &var = rgb.split(',');

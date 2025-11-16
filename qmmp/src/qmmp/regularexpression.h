@@ -20,10 +20,10 @@
 #define REGULAREXPRESSION_H
 
 #include "qmmp_export.h"
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-#  include <QRegularExpression>
-#else
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #  include <QRegExp>
+#else
+#  include <QRegularExpression>
 #endif
 
 /*! @brief The class of the regular expression.
@@ -82,17 +82,19 @@ public:
      */
     static QString escape(const QString &str);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+    const QRegExp &value() const;
+    operator QRegExp &();
+    operator const QRegExp &() const;
+private:
+    QRegExp m_regular;
+#else
+    const QRegularExpression &value() const;
     operator QRegularExpression &();
     operator const QRegularExpression &() const;
 private:
     QRegularExpression m_regular;
     QRegularExpressionMatch m_match;
-#else
-    operator QRegExp &();
-    operator const QRegExp &() const;
-private:
-    QRegExp m_regular;
 #endif
 
 };

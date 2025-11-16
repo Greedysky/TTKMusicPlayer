@@ -1,8 +1,10 @@
 #include "qmmp.h"
 
 #include <QDir>
-#include <QTextCodec>
 #include <QCoreApplication>
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0) && defined Q_OS_WIN
+#include <QTextCodec>
+#endif
 
 QString Qmmp::configFile()
 {

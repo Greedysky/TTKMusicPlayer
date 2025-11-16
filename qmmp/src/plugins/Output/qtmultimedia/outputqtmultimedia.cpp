@@ -2,9 +2,14 @@
 
 #include <unistd.h>
 #include <QSettings>
-#include <QAudioOutput>
 #include <QAudioFormat>
-#include <QAudioDeviceInfo>
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#  include <QAudioOutput>
+#  include <QAudioDeviceInfo>
+#else
+#  include <QAudioSink>
+#  include <QMediaDevices>
+#endif
 
 OutputQtMultimedia::OutputQtMultimedia()
     : Output()
@@ -26,14 +31,17 @@ OutputQtMultimedia::~OutputQtMultimedia()
 bool OutputQtMultimedia::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format)
 {
     QAudioFormat qformat;
-    qformat.setCodec("audio/pcm");
     qformat.setSampleRate(freq);
     qformat.setChannelCount(map.size());
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    qformat.setCodec("audio/pcm");
     qformat.setSampleType(QAudioFormat::SignedInt);
+#endif
 
     //Size of sample representation in input data. For 24-bit is 4, high byte is ignored.
     const qint64 bytes_per_sample = AudioParameters::sampleSize(format);
 
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     QAudioFormat::Endian byteOrder = QAudioFormat::LittleEndian;
     switch(format)
     {
@@ -55,6 +63,7 @@ bool OutputQtMultimedia::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFor
     int sampleSize = 16;
     switch(format)
     {
+    case Qmmp::PCM_U8:
     case Qmmp::PCM_S8:
         sampleSize = 8;
         break;
@@ -74,6 +83,30 @@ bool OutputQtMultimedia::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFor
         break;
     }
     qformat.setSampleSize(sampleSize);
+#else
+    switch(format)
+    {
+    case Qmmp::PCM_U8:
+    case Qmmp::PCM_S8:
+        qformat.setSampleFormat(QAudioFormat::UInt8);
+        break;
+    case Qmmp::PCM_S16LE:
+    case Qmmp::PCM_S16BE:
+        qformat.setSampleFormat(QAudioFormat::Int16);
+        break;
+    case Qmmp::PCM_S24LE:
+    case Qmmp::PCM_S24BE:
+    case Qmmp::PCM_S32LE:
+    case Qmmp::PCM_S32BE:
+        qformat.setSampleFormat(QAudioFormat::Int32);
+        break;
+    case Qmmp::PCM_FLOAT:
+        qformat.setSampleFormat(QAudioFormat::Float);
+        break;
+    default:
+        break;
+    }
+#endif
 
     if(!qformat.isValid())
         return false;
@@ -83,6 +116,7 @@ bool OutputQtMultimedia::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFor
 
     m_bytes_per_second = bytes_per_sample * freq * qformat.channelCount();
 
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     QAudioDeviceInfo device_info;
     if(!saved_device_name.isEmpty())
     {
@@ -90,6 +124,15 @@ bool OutputQtMultimedia::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFor
         for(const QAudioDeviceInfo &info : devices)
         {
             if(info.deviceName() == saved_device_name)
+#else
+    QAudioDevice device_info;
+    if(!saved_device_name.isEmpty())
+    {
+        const QList<QAudioDevice> &devices = QMediaDevices::audioOutputs();
+        for(const QAudioDevice &info : devices)
+        {
+            if(info.id() == saved_device_name)
+#endif
             {
                 if(info.isFormatSupported(qformat))
                 {
@@ -102,16 +145,28 @@ bool OutputQtMultimedia::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFor
         }
     }
 
+    QString device_name;
     if(device_info.isNull())
     {
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
         device_info = QAudioDeviceInfo::defaultOutputDevice();
+        device_name = device_info.deviceName();
+#else
+        device_info = QMediaDevices::defaultAudioOutput();
+        device_name = device_info.description();
+#endif
         if(!device_info.isFormatSupported(qformat))
             return false;
     }
 
-    qDebug("OutputQtMultimedia: Using output device: %s", qPrintable(device_info.deviceName()));
+    qDebug("OutputQtMultimedia: Using output device: %s", qPrintable(device_name));
 
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     m_output = new QAudioOutput(device_info, qformat);
+#else
+    m_output = new QAudioSink(device_info, qformat);
+    m_output->setBufferSize(4096);
+#endif
     m_buffer = m_output->start();
     m_control = new OutputControl(m_output);
 
@@ -155,7 +210,7 @@ void OutputQtMultimedia::resume()
 }
 
 
-OutputControl::OutputControl(QAudioOutput *o)
+OutputControl::OutputControl(AudioOutput *o)
     : m_output(o)
 {
 

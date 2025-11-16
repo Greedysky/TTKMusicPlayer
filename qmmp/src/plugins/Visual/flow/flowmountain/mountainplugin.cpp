@@ -6,6 +6,7 @@
 #include <QMenu>
 #include <QSettings>
 #include <QBoxLayout>
+#include <QActionGroup>
 #include <qmmp/qmmp.h>
 
 MountainPlugin::MountainPlugin(QWidget *parent)
