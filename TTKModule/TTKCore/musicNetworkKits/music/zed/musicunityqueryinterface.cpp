@@ -76,6 +76,7 @@ static void parseSongPropertyX(TTK::MusicSongInformation *info, const ServerModu
     {
         request.setRawHeader("User-Agent", TTK::Algorithm::mdII(module.m_ua, false).toUtf8());
     }
+    request.setRawHeader("X-API-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
     request.setRawHeader("X-Request-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
     request.setUrl(module.m_url);
     TTK::setSslConfiguration(&request);
@@ -137,6 +138,7 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
     {
         request.setRawHeader("User-Agent", TTK::Algorithm::mdII(module.m_ua, false).toUtf8());
     }
+    request.setRawHeader("X-API-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
     request.setRawHeader("X-Request-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
     request.setUrl(module.m_url);
     TTK::setSslConfiguration(&request);
@@ -263,6 +265,7 @@ static void parseSongPropertyC(TTK::MusicSongInformation *info, const ServerModu
     {
         request.setRawHeader("User-Agent", TTK::Algorithm::mdII(module.m_ua, false).toUtf8());
     }
+    request.setRawHeader("X-API-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
     request.setRawHeader("X-Request-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
     request.setUrl(module.m_url);
     TTK::setSslConfiguration(&request);

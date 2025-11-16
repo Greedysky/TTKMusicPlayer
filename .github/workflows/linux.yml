@@ -156,15 +156,18 @@ jobs:
 
       - name: Build appimage package
         run: |
+          # create usr building dir
           mv ${{env.TTK_MODULE}} usr
           mkdir ${{env.TTK_MODULE}}
           mv usr ${{env.TTK_MODULE}}
           cd ${{env.TTK_MODULE}}
           mv usr/doc usr/README.txt .
+          # add dependency files
           ln -s usr/${{env.TTK_MODULE}} AppRun
           cp usr/deploy/share/pixmaps/ttkmusicplayer.png logo.png
           sh usr/deploy/make_desktop_raw.sh ${{env.TTK_MODULE}}.desktop logo ${{env.TTK_MODULE}}
           cd ..
+          # add appimage binary package
           linuxdeploy-plugin-appimage-x86_64.AppImage --appdir=${{env.TTK_MODULE}}
           mv ${{env.TTK_MODULE}}*.AppImage ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.AppImage
         working-directory: ${{runner.workspace}}/install
