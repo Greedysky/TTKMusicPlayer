@@ -64,6 +64,10 @@ Qmmp修改版二进制库下载地址: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
 二进制下载地址: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
+二进制下载Github地址: **<u>https://github.com/Greedysky/TTKMusicPlayer/releases</u>**
+
+持续集成下载地址: **<u>https://github.com/Greedysky/TTKMusicPlayer/releases/tag/continuous-build</u>**
+
 特性
 --------
 TTKMusicPlayer的一些特性

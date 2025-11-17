@@ -64,6 +64,10 @@ Skin Download URL: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
 
 Executable Download URL: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
+Executable Download Github URL: **<u>https://github.com/Greedysky/TTKMusicPlayer/releases</u>**
+
+Continuous Build URL: **<u>https://github.com/Greedysky/TTKMusicPlayer/releases/tag/continuous-build</u>**
+
 Features
 --------
 TTKMusicPlayer can meet your most demands
