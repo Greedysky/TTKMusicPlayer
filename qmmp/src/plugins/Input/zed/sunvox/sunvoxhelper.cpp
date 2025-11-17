@@ -41,7 +41,7 @@
 #  define SUNVOX_CALL
 #  define LIBRARY_NAME  Qmmp::pluginPath() + "/../sunvox.dylib"
 #endif
-#define LIBRARY_NAMEDM  Qmmp::pluginPath() + "/../sunvox.bak"
+#define LIBRARY_TKNAME  Qmmp::pluginPath() + "/../sunvox.tkb"
 
 typedef int (SUNVOX_CALL *_sv_audio_callback)(void* buf, int frames, int latency, uint32_t out_time);
 typedef int (SUNVOX_CALL *_sv_init)(const char *config, int freq, int channels, uint32_t flags);
@@ -141,7 +141,7 @@ void SunVoxHelper::deinit()
 
     if(m_copyMode)
     {
-        QFile::remove(LIBRARY_NAMEDM);
+        QFile::remove(LIBRARY_TKNAME);
     }
 }
 
@@ -152,11 +152,11 @@ bool SunVoxHelper::initialize(bool copy)
 
     if(m_copyMode)
     {
-        if(!QFile::exists(LIBRARY_NAMEDM))
+        if(!QFile::exists(LIBRARY_TKNAME))
         {
-            QFile::copy(LIBRARY_NAME, LIBRARY_NAMEDM);
+            QFile::copy(LIBRARY_NAME, LIBRARY_TKNAME);
         }
-        library = LIBRARY_NAMEDM;
+        library = LIBRARY_TKNAME;
     }
 
     m_instance->setFileName(library);

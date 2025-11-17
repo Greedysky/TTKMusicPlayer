@@ -3,7 +3,7 @@
 #include <QDir>
 #include <QCoreApplication>
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0) && defined Q_OS_WIN
-#include <QTextCodec>
+#  include <QTextCodec>
 #endif
 
 QString Qmmp::configFile()

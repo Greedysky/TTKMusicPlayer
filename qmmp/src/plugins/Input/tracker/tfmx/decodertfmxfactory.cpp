@@ -27,7 +27,7 @@ DecoderProperties DecoderTFMXFactory::properties() const
     properties.filters << TFMXHelper::filters();
     properties.description = "TFMX related Audio File";
     properties.protocols << "file" << "tfmx";
-	properties.hasSettings = true;
+    properties.hasSettings = true;
     properties.noInput = true;
     return properties;
 }

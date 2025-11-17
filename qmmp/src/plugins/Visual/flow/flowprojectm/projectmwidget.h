@@ -45,7 +45,7 @@ public:
     explicit ProjectMWrapper(const Settings &settings, int flags, QObject *parent = nullptr);
 
 signals:
-    void currentPresetChanged(int index) const;
+    void currentPresetChanged(int index);
 
 public slots:
     void selectPreset(int index);
