@@ -130,7 +130,11 @@
 
 #define MAIN_DIR_FULL            TTK::applicationPath() + TTK_PARENT_DIR
 //
-#define DOWNLOAD_DIR_FULL        MAIN_DIR_FULL + DOWNLOAD_DIR
+#ifdef Q_OS_WIN
+#  define DOWNLOAD_DIR_FULL      MAIN_DIR_FULL + DOWNLOAD_DIR
+#else
+#  define DOWNLOAD_DIR_FULL      QDir::homePath() + TTK_STR_CAT("/.cache/", TTK_APP_NAME, TTK_SEPARATOR) + DOWNLOAD_DIR
+#endif
 #define APPDATA_DIR_FULL         TTK::configPath() + APPDATA_DIR
 #define APPCACHE_DIR_FULL        TTK::configPath() + APPCACHE_DIR
 #define APPBACKUP_DIR_FULL       TTK::configPath() + APPBACKUP_DIR

@@ -19,16 +19,15 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QObject>
-
+// qt config file
 #define TTK_QT_CONFIG         "qt.conf"
-
+// user author name
 #define TTK_AUTHOR_NAME       "Greedysky"
 
-#define TTK_COLOR_FILE        TTK::applicationPath() + "color.jpg"
-#define TTK_IMAGE_FILE        TTK::applicationPath() + "image_cache"
-#define TTK_RECORD_FILE       TTK::applicationPath() + "record.raw"
-#define TTK_RECORD_DATA_FILE  TTK::applicationPath() + "record_data.wav"
+#define TTK_COLOR_FILE        QDir::tempPath() + "color.jpg"
+#define TTK_IMAGE_FILE        QDir::tempPath() + "image_cache"
+#define TTK_RECORD_FILE       QDir::tempPath() + "record.raw"
+#define TTK_RECORD_DATA_FILE  QDir::tempPath() + "record_data.wav"
 
 #define MIN_ITEM_COUNT        4
 #define MAX_IMAGE_COUNT       10
