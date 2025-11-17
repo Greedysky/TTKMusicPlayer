@@ -14,15 +14,15 @@ SOURCES += replaygainfactory.cpp \
 
 FORMS += replaygainwidget.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libtaglib/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag
+    LIBS += -L$$EXTRA_LIB_PATH/libtaglib/lib -ltag
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libtaglib/lib -ltag$$STATIC_LIB_SUFFIX
 }
 
 mac{

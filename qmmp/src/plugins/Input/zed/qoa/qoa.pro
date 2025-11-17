@@ -10,15 +10,15 @@ SOURCES += decoderqoafactory.cpp \
            decoder_qoa.cpp \
            qoahelper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lqoa
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lqoa
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lqoa$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lqoa$$STATIC_LIB_SUFFIX
 }
 
 mac{

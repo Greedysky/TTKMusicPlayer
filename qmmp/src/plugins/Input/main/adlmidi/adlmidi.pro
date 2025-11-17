@@ -16,15 +16,15 @@ SOURCES += decoderadlmidifactory.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libadlmidi/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libadlmidi/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libadlmidi/lib -lADLMIDI
+    LIBS += -L$$EXTRA_LIB_PATH/libadlmidi/lib -lADLMIDI
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libadlmidi/lib -lADLMIDI$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libadlmidi/lib -lADLMIDI$$STATIC_LIB_SUFFIX
 }
 
 mac{

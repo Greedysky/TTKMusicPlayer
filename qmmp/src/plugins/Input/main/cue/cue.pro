@@ -16,16 +16,16 @@ SOURCES += decodercuefactory.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libenca/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libenca/include
 
 contains(CONFIG, WITH_ENCA){
     DEFINES += WITH_ENCA
-    win32:LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca
+    win32:LIBS += -L$$EXTRA_LIB_PATH/libenca/lib -lenca
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libenca/lib -lenca$$STATIC_LIB_SUFFIX
 }
 
 mac{

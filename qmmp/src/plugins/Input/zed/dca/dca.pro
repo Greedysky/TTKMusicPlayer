@@ -11,15 +11,15 @@ SOURCES += decoderdcafactory.cpp \
            decoder_dca.cpp \
            dcahelper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -ldca
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -ldca
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -ldca$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -ldca$$STATIC_LIB_SUFFIX
 }
 
 mac{

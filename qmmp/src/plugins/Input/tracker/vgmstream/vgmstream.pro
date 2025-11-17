@@ -15,15 +15,15 @@ SOURCES += decodervgmstreamfactory.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libvgmstream/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libvgmstream/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libvgmstream/lib -lvgmstream
+    LIBS += -L$$EXTRA_LIB_PATH/libvgmstream/lib -lvgmstream
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libvgmstream/lib -lvgmstream$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libvgmstream/lib -lvgmstream$$STATIC_LIB_SUFFIX
 }
 
 mac{

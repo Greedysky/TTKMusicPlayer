@@ -10,16 +10,16 @@ SOURCES += decoderxsffactory.cpp \
            decoder_xsf.cpp \
            xsfhelper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libttk/include \
-               $$EXTRA_PREFIX/libttk/include/libxsf/mgba \
+INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include \
+               $$EXTRA_LIB_PATH/libttk/include/libxsf/mgba \
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lxsf
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lxsf
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lxsf$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lxsf$$STATIC_LIB_SUFFIX
 }
 
 mac{

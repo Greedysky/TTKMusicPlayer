@@ -14,15 +14,15 @@ SOURCES += decodersidfactory.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libsidplayfp/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libsidplayfp/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libsidplayfp/lib -lsidplayfp
+    LIBS += -L$$EXTRA_LIB_PATH/libsidplayfp/lib -lsidplayfp
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libsidplayfp/lib -lsidplayfp$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libsidplayfp/lib -lsidplayfp$$STATIC_LIB_SUFFIX
 }
 
 mac{

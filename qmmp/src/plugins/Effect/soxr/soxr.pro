@@ -12,15 +12,15 @@ SOURCES += soxresampler.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libsoxr/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libsoxr/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libsoxr/lib -lsoxr
+    LIBS += -L$$EXTRA_LIB_PATH/libsoxr/lib -lsoxr
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libsoxr/lib -lsoxr$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libsoxr/lib -lsoxr$$STATIC_LIB_SUFFIX
 }
 
 mac{

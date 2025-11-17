@@ -16,16 +16,16 @@ SOURCES += decoderadplugfactory.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libadplug/include \
-               $$EXTRA_PREFIX/libadplug/include/libbinio
+INCLUDEPATH += $$EXTRA_LIB_PATH/libadplug/include \
+               $$EXTRA_LIB_PATH/libadplug/include/libbinio
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libadplug/lib -ladplug -lbinio
+    LIBS += -L$$EXTRA_LIB_PATH/libadplug/lib -ladplug -lbinio
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libadplug/lib -ladplug$$STATIC_LIBRARY_SUFFIX -lbinio$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libadplug/lib -ladplug$$STATIC_LIB_SUFFIX -lbinio$$STATIC_LIB_SUFFIX
 }
 
 mac{

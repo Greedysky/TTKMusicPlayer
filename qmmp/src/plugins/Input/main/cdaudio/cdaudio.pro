@@ -12,21 +12,21 @@ SOURCES += decodercdaudiofactory.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libcddb/include \
-               $$EXTRA_PREFIX/libcdio/include \
-               $$EXTRA_PREFIX/libcdio_paranoia/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libcddb/include \
+               $$EXTRA_LIB_PATH/libcdio/include \
+               $$EXTRA_LIB_PATH/libcdio_paranoia/include
 
 contains(CONFIG, WITH_LIBCDDB): DEFINES += WITH_LIBCDDB
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libcdio/lib -lcdio -lcdio_paranoia -lcdio_cdda
-    contains(CONFIG, WITH_LIBCDDB): LIBS += -L$$EXTRA_PREFIX/libcddb/lib -lcddb -lm -lwinmm -mwindows -liconv -lws2_32 -lregex
+    LIBS += -L$$EXTRA_LIB_PATH/libcdio/lib -lcdio -lcdio_paranoia -lcdio_cdda
+    contains(CONFIG, WITH_LIBCDDB): LIBS += -L$$EXTRA_LIB_PATH/libcddb/lib -lcddb -lm -lwinmm -mwindows -liconv -lws2_32 -lregex
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libcdio/lib -lcdio$$STATIC_LIBRARY_SUFFIX \
-            -L$$EXTRA_PREFIX/libcdio/lib -lcdio_paranoia$$STATIC_LIBRARY_SUFFIX -lcdio_cdda$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libcdio/lib -lcdio$$STATIC_LIB_SUFFIX \
+            -L$$EXTRA_LIB_PATH/libcdio/lib -lcdio_paranoia$$STATIC_LIB_SUFFIX -lcdio_cdda$$STATIC_LIB_SUFFIX
 }
 
 mac{

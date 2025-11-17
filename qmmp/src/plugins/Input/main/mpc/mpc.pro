@@ -10,18 +10,18 @@ SOURCES += decodermpcfactory.cpp \
            decoder_mpc.cpp \
            mpcmetadatamodel.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
-               $$EXTRA_PREFIX/libmpcdec/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libtaglib/include \
+               $$EXTRA_LIB_PATH/libmpcdec/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libmpcdec/lib -lmpcdec \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag
+    LIBS += -L$$EXTRA_LIB_PATH/libmpcdec/lib -lmpcdec \
+            -L$$EXTRA_LIB_PATH/libtaglib/lib -ltag
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libmpcdec/lib -lmpcdec$$STATIC_LIBRARY_SUFFIX \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libmpcdec/lib -lmpcdec$$STATIC_LIB_SUFFIX \
+            -L$$EXTRA_LIB_PATH/libtaglib/lib -ltag$$STATIC_LIB_SUFFIX
 }
 
 mac{

@@ -12,15 +12,15 @@ SOURCES += decoders98factory.cpp \
            s98helper.cpp \
            s98metadatamodel.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -ls98
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -ls98
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -ls98$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -ls98$$STATIC_LIB_SUFFIX
 }
 
 mac{

@@ -12,15 +12,15 @@ SOURCES += decoderbuzzicfactory.cpp \
            buzzichelper.cpp \
            buzzicmetadatamodel.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lbuzzic
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lbuzzic
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lbuzzic$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lbuzzic$$STATIC_LIB_SUFFIX
 }
 
 mac{

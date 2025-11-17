@@ -4,7 +4,7 @@ include($$PWD/../../Visual.pri)
 mac{
     LIB_PKG_PATH = /opt/local/lib/pkgconfig/libprojectM.pc
 }else{
-    LIB_PKG_PATH = $$EXTRA_PREFIX/libprojectm/lib/pkgconfig/libprojectM.pc
+    LIB_PKG_PATH = $$EXTRA_LIB_PATH/libprojectm/lib/pkgconfig/libprojectM.pc
 }
 
 exists($$LIB_PKG_PATH){
@@ -63,23 +63,23 @@ SOURCES += projectmhelper.cpp \
            projectmplugin.cpp \
            visualflowprojectmfactory.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libprojectm/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libprojectm/include
 
 win32{
     contains(DEFINES, PROJECTM_4){
-        LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM-4 -lprojectM-4-playlist
+        LIBS += -L$$EXTRA_LIB_PATH/libprojectm/lib -lprojectM-4 -lprojectM-4-playlist
     }else{
-        LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM
+        LIBS += -L$$EXTRA_LIB_PATH/libprojectm/lib -lprojectM
     }
-    LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lglu32 -lopengl32
+    LIBS += -L$$EXTRA_LIB_PATH/libprojectm/lib -lglu32 -lopengl32
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     contains(DEFINES, PROJECTM_4){
-        LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM-4$$STATIC_LIBRARY_SUFFIX -lprojectM-4-playlist$$STATIC_LIBRARY_SUFFIX
+        LIBS += -L$$EXTRA_LIB_PATH/libprojectm/lib -lprojectM-4$$STATIC_LIB_SUFFIX -lprojectM-4-playlist$$STATIC_LIB_SUFFIX
     }else{
-        LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM$$STATIC_LIBRARY_SUFFIX
+        LIBS += -L$$EXTRA_LIB_PATH/libprojectm/lib -lprojectM$$STATIC_LIB_SUFFIX
     }
 }
 

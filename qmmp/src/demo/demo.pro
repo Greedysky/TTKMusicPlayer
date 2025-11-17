@@ -17,7 +17,7 @@ win32:msvc:{
 }
 
 unix:!mac{
-    LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libtaglib/lib -ltag$$STATIC_LIB_SUFFIX
 }
 
 mac{

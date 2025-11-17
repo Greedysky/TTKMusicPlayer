@@ -14,15 +14,15 @@ SOURCES += decodergmefactory.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libgme/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libgme/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libgme/lib -lgme
+    LIBS += -L$$EXTRA_LIB_PATH/libgme/lib -lgme
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libgme/lib -lgme$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libgme/lib -lgme$$STATIC_LIB_SUFFIX
 }
 
 mac{

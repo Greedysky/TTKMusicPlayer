@@ -10,15 +10,15 @@ SOURCES += decodersc68factory.cpp \
            decoder_sc68.cpp \
            sc68helper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lsc68
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lsc68
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lsc68$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lsc68$$STATIC_LIB_SUFFIX
 }
 
 mac{

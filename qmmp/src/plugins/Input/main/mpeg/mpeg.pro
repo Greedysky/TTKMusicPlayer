@@ -16,21 +16,21 @@ SOURCES += decodermpegfactory.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
-               $$EXTRA_PREFIX/libmpg123/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libtaglib/include \
+               $$EXTRA_LIB_PATH/libmpg123/include
 
 HEADERS += decoder_mpg123.h
 SOURCES += decoder_mpg123.cpp
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
-            -L$$EXTRA_PREFIX/libmpg123/lib -lmpg123 -lshlwapi
+    LIBS += -L$$EXTRA_LIB_PATH/libtaglib/lib -ltag \
+            -L$$EXTRA_LIB_PATH/libmpg123/lib -lmpg123 -lshlwapi
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
-            -L$$EXTRA_PREFIX/libmpg123/lib -lmpg123$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libtaglib/lib -ltag$$STATIC_LIB_SUFFIX \
+            -L$$EXTRA_LIB_PATH/libmpg123/lib -lmpg123$$STATIC_LIB_SUFFIX
 }
 
 mac{

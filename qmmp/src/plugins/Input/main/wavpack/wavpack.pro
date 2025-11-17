@@ -10,15 +10,15 @@ SOURCES += decoderwavpackfactory.cpp \
            decoder_wavpack.cpp \
            wavpackmetadatamodel.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libwavpack/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libwavpack/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libwavpack/lib -lwavpack
+    LIBS += -L$$EXTRA_LIB_PATH/libwavpack/lib -lwavpack
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libwavpack/lib -lwavpack$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libwavpack/lib -lwavpack$$STATIC_LIB_SUFFIX
 }
 
 mac{

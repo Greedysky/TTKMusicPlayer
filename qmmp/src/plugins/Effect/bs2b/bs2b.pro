@@ -12,15 +12,15 @@ SOURCES += bs2bplugin.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libbs2b/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libbs2b/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libbs2b/lib -lbs2b
+    LIBS += -L$$EXTRA_LIB_PATH/libbs2b/lib -lbs2b
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libbs2b/lib -lbs2b$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libbs2b/lib -lbs2b$$STATIC_LIB_SUFFIX
 }
 
 mac{

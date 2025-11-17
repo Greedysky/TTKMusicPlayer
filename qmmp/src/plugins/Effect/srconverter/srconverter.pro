@@ -12,15 +12,15 @@ SOURCES += srconverter.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libsamplerate/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libsamplerate/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libsamplerate/lib -lsamplerate
+    LIBS += -L$$EXTRA_LIB_PATH/libsamplerate/lib -lsamplerate
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libsamplerate/lib -lsamplerate$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libsamplerate/lib -lsamplerate$$STATIC_LIB_SUFFIX
 }
 
 mac{

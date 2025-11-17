@@ -14,18 +14,18 @@ SOURCES += decoderxmpfactory.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libxmp/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libxmp/include
 
 win32{
     contains(CONFIG, USE_STATIC_LIBRARY){
         DEFINES += LIBXMP_STATIC
     }
-    LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp
+    LIBS += -L$$EXTRA_LIB_PATH/libxmp/lib -lxmp
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libxmp/lib -lxmp$$STATIC_LIB_SUFFIX
 }
 
 mac{

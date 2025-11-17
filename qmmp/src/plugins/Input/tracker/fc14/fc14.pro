@@ -10,18 +10,18 @@ SOURCES += decoderfc14factory.cpp \
            decoder_fc14.cpp \
            fc14helper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include
 
 win32{
-    LIB_INCLUDE = $$EXTRA_PREFIX/libttk/include/libfc14/fc14audiodecoder.h
+    LIB_INCLUDE = $$EXTRA_LIB_PATH/libttk/include/libfc14/fc14audiodecoder.h
     LIB_VERSION = $$system(findstr /r "fc14dec_reinit" $$replace(LIB_INCLUDE, /, \\))
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lfc14
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lfc14
 }
 
 unix:!mac{
-    LIB_VERSION = $$system(grep -r "fc14dec_reinit" $$EXTRA_PREFIX/libttk/include/libfc14/fc14audiodecoder.h)
+    LIB_VERSION = $$system(grep -r "fc14dec_reinit" $$EXTRA_LIB_PATH/libttk/include/libfc14/fc14audiodecoder.h)
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lfc14$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lfc14$$STATIC_LIB_SUFFIX
 }
 
 mac{

@@ -18,15 +18,15 @@ SOURCES += decoderopenmptfactory.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libopenmpt/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libopenmpt/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libopenmpt/lib -lopenmpt
+    LIBS += -L$$EXTRA_LIB_PATH/libopenmpt/lib -lopenmpt
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libopenmpt/lib -lopenmpt$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libopenmpt/lib -lopenmpt$$STATIC_LIB_SUFFIX
 }
 
 mac{

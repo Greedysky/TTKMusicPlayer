@@ -10,15 +10,15 @@ SOURCES += decoderxmdxfactory.cpp \
            decoder_xmdx.cpp \
            xmdxhelper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
+INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lxmdx
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lxmdx -lws2_32
 }
 
 unix:!mac{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lxmdx$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lxmdx$$STATIC_LIB_SUFFIX
 }
 
 mac{
