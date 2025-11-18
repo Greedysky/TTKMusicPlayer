@@ -37,7 +37,7 @@ win32{
 unix:!mac:SOURCES += $$PWD/qglobalshortcut_x11.cpp
 mac{
     MACOS_VERSION = $$system(/usr/libexec/PlistBuddy -c "Print ProductVersion" /System/Library/CoreServices/SystemVersion.plist)
-    message(Detected macOS version: $$MACOS_VERSION)
+    message("Detected macOS version: $$MACOS_VERSION")
 
     MACOS_VERSION = $$split(MACOS_VERSION, ".")
     MAJOR_VERSION = $$member(MACOS_VERSION, 0)

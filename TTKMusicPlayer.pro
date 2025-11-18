@@ -39,9 +39,9 @@ win32:exists($$[QT_INSTALL_BINS]/lrelease.exe){
 }
 
 isEmpty(LRELEASE_EXECUTABLE){
-    error(Could not find lrelease executable)
+    error("Could not find lrelease executable")
 }else{
-    message(Found lrelease executable: $$LRELEASE_EXECUTABLE)
+    message("Found lrelease executable: $$LRELEASE_EXECUTABLE")
 }
 
 include($$PWD/TTKVersion.pri)
