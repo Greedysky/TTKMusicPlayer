@@ -109,31 +109,37 @@ contains(CONFIG, USE_STATIC_LIBRARY){
 win32{
     equals(QT_MAJOR_VERSION, 6){ #Qt6
         greaterThan(QT_MINOR_VERSION, 7){ #6.8
-            GCC_VERSION = 1310_64
+            GCC_VERSION = 1310
         }else:greaterThan(QT_MINOR_VERSION, 1){ #6.2
-            GCC_VERSION = 1120_64
+            GCC_VERSION = 1120
         }else{
-            GCC_VERSION = 810_64
+            GCC_VERSION = 810
         }
     }else:equals(QT_MAJOR_VERSION, 5){ #Qt5
         greaterThan(QT_MINOR_VERSION, 14){ #5.15
-            GCC_VERSION = 810_32
+            GCC_VERSION = 810
         }else:greaterThan(QT_MINOR_VERSION, 11){ #5.12
-            GCC_VERSION = 730_32
+            GCC_VERSION = 730
         }else:greaterThan(QT_MINOR_VERSION, 6){ #5.7
-            GCC_VERSION = 530_32
+            GCC_VERSION = 530
         }else{
-            GCC_VERSION = 492_32
+            GCC_VERSION = 492
         }
     }else{
-        GCC_VERSION = 492_32
+        GCC_VERSION = 492
     }
 
-    EXTRA_DENPAND_PATH = $$PWD/../extra/gcc$$GCC_VERSION
-    message("Extra thirdParty library path: $$EXTRA_DENPAND_PATH")
-    exists($$EXTRA_DENPAND_PATH){
+    contains(QT_ARCH, "x86_64"){
+        GCC_ARCH = 64
+    }else{#contains(QT_ARCH, "i386")
+        GCC_ARCH = 32
+    }
+
+    EXTRA_DEPENDENT_PATH = $$PWD/../extra/gcc$${GCC_VERSION}_$${GCC_ARCH}
+    message("Extra thirdParty library path: $$EXTRA_DEPENDENT_PATH")
+    exists($$EXTRA_DEPENDENT_PATH){
         system(rd $$PWD/../extra/gcc) #Remove old one
-        system(mklink /D $$PWD/../extra/gcc $$EXTRA_DENPAND_PATH) #Link new one
+        system(mklink /D $$PWD/../extra/gcc $$EXTRA_DEPENDENT_PATH) #Link new one
     }
 }
 #Add dependent thirdParty library path
