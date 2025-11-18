@@ -24,12 +24,14 @@ include($$PWD/../TTKMusicPlayer.pri)
 
 ##qmmp lib check
 win32{
-    QMMP_DEPANDS = $$DESTDIR/TTKqmmp.dll
-    QMMP_DEPANDS = $$replace(QMMP_DEPANDS, /, \\)
+    QMMP_DEPENDENCY = $$DESTDIR/TTKqmmp.dll
+    QMMP_DEPENDENCY = $$replace(QMMP_DEPENDENCY, /, \\)
 }
-unix:!mac:QMMP_DEPANDS = $$DESTDIR/libTTKqmmp.so
-mac:QMMP_DEPANDS = $$DESTDIR/libTTKqmmp.dylib
-!exists($$QMMP_DEPANDS): error("Could not find ttk qmmp library, please download and put it to output dir")
+unix:!mac:QMMP_DEPENDENCY = $$DESTDIR/libTTKqmmp.so
+mac:QMMP_DEPENDENCY = $$DESTDIR/libTTKqmmp.dylib
+!exists($$QMMP_DEPENDENCY){
+    error("Could not find ttk qmmp library, please download and put it to output dir")
+}
 
 TARGET = TTKCore
 
