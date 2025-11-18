@@ -1,5 +1,3 @@
-include($$PWD/../plugins.pri)
-
 TEMPLATE = subdirs
 SUBDIRS += null qtmultimedia
 
