@@ -39,7 +39,7 @@ win32{
     }
 
     EXTRA_DEPENDENT_PATH = $$PWD/../extra/gcc$${GCC_VERSION}_$${GCC_ARCH}
-    message("Extra thirdParty library path: $$EXTRA_DEPENDENT_PATH")
+    message("Qt version $$QT_VERSION, extra thirdParty library is $$EXTRA_DEPENDENT_PATH")
 
     exists($$EXTRA_DEPENDENT_PATH){
         EXTRA_OUTPUT_PATH = $$PWD/../extra/gcc

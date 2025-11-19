@@ -322,7 +322,7 @@ void InfinityWidget::displayBlur()
     VInterpol *field = &m_field[w * h * m_currentEffect.num_effect];
 
     int index = 0;
-    register unsigned char *pix = nullptr;
+    unsigned char *pix = nullptr;
 
     for(int i = 0; i < h; ++i)
     {
