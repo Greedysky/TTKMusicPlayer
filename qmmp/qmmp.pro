@@ -39,11 +39,14 @@ win32{
     }
 
     EXTRA_DEPENDENT_PATH = $$PWD/../extra/gcc$${GCC_VERSION}_$${GCC_ARCH}
+    message("Extra thirdParty library path: $$EXTRA_DEPENDENT_PATH")
+
     exists($$EXTRA_DEPENDENT_PATH){
         EXTRA_OUTPUT_PATH = $$PWD/../extra/gcc
         EXTRA_OUTPUT_PATH = $$replace(EXTRA_OUTPUT_PATH, /, \\)
         EXTRA_DEPENDENT_PATH = $$replace(EXTRA_DEPENDENT_PATH, /, \\)
         system(rd $$EXTRA_OUTPUT_PATH) #Remove old one
         system(mklink /j $$EXTRA_OUTPUT_PATH $$EXTRA_DEPENDENT_PATH) #Link new one
+        message("Linked new extra thirdParty library path")
     }
 }
