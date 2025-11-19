@@ -356,7 +356,7 @@ else()
   install(FILES "${TTK_UTILS_DIR}/install.sh" DESTINATION "${TTK_INSTALL_DIR}")
   install(FILES "${TTK_UTILS_DIR}/uninstall.sh" DESTINATION "${TTK_INSTALL_DIR}")
   install(FILES "${TTK_UTILS_DIR}/ttk_runtime" DESTINATION "${TTK_INSTALL_DIR}")
-  install(FILES "${TTK_UTILS_DIR}/deploy/share/appdata/ttkmusicplayer.appdata.xml" DESTINATION "${TTK_INSTALL_DIR}/share/metainfo")
+  install(DIRECTORY "${TTK_UTILS_DIR}/deploy/share/metainfo" DESTINATION "${TTK_INSTALL_DIR}/share")
 endif()
 # copy run resource
 if(UNIX)

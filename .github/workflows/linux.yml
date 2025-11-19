@@ -6,7 +6,7 @@ on: workflow_call
 
 env:
   TTK_MODULE: TTKMusicPlayer
-  TTK_VERSTION: 4.2.0.0
+  TTK_VERSION: 4.2.0.0
 
 jobs:
   build:
@@ -73,27 +73,27 @@ jobs:
           # add dependency for theme
           wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z
           7z x theme.7z
-          mv GTheme bin/${{env.TTK_VERSTION}}
+          mv GTheme bin/${{env.TTK_VERSION}}
           # add dependency for global plugins
           wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-linux.7z
           7z x qmmp-gplugins-linux.7z
-          mv GPlugins bin/${{env.TTK_VERSTION}}
+          mv GPlugins bin/${{env.TTK_VERSION}}
           # remove useless qmmp demo bin
-          rm bin/${{env.TTK_VERSTION}}/demo
+          rm bin/${{env.TTK_VERSION}}/demo
           # copy ffmpeg libraries
-          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libavcodec.so.57.107.100 bin/${{env.TTK_VERSTION}}/libavcodec.so.57
-          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libavformat.so.57.83.100 bin/${{env.TTK_VERSTION}}/libavformat.so.57
-          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libavutil.so.55.78.100 bin/${{env.TTK_VERSTION}}/libavutil.so.55
-          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libswresample.so.2.9.100 bin/${{env.TTK_VERSTION}}/libswresample.so.2
+          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libavcodec.so.57.107.100 bin/${{env.TTK_VERSION}}/libavcodec.so.57
+          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libavformat.so.57.83.100 bin/${{env.TTK_VERSION}}/libavformat.so.57
+          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libavutil.so.55.78.100 bin/${{env.TTK_VERSION}}/libavutil.so.55
+          cp ${{env.QMMP_DEPS_PATH}}/libffmpeg/lib/libswresample.so.2.9.100 bin/${{env.TTK_VERSION}}/libswresample.so.2
           # copy sunvox libraries
-          cp ${{env.QMMP_DEPS_PATH}}/libsunvox/sunvox.so bin/${{env.TTK_VERSTION}}
+          cp ${{env.QMMP_DEPS_PATH}}/libsunvox/sunvox.so bin/${{env.TTK_VERSION}}
           # copy optimfrog libraries
-          cp ${{env.QMMP_DEPS_PATH}}/liboptimfrog/lib/libOptimFROG.so.0 bin/${{env.TTK_VERSTION}}
+          cp ${{env.QMMP_DEPS_PATH}}/liboptimfrog/lib/libOptimFROG.so.0 bin/${{env.TTK_VERSION}}
           # copy uadecore
-          cp ${{env.QMMP_DEPS_PATH}}/libttk/bin/uadecore bin/${{env.TTK_VERSTION}}/GPlugins/config/uade
+          cp ${{env.QMMP_DEPS_PATH}}/libttk/bin/uadecore bin/${{env.TTK_VERSION}}/GPlugins/config/uade
           mv bin ${{runner.workspace}}/qmmp
           # add portable binary package
-          7z a qmmp-qt5-linux-x64.7z ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}}
+          7z a qmmp-qt5-linux-x64.7z ${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}
         working-directory: ${{github.workspace}}
 
       - name: Archive artifacts
@@ -121,15 +121,15 @@ jobs:
       - name: Build ttk music player project
         run: |
           cmake --version
-          cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}}/libTTKqmmp.so
+          cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}/libTTKqmmp.so
           make -j2 && make install
         working-directory: ${{runner.workspace}}/build
 
       - name: Build ttk music player package
         run: |
           # add dependency for qmmp library
-          cp -rf ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}}
-          cd ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          cp -rf ${{runner.workspace}}/qmmp/${{env.TTK_VERSION}} ${{env.TTK_MODULE}}
+          cd ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
           # add dependency libraries and so on
           linuxdeploy-x86_64.AppImage --executable=TTKService --appdir=image --plugin=qt
           rm image/usr/translations/*.qm image/usr/lib/libTTK*.so image/usr/lib/libttkzip.so image/usr/lib/libzlib.so
@@ -151,7 +151,7 @@ jobs:
           7z x openssl.7z
           cp linux64/* ${{env.TTK_MODULE}}/lib
           # add portable binary package
-          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z ${{env.TTK_MODULE}}
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
       - name: Build appimage package
@@ -169,7 +169,7 @@ jobs:
           cd ..
           # add appimage binary package
           linuxdeploy-plugin-appimage-x86_64.AppImage --appdir=${{env.TTK_MODULE}}
-          mv ${{env.TTK_MODULE}}*.AppImage ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.AppImage
+          mv ${{env.TTK_MODULE}}*.AppImage ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-x64.AppImage
         working-directory: ${{runner.workspace}}/install
 
       - name: Archive artifacts
@@ -179,5 +179,5 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
           files: |
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.7z
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-linux-x64.AppImage
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-x64.7z
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-x64.AppImage

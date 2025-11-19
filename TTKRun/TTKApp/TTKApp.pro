@@ -21,11 +21,6 @@ TEMPLATE = app
 DESTDIR = $$OUT_PWD/../../bin
 TARGET = TTKMusicPlayer
 
-unix{
-    appdata.path = $$PWD/../../TTKUtils/deploy/share/appdata/ttkmusicplayer.appdata.xml
-    appdata.files = $$PWD/../../TTKUtils/deploy/share/appdata/ttkmusicplayer.appdata.xml
-}
-
 include($$PWD/../../TTKCommon/TTKRun/TTKRun.pri)
 
 SOURCES += $$PWD/ttkrunmain.cpp

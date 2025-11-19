@@ -6,7 +6,7 @@ on: workflow_call
 
 env:
   TTK_MODULE: TTKMusicPlayer
-  TTK_VERSTION: 4.2.0.0
+  TTK_VERSION: 4.2.0.0
 
 jobs:
   build:
@@ -85,29 +85,29 @@ jobs:
           # add dependency for theme
           curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/theme.7z -o theme.7z
           7z x theme.7z
-          mv GTheme bin/${{env.TTK_VERSTION}}
+          mv GTheme bin/${{env.TTK_VERSION}}
           # add dependency for openssl
           curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z -o openssl.7z
           7z x openssl.7z
-          cp win32.old/*.dll bin/${{env.TTK_VERSTION}}
+          cp win32.old/*.dll bin/${{env.TTK_VERSION}}
           # add dependency for global plugins
           curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-win.7z -o qmmp-gplugins-win.7z
           7z x qmmp-gplugins-win.7z
-          mv GPlugins_x86 bin/${{env.TTK_VERSTION}}/GPlugins
+          mv GPlugins_x86 bin/${{env.TTK_VERSION}}/GPlugins
           # remove useless qmmp demo bin
-          rm bin/${{env.TTK_VERSTION}}/demo.exe
+          rm bin/${{env.TTK_VERSION}}/demo.exe
           # copy ffmpeg libraries
-          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/avcodec-57.dll bin/${{env.TTK_VERSTION}}
-          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/avformat-57.dll bin/${{env.TTK_VERSTION}}
-          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/avutil-55.dll bin/${{env.TTK_VERSTION}}
-          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/swresample-2.dll bin/${{env.TTK_VERSTION}}
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/avcodec-57.dll bin/${{env.TTK_VERSION}}
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/avformat-57.dll bin/${{env.TTK_VERSION}}
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/avutil-55.dll bin/${{env.TTK_VERSION}}
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/libffmpeg/bin/swresample-2.dll bin/${{env.TTK_VERSION}}
           # copy sunvox libraries
-          cp ${{env.WIN_QMMP_DEPS_PATH}}/libsunvox/sunvox.dll bin/${{env.TTK_VERSTION}}
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/libsunvox/sunvox.dll bin/${{env.TTK_VERSION}}
           # copy optimfrog libraries
-          cp ${{env.WIN_QMMP_DEPS_PATH}}/liboptimfrog/bin/libOptimFROG.dll bin/${{env.TTK_VERSTION}}
+          cp ${{env.WIN_QMMP_DEPS_PATH}}/liboptimfrog/bin/libOptimFROG.dll bin/${{env.TTK_VERSION}}
           mv bin ${{runner.workspace}}/qmmp
           # add portable binary package
-          7z a qmmp-qt4-win-mingw492-x86.7z ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}}
+          7z a qmmp-qt4-win-mingw492-x86.7z ${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}
         working-directory: ${{github.workspace}}/qmmp
 
       - name: Archive artifacts
@@ -137,31 +137,31 @@ jobs:
       - name: Build ttk music player project
         run: |
           cmake --version
-          cmake ${{github.workspace}} -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DCMAKE_PREFIX_PATH=${{env.QT_ROOT_DIR}} -DTTK_QT_VERSION=4 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}}/libTTKqmmp.a
+          cmake ${{github.workspace}} -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DCMAKE_PREFIX_PATH=${{env.QT_ROOT_DIR}} -DTTK_QT_VERSION=4 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}/libTTKqmmp.a
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/build
 
       - name: Build ttk music player package
         run: |
           # add dependency for qmmp library
-          cp ${{runner.workspace}}/qmmp/${{env.TTK_VERSTION}} ${{env.TTK_MODULE}} -Recurse -Container -Force
+          cp ${{runner.workspace}}/qmmp/${{env.TTK_VERSION}} ${{env.TTK_MODULE}} -Recurse -Container -Force
           # add dependency libraries and so on
-          cp ${{env.QT_ROOT_DIR}}/plugins/bearer ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}} -Recurse -Container -Force
-          cp ${{env.QT_ROOT_DIR}}/plugins/iconengines ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}} -Recurse -Container -Force
-          cp ${{env.QT_ROOT_DIR}}/plugins/imageformats ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}} -Recurse -Container -Force
-          cp ${{env.QT_BIN_DIR}}/QtCore4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cp ${{env.QT_BIN_DIR}}/QtGui4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cp ${{env.QT_BIN_DIR}}/QtMultimedia4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cp ${{env.QT_BIN_DIR}}/QtNetwork4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cp ${{env.QT_BIN_DIR}}/QtOpenGL4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cp ${{env.QT_BIN_DIR}}/QtSvg4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cp ${{env.QT_BIN_DIR}}/QtXml4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          cp ${{env.QT_ROOT_DIR}}/plugins/bearer ${{env.TTK_MODULE}}/${{env.TTK_VERSION}} -Recurse -Container -Force
+          cp ${{env.QT_ROOT_DIR}}/plugins/iconengines ${{env.TTK_MODULE}}/${{env.TTK_VERSION}} -Recurse -Container -Force
+          cp ${{env.QT_ROOT_DIR}}/plugins/imageformats ${{env.TTK_MODULE}}/${{env.TTK_VERSION}} -Recurse -Container -Force
+          cp ${{env.QT_BIN_DIR}}/QtCore4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_BIN_DIR}}/QtGui4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_BIN_DIR}}/QtMultimedia4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_BIN_DIR}}/QtNetwork4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_BIN_DIR}}/QtOpenGL4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_BIN_DIR}}/QtSvg4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_BIN_DIR}}/QtXml4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
           cp ${{env.MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}
           cp ${{env.MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}
           cp ${{env.MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
-          cp ${{env.MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cp ${{env.MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
-          cp ${{env.MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSTION}}
+          cp ${{env.MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
           # remove useless library dependency
           ls -Filter "*.a" -Recurse | Remove-Item -Force
         working-directory: ${{runner.workspace}}/install
@@ -183,7 +183,7 @@ jobs:
         run: |
           # reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "${{runner.workspace}}/InnoSetup/iscc.exe" /t REG_SZ /d "WIN7RTM RUNASADMIN" /f
           ${{runner.workspace}}/InnoSetup/iscc.exe ${{github.workspace}}/TTKUtils/ttk.iss
-          mv v${{env.TTK_VERSTION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-winXP-x86.exe
+          mv v${{env.TTK_VERSION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-x86.exe
         working-directory: ${{runner.workspace}}/install
 
       - name: Build ttk music player portable package
@@ -192,7 +192,7 @@ jobs:
           cp ${{github.workspace}}/TTKUtils/ttk_portable ${{env.TTK_MODULE}}
           "便携模式运行 TTKMusicPlayer.exe`r`n删除 ttk_portable 禁用便携模式" > ${{env.TTK_MODULE}}/说明.txt
           # add portable binary package
-          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-winXP-x86.7z ${{env.TTK_MODULE}}
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-x86.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
       - name: Archive artifacts
@@ -202,5 +202,5 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
           files: |
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-winXP-x86.7z
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-winXP-x86.exe
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-x86.7z
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-x86.exe

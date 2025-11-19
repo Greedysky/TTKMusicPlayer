@@ -6,7 +6,7 @@ on: workflow_call
 
 env:
   TTK_MODULE: TTKMusicPlayer
-  TTK_VERSTION: 4.2.0.0
+  TTK_VERSION: 4.2.0.0
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
             </body>
           </html>' > TTKDocs/main.html
           # add package
-          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-document.7z TTKDocs
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-document.7z TTKDocs
         working-directory: ${{github.workspace}}
 
       - name: Archive artifacts
@@ -37,4 +37,4 @@ jobs:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSTION}}-document.7z
+          files: ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-document.7z
