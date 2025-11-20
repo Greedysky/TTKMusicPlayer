@@ -106,6 +106,7 @@ INCLUDEPATH += \
 
 win32{
     LIBS += -L$$EXTRA_LIB_PATH/libtaglib/lib -ltag
+    equals(QT_MAJOR_VERSION, 6):lessThan(QT_MINOR_VERSION, 2): LIBS += -liconv
 }
 
 unix:!mac{
