@@ -35,12 +35,12 @@ void TTKClickedSlider::mousePressEvent(QMouseEvent *event)
         double pos;
         if(orientation() == Qt::Horizontal)
         {
-            pos = event->pos().x() * 1.0 / width();
+            pos = QtMouseX(event) * 1.0 / width();
             m_value = pos * (maximum() - minimum()) + minimum();
         }
         else
         {
-            pos = event->pos().y() * 1.0 / height();
+            pos = QtMouseY(event) * 1.0 / height();
             m_value = maximum() - pos * (maximum() - minimum());
         }
     }
@@ -53,10 +53,10 @@ void TTKClickedSlider::mouseMoveEvent(QMouseEvent *event)
     {
         if(orientation() == Qt::Horizontal)
         {
-            const int x = event->pos().x();
-            if((x >= 0) && (x <= width()))
+            const int x = QtMouseX(event);
+            if(x >= 0 && x <= width())
             {
-                const double pos = event->pos().x() * 1.0 / width();
+                const double pos = QtMouseX(event) * 1.0 / width();
                 m_value = pos * (maximum() - minimum()) + minimum();
                 setValue(m_value);
             }
@@ -71,10 +71,10 @@ void TTKClickedSlider::mouseMoveEvent(QMouseEvent *event)
         }
         else
         {
-            const int y = event->pos().y();
-            if((y >= 0) && (y <= height()))
+            const int y = QtMouseY(event);
+            if(y >= 0 && y <= height())
             {
-                const double pos = event->pos().y() * 1.0 / height();
+                const double pos = QtMouseY(event) * 1.0 / height();
                 m_value = maximum() - pos * (maximum() - minimum());
                 setValue(m_value);
             }

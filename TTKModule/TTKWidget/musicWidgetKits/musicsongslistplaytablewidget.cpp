@@ -618,7 +618,7 @@ void MusicSongsListPlayTableWidget::mousePressEvent(QMouseEvent *event)
 void MusicSongsListPlayTableWidget::mouseMoveEvent(QMouseEvent *event)
 {
     MusicAbstractSongsListTableWidget::mouseMoveEvent(event);
-    if(m_mouseLeftPressed && std::abs(m_dragStartPoint.y() - event->pos().y()) > 15)
+    if(m_mouseLeftPressed && std::abs(m_dragStartPoint.y() - QtMouseY(event)) > 15)
     {
         m_mouseMoved = true;
         setCursor(QCursor(QPixmap(":/functions/lb_drag_cursor")));

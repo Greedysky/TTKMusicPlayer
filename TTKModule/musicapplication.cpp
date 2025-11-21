@@ -1033,7 +1033,7 @@ void MusicApplication::closeEvent(QCloseEvent *event)
 
 void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 {
-    const int h = event->pos().y();
+    const int h = QtMouseY(event);
     if(h < m_ui->topWidget->height() || h > height() - m_ui->bottomWidget->height())
     {
         TTKAbstractMoveResizeWidget::contextMenuEvent(event);
@@ -1087,7 +1087,7 @@ void MusicApplication::mouseReleaseEvent(QMouseEvent *event)
 
 void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    if(!m_ui->background->isRunning() && event->pos().y() <= m_ui->topWidget->height() && !G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
+    if(!m_ui->background->isRunning() && QtMouseY(event) <= m_ui->topWidget->height() && !G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
         TTKAbstractMoveResizeWidget::mouseDoubleClickEvent(event);
         if(event->buttons() == Qt::LeftButton)

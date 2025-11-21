@@ -74,7 +74,7 @@ private:
 
 private:
     QFile m_file;
-    int m_maxSize, m_maxSecond;
+    qint64 m_maxSize, m_maxSecond;
     QString m_module, m_dateTime, m_outputDir;
     QMutex m_mutex;
     QtMessageHandler m_defaultHandler;
@@ -291,12 +291,12 @@ void TTK::removeLogHandler()
     TTKSingleton<TTKLogOutput>::instance()->uninstall();
 }
 
-void TTK::setLogMaxSize(size_t maxSize)
+void TTK::setLogMaxSize(qint64 maxSize)
 {
     TTKSingleton<TTKLogOutput>::instance()->setMaxSize(maxSize);
 }
 
-void TTK::setExpireSecond(size_t maxSecond)
+void TTK::setExpireSecond(qint64 maxSecond)
 {
     TTKSingleton<TTKLogOutput>::instance()->setExpireSecond(maxSecond);
 }

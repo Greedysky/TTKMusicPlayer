@@ -1,6 +1,6 @@
 # Author: Greedysky <greedysky@163.com>
 
-name: winXP
+name: winXP-mingw
 
 on: workflow_call
 
@@ -130,7 +130,6 @@ jobs:
         working-directory: ${{runner.workspace}}
 
       - name: Create build dir
-        shell: bash
         run: mkdir build
         working-directory: ${{runner.workspace}}
 
@@ -183,7 +182,7 @@ jobs:
         run: |
           # reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "${{runner.workspace}}/InnoSetup/iscc.exe" /t REG_SZ /d "WIN7RTM RUNASADMIN" /f
           ${{runner.workspace}}/InnoSetup/iscc.exe ${{github.workspace}}/TTKUtils/ttk.iss
-          mv v${{env.TTK_VERSION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-x86.exe
+          mv v${{env.TTK_VERSION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-mingw-x86.exe
         working-directory: ${{runner.workspace}}/install
 
       - name: Build ttk music player portable package
@@ -192,7 +191,7 @@ jobs:
           cp ${{github.workspace}}/TTKUtils/ttk_portable ${{env.TTK_MODULE}}
           "便携模式运行 TTKMusicPlayer.exe`r`n删除 ttk_portable 禁用便携模式" > ${{env.TTK_MODULE}}/说明.txt
           # add portable binary package
-          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-x86.7z ${{env.TTK_MODULE}}
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-mingw-x86.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
       - name: Archive artifacts
@@ -202,5 +201,5 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
           files: |
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-x86.7z
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-x86.exe
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-mingw-x86.7z
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-mingw-x86.exe

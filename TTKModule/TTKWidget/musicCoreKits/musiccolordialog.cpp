@@ -213,7 +213,7 @@ void MusicHlSaturationPalette::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
     {
-        m_dblVernierX = event->pos().x();
+        m_dblVernierX = QtMouseX(event);
         calculateSuration();
         update();
     }
@@ -223,7 +223,7 @@ void MusicHlSaturationPalette::mouseMoveEvent(QMouseEvent *event)
 {
     if(event->buttons() & Qt::LeftButton && !(event->buttons() & Qt::RightButton))
     {
-        m_dblVernierX = event->pos().x();
+        m_dblVernierX = QtMouseX(event);
         if(rect().contains(event->pos()))
         {
             calculateSuration();

@@ -40,24 +40,27 @@ if(NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
 endif()
 set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Release Debug)
 
-# Add a compiler flag
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror=return-type -std=c++11 -pthread -Wall")
-if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -pedantic")
-else()
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
-  add_definitions(-DQT_NO_DEBUG)
-endif()
+# skip msvc compiler
+if(NOT MSVC)
+  # Add a compiler flag
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -Wall")
+  if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -pedantic")
+  else()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+    add_definitions(-DQT_NO_DEBUG)
+  endif()
 
-# clang: error: unsupported option '-fopenmp'
-if(NOT ("${CMAKE_C_COMPILER_ID}" MATCHES "Clang"))
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
-endif()
+  # clang: error: unsupported option '-fopenmp'
+  if(NOT ("${CMAKE_C_COMPILER_ID}" MATCHES "Clang"))
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
+  endif()
 
-if(WIN32)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows")
-  # Fix "command line is too long" on Windows
-  string(APPEND CMAKE_RC_FLAGS " --use-temp-file")
+  if(WIN32)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows")
+    # Fix "command line is too long" on Windows
+    string(APPEND CMAKE_RC_FLAGS " --use-temp-file")
+  endif()
 endif()
 
 option(TTK_BUILD_TOOLS "TTK build tools" OFF)
@@ -253,7 +256,9 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "5")
 elseif(TTK_QT_VERSION VERSION_EQUAL "6")
   find_package(Qt6 COMPONENTS Core Gui Widgets Multimedia Network Xml OpenGL Core5Compat REQUIRED)
   # Add a compiler flag
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+  if(NOT MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+  endif()
 
   if(UNIX)
     find_package(Qt6 COMPONENTS DBus REQUIRED)
