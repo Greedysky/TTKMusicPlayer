@@ -18,7 +18,7 @@ win32{
     LIBS += -L$$EXTRA_LIB_PATH/libopusfile/lib -lopusfile -lopus \
             -L$$EXTRA_LIB_PATH/libtaglib/lib -ltag -lm \
             -L$$EXTRA_LIB_PATH/libogg/lib -logg
-    lessThan(QT_MAJOR_VERSION, 6)|equals(QT_MAJOR_VERSION, 6):lessThan(QT_MINOR_VERSION, 8): LIBS += -lssp
+    lessThan(QT_MAJOR_VERSION, 6)|if(equals(QT_MAJOR_VERSION, 6):lessThan(QT_MINOR_VERSION, 8)):LIBS += -lssp
 }
 
 unix:!mac{

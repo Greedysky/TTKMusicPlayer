@@ -117,8 +117,8 @@ void FlowMatrix::processData(float *left, float *)
     {
         if(matrix->isRunning())
         {
-            m_x = matrix->pos().x();
-            m_y = matrix->pos().y();
+            m_x = matrix->x();
+            m_y = matrix->y();
             m_y += 1;
 
             if(m_y > height())

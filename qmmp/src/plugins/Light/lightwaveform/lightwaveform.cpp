@@ -27,6 +27,14 @@
 #define FLOATS_PER_LANE 4
 #define VECTORIZE_HINT 8
 
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+#  define QtMouseX(p) p->position().x()
+#  define QtMouseY(p) p->position().y()
+#else
+#  define QtMouseX(p) p->x()
+#  define QtMouseY(p) p->y()
+#endif
+
 /* copied from ardour3 */
 static inline float logMeter(float power, double lower_db, double upper_db, double non_linearity)
 {
@@ -600,7 +608,7 @@ void LightWaveForm::mousePressEvent(QMouseEvent *e)
 {
     if(e->button() == Qt::LeftButton)
     {
-        m_seekPos = e->pos().x();
+        m_seekPos = QtMouseX(e);
         update();
     }
 }
@@ -609,7 +617,7 @@ void LightWaveForm::mouseMoveEvent(QMouseEvent *e)
 {
     if(m_seekPos >= 0)
     {
-        m_seekPos = qBound(0, e->pos().x(), width());
+        m_seekPos = qBound(0, QtMouseX(e), width());
         update();
     }
 }

@@ -20,7 +20,7 @@ contains(CONFIG, WITH_LIBCDDB): DEFINES += WITH_LIBCDDB
 
 win32{
     LIBS += -L$$EXTRA_LIB_PATH/libcdio/lib -lcdio -lcdio_paranoia -lcdio_cdda
-    contains(CONFIG, WITH_LIBCDDB): LIBS += -L$$EXTRA_LIB_PATH/libcddb/lib -lcddb -lm -lwinmm -mwindows -liconv -lws2_32 -lregex
+    contains(CONFIG, WITH_LIBCDDB):LIBS += -L$$EXTRA_LIB_PATH/libcddb/lib -lcddb -lm -lwinmm -mwindows -liconv -lws2_32 -lregex
 }
 
 unix:!mac{
