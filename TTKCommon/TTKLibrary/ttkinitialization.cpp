@@ -14,7 +14,7 @@
 #  include <malloc.h>
 #endif
 
-#if !TTK_QT_VERSION_CHECK(5,1,0)
+#if !TTK_QT_VERSION_CHECK(5,0,0)
 bool qEnvironmentVariableIsSet(const char *v) noexcept
 {
 #ifdef Q_CC_MSVC
