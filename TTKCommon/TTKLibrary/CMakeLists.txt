@@ -111,7 +111,7 @@ set(SOURCE_FILES
   ${TTK_COMMON_LIB_DIR}/ttktime.cpp
   ${TTK_COMMON_LIB_DIR}/ttktoastlabel.cpp
 )
-  
+
 SET(QRC_FILES
   ${PROJECT_NAME}.qrc
 )
@@ -148,7 +148,9 @@ target_link_libraries(${PROJECT_NAME} ${QT_LINK_LIBS})
 # install CTL module
 if(TTK_INSTALL_CTL)
   set(TTK_CTL_PATH "${TTK_INSTALL_DIR}/${PROJECT_NAME}/lib")
-  if(WIN32)
+  if(MSVC)
+    set(TTK_CTL_MODULE "lib${PROJECT_NAME}.lib")
+  elseif(WIN32)
     set(TTK_CTL_MODULE "lib${PROJECT_NAME}.a")
   elseif(APPLE)
     set(TTK_CTL_MODULE "lib${PROJECT_NAME}.dylib")

@@ -4,7 +4,9 @@
 #include "ttkversion.h"
 #include "ttkdumper.h"
 
-#include <QTextCodec>
+#if !TTK_QT_VERSION_CHECK(5,0,0)
+#  include <QTextCodec>
+#endif
 #include <QApplication>
 #include <QFontDatabase>
 
