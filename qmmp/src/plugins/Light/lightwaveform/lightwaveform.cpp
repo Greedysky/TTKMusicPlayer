@@ -617,7 +617,7 @@ void LightWaveForm::mouseMoveEvent(QMouseEvent *e)
 {
     if(m_seekPos >= 0)
     {
-        m_seekPos = qBound(0, QtMouseX(e), width());
+        m_seekPos = qBound(0, static_cast<int>(QtMouseX(e)), width());
         update();
     }
 }

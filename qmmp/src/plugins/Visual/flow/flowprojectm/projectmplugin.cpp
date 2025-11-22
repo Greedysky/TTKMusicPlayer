@@ -10,6 +10,12 @@
 #include <QScrollBar>
 #include <QBoxLayout>
 
+#if QT_VERSION >= QT_VERSION_CHECK(6,3,0)
+#  define QtAddAction(p, a, b, c, d) p->addAction(a, d, b, c)
+#else
+#  define QtAddAction(p, a, b, c, d) p->addAction(a, b, c, d)
+#endif
+
 ProjectMPlugin::ProjectMPlugin(QWidget *parent)
     : Visual(parent)
 {
@@ -52,20 +58,20 @@ ProjectMPlugin::ProjectMPlugin(QWidget *parent)
     m_menu->addAction(m_screenAction);
     m_menu->addSeparator();
 #ifndef PROJECTM_4
-    m_menu->addAction(tr("&Help"), m_container, SLOT(showHelp()), {"F1"})->setCheckable(true);
-    m_menu->addAction(tr("&Show Song Title"), m_container, SLOT(showTitle()), {"F2"})->setCheckable(true);
-    m_menu->addAction(tr("&Show Preset Name"), m_container, SLOT(showPresetName()), {"F3"})->setCheckable(true);
+    QtAddAction(m_menu, tr("&Help"), m_container, SLOT(showHelp()), {"F1"})->setCheckable(true);
+    QtAddAction(m_menu, tr("&Show Song Title"), m_container, SLOT(showTitle()), {"F2"})->setCheckable(true);
+    QtAddAction(m_menu, tr("&Show Preset Name"), m_container, SLOT(showPresetName()), {"F3"})->setCheckable(true);
 #endif
-    m_menu->addAction(tr("&Show Menu"), m_itemWidget, SLOT(setVisible(bool)), {"M"})->setCheckable(true);
+    QtAddAction(m_menu, tr("&Show Menu"), m_itemWidget, SLOT(setVisible(bool)), {"M"})->setCheckable(true);
     m_menu->addSeparator();
-    m_menu->addAction(tr("&Next Preset"), m_container, SLOT(nextPreset()), {"N"});
-    m_menu->addAction(tr("&Previous Preset"), m_container, SLOT(previousPreset()), {"P"});
+    QtAddAction(m_menu, tr("&Next Preset"), m_container, SLOT(nextPreset()), {"N"});
+    QtAddAction(m_menu, tr("&Previous Preset"), m_container, SLOT(previousPreset()), {"P"});
 #ifdef PROJECTM_4
-    m_menu->addAction(tr("&Shuffle"), m_container, SLOT(setShuffle(bool)), {"R"})->setCheckable(true);
+    QtAddAction(m_menu, tr("&Shuffle"), m_container, SLOT(setShuffle(bool)), {"R"})->setCheckable(true);
 #else
-    m_menu->addAction(tr("&Random Preset"), m_container, SLOT(randomPreset()), {"R"});
+    QtAddAction(m_menu, tr("&Random Preset"), m_container, SLOT(randomPreset()), {"R"});
 #endif
-    m_menu->addAction(tr("&Lock Preset"), m_container, SLOT(lockPreset(bool)), {"L"})->setCheckable(true);
+    QtAddAction(m_menu, tr("&Lock Preset"), m_container, SLOT(lockPreset(bool)), {"L"})->setCheckable(true);
 }
 
 void ProjectMPlugin::contextMenuEvent(QContextMenuEvent *)

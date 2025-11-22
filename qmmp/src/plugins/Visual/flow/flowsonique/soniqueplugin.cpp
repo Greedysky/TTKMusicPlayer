@@ -6,6 +6,12 @@
 #include <QScrollBar>
 #include <QBoxLayout>
 
+#if QT_VERSION >= QT_VERSION_CHECK(6,3,0)
+#  define QtAddAction(p, a, b, c, d) p->addAction(a, d, b, c)
+#else
+#  define QtAddAction(p, a, b, c, d) p->addAction(a, b, c, d)
+#endif
+
 SoniquePlugin::SoniquePlugin(QWidget *parent)
     : Visual(parent)
 {
@@ -43,11 +49,11 @@ SoniquePlugin::SoniquePlugin(QWidget *parent)
     m_menu = new QMenu(this);
     m_menu->addAction(m_screenAction);
     m_menu->addSeparator();
-    m_menu->addAction(tr("&Show Menu"), m_itemWidget, SLOT(setVisible(bool)), {"M"})->setCheckable(true);
+    QtAddAction(m_menu, tr("&Show Menu"), m_itemWidget, SLOT(setVisible(bool)), {"M"})->setCheckable(true);
     m_menu->addSeparator();
-    m_menu->addAction(tr("&Next Preset"), m_container, SLOT(nextPreset()), {"N"});
-    m_menu->addAction(tr("&Previous Preset"), m_container, SLOT(previousPreset()), {"P"});
-    m_menu->addAction(tr("&Random Preset"), m_container, SLOT(randomPreset()), {"R"});
+    QtAddAction(m_menu, tr("&Next Preset"), m_container, SLOT(nextPreset()), {"N"});
+    QtAddAction(m_menu, tr("&Previous Preset"), m_container, SLOT(previousPreset()), {"P"});
+    QtAddAction( m_menu, tr("&Random Preset"), m_container, SLOT(randomPreset()), {"R"});
 }
 
 void SoniquePlugin::contextMenuEvent(QContextMenuEvent *)
