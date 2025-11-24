@@ -5,7 +5,7 @@
 #include <msgqueue.h>
 #include <pnp.h>
 #include <Storemgr.h> //BLOCK_DRIVER_GUID
-#include <QtCore/QCoreApplication>
+#include <QCoreApplication>
 
 #ifdef UNICODE
 #  if TTK_QT_VERSION_CHECK(4,0,0)

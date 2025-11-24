@@ -69,8 +69,8 @@ void MusicWYTranslationRequest::downLoadFinished()
 
                     for(QString &ort : orts)
                     {
-                        const QRegExp regx("\\[.+\\]");
-                        const QString &prefix = (regx.indexIn(ort) != -1) ? regx.cap(0) : QString();
+                        TTKRegularExpression regx("\\[.+\\]");
+                        const QString &prefix = (regx.match(ort) != -1) ? regx.captured(0) : QString();
 
                         if(prefix.isEmpty())
                         {

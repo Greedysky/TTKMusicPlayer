@@ -1,4 +1,5 @@
 #include "musicplsconfigmanager.h"
+#include "ttkregularexpression.h"
 
 MusicPLSConfigManager::MusicPLSConfigManager()
     : MusicPlaylistRenderer()
@@ -23,29 +24,29 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
         return false;
     }
 
-    const QRegExp regx1("^File(\\d+)=(.+)");
-    const QRegExp regx2("^Length(\\d+)=(-{0,1}\\d+)");
+    TTKRegularExpression regx1("^File(\\d+)=(.+)");
+    TTKRegularExpression regx2("^Length(\\d+)=(-{0,1}\\d+)");
 
     bool error = false;
 
     for(const QString &line : qAsConst(data))
     {
-        if(regx1.indexIn(line) > -1)
+        if(regx1.match(line) > -1)
         {
-            if(regx1.cap(1).toInt() > 0)
+            if(regx1.captured(1).toInt() > 0)
             {
-                item.m_songs << MusicSong(regx1.cap(2));
+                item.m_songs << MusicSong(regx1.captured(2));
             }
             else
             {
                 error = true;
             }
         }
-        else if(regx2.indexIn(line) > -1)
+        else if(regx2.match(line) > -1)
         {
-            if(regx2.cap(1).toInt() > 0)
+            if(regx2.captured(1).toInt() > 0)
             {
-                item.m_songs.back().setDuration(TTKTime::formatDuration(regx2.cap(2).toInt() * TTK_DN_S2MS));
+                item.m_songs.back().setDuration(TTKTime::formatDuration(regx2.captured(2).toInt() * TTK_DN_S2MS));
             }
             else
             {

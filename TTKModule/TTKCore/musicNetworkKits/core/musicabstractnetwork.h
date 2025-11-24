@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 #include "ttkabstractnetwork.h"
+#include "ttkregularexpression.h"
 #include "musicnetworkthread.h"
 #include "musicnetworkdefines.h"
 #include "musicnumberutils.h"

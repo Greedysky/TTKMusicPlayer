@@ -19,10 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef QJSON_VALUEREF_H_
 #define QJSON_VALUEREF_H_
 
-#include <QtCore/QtGlobal>
+#include <QtGlobal>
 
 #if QT_VERSION >= 0x050000
-#include <QtCore/QJsonValueRef>
+#include <QJsonValueRef>
 #else
 
 #include "QJsonValue.h"

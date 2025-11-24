@@ -3,8 +3,8 @@
 
 //TODO: If wince works, use Q_OS_WIN
 #ifdef Q_OS_WIN32
-#include <QtCore/QStringList>
-#include <QtCore/QCoreApplication>
+#include <QStringList>
+#include <QCoreApplication>
 
 #undef _WIN32_WINNT
 #define _WIN32_WINNT 0x0500

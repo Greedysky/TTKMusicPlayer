@@ -23,8 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "QJsonArray.h"
 #include "QJsonObject.h"
 
-#include <QtCore/QtAlgorithms>
-#include <QtCore/qmath.h>
+#include <QtAlgorithms>
+#include <qmath.h>
 
 //------------------------------------------------------------------------------
 // Name: QJsonValue

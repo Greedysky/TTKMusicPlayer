@@ -19,15 +19,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef QJSON_ARRAY_H_
 #define QJSON_ARRAY_H_
 
-#include <QtCore/QtGlobal>
+#include <QtGlobal>
 
 #if QT_VERSION >= 0x050000
-#include <QtCore/QJsonArray>
+#include <QJsonArray>
 #else
 
 #include "QJsonRoot.h"
-#include <QtCore/QList>
-#include <QtCore/QVariantList>
+#include <QList>
+#include <QVariantList>
 
 class QJsonValue;
 class QJsonValueRef;

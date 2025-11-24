@@ -24,11 +24,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "QJsonArray.h"
 #include "QJsonParser.h"
 
-#include <QtCore/QStringList>
-#include <QtCore/QByteArray>
-#include <QtCore/QTextStream>
-#include <QtCore/QTextCodec>
-#include <QtCore/QtCore>
+#include <QStringList>
+#include <QByteArray>
+#include <QTextStream>
+#include <QTextCodec>
+#include <QtCore>
 
 //------------------------------------------------------------------------------
 // Name: QJsonDocument

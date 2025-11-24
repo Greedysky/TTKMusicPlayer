@@ -86,7 +86,11 @@ MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
     m_ui->applyButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->volumeLineEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+#if TTK_QT_VERSION_CHECK(5,1,0)
+    m_ui->volumeLineEdit->setValidator(new QRegularExpressionValidator(QRegularExpression("-?[0-9]+$"), this));
+#else
     m_ui->volumeLineEdit->setValidator(new QRegExpValidator(QRegExp("-?[0-9]+$"), this));
+#endif
 
     m_ui->progressBar->setStyleSheet(TTK::UI::ProgressBar01);
     m_ui->progressBarAll->setStyleSheet(TTK::UI::ProgressBar01);

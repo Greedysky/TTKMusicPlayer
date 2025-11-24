@@ -164,13 +164,13 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
     {
         case MusicAbstractQueryRequest::QueryServer::WY:
         {
-            const QRegExp regx("id=(\\d+)");
-            key = (regx.indexIn(url) != -1) ? regx.cap(1) : url;
+            TTKRegularExpression regx("id=(\\d+)");
+            key = (regx.match(url) != -1) ? regx.captured(1) : url;
             break;
         }
         case MusicAbstractQueryRequest::QueryServer::KW:
         {
-            QRegExp regx;
+            TTKRegularExpression regx;
             switch(type)
             {
                 case 1: regx.setPattern("id=(\\d+)"); break;
@@ -178,12 +178,12 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
                 default: regx.setPattern("/(\\d+)"); break;
             }
 
-            key = (regx.indexIn(url) != -1) ? regx.cap(1) : url;
+            key = (regx.match(url) != -1) ? regx.captured(1) : url;
             break;
         }
         case MusicAbstractQueryRequest::QueryServer::KG:
         {
-            QRegExp regx;
+            TTKRegularExpression regx;
             switch(type)
             {
                 case 0: regx.setPattern("hash=(\\w+)"); break;
@@ -191,7 +191,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
                 default: regx.setPattern("/(\\d+)"); break;
             }
 
-            key = (regx.indexIn(url) != -1) ? regx.cap(1) : url;
+            key = (regx.match(url) != -1) ? regx.captured(1) : url;
             break;
         }
         default: break;

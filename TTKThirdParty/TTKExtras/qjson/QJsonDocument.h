@@ -19,10 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef QJSON_DOCUMENT_H_
 #define QJSON_DOCUMENT_H_
 
-#include <QtCore/QtGlobal>
+#include <QtGlobal>
 
 #if QT_VERSION >= 0x050000
-#include <QtCore/QJsonDocument>
+#include <QJsonDocument>
 #else
 
 class QVariant;

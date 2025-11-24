@@ -19,19 +19,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef QJSON_OBJECT_H_
 #define QJSON_OBJECT_H_
 
-#include <QtCore/QtGlobal>
+#include <QtGlobal>
 
 #if QT_VERSION >= 0x050000
-#include <QtCore/QJsonObject>
+#include <QJsonObject>
 #else
 
 #include "QJsonRoot.h"
 #include "QJsonValueRef.h"
 #include "QJsonValue.h"
-#include <QtCore/QString>
-#include <QtCore/QStringList>
-#include <QtCore/QVariantMap>
-#include <QtCore/QMap>
+#include <QStringList>
+#include <QVariantMap>
+#include <QMap>
 
 class Q_DECL_EXPORT QJsonObject : public QJsonRoot {
 	friend class QJsonDocument;

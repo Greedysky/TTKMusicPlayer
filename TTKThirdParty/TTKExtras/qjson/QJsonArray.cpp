@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "QJsonValueRef.h"
 #include "QJsonValue.h"
-#include <QtCore/QStringList>
+#include <QStringList>
 
 //------------------------------------------------------------------------------
 // Name: QJsonArray

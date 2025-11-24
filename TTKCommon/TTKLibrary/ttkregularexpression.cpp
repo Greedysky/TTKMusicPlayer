@@ -1,12 +1,12 @@
 #include "ttkregularexpression.h"
 
-TTKRegularExpression::TTKRegularExpression(const QString &pattern)
+TTKRegularExpression::TTKRegularExpression(const QString &pattern, int option)
     : m_regular(pattern)
 #if TTK_QT_VERSION_CHECK(5,0,0) && !TTK_QT_VERSION_CHECK(5,1,0)
     , m_match(m_regular.match({}))
 #endif
 {
-
+    setPatternOptions(option);
 }
 
 QString TTKRegularExpression::pattern() const
@@ -17,6 +17,34 @@ QString TTKRegularExpression::pattern() const
 void TTKRegularExpression::setPattern(const QString &v)
 {
     m_regular.setPattern(v);
+}
+
+int TTKRegularExpression::patternOptions() const
+{
+    int option = PatternOption::NoPatternOption;
+    if(!isGreediness())
+    {
+        option |= PatternOption::InvertedGreedinessOption;
+    }
+
+    if(!isCaseSensitivity())
+    {
+        option |= PatternOption::CaseInsensitiveOption;
+    }
+    return option;
+}
+
+void TTKRegularExpression::setPatternOptions(const int option)
+{
+    if(option & PatternOption::InvertedGreedinessOption)
+    {
+        setGreediness(false);
+    }
+
+    if(option & PatternOption::CaseInsensitiveOption)
+    {
+        setCaseSensitivity(false);
+    }
 }
 
 bool TTKRegularExpression::hasMatch(const QString &str)
@@ -33,29 +61,9 @@ int TTKRegularExpression::match(const QString &str, int pos)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
     m_match = m_regular.match(str, pos);
-    return m_match.capturedEnd();
+    return m_match.capturedStart();
 #else
     return m_regular.indexIn(str, pos);
-#endif
-}
-
-bool TTKRegularExpression::greedinessOption() const
-{
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
-    return flags & QRegularExpression::InvertedGreedinessOption;
-#else
-    return m_regular.isMinimal();
-#endif
-}
-
-void TTKRegularExpression::setGreedinessOption(bool v)
-{
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
-    m_regular.setPatternOptions(v ? (flags | QRegularExpression::InvertedGreedinessOption) : (flags & ~QRegularExpression::InvertedGreedinessOption));
-#else
-    m_regular.setMinimal(v);
 #endif
 }
 
@@ -74,6 +82,46 @@ int TTKRegularExpression::capturedLength() const
     return m_match.capturedLength();
 #else
     return m_regular.matchedLength();
+#endif
+}
+
+bool TTKRegularExpression::isGreediness() const
+{
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
+    return !(flags & QRegularExpression::InvertedGreedinessOption);
+#else
+    return !m_regular.isMinimal();
+#endif
+}
+
+void TTKRegularExpression::setGreediness(bool v)
+{
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
+    m_regular.setPatternOptions(v ? (flags & ~QRegularExpression::InvertedGreedinessOption) : (flags | QRegularExpression::InvertedGreedinessOption));
+#else
+    m_regular.setMinimal(!v);
+#endif
+}
+
+bool TTKRegularExpression::isCaseSensitivity() const
+{
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
+    return !(flags & QRegularExpression::CaseInsensitiveOption);
+#else
+    return m_regular.caseSensitivity() == Qt::CaseSensitive;
+#endif
+}
+
+void TTKRegularExpression::setCaseSensitivity(bool v)
+{
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
+    m_regular.setPatternOptions(v ? (flags & ~QRegularExpression::CaseInsensitiveOption) : (flags | QRegularExpression::CaseInsensitiveOption));
+#else
+    m_regular.setCaseSensitivity(v ? Qt::CaseSensitive : Qt::CaseInsensitive);
 #endif
 }
 

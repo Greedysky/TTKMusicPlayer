@@ -29,14 +29,14 @@ void MusicBingTranslationRequest::startToRequest(const QString &data)
         if(!bytes.isEmpty())
         {
             {
-                const QRegExp regx("\"ig\"\\s?:\\s?\"(\\w+)\"");
-                ig = (regx.indexIn(bytes) != -1) ? regx.cap(1) : bytes;
+                TTKRegularExpression regx("\"ig\"\\s?:\\s?\"(\\w+)\"");
+                ig = (regx.match(bytes) != -1) ? regx.captured(1) : bytes;
             }
 
             {
-                QRegExp regx("params_AbusePreventionHelper\\s?=\\s?\\[(.+)\\]");
-                regx.setMinimal(true);
-                const QString &buffer = ((regx.indexIn(bytes) != -1) ? regx.cap(1) : QString());
+                TTKRegularExpression regx("params_AbusePreventionHelper\\s?=\\s?\\[(.+)\\]");
+                regx.setCaseSensitivity(false);
+                const QString &buffer = ((regx.match(bytes) != -1) ? regx.captured(1) : QString());
 
                 QJsonParseError ok;
                 const QJsonDocument &json = QJsonDocument::fromJson("[" + buffer.toUtf8() + "]", &ok);

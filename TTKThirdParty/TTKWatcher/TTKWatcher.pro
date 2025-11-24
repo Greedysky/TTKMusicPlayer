@@ -48,7 +48,6 @@ win32:msvc{
 }else{
     equals(QT_MAJOR_VERSION, 6){ #Qt6
         QMAKE_CXXFLAGS += -std=c++17
-        QT += core5compat
     }else{
         QMAKE_CXXFLAGS += -std=c++11
     }

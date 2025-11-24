@@ -202,6 +202,7 @@ void QKugouWindow::createWebViewer(Module type)
     }
 #else
     Q_UNUSED(d);
+    Q_UNUSED(type);
     QLabel *pix = new QLabel(this);
     pix->setAlignment(Qt::AlignCenter);
     pix->setPixmap(QPixmap(":/image/lb_no_module"));
@@ -286,6 +287,7 @@ void QKugouWindow::createKugouSongWidget(bool power)
     kugouSongIndexChanged(0);
 #else
     Q_UNUSED(d);
+    Q_UNUSED(power);
     QLabel *pix = new QLabel(this);
     pix->setAlignment(Qt::AlignCenter);
     pix->setPixmap(QPixmap(":/image/lb_no_module"));

@@ -1,4 +1,5 @@
 #include "musicm3uconfigmanager.h"
+#include "ttkregularexpression.h"
 
 MusicM3UConfigManager::MusicM3UConfigManager()
     : MusicPlaylistRenderer()
@@ -20,7 +21,7 @@ bool MusicM3UConfigManager::readBuffer(MusicSongItemList &items)
 
     int length = 0;
     bool valid = false;
-    const QRegExp regx("#EXTINF:(-{0,1}\\d+),(.*)");
+    TTKRegularExpression regx("#EXTINF:(-{0,1}\\d+),(.*)");
 
     for(QString str : qAsConst(data))
     {
@@ -30,9 +31,9 @@ bool MusicM3UConfigManager::readBuffer(MusicSongItemList &items)
             continue;
         }
 
-        if(regx.indexIn(str) > -1)
+        if(regx.match(str) > -1)
         {
-            length = regx.cap(1).toInt();
+            length = regx.captured(1).toInt();
             valid = true;
         }
 

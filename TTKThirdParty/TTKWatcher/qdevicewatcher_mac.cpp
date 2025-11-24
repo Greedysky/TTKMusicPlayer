@@ -1,5 +1,5 @@
 #include "qdevicewatcher_p.h"
-#include <QtCore/QStringList>
+#include <QStringList>
 
 #include <CoreServices/CoreServices.h>
 #include <IOKit/storage/IOCDMedia.h>

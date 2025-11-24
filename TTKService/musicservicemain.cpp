@@ -5,6 +5,7 @@
 #include "musicprocessmanager.h"
 #include "ttkinitialization.h"
 #include "ttkprocess.h"
+#include "ttkregularexpression.h"
 
 #ifdef Q_OS_LINUX
 #  include "musicmprisplayer.h"

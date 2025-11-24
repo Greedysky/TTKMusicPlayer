@@ -1,11 +1,11 @@
 #include "qdlnafileserver.h"
+#include "ttkregularexpression.h"
 
 #include "qhttpserver/qhttpserver.h"
 #include "qhttpserver/qhttprequest.h"
 #include "qhttpserver/qhttpresponse.h"
 
 #include <QFile>
-#include <QRegExp>
 #include <QNetworkInterface>
 
 /*! @brief The class of the dlna file server private.
@@ -81,12 +81,12 @@ void QDlnaFileServer::handleRequest(QHttpRequest *request, QHttpResponse *respon
         return;
     }
 
-    const QRegExp regx("^/music/(.*)$");
-    if(regx.indexIn(request->path()) != -1)
+    TTKRegularExpression regx("^/music/(.*)$");
+    if(regx.match(request->path()) != -1)
     {
         response->setHeader("Content-Type", "audio/mp3");
 
-        const QString &name = regx.cap(1);
+        const QString &name = regx.captured(1);
         QFile file(d->m_prefix + TTK_SEPARATOR + name);
         if(file.open(QIODevice::ReadOnly))
         {

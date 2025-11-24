@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QtCore/qglobal.h>
+#include <QtGlobal>
 #define CONFIG_SOCKETNOTIFIER 1
 #define CONFIG_TCPSOCKET 0  //QtNetwork
 
@@ -38,10 +38,10 @@
 #  define WIN32_LEAN_AND_MEAN
 #  include <qt_windows.h>
 #else
-#  include <QtCore/QBuffer>
+#  include <QBuffer>
 #endif //Q_OS_WIN
-#include <QtCore/QList>
-#include <QtCore/QThread>
+#include <QList>
+#include <QThread>
 #include "ttkprivate.h"
 
 class QDeviceWatcher;

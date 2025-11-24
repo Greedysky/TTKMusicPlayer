@@ -25,8 +25,8 @@ void MusicYDTranslationRequest::startToRequest(const QString &data)
         const QString &bytes = QString(TTK::syncNetworkQueryForGet(&request));
         if(!bytes.isEmpty())
         {
-            const QRegExp regx("sid\\:\\s\\'([0-9a-f\\.]+)");
-            sid = (regx.indexIn(bytes) != -1) ? regx.cap(1) : bytes;
+            TTKRegularExpression regx("sid\\:\\s\\'([0-9a-f\\.]+)");
+            sid = (regx.match(bytes) != -1) ? regx.captured(1) : bytes;
         }
     }
 

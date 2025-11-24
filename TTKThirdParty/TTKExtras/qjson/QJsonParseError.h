@@ -19,13 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef QJSON_PARSE_ERROR_H_
 #define QJSON_PARSE_ERROR_H_
 
-#include <QtCore/QtGlobal>
+#include <QtGlobal>
 
 #if QT_VERSION >= 0x050000
-#include <QtCore/QJsonParseError>
+#include <QJsonParseError>
 #else
 
-#include <QtCore/QString>
+#include <QString>
 
 class Q_DECL_EXPORT QJsonParseError {
 public:

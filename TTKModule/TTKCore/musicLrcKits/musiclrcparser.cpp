@@ -1,5 +1,6 @@
 #include "musiclrcparser.h"
 #include "ttkabstractxml.h"
+#include "ttkregularexpression.h"
 
 #include <QFile>
 #include <sys/stat.h>
@@ -107,7 +108,11 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
         if(file.open(QIODevice::WriteOnly))
         {
             QTextStream outstream(&file);
+#if TTK_QT_VERSION_CHECK(6,0,0)
+            outstream.setEncoding(QStringConverter::Utf8);
+#else
             outstream.setCodec("UTF-8");
+#endif
             outstream << m_data;
             outstream << QtNamespace(endl);
             file.close();
@@ -270,13 +275,13 @@ bool MusicLrcFromQrc::decode(const QString &input)
 
             for(QString &text : data.split(TTK_LINEFEED))
             {
-                const QRegExp regx("\\[(\\d+),\\d+\\]");
-                if(regx.indexIn(text) != -1)
+                TTKRegularExpression regx("\\[(\\d+),\\d+\\]");
+                if(regx.match(text) != -1)
                 {
-                    text.replace(regx, "[" + TTKTime::toString(regx.cap(1).toInt(), "mm:ss.zzz") + "]");
+                    text.replace(regx, "[" + TTKTime::toString(regx.captured(1).toInt(), "mm:ss.zzz") + "]");
                 }
 
-                text.remove(QRegExp("\\(\\d+,\\d+\\)"));
+                text.remove(TTKRegularExpression("\\(\\d+,\\d+\\)"));
                 m_data.append(text.toUtf8() + TTK_LINEFEED);
             }
         }
@@ -301,7 +306,7 @@ bool MusicLrcFromTrc::decode(const QString &input)
 
     for(QString &text : data.split(TTK_LINEFEED))
     {
-        text.remove(QRegExp("<\\d+>"));
+        text.remove(TTKRegularExpression("<\\d+>"));
         m_data.append(text.toUtf8() + TTK_LINEFEED);
     }
     return true;
@@ -329,13 +334,13 @@ bool MusicLrcFromYrc::decode(const QString &input)
             continue;
         }
 
-        const QRegExp regx("\\[(\\d+),\\d+\\]");
-        if(regx.indexIn(text) != -1)
+        TTKRegularExpression regx("\\[(\\d+),\\d+\\]");
+        if(regx.match(text) != -1)
         {
-            text.replace(regx, "[" + TTKTime::toString(regx.cap(1).toInt(), "mm:ss.zzz") + "]");
+            text.replace(regx, "[" + TTKTime::toString(regx.captured(1).toInt(), "mm:ss.zzz") + "]");
         }
 
-        text.remove(QRegExp("\\(\\d+,\\d+,\\d+\\)"));
+        text.remove(TTKRegularExpression("\\(\\d+,\\d+,\\d+\\)"));
         m_data.append(text.toUtf8() + TTK_LINEFEED);
     }
     return true;

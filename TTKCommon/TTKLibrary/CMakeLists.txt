@@ -135,7 +135,7 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "6")
   qt6_wrap_cpp(MOC_FILES ${HEADER_FILES})
   qt6_add_resources(RCC_FILES ${QRC_FILES})
 
-  list(APPEND QT_LINK_LIBS Qt6::Core Qt6::Xml Qt6::Network Qt6::Gui Qt6::Widgets Qt6::Core5Compat)
+  list(APPEND QT_LINK_LIBS Qt6::Core Qt6::Xml Qt6::Network Qt6::Gui Qt6::Widgets)
 endif()
 
 if(TTK_BUILD_SHARED)

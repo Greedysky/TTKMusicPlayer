@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QtCore/QObject>
-#include <QtCore/QEvent>
+#include <QObject>
+#include <QEvent>
 #include "ttkprivate.h"
 
 class QDeviceWatcherPrivate;

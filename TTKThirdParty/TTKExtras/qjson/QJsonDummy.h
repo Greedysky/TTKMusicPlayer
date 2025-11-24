@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef QJSON_DUMMY_H_
 #define QJSON_DUMMY_H_
 
-#include <QtCore/QtGlobal>
+#include <QtGlobal>
 
 #if QT_VERSION >= 0x050000 && defined Q_CC_MSVC
 class Q_DECL_EXPORT QJsonDummy

@@ -24,9 +24,6 @@ equals(QT_MAJOR_VERSION, 4){ #Qt4
 
 greaterThan(QT_MAJOR_VERSION, 4){ #Qt5
     QT += widgets multimedia
-    equals(QT_MAJOR_VERSION, 6){ #Qt6
-        QT += core5compat
-    }
 }
 
 include($$PWD/TTKVersion.pri)

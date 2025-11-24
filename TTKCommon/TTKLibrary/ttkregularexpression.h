@@ -32,11 +32,18 @@
 class TTK_MODULE_EXPORT TTKRegularExpression
 {
 public:
+    enum PatternOption
+    {
+        NoPatternOption          = 0x0000,
+        CaseInsensitiveOption    = 0x0001,
+        InvertedGreedinessOption = 0x0010,
+    };
+
     /*!
      * Object constructor.
      */
     TTKRegularExpression() = default;
-    explicit TTKRegularExpression(const QString &pattern);
+    explicit TTKRegularExpression(const QString &pattern, int option = NoPatternOption);
 
     /*!
      * Returns the pattern string of the regular expression.
@@ -47,6 +54,16 @@ public:
      */
     void setPattern(const QString &v);
 
+    /*!
+     * Returns the pattern options for the regular expression.
+     */
+    int patternOptions() const;
+    /*!
+     * Sets the given options as the pattern options of the regular expression.
+     */
+    void setPatternOptions(const int option);
+
+public:
     /*!
      * Returns true if the regular expression matched against the subject string, or false otherwise.
      */
@@ -67,16 +84,28 @@ public:
      */
     int capturedLength() const;
 
+public:
     /*!
      * Returns the greediness option.
      */
-    bool greedinessOption() const;
+    bool isGreediness() const;
 
     /*!
      * Set the greediness option.
      */
-    void setGreedinessOption(bool v);
+    void setGreediness(bool v);
 
+    /*!
+     * Returns the case sensitivity option.
+     */
+    bool isCaseSensitivity() const;
+
+    /*!
+     * Set the case sensitivity option.
+     */
+    void setCaseSensitivity(bool v);
+
+public:
     /*!
      * Escapes all characters of string.
      */

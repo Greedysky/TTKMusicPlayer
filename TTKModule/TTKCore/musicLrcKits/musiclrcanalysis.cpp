@@ -2,6 +2,7 @@
 #include "musiclrcparser.h"
 #include "musicapplication.h"
 #include "ttktime.h"
+#include "ttkregularexpression.h"
 
 #include <cmath>
 
@@ -31,7 +32,11 @@ void MusicLrcAnalysis::saveData()
     }
 
     QTextStream outstream(&file);
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    outstream.setEncoding(QStringConverter::Utf8);
+#else
     outstream.setCodec("UTF-8");
+#endif
     outstream << data;
     outstream << QtNamespace(endl);
     file.close();
@@ -158,23 +163,23 @@ MusicLrcAnalysis::State MusicLrcAnalysis::initialize()
 
 void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
 {
-    const QRegExp regx01("\\[\\d{2}:\\d{2}\\.\\d{3}\\]");
-    const QRegExp regx02("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");
-    const QRegExp regx03("\\[\\d{2}:\\d{2}\\.\\d{1}\\]");
-    const QRegExp regx04("\\[\\d{2}:\\d{2}:\\d{3}\\]");
-    const QRegExp regx05("\\[\\d{2}:\\d{2}:\\d{2}\\]");
-    const QRegExp regx06("\\[\\d{2}:\\d{2}:\\d{1}\\]");
-    const QRegExp regx07("\\[\\d{2}:\\d{2}\\]");
-    const QRegExp regx08("\\[\\d{2}\\.\\d{2}\\.\\d{3}\\]");
-    const QRegExp regx09("\\[\\d{2}\\.\\d{2}\\.\\d{2}\\]");
-    const QRegExp regx10("\\[\\d{2}\\.\\d{2}\\.\\d{1}\\]");
-    const QRegExp regx11("\\[\\d{2}\\.\\d{2}:\\d{3}\\]");
-    const QRegExp regx12("\\[\\d{2}\\.\\d{2}:\\d{2}\\]");
-    const QRegExp regx13("\\[\\d{2}\\.\\d{2}:\\d{1}\\]");
-    const QRegExp regx14("\\[\\d{2}\\.\\d{2}\\]");
+    TTKRegularExpression regx01("\\[\\d{2}:\\d{2}\\.\\d{3}\\]");
+    TTKRegularExpression regx02("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");
+    TTKRegularExpression regx03("\\[\\d{2}:\\d{2}\\.\\d{1}\\]");
+    TTKRegularExpression regx04("\\[\\d{2}:\\d{2}:\\d{3}\\]");
+    TTKRegularExpression regx05("\\[\\d{2}:\\d{2}:\\d{2}\\]");
+    TTKRegularExpression regx06("\\[\\d{2}:\\d{2}:\\d{1}\\]");
+    TTKRegularExpression regx07("\\[\\d{2}:\\d{2}\\]");
+    TTKRegularExpression regx08("\\[\\d{2}\\.\\d{2}\\.\\d{3}\\]");
+    TTKRegularExpression regx09("\\[\\d{2}\\.\\d{2}\\.\\d{2}\\]");
+    TTKRegularExpression regx10("\\[\\d{2}\\.\\d{2}\\.\\d{1}\\]");
+    TTKRegularExpression regx11("\\[\\d{2}\\.\\d{2}:\\d{3}\\]");
+    TTKRegularExpression regx12("\\[\\d{2}\\.\\d{2}:\\d{2}\\]");
+    TTKRegularExpression regx13("\\[\\d{2}\\.\\d{2}:\\d{1}\\]");
+    TTKRegularExpression regx14("\\[\\d{2}\\.\\d{2}\\]");
 
     Format type = Format::Type02;
-    QRegExp regx;
+    TTKRegularExpression regx;
     if(oneLine.contains(regx01))
     {
         type = Format::Type01;
@@ -248,10 +253,10 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
 
     QString temp = oneLine;
     temp.replace(regx, {});
-    int pos = regx.indexIn(oneLine);
+    int pos = regx.match(oneLine);
     while(pos != -1)
     {
-        const QString &cap = regx.cap(0);
+        const QString &cap = regx.captured(0);
         //Return zeroth expression matching the content
         //The time tag into the time value, in milliseconds
         switch(type)
@@ -273,26 +278,26 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
             default: break;
         }
 
-        pos += regx.matchedLength();
-        pos = regx.indexIn(oneLine, pos); //Matching all
+        pos += regx.capturedLength();
+        pos = regx.match(oneLine, pos); //Matching all
     }
 }
 
 void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, const QString &cap, const QString &first, const QString &second, const QString &third)
 {
-    QRegExp regx;
+    TTKRegularExpression regx;
     regx.setPattern(first);
-    regx.indexIn(cap);
+    regx.match(cap);
 
-    const int minutes = regx.cap(0).toInt();
+    const int minutes = regx.captured(0).toInt();
     regx.setPattern(second);
-    regx.indexIn(cap);
+    regx.match(cap);
 
-    const int seconds = regx.cap(0).toInt();
+    const int seconds = regx.captured(0).toInt();
     regx.setPattern(third);
-    regx.indexIn(cap);
+    regx.match(cap);
 
-    const int milliseconds = regx.cap(0).toInt();
+    const int milliseconds = regx.captured(0).toInt();
     const int length = QString::number(milliseconds).length();
     const qint64 totalTime = minutes * TTK_DN_M2MS + seconds * TTK_DN_S2MS + milliseconds * std::pow(10, 3 - length);
     m_lrcContainer.insert(totalTime, oneLine);
@@ -300,15 +305,15 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, const QString &cap, 
 
 void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, const QString &cap, const QString &first, const QString &second)
 {
-    QRegExp regx;
+    TTKRegularExpression regx;
     regx.setPattern(first);
-    regx.indexIn(cap);
+    regx.match(cap);
 
-    const int minutes = regx.cap(0).toInt();
+    const int minutes = regx.captured(0).toInt();
     regx.setPattern(second);
-    regx.indexIn(cap);
+    regx.match(cap);
 
-    const int seconds = regx.cap(0).toInt();
+    const int seconds = regx.captured(0).toInt();
     const qint64 totalTime = minutes * TTK_DN_M2MS + seconds * TTK_DN_S2MS;
     m_lrcContainer.insert(totalTime, oneLine);
 }

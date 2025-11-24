@@ -15,10 +15,12 @@
 #include <errno.h>
 #include <unistd.h>
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/qregexp.h>
+#if USE_REGEXP
+#  include <QRegExp>
+#endif
+#include <QCoreApplication>
 #if CONFIG_SOCKETNOTIFIER
-#  include <QtCore/QSocketNotifier>
+#  include <QSocketNotifier>
 #elif CONFIG_TCPSOCKET
 #  include <QtNetwork/QTcpSocket>
 #endif
@@ -203,10 +205,8 @@ bool QDeviceWatcherPrivate::initialize()
 void QDeviceWatcherPrivate::parseLine(const QByteArray &line)
 {
     qDebug("%s", line.constData());
-#define USE_REGEXP 0
 #if USE_REGEXP
     const QRegExp rx("(\\w+)(?:@/.*/block/.*/)(\\w+)\\W*");
-    //const QRegExp rx("(add|remove|change)@/.*/block/.*/(\\w+)\\W*");
     if (rx.indexIn(line) == -1)
         return;
     QString action_str = rx.cap(1).toLower();

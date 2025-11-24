@@ -1,6 +1,7 @@
 ﻿#include "musicfileutils.h"
 #include "musicwidgetheaders.h"
 #include "musicsettingmanager.h"
+#include "ttkregularexpression.h"
 
 #include <QDirIterator>
 
@@ -221,10 +222,10 @@ QString TTK::File::getSaveFileName(QWidget *parent, const QString &filter)
 
     if(!filters.isEmpty())
     {
-        const QRegExp regx("(?:^\\*\\.(?!.*\\()|\\(\\*\\.)(\\w+)");
-        if(regx.indexIn(selectFilter) != -1)
+        TTKRegularExpression regx("(?:^\\*\\.(?!.*\\()|\\(\\*\\.)(\\w+)");
+        if(regx.match(selectFilter) != -1)
         {
-            dialog.setDefaultSuffix(regx.cap(1));
+            dialog.setDefaultSuffix(regx.captured(1));
         }
     }
 
