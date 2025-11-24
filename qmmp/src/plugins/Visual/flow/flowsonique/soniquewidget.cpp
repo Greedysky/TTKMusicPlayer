@@ -2,10 +2,9 @@
 #include <qmmp/qmmp.h>
 
 #include <QDir>
-#include <QMenu>
+#include <QLibrary>
 #include <QPainter>
 #include <QDateTime>
-#include <QLibrary>
 
 typedef VisInfo* (*SoniqueModule)();
 

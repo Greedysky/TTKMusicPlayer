@@ -1,12 +1,12 @@
 #include "regularexpression.h"
 
-RegularExpression::RegularExpression(const QString &pattern)
+RegularExpression::RegularExpression(const QString &pattern, int option)
     : m_regular(pattern)
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0) && QT_VERSION < QT_VERSION_CHECK(5,1,0)
     , m_match(m_regular.match({}))
 #endif
 {
-
+    setPatternOptions(option);
 }
 
 QString RegularExpression::pattern() const
@@ -17,6 +17,34 @@ QString RegularExpression::pattern() const
 void RegularExpression::setPattern(const QString &v)
 {
     m_regular.setPattern(v);
+}
+
+int RegularExpression::patternOptions() const
+{
+    int option = PatternOption::NoPatternOption;
+    if(!isGreediness())
+    {
+        option |= PatternOption::InvertedGreedinessOption;
+    }
+
+    if(!isCaseSensitivity())
+    {
+        option |= PatternOption::CaseInsensitiveOption;
+    }
+    return option;
+}
+
+void RegularExpression::setPatternOptions(const int option)
+{
+    if(option & PatternOption::InvertedGreedinessOption)
+    {
+        setGreediness(false);
+    }
+
+    if(option & PatternOption::CaseInsensitiveOption)
+    {
+        setCaseSensitivity(false);
+    }
 }
 
 bool RegularExpression::hasMatch(const QString &str)
@@ -35,27 +63,7 @@ int RegularExpression::match(const QString &str, int pos)
     return m_regular.indexIn(str, pos);
 #else
     m_match = m_regular.match(str, pos);
-    return m_match.capturedEnd();
-#endif
-}
-
-bool RegularExpression::greedinessOption() const
-{
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-    return m_regular.isMinimal();
-#else
-    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
-    return flags & QRegularExpression::InvertedGreedinessOption;
-#endif
-}
-
-void RegularExpression::setGreedinessOption(bool v)
-{
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-    m_regular.setMinimal(v);
-#else
-    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
-    m_regular.setPatternOptions(v ? (flags | QRegularExpression::InvertedGreedinessOption) : (flags & ~QRegularExpression::InvertedGreedinessOption));
+    return m_match.capturedStart();
 #endif
 }
 
@@ -74,6 +82,46 @@ int RegularExpression::capturedLength() const
     return m_regular.matchedLength();
 #else
     return m_match.capturedLength();
+#endif
+}
+
+bool RegularExpression::isGreediness() const
+{
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+    return !m_regular.isMinimal();
+#else
+    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
+    return !(flags & QRegularExpression::InvertedGreedinessOption);
+#endif
+}
+
+void RegularExpression::setGreediness(bool v)
+{
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+    m_regular.setMinimal(!v);
+#else
+    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
+    m_regular.setPatternOptions(v ? (flags & ~QRegularExpression::InvertedGreedinessOption) : (flags | QRegularExpression::InvertedGreedinessOption));
+#endif
+}
+
+bool RegularExpression::isCaseSensitivity() const
+{
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+    return m_regular.caseSensitivity() == Qt::CaseSensitive;
+#else
+    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
+    return !(flags & QRegularExpression::CaseInsensitiveOption);
+#endif
+}
+
+void RegularExpression::setCaseSensitivity(bool v)
+{
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+    m_regular.setCaseSensitivity(v ? Qt::CaseSensitive : Qt::CaseInsensitive);
+#else
+    const QRegularExpression::PatternOptions flags = m_regular.patternOptions();
+    m_regular.setPatternOptions(v ? (flags & ~QRegularExpression::CaseInsensitiveOption) : (flags | QRegularExpression::CaseInsensitiveOption));
 #endif
 }
 
