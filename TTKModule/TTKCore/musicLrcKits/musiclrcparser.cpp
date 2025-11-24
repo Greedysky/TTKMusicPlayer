@@ -275,7 +275,7 @@ bool MusicLrcFromQrc::decode(const QString &input)
 
             for(QString &text : data.split(TTK_LINEFEED))
             {
-                TTKRegularExpression regx("\\[(\\d+),\\d+\\]");
+                static TTKRegularExpression regx("\\[(\\d+),\\d+\\]");
                 if(regx.match(text) != -1)
                 {
                     text.replace(regx, "[" + TTKTime::toString(regx.captured(1).toInt(), "mm:ss.zzz") + "]");
@@ -334,7 +334,7 @@ bool MusicLrcFromYrc::decode(const QString &input)
             continue;
         }
 
-        TTKRegularExpression regx("\\[(\\d+),\\d+\\]");
+        static TTKRegularExpression regx("\\[(\\d+),\\d+\\]");
         if(regx.match(text) != -1)
         {
             text.replace(regx, "[" + TTKTime::toString(regx.captured(1).toInt(), "mm:ss.zzz") + "]");

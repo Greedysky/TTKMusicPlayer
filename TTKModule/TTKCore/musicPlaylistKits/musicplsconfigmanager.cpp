@@ -24,8 +24,8 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
         return false;
     }
 
-    TTKRegularExpression regx1("^File(\\d+)=(.+)");
-    TTKRegularExpression regx2("^Length(\\d+)=(-{0,1}\\d+)");
+    static TTKRegularExpression regx1("^File(\\d+)=(.+)");
+    static TTKRegularExpression regx2("^Length(\\d+)=(-{0,1}\\d+)");
 
     bool error = false;
 

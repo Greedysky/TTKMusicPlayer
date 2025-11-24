@@ -163,20 +163,20 @@ MusicLrcAnalysis::State MusicLrcAnalysis::initialize()
 
 void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
 {
-    TTKRegularExpression regx01("\\[\\d{2}:\\d{2}\\.\\d{3}\\]");
-    TTKRegularExpression regx02("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");
-    TTKRegularExpression regx03("\\[\\d{2}:\\d{2}\\.\\d{1}\\]");
-    TTKRegularExpression regx04("\\[\\d{2}:\\d{2}:\\d{3}\\]");
-    TTKRegularExpression regx05("\\[\\d{2}:\\d{2}:\\d{2}\\]");
-    TTKRegularExpression regx06("\\[\\d{2}:\\d{2}:\\d{1}\\]");
-    TTKRegularExpression regx07("\\[\\d{2}:\\d{2}\\]");
-    TTKRegularExpression regx08("\\[\\d{2}\\.\\d{2}\\.\\d{3}\\]");
-    TTKRegularExpression regx09("\\[\\d{2}\\.\\d{2}\\.\\d{2}\\]");
-    TTKRegularExpression regx10("\\[\\d{2}\\.\\d{2}\\.\\d{1}\\]");
-    TTKRegularExpression regx11("\\[\\d{2}\\.\\d{2}:\\d{3}\\]");
-    TTKRegularExpression regx12("\\[\\d{2}\\.\\d{2}:\\d{2}\\]");
-    TTKRegularExpression regx13("\\[\\d{2}\\.\\d{2}:\\d{1}\\]");
-    TTKRegularExpression regx14("\\[\\d{2}\\.\\d{2}\\]");
+    static TTKRegularExpression regx01("\\[\\d{2}:\\d{2}\\.\\d{3}\\]");
+    static TTKRegularExpression regx02("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");
+    static TTKRegularExpression regx03("\\[\\d{2}:\\d{2}\\.\\d{1}\\]");
+    static TTKRegularExpression regx04("\\[\\d{2}:\\d{2}:\\d{3}\\]");
+    static TTKRegularExpression regx05("\\[\\d{2}:\\d{2}:\\d{2}\\]");
+    static TTKRegularExpression regx06("\\[\\d{2}:\\d{2}:\\d{1}\\]");
+    static TTKRegularExpression regx07("\\[\\d{2}:\\d{2}\\]");
+    static TTKRegularExpression regx08("\\[\\d{2}\\.\\d{2}\\.\\d{3}\\]");
+    static TTKRegularExpression regx09("\\[\\d{2}\\.\\d{2}\\.\\d{2}\\]");
+    static TTKRegularExpression regx10("\\[\\d{2}\\.\\d{2}\\.\\d{1}\\]");
+    static TTKRegularExpression regx11("\\[\\d{2}\\.\\d{2}:\\d{3}\\]");
+    static TTKRegularExpression regx12("\\[\\d{2}\\.\\d{2}:\\d{2}\\]");
+    static TTKRegularExpression regx13("\\[\\d{2}\\.\\d{2}:\\d{1}\\]");
+    static TTKRegularExpression regx14("\\[\\d{2}\\.\\d{2}\\]");
 
     Format type = Format::Type02;
     TTKRegularExpression regx;

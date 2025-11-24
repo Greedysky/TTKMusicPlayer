@@ -184,7 +184,7 @@ static QSize generateDPIValue()
     if(resource)
     {
         const QString data(resource);
-        TTKRegularExpression regx("Xft.dpi:\t(\\d+)");
+        static TTKRegularExpression regx("Xft.dpi:\t(\\d+)");
         if(regx.match(data) != -1)
         {
             dpi = regx.captured(1).toDouble();

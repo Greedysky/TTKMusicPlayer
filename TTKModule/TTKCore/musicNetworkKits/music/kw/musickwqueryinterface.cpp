@@ -152,7 +152,7 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
     if(!bytes.contains("res not found"))
     {
         const QString text(bytes);
-        TTKRegularExpression regx(".*url=(.*)\r\nsig=");
+        static TTKRegularExpression regx(".*url=(.*)\r\nsig=");
 
         if(regx.match(text) != -1)
         {

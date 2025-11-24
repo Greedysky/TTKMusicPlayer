@@ -34,19 +34,18 @@ void ReqKGInterface::parseFromMovieInfo(TTK::MusicSongInformation *info)
         return;
     }
 
-    TTKRegularExpression regx;
     const QString text(bytes);
 
-    regx.setPattern("mv_hash\\s?=\\s?\"([^\"]+)");
-    if(regx.match(text) != -1)
+    static TTKRegularExpression regx1("mv_hash\\s?=\\s?\"([^\"]+)");
+    if(regx1.match(text) != -1)
     {
-        info->m_songId = regx.captured(1);
+        info->m_songId = regx1.captured(1);
     }
 
-    regx.setPattern("mv_pic\\s?=\\s?\"([^\"]+)");
-    if(regx.match(text) != -1)
+    static TTKRegularExpression regx2("mv_pic\\s?=\\s?\"([^\"]+)");
+    if(regx2.match(text) != -1)
     {
-        info->m_coverUrl = regx.captured(1);
+        info->m_coverUrl = regx2.captured(1);
     }
 }
 

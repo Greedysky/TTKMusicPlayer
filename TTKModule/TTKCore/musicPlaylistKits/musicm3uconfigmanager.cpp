@@ -21,7 +21,7 @@ bool MusicM3UConfigManager::readBuffer(MusicSongItemList &items)
 
     int length = 0;
     bool valid = false;
-    TTKRegularExpression regx("#EXTINF:(-{0,1}\\d+),(.*)");
+    static TTKRegularExpression regx("#EXTINF:(-{0,1}\\d+),(.*)");
 
     for(QString str : qAsConst(data))
     {

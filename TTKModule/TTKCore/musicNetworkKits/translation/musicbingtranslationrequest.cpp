@@ -29,12 +29,12 @@ void MusicBingTranslationRequest::startToRequest(const QString &data)
         if(!bytes.isEmpty())
         {
             {
-                TTKRegularExpression regx("\"ig\"\\s?:\\s?\"(\\w+)\"");
+                static TTKRegularExpression regx("\"ig\"\\s?:\\s?\"(\\w+)\"");
                 ig = (regx.match(bytes) != -1) ? regx.captured(1) : bytes;
             }
 
             {
-                TTKRegularExpression regx("params_AbusePreventionHelper\\s?=\\s?\\[(.+)\\]");
+                static TTKRegularExpression regx("params_AbusePreventionHelper\\s?=\\s?\\[(.+)\\]");
                 regx.setCaseSensitivity(false);
                 const QString &buffer = ((regx.match(bytes) != -1) ? regx.captured(1) : QString());
 

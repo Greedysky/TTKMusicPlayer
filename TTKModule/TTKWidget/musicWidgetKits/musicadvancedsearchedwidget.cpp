@@ -164,7 +164,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
     {
         case MusicAbstractQueryRequest::QueryServer::WY:
         {
-            TTKRegularExpression regx("id=(\\d+)");
+            static TTKRegularExpression regx("id=(\\d+)");
             key = (regx.match(url) != -1) ? regx.captured(1) : url;
             break;
         }

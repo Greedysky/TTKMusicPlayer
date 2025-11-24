@@ -222,7 +222,7 @@ QString TTK::File::getSaveFileName(QWidget *parent, const QString &filter)
 
     if(!filters.isEmpty())
     {
-        TTKRegularExpression regx("(?:^\\*\\.(?!.*\\()|\\(\\*\\.)(\\w+)");
+        static TTKRegularExpression regx("(?:^\\*\\.(?!.*\\()|\\(\\*\\.)(\\w+)");
         if(regx.match(selectFilter) != -1)
         {
             dialog.setDefaultSuffix(regx.captured(1));

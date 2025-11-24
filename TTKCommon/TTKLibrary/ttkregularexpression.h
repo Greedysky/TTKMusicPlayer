@@ -42,7 +42,7 @@ public:
     /*!
      * Object constructor.
      */
-    TTKRegularExpression() = default;
+    TTKRegularExpression();
     explicit TTKRegularExpression(const QString &pattern, int option = NoPatternOption);
 
     /*!

@@ -81,7 +81,7 @@ void QDlnaFileServer::handleRequest(QHttpRequest *request, QHttpResponse *respon
         return;
     }
 
-    TTKRegularExpression regx("^/music/(.*)$");
+    static TTKRegularExpression regx("^/music/(.*)$");
     if(regx.match(request->path()) != -1)
     {
         response->setHeader("Content-Type", "audio/mp3");

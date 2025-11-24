@@ -1,5 +1,14 @@
 #include "ttkregularexpression.h"
 
+TTKRegularExpression::TTKRegularExpression()
+    : m_regular()
+#if TTK_QT_VERSION_CHECK(5,0,0) && !TTK_QT_VERSION_CHECK(5,1,0)
+    , m_match(m_regular.match({}))
+#endif
+{
+
+}
+
 TTKRegularExpression::TTKRegularExpression(const QString &pattern, int option)
     : m_regular(pattern)
 #if TTK_QT_VERSION_CHECK(5,0,0) && !TTK_QT_VERSION_CHECK(5,1,0)

@@ -99,7 +99,7 @@ TTKPlatformSystem::System TTKPlatformSystem::systemName()
     QFile file("/etc/lsb-release");
     if(file.open(QIODevice::ReadOnly))
     {
-        TTKRegularExpression regx("DISTRIB_ID=(\\w+)");
+        static TTKRegularExpression regx("DISTRIB_ID=(\\w+)");
         if(regx.match(QString(file.readAll())) != -1)
         {
             const QString &system = regx.captured(1).toLower();
