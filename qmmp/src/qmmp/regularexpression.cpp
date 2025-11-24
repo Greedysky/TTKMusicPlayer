@@ -1,5 +1,14 @@
 #include "regularexpression.h"
 
+RegularExpression::RegularExpression()
+    : m_regular()
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0) && QT_VERSION < QT_VERSION_CHECK(5,1,0)
+    , m_match(m_regular.match({}))
+#endif
+{
+
+}
+
 RegularExpression::RegularExpression(const QString &pattern, int option)
     : m_regular(pattern)
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0) && QT_VERSION < QT_VERSION_CHECK(5,1,0)

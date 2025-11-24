@@ -42,7 +42,7 @@ public:
     /*!
      * Object constructor.
      */
-    RegularExpression() = default;
+    RegularExpression();
     explicit RegularExpression(const QString &pattern, int option = NoPatternOption);
 
     /*!
