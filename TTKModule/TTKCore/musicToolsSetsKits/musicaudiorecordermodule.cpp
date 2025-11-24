@@ -33,20 +33,32 @@ MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)
     m_file->setFileName(TTK_RECORD_FILE);
 
     m_formatFile.setChannelCount(1);
-    m_formatFile.setSampleSize(16);
     m_formatFile.setSampleRate(8000);
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    m_formatFile.setSampleFormat(QAudioFormat::Int16);
+#else
+    m_formatFile.setSampleSize(16);
+    m_formatFile.setCodec("audio/pcm");
     m_formatFile.setSampleType(QAudioFormat::SignedInt);
     m_formatFile.setByteOrder(QAudioFormat::LittleEndian);
-    m_formatFile.setCodec("audio/pcm");
+#endif
 
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    const QAudioDevice input_info(QMediaDevices::defaultAudioInput());
+#else
     const QAudioDeviceInfo input_info(QAudioDeviceInfo::defaultInputDevice());
+#endif
     if(!input_info.isFormatSupported(m_formatFile))
     {
         TTK_WARN_STREAM("Input default format file not supported try to use nearest");
         m_formatFile = input_info.nearestFormat(m_formatFile);
     }
 
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    const QAudioDevice output_info(QMediaDevices::defaultAudioOutput());
+#else
     const QAudioDeviceInfo output_info(QAudioDeviceInfo::defaultOutputDevice());
+#endif
     if(!output_info.isFormatSupported(m_formatFile))
     {
         TTK_WARN_STREAM("Output default format file not supported - trying to use nearest");

@@ -1,6 +1,6 @@
 # Author: Greedysky <greedysky@163.com>
 
-name: win-mingw
+name: win7-mingw
 
 on: workflow_call
 

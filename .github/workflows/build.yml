@@ -2,8 +2,7 @@
 
 name: CI-Build
 
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
   ubuntu:
@@ -18,8 +17,8 @@ jobs:
     uses: ./.github/workflows/winXP-mingw.yml
     secrets: inherit
 
-  win-mingw:
-    uses: ./.github/workflows/win-mingw.yml
+  win7-mingw:
+    uses: ./.github/workflows/win7-mingw.yml
     secrets: inherit
 
   doxygen:

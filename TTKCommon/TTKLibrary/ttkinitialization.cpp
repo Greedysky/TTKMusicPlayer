@@ -91,7 +91,7 @@ TTKInitialization::~TTKInitialization()
 void TTKInitialization::generateFont()
 {
     QFont font = QApplication::font();
-    for(const QString &family : QFontDatabase().families())
+    for(const QString &family : QtFontFamilies())
     {
         if(family == "微软雅黑" ||
            family == QString::fromUtf8("微软雅黑") ||

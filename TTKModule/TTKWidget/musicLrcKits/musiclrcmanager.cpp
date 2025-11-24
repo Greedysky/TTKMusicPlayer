@@ -202,7 +202,7 @@ void MusicLrcManager::setFontFamily(int index)
         return;
     }
 
-    const QStringList &family = QFontDatabase().families(QFontDatabase::Any);
+    const QStringList &family = QtFontFamilies();
     if(!family.isEmpty())
     {
         if(index >= family.count())

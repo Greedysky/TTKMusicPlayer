@@ -25,7 +25,12 @@
 
 #include <QButtonGroup>
 #include <QFontDatabase>
-#include <QAudioDeviceInfo>
+#if TTK_QT_VERSION_CHECK(6,0,0)
+#  include <QAudioDevice>
+#  include <QMediaDevices>
+#else
+#  include <QAudioDeviceInfo>
+#endif
 
 static constexpr int SCROLL_ITEM_HEIGHT = 370;
 
@@ -964,7 +969,7 @@ void MusicSettingWidget::initDesktopLrcWidget()
     TTK::Widget::generateComboBoxStyle(m_ui->DfontTypeComboBox);
     TTK::Widget::generateComboBoxStyle(m_ui->DfontDefaultColorComboBox);
 
-    m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
+    m_ui->DfontComboBox->addItems(QtFontFamilies());
     m_ui->DfontSizeComboBox->addItems(MusicLrcHelper().desktopLrcSize());
     m_ui->DfontTypeComboBox->addItems({"1", "2", "3", "4"});
     m_ui->DfontDefaultColorComboBox->addItems({tr("DWhite"), tr("DBlue"), tr("DRed"), tr("DBlack"), tr("DYellow"), tr("DPurple"), tr("DGreen")});
@@ -1000,7 +1005,7 @@ void MusicSettingWidget::initInteriorLrcWidget()
     TTK::Widget::generateComboBoxStyle(m_ui->fontTypeComboBox);
     TTK::Widget::generateComboBoxStyle(m_ui->fontDefaultColorComboBox);
 
-    m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
+    m_ui->fontComboBox->addItems(QtFontFamilies());
     m_ui->fontSizeComboBox->addItems(MusicLrcHelper().interiorLrcSize());
     m_ui->fontTypeComboBox->addItems({"1", "2", "3", "4"});
     m_ui->fontDefaultColorComboBox->addItems({tr("Yellow"), tr("Blue"), tr("Gray"), tr("Pink"), tr("Green"), tr("Red"), tr("Purple"), tr("Orange"), tr("Indigo")});
@@ -1030,10 +1035,17 @@ void MusicSettingWidget::initInteriorLrcWidget()
 void MusicSettingWidget::initSoundEffectWidget()
 {
     TTK::Widget::generateComboBoxStyle(m_ui->outputTypeComboBox);
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    for(const QAudioDevice &device : QMediaDevices::audioInputs())
+    {
+        m_ui->outputTypeComboBox->addItem(device.description());
+    }
+#else
     for(const QAudioDeviceInfo &info : QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
     {
         m_ui->outputTypeComboBox->addItem(info.deviceName());
     }
+#endif
 
     m_ui->fadeInAndOutCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->fadeInAndOutCheckBox->setEnabled(false);

@@ -294,7 +294,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     QWidget *toolWidget = new QWidget(this);
     toolWidget->setFixedHeight(80);
     QPalette plt(palette());
-    plt.setColor(QPalette::Background, Qt::white);
+    plt.setColor(QPalette::Window, Qt::white);
     toolWidget->setAutoFillBackground(true);
     toolWidget->setPalette(plt);
 

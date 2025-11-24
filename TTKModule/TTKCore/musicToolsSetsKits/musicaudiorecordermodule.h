@@ -19,11 +19,16 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include "musicglobaldefine.h"
 #include <QFile>
 #include <QAudioInput>
 #include <QAudioOutput>
-#include <QAudioDeviceInfo>
-#include "musicglobaldefine.h"
+#if TTK_QT_VERSION_CHECK(6,0,0)
+#  include <QAudioDevice>
+#  include <QMediaDevices>
+#else
+#  include <QAudioDeviceInfo>
+#endif
 
 /*! @brief The class of the audio recorder core.
  * @author Greedysky <greedysky@163.com>

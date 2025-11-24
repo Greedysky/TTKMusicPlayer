@@ -9,7 +9,7 @@ MusicSongSearchDialog::MusicSongSearchDialog(QWidget *parent)
     resize(LEFT_SIDE_WIDTH_MIN, 35);
 
     QPalette plt(palette());
-    plt.setColor(QPalette::Background, QColor(255, 255, 225));
+    plt.setColor(QPalette::Window, QColor(255, 255, 225));
     setAutoFillBackground(true);
     setPalette(plt);
 

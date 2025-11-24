@@ -180,6 +180,13 @@ namespace QtCompat
 #else
 #  define QtKeyCombine(p) p
 #endif
+
+/// FontDatabase families
+#if TTK_QT_VERSION_CHECK(6,0,0)
+#  define QtFontFamilies() QFontDatabase::families()
+#else
+#  define QtFontFamilies() QFontDatabase().families()
+#endif
 }
 
 
