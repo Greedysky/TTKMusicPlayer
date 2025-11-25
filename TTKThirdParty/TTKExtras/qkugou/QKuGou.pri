@@ -31,7 +31,7 @@ win32{
 
     equals(QT_MAJOR_VERSION, 5){
         unix:!mac{
-            exists($$[QT_INSTALL_LIBS]/libQt5WebKit.so){
+            exists($$[QT_INSTALL_LIBS]/libQt5WebKitWidgets.so){
                 QT += webkit webkitwidgets
                 DEFINES += TTK_WEBKIT
                 TTK_WEB_MODULE = 2
@@ -39,7 +39,7 @@ win32{
 
             #5.6 or later use webengine
             greaterThan(QT_MINOR_VERSION, 5){
-                exists($$[QT_INSTALL_LIBS]/libQt5WebEngine.so){
+                exists($$[QT_INSTALL_LIBS]/libQt5WebEngineWidgets.so){
                     QT += webenginewidgets
                     DEFINES -= TTK_WEBKIT
                     DEFINES += TTK_WEBENGINE
@@ -49,7 +49,7 @@ win32{
         }
 
         mac{
-            exists($$[QT_INSTALL_LIBS]/libQt5WebKit.dylib){
+            exists($$[QT_INSTALL_LIBS]/libQt5WebKitWidgets.dylib){
                 QT += webkit webkitwidgets
                 DEFINES += TTK_WEBKIT
                 TTK_WEB_MODULE = 2
@@ -57,7 +57,33 @@ win32{
 
             #5.6 or later use webengine
             greaterThan(QT_MINOR_VERSION, 5){
-                exists($$[QT_INSTALL_LIBS]/libQt5WebEngine.dylib){
+                exists($$[QT_INSTALL_LIBS]/libQt5WebEngineWidgets.dylib){
+                    QT += webenginewidgets
+                    DEFINES -= TTK_WEBKIT
+                    DEFINES += TTK_WEBENGINE
+                    TTK_WEB_MODULE = 3
+                }
+            }
+        }
+    }
+
+    equals(QT_MAJOR_VERSION, 6){
+        unix:!mac{
+            #5.6 or later use webengine
+            greaterThan(QT_MINOR_VERSION, 5){
+                exists($$[QT_INSTALL_LIBS]/libQt6WebEngineWidgets.so){
+                    QT += webenginewidgets
+                    DEFINES -= TTK_WEBKIT
+                    DEFINES += TTK_WEBENGINE
+                    TTK_WEB_MODULE = 3
+                }
+            }
+        }
+
+        mac{
+            #5.6 or later use webengine
+            greaterThan(QT_MINOR_VERSION, 5){
+                exists($$[QT_INSTALL_LIBS]/libQt6WebEngineWidgets.dylib){
                     QT += webenginewidgets
                     DEFINES -= TTK_WEBKIT
                     DEFINES += TTK_WEBENGINE

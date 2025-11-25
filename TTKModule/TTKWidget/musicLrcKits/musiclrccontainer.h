@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include <QActionGroup>
 #include "musiclrcmanager.h"
 #include "musiclrcanalysis.h"
 #include "musicsettingmanager.h"

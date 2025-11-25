@@ -185,7 +185,14 @@ void MusicPlayedListPopWidget::insert(int playlistRow, int index, const MusicSon
         return;
     }
 
-    (index != m_songList.count()) ? m_songList.insert(index, song) : m_songList.append(song);
+    if(index == m_songList.count())
+    {
+        m_songList.append(song);
+    }
+    else
+    {
+        m_songList.insert(index, song);
+    }
     m_playlist->appendQueue(playlistRow, song.path());
 
     const int row = m_tableWidget->playRowIndex();
@@ -211,7 +218,14 @@ void MusicPlayedListPopWidget::insert(int playlistRow, int index, const MusicSon
     for(int i = songs.count() - 1; i >= 0; --i)
     {
         const MusicSong &song = songs[i];
-        (index != m_songList.count()) ? m_songList.insert(index, song) : m_songList.append(song);
+        if(index == m_songList.count())
+        {
+            m_songList.append(song);
+        }
+        else
+        {
+            m_songList.insert(index, song);
+        }
         m_playlist->appendQueue(playlistRow, song.path());
     }
 

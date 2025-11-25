@@ -19,15 +19,20 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicglobaldefine.h"
 #include <QFile>
-#include <QAudioInput>
-#include <QAudioOutput>
+#include "musicglobaldefine.h"
 #if TTK_QT_VERSION_CHECK(6,0,0)
-#  include <QAudioDevice>
+#  include <QAudioSource>
+#  include <QAudioSink>
 #  include <QMediaDevices>
+using QtAudioInput = QAudioSource;
+using QtAudioOutput = QAudioSink;
 #else
+#  include <QAudioInput>
+#  include <QAudioOutput>
 #  include <QAudioDeviceInfo>
+using QtAudioInput = QAudioInput;
+using QtAudioOutput = QAudioOutput;
 #endif
 
 /*! @brief The class of the audio recorder core.
@@ -86,8 +91,8 @@ private:
     int m_inputVolume;
     QFile *m_file;
     QAudioFormat m_formatFile;
-    QAudioInput *m_audioInputFile;
-    QAudioOutput *m_audioOutputFile;
+    QtAudioInput *m_audioInputFile;
+    QtAudioOutput *m_audioOutputFile;
 
 };
 

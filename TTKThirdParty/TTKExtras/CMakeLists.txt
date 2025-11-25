@@ -20,8 +20,8 @@ cmake_minimum_required(VERSION 3.18.0)
 
 project(TTKExtras)
 
-set(QT_WEBKIT_MODULE_NAME "libQt5WebKit")
-set(QT_WEBENGINE_MODULE_NAME "libQt5WebEngine")
+set(QT_WEBKIT_MODULE_NAME "libQt5WebKitWidgets")
+set(QT_WEBENGINE_MODULE_NAME "libQt5WebEngineWidgets")
 set(TTK_WEB_MODULE "0")
 
 macro(query_webkit MODULE)

@@ -34,40 +34,56 @@ MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)
 
     m_formatFile.setChannelCount(1);
     m_formatFile.setSampleRate(8000);
+
 #if TTK_QT_VERSION_CHECK(6,0,0)
     m_formatFile.setSampleFormat(QAudioFormat::Int16);
+
+    const QAudioDevice input_info(QMediaDevices::defaultAudioInput());
+    if(!input_info.isFormatSupported(m_formatFile))
+    {
+        TTK_WARN_STREAM("Input default format file not supported try to use preferred");
+        m_formatFile = input_info.preferredFormat();
+    }
+
+    const QAudioDevice output_info(QMediaDevices::defaultAudioOutput());
 #else
     m_formatFile.setSampleSize(16);
     m_formatFile.setCodec("audio/pcm");
     m_formatFile.setSampleType(QAudioFormat::SignedInt);
     m_formatFile.setByteOrder(QAudioFormat::LittleEndian);
-#endif
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-    const QAudioDevice input_info(QMediaDevices::defaultAudioInput());
-#else
     const QAudioDeviceInfo input_info(QAudioDeviceInfo::defaultInputDevice());
-#endif
     if(!input_info.isFormatSupported(m_formatFile))
     {
         TTK_WARN_STREAM("Input default format file not supported try to use nearest");
         m_formatFile = input_info.nearestFormat(m_formatFile);
     }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-    const QAudioDevice output_info(QMediaDevices::defaultAudioOutput());
-#else
     const QAudioDeviceInfo output_info(QAudioDeviceInfo::defaultOutputDevice());
 #endif
     if(!output_info.isFormatSupported(m_formatFile))
     {
-        TTK_WARN_STREAM("Output default format file not supported - trying to use nearest");
-        TTK_WARN_STREAM("Output no support input format file.");
+        TTK_WARN_STREAM("Output default format file not supported");
     }
 
-    if(m_formatFile.sampleSize() != 16)
+    int bit = 16;
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    switch(m_formatFile.sampleFormat())
     {
-        TTK_INFO_STREAM(QString("Audio device doesn't support 16 bit support %1 bit samples, example cannot run").arg(m_formatFile.sampleSize()));
+        case QAudioFormat::Unknown: bit = 0; break;
+        case QAudioFormat::UInt8: bit = 8; break;
+        case QAudioFormat::Int16: bit = 16; break;
+        case QAudioFormat::Int32: bit = 32; break;
+        case QAudioFormat::Float: bit = 32; break;
+        case QAudioFormat::NSampleFormats: bit = 0; break;
+        default: break;
+    }
+#else
+    bit = m_formatFile.sampleSize();
+#endif
+    if(bit != 16)
+    {
+        TTK_INFO_STREAM(QString("Audio device doesn't support 16 bit, support %1 bit samples").arg(bit));
     }
 }
 
@@ -201,7 +217,7 @@ void MusicAudioRecorderModule::onRecordStart()
 {
     if(!m_file->isOpen() && m_file->open(QIODevice::WriteOnly | QIODevice::Truncate))
     {
-        m_audioInputFile = new QAudioInput(m_formatFile, this);
+        m_audioInputFile = new QtAudioInput(m_formatFile, this);
     }
 
     if(!m_audioInputFile || m_audioInputFile->error() != QAudio::NoError)

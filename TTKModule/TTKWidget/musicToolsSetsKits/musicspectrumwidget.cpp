@@ -337,7 +337,7 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
         {
             QPluginLoader loader;
             loader.setFileName(TTK::TTKQmmp::pluginPath("Light", name));
-            const QObject *obj = loader.instance();
+            QObject *obj = loader.instance();
             LightFactory *factory = nullptr;
             if(obj && (factory = TTKObjectCast(LightFactory*, obj)))
             {

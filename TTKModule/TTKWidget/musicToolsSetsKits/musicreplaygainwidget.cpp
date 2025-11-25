@@ -122,7 +122,7 @@ void MusicReplayGainWidget::initialize()
 {
     QPluginLoader loader;
     loader.setFileName(TTK::TTKQmmp::pluginPath("Light", "lightreplaygain"));
-    const QObject *obj = loader.instance();
+    QObject *obj = loader.instance();
 
     LightFactory *factory = nullptr;
     if(obj && (factory = TTKObjectCast(LightFactory*, obj)))

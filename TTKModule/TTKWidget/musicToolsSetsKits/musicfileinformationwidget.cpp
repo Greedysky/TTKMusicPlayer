@@ -231,7 +231,7 @@ void MusicFileInformationWidget::downLoadFinished(const QString &bytes)
 
     if(!m_container)
     {
-        const QPoint &glbPos = m_ui->pixmapLabel->mapToGlobal({0, 0});
+        const QPoint &glbPos = m_ui->pixmapLabel->mapToGlobal(QPoint(0, 0));
 
         m_container = new QWidget;
         m_container->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::Window);
@@ -312,7 +312,7 @@ void MusicFileInformationWidget::mouseMoveEvent(QMouseEvent *event)
 
     if(m_container)
     {
-        const QPoint &glbPos = m_ui->pixmapLabel->mapToGlobal({0, 0});
+        const QPoint &glbPos = m_ui->pixmapLabel->mapToGlobal(QPoint(0, 0));
         m_container->setGeometry(QRect(glbPos, m_ui->pixmapLabel->size()));
     }
 }

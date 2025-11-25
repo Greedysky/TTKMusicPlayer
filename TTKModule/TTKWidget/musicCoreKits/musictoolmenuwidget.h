@@ -21,7 +21,7 @@
 
 #include <QMenu>
 #include <QToolButton>
-
+#include <QActionGroup>
 #include "musicuiobject.h"
 #include "musicglobaldefine.h"
 

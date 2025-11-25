@@ -20,10 +20,10 @@
 #define REGULAREXPRESSION_H
 
 #include "qmmp_export.h"
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-#  include <QRegularExpression>
-#else
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #  include <QRegExp>
+#else
+#  include <QRegularExpression>
 #endif
 
 /*! @brief The class of the regular expression.
@@ -32,11 +32,18 @@
 class QMMP_EXPORT RegularExpression
 {
 public:
+    enum PatternOption
+    {
+        NoPatternOption          = 0x0000,
+        CaseInsensitiveOption    = 0x0001,
+        InvertedGreedinessOption = 0x0010,
+    };
+
     /*!
      * Object constructor.
      */
-    RegularExpression() = default;
-    explicit RegularExpression(const QString &pattern);
+    RegularExpression();
+    explicit RegularExpression(const QString &pattern, int option = NoPatternOption);
 
     /*!
      * Returns the pattern string of the regular expression.
@@ -47,6 +54,16 @@ public:
      */
     void setPattern(const QString &v);
 
+    /*!
+     * Returns the pattern options for the regular expression.
+     */
+    int patternOptions() const;
+    /*!
+     * Sets the given options as the pattern options of the regular expression.
+     */
+    void setPatternOptions(const int option);
+
+public:
     /*!
      * Returns true if the regular expression matched against the subject string, or false otherwise.
      */
@@ -67,32 +84,45 @@ public:
      */
     int capturedLength() const;
 
+public:
     /*!
      * Returns the greediness option.
      */
-    bool greedinessOption() const;
+    bool isGreediness() const;
 
     /*!
      * Set the greediness option.
      */
-    void setGreedinessOption(bool v);
+    void setGreediness(bool v);
+
+    /*!
+     * Returns the case sensitivity option.
+     */
+    bool isCaseSensitivity() const;
+
+    /*!
+     * Set the case sensitivity option.
+     */
+    void setCaseSensitivity(bool v);
 
     /*!
      * Escapes all characters of string.
      */
     static QString escape(const QString &str);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+    const QRegExp &value() const;
+    operator QRegExp &();
+    operator const QRegExp &() const;
+private:
+    QRegExp m_regular;
+#else
+    const QRegularExpression &value() const;
     operator QRegularExpression &();
     operator const QRegularExpression &() const;
 private:
     QRegularExpression m_regular;
     QRegularExpressionMatch m_match;
-#else
-    operator QRegExp &();
-    operator const QRegExp &() const;
-private:
-    QRegExp m_regular;
 #endif
 
 };

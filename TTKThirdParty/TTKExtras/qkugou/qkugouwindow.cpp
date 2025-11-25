@@ -4,16 +4,14 @@
 #ifdef TTK_MINIBLINK
 #  include "miniblink/miniblink.h"
 #elif defined TTK_WEBKIT
-#  if TTK_QT_VERSION_CHECK(5,0,0)
-#    include <QtWebKitWidgets/QWebView>
-#    include <QtWebKitWidgets/QWebFrame>
-#  else
-#    include <QtWebKit/QWebView>
-#    include <QtWebKit/QWebFrame>
-#  endif
+#  include <QWebView>
+#  include <QWebFrame>
 #elif defined TTK_WEBENGINE
-#  include <QtWebEngineWidgets/QWebEngineView>
-#  include <QtWebEngineWidgets/QWebEngineSettings>
+#  include <QWebEngineView>
+#  include <QWebEngineSettings>
+#  if TTK_QT_VERSION_CHECK(6,0,0)
+#    include <QWebEngineProfile>
+#  endif
 #endif
 
 #include <QLabel>
@@ -64,7 +62,11 @@ QKugouWindow::QKugouWindow(Module type, QWidget *parent)
     settings->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
 #elif defined TTK_WEBENGINE
+#  if TTK_QT_VERSION_CHECK(6,0,0)
+    QWebEngineSettings *settings = QWebEngineProfile::defaultProfile()->settings();
+#  else
     QWebEngineSettings *settings = QWebEngineSettings::defaultSettings();
+#  endif
     settings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
     settings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, true);

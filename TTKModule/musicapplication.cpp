@@ -22,6 +22,7 @@
 #include "musictkplconfigmanager.h"
 #include "musicinputdialog.h"
 #include "ttkversion.h"
+
 #include "qalgorithm/aeswrapper.h"
 
 MusicApplication *MusicApplication::m_instance = nullptr;
@@ -1033,7 +1034,7 @@ void MusicApplication::closeEvent(QCloseEvent *event)
 
 void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 {
-    const int h = QtMouseY(event);
+    const int h = event->y();
     if(h < m_ui->topWidget->height() || h > height() - m_ui->bottomWidget->height())
     {
         TTKAbstractMoveResizeWidget::contextMenuEvent(event);

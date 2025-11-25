@@ -37,7 +37,7 @@ MusicIdentifySongWidget::MusicIdentifySongWidget(QWidget *parent)
     m_recordCore = new MusicAudioRecorderModule(this);
     m_networkRequest = new MusicXFIdentifyRequest(this);
 
-    QShortcut *cut = new QShortcut(Qt::SHIFT + Qt::CTRL + Qt::Key_T, this);
+    QShortcut *cut = new QShortcut(QtKeySequence(Qt::Key_T, Qt::SHIFT | Qt::CTRL), this);
     connect(cut, SIGNAL(activated()), SLOT(detectedButtonClicked()));
 
     createDetectedWidget();

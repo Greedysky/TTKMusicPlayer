@@ -5,8 +5,12 @@
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
 
-#include <QSound>
 #include <QProcess>
+#if TTK_QT_VERSION_CHECK(5,8,0)
+#  include <QSoundEffect>
+#else
+#  include <QSound>
+#endif
 
 static constexpr int LINE_WIDTH = 420;
 
@@ -143,7 +147,13 @@ void MusicTransformWidget::startTransform()
 
 void MusicTransformWidget::transformFinish()
 {
+#if TTK_QT_VERSION_CHECK(5,8,0)
+    QSoundEffect *sound = new QSoundEffect(this);
+    sound->setSource(QUrl::fromLocalFile(":/data/sound"));
+    sound->play();
+#else
     QSound::play(":/data/sound");
+#endif
 
     m_path.removeFirst();
     m_ui->listWidget->clear();
