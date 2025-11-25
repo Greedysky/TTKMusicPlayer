@@ -380,12 +380,12 @@ void TTKAbstractXml::writeAttribute(QDomElement &element, const TTKXmlAttr &attr
 {
     switch(QtVariantType(attr.m_value))
     {
-        case QVariant::Int: element.setAttribute(attr.m_key, attr.m_value.toInt()); break;
-        case QVariant::String: element.setAttribute(attr.m_key, attr.m_value.toString()); break;
-        case QVariant::LongLong: element.setAttribute(attr.m_key, attr.m_value.toLongLong()); break;
-        case QVariant::ULongLong: element.setAttribute(attr.m_key, attr.m_value.toULongLong()); break;
-        case QVariant::Double: element.setAttribute(attr.m_key, attr.m_value.toDouble()); break;
-        case QVariant::UInt: element.setAttribute(attr.m_key, attr.m_value.toUInt()); break;
+        case QMetaType::Int: element.setAttribute(attr.m_key, attr.m_value.toInt()); break;
+        case QMetaType::LongLong: element.setAttribute(attr.m_key, attr.m_value.toLongLong()); break;
+        case QMetaType::ULongLong: element.setAttribute(attr.m_key, attr.m_value.toULongLong()); break;
+        case QMetaType::Double: element.setAttribute(attr.m_key, attr.m_value.toDouble()); break;
+        case QMetaType::UInt: element.setAttribute(attr.m_key, attr.m_value.toUInt()); break;
+        case QMetaType::QString: element.setAttribute(attr.m_key, attr.m_value.toString()); break;
         default: break;
     }
 }

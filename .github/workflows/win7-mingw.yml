@@ -56,20 +56,6 @@ jobs:
           echo "${{env.MINGW_PATH}};" >> $env:GITHUB_PATH
         working-directory: ${{runner.workspace}}
 
-      - name: Install MSYS2
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: mingw${{matrix.arch}}
-          update: true
-          install: >-
-            p7zip
-            libtool
-            make
-            texinfo
-            autoconf
-            automake
-            pkg-config
-
       - name: Create thirdParty dir
         shell: bash
         run: mkdir -p ${{env.UNIX_QMMP_DEPS_PATH}}
@@ -97,7 +83,7 @@ jobs:
           # add dependency for openssl
           curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z -o openssl.7z
           7z x openssl.7z
-          cp win${{matrix.arch}}/*.dll bin/${{env.TTK_VERSION}}
+          cp win${{matrix.arch}}/v1/*.dll bin/${{env.TTK_VERSION}}
           # add dependency for global plugins
           curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-win.7z -o qmmp-gplugins-win.7z
           7z x qmmp-gplugins-win.7z

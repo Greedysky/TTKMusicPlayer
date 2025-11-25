@@ -89,7 +89,7 @@ TTKLogOutput::TTKLogOutput()
       m_module(TTK_STR_CAT(TTK_NAN_STR, TTK_DEFAULT_STR)),
       m_dateTime(TTK_DATE_FORMAT),
 #ifdef Q_OS_WIN
-      m_outputDir(QString::fromLocal8Bit(getenv("APPDATA")) + TTK_SEPARATOR + "ttk/"),
+      m_outputDir(QString::fromLocal8Bit(qgetenv("APPDATA")) + TTK_SEPARATOR + "ttk/"),
 #else
       m_outputDir(QDir::homePath() + TTK_SEPARATOR + ".config/ttk/"),
 #endif

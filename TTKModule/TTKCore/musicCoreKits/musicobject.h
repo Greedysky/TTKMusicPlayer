@@ -322,7 +322,7 @@ namespace TTK
     {
         const bool portable = QFile::exists(MAIN_DIR_FULL + "ttk_portable");
 #ifdef Q_OS_WIN
-        return (portable ? MAIN_DIR_FULL : QString::fromLocal8Bit(getenv("APPDATA")) + TTK_SEPARATOR) + "ttkmp/";
+        return (portable ? MAIN_DIR_FULL : QString::fromLocal8Bit(qgetenv("APPDATA")) + TTK_SEPARATOR) + "ttkmp/";
 #else
         return (portable ? MAIN_DIR_FULL : QDir::homePath() + TTK_SEPARATOR) + ".config/ttkmp/";
 #endif

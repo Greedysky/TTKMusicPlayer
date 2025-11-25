@@ -1,6 +1,6 @@
 # Author: Greedysky <greedysky@163.com>
 
-name: winXP-mingw
+name: win10-mingw
 
 on: workflow_call
 
@@ -10,16 +10,13 @@ env:
 
 jobs:
   build:
-    name: Build on Qt4
+    name: Build on Qt6
     strategy:
       matrix:
         os: [windows-2022]
 
     env:
-      QT_VERSION: 4.8.7
-      QT_ROOT_DIR: D:/a/TTKMusicPlayer/Qt/4.8.7
-      QT_BIN_DIR: D:/a/TTKMusicPlayer/Qt/4.8.7/bin
-      QT_LIB_DIR: D:/a/TTKMusicPlayer/Qt/4.8.7/lib
+      QT_VERSION: 6.9.3
       MINGW_PATH: D:/a/TTKMusicPlayer/mingw/bin
       WIN_QMMP_DEPS_PATH: D:/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
       UNIX_QMMP_DEPS_PATH: /d/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
@@ -31,22 +28,13 @@ jobs:
         working-directory: ${{runner.workspace}}
 
       - name: Install Qt
-        run: |
-          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/Qt4.7z -o Qt.7z
-          7z x Qt.7z -oQt
-          "[Paths]`nPrefix = ${{env.QT_ROOT_DIR}}" > ${{env.QT_BIN_DIR}}/qt.conf
-          echo "${{env.QT_BIN_DIR}};" >> $env:GITHUB_PATH
-        working-directory: ${{runner.workspace}}
-
-      - name: Install MinGW492_32
-        run: |
-          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/mingw492_32.7z -o mingw.7z
-          7z x mingw.7z -omingw
-          # remove default installed mingw64
-          mv C:\mingw64 C:\mingw64_useless
-          # set environment variable
-          echo "${{env.MINGW_PATH}};" >> $env:GITHUB_PATH
-        working-directory: ${{runner.workspace}}
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{env.QT_VERSION}}
+          host: windows
+          arch: win64_mingw
+          target: desktop
+          cache: 'true'
 
       - name: Create thirdParty dir
         shell: bash
@@ -55,16 +43,16 @@ jobs:
 
       - name: Install thirdParty dependencies
         run: |
-          curl -L https://github.com/Greedysky/TTKMusicPlayer/releases/download/continuous-build/thirdParty-libraries-win-mingw492-x86.7z -o thirdParty-libraries.7z
+          curl -L https://github.com/Greedysky/TTKMusicPlayer/releases/download/continuous-build/thirdParty-libraries-win-mingw10-x64.7z -o thirdParty-libraries.7z
           7z x thirdParty-libraries.7z
         working-directory: ${{github.workspace}}/extra
 
       - name: Build qmmp project
         run: |
           qmake -v
-          qmake -spec ${{env.QT_ROOT_DIR}}/mkspecs/win32-g++ "CONFIG+=release" .
-          mingw32-make -j2
-        working-directory: ${{github.workspace}}/qmmp
+          qmake "CONFIG+=release" qmmp
+          make -j2
+        working-directory: ${{github.workspace}}
 
       - name: Build qmmp package
         run: |
@@ -75,11 +63,11 @@ jobs:
           # add dependency for openssl
           curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z -o openssl.7z
           7z x openssl.7z
-          cp win32/v0/*.dll bin/${{env.TTK_VERSION}}
+          cp win${{matrix.arch}}/v1/*.dll bin/${{env.TTK_VERSION}}
           # add dependency for global plugins
           curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-win.7z -o qmmp-gplugins-win.7z
           7z x qmmp-gplugins-win.7z
-          mv GPlugins_x86 bin/${{env.TTK_VERSION}}/GPlugins
+          mv GPlugins_x64 bin/${{env.TTK_VERSION}}/GPlugins
           # remove useless qmmp demo bin
           rm bin/${{env.TTK_VERSION}}/demo.exe
           # copy ffmpeg libraries
@@ -93,8 +81,8 @@ jobs:
           cp ${{env.WIN_QMMP_DEPS_PATH}}/liboptimfrog/bin/libOptimFROG.dll bin/${{env.TTK_VERSION}}
           mv bin ${{runner.workspace}}/qmmp
           # add portable binary package
-          7z a qmmp-qt4-win-mingw492-x86.7z ${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}
-        working-directory: ${{github.workspace}}/qmmp
+          7z a qmmp-qt5-win-mingw1310-x64.7z ${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}
+        working-directory: ${{github.workspace}}
 
       - name: Archive artifacts
         uses: softprops/action-gh-release@v2
@@ -102,7 +90,7 @@ jobs:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{github.workspace}}/qmmp/qmmp-qt4-win-mingw492-x86.7z
+          files: ${{github.workspace}}/qmmp-qt5-win-mingw1310-x64.7z
 
       - name: Clean up qmmp build
         shell: bash
@@ -122,8 +110,8 @@ jobs:
       - name: Build ttk music player project
         run: |
           cmake --version
-          cmake ${{github.workspace}} -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DCMAKE_PREFIX_PATH=${{env.QT_ROOT_DIR}} -DTTK_QT_VERSION=4 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}/libTTKqmmp.a
-          mingw32-make -j2 && mingw32-make install
+          cmake ${{github.workspace}} -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DCMAKE_PREFIX_PATH=${{env.QT_ROOT_DIR}} -DTTK_QT_VERSION=6 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}/libTTKqmmp.a
+          make -j2 && make install
         working-directory: ${{runner.workspace}}/build
 
       - name: Build ttk music player package
@@ -131,31 +119,22 @@ jobs:
           # add dependency for qmmp library
           cp ${{runner.workspace}}/qmmp/${{env.TTK_VERSION}} ${{env.TTK_MODULE}} -Recurse -Container -Force
           # add dependency libraries and so on
-          cp ${{env.QT_ROOT_DIR}}/plugins/bearer ${{env.TTK_MODULE}}/${{env.TTK_VERSION}} -Recurse -Container -Force
-          cp ${{env.QT_ROOT_DIR}}/plugins/iconengines ${{env.TTK_MODULE}}/${{env.TTK_VERSION}} -Recurse -Container -Force
-          cp ${{env.QT_ROOT_DIR}}/plugins/imageformats ${{env.TTK_MODULE}}/${{env.TTK_VERSION}} -Recurse -Container -Force
-          cp ${{env.QT_BIN_DIR}}/QtCore4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtGui4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtMultimedia4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtNetwork4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtOpenGL4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtSvg4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtXml4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}
-          cp ${{env.MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
-          cp ${{env.MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}
-          cp ${{env.MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          windeployqt ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/TTKService.exe
+          cp ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/libstdc++-6.dll ${{env.TTK_MODULE}}
+          cp ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
+          cp ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/libgcc_s_seh-1.dll ${{env.TTK_MODULE}}
+          cp ${{env.QT_BIN_DIR}}/Qt6Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_BIN_DIR}}/Qt6Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
           # remove useless library dependency
           ls -Filter "*.a" -Recurse | Remove-Item -Force
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/translations -Recurse
         working-directory: ${{runner.workspace}}/install
 
       - name: Add output path for install package
         shell: bash
         run: |
           sed -i "11d" "${{github.workspace}}/TTKUtils/ttk.iss"
-          sed -i "11i#define OutputPath \"${{env.QT_ROOT_DIR}}/../../install/\"" "${{github.workspace}}/TTKUtils/ttk.iss"
+          sed -i "11i#define OutputPath \"${{env.MINGW_PATH}}/../../install/\"" "${{github.workspace}}/TTKUtils/ttk.iss"
         working-directory: ${{runner.workspace}}
 
       - name: Install Inno Setup 6
@@ -168,7 +147,7 @@ jobs:
         run: |
           # reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "${{runner.workspace}}/InnoSetup/iscc.exe" /t REG_SZ /d "WIN7RTM RUNASADMIN" /f
           ${{runner.workspace}}/InnoSetup/iscc.exe ${{github.workspace}}/TTKUtils/ttk.iss
-          mv v${{env.TTK_VERSION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-mingw-x86.exe
+          mv v${{env.TTK_VERSION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-win10-mingw-x64.exe
         working-directory: ${{runner.workspace}}/install
 
       - name: Build ttk music player portable package
@@ -177,7 +156,7 @@ jobs:
           cp ${{github.workspace}}/TTKUtils/ttk_portable ${{env.TTK_MODULE}}
           "便携模式运行 TTKMusicPlayer.exe`r`n删除 ttk_portable 禁用便携模式" > ${{env.TTK_MODULE}}/说明.txt
           # add portable binary package
-          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-mingw-x86.7z ${{env.TTK_MODULE}}
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-win10-mingw-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
       - name: Archive artifacts
@@ -187,5 +166,5 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
           files: |
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-mingw-x86.7z
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-mingw-x86.exe
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-win10-mingw-x64.7z
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-win10-mingw-x64.exe

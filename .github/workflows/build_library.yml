@@ -6,10 +6,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  ubuntu:
-    uses: ./.github/workflows/linux_library.yml
+  linux:
+    uses: ./.github/workflows/library_linux.yml
     secrets: inherit
 
   win:
-    uses: ./.github/workflows/win_library.yml
+    uses: ./.github/workflows/library_win.yml
     secrets: inherit

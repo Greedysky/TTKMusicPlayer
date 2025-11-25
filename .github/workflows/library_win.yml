@@ -1,6 +1,6 @@
 # Author: Greedysky <greedysky@163.com>
 
-name: win_library
+name: library_win
 
 on: workflow_call
 

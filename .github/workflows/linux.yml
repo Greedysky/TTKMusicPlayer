@@ -16,7 +16,7 @@ jobs:
         os: [ubuntu-22.04]
 
     env:
-      QT_VERSION: 5.9.9
+      QT_VERSION: 5.15.2
       QMMP_DEPS_PATH: ${{github.workspace}}/extra/gcc
 
     runs-on: ${{matrix.os}}
@@ -25,12 +25,6 @@ jobs:
         run: git clone -b plugins https://github.com/Greedysky/${{env.TTK_MODULE}}.git
         working-directory: ${{runner.workspace}}
 
-      - name: Cache Qt
-        uses: actions/cache@v4
-        with:
-          path: ${{runner.workspace}}/Qt
-          key: ${{runner.os}}-QtCache-${{env.QT_VERSION}}
-
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
@@ -38,6 +32,18 @@ jobs:
           target: desktop
           modules: qtwebengine
           cache: 'true'
+
+      - name: Add patch for Qt5.15.2
+        if: env.QT_VERSION == '5.15.2'
+        shell: bash
+        run: |
+          # fix missing <limits> include
+          # see QTBUG-89977 https://bugreports.qt.io/browse/QTBUG-89977
+          # see QTBUG-90395 https://bugreports.qt.io/browse/QTBUG-90395
+          # see QTBUG-93452 https://bugreports.qt.io/browse/QTBUG-93452
+          # see here https://codereview.qt-project.org/c/qt/qtbase/+/330713
+          sed -i "46i#include <limits>" "${{env.QT_ROOT_DIR}}/include/QtCore/qfloat16.h"
+        working-directory: ${{runner.workspace}}
 
       - name: Install linuxdeploy
         uses: miurahr/install-linuxdeploy-action@v1
@@ -149,7 +155,7 @@ jobs:
           # add dependency for openssl
           wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z
           7z x openssl.7z
-          cp linux64/* ${{env.TTK_MODULE}}/lib
+          cp linux64/v3/* ${{env.TTK_MODULE}}/lib
           # add portable binary package
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install

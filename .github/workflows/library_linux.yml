@@ -1,6 +1,6 @@
 # Author: Greedysky <greedysky@163.com>
 
-name: linux_library
+name: library_linux
 
 on: workflow_call
 
