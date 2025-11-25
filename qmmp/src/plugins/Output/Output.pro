@@ -16,7 +16,9 @@ unix:!mac{
 equals(QT_MAJOR_VERSION, 6){
     greaterThan(QT_MINOR_VERSION, 1){
         QT += qtmultimedia
+        SUBDIRS += qtmultimedia
     }
 }else{
     QT += qtmultimedia
+    SUBDIRS += qtmultimedia
 }

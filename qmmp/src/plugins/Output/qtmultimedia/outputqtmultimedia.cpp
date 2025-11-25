@@ -2,7 +2,6 @@
 
 #include <unistd.h>
 #include <QSettings>
-#include <QAudioFormat>
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 #  include <QAudioOutput>
 #  include <QAudioDeviceInfo>
@@ -33,15 +32,11 @@ bool OutputQtMultimedia::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFor
     QAudioFormat qformat;
     qformat.setSampleRate(freq);
     qformat.setChannelCount(map.size());
+
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     qformat.setCodec("audio/pcm");
     qformat.setSampleType(QAudioFormat::SignedInt);
-#endif
 
-    //Size of sample representation in input data. For 24-bit is 4, high byte is ignored.
-    const qint64 bytes_per_sample = AudioParameters::sampleSize(format);
-
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     QAudioFormat::Endian byteOrder = QAudioFormat::LittleEndian;
     switch(format)
     {
@@ -114,6 +109,9 @@ bool OutputQtMultimedia::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFor
     const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     const QString &saved_device_name = settings.value("QTMULTIMEDIA/device").toString();
 
+    //Size of sample representation in input data. For 24-bit is 4, high byte is ignored.
+    const qint64 bytes_per_sample = AudioParameters::sampleSize(format);
+
     m_bytes_per_second = bytes_per_sample * freq * qformat.channelCount();
 
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
@@ -145,28 +143,27 @@ bool OutputQtMultimedia::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFor
         }
     }
 
-    QString device_name;
     if(device_info.isNull())
     {
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
         device_info = QAudioDeviceInfo::defaultOutputDevice();
-        device_name = device_info.deviceName();
 #else
         device_info = QMediaDevices::defaultAudioOutput();
-        device_name = device_info.description();
 #endif
         if(!device_info.isFormatSupported(qformat))
             return false;
     }
 
-    qDebug("OutputQtMultimedia: Using output device: %s", qPrintable(device_name));
-
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     m_output = new QAudioOutput(device_info, qformat);
+    const QString &device_name = device_info.deviceName();
 #else
     m_output = new QAudioSink(device_info, qformat);
     m_output->setBufferSize(4096);
+    const QString &device_name = device_info.description();
 #endif
+    qDebug("OutputQtMultimedia: Using output device: %s", qPrintable(device_name));
+
     m_buffer = m_output->start();
     m_control = new OutputControl(m_output);
 
@@ -210,7 +207,7 @@ void OutputQtMultimedia::resume()
 }
 
 
-OutputControl::OutputControl(AudioOutput *o)
+OutputControl::OutputControl(QtAudioOutput *o)
     : m_output(o)
 {
 

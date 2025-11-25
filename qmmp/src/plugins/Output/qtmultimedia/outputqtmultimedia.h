@@ -31,10 +31,10 @@ class QIODevice;
 class OutputControl;
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 class QAudioOutput;
-using AudioOutput = QAudioOutput;
+using QtAudioOutput = QAudioOutput;
 #else
 class QAudioSink;
-using AudioOutput = QAudioSink;
+using QtAudioOutput = QAudioSink;
 #endif
 
 class OutputQtMultimedia : public Output
@@ -53,7 +53,7 @@ public:
     virtual void resume() override final;
 
 private:
-    AudioOutput *m_output = nullptr;
+    QtAudioOutput *m_output = nullptr;
     OutputControl *m_control = nullptr;
     QIODevice *m_buffer = nullptr;
     qint64 m_bytes_per_second = 0;
@@ -67,7 +67,7 @@ class OutputControl : public QObject
 {
     Q_OBJECT
 public:
-    explicit OutputControl(AudioOutput *o);
+    explicit OutputControl(QtAudioOutput *o);
 
 public slots:
     void suspend();
@@ -75,7 +75,7 @@ public slots:
     void stop();
 
 private:
-    AudioOutput *m_output;
+    QtAudioOutput *m_output;
 
 };
 

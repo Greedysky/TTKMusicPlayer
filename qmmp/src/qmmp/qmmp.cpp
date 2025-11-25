@@ -27,7 +27,7 @@ QString Qmmp::configDir()
         }
     }
 #ifdef Q_OS_WIN
-    return (portable ? path : QString::fromLocal8Bit(getenv("APPDATA")) + "/") + "ttkmp/";
+    return (portable ? path : QString::fromLocal8Bit(qgetenv("APPDATA")) + "/") + "ttkmp/";
 #else
     return (portable ? path : QDir::homePath() + "/") + ".config/ttkmp/";
 #endif
