@@ -28,11 +28,11 @@
 #define VECTORIZE_HINT 8
 
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-#  define QtMouseX(p) p->position().x()
-#  define QtMouseY(p) p->position().y()
+#  define QtPositionX(p) p->position().x()
+#  define QtPositionY(p) p->position().y()
 #else
-#  define QtMouseX(p) p->x()
-#  define QtMouseY(p) p->y()
+#  define QtPositionX(p) p->x()
+#  define QtPositionY(p) p->y()
 #endif
 
 /* copied from ardour3 */
@@ -608,7 +608,7 @@ void LightWaveForm::mousePressEvent(QMouseEvent *e)
 {
     if(e->button() == Qt::LeftButton)
     {
-        m_seekPos = QtMouseX(e);
+        m_seekPos = QtPositionX(e);
         update();
     }
 }
@@ -617,7 +617,7 @@ void LightWaveForm::mouseMoveEvent(QMouseEvent *e)
 {
     if(m_seekPos >= 0)
     {
-        m_seekPos = qBound(0, static_cast<int>(QtMouseX(e)), width());
+        m_seekPos = qBound(0, static_cast<int>(QtPositionX(e)), width());
         update();
     }
 }

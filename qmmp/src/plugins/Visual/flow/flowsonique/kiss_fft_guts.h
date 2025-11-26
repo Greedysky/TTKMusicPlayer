@@ -16,7 +16,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
    defines kiss_fft_scalar as either short or a float type
    and defines
    typedef struct { kiss_fft_scalar r; kiss_fft_scalar i; }kiss_fft_cpx; */
+
 #include "kiss_fft.h"
+
 #include <limits.h>
 
 #define MAXFACTORS 32
