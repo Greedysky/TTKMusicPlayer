@@ -18,8 +18,6 @@ jobs:
     env:
       QT_VERSION: 4.8.7
       QT_ROOT_DIR: D:/a/TTKMusicPlayer/Qt/4.8.7
-      QT_BIN_DIR: D:/a/TTKMusicPlayer/Qt/4.8.7/bin
-      QT_LIB_DIR: D:/a/TTKMusicPlayer/Qt/4.8.7/lib
       MINGW_PATH: D:/a/TTKMusicPlayer/mingw/bin
       WIN_QMMP_DEPS_PATH: D:/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
       UNIX_QMMP_DEPS_PATH: /d/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
@@ -34,8 +32,8 @@ jobs:
         run: |
           curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/Qt4.7z -o Qt.7z
           7z x Qt.7z -oQt
-          "[Paths]`nPrefix = ${{env.QT_ROOT_DIR}}" > ${{env.QT_BIN_DIR}}/qt.conf
-          echo "${{env.QT_BIN_DIR}};" >> $env:GITHUB_PATH
+          "[Paths]`nPrefix = ${{env.QT_ROOT_DIR}}" > ${{env.QT_ROOT_DIR}}/bin/qt.conf
+          echo "${{env.QT_ROOT_DIR}}/bin;" >> $env:GITHUB_PATH
         working-directory: ${{runner.workspace}}
 
       - name: Install MinGW492_32
@@ -134,13 +132,13 @@ jobs:
           cp ${{env.QT_ROOT_DIR}}/plugins/bearer ${{env.TTK_MODULE}}/${{env.TTK_VERSION}} -Recurse -Container -Force
           cp ${{env.QT_ROOT_DIR}}/plugins/iconengines ${{env.TTK_MODULE}}/${{env.TTK_VERSION}} -Recurse -Container -Force
           cp ${{env.QT_ROOT_DIR}}/plugins/imageformats ${{env.TTK_MODULE}}/${{env.TTK_VERSION}} -Recurse -Container -Force
-          cp ${{env.QT_BIN_DIR}}/QtCore4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtGui4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtMultimedia4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtNetwork4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtOpenGL4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtSvg4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/QtXml4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/QtCore4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/QtGui4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/QtMultimedia4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/QtNetwork4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/QtOpenGL4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/QtSvg4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/QtXml4.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
           cp ${{env.MINGW_PATH}}/libstdc++-6.dll ${{env.TTK_MODULE}}
           cp ${{env.MINGW_PATH}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
           cp ${{env.MINGW_PATH}}/libgcc_s_dw2-1.dll ${{env.TTK_MODULE}}

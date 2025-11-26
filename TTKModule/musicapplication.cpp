@@ -758,8 +758,8 @@ void MusicApplication::addSongToLovestList(bool state)
 
 void MusicApplication::windowConciseChanged()
 {
-    m_bottomAreaWidget->setWindowConcise();
-    m_topAreaWidget->setBackgroundAnimation(!G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool());
+    const bool v = m_bottomAreaWidget->setWindowConcise();
+    m_topAreaWidget->setBackgroundAnimation(!v);
 }
 
 void MusicApplication::enhancedSongChanged(int type)
@@ -1088,7 +1088,7 @@ void MusicApplication::mouseReleaseEvent(QMouseEvent *event)
 
 void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    if(!m_ui->background->isRunning() && QtMouseY(event) <= m_ui->topWidget->height() && !G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
+    if(!m_ui->background->isRunning() && QtPositionY(event) <= m_ui->topWidget->height() && !G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
         TTKAbstractMoveResizeWidget::mouseDoubleClickEvent(event);
         if(event->buttons() == Qt::LeftButton)
@@ -1252,6 +1252,7 @@ void MusicApplication::readSystemConfigFromFile()
     //Reset window concise
     if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
+        G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, false);
         windowConciseChanged();
     }
 

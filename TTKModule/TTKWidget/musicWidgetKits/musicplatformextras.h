@@ -40,20 +40,15 @@ public:
     ~MusicPlatformExtras();
 
     /*!
+     * Set current action state.
+     */
+    void setAction();
+    /*!
      * Set current play state.
      */
     void setCurrentPlayState(bool state) const;
-    /*!
-     * Enable or disable blur behind window.
-     */
-    void disableBlurBehindWindow(bool enabled);
-    /*!
-     * Get blur behind window state.
-     */
-    inline bool isDisableBlurBehindWindow() const noexcept { return m_disableBlurBehindWindow; }
 
 private:
-    bool m_disableBlurBehindWindow;
     MusicAbstractPlatformExtras *m_platformExtras;
 
 };

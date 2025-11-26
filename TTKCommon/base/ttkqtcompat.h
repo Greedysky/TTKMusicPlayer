@@ -138,19 +138,25 @@ namespace QtCompat
 #  define QtWheelDelta(p) p->delta()
 #endif
 
-/// Event mouse
+/// Event by position
 #if TTK_QT_VERSION_CHECK(6,0,0)
-#  define QtMouseX(p) p->position().x()
-#  define QtMouseY(p) p->position().y()
-#  define QtMouseGlobalX(p) p->globalPosition().x()
-#  define QtMouseGlobalY(p) p->globalPosition().y()
-#  define QtMouseGlobalPos(p) p->globalPosition().toPoint()
+#  define QtPosition(p) p->position().toPoint()
+#  define QtPositionF(p) p->position()
+#  define QtPositionX(p) p->position().x()
+#  define QtPositionY(p) p->position().y()
+#  define QtGlobalPosition(p) p->globalPosition().toPoint()
+#  define QtGlobalPositionF(p) p->globalPosition()
+#  define QtGlobalPositionX(p) p->globalPosition().x()
+#  define QtGlobalPositionY(p) p->globalPosition().y()
 #else
-#  define QtMouseX(p) p->x()
-#  define QtMouseY(p) p->y()
-#  define QtMouseGlobalX(p) p->globalX()
-#  define QtMouseGlobalY(p) p->globalY()
-#  define QtMouseGlobalPos(p) p->globalPos()
+#  define QtPosition(p) p->pos()
+#  define QtPositionF(p) p->pos()
+#  define QtPositionX(p) p->x()
+#  define QtPositionY(p) p->y()
+#  define QtGlobalPosition(p) p->globalPos()
+#  define QtGlobalPositionF(p) p->globalPos()
+#  define QtGlobalPositionX(p) p->globalX()
+#  define QtGlobalPositionY(p) p->globalY()
 #endif
 
 /// Event enter

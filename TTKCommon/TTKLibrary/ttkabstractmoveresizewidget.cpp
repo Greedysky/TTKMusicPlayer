@@ -70,7 +70,7 @@ void TTKAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)
         m_struct.m_windowPos = pos();
         if(QRect(DISTANCE + 1, DISTANCE + 1, width() - (DISTANCE + 1) * 2, height() - (DISTANCE + 1) * 2).contains(event->pos()))
         {
-            m_struct.m_mousePos = QtMouseGlobalPos(event);
+            m_struct.m_mousePos = QtGlobalPosition(event);
             m_struct.m_mouseLeftPressed = true;
         }
         else
@@ -87,7 +87,7 @@ void TTKAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
 
     if(m_struct.m_mouseLeftPressed)
     {
-        move(m_struct.m_windowPos + QtMouseGlobalPos(event) - m_struct.m_mousePos);
+        move(m_struct.m_windowPos + QtGlobalPosition(event) - m_struct.m_mousePos);
     }
 }
 

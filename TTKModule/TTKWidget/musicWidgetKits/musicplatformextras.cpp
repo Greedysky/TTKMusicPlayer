@@ -25,7 +25,7 @@ public:
 };
 
 #ifdef Q_OS_WIN
-#if TTK_QT_VERSION_CHECK(5,2,0)
+#if TTK_QT_VERSION_CHECK(5,2,0) && !TTK_QT_VERSION_CHECK(6,0,0)
 #  include <QtWinExtras/QtWinExtras>
 #endif
 
@@ -38,7 +38,7 @@ public:
     MusicWindowsExtras()
         : MusicAbstractPlatformExtras()
     {
-#if TTK_QT_VERSION_CHECK(5,2,0)
+#if TTK_QT_VERSION_CHECK(5,2,0) && !TTK_QT_VERSION_CHECK(6,0,0)
         m_playToolButton = nullptr;
         m_forwardToolButton = nullptr;
         m_backwardToolButton = nullptr;
@@ -51,7 +51,7 @@ public:
 
     ~MusicWindowsExtras()
     {
-#if TTK_QT_VERSION_CHECK(5,2,0)
+#if TTK_QT_VERSION_CHECK(5,2,0) && !TTK_QT_VERSION_CHECK(6,0,0)
         delete m_playToolButton;
         delete m_forwardToolButton;
         delete m_backwardToolButton;
@@ -64,7 +64,7 @@ public:
      */
     virtual void setCurrentStatus(bool status) override final
     {
-#if TTK_QT_VERSION_CHECK(5,2,0)
+#if TTK_QT_VERSION_CHECK(5,2,0) && !TTK_QT_VERSION_CHECK(6,0,0)
         const QStyle::StandardPixmap pix = status ? QStyle::SP_MediaPause : QStyle::SP_MediaPlay;
         m_playToolButton->setIcon(MusicApplication::instance()->style()->standardIcon(pix));
 #else
@@ -77,14 +77,14 @@ public:
      */
     virtual void action() override final
     {
-#if TTK_QT_VERSION_CHECK(5,2,0)
+#if TTK_QT_VERSION_CHECK(5,2,0) && !TTK_QT_VERSION_CHECK(6,0,0)
         QtWin::enableBlurBehindWindow(MusicApplication::instance());
         QtWin::disableBlurBehindWindow(MusicApplication::instance());
 #endif
     }
 
 private:
-#if TTK_QT_VERSION_CHECK(5,2,0)
+#if TTK_QT_VERSION_CHECK(5,2,0) && !TTK_QT_VERSION_CHECK(6,0,0)
     /*!
      * Create thumbnail toolBar.
      */
@@ -181,8 +181,7 @@ public:
 #endif
 
 MusicPlatformExtras::MusicPlatformExtras(QObject *parent)
-    : QObject(parent),
-      m_disableBlurBehindWindow(true)
+    : QObject(parent)
 {
 #ifdef Q_OS_WIN
     m_platformExtras = new MusicWindowsExtras;
@@ -198,13 +197,12 @@ MusicPlatformExtras::~MusicPlatformExtras()
     delete m_platformExtras;
 }
 
+void MusicPlatformExtras::setAction()
+{
+    m_platformExtras->action();
+}
+
 void MusicPlatformExtras::setCurrentPlayState(bool state) const
 {
     m_platformExtras->setCurrentStatus(state);
-}
-
-void MusicPlatformExtras::disableBlurBehindWindow(bool enabled)
-{
-    m_disableBlurBehindWindow = enabled;
-    m_platformExtras->action();
 }

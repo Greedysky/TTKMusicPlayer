@@ -93,7 +93,7 @@ public:
     /*!
      * Set window concise.
      */
-    void setWindowConcise();
+    bool setWindowConcise();
     /*!
      * Current is show full container.
      */

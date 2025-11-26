@@ -24,8 +24,6 @@ static const GUID GUID_DEVINTERFACE_USBSTOR = { 0xA5DCBF10L, 0x6530, 0x11D2, { 0
 static const GUID InterfaceClassGuid = GUID_DEVINTERFACE_USBSTOR;//(GUID)HID_CLASSGUID; //GUID_DEVINTERFACE_USBSTOR
 #endif //CONFIG_NOTIFICATION
 
-Q_CORE_EXPORT HINSTANCE qWinAppInst();
-
 static QStringList drivesFromMask(quint32 driveBits) //driveBits ->unitmask
 {
     QStringList ret;
@@ -163,7 +161,7 @@ static QString className()
 static HWND dw_create_internal_window(const void* userData)
 {
     QString className = ::className();
-    HINSTANCE hi = qWinAppInst();
+    HINSTANCE hi = GetModuleHandle(nullptr);
 
     WNDCLASSW wc;
     wc.style = 0;
@@ -225,7 +223,7 @@ static void dw_destroy_internal_window(HWND hwnd)
 #if CONFIG_NOTIFICATION
     UnregisterDeviceNotification(hDevNotify);
 #endif
-    UnregisterClassW(TTKReinterpretCast(const wchar_t *, className().utf16()), qWinAppInst());
+    UnregisterClassW(TTKReinterpretCast(const wchar_t *, className().utf16()), GetModuleHandle(nullptr));
 }
 
 

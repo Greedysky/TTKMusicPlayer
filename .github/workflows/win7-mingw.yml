@@ -26,7 +26,6 @@ jobs:
     env:
       QT_VERSION: 5.15.18
       QT_ROOT_DIR: D:/a/TTKMusicPlayer/Qt/5.15.18/mingw810_${{matrix.arch}}
-      QT_BIN_DIR: D:/a/TTKMusicPlayer/Qt/5.15.18/mingw810_${{matrix.arch}}/bin
       MINGW_PATH: D:/a/TTKMusicPlayer/mingw/bin
       WIN_QMMP_DEPS_PATH: D:/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
       UNIX_QMMP_DEPS_PATH: /d/a/TTKMusicPlayer/TTKMusicPlayer/extra/gcc
@@ -43,7 +42,7 @@ jobs:
           7z x Qt.7z -oQt
           mv Qt/5.15.18-shared Qt/5.15.18
           # set environment variable
-          echo "${{env.QT_BIN_DIR}};" >> $env:GITHUB_PATH
+          echo "${{env.QT_ROOT_DIR}}/bin;" >> $env:GITHUB_PATH
         working-directory: ${{runner.workspace}}
 
       - name: Install MinGW810_${{matrix.arch}}
@@ -143,10 +142,10 @@ jobs:
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/libstdc++-6.dll ${{env.TTK_MODULE}}
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/${{matrix.collection}}.dll ${{env.TTK_MODULE}}
-          cp ${{env.QT_BIN_DIR}}/Qt5Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/Qt5OpenGL.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/Qt5WinExtras.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/Qt5Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/Qt5Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/Qt5OpenGL.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/Qt5WinExtras.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/Qt5Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
           # remove useless library dependency
           ls -Filter "*.a" -Recurse | Remove-Item -Force
           rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/translations -Recurse

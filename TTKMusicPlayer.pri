@@ -47,10 +47,10 @@ mac{
 
 win32{
     LIBS += -lIphlpapi -lVersion
-    greaterThan(QT_MAJOR_VERSION, 4){
-         greaterThan(QT_MINOR_VERSION, 1):QT += winextras
-    }else{
-         QT += multimedia
+    equals(QT_MAJOR_VERSION, 4){
+        QT += multimedia
+    }else:equals(QT_MAJOR_VERSION, 5){
+        greaterThan(QT_MINOR_VERSION, 1):QT += winextras
     }
 
     msvc{

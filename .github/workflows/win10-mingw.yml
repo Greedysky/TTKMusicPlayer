@@ -37,6 +37,16 @@ jobs:
           modules: qtmultimedia
           cache: 'true'
 
+      - name: Install MinGW1310_64
+        run: |
+          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/mingw1310_64.7z -o mingw.7z
+          7z x mingw.7z -omingw
+          # remove default installed mingw64
+          mv C:\mingw64 C:\mingw64_useless
+          # set environment variable
+          echo "${{env.MINGW_PATH}};" >> $env:GITHUB_PATH
+        working-directory: ${{runner.workspace}}
+
       - name: Create thirdParty dir
         shell: bash
         run: mkdir -p ${{env.UNIX_QMMP_DEPS_PATH}}
@@ -52,7 +62,7 @@ jobs:
         run: |
           qmake -v
           qmake "CONFIG+=release" qmmp
-          make -j2
+          mingw32-make -j2
         working-directory: ${{github.workspace}}
 
       - name: Build qmmp package
@@ -64,7 +74,7 @@ jobs:
           # add dependency for openssl
           curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z -o openssl.7z
           7z x openssl.7z
-          cp win${{matrix.arch}}/v1/*.dll bin/${{env.TTK_VERSION}}
+          cp win64/v1/*.dll bin/${{env.TTK_VERSION}}
           # add dependency for global plugins
           curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/qmmp-gplugins-win.7z -o qmmp-gplugins-win.7z
           7z x qmmp-gplugins-win.7z
@@ -112,7 +122,7 @@ jobs:
         run: |
           cmake --version
           cmake ${{github.workspace}} -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DCMAKE_PREFIX_PATH=${{env.QT_ROOT_DIR}} -DTTK_QT_VERSION=6 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}/libTTKqmmp.a
-          make -j2 && make install
+          mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}/build
 
       - name: Build ttk music player package
@@ -124,8 +134,8 @@ jobs:
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/libstdc++-6.dll ${{env.TTK_MODULE}}
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/libwinpthread-1.dll ${{env.TTK_MODULE}}
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/libgcc_s_seh-1.dll ${{env.TTK_MODULE}}
-          cp ${{env.QT_BIN_DIR}}/Qt6Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
-          cp ${{env.QT_BIN_DIR}}/Qt6Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/Qt6Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/Qt6Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
           # remove useless library dependency
           ls -Filter "*.a" -Recurse | Remove-Item -Force
           rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/translations -Recurse

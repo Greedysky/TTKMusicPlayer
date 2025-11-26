@@ -116,10 +116,9 @@ void MusicBottomAreaWidget::showMessage(const QString &title, const QString &tex
     m_systemTray->showMessage(title, text);
 }
 
-void MusicBottomAreaWidget::setWindowConcise()
+bool MusicBottomAreaWidget::setWindowConcise()
 {
-    const bool concise = m_platformExtras->isDisableBlurBehindWindow();
-    G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, concise);
+    const bool concise = !G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
 
     m_ui->topRightWidget->setVisible(!concise);
     m_ui->centerRightWidget->setVisible(!concise);
@@ -194,7 +193,9 @@ void MusicBottomAreaWidget::setWindowConcise()
         m_ui->bottomCenterWidgetLayout->addWidget(m_ui->musicTimeWidget, 3, 0, 1, 6);
     }
 
-    m_platformExtras->disableBlurBehindWindow(!concise);
+    m_platformExtras->setAction();
+    G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, concise);
+    return concise;
 }
 
 bool MusicBottomAreaWidget::isLrcWidgetShowFullScreen() const
