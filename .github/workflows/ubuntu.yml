@@ -10,13 +10,24 @@ env:
 
 jobs:
   build:
-    name: Build on Qt5
+    name: Build on Qt${{matrix.qt_major}}(${{matrix.os}})
     strategy:
       matrix:
+        qt: [qt5, qt6]
         os: [ubuntu-22.04, ubuntu-24.04]
+        include:
+          - qt: qt5
+            qt_major: 5
+            qt_version: 5.15.2
+            qt_modules: qtwebengine
+
+          - qt: qt6
+            qt_major: 6
+            qt_version: 6.9.3
+            qt_modules: qtwebengine qtmultimedia
 
     env:
-      QT_VERSION: 5.15.2
+      QT_VERSION: ${{matrix.qt_version}}
       QMMP_DEPS_PATH: ${{github.workspace}}/extra/gcc
 
     runs-on: ${{matrix.os}}
@@ -30,7 +41,7 @@ jobs:
         with:
           version: ${{env.QT_VERSION}}
           target: desktop
-          modules: qtwebengine
+          modules: ${{matrix.qt_modules}}
           cache: 'true'
 
       - name: Add patch for Qt5.15.2
@@ -117,7 +128,7 @@ jobs:
       - name: Build ttk music player project
         run: |
           cmake --version
-          cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}/libTTKqmmp.so
+          cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=${{matrix.qt_major}} -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}/libTTKqmmp.so
           make -j2 && make install
         working-directory: ${{runner.workspace}}/build
 
@@ -147,13 +158,13 @@ jobs:
           7z x openssl.7z
           cp linux64/v3/* ${{env.TTK_MODULE}}/lib
           # add portable binary package
-          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-${{matrix.os}}-x64.7z ${{env.TTK_MODULE}}
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-${{matrix.os}}-${{matrix.qt}}-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
       - name: Build deb package
         run: |
           mv ${{env.TTK_MODULE}}/deploy/make_deb.sh .
-          sh make_deb.sh ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-${{matrix.os}}-x64
+          sh make_deb.sh ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-${{matrix.os}}-${{matrix.qt}}-x64
         working-directory: ${{runner.workspace}}/install
 
       - name: Archive artifacts
@@ -163,5 +174,5 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
           files: |
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-${{matrix.os}}-x64.7z
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-${{matrix.os}}-x64.deb
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-${{matrix.os}}-${{matrix.qt}}-x64.7z
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-${{matrix.os}}-${{matrix.qt}}-x64.deb

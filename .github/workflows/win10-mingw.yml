@@ -34,6 +34,7 @@ jobs:
           host: windows
           arch: win64_mingw
           target: desktop
+          modules: qtmultimedia
           cache: 'true'
 
       - name: Create thirdParty dir
@@ -43,7 +44,7 @@ jobs:
 
       - name: Install thirdParty dependencies
         run: |
-          curl -L https://github.com/Greedysky/TTKMusicPlayer/releases/download/continuous-build/thirdParty-libraries-win-mingw10-x64.7z -o thirdParty-libraries.7z
+          curl -L https://github.com/Greedysky/TTKMusicPlayer/releases/download/continuous-build/thirdParty-libraries-win-mingw1310-x64.7z -o thirdParty-libraries.7z
           7z x thirdParty-libraries.7z
         working-directory: ${{github.workspace}}/extra
 
@@ -81,7 +82,7 @@ jobs:
           cp ${{env.WIN_QMMP_DEPS_PATH}}/liboptimfrog/bin/libOptimFROG.dll bin/${{env.TTK_VERSION}}
           mv bin ${{runner.workspace}}/qmmp
           # add portable binary package
-          7z a qmmp-qt5-win-mingw1310-x64.7z ${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}
+          7z a qmmp-qt6-win-mingw1310-x64.7z ${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}
         working-directory: ${{github.workspace}}
 
       - name: Archive artifacts
@@ -90,7 +91,7 @@ jobs:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{github.workspace}}/qmmp-qt5-win-mingw1310-x64.7z
+          files: ${{github.workspace}}/qmmp-qt6-win-mingw1310-x64.7z
 
       - name: Clean up qmmp build
         shell: bash

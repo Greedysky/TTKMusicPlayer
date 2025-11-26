@@ -10,13 +10,24 @@ env:
 
 jobs:
   build:
-    name: Build on Qt5
+    name: Build on Qt${{matrix.qt_major}}(${{matrix.os}})
     strategy:
       matrix:
+        qt: [qt5, qt6]
         os: [ubuntu-22.04]
+        include:
+          - qt: qt5
+            qt_major: 5
+            qt_version: 5.15.2
+            qt_modules: qtwebengine
+
+          - qt: qt6
+            qt_major: 6
+            qt_version: 6.9.3
+            qt_modules: qtwebengine qtmultimedia
 
     env:
-      QT_VERSION: 5.15.2
+      QT_VERSION: ${{matrix.qt_version}}
       QMMP_DEPS_PATH: ${{github.workspace}}/extra/gcc
 
     runs-on: ${{matrix.os}}
@@ -30,7 +41,7 @@ jobs:
         with:
           version: ${{env.QT_VERSION}}
           target: desktop
-          modules: qtwebengine
+          modules: ${{matrix.qt_modules}}
           cache: 'true'
 
       - name: Add patch for Qt5.15.2
@@ -63,7 +74,7 @@ jobs:
 
       - name: Install thirdParty dependencies
         run: |
-          wget https://github.com/Greedysky/TTKMusicPlayer/releases/download/continuous-build/thirdParty-libraries-ubuntu-22.04-x64.7z -O thirdParty-libraries.7z
+          wget https://github.com/Greedysky/TTKMusicPlayer/releases/download/continuous-build/thirdParty-libraries-${{matrix.os}}-x64.7z -O thirdParty-libraries.7z
           7z x thirdParty-libraries.7z
         working-directory: ${{github.workspace}}/extra
 
@@ -99,7 +110,7 @@ jobs:
           cp ${{env.QMMP_DEPS_PATH}}/libttk/bin/uadecore bin/${{env.TTK_VERSION}}/GPlugins/config/uade
           mv bin ${{runner.workspace}}/qmmp
           # add portable binary package
-          7z a qmmp-qt5-linux-x64.7z ${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}
+          7z a qmmp-${{matrix.qt}}-linux-x64.7z ${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}
         working-directory: ${{github.workspace}}
 
       - name: Archive artifacts
@@ -108,7 +119,7 @@ jobs:
           tag_name: continuous-build
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
-          files: ${{github.workspace}}/qmmp-qt5-linux-x64.7z
+          files: ${{github.workspace}}/qmmp-${{matrix.qt}}-linux-x64.7z
 
       - name: Clean up qmmp build
         run: |
@@ -127,7 +138,7 @@ jobs:
       - name: Build ttk music player project
         run: |
           cmake --version
-          cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=5 -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}/libTTKqmmp.so
+          cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=${{matrix.qt_major}} -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}/libTTKqmmp.so
           make -j2 && make install
         working-directory: ${{runner.workspace}}/build
 
@@ -157,7 +168,7 @@ jobs:
           7z x openssl.7z
           cp linux64/v3/* ${{env.TTK_MODULE}}/lib
           # add portable binary package
-          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-x64.7z ${{env.TTK_MODULE}}
+          7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-${{matrix.qt}}-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install
 
       - name: Build appimage package
@@ -175,7 +186,7 @@ jobs:
           cd ..
           # add appimage binary package
           linuxdeploy-plugin-appimage-x86_64.AppImage --appdir=${{env.TTK_MODULE}}
-          mv ${{env.TTK_MODULE}}*.AppImage ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-x64.AppImage
+          mv ${{env.TTK_MODULE}}*.AppImage ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-${{matrix.qt}}-x64.AppImage
         working-directory: ${{runner.workspace}}/install
 
       - name: Archive artifacts
@@ -185,5 +196,5 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           generate_release_notes: false
           files: |
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-x64.7z
-            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-x64.AppImage
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-${{matrix.qt}}-x64.7z
+            ${{runner.workspace}}/install/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-linux-${{matrix.qt}}-x64.AppImage
