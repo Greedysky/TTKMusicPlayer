@@ -24,7 +24,7 @@ jobs:
           - qt: qt6
             qt_major: 6
             qt_version: 6.9.3
-            qt_modules: qtwebengine qtmultimedia
+            qt_modules: qtwebengine qtwebchannel qtimageformats qtmultimedia
 
     env:
       QT_VERSION: ${{matrix.qt_version}}
@@ -150,13 +150,17 @@ jobs:
             cp /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so ../lib
             cp /usr/lib/x86_64-linux-gnu/nss/libsoftokn3.so ../lib
           fi
-          cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/gcc_64/libexec/* .
-          cp ${{runner.workspace}}/Qt/${{env.QT_VERSION}}/gcc_64/resources/* .
+          cp ${{env.QT_ROOT_DIR}}/resources/* .
+          cp ${{env.QT_ROOT_DIR}}/libexec/QtWebEngineProcess .
           cd ../..
           # add dependency for openssl
           wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z
           7z x openssl.7z
           cp linux64/v3/* ${{env.TTK_MODULE}}/lib
+          # add missing OpenGLWidgets module
+          if [ ${{matrix.qt_major}} == "6" ]; then
+            cp ${{env.QT_ROOT_DIR}}/lib/libQt6OpenGLWidgets.so.${{env.QT_VERSION}} ${{env.TTK_MODULE}}/lib/libQt6OpenGLWidgets.so.6
+          fi
           # add portable binary package
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-${{matrix.os}}-${{matrix.qt}}-x64.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install

@@ -34,7 +34,7 @@ jobs:
           host: windows
           arch: win64_mingw
           target: desktop
-          modules: qtmultimedia
+          modules: qtmultimedia qtimageformats
           cache: 'true'
 
       - name: Install MinGW1310_64
@@ -138,6 +138,8 @@ jobs:
           cp ${{env.QT_ROOT_DIR}}/bin/Qt6Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
           # remove useless library dependency
           ls -Filter "*.a" -Recurse | Remove-Item -Force
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/D3D*.dll
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/opengl32sw.dll
           rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/translations -Recurse
         working-directory: ${{runner.workspace}}/install
 
