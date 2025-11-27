@@ -1,14 +1,11 @@
 include($$PWD/../../plugins.pri)
 
-unix:!mac{
-    equals(QT_MAJOR_VERSION, 4){
-        QMAKE_CXXFLAGS += -I/usr/include/QtMultimediaKit -I/usr/include/QtMobility
-        LIBS += -lQtMultimediaKit
-    }else{
-        QT += multimedia
-    }
+unix:!mac:equals(QT_MAJOR_VERSION, 4){
+    QMAKE_CXXFLAGS += -I/usr/include/QtMultimediaKit -I/usr/include/QtMobility
+    LIBS += -lQtMultimediaKit
+}else{
+    QT += multimedia
 }
-win32|mac:QT += multimedia
 
 DESTDIR = $$PLUGINS_PREFIX/Output
 
