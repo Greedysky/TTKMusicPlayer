@@ -24,7 +24,7 @@ jobs:
           - qt: qt6
             qt_major: 6
             qt_version: 6.9.3
-            qt_modules: qtwebengine qtwebchannel qtimageformats qtmultimedia
+            qt_modules: qtwebengine qtwebchannel qtpositioning qtimageformats qtmultimedia
 
     env:
       QT_VERSION: ${{matrix.qt_version}}

@@ -136,11 +136,20 @@ jobs:
           cp ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/libgcc_s_seh-1.dll ${{env.TTK_MODULE}}
           cp ${{env.QT_ROOT_DIR}}/bin/Qt6Xml.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
           cp ${{env.QT_ROOT_DIR}}/bin/Qt6Multimedia.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/Qt6OpenGL.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
+          cp ${{env.QT_ROOT_DIR}}/bin/Qt6OpenGLWidgets.dll ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}
           # remove useless library dependency
           ls -Filter "*.a" -Recurse | Remove-Item -Force
           rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/D3D*.dll
           rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/opengl32sw.dll
           rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/translations -Recurse
+          # remove ffmpeg backend module
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/avcodec-61.dll
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/avformat-61.dll
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/avutil-59.dll
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/swresample-5.dll
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/swscale-8.dll
+          rm ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/multimedia/ffmpegmediaplugin.dll
         working-directory: ${{runner.workspace}}/install
 
       - name: Add output path for install package
