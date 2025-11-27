@@ -23,7 +23,7 @@ equals(QT_MAJOR_VERSION, 4){ #Qt4
 }
 
 greaterThan(QT_MAJOR_VERSION, 4){ #Qt5
-    QT += widgets multimedia
+    QT += widgets
 }
 
 include($$PWD/TTKVersion.pri)
@@ -47,9 +47,7 @@ mac{
 
 win32{
     LIBS += -lIphlpapi -lVersion
-    equals(QT_MAJOR_VERSION, 4){
-        QT += multimedia
-    }else:equals(QT_MAJOR_VERSION, 5){
+    equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_MINOR_VERSION, 1):QT += winextras
     }
 
@@ -77,11 +75,6 @@ win32{
 }
 
 unix:!mac{
-    equals(QT_MAJOR_VERSION, 4){
-        QMAKE_CXXFLAGS += -I/usr/include/QtMultimediaKit -I/usr/include/QtMobility
-        LIBS += -lQtMultimediaKit
-    }
-
     QT += dbus
     equals(QT_MAJOR_VERSION, 6){ #Qt6
         QMAKE_CXXFLAGS += -std=c++17
@@ -93,8 +86,18 @@ unix:!mac{
     LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lttkzip -lzlib
 }
 
-mac{
-    QT += multimedia
+#qt multimedia
+equals(QT_MAJOR_VERSION, 6){
+    greaterThan(QT_MINOR_VERSION, 1){
+        QT += multimedia
+    }
+}else{
+    unix:!mac:equals(QT_MAJOR_VERSION, 4){
+        QMAKE_CXXFLAGS += -I/usr/include/QtMultimediaKit -I/usr/include/QtMobility
+        LIBS += -lQtMultimediaKit
+    }else{
+        QT += multimedia
+    }
 }
 
 DEFINES += TTK_LIBRARY QMMP_LIBRARY
