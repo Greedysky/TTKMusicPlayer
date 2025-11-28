@@ -5,7 +5,7 @@
 #include <QAbstractButton>
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 #  include <QAudioDeviceInfo>
-#else
+#elif QT_VERSION >= QT_VERSION_CHECK(6,2,0)
 #  include <QAudioDevice>
 #  include <QMediaDevices>
 #endif
@@ -38,7 +38,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     const QList<QAudioDevice> &devices = QMediaDevices::audioOutputs();
     for(const QAudioDevice &info : devices)
     {
-        const QString &device_name = info.id();
+        const QString &device_name = info.description();
 #endif
         m_ui.deviceComboBox->addItem(device_name);
         if(device_name == default_device)

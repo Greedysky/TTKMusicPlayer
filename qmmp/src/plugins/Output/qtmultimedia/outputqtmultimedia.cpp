@@ -5,7 +5,7 @@
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 #  include <QAudioOutput>
 #  include <QAudioDeviceInfo>
-#else
+#elif QT_VERSION >= QT_VERSION_CHECK(6,2,0)
 #  include <QAudioSink>
 #  include <QMediaDevices>
 #endif

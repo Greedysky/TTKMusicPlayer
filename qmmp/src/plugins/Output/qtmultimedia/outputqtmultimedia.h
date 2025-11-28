@@ -32,7 +32,7 @@ class OutputControl;
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 class QAudioOutput;
 using QtAudioOutput = QAudioOutput;
-#else
+#elif QT_VERSION >= QT_VERSION_CHECK(6,2,0)
 class QAudioSink;
 using QtAudioOutput = QAudioSink;
 #endif
