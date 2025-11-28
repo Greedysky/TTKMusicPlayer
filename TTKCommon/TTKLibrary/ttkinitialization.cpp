@@ -27,6 +27,17 @@ bool qEnvironmentVariableIsSet(const char *v) noexcept
 }
 #endif
 
+static QString message(const TTK::Attribute attr)
+{
+    QStringList data;
+    if(attr & TTK::Attribute::UseLog) data << "UseLog";
+    if(attr & TTK::Attribute::ScaleFactor) data << "ScaleFactor";
+    if(attr & TTK::Attribute::UseXCB) data << "UseXCB";
+    if(attr & TTK::Attribute::DisbaleFFmpeg) data << "DisbaleFFmpeg";
+
+    return "(" + data.join(",") + ")";
+}
+
 void TTK::initialize(TTK::Attribute attr)
 {
     if(attr & TTK::Attribute::UseLog)
@@ -36,7 +47,7 @@ void TTK::initialize(TTK::Attribute attr)
         TTK::installLogHandler();
     }
 
-    TTK_INFO_STREAM("TTK Application start, flag value is" << attr);
+    TTK_INFO_STREAM("TTK Application start, flag value is" << message(attr));
 
     if(attr & TTK::Attribute::ScaleFactor)
     {
@@ -64,6 +75,21 @@ void TTK::initialize(TTK::Attribute attr)
         {
             qputenv("QT_QPA_PLATFORM", "xcb");
         }
+    }
+#endif
+
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    if(attr & TTK::Attribute::DisbaleFFmpeg)
+    {
+#ifdef Q_OS_WIN
+        qputenv("QT_MEDIA_BACKEND", "windows");
+#elif defined Q_OS_UNIX
+        qputenv("QT_MEDIA_BACKEND", "gstreamer");
+#elif defined Q_OS_MAC
+        qputenv("QT_MEDIA_BACKEND", "darwin");
+#else
+        qputenv("QT_MEDIA_BACKEND", "android");
+#endif
     }
 #endif
 }

@@ -29,10 +29,11 @@ namespace TTK
 {
     enum Attribute
     {
-        UseLog = 0x01,      /*!< Use log option */
-        ScaleFactor = 0x02, /*!< Use scale factor option */
-        UseXCB = 0x04,      /*!< Use xcb (x11 only) option */
-        All = 0x07,         /*!< Use all option */
+        UseLog = 0x0001,        /*!< Use log option */
+        ScaleFactor = 0x0002,   /*!< Use scale factor option */
+        UseXCB = 0x0004,        /*!< Use xcb (x11 only) option */
+        DisbaleFFmpeg = 0x0008, /*!< Use ffmpeg backend option */
+        All = 0x000F,           /*!< Use all option */
     };
 
     /*!
