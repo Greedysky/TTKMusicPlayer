@@ -25,10 +25,10 @@
 
 #include <QButtonGroup>
 #include <QFontDatabase>
-#if TTK_QT_VERSION_CHECK(6,0,0)
+#if TTK_QT_VERSION_CHECK(6,2,0)
 #  include <QAudioDevice>
 #  include <QMediaDevices>
-#else
+#elif !TTK_QT_VERSION_CHECK(6,0,0)
 #  include <QAudioDeviceInfo>
 #endif
 
@@ -1035,12 +1035,12 @@ void MusicSettingWidget::initInteriorLrcWidget()
 void MusicSettingWidget::initSoundEffectWidget()
 {
     TTK::Widget::generateComboBoxStyle(m_ui->outputTypeComboBox);
-#if TTK_QT_VERSION_CHECK(6,0,0)
+#if TTK_QT_VERSION_CHECK(6,2,0)
     for(const QAudioDevice &device : QMediaDevices::audioInputs())
     {
         m_ui->outputTypeComboBox->addItem(device.description());
     }
-#else
+#elif !TTK_QT_VERSION_CHECK(6,0,0)
     for(const QAudioDeviceInfo &info : QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
     {
         m_ui->outputTypeComboBox->addItem(info.deviceName());

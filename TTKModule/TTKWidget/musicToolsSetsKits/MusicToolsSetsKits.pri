@@ -26,7 +26,6 @@ HEADERS += \
     $$PWD/musicfileinformationwidget.h \
     $$PWD/musicreplaygainwidget.h \
     $$PWD/musicsongringtonemakerwidget.h \
-    $$PWD/musicidentifysongwidget.h \
     $$PWD/musicnetworkconnectiontestwidget.h \
     $$PWD/musicsongchecktoolswidget.h \
     $$PWD/musicsongchecktoolstablewidget.h \
@@ -44,7 +43,6 @@ SOURCES += \
     $$PWD/musicfileinformationwidget.cpp \
     $$PWD/musicreplaygainwidget.cpp \
     $$PWD/musicsongringtonemakerwidget.cpp \
-    $$PWD/musicidentifysongwidget.cpp \
     $$PWD/musicnetworkconnectiontestwidget.cpp \
     $$PWD/musicsongchecktoolswidget.cpp \
     $$PWD/musicsongchecktoolstablewidget.cpp \
@@ -53,3 +51,11 @@ SOURCES += \
     $$PWD/musicsongdlnatransferwidget.cpp \
     $$PWD/musicscreensaverwidget.cpp \
     $$PWD/musicplaylistbackupwidget.cpp
+
+
+equals(QT_MAJOR_VERSION, 6):lessThan(QT_MINOR_VERSION, 2){
+    message("Qt6.0.x and 6.1.x not support multimedia")
+}else{
+    HEADERS += $$PWD/musicidentifysongwidget.h
+    SOURCES += $$PWD/musicidentifysongwidget.cpp
+}

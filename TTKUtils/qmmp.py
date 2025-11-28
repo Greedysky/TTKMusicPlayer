@@ -57,19 +57,12 @@ class QmmpCopyModule():
 
             # find win src versions
             if self.is_windows():
-                for dir in src_dirs:
-                    if version not in dir:
-                        continue
-
-                    if version.startswith("4"):
-                        version = self._win_src_verions[0]
-                        break
-                    elif version.startswith("5"):
-                        version = self._win_src_verions[1]
-                        break
-                    elif version.startswith("6"):
-                        version = self._win_src_verions[2]
-                        break
+                if version.startswith("4"):
+                    version = self._win_src_verions[0]
+                elif version.startswith("5"):
+                    version = self._win_src_verions[1]
+                elif version.startswith("6"):
+                    version = self._win_src_verions[2]
 
             # find source dir names
             for dir in src_dirs:

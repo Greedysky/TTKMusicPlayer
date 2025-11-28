@@ -21,7 +21,7 @@
 
 #include <QFile>
 #include "musicglobaldefine.h"
-#if TTK_QT_VERSION_CHECK(6,0,0)
+#if TTK_QT_VERSION_CHECK(6,2,0)
 #  include <QAudioSource>
 #  include <QAudioSink>
 #  include <QMediaDevices>

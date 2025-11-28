@@ -24,7 +24,7 @@ jobs:
           - qt: qt6
             qt_major: 6
             qt_version: 6.9.3
-            qt_modules: qtwebengine qtwebchannel qtpositioning qtimageformats qtmultimedia
+            qt_modules: qtwebengine qtwebchannel qtpositioning qtserialport qtimageformats qtmultimedia
 
     env:
       QT_VERSION: ${{matrix.qt_version}}
@@ -157,9 +157,17 @@ jobs:
           wget https://github.com/Greedysky/Resource/releases/download/1.0.0.0/openssl.7z
           7z x openssl.7z
           cp linux64/v3/* ${{env.TTK_MODULE}}/lib
-          # add missing OpenGLWidgets module
           if [ ${{matrix.qt_major}} == "6" ]; then
+            # add missing OpenGLWidgets module
             cp ${{env.QT_ROOT_DIR}}/lib/libQt6OpenGLWidgets.so.${{env.QT_VERSION}} ${{env.TTK_MODULE}}/lib/libQt6OpenGLWidgets.so.6
+            # remove ffmpeg backend module
+            rm ${{env.TTK_MODULE}}/lib/libQt6FFmpegStub*
+            rm ${{env.TTK_MODULE}}/lib/libavcodec.so.61
+            rm ${{env.TTK_MODULE}}/lib/libavformat.so.61
+            rm ${{env.TTK_MODULE}}/lib/libavutil.so.59
+            rm ${{env.TTK_MODULE}}/lib/libswresample.so.5
+            rm ${{env.TTK_MODULE}}/lib/libswscale.so.8
+            rm -rf ${{env.TTK_MODULE}}/${{env.TTK_VERSION}}/multimedia
           fi
           # add portable binary package
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-${{matrix.os}}-${{matrix.qt}}-x64.7z ${{env.TTK_MODULE}}

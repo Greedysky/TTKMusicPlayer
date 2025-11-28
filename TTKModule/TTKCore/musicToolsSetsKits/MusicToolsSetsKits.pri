@@ -23,7 +23,6 @@ HEADERS += \
     $$PWD/musicbackupmodule.h \
     $$PWD/musictimerautomodule.h \
     $$PWD/musicsongsmanagerthread.h \
-    $$PWD/musicaudiorecordermodule.h \
     $$PWD/musicnetworktestthread.h \
     $$PWD/musicsongchecktoolsthread.h \
     $$PWD/musicsongchecktoolsunit.h
@@ -33,6 +32,13 @@ SOURCES += \
     $$PWD/musicbackupmodule.cpp \
     $$PWD/musictimerautomodule.cpp \
     $$PWD/musicsongsmanagerthread.cpp \
-    $$PWD/musicaudiorecordermodule.cpp \
     $$PWD/musicnetworktestthread.cpp \
     $$PWD/musicsongchecktoolsthread.cpp
+
+
+equals(QT_MAJOR_VERSION, 6):lessThan(QT_MINOR_VERSION, 2){
+    message("Qt6.0.x and 6.1.x not support multimedia")
+}else{
+    HEADERS += $$PWD/musicaudiorecordermodule.h
+    SOURCES += $$PWD/musicaudiorecordermodule.cpp
+}

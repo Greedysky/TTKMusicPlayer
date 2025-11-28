@@ -14,7 +14,9 @@
 
 #include "musicwebdjradiowidget.h"
 #include "musicscreensaverwidget.h"
-#include "musicidentifysongwidget.h"
+#if !TTK_QT_VERSION_CHECK(6,0,0) || TTK_QT_VERSION_CHECK(6,2,0)
+#  include "musicidentifysongwidget.h"
+#endif
 #include "musicsimilarquerywidget.h"
 #include "musicalbumquerywidget.h"
 #include "musicartistquerywidget.h"
@@ -493,11 +495,15 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         }
         case IndentifyWidget: //insert indentify songs widget
         {
+#if !TTK_QT_VERSION_CHECK(6,0,0) || TTK_QT_VERSION_CHECK(6,2,0)
             MusicIdentifySongWidget *widget = new MusicIdentifySongWidget(this);
             m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->queryIdentifyKey();
             Q_EMIT updateBackgroundTheme();
+#else
+            MusicToastLabel::popup(tr("Unsupported identify song module"));
+#endif
             break;
         }
         case KuiSheWidget: //insert kugou kuishe widget
