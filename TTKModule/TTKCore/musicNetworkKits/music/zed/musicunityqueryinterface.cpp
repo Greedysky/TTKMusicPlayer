@@ -10,78 +10,13 @@ struct ServerModule
 {
     QString m_ua;
     QString m_url;
-    QString m_key;
     QString m_quality;
-    int m_bitrate;
+    QString m_module;
 };
 
-static QString makeQualityValue(const QString &type, int bitrate) noexcept
+static void parseSongPropertyX(QNetworkRequest *request, TTK::MusicSongInformation *info, int bitrate)
 {
-    if(type == QUERY_MODULE_X || type == QUERY_MODULE_A || type == QUERY_MODULE_C)
-    {
-        switch(bitrate)
-        {
-        case TTK_BN_128: return "128k";
-        case TTK_BN_320: return "320k";
-        case TTK_BN_1000: return "flac";
-        default: return {};
-        }
-    }
-    else if(type == QUERY_MODULE_B)
-    {
-        switch(bitrate)
-        {
-        case TTK_BN_128: return "128";
-        case TTK_BN_320: return "320";
-        case TTK_BN_1000: return "999";
-        default: return {};
-        }
-    }
-    return {};
-}
-
-static QString makeModuleValue(const QString &type, const QString &module) noexcept
-{
-    if(type == QUERY_MODULE_X || type == QUERY_MODULE_A || type == QUERY_MODULE_C)
-    {
-        if(module == QUERY_WY_INTERFACE) return "wy";
-        else if(module == QUERY_KG_INTERFACE) return "kg";
-        else if(module == QUERY_KW_INTERFACE) return "kw";
-        else return {};
-    }
-    else if(type == QUERY_MODULE_B)
-    {
-        if(module == QUERY_WY_INTERFACE) return "wangyi";
-        else if(module == QUERY_KG_INTERFACE) return "kugou";
-        else if(module == QUERY_KW_INTERFACE) return "kuwo";
-        else return {};
-    }
-    return {};
-}
-
-static void parseSongPropertyX(TTK::MusicSongInformation *info, const ServerModule &module)
-{
-    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
-    {
-        if(prop.m_bitrate == module.m_bitrate)
-        {
-            return;
-        }
-    }
-
-    TTK_INFO_STREAM("Parse song in X module, url:" << module.m_url);
-
-    QNetworkRequest request;
-    if(!module.m_ua.isEmpty())
-    {
-        request.setRawHeader("User-Agent", TTK::Algorithm::mdII(module.m_ua, false).toUtf8());
-    }
-    request.setRawHeader("X-API-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
-    request.setRawHeader("X-Request-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
-    request.setUrl(module.m_url);
-    TTK::setSslConfiguration(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(request);
     if(bytes.isEmpty())
     {
         return;
@@ -98,8 +33,8 @@ static void parseSongPropertyX(TTK::MusicSongInformation *info, const ServerModu
             TTK::MusicSongProperty prop;
             prop.m_url = value["data"].toString();
             prop.m_size = TTK_DEFAULT_STR;
-            prop.m_format = module.m_bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
-            prop.m_bitrate = module.m_bitrate;
+            prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
+            prop.m_bitrate = bitrate;
 
             if(prop.isEmpty())
             {
@@ -121,29 +56,9 @@ static void parseSongPropertyX(TTK::MusicSongInformation *info, const ServerModu
     }
 }
 
-static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModule &module)
+static void parseSongPropertyA(QNetworkRequest *request, TTK::MusicSongInformation *info, int bitrate, const QString &quality)
 {
-    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
-    {
-        if(prop.m_bitrate == module.m_bitrate)
-        {
-            return;
-        }
-    }
-
-    TTK_INFO_STREAM("Parse song in A module, url:" << module.m_url);
-
-    QNetworkRequest request;
-    if(!module.m_ua.isEmpty())
-    {
-        request.setRawHeader("User-Agent", TTK::Algorithm::mdII(module.m_ua, false).toUtf8());
-    }
-    request.setRawHeader("X-API-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
-    request.setRawHeader("X-Request-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
-    request.setUrl(module.m_url);
-    TTK::setSslConfiguration(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(request);
     if(bytes.isEmpty())
     {
         return;
@@ -160,8 +75,8 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
             TTK::MusicSongProperty prop;
             prop.m_url = value["data"].toString();
             prop.m_size = TTK_DEFAULT_STR;
-            prop.m_format = module.m_bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
-            prop.m_bitrate = module.m_bitrate;
+            prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
+            prop.m_bitrate = bitrate;
 
             if(prop.isEmpty())
             {
@@ -178,9 +93,9 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
                 value = extra;
             }
 
-            const QVariantMap &quality = value["quality"].toMap();
-            if(quality["target"].toString().contains(module.m_quality, Qt::CaseInsensitive) &&
-               quality["result"].toString().contains(module.m_quality, Qt::CaseInsensitive))
+            const QVariantMap &q = value["quality"].toMap();
+            if(q["target"].toString().contains(quality, Qt::CaseInsensitive) &&
+               q["result"].toString().contains(quality, Qt::CaseInsensitive))
             {
                 found = true;
                 info->m_songProps.append(prop);
@@ -194,27 +109,9 @@ static void parseSongPropertyA(TTK::MusicSongInformation *info, const ServerModu
     }
 }
 
-static void parseSongPropertyB(TTK::MusicSongInformation *info, const ServerModule &module)
+static void parseSongPropertyB(QNetworkRequest *request, TTK::MusicSongInformation *info, int bitrate)
 {
-    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
-    {
-        if(prop.m_bitrate == module.m_bitrate)
-        {
-            return;
-        }
-    }
-
-    TTK_INFO_STREAM("Parse song in B module, url:" << module.m_url);
-
-    QNetworkRequest request;
-    if(!module.m_ua.isEmpty())
-    {
-        request.setRawHeader("User-Agent", TTK::Algorithm::mdII(module.m_ua, false).toUtf8());
-    }
-    request.setUrl(module.m_url);
-    TTK::setSslConfiguration(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(request);
     if(bytes.isEmpty())
     {
         return;
@@ -231,8 +128,8 @@ static void parseSongPropertyB(TTK::MusicSongInformation *info, const ServerModu
             TTK::MusicSongProperty prop;
             prop.m_url = value["url"].toString();
             prop.m_size = value.contains("size") ?  TTK::Number::sizeByteToLabel(value["size"].toInt()) : TTK_DEFAULT_STR;
-            prop.m_format = module.m_bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
-            prop.m_bitrate = value.contains("br") ? value["br"].toInt() : module.m_bitrate;
+            prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
+            prop.m_bitrate = value.contains("br") ? value["br"].toInt() : bitrate;
 
             if(!prop.isEmpty())
             {
@@ -248,29 +145,9 @@ static void parseSongPropertyB(TTK::MusicSongInformation *info, const ServerModu
     }
 }
 
-static void parseSongPropertyC(TTK::MusicSongInformation *info, const ServerModule &module)
+static void parseSongPropertyC(QNetworkRequest *request, TTK::MusicSongInformation *info, int bitrate, const QString &quality)
 {
-    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
-    {
-        if(prop.m_bitrate == module.m_bitrate)
-        {
-            return;
-        }
-    }
-
-    TTK_INFO_STREAM("Parse song in C module, url:" << module.m_url);
-
-    QNetworkRequest request;
-    if(!module.m_ua.isEmpty())
-    {
-        request.setRawHeader("User-Agent", TTK::Algorithm::mdII(module.m_ua, false).toUtf8());
-    }
-    request.setRawHeader("X-API-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
-    request.setRawHeader("X-Request-Key", TTK::Algorithm::mdII(module.m_key, false).toUtf8());
-    request.setUrl(module.m_url);
-    TTK::setSslConfiguration(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(request);
     if(bytes.isEmpty())
     {
         return;
@@ -287,8 +164,8 @@ static void parseSongPropertyC(TTK::MusicSongInformation *info, const ServerModu
             TTK::MusicSongProperty prop;
             prop.m_url = value["url"].toString();
             prop.m_size = TTK_DEFAULT_STR;
-            prop.m_format = module.m_bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
-            prop.m_bitrate = module.m_bitrate;
+            prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
+            prop.m_bitrate = bitrate;
 
             if(prop.isEmpty())
             {
@@ -299,8 +176,8 @@ static void parseSongPropertyC(TTK::MusicSongInformation *info, const ServerModu
                 }
             }
 
-            const QString &quality = value["quality"].toString();
-            if(quality.contains(module.m_quality, Qt::CaseInsensitive))
+            const QString &q = value["quality"].toString();
+            if(q.contains(quality, Qt::CaseInsensitive))
             {
                 found = true;
                 info->m_songProps.append(prop);
@@ -352,48 +229,82 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
                 continue;
             }
 
-            const QString &ua = value["ua"].toString();
-            const QString &key = value["key"].toString();
+            for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
+            {
+                if(prop.m_bitrate == bitrate)
+                {
+                    continue;
+                }
+            }
+
+            const QVariantMap &serverMap = value["server"].toMap();
+            const QVariantMap &qualityMap = value["quality"].toMap();
+            if(!serverMap.contains(type) || !qualityMap.contains(QString::number(bitrate)))
+            {
+                continue;
+            }
+
+            ServerModule v;
+            v.m_ua = value["ua"].toString();
+            v.m_quality = qualityMap[QString::number(bitrate)].toString();
 
             for(const QString &module : value.keys())
             {
-                ServerModule v;
-                v.m_url = value[module].toString();
-                if(v.m_url.isEmpty())
+                if(module != QUERY_MODULE_X &&
+                   module != QUERY_MODULE_A &&
+                   module != QUERY_MODULE_B &&
+                   module != QUERY_MODULE_C)
                 {
                     continue;
                 }
 
-                const QString &server = makeModuleValue(module, type);
-                const QString &quality = makeQualityValue(module, bitrate);
-                if(server.isEmpty() || quality.isEmpty())
-                {
-                    continue;
-                }
+                v.m_module = module;
+                v.m_url = TTK::Algorithm::mdII(value[module].toString(), false).arg(serverMap[type].toString(), id, v.m_quality);
+            }
 
-                v.m_ua = ua;
-                v.m_key = key;
-                v.m_quality = quality;
-                v.m_bitrate = bitrate;
-                v.m_url = TTK::Algorithm::mdII(v.m_url, false).arg(server, id, quality);
+            if(v.m_url.isEmpty())
+            {
+                continue;
+            }
 
-                found = true;
-                if(module == QUERY_MODULE_X)
+            QNetworkRequest request;
+            request.setUrl(v.m_url);
+            TTK::setSslConfiguration(&request);
+
+            const QVariantMap &headerMap = value["headers"].toMap();
+            if(!headerMap.isEmpty())
+            {
+                for(const QString &header : headerMap.keys())
                 {
-                    parseSongPropertyX(info, v);
+                    request.setRawHeader(header.toUtf8(), TTK::Algorithm::mdII(headerMap[header].toString(), false).toUtf8());
                 }
-                else if(module == QUERY_MODULE_A)
-                {
-                    parseSongPropertyA(info, v);
-                }
-                else if(module == QUERY_MODULE_B)
-                {
-                    parseSongPropertyB(info, v);
-                }
-                else if(module == QUERY_MODULE_C)
-                {
-                    parseSongPropertyC(info, v);
-                }
+            }
+
+            found = true;
+            if(!v.m_ua.isEmpty())
+            {
+                request.setRawHeader("User-Agent", TTK::Algorithm::mdII(v.m_ua, false).toUtf8());
+            }
+
+            if(v.m_module == QUERY_MODULE_X)
+            {
+                TTK_INFO_STREAM("Parse song in X module, url:" << v.m_url);
+                parseSongPropertyX(&request, info, bitrate);
+            }
+            else if(v.m_module == QUERY_MODULE_A)
+            {
+                TTK_INFO_STREAM("Parse song in A module, url:" << v.m_url);
+                parseSongPropertyA(&request, info, bitrate, v.m_quality);
+            }
+            else if(v.m_module == QUERY_MODULE_B)
+            {
+                TTK_INFO_STREAM("Parse song in B module, url:" << v.m_url);
+                parseSongPropertyB(&request, info, bitrate);
+            }
+            else if(v.m_module == QUERY_MODULE_C)
+            {
+                TTK_INFO_STREAM("Parse song in C module, url:" << v.m_url);
+                parseSongPropertyC(&request, info, bitrate, v.m_quality);
             }
         }
     }
