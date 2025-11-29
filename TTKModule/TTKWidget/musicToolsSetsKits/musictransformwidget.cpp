@@ -6,9 +6,9 @@
 #include "musicfileutils.h"
 
 #include <QProcess>
-#if TTK_QT_VERSION_CHECK(5,8,0)
+#if TTK_QT_VERSION_CHECK(6,2,0)
 #  include <QSoundEffect>
-#else
+#elif !TTK_QT_VERSION_CHECK(6,0,0)
 #  include <QSound>
 #endif
 
@@ -147,11 +147,11 @@ void MusicTransformWidget::startTransform()
 
 void MusicTransformWidget::transformFinish()
 {
-#if TTK_QT_VERSION_CHECK(5,8,0)
+#if TTK_QT_VERSION_CHECK(6,2,0)
     QSoundEffect *sound = new QSoundEffect(this);
     sound->setSource(QUrl::fromLocalFile(":/data/sound"));
     sound->play();
-#else
+#elif !TTK_QT_VERSION_CHECK(6,0,0)
     QSound::play(":/data/sound");
 #endif
 
