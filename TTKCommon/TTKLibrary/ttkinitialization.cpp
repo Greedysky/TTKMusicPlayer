@@ -81,15 +81,15 @@ void TTK::initialize(TTK::Attribute attr)
 #if TTK_QT_VERSION_CHECK(6,0,0)
     if(attr & TTK::Attribute::DisbaleFFmpeg)
     {
-#ifdef Q_OS_WIN
+#  ifdef Q_OS_WIN
         qputenv("QT_MEDIA_BACKEND", "windows");
-#elif defined Q_OS_UNIX
+#  elif defined Q_OS_UNIX
         qputenv("QT_MEDIA_BACKEND", "gstreamer");
-#elif defined Q_OS_MAC
+#  elif defined Q_OS_MAC
         qputenv("QT_MEDIA_BACKEND", "darwin");
-#else
+#  else
         qputenv("QT_MEDIA_BACKEND", "android");
-#endif
+#  endif
     }
 #endif
 }

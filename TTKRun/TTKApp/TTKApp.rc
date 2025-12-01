@@ -27,12 +27,12 @@ BEGIN
         BLOCK "080404b0"
             BEGIN
                 VALUE "CompanyName", TTK_RC_COMPANY
-                VALUE "FileDescription", "天天酷音"
+                VALUE "FileDescription", "TTKMusicPlayer"
                 VALUE "FileVersion", TTK_RC_PRODUCTVERSION
-                VALUE "InternalName", "天天酷音.exe"
+                VALUE "InternalName", "TTKMusicPlayer.exe"
                 VALUE "LegalCopyright", TTK_RC_COPYRIGHT
-                VALUE "OriginalFilename", "天天酷音.exe"
-                VALUE "ProductName", "天天酷音"
+                VALUE "OriginalFilename", "TTKMusicPlayer.exe"
+                VALUE "ProductName", "TTKMusicPlayer"
                 VALUE "ProductVersion", TTK_RC_PRODUCTVERSION
             END
     END

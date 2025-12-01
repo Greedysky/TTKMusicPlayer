@@ -27,12 +27,12 @@ BEGIN
         BLOCK "080404b0"
             BEGIN
                 VALUE "CompanyName", TTK_RC_COMPANY
-                VALUE "FileDescription", "初始化"
+                VALUE "FileDescription", "TTKInit"
                 VALUE "FileVersion", TTK_RC_PRODUCTVERSION
-                VALUE "InternalName", "初始化.exe"
+                VALUE "InternalName", "TTKInit.exe"
                 VALUE "LegalCopyright", TTK_RC_COPYRIGHT
-                VALUE "OriginalFilename", "初始化.exe"
-                VALUE "ProductName", "初始化"
+                VALUE "OriginalFilename", "TTKInit.exe"
+                VALUE "ProductName", "TTKInit"
                 VALUE "ProductVersion", TTK_RC_PRODUCTVERSION
             END
     END
