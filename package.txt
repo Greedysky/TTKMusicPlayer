@@ -1,3 +1,5 @@
+///Update time 2025-12-01
+
 adplug-2.4.0	https://github.com/adplug/adplug
 enca-1.19	https://cihar.com/software/enca
 faad2-2.11.2	https://github.com/knik0/faad2
@@ -62,4 +64,8 @@ ttk-1.2.12
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
 
-///Update time 2025-12-01
+extra
+-vgmstream-r2055	https://github.com/vgmstream/vgmstream
+-nezplug++-0.9.4.8	http://offgao.net/program/nezplug++.html
+-libkss-1.2.1		https://github.com/digital-sound-antiques/libkss
+
