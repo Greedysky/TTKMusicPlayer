@@ -80,7 +80,7 @@ bool S98Helper::initialize()
                     continue;
                 }
 
-                m_metaData.insert(parts.front().toLower(), parts.back());
+                m_metaData.insert(parts.first().toLower(), parts.last());
             }
         }
         else

@@ -45,14 +45,14 @@ void CueParser::loadData(const QByteArray &data, QmmpTextCodec *codec)
             if(m_tracks.isEmpty())
                 artist = words[1];
             else
-                m_tracks.back()->info.setValue(Qmmp::ARTIST, words[1]);
+                m_tracks.last()->info.setValue(Qmmp::ARTIST, words[1]);
         }
         else if(words[0] == "TITLE")
         {
             if(m_tracks.isEmpty())
                 album = words[1];
             else
-                m_tracks.back()->info.setValue(Qmmp::TITLE, words[1]);
+                m_tracks.last()->info.setValue(Qmmp::TITLE, words[1]);
         }
         else if(words[0] == "TRACK")
         {
@@ -68,15 +68,15 @@ void CueParser::loadData(const QByteArray &data, QmmpTextCodec *codec)
             info.setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, album_peak);
 
             m_tracks << new CUETrack;
-            m_tracks.back()->info = info;
-            m_tracks.back()->offset = 0;
+            m_tracks.last()->info = info;
+            m_tracks.last()->offset = 0;
         }
         else if(words[0] == "INDEX" && words[1] == "01")
         {
             if(m_tracks.isEmpty())
                 continue;
-            m_tracks.back()->offset = getLength(words[2]);
-            m_tracks.back()->file = file;
+            m_tracks.last()->offset = getLength(words[2]);
+            m_tracks.last()->file = file;
         }
         else if(words[0] == "REM")
         {
@@ -108,9 +108,9 @@ void CueParser::loadData(const QByteArray &data, QmmpTextCodec *codec)
             else if(words[1] == "REPLAYGAIN_ALBUM_PEAK")
                 album_peak = words[2].toDouble();
             else if(words[1] == "REPLAYGAIN_TRACK_GAIN" && !m_tracks.isEmpty())
-                m_tracks.back()->info.setValue(Qmmp::REPLAYGAIN_TRACK_GAIN, words[2].toDouble());
+                m_tracks.last()->info.setValue(Qmmp::REPLAYGAIN_TRACK_GAIN, words[2].toDouble());
             else if(words[1] == "REPLAYGAIN_TRACK_PEAK" && !m_tracks.isEmpty())
-                m_tracks.back()->info.setValue(Qmmp::REPLAYGAIN_TRACK_PEAK, words[2].toDouble());
+                m_tracks.last()->info.setValue(Qmmp::REPLAYGAIN_TRACK_PEAK, words[2].toDouble());
         }
     }
 

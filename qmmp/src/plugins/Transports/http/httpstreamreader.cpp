@@ -113,7 +113,7 @@ void HttpStreamReader::handleReadyRead()
 {
     const QByteArray &buffer = m_reply->readAll();
     m_mutex.lock();
-    m_stream.buffer.push_back(buffer);
+    m_stream.buffer.append(buffer);
     m_stream.buffer_size += buffer.length();
     m_mutex.unlock();
 

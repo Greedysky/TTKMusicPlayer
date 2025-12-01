@@ -60,8 +60,8 @@ CueFile::CueFile(const QString &path)
         QList<TrackInfo*> pl = MetaDataManager::instance()->createPlayList(dataFilePath, TrackInfo::Properties);
         if(!pl.isEmpty())
         {
-            setProperties(dataFileName, pl.front()->properties());
-            setDuration(dataFileName, pl.front()->duration());
+            setProperties(dataFileName, pl.first()->properties());
+            setDuration(dataFileName, pl.first()->duration());
             qDeleteAll(pl);
             pl.clear();
         }
@@ -144,13 +144,13 @@ QString CueFile::getDirtyPath(const QString &cue_path, const QString &path)
             return it.filePath();
 
         if(m_dirty && (f != cue_path) && Decoder::findByFilePath(f))
-            candidates.push_back(f);
+            candidates.append(f);
     }
 
     if(candidates.isEmpty())
         return path;
     else if(candidates.count() == 1)
-        return candidates.front();
+        return candidates.first();
 
     int dot = cue_path.lastIndexOf('.');
     if(dot != -1)

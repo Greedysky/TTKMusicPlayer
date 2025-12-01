@@ -310,7 +310,7 @@ void SoniqueWidget::generatePreset()
     const QFileInfoList iniList(fileListByPath(dir, {"*.ini"}));
     if(!iniList.isEmpty())
     {
-        char *init_path = iniList.front().absoluteFilePath().toLocal8Bit().data();
+        char *init_path = iniList.first().absoluteFilePath().toLocal8Bit().data();
         m_sonique->OpenSettings(init_path);
         qDebug("[SoniqueWidget] ini url is %s", init_path);
     }

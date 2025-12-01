@@ -651,8 +651,8 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
     if(m_ap.channelMap() != m_ap.channelMap().remaped())
     {
         m_effects << new ChannelConverter(m_ap.channelMap().remaped());
-        m_effects.back()->configure(m_ap.sampleRate(), m_ap.channelMap());
-        m_ap = m_effects.back()->audioParameters();
+        m_effects.last()->configure(m_ap.sampleRate(), m_ap.channelMap());
+        m_ap = m_effects.last()->audioParameters();
     }
 
     for(EffectFactory *factory : Effect::enabledFactories())

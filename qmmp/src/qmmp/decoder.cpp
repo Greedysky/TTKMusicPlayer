@@ -218,7 +218,7 @@ DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
 
     //fallback: use first available factory
     if(!filtered.isEmpty() && !useContent)
-         return filtered.front();
+         return filtered.first();
 
     return nullptr;
 }

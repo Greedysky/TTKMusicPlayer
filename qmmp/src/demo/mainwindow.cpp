@@ -48,9 +48,9 @@ MainWindow::MainWindow(QWidget *parent) :
 //        }
 //    }
 //    const QList<Visual*> *vs = Visual::visuals();
-//    if(!vs->isEmpty() && vs->back())
+//    if(!vs->isEmpty() && vs->last())
 //    {
-//        vs->back()->show();
+//        vs->last()->show();
 //    }
 }
 

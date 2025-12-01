@@ -158,7 +158,7 @@ void PlusBlurXRays::drawLine(int x, int y1, int y2)
     }
 
     unsigned int *p = m_corner + y * m_cols + x;
-    const QColor &color = m_colors.front();
+    const QColor &color = m_colors.first();
 
     for(; h--; p += m_cols)
     {

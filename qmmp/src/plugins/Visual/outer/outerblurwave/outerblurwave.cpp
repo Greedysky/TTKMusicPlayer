@@ -104,7 +104,7 @@ void OuterBlurWave::paintEvent(QPaintEvent *)
     }
     points << viewToItemPoint(QPoint(width(), height() + HEIGHT_OFFSET));
 
-    const QColor &color = m_colors.front();
+    const QColor &color = m_colors.first();
     m_view->setGeometry(0, 0, width(), height() + HEIGHT_OFFSET);
     m_item->setBrush(color);
     m_item->setPen(color);

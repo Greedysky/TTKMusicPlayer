@@ -495,7 +495,7 @@ void LightWaveForm::typeChanged(QAction *action)
         const QList<QColor> &colors = dialog.colors();
         if(!colors.isEmpty())
         {
-            m_colors[type] = colors.front();
+            m_colors[type] = colors.first();
         }
     }
 }
