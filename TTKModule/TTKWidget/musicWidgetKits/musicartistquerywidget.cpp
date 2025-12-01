@@ -163,7 +163,7 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultDataItem &i
     const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
 
-    m_resizeWidgets.push_back({label, label->font()});
+    m_resizeWidgets.append({label, label->font()});
 }
 
 void MusicArtistMvsQueryWidget::currentItemClicked(const QString &id)
@@ -257,7 +257,7 @@ void MusicArtistAlbumsQueryWidget::createArtistAlbumsItem(const MusicResultDataI
     const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
 
-    m_resizeWidgets.push_back({label, label->font()});
+    m_resizeWidgets.append({label, label->font()});
 }
 
 void MusicArtistAlbumsQueryWidget::currentItemClicked(const QString &id)
@@ -634,8 +634,8 @@ void MusicArtistQueryWidget::createLabels()
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidgets.push_back({firstLabel, firstLabel->font()});
-    m_resizeWidgets.push_back({artistLabel, artistLabel->font()});
-    m_resizeWidgets.push_back({nickNameLabel, nickNameLabel->font()});
-    m_resizeWidgets.push_back({birthLabel, birthLabel->font()});
+    m_resizeWidgets.append({firstLabel, firstLabel->font()});
+    m_resizeWidgets.append({artistLabel, artistLabel->font()});
+    m_resizeWidgets.append({nickNameLabel, nickNameLabel->font()});
+    m_resizeWidgets.append({birthLabel, birthLabel->font()});
 }

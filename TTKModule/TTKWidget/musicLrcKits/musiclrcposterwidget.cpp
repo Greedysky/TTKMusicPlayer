@@ -194,7 +194,7 @@ void MusicLrcPosterItemWidget::drawTheme3(QPainter *painter)
     }
     std::sort(list.begin(), list.end());
     //
-    offset = pix.height() + list.back() + 10 * ITEM_BORDER;
+    offset = pix.height() + list.last() + 10 * ITEM_BORDER;
     setFixedHeight(offset >= ITEM_HEIGHT ? offset : ITEM_HEIGHT);
 }
 
@@ -237,7 +237,7 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
 
     QPixmap pix(m_pixmap);
     pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
-    offset = list.back() + delta - 2 * ITEM_BORDER;
+    offset = list.last() + delta - 2 * ITEM_BORDER;
     painter->drawPixmap(ITEM_BORDER, offset, pix);
     offset += ITEM_BORDER + pix.height();
     setFixedHeight(offset >= ITEM_HEIGHT ? offset : ITEM_HEIGHT);
@@ -308,7 +308,7 @@ void MusicLrcPosterItemWidget::drawTheme6(QPainter *painter)
     }
     std::sort(list.begin(), list.end());
     //
-    offset = pix.height() + list.back() + 10 * ITEM_BORDER;
+    offset = pix.height() + list.last() + 10 * ITEM_BORDER;
     setFixedHeight(offset >= ITEM_HEIGHT ? offset : ITEM_HEIGHT);
 }
 
@@ -810,7 +810,7 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
     painter->rotate(-TTK_AN_90);
     painter->translate(-2 * ITEM_BORDER, 0);
     //
-    offset = list.back() + 2 * (5 + 7) * ITEM_BORDER;
+    offset = list.last() + 2 * (5 + 7) * ITEM_BORDER;
     offset = qMax(offset, ITEM_HEIGHT);
     setFixedHeight(offset);
     //

@@ -31,7 +31,7 @@ void MusicWYCoverSourceRequest::startToRequest(const QString &url)
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_SONG_PATH_V3_URL, false),
                       TTK::Algorithm::mdII(WY_COVER_URL, false),
-                      TTK::Algorithm::mdII(WY_COVER_DATA_URL, false).arg(req->items().front().m_songId));
+                      TTK::Algorithm::mdII(WY_COVER_DATA_URL, false).arg(req->items().first().m_songId));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

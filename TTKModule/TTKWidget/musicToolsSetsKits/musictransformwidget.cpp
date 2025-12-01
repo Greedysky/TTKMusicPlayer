@@ -111,8 +111,8 @@ void MusicTransformWidget::initInputPath()
                 if(!m_path.contains(fin.absoluteFilePath()) && supportedFormat.contains(TTK_FILE_SUFFIX(fin)))
                 {
                     m_path << fin.absoluteFilePath();
-                    m_ui->listWidget->addItem(TTK::Widget::elidedText(font(), m_path.back(), Qt::ElideLeft, LINE_WIDTH));
-                    m_ui->listWidget->setToolTip(m_path.back());
+                    m_ui->listWidget->addItem(TTK::Widget::elidedText(font(), m_path.last(), Qt::ElideLeft, LINE_WIDTH));
+                    m_ui->listWidget->setToolTip(m_path.last());
                 }
             }
         }
@@ -217,7 +217,7 @@ int MusicTransformWidget::exec()
 
 QString MusicTransformWidget::transformSongName() const
 {
-    return m_path.isEmpty() ? QString() : QFileInfo(m_path.front()).completeBaseName();
+    return m_path.isEmpty() ? QString() : QFileInfo(m_path.first()).completeBaseName();
 }
 
 void MusicTransformWidget::initialize()
@@ -242,7 +242,7 @@ bool MusicTransformWidget::processTransform()
         return false;
     }
 
-    const QString &in = m_path.front().trimmed();
+    const QString &in = m_path.first().trimmed();
     const QString &out = m_ui->outputLineEdit->text().trimmed();
 
     if(in.isEmpty() || out.isEmpty())

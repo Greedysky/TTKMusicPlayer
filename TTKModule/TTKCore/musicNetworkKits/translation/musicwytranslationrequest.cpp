@@ -32,7 +32,7 @@ void MusicWYTranslationRequest::startToRequest(const QString &data)
     }
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(req->items().front().m_songId));
+    request.setUrl(TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(req->items().first().m_songId));
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 

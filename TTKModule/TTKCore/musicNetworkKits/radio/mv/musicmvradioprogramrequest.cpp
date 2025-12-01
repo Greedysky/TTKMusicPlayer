@@ -170,8 +170,8 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                                     const QStringList &ds = info.m_artistName.split(TTK_DEFAULT_STR);
                                     if(ds.count() >= 2)
                                     {
-                                        info.m_artistName = ds.front().trimmed();
-                                        info.m_songName = ds.back().trimmed();
+                                        info.m_artistName = ds.first().trimmed();
+                                        info.m_songName = ds.last().trimmed();
                                     }
                                 }
 

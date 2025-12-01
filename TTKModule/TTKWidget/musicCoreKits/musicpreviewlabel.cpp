@@ -27,7 +27,7 @@ QList<QColor> MusicColorPreviewLabel::colors() const noexcept
 
 QColor MusicColorPreviewLabel::color() const
 {
-    return !m_gradientColors.empty() ? m_gradientColors.front() :  QColor();
+    return !m_gradientColors.empty() ? m_gradientColors.first() :  QColor();
 }
 
 void MusicColorPreviewLabel::paintEvent(QPaintEvent *)

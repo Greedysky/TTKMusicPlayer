@@ -55,7 +55,7 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished()
 
                     if(m_counter < m_remainCount && !value.isEmpty())
                     {
-                        const QString &url = value.values().front().toString();
+                        const QString &url = value.values().first().toString();
                         if(url.isEmpty() || url == lastUrl)
                         {
                             continue;

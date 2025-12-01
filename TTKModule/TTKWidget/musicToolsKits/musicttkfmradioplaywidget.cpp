@@ -219,7 +219,7 @@ void MusicTTKFMRadioPlayWidget::closeEvent(QCloseEvent *event)
 
         if(!categorys.isEmpty())
         {
-            categorys.back().m_items = m_favItems;
+            categorys.last().m_items = m_favItems;
             manager.reset();
             manager.writeBuffer(categorys);
         }
@@ -257,7 +257,7 @@ void MusicTTKFMRadioPlayWidget::initialize()
 
     if(!categorys.isEmpty())
     {
-        m_favItems = categorys.back().m_items;
+        m_favItems = categorys.last().m_items;
     }
 
     createCoreModule();

@@ -151,10 +151,10 @@ void MusicToplistQueryWidget::createLabels()
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidgets.push_back({nameLabel, nameLabel->font()});
-    m_resizeWidgets.push_back({playCountLabel, playCountLabel->font()});
-    m_resizeWidgets.push_back({updateTimeLabel, updateTimeLabel->font()});
-    m_resizeWidgets.push_back({descriptionLabel, descriptionLabel->font()});
+    m_resizeWidgets.append({nameLabel, nameLabel->font()});
+    m_resizeWidgets.append({playCountLabel, playCountLabel->font()});
+    m_resizeWidgets.append({updateTimeLabel, updateTimeLabel->font()});
+    m_resizeWidgets.append({descriptionLabel, descriptionLabel->font()});
 }
 
 void MusicToplistQueryWidget::createToplistItem(const MusicResultDataItem &item)

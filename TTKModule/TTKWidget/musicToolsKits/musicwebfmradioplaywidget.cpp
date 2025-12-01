@@ -140,7 +140,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     }
 
     std::sort(info.m_songProps.begin(), info.m_songProps.end()); //to find out the min bitrate
-    m_player->setMedia(MusicCoreMPlayer::Module::Music, info.m_songProps.front().m_url);
+    m_player->setMedia(MusicCoreMPlayer::Module::Music, info.m_songProps.first().m_url);
     m_player->play();
 
     /// fix current play volume temporary

@@ -146,7 +146,7 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
 
     if(!props.isEmpty())
     {
-        const TTK::MusicSongProperty &prop = props.front();
+        const TTK::MusicSongProperty &prop = props.first();
         MusicVideoItem data;
         data.m_name = TTK::generateSongName(item(row, 1)->toolTip(), item(row, 2)->toolTip());
         data.m_url = prop.m_url;

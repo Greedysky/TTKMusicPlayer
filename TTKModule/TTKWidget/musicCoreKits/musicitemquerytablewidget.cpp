@@ -283,7 +283,7 @@ bool MusicItemQueryTableWidget::downloadDataFrom(TTK::MusicSongInformation *info
         return false;
     }
 
-    const TTK::MusicSongProperty &prop = info->m_songProps.front();
+    const TTK::MusicSongProperty &prop = info->m_songProps.first();
 
     MusicResultDataItem item;
     item.m_name = TTK::generateSongName(info->m_songName, info->m_artistName);

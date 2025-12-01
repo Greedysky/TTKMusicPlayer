@@ -60,7 +60,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     const QString &songName = TTK::generateSongTitle(fileName);
     const QString &artistName = TTK::generateSongArtist(fileName);
 
-    TTK::MusicSongInformation info = songInfos.front();
+    TTK::MusicSongInformation info = songInfos.first();
     for(const TTK::MusicSongInformation &var : qAsConst(songInfos))
     {
         if(var.m_artistName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))

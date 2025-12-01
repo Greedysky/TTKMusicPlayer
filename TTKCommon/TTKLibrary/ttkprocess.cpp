@@ -143,8 +143,8 @@ static QList<PIDInfo> processList()
         }
 
         PIDInfo info;
-        info.m_pid = line.front().toInt();
-        info.m_path = line.back();
+        info.m_pid = line.first().toInt();
+        info.m_path = line.last();
         lprocess << info;
     }
 

@@ -296,6 +296,10 @@ private:
      * Update current played rows.
      */
     void updatePlayedRows(int start, int end);
+    /*!
+     * Input imported media datas into container.
+     */
+    void importSongsWithProgress(QWidget *progress, int offset, const QStringList &files, int playlistRow);
 
     int m_playRowIndex;
     int m_lastSearchIndex;

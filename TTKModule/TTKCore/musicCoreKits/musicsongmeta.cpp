@@ -358,7 +358,7 @@ bool MusicSongMeta::readInformation()
         {
             MusicMeta *meta = new MusicMeta;
             meta->m_path = info->path();
-            meta->m_metaData[TagMeta::URL] = files.isEmpty() ? meta->m_path : files.front();
+            meta->m_metaData[TagMeta::URL] = files.isEmpty() ? meta->m_path : files.first();
 
             meta->m_metaData[TagMeta::SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
             meta->m_metaData[TagMeta::BITRATE] = info->value(Qmmp::BITRATE);
@@ -480,7 +480,7 @@ bool MusicSongMeta::saveInformation()
         const QList<TagModel*> &tags = model->tags();
         if(!tags.isEmpty())
         {
-            TagModel *tagModel = tags.front();
+            TagModel *tagModel = tags.first();
             if(tags.count() == 3)
             {
                 tagModel = tags[1]; //id3v2 mode tag

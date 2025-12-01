@@ -210,7 +210,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
     const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
 
-    m_resizeWidgets.push_back({label, label->font()});
+    m_resizeWidgets.append({label, label->font()});
 }
 
 void MusicWebDJRadioQueryWidget::currentRadioClicked(const MusicResultDataItem &item)

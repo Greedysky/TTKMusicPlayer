@@ -118,7 +118,7 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
 {
     m_isDownload = true;
     delete m_file;
-    m_file = new QFile(m_queue.front().m_path, this);
+    m_file = new QFile(m_queue.first().m_path, this);
 
     if(!m_file->open(QIODevice::WriteOnly))
     {
@@ -148,13 +148,13 @@ void MusicDownloadQueueRequest::startOrderQueue()
         return;
     }
 
-    if(QFile::exists(m_queue.front().m_path))
+    if(QFile::exists(m_queue.first().m_path))
     {
         Q_EMIT downLoadDataChanged(m_queue.takeFirst().m_path);
         startOrderQueue();
     }
     else if(G_NETWORK_PTR->isOnline())
     {
-        startDownload(m_queue.front().m_url);
+        startDownload(m_queue.first().m_url);
     }
 }

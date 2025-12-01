@@ -143,9 +143,9 @@ void MusicPersonalRadioQueryWidget::setResultDataItem(const MusicResultDataItem 
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidgets.push_back({nameLabel, nameLabel->font()});
-    m_resizeWidgets.push_back({creatorLabel, creatorLabel->font()});
-    m_resizeWidgets.push_back({descriptionLabel, descriptionLabel->font()});
+    m_resizeWidgets.append({nameLabel, nameLabel->font()});
+    m_resizeWidgets.append({creatorLabel, creatorLabel->font()});
+    m_resizeWidgets.append({descriptionLabel, descriptionLabel->font()});
 
     resizeWidget();
 }

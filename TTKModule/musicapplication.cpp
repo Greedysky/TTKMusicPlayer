@@ -898,7 +898,7 @@ void MusicApplication::removeItemAt(const QStringList &path, bool remove, bool c
         bool contains = false; ///the play one is delete list
         int oldIndex = m_playlist->currentIndex();
         ///check if delete one that the play one
-        if(index.count() == 1 && index.front() == oldIndex)
+        if(index.count() == 1 && index.first() == oldIndex)
         {
             contains = true;
         }

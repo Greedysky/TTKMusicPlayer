@@ -92,7 +92,7 @@ void MusicProcessServer::execute(const QStringList &args) const
     }
     else if(args.count() == 1)
     {
-        const QString &url = args.front();
+        const QString &url = args.first();
         if(url.startsWith('-'))
         {
             return;

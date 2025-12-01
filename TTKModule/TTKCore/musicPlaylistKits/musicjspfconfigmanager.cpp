@@ -74,7 +74,7 @@ bool MusicJSPFConfigManager::writeBuffer(const MusicSongItemList &items)
 
             QVariantMap track;
             track["track"] = meta;
-            tracks.push_back(track);
+            tracks.append(track);
         }
 
         if(!tracks.isEmpty())

@@ -38,7 +38,7 @@ void MusicKWSongCommentsRequest::startToSearch(const QString &value)
     m_id.clear();
     if(!req->isEmpty())
     {
-        MusicCommentsRequest::startToSearch(req->items().front().m_songId);
+        MusicCommentsRequest::startToSearch(req->items().first().m_songId);
     }
 }
 

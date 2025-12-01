@@ -383,7 +383,7 @@ void MusicBackgroundSkinDialog::findThemeListByPath(const QString &dir, TTKIntLi
             continue;
         }
 
-        const QString &fileName = list.back();
+        const QString &fileName = list.last();
         items << fileName.trimmed().toInt();
     }
 }
@@ -397,7 +397,7 @@ int MusicBackgroundSkinDialog::cpoyFileToLocalIndex()
     int index = CURRENT_ITEMS_COUNT;
     if(!items.isEmpty())
     {
-        index = items.front();
+        index = items.first();
         if(index < CURRENT_ITEMS_COUNT)
         {
             index = CURRENT_ITEMS_COUNT;

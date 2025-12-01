@@ -105,7 +105,7 @@ QStringList QDlnaFinder::clientNames() const
     QStringList names;
     for(QDlnaClient *client : qAsConst(d->m_clients))
     {
-        names.push_back(client->serverName());
+        names.append(client->serverName());
     }
     return names;
 }
@@ -141,7 +141,7 @@ void QDlnaFinder::handleReadyRead()
             continue;
         }
 
-        d->m_clients.push_back(client);
+        d->m_clients.append(client);
     }
     Q_EMIT finished();
 }

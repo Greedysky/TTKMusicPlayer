@@ -226,7 +226,7 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
     if(!m_searchActions->actions().isEmpty())
     {
         const QString &albumName = (currentRow() != -1 && rowCount() > 0) ? item(currentRow(), 3)->toolTip() : QString();
-        QAction *lastAction = m_searchActions->actions().back();
+        QAction *lastAction = m_searchActions->actions().last();
         QAction *action = m_searchActions->addAction(tr("Search '%1'").arg(albumName));
         action->setData(5);
         menu.insertAction(lastAction, action);
@@ -263,7 +263,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    const TTK::MusicSongProperty &prop = info.m_songProps.front();
+    const TTK::MusicSongProperty &prop = info.m_songProps.first();
 
     MusicResultDataItem item;
     item.m_name = TTK::generateSongName(this->item(row, 1)->toolTip(), this->item(row, 2)->toolTip());

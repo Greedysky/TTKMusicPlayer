@@ -219,38 +219,12 @@ void MusicSongsContainerWidget::importSongsByPath(const QStringList &files, int 
         return;
     }
 
-    if(playlistRow < 0)
-    {
-        playlistRow = makeValidIndex();
-    }
-
-    closeSearchWidgetInNeed();
-
     MusicProgressWidget progress;
     progress.setTitle(tr("Import file mode"));
     progress.setRange(0, files.count());
     progress.show();
 
-    MusicSongItem *item = &m_containerItems[playlistRow];
-
-    int i = 0;
-    for(const QString &path : qAsConst(files))
-    {
-        if(item->m_songs.contains(MusicSong(path)))
-        {
-            continue;
-        }
-
-        progress.setValue(++i);
-        item->m_songs << TTK::generateSongList(path);
-    }
-
-    if(i != 0)
-    {
-        item->m_itemWidget->updateSongsList(item->m_songs);
-        setItemTitle(item);
-        setCurrentIndex(playlistRow);
-    }
+    importSongsWithProgress(&progress, 0, files, playlistRow);
 
     MusicToastLabel::popup(tr("Import music songs done"));
 }
@@ -432,7 +406,7 @@ void MusicSongsContainerWidget::deleteRowItem(int index)
     if(m_playRowIndex == id)
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
-        m_items.front().m_itemWidget->setExpand(false);
+        m_items.first().m_itemWidget->setExpand(false);
         MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
     }
     else if(m_playRowIndex > id)
@@ -459,7 +433,7 @@ void MusicSongsContainerWidget::deleteRowItems()
     if(m_playRowIndex != MUSIC_NORMAL_LIST && TTK::playlistRowValid(m_playRowIndex))
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
-        m_items.front().m_itemWidget->setExpand(false);
+        m_items.first().m_itemWidget->setExpand(false);
         MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
     }
 
@@ -826,7 +800,7 @@ void MusicSongsContainerWidget::addSongToPlaylist(const QStringList &items)
 
     const MusicSongItem *item = &m_containerItems[row];
     const MusicSongList *musicSongs = &item->m_songs;
-    const MusicSong &song = MusicSong(items.back());
+    const MusicSong &song = MusicSong(items.last());
 
     int index = musicSongs->count() - 1;
     if(musicSongs->contains(song))
@@ -1167,16 +1141,35 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
         importSongsByPath(files, m_playRowIndex);
     }
 
-    for(const QString &dir : qAsConst(dirs))
+    if(!dirs.isEmpty())
     {
-        MusicSongItem item;
-        item.m_itemName = QFileInfo(dir).baseName();
+        int count = 0;
+        QList<QStringList> files;
 
-        checkTitleNameValid(item.m_itemName);
-        item = *createContainerItem(item);
+        for(const QString &dir : qAsConst(dirs))
+        {
+            files << TTK::File::fileListByPath(dir, MusicFormats::supportMusicInputFilterFormats());
+            count += files.last().count();
+        }
 
-        const QStringList &files = TTK::File::fileListByPath(dir, MusicFormats::supportMusicInputFilterFormats());
-        importSongsByPath(files, foundMappedIndex(item.m_itemIndex));
+        MusicProgressWidget progress;
+        progress.setTitle(tr("Import dir mode"));
+        progress.setRange(0, count);
+        progress.show();
+
+        for(int i = 0; i < dirs.count(); ++i)
+        {
+            MusicSongItem item;
+            item.m_itemName = QFileInfo(dirs[i]).baseName();
+
+            checkTitleNameValid(item.m_itemName);
+            item = *createContainerItem(item);
+
+            const int offset = (i == 0) ? 0 : files[i - 1].count();
+            importSongsWithProgress(&progress, offset, files[i], foundMappedIndex(item.m_itemIndex));
+        }
+
+        MusicToastLabel::popup(tr("Import music songs done"));
     }
 }
 
@@ -1259,7 +1252,7 @@ void MusicSongsContainerWidget::createWidgetItem(MusicSongItem *item)
     connect(widget, SIGNAL(songListSortBy(int)), SLOT(songListSortBy(int)));
 
     ///connect to items
-    setInputModule(m_items.back().m_itemWidget);
+    setInputModule(m_items.last().m_itemWidget);
 
     widget->setSongsList(&item->m_songs);
     setTitle(widget, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
@@ -1268,7 +1261,7 @@ void MusicSongsContainerWidget::createWidgetItem(MusicSongItem *item)
 MusicSongItem* MusicSongsContainerWidget::createContainerItem(const MusicSongItem &item)
 {
     m_containerItems << item;
-    MusicSongItem *it = &m_containerItems.back();
+    MusicSongItem *it = &m_containerItems.last();
     createWidgetItem(it);
     return it;
 }
@@ -1350,3 +1343,39 @@ void MusicSongsContainerWidget::updatePlayedRows(int begin, int end)
     MusicPlayedListPopWidget::instance()->updatePlayedRows(items);
 }
 
+void MusicSongsContainerWidget::importSongsWithProgress(QWidget *progress, int offset, const QStringList &files, int playlistRow)
+{
+    if(!progress)
+    {
+        return;
+    }
+
+    if(playlistRow < 0)
+    {
+        playlistRow = makeValidIndex();
+    }
+
+    closeSearchWidgetInNeed();
+
+    MusicSongItem *item = &m_containerItems[playlistRow];
+    MusicProgressWidget *widget = TTKStaticCast(MusicProgressWidget*, progress);
+
+    int i = 0;
+    for(const QString &path : qAsConst(files))
+    {
+        if(item->m_songs.contains(MusicSong(path)))
+        {
+            continue;
+        }
+
+        widget->setValue(++i + offset);
+        item->m_songs << TTK::generateSongList(path);
+    }
+
+    if(i != 0)
+    {
+        item->m_itemWidget->updateSongsList(item->m_songs);
+        setItemTitle(item);
+        setCurrentIndex(playlistRow);
+    }
+}

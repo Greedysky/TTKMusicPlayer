@@ -116,7 +116,7 @@ MusicSongList TTK::generateSongList(const QString &path)
 
     if(!songs.isEmpty() && !meta.lyrics().isEmpty())
     {
-        QFile file(TTK::String::lrcDirPrefix() + songs.back().name() + LRC_FILE);
+        QFile file(TTK::String::lrcDirPrefix() + songs.last().name() + LRC_FILE);
         if(file.open(QIODevice::WriteOnly))
         {
             file.write(meta.lyrics().toUtf8());

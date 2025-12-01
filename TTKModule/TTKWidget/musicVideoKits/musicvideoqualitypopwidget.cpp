@@ -73,7 +73,7 @@ void MusicVideoQualityPopWidget::initialize()
 
     m_containWidget->setFixedSize(60, 125);
     m_menu->setStyleSheet(TTK::UI::MenuStyle03);
-    m_menu->removeAction(m_menu->actions().front());
+    m_menu->removeAction(m_menu->actions().first());
 
     m_qualityActions->addAction(m_menu->addAction(tr("ST")))->setData(TTKStaticCast(int, TTK::QueryQuality::Standard));
     m_qualityActions->addAction(m_menu->addAction(tr("SD")))->setData(TTKStaticCast(int, TTK::QueryQuality::High));

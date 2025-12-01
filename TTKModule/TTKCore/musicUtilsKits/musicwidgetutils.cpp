@@ -64,7 +64,7 @@ void TTK::Widget::adjustMenuPosition(QMenu *menu)
     const QList<QAction*> actions(menu->actions());
     if(!actions.empty())
     {
-        QAction* action(actions.front());
+        QAction* action(actions.first());
         if(action->icon().isNull())
         {
             action->setIcon(QIcon(":/tiny/lb_transparent"));

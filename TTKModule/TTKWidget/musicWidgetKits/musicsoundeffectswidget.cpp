@@ -190,7 +190,7 @@ void MusicSoundEffectsWidget::initialize()
     for(const MusicPluginProperty &property : TTK::TTKQmmp::effectModules())
     {
         MusicSoundEffectsItemWidget *item = new MusicSoundEffectsItemWidget(property, this);
-        m_items.push_back(item);
+        m_items.append(item);
         item->setPluginEnabled(TTK::TTKQmmp::isEffectEnabled(property.m_type));
         layout->addWidget(item);
     }

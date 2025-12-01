@@ -32,7 +32,7 @@ void MusicKGDownloadBackgroundRequest::startToRequest()
     }
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(req->items().front().m_songId));
+    request.setUrl(TTK::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(req->items().first().m_songId));
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 
@@ -58,10 +58,10 @@ void MusicKGDownloadBackgroundRequest::downLoadFinished()
                 QVariantList datas = value["data"].toList();
                 if(!datas.isEmpty())
                 {
-                    datas = datas.front().toList();
+                    datas = datas.first().toList();
                     if(!datas.isEmpty())
                     {
-                        value = datas.front().toMap();
+                        value = datas.first().toMap();
                         value = value["imgs"].toMap();
 
                         parseFromBackgroundProperty(value["3"]);

@@ -252,8 +252,8 @@ void MusicWebMVRadioInfoWidget::createLabels()
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidgets.push_back({nameLabel, nameLabel->font()});
-    m_resizeWidgets.push_back({typeLabel, typeLabel->font()});
+    m_resizeWidgets.append({nameLabel, nameLabel->font()});
+    m_resizeWidgets.append({typeLabel, typeLabel->font()});
 }
 
 void MusicWebMVRadioInfoWidget::initThirdWidget()

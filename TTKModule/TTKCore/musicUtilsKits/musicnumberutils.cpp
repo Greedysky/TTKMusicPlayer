@@ -131,7 +131,7 @@ TTK::QueryQuality TTK::Number::bitrateToLevel(const QString &bitrate)
     const QStringList &data(bitrate.split(TTK_SPACE));
     if(data.count() >= 2)
     {
-        const int rate = data.front().trimmed().toInt();
+        const int rate = data.first().trimmed().toInt();
         return TTK::Number::bitrateToLevel(rate);
     }
     return QueryQuality::None;

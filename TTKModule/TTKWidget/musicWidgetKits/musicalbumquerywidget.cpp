@@ -302,10 +302,10 @@ void MusicAlbumQueryWidget::createLabels()
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidgets.push_back({firstLabel, firstLabel->font()});
-    m_resizeWidgets.push_back({albumLabel, albumLabel->font()});
-    m_resizeWidgets.push_back({singerLabel, singerLabel->font()});
-    m_resizeWidgets.push_back({languageLabel, languageLabel->font()});
-    m_resizeWidgets.push_back({companyLabel, companyLabel->font()});
-    m_resizeWidgets.push_back({yearLabel, yearLabel->font()});
+    m_resizeWidgets.append({firstLabel, firstLabel->font()});
+    m_resizeWidgets.append({albumLabel, albumLabel->font()});
+    m_resizeWidgets.append({singerLabel, singerLabel->font()});
+    m_resizeWidgets.append({languageLabel, languageLabel->font()});
+    m_resizeWidgets.append({companyLabel, companyLabel->font()});
+    m_resizeWidgets.append({yearLabel, yearLabel->font()});
 }

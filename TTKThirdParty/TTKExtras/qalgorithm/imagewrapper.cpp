@@ -211,7 +211,7 @@ void CubeWave::input(const QRect &region)
     d->initialize(region.width(), region.height());
     for(int index = 0; index < d->count(); ++index)
     {
-        d->m_data.push_back(TTK::random(100));
+        d->m_data.append(TTK::random(100));
     }
 }
 

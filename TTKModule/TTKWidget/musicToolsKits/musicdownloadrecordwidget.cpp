@@ -70,8 +70,8 @@ MusicDownloadToolBoxWidget::~MusicDownloadToolBoxWidget()
 {
     while(!m_items.isEmpty())
     {
-        delete m_items.back().m_itemWidget;
-        m_items.pop_back();
+        delete m_items.last().m_itemWidget;
+        m_items.removeLast();
     }
 }
 
@@ -86,7 +86,7 @@ void MusicDownloadToolBoxWidget::updateItemTitle(int index)
 
 void MusicDownloadToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidget *widget, const QString &text, int index)
 {
-    MusicSongItem *item = &m_items.back();
+    MusicSongItem *item = &m_items.last();
     item->m_itemName = text;
     item->m_itemIndex = index;
     item->m_itemWidget = widget;

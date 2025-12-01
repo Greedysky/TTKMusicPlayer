@@ -189,7 +189,7 @@ QStringList TTK::File::getOpenFileNames(QWidget *parent, const QString &filter)
     const QStringList &files = QFileDialog::getOpenFileNames(parent, QObject::tr("Choose a filename to open under"), path, filter);
     if(!files.isEmpty())
     {
-        const QString &v = files.front();
+        const QString &v = files.first();
         if(!v.isEmpty())
         {
             G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, v);
@@ -235,7 +235,7 @@ QString TTK::File::getSaveFileName(QWidget *parent, const QString &filter)
         return {};
     }
 
-    path = files.front();
+    path = files.first();
     const QString &suffix = dialog.defaultSuffix();
     if(!suffix.isEmpty() && suffix != QFileInfo(path).suffix())
     {

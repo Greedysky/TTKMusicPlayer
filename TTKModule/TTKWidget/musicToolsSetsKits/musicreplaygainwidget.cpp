@@ -232,7 +232,7 @@ void MusicReplayGainWidget::addFilesButtonClicked()
                 TTKEventLoop loop;
                 connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
                 QtProcessVoidConnect(m_process, &loop, quit, TTK_SLOT);
-                m_process->start(MAKE_GAIN_PATH_FULL, {m_paths.back()});
+                m_process->start(MAKE_GAIN_PATH_FULL, {m_paths.last()});
                 loop.exec();
             }
         }

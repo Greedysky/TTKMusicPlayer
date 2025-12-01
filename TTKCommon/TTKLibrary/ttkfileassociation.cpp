@@ -36,7 +36,7 @@ QStringList TTKFileAssociation::keys() const
     {
         if(!key.isEmpty() && key[0] == '.')
         {
-            keys.push_back(key.toLower().remove(0, 1));
+            keys.append(key.toLower().remove(0, 1));
         }
     }
     return keys;

@@ -145,14 +145,21 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
         return;
     }
 
-    const QString &key = !m_searchEdit->editor()->text().isEmpty() ? m_searchEdit->editor()->text() : m_searchEdit->editor()->placeholderText();
+    const QString &url = !m_searchEdit->editor()->text().isEmpty() ? m_searchEdit->editor()->text() : m_searchEdit->editor()->placeholderText();
+    const QString &key = searchedKeyWork(m_tabWidget->currentIndex(), url);
+    if(key.isEmpty())
+    {
+        MusicToastLabel::popup(tr("Can not parse the url"));
+        return;
+    }
+
     switch(m_tabWidget->currentIndex())
     {
-        case 0: MusicRightAreaWidget::instance()->showSingleSearchedFound(searchedKeyWork(0, key)); break;
-        case 1: MusicRightAreaWidget::instance()->showArtistFound({}, searchedKeyWork(1, key)); break;
-        case 2: MusicRightAreaWidget::instance()->showAlbumFound({}, searchedKeyWork(2, key)); break;
-        case 3: MusicRightAreaWidget::instance()->showPlaylistFound(searchedKeyWork(3, key)); break;
-        case 4: MusicRightAreaWidget::instance()->showVideoSearchedFound({}, searchedKeyWork(4, key)); break;
+        case 0: MusicRightAreaWidget::instance()->showSingleSearchedFound(key); break;
+        case 1: MusicRightAreaWidget::instance()->showArtistFound({}, key); break;
+        case 2: MusicRightAreaWidget::instance()->showAlbumFound({}, key); break;
+        case 3: MusicRightAreaWidget::instance()->showPlaylistFound(key); break;
+        case 4: MusicRightAreaWidget::instance()->showVideoSearchedFound({}, key); break;
         default: break;
     }
 }
@@ -165,7 +172,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
         case MusicAbstractQueryRequest::QueryServer::WY:
         {
             static TTKRegularExpression regx("id=(\\d+)");
-            key = (regx.match(url) != -1) ? regx.captured(1) : url;
+            key = (regx.match(url) != -1) ? regx.captured(1) : QString();
             break;
         }
         case MusicAbstractQueryRequest::QueryServer::KW:
@@ -178,7 +185,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
                 default: regx.setPattern("/(\\d+)"); break;
             }
 
-            key = (regx.match(url) != -1) ? regx.captured(1) : url;
+            key = (regx.match(url) != -1) ? regx.captured(1) : QString();
             break;
         }
         case MusicAbstractQueryRequest::QueryServer::KG:
@@ -191,7 +198,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
                 default: regx.setPattern("/(\\d+)"); break;
             }
 
-            key = (regx.match(url) != -1) ? regx.captured(1) : url;
+            key = (regx.match(url) != -1) ? regx.captured(1) : QString();
             break;
         }
         default: break;

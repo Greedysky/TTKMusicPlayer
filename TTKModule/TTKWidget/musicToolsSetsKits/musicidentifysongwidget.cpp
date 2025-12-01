@@ -141,7 +141,7 @@ void MusicIdentifySongWidget::playSongClicked()
 
     if(!m_info.m_songProps.isEmpty())
     {
-        m_player->setMedia(MusicCoreMPlayer::Module::Music, m_info.m_songProps.front().m_url);
+        m_player->setMedia(MusicCoreMPlayer::Module::Music, m_info.m_songProps.first().m_url);
     }
 }
 
@@ -265,7 +265,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         m_analysis->setLineMax(11);
         connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }
-    const MusicSongIdentifyData &songIdentify = m_networkRequest->items().front();
+    const MusicSongIdentifyData &songIdentify = m_networkRequest->items().first();
 
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);
@@ -380,7 +380,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         req->startToQueryResult(&m_info, TTK_BN_128);
         if(!m_info.m_songProps.isEmpty())
         {
-            m_player->setMedia(MusicCoreMPlayer::Module::Music, m_info.m_songProps.front().m_url);
+            m_player->setMedia(MusicCoreMPlayer::Module::Music, m_info.m_songProps.first().m_url);
         }
     }
 

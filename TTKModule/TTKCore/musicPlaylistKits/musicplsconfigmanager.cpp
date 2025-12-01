@@ -46,7 +46,7 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
         {
             if(regx2.captured(1).toInt() > 0)
             {
-                item.m_songs.back().setDuration(TTKTime::formatDuration(regx2.captured(2).toInt() * TTK_DN_S2MS));
+                item.m_songs.last().setDuration(TTKTime::formatDuration(regx2.captured(2).toInt() * TTK_DN_S2MS));
             }
             else
             {

@@ -40,7 +40,7 @@ void MusicPlaylistBackupModule::runBackup()
     const QFileInfoList &dirList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Time | QDir::Reversed);
     if(dirList.count() > 7)
     {
-        TTK::File::removeRecursively(dirList.front().absoluteFilePath());
+        TTK::File::removeRecursively(dirList.first().absoluteFilePath());
     }
 
     dir.cd(child);
@@ -56,14 +56,14 @@ void MusicPlaylistBackupModule::runBackup()
     const QFileInfoList &fileList = dir.entryInfoList(QDir::Files, QDir::Time | QDir::Reversed);
     if(fileList.count() > 7)
     {
-        QFile::remove(fileList.front().absoluteFilePath());
+        QFile::remove(fileList.first().absoluteFilePath());
     }
 }
 
 
 MusicBackupModule::MusicBackupModule()
 {
-    m_modules.push_back(new MusicPlaylistBackupModule);
+    m_modules.append(new MusicPlaylistBackupModule);
 }
 
 MusicBackupModule::~MusicBackupModule()

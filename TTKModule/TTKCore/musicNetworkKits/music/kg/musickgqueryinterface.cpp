@@ -193,7 +193,7 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
                 if(!datas.isEmpty())
                 {
                     TTK::MusicSongProperty prop;
-                    prop.m_url = datas.front().toString();
+                    prop.m_url = datas.first().toString();
                     prop.m_size = TTK::Number::sizeByteToLabel(value["fileSize"].toInt());
                     prop.m_format = value["extName"].toString();
                     prop.m_bitrate = bitrate;

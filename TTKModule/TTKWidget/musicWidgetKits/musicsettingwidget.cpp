@@ -149,7 +149,7 @@ void MusicSettingWidget::initialize()
 {
     m_ui->autoStartCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
     m_ui->autoPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::StartUpPlayMode).toBool());
-    m_ui->lastPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList().front().toInt());
+    m_ui->lastPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList().first().toInt());
 
     if(!G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toBool())
     {

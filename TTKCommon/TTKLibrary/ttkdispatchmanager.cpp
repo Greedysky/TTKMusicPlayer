@@ -97,7 +97,7 @@ void TTKDispatchManager::activeFunctions()
         {
             if(!item->m_args.isEmpty())
             {
-                const QString &path = item->m_args.front().toString();
+                const QString &path = item->m_args.first().toString();
                 state = path.isEmpty() ? false : QFile::remove(path);
             }
             break;

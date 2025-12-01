@@ -229,10 +229,10 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidgets.push_back({nameLabel, nameLabel->font()});
-    m_resizeWidgets.push_back({creatorLabel, creatorLabel->font()});
-    m_resizeWidgets.push_back({tagsLabel, tagsLabel->font()});
-    m_resizeWidgets.push_back({updateLabel, updateLabel->font()});
+    m_resizeWidgets.append({nameLabel, nameLabel->font()});
+    m_resizeWidgets.append({creatorLabel, creatorLabel->font()});
+    m_resizeWidgets.append({tagsLabel, tagsLabel->font()});
+    m_resizeWidgets.append({updateLabel, updateLabel->font()});
 
     resizeWidget();
 }
