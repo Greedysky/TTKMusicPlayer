@@ -1157,6 +1157,7 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
         progress.setRange(0, count);
         progress.show();
 
+        count = 0;
         for(int i = 0; i < dirs.count(); ++i)
         {
             MusicSongItem item;
@@ -1165,8 +1166,9 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
             checkTitleNameValid(item.m_itemName);
             item = *createContainerItem(item);
 
-            const int offset = (i == 0) ? 0 : files[i - 1].count();
-            importSongsWithProgress(&progress, offset, files[i], foundMappedIndex(item.m_itemIndex));
+            importSongsWithProgress(&progress, count, files[i], foundMappedIndex(item.m_itemIndex));
+
+            count += files[i].count();
         }
 
         MusicToastLabel::popup(tr("Import music songs done"));
