@@ -464,19 +464,22 @@ void MusicServerPluginTableWidget::addCellItems()
 
             const QVariantMap &value = var.toMap();
             const bool option = value["option"].toBool();
+            const QString &user = value["user"].toString();
             const QString &name = value["name"].toString();
-            const QString &tips = value["description"].toString() + TTK_SPACE + value["version"].toString();
+            const QString &version = value["version"].toString();
+            const QString &tips = value["description"].toString();
 
             QTableWidgetItem *item = new QTableWidgetItem;
             item->setData(TTK_CHECKED_ROLE, option ? Qt::Checked : Qt::Unchecked);
             setItem(index, 0, item);
 
                               item = new QTableWidgetItem;
+            item->setText(name);
             if(G_SETTING_PTR->value(MusicSettingManager::UserPermission).toBool())
             {
                 item->setToolTip(tips);
+                item->setText(user + TTK_SPACE + version);
             }
-            item->setText(name);
             item->setForeground(option ? QColor(0xE6, 0x73, 0x00) : Qt::gray);
             QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
             setItem(index++, 1, item);

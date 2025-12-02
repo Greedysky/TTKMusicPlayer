@@ -16,7 +16,7 @@ MusicDownloadTableItem::MusicDownloadTableItem(QWidget *parent)
 
     m_text->setGeometry(0, 0, 60, TTK_ITEM_SIZE_S);
     m_icon->setGeometry(70, 0, 30, TTK_ITEM_SIZE_S);
-    m_information->setGeometry(170, 0, 150, TTK_ITEM_SIZE_S);
+    m_information->setGeometry(160, 0, 160, TTK_ITEM_SIZE_S);
 }
 
 MusicDownloadTableItem::~MusicDownloadTableItem()
