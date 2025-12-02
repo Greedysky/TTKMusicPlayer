@@ -14,4 +14,4 @@ List of the qmmp libraries:
   Qmmp (A set of extra plugins) : https://github.com/TTK-qmmp
 
 本软件仅供学习交流，不可用于商业用途，否则后果自负
-Copyright(C) 2015 - 2025 Greedysky All Rights Reserved
+Copyright(C) 2015 - 2026 Greedysky All Rights Reserved

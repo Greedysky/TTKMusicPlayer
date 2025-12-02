@@ -171,7 +171,7 @@ void TTKInitialization::execute(const QStringList &arguments)
             QString text =  TTK_STR_CAT("\nModule: ", TTK_APP_NAME, " v", TTK_VERSION_STR, "\n");
                     text += TTK_STR_CAT("Build: ", __DATE__, " ", __TIME__, "\n");
                     text += TTK_STR_CAT("Offical web page: https://github.com/Greedysky/", TTK_APP_NAME, "\n");
-                    text += "Copyright(C) 2015 - 2025 Greedysky All Rights Reserved\n";
+                    text += "Copyright(C) 2015 - 2026 Greedysky All Rights Reserved\n";
             TTK_INFO_STREAM(text);
             exit(EXIT_SUCCESS);
         }

@@ -177,7 +177,7 @@ TTKMusicPlayer的一些特性
 版权
 --------
  * This file is part of the TTK Music Player project.
- * Copyright (C) 2015 - 2025 Greedysky Studio.
+ * Copyright (C) 2015 - 2026 Greedysky Studio.
  * Mail: greedysky@163.com.
 
 贡献
