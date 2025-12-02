@@ -72,6 +72,11 @@ public:
     static QRect currentGeometry();
 
     /*!
+     * Center widget in geometry rect.
+     */
+    static void centerWidget(QWidget *widget);
+
+    /*!
      * Grab widget geometry pixmap by given rect.
      */
     static QPixmap grabWidget(QWidget *widget, const QRect &rect);

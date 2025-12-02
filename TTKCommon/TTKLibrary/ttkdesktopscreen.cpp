@@ -125,6 +125,12 @@ QRect TTKDesktopScreen::currentGeometry()
     return screenGeometry(index);
 }
 
+void TTKDesktopScreen::centerWidget(QWidget *widget)
+{
+    const QRect &rect = currentGeometry();
+    widget->move(rect.x() + (rect.width() - widget->width()) / 2, rect.y() + (rect.height() - widget->height()) / 2);
+}
+
 QPixmap TTKDesktopScreen::grabWidget(QWidget *widget, const QRect &rect)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
