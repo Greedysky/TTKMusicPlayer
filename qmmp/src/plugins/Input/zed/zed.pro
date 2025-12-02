@@ -2,6 +2,10 @@ include($$PWD/../../plugins.pri)
 
 TEMPLATE = subdirs
 
+contains(CONFIG, ADPLUG_PLUGIN){
+    SUBDIRS += adplug
+}
+
 contains(CONFIG, ARCHIVE_PLUGIN){
     SUBDIRS += archive
 }

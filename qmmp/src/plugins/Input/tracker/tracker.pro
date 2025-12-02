@@ -18,6 +18,10 @@ contains(CONFIG, HIVELY_PLUGIN){
     SUBDIRS += hively
 }
 
+contains(CONFIG, OPENMPT_PLUGIN){
+    SUBDIRS += openmpt
+}
+
 contains(CONFIG, SC68_PLUGIN){
     SUBDIRS += sc68
 }
