@@ -11,7 +11,7 @@ SOURCES += decoderxsffactory.cpp \
            xsfhelper.cpp
 
 INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include \
-               $$EXTRA_LIB_PATH/libttk/include/libxsf/mgba \
+               $$EXTRA_LIB_PATH/libttk/include/libxsf/mgba
 
 win32{
     LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lxsf

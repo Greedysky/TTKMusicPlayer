@@ -34,6 +34,7 @@ public:
 
     void deinit();
     bool initialize();
+
     void readSettings();
 
     inline void seek(qint64 time) { adl_positionSeek(m_input, time / 1000.0); }

@@ -2,7 +2,6 @@
 #include "decoder_adlmidi.h"
 
 #include <QSettings>
-#include <qmmp/qmmp.h>
 #include <adlmidi.h>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
