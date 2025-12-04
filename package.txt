@@ -63,9 +63,9 @@ ttk-1.2.12
 				 https://github.com/BouKiCHi/foo_input_mucom
 				 https://github.com/suzukiplan/vgs-bgm-decoder
 -libxsf			 https://gitlab.com/kode54/audacious-xsf
+-libkss-1.2.1		https://github.com/digital-sound-antiques/libkss
+-nezplug++-0.9.4.8	https://github.com/jprjr/libnezplug
 
 extra
 -vgmstream-r2055	https://github.com/vgmstream/vgmstream
--nezplug++-0.9.4.8	http://offgao.net/program/nezplug++.html
--libkss-1.2.1		https://github.com/digital-sound-antiques/libkss
 
