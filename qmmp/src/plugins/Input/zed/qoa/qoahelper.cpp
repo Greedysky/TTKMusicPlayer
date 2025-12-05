@@ -42,6 +42,6 @@ qint64 QOAHelper::read(unsigned char *data, qint64 maxSize)
         return -1;
     }
 
-    const int offset = sizeof(float) * channels();
-    return qoaplay_decode(m_input, (float*)data, maxSize / offset) * offset;
+    const int size = sizeof(float) * channels();
+    return qoaplay_decode(m_input, (float*)data, maxSize / size) * size;
 }

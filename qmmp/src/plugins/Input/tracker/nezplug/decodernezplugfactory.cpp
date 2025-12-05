@@ -25,8 +25,8 @@ DecoderProperties DecoderNEZplugFactory::properties() const
     properties.filters << "*.hes";
     properties.filters << "*.kss";
     properties.filters << "*.mus";
-    properties.filters << "*.sgc";
     properties.filters << "*.nsd" << "*.nsf" << "*.nsfe";
+    properties.filters << "*.sgc";
     properties.description = "NEZplug++ Music File";
     properties.protocols << "file" << "nezplug";
     properties.hasSettings = true;

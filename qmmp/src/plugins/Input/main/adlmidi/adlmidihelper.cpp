@@ -55,7 +55,7 @@ void AdlMidiHelper::readSettings()
 qint64 AdlMidiHelper::read(unsigned char *data, qint64 maxSize)
 {
     const int samples = maxSize / channels();
-    return adl_play(m_input, samples, (short*)data) * 2;
+    return adl_play(m_input, samples, (short*)data) * channels();
 }
 
 QString AdlMidiHelper::trackTitle() const

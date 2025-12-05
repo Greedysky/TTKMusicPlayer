@@ -57,8 +57,8 @@ private:
     int m_track = 0;
     int m_loop = 0;
     qint64 m_length = 0;
-    qint64 m_current_sample = 0;
-    qint64 m_total_samples = 0;
+    qint64 m_currentSample = 0;
+    qint64 m_totalSamples = 0;
 
 };
 

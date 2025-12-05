@@ -104,12 +104,15 @@ The TTKMusicplayer qmmp plugins
  * wavpack
  * fc14
  * hively
+ * kss
+ * nezplug
  * openmpt
  * sc68
  * soundmon
  * stsound
  * tfmx
  * uade
+ * vgmstream
  * xmp
  * adplug
  * archive
@@ -125,6 +128,5 @@ The TTKMusicplayer qmmp plugins
  * s98
  * sunvox
  * v2m
- * vgmstream
  * xmdx
  * xsf

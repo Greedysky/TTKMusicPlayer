@@ -56,14 +56,14 @@ bool SC68Helper::initialize()
 
     if(info.trk.time_ms > 0)
     {
-        m_total_samples = (uint64_t)info.trk.time_ms * sampleRate() / 1000;
+        m_totalSamples = (uint64_t)info.trk.time_ms * sampleRate() / 1000;
     }
     else
     {
-        m_total_samples = 2 * 60 * sampleRate();
+        m_totalSamples = 2 * 60 * sampleRate();
     }
 
-    m_length = m_total_samples / sampleRate() * 1000;
+    m_length = m_totalSamples / sampleRate() * 1000;
 
     sc68_play(m_input, m_track, m_loop);
     return true;
@@ -72,35 +72,35 @@ bool SC68Helper::initialize()
 void SC68Helper::seek(qint64 time)
 {
     const int sample = time * sampleRate() / 1000;
-    if(sample < m_current_sample)
+    if(sample < m_currentSample)
     {
         sc68_stop(m_input);
         sc68_play(m_input, m_track, m_loop);
-        m_current_sample = 0;
+        m_currentSample = 0;
     }
 
     char buffer[512 * 4];
-    while(m_current_sample < sample)
+    while(m_currentSample < sample)
     {
-        int sz = (int)(sample - m_current_sample);
-        sz = std::min<int>(sz, sizeof(buffer) >> 2);
+        int n = (int)(sample - m_currentSample);
+        n = std::min<int>(n, sizeof(buffer) >> 2);
 
-        if(sc68_process(m_input, buffer, &sz) & SC68_END)
+        if(sc68_process(m_input, buffer, &n) & SC68_END)
         {
             break;
         }
-        m_current_sample += sz;
+        m_currentSample += n;
     }
 }
 
 qint64 SC68Helper::read(unsigned char *data, qint64 maxSize)
 {
-    if(m_current_sample >= m_total_samples)
+    if(m_currentSample >= m_totalSamples)
     {
         return 0;
     }
 
-    m_current_sample += maxSize / (channels() * depth() / 8);
+    m_currentSample += maxSize / (channels() * depth() / 8);
     const int initSize = maxSize;
 
     while(maxSize > 0)

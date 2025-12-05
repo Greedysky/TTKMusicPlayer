@@ -158,28 +158,32 @@ QStringList UADEHelper::filters()
 {
     const QStringList filters =
     {
-        "*.aam", "*.amc", "*.aon", "*.aon8", "*.aps", "*.ash", "*.ast", "*.avp",
+        "*.aam", "*.ac1d", "*.amc", "*.aon", "*.aon8", "*.aps", "*.ash", "*.ast", "*.avp",
         "*.bd", "*.bds", "*.bsi", "*.bss", "*.bye",
         "*.cm", "*.core", "*.cust",
-        "*.dh", "*.dl", "*.dlm1", "*.dlm2", "*.dln", "*.dm", "*.dm2", "*.dmu", "*.doda", "*.dsc", "*.dsr", "*.dss", "*.dw", "*.dz",
+        "*.dh", "*.di", "*.dl", "*.dlm1", "*.dlm2", "*.dln", "*.dm", "*.dm2", "*.dmu", "*.doda", "*.dsc", "*.dsr", "*.dss", "*.dw", "*.dz",
         "*.ea", "*.ems", "*.emsv6", "*.ex",
-        "*.fp", "*.fred", "*.fw",
+        "*.fc-m", "*.fp", "*.fred", "*.fw",
         "*.glue", "*.gmc", "*.gray",
         "*.hd", "*.hip", "*.hip7", "*.hipc", "*.hot",
         "*.ims", "*.is", "*.is20",
-        "*.jam", "*.jcb", "*.jcbo", "*.jd", "*.jmf", "*.jo", "*.jpo", "*.jt",
+        "*.jam", "*.jcb", "*.jcbo", "*.jd", "*.jmf", "*.jo", "*.jpo", "*.js", "*.jt",
         "*.kh", "*.kim", "*.kris",
         "*.lion", "*.lme",
-        "*.ma", "*.mc", "*.mcmd", "*.mco", "*.md", "*.mii", "*.mk2", "*.mkii", "*.ml", "*.mm8", "*.mmdc", "*.mok", "*.mon", "*.mosh", "*.mso", "*.mug", "*.mug2", "*.mw",
-        "*.ntp",
-        "*.pap", "*.pn", "*.ps", "*.psa", "*.psf", "*.pt", "*.ptm", "*.puma", "*.pvp",
+        "*.ma", "*.mc", "*.mcmd", "*.mco", "*.md", "*.mdst", "*.mii", "*.mk2", "*.mkii", "*.ml", "*.mm8", "*.mmdc", "*.mok", "*.mon", "*.mosh", "*.mso", "*.mtp2", "*.mug", "*.mug2", "*.mw",
+        "*.ntp", "*.np2", "*.np3",
+        "*.one",
+        "*.p4x", "*.p5x", "*.p6x", "*.pap", "*.pn", "*.pp21", "*.pp30", "*.pr1", "*.prom", "*.prun", "*.pru2", "*.ps", "*.psa", "*.psf", "*.pt", "*.ptm", "*.puma", "*.pvp",
         "*.rh", "*.rho", "*.riff", "*.rmc",
-        "*.s7g", "*.sa", "*.sas", "*.sb", "*.sc", "*.scn", "*.scr", "*.sct", "*.scumm", "*.sdr", "*.sg", "*.sid1", "*.sid2", "*.sm", "*.sm3", "*.smn", "*.smpro", "*.sng", "*.snk", "*.soc", "*.sog", "*.spl", "*.sqt", "*.ss", "*.sun", "*.syn", "*.synmod",
-        "*.tcb", "*.tf", "*.tfmx", "*.thx", "*.tits", "*.tme", "*.tro", "*.tronic", "*.tw",
-        "*.ufo",
+        "*.s7g", "*.sa", "*.sa_old", "*.sas", "*.sb", "*.sc", "*.scn", "*.scr", "*.sct", "*.scumm", "*.sdr", "*.sg", "*.sid1", "*.sid2", "*.skyt", "*.sm", "*.sm3", "*.smn", "*.smpro", "*.sng", "*.snk", "*.soc", "*.sog", "*.spl", "*.sqt", "*.ss", "*.sun", "*.syn", "*.synmod",
+        "*.tcb", "*.tf", "*.tfmx", "*.thx", "*.tit", "*.tits", "*.tme", "*.tp2", "*.tp3", "*.tro", "*.tronic", "*.tw", "*.two",
+        "*.ufo", "*.unic",
         "*.vss",
         "*.wb",
+        "*.xann",
+        "*.ymst",
         // dir section
+        "*.cin",  // (Instruments)
         "*.smus", // (Instruments)
         "*.snx",  // (Instruments)
         "*.tiny", // (Instruments)
@@ -189,16 +193,19 @@ QStringList UADEHelper::filters()
         "*.dum",  // (dum, ins)
         "*.osp",  // (osp, smp)
         // pair prefix section
+        "alp.*",  // (alp, smp)
         "dns.*",  // (dns, smp)
         "jpn.*",  // (jpn, smp)
         "jpnd.*", // (jpnd, jpns)
-        "max.*",  // (thm, smp)
+        "max.*",  // (max, smp)
         "mcr.*",  // (mcr, mcs)
         "mfp.*",  // (mfp, smp)
+        "midi.*", // (midi, smpl)
         "npp.*",  // (npp, smp)
         "pat.*",  // (pat, smp, WantedTeam.bin)
         "qpa.*",  // (qpa, smp)
         "qts.*",  // (qts, smp)
+        "rjp.*",  // (rjp, smp)
         "sjs.*",  // (sjs, smp)
         "thm.*",  // (thm, smp)
         "tmk.*",  // (tmk, smp)

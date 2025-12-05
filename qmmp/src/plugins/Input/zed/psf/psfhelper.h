@@ -56,8 +56,8 @@ private:
     char m_buffer[735 * 4] = {0}; // psf2 decoder only works with 735 samples buffer
     int m_remaining = 0;
     qint64 m_length = 0;
-    int m_current_sample = 0;
-    int m_samples_to_skip = 0;
+    qint64 m_currentSample = 0;
+    qint64 m_samplesToSkip = 0;
     QMap<QString, QString> m_metaData;
 
 };

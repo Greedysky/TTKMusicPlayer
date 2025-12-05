@@ -35,6 +35,7 @@ public:
     void deinit();
     bool initialize();
 
+    void seek(qint64 time);
     inline qint64 totalTime() const { return 150 * 1000; }
 
     inline int bitrate() const { return 8; }
@@ -52,6 +53,8 @@ private:
     int m_loop = 0;
     KSS *m_kss = nullptr;
     KSSPLAY *m_input = nullptr;
+    qint64 m_currentSample = 0;
+    qint64 m_totalSamples = 0;
 
 };
 

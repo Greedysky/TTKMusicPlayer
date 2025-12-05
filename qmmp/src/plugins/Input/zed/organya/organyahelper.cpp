@@ -52,8 +52,8 @@ qint64 OrgFileReader::totalTime() const
 
 qint64 OrgFileReader::read(unsigned char *data, qint64 maxSize)
 {
-    const unsigned int sample = maxSize / channels() / sizeof(int16_t);
-    return org_decode_samples(m_input, (int16_t*)data, sample) * channels() * sizeof(int16_t);
+    const int size = sizeof(int16_t) * channels();
+    return org_decode_samples(m_input, (int16_t*)data, maxSize / size) * size;
 }
 
 

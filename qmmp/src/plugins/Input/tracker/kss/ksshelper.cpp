@@ -86,11 +86,35 @@ bool KSSHelper::initialize()
     KSSPLAY_set_channel_pan(m_input, KSS_DEVICE_OPLL, 3, 2);
     KSSPLAY_set_channel_pan(m_input, KSS_DEVICE_OPLL, 4, 1);
     KSSPLAY_set_channel_pan(m_input, KSS_DEVICE_OPLL, 5, 2);
+
+    m_totalSamples = totalTime() * sampleRate() / 1000;
     return true;
+}
+
+void KSSHelper::seek(qint64 time)
+{
+    const int sample = time * sampleRate() / 1000;
+    if(sample < m_currentSample)
+    {
+        const int track = m_path.section("#", -1).toInt() - 1;
+        KSSPLAY_reset(m_input, track < 0 ? 0 : track, 0);
+        m_currentSample = 0;
+    }
+
+    if(m_currentSample != sample)
+    {
+        KSSPLAY_calc_silent(m_input, sample - m_currentSample);
+        m_currentSample = sample;
+    }
 }
 
 qint64 KSSHelper::read(unsigned char *data, qint64 maxSize)
 {
+    if(m_currentSample >= m_totalSamples)
+    {
+        return 0;
+    }
+
     const int loop = KSSPLAY_get_loop_count(m_input);
     if(loop != m_loop || KSSPLAY_get_stop_flag(m_input))
     {
@@ -98,7 +122,9 @@ qint64 KSSHelper::read(unsigned char *data, qint64 maxSize)
         return 0;
     }
 
-    KSSPLAY_calc(m_input, (int16_t*)data, maxSize / 4);
+    const int size = channels() * depth() / 8;
+    m_currentSample += maxSize / size;
+    KSSPLAY_calc(m_input, (int16_t*)data, maxSize / size);
     return maxSize;
 }
 

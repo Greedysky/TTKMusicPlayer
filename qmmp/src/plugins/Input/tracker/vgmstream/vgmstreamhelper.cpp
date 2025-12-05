@@ -245,18 +245,16 @@ qint64 VgmstreamHelper::read(unsigned char *data, qint64 maxSize)
         return 0;
     }
 
-    const int sample_size = channels() * sizeof(int16_t);
-    int32_t sample_count = maxSize / sample_size;
-
-    const int result = libvgmstream_fill(m_info->stream, data, sample_count);
+    const int size = sizeof(int16_t) * channels();
+    const int result = libvgmstream_fill(m_info->stream, data, maxSize / size);
     if(result < 0)
     {
         return 0;
     }
 
-    sample_count = m_info->stream->decoder->buf_samples;
-    m_info->position += sample_count;
-    return sample_count * sample_size;
+    const int samples = m_info->stream->decoder->buf_samples;
+    m_info->position += samples;
+    return samples * size;
 }
 
 QList<TrackInfo*> VgmstreamHelper::createPlayList(TrackInfo::Parts parts)

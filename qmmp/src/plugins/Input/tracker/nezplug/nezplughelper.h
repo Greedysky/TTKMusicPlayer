@@ -35,6 +35,7 @@ public:
     void deinit();
     bool initialize();
 
+    void seek(qint64 time);
     qint64 totalTime() const;
 
     inline int bitrate() const { return 8; }
@@ -50,6 +51,8 @@ public:
 private:
     QString m_path;
     NEZ_PLAY *m_input = nullptr;
+    qint64 m_currentSample = 0;
+    qint64 m_totalSamples = 0;
 
 };
 

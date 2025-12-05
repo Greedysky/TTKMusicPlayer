@@ -16,8 +16,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 #endif
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("NEZplug");
-    m_ui.masterVolume->setValue(settings.value("gain", int32_t(255.0f * 2.0f / 7.0f)).toInt());
-    m_ui.devicePan->setValue(settings.value("filter", 0).toInt());
+    m_ui.filter->setCurrentIndex(settings.value("filter", 0).toInt());
+    m_ui.gain->setValue(settings.value("gain", 3).toInt());
     settings.endGroup();
 }
 
@@ -25,8 +25,8 @@ void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("NEZplug");
-    settings.setValue("gain", m_ui.masterVolume->value());
-    settings.setValue("filter", m_ui.devicePan->value());
+    settings.setValue("filter", m_ui.filter->currentIndex());
+    settings.setValue("gain", m_ui.gain->value());
     settings.endGroup();
     QDialog::accept();
 }

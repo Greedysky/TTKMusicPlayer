@@ -54,7 +54,34 @@ bool NEZplugHelper::initialize()
     const int track = m_path.section("#", -1).toInt();
     NEZSetSongNo(m_input, track < 1 ? 1 : track);
     NEZReset(m_input);
+
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("NEZplug");
+    const int filter = settings.value("filter", 0).toInt();
+    const int gain = settings.value("gain", 3).toInt();
+    settings.endGroup();
+
+    NEZSetFilter(m_input, filter);
+    NEZGain(m_input, int32_t(255.0f * (gain - 1) / 7.0f));
+
+    m_totalSamples = totalTime() * sampleRate() / 1000;
     return true;
+}
+
+void NEZplugHelper::seek(qint64 time)
+{
+    const int sample = time * sampleRate() / 1000;
+    if(sample < m_currentSample)
+    {
+        NEZReset(m_input);
+        m_currentSample = 0;
+    }
+
+    if(m_currentSample != sample)
+    {
+        NEZRender(m_input, nullptr, sample - m_currentSample);
+        m_currentSample = sample;
+    }
 }
 
 qint64 NEZplugHelper::totalTime() const
@@ -65,7 +92,14 @@ qint64 NEZplugHelper::totalTime() const
 
 qint64 NEZplugHelper::read(unsigned char *data, qint64 maxSize)
 {
-    NEZRender(m_input, data, maxSize / 4);
+    if(m_currentSample >= m_totalSamples)
+    {
+        return 0;
+    }
+
+    const int size = channels() * depth() / 8;
+    m_currentSample += maxSize / size;
+    NEZRender(m_input, data, maxSize / size);
     return maxSize;
 }
 

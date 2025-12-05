@@ -49,7 +49,7 @@ bool StSoundHelper::initialize()
 qint64 StSoundHelper::read(unsigned char *data, qint64 maxSize)
 {
     ymsample *psample = (ymsample *)data;
-    const qint64 stereoSize = maxSize / (2 * sizeof(ymsample));
+    const qint64 stereoSize = maxSize / (channels() * sizeof(ymsample));
 
     if(!m_input->update(psample, stereoSize))
     {

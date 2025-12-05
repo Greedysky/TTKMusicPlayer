@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>250</width>
-    <height>145</height>
+    <height>120</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>250</width>
-    <height>145</height>
+    <height>120</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -35,7 +35,27 @@
    <property name="bottomMargin">
     <number>6</number>
    </property>
-   <item row="4" column="0" colspan="3">
+   <item row="1" column="1" colspan="2">
+    <widget class="QSpinBox" name="gain">
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>8</number>
+     </property>
+     <property name="value">
+      <number>3</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Gain:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="3">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -48,64 +68,35 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="1" colspan="2">
-    <widget class="QSpinBox" name="silence">
-     <property name="minimum">
-      <number>0</number>
-     </property>
-     <property name="maximum">
-      <number>30</number>
-     </property>
-     <property name="value">
-      <number>5</number>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Device Pan:</string>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Master Volume:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>Silence (s):</string>
+      <string>Filter:</string>
      </property>
     </widget>
    </item>
    <item row="0" column="1" colspan="2">
-    <widget class="QSpinBox" name="masterVolume">
-     <property name="minimum">
-      <number>-127</number>
-     </property>
-     <property name="maximum">
-      <number>127</number>
-     </property>
-     <property name="value">
-      <number>32</number>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1" colspan="2">
-    <widget class="QSpinBox" name="devicePan">
-     <property name="minimum">
-      <number>-127</number>
-     </property>
-     <property name="maximum">
-      <number>127</number>
-     </property>
-     <property name="value">
-      <number>32</number>
-     </property>
+    <widget class="QComboBox" name="filter">
+     <item>
+      <property name="text">
+       <string>None</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>LowPass</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Weighted</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>LowPass Weighted</string>
+      </property>
+     </item>
     </widget>
    </item>
   </layout>

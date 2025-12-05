@@ -42,8 +42,8 @@ bool BuzzicHelper::initialize()
 
 qint64 BuzzicHelper::read(unsigned char *data, qint64 maxSize)
 {
-    const int offset = sizeof(float) * channels();
-    return Buzzic2Render(m_input, (StereoSample*)data, maxSize / offset) * offset;
+    const int size = sizeof(float) * channels();
+    return Buzzic2Render(m_input, (StereoSample*)data, maxSize / size) * size;
 }
 
 QString BuzzicHelper::instruments() const

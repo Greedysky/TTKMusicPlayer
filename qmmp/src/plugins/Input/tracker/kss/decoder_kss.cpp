@@ -50,5 +50,5 @@ qint64 DecoderKSS::read(unsigned char *data, qint64 maxSize)
 
 void DecoderKSS::seek(qint64 time)
 {
-    Q_UNUSED(time);
+    m_helper->seek(time);
 }

@@ -105,5 +105,6 @@ qint64 S98Helper::read(unsigned char *data, qint64 maxSize)
         return 0;
     }
 
-    return m_input->Write((short *)data, maxSize / 4) * 4;
+    const int size = channels() * depth() / 8;
+    return m_input->Write((short *)data, maxSize / size) * size;
 }

@@ -88,9 +88,7 @@ qint64 V2MHelper::read(unsigned char *data, qint64 maxSize)
         return 0;
     }
 
-    const int sampleSize = (depth() >> 3) * channels();
-    const int samples = maxSize / sampleSize;
-
-    m_input->Render((float*)data, samples);
+    const int size = (depth() >> 3) * channels();
+    m_input->Render((float*)data, maxSize / size);
     return maxSize;
 }

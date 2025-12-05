@@ -129,22 +129,22 @@ bool PSFHelper::initialize()
 void PSFHelper::seek(qint64 time)
 {
     const int sample = time * sampleRate() / 1000;
-    if(sample > m_current_sample)
+    if(sample > m_currentSample)
     {
-        m_samples_to_skip = sample - m_current_sample;
+        m_samplesToSkip = sample - m_currentSample;
     }
     else
     {
         ao_command(m_type, m_input, COMMAND_RESTART, 0);
-        m_samples_to_skip = sample;
+        m_samplesToSkip = sample;
     }
 
-    m_current_sample = sample;
+    m_currentSample = sample;
 }
 
 qint64 PSFHelper::read(unsigned char *data, qint64 maxSize)
 {
-    if(m_current_sample >= m_length * sampleRate())
+    if(m_currentSample >= m_length * sampleRate())
     {
         return 0;
     }
@@ -154,25 +154,26 @@ qint64 PSFHelper::read(unsigned char *data, qint64 maxSize)
     {
         if(m_remaining > 0)
         {
-            if(m_samples_to_skip > 0)
+            if(m_samplesToSkip > 0)
             {
-                int n = std::min<int>(m_samples_to_skip, m_remaining);
+                const int n = std::min<int>(m_samplesToSkip, m_remaining);
                 if(m_remaining > n)
                 {
                     memmove(m_buffer, m_buffer + n * 4, (m_remaining - n) * 4);
                 }
+
                 m_remaining -= n;
-                m_samples_to_skip -= n;
+                m_samplesToSkip -= n;
                 continue;
             }
 
-            int n = maxSize / 4;
-            n = std::min<int>(m_remaining, n);
+            const int n = std::min<int>(m_remaining, maxSize / 4);
             memcpy(data, m_buffer, n * 4);
             if(m_remaining > n)
             {
                 memmove(m_buffer, m_buffer + n * 4, (m_remaining - n) * 4);
             }
+
             m_remaining -= n;
             data += n * 4;
             maxSize -= n * 4;
@@ -185,6 +186,6 @@ qint64 PSFHelper::read(unsigned char *data, qint64 maxSize)
         }
     }
 
-    m_current_sample += (initSize - maxSize) / (channels() * depth() / 8);
+    m_currentSample += (initSize - maxSize) / (channels() * depth() / 8);
     return initSize - maxSize;
 }
