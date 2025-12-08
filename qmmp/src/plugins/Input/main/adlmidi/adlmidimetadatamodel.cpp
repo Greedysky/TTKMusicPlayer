@@ -13,12 +13,12 @@ AdlMidiMetaDataModel::AdlMidiMetaDataModel(const QString &path)
 
 void AdlMidiMetaDataModel::fillProperties(AdlMidiHelper *helper)
 {
-    m_ep << MetaDataItem(tr("TrackTitle"), helper->trackTitleCount());
-    m_ep << MetaDataItem(tr("MetaMarker"), helper->metaMarkerCount());
+    m_ep << MetaDataItem(tr("TrackTitles"), helper->trackTitleCount());
+    m_ep << MetaDataItem(tr("MetaMarkers"), helper->metaMarkerCount());
     m_ep << MetaDataItem(tr("Copyright"), helper->copyright());
 
-    m_desc << MetaDataItem(tr("TrackTitle"), helper->trackTitle());
-    m_desc << MetaDataItem(tr("MetaMarker"), helper->metaMarker());
+    m_desc << MetaDataItem(tr("TrackTitles"), helper->trackTitles());
+    m_desc << MetaDataItem(tr("MetaMarkers"), helper->metaMarkers());
 }
 
 QList<MetaDataItem> AdlMidiMetaDataModel::extraProperties() const

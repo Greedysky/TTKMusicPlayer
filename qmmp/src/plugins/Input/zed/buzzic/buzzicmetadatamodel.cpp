@@ -13,7 +13,6 @@ BuzzicMetaDataModel::BuzzicMetaDataModel(const QString &path)
 
 void BuzzicMetaDataModel::fillProperties(BuzzicHelper *helper)
 {
-    m_ep << MetaDataItem(tr("Channels"), QString::number(helper->channels()));
     m_ep << MetaDataItem(tr("Instruments"), QString::number(helper->instrumentCount()));
 
     m_desc << MetaDataItem(tr("Instruments"), helper->instruments());
