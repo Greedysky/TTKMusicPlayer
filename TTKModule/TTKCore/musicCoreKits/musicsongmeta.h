@@ -100,6 +100,10 @@ public:
     /*!
      * Read media description.
      */
+    QString format() noexcept;
+    /*!
+     * Read media description.
+     */
     QString description() noexcept;
 
     /*!

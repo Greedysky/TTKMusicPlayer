@@ -135,6 +135,11 @@ QString MusicSongMeta::channel() noexcept
     return songMeta()->m_metaData[TagMeta::CHANNEL];
 }
 
+QString MusicSongMeta::format() noexcept
+{
+    return songMeta()->m_metaData[TagMeta::FORMAT];
+}
+
 QString MusicSongMeta::description() noexcept
 {
     return songMeta()->m_metaData[TagMeta::DESCRIPTION];
@@ -363,6 +368,7 @@ bool MusicSongMeta::readInformation()
             meta->m_metaData[TagMeta::SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
             meta->m_metaData[TagMeta::BITRATE] = info->value(Qmmp::BITRATE);
             meta->m_metaData[TagMeta::CHANNEL] = info->value(Qmmp::CHANNELS);
+            meta->m_metaData[TagMeta::FORMAT] = info->value(Qmmp::FORMAT_NAME);
 
             meta->m_metaData[TagMeta::TITLE] = info->value(Qmmp::TITLE);
             meta->m_metaData[TagMeta::ARTIST] = info->value(Qmmp::ARTIST);
@@ -459,6 +465,7 @@ bool MusicSongMeta::readInformation()
                 meta->m_metaData[TagMeta::RATING] = rating;
             }
 
+            description = "Format: " + meta->m_metaData[TagMeta::FORMAT] + TTK_LINEFEED + description;
             meta->m_metaData[TagMeta::DESCRIPTION] = description;
         }
     }
