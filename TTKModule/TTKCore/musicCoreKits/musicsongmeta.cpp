@@ -358,7 +358,7 @@ bool MusicSongMeta::readInformation()
         {
             MusicMeta *meta = new MusicMeta;
             meta->m_path = info->path();
-            meta->m_metaData[TagMeta::URL] = files.isEmpty() ? meta->m_path : files.first();
+            meta->m_metaData[TagMeta::URL] = files.isEmpty() ? m_path : files.first();
 
             meta->m_metaData[TagMeta::SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
             meta->m_metaData[TagMeta::BITRATE] = info->value(Qmmp::BITRATE);

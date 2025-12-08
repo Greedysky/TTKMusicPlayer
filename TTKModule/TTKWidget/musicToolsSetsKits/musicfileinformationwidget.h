@@ -47,7 +47,7 @@ public:
     /*!
      * Set media file song information.
      */
-    void initialize(const QString &name);
+    void initialize(const QString &path);
 
 public Q_SLOTS:
     /*!

@@ -85,15 +85,15 @@ static void rendererPixmap(Ui::MusicFileInformationWidget *ui, const QPixmap &pi
     }
 }
 
-void MusicFileInformationWidget::initialize(const QString &name)
+void MusicFileInformationWidget::initialize(const QString &path)
 {
-    if(name.contains(CACHE_DIR_FULL)) //cache song should not allow open url
+    if(path.contains(CACHE_DIR_FULL)) //cache song should not allow open url
     {
         m_ui->viewButton->setEnabled(false);
     }
 
     MusicSongMeta meta;
-    const bool state = meta.read(m_path = name);
+    const bool state = meta.read(m_path = path);
     const QFileInfo fin(meta.fileRelatedPath());
 
     QString check;
