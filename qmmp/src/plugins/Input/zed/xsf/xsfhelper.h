@@ -49,6 +49,7 @@ public:
 
     inline bool hasTags() const { return !m_input->get_meta_map().empty(); }
     inline QString tag(const char *key) const { return QString::fromStdString(m_input->get_meta_map()[key]); }
+    inline QString format() const { return m_input->format(); }
 
 private:
     QString m_path;
