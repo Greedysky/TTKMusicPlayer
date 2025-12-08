@@ -55,7 +55,7 @@ bool UADEHelper::initialize()
     const QString &path = cleanPath();
     if(uade_play(QmmpPrintable(path), m_track, m_state) != 1)
     {
-        qWarning("UADEHelper: Unable to open file, %s", qPrintable(path));
+        qWarning("UADEHelper: unable to open file, %s", qPrintable(path));
         return false;
     }
 

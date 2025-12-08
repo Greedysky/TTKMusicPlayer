@@ -20,7 +20,7 @@ public:
 public slots:
     void setVolume(int value);
     void setTimeValue(qint64 value);
-    void setSeek(int value);
+    void setSeek();
 
 private:
     Ui::MainWindow *ui;

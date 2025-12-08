@@ -18,14 +18,6 @@ contains(CONFIG, HIVELY_PLUGIN){
     SUBDIRS += hively
 }
 
-contains(CONFIG, KSS_PLUGIN){
-    SUBDIRS += kss
-}
-
-contains(CONFIG, NEZPLUG_PLUGIN){
-    SUBDIRS += nezplug
-}
-
 contains(CONFIG, OPENMPT_PLUGIN){
     SUBDIRS += openmpt
 }
@@ -44,6 +36,10 @@ contains(CONFIG, STSOUND_PLUGIN){
 
 contains(CONFIG, TFMX_PLUGIN){
     SUBDIRS += tfmx
+}
+
+contains(CONFIG, XGM_PLUGIN){
+    SUBDIRS += xgm
 }
 
 contains(CONFIG, XMP_PLUGIN){

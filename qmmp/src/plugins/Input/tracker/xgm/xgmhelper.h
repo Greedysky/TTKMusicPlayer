@@ -16,45 +16,70 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef KSSHELPER_H
-#define KSSHELPER_H
+#ifndef XGMHELPER_H
+#define XGMHELPER_H
 
 #include <QFile>
 #include <qmmp/trackinfo.h>
-#include <libkss/kssplay.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class KSSHelper
+class AbstractReader
 {
 public:
-    explicit KSSHelper(const QString &path);
-    ~KSSHelper();
+    AbstractReader(const QString &path);
+    virtual ~AbstractReader() = default;
 
-    void deinit();
-    bool initialize();
-
-    void seek(qint64 time);
-    inline qint64 totalTime() const { return 150 * 1000; }
+    virtual bool load() = 0;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) = 0;
+    virtual void seek(qint64 time) = 0;
+    virtual QList<TrackInfo*> createPlayList(TrackInfo::Parts parts) = 0;
 
     inline int bitrate() const { return 8; }
     inline int sampleRate() const { return 44100; }
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }
 
-    qint64 read(unsigned char *data, qint64 maxSize);
+    inline qint64 totalTime() const { return m_length; }
 
-    QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
     QString cleanPath() const;
 
-private:
+protected:
     QString m_path;
-    int m_loop = 0;
-    KSS *m_kss = nullptr;
-    KSSPLAY *m_input = nullptr;
+    qint64 m_length = 0;
     qint64 m_currentSample = 0;
     qint64 m_totalSamples = 0;
+
+};
+
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
+class XGMHelper
+{
+public:
+    explicit XGMHelper(const QString &path);
+    ~XGMHelper();
+
+    void deinit();
+    bool initialize();
+
+    inline void seek(qint64 time) { m_input->seek(time); }
+    inline qint64 totalTime() const { return m_input->totalTime(); }
+
+    inline int bitrate() const { return m_input->bitrate(); }
+    inline int sampleRate() const { return m_input->sampleRate(); }
+    inline int channels() const { return m_input->channels(); }
+    inline int depth() const { return m_input->depth(); }
+
+    inline qint64 read(unsigned char *data, qint64 maxSize) { return m_input->read(data, maxSize); }
+
+    inline QList<TrackInfo*> createPlayList(TrackInfo::Parts parts) { return m_input->createPlayList(parts); }
+
+private:
+    AbstractReader *m_input = nullptr;
 
 };
 

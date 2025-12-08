@@ -134,10 +134,11 @@ void VgmstreamHelper::deinit()
 
 bool VgmstreamHelper::initialize()
 {
-    libstreamfile_t *sf = vfs_open(QmmpPrintable(cleanPath()));
+    const QString &path = cleanPath();
+    libstreamfile_t *sf = vfs_open(QmmpPrintable(path));
     if(!sf)
     {
-        qWarning("VgmstreamHelper: Unable to open file");
+        qWarning("VgmstreamHelper: unable to open file");
         return false;
     }
 
@@ -158,7 +159,7 @@ bool VgmstreamHelper::initialize()
 
     if(!m_info->stream)
     {
-        qWarning("VgmstreamHelper: File is not a valid format");
+        qWarning("VgmstreamHelper: file is not a valid format");
         return false;
     }
 
@@ -169,19 +170,19 @@ bool VgmstreamHelper::initialize()
         memset(&cfg, 0, sizeof(libvgmstream_title_t));
         cfg.remove_extension = 1;
         cfg.remove_archive = 1;
-        cfg.filename = QmmpPrintable(cleanPath());
+        cfg.filename = QmmpPrintable(path);
 
         char title[1024] = {0};
         libvgmstream_get_title(m_info->stream, &cfg, title, sizeof(title));
         m_metaData[Qmmp::TITLE] = title;
     }
 
-    const QString &path = QFileInfo(cleanPath()).absoluteFilePath() + "/!tags.m3u";
-    if(settings.value("Vgmstream/use_tagfile", true).toBool() && QFile::exists(path))
+    const QString &m3u = QFileInfo(path).absoluteFilePath() + "/!tags.m3u";
+    if(settings.value("Vgmstream/use_tagfile", true).toBool() && QFile::exists(m3u))
     {
-        libstreamfile_t *sf = vfs_open(QmmpPrintable(path));
+        libstreamfile_t *sf = vfs_open(QmmpPrintable(m3u));
         libvgmstream_tags_t *tags = libvgmstream_tags_init(sf);
-        libvgmstream_tags_find(tags, QmmpPrintable(cleanPath()));
+        libvgmstream_tags_find(tags, QmmpPrintable(path));
 
         while(libvgmstream_tags_next_tag(tags))
         {

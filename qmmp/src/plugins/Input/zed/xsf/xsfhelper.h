@@ -31,10 +31,8 @@
 class XSFHelper
 {
 public:
-    explicit XSFHelper(const QString &path);
+    explicit XSFHelper(const QString &path, bool meta = false);
     ~XSFHelper();
-
-    void metaMode(bool meta);
 
     void deinit();
     bool initialize();
@@ -47,7 +45,7 @@ public:
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }
 
-    inline qint64 read(unsigned char *data, qint64) { return m_input->read((short*)data, INPUT_BUFFER_SIZE) * 4; }
+    inline qint64 read(unsigned char *data, qint64) { return m_input->read((short*)data, INPUT_BUFFER_SIZE) * channels() * depth() / 8; }
 
     inline bool hasTags() const { return !m_input->get_meta_map().empty(); }
     inline QString tag(const char *key) const { return QString::fromStdString(m_input->get_meta_map()[key]); }

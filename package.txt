@@ -37,34 +37,39 @@ zlib-1.3.1	https://github.com/madler/zlib
 
 ttk-1.2.12
 -libasap-6.0.3	 https://sourceforge.net/projects/asap
--libayfly		 https://github.com/l29ah/ayfly
--libdca			 https://github.com/DeaDBeeF-Player/deadbeef/tree/master/plugins/dca
+-libayfly	 https://github.com/l29ah/ayfly
+-libdca		 https://github.com/DeaDBeeF-Player/deadbeef/tree/master/plugins/dca
 -libfc14-1.0.6	 https://github.com/mschwendt/libfc14audiodecoder
 -libgoom-2k4	 https://sourceforge.net/projects/goom
--libhively		 https://github.com/sasq64/musicplayer
--libken			 https://bitbucket.org/wothke/webken/src/master
-				 http://advsys.net/ken/util/in_ken_src.zip
--liborganya		 https://github.com/xbmc/audiodecoder.organya
-				 https://bitbucket.org/wothke/webpixel
--libpsf			 https://github.com/sasq64/musicplayer
--libqoa			 https://github.com/phoboslab/qoa 52ed2d1c748e7cce7f26bdea80461049e0aa2f9f
--libs98			 https://github.com/sasq64/musicplayer
+-libhively	 https://github.com/sasq64/musicplayer
+-libken		 https://bitbucket.org/wothke/webken/src/master
+                 http://advsys.net/ken/util/in_ken_src.zip
+-liborganya	 https://github.com/xbmc/audiodecoder.organya
+                 https://bitbucket.org/wothke/webpixel
+-libpsf		 https://github.com/sasq64/musicplayer
+-libqoa		 https://github.com/phoboslab/qoa 52ed2d1c748e7cce7f26bdea80461049e0aa2f9f
+-libs98		 https://github.com/sasq64/musicplayer
 -libsc68-2.2.1	 https://sourceforge.net/projects/sc68
--libsonic		 https://github.com/waywardgeek/sonic d2cdb40fbdc82b464be364a50b34e8dd82b6c80a
+-libsonic	 https://github.com/waywardgeek/sonic d2cdb40fbdc82b464be364a50b34e8dd82b6c80a
 -libsoundmon	 http://www.brianpostma.com (unfortunately down now)
-				 https://github.com/arnaud-neny/rePlayer
--libstsound		 https://github.com/arnaud-carre/StSound
--libtfmx		 https://github.com/mschwendt/libtfmxaudiodecoder
+                 https://github.com/arnaud-neny/rePlayer
+-libstsound	 https://github.com/arnaud-carre/StSound
+-libtfmx	 https://github.com/mschwendt/libtfmxaudiodecoder
 -libuade-3.05	 http://www.zakalwe.fi/uade/
-			 https://gitlab.com/uade-music-player/uade 602c3e908772bb96a274e9eb14fe8c874183421c
+                 https://gitlab.com/uade-music-player/uade 602c3e908772bb96a274e9eb14fe8c874183421c
 -libv2m-20250811 https://github.com/jgilje/v2m-player
--libxmdx		 https://github.com/mistydemeo/mdxmini
-				 https://github.com/mistydemeo/pmdmini
-				 https://github.com/BouKiCHi/foo_input_mucom
-				 https://github.com/suzukiplan/vgs-bgm-decoder
--libxsf			 https://gitlab.com/kode54/audacious-xsf
--libkss-1.2.1		https://github.com/digital-sound-antiques/libkss
--nezplug++-0.9.4.8	https://github.com/jprjr/libnezplug
+-libxgm		 https://github.com/digital-sound-antiques/libkss
+                 https://github.com/jprjr/libnezplug
+                 https://sourceforge.net/projects/libpac
+                 https://github.com/pachuco/jaytrax
+                 https://github.com/aargirakis/BZRPlayer
+
+
+-libxmdx	 https://github.com/mistydemeo/mdxmini
+                 https://github.com/mistydemeo/pmdmini
+                 https://github.com/BouKiCHi/foo_input_mucom
+                 https://github.com/suzukiplan/vgs-bgm-decoder
+-libxsf		 https://gitlab.com/kode54/audacious-xsf
 
 extra
 -vgmstream-r2055	https://github.com/vgmstream/vgmstream

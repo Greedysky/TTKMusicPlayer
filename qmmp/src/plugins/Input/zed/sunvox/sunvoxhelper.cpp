@@ -252,5 +252,5 @@ qint64 SunVoxHelper::read(unsigned char *data, qint64)
         return 0;
     }
 
-    return sv_audio_callback(data, INPUT_BUFFER_SIZE, 0, sv_get_ticks()) ? INPUT_BUFFER_SIZE * 4 : 0;
+    return sv_audio_callback(data, INPUT_BUFFER_SIZE, 0, sv_get_ticks()) ? (INPUT_BUFFER_SIZE * channels() * depth() / 8) : 0;
 }

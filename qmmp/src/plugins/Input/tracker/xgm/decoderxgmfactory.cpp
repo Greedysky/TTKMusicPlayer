@@ -1,9 +1,9 @@
-#include "decoderkssfactory.h"
-#include "decoder_kss.h"
-#include "ksshelper.h"
+#include "decoderxgmfactory.h"
+#include "xgmhelper.h"
+#include "decoder_xgm.h"
 #include "settingsdialog.h"
 
-bool DecoderKSSFactory::canDecode(QIODevice *input) const
+bool DecoderXGMFactory::canDecode(QIODevice *input) const
 {
     const QFile * const file = qobject_cast<QFile*>(input);
     if(!file)
@@ -11,30 +11,37 @@ bool DecoderKSSFactory::canDecode(QIODevice *input) const
         return false;
     }
 
-    KSSHelper helper(file->fileName());
+    XGMHelper helper(file->fileName());
     return helper.initialize();
 }
 
-DecoderProperties DecoderKSSFactory::properties() const
+DecoderProperties DecoderXGMFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("KSS Plugin");
-    properties.shortName = "kss";
+    properties.name = tr("XGM Plugin");
+    properties.shortName = "xgm";
+    // kss
     properties.filters << "*.kss" << "*.mgs" << "*.bgm" << "*.opx" << "*.mpk" << "*.mbm";
-    properties.description = "MSX Music File";
-    properties.protocols << "file" << "kss";
+    // nezplug++
+    properties.filters << "*.ay" << "*.gbr" << "*.gbs" << "*.hes" << "*.mus" << "*.nsd" << "*.nsf" << "*.nsfe" << "*.sgc";
+    // jaytrax
+    properties.filters << "*.jxs";
+    // pac
+    properties.filters << "*.pac";
+    properties.description = "MSX Related Music File";
+    properties.protocols << "file" << "xgm";
     properties.hasSettings = true;
     properties.noInput = true;
     return properties;
 }
 
-Decoder *DecoderKSSFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderXGMFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(input);
-    return new DecoderKSS(path);
+    return new DecoderXGM(path);
 }
 
-QList<TrackInfo*> DecoderKSSFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
+QList<TrackInfo*> DecoderXGMFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
 {
     if(path.contains("://")) //is it one track?
     {
@@ -55,28 +62,28 @@ QList<TrackInfo*> DecoderKSSFactory::createPlayList(const QString &path, TrackIn
         return playlist << info;
     }
 
-    KSSHelper helper(path);
+    XGMHelper helper(path);
     if(!helper.initialize())
     {
-        qWarning("DecoderKSSFactory: unable to open file");
+        qWarning("DecoderXGMFactory: unable to open file");
         return QList<TrackInfo*>();
     }
     return helper.createPlayList(parts);
 }
 
-MetaDataModel* DecoderKSSFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderXGMFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);
     return nullptr;
 }
 
-QDialog *DecoderKSSFactory::createSettings(QWidget *parent)
+QDialog *DecoderXGMFactory::createSettings(QWidget *parent)
 {
     return new SettingsDialog(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #include <QtPlugin>
-Q_EXPORT_PLUGIN2(kss, DecoderKSSFactory)
+Q_EXPORT_PLUGIN2(xgm, DecoderXGMFactory)
 #endif

@@ -21,8 +21,6 @@ void SC68Helper::deinit()
 
 bool SC68Helper::initialize()
 {
-    const QString &path = cleanPath();
-
     sc68_init(nullptr);
     m_input = sc68_create(nullptr);
     if(!m_input)
@@ -31,7 +29,7 @@ bool SC68Helper::initialize()
         return false;
     }
 
-    if(sc68_load_uri(m_input, QmmpPrintable("file://" + path)))
+    if(sc68_load_uri(m_input, QmmpPrintable("file://" + cleanPath())))
     {
         qWarning("SC68Helper: unable to open file");
         return false;
@@ -51,8 +49,8 @@ bool SC68Helper::initialize()
         return false;
     }
 
-    m_loop = (info.trk.time_ms == 0);
     m_track = track;
+    m_loop = (info.trk.time_ms == 0);
 
     if(info.trk.time_ms > 0)
     {

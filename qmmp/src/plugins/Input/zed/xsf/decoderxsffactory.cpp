@@ -25,7 +25,7 @@ DecoderProperties DecoderXSFFactory::properties() const
     properties.filters << "*.ncsf" << "*.minincsf";
     properties.filters << "*.snsf" << "*.minisnsf";
     properties.filters << "*.pcm" << "*.msu";
-    properties.description = "Overload Audio File";
+    properties.description = "Audio Overload File";
     properties.protocols << "file";
     properties.noInput = true;
     return properties;
@@ -45,8 +45,7 @@ QList<TrackInfo*> DecoderXSFFactory::createPlayList(const QString &path, TrackIn
         return QList<TrackInfo*>() << info;
     }
 
-    XSFHelper helper(path);
-    helper.metaMode(true);
+    XSFHelper helper(path, true);
     if(!helper.initialize())
     {
         delete info;

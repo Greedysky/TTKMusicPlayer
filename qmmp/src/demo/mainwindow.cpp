@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pauseButton, SIGNAL(clicked(bool)), m_sound, SLOT(pause()));
     connect(ui->stopButton, SIGNAL(clicked(bool)), m_sound, SLOT(stop()));
     connect(ui->volumeSlider, SIGNAL(valueChanged(int)), SLOT(setVolume(int)));
-    connect(ui->timeSlider, SIGNAL(sliderMoved(int)), SLOT(setSeek(int)));
+    connect(ui->timeSlider, SIGNAL(sliderReleased()), SLOT(setSeek()));
     connect(m_sound, SIGNAL(positionChanged(qint64)), SLOT(setTimeValue(qint64)));
 
     for(int i = 0; i < 11; ++i)
@@ -66,9 +66,13 @@ void MainWindow::setVolume(int value)
     m_sound->setVolume(value);
 }
 
-void MainWindow::setSeek(int value)
+void MainWindow::setSeek()
 {
-    m_sound->setPosition(value);
+    QSlider *s = qobject_cast<QSlider*>(sender());
+    if(s)
+    {
+        m_sound->setPosition(s->value());
+    }
 }
 
 void MainWindow::setTimeValue(qint64 value)

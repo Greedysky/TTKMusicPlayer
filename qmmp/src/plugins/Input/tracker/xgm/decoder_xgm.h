@@ -16,21 +16,21 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef DECODER_KSS_H
-#define DECODER_KSS_H
+#ifndef DECODER_XGM_H
+#define DECODER_XGM_H
 
 #include <qmmp/decoder.h>
 
-class KSSHelper;
+class XGMHelper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class DecoderKSS : public Decoder
+class DecoderXGM : public Decoder
 {
 public:
-    explicit DecoderKSS(const QString &path);
-    virtual ~DecoderKSS();
+    explicit DecoderXGM(const QString &path);
+    virtual ~DecoderXGM();
 
     // Standard Decoder API
     virtual bool initialize() override final;
@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override final;
 
 private:
-    KSSHelper *m_helper = nullptr;
+    XGMHelper *m_helper = nullptr;
 
 };
 

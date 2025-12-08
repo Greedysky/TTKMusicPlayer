@@ -225,7 +225,6 @@ qint64 OutputDirectSound::writeAudio(unsigned char *data, qint64 maxSize)
 
     m_dsBufferAt += totalSize;
     m_dsBufferAt %= INPUT_BUFFER_SIZE;
-
     return totalSize;
 }
 

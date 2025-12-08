@@ -21,6 +21,7 @@ public:
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
 
 private:
+    float m_offset = 0;
     MDXMini *m_input = nullptr;
 
 };
@@ -64,7 +65,7 @@ qint64 MDXFileReader::read(unsigned char *data, qint64)
 
     mdx_calc_sample(m_input, (short*)data, INPUT_BUFFER_SIZE);
     m_offset += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
-    return INPUT_BUFFER_SIZE * 4;
+    return INPUT_BUFFER_SIZE * channels() * depth() / 8;
 }
 
 
@@ -78,6 +79,7 @@ public:
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
 
 private:
+    float m_offset = 0;
     PMDMini *m_input = nullptr;
 
 };
@@ -121,7 +123,7 @@ qint64 PMDFileReader::read(unsigned char *data, qint64)
 
     m_input->pmd_renderer((short*)data, INPUT_BUFFER_SIZE);
     m_offset += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
-    return INPUT_BUFFER_SIZE * 4;
+    return INPUT_BUFFER_SIZE * channels() * depth() / 8;
 }
 
 
@@ -176,7 +178,7 @@ qint64 MUCFileReader::read(unsigned char *data, qint64)
     }
 
     m_input->Mix((short*)data, INPUT_BUFFER_SIZE);
-    return INPUT_BUFFER_SIZE * 4;
+    return INPUT_BUFFER_SIZE * channels() * depth() / 8;
 }
 
 

@@ -17,6 +17,7 @@ bool Format::isTrack(const QString &url)
 #ifdef Q_OS_UNIX
     list << "uade://";
 #endif
+    list << "xgm://";
     list << "vgm://";
     list << "wvpack://";
 

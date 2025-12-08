@@ -7,8 +7,9 @@
 #include <libxsf/filesnsf.h>
 #include <libxsf/filemsu.h>
 
-XSFHelper::XSFHelper(const QString &path)
-    : m_path(path)
+XSFHelper::XSFHelper(const QString &path, bool meta)
+    : m_path(path),
+      m_meta(meta)
 {
 
 }
@@ -16,11 +17,6 @@ XSFHelper::XSFHelper(const QString &path)
 XSFHelper::~XSFHelper()
 {
     deinit();
-}
-
-void XSFHelper::metaMode(bool meta)
-{
-    m_meta = meta;
 }
 
 void XSFHelper::deinit()

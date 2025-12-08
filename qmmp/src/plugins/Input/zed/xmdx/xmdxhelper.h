@@ -34,14 +34,16 @@ public:
     virtual bool load(const QString &path) = 0;
     virtual qint64 read(unsigned char *data, qint64 maxSize) = 0;
 
-    inline virtual int sampleRate() const { return 44100; }
+    inline int bitrate() const { return 8; }
+    virtual int sampleRate() const { return 44100; }
+    inline int channels() const { return 2; }
+    inline int depth() const { return 16; }
 
     inline qint64 totalTime() const { return m_length; }
     inline QString title() const { return m_title; }
     inline QString author() const { return m_author; }
 
 protected:
-    int m_offset = 0;
     qint64 m_length = 0;
     QString m_title;
     QString m_author;
@@ -63,10 +65,10 @@ public:
 
     inline qint64 totalTime() const { return m_input->totalTime(); }
 
-    inline int bitrate() const { return 8; }
+    inline int bitrate() const { return m_input->bitrate(); }
     inline int sampleRate() const { return m_input->sampleRate(); }
-    inline int channels() const { return 2; }
-    inline int depth() const { return 16; }
+    inline int channels() const { return m_input->channels(); }
+    inline int depth() const { return m_input->depth(); }
 
     inline qint64 read(unsigned char *data, qint64 maxSize) { return m_input->read(data, maxSize); }
 
