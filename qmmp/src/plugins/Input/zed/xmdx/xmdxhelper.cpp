@@ -3,8 +3,8 @@
 extern "C" {
 #include <libxmdx/mdxmini/mdxmini.h>
 #include <libxmdx/pmdmini/pmdmini.h>
-#include <libxmdx/mucom88/mucomtag.h>
-#include <libxmdx/mucom88/mucom_module.h>
+#include <libxmdx/mucom88/utils/mucomtag.h>
+#include <libxmdx/mucom88/module/mucom_module.h>
 #include <libxmdx/vgs/vgsdec.h>
 #include <libxmdx/vgs/vgsmml.h>
 }

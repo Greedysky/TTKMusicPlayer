@@ -50,5 +50,5 @@ qint64 DecoderBuzzic::read(unsigned char *data, qint64 maxSize)
 
 void DecoderBuzzic::seek(qint64 time)
 {
-    Q_UNUSED(time);
+    m_helper->seek(time);
 }

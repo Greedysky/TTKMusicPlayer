@@ -37,13 +37,38 @@ bool BuzzicHelper::initialize()
         qWarning("BuzzicHelper: failed to Buzzic2Load");
         return false;
     }
+
+    m_totalSamples = totalTime() * sampleRate() / 1000;
     return true;
+}
+
+void BuzzicHelper::seek(qint64 time)
+{
+    const int sample = time * sampleRate() / 1000;
+    if(sample < m_currentSample)
+    {
+        Buzzic2Reset(m_input);
+        m_currentSample = 0;
+    }
+
+    if(m_currentSample != sample)
+    {
+        Buzzic2Render(m_input, nullptr, sample - m_currentSample);
+        m_currentSample = sample;
+    }
 }
 
 qint64 BuzzicHelper::read(unsigned char *data, qint64 maxSize)
 {
-    const int size = sizeof(float) * channels();
-    return Buzzic2Render(m_input, (StereoSample*)data, maxSize / size) * size;
+    if(m_currentSample >= m_totalSamples)
+    {
+        return 0;
+    }
+
+    const int size = maxSize / (sizeof(float) * channels());
+    m_currentSample += size;
+    Buzzic2Render(m_input, (StereoSample*)data, size);
+    return maxSize;
 }
 
 QString BuzzicHelper::instruments() const
