@@ -30,7 +30,7 @@ class BuzzicMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(BuzzicMetaDataModel)
 public:
-    BuzzicMetaDataModel(const QString &path);
+    explicit BuzzicMetaDataModel(const QString &path);
 
     virtual QList<MetaDataItem> extraProperties() const override final;
     virtual QList<MetaDataItem> descriptions() const override final;

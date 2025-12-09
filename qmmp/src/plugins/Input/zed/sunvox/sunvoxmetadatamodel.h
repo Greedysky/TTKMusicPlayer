@@ -30,7 +30,7 @@ class SunVoxMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(SunVoxMetaDataModel)
 public:
-    SunVoxMetaDataModel(const QString &path);
+    explicit SunVoxMetaDataModel(const QString &path);
 
     virtual QList<MetaDataItem> extraProperties() const override final;
     virtual QList<MetaDataItem> descriptions() const override final;

@@ -32,7 +32,7 @@
 class FFmpegMetaDataModel : public MetaDataModel
 {
 public:
-    explicit FFmpegMetaDataModel(const QString &path, bool readOnly);
+    FFmpegMetaDataModel(const QString &path, bool readOnly);
     virtual ~FFmpegMetaDataModel();
 
     virtual QList<TagModel*> tags() const override final;

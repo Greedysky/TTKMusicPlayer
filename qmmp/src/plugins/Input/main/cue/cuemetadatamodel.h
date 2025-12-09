@@ -32,7 +32,7 @@ class QmmpTextCodec;
 class CUEMetaDataModel : public MetaDataModel
 {
 public:
-    explicit CUEMetaDataModel(bool readOnly, const QString &path);
+    CUEMetaDataModel(bool readOnly, const QString &path);
     ~CUEMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override final;
