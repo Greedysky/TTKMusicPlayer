@@ -4,11 +4,13 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 
 HEADERS += decoderxsffactory.h \
            decoder_xsf.h \
-           xsfhelper.h
+           xsfhelper.h \
+           xsfmetadatamodel.h
 
 SOURCES += decoderxsffactory.cpp \
            decoder_xsf.cpp \
-           xsfhelper.cpp
+           xsfhelper.cpp \
+           xsfmetadatamodel.cpp
 
 INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include \
                $$EXTRA_LIB_PATH/libttk/include/libxsf/mgba
