@@ -237,7 +237,7 @@ static int loadData(VisImage *image, const char *name)
 {
     /* File read vars */
     FILE * fp = fopen(name, "rb");
-    if(fp == NULL)
+    if(fp == nullptr)
     {
         return 1;
     }
@@ -342,7 +342,7 @@ static void freeData(VisImage *image)
     if(image->buffer)
     {
         free(image->buffer);
-        image->buffer = NULL;
+        image->buffer = nullptr;
     }
 }
 
@@ -361,8 +361,8 @@ static void loadTextrue(VisImage *image, const QString &bmp, GLuint texture)
         qDebug("Load %s bitmap resource success", qPrintable(bmp));
     }
 
-    bitmap::freeData(image);
     QFile::remove(tmp);
+    bitmap::freeData(image);
 }
 }
 
@@ -414,7 +414,7 @@ void MadSpinWidget::initializeGL()
     bitmap::VisImage image;
     image.bpp = 3;
     image.depth = 24;
-    image.buffer = NULL;
+    image.buffer = nullptr;
 
     bitmap::loadTextrue(&image, "star", m_texture[0]);
     bitmap::loadTextrue(&image, "line", m_texture[1]);

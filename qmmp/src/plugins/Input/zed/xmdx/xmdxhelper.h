@@ -36,13 +36,13 @@ public:
 
     inline int bitrate() const { return 8; }
     virtual int sampleRate() const { return 44100; }
-    inline int channels() const { return 2; }
+    virtual int channels() const { return 2; }
     inline int depth() const { return 16; }
 
+    virtual QString format() const = 0;
     inline qint64 totalTime() const { return m_length; }
     inline QString title() const { return m_title; }
     inline QString author() const { return m_author; }
-    virtual QString format() const = 0;
 
 protected:
     qint64 m_length = 0;

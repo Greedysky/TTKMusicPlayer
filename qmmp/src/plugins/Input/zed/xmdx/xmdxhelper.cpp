@@ -212,7 +212,8 @@ public:
     virtual bool load(const QString &path) override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
 
-    virtual int sampleRate() const override final { return 22050 / 2; }
+    virtual int sampleRate() const override final { return 22050; }
+    virtual int channels() const override final { return 1; }
 
     virtual QString format() const override final;
 
@@ -281,7 +282,7 @@ bool VGSFileReader::load(const QString &path)
         m_author = QString::fromStdString(meta->team);
     }
 
-    m_length = vgsdec_get_value(m_input, VGSDEC_REG_TIME_LENGTH) * 1.0 / 22050 * 1000 + 5000;
+    m_length = vgsdec_get_value(m_input, VGSDEC_REG_TIME_LENGTH) * 1.0 / sampleRate() * 1000 + 5000;
     return true;
 }
 
