@@ -42,6 +42,7 @@ public:
     inline qint64 totalTime() const { return m_length; }
     inline QString title() const { return m_title; }
     inline QString author() const { return m_author; }
+    virtual QString format() const = 0;
 
 protected:
     qint64 m_length = 0;
@@ -72,6 +73,7 @@ public:
 
     inline qint64 read(unsigned char *data, qint64 maxSize) { return m_input->read(data, maxSize); }
 
+    inline QString format() const { return m_input->format(); }
     inline QString title() const { return m_input->title(); }
     inline QString author() const { return m_input->author(); }
 

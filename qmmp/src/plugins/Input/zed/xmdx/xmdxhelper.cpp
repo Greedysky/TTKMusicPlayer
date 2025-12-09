@@ -20,6 +20,8 @@ public:
     virtual bool load(const QString &path) override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
 
+    virtual QString format() const override final;
+
 private:
     float m_offset = 0;
     MDXMini *m_input = nullptr;
@@ -68,6 +70,11 @@ qint64 MDXFileReader::read(unsigned char *data, qint64)
     return INPUT_BUFFER_SIZE * channels() * depth() / 8;
 }
 
+QString MDXFileReader::format() const
+{
+    return "MDX X68000 Chiptune";
+}
+
 
 class PMDFileReader : public AbstractReader
 {
@@ -77,6 +84,8 @@ public:
 
     virtual bool load(const QString &path) override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+
+    virtual QString format() const override final;
 
 private:
     float m_offset = 0;
@@ -126,6 +135,11 @@ qint64 PMDFileReader::read(unsigned char *data, qint64)
     return INPUT_BUFFER_SIZE * channels() * depth() / 8;
 }
 
+QString PMDFileReader::format() const
+{
+    return "PC-98 PMD Chiptune";
+}
+
 
 class MUCFileReader : public AbstractReader
 {
@@ -135,6 +149,8 @@ public:
 
     virtual bool load(const QString &path) override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+
+    virtual QString format() const override final;
 
 private:
     MucomModule *m_input = nullptr;
@@ -181,6 +197,11 @@ qint64 MUCFileReader::read(unsigned char *data, qint64)
     return INPUT_BUFFER_SIZE * channels() * depth() / 8;
 }
 
+QString MUCFileReader::format() const
+{
+    return "Open MUCOM 88";
+}
+
 
 class VGSFileReader : public AbstractReader
 {
@@ -192,6 +213,8 @@ public:
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
 
     virtual int sampleRate() const override final { return 22050 / 2; }
+
+    virtual QString format() const override final;
 
 private:
     void *m_input = nullptr;
@@ -278,6 +301,11 @@ qint64 VGSFileReader::read(unsigned char *data, qint64)
     /* decoding loop */
     vgsdec_execute(m_input, data, INPUT_BUFFER_SIZE);
     return INPUT_BUFFER_SIZE;
+}
+
+QString VGSFileReader::format() const
+{
+    return "VGS BGM Decoder";
 }
 
 
