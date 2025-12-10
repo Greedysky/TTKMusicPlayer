@@ -20,8 +20,8 @@ QList<MetaDataItem> OptimFROGMetaDataModel::extraProperties() const
             return ep;
         }
 
-        ep << MetaDataItem(tr("Version"), QString::number(helper.version()));
-        ep << MetaDataItem(tr("Compression ratio"), QString::number(helper.compression()));
+        ep << MetaDataItem(tr("Version"), helper.version());
+        ep << MetaDataItem(tr("Compression ratio"), helper.compression());
         file.close();
     }
     return ep;

@@ -13,13 +13,13 @@ SunVoxMetaDataModel::SunVoxMetaDataModel(const QString &path)
 
 void SunVoxMetaDataModel::fillProperties(SunVoxHelper *helper)
 {
-    m_ep << MetaDataItem(tr("BPM"), QString::number(helper->beatsPerMinute()));
-    m_ep << MetaDataItem(tr("TPL"), QString::number(helper->ticksPerLine()));
-    m_ep << MetaDataItem(tr("Modules"), QString::number(helper->moduleCount()));
-    m_ep << MetaDataItem(tr("Patterns"), QString::number(helper->patternCount()));
+    m_ep << MetaDataItem(tr("BPM"), helper->beatsPerMinute());
+    m_ep << MetaDataItem(tr("TPL"), helper->ticksPerLine());
+    m_ep << MetaDataItem(tr("Module size"), helper->modules());
+    m_ep << MetaDataItem(tr("Pattern size"), helper->patterns());
 
-    m_desc << MetaDataItem(tr("Modules"), helper->modules());
-    m_desc << MetaDataItem(tr("Patterns"), helper->patterns());
+    m_desc << MetaDataItem(tr("Modules"), helper->module());
+    m_desc << MetaDataItem(tr("Patterns"), helper->pattern());
 }
 
 QList<MetaDataItem> SunVoxMetaDataModel::extraProperties() const

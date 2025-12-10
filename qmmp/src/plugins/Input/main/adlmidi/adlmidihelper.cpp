@@ -57,27 +57,3 @@ qint64 AdlMidiHelper::read(unsigned char *data, qint64 maxSize)
     const int samples = maxSize / channels();
     return adl_play(m_input, samples, (short*)data) * channels();
 }
-
-QString AdlMidiHelper::trackTitles() const
-{
-    QString value;
-    for(int i = 0; i < trackTitleCount(); ++i)
-    {
-
-        value += adl_metaTrackTitle(m_input, i);
-        value += "\n";
-    }
-    return value;
-}
-
-QString AdlMidiHelper::metaMarkers() const
-{
-    QString value;
-    for(int i = 0; i < metaMarkerCount(); ++i)
-    {
-
-        value += adl_metaMarker(m_input, i).label;
-        value += "\n";
-    }
-    return value;
-}

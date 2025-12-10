@@ -14,11 +14,37 @@ HivelyMetaDataModel::HivelyMetaDataModel(const QString &path)
 void HivelyMetaDataModel::fillProperties(HivelyHelper *helper)
 {
     m_ep << MetaDataItem(tr("Format"), helper->format());
-    m_ep << MetaDataItem(tr("SubSongs"), helper->subSongCount());
-    m_ep << MetaDataItem(tr("Instruments"), helper->instrumentCount());
+    m_ep << MetaDataItem(tr("SubSong size"), helper->subSongs());
+    m_ep << MetaDataItem(tr("Instrument size"), helper->instruments());
 
-    m_desc << MetaDataItem(tr("SubSongs"), helper->subSongs());
-    m_desc << MetaDataItem(tr("Instruments"), helper->instruments());
+    QString value;
+    if(helper->subSongs() > 1)
+    {
+        for(int i = 0; i < helper->subSongs(); ++i)
+        {
+            value += helper->title();
+            value += "\n";
+        }
+
+        if(!value.isEmpty())
+        {
+            m_desc << MetaDataItem(tr("Titles"), value);
+            value.clear();
+        }
+    }
+
+    // instruments starts from 1 in hively so skip 0
+    for(int i = 1; i < helper->instruments(); ++i)
+    {
+        value += helper->instrument(i);
+        value += "\n";
+    }
+
+    if(!value.isEmpty())
+    {
+        m_desc << MetaDataItem(tr("Instruments"), value);
+        value.clear();
+    }
 }
 
 QList<MetaDataItem> HivelyMetaDataModel::extraProperties() const

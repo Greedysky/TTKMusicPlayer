@@ -47,10 +47,10 @@ public:
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
-    QString trackTitles() const;
-    QString metaMarkers() const;
-    inline int trackTitleCount() const { return adl_metaTrackTitleCount(m_input); }
-    inline int metaMarkerCount() const { return adl_metaMarkerCount(m_input); }
+    inline int trackTitles() const { return adl_metaTrackTitleCount(m_input); }
+    inline QString trackTitle(int i) const { return adl_metaTrackTitle(m_input, i); }
+    inline int metaMarkers() const { return adl_metaMarkerCount(m_input); }
+    inline QString metaMarker(int i) const { return adl_metaMarker(m_input, i).label; }
     inline QString title() const { return adl_metaMusicTitle(m_input); }
     inline QString copyright() const { return adl_metaMusicCopyright(m_input); }
 

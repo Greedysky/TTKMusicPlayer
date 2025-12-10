@@ -47,14 +47,13 @@ public:
     qint64 read(unsigned char *data, qint64 maxSize);
 
     inline QString title() const { return m_title; }
-
     inline int beatsPerMinute() const { return m_beatsPerMinute; }
     inline int ticksPerLine() const { return m_ticksPerLine; }
-    inline int moduleCount() const { return m_moduleCount; }
-    inline int patternCount() const { return m_patternCount; }
 
-    inline QString modules() const { return m_modules; }
-    inline QString patterns() const { return m_patterns; }
+    inline int modules() const { return m_moduleCount; }
+    inline QString module() const { return m_modules; }
+    inline int patterns() const { return m_patternCount; }
+    inline QString pattern() const { return m_patterns; }
 
 private:
     QString m_path;

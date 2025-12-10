@@ -1,6 +1,7 @@
 #include "decoderxsffactory.h"
 #include "xsfhelper.h"
 #include "decoder_xsf.h"
+#include "xsfmetadatamodel.h"
 
 bool DecoderXSFFactory::canDecode(QIODevice *input) const
 {
@@ -75,9 +76,8 @@ QList<TrackInfo*> DecoderXSFFactory::createPlayList(const QString &path, TrackIn
 
 MetaDataModel* DecoderXSFFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return nullptr;
+    return new XSFMetaDataModel(path);
 }
 
 QDialog *DecoderXSFFactory::createSettings(QWidget *parent)

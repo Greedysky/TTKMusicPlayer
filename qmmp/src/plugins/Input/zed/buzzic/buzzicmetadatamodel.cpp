@@ -13,9 +13,19 @@ BuzzicMetaDataModel::BuzzicMetaDataModel(const QString &path)
 
 void BuzzicMetaDataModel::fillProperties(BuzzicHelper *helper)
 {
-    m_ep << MetaDataItem(tr("Instruments"), QString::number(helper->instrumentCount()));
+    m_ep << MetaDataItem(tr("Instruments"), helper->instruments());
 
-    m_desc << MetaDataItem(tr("Instruments"), helper->instruments());
+    QString value;
+    for(int i = 0; i < helper->instruments(); ++i)
+    {
+        value += helper->instrument(i);
+        value += "\n";
+    }
+
+    if(!value.isEmpty())
+    {
+        m_desc << MetaDataItem(tr("Instruments"), value);
+    }
 }
 
 QList<MetaDataItem> BuzzicMetaDataModel::extraProperties() const

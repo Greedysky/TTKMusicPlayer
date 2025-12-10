@@ -43,37 +43,6 @@ bool HivelyHelper::initialize()
     return true;
 }
 
-QString HivelyHelper::format() const
-{
-    return m_ahxHeader ? "AHX Tracker" : "Hively Tracker";
-}
-
-QString HivelyHelper::instruments() const
-{
-    QString value;
-    // instruments starts from 1 in hively so skip 0
-    for(int i = 1; i < instrumentCount(); ++i)
-    {
-        value += m_input->ht_Instruments[i].ins_Name;
-        value += "\n";
-    }
-    return value;
-}
-
-QString HivelyHelper::subSongs() const
-{
-    QString value;
-    if(subSongCount() > 1)
-    {
-        for(int i = 0; i < subSongCount(); ++i)
-        {
-            value += m_input->ht_Name;
-            value += "\n";
-        }
-    }
-    return value;
-}
-
 qint64 HivelyHelper::read(unsigned char *data, qint64)
 {
     if(m_input->ht_SongEndReached)
@@ -84,4 +53,9 @@ qint64 HivelyHelper::read(unsigned char *data, qint64)
     int8 *ptr = (int8*)data;
     hvl_DecodeFrame(m_input, ptr, ptr + 2, 4);
     return (m_input->ht_Frequency / 50 / m_input->ht_SpeedMultiplier) * 4;
+}
+
+QString HivelyHelper::format() const
+{
+    return m_ahxHeader ? "AHX Tracker" : "Hively Tracker";
 }

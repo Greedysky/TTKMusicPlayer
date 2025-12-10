@@ -46,6 +46,12 @@ public:
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
+    inline QString id() const { return tfmxdec_format_id(m_input); }
+    inline QString name() const { return tfmxdec_format_name(m_input); }
+    inline QString fileName() const { return tfmxdec_get_name(m_input); }
+    inline int voices() const { return tfmxdec_voices(m_input); }
+    inline int voice(int i) const { return tfmxdec_get_voice_volume(m_input, i); }
+
     QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
     QString cleanPath() const;
 

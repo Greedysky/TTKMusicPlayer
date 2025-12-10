@@ -49,11 +49,14 @@ bool TFMXHelper::initialize()
     }
     const int panning = settings.value("panning", 75).toInt();
     const int secs = settings.value("min_duration", 10).toInt();
-    const bool flag = settings.value("end_shorts", true).toBool();
+    const bool endshorts = settings.value("end_shorts", true).toBool();
+    const bool filter = settings.value("filter", false).toBool();
     settings.endGroup();
 
     tfmxdec_set_path(m_input, QmmpPrintable(path));
-    tfmxdec_end_shorts(m_input, flag ? 1 : 0, secs);
+    tfmxdec_end_shorts(m_input, endshorts ? 1 : 0, secs);
+
+    tfmxdec_set_filtering(m_input, filter ? 1 : 0);
     tfmxdec_mixer_init(m_input, sampleRate(), depth(), channels(), 0x0000, panning);
 
     const int track = m_path.section("#", -1).toInt() - 1;

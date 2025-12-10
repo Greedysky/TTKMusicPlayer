@@ -45,8 +45,8 @@ public:
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
-    QString instruments() const;
-    uint32_t instrumentCount() const;
+    inline int instruments() const { return Buzzic2NumIntruments(m_input); }
+    inline QString instrument(int i) const { return Buzzic2IntrumentName(m_input, i); }
 
 private:
     QString m_path;

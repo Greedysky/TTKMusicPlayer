@@ -67,7 +67,7 @@ qint64 DecoderOpenMPT::totalTime() const
 
 int DecoderOpenMPT::bitrate() const
 {
-    return m_helper->channelCount();
+    return m_helper->patternChannels();
 }
 
 qint64 DecoderOpenMPT::read(unsigned char *data, qint64 maxSize)

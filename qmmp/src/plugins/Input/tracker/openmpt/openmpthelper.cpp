@@ -48,27 +48,6 @@ bool OpenMPTHelper::initialize()
     }
 
     openmpt_module_select_subsong(m_mod, -1);
-
-    m_length = openmpt_module_get_duration_seconds(m_mod) * 1000;
-    m_title = toString(openmpt_module_get_metadata(m_mod, "title"));
-    m_patternCount = openmpt_module_get_num_patterns(m_mod);
-    m_instrumentCount = openmpt_module_get_num_instruments(m_mod);
-    m_sampleCount = openmpt_module_get_num_samples(m_mod);
-    m_channelCount = openmpt_module_get_num_channels(m_mod);
-
-    for(int i = 0; i < openmpt_module_get_num_instruments(m_mod); ++i)
-    {
-        m_instruments += toString(openmpt_module_get_instrument_name(m_mod, i));
-        m_instruments += "\n";
-    }
-
-    for(int i = 0; i < openmpt_module_get_num_samples(m_mod); ++i)
-    {
-        m_samples += toString(openmpt_module_get_sample_name(m_mod, i));
-        m_samples += "\n";
-    }
-
-    m_comment = toString(openmpt_module_get_metadata(m_mod, "message_raw"));
     return true;
 }
 

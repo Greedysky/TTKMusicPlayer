@@ -19,13 +19,84 @@ OpenMPTMetaDataModel::OpenMPTMetaDataModel(const QString &path)
 
 void OpenMPTMetaDataModel::fillProperties(OpenMPTHelper *helper)
 {
-    m_ep << MetaDataItem(tr("Patterns"), QString::number(helper->patternCount()));
-    m_ep << MetaDataItem(tr("Channels"), QString::number(helper->channelCount()));
-    m_ep << MetaDataItem(tr("Samples"), QString::number(helper->sampleCount()));
-    m_ep << MetaDataItem(tr("Instruments"), QString::number(helper->instrumentCount()));
+    m_ep << MetaDataItem(tr("SubSong size"), helper->subsongs());
+    m_ep << MetaDataItem(tr("Pattern channel size"), helper->patternChannels());
+    m_ep << MetaDataItem(tr("Order size"), helper->orders());
+    m_ep << MetaDataItem(tr("Pattern size"), helper->patterns());
+    m_ep << MetaDataItem(tr("Sample size"), helper->samples());
+    m_ep << MetaDataItem(tr("Instrument size"), helper->instruments());
 
-    m_desc << MetaDataItem(tr("Samples"), helper->samples());
-    m_desc << MetaDataItem(tr("Instruments"), helper->instruments());
+    QString value;
+    for(int i = 0; i < helper->subsongs(); ++i)
+    {
+        value += helper->subsong(i);
+        value += "\n";
+    }
+
+    if(!value.isEmpty())
+    {
+        m_desc << MetaDataItem(tr("Titles"), value);
+        value.clear();
+    }
+
+    for(int i = 0; i < helper->patternChannels(); ++i)
+    {
+        value += helper->patternChannel(i);
+        value += "\n";
+    }
+
+    if(!value.isEmpty())
+    {
+        m_desc << MetaDataItem(tr("Channels"), value);
+        value.clear();
+    }
+
+    for(int i = 0; i < helper->orders(); ++i)
+    {
+        value += helper->order(i);
+        value += "\n";
+    }
+
+    if(!value.isEmpty())
+    {
+        m_desc << MetaDataItem(tr("Orders"), value);
+        value.clear();
+    }
+
+    for(int i = 0; i < helper->patterns(); ++i)
+    {
+        value += helper->pattern(i);
+        value += "\n";
+    }
+
+    if(!value.isEmpty())
+    {
+        m_desc << MetaDataItem(tr("Patterns"), value);
+        value.clear();
+    }
+
+    for(int i = 0; i < helper->samples(); ++i)
+    {
+        value += helper->sample(i);
+        value += "\n";
+    }
+
+    if(!value.isEmpty())
+    {
+        m_desc << MetaDataItem(tr("Samples"), value);
+        value.clear();
+    }
+
+    for(int i = 0; i < helper->instruments(); ++i)
+    {
+        value += helper->instrument(i);
+        value += "\n";
+    }
+
+    if(!value.isEmpty())
+    {
+        m_desc << MetaDataItem(tr("Instruments"), value);
+    }
 }
 
 QList<MetaDataItem> OpenMPTMetaDataModel::extraProperties() const

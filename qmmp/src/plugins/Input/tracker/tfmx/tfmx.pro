@@ -5,11 +5,13 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decodertfmxfactory.h \
            decoder_tfmx.h \
            tfmxhelper.h \
+           tfmxmetadatamodel.h \
            settingsdialog.h
 
 SOURCES += decodertfmxfactory.cpp \
            decoder_tfmx.cpp \
            tfmxhelper.cpp \
+           tfmxmetadatamodel.cpp \
            settingsdialog.cpp
 
 FORMS += settingsdialog.ui

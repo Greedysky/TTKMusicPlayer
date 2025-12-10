@@ -133,14 +133,3 @@ void AdPlugHelper::deinit()
     delete m_opl;
     delete m_player;
 }
-
-QString AdPlugHelper::instruments() const
-{
-    QString value;
-    for(unsigned int i = 0; i < instrumentCount(); ++i)
-    {
-        value += QString::fromStdString(m_player->getinstrument(i));
-        value += "\n";
-    }
-    return value;
-}

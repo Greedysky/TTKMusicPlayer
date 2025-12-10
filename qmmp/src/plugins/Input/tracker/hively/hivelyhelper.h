@@ -47,13 +47,11 @@ public:
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
-    inline QString title() const { return m_input->ht_Name; }
-    inline int subSongCount() const { return m_input->ht_SubsongNr; }
-    inline int instrumentCount() const { return m_input->ht_InstrumentNr; }
-
     QString format() const;
-    QString subSongs() const;
-    QString instruments() const;
+    inline QString title() const { return m_input->ht_Name; }
+    inline int subSongs() const { return m_input->ht_SubsongNr; }
+    inline int instruments() const { return m_input->ht_InstrumentNr; }
+    inline QString instrument(int i) const { return m_input->ht_Instruments[i].ins_Name; }
 
 private:
     QString m_path;

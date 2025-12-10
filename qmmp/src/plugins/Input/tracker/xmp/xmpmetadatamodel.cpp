@@ -62,19 +62,17 @@ QList<MetaDataItem> XMPMetaDataModel::descriptions() const
         value += QString::fromUtf8(mi.mod->xxs[i].name) + '\n';
     }
 
-    value = value.trimmed();
     if(!value.isEmpty())
     {
         desc << MetaDataItem(tr("Samples"), value);
+        value.clear();
     }
-    value.clear();
 
     for(int i = 0; i < mi.mod->ins; ++i)
     {
         value += QString::fromUtf8(mi.mod->xxi[i].name) + '\n';
     }
 
-    value = value.trimmed();
     if(!value.isEmpty())
     {
         desc << MetaDataItem(tr("Instruments"), value);

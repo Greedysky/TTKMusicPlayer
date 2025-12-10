@@ -26,6 +26,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.stereoPan->setValue(settings.value("panning", 75).toInt());
     m_ui.minDuration->setValue(settings.value("min_duration", 10).toInt());
     m_ui.end->setChecked(settings.value("end_shorts", true).toBool());
+    m_ui.filter->setChecked(settings.value("filter", false).toBool());
     settings.endGroup();
 }
 
@@ -43,6 +44,7 @@ void SettingsDialog::accept()
     settings.setValue("panning", m_ui.stereoPan->value());
     settings.setValue("min_duration", m_ui.minDuration->value());
     settings.setValue("end_shorts", m_ui.end->isChecked());
+    settings.setValue("filter", m_ui.filter->isChecked());
     settings.endGroup();
     QDialog::accept();
 }

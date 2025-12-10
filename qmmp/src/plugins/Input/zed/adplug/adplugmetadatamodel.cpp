@@ -15,10 +15,20 @@ void AdPlugMetaDataModel::fillProperties(AdPlugHelper *helper)
 {
     m_ep << MetaDataItem(tr("Format"), helper->format());
     m_ep << MetaDataItem(tr("Description"), helper->description());
-    m_ep << MetaDataItem(tr("Patterns"), helper->patternCount());
-    m_ep << MetaDataItem(tr("Instruments"), helper->instrumentCount());
+    m_ep << MetaDataItem(tr("Pattern size"), helper->patterns());
+    m_ep << MetaDataItem(tr("Instrument size"), helper->instruments());
 
-    m_desc << MetaDataItem(tr("Instruments"), helper->instruments());
+    QString value;
+    for(int i = 0; i < helper->instruments(); ++i)
+    {
+        value += helper->instrument(i);
+        value += "\n";
+    }
+
+    if(!value.isEmpty())
+    {
+        m_desc << MetaDataItem(tr("Instruments"), value);
+    }
 }
 
 QList<MetaDataItem> AdPlugMetaDataModel::extraProperties() const

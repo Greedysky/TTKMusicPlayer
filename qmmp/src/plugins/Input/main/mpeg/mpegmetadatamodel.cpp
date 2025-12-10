@@ -66,7 +66,7 @@ QList<MetaDataItem> MPEGMetaDataModel::extraProperties() const
     {
         const TagLib::ID3v2::PopularimeterFrame *popm = dynamic_cast<TagLib::ID3v2::PopularimeterFrame *>(tag->frameListMap()["POPM"].front());
         if(popm)
-            ep << MetaDataItem(tr("Rating"), QString::number(popm->rating()));
+            ep << MetaDataItem(tr("Rating"), popm->rating());
     }
     return ep;
 }

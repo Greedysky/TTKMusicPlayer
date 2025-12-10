@@ -54,7 +54,7 @@ ttk-1.2.12
 -libsoundmon	 http://www.brianpostma.com (unfortunately down now)
                  https://github.com/arnaud-neny/rePlayer
 -libstsound	 https://github.com/arnaud-carre/StSound
--libtfmx	 https://github.com/mschwendt/libtfmxaudiodecoder
+-libtfmx-1.0.0	 https://github.com/mschwendt/libtfmxaudiodecoder
 -libuade-3.05	 http://www.zakalwe.fi/uade/
                  https://gitlab.com/uade-music-player/uade 602c3e908772bb96a274e9eb14fe8c874183421c
 -libv2m-20250811 https://github.com/jgilje/v2m-player

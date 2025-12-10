@@ -43,13 +43,14 @@ public:
     bool initialize();
 
     static QMap<QString, int> interpolators();
+
     bool isValidInterpolator(int value) const;
     void setInterpolator(int value);
     bool isValidStereoSeparation(int separation) const;
     void setStereoSeparation(int separation);
 
     inline void seek(qint64 time) { openmpt_module_set_position_seconds(m_mod, time / 1000.0); }
-    inline qint64 totalTime() const { return m_length; }
+    inline qint64 totalTime() const { return openmpt_module_get_duration_seconds(m_mod) * 1000; }
 
     inline int bitrate() const { return 8; }
     inline int sampleRate() const { return 44100; }
@@ -58,19 +59,26 @@ public:
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
-    inline QString title() const { return m_title; }
-    inline QString comment() const { return m_comment; }
+    inline QString title() const { return toString(openmpt_module_get_metadata(m_mod, "title")); }
+    inline QString artist() const { return toString(openmpt_module_get_metadata(m_mod, "artist")); }
+    inline QString year() const { return toString(openmpt_module_get_metadata(m_mod, "date")); }
+    inline QString comment() const { return toString(openmpt_module_get_metadata(m_mod, "message_raw")); }
 
-    inline int patternCount() const { return m_patternCount; }
-    inline int channelCount() const { return m_channelCount; }
-    inline int sampleCount() const { return m_sampleCount; }
-    inline int instrumentCount() const { return m_instrumentCount; }
-
-    inline QString instruments() const { return m_instruments; }
-    inline QString samples() const { return m_samples; }
+    inline int subsongs() const { return openmpt_module_get_num_subsongs(m_mod); }
+    inline QString subsong(int i) const { return toString(openmpt_module_get_subsong_name(m_mod, i)); }
+    inline int patternChannels() const { return openmpt_module_get_num_channels(m_mod); }
+    inline QString patternChannel(int i) const { return toString(openmpt_module_get_channel_name(m_mod, i)); }
+    inline int orders() const { return openmpt_module_get_num_orders(m_mod); }
+    inline QString order(int i) const { return toString(openmpt_module_get_order_name(m_mod, i)); }
+    inline int patterns() const { return openmpt_module_get_num_patterns(m_mod); }
+    inline QString pattern(int i) const { return toString(openmpt_module_get_pattern_name(m_mod, i)); }
+    inline int samples() const { return openmpt_module_get_num_samples(m_mod); }
+    inline QString sample(int i) const { return toString(openmpt_module_get_sample_name(m_mod, i)); }
+    inline int instruments() const { return openmpt_module_get_num_instruments(m_mod); }
+    inline QString instrument(int i) const { return toString(openmpt_module_get_instrument_name(m_mod, i)); }
 
 private:
-    QString toString(const char *input);
+    static QString toString(const char *input);
 
     static std::size_t stream_read(void *, void *, std::size_t);
     static int stream_seek(void *, std::int64_t, int);
@@ -81,13 +89,6 @@ private:
 
     QIODevice *m_input = nullptr;
     openmpt_module *m_mod = nullptr;
-    qint64 m_length = 0;
-    QString m_title;
-    QString m_comment;
-    int m_patternCount = 0, m_channelCount = 0;
-    int m_instrumentCount = 0, m_sampleCount = 0;
-    QString m_instruments;
-    QString m_samples;
 
 };
 

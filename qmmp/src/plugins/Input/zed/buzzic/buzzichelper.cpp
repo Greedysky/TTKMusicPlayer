@@ -70,24 +70,3 @@ qint64 BuzzicHelper::read(unsigned char *data, qint64 maxSize)
     Buzzic2Render(m_input, (StereoSample*)data, size);
     return maxSize;
 }
-
-QString BuzzicHelper::instruments() const
-{
-    QString name;
-
-    for(uint32_t i = 0; i < instrumentCount(); ++i)
-    {
-        const char *v = Buzzic2IntrumentName(m_input, i);
-        if(v)
-        {
-            name += v;
-            name += "\n";
-        }
-    }
-    return name;
-}
-
-uint32_t BuzzicHelper::instrumentCount() const
-{
-    return Buzzic2NumIntruments(m_input);
-}

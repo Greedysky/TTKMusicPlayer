@@ -17,11 +17,11 @@ QList<MetaDataItem> UADEMetaDataModel::extraProperties() const
         return ep;
     }
 
-    ep << MetaDataItem("Module MD5", helper.metaData("modulemd5"));
-    ep << MetaDataItem("Module Name", helper.metaData("modulename"));
-    ep << MetaDataItem("Module Path", helper.metaData("modulepath"));
-    ep << MetaDataItem("Format", helper.metaData("format"));
-    ep << MetaDataItem("Format Name", helper.metaData("formatname"));
-    ep << MetaDataItem("Player Name", helper.metaData("playername"));
+    ep << MetaDataItem(tr("Module MD5"), helper.metaData("modulemd5"));
+    ep << MetaDataItem(tr("Module name"), helper.metaData("modulename"));
+    ep << MetaDataItem(tr("Module path"), helper.metaData("modulepath"));
+    ep << MetaDataItem(tr("Format"), helper.metaData("format"));
+    ep << MetaDataItem(tr("Format name"), helper.metaData("formatname"));
+    ep << MetaDataItem(tr("Player name"), helper.metaData("playername"));
     return ep;
 }

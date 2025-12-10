@@ -61,10 +61,9 @@ public:
     inline QString format() const { return QString::fromStdString(m_player->gettype()); }
     inline QString author() const { return QString::fromStdString(m_player->getauthor()); }
     inline QString description() const { return QString::fromStdString(m_player->getdesc()); }
-    inline unsigned int patternCount() const { return m_player->getpatterns(); }
-    inline unsigned int instrumentCount() const { return m_player->getinstruments(); }
-
-    QString instruments() const;
+    inline int patterns() const { return m_player->getpatterns(); }
+    inline int instruments() const { return m_player->getinstruments(); }
+    inline QString instrument(int i) const { return QString::fromStdString(m_player->getinstrument(i)); }
 
 private:
     QString m_path;

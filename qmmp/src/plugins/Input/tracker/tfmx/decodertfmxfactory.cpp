@@ -2,6 +2,7 @@
 #include "tfmxhelper.h"
 #include "decoder_tfmx.h"
 #include "settingsdialog.h"
+#include "tfmxmetadatamodel.h"
 
 bool DecoderTFMXFactory::canDecode(QIODevice *input) const
 {
@@ -70,9 +71,8 @@ QList<TrackInfo*> DecoderTFMXFactory::createPlayList(const QString &path, TrackI
 
 MetaDataModel* DecoderTFMXFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return nullptr;
+    return new TFMXMetaDataModel(path);
 }
 
 QDialog *DecoderTFMXFactory::createSettings(QWidget *parent)
