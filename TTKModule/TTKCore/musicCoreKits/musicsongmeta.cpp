@@ -416,7 +416,8 @@ bool MusicSongMeta::readInformation()
             cover = QPixmap::fromImage(model->cover());
             lyrics = model->lyrics();
 
-            for(const MetaDataItem &item : model->extraProperties())
+            const QList<MetaDataItem> &properties = model->extraProperties();
+            for(const MetaDataItem &item : qAsConst(properties))
             {
                 if(item.name() == "Rating")
                 {
@@ -430,6 +431,10 @@ bool MusicSongMeta::readInformation()
                 }
 
                 description += item.name() + ": " + value + TTK_LINEFEED;
+            }
+
+            if(!properties.isEmpty())
+            {
                 description += SPLITER;
             }
 
@@ -465,8 +470,8 @@ bool MusicSongMeta::readInformation()
                 meta->m_metaData[TagMeta::RATING] = rating;
             }
 
-            description = "Format: " + meta->m_metaData[TagMeta::FORMAT] + TTK_LINEFEED + description;
-            meta->m_metaData[TagMeta::DESCRIPTION] = description;
+            const QString &format = "Format: " + meta->m_metaData[TagMeta::FORMAT] + TTK_LINEFEED;
+            meta->m_metaData[TagMeta::DESCRIPTION] = format + description;
         }
     }
 
