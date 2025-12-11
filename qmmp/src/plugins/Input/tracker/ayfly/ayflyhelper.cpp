@@ -1,9 +1,10 @@
 #include "ayflyhelper.h"
 
-bool endCallback(void *)
+static bool endCallback(void *)
 {
     return true;
 }
+
 
 AyflyHelper::AyflyHelper(const QString &path)
     : m_path(path)
@@ -49,7 +50,6 @@ bool AyflyHelper::initialize()
         return false;
     }
 
-    m_length = ay_getsonglength(m_input) / 50 * 1000;
     ay_setelapsedcallback(m_input, endCallback, nullptr);
     return true;
 }

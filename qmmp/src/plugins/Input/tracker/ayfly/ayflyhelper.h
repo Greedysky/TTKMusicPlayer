@@ -36,8 +36,8 @@ public:
     void deinit();
     bool initialize();
 
-    inline void seek(qint64 time) { ay_seeksong(m_input, time / 1000 * 50); }
-    inline qint64 totalTime() const { return m_length; }
+    inline void seek(qint64 time) { ay_seeksong(m_input, time * 50 / 1000); }
+    inline qint64 totalTime() const { return ay_getsonglength(m_input) * 1000 / 50; }
 
     inline int bitrate() const { return 8; }
     inline int sampleRate() const { return 44100; }
@@ -52,7 +52,6 @@ public:
 private:
     QString m_path;
     void *m_input = nullptr;
-    qint64 m_length = 0;
 
 };
 

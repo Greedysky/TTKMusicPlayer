@@ -16,30 +16,28 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef TFMXMETADATAMODEL_H
-#define TFMXMETADATAMODEL_H
+#ifndef STSOUNDMETADATAMODEL_H
+#define STSOUNDMETADATAMODEL_H
 
 #include <qmmp/metadatamodel.h>
 
-class TFMXHelper;
+class StSoundHelper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class TFMXMetaDataModel : public MetaDataModel
+class StSoundMetaDataModel : public MetaDataModel
 {
-    Q_DECLARE_TR_FUNCTIONS(TFMXMetaDataModel)
+    Q_DECLARE_TR_FUNCTIONS(StSoundMetaDataModel)
 public:
-    explicit TFMXMetaDataModel(const QString &path);
+    explicit StSoundMetaDataModel(const QString &path);
 
     virtual QList<MetaDataItem> extraProperties() const override final;
-    virtual QList<MetaDataItem> descriptions() const override final;
 
 private:
-    void fillProperties(TFMXHelper *helper);
+    void fillProperties(StSoundHelper *helper);
 
     QList<MetaDataItem> m_ep;
-    QList<MetaDataItem> m_desc;
 
 };
 

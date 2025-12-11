@@ -48,6 +48,10 @@ public:
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
+    inline QString format() const { return m_format; }
+    inline QString ripper() const { return m_ripper; }
+    inline QString converter() const { return m_converter; }
+
     QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
     QString cleanPath() const;
 
@@ -57,6 +61,7 @@ private:
     int m_loop = 0;
     int m_track = 0;
     qint64 m_length = 0;
+    QString m_format, m_ripper, m_converter;
     qint64 m_currentSample = 0;
     qint64 m_totalSamples = 0;
 

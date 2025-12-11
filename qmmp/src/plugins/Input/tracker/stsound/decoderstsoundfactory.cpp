@@ -1,6 +1,7 @@
 #include "decoderstsoundfactory.h"
 #include "decoder_stsound.h"
 #include "stsoundhelper.h"
+#include "stsoundmetadatamodel.h"
 
 bool DecoderStSoundFactory::canDecode(QIODevice *input) const
 {
@@ -68,9 +69,8 @@ QList<TrackInfo*> DecoderStSoundFactory::createPlayList(const QString &path, Tra
 
 MetaDataModel* DecoderStSoundFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return nullptr;
+    return new StSoundMetaDataModel(path);
 }
 
 QDialog *DecoderStSoundFactory::createSettings(QWidget *parent)

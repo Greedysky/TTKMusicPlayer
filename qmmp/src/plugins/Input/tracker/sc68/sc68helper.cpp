@@ -62,6 +62,9 @@ bool SC68Helper::initialize()
     }
 
     m_length = m_totalSamples / sampleRate() * 1000;
+    m_format = info.format;
+    m_ripper = info.ripper;
+    m_converter = info.converter;
 
     sc68_play(m_input, m_track, m_loop);
     return true;
@@ -145,25 +148,25 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
             {
                 info->setValue(Qmmp::TITLE, tag.title);
             }
-            else if(tag.artist && tag.artist[0])
+
+            if(tag.artist && tag.artist[0])
             {
                 info->setValue(Qmmp::ARTIST, tag.artist);
             }
-            else if(tag.album && tag.album[0])
+
+            if(tag.album && tag.album[0])
             {
                 info->setValue(Qmmp::ALBUM, tag.album);
             }
-            else if(tag.genre && tag.genre[0])
+
+            if(tag.genre && tag.genre[0])
             {
                 info->setValue(Qmmp::GENRE, tag.genre);
             }
-            else if(tag.year && tag.year[0])
+
+            if(tag.year && tag.year[0])
             {
                 info->setValue(Qmmp::YEAR, tag.year);
-            }
-            else if(tag.format && tag.format[0])
-            {
-                info->setValue(Qmmp::COMMENT, tag.format);
             }
 
             info->setValue(Qmmp::TRACK, i);

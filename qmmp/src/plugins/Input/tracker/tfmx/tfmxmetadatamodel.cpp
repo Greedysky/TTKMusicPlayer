@@ -24,7 +24,11 @@ void TFMXMetaDataModel::fillProperties(TFMXHelper *helper)
         value += QString::number(helper->voice(i));
         value += "\n";
     }
-    m_desc << MetaDataItem(tr("Voices"), value);
+
+    if(!value.isEmpty())
+    {
+        m_desc << MetaDataItem(tr("Voices"), value);
+    }
 }
 
 QList<MetaDataItem> TFMXMetaDataModel::extraProperties() const

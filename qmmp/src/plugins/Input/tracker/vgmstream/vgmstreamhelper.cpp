@@ -283,6 +283,46 @@ QList<TrackInfo*> VgmstreamHelper::createPlayList(TrackInfo::Parts parts)
         {
             info->setValue(Qmmp::TRACK, i);
             info->setValue(Qmmp::TITLE, m_metaData[Qmmp::TITLE]);
+
+            if(m_metaData.contains(Qmmp::ARTIST))
+            {
+                info->setValue(Qmmp::ARTIST, m_metaData[Qmmp::ARTIST]);
+            }
+
+            if(m_metaData.contains(Qmmp::ALBUMARTIST))
+            {
+                info->setValue(Qmmp::ALBUMARTIST, m_metaData[Qmmp::ALBUMARTIST]);
+            }
+
+            if(m_metaData.contains(Qmmp::ALBUM))
+            {
+                info->setValue(Qmmp::ALBUM, m_metaData[Qmmp::ALBUM]);
+            }
+
+            if(m_metaData.contains(Qmmp::COMMENT))
+            {
+                info->setValue(Qmmp::COMMENT, m_metaData[Qmmp::COMMENT]);
+            }
+
+            if(m_metaData.contains(Qmmp::GENRE))
+            {
+                info->setValue(Qmmp::GENRE, m_metaData[Qmmp::GENRE]);
+            }
+
+            if(m_metaData.contains(Qmmp::COMPOSER))
+            {
+                info->setValue(Qmmp::COMPOSER, m_metaData[Qmmp::COMPOSER]);
+            }
+
+            if(m_metaData.contains(Qmmp::YEAR))
+            {
+                info->setValue(Qmmp::YEAR, m_metaData[Qmmp::YEAR]);
+            }
+
+            if(m_metaData.contains(Qmmp::TRACK))
+            {
+                info->setValue(Qmmp::TRACK, m_metaData[Qmmp::TRACK]);
+            }
         }
 
         if(parts & TrackInfo::Properties)

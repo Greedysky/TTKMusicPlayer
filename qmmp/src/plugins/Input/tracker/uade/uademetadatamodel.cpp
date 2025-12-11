@@ -2,26 +2,26 @@
 #include "uadehelper.h"
 
 UADEMetaDataModel::UADEMetaDataModel(const QString &path)
-    : MetaDataModel(true),
-      m_path(path)
+    : MetaDataModel(true)
 {
+    UADEHelper helper(path);
+    if(helper.initialize() && helper.hasMetaData())
+    {
+        fillProperties(&helper);
+    }
+}
 
+void UADEMetaDataModel::fillProperties(UADEHelper *helper)
+{
+    m_ep << MetaDataItem(tr("Module MD5"), helper->metaData("modulemd5"));
+    m_ep << MetaDataItem(tr("Module name"), helper->metaData("modulename"));
+    m_ep << MetaDataItem(tr("Module path"), helper->metaData("modulepath"));
+    m_ep << MetaDataItem(tr("Format"), helper->metaData("format"));
+    m_ep << MetaDataItem(tr("Format name"), helper->metaData("formatname"));
+    m_ep << MetaDataItem(tr("Player name"), helper->metaData("playername"));
 }
 
 QList<MetaDataItem> UADEMetaDataModel::extraProperties() const
 {
-    QList<MetaDataItem> ep;
-    UADEHelper helper(m_path);
-    if(!(helper.initialize() && helper.hasMetaData()))
-    {
-        return ep;
-    }
-
-    ep << MetaDataItem(tr("Module MD5"), helper.metaData("modulemd5"));
-    ep << MetaDataItem(tr("Module name"), helper.metaData("modulename"));
-    ep << MetaDataItem(tr("Module path"), helper.metaData("modulepath"));
-    ep << MetaDataItem(tr("Format"), helper.metaData("format"));
-    ep << MetaDataItem(tr("Format name"), helper.metaData("formatname"));
-    ep << MetaDataItem(tr("Player name"), helper.metaData("playername"));
-    return ep;
+    return m_ep;
 }

@@ -21,6 +21,8 @@
 
 #include <qmmp/metadatamodel.h>
 
+class UADEHelper;
+
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -33,7 +35,9 @@ public:
     virtual QList<MetaDataItem> extraProperties() const override final;
 
 private:
-    QString m_path;
+    void fillProperties(UADEHelper *helper);
+
+    QList<MetaDataItem> m_ep;
 
 };
 

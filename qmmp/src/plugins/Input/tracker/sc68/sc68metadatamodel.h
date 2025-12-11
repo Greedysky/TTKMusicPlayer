@@ -16,30 +16,28 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef TFMXMETADATAMODEL_H
-#define TFMXMETADATAMODEL_H
+#ifndef SC68METADATAMODEL_H
+#define SC68METADATAMODEL_H
 
 #include <qmmp/metadatamodel.h>
 
-class TFMXHelper;
+class SC68Helper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class TFMXMetaDataModel : public MetaDataModel
+class SC68MetaDataModel : public MetaDataModel
 {
-    Q_DECLARE_TR_FUNCTIONS(TFMXMetaDataModel)
+    Q_DECLARE_TR_FUNCTIONS(SC68MetaDataModel)
 public:
-    explicit TFMXMetaDataModel(const QString &path);
+    explicit SC68MetaDataModel(const QString &path);
 
     virtual QList<MetaDataItem> extraProperties() const override final;
-    virtual QList<MetaDataItem> descriptions() const override final;
 
 private:
-    void fillProperties(TFMXHelper *helper);
+    void fillProperties(SC68Helper *helper);
 
     QList<MetaDataItem> m_ep;
-    QList<MetaDataItem> m_desc;
 
 };
 

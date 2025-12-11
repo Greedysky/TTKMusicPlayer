@@ -43,7 +43,6 @@ void HivelyMetaDataModel::fillProperties(HivelyHelper *helper)
     if(!value.isEmpty())
     {
         m_desc << MetaDataItem(tr("Instruments"), value);
-        value.clear();
     }
 }
 

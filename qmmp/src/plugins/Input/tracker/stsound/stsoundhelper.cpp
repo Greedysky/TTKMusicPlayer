@@ -34,7 +34,9 @@ bool StSoundHelper::initialize()
         m_length = info.musicTimeInMs;
         m_title = QString::fromUtf8(info.pSongName);
         m_author = QString::fromUtf8(info.pSongAuthor);
-        m_comment =  QString::fromUtf8(info.pSongComment);
+        m_comment = QString::fromUtf8(info.pSongComment);
+        m_songType = QString::fromUtf8(info.pSongType);
+        m_songPlayer = QString::fromUtf8(info.pSongPlayer);
     }
     else
     {
@@ -48,18 +50,18 @@ bool StSoundHelper::initialize()
 
 qint64 StSoundHelper::read(unsigned char *data, qint64 maxSize)
 {
-    ymsample *psample = (ymsample *)data;
+    ymsample *sample = (ymsample *)data;
     const qint64 stereoSize = maxSize / (channels() * sizeof(ymsample));
 
-    if(!m_input->update(psample, stereoSize))
+    if(!m_input->update(sample, stereoSize))
     {
         return 0;
     }
     // recopy mono YM sound to 2 channels
     for(qint64 i = stereoSize - 1; i >= 0; --i)
     {
-        psample[(i * 2)    ] = psample[i];
-        psample[(i * 2) + 1] = psample[i];
+        sample[(i * 2)    ] = sample[i];
+        sample[(i * 2) + 1] = sample[i];
     }
     return maxSize;
 }

@@ -39,7 +39,6 @@ void AdlMidiMetaDataModel::fillProperties(AdlMidiHelper *helper)
     if(!value.isEmpty())
     {
         m_desc << MetaDataItem(tr("Markers"), value);
-        value.clear();
     }
 }
 

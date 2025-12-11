@@ -54,9 +54,9 @@ private:
     ASAP *m_input = nullptr;
     qint64 m_length = 0;
     int m_channels = 0;
-    QString m_title;
-    QString m_author;
-    QString m_year;
+    int m_subSongs = 0;
+    bool m_loop = false;
+    QString m_title, m_author, m_year;
 
 };
 

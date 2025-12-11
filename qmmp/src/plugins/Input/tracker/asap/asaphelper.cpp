@@ -40,11 +40,29 @@ bool AsapHelper::initialize()
         return false;
     }
 
+    /*
+    struct ASAPInfo
+    {
+        int channels;
+        int covoxAddr;
+        int defaultSong;
+        int fastplay;
+        int headerLen;
+        int init;
+        int music;
+        cibool ntsc;
+        int player;
+        int songs;
+        ASAPModuleType type;
+        unsigned char songPos[32];
+        char author[128];
+        char date[128];
+        int durations[32];
+        char filename[128];
+        cibool loops[32];
+        char title[128];
+    };*/
     ASAPInfo *info =(ASAPInfo *)ASAP_GetInfo(m_input);
-    //struct ASAPInfo { int channels; int covoxAddr; int defaultSong; int fastplay; int headerLen;
-    // int init; int music; cibool ntsc; int player; int songs; ASAPModuleType type;
-    // unsigned char songPos[32]; char author[128]; char date[128]; int durations[32];
-    // char filename[128]; cibool loops[32]; char title[128]; };
     if(!ASAP_PlaySong(m_input, ASAPInfo_GetDefaultSong(info), 360000))
     {
         qWarning("AsapHelper: ASAP_PlaySong error");
@@ -56,6 +74,8 @@ bool AsapHelper::initialize()
     m_year = QString::number(ASAPInfo_GetYear(info));
     m_length = ASAPInfo_GetDuration(info, ASAPInfo_GetDefaultSong(info));
     m_channels = ASAPInfo_GetChannels(info);
+    m_subSongs = ASAPInfo_GetSongs(info);
+    m_loop = ASAPInfo_GetLoop(info, ASAPInfo_GetDefaultSong(info));
     return true;
 }
 

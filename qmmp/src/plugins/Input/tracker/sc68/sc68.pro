@@ -4,11 +4,13 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 
 HEADERS += decodersc68factory.h \
            decoder_sc68.h \
-           sc68helper.h
+           sc68helper.h \
+           sc68metadatamodel.h
 
 SOURCES += decodersc68factory.cpp \
            decoder_sc68.cpp \
-           sc68helper.cpp
+           sc68helper.cpp \
+           sc68metadatamodel.cpp
 
 INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include
 

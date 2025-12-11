@@ -40,13 +40,7 @@ bool TFMXHelper::initialize()
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("TFMX");
-    switch(settings.value("sample_rate", 1).toInt())
-    {
-        case 0: m_sampleRate = 22050; break;
-        case 1: m_sampleRate = 44100; break;
-        case 2: m_sampleRate = 48000; break;
-        default: m_sampleRate = 44100; break;
-    }
+    m_sampleRate = settings.value("sample_rate", 44100).toInt();
     const int panning = settings.value("panning", 75).toInt();
     const int secs = settings.value("min_duration", 10).toInt();
     const bool endshorts = settings.value("end_shorts", true).toBool();

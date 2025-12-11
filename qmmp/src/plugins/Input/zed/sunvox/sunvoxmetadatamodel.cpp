@@ -18,8 +18,15 @@ void SunVoxMetaDataModel::fillProperties(SunVoxHelper *helper)
     m_ep << MetaDataItem(tr("Module size"), helper->modules());
     m_ep << MetaDataItem(tr("Pattern size"), helper->patterns());
 
-    m_desc << MetaDataItem(tr("Modules"), helper->module());
-    m_desc << MetaDataItem(tr("Patterns"), helper->pattern());
+    if(helper->modules() != 0)
+    {
+        m_desc << MetaDataItem(tr("Modules"), helper->module());
+    }
+
+    if(helper->patterns() != 0)
+    {
+        m_desc << MetaDataItem(tr("Patterns"), helper->pattern());
+    }
 }
 
 QList<MetaDataItem> SunVoxMetaDataModel::extraProperties() const

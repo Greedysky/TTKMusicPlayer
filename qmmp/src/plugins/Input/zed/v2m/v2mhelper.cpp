@@ -5,7 +5,7 @@
 #include <libv2m/sounddef.h>
 
 static bool v2mInitialized = false;
-int loadAndConvert(unsigned char *module, qint64 size, uint8_t **conv, int *convlen)
+static int loadAndConvert(unsigned char *module, qint64 size, uint8_t **conv, int *convlen)
 {
     if(!v2mInitialized)
     {

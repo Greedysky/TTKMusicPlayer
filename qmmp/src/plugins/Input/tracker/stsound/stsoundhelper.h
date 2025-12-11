@@ -35,7 +35,7 @@ public:
     void deinit();
     bool initialize();
 
-    inline void seek(qint64 time) { m_input->setMusicTime((ymu32)time); }
+    inline void seek(qint64 time) { m_input->setMusicTime(time); }
     inline qint64 totalTime() const { return m_length; }
 
     inline int bitrate() const { return 8; }
@@ -48,14 +48,17 @@ public:
     inline QString title() const { return m_title; }
     inline QString author() const { return m_author; }
     inline QString comment() const { return m_comment; }
+    inline QString type() const { return m_songType; }
+    inline QString player() const { return m_songPlayer; }
+    inline int frames() const { return m_input->GetNbFrame(); }
+    inline int streamInc() const { return m_input->GetStreamInc(); }
 
 private:
     QString m_path;
     CYmMusic *m_input = nullptr;
     qint64 m_length = 0;
-    QString m_title;
-    QString m_author;
-    QString m_comment;
+    QString m_title, m_author, m_comment;
+    QString m_songType, m_songPlayer;
 
 };
 

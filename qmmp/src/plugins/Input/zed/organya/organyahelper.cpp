@@ -102,7 +102,7 @@ bool PxFileReader::load(const QString &path)
         return false;
     }
 
-    if(!m_pxs->set_destination_quality(2, sampleRate()))
+    if(!m_pxs->set_destination_quality(channels(), sampleRate()))
     {
         qWarning("PxFileReader: set_destination_quality error");
         return false;

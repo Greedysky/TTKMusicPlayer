@@ -56,6 +56,9 @@ public:
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
+    inline bool hasMetaData() const { return !m_metaData.isEmpty(); }
+    inline QString metaData(const char *key) const { return m_metaData[key]; }
+
     QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
     QString cleanPath() const;
 

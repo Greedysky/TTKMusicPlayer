@@ -4,11 +4,13 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 
 HEADERS += decoderstsoundfactory.h \
            decoder_stsound.h \
-           stsoundhelper.h
+           stsoundhelper.h \
+           stsoundmetadatamodel.h
 
 SOURCES += decoderstsoundfactory.cpp \
            decoder_stsound.cpp \
-           stsoundhelper.cpp
+           stsoundhelper.cpp \
+           stsoundmetadatamodel.cpp
 
 INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include
 

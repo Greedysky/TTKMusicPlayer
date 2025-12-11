@@ -1,6 +1,7 @@
 #include "decodersc68factory.h"
 #include "sc68helper.h"
 #include "decoder_sc68.h"
+#include "sc68metadatamodel.h"
 
 bool DecoderSC68Factory::canDecode(QIODevice *input) const
 {
@@ -64,9 +65,8 @@ QList<TrackInfo*> DecoderSC68Factory::createPlayList(const QString &path, TrackI
 
 MetaDataModel* DecoderSC68Factory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return nullptr;
+    return new SC68MetaDataModel(path);
 }
 
 QDialog *DecoderSC68Factory::createSettings(QWidget *parent)
