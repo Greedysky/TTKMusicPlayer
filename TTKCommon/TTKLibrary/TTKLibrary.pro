@@ -45,7 +45,7 @@ win32:msvc{
 }
 
 INCLUDEPATH += \
-    $$PWD/../ \
+    $$PWD/.. \
     $$PWD/../base
 
 HEADERS += \

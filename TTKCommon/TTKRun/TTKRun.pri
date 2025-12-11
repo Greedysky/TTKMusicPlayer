@@ -32,7 +32,7 @@ win32:!msvc:QMAKE_LFLAGS_CONSOLE += -mwindows
 
 INCLUDEPATH += \
     $$PWD \
-    $$PWD/../ \
+    $$PWD/.. \
     $$PWD/../base
 
 HEADERS += $$PWD/ttkrunobject.h
