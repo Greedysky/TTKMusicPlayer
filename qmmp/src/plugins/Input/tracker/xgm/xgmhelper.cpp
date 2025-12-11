@@ -411,6 +411,7 @@ bool JaytraxReader::load()
     int track = m_path.section("#", -1).toInt() - 1;
     track = track < 0 ? 0 : track;
     jaytrax_changeSubsong(m_input, track);
+
     m_length = jaytrax_getLength(m_input, track, 1, sampleRate()) / sampleRate() * 1000;
     m_totalSamples = totalTime() * sampleRate() / 1000;
     return true;

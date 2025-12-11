@@ -208,29 +208,28 @@ void TrackInfo::clear()
 
 QString TrackInfo::pathFromUrl(const QString &url, int *track)
 {
-    QString path = url;
-    int index = path.indexOf("://");
-    if(index > 0)
-    {
-        path.remove(0, index + 3);
-    }
-
-    const QString &trackStr = path.section("#", -1);
-    bool ok = false;
-    int t = trackStr.toInt(&ok);
-    if(ok)
-    {
-        if(track)
-        {
-            *track = t;
-        }
-
-        index = path.lastIndexOf("#");
-        path.remove(index, path.size() - index);
-    }
-    else if(track)
+    if(track)
     {
         *track = -1;
+    }
+
+    const int prefix = url.indexOf("://");
+    if(prefix < 0)
+    {
+        return url;
+    }
+
+    const int suffix = url.lastIndexOf(QLatin1Char('#'));
+    if(suffix < 0)
+    {
+        return url;
+    }
+
+    const QString &path = url.mid(prefix + 3, suffix - prefix - 3);
+    const QString &trackStr = url.mid(suffix + 1);
+    if(track)
+    {
+        *track = trackStr.toInt();
     }
     return path;
 }
