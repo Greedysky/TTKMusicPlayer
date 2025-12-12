@@ -9,7 +9,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     m_ui.setupUi(this);
 #ifdef Q_OS_WIN
-    setFixedHeight(292);
+    setFixedHeight(310);
 #elif defined Q_OS_UNIX
     for(QAbstractButton *button : m_ui.buttonBox->buttons())
     {

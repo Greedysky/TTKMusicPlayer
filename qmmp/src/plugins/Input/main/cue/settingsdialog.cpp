@@ -10,9 +10,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
 {
     m_ui.setupUi(this);
-#ifdef Q_OS_WIN
-    setFixedHeight(205);
-#elif defined Q_OS_UNIX
+#ifdef Q_OS_UNIX
     for(QAbstractButton *button : m_ui.buttonBox->buttons())
     {
         button->setFocusPolicy(Qt::NoFocus);
