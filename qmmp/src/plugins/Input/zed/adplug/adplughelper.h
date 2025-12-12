@@ -51,7 +51,7 @@ public:
     inline qint64 totalTime() const { return m_player->songlength(); }
 
     inline int bitrate() const { return 8; }
-    inline int sampleRate() const { return 44100; }
+    inline int sampleRate() const { return m_sampleRate; }
     inline int channels() const { return 1; }
     inline int depth() const { return 16; }
 
@@ -71,6 +71,7 @@ private:
     CPlayer *m_player = nullptr;
     short m_buf[16384] = { 0 };
     size_t m_remaining = 0;
+    int m_sampleRate = 44100;
 
 };
 

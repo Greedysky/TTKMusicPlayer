@@ -59,7 +59,7 @@ public:
 
 private:
     QString m_path;
-    int m_sampleRate;
+    int m_sampleRate = 44100;
     void *m_input = nullptr;
 
 };

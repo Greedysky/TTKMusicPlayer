@@ -7,66 +7,88 @@
     <x>0</x>
     <y>0</y>
     <width>350</width>
-    <height>100</height>
+    <height>150</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>350</width>
-    <height>100</height>
+    <height>150</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>350</width>
-    <height>100</height>
+    <height>150</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>AdPlug Plugin Settings</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>5</x>
-     <y>5</y>
-     <width>340</width>
-     <height>95</height>
-    </rect>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>6</number>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1" colspan="3">
-     <widget class="QComboBox" name="emulator_combo"/>
-    </item>
-    <item row="2" column="2" colspan="2">
-     <widget class="QDialogButtonBox" name="buttonBox">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="standardButtons">
-       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="QCheckBox" name="surround">
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="text">
-       <string>Use surround sound</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>OPL Emulator:</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+   <property name="rightMargin">
+    <number>6</number>
+   </property>
+   <property name="bottomMargin">
+    <number>6</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>OPL Emulator:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Sample Rate (Hz):</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="2">
+    <widget class="QComboBox" name="sampleRate">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QCheckBox" name="surround">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string>Use surround sound</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" colspan="2">
+    <widget class="QComboBox" name="emulator"/>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections>
@@ -77,12 +99,12 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>151</y>
+     <x>214</x>
+     <y>167</y>
     </hint>
     <hint type="destinationlabel">
-     <x>157</x>
-     <y>179</y>
+     <x>103</x>
+     <y>160</y>
     </hint>
    </hints>
   </connection>
@@ -93,17 +115,14 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>151</y>
+     <x>269</x>
+     <y>174</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>179</y>
+     <x>148</x>
+     <y>169</y>
     </hint>
    </hints>
   </connection>
  </connections>
- <slots>
-  <slot>restore_defaults()</slot>
- </slots>
 </ui>

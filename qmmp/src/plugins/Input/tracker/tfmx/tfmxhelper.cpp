@@ -3,8 +3,7 @@
 #include <QSettings>
 
 TFMXHelper::TFMXHelper(const QString &path)
-    : m_path(path),
-      m_sampleRate(44100)
+    : m_path(path)
 {
 
 }
