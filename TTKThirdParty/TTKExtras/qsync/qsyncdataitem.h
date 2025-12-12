@@ -30,7 +30,7 @@ struct TTK_MODULE_EXPORT QSyncDataItem
     QString m_hash;
     QString m_mimeType;
     QString m_putTime;
-    int m_size;
+    qint64 m_size;
 
     QSyncDataItem() noexcept
         : m_size(0)

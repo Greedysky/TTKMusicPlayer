@@ -88,6 +88,14 @@ MusicCloudUploadTableWidget::~MusicCloudUploadTableWidget()
 
 void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item)
 {
+    for(const MusicSong &song : *m_songs)
+    {
+        if(song.name() == item.m_data.m_name && song.size() == item.m_data.m_size)
+        {
+            return; // find the same one
+        }
+    }
+
     const int count = rowCount() + 1;
     setRowCount(count);
 

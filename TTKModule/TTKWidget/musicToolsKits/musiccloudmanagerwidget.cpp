@@ -450,8 +450,8 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
 
     for(const QString &path : qAsConst(paths))
     {
-        MusicCloudDataItem item;
         const QFileInfo fin(path);
+        MusicCloudDataItem item;
         item.m_id = QString::number(TTKDateTime::currentTimestamp());
         item.m_path = path;
         item.m_state = MusicCloudDataItem::State::Waited;
