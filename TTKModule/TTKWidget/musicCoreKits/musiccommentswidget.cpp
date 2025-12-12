@@ -218,7 +218,7 @@ void MusicCommentsWidget::initialize(bool plain)
     contentsLayout->setSpacing(0);
     //
     QWidget *messageBox = new QWidget(contentsWidget);
-    messageBox->setAttribute(Qt::WA_TranslucentBackground, true);
+    messageBox->setAttribute(Qt::WA_TranslucentBackground);
     messageBox->setFixedHeight(60);
     QVBoxLayout *messageBoxLayout = new QVBoxLayout(messageBox);
     messageBoxLayout->setContentsMargins(10, 10, 10, 3);

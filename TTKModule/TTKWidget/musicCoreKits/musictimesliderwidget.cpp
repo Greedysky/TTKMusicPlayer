@@ -9,7 +9,7 @@ MusicTimeSliderWidget::MusicTimeSliderWidget(QWidget *parent)
 {
     m_label = new MusicGifLabelWidget(this);
     m_label->setType(MusicGifLabelWidget::Module::BallonWhite);
-    m_label->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    m_label->setAttribute(Qt::WA_TransparentForMouseEvents);
     m_label->move(15, 5);
     m_label->hide();
 

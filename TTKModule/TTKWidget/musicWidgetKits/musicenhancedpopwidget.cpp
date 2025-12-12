@@ -19,7 +19,7 @@ MusicEnhancedToolButton::MusicEnhancedToolButton(QWidget *parent)
 {
     m_animationLabel = new QLabel(this);
     m_animationLabel->setGeometry(-LABEL_ANIMAT_WIDGET, 0, LABEL_ANIMAT_WIDGET, LABEL_BUTTON_HEIGHT);
-    m_animationLabel->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    m_animationLabel->setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_foreLabel = new QLabel(this);
     m_foreLabel->setObjectName("ForeLabel");

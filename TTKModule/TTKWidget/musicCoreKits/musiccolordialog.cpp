@@ -51,7 +51,7 @@ void MusicHlPalette::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
     QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setBrush(Qt::NoBrush);
 
     const int ntRight = rect().right();
@@ -168,7 +168,7 @@ void MusicHlSaturationPalette::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
     QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setBrush(Qt::NoBrush);
 
     const int ntRight = rect().right();
