@@ -14,7 +14,6 @@ TFMXMetaDataModel::TFMXMetaDataModel(const QString &path)
 void TFMXMetaDataModel::fillProperties(TFMXHelper *helper)
 {
     m_ep << MetaDataItem(tr("Format id"), helper->id());
-    m_ep << MetaDataItem(tr("Format name"), helper->name());
     m_ep << MetaDataItem(tr("File name"), helper->fileName());
     m_ep << MetaDataItem(tr("Voice size"), helper->voices());
 

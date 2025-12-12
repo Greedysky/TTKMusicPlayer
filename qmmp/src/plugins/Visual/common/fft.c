@@ -36,8 +36,8 @@
 
 #include "fft.h"
 
-#include <stdlib.h>
 #include <math.h>
+#include <stdlib.h>
 
 #ifndef PI
 #ifdef M_PI
