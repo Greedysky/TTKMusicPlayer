@@ -62,7 +62,7 @@ namespace TTK
         /*!
          * Show effect setting control widget.
          */
-        TTK_MODULE_EXPORT void showEffectSetting(const QString &name);
+        TTK_MODULE_EXPORT void showEffectSetting(const QString &name, QWidget *parent);
 
         /*!
          * Update base config.

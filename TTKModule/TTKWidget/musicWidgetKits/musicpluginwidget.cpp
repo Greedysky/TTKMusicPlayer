@@ -104,17 +104,17 @@ public:
         }
     }
 
-    inline void showSettingWidget() const
+    inline void showSettingWidget(QWidget *parent) const
     {
         QDialog *dialog = nullptr;
 
         switch(type())
         {
-            case PluginDecoder: dialog = TTKStaticCast(DecoderFactory*, m_factory)->createSettings(nullptr); break;
+            case PluginDecoder: dialog = TTKStaticCast(DecoderFactory*, m_factory)->createSettings(parent); break;
             case PluginEffect: break;
             case PluginVisual: break;
-            case PluginTransports: dialog = TTKStaticCast(InputSourceFactory*, m_factory)->createSettings(nullptr); break;
-            case PluginOutput: dialog = TTKStaticCast(OutputFactory*, m_factory)->createSettings(nullptr); break;
+            case PluginTransports: dialog = TTKStaticCast(InputSourceFactory*, m_factory)->createSettings(parent); break;
+            case PluginOutput: dialog = TTKStaticCast(OutputFactory*, m_factory)->createSettings(parent); break;
             default: break;
         }
 
@@ -276,7 +276,7 @@ void MusicQmmpPluginWidget::pluginButtonClicked()
     MusicQmmpPluginItem *item = TTKDynamicCast(MusicQmmpPluginItem*, m_ui->treeWidget->currentItem());
     if(item)
     {
-        item->showSettingWidget();
+        item->showSettingWidget(this);
     }
 }
 

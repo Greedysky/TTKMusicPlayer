@@ -428,7 +428,7 @@ void MusicSettingWidget::rippleLowPowerEnableBoxClicked(bool state)
 
 void MusicSettingWidget::otherPluginManagerChanged()
 {
-    MusicQmmpPluginWidget().exec();
+    MusicQmmpPluginWidget(this).exec();
 }
 
 void MusicSettingWidget::changeDesktopLrcWidget()

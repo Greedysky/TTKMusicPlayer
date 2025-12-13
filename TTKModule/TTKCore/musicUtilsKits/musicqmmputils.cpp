@@ -98,13 +98,13 @@ MusicPluginPropertyList TTK::TTKQmmp::effectModules()
     return properties;
 }
 
-void TTK::TTKQmmp::showEffectSetting(const QString &name)
+void TTK::TTKQmmp::showEffectSetting(const QString &name, QWidget *parent)
 {
     for(EffectFactory *factory : Effect::factories())
     {
         if(factory->properties().shortName == name)
         {
-            QDialog *dialog = factory->createSettings(nullptr);
+            QDialog *dialog = factory->createSettings(parent);
             if(dialog)
             {
                 dialog->exec();
