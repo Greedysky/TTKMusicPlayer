@@ -220,8 +220,8 @@ MusicQmmpPluginWidget::MusicQmmpPluginWidget(QWidget *parent)
 
     m_ui->treeWidget->setColumnWidth(0, 65);
     m_ui->treeWidget->setColumnWidth(1, 210);
-    m_ui->treeWidget->setColumnWidth(2, 120);
-    m_ui->treeWidget->setColumnWidth(3, 70);
+    m_ui->treeWidget->setColumnWidth(2, 140);
+    m_ui->treeWidget->setColumnWidth(3, 30);
 
     m_ui->settingButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     m_ui->treeWidget->setStyleSheet(TTK::UI::GroupBoxStyle01 + TTK::UI::SpinBoxStyle01 + TTK::UI::SliderStyle06 +

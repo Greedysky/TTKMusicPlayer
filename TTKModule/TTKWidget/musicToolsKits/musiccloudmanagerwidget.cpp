@@ -84,6 +84,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
 
     if(!cloudConfigValid())
     {
+        TTK_ERROR_STREAM("Sync cloud key is empty");
         return false;
     }
 
@@ -124,6 +125,7 @@ void MusicCloudManagerTableWidget::downLoadKeyFinished(const QByteArray &bytes)
             const QVariantMap &value = json.toVariant().toMap();
             QSyncConfig::NAME = value["key"].toString();
             QSyncConfig::KEY = value["secret"].toByteArray();
+            TTK_INFO_STREAM("Download sync cloud key finished");
         }
     }
 
