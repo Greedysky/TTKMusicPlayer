@@ -30,7 +30,7 @@ class QmmpCopyModule():
         self._src_directory = src
         self._dst_directory = dst
         self._current_version = ver
-        self._win_src_verions = ("4_8_7", "5_5_1", "6_2_4")
+        self._win_src_verions = ("4_8_7", "5_5_1", "6_2_4", "6_8_3")
         self._versions = ("4_8_7", "5_0_2", "5_1_1", "5_2_1", "5_3_2", "5_4_2", "5_5_1", "5_6_3", "5_7_1", "5_8_0", "5_9_9", "5_10_1", "5_11_3", "5_12_12", "5_13_2", "5_14_2", "5_15_2" if not self.is_windows() else "5_15_18", "6_0_4", "6_1_3", "6_2_4", "6_3_2", "6_4_3", "6_5_3", "6_6_3", "6_7_3", "6_8_3", "6_9_3", "6_10_1")
 
     def is_windows(self):
@@ -44,6 +44,7 @@ class QmmpCopyModule():
         dst_dirs = os.listdir(self._dst_directory)
         app_name = "demo.exe" if self.is_windows() else "demo"
 
+        version_index = 0
         # find all supported versions
         for version in self._versions:
             dst_directory = ""
@@ -57,12 +58,15 @@ class QmmpCopyModule():
 
             # find win src versions
             if self.is_windows():
-                if version.startswith("4"):
-                    version = self._win_src_verions[0]
-                elif version.startswith("5"):
-                    version = self._win_src_verions[1]
-                elif version.startswith("6"):
+                if version_index >= 25:
+                    version = self._win_src_verions[3]
+                elif version_index >= 17:
                     version = self._win_src_verions[2]
+                elif version_index >= 1:
+                    version = self._win_src_verions[1]
+                elif version_index >= 0:
+                    version = self._win_src_verions[0]
+            version_index += 1
 
             # find source dir names
             for dir in src_dirs:
