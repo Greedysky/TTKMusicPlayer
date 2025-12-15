@@ -47,8 +47,8 @@ public:
 
     inline qint64 read(unsigned char *data, qint64) { return m_input->read((short*)data, INPUT_BUFFER_SIZE) * channels() * depth() / 8; }
 
-    inline bool hasTags() const { return !m_input->get_meta().empty(); }
-    inline QString tag(const char *key) const { return QString::fromStdString(m_input->get_meta()[key]); }
+    inline bool hasTags() const { return !m_input->meta().empty(); }
+    inline QString tag(const char *key) const { return QString::fromStdString(m_input->meta()[key]); }
     inline QString format() const { return m_input->format(); }
 
 private:
