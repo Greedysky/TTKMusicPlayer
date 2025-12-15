@@ -1,10 +1,21 @@
 #include "musicunityqueryinterface.h"
 
-static constexpr const char *QUERY_PLUGINS_URL = "resource/plugins";
 static constexpr const char *QUERY_MODULE_X = "*";
 static constexpr const char *QUERY_MODULE_A = "A";
 static constexpr const char *QUERY_MODULE_B = "B";
 static constexpr const char *QUERY_MODULE_C = "C";
+static constexpr const char *QUERY_MODULE_D = "D";
+static constexpr const char *QUERY_PLUGINS_URL = "resource/plugins";
+
+static bool checkModule(const QString &module)
+{
+    return module == QUERY_MODULE_X ||
+           module == QUERY_MODULE_A ||
+           module == QUERY_MODULE_B ||
+           module == QUERY_MODULE_C ||
+           module == QUERY_MODULE_D;
+}
+
 
 struct ServerModule
 {
@@ -191,6 +202,28 @@ static void parseSongPropertyC(QNetworkRequest *request, TTK::MusicSongInformati
     }
 }
 
+static void parseSongPropertyD(QNetworkRequest *request, TTK::MusicSongInformation *info, int bitrate)
+{
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(request);
+    if(bytes.isEmpty())
+    {
+        return;
+    }
+
+    bool found = true;
+    TTK::MusicSongProperty prop;
+    prop.m_url = bytes;
+    prop.m_size = TTK_DEFAULT_STR;
+    prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
+    prop.m_bitrate = bitrate;
+    info->m_songProps.append(prop);
+
+    if(!found)
+    {
+        TTK_INFO_STREAM("Not found metainfo, buffer is" << bytes);
+    }
+}
+
 
 void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &type, const QString &id, int bitrate)
 {
@@ -250,10 +283,7 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
 
             for(const QString &module : value.keys())
             {
-                if(module != QUERY_MODULE_X &&
-                   module != QUERY_MODULE_A &&
-                   module != QUERY_MODULE_B &&
-                   module != QUERY_MODULE_C)
+                if(!checkModule(module))
                 {
                     continue;
                 }
@@ -305,6 +335,11 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
             {
                 TTK_INFO_STREAM("Parse song in C module, url:" << v.m_url);
                 parseSongPropertyC(&request, info, bitrate, v.m_quality);
+            }
+            else if(v.m_module == QUERY_MODULE_D)
+            {
+                TTK_INFO_STREAM("Parse song in D module, url:" << v.m_url);
+                parseSongPropertyD(&request, info, bitrate);
             }
         }
     }

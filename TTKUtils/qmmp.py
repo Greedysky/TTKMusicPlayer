@@ -58,13 +58,13 @@ class QmmpCopyModule():
 
             # find win src versions
             if self.is_windows():
-                if version_index >= 25:
+                if version_index >= 25: # 6.8 - x
                     version = self._win_src_verions[3]
-                elif version_index >= 17:
+                elif version_index >= 17: # 6.0 - 6.7
                     version = self._win_src_verions[2]
-                elif version_index >= 1:
+                elif version_index >= 1: # 5.x
                     version = self._win_src_verions[1]
-                elif version_index >= 0:
+                elif version_index >= 0: # 4.8
                     version = self._win_src_verions[0]
             version_index += 1
 

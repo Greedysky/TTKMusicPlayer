@@ -141,6 +141,13 @@ QByteArray TTK::syncNetworkQueryForGet(QNetworkRequest *request)
         return {};
     }
 
+    const QVariant &redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    if(redirection.isValid())
+    {
+        reply->deleteLater();
+        return redirection.toString().toUtf8();
+    }
+
     const QByteArray bytes(reply->readAll());
     reply->deleteLater();
     return bytes;
