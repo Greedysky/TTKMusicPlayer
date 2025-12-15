@@ -148,6 +148,10 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
+     * Override close function.
+     */
+    void close();
+    /*!
      * Query selected quality media finished.
      */
     void downLoadNormalFinished();
@@ -182,6 +186,7 @@ private:
      */
     void addCellItems(const TTK::MusicSongPropertyList &props);
 
+    bool m_exitRequired;
     Ui::MusicDownloadWidget *m_ui;
     MusicAbstractQueryRequest *m_networkRequest;
     TTK::MusicSongInformation m_info;

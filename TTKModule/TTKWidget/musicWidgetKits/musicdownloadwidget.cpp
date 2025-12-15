@@ -119,6 +119,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
+    m_exitRequired = false;
     m_networkRequest = nullptr;
     m_queryType = MusicAbstractQueryRequest::QueryType::Music;
 
@@ -166,7 +167,7 @@ void MusicDownloadWidget::initialize(const TTK::MusicSongInformation &info)
 
     if(m_info.m_songProps.isEmpty())
     {
-       close();
+       MusicAbstractMoveWidget::close();
        MusicToastLabel::popup(tr("No resource found"));
     }
     else
@@ -319,6 +320,12 @@ bool MusicDownloadWidget::startToRequestMovie(const TTK::MusicSongInformation &i
     return true;
 }
 
+void MusicDownloadWidget::close()
+{
+    hide();
+    m_exitRequired = true;
+}
+
 void MusicDownloadWidget::downLoadNormalFinished()
 {
     if(!G_NETWORK_PTR->isOnline())
@@ -351,13 +358,18 @@ void MusicDownloadWidget::downLoadNormalFinished()
 
     if(m_info.m_songProps.isEmpty())
     {
-        close();
+        MusicAbstractMoveWidget::close();
         MusicToastLabel::popup(tr("No resource found"));
     }
     else
     {
         std::sort(m_info.m_songProps.begin(), m_info.m_songProps.end()); //to find out the min bitrate
         addCellItems(m_info.m_songProps);
+    }
+
+    if(m_exitRequired)
+    {
+        MusicAbstractMoveWidget::close();
     }
 }
 
@@ -368,13 +380,18 @@ void MusicDownloadWidget::downLoadRequestFinished()
 
     if(m_info.m_songProps.isEmpty())
     {
-        close();
+        MusicAbstractMoveWidget::close();
         MusicToastLabel::popup(tr("No resource found"));
     }
     else
     {
         std::sort(m_info.m_songProps.begin(), m_info.m_songProps.end()); //to find out the min bitrate
         addCellItems(m_info.m_songProps);
+    }
+
+    if(m_exitRequired)
+    {
+        MusicAbstractMoveWidget::close();
     }
 }
 
@@ -456,6 +473,7 @@ void MusicDownloadWidget::startToRequest()
     {
         MusicDownloadWidget::startToRequestMovie(m_info, bitrate, this);
     }
+
     controlEnabled(false);
 }
 
