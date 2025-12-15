@@ -99,9 +99,8 @@ void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item
     const int count = rowCount() + 1;
     setRowCount(count);
 
-    MusicSong record;
+    MusicSong record(item.m_path);
     record.setName(item.m_data.m_name);
-    record.setPath(item.m_path);
     record.setSizeStr(TTK::Number::sizeByteToLabel(item.m_data.m_size));
     record.setAddTimeStr(QString::number(TTKDateTime::currentTimestamp()));
     m_songs->append(record);
