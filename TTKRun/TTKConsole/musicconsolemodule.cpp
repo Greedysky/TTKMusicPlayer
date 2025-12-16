@@ -305,31 +305,31 @@ void MusicConsoleModule::playOnce()
 
 void MusicConsoleModule::setEnhancedOff()
 {
-    m_player->setEnhanced(MusicPlayer::Enhance::Off);
+    m_player->setEnhance(TTK::Enhance::Off);
     m_enhanced = "Off";
 }
 
 void MusicConsoleModule::setEnhanced3D()
 {
-    m_player->setEnhanced(MusicPlayer::Enhance::M3D);
+    m_player->setEnhance(TTK::Enhance::M3D);
     m_enhanced = "3D";
 }
 
 void MusicConsoleModule::setEnhancedNICAM()
 {
-    m_player->setEnhanced(MusicPlayer::Enhance::NICAM);
+    m_player->setEnhance(TTK::Enhance::NICAM);
     m_enhanced = "NICAM";
 }
 
 void MusicConsoleModule::setEnhancedSubwoofer()
 {
-    m_player->setEnhanced(MusicPlayer::Enhance::Subwoofer);
+    m_player->setEnhance(TTK::Enhance::Subwoofer);
     m_enhanced = "Subwoofer";
 }
 
 void MusicConsoleModule::setEnhancedVocal()
 {
-    m_player->setEnhanced(MusicPlayer::Enhance::Vocal);
+    m_player->setEnhance(TTK::Enhance::Vocal);
     m_enhanced = "Vocal";
 }
 

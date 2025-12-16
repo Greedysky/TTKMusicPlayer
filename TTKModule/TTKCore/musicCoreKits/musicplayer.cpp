@@ -10,11 +10,9 @@ MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent),
       m_playlist(nullptr),
       m_state(TTK::PlayState::Stopped),
-      m_enhance(Enhance::Off),
       m_duration(0),
       m_durationTimes(0),
-      m_volumeMusic3D(0),
-      m_posOnCircle(0)
+      m_enhance()
 {
     m_core = new SoundCore(this);
     setEnabledEffect(false);
@@ -69,7 +67,7 @@ int MusicPlayer::volume() const
 
 void MusicPlayer::setVolume(int volume)
 {
-    m_volumeMusic3D = volume;
+    m_enhance.m_volume3D = volume;
     m_core->setVolume(volume);
 }
 
@@ -80,37 +78,37 @@ bool MusicPlayer::isMuted() const noexcept
 
 void MusicPlayer::setMuted(bool muted)
 {
-    m_volumeMusic3D = muted ? 0 : m_core->volume();
+    m_enhance.m_volume3D = muted ? 0 : m_core->volume();
     m_core->setMuted(muted);
 }
 
-void MusicPlayer::setEnhanced(Enhance type)
+void MusicPlayer::setEnhance(TTK::Enhance type)
 {
-    m_enhance = type;
+    m_enhance.m_type = type;
 
-    if(m_enhance == Enhance::M3D)
+    if(m_enhance.m_type == TTK::Enhance::M3D)
     {
-        m_volumeMusic3D = volume();
+        m_enhance.m_volume3D = volume();
     }
     else
     {
         m_core->setBalance(0);
-        m_core->setVolumePerChannel(m_volumeMusic3D, m_volumeMusic3D);
+        m_core->setVolumePerChannel(m_enhance.m_volume3D, m_enhance.m_volume3D);
 
-        switch(m_enhance)
+        switch(m_enhance.m_type)
         {
-            case Enhance::Off: setEqualizerEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}); break;
-            case Enhance::Vocal: setEqualizerEffect({0, 0, 4, 1, -5, -1, 2, -2, -4, -4, 0}); break;
-            case Enhance::NICAM: setEqualizerEffect({6, -12, -12, -9, -6, -3, -12, -9, -6, -3, -12}); break;
-            case Enhance::Subwoofer: setEqualizerEffect({6, 6, -10, -10, 0, 0, -3, -5, -7, -9, -11}); break;
+            case TTK::Enhance::Off: setEqualizerEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}); break;
+            case TTK::Enhance::Vocal: setEqualizerEffect({0, 0, 4, 1, -5, -1, 2, -2, -4, -4, 0}); break;
+            case TTK::Enhance::NICAM: setEqualizerEffect({6, -12, -12, -9, -6, -3, -12, -9, -6, -3, -12}); break;
+            case TTK::Enhance::Subwoofer: setEqualizerEffect({6, 6, -10, -10, 0, 0, -3, -5, -7, -9, -11}); break;
             default: break;
         }
     }
 }
 
-MusicPlayer::Enhance MusicPlayer::enhanced() const noexcept
+TTK::Enhance MusicPlayer::enhance() const noexcept
 {
-    return m_enhance;
+    return m_enhance.m_type;
 }
 
 void MusicPlayer::play()
@@ -216,12 +214,12 @@ void MusicPlayer::update()
 {
     Q_EMIT positionChanged(position());
 
-    if(m_enhance == Enhance::M3D && !isMuted())
+    if(m_enhance.m_type == TTK::Enhance::M3D && !isMuted())
     {
         ///3D music settings
         setEnabledEffect(false);
-        m_posOnCircle += 0.5f;
-        m_core->setVolumePerChannel(std::fabs(TTK_RN_MAX * std::cos(m_posOnCircle)), std::fabs(TTK_RN_MAX * std::sin(m_posOnCircle * 0.5f)));
+        m_enhance.m_circlePos += 0.5f;
+        m_core->setVolumePerChannel(std::fabs(TTK_RN_MAX * std::cos(m_enhance.m_circlePos)), std::fabs(TTK_RN_MAX * std::sin(m_enhance.m_circlePos * 0.5f)));
     }
 
     const Qmmp::State state = m_core->state();

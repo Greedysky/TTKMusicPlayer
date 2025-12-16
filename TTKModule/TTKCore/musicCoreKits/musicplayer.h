@@ -25,14 +25,11 @@
 class SoundCore;
 class MusicPlaylist;
 
-/*! @brief The class of the music player.
+/*! @brief The namespace of the global defines.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPlayer : public QObject
+namespace TTK
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPlayer)
-public:
     enum class Enhance
     {
         Off,        /*!< enhance off, no any effect */
@@ -41,7 +38,16 @@ public:
         Subwoofer,  /*!< subwoofer media effect */
         Vocal       /*!< vocal media effect */
     };
+}
 
+/*! @brief The class of the music player.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicPlayer : public QObject
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlayer)
+public:
     /*!
      * Object constructor.
      */
@@ -96,13 +102,13 @@ public:
     void setMuted(bool muted);
 
     /*!
-     * Set current media enhanced effect.
+     * Set current media enhance effect.
      */
-    void setEnhanced(Enhance type);
+    void setEnhance(TTK::Enhance type);
     /*!
-     * Get current media enhanced effect.
+     * Get current media enhance effect.
      */
-    Enhance enhanced() const noexcept;
+    TTK::Enhance enhance() const noexcept;
 
 Q_SIGNALS:
     /*!
@@ -169,12 +175,16 @@ private:
     SoundCore *m_core;
     QTimer m_timer;
     QString m_currentMedia;
-    Enhance m_enhance;
     qint64 m_duration;
-
     int m_durationTimes;
-    int m_volumeMusic3D;
-    float m_posOnCircle;
+
+    struct Enhance
+    {
+        TTK::Enhance m_type = TTK::Enhance::Off;
+        int m_volume3D = 0;
+        float m_circlePos = 0;
+
+    } m_enhance;
 
 };
 

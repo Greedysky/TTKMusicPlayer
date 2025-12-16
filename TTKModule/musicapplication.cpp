@@ -764,7 +764,7 @@ void MusicApplication::windowConciseChanged()
 
 void MusicApplication::enhancedSongChanged(int type)
 {
-    m_player->setEnhanced(TTKStaticCast(MusicPlayer::Enhance, type));
+    m_player->setEnhance(TTKStaticCast(TTK::Enhance, type));
 }
 
 void MusicApplication::createRightMenu()
@@ -1275,7 +1275,7 @@ void MusicApplication::writeSystemConfigToFile()
     m_applicationModule->updateSoundEffectConfig(false);
 
     G_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, TTKStaticCast(int, m_player->enhanced()));
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, TTKStaticCast(int, m_player->enhance()));
     G_SETTING_PTR->setValue(MusicSettingManager::PlayMode, TTKStaticCast(int, m_playlist->playbackMode()));
     G_SETTING_PTR->setValue(MusicSettingManager::Volume, m_ui->musicSound->value());
 
