@@ -7,9 +7,7 @@
 bool DecoderMPCFactory::canDecode(QIODevice *input) const
 {
     char buf[4];
-    if(input->peek(buf, 4) != 4)
-        return false;
-    return !memcmp(buf, "MP+", 3) || !memcmp(buf, "MPCK", 4);
+    return input->peek(buf, 4) == 4 && (!memcmp(buf, "MP+", 3) || !memcmp(buf, "MPCK", 4));
 }
 
 DecoderProperties DecoderMPCFactory::properties() const

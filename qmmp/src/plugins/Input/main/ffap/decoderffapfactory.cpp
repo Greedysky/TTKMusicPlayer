@@ -6,9 +6,7 @@
 bool DecoderFFapFactory::canDecode(QIODevice *input) const
 {
     char buf[3];
-    if(input->peek(buf, 3) != 3)
-        return false;
-    return !memcmp(buf, "MAC", 3);
+    return input->peek(buf, 3) == 3 && !memcmp(buf, "MAC", 3);
 }
 
 DecoderProperties DecoderFFapFactory::properties() const

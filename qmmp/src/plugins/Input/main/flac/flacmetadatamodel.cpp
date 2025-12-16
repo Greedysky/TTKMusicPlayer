@@ -53,7 +53,7 @@ QList<TagModel*> FLACMetaDataModel::tags() const
 
 QImage FLACMetaDataModel::cover() const
 {
-    TagLib::FLAC::File *flacFile = dynamic_cast<TagLib::FLAC::File *>(m_file);
+    TagLib::FLAC::File *flacFile = dynamic_cast<TagLib::FLAC::File*>(m_file);
     TagLib::List<TagLib::FLAC::Picture *> list;
 
     if(flacFile)
@@ -86,7 +86,7 @@ void FLACMetaDataModel::setCover(const QImage &img)
 {
     removeCover();
 
-    TagLib::FLAC::File *flacFile = dynamic_cast<TagLib::FLAC::File *>(m_file);
+    TagLib::FLAC::File *flacFile = dynamic_cast<TagLib::FLAC::File*>(m_file);
     TagLib::FLAC::Picture *picture = new TagLib::FLAC::Picture();
     picture->setType(TagLib::FLAC::Picture::FrontCover);
 
@@ -114,7 +114,7 @@ void FLACMetaDataModel::setCover(const QImage &img)
 
 void FLACMetaDataModel::removeCover()
 {
-    TagLib::FLAC::File *flacFile = dynamic_cast<TagLib::FLAC::File *>(m_file);
+    TagLib::FLAC::File *flacFile = dynamic_cast<TagLib::FLAC::File*>(m_file);
     bool save = false;
 
     if(flacFile)

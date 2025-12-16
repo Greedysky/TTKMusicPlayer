@@ -6,14 +6,14 @@ static size_t oggread(void *buf, size_t size, size_t nmemb, void *src)
 {
     if(! src) return 0;
 
-    DecoderVorbis *dogg = static_cast<DecoderVorbis *>(src);
+    DecoderVorbis *dogg = static_cast<DecoderVorbis*>(src);
     int len = dogg->input()->read((char *) buf, (size * nmemb));
     return len / size;
 }
 
 static int oggseek(void *src, ogg_int64_t offset, int whence)
 {
-    DecoderVorbis *dogg = static_cast<DecoderVorbis *>(src);
+    DecoderVorbis *dogg = static_cast<DecoderVorbis*>(src);
 
     if(dogg->input()->isSequential())
         return -1;

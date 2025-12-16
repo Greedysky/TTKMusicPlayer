@@ -126,7 +126,7 @@ void OptimFROGHelper::seek(qint64 time)
 qint64 OptimFROGHelper::totalTime() const
 {
 #if defined Q_OS_WIN && defined __GNUC__
-    return (static_cast<QIODevice *>(m_input)->size() * 8.0) / m_info.bitrate;
+    return (static_cast<QIODevice*>(m_input)->size() * 8.0) / m_info.bitrate;
 #else
     return m_info.length_ms;
 #endif

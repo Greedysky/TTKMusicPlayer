@@ -69,7 +69,7 @@ QString QmmpTextCodec::toUnicode(const QByteArray &a) const
 
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
     if(d->m_name == "UTF-16")
-        return QString::fromUtf16(reinterpret_cast<const char16_t *>(a.data()), a.size() / 2);
+        return QString::fromUtf16(reinterpret_cast<const char16_t*>(a.data()), a.size() / 2);
     if(!d->from || d->m_name == "UTF-8")
         return QString::fromUtf8(a);
 
@@ -79,7 +79,7 @@ QString QmmpTextCodec::toUnicode(const QByteArray &a) const
     // reset state
     iconv(d->from, nullptr, &inBytesLeft, nullptr, &outBytesLeft);
 
-    char *inBytes = const_cast<char *>(a.data());
+    char *inBytes = const_cast<char*>(a.data());
     inBytesLeft = a.size();
     outBytesLeft = a.size() * 2 + 2;
     QByteArray ba(outBytesLeft, Qt::Uninitialized);
@@ -117,7 +117,7 @@ QString QmmpTextCodec::toUnicode(const QByteArray &a) const
         }
     }
 
-    return QString::fromUtf16(reinterpret_cast<const char16_t *>(ba.constData()), (ba.size() - outBytesLeft) / 2);
+    return QString::fromUtf16(reinterpret_cast<const char16_t*>(ba.constData()), (ba.size() - outBytesLeft) / 2);
 #else
     return d->m_codec->toUnicode(a);
 #endif
@@ -144,7 +144,7 @@ QByteArray QmmpTextCodec::fromUnicode(const QString &str) const
     // reset state
     iconv(d->to, nullptr, &inBytesLeft, nullptr, &outBytesLeft);
 
-    char *inBytes =  const_cast<char *>(reinterpret_cast<const char*>(str.utf16()));
+    char *inBytes = const_cast<char*>(reinterpret_cast<const char*>(str.utf16()));
     inBytesLeft = str.size() * 2;
     outBytesLeft = str.size() * 2;
 

@@ -3,13 +3,13 @@
 //callbacks
 size_t ffap_read_cb(void *ptr, size_t size, size_t nmemb, void *client_data)
 {
-    DecoderFFap *dffap = static_cast<DecoderFFap *>(client_data);
+    DecoderFFap *dffap = static_cast<DecoderFFap*>(client_data);
     return dffap->input()->read((char *) ptr, size * nmemb);
 }
 
 int ffap_seek_cb(int64_t offset, int whence, void *client_data)
 {
-    DecoderFFap *dffap = static_cast<DecoderFFap *>(client_data);
+    DecoderFFap *dffap = static_cast<DecoderFFap*>(client_data);
     bool ok = false;
     switch(whence)
     {
@@ -28,13 +28,13 @@ int ffap_seek_cb(int64_t offset, int whence, void *client_data)
 
 int64_t ffap_tell_cb(void *client_data)
 {
-    DecoderFFap *dffap = static_cast<DecoderFFap *>(client_data);
+    DecoderFFap *dffap = static_cast<DecoderFFap*>(client_data);
     return dffap->input()->pos();
 }
 
 int64_t ffap_getlength_cb(void *client_data)
 {
-    DecoderFFap *dffap = static_cast<DecoderFFap *>(client_data);
+    DecoderFFap *dffap = static_cast<DecoderFFap*>(client_data);
     return dffap->input()->size();
 }
 

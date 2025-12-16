@@ -5,9 +5,7 @@
 bool DecoderVorbisFactory::canDecode(QIODevice *input) const
 {
     char buf[35];
-    if(input->peek(buf, 35) != 35)
-        return false;
-    return !memcmp(buf, "OggS", 4) && !memcmp(buf + 29, "vorbis", 6);
+    return input->peek(buf, 35) == 35 && !memcmp(buf, "OggS", 4) && !memcmp(buf + 29, "vorbis", 6);
 }
 
 DecoderProperties DecoderVorbisFactory::properties() const

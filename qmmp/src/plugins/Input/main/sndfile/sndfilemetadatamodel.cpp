@@ -51,7 +51,7 @@ QImage SndFileMetaDataModel::cover() const
 
     for(TagLib::ID3v2::FrameList::Iterator it = frames.begin(); it != frames.end(); ++it)
     {
-        TagLib::ID3v2::AttachedPictureFrame *frame = dynamic_cast<TagLib::ID3v2::AttachedPictureFrame *>(*it);
+        TagLib::ID3v2::AttachedPictureFrame *frame = dynamic_cast<TagLib::ID3v2::AttachedPictureFrame*>(*it);
         if(frame && frame->type() == TagLib::ID3v2::AttachedPictureFrame::FrontCover)
         {
             QImage cover;
@@ -62,7 +62,7 @@ QImage SndFileMetaDataModel::cover() const
     //fallback image
     for(TagLib::ID3v2::FrameList::Iterator it = frames.begin(); it != frames.end(); ++it)
     {
-        TagLib::ID3v2::AttachedPictureFrame *frame = dynamic_cast<TagLib::ID3v2::AttachedPictureFrame *>(*it);
+        TagLib::ID3v2::AttachedPictureFrame *frame = dynamic_cast<TagLib::ID3v2::AttachedPictureFrame*>(*it);
         if(frame)
         {
             QImage cover;
@@ -124,7 +124,7 @@ QString SndFileMetaDataModel::lyrics() const
 {
     for(const TagModel *tag : std::as_const(m_tags))
     {
-        const SndFileTagModel *mpegTag = static_cast<const SndFileTagModel *>(tag);
+        const SndFileTagModel *mpegTag = static_cast<const SndFileTagModel*>(tag);
         QString lyrics = mpegTag->lyrics();
         if(!lyrics.isEmpty())
             return lyrics;

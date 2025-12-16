@@ -61,10 +61,10 @@ private:
 
     QMap<QString, QString> m_metaData;
 
-    static QIODevice *VFS(void *instance) { return reinterpret_cast<QIODevice *>(instance); }
+    static QIODevice *VFS(void *instance) { return reinterpret_cast<QIODevice*>(instance); }
 
     static condition_t ofr_close(void *) { return true; }
-    static sInt32_t ofr_read(void *instance, void *buf, uInt32_t n) { return VFS(instance)->read(reinterpret_cast<char *>(buf), n); }
+    static sInt32_t ofr_read(void *instance, void *buf, uInt32_t n) { return VFS(instance)->read(reinterpret_cast<char*>(buf), n); }
     static condition_t ofr_eof(void *instance) { return VFS(instance)->atEnd(); }
     static condition_t ofr_seekable(void *instance) { return !VFS(instance)->isSequential(); }
     static sInt64_t ofr_length(void *instance) { return VFS(instance)->size(); }

@@ -2,12 +2,12 @@
 
 sf_count_t sndfile_sf_vio_get_filelen(void *data)
 {
-    return static_cast<QIODevice *>(data)->size();
+    return static_cast<QIODevice*>(data)->size();
 }
 
 sf_count_t sndfile_sf_vio_seek(sf_count_t offset, int whence, void *data)
 {
-    QIODevice *input = static_cast<QIODevice *>(data);
+    QIODevice *input = static_cast<QIODevice*>(data);
     if(input->isSequential())
         return -1;
 
@@ -32,7 +32,7 @@ sf_count_t sndfile_sf_vio_seek(sf_count_t offset, int whence, void *data)
 
 sf_count_t sndfile_sf_vio_read(void *ptr, sf_count_t count, void *data)
 {
-    return static_cast<QIODevice *>(data)->read((char *)ptr, count);
+    return static_cast<QIODevice*>(data)->read((char *)ptr, count);
 }
 
 sf_count_t sndfile_sf_vio_write(const void *, sf_count_t, void *)
@@ -42,7 +42,7 @@ sf_count_t sndfile_sf_vio_write(const void *, sf_count_t, void *)
 
 sf_count_t sndfile_sf_vio_tell(void *data)
 {
-    return static_cast<QIODevice *>(data)->pos();
+    return static_cast<QIODevice*>(data)->pos();
 }
 
 

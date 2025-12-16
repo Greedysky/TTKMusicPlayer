@@ -64,7 +64,7 @@ QList<MetaDataItem> MPEGMetaDataModel::extraProperties() const
     const TagLib::ID3v2::Tag *tag = m_file->ID3v2Tag();
     if(tag && !tag->frameListMap()["POPM"].isEmpty())
     {
-        const TagLib::ID3v2::PopularimeterFrame *popm = dynamic_cast<TagLib::ID3v2::PopularimeterFrame *>(tag->frameListMap()["POPM"].front());
+        const TagLib::ID3v2::PopularimeterFrame *popm = dynamic_cast<TagLib::ID3v2::PopularimeterFrame*>(tag->frameListMap()["POPM"].front());
         if(popm)
             ep << MetaDataItem(tr("Rating"), popm->rating());
     }
@@ -87,7 +87,7 @@ QImage MPEGMetaDataModel::cover() const
 
     for(TagLib::ID3v2::FrameList::Iterator it = frames.begin(); it != frames.end(); ++it)
     {
-        TagLib::ID3v2::AttachedPictureFrame *frame = static_cast<TagLib::ID3v2::AttachedPictureFrame *>(*it);
+        TagLib::ID3v2::AttachedPictureFrame *frame = static_cast<TagLib::ID3v2::AttachedPictureFrame*>(*it);
         if(frame && frame->type() == TagLib::ID3v2::AttachedPictureFrame::FrontCover)
         {
             QImage cover;
@@ -98,7 +98,7 @@ QImage MPEGMetaDataModel::cover() const
     //fallback image
     for(TagLib::ID3v2::FrameList::Iterator it = frames.begin(); it != frames.end(); ++it)
     {
-        TagLib::ID3v2::AttachedPictureFrame *frame = static_cast<TagLib::ID3v2::AttachedPictureFrame *>(*it);
+        TagLib::ID3v2::AttachedPictureFrame *frame = static_cast<TagLib::ID3v2::AttachedPictureFrame*>(*it);
         if(frame)
         {
             QImage cover;
@@ -150,7 +150,7 @@ QString MPEGMetaDataModel::lyrics() const
 {
     for(const TagModel *tag : qAsConst(m_tags))
     {
-        const MpegFileTagModel *mpegTag = static_cast<const MpegFileTagModel *>(tag);
+        const MpegFileTagModel *mpegTag = static_cast<const MpegFileTagModel*>(tag);
         const QString &lyrics = mpegTag->lyrics();
         if(!lyrics.isEmpty())
             return lyrics;
@@ -321,7 +321,7 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
         if(!id3v2_key.isEmpty())
         {
             TagLib::String composer = TagLib::String(m_codec->fromUnicode(value).constData(), type);
-            TagLib::ID3v2::Tag *id3v2_tag = static_cast<TagLib::ID3v2::Tag *>(m_tag);
+            TagLib::ID3v2::Tag *id3v2_tag = static_cast<TagLib::ID3v2::Tag*>(m_tag);
             if(value.isEmpty())
                 id3v2_tag->removeFrames(id3v2_key);
             else if(!id3v2_tag->frameListMap()[id3v2_key].isEmpty())
@@ -420,7 +420,7 @@ QString MpegFileTagModel::lyrics() const
 {
     if(m_tag && m_type == TagLib::MPEG::File::ID3v2)
     {
-        TagLib::ID3v2::Tag *id3v2_tag = static_cast<TagLib::ID3v2::Tag *>(m_tag);
+        TagLib::ID3v2::Tag *id3v2_tag = static_cast<TagLib::ID3v2::Tag*>(m_tag);
         const TagLib::ID3v2::FrameListMap &items = id3v2_tag->frameListMap();
 
         const bool utf = m_codec->name().contains("UTF");

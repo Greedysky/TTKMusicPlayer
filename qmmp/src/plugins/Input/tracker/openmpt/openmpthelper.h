@@ -83,7 +83,7 @@ private:
     static std::size_t stream_read(void *, void *, std::size_t);
     static int stream_seek(void *, std::int64_t, int);
     static std::int64_t stream_tell(void *);
-    static QIODevice *VFS(void *instance) { return reinterpret_cast<QIODevice *>(instance); }
+    static QIODevice *VFS(void *instance) { return reinterpret_cast<QIODevice*>(instance); }
 
     openmpt_stream_callbacks callbacks = { stream_read, stream_seek, stream_tell };
 

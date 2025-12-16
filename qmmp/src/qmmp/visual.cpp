@@ -270,7 +270,7 @@ void Visual::checkFactories()
 
         VisualFactory *factory = nullptr;
         if(plugin)
-            factory = qobject_cast<VisualFactory *>(plugin);
+            factory = qobject_cast<VisualFactory*>(plugin);
 
         if(factory)
         {

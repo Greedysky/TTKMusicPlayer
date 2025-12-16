@@ -10,8 +10,10 @@ bool DecoderFLACFactory::canDecode(QIODevice *input) const
     char buf[33];
     if(input->peek(buf, 33) != 33)
         return false;
+
     if(!memcmp(buf, "fLaC", 4)) //native flac
         return true;
+
     if(!memcmp(buf, "OggS", 4) && !memcmp(buf + 29, "FLAC", 4)) //ogg flac
         return true;
     return false;

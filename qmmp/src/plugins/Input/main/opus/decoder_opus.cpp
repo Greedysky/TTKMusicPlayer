@@ -5,13 +5,13 @@
 // ic functions for libopusfile
 static int opusread(void *src, unsigned char *buf,int size)
 {
-    DecoderOpus *d = static_cast<DecoderOpus *>(src);
+    DecoderOpus *d = static_cast<DecoderOpus*>(src);
     return d->input()->read((char *) buf, size);
 }
 
 static int opusseek(void *src, opus_int64 offset, int whence)
 {
-    DecoderOpus *d = static_cast<DecoderOpus *>(src);
+    DecoderOpus *d = static_cast<DecoderOpus*>(src);
     if(d->input()->isSequential())
         return -1;
     long start = 0;
@@ -37,7 +37,7 @@ static int opusseek(void *src, opus_int64 offset, int whence)
 
 static opus_int64 opustell(void *src)
 {
-    DecoderOpus *d = static_cast<DecoderOpus *>(src);
+    DecoderOpus *d = static_cast<DecoderOpus*>(src);
     return (opus_int64)d->input()->pos();
 }
 

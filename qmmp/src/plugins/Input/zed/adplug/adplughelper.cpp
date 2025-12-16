@@ -126,7 +126,7 @@ AdPlugHelper::Frame AdPlugHelper::read()
     to_write = m_remaining > bufsiz ? bufsiz : m_remaining;
     m_opl->update(m_buf, to_write);
     m_remaining -= to_write;
-    return Frame(to_write * 2, reinterpret_cast<unsigned char *>(m_buf));
+    return Frame(to_write * 2, reinterpret_cast<unsigned char*>(m_buf));
 }
 
 void AdPlugHelper::deinit()

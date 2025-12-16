@@ -6,8 +6,8 @@
 
 DecoderFFmpegM4b::DecoderFFmpegM4b(DecoderFactory *factory, const QString &path)
     : Decoder(),
-    m_path(path),
-    m_factory(factory)
+      m_path(path),
+      m_factory(factory)
 {
 
 }

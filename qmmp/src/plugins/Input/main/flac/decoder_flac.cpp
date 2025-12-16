@@ -55,7 +55,7 @@ static size_t pack_pcm_signed(FLAC__byte *output,
 
 static int flac_decode(void *client_data, unsigned char *buf, int buf_len)
 {
-    flac_data *data = static_cast<flac_data *>(client_data);
+    flac_data *data = static_cast<flac_data*>(client_data);
     unsigned to_copy;
 
     if(!data->sample_buffer_fill)
@@ -89,7 +89,7 @@ static FLAC__StreamDecoderReadStatus flac_callback_read(const FLAC__StreamDecode
         size_t *bytes,
         void *client_data)
 {
-    flac_data *data = static_cast<flac_data *>(client_data);
+    flac_data *data = static_cast<flac_data*>(client_data);
     qint64 res = data->input->read((char *)buffer, *bytes);
 
     if(res > 0)
@@ -113,7 +113,7 @@ static FLAC__StreamDecoderWriteStatus flac_callback_write(const FLAC__StreamDeco
         const FLAC__int32 *const buffer[],
         void *client_data)
 {
-    flac_data *data = static_cast<flac_data *>(client_data);
+    flac_data *data = static_cast<flac_data*>(client_data);
     const unsigned wide_samples = frame->header.blocksize;
 
     if(data->abort)
@@ -155,7 +155,7 @@ static FLAC__StreamDecoderTellStatus flac_callback_tell(const FLAC__StreamDecode
         FLAC__uint64 *offset,
         void *client_data)
 {
-    flac_data *data = static_cast<flac_data *>(client_data);
+    flac_data *data = static_cast<flac_data*>(client_data);
     if(data->input->isSequential())
         return FLAC__STREAM_DECODER_TELL_STATUS_UNSUPPORTED;
 
@@ -167,7 +167,7 @@ static FLAC__StreamDecoderSeekStatus flac_callback_seek(const FLAC__StreamDecode
         FLAC__uint64 offset,
         void *client_data)
 {
-    flac_data *data = static_cast<flac_data *>(client_data);
+    flac_data *data = static_cast<flac_data*>(client_data);
     if(data->input->isSequential())
         return FLAC__STREAM_DECODER_SEEK_STATUS_UNSUPPORTED;
 
@@ -180,7 +180,7 @@ static FLAC__StreamDecoderLengthStatus flac_callback_length(const FLAC__StreamDe
         FLAC__uint64 *stream_length,
         void *client_data)
 {
-    flac_data *data = static_cast<flac_data *>(client_data);
+    flac_data *data = static_cast<flac_data*>(client_data);
     if(data->input->isSequential())
         return FLAC__STREAM_DECODER_LENGTH_STATUS_UNSUPPORTED;
 
@@ -192,7 +192,7 @@ static void flac_callback_metadata(const FLAC__StreamDecoder *,
                                    const FLAC__StreamMetadata *metadata,
                                    void *client_data)
 {
-    flac_data *data = static_cast<flac_data *>(client_data);
+    flac_data *data = static_cast<flac_data*>(client_data);
     if(metadata->type == FLAC__METADATA_TYPE_STREAMINFO)
     {
         qDebug("DecoderFLAC: getting metadata info");

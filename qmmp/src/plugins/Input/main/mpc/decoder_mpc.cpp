@@ -4,31 +4,31 @@
 
 static mpc_int32_t mpc_callback_read(mpc_reader *reader, void *buffer, mpc_int32_t size)
 {
-    DecoderMPC *dmpc = static_cast<DecoderMPC *>(reader->data);
+    DecoderMPC *dmpc = static_cast<DecoderMPC*>(reader->data);
     return dmpc->input()->read((char *)buffer, size);
 }
 
 static mpc_bool_t mpc_callback_seek(mpc_reader *reader, mpc_int32_t offset)
 {
-    DecoderMPC *dmpc = static_cast<DecoderMPC *>(reader->data);
+    DecoderMPC *dmpc = static_cast<DecoderMPC*>(reader->data);
     return dmpc->input()->seek(offset);
 }
 
 static mpc_int32_t mpc_callback_tell(mpc_reader *reader)
 {
-    DecoderMPC *dmpc = static_cast<DecoderMPC *>(reader->data);
+    DecoderMPC *dmpc = static_cast<DecoderMPC*>(reader->data);
     return dmpc->input()->pos();
 }
 
 static mpc_bool_t  mpc_callback_canseek(mpc_reader *reader)
 {
-    DecoderMPC *dmpc = static_cast<DecoderMPC *>(reader->data);
+    DecoderMPC *dmpc = static_cast<DecoderMPC*>(reader->data);
     return !dmpc->input()->isSequential();
 }
 
 static mpc_int32_t mpc_callback_get_size(mpc_reader *reader)
 {
-    DecoderMPC *dmpc = static_cast<DecoderMPC *>(reader->data);
+    DecoderMPC *dmpc = static_cast<DecoderMPC*>(reader->data);
     return dmpc->input()->size();
 }
 

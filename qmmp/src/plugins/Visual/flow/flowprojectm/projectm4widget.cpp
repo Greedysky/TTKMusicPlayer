@@ -157,5 +157,5 @@ void ProjectM4Widget::selectPreset(int index)
 void ProjectM4Widget::presetSwitchedEvent(bool isHardCut, unsigned int index, void *data)
 {
     Q_UNUSED(isHardCut);
-    static_cast<ProjectM4Widget *>(data)->m_itemWidget->setCurrentRow(index);
+    static_cast<ProjectM4Widget*>(data)->m_itemWidget->setCurrentRow(index);
 }

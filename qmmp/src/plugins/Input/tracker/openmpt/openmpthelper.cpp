@@ -53,7 +53,7 @@ bool OpenMPTHelper::initialize()
 
 size_t OpenMPTHelper::stream_read(void *instance, void *buf, std::size_t n)
 {
-    return VFS(instance)->read(reinterpret_cast<char *>(buf), n);
+    return VFS(instance)->read(reinterpret_cast<char*>(buf), n);
 }
 
 int OpenMPTHelper::stream_seek(void *instance, std::int64_t offset, int whence)
@@ -140,6 +140,6 @@ void OpenMPTHelper::setStereoSeparation(int separation)
 qint64 OpenMPTHelper::read(unsigned char *data, qint64 maxSize)
 {
     maxSize /= sizeof(float) * channels();
-    const size_t n = openmpt_module_read_interleaved_float_stereo(m_mod, sampleRate(), maxSize, reinterpret_cast<float *>(data));
+    const size_t n = openmpt_module_read_interleaved_float_stereo(m_mod, sampleRate(), maxSize, reinterpret_cast<float*>(data));
     return n * channels() * sizeof(float);
 }

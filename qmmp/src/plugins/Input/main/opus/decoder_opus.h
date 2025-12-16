@@ -30,7 +30,7 @@
 class DecoderOpus : public Decoder
 {
 public:
-    DecoderOpus(QIODevice *input);
+    explicit DecoderOpus(QIODevice *input);
     virtual ~DecoderOpus();
 
     // Standard Decoder API

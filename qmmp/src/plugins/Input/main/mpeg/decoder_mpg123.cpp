@@ -5,13 +5,13 @@
 
 ssize_t mpg123_read_cb(void *src, void *buf, size_t size)
 {
-    DecoderMPG123 *d = static_cast<DecoderMPG123 *>(src);
+    DecoderMPG123 *d = static_cast<DecoderMPG123*>(src);
     return d->input()->read((char *)buf, size);
 }
 
 off_t mpg123_seek_cb(void *src, off_t offset, int whence)
 {
-    DecoderMPG123 *d = static_cast<DecoderMPG123 *>(src);
+    DecoderMPG123 *d = static_cast<DecoderMPG123*>(src);
     if(d->input()->isSequential())
         return -1;
 

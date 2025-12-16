@@ -28,7 +28,7 @@
 class DecoderOpenMPT : public Decoder
 {
 public:
-    DecoderOpenMPT(QIODevice *input);
+    explicit DecoderOpenMPT(QIODevice *input);
     virtual ~DecoderOpenMPT();
 
     static DecoderOpenMPT *instance();
