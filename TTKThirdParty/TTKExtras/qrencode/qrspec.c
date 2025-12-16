@@ -467,8 +467,8 @@ static unsigned char *QRspec_createFrame(int version)
     p = frame + width * 6 + 8;
     q = frame + width * 8 + 6;
     for(x = 1; x < width-15; x++) {
-        *p =  0x90 | (x & 1);
-        *q =  0x90 | (x & 1);
+        *p = 0x90 | (x & 1);
+        *q = 0x90 | (x & 1);
         p++;
         q += width;
     }

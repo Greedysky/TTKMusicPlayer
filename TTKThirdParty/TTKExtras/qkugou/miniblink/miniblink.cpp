@@ -41,7 +41,7 @@ bool Miniblink::initialize()
         const QString &dll = TTK::applicationPath() + "GPlugins/node.dll";
         if(QFile(dll).exists())
         {
-            wkeSetWkeDllPath(reinterpret_cast<const wchar_t *>(dll.utf16()));
+            wkeSetWkeDllPath(reinterpret_cast<const wchar_t*>(dll.utf16()));
             wkeInitialize();
             loaded = true;
         }

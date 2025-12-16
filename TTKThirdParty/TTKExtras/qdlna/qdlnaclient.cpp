@@ -254,7 +254,7 @@ bool QDlnaClient::positionInfo(QDlna::PositionInfo &info, int instance) const
     body += XML_FOOT + "\n";
 
     const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#GetPositionInfo", d->m_address, d->m_port) + body;
-    const QString &response =  QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
+    const QString &response = QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
     if(!QDlna::isValid(response))
     {
         return false;
@@ -282,7 +282,7 @@ bool QDlnaClient::transportInfo(QDlna::TransportInfo &info, int instance) const
     body += XML_FOOT + "\n";
 
     const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#GetTransportInfo", d->m_address, d->m_port) + body;
-    const QString &response =  QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
+    const QString &response = QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
     if(!QDlna::isValid(response))
     {
         return false;
@@ -311,7 +311,7 @@ bool QDlnaClient::mediaInfo(QDlna::MediaInfo &info, int instance) const
     body += XML_FOOT + "\n";
 
     const QString &request = QDlna::makeRequest("POST", d->m_controlURL, body.length(), AVTSCHEMA + "#GetMediaInfo", d->m_address, d->m_port) + body;
-    const QString &response =  QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
+    const QString &response = QDlna::makeSocketGetReply(d->m_address, d->m_port, request);
     if(!QDlna::isValid(response))
     {
         return false;

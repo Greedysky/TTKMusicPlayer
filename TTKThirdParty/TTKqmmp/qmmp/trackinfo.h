@@ -176,6 +176,7 @@ public:
 
     /*!
      * Extracts path and track number \b track from URL \b url.
+     * Returns unchanged \b url if it does not contain strings "#" or "://"
      * URL example: "scheme:///path#track"
      */
     static QString pathFromUrl(const QString &url, int *track = nullptr);
