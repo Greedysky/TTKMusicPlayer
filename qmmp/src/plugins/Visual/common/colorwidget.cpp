@@ -1,5 +1,6 @@
 #include "colorwidget.h"
 #include "ui_colorwidget.h"
+#include <qmmp/qmmp.h>
 
 #include <QPainter>
 #include <QMouseEvent>
@@ -16,11 +17,6 @@ static constexpr const char *MPushButtonStyle01 = " \
 
 #define WIDTH  4
 #define HEIGHT 4
-#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
-#  define QtSkipEmptyParts Qt::SkipEmptyParts
-#else
-#  define QtSkipEmptyParts QString::SkipEmptyParts
-#endif
 
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
 #  define QtGlobalPosition(p) p->globalPosition().toPoint()

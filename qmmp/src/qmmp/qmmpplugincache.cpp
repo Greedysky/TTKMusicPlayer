@@ -9,12 +9,6 @@
 #include "inputsourcefactory.h"
 #include "qmmpplugincache_p.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
-#  define QtSkipEmptyParts Qt::SkipEmptyParts
-#else
-#  define QtSkipEmptyParts QString::SkipEmptyParts
-#endif
-
 QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
 {
     bool update = false;

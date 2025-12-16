@@ -2,12 +2,6 @@
 
 #include <QStringList>
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
-#  define QtSkipEmptyParts Qt::SkipEmptyParts
-#else
-#  define QtSkipEmptyParts QString::SkipEmptyParts
-#endif
-
 S98Helper::S98Helper(const QString &path)
     : m_path(path)
 {

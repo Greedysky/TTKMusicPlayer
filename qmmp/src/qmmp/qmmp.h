@@ -75,6 +75,12 @@ void as_const(const T &&) = delete;
 #if QT_VERSION < QT_VERSION_CHECK(5,10,0)
 using qsizetype = QIntegerForSizeof<std::size_t>::Signed;
 #endif
+
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
+#  define QtSkipEmptyParts Qt::SkipEmptyParts
+#else
+#  define QtSkipEmptyParts QString::SkipEmptyParts
+#endif
 #endif
 
 /*! @brief The Qmmp class stores global settings and enums.
