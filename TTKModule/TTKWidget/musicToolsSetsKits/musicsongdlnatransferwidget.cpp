@@ -76,7 +76,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
 
 MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
 {
-    TTKRemoveSingleWidget(className());
+    TTK_REMOVE_SINGLE_WIDGET(this);
 
     QDlnaClient *client = getClient();
     if(client)

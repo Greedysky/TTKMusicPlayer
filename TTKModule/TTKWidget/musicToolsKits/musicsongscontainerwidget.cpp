@@ -612,12 +612,12 @@ void MusicSongsContainerWidget::importSongsByDir(int index)
 
 void MusicSongsContainerWidget::showSongCheckToolsWidget()
 {
-    TTKGenerateSingleWidget(MusicSongCheckToolsWidget);
+    TTK_GENERATE_SINGLE_WIDGET(MusicSongCheckToolsWidget);
 }
 
 void MusicSongsContainerWidget::showLrcDownloadBatchWidget()
 {
-    TTKGenerateSingleWidget(MusicLrcDownloadBatchWidget);
+    TTK_GENERATE_SINGLE_WIDGET(MusicLrcDownloadBatchWidget);
 }
 
 void MusicSongsContainerWidget::searchResultChanged(int, int column)

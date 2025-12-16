@@ -11,13 +11,13 @@ MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
     setFixedSize(44, 20);
     setStyleSheet(TTK::UI::VideoBtnSTMode);
 
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicVideoSearchTableWidget::className());
+    TTK_CONNECTIONPOOL_REGISTER(this);
+    TTK_CONNECTIONPOOL_BIND_TO(MusicVideoSearchTableWidget);
 }
 
 MusicVideoQualityPopWidget::~MusicVideoQualityPopWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
+    TTK_CONNECTIONPOOL_UNREGISTER(this);
     delete m_qualityActions;
 }
 

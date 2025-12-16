@@ -71,7 +71,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 
 MusicSpectrumWidget::~MusicSpectrumWidget()
 {
-    TTKRemoveSingleWidget(className());
+    TTK_REMOVE_SINGLE_WIDGET(this);
     for(const MusicSpectrum &spem : qAsConst(m_spectrums))
     {
         TTK::TTKQmmp::setVisualEnabled(spem.m_module, false);

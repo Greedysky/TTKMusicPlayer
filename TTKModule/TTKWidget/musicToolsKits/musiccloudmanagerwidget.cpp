@@ -53,13 +53,13 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     connect(m_syncDeleteData, SIGNAL(deleteFileFinished(bool)), SLOT(deleteFileFinished(bool)));
     connect(m_syncUploadData, SIGNAL(uploadFileFinished(QString,bool)), SLOT(uploadFileFinished(QString,bool)));
 
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicCloudUploadTableWidget::className());
+    TTK_CONNECTIONPOOL_REGISTER(this);
+    TTK_CONNECTIONPOOL_BIND_TO(MusicCloudUploadTableWidget);
 }
 
 MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
+    TTK_CONNECTIONPOOL_UNREGISTER(this);
     delete m_syncListData;
     delete m_syncDeleteData;
     delete m_syncUploadData;

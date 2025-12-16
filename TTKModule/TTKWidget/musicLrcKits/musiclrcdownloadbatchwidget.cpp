@@ -99,7 +99,7 @@ MusicLrcDownloadBatchWidget::MusicLrcDownloadBatchWidget(QWidget *parent)
 
 MusicLrcDownloadBatchWidget::~MusicLrcDownloadBatchWidget()
 {
-    TTKRemoveSingleWidget(className());
+    TTK_REMOVE_SINGLE_WIDGET(this);
     delete m_ui;
 }
 

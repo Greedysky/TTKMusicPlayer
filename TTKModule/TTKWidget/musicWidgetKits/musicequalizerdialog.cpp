@@ -47,13 +47,13 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     initEqualizeValue();
     readInformation();
 
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicPlayer::className());
+    TTK_CONNECTIONPOOL_REGISTER(this);
+    TTK_CONNECTIONPOOL_BIND_TO(MusicPlayer);
 }
 
 MusicEqualizerDialog::~MusicEqualizerDialog()
 {
-    G_CONNECTION_PTR->removeValue(this);
+    TTK_CONNECTIONPOOL_UNREGISTER(this);
     writeInformation();
     delete m_ui;
 }

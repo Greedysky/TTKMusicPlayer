@@ -22,6 +22,11 @@
 #include <QMap>
 #include "ttksingleton.h"
 
+#define TTK_CONNECTIONPOOL_REGISTER(object) G_CONNECTION_PTR->setValue(className(), object)
+#define TTK_CONNECTIONPOOL_UNREGISTER(object) G_CONNECTION_PTR->removeValue(object)
+#define TTK_CONNECTIONPOOL_BIND_TO(object) G_CONNECTION_PTR->connect(className(), object::className())
+#define TTK_CONNECTIONPOOL_BIND_FROM(object) G_CONNECTION_PTR->connect(object::className(), className())
+
 /*! @brief The class of the qt signal and slot connection pool.
  * @author Greedysky <greedysky@163.com>
  */
@@ -36,6 +41,7 @@ public:
     {
         m_parameters[type] = object;
     }
+
     /*!
      * Get connection object by type name.
      */

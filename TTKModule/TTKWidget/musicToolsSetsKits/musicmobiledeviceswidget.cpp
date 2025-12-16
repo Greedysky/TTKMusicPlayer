@@ -33,6 +33,6 @@ void MusicMobileDevicesWidget::showMobileManager()
 {
     hide();
     //
-    MusicMobileSongsManagerWidget *w = TTKGenerateSingleWidget(MusicMobileSongsManagerWidget);
+    MusicMobileSongsManagerWidget *w = TTK_GENERATE_SINGLE_WIDGET(MusicMobileSongsManagerWidget);
     w->findExtraDevicePath(G_SETTING_PTR->value(MusicSettingManager::ExtraDevicePath).toString());
 }

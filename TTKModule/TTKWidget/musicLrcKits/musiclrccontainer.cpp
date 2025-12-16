@@ -113,7 +113,7 @@ void MusicLrcContainer::searchMusicLrcs()
 
 void MusicLrcContainer::showLrcMakedWidget()
 {
-    MusicLrcMakerWidget *w = TTKGenerateSingleWidget(MusicLrcMakerWidget, this);
+    MusicLrcMakerWidget *w = TTK_GENERATE_SINGLE_WIDGET(MusicLrcMakerWidget, this);
     w->setCurrentSongName(m_currentSongName);
     w->durationChanged(m_totalTime);
 }

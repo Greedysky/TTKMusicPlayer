@@ -40,7 +40,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
-    TTKRemoveSingleWidget(className());
+    TTK_REMOVE_SINGLE_WIDGET(this);
     clear();
     delete m_ui;
 }
@@ -110,22 +110,22 @@ void MusicToolSetsWidget::currentItemClicked(QListWidgetItem *item)
         }
         case 3:
         {
-            TTKGenerateSingleWidget(MusicSpectrumWidget);
+            TTK_GENERATE_SINGLE_WIDGET(MusicSpectrumWidget);
             break;
         }
         case 4:
         {
-            TTKGenerateSingleWidget(MusicNetworkConnectionTestWidget);
+            TTK_GENERATE_SINGLE_WIDGET(MusicNetworkConnectionTestWidget);
             break;
         }
         case 5:
         {
-            TTKGenerateSingleWidget(MusicReplayGainWidget);
+            TTK_GENERATE_SINGLE_WIDGET(MusicReplayGainWidget);
             break;
         }
         case 6:
         {
-            TTKGenerateSingleWidget(MusicSongDlnaTransferWidget);
+            TTK_GENERATE_SINGLE_WIDGET(MusicSongDlnaTransferWidget);
             break;
         }
         case 7:

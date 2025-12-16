@@ -12,7 +12,7 @@ MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
       m_previousState(true),
       m_parent(TTKObjectCast(MusicApplication*, parent))
 {
-    G_CONNECTION_PTR->setValue(className(), this);
+    TTK_CONNECTIONPOOL_REGISTER(this);
     connect(G_NETWORK_PTR, SIGNAL(networkConnectionStateChanged(bool)), this, SLOT(networkConnectionStateChanged(bool)));
 }
 

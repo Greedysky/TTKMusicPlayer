@@ -113,7 +113,7 @@ MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
 
 MusicReplayGainWidget::~MusicReplayGainWidget()
 {
-    TTKRemoveSingleWidget(className());
+    TTK_REMOVE_SINGLE_WIDGET(this);
     delete m_process;
     delete m_ui;
 }

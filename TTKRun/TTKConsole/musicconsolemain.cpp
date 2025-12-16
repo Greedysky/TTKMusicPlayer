@@ -11,7 +11,7 @@ using TTKApplication = QApplication;
 int main(int argc, char *argv[])
 {
     TTKApplication app(argc, argv);
-    TTKRegisterOrganization(TTK_APP);
+    TTK_REGISTER_ORGANIZATION(TTK_APP);
 
     MusicConsoleModule console;
     return console.initialize() ? EXIT_SUCCESS : EXIT_FAILURE;

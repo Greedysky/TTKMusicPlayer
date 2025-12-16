@@ -167,15 +167,15 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     m_playMode = MusicApplication::instance()->playMode();
     MusicApplication::instance()->playOneLoop();
 
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(MusicPlayer::className(), className());
+    TTK_CONNECTIONPOOL_REGISTER(this);
+    TTK_CONNECTIONPOOL_BIND_FROM(MusicPlayer);
 }
 
 MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
     resetToOriginPlayMode();
-    G_CONNECTION_PTR->removeValue(this);
-    TTKRemoveSingleWidget(className());
+    TTK_REMOVE_SINGLE_WIDGET(this);
+    TTK_CONNECTIONPOOL_UNREGISTER(this);
     qDeleteAll(m_lrcContainer);
     delete m_lineItem;
     delete m_analysis;

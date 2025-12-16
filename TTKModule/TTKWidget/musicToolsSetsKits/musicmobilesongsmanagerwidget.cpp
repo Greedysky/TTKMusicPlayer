@@ -155,7 +155,7 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
 
 MusicMobileSongsManagerWidget::~MusicMobileSongsManagerWidget()
 {
-    TTKRemoveSingleWidget(className());
+    TTK_REMOVE_SINGLE_WIDGET(this);
     clearItems();
     m_thread->stop();
     delete m_thread;

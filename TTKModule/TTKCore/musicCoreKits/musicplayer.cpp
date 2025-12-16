@@ -20,7 +20,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     m_timer.setInterval(TTK_DN_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(update()));
 
-    G_CONNECTION_PTR->setValue(className(), this);
+    TTK_CONNECTIONPOOL_REGISTER(this);
 }
 
 MusicPlayer::~MusicPlayer()

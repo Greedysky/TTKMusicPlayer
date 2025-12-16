@@ -103,7 +103,7 @@ TTKInitialization::TTKInitialization()
 
 TTKInitialization::TTKInitialization(const TTKCleanFunctor &functor)
 {
-    TTKRegisterOrganization(TTK_APP);
+    TTK_REGISTER_ORGANIZATION(TTK_APP);
 
     m_dumper = new TTKDumper(functor);
     m_dumper->execute();

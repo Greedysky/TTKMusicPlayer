@@ -9,7 +9,7 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
-    TTKRegisterOrganization(TTK_APP);
+    TTK_REGISTER_ORGANIZATION(TTK_APP);
 
     MusicConfigModule config;
     config.initialize();

@@ -23,10 +23,10 @@
 #include "ttksingleton.h"
 #include "musicwidgetutils.h"
 
-#define __SingleWidget__1(name)                                    \
-    __SingleWidget__2(name, MusicApplication::instance())
+#define __SINGLE_WIDGET__1(name)                                   \
+    __SINGLE_WIDGET__2(name, MusicApplication::instance())
 
-#define __SingleWidget__2(name, widget)                            \
+#define __SINGLE_WIDGET__2(name, widget)                           \
     [](QWidget *parent)                                            \
     {                                                              \
         MusicSingleManager *manager = G_SINGLE_MANAGER_PTR;        \
@@ -43,12 +43,12 @@
 
 // marco generate single widget
 #ifndef Q_CC_MSVC
-#  define TTKGenerateSingleWidget(...) TTK_PP_OVERLOAD(__SingleWidget__, __VA_ARGS__)(__VA_ARGS__)
+#  define TTK_GENERATE_SINGLE_WIDGET(...) TTK_PP_OVERLOAD(__SINGLE_WIDGET__, __VA_ARGS__)(__VA_ARGS__)
 #else
-#  define TTKGenerateSingleWidget(...) TTK_PP_CAT(TTK_PP_OVERLOAD(__SingleWidget__, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
+#  define TTK_GENERATE_SINGLE_WIDGET(...) TTK_PP_CAT(TTK_PP_OVERLOAD(__SINGLE_WIDGET__, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
 #endif
 
-#define TTKRemoveSingleWidget(name) G_SINGLE_MANAGER_PTR->removeObject(name);
+#define TTK_REMOVE_SINGLE_WIDGET(object) G_SINGLE_MANAGER_PTR->removeObject(object->className());
 
 
 /*! @brief The class of the single object manager.

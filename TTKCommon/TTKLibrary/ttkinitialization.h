@@ -42,7 +42,7 @@ namespace TTK
     TTK_MODULE_EXPORT void initialize(TTK::Attribute attr);
 }
 
-#define TTKRegisterOrganization(ORG) \
+#define TTK_REGISTER_ORGANIZATION(ORG) \
     QCoreApplication::setOrganizationName(ORG ## _NAME); \
     QCoreApplication::setOrganizationDomain(ORG ## _COME_NAME); \
     QCoreApplication::setApplicationName(ORG ## _NAME);

@@ -20,12 +20,12 @@ MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
     TTK::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
-    G_CONNECTION_PTR->setValue(className(), this);
+    TTK_CONNECTIONPOOL_REGISTER(this);
 }
 
 MusicDownloadRecordTableWidget::~MusicDownloadRecordTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
+    TTK_CONNECTIONPOOL_UNREGISTER(this);
 }
 
 void MusicDownloadRecordTableWidget::addCellItem(int index, const MusicSong &record)

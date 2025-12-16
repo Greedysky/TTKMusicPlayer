@@ -13,12 +13,12 @@ MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
 
     TTK::initRandom();
 
-    G_CONNECTION_PTR->setValue(className(), this);
+    TTK_CONNECTIONPOOL_REGISTER(this);
 }
 
 MusicVideoSearchTableWidget::~MusicVideoSearchTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
+    TTK_CONNECTIONPOOL_UNREGISTER(this);
     removeItems();
 }
 

@@ -92,13 +92,13 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     connect(m_ui->deleteButton, SIGNAL(clicked()), SLOT(deleteFoundLrc()));
     connect(m_ui->commitButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
 
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->connect(className(), MusicDownloadStatusModule::className());
+    TTK_CONNECTIONPOOL_REGISTER(this);
+    TTK_CONNECTIONPOOL_BIND_TO(MusicDownloadStatusModule);
 }
 
 MusicLrcLocalLinkWidget::~MusicLrcLocalLinkWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
+    TTK_CONNECTIONPOOL_UNREGISTER(this);
     delete m_ui;
 }
 

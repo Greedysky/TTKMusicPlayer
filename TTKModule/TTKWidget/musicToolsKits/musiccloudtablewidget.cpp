@@ -25,12 +25,12 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
 
     setFixedHeight(0);
 
-    G_CONNECTION_PTR->setValue(className(), this);
+    TTK_CONNECTIONPOOL_REGISTER(this);
 }
 
 MusicCloudDownloadTableWidget::~MusicCloudDownloadTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
+    TTK_CONNECTIONPOOL_UNREGISTER(this);
 }
 
 void MusicCloudDownloadTableWidget::addCellItem(int index, const MusicSong &record)
@@ -78,12 +78,12 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
 
     setFixedHeight(0);
 
-    G_CONNECTION_PTR->setValue(className(), this);
+    TTK_CONNECTIONPOOL_REGISTER(this);
 }
 
 MusicCloudUploadTableWidget::~MusicCloudUploadTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(this);
+    TTK_CONNECTIONPOOL_UNREGISTER(this);
 }
 
 void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item)

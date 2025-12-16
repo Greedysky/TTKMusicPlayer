@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    TTKRegisterOrganization(TTK_APP);
+    TTK_REGISTER_ORGANIZATION(TTK_APP);
 
     ToolSkin w;
     w.show();
