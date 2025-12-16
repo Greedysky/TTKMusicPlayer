@@ -120,14 +120,22 @@ void MusicPlayer::play()
     }
 
     setCurrentPlayState(TTK::PlayState::Playing);
-    const Qmmp::State state = m_core->state(); ///Get the current state of play
+    ///Get the current state of play
+    const Qmmp::State state = m_core->state();
 
-    if(m_playlist->isSameMediaPath(m_currentMedia) && state == Qmmp::Paused)
+    if(m_playlist->isSameMediaPath(m_currentMedia))
     {
-        ///When the pause time for recovery
-        m_core->pause();
-        update();
-        return;
+        if(state == Qmmp::Paused)
+        {
+            ///When the pause time for recovery
+            m_core->pause();
+            update();
+            return;
+        }
+        else if(state == Qmmp::Stopped)
+        {
+            return;
+        }
     }
 
     m_currentMedia = m_playlist->currentMediaPath();
@@ -160,6 +168,7 @@ void MusicPlayer::stop()
     {
         m_core->stop();
         m_timer.stop();
+        m_currentMedia.clear();
         setCurrentPlayState(TTK::PlayState::Stopped);
     }
 }
@@ -230,7 +239,14 @@ void MusicPlayer::update()
     }
     else if(state == Qmmp::Stopped)
     {
+        if(m_state == TTK::PlayState::Paused)
+        {
+            return;
+        }
+
         m_timer.stop();
+        m_currentMedia.clear();
+
         if(m_playlist->playbackMode() == TTK::PlayMode::Once)
         {
             setStopState();
