@@ -7,9 +7,7 @@
 bool DecoderWavPackFactory::canDecode(QIODevice *input) const
 {
     char buf[4];
-    if(input->peek(buf, 4) != 4)
-        return false;
-    return !memcmp(buf, "wvpk", 4);
+    return input->peek(buf, 4) == 4 && !memcmp(buf, "wvpk", 4);
 }
 
 DecoderProperties DecoderWavPackFactory::properties() const
@@ -21,14 +19,12 @@ DecoderProperties DecoderWavPackFactory::properties() const
     properties.description = "WavPack File";
     properties.contentTypes << "audio/x-wavpack";
     properties.protocols << "file" << "wvpack";
-    properties.noInput = true;
     return properties;
 }
 
 Decoder *DecoderWavPackFactory::create(const QString &path, QIODevice *input)
 {
-    Q_UNUSED(input);
-    return new DecoderWavPack(path);
+    return new DecoderWavPack(path, input);
 }
 
 QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)

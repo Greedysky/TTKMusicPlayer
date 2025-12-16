@@ -34,7 +34,7 @@ class CueParser;
 class DecoderWavPack : public Decoder
 {
 public:
-    explicit DecoderWavPack(const QString &);
+    explicit DecoderWavPack(const QString &path, QIODevice *input);
     virtual ~DecoderWavPack();
 
     // Standard Decoder API
@@ -48,10 +48,12 @@ public:
 
 private:
     // helper functions
+    void openCorrectionFile(const QString &path);
     void deinit();
     qint64 wavpack_decode(unsigned char *data, qint64 size);
     ChannelMap findChannelMap(int channels);
 
+    static WavpackStreamReader64 m_reader;
     WavpackContext *m_context = nullptr;
     int32_t *m_output_buf = nullptr; // output buffer
     int m_chan = 0;
@@ -62,6 +64,8 @@ private:
     qint64 m_length = 0;
     QString m_path;
     CueParser *m_parser = nullptr;
+    QIODevice *m_wv_input = nullptr;
+    QIODevice *m_wvc_input = nullptr;
     int m_track = 0;
     int m_bps = 0;
     qint64 m_frame_size = 0; //frame size
