@@ -139,14 +139,24 @@ void StateHandler::dispatch(Qmmp::State state)
         m_sendAboutToFinish = true;
         m_audioParameters = AudioParameters(44100, ChannelMap(2), Qmmp::PCM_UNKNOWN);
     }
+
     if(m_state != state)
     {
         static const QStringList states = { "Playing", "Paused", "Stopped", "Buffering", "NormalError", "FatalError" };
         qDebug("StateHandler: Current state: %s; previous state: %s",
                qPrintable(states.at(state)), qPrintable(states.at(m_state)));
-        Qmmp::State prevState = state;
-        m_state = state;
-        qApp->postEvent(parent(), new StateChangedEvent(m_state, prevState));
+
+        if(m_state == Qmmp::Stopped && state == Qmmp::Paused)
+        {
+            qDebug("StateHandler: Error switch state from %s to %s",
+                   qPrintable(states.at(m_state)), qPrintable(states.at(state)));
+        }
+        else
+        {
+            Qmmp::State prevState = m_state;
+            m_state = state;
+            qApp->postEvent(parent(), new StateChangedEvent(m_state, prevState));
+        }
     }
     m_mutex.unlock();
 }
