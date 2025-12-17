@@ -89,7 +89,6 @@ void HttpStreamReader::run()
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(readyRead()), SLOT(handleReadyRead()));
     connect(m_reply, SIGNAL(finished()), SLOT(handleFinished()));

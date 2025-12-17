@@ -61,6 +61,7 @@ public:
      *  helper functions
      */
     void run();
+
     QString contentType() const;
 
 signals:
