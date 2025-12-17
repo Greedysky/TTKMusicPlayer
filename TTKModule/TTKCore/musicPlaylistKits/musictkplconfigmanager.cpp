@@ -59,7 +59,7 @@ bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items)
             QString duration = song.duration();
             if(item.m_itemIndex == MUSIC_NETWORK_LIST && duration == TTK_DEFAULT_STR)
             {
-                duration = TTK::generateNetworkSongTime(song.path());
+                duration = TTK::generateNetworkSongTime(song.path(), true);
             }
 
             writeDomMultiElement(pathDom, "value", {{"name", song.name()},

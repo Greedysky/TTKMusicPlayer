@@ -53,7 +53,7 @@ namespace TTK
     /*!
      * Generate network song play time.
     */
-    TTK_MODULE_EXPORT QString generateNetworkSongTime(const QString &path);
+    TTK_MODULE_EXPORT QString generateNetworkSongTime(const QString &path, bool format);
     /*!
      * Generate network song path.
     */

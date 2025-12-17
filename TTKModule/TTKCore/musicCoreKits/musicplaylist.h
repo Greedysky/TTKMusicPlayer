@@ -91,14 +91,6 @@ public:
      * Get current play item.
      */
     MusicPlayItem currentItem() const noexcept;
-    /*!
-     * Get current play media path.
-     */
-    QString currentMediaPath() const;
-    /*!
-     * Check current media path is same or not.
-     */
-    bool isSameMediaPath(const QString &path) const;
 
     /*!
      * Get all media path.

@@ -101,26 +101,6 @@ MusicPlayItem MusicPlaylist::currentItem() const noexcept
     return m_mediaList[m_currentIndex];
 }
 
-QString MusicPlaylist::currentMediaPath() const
-{
-    const MusicPlayItem &item = currentItem();
-    if(item.m_playlistRow == MUSIC_NETWORK_LIST)
-    {
-        return TTK::generateNetworkSongPath(item.m_path);
-    }
-    return item.m_path;
-}
-
-bool MusicPlaylist::isSameMediaPath(const QString &path) const
-{
-    const MusicPlayItem &item = currentItem();
-    if(item.m_playlistRow == MUSIC_NETWORK_LIST)
-    {
-        return TTK::generateNetworkSongPath(path) == TTK::generateNetworkSongPath(item.m_path);
-    }
-    return item.m_path == path;
-}
-
 const MusicPlayItemList& MusicPlaylist::mediaList() const noexcept
 {
     return m_mediaList;

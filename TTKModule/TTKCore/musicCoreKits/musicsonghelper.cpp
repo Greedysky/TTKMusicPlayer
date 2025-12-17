@@ -2,6 +2,7 @@
 #include "musicresultinfo.h"
 #include "musicsongmeta.h"
 #include "musicformats.h"
+#include "ttktime.h"
 
 #include <qmmp/trackinfo.h>
 
@@ -42,7 +43,7 @@ QString TTK::generateSongArtist(const QString &name, const QString &key)
     return name;
 }
 
-QString TTK::generateNetworkSongTime(const QString &path)
+QString TTK::generateNetworkSongTime(const QString &path, bool format)
 {
     const QString &v = TTK::generateNetworkSongMetaPath(path);
     if(!QFile::exists(v))
@@ -61,7 +62,8 @@ QString TTK::generateNetworkSongTime(const QString &path)
         if(datas.count() >= 6)
         {
             // id, name, duration, format, size, url
-            return datas[2];
+            const QString &v = datas[2];
+            return format ? v : QString::number(TTKTime::formatDuration(v));
         }
     }
     return TTK_DEFAULT_STR;

@@ -2,6 +2,7 @@
 #include "musicplaylist.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
+#include "musicsonghelper.h"
 
 #include <cmath>
 #include <qmmp/soundcore.h>
@@ -122,8 +123,11 @@ void MusicPlayer::play()
     setCurrentPlayState(TTK::PlayState::Playing);
     ///Get the current state of play
     const Qmmp::State state = m_core->state();
+    const MusicPlayItem &item = m_playlist->currentItem();
 
-    if(m_playlist->isSameMediaPath(m_currentMedia))
+    if((item.m_playlistRow != MUSIC_NETWORK_LIST) ?
+       (item.m_path == m_currentMedia) :
+       (TTK::generateNetworkSongPath(m_currentMedia) == TTK::generateNetworkSongPath(item.m_path)))
     {
         if(state == Qmmp::Paused)
         {
@@ -138,7 +142,7 @@ void MusicPlayer::play()
         }
     }
 
-    m_currentMedia = m_playlist->currentMediaPath();
+    m_currentMedia = (item.m_playlistRow != MUSIC_NETWORK_LIST) ? item.m_path : TTK::generateNetworkSongPath(item.m_path);
     ///The current playback path
     if(!m_core->play(m_currentMedia))
     {
@@ -273,7 +277,20 @@ void MusicPlayer::generateDuration()
     }
     else
     {
-        Q_EMIT durationChanged(m_duration = d);
+        if(m_durationTimes >= 10)
+        {
+            const MusicPlayItem &item = m_playlist->currentItem();
+            if(item.m_playlistRow == MUSIC_NETWORK_LIST)
+            {
+                m_duration = TTK::generateNetworkSongTime(item.m_path, false).toLongLong();
+            }
+        }
+        else
+        {
+            m_duration = d;
+        }
+
+        Q_EMIT durationChanged(m_duration);
         Q_EMIT positionChanged(position());
     }
 }
