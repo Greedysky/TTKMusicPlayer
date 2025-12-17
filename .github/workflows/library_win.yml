@@ -254,7 +254,7 @@ jobs:
       - name: Build library for libopenmpt
         shell: msys2 {0}
         run: |
-          7z x libopenmpt-0.4.51.7z -olibopenmpt
+          7z x libopenmpt-0.4.52.7z -olibopenmpt
           cd libopenmpt
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           ./configure --prefix=${{env.UNIX_INSTALL_PATH}}/libopenmpt CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared --without-zlib --without-mpg123 --without-ogg --without-vorbis --without-vorbisfile --without-pulseaudio --without-portaudio --without-portaudiocpp --without-sndfile --without-flac
@@ -276,7 +276,7 @@ jobs:
       - name: Build library for libopus
         shell: msys2 {0}
         run: |
-          7z x opus-1.5.2.7z -olibopus
+          7z x opus-1.6.7z -olibopus
           cd libopus
           if [ ${{matrix.version}} -lt 1310 ]; then
             # add opus missing ssp library patch

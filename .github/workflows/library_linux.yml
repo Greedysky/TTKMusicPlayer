@@ -181,7 +181,7 @@ jobs:
 
       - name: Build library for libopenmpt
         run: |
-          7z x libopenmpt-0.4.51.7z -olibopenmpt
+          7z x libopenmpt-0.4.52.7z -olibopenmpt
           cd libopenmpt
           ./configure --prefix=${{env.INSTALL_PATH}}/libopenmpt CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --without-zlib --without-mpg123 --without-ogg --without-vorbis --without-vorbisfile --without-pulseaudio --without-portaudio --without-portaudiocpp --without-sndfile --without-flac
           make -j2 && make install
@@ -198,7 +198,7 @@ jobs:
 
       - name: Build library for libopus
         run: |
-          7z x opus-1.5.2.7z -olibopus
+          7z x opus-1.6.7z -olibopus
           cd libopus
           ./configure --prefix=${{env.INSTALL_PATH}}/libopusfile CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-extra-programs
           make -j2 && make install
