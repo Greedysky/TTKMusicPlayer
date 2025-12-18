@@ -538,31 +538,14 @@ void MusicApplication::importSongsPopup()
 {
     QMenu menu;
     menu.setStyleSheet(TTK::UI::MenuStyle02);
-    menu.addAction(tr("Open Files"), this, SLOT(importSongsByFiles()));
-    menu.addAction(tr("Open Dir"), this, SLOT(importSongsByDir()));
+    menu.addAction(tr("Open Files"), m_songTreeWidget, SLOT(importSongsByFiles()));
+    menu.addAction(tr("Open Dir"), m_songTreeWidget, SLOT(importSongsByDir()));
     menu.addAction(tr("Open Url"), this, SLOT(importSongsByUrl()));
     menu.addSeparator();
     menu.addAction(tr("Files Drag Drop"))->setEnabled(false);
 
     TTK::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
-}
-
-void MusicApplication::importSongsByFiles(int index)
-{
-    const QStringList &files = TTK::File::getOpenFileNames(this, MusicFormats::supportMusicInputFormats());
-    m_songTreeWidget->importSongsByPath(files, index);
-}
-
-void MusicApplication::importSongsByDir(int index)
-{
-    const QString &path = TTK::File::getExistingDirectory(this);
-    if(path.isEmpty())
-    {
-        return;
-    }
-
-    m_songTreeWidget->importSongsByUrl(path, index);
 }
 
 void MusicApplication::importSongsByUrl()
@@ -773,8 +756,8 @@ void MusicApplication::createRightMenu()
     menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     QMenu *addNewFilesMenu = menu.addMenu(tr("Add New Files"));
-    addNewFilesMenu->addAction(tr("Open Files"), this, SLOT(importSongsByFiles()));
-    addNewFilesMenu->addAction(tr("Open Dir"), this, SLOT(importSongsByDir()));
+    addNewFilesMenu->addAction(tr("Open Files"), m_songTreeWidget, SLOT(importSongsByFiles()));
+    addNewFilesMenu->addAction(tr("Open Dir"), m_songTreeWidget, SLOT(importSongsByDir()));
     addNewFilesMenu->addAction(tr("Open Url"), this, SLOT(importSongsByUrl()));
     TTK::Widget::adjustMenuPosition(addNewFilesMenu);
 

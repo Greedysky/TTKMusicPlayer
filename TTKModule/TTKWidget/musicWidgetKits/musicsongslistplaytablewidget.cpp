@@ -660,7 +660,9 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(playClicked()));
     menu.addAction(tr("Play Later"), this, SLOT(addToPlayLater()));
     menu.addAction(tr("Add To Playlist"), this, SLOT(addToPlayedList()));
-    menu.addAction(tr("Download More..."), this, SLOT(showDownloadWidget()));
+
+    bool status = TTK::String::isNetworkUrl(currentSongPath());
+    menu.addAction(tr("Download More..."), this, SLOT(showDownloadWidget()))->setEnabled(!status);
     menu.addSeparator();
 
     QMenu *sortFilesMenu = menu.addMenu(tr("Sort"));
@@ -693,7 +695,7 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     toolMenu->addAction(tr("Make Transform"), this, SLOT(showTransformWidget()));
     TTK::Widget::adjustMenuPosition(toolMenu);
 
-    bool status = !(m_songs->isEmpty() || TTK::String::isNetworkUrl(currentSongPath()));
+    status = !(m_songs->isEmpty() || status);
     menu.addAction(tr("Song Info..."), this, SLOT(showFileInformation()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(openFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(showAlbumQueryWidget()));

@@ -191,14 +191,6 @@ public Q_SLOTS:
      */
     void importSongsPopup();
     /*!
-     * Import media songs by files.
-     */
-    void importSongsByFiles(int index = TTK_LOW_LEVEL);
-    /*!
-     * Import media songs by dir.
-     */
-    void importSongsByDir(int index = TTK_LOW_LEVEL);
-    /*!
      * Import media songs by url.
      */
     void importSongsByUrl();

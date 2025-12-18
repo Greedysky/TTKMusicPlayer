@@ -193,11 +193,24 @@ void MusicSongsContainerWidget::importSongsByUrl(const QString &path, int playli
         closeSearchWidgetInNeed();
 
         MusicResultDataItem item;
-        item.m_id = path;
+        item.m_name = TTK::String::splitToken(path, "?", TTK_SEPARATOR, false);
+        item.m_id = item.m_name;
         item.m_nickName = path;
         item.m_description = TTK::String::splitToken(path);
-        item.m_name = TTK::String::splitToken(path, "?", TTK_SEPARATOR, false);
         item.m_title = MUSIC_PLAY_LATER;
+
+        const qint64 size = TTK::fetchFileSizeByUrl(path);
+        item.m_count = QString::number(size);
+
+        if(item.m_description == MP3_FILE_SUFFIX)
+        {
+            item.m_time = TTKTime::formatDuration(size * 8 / TTK_BN_128);
+        }
+        else if(item.m_description == APE_FILE_SUFFIX || item.m_description == FLAC_FILE_SUFFIX)
+        {
+            item.m_time = TTKTime::formatDuration(size * 8 / TTK_BN_1000);
+        }
+
         addSongBufferToPlaylist(item);
     }
     else
@@ -587,7 +600,7 @@ void MusicSongsContainerWidget::importSongsByFiles(int index)
         index = id;
     }
 
-    MusicApplication::instance()->importSongsByFiles(index);
+    importSongsByPath(TTK::File::getOpenFileNames(this, MusicFormats::supportMusicInputFormats()), index);
 }
 
 void MusicSongsContainerWidget::importSongsByDir(int index)
@@ -607,7 +620,13 @@ void MusicSongsContainerWidget::importSongsByDir(int index)
         index = id;
     }
 
-    MusicApplication::instance()->importSongsByDir(index);
+    const QString &path = TTK::File::getExistingDirectory(this);
+    if(path.isEmpty())
+    {
+        return;
+    }
+
+    importSongsByUrl(path, index);
 }
 
 void MusicSongsContainerWidget::showSongCheckToolsWidget()

@@ -277,6 +277,8 @@ void MusicPlayer::generateDuration()
     }
     else
     {
+        m_duration = d;
+
         if(m_durationTimes >= 10)
         {
             const MusicPlayItem &item = m_playlist->currentItem();
@@ -284,10 +286,6 @@ void MusicPlayer::generateDuration()
             {
                 m_duration = TTK::generateNetworkSongTime(item.m_path, false).toLongLong();
             }
-        }
-        else
-        {
-            m_duration = d;
         }
 
         Q_EMIT durationChanged(m_duration);
