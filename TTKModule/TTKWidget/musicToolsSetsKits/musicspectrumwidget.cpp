@@ -67,6 +67,8 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     connect(m_ui->spectrumWaveLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumWaveTypeChanged(bool&,QString)));
     connect(m_ui->spectrumFlowLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumFlowTypeChanged(bool&,QString)));
     connect(m_ui->spectrumFloridLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumFloridTypeChanged(bool&,QString)));
+
+    Visual::initialize(this);
 }
 
 MusicSpectrumWidget::~MusicSpectrumWidget()

@@ -14,8 +14,6 @@
 #include "musictoolsetswidget.h"
 #include "musicimageutils.h"
 
-#include <qmmp/visual.h>
-
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
@@ -30,8 +28,6 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     m_pictureCarouselTimer.setInterval(10 * TTK_DN_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(backgroundChanged()));
     connect(G_BACKGROUND_PTR, SIGNAL(selectIndexChanged()), SLOT(backgroundChanged()));
-
-    Visual::initialize(MusicApplication::instance());
 }
 
 MusicTopAreaWidget::~MusicTopAreaWidget()
