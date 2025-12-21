@@ -34,7 +34,7 @@ void MusicBlurSpecturmModule::show()
         return;
     }
 
-    TTK::TTKQmmp::setVisualEnabled("outerblurwave", true);
+    TTK::TTKQmmp::setVisualEnabled("outerblurwave", true, TTKStaticCast(QWidget*, parent()));
 
     const QList<Visual*> *vs = Visual::visuals();
     if(!vs->isEmpty() && vs->last())
@@ -93,6 +93,6 @@ void MusicBlurSpecturmModule::removeSpectrum()
     if(m_visualWidget)
     {
         m_visualWidget = nullptr;
-        TTK::TTKQmmp::setVisualEnabled("outerblurwave", false);
+        TTK::TTKQmmp::setVisualEnabled("outerblurwave", false, TTKStaticCast(QWidget*, parent()));
     }
 }

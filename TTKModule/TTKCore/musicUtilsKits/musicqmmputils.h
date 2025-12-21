@@ -41,7 +41,7 @@ namespace TTK
         /*!
          * Set whether the visual plugin is enabled.
          */
-        TTK_MODULE_EXPORT void setVisualEnabled(const QString &name, bool enabled);
+        TTK_MODULE_EXPORT void setVisualEnabled(const QString &name, bool enabled, QWidget *parent);
 
         /*!
          * Get the effect plugin is enabled or not.

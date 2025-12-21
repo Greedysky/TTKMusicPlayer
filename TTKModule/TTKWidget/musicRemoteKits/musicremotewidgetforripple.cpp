@@ -79,7 +79,7 @@ void MusicRemoteWidgetForRipple::visualModeChanged()
 
 void MusicRemoteWidgetForRipple::createVisualWidget()
 {
-    TTK::TTKQmmp::setVisualEnabled(m_mode ? "outerripples" : "outerrayswave", true);
+    TTK::TTKQmmp::setVisualEnabled(m_mode ? "outerripples" : "outerrayswave", true, this);
 
     const QList<Visual*> *vs = Visual::visuals();
     if(!vs->isEmpty() && vs->last())
@@ -97,5 +97,5 @@ void MusicRemoteWidgetForRipple::removeVisualWidget()
         m_visual = nullptr;
     }
 
-    TTK::TTKQmmp::setVisualEnabled(m_mode ? "outerripples" : "outerrayswave", false);
+    TTK::TTKQmmp::setVisualEnabled(m_mode ? "outerripples" : "outerrayswave", false, this);
 }

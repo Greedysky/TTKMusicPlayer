@@ -67,8 +67,6 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     connect(m_ui->spectrumWaveLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumWaveTypeChanged(bool&,QString)));
     connect(m_ui->spectrumFlowLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumFlowTypeChanged(bool&,QString)));
     connect(m_ui->spectrumFloridLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumFloridTypeChanged(bool&,QString)));
-
-    Visual::initialize(this);
 }
 
 MusicSpectrumWidget::~MusicSpectrumWidget()
@@ -76,7 +74,7 @@ MusicSpectrumWidget::~MusicSpectrumWidget()
     TTK_REMOVE_SINGLE_WIDGET(this);
     for(const MusicSpectrum &spem : qAsConst(m_spectrums))
     {
-        TTK::TTKQmmp::setVisualEnabled(spem.m_module, false);
+        TTK::TTKQmmp::setVisualEnabled(spem.m_module, false, this);
     }
     delete m_ui;
 }
@@ -166,7 +164,7 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
                 return;
             }
 
-            TTK::TTKQmmp::setVisualEnabled(spem.m_module, false);
+            TTK::TTKQmmp::setVisualEnabled(spem.m_module, false, this);
 
             bool state = true;
             switch(spem.m_type)
@@ -224,7 +222,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, b
     if(state)
     {
         const int before = Visual::visuals()->count();
-        TTK::TTKQmmp::setVisualEnabled(name, true);
+        TTK::TTKQmmp::setVisualEnabled(name, true, this);
         const QList<Visual*> *vs = Visual::visuals();
         if(before == vs->count())
         {
@@ -258,7 +256,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, b
         {
             const MusicSpectrum &spem = m_spectrums.takeAt(index);
             layout->removeWidget(spem.m_object);
-            TTK::TTKQmmp::setVisualEnabled(name, false);
+            TTK::TTKQmmp::setVisualEnabled(name, false, this);
         }
     }
 }
@@ -287,7 +285,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
     {
         const MusicSpectrum &spem = m_spectrums.takeAt(index);
         layout->removeWidget(spem.m_object);
-        TTK::TTKQmmp::setVisualEnabled(*module, false);
+        TTK::TTKQmmp::setVisualEnabled(*module, false, this);
     }
 
     if(!state)
@@ -297,7 +295,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
     }
 
     const int before = Visual::visuals()->count();
-    TTK::TTKQmmp::setVisualEnabled(name, true);
+    TTK::TTKQmmp::setVisualEnabled(name, true, this);
     const QList<Visual*> *vs = Visual::visuals();
     if(before == vs->count())
     {

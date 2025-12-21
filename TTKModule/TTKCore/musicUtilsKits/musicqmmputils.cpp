@@ -34,12 +34,13 @@ bool TTK::TTKQmmp::isVisualEnabled(const QString &name)
     return false;
 }
 
-void TTK::TTKQmmp::setVisualEnabled(const QString &name, bool enabled)
+void TTK::TTKQmmp::setVisualEnabled(const QString &name, bool enabled, QWidget *parent)
 {
     for(VisualFactory *factory : Visual::factories())
     {
         if(factory->properties().shortName == name)
         {
+            Visual::initialize(parent);
             Visual::setEnabled(factory, enabled);
             break;
         }
