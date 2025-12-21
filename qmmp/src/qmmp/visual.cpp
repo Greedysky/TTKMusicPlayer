@@ -177,14 +177,14 @@ void Visual::remove(Visual *visual)
     m_visuals.removeAll(visual);
 }
 
-void Visual::initialize(QWidget *parent , QObject *receiver, const char *member)
+void Visual::initialize(QWidget *parent, QObject *receiver, const char *member)
 {
     m_receiver = receiver;
     m_member = member;
     m_parentClass = parent;
 
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.setValue("Visualization/enabled_plugins", QStringList());
+//    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+//    settings.setValue("Visualization/enabled_plugins", QStringList());
 }
 
 QList<Visual*>* Visual::visuals()
