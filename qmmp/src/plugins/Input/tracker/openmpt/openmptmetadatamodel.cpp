@@ -29,72 +29,96 @@ void OpenMPTMetaDataModel::fillProperties(OpenMPTHelper *helper)
     QString value;
     for(int i = 0; i < helper->subsongs(); ++i)
     {
-        value += helper->subsong(i);
-        value += "\n";
+        const QString &v = helper->subsong(i);
+        if(!v.isEmpty())
+        {
+            value += v + "\n";
+        }
     }
 
     if(!value.isEmpty())
     {
+        value.chop(1); // last \n
         m_desc << MetaDataItem(tr("Titles"), value);
         value.clear();
     }
 
     for(int i = 0; i < helper->patternChannels(); ++i)
     {
-        value += helper->patternChannel(i);
-        value += "\n";
+        const QString &v = helper->patternChannel(i);
+        if(!v.isEmpty())
+        {
+            value += v + "\n";
+        }
     }
 
     if(!value.isEmpty())
     {
+        value.chop(1); // last \n
         m_desc << MetaDataItem(tr("Channels"), value);
         value.clear();
     }
 
     for(int i = 0; i < helper->orders(); ++i)
     {
-        value += helper->order(i);
-        value += "\n";
+        const QString &v = helper->order(i);
+        if(!v.isEmpty())
+        {
+            value += v + "\n";
+        }
     }
 
     if(!value.isEmpty())
     {
+        value.chop(1); // last \n
         m_desc << MetaDataItem(tr("Orders"), value);
         value.clear();
     }
 
     for(int i = 0; i < helper->patterns(); ++i)
     {
-        value += helper->pattern(i);
-        value += "\n";
+        const QString &v = helper->pattern(i);
+        if(!v.isEmpty())
+        {
+            value += v + "\n";
+        }
     }
 
     if(!value.isEmpty())
     {
+        value.chop(1); // last \n
         m_desc << MetaDataItem(tr("Patterns"), value);
         value.clear();
     }
 
     for(int i = 0; i < helper->samples(); ++i)
     {
-        value += helper->sample(i);
-        value += "\n";
+        const QString &v = helper->sample(i);
+        if(!v.isEmpty())
+        {
+            value += v + "\n";
+        }
     }
 
     if(!value.isEmpty())
     {
+        value.chop(1); // last \n
         m_desc << MetaDataItem(tr("Samples"), value);
         value.clear();
     }
 
     for(int i = 0; i < helper->instruments(); ++i)
     {
-        value += helper->instrument(i);
-        value += "\n";
+        const QString &v = helper->instrument(i);
+        if(!v.isEmpty())
+        {
+            value += v + "\n";
+        }
     }
 
     if(!value.isEmpty())
     {
+        value.chop(1); // last \n
         m_desc << MetaDataItem(tr("Instruments"), value);
     }
 }

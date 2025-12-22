@@ -22,12 +22,16 @@ void HivelyMetaDataModel::fillProperties(HivelyHelper *helper)
     {
         for(int i = 0; i < helper->subSongs(); ++i)
         {
-            value += helper->title();
-            value += "\n";
+            const QString &v = helper->title();
+            if(!v.isEmpty())
+            {
+                value += v + "\n";
+            }
         }
 
         if(!value.isEmpty())
         {
+            value.chop(1); // last \n
             m_desc << MetaDataItem(tr("Titles"), value);
             value.clear();
         }
@@ -36,12 +40,16 @@ void HivelyMetaDataModel::fillProperties(HivelyHelper *helper)
     // instruments starts from 1 in hively so skip 0
     for(int i = 1; i < helper->instruments(); ++i)
     {
-        value += helper->instrument(i);
-        value += "\n";
+        const QString &v = helper->instrument(i);
+        if(!v.isEmpty())
+        {
+            value += v + "\n";
+        }
     }
 
     if(!value.isEmpty())
     {
+        value.chop(1); // last \n
         m_desc << MetaDataItem(tr("Instruments"), value);
     }
 }

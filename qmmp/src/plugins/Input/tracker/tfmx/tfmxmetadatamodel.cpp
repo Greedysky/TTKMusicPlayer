@@ -20,12 +20,16 @@ void TFMXMetaDataModel::fillProperties(TFMXHelper *helper)
     QString value;
     for(int i = 0; i < helper->voices(); ++i)
     {
-        value += QString::number(helper->voice(i));
-        value += "\n";
+        const QString &v = QString::number(helper->voice(i));
+        if(!v.isEmpty())
+        {
+            value += v + "\n";
+        }
     }
 
     if(!value.isEmpty())
     {
+        value.chop(1); // last \n
         m_desc << MetaDataItem(tr("Voices"), value);
     }
 }

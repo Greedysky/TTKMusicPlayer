@@ -21,12 +21,16 @@ void AdPlugMetaDataModel::fillProperties(AdPlugHelper *helper)
     QString value;
     for(int i = 0; i < helper->instruments(); ++i)
     {
-        value += helper->instrument(i);
-        value += "\n";
+        const QString &v = helper->instrument(i);
+        if(!v.isEmpty())
+        {
+            value += v + "\n";
+        }
     }
 
     if(!value.isEmpty())
     {
+        value.chop(1); // last \n
         m_desc << MetaDataItem(tr("Instruments"), value);
     }
 }

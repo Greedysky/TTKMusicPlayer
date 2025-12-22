@@ -20,24 +20,32 @@ void AdlMidiMetaDataModel::fillProperties(AdlMidiHelper *helper)
     QString value;
     for(int i = 0; i < helper->trackTitles(); ++i)
     {
-        value += helper->trackTitle(i);
-        value += "\n";
+        const QString &v = helper->trackTitle(i);
+        if(!v.isEmpty())
+        {
+            value += v + "\n";
+        }
     }
 
     if(!value.isEmpty())
     {
+        value.chop(1); // last \n
         m_desc << MetaDataItem(tr("Titles"), value);
         value.clear();
     }
 
     for(int i = 0; i < helper->metaMarkers(); ++i)
     {
-        value += helper->metaMarker(i);
-        value += "\n";
+        const QString &v = helper->metaMarker(i);
+        if(!v.isEmpty())
+        {
+            value += v + "\n";
+        }
     }
 
     if(!value.isEmpty())
     {
+        value.chop(1); // last \n
         m_desc << MetaDataItem(tr("Markers"), value);
     }
 }
