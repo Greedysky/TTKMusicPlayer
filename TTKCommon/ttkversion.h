@@ -62,7 +62,7 @@
  *
  * XMP File(*.abk *.dsym *.emod *.fnk *.gtk *.ims *.liq *.mfp *.mgt *.rtm *.tcb *.xmf)
  *
- * Another Slight Atari File(*.cm3 *.cmc *.cmr *.cms *.dlt *.dmc *.fc *.mpd *.mpt *.rmt *.sap *.tm2 *.tm8 *.tmc)
+ * Another Slight Atari File(*.cm3 *.cmc *.cmr *.cms *.dlt *.dmc *.fc *.md1 *.md2 *.mpd *.mpt *.rmt *.sap *.tm2 *.tm8 *.tmc)
  *
  * DTS Coherent Acoustics File(*.dts *.cpt)
  *
