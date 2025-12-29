@@ -14,9 +14,7 @@ SOURCES += decoderxgmfactory.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include \
-               $$EXTRA_LIB_PATH/libttk/include/libxgm \
-               $$EXTRA_LIB_PATH/libttk/include/libxgm/kss
+INCLUDEPATH += $$EXTRA_LIB_PATH/libttk/include
 
 win32{
     LIBS += -L$$EXTRA_LIB_PATH/libttk/lib -lxgm

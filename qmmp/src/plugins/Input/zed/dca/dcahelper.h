@@ -23,7 +23,6 @@
 extern "C" {
 #include <stdio_file.h>
 #include <libdca/dca.h>
-#include <libdca/gettimeofday.h>
 }
 
 #define BUFFER_SIZE 65536
