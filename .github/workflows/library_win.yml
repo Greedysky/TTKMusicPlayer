@@ -244,7 +244,7 @@ jobs:
       - name: Build library for libmpg123
         shell: msys2 {0}
         run: |
-          7z x mpg123-1.33.3.7z -olibmpg123
+          7z x mpg123-1.33.4.7z -olibmpg123
           cd libmpg123
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           ./configure --prefix=${{env.UNIX_INSTALL_PATH}}/libmpg123 CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared
