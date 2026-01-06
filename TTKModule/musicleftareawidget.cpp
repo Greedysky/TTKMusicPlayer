@@ -111,9 +111,8 @@ void MusicLeftAreaWidget::stackedSongListWidgetChanged()
     delete m_stackedWidget;
     m_stackedWidget = nullptr;
 
-    m_ui->songsContainer->setIndex(0, 0);
-    m_ui->songsContainer->start(0);
     m_currentIndex = 0;
+    m_ui->songsContainer->start(0, 0);
 }
 
 void MusicLeftAreaWidget::stackedLocalWidgetChanged()
@@ -138,10 +137,9 @@ void MusicLeftAreaWidget::stackedLocalWidgetChanged()
         m_localSharedSongWidget = new MusicConnectLocalWidget(this);
     }
 
-    m_ui->songsContainer->addWidget(m_localSharedSongWidget);
-    m_ui->songsContainer->setIndex(0, 0);
-    m_ui->songsContainer->start(1);
     m_currentIndex = 1;
+    m_ui->songsContainer->addWidget(m_localSharedSongWidget);
+    m_ui->songsContainer->start(0, 1);
 }
 
 void MusicLeftAreaWidget::stackedCloudWidgetChanged()
@@ -166,11 +164,10 @@ void MusicLeftAreaWidget::stackedCloudWidgetChanged()
         m_cloudSharedSongWidget = new MusicCloudSharedSongWidget(this);
     }
 
-    m_ui->songsContainer->addWidget(m_cloudSharedSongWidget);
     m_cloudSharedSongWidget->initialize();
-    m_ui->songsContainer->setIndex(0, 0);
-    m_ui->songsContainer->start(1);
     m_currentIndex = 2;
+    m_ui->songsContainer->addWidget(m_cloudSharedSongWidget);
+    m_ui->songsContainer->start(0, 1);
 }
 
 void MusicLeftAreaWidget::stackedRadioWidgetChanged()
@@ -183,10 +180,9 @@ void MusicLeftAreaWidget::stackedRadioWidgetChanged()
     delete m_stackedWidget;
     m_stackedWidget = new MusicWebFMRadioWidget(this);
 
-    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
-    m_ui->songsContainer->setIndex(0, 0);
-    m_ui->songsContainer->start(1);
     m_currentIndex = 3;
+    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
+    m_ui->songsContainer->start(0, 1);
 }
 
 void MusicLeftAreaWidget::stackedMyDownWidgetChanged()
@@ -199,10 +195,9 @@ void MusicLeftAreaWidget::stackedMyDownWidgetChanged()
     delete m_stackedWidget;
     m_stackedWidget = new MusicDownloadToolBoxWidget(this);
 
-    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
-    m_ui->songsContainer->setIndex(0, 0);
-    m_ui->songsContainer->start(1);
     m_currentIndex = 4;
+    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
+    m_ui->songsContainer->start(0, 1);
 }
 
 void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)

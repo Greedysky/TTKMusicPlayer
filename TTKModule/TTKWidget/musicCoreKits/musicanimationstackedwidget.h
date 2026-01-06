@@ -48,17 +48,19 @@ public:
     ~MusicAnimationStackedWidget();
 
     /*!
-     * Start to anmiation by index.
+     * Start to anmiation by current index.
      */
-    void start(int index);
+    void start(int current);
     /*!
-     * Set previoud and current index.
+     * Start to anmiation by previoud and current index.
      */
-    void setIndex(int previous, int current);
+    void start(int previous, int current);
+
     /*!
      * Set animation start and end pos distance and animation type.
      */
     void setLength(int length, Module type);
+
     /*!
      * Get previoud index.
      */

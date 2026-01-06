@@ -231,8 +231,7 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
         m_onlineBackgroundList->initialize();
     }
 
-    m_ui->stackedWidget->setIndex(0, 0);
-    m_ui->stackedWidget->start(index);
+    m_ui->stackedWidget->start(0, index);
 }
 
 void MusicBackgroundSkinDialog::classicalListWidgetItemClicked(int type, const QString &name)

@@ -30,8 +30,8 @@ void MusicAnimationStackedWidget::paintEvent(QPaintEvent *event)
     if(m_isAnimating)
     {
         QPainter painter(this);
-        renderCurrentWidget(&painter);
         renderPreviousWidget(&painter);
+        renderCurrentWidget(&painter);
     }
     else
     {
@@ -50,12 +50,14 @@ void MusicAnimationStackedWidget::renderPreviousWidget(QPainter *painter)
 
     switch(m_type)
     {
-        case Module::BottomToTop: painter->drawPixmap(0, height() / 2, pix); break;
-        case Module::TopToBottom: painter->drawPixmap(0, -height() / 2, pix); break;
-        case Module::LeftToRight: painter->drawPixmap(width() / 2, 0, pix); break;
-        case Module::RightToLeft: painter->drawPixmap(-width() / 2, 0, pix); break;
+        case Module::BottomToTop: painter->translate(0, -m_currentValue); break;
+        case Module::TopToBottom: painter->translate(0, m_currentValue); break;
+        case Module::LeftToRight: painter->translate(m_currentValue, 0); break;
+        case Module::RightToLeft: painter->translate(-m_currentValue, 0); break;
         default: break;
     }
+
+    painter->drawPixmap(0, 0, pix);
 }
 
 void MusicAnimationStackedWidget::renderCurrentWidget(QPainter *painter)
@@ -69,43 +71,28 @@ void MusicAnimationStackedWidget::renderCurrentWidget(QPainter *painter)
 
     switch(m_type)
     {
-        case Module::BottomToTop:
-        {
-            painter->translate(0, m_currentValue);
-            painter->drawPixmap(0, -height() / 2, pix);
-            break;
-        }
-        case Module::TopToBottom:
-        {
-            painter->translate(0, m_currentValue);
-            painter->drawPixmap(0, height() / 2, pix);
-            break;
-        }
-        case Module::LeftToRight:
-        {
-            painter->translate(m_currentValue, 0);
-            painter->drawPixmap(-width() / 2, 0, pix);
-            break;
-        }
-        case Module::RightToLeft:
-        {
-            painter->translate(m_currentValue, 0);
-            painter->drawPixmap(width() / 2, 0, pix);
-            break;
-        }
+        case Module::BottomToTop: painter->drawPixmap(0, height(), pix); break;
+        case Module::TopToBottom: painter->drawPixmap(0, -height(), pix); break;
+        case Module::LeftToRight: painter->drawPixmap(-width(), 0, pix); break;
+        case Module::RightToLeft: painter->drawPixmap(width(), 0, pix); break;
         default: break;
     }
 }
 
-void MusicAnimationStackedWidget::start(int index)
+void MusicAnimationStackedWidget::start(int current)
+{
+    start(m_currentIndex, current);
+}
+
+void MusicAnimationStackedWidget::start(int previous, int current)
 {
     if(m_isAnimating)
     {
         return;
     }
 
-    m_previousIndex = m_currentIndex;
-    m_currentIndex = index;
+    m_previousIndex = previous;
+    m_currentIndex = current;
 
     QWidget *w = widget(m_currentIndex);
     if(!w)
@@ -122,32 +109,11 @@ void MusicAnimationStackedWidget::start(int index)
     m_animation->start();
 }
 
-void MusicAnimationStackedWidget::setIndex(int previous, int current)
-{
-    m_currentIndex = current;
-    m_previousIndex = previous;
-}
-
 void MusicAnimationStackedWidget::setLength(int length, Module type)
 {
-    switch(m_type = type)
-    {
-        case Module::BottomToTop:
-        case Module::LeftToRight:
-        {
-            m_animation->setStartValue(-length / 2);
-            m_animation->setEndValue(length / 2);
-            break;
-        }
-        case Module::TopToBottom:
-        case Module::RightToLeft:
-        {
-            m_animation->setStartValue(length / 2);
-            m_animation->setEndValue(-length / 2);
-            break;
-        }
-        default: break;
-    }
+    m_type = type;
+    m_animation->setStartValue(0);
+    m_animation->setEndValue(length);
 }
 
 int MusicAnimationStackedWidget::previousIndex() const noexcept
