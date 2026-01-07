@@ -18,7 +18,7 @@ void FloridSurround::paintEvent(QPaintEvent *e)
     }
 
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.translate(rect().center());
 
     qreal startAngle = 0;

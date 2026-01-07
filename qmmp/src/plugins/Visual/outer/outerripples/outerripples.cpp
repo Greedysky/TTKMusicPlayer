@@ -19,7 +19,7 @@ OuterRipples::~OuterRipples()
 void OuterRipples::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::Antialiasing);
 
     QBrush brush(Qt::white, Qt::SolidPattern);
     for(int i = 0; i < m_cols; ++i)

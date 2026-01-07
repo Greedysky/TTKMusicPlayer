@@ -252,7 +252,7 @@ void SoniqueWidget::resizeEvent(QResizeEvent *)
 void SoniqueWidget::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     painter.drawImage(rect(), QImage((uchar*)m_texture, width(), height(), QImage::Format_RGB32));
 }
 

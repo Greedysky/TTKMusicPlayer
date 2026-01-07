@@ -51,8 +51,8 @@ void PlusFoldWave::changeColor()
 void PlusFoldWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.fillRect(rect(), Qt::black);
-    painter.setRenderHints(QPainter::Antialiasing);
 
     QLinearGradient line(0, 0, 0, height());
     for(int i = 0; i < m_colors.count(); ++i)

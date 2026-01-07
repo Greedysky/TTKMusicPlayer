@@ -138,7 +138,7 @@ void FloridAncient::paintEvent(QPaintEvent *e)
 
     QPainter painter(this);
     painter.save();
-    painter.setRenderHints(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(m_averageColor, 3));
     painter.translate(rect().center());
 
@@ -160,7 +160,7 @@ void FloridAncient::paintEvent(QPaintEvent *e)
 
 void FloridAncient::resizeEvent(QResizeEvent *)
 {
-    for(AncientLabel *label : m_labels)
+    for(AncientLabel *label : qAsConst(m_labels))
     {
         label->setGeometry(0, 0, width(), height());
     }

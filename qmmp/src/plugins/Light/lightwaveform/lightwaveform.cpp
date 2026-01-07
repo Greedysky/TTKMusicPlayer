@@ -503,8 +503,8 @@ void LightWaveForm::typeChanged(QAction *action)
 void LightWaveForm::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::SmoothPixmapTransform);
     painter.fillRect(rect(), m_colors[COLOR_BACKGROUND]);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     const bool shadeMode = m_shadeAction->isChecked();
     if(!m_pixmap.isNull() && !shadeMode)
@@ -726,6 +726,7 @@ void LightWaveForm::drawWaveform()
     }
 
     QPainter painter(&m_pixmap);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(brush, m_fatAction->isChecked() ? 2 : 1));
     painter.setBrush(brush);
 

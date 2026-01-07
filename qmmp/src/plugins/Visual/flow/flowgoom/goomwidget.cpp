@@ -69,7 +69,7 @@ void GoomWidget::showEvent(QShowEvent *e)
 void GoomWidget::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     painter.drawImage(0, 0, m_image);
 }
 

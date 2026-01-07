@@ -24,9 +24,9 @@ void RoundAnimationLabel::setPixmap(const QPixmap &pix)
     QRect rect(QPoint(0, 0), m_pixmap.size());
     QBitmap mask(rect.size());
     QPainter painter(&mask);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.fillRect(rect, Qt::white);
     painter.setBrush(QColor(0, 0, 0));
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.drawRoundedRect(rect, LABEL_RADIUS, LABEL_RADIUS);
     m_pixmap.setMask(mask);
 }
@@ -64,7 +64,7 @@ void RoundAnimationLabel::paintEvent(QPaintEvent *event)
     const int cy = self.height() / 2;
 
     painter.save();
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     painter.translate(cx, cy);
     painter.rotate(m_rotateAngle);
     painter.drawPixmap(rotatedRect, m_pixmap);

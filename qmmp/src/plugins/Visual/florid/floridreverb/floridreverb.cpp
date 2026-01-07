@@ -24,7 +24,7 @@ void FloridReverb::paintEvent(QPaintEvent *e)
     }
 
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(m_averageColor, 3));
     painter.translate(rect().center());
 

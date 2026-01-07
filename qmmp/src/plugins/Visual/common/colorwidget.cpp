@@ -234,6 +234,7 @@ void ColorWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 
     QPainter painter(this);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     painter.drawPixmap(0, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_left_top"));
     painter.drawPixmap(width() - WIDTH, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_right_top"));
     painter.drawPixmap(0, height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/lb_left_bottom"));

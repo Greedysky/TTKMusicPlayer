@@ -46,6 +46,7 @@ void Matrix::paintEvent(QPaintEvent *e)
 {
     QWidget::paintEvent(e);
     QPainter painter(this);
+    painter.setRenderHint(QPainter::TextAntialiasing);
 
     for(int i = 0; i < m_word.count(); ++i)
     {

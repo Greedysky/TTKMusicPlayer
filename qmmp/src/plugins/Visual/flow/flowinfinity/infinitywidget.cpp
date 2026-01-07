@@ -126,7 +126,7 @@ void InfinityWidget::paintEvent(QPaintEvent *)
     }
 
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
 
     const int w = width();
     const int h = height();

@@ -55,8 +55,8 @@ void PlusXRays::changeGridState(bool state)
 void PlusXRays::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.fillRect(rect(), Qt::black);
-    painter.setRenderHints(QPainter::Antialiasing);
 
     if(m_gridAction->isChecked())
     {

@@ -51,8 +51,8 @@ void NormalEWave::changeColor()
 void NormalEWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.fillRect(rect(), Qt::black);
-    painter.setRenderHints(QPainter::Antialiasing);
 
     if(m_rows == 0)
     {

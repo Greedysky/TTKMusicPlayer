@@ -215,7 +215,7 @@ void JakdawWidget::resizeEvent(QResizeEvent *)
 void JakdawWidget::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     painter.drawImage(rect(), QImage((uchar*)m_texture, m_width, m_height, QImage::Format_RGB32));
 }
 

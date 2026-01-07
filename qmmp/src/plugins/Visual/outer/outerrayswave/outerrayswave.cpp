@@ -13,7 +13,7 @@ OuterRaysWave::OuterRaysWave(QWidget *parent)
 void OuterRaysWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(Qt::white, 1));
 
     for(int i = 0; i < m_cols; ++i)

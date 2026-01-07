@@ -22,8 +22,8 @@ WaveVolume::~WaveVolume()
 void WaveVolume::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
     painter.fillRect(rect(), Qt::black);
-    painter.setRenderHints(QPainter::Antialiasing);
 
     QLinearGradient line(0, 0, width(), 0);
     line.setColorAt(0.0f, QColor(0, 0xff, 0));

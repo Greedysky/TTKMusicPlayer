@@ -43,8 +43,8 @@ void FlowMatrix::resizeEvent(QResizeEvent *)
 void FlowMatrix::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::SmoothPixmapTransform);
     painter.fillRect(rect(), Qt::black);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     QFont font = painter.font();
     font.setBold(true);

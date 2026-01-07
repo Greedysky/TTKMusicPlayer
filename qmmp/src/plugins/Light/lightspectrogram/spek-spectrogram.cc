@@ -63,8 +63,10 @@ void LightSpectrogram::open(const QString &path)
 void LightSpectrogram::paintEvent(QPaintEvent *e)
 {
     Light::paintEvent(e);
-    QPainter p(this);
-    paint(&p);
+
+    QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::SmoothPixmapTransform);
+    paint(&painter);
 }
 
 void LightSpectrogram::resizeEvent(QResizeEvent *e)

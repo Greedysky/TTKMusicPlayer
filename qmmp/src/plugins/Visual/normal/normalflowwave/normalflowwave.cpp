@@ -23,8 +23,8 @@ NormalFlowWave::~NormalFlowWave()
 void NormalFlowWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.fillRect(rect(), Qt::black);
-    painter.setRenderHints(QPainter::Antialiasing);
 
     QLinearGradient line(0, 0, width(), 0);
     line.setColorAt(1.0 * 1 / 7, QColor(72, 176, 211));

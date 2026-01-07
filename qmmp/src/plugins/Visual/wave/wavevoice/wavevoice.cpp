@@ -75,8 +75,8 @@ void WaveVoice::writeSettings()
 void WaveVoice::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(rect(), Qt::black);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.fillRect(rect(), Qt::black);
 
     if(m_backgroundImage.isNull())
     {

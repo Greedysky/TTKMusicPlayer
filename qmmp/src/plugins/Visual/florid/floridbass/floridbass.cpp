@@ -20,7 +20,7 @@ void FloridBass::paintEvent(QPaintEvent *e)
     }
 
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(m_averageColor, 2));
     painter.translate(rect().center());
 
