@@ -49,40 +49,40 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication *ui)
 
     ui->userIcon->setPixmap(TTK::Image::roundedPixmap(QPixmap(":/image/lb_app_logo"), QPixmap(":/image/lb_mask_30"), QSize(30, 30)));
 
-    ui->musicSongSearchEdit->initialize(MusicApplication::instance());
-    ui->musicSongSearchEdit->setStyleSheet(TTK::UI::LineEditStyle02);
+    ui->songSearchEdit->initialize(MusicApplication::instance());
+    ui->songSearchEdit->setStyleSheet(TTK::UI::LineEditStyle02);
 
-    ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSearchButton->setStyleSheet(TTK::UI::TinyBtnMainSearch);
+    ui->songSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->songSearchButton->setStyleSheet(TTK::UI::TinyBtnMainSearch);
 
-    ui->musicWindowIdentify->setToolTip(tr("Identify Songs"));
-    ui->musicWindowIdentify->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowIdentify->setStyleSheet(TTK::UI::BtnIdentify);
+    ui->windowIdentify->setToolTip(tr("Identify Songs"));
+    ui->windowIdentify->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->windowIdentify->setStyleSheet(TTK::UI::BtnIdentify);
 
-    ui->musicWindowTools->setToolTip(tr("Tools"));
-    ui->musicWindowTools->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowTools->setStyleSheet(TTK::UI::BtnTools);
-    connect(ui->musicWindowTools, SIGNAL(clicked()), SLOT(showToolSetsWidget()));
+    ui->windowTools->setToolTip(tr("Tools"));
+    ui->windowTools->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->windowTools->setStyleSheet(TTK::UI::BtnTools);
+    connect(ui->windowTools, SIGNAL(clicked()), SLOT(showToolSetsWidget()));
 
-    ui->musicWindowChangeSkin->setToolTip(tr("Skin"));
-    ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowChangeSkin->setStyleSheet(TTK::UI::BtnSkin);
-    connect(ui->musicWindowChangeSkin, SIGNAL(clicked()), SLOT(showSkinManagerWidget()));
+    ui->windowChangeSkin->setToolTip(tr("Skin"));
+    ui->windowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->windowChangeSkin->setStyleSheet(TTK::UI::BtnSkin);
+    connect(ui->windowChangeSkin, SIGNAL(clicked()), SLOT(showSkinManagerWidget()));
 
-    ui->musicWindowSetting->setToolTip(tr("Settings"));
-    ui->musicWindowSetting->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowSetting->setStyleSheet(TTK::UI::BtnSetting);
-    connect(ui->musicWindowSetting, SIGNAL(clicked()), MusicApplication::instance(), SLOT(createRightMenu()));
+    ui->windowSetting->setToolTip(tr("Settings"));
+    ui->windowSetting->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->windowSetting->setStyleSheet(TTK::UI::BtnSetting);
+    connect(ui->windowSetting, SIGNAL(clicked()), MusicApplication::instance(), SLOT(createRightMenu()));
 
-    ui->musicWindowConcise->setToolTip(tr("Concise Mode"));
-    ui->musicWindowConcise->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowConcise->setStyleSheet(TTK::UI::BtnConciseIn);
-    connect(ui->musicWindowConcise, SIGNAL(clicked()), MusicApplication::instance(), SLOT(windowConciseChanged()));
+    ui->windowConcise->setToolTip(tr("Concise Mode"));
+    ui->windowConcise->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->windowConcise->setStyleSheet(TTK::UI::BtnConciseIn);
+    connect(ui->windowConcise, SIGNAL(clicked()), MusicApplication::instance(), SLOT(windowConciseChanged()));
 
-    ui->musicWindowRemote->setToolTip(tr("Open Remote"));
-    ui->musicWindowRemote->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowRemote->setStyleSheet(TTK::UI::BtnRemote);
-    connect(ui->musicWindowRemote, SIGNAL(clicked()), SLOT(showSquareRemote()));
+    ui->windowRemote->setToolTip(tr("Open Remote"));
+    ui->windowRemote->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->windowRemote->setStyleSheet(TTK::UI::BtnRemote);
+    connect(ui->windowRemote, SIGNAL(clicked()), SLOT(showSquareRemote()));
 
     ui->minimization->setStyleSheet(TTK::UI::BtnMinimum);
     ui->minimization->setCursor(QCursor(Qt::PointingHandCursor));
@@ -251,7 +251,7 @@ void MusicTopAreaWidget::backgroundAnimationChanged(bool state)
 
 void MusicTopAreaWidget::backgroundThemeDownloadFinished()
 {
-    if(isArtistBackground() && m_ui->musiclrccontainerforinterior->isShowArtistBackground())
+    if(isArtistBackground() && m_ui->lrcForInterior->isShowArtistBackground())
     {
         backgroundChanged();
         setBackgroundAnimation(true);
@@ -297,7 +297,7 @@ void MusicTopAreaWidget::showRectangleRemote()
 {
     delete m_remoteWidget;
     m_remoteWidget = new MusicRemoteWidgetForRectangle;
-    m_remoteWidget->setLabelText(m_ui->musicSongTitle->text());
+    m_remoteWidget->setLabelText(m_ui->songTitleLabel->text());
     createRemoteWidget();
 }
 
@@ -305,7 +305,7 @@ void MusicTopAreaWidget::showSimpleStyleRemote()
 {
     delete m_remoteWidget;
     m_remoteWidget = new MusicRemoteWidgetForSimpleStyle;
-    m_remoteWidget->setLabelText(m_ui->musicSongTitle->text());
+    m_remoteWidget->setLabelText(m_ui->songTitleLabel->text());
     createRemoteWidget();
 }
 
@@ -313,7 +313,7 @@ void MusicTopAreaWidget::showComplexStyleRemote()
 {
     delete m_remoteWidget;
     m_remoteWidget = new MusicRemoteWidgetForComplexStyle;
-    m_remoteWidget->setLabelText(m_ui->musicSongTitle->text());
+    m_remoteWidget->setLabelText(m_ui->songTitleLabel->text());
     createRemoteWidget();
 }
 
@@ -321,7 +321,7 @@ void MusicTopAreaWidget::showRippleRemote()
 {
     delete m_remoteWidget;
     m_remoteWidget = new MusicRemoteWidgetForRipple;
-    m_remoteWidget->setLabelText(m_ui->musicSongTitle->text());
+    m_remoteWidget->setLabelText(m_ui->songTitleLabel->text());
     createRemoteWidget();
 }
 
@@ -336,7 +336,7 @@ void MusicTopAreaWidget::showWallpaperRemote(bool create)
         }
 
         m_remoteWidget = new MusicRemoteWidgetForStrip;
-        m_remoteWidget->setLabelText(m_ui->musicSongTitle->text());
+        m_remoteWidget->setLabelText(m_ui->songTitleLabel->text());
         createRemoteWidget();
     }
     else
@@ -409,7 +409,7 @@ void MusicTopAreaWidget::createRemoteWidget()
     }
 
     m_remoteWidget->setCurrentPlayState(MusicApplication::instance()->isPlaying());
-    m_remoteWidget->setVolumeValue(m_ui->musicSound->value());
+    m_remoteWidget->setVolumeValue(m_ui->soundButton->value());
 
     connect(m_remoteWidget, SIGNAL(showMainWindow()), MusicApplication::instance(), SLOT(showNormal()));
     connect(m_remoteWidget, SIGNAL(playPreviousChanged()), MusicApplication::instance(), SLOT(playPrevious()));

@@ -44,8 +44,8 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication *ui)
     m_blurModule->initialize(ui->backgroundLayout, ui->bottomWidget);
 
     ui->resizeLabelWidget->setPixmap(QPixmap(":/tiny/lb_resize_normal"));
-    ui->musicSongTitle->setEffectOnResize(true);
-    connect(ui->musicDesktopLrc, SIGNAL(clicked()), m_systemTrayMenu, SLOT(showDesktopLrc()));
+    ui->songTitleLabel->setEffectOnResize(true);
+    connect(ui->desktopLrcButton, SIGNAL(clicked()), m_systemTrayMenu, SLOT(showDesktopLrc()));
 }
 
 void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reason)
@@ -126,18 +126,18 @@ bool MusicBottomAreaWidget::setWindowConcise()
     m_ui->bottomRightWidget->setVisible(!concise);
     m_ui->bottomLeftContainWidget->setMinimumWidth(concise ? CONCISE_WIDTH_MIN : 220);
 
-    m_ui->musicWindowConcise->setParent(concise ? m_ui->background : m_ui->topRightWidget);
-    m_ui->musicWindowConcise->setStyleSheet(concise ? TTK::UI::BtnConciseOut : TTK::UI::BtnConciseIn);
+    m_ui->windowConcise->setParent(concise ? m_ui->background : m_ui->topRightWidget);
+    m_ui->windowConcise->setStyleSheet(concise ? TTK::UI::BtnConciseOut : TTK::UI::BtnConciseIn);
     m_ui->minimization->setParent(concise ? m_ui->background : m_ui->topRightWidget);
     m_ui->windowClose->setParent(concise ? m_ui->background : m_ui->topRightWidget);
 
-    m_ui->musicBestLove->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
-    m_ui->musicDownload->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
-    m_ui->musicMoreFunction->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
-    m_ui->musicSound->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
-    m_ui->musicDesktopLrc->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->bestLoveButton->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->downloadButton->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->moreFunctionButton->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->soundButton->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->desktopLrcButton->setParent(concise ? m_ui->background : m_ui->bottomRightWidget);
 
-    m_ui->musicTimeWidget->setParent(concise ? m_ui->background : m_ui->bottomCenterWidget);
+    m_ui->timeSliderWidget->setParent(concise ? m_ui->background : m_ui->bottomCenterWidget);
 
     MusicApplication *app = MusicApplication::instance();
     if(concise)
@@ -145,27 +145,27 @@ bool MusicBottomAreaWidget::setWindowConcise()
         app->setMinimumSize(CONCISE_WIDTH_MIN, WINDOW_HEIGHT_MIN);
         app->setMaximumSize(CONCISE_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 
-        m_ui->musicWindowConcise->move(245, 20);
-        m_ui->musicWindowConcise->show();
+        m_ui->windowConcise->move(245, 20);
+        m_ui->windowConcise->show();
         m_ui->minimization->move(270, 20);
         m_ui->minimization->show();
         m_ui->windowClose->move(295, 20);
         m_ui->windowClose->show();
 
-        m_ui->musicPrevious->setStyleSheet(TTK::UI::TinyBtnPrevious);
-        m_ui->musicKey->setStyleSheet(app->isPlaying() ? TTK::UI::TinyBtnPause : TTK::UI::TinyBtnPlay);
-        m_ui->musicNext->setStyleSheet(TTK::UI::TinyBtnNext);
-        m_ui->musicPrevious->setFixedSize(28, 28);
-        m_ui->musicKey->setFixedSize(28, 28);
-        m_ui->musicNext->setFixedSize(28, 28);
+        m_ui->previousButton->setStyleSheet(TTK::UI::TinyBtnPrevious);
+        m_ui->playButton->setStyleSheet(app->isPlaying() ? TTK::UI::TinyBtnPause : TTK::UI::TinyBtnPlay);
+        m_ui->nextButton->setStyleSheet(TTK::UI::TinyBtnNext);
+        m_ui->previousButton->setFixedSize(28, 28);
+        m_ui->playButton->setFixedSize(28, 28);
+        m_ui->nextButton->setFixedSize(28, 28);
 
-        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicBestLove);
-        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicDownload);
-        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicMoreFunction);
-        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicSound);
-        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicDesktopLrc);
+        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->bestLoveButton);
+        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->downloadButton);
+        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->moreFunctionButton);
+        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->soundButton);
+        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->desktopLrcButton);
 
-        m_ui->bottomLeftContainWidgetLayout->addWidget(m_ui->musicTimeWidget);
+        m_ui->bottomLeftContainWidgetLayout->addWidget(m_ui->timeSliderWidget);
     }
     else
     {
@@ -173,24 +173,24 @@ bool MusicBottomAreaWidget::setWindowConcise()
         app->setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
         app->setMaximumSize(size.width(), size.height());
 
-        m_ui->musicPrevious->setStyleSheet(TTK::UI::BtnPrevious);
-        m_ui->musicKey->setStyleSheet(app->isPlaying() ? TTK::UI::BtnPause : TTK::UI::BtnPlay);
-        m_ui->musicNext->setStyleSheet(TTK::UI::BtnNext);
-        m_ui->musicPrevious->setFixedSize(44, 44);
-        m_ui->musicKey->setFixedSize(44, 44);
-        m_ui->musicNext->setFixedSize(44, 44);
+        m_ui->previousButton->setStyleSheet(TTK::UI::BtnPrevious);
+        m_ui->playButton->setStyleSheet(app->isPlaying() ? TTK::UI::BtnPause : TTK::UI::BtnPlay);
+        m_ui->nextButton->setStyleSheet(TTK::UI::BtnNext);
+        m_ui->previousButton->setFixedSize(44, 44);
+        m_ui->playButton->setFixedSize(44, 44);
+        m_ui->nextButton->setFixedSize(44, 44);
 
-        m_ui->topRightWidgetLayout->insertWidget(11, m_ui->musicWindowConcise);
+        m_ui->topRightWidgetLayout->insertWidget(11, m_ui->windowConcise);
         m_ui->topRightWidgetLayout->addWidget(m_ui->minimization);
         m_ui->topRightWidgetLayout->addWidget(m_ui->windowClose);
 
-        m_ui->bottomRightWidgetLayout->insertWidget(0, m_ui->musicBestLove);
-        m_ui->bottomRightWidgetLayout->insertWidget(1, m_ui->musicDownload);
-        m_ui->bottomRightWidgetLayout->insertWidget(2, m_ui->musicMoreFunction);
-        m_ui->bottomRightWidgetLayout->insertWidget(4, m_ui->musicSound);
-        m_ui->bottomRightWidgetLayout->insertWidget(6, m_ui->musicDesktopLrc);
+        m_ui->bottomRightWidgetLayout->insertWidget(0, m_ui->bestLoveButton);
+        m_ui->bottomRightWidgetLayout->insertWidget(1, m_ui->downloadButton);
+        m_ui->bottomRightWidgetLayout->insertWidget(2, m_ui->moreFunctionButton);
+        m_ui->bottomRightWidgetLayout->insertWidget(4, m_ui->soundButton);
+        m_ui->bottomRightWidgetLayout->insertWidget(6, m_ui->desktopLrcButton);
 
-        m_ui->bottomCenterWidgetLayout->addWidget(m_ui->musicTimeWidget, 3, 0, 1, 6);
+        m_ui->bottomCenterWidgetLayout->addWidget(m_ui->timeSliderWidget, 3, 0, 1, 6);
     }
 
     m_platformExtras->setAction();
@@ -231,7 +231,7 @@ void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
         return;
     }
 
-    if(m_ui->musiclrccontainerforinterior->lrcDisplayExpand())
+    if(m_ui->lrcForInterior->lrcDisplayExpand())
     {
         MusicRightAreaWidget::instance()->lrcDisplayAllClicked();
     }
@@ -246,9 +246,9 @@ void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
     m_ui->stackedFunctionWidget->setVisible(m_lrcWidgetShowFullScreen);
     m_ui->lrcDisplayAllButton->setVisible(m_lrcWidgetShowFullScreen);
 
-    m_ui->musiclrccontainerforinterior->createFloatPlayWidget();
+    m_ui->lrcForInterior->createFloatPlayWidget();
     m_lrcWidgetShowFullScreen ? MusicApplication::instance()->showNormal() : MusicApplication::instance()->showFullScreen();
-    m_ui->musiclrccontainerforinterior->lrcWidgetShowFullScreen();
+    m_ui->lrcForInterior->lrcWidgetShowFullScreen();
 }
 
 void MusicBottomAreaWidget::lockDesktopLrc(bool lock)
@@ -258,7 +258,7 @@ void MusicBottomAreaWidget::lockDesktopLrc(bool lock)
 
 void MusicBottomAreaWidget::desktopLrcClosed()
 {
-    m_ui->musicDesktopLrc->setChecked(false);
+    m_ui->desktopLrcButton->setChecked(false);
     m_systemTrayMenu->showDesktopLrc(false);
     G_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, false);
 }

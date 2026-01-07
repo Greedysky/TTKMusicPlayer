@@ -40,64 +40,64 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
     //
     ui->songsContainer->setLength(LEFT_SIDE_WIDTH_MIN, MusicAnimationStackedWidget::Module::LeftToRight);
 
-    ui->musicPrevious->setStyleSheet(TTK::UI::BtnPrevious);
-    ui->musicNext->setStyleSheet(TTK::UI::BtnNext);
-    ui->musicKey->setStyleSheet(TTK::UI::BtnPlay);
+    ui->previousButton->setStyleSheet(TTK::UI::BtnPrevious);
+    ui->nextButton->setStyleSheet(TTK::UI::BtnNext);
+    ui->playButton->setStyleSheet(TTK::UI::BtnPlay);
 
-    ui->musicBestLove->setStyleSheet(TTK::UI::BtnUnLove);
-    ui->musicDesktopLrc->setStyleSheet(TTK::UI::BtnDKLrc);
-    ui->musicDownload->setStyleSheet(TTK::UI::BtnUnDownload);
-    ui->musicMoreFunction->setStyleSheet(TTK::UI::BtnMore);
+    ui->bestLoveButton->setStyleSheet(TTK::UI::BtnUnLove);
+    ui->desktopLrcButton->setStyleSheet(TTK::UI::BtnDKLrc);
+    ui->downloadButton->setStyleSheet(TTK::UI::BtnUnDownload);
+    ui->moreFunctionButton->setStyleSheet(TTK::UI::BtnMore);
 
-    ui->musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicNext->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSound->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicBestLove->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicDesktopLrc->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicPlayMode->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicDownload->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicMoreFunction->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->previousButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->soundButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->bestLoveButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->desktopLrcButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->playModeButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->moreFunctionButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     ui->windowClose->setToolTip(tr("Close"));
-    ui->musicKey->setToolTip(tr("Play"));
-    ui->musicPrevious->setToolTip(tr("Previous"));
-    ui->musicNext->setToolTip(tr("Next"));
-    ui->musicBestLove->setToolTip(tr("Best Love"));
-    ui->musicDownload->setToolTip(tr("Download"));
-    ui->musicMoreFunction->setToolTip(tr("More"));
-    ui->musicDesktopLrc->setToolTip(tr("Show Desktop Lrc"));
-    ui->musicPlayMode->setToolTip(tr("Play Mode"));
+    ui->playButton->setToolTip(tr("Play"));
+    ui->previousButton->setToolTip(tr("Previous"));
+    ui->nextButton->setToolTip(tr("Next"));
+    ui->bestLoveButton->setToolTip(tr("Best Love"));
+    ui->downloadButton->setToolTip(tr("Download"));
+    ui->moreFunctionButton->setToolTip(tr("More"));
+    ui->desktopLrcButton->setToolTip(tr("Show Desktop Lrc"));
+    ui->playModeButton->setToolTip(tr("Play Mode"));
 
-    connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(switchToPlayState()));
-    connect(ui->musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playPrevious()));
-    connect(ui->musicNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playNext()));
-    connect(ui->musicSound, SIGNAL(clicked()), MusicApplication::instance(), SLOT(volumeMute()));
-    connect(ui->musicSound, SIGNAL(volumeChanged(int)), MusicApplication::instance(), SLOT(volumeChanged(int)));
-    connect(ui->musicBestLove, SIGNAL(clicked()), MusicApplication::instance(), SLOT(addSongToLovestList()));
-    connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(downloadSongToLocal()));
-    connect(ui->musicEnhancedButton, SIGNAL(enhancedSongChanged(int)), MusicApplication::instance(), SLOT(enhancedSongChanged(int)));
-    connect(ui->musicEnhancedButton, SIGNAL(enhancedSongChanged(int)), ui->musicTimeWidget, SLOT(setSliderStyleByType(int)));
+    connect(ui->playButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(switchToPlayState()));
+    connect(ui->previousButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playPrevious()));
+    connect(ui->nextButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playNext()));
+    connect(ui->soundButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(volumeMute()));
+    connect(ui->soundButton, SIGNAL(volumeChanged(int)), MusicApplication::instance(), SLOT(volumeChanged(int)));
+    connect(ui->bestLoveButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(addSongToLovestList()));
+    connect(ui->downloadButton, SIGNAL(clicked()), this, SLOT(downloadSongToLocal()));
+    connect(ui->enhancedButton, SIGNAL(enhancedSongChanged(int)), MusicApplication::instance(), SLOT(enhancedSongChanged(int)));
+    connect(ui->enhancedButton, SIGNAL(enhancedSongChanged(int)), ui->timeSliderWidget, SLOT(setSliderStyleByType(int)));
     connect(ui->userOptionWidget, SIGNAL(buttonClicked(int)), SLOT(switchToSelectedItemStyle(int)));
 }
 
 void MusicLeftAreaWidget::setSongLoveState(bool state)
 {
-    m_ui->musicBestLove->setStyleSheet(state ? TTK::UI::BtnLove : TTK::UI::BtnUnLove);
+    m_ui->bestLoveButton->setStyleSheet(state ? TTK::UI::BtnLove : TTK::UI::BtnUnLove);
     Q_EMIT currentLoveStateChanged();
 }
 
 void MusicLeftAreaWidget::downloadSongToLocal()
 {
     MusicDownloadMgmtWidget mgmt(this);
-    mgmt.initialize(m_ui->musicSongTitle->text());
+    mgmt.initialize(m_ui->songTitleLabel->text());
 }
 
 void MusicLeftAreaWidget::downloadSongFinished()
 {
     bool exist = false;
     MusicApplication::instance()->containsDownloadItem(exist);
-    m_ui->musicDownload->setStyleSheet(exist ? TTK::UI::BtnDownload : TTK::UI::BtnUnDownload);
+    m_ui->downloadButton->setStyleSheet(exist ? TTK::UI::BtnDownload : TTK::UI::BtnUnDownload);
     Q_EMIT currentDownloadStateChanged();
 }
 
@@ -212,7 +212,7 @@ void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)
         default: break;
     }
 
-    if(m_ui->musiclrccontainerforinterior->lrcDisplayExpand())
+    if(m_ui->lrcForInterior->lrcDisplayExpand())
     {
         MusicRightAreaWidget::instance()->lrcDisplayAllClicked();
     }

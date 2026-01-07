@@ -148,7 +148,7 @@
              <number>12</number>
             </property>
             <item>
-             <widget class="QToolButton" name="musicBackButton">
+             <widget class="QToolButton" name="backButton">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -173,7 +173,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicRefreshButton">
+             <widget class="QToolButton" name="refreshButton">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -231,7 +231,7 @@
                 <number>0</number>
                </property>
                <item>
-                <widget class="MusicSongSearchInteriorEdit" name="musicSongSearchEdit" native="true">
+                <widget class="MusicSongSearchInteriorEdit" name="songSearchEdit" native="true">
                  <property name="minimumSize">
                   <size>
                    <width>260</width>
@@ -253,7 +253,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QToolButton" name="musicSearchButton">
+                <widget class="QToolButton" name="songSearchButton">
                  <property name="minimumSize">
                   <size>
                    <width>16</width>
@@ -294,7 +294,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicWindowIdentify">
+             <widget class="QToolButton" name="windowIdentify">
               <property name="minimumSize">
                <size>
                 <width>16</width>
@@ -329,7 +329,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QToolButton" name="musicWindowTools">
+             <widget class="QToolButton" name="windowTools">
               <property name="minimumSize">
                <size>
                 <width>16</width>
@@ -351,7 +351,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicWindowChangeSkin">
+             <widget class="QToolButton" name="windowChangeSkin">
               <property name="minimumSize">
                <size>
                 <width>16</width>
@@ -376,7 +376,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicWindowSetting">
+             <widget class="QToolButton" name="windowSetting">
               <property name="minimumSize">
                <size>
                 <width>16</width>
@@ -432,7 +432,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicWindowRemote">
+             <widget class="QToolButton" name="windowRemote">
               <property name="minimumSize">
                <size>
                 <width>16</width>
@@ -457,7 +457,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicWindowConcise">
+             <widget class="QToolButton" name="windowConcise">
               <property name="minimumSize">
                <size>
                 <width>16</width>
@@ -731,7 +731,7 @@
                <number>0</number>
               </property>
               <widget class="MusicSongSearchOnlineWidget" name="songSearchWidget"/>
-              <widget class="MusicLrcContainerForInterior" name="musiclrccontainerforinterior">
+              <widget class="MusicLrcContainerForInterior" name="lrcForInterior">
                <widget class="QPushButton" name="lrcDisplayAllButton">
                 <property name="enabled">
                  <bool>true</bool>
@@ -855,7 +855,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QToolButton" name="musicPrevious">
+                <widget class="QToolButton" name="previousButton">
                  <property name="minimumSize">
                   <size>
                    <width>44</width>
@@ -877,7 +877,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QToolButton" name="musicKey">
+                <widget class="QToolButton" name="playButton">
                  <property name="minimumSize">
                   <size>
                    <width>44</width>
@@ -899,7 +899,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QToolButton" name="musicNext">
+                <widget class="QToolButton" name="nextButton">
                  <property name="minimumSize">
                   <size>
                    <width>44</width>
@@ -951,7 +951,7 @@
              <number>0</number>
             </property>
             <item row="3" column="0" colspan="6">
-             <widget class="MusicTimeSliderWidget" name="musicTimeWidget" native="true">
+             <widget class="MusicTimeSliderWidget" name="timeSliderWidget" native="true">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -970,7 +970,7 @@
              </widget>
             </item>
             <item row="1" column="4">
-             <widget class="QWidget" name="timeWidget" native="true">
+             <widget class="QWidget" name="timeAreaWidget" native="true">
               <property name="minimumSize">
                <size>
                 <width>80</width>
@@ -1051,7 +1051,7 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="MusicQualityWidget" name="musicQualityLabel" native="true"/>
+             <widget class="MusicQualityWidget" name="qualityLabel" native="true"/>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="leftMargin">
@@ -1073,7 +1073,7 @@
              </widget>
             </item>
             <item row="1" column="2" colspan="2">
-             <widget class="MusicMarqueeWidget" name="musicSongTitle" native="true">
+             <widget class="MusicMarqueeWidget" name="songTitleLabel" native="true">
               <property name="styleSheet">
                <string notr="true">color:#FFFFFF;font-weight:bold;font-size:15px;</string>
               </property>
@@ -1123,7 +1123,7 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QToolButton" name="musicBestLove">
+             <widget class="QToolButton" name="bestLoveButton">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -1148,7 +1148,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicDownload">
+             <widget class="QToolButton" name="downloadButton">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -1170,7 +1170,7 @@
              </widget>
             </item>
             <item>
-             <widget class="MusicMoreFunctionsPopWidget" name="musicMoreFunction" native="true">
+             <widget class="MusicMoreFunctionsPopWidget" name="moreFunctionButton" native="true">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -1195,7 +1195,7 @@
              </widget>
             </item>
             <item>
-             <widget class="MusicPlayBackModePopWidget" name="musicPlayMode" native="true">
+             <widget class="MusicPlayBackModePopWidget" name="playModeButton" native="true">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -1217,7 +1217,7 @@
              </widget>
             </item>
             <item>
-             <widget class="MusicVolumePopWidget" name="musicSound" native="true">
+             <widget class="MusicVolumePopWidget" name="soundButton" native="true">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -1236,7 +1236,7 @@
              </widget>
             </item>
             <item>
-             <widget class="MusicEnhancedPopWidget" name="musicEnhancedButton" native="true">
+             <widget class="MusicEnhancedPopWidget" name="enhancedButton" native="true">
               <property name="minimumSize">
                <size>
                 <width>48</width>
@@ -1252,7 +1252,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="musicDesktopLrc">
+             <widget class="QCheckBox" name="desktopLrcButton">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -1280,7 +1280,7 @@
              </widget>
             </item>
             <item>
-             <widget class="MusicPlayedListPopWidget" name="musicPlayedList" native="true">
+             <widget class="MusicPlayedListPopWidget" name="playedListButton" native="true">
               <property name="minimumSize">
                <size>
                 <width>64</width>

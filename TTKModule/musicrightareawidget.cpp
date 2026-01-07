@@ -87,20 +87,20 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication *ui)
 {
     m_ui = ui;
     //
-    m_lrcForInterior = ui->musiclrccontainerforinterior;
+    m_lrcForInterior = ui->lrcForInterior;
     m_lrcForInterior->setLrcAnalysisModel(m_lrcAnalysis);
     m_lrcForInterior->resize(ui->functionsContainer->size());
 
-    ui->musicBackButton->setStyleSheet(TTK::UI::BtnBackBack);
-    ui->musicRefreshButton->setStyleSheet(TTK::UI::BtnBackFresh);
+    ui->backButton->setStyleSheet(TTK::UI::BtnBackBack);
+    ui->refreshButton->setStyleSheet(TTK::UI::BtnBackFresh);
 
     ui->lrcDisplayAllButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->lrcDisplayAllButton->setIconSize(QSize(15, 56));
     connect(ui->lrcDisplayAllButton, SIGNAL(clicked()), SLOT(lrcDisplayAllClicked()));
     //
     QButtonGroup *buttonGroup = new QButtonGroup(this);
-    buttonGroup->addButton(ui->musicSearchButton, MusicRightAreaWidget::SearchWidget);
-    buttonGroup->addButton(ui->musicWindowIdentify, MusicRightAreaWidget::IndentifyWidget);
+    buttonGroup->addButton(ui->songSearchButton, MusicRightAreaWidget::SearchWidget);
+    buttonGroup->addButton(ui->windowIdentify, MusicRightAreaWidget::IndentifyWidget);
     QtButtonGroupConnect(buttonGroup, this, functionClicked, TTK_SLOT);
     //
     connect(m_lrcForInterior, SIGNAL(showCurrentLrcColorSetting()), m_settingWidget, SLOT(changeInteriorLrcWidget()));
@@ -108,9 +108,9 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication *ui)
     connect(m_lrcForInterior, SIGNAL(backgroundChanged()), SIGNAL(updateBackgroundThemeDownload()));
     connect(m_lrcForInterior, SIGNAL(showCurrentLrcSetting()), MusicApplication::instance(), SLOT(showSettingWidget()));
     connect(m_lrcForInterior, SIGNAL(updateCurrentTime(qint64)), MusicApplication::instance(), SLOT(updateCurrentTime(qint64)));
-    connect(ui->musicBackButton, SIGNAL(clicked()), SLOT(functionGoBack()));
+    connect(ui->backButton, SIGNAL(clicked()), SLOT(functionGoBack()));
     connect(ui->functionOptionWidget, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
-    connect(ui->musicSongSearchEdit, SIGNAL(enterFinished(QString)), SLOT(showSongSearchedFound(QString)));
+    connect(ui->songSearchEdit, SIGNAL(enterFinished(QString)), SLOT(showSongSearchedFound(QString)));
 }
 
 void MusicRightAreaWidget::startDrawLrc() const
@@ -285,7 +285,7 @@ void MusicRightAreaWidget::applyParameter()
 
     bool config = G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     m_lrcForDesktop->setVisible(config);
-    m_ui->musicDesktopLrc->setChecked(config);
+    m_ui->desktopLrcButton->setChecked(config);
 
     config = G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool();
     if(config != m_lowPowerMode)
@@ -312,7 +312,7 @@ void MusicRightAreaWidget::functionGoBack()
 
     const int index = m_ui->functionsContainer->currentIndex() - 1;
     m_ui->functionsContainer->setCurrentIndex(index);
-    m_ui->musicBackButton->setEnabled(false);
+    m_ui->backButton->setEnabled(false);
 }
 
 void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
@@ -425,12 +425,12 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         }
         case SearchWidget: //insert search display widget
         {
-            QString searchedString = m_ui->musicSongSearchEdit->text().trimmed();
-                    searchedString = searchedString.isEmpty() ? m_ui->musicSongSearchEdit->placeholderText() : searchedString;
+            QString searchedString = m_ui->songSearchEdit->text().trimmed();
+                    searchedString = searchedString.isEmpty() ? m_ui->songSearchEdit->placeholderText() : searchedString;
             //The string searched wouldn't allow to be none
             if(!searchedString.isEmpty() && searchedString != tr("Please input search words"))
             {
-                m_ui->musicSongSearchEdit->setText(searchedString);
+                m_ui->songSearchEdit->setText(searchedString);
                 m_ui->songSearchWidget->startToSearchByText(searchedString);
             }
             else
@@ -562,7 +562,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         default: break;
     }
 
-    m_ui->musicBackButton->setEnabled(m_ui->functionsContainer->count() > DEFAULT_CONTAINER_SIZE);
+    m_ui->backButton->setEnabled(m_ui->functionsContainer->count() > DEFAULT_CONTAINER_SIZE);
 }
 
 void MusicRightAreaWidget::showCommentsFound()
@@ -652,7 +652,7 @@ void MusicRightAreaWidget::showPlaylistCategoryFound(const QString &id, const QS
 
 void MusicRightAreaWidget::showSongSearchedFound(const QString &text)
 {
-    m_ui->musicSongSearchEdit->setText(text.trimmed());
+    m_ui->songSearchEdit->setText(text.trimmed());
     functionClicked(MusicRightAreaWidget::SearchWidget);
 }
 
@@ -690,7 +690,7 @@ void MusicRightAreaWidget::showSongMainWidget()
 
 void MusicRightAreaWidget::setDestopLrcVisible(bool visible) const
 {
-    m_ui->musicDesktopLrc->setChecked(visible);
+    m_ui->desktopLrcButton->setChecked(visible);
     m_lrcForDesktop->setVisible(visible);
     m_lrcForDesktop->initCurrentLrc();
     G_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, visible);
@@ -799,7 +799,7 @@ void MusicRightAreaWidget::lrcDisplayAllClicked()
     lrcDisplayAllAnimation->start();
 
     m_ui->lrcDisplayAllButton->setStyleSheet(lrcDisplayAll ? TTK::UI::TinyBtnLrcExpand : TTK::UI::TinyBtnLrcCollapse);
-    m_ui->musicWindowConcise->setEnabled(!lrcDisplayAll);
+    m_ui->windowConcise->setEnabled(!lrcDisplayAll);
 }
 
 void MusicRightAreaWidget::containerForWallpaperClicked()
@@ -904,7 +904,7 @@ void MusicRightAreaWidget::createkWebWindow(int type)
     }
 
     QWidget *widget = new QKugouWindow(module, this);
-    connect(m_ui->musicRefreshButton, SIGNAL(clicked()), widget, SLOT(refresh()));
+    connect(m_ui->refreshButton, SIGNAL(clicked()), widget, SLOT(refresh()));
     connect(widget, SIGNAL(buttonClicked(int)), this, SLOT(functionClicked(int)));
 
     m_ui->functionsContainer->addWidget(m_currentWidget = widget);
