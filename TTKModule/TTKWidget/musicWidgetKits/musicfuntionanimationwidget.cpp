@@ -24,6 +24,7 @@ void MusicBackgroundWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.fillRect(rect(), QColor(255, 255, 255, m_backgroundTransparent));
 }
 
@@ -46,7 +47,7 @@ void MusicLineBackgroundWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
 
     if(!m_transparent)

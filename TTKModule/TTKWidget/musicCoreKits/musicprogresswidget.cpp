@@ -73,6 +73,7 @@ void MusicProgressWidget::paintEvent(QPaintEvent *event)
 {
     QDialog::paintEvent(event);
     QPainter painter(this);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     TTK::setBorderShadow(this, &painter);
 }
 

@@ -33,6 +33,7 @@ QColor MusicColorPreviewLabel::color() const
 void MusicColorPreviewLabel::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
 
     const int h = height() - 4 * 2;
     m_linearGradient.setFinalStop(0, height());
@@ -95,6 +96,7 @@ void MusicPreviewLabel::setLinearGradient(const QList<QColor> &front, const QLis
 void MusicPreviewLabel::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHint(QPainter::TextAntialiasing);
 
     const int h = TTK::Widget::fontTextHeight(m_font);
     const int begin = (rect().height() - h) / 2;

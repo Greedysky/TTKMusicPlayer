@@ -144,14 +144,18 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
     if(m_isAnimating)
     {
         QPainter painter(this);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
+
         switch(m_type)
         {
             case Module::FadeEffect:
             {
                 painter.drawPixmap(rect(), m_previousPixmap);
+
                 QPixmap pix(size());
                 pix.fill(Qt::transparent);
                 QPainter painter(&pix);
+                painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
                 painter.fillRect(rect(), QColor(0xFF, 0xFF, 0xFF, 2.55 * m_currentValue));
                 painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 painter.drawPixmap(rect(), m_currentPixmap);
@@ -162,6 +166,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
             {
                 QPixmap pix(m_previousPixmap);
                 QPainter painter(&pix);
+                painter.setRenderHint(QPainter::SmoothPixmapTransform);
                 painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 constexpr int number = 10;
                 const int perHeight = height() / number;
@@ -189,6 +194,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
             {
                 QPixmap pix(m_previousPixmap);
                 QPainter painter(&pix);
+                painter.setRenderHint(QPainter::SmoothPixmapTransform);
                 painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 const QRect rect(0, 0, width() * m_currentValue / 100.0, height());
                 painter.drawPixmap(rect, m_currentPixmap.copy(rect));
@@ -199,6 +205,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
             {
                 QPixmap pix(m_previousPixmap);
                 QPainter painter(&pix);
+                painter.setRenderHint(QPainter::SmoothPixmapTransform);
                 painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 const QRect rect(0, 0, width(), height() * m_currentValue / 100.0);
                 painter.drawPixmap(rect, m_currentPixmap.copy(rect));
@@ -207,6 +214,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
             }
             default: break;
         }
+
         painter.drawPixmap(rect(), m_renderPixmap);
     }
     else

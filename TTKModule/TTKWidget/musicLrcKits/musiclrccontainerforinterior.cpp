@@ -576,6 +576,7 @@ void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
 
     const int line = (height() - m_functionLabel->height()) / 2;
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
     painter.setPen(QPen(linearGradient, 1));
     painter.drawLine(LRC_TIME_LABEL_POSITION, line, width() - LRC_TIME_LABEL_POSITION, line);
 

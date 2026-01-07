@@ -35,6 +35,7 @@ void MusicSpectrumLayoutItem::paintEvent(QPaintEvent *event)
     if(m_isSelected)
     {
         QPainter painter(this);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
         painter.drawPixmap(width() - 17, height() - 17, 17, 17, QPixmap(":/tiny/lb_selected"));
     }
 }

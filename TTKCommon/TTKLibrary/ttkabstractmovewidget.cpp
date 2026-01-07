@@ -24,6 +24,7 @@ void TTKAbstractMoveWidget::paintEvent(QPaintEvent *event)
     if(m_shadowOption)
     {
         QPainter painter(this);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
         TTK::setBorderShadow(this, &painter);
     }
 }

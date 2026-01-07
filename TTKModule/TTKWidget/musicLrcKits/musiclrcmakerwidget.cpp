@@ -130,6 +130,7 @@ void MusicLrcMakerWidgetItem::paintEvent(QPaintEvent *event)
     }
 
     QPainter painter(this);
+    painter.setRenderHint(QPainter::TextAntialiasing);
     painter.setPen(QColor(0, 0, 0));
     painter.drawText(m_intervalCount, -10, w, 60, Qt::AlignLeft | Qt::AlignVCenter, text());
 

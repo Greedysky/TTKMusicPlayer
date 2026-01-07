@@ -20,9 +20,11 @@ TTKAbstractMoveDialog::TTKAbstractMoveDialog(bool transparent, QWidget *parent)
 void TTKAbstractMoveDialog::paintEvent(QPaintEvent *event)
 {
     QDialog::paintEvent(event);
+
     if(m_shadowOption)
     {
         QPainter painter(this);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
         TTK::setBorderShadow(this, &painter);
     }
 }

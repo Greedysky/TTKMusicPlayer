@@ -100,6 +100,7 @@ void MusicScreenSaverHoverItem::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     TTK::setBorderShadow(this, &painter);
 
     const QPixmap &pixmap = QtLablePixmap(this);

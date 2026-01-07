@@ -115,13 +115,14 @@ void MusicVLayoutAnimationWidget::paintEvent(QPaintEvent *event)
 {
     if(m_isAnimating)
     {
-        QPainter painter(this);
         QPixmap pix(size());
         pix.fill(Qt::transparent);
         m_mainWidget->setAttribute(Qt::WA_TranslucentBackground, true);
         m_mainWidget->render(&pix);
         m_mainWidget->setAttribute(Qt::WA_TranslucentBackground, false);
 
+        QPainter painter(this);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
         painter.translate(0, m_currentValue);
         painter.drawPixmap(0, 0, pix);
         painter.drawPixmap(0, height(), pix);
@@ -159,13 +160,14 @@ void MusicHLayoutAnimationWidget::paintEvent(QPaintEvent *event)
 {
     if(m_isAnimating)
     {
-        QPainter painter(this);
         QPixmap pix(size());
         pix.fill(Qt::transparent);
         m_mainWidget->setAttribute(Qt::WA_TranslucentBackground, true);
         m_mainWidget->render(&pix);
         m_mainWidget->setAttribute(Qt::WA_TranslucentBackground, false);
 
+        QPainter painter(this);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
         painter.translate(m_currentValue, 0);
         painter.drawPixmap(0, 0, pix);
         painter.drawPixmap(width(), 0, pix);

@@ -63,6 +63,7 @@ void MusicLrcPosterItemWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::SmoothPixmapTransform);
     painter.fillRect(rect(), Qt::white);
 
     switch(m_type)
@@ -783,7 +784,6 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
 {
     const int lineHeight = TTK::Widget::fontTextHeight(font());
     const int delta = 5 * ITEM_BORDER + lineHeight;
-    int offset = delta;
     TTKIntList list;
     //
     painter->translate(2 * ITEM_BORDER, 0);
@@ -792,7 +792,7 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
     const QString &title = QString("%1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     list << TTK::Widget::fontTextWidth(font(), title);
-    offset = ITEM_WIDTH - delta;
+    int offset = ITEM_WIDTH - delta;
     painter->drawText(12 * ITEM_BORDER, lineHeight - offset, title);
     painter->setPen(QColor(0x66, 0x66, 0x66));
     for(int i = 0; i < m_data.count(); ++i)

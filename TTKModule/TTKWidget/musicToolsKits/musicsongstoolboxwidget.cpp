@@ -176,7 +176,7 @@ void MusicSongsToolBoxTopWidget::paintEvent(QPaintEvent *event)
     MusicFunctionToolBoxTopWidget::paintEvent(event);
 
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::Antialiasing);
 
     if(m_isActive && TTK::playlistRowValid(m_index))
     {
@@ -215,6 +215,7 @@ void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 
     QWidget::paintEvent(event);
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     QLinearGradient gradient;
     gradient.setStart(0, 32);

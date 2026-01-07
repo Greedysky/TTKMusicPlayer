@@ -38,6 +38,7 @@ void MusicTextSliderWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
 
     painter.fillRect(0, 0, width(), 25, QColor(200, 200, 200, 70));
 

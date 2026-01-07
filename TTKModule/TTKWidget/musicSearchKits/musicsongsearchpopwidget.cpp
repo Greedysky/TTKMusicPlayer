@@ -223,6 +223,7 @@ void MusicSongSearchPopWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(Qt::gray);
     painter.drawRect(QRect(0, 0, width() - 1, height() - 1));
 }

@@ -234,6 +234,7 @@ void MusicGifLabelWidget::paintEvent(QPaintEvent *event)
     Q_UNUSED(event);
 
     QPainter painter(this);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     painter.drawPixmap(0, 0, m_renderer);
 }
 
@@ -296,6 +297,7 @@ void MusicGifLabelMaskWidget::paintEvent(QPaintEvent *event)
     Q_UNUSED(event);
 
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.fillRect(rect(), QColor(50, 50, 50, 150));
 }
 
@@ -313,6 +315,7 @@ void MusicGifLabelValueWidget::paintEvent(QPaintEvent *event)
     Q_UNUSED(event);
 
     QPainter painter(this);
+    painter.setRenderHint(QPainter::TextAntialiasing);
     painter.setPen(QPen(QColor(0x15, 0x8F, 0xE1), 1));
     painter.drawText(rect(), Qt::AlignCenter, QString::number(m_value));
 }

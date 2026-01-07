@@ -20,6 +20,7 @@ void MusicPlayedListTopContainerWidget::paintEvent(QPaintEvent *event)
 {
     QFrame::paintEvent(event);
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
 
     QLinearGradient gradient;
     gradient.setStart(0, 32);
@@ -27,7 +28,6 @@ void MusicPlayedListTopContainerWidget::paintEvent(QPaintEvent *event)
     gradient.setColorAt(0.1, QColor(150, 150, 150, 150));
     gradient.setColorAt(0.9, QColor(180, 180, 180, 50));
     painter.fillRect(0, 32, width(), height(), gradient);
-
     painter.fillRect(QRect(0, 0, width(), height() - 3), QColor(0xED, 0xF8, 0xFE));
 }
 

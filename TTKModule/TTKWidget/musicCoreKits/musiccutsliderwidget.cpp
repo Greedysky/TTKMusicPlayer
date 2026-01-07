@@ -165,6 +165,7 @@ void MusicCutSliderWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
 
     const int lineStartHeight = (m_height - (PAINT_SLIDER_HEIGHT + PAINT_BUTTON_WIDTH)) / 2;
     painter.fillRect(0, lineStartHeight, m_width, PAINT_SLIDER_HEIGHT, QColor(220, 220, 220));
@@ -174,7 +175,6 @@ void MusicCutSliderWidget::paintEvent(QPaintEvent *event)
     const int rightX = m_rightControl->geometry().x();
     painter.fillRect(leftX < rightX ? leftX + PAINT_BUTTON_WIDTH / 2 : rightX + PAINT_BUTTON_WIDTH / 2, lineStartHeight, std::abs(leftX -rightX), PAINT_SLIDER_HEIGHT, QColor(TTK::UI::Color01));
     painter.fillRect(m_position - PAINT_HANDER / 2, lineStartHeight + (PAINT_SLIDER_HEIGHT - PAINT_HANDER) / 2, PAINT_HANDER, PAINT_HANDER, QColor(0, 0, 0));
-
 }
 
 void MusicCutSliderWidget::mousePressEvent(QMouseEvent *event)

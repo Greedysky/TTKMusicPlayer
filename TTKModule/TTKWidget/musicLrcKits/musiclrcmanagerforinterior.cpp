@@ -18,7 +18,7 @@ MusicLrcManagerForInterior::MusicLrcManagerForInterior(QWidget *parent)
 void MusicLrcManagerForInterior::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setRenderHint(QPainter::TextAntialiasing);
 
     QFont font(m_font);
     int value = font.pointSize() - m_gradientFontSize;

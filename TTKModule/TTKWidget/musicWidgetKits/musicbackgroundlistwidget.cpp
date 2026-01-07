@@ -99,15 +99,16 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
 {
     QLabel::paintEvent(event);
 
+    QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::SmoothPixmapTransform);
+
     if(m_selectedEnabled && m_isSelected)
     {
-        QPainter painter(this);
         painter.drawPixmap(width() - 17, height() - 17, 17, 17, QPixmap(":/tiny/lb_selected"));
     }
 
     if(m_printMask)
     {
-        QPainter painter(this);
         painter.fillRect(rect(), QColor(0, 0, 0, 155));
 
         QFont font = painter.font();
@@ -127,7 +128,6 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
 
         if(m_closeEnabled)
         {
-            QPainter painter(this);
             painter.drawPixmap(width() - 18 - 4, 4, 18, 18, QPixmap(":/functions/btn_close_hover"));
         }
     }

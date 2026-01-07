@@ -36,6 +36,7 @@ void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
+    painter.setRenderHint(QPainter::TextAntialiasing);
 
     QFont f(font());
     f.setBold(false);

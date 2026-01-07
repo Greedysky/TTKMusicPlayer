@@ -35,8 +35,8 @@ QPixmap TTK::Image::roundedPixmap(const QPixmap &input, const QPixmap &mask, con
 
     QPixmap image(mask);
     QPainter painter(&image);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.drawPixmap(0, 0, input.scaled(size));
     return image;
 }
@@ -45,9 +45,9 @@ QBitmap TTK::Image::generateMask(const QRect &rect, int ratioX, int ratioY)
 {
     QBitmap mask(rect.size());
     QPainter painter(&mask);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.fillRect(rect, Qt::white);
     painter.setBrush(QColor(0, 0, 0));
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.drawRoundedRect(rect, ratioX, ratioY);
     return mask;
 }
@@ -77,7 +77,7 @@ void TTK::Image::fusionPixmap(QImage &back, const QImage &front, const QPoint &p
     }
 
     QPainter painter(&back);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     painter.drawImage(pt.x(), pt.y(), front);
 }
 
@@ -89,7 +89,7 @@ void TTK::Image::fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint 
     }
 
     QPainter painter(&back);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     painter.drawPixmap(pt.x(), pt.y(), front);
 }
 

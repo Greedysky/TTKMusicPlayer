@@ -23,6 +23,7 @@ void MusicRatingLabel::setValue(int value) noexcept
 void MusicRatingLabel::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
 
     for(int i = 0; i < 5; ++i)
     {

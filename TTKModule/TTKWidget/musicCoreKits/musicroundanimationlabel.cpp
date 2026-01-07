@@ -51,7 +51,7 @@ void MusicRoundAnimationLabel::paintEvent(QPaintEvent *event)
     }
 
     painter.save();
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     painter.translate(cx, cy);
     painter.rotate(m_rotateAngle);
     painter.drawPixmap(rotatedRect, m_pixmap);

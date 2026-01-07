@@ -14,6 +14,7 @@ void TTKThemeLineLabel::paintEvent(QPaintEvent *)
     const int w = QtFontWidth(ftm, text()) + 15;
 
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
     painter.setFont(font());
     painter.drawText(rect(), Qt::AlignLeft | Qt::AlignVCenter, text());
 

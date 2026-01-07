@@ -224,6 +224,7 @@ QPixmap CubeWave::render(const QPixmap &pixmap, int value)
     for(int index = 0; index < d->count(); ++index)
     {
         QPainter painter(&pix);
+        painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
         const int row = index / 8;
         const int column = index % 8;
@@ -446,6 +447,7 @@ QPixmap WaterWave::render(const QPixmap &pixmap, int value)
     pix.fill(Qt::transparent);
 
     QPainter painter(&pix);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.fillRect(d->m_rectangle, QColor(0xFF, 0xFF, 0xFF, qMin(2.55 * 2 * value, 255.0)));
     painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
     painter.drawPixmap(d->m_rectangle, QPixmap::fromImage(image));

@@ -67,5 +67,6 @@ void MusicSplitItemClickedLabel::paintEvent(QPaintEvent *event)
     QLabel::paintEvent(event);
 
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.drawRect(m_lineGeometry);
 }

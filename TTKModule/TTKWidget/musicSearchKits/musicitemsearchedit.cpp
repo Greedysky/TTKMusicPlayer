@@ -27,6 +27,7 @@ void MusicItemSearchEdit::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(QColor(0x66, 0x66, 0x66)));
     painter.drawLine(0, 0, width() - 1, 0);
     painter.drawLine(0, 0, 0, height() - 1);
@@ -74,6 +75,7 @@ void MusicItemQueryEdit::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.fillRect(rect(), QColor(255, 255, 255, 180));
 
     painter.setPen(QPen(QColor(0x66, 0x66, 0x66)));

@@ -160,8 +160,9 @@ QRecLevel QRCodeQWidget::level() const
 void QRCodeQWidget::paintEvent(QPaintEvent *event)
 {
     TTK_D(const QRCodeQWidget);
-    QWidget::paintEvent (event);
+    QWidget::paintEvent(event);
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     QRcode *qrcode = QRcode_encodeString(d->m_text.constData(), 7, d->m_level, d->m_mode, d->m_casesen);
     if(qrcode)
