@@ -558,6 +558,7 @@ MusicCloudDataItem MusicCloudManagerTableWidget::FindWaitedItemRow() const
 MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     : QWidget(parent)
 {
+    setObjectName(MusicCloudManagerWidget::metaObject()->className());
     setStyleSheet(TTK::UI::BackgroundStyle10 + TTK::UI::ColorStyle02);
 
     QVBoxLayout *layout = new QVBoxLayout(this);

@@ -178,11 +178,11 @@ public:
     /*!
      * Function button style clear.
      */
-    void buttonStyleClear(bool fore);
+    void reset(bool fore);
     /*!
      * Function button style switch.
      */
-    void buttonStyleSwitch(int index);
+    void select(int index);
 
 public Q_SLOTS:
     /*!

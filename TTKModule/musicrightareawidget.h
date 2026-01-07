@@ -299,6 +299,10 @@ private:
      */
     void functionInitialize();
     /*!
+     * Function widget clean up.
+     */
+    void functionCleanup();
+    /*!
      * Create kugou web window.
      */
     void createkWebWindow(int type);
@@ -307,8 +311,8 @@ private:
     QVariant m_rawData;
     bool m_lowPowerMode;
     FunctionModule m_funcIndex;
-    QWidget *m_stackedWidget;
-    QWidget *m_stackedStandWidget;
+    QWidget *m_currentWidget;
+    QWidget *m_permanentWidget;
     MusicSettingWidget *m_settingWidget;
     MusicVideoPlayWidget *m_videoPlayerWidget;
     MusicLrcAnalysis *m_lrcAnalysis;

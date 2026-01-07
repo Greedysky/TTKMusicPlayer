@@ -35,6 +35,11 @@ MusicSongDailyWidget::~MusicSongDailyWidget()
 
 void MusicSongDailyWidget::resizeWidget()
 {
+    if(m_image.isNull())
+    {
+        return;
+    }
+
     const double scale = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() * 1.0 / WINDOW_WIDTH_MIN;
 
     QFont font = m_note->font();
