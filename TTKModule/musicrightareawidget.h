@@ -311,6 +311,8 @@ private:
     QVariant m_rawData;
     bool m_lowPowerMode;
     FunctionModule m_funcIndex;
+    int m_lastWidgetIndex;
+    FunctionModule m_lastFuncIndex;
     QWidget *m_currentWidget;
     QWidget *m_permanentWidget;
     MusicSettingWidget *m_settingWidget;
@@ -319,7 +321,7 @@ private:
     MusicLrcContainerForInterior *m_lrcForInterior;
     MusicLrcContainerForDesktop *m_lrcForDesktop;
     MusicLrcContainerForWallpaper *m_lrcForWallpaper;
-    MusicDownloadStatusModule *m_downloadStatusObject;
+    MusicDownloadStatusModule *m_downloadStatus;
 
     static MusicRightAreaWidget *m_instance;
 

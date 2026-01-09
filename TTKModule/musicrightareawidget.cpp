@@ -47,6 +47,8 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent),
       m_lowPowerMode(false),
       m_funcIndex(KugGouSongWidget),
+      m_lastWidgetIndex(0),
+      m_lastFuncIndex(KugGouSongWidget),
       m_currentWidget(nullptr),
       m_permanentWidget(nullptr),
       m_videoPlayerWidget(nullptr),
@@ -59,7 +61,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_lrcAnalysis = new MusicLrcAnalysis(this);
     m_lrcAnalysis->setLineMax(MUSIC_LRC_INTERIOR_MAX_LINE);
 
-    m_downloadStatusObject = new MusicDownloadStatusModule(parent);
+    m_downloadStatus = new MusicDownloadStatusModule(parent);
     m_settingWidget = new MusicSettingWidget(this);
     connect(m_settingWidget, SIGNAL(parameterSettingChanged()), parent, SLOT(applyParameter()));
 }
@@ -67,7 +69,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
 MusicRightAreaWidget::~MusicRightAreaWidget()
 {
     delete m_settingWidget;
-    delete m_downloadStatusObject;
+    delete m_downloadStatus;
     delete m_lrcForDesktop;
     delete m_lrcForWallpaper;
 
@@ -218,7 +220,7 @@ void MusicRightAreaWidget::findTimePosition(qint64 time) const
 
 void MusicRightAreaWidget::checkMetaDataValid(bool mode) const
 {
-    m_downloadStatusObject->checkMetaDataValid(mode);
+    m_downloadStatus->checkMetaDataValid(mode);
 }
 
 void MusicRightAreaWidget::showSettingWidget() const
@@ -310,16 +312,44 @@ void MusicRightAreaWidget::functionGoBack()
         return;
     }
 
-    const int index = m_ui->functionsContainer->currentIndex() - 1;
-    m_ui->functionsContainer->setCurrentIndex(index);
+    m_funcIndex = m_lastFuncIndex;
+    const int index = TTKStaticCast(int, m_funcIndex);
+
+    if(0 <= index && index <= LrcWidget)
+    {
+        if(index != kugouPlaylistWidget)
+        {
+            m_ui->functionOptionWidget->switchToSelectedItemStyle(index);
+        }
+        else
+        {
+            disconnect(m_ui->functionOptionWidget, SIGNAL(buttonClicked(int)), this, SLOT(functionClicked(int)));
+            m_ui->functionOptionWidget->switchToSelectedItemStyle(kugouPlaylistWidget);
+            connect(m_ui->functionOptionWidget, SIGNAL(buttonClicked(int)), this, SLOT(functionClicked(int)));
+
+            functionInitialize();
+            m_ui->functionOptionWidget->select(kugouPlaylistWidget);
+            m_ui->functionsContainer->setCurrentIndex(m_lastWidgetIndex);
+            Q_EMIT updateBackgroundTheme();
+        }
+    }
+    else
+    {
+        functionInitialize();
+        m_ui->functionsContainer->setCurrentIndex(m_lastWidgetIndex);
+        Q_EMIT updateBackgroundTheme();
+    }
+
     m_ui->backButton->setEnabled(false);
 }
 
 void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 {
-    functionCleanup();
-
+    m_lastFuncIndex = m_funcIndex;
+    m_lastWidgetIndex = m_ui->functionsContainer->currentIndex();
     m_funcIndex = TTKStaticCast(FunctionModule, index);
+
+    functionCleanup();
     functionInitialize();
 
     if(widget)
@@ -885,6 +915,15 @@ void MusicRightAreaWidget::functionCleanup()
         if(w->objectName() == "MusicCloudManagerWidget")
         {
             // permanent widget
+            continue;
+        }
+
+        if(index < m_lastWidgetIndex)
+        {
+            --m_lastWidgetIndex;
+        }
+        else if(index == m_lastWidgetIndex)
+        {
             continue;
         }
 
