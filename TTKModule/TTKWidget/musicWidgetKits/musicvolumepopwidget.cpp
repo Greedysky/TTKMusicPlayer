@@ -26,15 +26,15 @@ void MusicVolumePopWidget::setValue(int value)
     m_slider->blockSignals(false);
 
     QString style = TTK::UI::BtnSound;
-    if(66 < value && value <=100)
+    if(66 < value && value <= 100)
     {
         style += "QToolButton{ margin-left:-60px; }";
     }
-    else if(33 < value && value <=66)
+    else if(33 < value && value <= 66)
     {
         style += "QToolButton{ margin-left:-40px; }";
     }
-    else if(0 < value && value <=33)
+    else if(0 < value && value <= 33)
     {
         style += "QToolButton{ margin-left:-20px; }";
     }

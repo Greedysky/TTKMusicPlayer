@@ -107,7 +107,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication *ui)
     //
     connect(m_lrcForInterior, SIGNAL(showCurrentLrcColorSetting()), m_settingWidget, SLOT(changeInteriorLrcWidget()));
     connect(m_lrcForInterior, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(currentLrcUpdated()));
-    connect(m_lrcForInterior, SIGNAL(backgroundChanged()), SIGNAL(updateBackgroundThemeDownload()));
+    connect(m_lrcForInterior, SIGNAL(backgroundChanged()), MusicTopAreaWidget::instance(), SLOT(backgroundThemeDownloadFinished()));
     connect(m_lrcForInterior, SIGNAL(showCurrentLrcSetting()), MusicApplication::instance(), SLOT(showSettingWidget()));
     connect(m_lrcForInterior, SIGNAL(updateCurrentTime(qint64)), MusicApplication::instance(), SLOT(updateCurrentTime(qint64)));
     connect(ui->backButton, SIGNAL(clicked()), SLOT(functionGoBack()));
@@ -330,14 +330,14 @@ void MusicRightAreaWidget::functionGoBack()
             functionInitialize();
             m_ui->functionOptionWidget->select(kugouPlaylistWidget);
             m_ui->functionsContainer->setCurrentIndex(m_lastWidgetIndex);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
         }
     }
     else
     {
         functionInitialize();
         m_ui->functionsContainer->setCurrentIndex(m_lastWidgetIndex);
-        Q_EMIT updateBackgroundTheme();
+        MusicTopAreaWidget::instance()->backgroundTransparentChanged();
     }
 
     m_ui->backButton->setEnabled(false);
@@ -357,7 +357,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         m_permanentWidget = widget;
         m_ui->functionsContainer->addWidget(m_permanentWidget);
         m_ui->functionsContainer->setCurrentWidget(m_permanentWidget);
-        Q_EMIT updateBackgroundTheme();
+        MusicTopAreaWidget::instance()->backgroundTransparentChanged();
         return;
     }
 
@@ -371,13 +371,13 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case KugGouSongWidget: //insert kugou song widget
         {
             createkWebWindow(QKugouWindow::Song);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case KugGouRadioWidget: //insert kugou radio widget
         {
             createkWebWindow(QKugouWindow::Radio);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case kugouPlaylistWidget: //insert kugou playlist widget
@@ -386,13 +386,13 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->setCurrentValue({});
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case kugouMovieWidget: //insert kugou movie widget
         {
             createkWebWindow(QKugouWindow::Movie);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case VideoWidget: //insert video widget
@@ -407,7 +407,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_videoPlayerWidget->popupMode(false);
             m_ui->functionsContainer->addWidget(m_videoPlayerWidget);
             m_ui->functionsContainer->setCurrentWidget(m_videoPlayerWidget);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case LrcWidget: //insert lrc display widget
@@ -415,7 +415,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_ui->functionsContainer->setCurrentIndex(MUSIC_LRC_PAGE);
             m_ui->lrcDisplayAllButton->setStyleSheet(TTK::UI::TinyBtnLrcCollapse);
             m_ui->lrcDisplayAllButton->setVisible(true);
-            Q_EMIT updateBackgroundThemeDownload();
+            MusicTopAreaWidget::instance()->backgroundThemeDownloadFinished();
             break;
         }
         case RecommendWidget: //insert recommend found widget
@@ -424,7 +424,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->setCurrentValue({});
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case ToplistWidget: //insert toplist found widget
@@ -433,7 +433,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->setCurrentValue({});
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case ArtistCategoryWidget: //insert artist category found widget
@@ -442,7 +442,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->setCurrentValue({});
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case PlaylistCategoryWidget: //insert playlist category widget
@@ -450,7 +450,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicPlaylistCategoryWidget *widget = new MusicPlaylistCategoryWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case SearchWidget: //insert search display widget
@@ -471,13 +471,13 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             }
 
             m_ui->functionsContainer->setCurrentIndex(MUSIC_SEARCH_PAGE);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case SearchSingleWidget: //insert search display widget
         {
             m_ui->functionsContainer->setCurrentIndex(MUSIC_SEARCH_PAGE);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case SimilarWidget: //insert similar found widget
@@ -485,7 +485,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicSimilarQueryWidget *widget = new MusicSimilarQueryWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case AlbumWidget: //insert album found widget
@@ -493,7 +493,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicAlbumQueryWidget *widget = new MusicAlbumQueryWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case ArtistWidget: //insert artist found widget
@@ -501,7 +501,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicArtistQueryWidget *widget = new MusicArtistQueryWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case PlaylistWidget: //insert playlist found widget
@@ -509,7 +509,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicPlaylistQueryWidget *widget = new MusicPlaylistQueryWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case SongDailyWidget: //insert song daily widget
@@ -517,7 +517,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicSongDailyWidget *widget = new MusicSongDailyWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case AdvancedSearchWidget: //insert advanced search widget
@@ -525,7 +525,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicAdvancedSearchedWidget *widget = new MusicAdvancedSearchedWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case IndentifyWidget: //insert indentify songs widget
@@ -535,7 +535,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->queryIdentifyKey();
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
 #else
             MusicToastLabel::popup(tr("Unsupported identify song module"));
 #endif
@@ -544,7 +544,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case KuiSheWidget: //insert kugou kuishe widget
         {
             createkWebWindow(QKugouWindow::Single);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case WebDJRadioWidget: //insert web dj radio widget
@@ -553,7 +553,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->initialize();
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case WebMVRadioWidget: //insert web mv radio widget
@@ -562,7 +562,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->setCurrentValue({});
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case WebPVRadioWidget: //insert web pv radio widget
@@ -570,7 +570,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicPersonalRadioQueryWidget *widget = new MusicPersonalRadioQueryWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case ScreenSaverWidget: //insert screen saver widget
@@ -578,7 +578,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicScreenSaverWidget *widget = new MusicScreenSaverWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         case PlaylistBackupWidget: //insert playlist backup widget
@@ -586,7 +586,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicPlaylistBackupWidget *widget = new MusicPlaylistBackupWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
-            Q_EMIT updateBackgroundTheme();
+            MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
         default: break;

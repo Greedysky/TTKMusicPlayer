@@ -113,7 +113,6 @@ void MusicRemoteWidget::setVolumeValue(int index)
 {
     blockSignals(true);
     m_volumeSlider->setValue(index);
-    volumeChanged(index);
     blockSignals(false);
 }
 
@@ -153,15 +152,15 @@ void MusicRemoteWidget::setLabelText(const QString &text)
 void MusicRemoteWidget::volumeSliderChanged(int value)
 {
     QString style = TTK::UI::TinyBtnSoundWhite;
-    if(66 < value && value <=100)
+    if(66 < value && value <= 100)
     {
         style += "QToolButton{ margin-left:-48px; }";
     }
-    else if(33 < value && value <=66)
+    else if(33 < value && value <= 66)
     {
         style += "QToolButton{ margin-left:-32px; }";
     }
-    else if(0 < value && value <=33)
+    else if(0 < value && value <= 33)
     {
         style += "QToolButton{ margin-left:-16px; }";
     }

@@ -88,15 +88,15 @@ void MusicSystemTrayMenu::setVolumeValue(int value) const
     m_volumeSlider->blockSignals(false);
 
     QString style = TTK::UI::TinyBtnSound;
-    if(66 < value && value <=100)
+    if(66 < value && value <= 100)
     {
         style += "QToolButton{ margin-left:-48px; }";
     }
-    else if(33 < value && value <=66)
+    else if(33 < value && value <= 66)
     {
         style += "QToolButton{ margin-left:-32px; }";
     }
-    else if(0 < value && value <=33)
+    else if(0 < value && value <= 33)
     {
         style += "QToolButton{ margin-left:-16px; }";
     }

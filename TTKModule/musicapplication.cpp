@@ -57,9 +57,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_leftAreaWidget->setupUi(m_ui);
     m_topAreaWidget->backgroundAnimationChanged(false);
 
-    connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(backgroundTransparentChanged()));
-    connect(m_rightAreaWidget, SIGNAL(updateBackgroundThemeDownload()), m_topAreaWidget, SLOT(backgroundThemeDownloadFinished()));
-
     m_playlist->setPlaybackMode(TTK::PlayMode::Order); //The default is the order of play
     m_ui->playedListButton->setPlaylist(m_playlist);
     m_player->setPlaylist(m_playlist);

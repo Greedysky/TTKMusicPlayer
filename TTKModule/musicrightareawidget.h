@@ -165,16 +165,6 @@ public:
      */
     void applyParameter();
 
-Q_SIGNALS:
-    /*!
-     * Current background transparent changed.
-     */
-    void updateBackgroundTheme();
-    /*!
-     * Current background skin download.
-     */
-    void updateBackgroundThemeDownload();
-
 public Q_SLOTS:
     /*!
      * Function go back clicked.
