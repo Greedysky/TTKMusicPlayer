@@ -196,14 +196,14 @@ void MusicSongsListPlayWidget::changItemName(const QString &name)
 
 void MusicSongsListPlayWidget::currentLoveStateClicked()
 {
-    const bool state = MusicApplication::instance()->containsLovestItem();
+    const bool state = MusicApplication::instance()->containsLovestMedia();
     m_loveButton->setStyleSheet(state ? TTK::UI::TinyBtnLove : TTK::UI::TinyBtnUnLove);
 }
 
 void MusicSongsListPlayWidget::currentDownloadStateClicked()
 {
     bool exist = false;
-    MusicApplication::instance()->containsDownloadItem(exist);
+    MusicApplication::instance()->containsDownloadMedia(exist);
     m_downloadButton->setStyleSheet(exist ? TTK::UI::TinyBtnDownload : TTK::UI::TinyBtnUnDownload);
 }
 

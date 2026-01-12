@@ -96,7 +96,7 @@ void MusicLeftAreaWidget::downloadSongToLocal()
 void MusicLeftAreaWidget::downloadSongFinished()
 {
     bool exist = false;
-    MusicApplication::instance()->containsDownloadItem(exist);
+    MusicApplication::instance()->containsDownloadMedia(exist);
     m_ui->downloadButton->setStyleSheet(exist ? TTK::UI::BtnDownload : TTK::UI::BtnUnDownload);
     Q_EMIT currentDownloadStateChanged();
 }

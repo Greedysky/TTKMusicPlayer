@@ -214,7 +214,7 @@ void MusicApplication::importSongsByOutside(const QString &path, bool play)
     }
 }
 
-QString MusicApplication::containsDownloadItem(bool &contains) const
+QString MusicApplication::containsDownloadMedia(bool &contains) const
 {
     contains = false;
     QString path;
@@ -239,7 +239,7 @@ QString MusicApplication::containsDownloadItem(bool &contains) const
     return path;
 }
 
-bool MusicApplication::containsLovestItem() const
+bool MusicApplication::containsLovestMedia() const
 {
     if(m_songTreeWidget->playRowIndex() != TTK_NORMAL_LEVEL)
     {
@@ -256,7 +256,7 @@ bool MusicApplication::containsLovestItem() const
     return false;
 }
 
-bool MusicApplication::containsLovestItem(int index) const
+bool MusicApplication::containsLovestMedia(int index) const
 {
     if(m_songTreeWidget->currentIndex() != TTK_NORMAL_LEVEL && index > TTK_NORMAL_LEVEL)
     {
@@ -352,10 +352,10 @@ void MusicApplication::showCurrentSong()
         name = currentFileName();
         ///detecting whether the file has been downloaded
         bool exist = false;
-        containsDownloadItem(exist);
+        containsDownloadMedia(exist);
         m_ui->downloadButton->setStyleSheet(exist ? TTK::UI::BtnDownload : TTK::UI::BtnUnDownload);
         //
-        exist = containsLovestItem();
+        exist = containsLovestMedia();
         m_ui->bestLoveButton->setStyleSheet(exist ? TTK::UI::BtnLove : TTK::UI::BtnUnLove);
         //
         m_songTreeWidget->selectRow(index);
@@ -715,7 +715,7 @@ void MusicApplication::addSongToLovestList(bool state)
     bool contains = true;
     if(state)
     {
-        contains = containsLovestItem();
+        contains = containsLovestMedia();
         if(contains)
         {
             m_songTreeWidget->songToLovestListAt(false, index);

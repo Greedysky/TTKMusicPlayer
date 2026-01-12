@@ -294,7 +294,7 @@ void MusicSongsListPlayTableWidget::itemCellEntered(int row, int column)
 
     if(it = item(row, 3))
     {
-        const bool contains = MusicApplication::instance()->containsLovestItem(row);
+        const bool contains = MusicApplication::instance()->containsLovestMedia(row);
         it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
     }
 
@@ -360,7 +360,7 @@ void MusicSongsListPlayTableWidget::itemCellClicked(int row, int column)
 
             if(empty)
             {
-                const bool contains = !MusicApplication::instance()->containsLovestItem(row);
+                const bool contains = !MusicApplication::instance()->containsLovestMedia(row);
                 QTableWidgetItem *it = item(row, 3);
                 if(it)
                 {

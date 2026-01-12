@@ -33,8 +33,8 @@ QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
     }
     m_pageItems << (new TTKClickedLabel("<<", m_pageWidget)) << (new TTKClickedLabel(">>", m_pageWidget));
 
-    TTKClickedGroup *group = new TTKClickedGroup(this);
-    connect(group, SIGNAL(clicked(int)), SIGNAL(clicked(int)));
+    TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
+    connect(clickedGroup, SIGNAL(clicked(int)), SIGNAL(clicked(int)));
 
     for(TTKClickedLabel *label : qAsConst(m_pageItems))
     {
@@ -43,7 +43,7 @@ QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
         label->setFont(font);
         label->setStyleSheet(TTK::UI::ColorStyle04);
         label->setFixedWidth(TTK::Widget::fontTextWidth(font, label->text()));
-        group->mapped(label);
+        clickedGroup->mapped(label);
     }
 
     m_pageItems[MAX_PAGE_SIZE]->hide();

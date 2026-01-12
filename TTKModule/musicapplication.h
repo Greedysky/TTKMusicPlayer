@@ -84,15 +84,15 @@ public:
     /*!
      * Get media current song item download contains.
      */
-    QString containsDownloadItem(bool &contains) const;
+    QString containsDownloadMedia(bool &contains) const;
     /*!
      * Get media current song lovest item contains.
      */
-    bool containsLovestItem() const;
+    bool containsLovestMedia() const;
     /*!
      * Get media list current song lovest item contains.
      */
-    bool containsLovestItem(int index) const;
+    bool containsLovestMedia(int index) const;
     /*!
      * Update current artist when it download finished.
      */

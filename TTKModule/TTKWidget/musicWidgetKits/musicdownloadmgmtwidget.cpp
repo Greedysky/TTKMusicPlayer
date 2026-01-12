@@ -56,7 +56,7 @@ void MusicDownloadResetWidget::restartToRequest()
 void MusicDownloadResetWidget::openFileLocation()
 {
     bool exist = false;
-    const QString &path = MusicApplication::instance()->containsDownloadItem(exist);
+    const QString &path = MusicApplication::instance()->containsDownloadMedia(exist);
     if(exist)
     {
         TTK::Url::openUrl(path);
@@ -75,7 +75,7 @@ MusicDownloadMgmtWidget::MusicDownloadMgmtWidget(QObject *parent)
 void MusicDownloadMgmtWidget::initialize(const QString &name)
 {
     bool exist = false;
-    MusicApplication::instance()->containsDownloadItem(exist);
+    MusicApplication::instance()->containsDownloadMedia(exist);
 
     if(exist)
     {
