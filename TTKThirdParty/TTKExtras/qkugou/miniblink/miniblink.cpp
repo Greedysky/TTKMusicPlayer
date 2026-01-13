@@ -108,6 +108,6 @@ void Miniblink::reload()
 void Miniblink::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event);
-    const double dpi = TTKDesktopScreen::logicDotsPerInch() / 96.0;
+    const qreal dpi = TTKDesktopScreen::currentPixelRatio();
     wkeResize(m_webView, width() * dpi, height() * dpi);
 }

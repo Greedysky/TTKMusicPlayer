@@ -86,21 +86,17 @@ public:
     static QPixmap grabWindow(int x = 0, int y = 0, int w = -1, int h = -1);
 
     /*!
-     * Get local DPI x.
+     * Get device dpi by given screen index.
      */
-    static int dotsPerInchX();
+    static int deviceDotsPerInch(int index = 0);
     /*!
-     * Get local DPI y.
+     * Get device pixel ratio by given screen index.
      */
-    static int dotsPerInchY();
+    static qreal devicePixelRatio(int index = 0);
     /*!
-     * Get local DPI.
+     * Get current device pixel ratio in cursor pos.
      */
-    static int dotsPerInch();
-    /*!
-     * Get logic DPI.
-     */
-    static int logicDotsPerInch();
+    static qreal currentPixelRatio();
 
 };
 

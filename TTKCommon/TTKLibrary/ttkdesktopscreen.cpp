@@ -159,25 +159,10 @@ static QSize generateDPIValue()
 {
     QSize dpiSize(DEFAULT_DPI, DEFAULT_DPI);
 #ifdef Q_OS_WIN
-    MONITORINFOEX miex;
-    miex.cbSize = sizeof(miex);
-
-    HMONITOR monitor = MonitorFromWindow(GetDesktopWindow(), MONITOR_DEFAULTTONEAREST);
-    if(!GetMonitorInfo(monitor, &miex))
-    {
-        return dpiSize;
-    }
-
-    DEVMODE dm;
-    dm.dmSize = sizeof(dm);
-    dm.dmDriverExtra = 0;
-    if(!EnumDisplaySettings(miex.szDevice, ENUM_CURRENT_SETTINGS, &dm))
-    {
-        return dpiSize;
-    }
-
-    dpiSize.setWidth(dm.dmPelsWidth * DEFAULT_DPI * 1.0 / (miex.rcMonitor.right - miex.rcMonitor.left));
-    dpiSize.setHeight(dm.dmPelsHeight * DEFAULT_DPI * 1.0 / (miex.rcMonitor.bottom - miex.rcMonitor.top));
+    HDC screen = GetDC(GetDesktopWindow());
+    dpiSize.setWidth(GetDeviceCaps(screen, LOGPIXELSX));
+    dpiSize.setHeight(GetDeviceCaps(screen, LOGPIXELSY));
+    ReleaseDC(GetDesktopWindow(), screen);
 #elif defined Q_OS_LINUX
     Display *dp = XOpenDisplay(nullptr);
     if(!dp)
@@ -241,34 +226,25 @@ static QSize generateDPIValue()
     return dpiSize;
 }
 
-int TTKDesktopScreen::dotsPerInchX()
+int TTKDesktopScreen::deviceDotsPerInch(int index)
 {
-    const QSize dpiSize(generateDPIValue());
-    return dpiSize.width();
+    return devicePixelRatio(index) * DEFAULT_DPI;
 }
 
-int TTKDesktopScreen::dotsPerInchY()
+qreal TTKDesktopScreen::devicePixelRatio(int index)
 {
-    const QSize dpiSize(generateDPIValue());
-    return dpiSize.height();
-}
-
-int TTKDesktopScreen::dotsPerInch()
-{
-    const QSize dpiSize(generateDPIValue());
-    return (dpiSize.width() + dpiSize.height()) / 2;
-}
-
-int TTKDesktopScreen::logicDotsPerInch()
-{
-    QSize dpiSize(DEFAULT_DPI, DEFAULT_DPI);
-#ifdef Q_OS_WIN
-    HDC screen = GetDC(GetDesktopWindow());
-    dpiSize.setWidth(GetDeviceCaps(screen, LOGPIXELSX));
-    dpiSize.setHeight(GetDeviceCaps(screen, LOGPIXELSY));
-    ReleaseDC(GetDesktopWindow(), screen);
+#if TTK_QT_VERSION_CHECK(5,5,0)
+    const QList<QScreen*> &screens = QApplication::screens();
+    return (index < 0 || index >= screens.count()) ? 1.0 : screens[index]->devicePixelRatio();
 #else
-    dpiSize = generateDPIValue();
+    Q_UNUSED(index);
+    const QSize &size = generateDPIValue();
+    return 1.0 * (size.width() + size.height()) / 2 / DEFAULT_DPI;
 #endif
-    return (dpiSize.width() + dpiSize.height()) / 2;
+}
+
+qreal TTKDesktopScreen::currentPixelRatio()
+{
+    const int index = currentIndex();
+    return devicePixelRatio(index);
 }

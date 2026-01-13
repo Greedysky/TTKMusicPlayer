@@ -61,7 +61,7 @@ void TTK::initialize(TTK::Attribute attr)
         QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #    endif
 #  elif TTK_QT_VERSION_CHECK(5,6,0)
-      const float dpi = TTKDesktopScreen::dotsPerInch() / 96.0;
+      const qreal dpi = TTKDesktopScreen::currentPixelRatio();
       qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
 #  endif
 #endif
