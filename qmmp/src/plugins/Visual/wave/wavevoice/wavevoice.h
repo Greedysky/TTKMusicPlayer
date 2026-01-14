@@ -49,7 +49,7 @@ private:
     void createPalette(int row);
     void initialize();
 
-    VisualPalette::Palette m_palette= VisualPalette::PALETTE_DEFAULT;
+    VisualPalette::Palette m_palette = VisualPalette::PALETTE_DEFAULT;
     QImage m_backgroundImage;
     int m_offset = 0;
     int *m_xscale = nullptr;
