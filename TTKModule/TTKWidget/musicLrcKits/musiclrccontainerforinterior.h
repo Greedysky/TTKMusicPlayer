@@ -233,7 +233,7 @@ private:
      */
     void resizeWidth(int w, int h);
 
-    QPoint m_mousePressedAt;
+    QPoint m_pressedPos;
     int m_lrcChangeOffset, m_lrcChangeDelta;
     bool m_mouseLeftPressed, m_lrcChangeState, m_mouseMoved;
 

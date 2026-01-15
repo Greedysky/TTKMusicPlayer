@@ -52,7 +52,7 @@ private:
     virtual void mouseMoveEvent(QMouseEvent *event) override final;
     virtual void mouseReleaseEvent(QMouseEvent *event) override final;
 
-    QPoint m_mousePressedAt;
+    QPoint m_pressedPos;
     bool m_mouseLeftPressed;
 
 };

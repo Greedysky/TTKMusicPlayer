@@ -21,8 +21,8 @@ TTKAbstractMoveResizeWidget::TTKAbstractMoveResizeWidget(bool transparent, QWidg
     : QWidget(parent),
       m_direction(TTK::Direction::No)
 {
-    m_struct.m_borderPressed = false;
-    m_struct.m_mouseLeftPressed = false;
+    m_borderPressed = false;
+    m_mouseLeftPressed = false;
 
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground, transparent);
@@ -44,7 +44,7 @@ bool TTKAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
 void TTKAbstractMoveResizeWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
-    if(m_struct.m_borderPressed || m_direction == TTK::Direction::No)
+    if(m_borderPressed || m_direction == TTK::Direction::No)
     {
         return;
     }
@@ -61,21 +61,21 @@ void TTKAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
 
-    m_struct.m_pressedSize = size();
-    m_struct.m_borderPressed = false;
+    m_pressedSize = size();
+    m_borderPressed = false;
     setFocus();
 
     if(event->button() == Qt::LeftButton)
     {
-        m_struct.m_windowPos = pos();
+        m_windowPos = pos();
         if(QRect(DISTANCE + 1, DISTANCE + 1, width() - (DISTANCE + 1) * 2, height() - (DISTANCE + 1) * 2).contains(event->pos()))
         {
-            m_struct.m_mousePos = QtGlobalPosition(event);
-            m_struct.m_mouseLeftPressed = true;
+            m_pressedPos = QtGlobalPosition(event);
+            m_mouseLeftPressed = true;
         }
         else
         {
-            m_struct.m_borderPressed = true;
+            m_borderPressed = true;
         }
     }
 }
@@ -83,19 +83,19 @@ void TTKAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)
 void TTKAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
-    !m_struct.m_borderPressed ? sizeDirection() : moveDirection();
+    !m_borderPressed ? sizeDirection() : moveDirection();
 
-    if(m_struct.m_mouseLeftPressed)
+    if(m_mouseLeftPressed)
     {
-        move(m_struct.m_windowPos + QtGlobalPosition(event) - m_struct.m_mousePos);
+        move(m_windowPos + QtGlobalPosition(event) - m_pressedPos);
     }
 }
 
 void TTKAbstractMoveResizeWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     QWidget::mouseReleaseEvent(event);
-    m_struct.m_borderPressed = false;
-    m_struct.m_mouseLeftPressed = false;
+    m_borderPressed = false;
+    m_mouseLeftPressed = false;
     setCursor(QCursor(Qt::ArrowCursor));
     m_direction = TTK::Direction::No;
 }
@@ -199,8 +199,8 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             int wValue = pos().x() + width() - xValue;
             int hValue = pos().y() + height() - yValue;
 
-            const int twValue = m_struct.m_windowPos.x() + m_struct.m_pressedSize.width();
-            const int thValue = m_struct.m_windowPos.y() + m_struct.m_pressedSize.height();
+            const int twValue = m_windowPos.x() + m_pressedSize.width();
+            const int thValue = m_windowPos.y() + m_pressedSize.height();
 
             if(twValue - xValue >= maximumWidth())
             {
@@ -237,25 +237,25 @@ void TTKAbstractMoveResizeWidget::moveDirection()
 
             if(hValue >= maximumHeight())
             {
-                yValue = m_struct.m_windowPos.y() + m_struct.m_pressedSize.height() - height();
+                yValue = m_windowPos.y() + m_pressedSize.height() - height();
                 hValue = maximumHeight();
             }
 
             if(hValue <= minimumHeight())
             {
-                yValue = m_struct.m_windowPos.y() + m_struct.m_pressedSize.height() - height();
+                yValue = m_windowPos.y() + m_pressedSize.height() - height();
                 hValue = minimumHeight();
             }
 
-            GEOMETRY(m_struct.m_windowPos.x(), yValue, wValue, hValue);
+            GEOMETRY(m_windowPos.x(), yValue, wValue, hValue);
             break;
         }
         case TTK::Direction::LeftBottom:
         {
             int wValue = x() + width() - point.x();
-            const int hValue = point.y() - m_struct.m_windowPos.y();
+            const int hValue = point.y() - m_windowPos.y();
             int xValue = point.x();
-            const int twValue = m_struct.m_windowPos.x() + m_struct.m_pressedSize.width();
+            const int twValue = m_windowPos.x() + m_pressedSize.width();
 
             if(twValue - xValue >= maximumWidth())
             {
@@ -269,14 +269,14 @@ void TTKAbstractMoveResizeWidget::moveDirection()
                 wValue = minimumWidth();
             }
 
-            GEOMETRY(xValue, m_struct.m_windowPos.y(), wValue, hValue);
+            GEOMETRY(xValue, m_windowPos.y(), wValue, hValue);
             break;
         }
         case TTK::Direction::RightBottom:
         {
             const int wValue = point.x() - x();
             const int hValue = point.y() - y();
-            GEOMETRY(m_struct.m_windowPos.x(), m_struct.m_windowPos.y(), wValue, hValue);
+            GEOMETRY(m_windowPos.x(), m_windowPos.y(), wValue, hValue);
             break;
         }
         default: break;

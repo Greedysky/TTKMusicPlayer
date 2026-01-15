@@ -3,6 +3,7 @@
 #include "musicextractmanager.h"
 #include "musicfileutils.h"
 #include "musiccolordialog.h"
+#include "musicbackgroundmanager.h"
 #include "musicbackgroundconfigmanager.h"
 
 ToolSkin::ToolSkin(QWidget *parent)
@@ -20,6 +21,8 @@ ToolSkin::ToolSkin(QWidget *parent)
     connect(m_ui->paletteButton, SIGNAL(clicked()), SLOT(paletteClicked()));
     connect(m_ui->readButton, SIGNAL(clicked()), SLOT(readClicked()));
     connect(m_ui->writeButton, SIGNAL(clicked()), SLOT(writeClicked()));
+
+    G_BACKGROUND_PTR->setBackgroundUrl(":/color/lb_blue");
 }
 
 ToolSkin::~ToolSkin()

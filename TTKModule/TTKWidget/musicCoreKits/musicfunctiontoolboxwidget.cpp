@@ -142,14 +142,14 @@ void MusicFunctionToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         Q_EMIT itemIndexChanged(m_index);
-        m_mousePressedAt = event->pos();
+        m_pressedPos = event->pos();
     }
 }
 
 void MusicFunctionToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
-    QRect itemRect(m_mousePressedAt.x() - 2, m_mousePressedAt.y() - 2, m_mousePressedAt.x() + 2, m_mousePressedAt.y() + 2);
+    QRect itemRect(m_pressedPos.x() - 2, m_pressedPos.y() - 2, m_pressedPos.x() + 2, m_pressedPos.y() + 2);
     if(!itemRect.contains(event->pos()) && isItemEnabled())
     {
         if(!m_isBlockMoveExpand && isExpand())

@@ -23,18 +23,6 @@
 #include <QMouseEvent>
 #include "ttkmoduleexport.h"
 
-/*! @brief The class of the moving resize struct.
- * @author Greedysky <greedysky@163.com>
- */
-struct TTK_MODULE_EXPORT MoveResizeData
-{
-    bool m_borderPressed;
-    bool m_mouseLeftPressed;
-    QPoint m_mousePos;
-    QPoint m_windowPos;
-    QSize m_pressedSize;
-};
-
 namespace TTK
 {
 enum class Direction;
@@ -77,7 +65,11 @@ protected:
      */
     void setObjectsTracking(const QWidgetList &objects);
 
-    MoveResizeData m_struct;
+private:
+    bool m_borderPressed;
+    bool m_mouseLeftPressed;
+    QPoint m_windowPos, m_pressedPos;
+    QSize m_pressedSize;
     TTK::Direction m_direction;
 
 };

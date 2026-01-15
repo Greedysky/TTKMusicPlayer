@@ -470,7 +470,7 @@ void MusicLrcContainerForInterior::mousePressEvent(QMouseEvent *event)
 
         m_mouseMoved = false;
         m_mouseLeftPressed = true;
-        m_mousePressedAt = QtGlobalPosition(event);
+        m_pressedPos = QtGlobalPosition(event);
         m_lrcChangeState = false;
         m_lrcChangeOffset = 0;
 
@@ -486,8 +486,8 @@ void MusicLrcContainerForInterior::mouseMoveEvent(QMouseEvent *event)
         m_layoutWidget->stop();
 
         m_mouseMoved = true;
-        const int offset = QtGlobalPositionY(event) - m_mousePressedAt.y();
-        m_mousePressedAt = QtGlobalPosition(event);
+        const int offset = QtGlobalPositionY(event) - m_pressedPos.y();
+        m_pressedPos = QtGlobalPosition(event);
 
         m_lrcChangeOffset += offset;
         if(m_lrcChangeState && offset > 0)
@@ -537,7 +537,7 @@ void MusicLrcContainerForInterior::mouseReleaseEvent(QMouseEvent *event)
     {
         setCursor(Qt::ArrowCursor);
         m_mouseLeftPressed = false;
-        m_mousePressedAt = QtGlobalPosition(event);
+        m_pressedPos = QtGlobalPosition(event);
         update();
 
         if(m_lrcAnalysis->isValid() && m_mouseMoved)

@@ -128,7 +128,7 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
 void MusicVideoPlayWidget::popupMode(bool popup)
 {
     m_videoFloatWidget->popupMode(popup);
-    blockOption(!popup);
+    setBlockOption(!popup);
 
     if(popup)
     {

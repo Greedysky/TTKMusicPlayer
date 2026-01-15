@@ -17,7 +17,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint | Qt::Tool);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    drawWindowShadow(false);
+    setShadowOption(false);
     setMouseTracking(true);
 
     m_showMainWindowButton = new QPushButton(this);

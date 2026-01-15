@@ -811,7 +811,7 @@ void MusicRightAreaWidget::videoFullscreen(bool full)
     if(m_videoPlayerWidget)
     {
         m_videoPlayerWidget->resizeGeometry(full);
-        m_videoPlayerWidget->blockOption(full);
+        m_videoPlayerWidget->setBlockOption(full);
     }
 }
 

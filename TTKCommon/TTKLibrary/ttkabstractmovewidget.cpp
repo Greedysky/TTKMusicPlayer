@@ -9,9 +9,9 @@ TTKAbstractMoveWidget::TTKAbstractMoveWidget(QWidget *parent)
 
 TTKAbstractMoveWidget::TTKAbstractMoveWidget(bool transparent, QWidget *parent)
     : QWidget(parent),
+      m_mouseLeftPressed(false),
       m_blockOption(false),
-      m_shadowOption(true),
-      m_mouseLeftPressed(false)
+      m_shadowOption(true)
 {
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground, transparent);
@@ -35,9 +35,9 @@ void TTKAbstractMoveWidget::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton && !m_blockOption)
     {
         m_mouseLeftPressed = true;
+        m_windowPos = pos();
+        m_pressedPos = QtGlobalPosition(event);
     }
-
-    m_mousePressedAt = QtGlobalPosition(event);
 }
 
 void TTKAbstractMoveWidget::mouseMoveEvent(QMouseEvent *event)
@@ -49,15 +49,11 @@ void TTKAbstractMoveWidget::mouseMoveEvent(QMouseEvent *event)
         return;
     }
 
-    const int xpos = QtGlobalPositionX(event) - m_mousePressedAt.x();
-    const int ypos = QtGlobalPositionY(event) - m_mousePressedAt.y();
-    m_mousePressedAt = QtGlobalPosition(event);
-    move(x() + xpos, y() + ypos);
+    move(m_windowPos + QtGlobalPosition(event) - m_pressedPos);
 }
 
 void TTKAbstractMoveWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     QWidget::mouseReleaseEvent(event);
-    m_mousePressedAt = QtGlobalPosition(event);
     m_mouseLeftPressed = false;
 }

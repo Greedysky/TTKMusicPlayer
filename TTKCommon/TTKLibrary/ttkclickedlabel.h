@@ -38,7 +38,7 @@ public:
     /*!
      * Set or not block clicked.
      */
-    inline void blockOption(bool block) noexcept { m_blockOption = block; }
+    inline void setBlockOption(bool block) noexcept { m_blockOption = block; }
 
 Q_SIGNALS:
     /*!
