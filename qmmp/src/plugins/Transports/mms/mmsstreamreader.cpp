@@ -83,6 +83,7 @@ void MMSStreamReader::run()
 
 void MMSStreamReader::handleError()
 {
+    setErrorString(m_process->errorString());
     emit error();
     QIODevice::close();
 }

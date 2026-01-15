@@ -193,6 +193,7 @@ void HttpStreamReader::handleFinished()
 void HttpStreamReader::handleError(QNetworkReply::NetworkError status)
 {
     qDebug("HttpStreamReader: replyError %d", status);
+    setErrorString(m_reply->errorString());
     m_path.clear();
     emit error();
     QIODevice::close();
