@@ -207,8 +207,8 @@ void MusicReplayGainWidget::addFileButtonClicked()
         {
             m_currentIndex = i;
             TTKEventLoop loop;
-            connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-            QtProcessVoidConnect(m_process, &loop, quit, TTK_SLOT);
+            QtProcessErrorVoidConnect(m_process, &loop, quit, TTK_SLOT);
+            QtProcessFinishVoidConnect(m_process, &loop, quit, TTK_SLOT);
             m_process->start(MAKE_GAIN_PATH_FULL, {m_paths[i]});
             loop.exec();
         }
@@ -230,8 +230,8 @@ void MusicReplayGainWidget::addFilesButtonClicked()
                 m_paths << fin.absoluteFilePath();
 
                 TTKEventLoop loop;
-                connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-                QtProcessVoidConnect(m_process, &loop, quit, TTK_SLOT);
+                QtProcessErrorVoidConnect(m_process, &loop, quit, TTK_SLOT);
+                QtProcessFinishVoidConnect(m_process, &loop, quit, TTK_SLOT);
                 m_process->start(MAKE_GAIN_PATH_FULL, {m_paths.last()});
                 loop.exec();
             }
@@ -280,8 +280,8 @@ void MusicReplayGainWidget::applyButtonClicked()
     for(int i = 0; i < m_ui->tableWidget->rowCount(); ++i)
     {
         TTKEventLoop loop;
-        connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-        QtProcessVoidConnect(m_process, &loop, quit, TTK_SLOT);
+        QtProcessErrorVoidConnect(m_process, &loop, quit, TTK_SLOT);
+        QtProcessFinishVoidConnect(m_process, &loop, quit, TTK_SLOT);
         m_process->start(MAKE_GAIN_PATH_FULL, {"-g", m_ui->tableWidget->item(i, 2)->text(), m_paths[i]});
         m_ui->progressBarAll->setValue(i + 1);
         loop.exec();

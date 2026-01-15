@@ -34,7 +34,7 @@ void MusicCoreMPlayer::setMedia(Module type, const QString &url, int winId)
     m_category = type;
     m_playState = TTK::PlayState::Stopped;
     m_process = new QProcess(this);
-    connect(m_process, SIGNAL(finished(int)), SIGNAL(finished(int)));
+    QtProcessFinishConnect(m_process, this, finished, TTK_SIGNAL);
 
     switch(m_category)
     {

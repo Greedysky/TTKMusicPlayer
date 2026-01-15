@@ -83,17 +83,31 @@ namespace QtCompat
 #endif
 
 /// Process error connect
-#if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtProcessConnect(p, q, f, s) QObject::connect(p, SIGNAL(errorOccurred(QProcess::ProcessError)), q, s(f(QProcess::ProcessError)))
+#if TTK_QT_VERSION_CHECK(5,6,0)
+#  define QtProcessErrorConnect(p, q, f, s) QObject::connect(p, SIGNAL(errorOccurred(QProcess::ProcessError)), q, s(f(QProcess::ProcessError)))
 #else
-#  define QtProcessConnect(p, q, f, s) QObject::connect(p, SIGNAL(error(QProcess::ProcessError)), q, s(f(QProcess::ProcessError)))
+#  define QtProcessErrorConnect(p, q, f, s) QObject::connect(p, SIGNAL(error(QProcess::ProcessError)), q, s(f(QProcess::ProcessError)))
 #endif
 
 /// Process error void connect
-#if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtProcessVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(errorOccurred(QProcess::ProcessError)), q, s(f()))
+#if TTK_QT_VERSION_CHECK(5,6,0)
+#  define QtProcessErrorVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(errorOccurred(QProcess::ProcessError)), q, s(f()))
 #else
-#  define QtProcessVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(error(QProcess::ProcessError)), q, s(f()))
+#  define QtProcessErrorVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(error(QProcess::ProcessError)), q, s(f()))
+#endif
+
+/// Process finished connect
+#if TTK_QT_VERSION_CHECK(5,13,0)
+#  define QtProcessFinishConnect(p, q, f, s) QObject::connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), q, s(f(int)))
+#else
+#  define QtProcessFinishConnect(p, q, f, s) QObject::connect(p, SIGNAL(finished(int)), q, s(f(int)))
+#endif
+
+/// Process finished void connect
+#if TTK_QT_VERSION_CHECK(5,13,0)
+#  define QtProcessFinishVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), q, s(f()))
+#else
+#  define QtProcessFinishVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(finished(int)), q, s(f()))
 #endif
 
 /// Button group connect

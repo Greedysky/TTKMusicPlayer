@@ -61,10 +61,10 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
 
     initialize();
 
+    QtProcessFinishVoidConnect(m_process, this, transformFinish, TTK_SLOT);
     connect(m_ui->inputButton, SIGNAL(clicked()), SLOT(initInputPath()));
     connect(m_ui->outputButton, SIGNAL(clicked()), SLOT(initOutputPath()));
     connect(m_ui->transformButton, SIGNAL(clicked()), SLOT(startTransform()));
-    connect(m_process, SIGNAL(finished(int)), SLOT(transformFinish()));
     connect(m_ui->folderBox, SIGNAL(clicked(bool)), SLOT(folderBoxChecked()));
     connect(m_ui->tabButton, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 }

@@ -171,8 +171,8 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
     }
 #else
     TTKEventLoop loop;
-    connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-    QtProcessVoidConnect(m_process, &loop, quit, TTK_SLOT);
+    QtProcessErrorVoidConnect(m_process, &loop, quit, TTK_SLOT);
+    QtProcessFinishVoidConnect(m_process, &loop, quit, TTK_SLOT);
     m_process->close();
     m_process->start("df", {"-h"});
     loop.exec();
