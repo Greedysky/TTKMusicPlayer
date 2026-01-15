@@ -342,7 +342,7 @@ bool DecoderFLAC::initialize()
         qDebug("DecoderFLAC: skipping id3v2 tag (%lu bytes)", id3v2_size);
         m_data->input->seek(id3v2_size);
     }
-    m_data->input->peek(buf,sizeof(buf));
+    m_data->input->peek(buf, sizeof(buf));
     m_data->input->seek(0);
     qDebug("DecoderFLAC: setting callbacks");
     if(!memcmp(buf, "OggS", 4))

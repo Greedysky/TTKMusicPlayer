@@ -7,9 +7,34 @@
 
 bool DecoderFLACFactory::canDecode(QIODevice *input) const
 {
-    char buf[33];
-    if(input->peek(buf, 33) != 33)
+    char buf[36];
+    if(input->peek(buf, sizeof(buf)) != sizeof(buf))
         return false;
+
+    if(!memcmp(buf, "ID3", 3))
+    {
+        TagLib::ByteVector byteVector(buf, sizeof(buf));
+        TagLib::ID3v2::Header header(byteVector);
+
+        if(input->isSequential())
+        {
+            const int peekSize = header.completeTagSize() + sizeof(buf);
+            char peekBuf[peekSize];
+            if(input->peek(peekBuf, peekSize) != peekSize)
+                return false;
+
+            memcpy(buf, peekBuf + header.completeTagSize(), sizeof(buf));
+        }
+        else
+        {
+            input->seek(header.completeTagSize());
+            const int peekSize = input->peek(buf, sizeof(buf));
+            input->seek(0); //restore position
+
+            if(peekSize != sizeof(buf))
+                return false;
+        }
+    }
 
     if(!memcmp(buf, "fLaC", 4)) //native flac
         return true;

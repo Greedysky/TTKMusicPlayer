@@ -24,7 +24,7 @@ OuterBlurWave::OuterBlurWave(QWidget *parent)
     setMinimumWidth(2 * 300 - 30);
 
     m_view = new QGraphicsView(this);
-    m_view->setStyleSheet("background: transparent; border:0px");
+    m_view->setStyleSheet("background:transparent; border:0px");
     m_view->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

@@ -14,7 +14,7 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
     char buf[8192];
     qint64 dataSize = sizeof(buf);
 
-    if(input->peek(buf, sizeof(buf)) != sizeof(buf))
+    if(input->peek(buf, dataSize) != dataSize)
         return false;
 
     if(!memcmp(buf, "FLV", 3)) //skip Macromedia Flash Video
