@@ -146,7 +146,7 @@ namespace QtCompat
 #endif
 
 /// Event wheel
-#if TTK_QT_VERSION_CHECK(5,15,0)
+#if TTK_QT_VERSION_CHECK(5,14,0)
 #  define QtWheelDelta(p) p->angleDelta().y()
 #else
 #  define QtWheelDelta(p) p->delta()
