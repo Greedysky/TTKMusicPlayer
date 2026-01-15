@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS += http
+SUBDIRS += mms http

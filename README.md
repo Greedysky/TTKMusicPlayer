@@ -55,6 +55,7 @@ The TTKMusicplayer qmmp plugins
  * lightwaveform
 ### Transports
  * http
+ * mms
 ### Visual
  * floridancient
  * floridautism

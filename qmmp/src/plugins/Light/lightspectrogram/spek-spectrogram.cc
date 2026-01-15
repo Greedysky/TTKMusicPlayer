@@ -337,8 +337,11 @@ void LightSpectrogram::showSettings()
         widget->move(0, (height() - widget->height()) / 2);
 
         QButtonGroup *group = new QButtonGroup(widget);
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
+        connect(group, SIGNAL(idClicked(int)), SLOT(settingButtonClicked(int)));
+#else
         connect(group, SIGNAL(buttonClicked(int)), SLOT(settingButtonClicked(int)));
-
+#endif
         QGridLayout *layout = new QGridLayout(widget);
         widget->setLayout(layout);
 

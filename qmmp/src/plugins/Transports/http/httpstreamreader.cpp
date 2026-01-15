@@ -30,8 +30,8 @@ HttpStreamReader::HttpStreamReader(const QString &url, QObject *parent)
 HttpStreamReader::~HttpStreamReader()
 {
     abort();
-    m_stream.buffer_size = 0;
-    m_stream.buffer_fill = 0;
+    m_stream.size = 0;
+    m_stream.fill = 0;
     m_stream.buffer.clear();
 }
 
@@ -42,7 +42,7 @@ bool HttpStreamReader::atEnd() const
 
 qint64 HttpStreamReader::bytesAvailable() const
 {
-    return QIODevice::bytesAvailable() + m_stream.buffer_size;
+    return QIODevice::bytesAvailable() + m_stream.size;
 }
 
 qint64 HttpStreamReader::bytesToWrite() const
@@ -92,20 +92,16 @@ void HttpStreamReader::run()
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(readyRead()), SLOT(handleReadyRead()));
     connect(m_reply, SIGNAL(finished()), SLOT(handleFinished()));
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
+    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(handleError()));
+#else
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError()));
+#endif
 }
 
 QString HttpStreamReader::contentType() const
 {
-    return m_stream.content_type.toLower();
-}
-
-void HttpStreamReader::replyError(QNetworkReply::NetworkError status)
-{
-    qDebug("HttpStreamReader: replyError %d", status);
-    m_path.clear();
-    emit error();
-    QIODevice::close();
+    return m_stream.type.toLower();
 }
 
 void HttpStreamReader::handleReadyRead()
@@ -113,7 +109,7 @@ void HttpStreamReader::handleReadyRead()
     const QByteArray &buffer = m_reply->readAll();
     m_mutex.lock();
     m_stream.buffer.append(buffer);
-    m_stream.buffer_size += buffer.length();
+    m_stream.size += buffer.length();
     m_mutex.unlock();
 
     if(m_stream.aborted || m_ready)
@@ -121,7 +117,7 @@ void HttpStreamReader::handleReadyRead()
         return;
     }
 
-    if(m_stream.buffer_size > m_bufferSize)
+    if(m_stream.size > m_bufferSize)
     {
         m_ready  = true;
         HttpInputSource *object = static_cast<HttpInputSource*>(parent());
@@ -153,13 +149,18 @@ void HttpStreamReader::handleReadyRead()
             object->addStreamInfo(info);
         }
 
-        m_stream.content_type = m_reply->header(QNetworkRequest::ContentTypeHeader).toString();
+        m_stream.type = m_reply->header(QNetworkRequest::ContentTypeHeader).toString();
+        if(m_stream.type.isEmpty())
+        {
+            m_stream.type = "application/octet-stream‌";
+        }
+
         qDebug("HttpStreamReader: has ready");
         emit ready();
     }
     else
     {
-        StateHandler::instance()->dispatchBuffer(100 * m_stream.buffer_size / m_bufferSize);
+        StateHandler::instance()->dispatchBuffer(100 * m_stream.size / m_bufferSize);
         qApp->processEvents();
     }
 }
@@ -175,7 +176,7 @@ void HttpStreamReader::handleFinished()
         return;
     }
 
-    if(m_path.isEmpty() || m_stream.buffer_size <= 0 || m_stream.aborted)
+    if(m_path.isEmpty() || m_stream.size <= 0 || m_stream.aborted)
     {
         return;
     }
@@ -189,10 +190,18 @@ void HttpStreamReader::handleFinished()
     }
 }
 
+void HttpStreamReader::handleError(QNetworkReply::NetworkError status)
+{
+    qDebug("HttpStreamReader: replyError %d", status);
+    m_path.clear();
+    emit error();
+    QIODevice::close();
+}
+
 qint64 HttpStreamReader::readData(char *data, qint64 maxlen)
 {
     m_mutex.lock();
-    if(m_stream.buffer_size == 0)
+    if(m_stream.size == 0)
     {
         m_mutex.unlock();
         return 0;
@@ -212,6 +221,7 @@ void HttpStreamReader::abort()
 {
     m_mutex.lock();
     m_ready = false;
+
     if(m_reply)
     {
         m_reply->abort();
@@ -232,18 +242,18 @@ void HttpStreamReader::abort()
 
 qint64 HttpStreamReader::readBuffer(char* data, qint64 maxlen)
 {
-    if(m_stream.buffer_size > 0 && !m_stream.aborted)
+    if(m_stream.size > 0 && !m_stream.aborted)
     {
-        const int len = qMin<qint64>(m_stream.buffer_size, maxlen);
-        if(m_stream.buffer_fill >= m_stream.buffer_size)
+        const int len = qMin<qint64>(m_stream.size, maxlen);
+        if(m_stream.fill >= m_stream.size)
         {
-            m_stream.buffer_fill = 0;
+            m_stream.fill = 0;
             m_stream.aborted = true;
             return 0;
         }
 
-        memcpy(data, m_stream.buffer.constData() + m_stream.buffer_fill, len);
-        m_stream.buffer_fill += len;
+        memcpy(data, m_stream.buffer.constData() + m_stream.fill, len);
+        m_stream.fill += len;
         return len;
     }
     else if(m_stream.aborted)

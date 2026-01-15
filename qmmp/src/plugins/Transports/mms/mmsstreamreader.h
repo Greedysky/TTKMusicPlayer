@@ -16,23 +16,21 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef HTTPSTREAMREADER_H
-#define HTTPSTREAMREADER_H
+#ifndef MMSSTREAMREADER_H
+#define MMSSTREAMREADER_H
 
 #include <QMutex>
-#include <QNetworkReply>
-#include <QNetworkRequest>
-#include <QNetworkAccessManager>
+#include <QProcess>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class HttpStreamReader : public QIODevice
+class MMSStreamReader : public QIODevice
 {
     Q_OBJECT
 public:
-    explicit HttpStreamReader(const QString &url, QObject *parent);
-    virtual ~HttpStreamReader();
+    explicit MMSStreamReader(const QString &url, QObject *parent);
+    virtual ~MMSStreamReader();
 
     /**
      *  QIODevice API
@@ -50,16 +48,13 @@ public:
      */
     void run();
 
-    QString contentType() const;
-
 signals:
     void ready();
     void error();
 
 private slots:
+    void handleError();
     void handleReadyRead();
-    void handleFinished();
-    void handleError(QNetworkReply::NetworkError status);
 
 protected:
     virtual qint64 readData(char *, qint64) override final;
@@ -75,17 +70,14 @@ private:
         QByteArray buffer;
         size_t fill = 0;
         size_t size = 0;
-        QString type;
         bool aborted = false;
     } m_stream;
 
     QString m_url;
-    QString m_path;
     QMutex m_mutex;
     bool m_ready = false;
     size_t m_bufferSize = 0;
-    QNetworkReply *m_reply = nullptr;
-    QNetworkAccessManager m_manager;
+    QProcess *m_process = nullptr;
 
 };
 
