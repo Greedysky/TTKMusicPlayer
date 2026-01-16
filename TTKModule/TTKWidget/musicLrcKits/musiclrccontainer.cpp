@@ -127,7 +127,7 @@ void MusicLrcContainer::linkLrcStateChanged()
     }
 }
 
-void MusicLrcContainer::clearAllMusicLRCManager()
+void MusicLrcContainer::clearAllManagers()
 {
     qDeleteAll(m_lrcManagers);
     m_lrcManagers.clear();

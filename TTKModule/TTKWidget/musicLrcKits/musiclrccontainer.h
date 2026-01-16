@@ -51,12 +51,12 @@ public:
      * Start timer clock to draw lrc.
      * Subclass should implement this function.
      */
-    virtual void startDrawLrc() = 0;
+    virtual void start() = 0;
     /*!
      * Stop timer clock to draw lrc.
      * Subclass should implement this function.
      */
-    virtual void stopDrawLrc() = 0;
+    virtual void stop() = 0;
     /*!
      * Set setting parameter.
      */
@@ -142,9 +142,9 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Clear all media lrc manager.
+     * Clear all lrc manager.
      */
-    void clearAllMusicLRCManager();
+    void clearAllManagers();
 
     bool m_linkLocalLrc;
     qint64 m_currentTime, m_totalTime;

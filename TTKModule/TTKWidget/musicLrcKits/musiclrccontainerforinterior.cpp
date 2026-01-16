@@ -67,7 +67,7 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
 
 MusicLrcContainerForInterior::~MusicLrcContainerForInterior()
 {
-    clearAllMusicLRCManager();
+    clearAllManagers();
     delete m_functionLabel;
     delete m_lrcFloatWidget;
     delete m_floatPlayWidget;
@@ -77,14 +77,14 @@ MusicLrcContainerForInterior::~MusicLrcContainerForInterior()
     delete m_layoutWidget;
 }
 
-void MusicLrcContainerForInterior::startDrawLrc()
+void MusicLrcContainerForInterior::start()
 {
-    m_lrcManagers[m_lrcAnalysis->lineMiddle()]->startDrawLrc();
+    m_lrcManagers[m_lrcAnalysis->lineMiddle()]->start();
 }
 
-void MusicLrcContainerForInterior::stopDrawLrc()
+void MusicLrcContainerForInterior::stop()
 {
-    m_lrcManagers[m_lrcAnalysis->lineMiddle()]->stopDrawLrc();
+    m_lrcManagers[m_lrcAnalysis->lineMiddle()]->stop();
     m_layoutWidget->stop();
 }
 
@@ -170,7 +170,7 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
 
     resizeWindow();
     setItemStyleSheet();
-    startDrawLrc();
+    start();
 }
 
 int MusicLrcContainerForInterior::lrcSize() const noexcept
@@ -340,7 +340,7 @@ void MusicLrcContainerForInterior::updateAnimationLrc()
     }
 
     m_lrcAnalysis->setCurrentIndex(m_lrcAnalysis->currentIndex() + 1);
-    m_lrcManagers[m_lrcAnalysis->lineMiddle()]->startDrawLrcMask(m_animationFreshTime);
+    m_lrcManagers[m_lrcAnalysis->lineMiddle()]->start(m_animationFreshTime);
     setItemStyleSheet();
 }
 

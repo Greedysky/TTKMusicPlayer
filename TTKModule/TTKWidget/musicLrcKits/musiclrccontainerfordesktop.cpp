@@ -25,22 +25,22 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
 
 MusicLrcContainerForDesktop::~MusicLrcContainerForDesktop()
 {
-    clearAllMusicLRCManager();
+    clearAllManagers();
     delete m_toolBarLayout;
     delete m_toolPlayButton;
     delete m_toolBarWidget;
 }
 
-void MusicLrcContainerForDesktop::startDrawLrc()
+void MusicLrcContainerForDesktop::start()
 {
-    m_lrcManagers[m_singleLine ? 0 : !m_reverse]->startDrawLrc();
+    m_lrcManagers[m_singleLine ? 0 : !m_reverse]->start();
 }
 
-void MusicLrcContainerForDesktop::stopDrawLrc()
+void MusicLrcContainerForDesktop::stop()
 {
     for(MusicLrcManager *manager : qAsConst(m_lrcManagers))
     {
-        manager->stopDrawLrc();
+        manager->stop();
     }
 }
 
@@ -82,7 +82,7 @@ void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const Q
     if(m_singleLine)
     {
         m_lrcManagers[0]->setText(first);
-        m_lrcManagers[0]->startDrawLrcMask(time);
+        m_lrcManagers[0]->start(time);
     }
     else
     {
@@ -90,7 +90,7 @@ void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const Q
         m_lrcManagers[m_reverse]->reset();
         m_lrcManagers[m_reverse]->setText(second);
         m_lrcManagers[!m_reverse]->setText(first);
-        m_lrcManagers[!m_reverse]->startDrawLrcMask(time);
+        m_lrcManagers[!m_reverse]->start(time);
     }
 
     resizeLrcSizeArea();
@@ -152,7 +152,7 @@ void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
         if(!m_reverse)
         {
             m_lrcManagers[0]->setText(m_lrcManagers[1]->text());
-            startDrawLrc();
+            start();
         }
         m_lrcManagers[1]->hide();
     }

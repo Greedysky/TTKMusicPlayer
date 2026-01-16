@@ -109,15 +109,11 @@ public:
     /*!
      * Start timer clock to draw lrc.
      */
-    void startDrawLrc();
-    /*!
-     * Start timer clock to draw lrc mask.
-     */
-    void startDrawLrcMask(qint64 intervaltime);
+    void start(qint64 time = 0);
     /*!
      * Stop timer clock to draw lrc mask.
      */
-    void stopDrawLrc();
+    void stop();
 
     /*!
      * Set lrc font family by given type.

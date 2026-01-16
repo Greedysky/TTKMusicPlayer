@@ -173,26 +173,25 @@ MusicLrcManager::~MusicLrcManager()
     delete m_timer;
 }
 
-void MusicLrcManager::startDrawLrcMask(qint64 intervaltime)
+void MusicLrcManager::start(qint64 time)
 {
-    m_intervalCount = 0.0f;
-    m_position.setX(TTK::Widget::fontTextWidth(m_font, text()));
+    if(time > 0)
+    {
+        m_intervalCount = 0.0f;
+        m_position.setX(TTK::Widget::fontTextWidth(m_font, text()));
 
-    const float count = intervaltime / m_speedLevel;
-    m_lrcMaskWidthInterval = (count != 0) ? m_position.x() / count : 0;
-    m_lrcMaskWidth = 0;
+        const float count = time / m_speedLevel;
+        m_lrcMaskWidthInterval = (count != 0) ? m_position.x() / count : 0;
+        m_lrcMaskWidth = 0;
+    }
+
     m_timer->start(LRC_PER_TIME);
 }
 
-void MusicLrcManager::stopDrawLrc()
+void MusicLrcManager::stop()
 {
     m_timer->stop();
     update();
-}
-
-void MusicLrcManager::startDrawLrc()
-{
-    m_timer->start(LRC_PER_TIME);
 }
 
 void MusicLrcManager::setFontFamily(int index)

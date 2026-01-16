@@ -271,9 +271,9 @@ public Q_SLOTS:
      */
     void lrcDisplayAllClicked();
     /*!
-     * Lrc desktop wallpaper button clicked.
+     * Show lrc desktop wallpaper.
      */
-    void containerForWallpaperClicked();
+    void showContainerForWallpaper();
     /*!
      * Change to download fully widget.
      */
@@ -308,9 +308,9 @@ private:
     MusicSettingWidget *m_settingWidget;
     MusicVideoPlayWidget *m_videoPlayerWidget;
     MusicLrcAnalysis *m_lrcAnalysis;
-    MusicLrcContainerForInterior *m_lrcForInterior;
-    MusicLrcContainerForDesktop *m_lrcForDesktop;
-    MusicLrcContainerForWallpaper *m_lrcForWallpaper;
+    MusicLrcContainerForInterior *m_interiorLrc;
+    MusicLrcContainerForDesktop *m_desktopLrc;
+    MusicLrcContainerForWallpaper *m_wallpaperLrc;
     MusicDownloadStatusModule *m_downloadStatus;
 
     static MusicRightAreaWidget *m_instance;

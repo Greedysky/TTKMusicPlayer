@@ -44,11 +44,11 @@ public:
     /*!
      * Start timer clock to draw lrc.
      */
-    virtual void startDrawLrc() override final;
+    virtual void start() override final;
     /*!
      * Stop timer clock to draw lrc.
      */
-    virtual void stopDrawLrc() override final;
+    virtual void stop() override final;
     /*!
      * Set setting parameter.
      */
@@ -67,9 +67,9 @@ public:
      */
     void updateCurrentLrc(const QString &text);
     /*!
-     * Strat now.
+     * Strat render now.
      */
-    void start(bool immediate);
+    void render(bool immediate);
 
 public Q_SLOTS:
     /*!
