@@ -125,7 +125,7 @@ static void removeFiles(const QString &path, const qint64 time)
     for(const QFileInfo &fin : dir.entryInfoList())
     {
         const QString &fileName = fin.fileName();
-        if(fileName == "." || fileName == "..")
+        if(fileName == "." || fileName == ".." || fin.suffix() != "log")
         {
             continue;
         }
