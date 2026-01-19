@@ -5,9 +5,67 @@
 #include "musictransitionanimationlabel.h"
 #include "musicbackgroundmanager.h"
 
+class AbstractDesktopWallpaper
+{
+public:
+    AbstractDesktopWallpaper(QWidget *parent)
+        : m_parent(parent)
+    {
+
+    }
+    virtual ~AbstractDesktopWallpaper() = default;
+
+protected:
+    QWidget *m_parent;
+
+};
+
+#if defined Q_OS_WIN
+#  define WIN32_LEAN_AND_MEAN
+#  include <qt_windows.h>
+#  if defined Q_CC_MSVC
+#    pragma comment(lib, "user32.lib")
+#  endif
+
+class WindowsDesktopWallpaper : public AbstractDesktopWallpaper
+{
+public:
+    WindowsDesktopWallpaper(QWidget *parent)
+        : AbstractDesktopWallpaper(parent)
+    {
+        sendMessageToDesktop();
+        SetParent((HWND)m_parent->winId(), findDesktopIconWnd());
+    }
+
+    void sendMessageToDesktop()
+    {
+        PDWORD_PTR result = nullptr;
+        SendMessageTimeoutW(FindWindowW(L"Progman", nullptr), 0x52C, 0, 0, SMTO_NORMAL, 1000, result);
+    }
+
+    HWND findDesktopIconWnd()
+    {
+        HWND hWorkerW = FindWindowExW(nullptr, nullptr, L"WorkerW", nullptr);
+        HWND hDefView = nullptr;
+
+        while(!hDefView && hWorkerW)
+        {
+            hDefView = FindWindowExW(hWorkerW, nullptr, L"SHELLDLL_DefView", nullptr);
+            hWorkerW = FindWindowExW(nullptr, hWorkerW, L"WorkerW", nullptr);
+        }
+
+        ShowWindow(hWorkerW, 0);
+        return FindWindowW(L"Progman", nullptr);
+    }
+
+};
+#endif
+
+
 MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     : MusicLrcContainer(parent),
-      m_animationFreshTime(0)
+      m_animationFreshTime(0),
+      m_wappaper(nullptr)
 {
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
     vBoxLayout->setContentsMargins(0, 0, 0, 0);
@@ -28,19 +86,19 @@ MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     m_layoutWidget->connectTo(this);
     bBoxLayout->addWidget(m_layoutWidget);
 
-    m_wallThread = new MusicDesktopWallpaperThread(this);
-    connect(m_wallThread, SIGNAL(updateBackground(QPixmap)), SLOT(updateBackground(QPixmap)));
+    m_thread = new MusicDesktopWallpaperThread(this);
+    connect(m_thread, SIGNAL(updateBackground(QPixmap)), SLOT(updateBackground(QPixmap)));
 
 #ifdef Q_OS_WIN
-    m_wallThread->sendMessageToDesktop();
-    SetParent((HWND)winId(), m_wallThread->findDesktopIconWnd());
+    m_wappaper = new WindowsDesktopWallpaper(this);
 #endif
 }
 
 MusicLrcContainerForWallpaper::~MusicLrcContainerForWallpaper()
 {
     clearAllManagers();
-    delete m_wallThread;
+    delete m_wappaper;
+    delete m_thread;
 }
 
 void MusicLrcContainerForWallpaper::start()
@@ -98,6 +156,7 @@ void MusicLrcContainerForWallpaper::applyParameter()
 void MusicLrcContainerForWallpaper::setLrcAnalysisModel(MusicLrcAnalysis *analysis)
 {
     MusicLrcContainer::setLrcAnalysisModel(analysis);
+
     m_layoutWidget->addStretch(1);
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
@@ -133,21 +192,21 @@ void MusicLrcContainerForWallpaper::updateCurrentLrc(const QString &text)
 
 void MusicLrcContainerForWallpaper::render(bool immediate)
 {
-    if(!m_wallThread)
+    if(!m_thread)
     {
         return;
     }
 
-    m_wallThread->setImagePath(G_BACKGROUND_PTR->artistImageList());
+    m_thread->setImagePath(G_BACKGROUND_PTR->artistImageList());
 
-    if(!m_wallThread->isRunning())
+    if(!m_thread->isRunning())
     {
-        m_wallThread->start();
+        m_thread->start();
     }
 
     if(immediate)
     {
-        m_wallThread->timeout();
+        m_thread->timeout();
     }
 }
 

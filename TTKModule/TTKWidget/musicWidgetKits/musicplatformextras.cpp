@@ -6,11 +6,11 @@
 /*! @brief The class of the abstract platform extras.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicAbstractPlatformExtras
+class AbstractPlatformExtras
 {
 public:
-    MusicAbstractPlatformExtras() = default;
-    virtual ~MusicAbstractPlatformExtras() = default;
+    AbstractPlatformExtras() = default;
+    virtual ~AbstractPlatformExtras() = default;
 
     /*!
      * Set current status.
@@ -32,11 +32,11 @@ public:
 /*! @brief The class of the windows platform extras.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicWindowsExtras : public MusicAbstractPlatformExtras
+class WindowsPlatformExtras : public AbstractPlatformExtras
 {
 public:
-    MusicWindowsExtras()
-        : MusicAbstractPlatformExtras()
+    WindowsPlatformExtras()
+        : AbstractPlatformExtras()
     {
 #if TTK_QT_VERSION_CHECK(5,2,0) && !TTK_QT_VERSION_CHECK(6,0,0)
         m_playToolButton = nullptr;
@@ -49,7 +49,7 @@ public:
 #endif
     }
 
-    ~MusicWindowsExtras()
+    ~WindowsPlatformExtras()
     {
 #if TTK_QT_VERSION_CHECK(5,2,0) && !TTK_QT_VERSION_CHECK(6,0,0)
         delete m_playToolButton;
@@ -124,11 +124,11 @@ private:
 /*! @brief The class of the linux platform extras.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicLinuxExtras : public MusicAbstractPlatformExtras
+class LinuxPlatformExtras : public AbstractPlatformExtras
 {
 public:
-    MusicLinuxExtras()
-        : MusicAbstractPlatformExtras()
+    LinuxPlatformExtras()
+        : AbstractPlatformExtras()
     {
 
     }
@@ -153,11 +153,11 @@ public:
 /*! @brief The class of the mac platform extras.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicMacExtras : public MusicAbstractPlatformExtras
+class MacPlatformExtras : public AbstractPlatformExtras
 {
 public:
-    MusicMacExtras()
-        : MusicAbstractPlatformExtras()
+    MacPlatformExtras()
+        : AbstractPlatformExtras()
     {
 
     }
@@ -184,11 +184,11 @@ MusicPlatformExtras::MusicPlatformExtras(QObject *parent)
     : QObject(parent)
 {
 #ifdef Q_OS_WIN
-    m_platformExtras = new MusicWindowsExtras;
+    m_platformExtras = new WindowsPlatformExtras;
 #elif defined Q_OS_LINUX
-    m_platformExtras = new MusicLinuxExtras;
+    m_platformExtras = new LinuxPlatformExtras;
 #else
-    m_platformExtras = new MusicMacExtras;
+    m_platformExtras = new MacPlatformExtras;
 #endif
 }
 

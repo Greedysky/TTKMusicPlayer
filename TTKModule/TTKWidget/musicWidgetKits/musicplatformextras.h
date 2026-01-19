@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 
-class MusicAbstractPlatformExtras;
+class AbstractPlatformExtras;
 
 /*! @brief The class of the platform extras.
  * @author Greedysky <greedysky@163.com>
@@ -49,7 +49,7 @@ public:
     void setCurrentPlayState(bool state) const;
 
 private:
-    MusicAbstractPlatformExtras *m_platformExtras;
+    AbstractPlatformExtras *m_platformExtras;
 
 };
 

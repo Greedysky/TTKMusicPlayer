@@ -21,14 +21,6 @@
 
 #include "musicglobaldefine.h"
 
-#if defined Q_OS_WIN
-#  define WIN32_LEAN_AND_MEAN
-#  include <qt_windows.h>
-#  if defined Q_CC_MSVC
-#    pragma comment(lib, "user32.lib")
-#  endif
-#endif
-
 class QTimer;
 
 /*! @brief The class of the desktop wallpaper thread.
@@ -64,17 +56,6 @@ public:
      * Set image path.
      */
     void setImagePath(const QStringList &list) noexcept;
-
-#if defined Q_OS_WIN
-    /*!
-     * Find desktop icon wnd.
-     */
-    HWND findDesktopIconWnd();
-    /*!
-     * Send message to desktop.
-     */
-    void sendMessageToDesktop();
-#endif
 
 Q_SIGNALS:
     /*!
