@@ -160,12 +160,12 @@ jobs:
       - name: Build library for libenca
         shell: msys2 {0}
         run: |
-          7z x enca-1.19.7z -olibenca
+          7z x enca-1.21.7z -olibenca
           cd libenca
           # remove build for bin and test
-          sed -i "199s/=.*/= lib/g" Makefile.in
-          sed -i "384s/=.*/= lib/g" Makefile.in
-          sed -i "385s/=.*/= lib/g" Makefile.in
+          sed -i "198s/=.*/= lib/g" Makefile.in
+          sed -i "401s/=.*/= lib/g" Makefile.in
+          sed -i "402s/=.*/= lib/g" Makefile.in
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           ./configure --prefix=${{env.UNIX_INSTALL_PATH}}/libenca CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared
           make -j2 && make install
@@ -276,7 +276,7 @@ jobs:
       - name: Build library for libopus
         shell: msys2 {0}
         run: |
-          7z x opus-1.6.7z -olibopus
+          7z x opus-1.6.1.7z -olibopus
           cd libopus
           if [ ${{matrix.version}} -lt 1310 ]; then
             # add opus missing ssp library patch
@@ -379,7 +379,7 @@ jobs:
 
       - name: Build library for libwavpack
         run: |
-          7z x wavpack-5.8.1.7z -olibwavpack
+          7z x wavpack-5.9.0.7z -olibwavpack
           cd libwavpack
           mkdir build && cd build
           cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_INSTALL_PATH}}/libwavpack -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3"
