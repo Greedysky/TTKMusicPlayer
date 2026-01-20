@@ -1,11 +1,10 @@
 #include <Carbon/Carbon.h>
 #include "qglobalshortcut_p.h"
-#include <QMap>
+#include <QHash>
 #include <QApplication>
 
-typedef QPair<uint, uint> Identifier;
-static QMap<quint32, EventHotKeyRef> keyRefs;
-static QHash<Identifier, quint32> keyIDs;
+typedef QPair<quint32, quint32> Identifier;
+static QHash<Identifier, EventHotKeyRef> keyRefs;
 static bool q_mac_handler_installed = false;
 
 OSStatus q_mac_handle_hot_key(EventHandlerCallRef nextHandler, EventRef event, void *data)
@@ -178,8 +177,7 @@ bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeM
     const bool rv = !RegisterEventHotKey(nativeKey, nativeMods, keyID, GetApplicationEventTarget(), 0, &ref);
     if(rv)
     {
-        keyIDs.insert(Identifier(nativeMods, nativeKey), keyID.id);
-        keyRefs.insert(keyID.id, ref);
+        keyRefs.insert(Identifier(nativeMods, nativeKey), ref);
     }
 
     return rv;
@@ -188,10 +186,8 @@ bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeM
 bool QGlobalShortcutPrivate::unregisterShortcut(quint32 nativeKey, quint32 nativeMods)
 {
     Identifier id(nativeMods, nativeKey);
-    if(!keyIDs.contains(id))
+    if(!keyRefs.contains(id))
         return false;
 
-    keyIDs.remove(id);
-    EventHotKeyRef ref = keyRefs.take(keyIDs[id]);
-    return !UnregisterEventHotKey(ref);
+    return !UnregisterEventHotKey(keyRefs.take(id));
 }
