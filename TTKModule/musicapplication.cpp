@@ -678,7 +678,7 @@ void MusicApplication::playIndexClicked(int row, int column)
     playIndexBy(row, column);
 }
 
-void MusicApplication::playAnyTimePosition(int time)
+void MusicApplication::playTimePosition(int time)
 {
     //Drag the progress indicator to rewind or fast-forward through the current song
     m_player->setPosition(time);

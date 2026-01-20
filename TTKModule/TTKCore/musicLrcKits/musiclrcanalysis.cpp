@@ -8,56 +8,16 @@
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent),
-      m_lineMax(0),
+      m_maximum(0),
       m_currentIndex(0)
 {
 
 }
 
-void MusicLrcAnalysis::saveData()
-{
-    QString data;
-    data.append(QString("[by: %1]\n[offset:0]\n").arg(TTK_APP_NAME));
-
-    for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
-    {
-        data.append(TTKTime::toString(it.key(), "[mm:ss.zzz]"));
-        data.append(it.value() + TTK_LINEFEED);
-    }
-
-    QFile file(m_currentFilePath);
-    if(!file.open(QIODevice::WriteOnly))
-    {
-        return;
-    }
-
-    QTextStream outstream(&file);
-#if TTK_QT_VERSION_CHECK(6,0,0)
-    outstream.setEncoding(QStringConverter::Utf8);
-#else
-    outstream.setCodec("UTF-8");
-#endif
-    outstream << data;
-    outstream << QtNamespace(endl);
-    file.close();
-}
-
-MusicLrcAnalysis::State MusicLrcAnalysis::setData(const TTKIntStringMap &data)
-{
-    clear();
-    if(data.isEmpty())
-    {
-        return State::Failed;
-    }
-
-    m_lrcContainer = data;
-    return initialize();
-}
-
 MusicLrcAnalysis::State MusicLrcAnalysis::loadFromFile(const QString &path)
 {
     clear();
-    m_currentFilePath = path;
+    m_filePath = path;
 
     QStringList data;
     const QString &format = TTK_FILE_SUFFIX(QFileInfo(path));
@@ -131,6 +91,215 @@ MusicLrcAnalysis::State MusicLrcAnalysis::loadFromFile(const QString &path)
     return initialize();
 }
 
+MusicLrcAnalysis::State MusicLrcAnalysis::loadFromBuffer(const TTKIntStringMap &data)
+{
+    clear();
+    if(data.isEmpty())
+    {
+        return State::Failed;
+    }
+
+    m_lrcContainer = data;
+    return initialize();
+}
+
+void MusicLrcAnalysis::save()
+{
+    QString data;
+    data.append(QString("[by: %1]\n[offset:0]\n").arg(TTK_APP_NAME));
+
+    for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
+    {
+        data.append(TTKTime::toString(it.key(), "[mm:ss.zzz]"));
+        data.append(it.value() + TTK_LINEFEED);
+    }
+
+    QFile file(m_filePath);
+    if(!file.open(QIODevice::WriteOnly))
+    {
+        return;
+    }
+
+    QTextStream outstream(&file);
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    outstream.setEncoding(QStringConverter::Utf8);
+#else
+    outstream.setCodec("UTF-8");
+#endif
+    outstream << data;
+    outstream << QtNamespace(endl);
+    file.close();
+}
+
+void MusicLrcAnalysis::setTimePosition(qint64 pos)
+{
+    TTKIntStringMap copy;
+    for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
+    {
+        copy.insert(it.key() + pos, it.value());
+    }
+    m_lrcContainer = copy;
+}
+
+qint64 MusicLrcAnalysis::findTimePosition(qint64 time)
+{
+    const QList<qint64> keys(m_lrcContainer.keys());
+    qint64 beforeTime = 0;
+    int index = -1;
+
+    if(!keys.isEmpty())
+    {
+        index = 0;
+        beforeTime = keys[0];
+    }
+
+    for(int i = 1; i < keys.count(); ++i)
+    {
+        index = i;
+        const qint64 afterTime = keys[i];
+        if(beforeTime <= time && time <= afterTime)
+        {
+            time = afterTime;
+            break;
+        }
+
+        beforeTime = afterTime;
+    }
+
+    if((m_currentIndex = index - 1) < 0)
+    {
+        m_currentIndex = 0;
+    }
+    return time;
+}
+
+void MusicLrcAnalysis::clear() noexcept
+{
+    m_currentIndex = 0;
+    m_lrcContainer.clear();
+    m_currentShowLrcContainer.clear();
+}
+
+bool MusicLrcAnalysis::isValid() const noexcept
+{
+    return !isEmpty() && (m_currentIndex + m_maximum <= m_currentShowLrcContainer.count());
+}
+
+bool MusicLrcAnalysis::isEmpty() const noexcept
+{
+    return m_lrcContainer.isEmpty();
+}
+
+int MusicLrcAnalysis::count() const noexcept
+{
+    return m_lrcContainer.count();
+}
+
+QString MusicLrcAnalysis::text(int index) const
+{
+    index = m_currentIndex + index;
+    if(m_currentShowLrcContainer.count() <= index)
+    {
+        index = m_currentShowLrcContainer.count() - 1;
+    }
+
+    if(index <0 || index >= m_currentShowLrcContainer.count())
+    {
+        return {};
+    }
+    return m_currentShowLrcContainer[index];
+}
+
+bool MusicLrcAnalysis::findText(qint64 current, qint64 total, QString &pre, QString &last, qint64 &interval) const
+{
+    if(isEmpty())
+    {
+        Q_UNUSED(current)
+        Q_UNUSED(total)
+        pre = last = QString();
+        return false;
+    }
+
+    //After get the current time in the lyrics of the two time points
+    qint64 previous = 0;
+    qint64 later = 0;
+    //Keys() method returns a list of lrcContainer
+    for(const qint64 value : m_lrcContainer.keys())
+    {
+        if(current >= value)
+        {
+            previous = value;
+        }
+        else
+        {
+            later = value;
+            break;
+        }
+    }
+    //To the last line, set the later to song total time value
+    if(later == 0)
+    {
+        later = total;
+    }
+    //The lyrics content corresponds to obtain the current time
+    pre = m_lrcContainer.value(previous);
+    last = m_lrcContainer.value(later);
+    interval = later - previous;
+    return true;
+}
+
+qint64 MusicLrcAnalysis::findTime(int index) const
+{
+    if(index + m_maximum < m_currentShowLrcContainer.count())
+    {
+        auto it = m_lrcContainer.constBegin();
+        for(int i = 0; i < index + 1; ++i)
+        {
+            if(it != m_lrcContainer.constEnd())
+            {
+                ++it;
+            }
+        }
+        return it.key();
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+qint64 MusicLrcAnalysis::findTime(const QStringList &ts) const
+{
+    if(ts.isEmpty())
+    {
+        return -1;
+    }
+
+    for(int i = 0; i < m_currentShowLrcContainer.count() - ts.count(); ++i)
+    {
+        if(m_currentShowLrcContainer.mid(i, ts.count()) == ts)
+        {
+            return findTime(i + middle());
+        }
+    }
+    return -1;
+}
+
+QString MusicLrcAnalysis::dataString() const
+{
+    QString v;
+    for(const QString &s : m_lrcContainer.values())
+    {
+        v.append(s + TTK_LINEFEED);
+    }
+    return v;
+}
+
+QStringList MusicLrcAnalysis::dataList() const
+{
+    return m_lrcContainer.values();
+}
+
 MusicLrcAnalysis::State MusicLrcAnalysis::initialize()
 {
     if(m_lrcContainer.isEmpty())
@@ -138,7 +307,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::initialize()
         return State::Failed;
     }
 
-    for(int i = 0; i < lineMiddle(); ++i)
+    for(int i = 0; i < middle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -153,7 +322,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::initialize()
         m_currentShowLrcContainer << it.value();
     }
 
-    for(int i = 0; i < lineMiddle(); ++i)
+    for(int i = 0; i < middle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -334,173 +503,4 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, QString cap, const Q
     const int length = QString::number(milliseconds).length();
     const qint64 totalTime = minutes * TTK_DN_M2MS + seconds * TTK_DN_S2MS + milliseconds * std::pow(10, 3 - length);
     m_lrcContainer.insert(totalTime, oneLine);
-}
-
-void MusicLrcAnalysis::setTimePosition(qint64 pos)
-{
-    TTKIntStringMap copy;
-    for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
-    {
-        copy.insert(it.key() + pos, it.value());
-    }
-    m_lrcContainer = copy;
-}
-
-qint64 MusicLrcAnalysis::findTimePosition(qint64 time)
-{
-    const QList<qint64> keys(m_lrcContainer.keys());
-    qint64 beforeTime = 0;
-    int index = -1;
-
-    if(!keys.isEmpty())
-    {
-        index = 0;
-        beforeTime = keys[0];
-    }
-
-    for(int i = 1; i < keys.count(); ++i)
-    {
-        index = i;
-        const qint64 afterTime = keys[i];
-        if(beforeTime <= time && time <= afterTime)
-        {
-            time = afterTime;
-            break;
-        }
-
-        beforeTime = afterTime;
-    }
-
-    if((m_currentIndex = index - 1) < 0)
-    {
-        m_currentIndex = 0;
-    }
-    return time;
-}
-
-void MusicLrcAnalysis::clear() noexcept
-{
-    m_currentIndex = 0;
-    m_lrcContainer.clear();
-    m_currentShowLrcContainer.clear();
-}
-
-bool MusicLrcAnalysis::isValid() const noexcept
-{
-    return !isEmpty() && (m_currentIndex + m_lineMax <= m_currentShowLrcContainer.count());
-}
-
-bool MusicLrcAnalysis::isEmpty() const noexcept
-{
-    return m_lrcContainer.isEmpty();
-}
-
-int MusicLrcAnalysis::count() const noexcept
-{
-    return m_lrcContainer.count();
-}
-
-QString MusicLrcAnalysis::text(int index) const
-{
-    index = m_currentIndex + index;
-    if(m_currentShowLrcContainer.count() <= index)
-    {
-        index = m_currentShowLrcContainer.count() - 1;
-    }
-
-    if(index <0 || index >= m_currentShowLrcContainer.count())
-    {
-        return {};
-    }
-    return m_currentShowLrcContainer[index];
-}
-
-bool MusicLrcAnalysis::findText(qint64 current, qint64 total, QString &pre, QString &last, qint64 &interval) const
-{
-    if(isEmpty())
-    {
-        Q_UNUSED(current)
-        Q_UNUSED(total)
-        pre = last = QString();
-        return false;
-    }
-
-    //After get the current time in the lyrics of the two time points
-    qint64 previous = 0;
-    qint64 later = 0;
-    //Keys() method returns a list of lrcContainer
-    for(const qint64 value : m_lrcContainer.keys())
-    {
-        if(current >= value)
-        {
-            previous = value;
-        }
-        else
-        {
-            later = value;
-            break;
-        }
-    }
-    //To the last line, set the later to song total time value
-    if(later == 0)
-    {
-        later = total;
-    }
-    //The lyrics content corresponds to obtain the current time
-    pre = m_lrcContainer.value(previous);
-    last = m_lrcContainer.value(later);
-    interval = later - previous;
-    return true;
-}
-
-qint64 MusicLrcAnalysis::findTime(int index) const
-{
-    if(index + m_lineMax < m_currentShowLrcContainer.count())
-    {
-        auto it = m_lrcContainer.constBegin();
-        for(int i = 0; i < index + 1; ++i)
-        {
-            if(it != m_lrcContainer.constEnd())
-            {
-                ++it;
-            }
-        }
-        return it.key();
-    }
-    else
-    {
-        return -1;
-    }
-}
-
-qint64 MusicLrcAnalysis::findTime(const QStringList &ts) const
-{
-    if(ts.isEmpty())
-    {
-        return -1;
-    }
-
-    for(int i = 0; i < m_currentShowLrcContainer.count() - ts.count(); ++i)
-    {
-        if(m_currentShowLrcContainer.mid(i, ts.count()) == ts)
-        {
-            return findTime(i + lineMiddle());
-        }
-    }
-    return -1;
-}
-
-QString MusicLrcAnalysis::dataString() const
-{
-    QString v;
-    for(const QString &s : m_lrcContainer.values())
-    {
-        v.append(s + TTK_LINEFEED);
-    }
-    return v;
-}
-
-QStringList MusicLrcAnalysis::dataList() const
-{
-    return m_lrcContainer.values();
 }

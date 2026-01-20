@@ -5,15 +5,15 @@
 #include "musictransitionanimationlabel.h"
 #include "musicbackgroundmanager.h"
 
-class AbstractDesktopWallpaper
+class AbstractDesktopControl
 {
 public:
-    AbstractDesktopWallpaper(QWidget *parent)
+    AbstractDesktopControl(QWidget *parent)
         : m_parent(parent)
     {
 
     }
-    virtual ~AbstractDesktopWallpaper() = default;
+    virtual ~AbstractDesktopControl() = default;
 
 protected:
     QWidget *m_parent;
@@ -27,11 +27,11 @@ protected:
 #    pragma comment(lib, "user32.lib")
 #  endif
 
-class WindowsDesktopWallpaper : public AbstractDesktopWallpaper
+class WindowsDesktopControl : public AbstractDesktopControl
 {
 public:
-    WindowsDesktopWallpaper(QWidget *parent)
-        : AbstractDesktopWallpaper(parent)
+    WindowsDesktopControl(QWidget *parent)
+        : AbstractDesktopControl(parent)
     {
         sendMessageToDesktop();
         SetParent((HWND)m_parent->winId(), findDesktopIconWnd());
@@ -57,7 +57,6 @@ public:
         ShowWindow(hWorkerW, 0);
         return FindWindowW(L"Progman", nullptr);
     }
-
 };
 #endif
 
@@ -65,7 +64,7 @@ public:
 MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     : MusicLrcContainer(parent),
       m_animationFreshTime(0),
-      m_wappaper(nullptr)
+      m_control(nullptr)
 {
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
     vBoxLayout->setContentsMargins(0, 0, 0, 0);
@@ -90,14 +89,14 @@ MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     connect(m_thread, SIGNAL(updateBackground(QPixmap)), SLOT(updateBackground(QPixmap)));
 
 #ifdef Q_OS_WIN
-    m_wappaper = new WindowsDesktopWallpaper(this);
+    m_control = new WindowsDesktopControl(this);
 #endif
 }
 
 MusicLrcContainerForWallpaper::~MusicLrcContainerForWallpaper()
 {
     clearAllManagers();
-    delete m_wappaper;
+    delete m_control;
     delete m_thread;
 }
 
@@ -224,7 +223,7 @@ void MusicLrcContainerForWallpaper::updateBackground(const QPixmap &pix)
 
 void MusicLrcContainerForWallpaper::updateAnimationLrc()
 {
-    const int length = (MUSIC_LRC_INTERIOR_MAX_LINE - m_lrcAnalysis->lineMax()) / 2 + 1;
+    const int length = (MUSIC_LRC_INTERIOR_MAX_LINE - m_lrcAnalysis->maximum()) / 2 + 1;
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
         m_lrcManagers[i]->setText(m_lrcAnalysis->text(i - length));
@@ -234,7 +233,7 @@ void MusicLrcContainerForWallpaper::updateAnimationLrc()
 
 void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)
 {
-    for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
+    for(int i = 0; i < m_lrcAnalysis->maximum(); ++i)
     {
         m_lrcManagers[i]->setText({});
     }

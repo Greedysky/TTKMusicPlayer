@@ -186,7 +186,7 @@ MusicLrcMakerWidget::~MusicLrcMakerWidget()
 void MusicLrcMakerWidget::setCurrentSongName(const QString &name)
 {
     m_plainText.clear();
-    m_analysis->setCurrentFilePath(QString("%1%2%3").arg(TTK::String::lrcDirPrefix(), name, LRC_FILE));
+    m_analysis->setFilePath(QString("%1%2%3").arg(TTK::String::lrcDirPrefix(), name, LRC_FILE));
     m_ui->songNameEdit->setText(TTK::generateSongTitle(name));
     m_ui->artNameEdit->setText(TTK::generateSongArtist(name));
 }
@@ -221,7 +221,7 @@ void MusicLrcMakerWidget::positionChanged(qint64 position)
         QString currentLrc, laterLrc;
         if(m_analysis->findText(position, m_ui->timeSlider_F->maximum(), currentLrc, laterLrc, m_intervalTime))
         {
-            if(currentLrc != m_lrcContainer[m_analysis->lineMiddle()]->text())
+            if(currentLrc != m_lrcContainer[m_analysis->middle()]->text())
             {
                 updateCurrentLrc(m_intervalTime);
             }
@@ -243,7 +243,7 @@ void MusicLrcMakerWidget::currentLineFinished()
 
 void MusicLrcMakerWidget::timeSliderValueChanged(int value)
 {
-    MusicApplication::instance()->playAnyTimePosition(value);
+    MusicApplication::instance()->playTimePosition(value);
     m_analysis->findTimePosition(value);
 }
 
@@ -253,7 +253,7 @@ void MusicLrcMakerWidget::saveButtonClicked()
     {
         return;
     }
-    m_analysis->saveData();
+    m_analysis->save();
 
     MusicToastLabel::popup(tr("Save file finished"));
 }
@@ -264,7 +264,7 @@ void MusicLrcMakerWidget::reMakeButtonClicked()
     message.setText(tr("Are you sure that you want to remake lyrics?"));
     if(message.exec())
     {
-        MusicApplication::instance()->playAnyTimePosition(0);
+        MusicApplication::instance()->playTimePosition(0);
         setCurrentFirstWidget();
     }
 }
@@ -275,7 +275,7 @@ void MusicLrcMakerWidget::backToMakeLrcWidget()
     message.setText(tr("Go back and lyrics will be lost"));
     if(message.exec())
     {
-        MusicApplication::instance()->playAnyTimePosition(0);
+        MusicApplication::instance()->playTimePosition(0);
         setCurrentSecondWidget();
     }
 }
@@ -299,11 +299,11 @@ void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
     MusicApplication::instance()->switchToPlayState();
     if(state)
     {
-        m_lrcContainer[m_analysis->lineMiddle()]->start(m_intervalTime);
+        m_lrcContainer[m_analysis->middle()]->start(m_intervalTime);
     }
     else
     {
-        m_lrcContainer[m_analysis->lineMiddle()]->stop();
+        m_lrcContainer[m_analysis->middle()]->stop();
         m_ui->lrcViewer->stop();
     }
 }
@@ -331,7 +331,7 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
     }
     else
     {
-        MusicApplication::instance()->playAnyTimePosition(0);
+        MusicApplication::instance()->playTimePosition(0);
     }
 
     m_plainText = m_ui->lrcTextEdit->toPlainText().trimmed().split(TTK_LINEFEED);
@@ -365,7 +365,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
         return;
     }
 
-    MusicApplication::instance()->playAnyTimePosition(0);
+    MusicApplication::instance()->playTimePosition(0);
     m_ui->stackedWidget->setCurrentIndex(3);
 
     if(m_times.count() == m_plainText.count())
@@ -375,9 +375,9 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
         {
             data.insert(m_times.value(i), m_plainText[i]);
         }
-        m_analysis->setData(data);
+        m_analysis->loadFromBuffer(data);
 
-        for(int i = 0; i < m_analysis->lineMax(); ++i)
+        for(int i = 0; i < m_analysis->maximum(); ++i)
         {
             m_lrcContainer[i]->setText({});
         }
@@ -392,13 +392,13 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
 
 void MusicLrcMakerWidget::updateAnimationLrc()
 {
-    for(int i = 0; i < m_analysis->lineMax(); ++i)
+    for(int i = 0; i < m_analysis->maximum(); ++i)
     {
         m_lrcContainer[i]->setText(m_analysis->text(i));
     }
 
     m_analysis->setCurrentIndex(m_analysis->currentIndex() + 1);
-    m_lrcContainer[m_analysis->lineMiddle()]->start(m_intervalTime);
+    m_lrcContainer[m_analysis->middle()]->start(m_intervalTime);
 }
 
 void MusicLrcMakerWidget::lrcPositionSlower()
@@ -438,7 +438,7 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
         {
             case Qt::Key_Left:
             {
-                MusicApplication::instance()->playAnyTimePosition(m_ui->timeSlider_F->value() - 2222);
+                MusicApplication::instance()->playTimePosition(m_ui->timeSlider_F->value() - 2222);
                 m_lineItem->moveLeft();
                 break;
             }
@@ -622,10 +622,10 @@ void MusicLrcMakerWidget::createSecondWidget()
 void MusicLrcMakerWidget::createThirdWidget()
 {
     m_analysis = new MusicLrcAnalysis(this);
-    m_analysis->setLineMax(5);
+    m_analysis->setMaximum(5);
     m_ui->lrcViewer->connectTo(this);
 
-    for(int i = 0; i < m_analysis->lineMax(); ++i)
+    for(int i = 0; i < m_analysis->maximum(); ++i)
     {
         MusicLrcManagerForInterior *w = new MusicLrcManagerForInterior(this);
         w->setLrcPerWidth(-20);

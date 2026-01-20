@@ -59,7 +59,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_instance = this;
 
     m_lrcAnalysis = new MusicLrcAnalysis(this);
-    m_lrcAnalysis->setLineMax(MUSIC_LRC_INTERIOR_MAX_LINE);
+    m_lrcAnalysis->setMaximum(MUSIC_LRC_INTERIOR_MAX_LINE);
 
     m_downloadStatus = new MusicDownloadStatusModule(parent);
     m_settingWidget = new MusicSettingWidget(this);

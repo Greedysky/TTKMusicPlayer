@@ -73,7 +73,7 @@ void MusicLrcTranslatedWidget::setCurrentSongName(const QString &name)
     MusicTranslationRequest *req = new MusicTranslationRequest(this);
     connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
     req->setHeader("data", m_lrcAnalysis->dataString());
-    req->setHeader("name", m_lrcAnalysis->currentFilePath());
+    req->setHeader("name", m_lrcAnalysis->filePath());
     req->startToRequest();
 }
 

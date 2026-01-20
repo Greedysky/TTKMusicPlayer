@@ -16,7 +16,7 @@ public:
      * Set current status.
      * Subclass should implement this function.
      */
-    virtual void setCurrentStatus(bool status) = 0;
+    virtual void setStatus(bool status) = 0;
     /*!
      * Set current action.
      * Subclass should implement this function.
@@ -62,7 +62,7 @@ public:
     /*!
      * Set current status.
      */
-    virtual void setCurrentStatus(bool status) override final
+    virtual void setStatus(bool status) override final
     {
 #if TTK_QT_VERSION_CHECK(5,2,0) && !TTK_QT_VERSION_CHECK(6,0,0)
         const QStyle::StandardPixmap pix = status ? QStyle::SP_MediaPause : QStyle::SP_MediaPlay;
@@ -136,7 +136,7 @@ public:
     /*!
      * Set current status.
      */
-    virtual void setCurrentStatus(bool status) override final
+    virtual void setStatus(bool status) override final
     {
         Q_UNUSED(status);
     }
@@ -165,7 +165,7 @@ public:
     /*!
      * Set current status.
      */
-    virtual void setCurrentStatus(bool status) override final
+    virtual void setStatus(bool status) override final
     {
         Q_UNUSED(status);
     }
@@ -204,5 +204,5 @@ void MusicPlatformExtras::setAction()
 
 void MusicPlatformExtras::setCurrentPlayState(bool state) const
 {
-    m_platformExtras->setCurrentStatus(state);
+    m_platformExtras->setStatus(state);
 }

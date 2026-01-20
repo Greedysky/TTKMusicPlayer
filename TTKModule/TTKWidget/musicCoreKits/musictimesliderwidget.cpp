@@ -29,7 +29,7 @@ MusicTimeSliderWidget::~MusicTimeSliderWidget()
 void MusicTimeSliderWidget::setInputModule(QObject *object) const
 {
     connect(m_slider, SIGNAL(sliderMoved(int)), SLOT(sliderMovedAt(int)));
-    connect(m_slider, SIGNAL(sliderReleasedAt(int)), object, SLOT(playAnyTimePosition(int)));
+    connect(m_slider, SIGNAL(sliderReleasedAt(int)), object, SLOT(playTimePosition(int)));
 }
 
 void MusicTimeSliderWidget::setCurrentPlayState(bool state)

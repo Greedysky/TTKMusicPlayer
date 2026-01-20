@@ -230,7 +230,7 @@ public Q_SLOTS:
     /*!
      * Set song time position by given pos.
      */
-    void playAnyTimePosition(int time);
+    void playTimePosition(int time);
 
     /*!
      * Show setting widget.

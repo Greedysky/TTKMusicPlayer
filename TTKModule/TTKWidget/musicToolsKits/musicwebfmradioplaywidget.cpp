@@ -57,7 +57,7 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     TTK::Widget::adjustWidgetPosition(this);
 
     m_analysis = new MusicLrcAnalysis(this);
-    m_analysis->setLineMax(9);
+    m_analysis->setMaximum(9);
 
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
     connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));
@@ -239,9 +239,9 @@ void MusicWebFMRadioPlayWidget::positionChanged(qint64 position)
     if(time < position * TTK_DN_S2MS && time != -1)
     {
         QString lrc;
-        for(int i = 0; i < m_analysis->lineMax(); ++i)
+        for(int i = 0; i < m_analysis->maximum(); ++i)
         {
-            if(i == m_analysis->lineMiddle())
+            if(i == m_analysis->middle())
             {
                 lrc += QString("<p style='font-weight:600;' align='center'>");
             }

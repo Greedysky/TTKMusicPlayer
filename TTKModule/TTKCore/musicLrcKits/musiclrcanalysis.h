@@ -62,29 +62,28 @@ public:
     /*!
      * Set current line maximum value.
      */
-    inline void setLineMax(int max) noexcept { m_lineMax = max; }
+    inline void setMaximum(int max) noexcept { m_maximum = max; }
     /*!
      * Get current line maximum value.
      */
-    inline int lineMax() const noexcept { return m_lineMax; }
+    inline int maximum() const noexcept { return m_maximum; }
     /*!
      * Get current line middle number.
      */
-    inline int lineMiddle() const noexcept { return m_lineMax / 2; }
+    inline int middle() const noexcept { return m_maximum / 2; }
 
     /*!
-     * Save lrc data to current lrc file.
+     * Set lrc container data from lyric file.
      */
-    void saveData();
+    State loadFromFile(const QString &path);
     /*!
      * Set lrc container data from other raw data.
      */
-    State setData(const TTKIntStringMap &data);
-
+    State loadFromBuffer(const TTKIntStringMap &data);
     /*!
-     * Analysis lyric file to map return the state.
+     * Save lrc data to current lrc file.
      */
-    State loadFromFile(const QString &path);
+    void save();
 
     /*!
      * Set lrc time by pos, both + or - the same pos.
@@ -106,11 +105,11 @@ public:
     /*!
      * Set current file path.
      */
-    inline void setCurrentFilePath(const QString &name) noexcept { m_currentFilePath = name; }
+    inline void setFilePath(const QString &name) noexcept { m_filePath = name; }
     /*!
      * Get current file path.
      */
-    inline QString currentFilePath() const noexcept { return m_currentFilePath; }
+    inline QString filePath() const noexcept { return m_filePath; }
 
     /*!
      * Clear current lrc cache.
@@ -177,8 +176,8 @@ private:
      */
     void matchLrcLine(const QString &oneLine, const QString &cap, const QString &first, const QString &second, const QString &third);
 
-    int m_lineMax, m_currentIndex;
-    QString m_currentFilePath;
+    int m_maximum, m_currentIndex;
+    QString m_filePath;
     TTKIntStringMap m_lrcContainer;
     QStringList m_currentShowLrcContainer;
 
