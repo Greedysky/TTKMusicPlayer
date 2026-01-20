@@ -46,13 +46,13 @@ public:
 	QJsonParseError state() const;
 
 private:
-	static const char ArrayBegin     = '[';
-	static const char ArrayEnd       = ']';
-	static const char NameSeparator  = ':';
-	static const char ValueSeparator = ',';
-	static const char ObjectBegin    = '{';
-	static const char ObjectEnd      = '}';
-	static const char Quote          = '"';
+	static constexpr const char ArrayBegin     = '[';
+	static constexpr const char ArrayEnd       = ']';
+	static constexpr const char NameSeparator  = ':';
+	static constexpr const char ValueSeparator = ',';
+	static constexpr const char ObjectBegin    = '{';
+	static constexpr const char ObjectEnd      = '}';
+	static constexpr const char Quote          = '"';
 
 private:
 	char peek();
