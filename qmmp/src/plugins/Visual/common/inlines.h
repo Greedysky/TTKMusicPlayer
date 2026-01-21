@@ -56,8 +56,6 @@ static inline void stereo_from_multichannel(float *l, float *r, float *s, long c
     }
 }
 
-
-
 static inline void mono_from_multichannel(float *l, float *s, long cnt, int chan)
 {
     if(chan == 1)
