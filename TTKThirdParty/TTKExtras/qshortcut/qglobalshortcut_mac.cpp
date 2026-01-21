@@ -1,12 +1,10 @@
 #include <Carbon/Carbon.h>
 #include "qglobalshortcut_p.h"
-#include <QMap>
+#include <QHash>
 #include <QApplication>
 
-typedef QPair<uint, uint> Identifier;
-static QMap<quint32, EventHotKeyRef> keyRefs;
-static QHash<Identifier, quint32> keyIDs;
-static quint32 hotKeySerial = 0;
+typedef QPair<quint32, quint32> Identifier;
+static QHash<Identifier, EventHotKeyRef> keyRefs;
 static bool q_mac_handler_installed = false;
 
 OSStatus q_mac_handle_hot_key(EventHandlerCallRef nextHandler, EventRef event, void *data)
@@ -33,8 +31,7 @@ bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message
     {
         EventHotKeyID keyID;
         GetEventParameter(event, kEventParamDirectObject, typeEventHotKeyID, nullptr, sizeof(keyID), nullptr, &keyID);
-        Identifier id = keyIDs.key(keyID.id);
-        activateShortcut(id.second, id.first);
+        activateShortcut(keyID.signature, keyID.id);
     }
     return false;
 }
@@ -116,13 +113,16 @@ quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
     UCKeyboardLayout *header = TTKReinterpretCast(UCKeyboardLayout*, data);
     UCKeyboardTypeHeader *table = header->keyboardTypeList;
 
-    for(quint32 i=0; i < header->keyboardTypeCount; i++)
+    for(quint32 i = 0; i < header->keyboardTypeCount; ++i)
     {
         UCKeyStateRecordsIndex *stateRec = 0;
         if(table[i].keyStateRecordsIndexOffset != 0)
         {
             stateRec = TTKReinterpretCast(UCKeyStateRecordsIndex*, data + table[i].keyStateRecordsIndexOffset);
-            if(stateRec->keyStateRecordsIndexFormat != kUCKeyStateRecordsIndexFormat) stateRec = 0;
+            if(stateRec->keyStateRecordsIndexFormat != kUCKeyStateRecordsIndexFormat)
+            {
+                stateRec = 0;
+            }
         }
 
         UCKeyToCharTableIndex *charTable = TTKReinterpretCast(UCKeyToCharTableIndex*, data + table[i].keyToCharTableIndexOffset);
@@ -131,10 +131,10 @@ quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
             continue;
         }
 
-        for(quint32 j=0; j < charTable->keyToCharTableCount; j++)
+        for(quint32 j = 0; j < charTable->keyToCharTableCount; ++j)
         {
             UCKeyOutput *keyToChar = TTKReinterpretCast(UCKeyOutput*, data + charTable->keyToCharTableOffsets[j]);
-            for(quint32 k=0; k < charTable->keyToCharTableSize; k++)
+            for(quint32 k = 0; k < charTable->keyToCharTableSize; ++k)
             {
                 if(keyToChar[k] & kUCKeyOutputTestForIndexMask)
                 {
@@ -173,27 +173,25 @@ bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeM
     }
 
     EventHotKeyID keyID;
-    keyID.signature = 'cute';
-    keyID.id = ++hotKeySerial;
+    keyID.signature = nativeKey;
+    keyID.id = nativeMods;
 
     EventHotKeyRef ref = 0;
     const bool rv = !RegisterEventHotKey(nativeKey, nativeMods, keyID, GetApplicationEventTarget(), 0, &ref);
     if(rv)
     {
-        keyIDs.insert(Identifier(nativeMods, nativeKey), keyID.id);
-        keyRefs.insert(keyID.id, ref);
+        keyRefs.insert(Identifier(nativeMods, nativeKey), ref);
     }
-
     return rv;
 }
 
 bool QGlobalShortcutPrivate::unregisterShortcut(quint32 nativeKey, quint32 nativeMods)
 {
     Identifier id(nativeMods, nativeKey);
-    if(!keyIDs.contains(id))
+    if(!keyRefs.contains(id))
+    {
         return false;
+    }
 
-    EventHotKeyRef ref = keyRefs.take(keyIDs[id]);
-    keyIDs.remove(id);
-    return !UnregisterEventHotKey(ref);
+    return !UnregisterEventHotKey(keyRefs.take(id));
 }

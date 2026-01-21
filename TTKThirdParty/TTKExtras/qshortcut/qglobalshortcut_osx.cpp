@@ -113,13 +113,16 @@ quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
 
     UTF16Char ch = key;
     uint8_t *data = (uint8_t*)header;
-    for(quint32 i=0; i < header->keyboardTypeCount; i++)
+    for(quint32 i = 0; i < header->keyboardTypeCount; ++i)
     {
         UCKeyStateRecordsIndex *stateRec = 0;
         if(table[i].keyStateRecordsIndexOffset != 0)
         {
             stateRec = TTKReinterpretCast(UCKeyStateRecordsIndex*, data + table[i].keyStateRecordsIndexOffset);
-            if(stateRec->keyStateRecordsIndexFormat != kUCKeyStateRecordsIndexFormat) stateRec = 0;
+            if(stateRec->keyStateRecordsIndexFormat != kUCKeyStateRecordsIndexFormat)
+            {
+                stateRec = 0;
+            }
         }
 
         UCKeyToCharTableIndex *charTable = TTKReinterpretCast(UCKeyToCharTableIndex*, data + table[i].keyToCharTableIndexOffset);
@@ -128,10 +131,10 @@ quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
             continue;
         }
 
-        for(quint32 j=0; j < charTable->keyToCharTableCount; j++)
+        for(quint32 j = 0; j < charTable->keyToCharTableCount; ++j)
         {
             UCKeyOutput *keyToChar = TTKReinterpretCast(UCKeyOutput*, data + charTable->keyToCharTableOffsets[j]);
-            for(quint32 k=0; k < charTable->keyToCharTableSize; k++)
+            for(quint32 k = 0; k < charTable->keyToCharTableSize; ++k)
             {
                 if(keyToChar[k] & kUCKeyOutputTestForIndexMask)
                 {
@@ -179,7 +182,6 @@ bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeM
     {
         keyRefs.insert(Identifier(nativeMods, nativeKey), ref);
     }
-
     return rv;
 }
 
@@ -187,7 +189,9 @@ bool QGlobalShortcutPrivate::unregisterShortcut(quint32 nativeKey, quint32 nativ
 {
     Identifier id(nativeMods, nativeKey);
     if(!keyRefs.contains(id))
+    {
         return false;
+    }
 
     return !UnregisterEventHotKey(keyRefs.take(id));
 }
