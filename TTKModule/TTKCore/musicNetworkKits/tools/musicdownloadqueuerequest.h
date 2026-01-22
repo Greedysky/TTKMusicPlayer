@@ -35,7 +35,7 @@ TTK_DECLARE_LIST(MusicDownloadQueueData);
 /*! @brief The class of the download data from queue request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadQueueRequest : public MusicAbstractDownLoadRequest
+class TTK_MODULE_EXPORT MusicDownloadQueueRequest : public MusicAbstractDownloadRequest
 {
     Q_OBJECT
 public:
@@ -72,7 +72,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
+    virtual void downloadFinished() override final;
     /*!
      * Download received data ready.
      */

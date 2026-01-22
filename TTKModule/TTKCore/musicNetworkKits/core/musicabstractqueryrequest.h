@@ -125,7 +125,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downloadFinished() override;
 
 protected:
     /*!

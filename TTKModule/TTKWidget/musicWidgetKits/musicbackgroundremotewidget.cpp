@@ -24,7 +24,7 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     setLayout(hbox);
 
     m_networkRequest = new MusicDownloadQueueRequest(TTK::Download::Background, this);
-    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+    connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), SLOT(downloadDataChanged(QString)));
     connect(m_backgroundList, SIGNAL(itemClicked(int,QString)), parent, SLOT(remoteListWidgetItemClicked(int,QString)));
 }
 
@@ -41,7 +41,7 @@ void MusicBackgroundRemoteWidget::abort()
     m_networkRequest->abort();
 }
 
-void MusicBackgroundRemoteWidget::downLoadFinished(const QString &bytes)
+void MusicBackgroundRemoteWidget::downloadDataChanged(const QString &bytes)
 {
     if(m_groups.isEmpty())
     {
@@ -58,7 +58,7 @@ void MusicBackgroundRemoteWidget::downLoadFinished(const QString &bytes)
     m_backgroundList->updateItem(image, bytes);
 }
 
-void MusicBackgroundRemoteWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)
+void MusicBackgroundRemoteWidget::downloadFinished(const MusicSkinRemoteGroupList &bytes)
 {
     m_groups = bytes;
 }
@@ -103,7 +103,7 @@ void MusicBackgroundDailyWidget::initialize()
     if(!m_downloadRequest)
     {
         m_downloadRequest = new MusicDownloadBingSkinRequest(this);
-        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroupList)), SLOT(downLoadFinished(MusicSkinRemoteGroupList)));
+        connect(m_downloadRequest, SIGNAL(downloadDataChanged(MusicSkinRemoteGroupList)), SLOT(downloadFinished(MusicSkinRemoteGroupList)));
         m_downloadRequest->startToRequest();
     }
     else
@@ -131,7 +131,7 @@ void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, c
     }
 }
 
-void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)
+void MusicBackgroundDailyWidget::downloadFinished(const MusicSkinRemoteGroupList &bytes)
 {
     if(bytes.isEmpty() && m_tryTimes-- > 0)
     {
@@ -140,7 +140,7 @@ void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroupList
         return;
     }
 
-    MusicBackgroundRemoteWidget::downLoadFinished(bytes);
+    MusicBackgroundRemoteWidget::downloadFinished(bytes);
     startToRequest(TKM_FILE);
 }
 
@@ -169,7 +169,7 @@ void MusicBackgroundOnlineWidget::initialize()
     if(!m_downloadRequest)
     {
         m_downloadRequest = new MusicDownloadThunderSkinRequest(this);
-        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroupList)), SLOT(downLoadFinished(MusicSkinRemoteGroupList)));
+        connect(m_downloadRequest, SIGNAL(downloadDataChanged(MusicSkinRemoteGroupList)), SLOT(downloadFinished(MusicSkinRemoteGroupList)));
         m_downloadRequest->startToRequest();
     }
     else
@@ -250,7 +250,7 @@ void MusicBackgroundOnlineWidget::currentTypeChanged(int index)
     startToRequest(TKM_FILE);
 }
 
-void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)
+void MusicBackgroundOnlineWidget::downloadFinished(const MusicSkinRemoteGroupList &bytes)
 {
     if(bytes.isEmpty() && m_tryTimes-- > 0)
     {
@@ -259,7 +259,7 @@ void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroupLis
         return;
     }
 
-    MusicBackgroundRemoteWidget::downLoadFinished(bytes);
+    MusicBackgroundRemoteWidget::downloadFinished(bytes);
     m_typeBox->blockSignals(true);
 
     for(int i = 0; i < bytes.count(); ++i)

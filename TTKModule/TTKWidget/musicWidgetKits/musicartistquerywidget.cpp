@@ -60,12 +60,12 @@ void MusicArtistAlbumsItemWidget::setResultDataItem(const MusicResultDataItem &i
     if(TTK::isCoverValid(item.m_coverUrl))
     {
         MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
         req->startToRequest(item.m_coverUrl);
     }
 }
 
-void MusicArtistAlbumsItemWidget::downLoadFinished(const QByteArray &bytes)
+void MusicArtistAlbumsItemWidget::downloadFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {
@@ -291,7 +291,7 @@ MusicArtistQueryWidget::MusicArtistQueryWidget(QWidget *parent)
     m_shareType = MusicSongSharingWidget::Module::Artist;
 
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
 MusicArtistQueryWidget::~MusicArtistQueryWidget()
@@ -314,7 +314,7 @@ void MusicArtistQueryWidget::setCurrentID(const QString &id)
     m_queryTableWidget->setQueryInput(req);
     m_queryTableWidget->startToSearchByText(id);
 
-    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryArtistFinished()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(queryArtistFinished()));
     connect(req, SIGNAL(createArtistItem(MusicResultDataItem)), SLOT(createArtistItem(MusicResultDataItem)));
 }
 
@@ -446,7 +446,7 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
         if(TTK::isCoverValid(item.m_coverUrl))
         {
             MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-            connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+            connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
             req->startToRequest(item.m_coverUrl);
         }
 

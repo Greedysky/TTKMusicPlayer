@@ -15,7 +15,7 @@ MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
     MusicAbstractQueryRequest *req = new MusicDJRadioProgramCategoryRequest(this);
     m_queryTableWidget->setQueryInput(req);
 
-    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(queryAllFinished()));
     connect(req, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createProgramCategoryItem(MusicResultDataItem)));
 }
 
@@ -63,7 +63,7 @@ void MusicWebDJRadioInfoWidget::createProgramCategoryItem(const MusicResultDataI
         if(TTK::isCoverValid(item.m_coverUrl))
         {
             MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-            connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+            connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
             req->startToRequest(item.m_coverUrl);
         }
 

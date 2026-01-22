@@ -13,11 +13,11 @@ MusicDownloadBingSkinRequest::MusicDownloadBingSkinRequest(QObject *parent)
 void MusicDownloadBingSkinRequest::startToRequest()
 {
     MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
     req->startToRequest(TTK::Algorithm::mdII(QUERY_URL, false));
 }
 
-void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
+void MusicDownloadBingSkinRequest::downloadFinished(const QByteArray &bytes)
 {
     MusicSkinRemoteGroupList groups;
 
@@ -61,5 +61,5 @@ void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
         }
     }
 
-    Q_EMIT downLoadDataChanged(groups);
+    Q_EMIT downloadDataChanged(groups);
 }

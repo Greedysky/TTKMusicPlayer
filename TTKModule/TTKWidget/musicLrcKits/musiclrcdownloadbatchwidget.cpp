@@ -148,7 +148,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
 
         TTKEventLoop loop;
         MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-        connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
         req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
         req->startToSearch(song->name().trimmed());
         loop.exec();
@@ -156,8 +156,8 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         if(!req->isEmpty())
         {
             const TTK::MusicSongInformation &info = req->items().first();
-            MusicAbstractDownLoadRequest *req = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, this);
-            connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            MusicAbstractDownloadRequest *req = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, this);
+            connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
             req->startToRequest();
             loop.exec();
 

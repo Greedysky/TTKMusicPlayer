@@ -43,7 +43,7 @@ void MusicAbstractDownloadTableWidget::updateSongsList(const MusicSongList &song
     {
         const MusicSong &v = m_songs->at(i);
         addCellItem(i, v);
-        G_DOWNLOAD_MANAGER_PTR->reconnectNetworkData(MusicDownLoadData(v.addTimeStr().toULongLong(), this, m_type));
+        G_DOWNLOAD_MANAGER_PTR->reconnectNetworkData(MusicDownloadData(v.addTimeStr().toULongLong(), this, m_type));
     }
 }
 

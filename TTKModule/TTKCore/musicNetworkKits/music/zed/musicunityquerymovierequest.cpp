@@ -68,15 +68,15 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
         default: return;
     }
 
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadUnityFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadUnityFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicUnityQueryMovieRequest::downLoadUnityFinished()
+void MusicUnityQueryMovieRequest::downloadUnityFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -215,7 +215,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 

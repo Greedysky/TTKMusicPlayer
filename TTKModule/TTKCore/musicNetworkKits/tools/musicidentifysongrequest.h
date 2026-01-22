@@ -44,35 +44,17 @@ public:
     explicit MusicAbstractIdentifyRequest(QObject *parent = nullptr);
 
     /*!
-     * Get query cloud id keys.
-     */
-    bool queryCloudKey();
-
-    /*!
      * Start to download identify data.
      */
-    virtual void startToRequest(const QString &path) = 0;
+    virtual void startToRequest(const QString &path, const QVariantMap &keys) = 0;
 
     /*!
-     * Get identify songs.
+     * Set item data.
      */
-    inline const MusicSongIdentifyDataList& items() const noexcept { return m_items; }
-
-Q_SIGNALS:
-    /*!
-     * Get key data from net finished.
-     */
-    void finished();
-
-protected Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    virtual void downLoadKeyFinished(const QByteArray &bytes) = 0;
+    inline void setItems(MusicSongIdentifyDataList *item) noexcept { m_items = item; }
 
 protected:
-    MusicSongIdentifyDataList m_items;
-    QString m_accessKey, m_accessSecret;
+    MusicSongIdentifyDataList *m_items;
 
 };
 
@@ -92,19 +74,13 @@ public:
     /*!
      * Start to download identify data.
      */
-    virtual void startToRequest(const QString &path) override final;
+    virtual void startToRequest(const QString &path, const QVariantMap &keys) override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
-
-private Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    virtual void downLoadKeyFinished(const QByteArray &bytes) override final;
+    virtual void downloadFinished() override final;
 
 };
 
@@ -124,19 +100,70 @@ public:
     /*!
      * Start to download identify data.
      */
-    virtual void startToRequest(const QString &path) override final;
+    virtual void startToRequest(const QString &path, const QVariantMap &keys) override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
+    virtual void downloadFinished() override final;
 
-private Q_SLOTS:
+};
+
+
+/*! @brief The class of the song identify query request.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicIdentifySongRequest : public MusicAbstractNetwork
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    MusicIdentifySongRequest(QObject *parent = nullptr);
+
+    /*!
+     * Get query cloud id keys.
+     */
+    bool initialize();
+
+    /*!
+     * Start to download identify data.
+     */
+    void startToRequest(const QString &path);
+
+    /*!
+     * Get identify songs.
+     */
+    inline const MusicSongIdentifyDataList& items() const noexcept { return m_items; }
+
+Q_SIGNALS:
+    /*!
+     * Get key data from net finished.
+     */
+    void finished();
+
+public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadKeyFinished(const QByteArray &bytes) override final;
+    void downloadDataFinished(const QString &bytes);
+    /*!
+     * Download key from net finished.
+     */
+    void downloadKeyFinished(const QByteArray &bytes);
+
+private:
+    /*!
+     * Find all plugins.
+     */
+    void findAllPlugins();
+
+private:
+    QString m_path;
+    int m_pluginSelector;
+    MusicSongIdentifyDataList m_items;
 
 };
 

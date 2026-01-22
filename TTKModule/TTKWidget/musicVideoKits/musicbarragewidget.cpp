@@ -50,7 +50,7 @@ MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
     connect(m_sizeTimer, SIGNAL(timeout()), SLOT(sizeChanged()));
 
     m_networkRequest = new MusicBarrageRequest(this);
-    connect(m_networkRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(m_networkRequest, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
 }
 
 MusicBarrageWidget::~MusicBarrageWidget()
@@ -157,7 +157,7 @@ void MusicBarrageWidget::sizeChanged()
     start();
 }
 
-void MusicBarrageWidget::downLoadFinished(const QByteArray &bytes)
+void MusicBarrageWidget::downloadFinished(const QByteArray &bytes)
 {
     TTKAbstractXml xml;
     if(xml.fromByteArray(bytes))

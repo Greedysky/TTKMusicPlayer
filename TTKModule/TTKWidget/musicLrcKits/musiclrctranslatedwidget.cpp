@@ -71,13 +71,13 @@ void MusicLrcTranslatedWidget::setCurrentSongName(const QString &name)
     m_loadingLabel->execute(true);
 
     MusicTranslationRequest *req = new MusicTranslationRequest(this);
-    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+    connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(downloadDataFinished(QString)));
     req->setHeader("data", m_lrcAnalysis->dataString());
     req->setHeader("name", m_lrcAnalysis->filePath());
     req->startToRequest();
 }
 
-void MusicLrcTranslatedWidget::downLoadFinished(const QString &bytes)
+void MusicLrcTranslatedWidget::downloadDataFinished(const QString &bytes)
 {
     QString text;
     m_loadingLabel->execute(false);

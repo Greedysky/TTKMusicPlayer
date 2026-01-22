@@ -19,15 +19,15 @@ void MusicKWDiscoverListRequest::startToSearch()
     ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWDiscoverListRequest::downLoadFinished()
+void MusicKWDiscoverListRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicDiscoverListRequest::downLoadFinished();
+    MusicDiscoverListRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -59,6 +59,6 @@ void MusicKWDiscoverListRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(m_item);
+    Q_EMIT downloadDataChanged(m_item);
     deleteAll();
 }

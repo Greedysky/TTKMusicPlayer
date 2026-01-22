@@ -32,8 +32,8 @@ void MusicYDTranslationRequest::startToRequest(const QString &data)
 
     if(sid.isEmpty())
     {
-        TTK_INFO_STREAM(metaObject()->className() << "downLoadFinished");
-        Q_EMIT downLoadDataChanged({});
+        TTK_INFO_STREAM(metaObject()->className() << "downloadFinished");
+        Q_EMIT downloadDataChanged({});
         deleteAll();
         return;
     }
@@ -44,15 +44,15 @@ void MusicYDTranslationRequest::startToRequest(const QString &data)
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicYDTranslationRequest::downLoadFinished()
+void MusicYDTranslationRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractTranslationRequest::downLoadFinished();
+    MusicAbstractTranslationRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -70,7 +70,7 @@ void MusicYDTranslationRequest::downLoadFinished()
                         continue;
                     }
 
-                    Q_EMIT downLoadDataChanged(var.toString());
+                    Q_EMIT downloadDataChanged(var.toString());
                     deleteAll();
                     return;
                 }
@@ -79,7 +79,7 @@ void MusicYDTranslationRequest::downLoadFinished()
     }
 
     TTK_ERROR_STREAM("Translation source data error");
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 

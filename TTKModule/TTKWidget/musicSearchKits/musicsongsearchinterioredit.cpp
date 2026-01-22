@@ -12,7 +12,7 @@ MusicSongSearchInteriorEdit::MusicSongSearchInteriorEdit(QWidget *parent)
     connect(this, SIGNAL(textChanged(QString)), SLOT(textChanged(QString)));
 
     m_discoverRequest = G_DOWNLOAD_QUERY_PTR->makeDiscoverListRequest(this);
-    connect(m_discoverRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(discoverInfoFinished(QString)));
+    connect(m_discoverRequest, SIGNAL(downloadDataChanged(QString)), SLOT(discoverInfoFinished(QString)));
     m_discoverRequest->startToSearch();
 }
 
@@ -44,7 +44,7 @@ void MusicSongSearchInteriorEdit::textChanged(const QString &text)
 {
     delete m_suggestRequest;
     m_suggestRequest = new MusicSongSuggestRequest(this);
-    connect(m_suggestRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(suggestDataChanged()));
+    connect(m_suggestRequest, SIGNAL(downloadDataChanged(QString)), SLOT(suggestDataChanged()));
     m_suggestRequest->startToSearch(text);
 
     if(text.trimmed().isEmpty())

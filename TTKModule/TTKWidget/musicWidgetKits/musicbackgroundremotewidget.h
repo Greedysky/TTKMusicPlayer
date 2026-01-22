@@ -57,11 +57,11 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QString &bytes);
+    void downloadDataChanged(const QString &bytes);
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished(const MusicSkinRemoteGroupList &bytes);
+    virtual void downloadFinished(const MusicSkinRemoteGroupList &bytes);
 
 protected:
     /*!
@@ -106,7 +106,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished(const MusicSkinRemoteGroupList &bytes) override final;
+    virtual void downloadFinished(const MusicSkinRemoteGroupList &bytes) override final;
 
 };
 
@@ -150,7 +150,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished(const MusicSkinRemoteGroupList &bytes) override final;
+    virtual void downloadFinished(const MusicSkinRemoteGroupList &bytes) override final;
 
 private:
     QComboBox *m_typeBox;

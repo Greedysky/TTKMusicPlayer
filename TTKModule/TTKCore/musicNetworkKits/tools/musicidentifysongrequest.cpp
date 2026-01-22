@@ -12,22 +12,10 @@ static constexpr const char *XF_QUERY_BODY = "VHd2bFMwaTZGNFQxeDBuU0prYXE0SDIzOV
 static constexpr const char *XF_QUERY_DATA = "a29sU1NRVExPbzIzRDdiNjRlbWUwdz09";
 
 MusicAbstractIdentifyRequest::MusicAbstractIdentifyRequest(QObject *parent)
-    : MusicAbstractNetwork(parent)
+    : MusicAbstractNetwork(parent),
+      m_items(nullptr)
 {
 
-}
-
-bool MusicAbstractIdentifyRequest::queryCloudKey()
-{
-    TTKEventLoop loop;
-    connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
-
-    MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadKeyFinished(QByteArray)));
-    req->startToRequest(QSyncUtils::makeDataBucketUrl() + OS_ACRCLOUD_URL);
-    loop.exec();
-
-    return !m_accessKey.isEmpty() && !m_accessSecret.isEmpty();
 }
 
 
@@ -37,7 +25,7 @@ MusicACRIdentifyRequest::MusicACRIdentifyRequest(QObject *parent)
 
 }
 
-void MusicACRIdentifyRequest::startToRequest(const QString &path)
+void MusicACRIdentifyRequest::startToRequest(const QString &path, const QVariantMap &keys)
 {
     QFile file(path);
     if(!file.open(QIODevice::ReadOnly))
@@ -45,6 +33,9 @@ void MusicACRIdentifyRequest::startToRequest(const QString &path)
         TTK_ERROR_STREAM("Load input audio wav file error");
         return;
     }
+
+    const QString &accessKey = keys["key"].toString();
+    const QString &accessSecret = keys["secret"].toString();
 
     const QString &boundary = "----";
     const QString &start = "--" + boundary;
@@ -57,11 +48,11 @@ void MusicACRIdentifyRequest::startToRequest(const QString &path)
     const QString &version = "1";
     const QString &timeStamp = QString::number(TTKDateTime::currentTimestamp());
 
-    const QString &sign = method + "\n" + endpoint + "\n" + m_accessKey + "\n" + type + "\n" + version + "\n" + timeStamp;
-    QByteArray body = TTK::Algorithm::hmacSha1(sign.toUtf8(), m_accessSecret.toUtf8()).toBase64();
+    const QString &sign = method + "\n" + endpoint + "\n" + accessKey + "\n" + type + "\n" + version + "\n" + timeStamp;
+    QByteArray body = TTK::Algorithm::hmacSha1(sign.toUtf8(), accessSecret.toUtf8()).toBase64();
 
     QString value;
-    value += start + "\r\nContent-Disposition: form-data; name=\"access_key\"\r\n\r\n" + m_accessKey + "\r\n";
+    value += start + "\r\nContent-Disposition: form-data; name=\"access_key\"\r\n\r\n" + accessKey + "\r\n";
     value += start + "\r\nContent-Disposition: form-data; name=\"data_type\"\r\n\r\n" + type + "\r\n";
     value += start + "\r\nContent-Disposition: form-data; name=\"timestamp\"\r\n\r\n" + timeStamp + "\r\n";
     value += start + "\r\nContent-Disposition: form-data; name=\"signature_version\"\r\n\r\n" + version + "\r\n";
@@ -82,16 +73,16 @@ void MusicACRIdentifyRequest::startToRequest(const QString &path)
     TTK::makeContentTypeHeader(&request, contentType.toUtf8());
 
     m_reply = m_manager.post(request, body);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicACRIdentifyRequest::downLoadFinished()
+void MusicACRIdentifyRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    m_items.clear();
-    MusicAbstractNetwork::downLoadFinished();
+    m_items->clear();
+    MusicAbstractIdentifyRequest::downloadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -119,8 +110,10 @@ void MusicACRIdentifyRequest::downLoadFinished()
                         break;
                     }
 
-                    m_items << song;
-                    break;
+                    m_items->append(song);
+                    Q_EMIT downloadDataChanged("Found result");
+                    deleteAll();
+                    return;
                 }
             }
             else
@@ -130,29 +123,8 @@ void MusicACRIdentifyRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
-}
-
-void MusicACRIdentifyRequest::downLoadKeyFinished(const QByteArray &bytes)
-{
-    if(bytes.isEmpty())
-    {
-        TTK_ERROR_STREAM("Input byte data is empty");
-    }
-    else
-    {
-        QJsonParseError ok;
-        const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
-        if(QJsonParseError::NoError == ok.error)
-        {
-            const QVariantMap &value = json.toVariant().toMap();
-            m_accessKey = value["key"].toString();
-            m_accessSecret = value["secret"].toString();
-        }
-    }
-
-    Q_EMIT finished();
 }
 
 
@@ -162,7 +134,7 @@ MusicXFIdentifyRequest::MusicXFIdentifyRequest(QObject *parent)
 
 }
 
-void MusicXFIdentifyRequest::startToRequest(const QString &path)
+void MusicXFIdentifyRequest::startToRequest(const QString &path, const QVariantMap &keys)
 {
     QFile file(path);
     if(!file.open(QIODevice::ReadOnly))
@@ -171,33 +143,36 @@ void MusicXFIdentifyRequest::startToRequest(const QString &path)
         return;
     }
 
+    const QString &accessKey = keys["xfid"].toString();
+    const QString &accessSecret = keys["xfkey"].toString();
+
     const QByteArray &data = file.readAll();
     file.close();
 
     const QByteArray &timeStamp = QByteArray::number(TTKDateTime::currentTimestamp() / 1000);
     const QByteArray &audioBody = TTK::Algorithm::mdII(XF_QUERY_BODY, false).toUtf8().toBase64();
-    const QByteArray &md5 = TTK::Algorithm::md5(m_accessSecret.toUtf8() + timeStamp + audioBody);
+    const QByteArray &md5 = TTK::Algorithm::md5(accessSecret.toUtf8() + timeStamp + audioBody);
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(XF_QUERY_URL, false));
     request.setRawHeader("X-CurTime", timeStamp);
     request.setRawHeader("X-Param", audioBody);
-    request.setRawHeader("X-Appid", m_accessKey.toUtf8());
+    request.setRawHeader("X-Appid", accessKey.toUtf8());
     request.setRawHeader("X-CheckSum", md5);
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.post(request, TTK::Algorithm::mdII(XF_QUERY_DATA, false).arg(data.toBase64().constData()).toUtf8());
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicXFIdentifyRequest::downLoadFinished()
+void MusicXFIdentifyRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    m_items.clear();
-    MusicAbstractNetwork::downLoadFinished();
+    m_items->clear();
+    MusicAbstractIdentifyRequest::downloadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -217,8 +192,11 @@ void MusicXFIdentifyRequest::downLoadFinished()
                     MusicSongIdentifyData song;
                     song.m_songName = value["song"].toString();
                     song.m_artistName = value["singer"].toString();
-                    m_items << song;
-                    break;
+
+                    m_items->append(song);
+                    Q_EMIT downloadDataChanged("Found result");
+                    deleteAll();
+                    return;
                 }
             }
             else
@@ -228,15 +206,73 @@ void MusicXFIdentifyRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 
-void MusicXFIdentifyRequest::downLoadKeyFinished(const QByteArray &bytes)
+
+MusicIdentifySongRequest::MusicIdentifySongRequest(QObject *parent)
+    : MusicAbstractNetwork(parent),
+      m_pluginSelector(-1)
+{
+
+}
+
+bool MusicIdentifySongRequest::initialize()
+{
+    TTKEventLoop loop;
+    connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
+
+    MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
+    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadKeyFinished(QByteArray)));
+    req->startToRequest(QSyncUtils::makeDataBucketUrl() + OS_ACRCLOUD_URL);
+    loop.exec();
+
+    return !m_rawData.isEmpty();
+}
+
+void MusicIdentifySongRequest::startToRequest(const QString &path)
+{
+    m_path = path;
+    m_pluginSelector = -1;
+    findAllPlugins();
+}
+
+void MusicIdentifySongRequest::downloadDataFinished(const QString &bytes)
 {
     if(bytes.isEmpty())
     {
-        TTK_ERROR_STREAM("Input byte data is empty");
+        findAllPlugins();
+        return;
+    }
+
+    Q_EMIT downloadDataChanged({});
+}
+
+void MusicIdentifySongRequest::findAllPlugins()
+{
+    MusicAbstractIdentifyRequest *req = nullptr;
+    switch(++m_pluginSelector)
+    {
+        case 0: req = new MusicXFIdentifyRequest(this); break;
+        case 1: req = new MusicACRIdentifyRequest(this); break;
+        default: Q_EMIT downloadDataChanged({}); break;
+    }
+
+    if(req)
+    {
+        connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(downloadDataFinished(QString)));
+        //
+        req->setItems(&m_items);
+        req->startToRequest(m_path, m_rawData);
+    }
+}
+
+void MusicIdentifySongRequest::downloadKeyFinished(const QByteArray &bytes)
+{
+    if(bytes.isEmpty())
+    {
+        TTK_ERROR_STREAM("Input key byte data is empty");
     }
     else
     {
@@ -244,9 +280,7 @@ void MusicXFIdentifyRequest::downLoadKeyFinished(const QByteArray &bytes)
         const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
         if(QJsonParseError::NoError == ok.error)
         {
-            const QVariantMap &value = json.toVariant().toMap();
-            m_accessKey = value["xfid"].toString();
-            m_accessSecret = value["xfkey"].toString();
+            m_rawData = json.toVariant().toMap();
         }
     }
 

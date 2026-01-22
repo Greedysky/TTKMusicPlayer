@@ -145,7 +145,7 @@ void MusicDownloadWidget::initialize(const QString &name)
     if(!m_networkRequest)
     {
        m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-       connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadNormalFinished()));
+       connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), SLOT(downloadNormalFinished()));
     }
 
     m_ui->loadingLabel->execute(true);
@@ -193,7 +193,7 @@ void MusicDownloadWidget::initialize(MusicAbstractQueryRequest *request, int row
     controlEnabled(true);
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(m_info.m_artistName, m_info.m_songName), Qt::ElideRight, 200));
 
-    TTK_SIGNLE_SHOT(downLoadRequestFinished, TTK_SLOT);
+    TTK_SIGNLE_SHOT(downloadRequestFinished, TTK_SLOT);
 }
 
 bool MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &info, int bitrate, QObject *parent)
@@ -254,7 +254,7 @@ bool MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &i
     }
 
     MusicDownloadMetaDataRequest *req = new MusicDownloadMetaDataRequest(prop.m_url, downloadPath, parent);
-    connect(req, SIGNAL(downLoadDataChanged(QString)), parent, SLOT(downloadFinished()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), parent, SLOT(downloadFinished()));
 
     MusicSongMeta meta;
     meta.setComment(info.m_coverUrl);
@@ -315,7 +315,7 @@ bool MusicDownloadWidget::startToRequestMovie(const TTK::MusicSongInformation &i
     }
 
     MusicDownloadDataRequest *req = new MusicDownloadDataRequest(prop.m_url, downloadPath, TTK::Download::Video, parent);
-    connect(req, SIGNAL(downLoadDataChanged(QString)), parent, SLOT(downloadFinished()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), parent, SLOT(downloadFinished()));
     req->startToRequest();
     return true;
 }
@@ -326,7 +326,7 @@ void MusicDownloadWidget::close()
     m_exitRequired = true;
 }
 
-void MusicDownloadWidget::downLoadNormalFinished()
+void MusicDownloadWidget::downloadNormalFinished()
 {
     if(!G_NETWORK_PTR->isOnline())
     {
@@ -373,7 +373,7 @@ void MusicDownloadWidget::downLoadNormalFinished()
     }
 }
 
-void MusicDownloadWidget::downLoadRequestFinished()
+void MusicDownloadWidget::downloadRequestFinished()
 {
     m_networkRequest->startToQueryResult(&m_info, TTK_BN_0);
     m_networkRequest = nullptr;

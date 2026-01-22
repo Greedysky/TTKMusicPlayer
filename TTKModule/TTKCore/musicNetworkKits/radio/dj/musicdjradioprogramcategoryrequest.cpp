@@ -22,7 +22,7 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
@@ -54,7 +54,7 @@ void MusicDJRadioProgramCategoryRequest::startToQueryResult(TTK::MusicSongInform
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     TTK_NETWORK_QUERY_CHECK();
     ReqWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
@@ -63,11 +63,11 @@ void MusicDJRadioProgramCategoryRequest::startToQueryResult(TTK::MusicSongInform
     MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
 }
 
-void MusicDJRadioProgramCategoryRequest::downLoadFinished()
+void MusicDJRadioProgramCategoryRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractQueryRequest::downLoadFinished();
+    MusicAbstractQueryRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         m_totalSize = m_pageSize;
@@ -103,7 +103,7 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
         }
     }
 
-//    Q_EMIT downLoadDataChanged({});
+//    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 
@@ -111,7 +111,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractQueryRequest::downLoadFinished();
+    MusicAbstractQueryRequest::downloadFinished();
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
@@ -170,5 +170,5 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
 }

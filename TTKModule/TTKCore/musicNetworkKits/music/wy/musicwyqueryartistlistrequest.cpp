@@ -49,15 +49,15 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
                       TTK::Algorithm::mdII(WY_ARTIST_LIST_DATA_URL, false).arg(catId, initial).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicWYQueryArtistListRequest::downLoadFinished()
+void MusicWYQueryArtistListRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicQueryArtistListRequest::downLoadFinished();
+    MusicQueryArtistListRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -87,6 +87,6 @@ void MusicWYQueryArtistListRequest::downLoadFinished()
         }
     }
 
-//    Q_EMIT downLoadDataChanged({});
+//    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

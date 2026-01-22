@@ -51,7 +51,7 @@ public:
     /*!
      * Get query cloud id keys.
      */
-    bool queryCloudKey();
+    bool initialize();
     /*!
      * Resize section bound by resize called.
      */
@@ -79,7 +79,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadKeyFinished(const QByteArray &bytes);
+    void downloadKeyFinished(const QByteArray &bytes);
     /*!
      * Receive data from sync finshed.
      */

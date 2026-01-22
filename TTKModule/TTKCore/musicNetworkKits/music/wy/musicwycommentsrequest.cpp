@@ -21,7 +21,7 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
                       TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_id).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
@@ -31,7 +31,7 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
 
     TTKEventLoop loop;
     MusicWYQueryRequest query(this), *req = &query;
-    connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(value);
     loop.exec();
@@ -43,11 +43,11 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
     }
 }
 
-void MusicWYSongCommentsRequest::downLoadFinished()
+void MusicWYSongCommentsRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicCommentsRequest::downLoadFinished();
+    MusicCommentsRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -83,7 +83,7 @@ void MusicWYSongCommentsRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 
@@ -109,15 +109,15 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
                       TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_id).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicWYPlaylistCommentsRequest::downLoadFinished()
+void MusicWYPlaylistCommentsRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicCommentsRequest::downLoadFinished();
+    MusicCommentsRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -153,6 +153,6 @@ void MusicWYPlaylistCommentsRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

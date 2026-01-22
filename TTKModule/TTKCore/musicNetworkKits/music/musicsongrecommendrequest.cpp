@@ -79,7 +79,7 @@ void MusicSongRecommendRequest::startToSearch(const QString &value)
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
@@ -87,7 +87,7 @@ void MusicSongRecommendRequest::startToQueryResult(TTK::MusicSongInformation *in
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     for(const TTK::MusicSongInformation &var : qAsConst(m_items))
     {
         if(info->m_songId == var.m_songId)
@@ -98,11 +98,11 @@ void MusicSongRecommendRequest::startToQueryResult(TTK::MusicSongInformation *in
     }
 }
 
-void MusicSongRecommendRequest::downLoadFinished()
+void MusicSongRecommendRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractQueryRequest::downLoadFinished();
+    MusicAbstractQueryRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -173,6 +173,6 @@ void MusicSongRecommendRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

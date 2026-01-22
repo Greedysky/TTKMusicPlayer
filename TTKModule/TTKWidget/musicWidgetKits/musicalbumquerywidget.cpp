@@ -14,7 +14,7 @@ MusicAlbumQueryWidget::MusicAlbumQueryWidget(QWidget *parent)
     m_queryTableWidget->hide();
 
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
 void MusicAlbumQueryWidget::setCurrentValue(const QString &value)
@@ -30,7 +30,7 @@ void MusicAlbumQueryWidget::setCurrentID(const QString &id)
     m_queryTableWidget->setQueryInput(req);
     m_queryTableWidget->startToSearchByText(id);
 
-    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAlbumFinished()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(queryAlbumFinished()));
     connect(req, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createAlbumItem(MusicResultDataItem)));
 }
 
@@ -116,7 +116,7 @@ void MusicAlbumQueryWidget::createAlbumItem(const MusicResultDataItem &item)
         if(TTK::isCoverValid(item.m_coverUrl))
         {
             MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-            connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+            connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
             req->startToRequest(item.m_coverUrl);
         }
 

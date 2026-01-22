@@ -20,15 +20,15 @@ void MusicWYDiscoverListRequest::startToSearch()
                       TTK::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(19723756).arg(0).arg(TOPLIST_PAGE_SIZE));
 
     m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicWYDiscoverListRequest::downLoadFinished()
+void MusicWYDiscoverListRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicDiscoverListRequest::downLoadFinished();
+    MusicDiscoverListRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -74,6 +74,6 @@ void MusicWYDiscoverListRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(m_item);
+    Q_EMIT downloadDataChanged(m_item);
     deleteAll();
 }

@@ -26,7 +26,7 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(close()));
 
     m_networkRequest = new MusicPVCounterRequest(this);
-    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadFinished(QString)));
+    connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), SLOT(downloadDataFinished(QString)));
     m_networkRequest->startToRequest();
 
     const QString &buildTime = QString("%1 %2").arg(__DATE__, __TIME__);
@@ -54,7 +54,7 @@ MusicMessageAboutDialog::~MusicMessageAboutDialog()
     delete m_ui;
 }
 
-void MusicMessageAboutDialog::downloadFinished(const QString &bytes)
+void MusicMessageAboutDialog::downloadDataFinished(const QString &bytes)
 {
     m_ui->counterLabel->setText(tr("Counter: %1").arg(bytes));
 }

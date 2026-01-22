@@ -17,16 +17,16 @@ void MusicDJRadioProgramRequest::startToRequest(TTK::Program type)
                       TTK::Algorithm::mdII(DJ_HOT_DATA_URL, false));
 
     m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicDJRadioProgramRequest::downLoadFinished()
+void MusicDJRadioProgramRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     m_items.clear();
-    MusicAbstractDJRadioRequest::downLoadFinished();
+    MusicAbstractDJRadioRequest::downloadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -63,6 +63,6 @@ void MusicDJRadioProgramRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

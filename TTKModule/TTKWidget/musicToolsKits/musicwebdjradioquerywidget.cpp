@@ -56,12 +56,12 @@ void MusicWebDJRadioQueryItemWidget::setResultDataItem(const MusicResultDataItem
     if(TTK::isCoverValid(item.m_coverUrl))
     {
         MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
         req->startToRequest(item.m_coverUrl);
     }
 }
 
-void MusicWebDJRadioQueryItemWidget::downLoadFinished(const QByteArray &bytes)
+void MusicWebDJRadioQueryItemWidget::downloadFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {

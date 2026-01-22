@@ -76,11 +76,11 @@ MusicDownloadThunderSkinRequest::MusicDownloadThunderSkinRequest(QObject *parent
 void MusicDownloadThunderSkinRequest::startToRequest()
 {
     MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
     req->startToRequest(TTK::Algorithm::mdII(QUERY_URL, false));
 }
 
-void MusicDownloadThunderSkinRequest::downLoadFinished(const QByteArray &bytes)
+void MusicDownloadThunderSkinRequest::downloadFinished(const QByteArray &bytes)
 {
     MusicSkinRemoteGroupList items;
     MusicThunderSkinConfigManager manager;
@@ -89,5 +89,5 @@ void MusicDownloadThunderSkinRequest::downLoadFinished(const QByteArray &bytes)
         manager.readBuffer(items);
     }
 
-    Q_EMIT downLoadDataChanged(items);
+    Q_EMIT downloadDataChanged(items);
 }

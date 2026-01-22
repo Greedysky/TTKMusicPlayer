@@ -39,12 +39,12 @@ void MusicWebDJRadioCategoryItemWidget::setResultDataItem(const MusicResultDataI
     if(TTK::isCoverValid(item.m_coverUrl))
     {
         MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
         req->startToRequest(item.m_coverUrl);
     }
 }
 
-void MusicWebDJRadioCategoryItemWidget::downLoadFinished(const QByteArray &bytes)
+void MusicWebDJRadioCategoryItemWidget::downloadFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {
@@ -86,7 +86,7 @@ MusicWebDJRadioCategoryWidget::MusicWebDJRadioCategoryWidget(QWidget *parent)
     mainWindow->setLayout(m_gridLayout);
 
     m_networkRequest = new MusicDJRadioCategoryRequest(this);
-    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(createCategoryItems()));
+    connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), SLOT(createCategoryItems()));
 }
 
 MusicWebDJRadioCategoryWidget::~MusicWebDJRadioCategoryWidget()

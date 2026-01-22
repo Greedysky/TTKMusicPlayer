@@ -54,7 +54,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished();
+    void downloadFinished();
 
 private:
     QLabel *m_textLabel;
@@ -91,7 +91,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished();
+    void downloadFinished();
     /*!
      * Override exec function.
      */

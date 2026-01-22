@@ -25,13 +25,13 @@
 /*! @brief The class of the download manger data.
  * @author Greedysky <greedysky@163.com>
  */
-struct TTK_MODULE_EXPORT MusicDownLoadData
+struct TTK_MODULE_EXPORT MusicDownloadData
 {
     qint64 m_timestamp;
     QObject *m_object;
     TTK::Record m_type;
 
-    MusicDownLoadData() noexcept
+    MusicDownloadData() noexcept
         : m_timestamp(-1),
           m_object(nullptr),
           m_type(TTK::Record::NormalDownload)
@@ -39,13 +39,13 @@ struct TTK_MODULE_EXPORT MusicDownLoadData
 
     }
 
-    MusicDownLoadData(qint64 t) noexcept
-        : MusicDownLoadData()
+    MusicDownloadData(qint64 t) noexcept
+        : MusicDownloadData()
     {
         m_timestamp = t;
     }
 
-    MusicDownLoadData(qint64 t, QObject *object, TTK::Record type) noexcept
+    MusicDownloadData(qint64 t, QObject *object, TTK::Record type) noexcept
         : m_timestamp(t),
           m_object(object),
           m_type(type)
@@ -53,12 +53,12 @@ struct TTK_MODULE_EXPORT MusicDownLoadData
 
     }
 
-    inline bool operator< (const MusicDownLoadData &other) const noexcept
+    inline bool operator< (const MusicDownloadData &other) const noexcept
     {
         return m_timestamp < other.m_timestamp;
     }
 
-    inline bool operator== (const MusicDownLoadData &other) const noexcept
+    inline bool operator== (const MusicDownloadData &other) const noexcept
     {
         return m_timestamp == other.m_timestamp;
     }
@@ -67,10 +67,10 @@ struct TTK_MODULE_EXPORT MusicDownLoadData
 /*! @brief The class of the produce the download manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownLoadManager : public QObject
+class TTK_MODULE_EXPORT MusicDownloadManager : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_SINGLETON_CLASS(MusicDownLoadManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicDownloadManager)
 public:
     /*!
      * Set mutiple network connection object.
@@ -84,15 +84,15 @@ public:
     /*!
      * Set data network connection object.
      */
-    void connectNetworkData(const MusicDownLoadData &data);
+    void connectNetworkData(const MusicDownloadData &data);
     /*!
      * Reset data network connection object.
      */
-    void reconnectNetworkData(const MusicDownLoadData &data);
+    void reconnectNetworkData(const MusicDownloadData &data);
     /*!
      * Remove data network connection object.
      */
-    void removeNetworkData(const MusicDownLoadData &data);
+    void removeNetworkData(const MusicDownloadData &data);
 
 private Q_SLOTS:
     /*!
@@ -102,11 +102,11 @@ private Q_SLOTS:
 
 private:
     QObjectList m_objects;
-    QList<MusicDownLoadData> m_datas;
+    QList<MusicDownloadData> m_datas;
 
 };
 
-#define G_DOWNLOAD_MANAGER_PTR makeMusicDownLoadManager()
-TTK_MODULE_EXPORT MusicDownLoadManager* makeMusicDownLoadManager();
+#define G_DOWNLOAD_MANAGER_PTR makeMusicDownloadManager()
+TTK_MODULE_EXPORT MusicDownloadManager* makeMusicDownloadManager();
 
 #endif // MUSICDOWNLOADMANAGER_H

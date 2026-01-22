@@ -62,17 +62,17 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
+    virtual void downloadFinished() override final;
     /*!
      * Download data from net finished.
      */
-    void downLoadUrlFinished();
+    void downloadUrlFinished();
 
 private:
     /*!
      * Download data from net.
      */
-    void downLoadUrl(const QString &id);
+    void downloadUrl(const QString &id);
 
 };
 

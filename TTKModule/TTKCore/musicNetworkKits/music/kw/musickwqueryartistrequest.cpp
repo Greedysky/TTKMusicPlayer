@@ -20,7 +20,7 @@ void MusicKWQueryArtistRequest::startToPage(int offset)
     ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
@@ -28,7 +28,7 @@ void MusicKWQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *in
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     TTK_NETWORK_QUERY_CHECK();
     ReqKWInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
@@ -37,11 +37,11 @@ void MusicKWQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *in
     MusicQueryArtistRequest::startToQueryResult(info, bitrate);
 }
 
-void MusicKWQueryArtistRequest::downLoadFinished()
+void MusicKWQueryArtistRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -104,7 +104,7 @@ void MusicKWQueryArtistRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 

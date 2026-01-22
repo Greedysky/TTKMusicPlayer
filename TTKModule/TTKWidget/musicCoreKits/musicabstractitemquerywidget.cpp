@@ -58,7 +58,7 @@ void MusicAbstractItemQueryWidget::setCurrentID(const QString &id)
     Q_UNUSED(id);
 }
 
-void MusicAbstractItemQueryWidget::downLoadFinished(const QByteArray &bytes)
+void MusicAbstractItemQueryWidget::downloadFinished(const QByteArray &bytes)
 {
     if(m_iconLabel)
     {

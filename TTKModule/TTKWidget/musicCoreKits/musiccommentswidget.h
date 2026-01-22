@@ -50,7 +50,7 @@ private Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &bytes);
+    void downloadFinished(const QByteArray &bytes);
 
 private:
     QTextEdit *m_userCommit;

@@ -69,7 +69,7 @@ MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()
     delete m_progressBarDelegate;
 }
 
-bool MusicCloudManagerTableWidget::queryCloudKey()
+bool MusicCloudManagerTableWidget::initialize()
 {
     if(!cloudConfigValid())
     {
@@ -77,7 +77,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
         MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadKeyFinished(QByteArray)));
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadKeyFinished(QByteArray)));
         req->startToRequest(QSyncUtils::makeDataBucketUrl() + QUERY_CLOUD_URL);
         loop.exec();
     }
@@ -110,7 +110,7 @@ void MusicCloudManagerTableWidget::resizeSection() const
     }
 }
 
-void MusicCloudManagerTableWidget::downLoadKeyFinished(const QByteArray &bytes)
+void MusicCloudManagerTableWidget::downloadKeyFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {
@@ -686,7 +686,7 @@ MusicCloudManagerWidget::~MusicCloudManagerWidget()
 
 void MusicCloudManagerWidget::initialize() const
 {
-    m_tableWidget->queryCloudKey();
+    m_tableWidget->initialize();
 }
 
 void MusicCloudManagerWidget::resizeWidget()

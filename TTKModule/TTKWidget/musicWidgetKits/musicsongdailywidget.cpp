@@ -20,7 +20,7 @@ MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     m_content = new QLabel(m_container);
 
     m_networkRequest = new MusicCiBaRequest(this);
-    connect(m_networkRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), this, SLOT(downLoadImageFinished(QByteArray)));
+    connect(m_networkRequest, SIGNAL(downloadRawDataChanged(QByteArray)), this, SLOT(downloadImageFinished(QByteArray)));
 
     m_networkRequest->startToRequest();
 }
@@ -59,7 +59,7 @@ void MusicSongDailyWidget::resizeWidget()
     m_container->setPixmap(QPixmap::fromImage(m_image).scaled(m_container->size(), Qt::KeepAspectRatioByExpanding));
 }
 
-void MusicSongDailyWidget::downLoadImageFinished(const QByteArray &bytes)
+void MusicSongDailyWidget::downloadImageFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {

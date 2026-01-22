@@ -42,7 +42,7 @@ private Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadRawDataFinished(const QByteArray &bytes);
+    void downloadRawDataFinished(const QByteArray &bytes);
 
 };
 

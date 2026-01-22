@@ -11,7 +11,7 @@ void MusicQueryArtistRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
-    MusicAbstractQueryRequest::downLoadFinished();
+    MusicAbstractQueryRequest::downloadFinished();
     m_queryValue = value;
     m_artistFound = false;
     startToPage(0);

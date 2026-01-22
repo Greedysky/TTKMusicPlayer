@@ -20,15 +20,15 @@ void MusicResourceRequest::startToRequest()
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicResourceRequest::downLoadFinished()
+void MusicResourceRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractNetwork::downLoadFinished();
+    MusicAbstractNetwork::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         const QDir dir(APPCACHE_DIR_FULL);

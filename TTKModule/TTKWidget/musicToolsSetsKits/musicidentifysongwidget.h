@@ -27,7 +27,7 @@ class QStackedWidget;
 class MusicCoreMPlayer;
 class MusicLrcAnalysis;
 class MusicAudioRecorderModule;
-class MusicXFIdentifyRequest;
+class MusicIdentifySongRequest;
 
 /*! @brief The class of the song identify widget.
  * @author Greedysky <greedysky@163.com>
@@ -48,7 +48,7 @@ public:
     /*!
      * Get query song id keys.
      */
-    void queryIdentifyKey();
+    void initialize();
 
 public Q_SLOTS:
     /*!
@@ -102,7 +102,7 @@ private:
     MusicCoreMPlayer *m_player;
     MusicLrcAnalysis *m_analysis;
     MusicAudioRecorderModule *m_recordCore;
-    MusicXFIdentifyRequest *m_networkRequest;
+    MusicIdentifySongRequest *m_networkRequest;
     TTK::MusicSongInformation m_info;
 
 };

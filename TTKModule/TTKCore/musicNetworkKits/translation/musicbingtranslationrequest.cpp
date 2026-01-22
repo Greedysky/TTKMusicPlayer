@@ -55,8 +55,8 @@ void MusicBingTranslationRequest::startToRequest(const QString &data)
 
     if(ig.isEmpty() || key.isEmpty() || token.isEmpty())
     {
-        TTK_INFO_STREAM(metaObject()->className() << "downLoadFinished");
-        Q_EMIT downLoadDataChanged({});
+        TTK_INFO_STREAM(metaObject()->className() << "downloadFinished");
+        Q_EMIT downloadDataChanged({});
         deleteAll();
         return;
     }
@@ -69,15 +69,15 @@ void MusicBingTranslationRequest::startToRequest(const QString &data)
 
     auto v = TTK::Algorithm::mdII(PARAM_URL, false).arg(key, token, mapToString(Language::Auto), mapToString(Language::Chinese), data).toUtf8();
     m_reply = m_manager.post(request, TTK::Url::urlPrettyEncode(v));
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicBingTranslationRequest::downLoadFinished()
+void MusicBingTranslationRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractTranslationRequest::downLoadFinished();
+    MusicAbstractTranslationRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -100,7 +100,7 @@ void MusicBingTranslationRequest::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    Q_EMIT downLoadDataChanged(value["text"].toString());
+                    Q_EMIT downloadDataChanged(value["text"].toString());
                     deleteAll();
                     return;
                 }
@@ -109,7 +109,7 @@ void MusicBingTranslationRequest::downLoadFinished()
     }
 
     TTK_ERROR_STREAM("Translation source data error");
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 

@@ -42,7 +42,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadDataFinished(const QString &bytes);
+    void downloadDataFinished(const QString &bytes);
 
 private:
     /*!

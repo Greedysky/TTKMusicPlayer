@@ -14,15 +14,15 @@ void MusicWYCoverSourceRequest::startToRequest(const QString &url)
 {
     TTKEventLoop loop;
     MusicWYQueryRequest query(this), *req = &query;
-    connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(url);
     loop.exec();
 
     if(req->isEmpty())
     {
-        TTK_INFO_STREAM(metaObject()->className() << "downLoadFinished");
-        Q_EMIT downLoadDataChanged({});
+        TTK_INFO_STREAM(metaObject()->className() << "downloadFinished");
+        Q_EMIT downloadDataChanged({});
         deleteAll();
         return;
     }
@@ -34,15 +34,15 @@ void MusicWYCoverSourceRequest::startToRequest(const QString &url)
                       TTK::Algorithm::mdII(WY_COVER_DATA_URL, false).arg(req->items().first().m_songId));
 
     m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicWYCoverSourceRequest::downLoadFinished()
+void MusicWYCoverSourceRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicCoverRequest::downLoadFinished();
+    MusicCoverRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -58,14 +58,14 @@ void MusicWYCoverSourceRequest::downLoadFinished()
                 url = value["videoPlayUrl"].toString();
             }
 
-            Q_EMIT downLoadDataChanged(url);
+            Q_EMIT downloadDataChanged(url);
             deleteAll();
         }
     }
     else
     {
         TTK_ERROR_STREAM("Download dynamic cover data error");
-        Q_EMIT downLoadDataChanged({});
+        Q_EMIT downloadDataChanged({});
         deleteAll();
     }
 }

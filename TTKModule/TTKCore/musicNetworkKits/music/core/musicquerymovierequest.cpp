@@ -10,7 +10,7 @@ void MusicQueryMovieRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
-    MusicAbstractQueryRequest::downLoadFinished();
+    MusicAbstractQueryRequest::downloadFinished();
     m_queryValue = value;
     startToPage(0);
 }

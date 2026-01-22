@@ -21,7 +21,7 @@ void MusicWYQueryRequest::startToPage(int offset)
                       TTK::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(1).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize).toUtf8());
 
     m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
@@ -37,7 +37,7 @@ void MusicWYQueryRequest::startToSearchByID(const QString &value)
                       TTK::Algorithm::mdII(WY_SONG_INFO_DATA_URL, false).arg(value));
 
     QNetworkReply *reply = m_manager.post(request, parameter);
-    connect(reply, SIGNAL(finished()), SLOT(downLoadSingleFinished()));
+    connect(reply, SIGNAL(finished()), SLOT(downloadSingleFinished()));
     QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 }
 
@@ -45,7 +45,7 @@ void MusicWYQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, in
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     TTK_NETWORK_QUERY_CHECK();
     ReqWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
@@ -54,11 +54,11 @@ void MusicWYQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, in
     MusicQueryRequest::startToQueryResult(info, bitrate);
 }
 
-void MusicWYQueryRequest::downLoadFinished()
+void MusicWYQueryRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -128,15 +128,15 @@ void MusicWYQueryRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 
-void MusicWYQueryRequest::downLoadSingleFinished()
+void MusicWYQueryRequest::downloadSingleFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicQueryRequest::downLoadFinished();
+    MusicQueryRequest::downloadFinished();
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
@@ -200,6 +200,6 @@ void MusicWYQueryRequest::downLoadSingleFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

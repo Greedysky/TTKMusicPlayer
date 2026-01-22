@@ -21,7 +21,7 @@ void MusicPersonalRadioQueryWidget::setCurrentValue(const QString &value)
     req->startToQueryInfo(item);
     setResultDataItem(item);
 
-    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
 void MusicPersonalRadioQueryWidget::resizeWidget()
@@ -79,7 +79,7 @@ void MusicPersonalRadioQueryWidget::setResultDataItem(const MusicResultDataItem 
     if(TTK::isCoverValid(item.m_coverUrl))
     {
         MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
         req->startToRequest(item.m_coverUrl);
     }
 

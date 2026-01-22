@@ -24,20 +24,20 @@ void MusicDownloadMetaDataRequest::startToRequest()
     if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly))
     {
         TTK_ERROR_STREAM("The data file create failed");
-        Q_EMIT downLoadDataChanged("The data file create failed");
+        Q_EMIT downloadDataChanged("The data file create failed");
         deleteAll();
         return;
     }
 
     MusicDownloadDataRequest::startToRequest(m_url);
-    disconnect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
-    connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
+    disconnect(m_reply, SIGNAL(finished()), this, SLOT(downloadFinished()));
+    connect(m_reply, SIGNAL(finished()), this, SLOT(downloadFinished()));
 }
 
-void MusicDownloadMetaDataRequest::downLoadFinished()
+void MusicDownloadMetaDataRequest::downloadFinished()
 {
     bool save = (m_file != nullptr);
-    MusicDownloadDataRequest::downLoadFinished();
+    MusicDownloadDataRequest::downloadFinished();
 
     if(m_redirection)
     {
@@ -50,16 +50,16 @@ void MusicDownloadMetaDataRequest::downLoadFinished()
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
         MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
         req->startToRequest(m_songMeta.comment());
         loop.exec();
     }
 
-    Q_EMIT downLoadDataChanged(mapCurrentQueryData());
+    Q_EMIT downloadDataChanged(mapCurrentQueryData());
     TTK_INFO_STREAM("Data download has finished");
 }
 
-void MusicDownloadMetaDataRequest::downLoadFinished(const QByteArray &bytes)
+void MusicDownloadMetaDataRequest::downloadFinished(const QByteArray &bytes)
 {
     MusicSongMeta meta;
     if(meta.read(m_savePath))

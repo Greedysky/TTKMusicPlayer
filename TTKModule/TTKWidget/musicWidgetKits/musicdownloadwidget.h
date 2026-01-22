@@ -154,11 +154,11 @@ public Q_SLOTS:
     /*!
      * Query selected quality media finished.
      */
-    void downLoadNormalFinished();
+    void downloadNormalFinished();
     /*!
      * Query request data from net finished.
      */
-    void downLoadRequestFinished();
+    void downloadRequestFinished();
     /*!
      * Start to download data.
      */

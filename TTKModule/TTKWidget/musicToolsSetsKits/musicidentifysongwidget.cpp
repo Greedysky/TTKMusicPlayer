@@ -35,7 +35,7 @@ MusicIdentifySongWidget::MusicIdentifySongWidget(QWidget *parent)
     connect(m_timer, SIGNAL(timeout()), SLOT(detectedTimeOut()));
 
     m_recordCore = new MusicAudioRecorderModule(this);
-    m_networkRequest = new MusicXFIdentifyRequest(this);
+    m_networkRequest = new MusicIdentifySongRequest(this);
 
     QShortcut *cut = new QShortcut(QtKeySequence(Qt::Key_T, Qt::SHIFT | Qt::CTRL), this);
     connect(cut, SIGNAL(activated()), SLOT(detectedButtonClicked()));
@@ -57,9 +57,9 @@ MusicIdentifySongWidget::~MusicIdentifySongWidget()
     delete m_mainWindow;
 }
 
-void MusicIdentifySongWidget::queryIdentifyKey()
+void MusicIdentifySongWidget::initialize()
 {
-    if(m_networkRequest->queryCloudKey())
+    if(m_networkRequest->initialize())
     {
         m_detectedButton->setEnabled(true);
     }
@@ -117,7 +117,7 @@ void MusicIdentifySongWidget::detectedTimeOut()
     m_recordCore->addWavHeader(qPrintable(path));
 
     TTKEventLoop loop;
-    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     m_networkRequest->startToRequest(path);
     loop.exec();
 
@@ -286,7 +286,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     //
     TTKEventLoop loop;
     MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-    connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->startToSearch(textLabel->text().trimmed());
     loop.exec();
 
@@ -311,7 +311,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         if(!QFile::exists(name))
         {
             MusicDownloadDataRequest *req = new MusicDownloadDataRequest(m_info.m_coverUrl, name, TTK::Download::Cover, this);
-            connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
             req->startToRequest();
             loop.exec();
         }
@@ -369,8 +369,8 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         const QString &path = TTK::String::lrcDirPrefix() + TTK::generateSongName(m_info.m_songName, m_info.m_artistName) + LRC_FILE;
         if(!QFile::exists(path))
         {
-            MusicAbstractDownLoadRequest *req = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_info.m_lrcUrl, path, this);
-            connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            MusicAbstractDownloadRequest *req = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_info.m_lrcUrl, path, this);
+            connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
             req->startToRequest();
             loop.exec();
         }

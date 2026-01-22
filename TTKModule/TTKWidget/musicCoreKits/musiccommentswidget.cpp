@@ -128,11 +128,11 @@ void MusicCommentsItem::addCellItem(const MusicResultDataItem &item)
     m_userCommit->setText(item.m_description);
 
     MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
     req->startToRequest(item.m_coverUrl);
 }
 
-void MusicCommentsItem::downLoadFinished(const QByteArray &bytes)
+void MusicCommentsItem::downloadFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {
@@ -271,7 +271,7 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     deleteCommentsItems();
 
     TTKEventLoop loop;
-    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     m_networkRequest->startToSearch(name);
     loop.exec();
 

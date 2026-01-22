@@ -31,7 +31,7 @@ void MusicPVCounterRequest::startToRequest()
     if(bytes.isEmpty())
     {
         TTK_ERROR_STREAM("Counter PV data error");
-        Q_EMIT downLoadDataChanged(TTK_DEFAULT_STR);
+        Q_EMIT downloadDataChanged(TTK_DEFAULT_STR);
         return;
     }
 
@@ -41,16 +41,16 @@ void MusicPVCounterRequest::startToRequest()
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicPVCounterRequest::downLoadFinished()
+void MusicPVCounterRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     QString pv = TTK_DEFAULT_STR;
-    MusicAbstractNetwork::downLoadFinished();
+    MusicAbstractNetwork::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -74,6 +74,6 @@ void MusicPVCounterRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(pv);
+    Q_EMIT downloadDataChanged(pv);
     deleteAll();
 }

@@ -54,11 +54,11 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
+    virtual void downloadFinished() override final;
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &bytes);
+    void downloadFinished(const QByteArray &bytes);
 
 private:
     MusicSongMeta m_songMeta;

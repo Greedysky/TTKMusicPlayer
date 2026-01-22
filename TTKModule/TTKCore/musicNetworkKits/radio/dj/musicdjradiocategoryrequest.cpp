@@ -16,16 +16,16 @@ void MusicDJRadioCategoryRequest::startToRequest()
                       QString("{}"));
 
     m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicDJRadioCategoryRequest::downLoadFinished()
+void MusicDJRadioCategoryRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     m_items.clear();
-    MusicAbstractDJRadioRequest::downLoadFinished();
+    MusicAbstractDJRadioRequest::downloadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -57,6 +57,6 @@ void MusicDJRadioCategoryRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

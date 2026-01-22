@@ -38,7 +38,7 @@ void MusicDownloadStatusModule::checkMetaDataValid(bool mode)
     req->setHeader("mode", mode);
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(m_parent->currentFileName());
-    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(currentMetaDataDownload()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(currentMetaDataDownload()));
 }
 
 void MusicDownloadStatusModule::currentMetaDataDownload()
@@ -52,7 +52,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     const TTK::MusicSongInformationList &songInfos = req->items();
     if(songInfos.isEmpty())
     {
-        showDownLoadInfoFinished("find error");
+        showDownloadInfoFinished("find error");
         return;
     }
 
@@ -91,7 +91,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     }
 }
 
-void MusicDownloadStatusModule::showDownLoadInfoFinished(const QString &bytes)
+void MusicDownloadStatusModule::showDownloadInfoFinished(const QString &bytes)
 {
     ///lyrics download finished immediately loaded to display
     if(bytes == DOWNLOAD_KEY_LRC)

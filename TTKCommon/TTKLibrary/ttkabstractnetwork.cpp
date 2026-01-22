@@ -32,7 +32,7 @@ void TTKAbstractNetwork::deleteAll()
     m_interrupt = true;
 }
 
-void TTKAbstractNetwork::downLoadFinished()
+void TTKAbstractNetwork::downloadFinished()
 {
     m_interrupt = false;
 }
@@ -40,7 +40,7 @@ void TTKAbstractNetwork::downLoadFinished()
 void TTKAbstractNetwork::replyError(QNetworkReply::NetworkError error)
 {
     TTK_ERROR_STREAM("Abnormal network connection, module" << this << "code" << error);
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 
@@ -48,7 +48,7 @@ void TTKAbstractNetwork::replyError(QNetworkReply::NetworkError error)
 void TTKAbstractNetwork::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
     sslErrorsString(reply, errors);
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 

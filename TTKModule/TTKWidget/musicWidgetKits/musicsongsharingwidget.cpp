@@ -60,7 +60,7 @@ void MusicSongSharingWidget::initialize(Module type, const MusicSongSharingWidge
     if(TTK::isCoverValid(data.m_cover))
     {
         MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
         req->startToRequest(data.m_cover);
     }
 
@@ -81,7 +81,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
         {
             TTKEventLoop loop;
             MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-            connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
             req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
             req->startToSearch(m_ui->sharedName->text().trimmed());
             loop.exec();
@@ -206,7 +206,7 @@ void MusicSongSharingWidget::textAreaChanged()
     }
 }
 
-void MusicSongSharingWidget::downLoadFinished(const QByteArray &bytes)
+void MusicSongSharingWidget::downloadFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {

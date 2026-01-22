@@ -534,7 +534,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicIdentifySongWidget *widget = new MusicIdentifySongWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
-            widget->queryIdentifyKey();
+            widget->initialize();
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
 #else
             MusicToastLabel::popup(tr("Unsupported identify song module"));

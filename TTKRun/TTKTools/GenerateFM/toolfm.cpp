@@ -25,14 +25,14 @@ void ToolQTFM::startToRequest()
     TTK::makeContentTypeHeader(&request, "application/json;charset=utf-8");
 
     m_reply = m_manager.post(request, TTK::Algorithm::mdII(QT_CATEGORY_URL, false).toUtf8());
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void ToolQTFM::downLoadFinished()
+void ToolQTFM::downloadFinished()
 {
     MusicFMCategoryList items;
-    MusicAbstractNetwork::downLoadFinished();
+    MusicAbstractNetwork::downloadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -73,7 +73,7 @@ void ToolQTFM::downLoadFinished()
         TTK_INFO_STREAM("Write QingTing fm data done");
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 
@@ -146,14 +146,14 @@ void ToolXIFM::startToRequest()
     TTK::makeContentTypeHeader(&request, "charset=utf-8");
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void ToolXIFM::downLoadFinished()
+void ToolXIFM::downloadFinished()
 {
     MusicFMCategoryList items;
-    MusicAbstractNetwork::downLoadFinished();
+    MusicAbstractNetwork::downloadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -199,7 +199,7 @@ void ToolXIFM::downLoadFinished()
         TTK_INFO_STREAM("Write xiph fm data done");
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 
     qApp->exit();

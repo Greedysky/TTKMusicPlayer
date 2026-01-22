@@ -104,11 +104,11 @@ MusicMVRadioProgramRequest::MusicMVRadioProgramRequest(QObject *parent)
 
 }
 
-void MusicMVRadioProgramRequest::downLoadFinished()
+void MusicMVRadioProgramRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractMVRadioRequest::downLoadFinished();
+    MusicAbstractMVRadioRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -196,6 +196,6 @@ void MusicMVRadioProgramRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

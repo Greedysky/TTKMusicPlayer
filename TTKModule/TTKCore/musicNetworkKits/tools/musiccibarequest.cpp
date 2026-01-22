@@ -17,7 +17,7 @@ void MusicCiBaRequest::startToRequest()
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
@@ -36,11 +36,11 @@ QString MusicCiBaRequest::image() const noexcept
     return m_rawData["picture4"].toString();
 }
 
-void MusicCiBaRequest::downLoadFinished()
+void MusicCiBaRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractNetwork::downLoadFinished();
+    MusicAbstractNetwork::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -51,7 +51,7 @@ void MusicCiBaRequest::downLoadFinished()
             TTK_ERROR_STREAM("Download ciba data finish");
 
             MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-            connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SIGNAL(downLoadRawDataChanged(QByteArray)));
+            connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SIGNAL(downloadRawDataChanged(QByteArray)));
             req->startToRequest(image());
         }
     }

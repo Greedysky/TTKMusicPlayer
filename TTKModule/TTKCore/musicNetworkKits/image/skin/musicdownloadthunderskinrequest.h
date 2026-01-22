@@ -61,7 +61,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished(const QByteArray &bytes) override final;
+    virtual void downloadFinished(const QByteArray &bytes) override final;
 
 };
 

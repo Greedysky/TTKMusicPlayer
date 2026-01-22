@@ -31,9 +31,9 @@ class MusicDownloadBackgroundRequest;
 /*! @brief The class of the produce the download query class by type.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownLoadQueryFactory
+class TTK_MODULE_EXPORT MusicDownloadQueryFactory
 {
-    TTK_DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)
+    TTK_DECLARE_SINGLETON_CLASS(MusicDownloadQueryFactory)
 public:
     /*!
      * Make query request object by type.
@@ -91,11 +91,11 @@ public:
     /*!
      * Make download lrc object by type.
      */
-    MusicAbstractDownLoadRequest *makeLrcRequest(const QString &url, const QString &path, QObject *parent);
+    MusicAbstractDownloadRequest *makeLrcRequest(const QString &url, const QString &path, QObject *parent);
     /*!
      * Make download art cover object by type.
      */
-    MusicAbstractDownLoadRequest *makeCoverRequest(const QString &url, const QString &path, QObject *parent);
+    MusicAbstractDownloadRequest *makeCoverRequest(const QString &url, const QString &path, QObject *parent);
     /*!
      * Make download art background object by type.
      */
@@ -103,7 +103,7 @@ public:
 
 };
 
-#define G_DOWNLOAD_QUERY_PTR makeMusicDownLoadQueryFactory()
-TTK_MODULE_EXPORT MusicDownLoadQueryFactory* makeMusicDownLoadQueryFactory();
+#define G_DOWNLOAD_QUERY_PTR makeMusicDownloadQueryFactory()
+TTK_MODULE_EXPORT MusicDownloadQueryFactory* makeMusicDownloadQueryFactory();
 
 #endif // MUSICDOWNLOADQUERYFACTORY_H

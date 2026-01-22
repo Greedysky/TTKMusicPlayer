@@ -20,7 +20,7 @@ void MusicKWSongCommentsRequest::startToPage(int offset)
     ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
@@ -30,7 +30,7 @@ void MusicKWSongCommentsRequest::startToSearch(const QString &value)
 
     TTKEventLoop loop;
     MusicKWQueryRequest query(this), *req = &query;
-    connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(value);
     loop.exec();
@@ -42,11 +42,11 @@ void MusicKWSongCommentsRequest::startToSearch(const QString &value)
     }
 }
 
-void MusicKWSongCommentsRequest::downLoadFinished()
+void MusicKWSongCommentsRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicCommentsRequest::downLoadFinished();
+    MusicCommentsRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -81,7 +81,7 @@ void MusicKWSongCommentsRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 
@@ -106,15 +106,15 @@ void MusicKWPlaylistCommentsRequest::startToPage(int offset)
     ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWPlaylistCommentsRequest::downLoadFinished()
+void MusicKWPlaylistCommentsRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicCommentsRequest::downLoadFinished();
+    MusicCommentsRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -149,6 +149,6 @@ void MusicKWPlaylistCommentsRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

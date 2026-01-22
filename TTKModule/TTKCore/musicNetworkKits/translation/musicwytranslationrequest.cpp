@@ -18,15 +18,15 @@ void MusicWYTranslationRequest::startToRequest(const QString &data)
 
     TTKEventLoop loop;
     MusicWYQueryRequest query(this), *req = &query;
-    connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(QFileInfo(header("name").toString()).baseName());
     loop.exec();
 
     if(req->isEmpty())
     {
-        TTK_INFO_STREAM(metaObject()->className() << "downLoadFinished");
-        Q_EMIT downLoadDataChanged({});
+        TTK_INFO_STREAM(metaObject()->className() << "downloadFinished");
+        Q_EMIT downloadDataChanged({});
         deleteAll();
         return;
     }
@@ -37,15 +37,15 @@ void MusicWYTranslationRequest::startToRequest(const QString &data)
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicWYTranslationRequest::downLoadFinished()
+void MusicWYTranslationRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractTranslationRequest::downLoadFinished();
+    MusicAbstractTranslationRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -89,7 +89,7 @@ void MusicWYTranslationRequest::downLoadFinished()
                         }
                     }
 
-                    Q_EMIT downLoadDataChanged(TTK_AUTHOR_NAME + text);
+                    Q_EMIT downloadDataChanged(TTK_AUTHOR_NAME + text);
                     deleteAll();
                     return;
                 }
@@ -98,6 +98,6 @@ void MusicWYTranslationRequest::downLoadFinished()
     }
 
     TTK_ERROR_STREAM("Translation source data error");
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

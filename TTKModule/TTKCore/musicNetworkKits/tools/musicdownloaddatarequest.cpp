@@ -8,7 +8,7 @@ MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QSt
 }
 
 MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QString &path, TTK::Download type, TTK::Record record, QObject *parent)
-    : MusicAbstractDownLoadRequest(url, path, type, parent),
+    : MusicAbstractDownloadRequest(url, path, type, parent),
       m_createTime(-1),
       m_redirection(false),
       m_needUpdate(true),
@@ -22,7 +22,7 @@ void MusicDownloadDataRequest::startToRequest()
     if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly) || m_url.isEmpty())
     {
         TTK_ERROR_STREAM("The data file create failed");
-        Q_EMIT downLoadDataChanged("The data file create failed");
+        Q_EMIT downloadDataChanged("The data file create failed");
         deleteAll();
         return;
     }
@@ -40,7 +40,7 @@ void MusicDownloadDataRequest::startToRequest(const QString &url)
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), this, SLOT(downloadFinished()));
     connect(m_reply, SIGNAL(readyRead()), this, SLOT(handleReadyRead()));
     connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
@@ -49,12 +49,12 @@ void MusicDownloadDataRequest::startToRequest(const QString &url)
     if(m_downloadType == TTK::Download::Music && !m_redirection)
     {
         m_createTime = TTKDateTime::currentTimestamp();
-        G_DOWNLOAD_MANAGER_PTR->connectNetworkData(MusicDownLoadData(m_createTime, this, m_recordType));
+        G_DOWNLOAD_MANAGER_PTR->connectNetworkData(MusicDownloadData(m_createTime, this, m_recordType));
         Q_EMIT createDownloadItem(m_savePath, m_createTime);
     }
 }
 
-void MusicDownloadDataRequest::downLoadFinished()
+void MusicDownloadDataRequest::downloadFinished()
 {
     if(!m_file || !m_reply)
     {
@@ -62,7 +62,7 @@ void MusicDownloadDataRequest::downLoadFinished()
         return;
     }
 
-    MusicAbstractDownLoadRequest::downLoadFinished();
+    MusicAbstractDownloadRequest::downloadFinished();
     m_redirection = false;
     m_file->flush();
     m_file->close();
@@ -87,7 +87,7 @@ void MusicDownloadDataRequest::downLoadFinished()
     {
         if(m_needUpdate)
         {
-            Q_EMIT downLoadDataChanged(mapCurrentQueryData());
+            Q_EMIT downloadDataChanged(mapCurrentQueryData());
             TTK_INFO_STREAM("Data download has finished");
         }
     }
@@ -105,7 +105,7 @@ void MusicDownloadDataRequest::handleReadyRead()
 
 void MusicDownloadDataRequest::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
-    MusicAbstractDownLoadRequest::downloadProgress(bytesReceived, bytesTotal);
+    MusicAbstractDownloadRequest::downloadProgress(bytesReceived, bytesTotal);
     /// only download media data or other type can that show progress
     if(m_downloadType == TTK::Download::Music || m_downloadType == TTK::Download::Extra)
     {
@@ -121,5 +121,5 @@ void MusicDownloadDataRequest::updateDownloadSpeed()
     const qint64 time = (speed != 0) ? (m_totalSize - m_currentReceived) / speed : 0;
 
     Q_EMIT downloadSpeedLabelChanged(label, time);
-    MusicAbstractDownLoadRequest::updateDownloadSpeed();
+    MusicAbstractDownloadRequest::updateDownloadSpeed();
 }

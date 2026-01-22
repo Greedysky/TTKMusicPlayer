@@ -20,13 +20,13 @@ void MusicKWCoverSourceRequest::startToRequest(const QString &url)
     m_decodeUrl = url.startsWith(TTK::Algorithm::mdII(KW_ALBUM_COVER_INFO_URL, false).left(TTK_ITEM_SIZE_S));
 
     MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadRawDataFinished(QByteArray)));
+    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadRawDataFinished(QByteArray)));
     req->startToRequest(url);
 }
 
-void MusicKWCoverSourceRequest::downLoadRawDataFinished(const QByteArray &bytes)
+void MusicKWCoverSourceRequest::downloadRawDataFinished(const QByteArray &bytes)
 {
-    MusicCoverRequest::downLoadFinished();
+    MusicCoverRequest::downloadFinished();
 
     if(m_decodeUrl)
     {
@@ -35,23 +35,23 @@ void MusicKWCoverSourceRequest::downLoadRawDataFinished(const QByteArray &bytes)
     }
     else
     {
-        Q_EMIT downLoadRawDataChanged(bytes);
+        Q_EMIT downloadRawDataChanged(bytes);
         deleteAll();
     }
 }
 
 
-MusicKWDownLoadCoverRequest::MusicKWDownLoadCoverRequest(const QString &url, const QString &path, QObject *parent)
-    : MusicAbstractDownLoadRequest(url, path, TTK::Download::Cover, parent)
+MusicKWDownloadCoverRequest::MusicKWDownloadCoverRequest(const QString &url, const QString &path, QObject *parent)
+    : MusicAbstractDownloadRequest(url, path, TTK::Download::Cover, parent)
 {
 
 }
 
-void MusicKWDownLoadCoverRequest::startToRequest()
+void MusicKWDownloadCoverRequest::startToRequest()
 {
     if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly) || m_url.isEmpty())
     {
-        Q_EMIT downLoadDataChanged("The kuwo cover file create failed");
+        Q_EMIT downloadDataChanged("The kuwo cover file create failed");
         TTK_ERROR_STREAM(metaObject()->className() << "file create failed");
         deleteAll();
         return;
@@ -66,7 +66,7 @@ void MusicKWDownLoadCoverRequest::startToRequest()
         const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
         if(bytes.isEmpty())
         {
-            Q_EMIT downLoadDataChanged("The kuwo cover url redirection failed");
+            Q_EMIT downloadDataChanged("The kuwo cover url redirection failed");
             TTK_ERROR_STREAM(metaObject()->className() << "url redirection failed");
             deleteAll();
             return;
@@ -83,14 +83,14 @@ void MusicKWDownLoadCoverRequest::startToRequest()
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWDownLoadCoverRequest::downLoadFinished()
+void MusicKWDownloadCoverRequest::downloadFinished()
 {
-    MusicAbstractDownLoadRequest::downLoadFinished();
+    MusicAbstractDownloadRequest::downloadFinished();
     if(m_reply && m_file && m_reply->error() == QNetworkReply::NoError)
     {
         m_file->write(m_reply->readAll());
@@ -99,6 +99,6 @@ void MusicKWDownLoadCoverRequest::downLoadFinished()
         TTK_INFO_STREAM(metaObject()->className() << "download has finished");
     }
 
-    Q_EMIT downLoadDataChanged(mapCurrentQueryData());
+    Q_EMIT downloadDataChanged(mapCurrentQueryData());
     deleteAll();
 }

@@ -152,7 +152,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
     ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
@@ -169,14 +169,14 @@ void MusicKWQueryMovieRequest::startToSearchByID(const QString &value)
     deleteAll();
     m_queryValue = value;
 
-    TTK_SIGNLE_SHOT(downLoadSingleFinished, TTK_SLOT);
+    TTK_SIGNLE_SHOT(downloadSingleFinished, TTK_SLOT);
 }
 
-void MusicKWQueryMovieRequest::downLoadFinished()
+void MusicKWQueryMovieRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -229,15 +229,15 @@ void MusicKWQueryMovieRequest::downLoadFinished()
         setToUnity();
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 
-void MusicKWQueryMovieRequest::downLoadSingleFinished()
+void MusicKWQueryMovieRequest::downloadSingleFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicQueryMovieRequest::downLoadFinished();
+    MusicQueryMovieRequest::downloadFinished();
 
     TTK::MusicSongInformation info;
     info.m_songId = m_queryValue;
@@ -254,7 +254,7 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
         m_items << info;
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 
@@ -280,15 +280,15 @@ void MusicKWQueryArtistMovieRequest::startToPage(int offset)
     ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWQueryArtistMovieRequest::downLoadFinished()
+void MusicKWQueryArtistMovieRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -326,6 +326,6 @@ void MusicKWQueryArtistMovieRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

@@ -46,7 +46,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downloadFinished(const QString &bytes);
+    void downloadDataFinished(const QString &bytes);
 
 private:
     Ui::MusicMessageAboutDialog *m_ui;

@@ -9,7 +9,7 @@ MusicDownloadQueueRequest::MusicDownloadQueueRequest(TTK::Download type, QObject
 }
 
 MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueData &data, TTK::Download type, QObject *parent)
-    : MusicAbstractDownLoadRequest(data.m_url, data.m_path, type, parent),
+    : MusicAbstractDownloadRequest(data.m_url, data.m_path, type, parent),
       m_isDownload(false),
       m_isAbort(false)
 {
@@ -64,20 +64,20 @@ void MusicDownloadQueueRequest::clear() noexcept
     m_queue.clear();
 }
 
-void MusicDownloadQueueRequest::downLoadFinished()
+void MusicDownloadQueueRequest::downloadFinished()
 {
     if(m_isAbort || !m_request || !m_reply || !m_file)
     {
         return;
     }
 
-    MusicAbstractDownLoadRequest::downLoadFinished();
+    MusicAbstractDownloadRequest::downloadFinished();
     m_file->flush();
     m_file->close();
     m_isDownload = false;
 
     MusicAbstractNetwork::deleteAll();
-    Q_EMIT downLoadDataChanged(m_queue.takeFirst().m_path);
+    Q_EMIT downloadDataChanged(m_queue.takeFirst().m_path);
 
     startOrderQueue();
 }
@@ -136,7 +136,7 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
     m_speedTimer.start();
     m_request->setUrl(url);
     m_reply = m_manager.get(*m_request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     connect(m_reply, SIGNAL(readyRead()), SLOT(handleReadyRead()));
     QtNetworkErrorConnect(m_reply, this, handleError, TTK_SLOT);
 }
@@ -150,7 +150,7 @@ void MusicDownloadQueueRequest::startOrderQueue()
 
     if(QFile::exists(m_queue.first().m_path))
     {
-        Q_EMIT downLoadDataChanged(m_queue.takeFirst().m_path);
+        Q_EMIT downloadDataChanged(m_queue.takeFirst().m_path);
         startOrderQueue();
     }
     else if(G_NETWORK_PTR->isOnline())

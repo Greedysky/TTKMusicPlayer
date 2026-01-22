@@ -73,18 +73,18 @@ Q_SIGNALS:
     /*!
      * Send download data changed.
      */
-    void downLoadDataChanged(const QString &bytes);
+    void downloadDataChanged(const QString &bytes);
     /*!
      * Send download raw data changed.
      */
-    void downLoadRawDataChanged(const QByteArray &bytes);
+    void downloadRawDataChanged(const QByteArray &bytes);
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      * Subclass should implement this function.
      */
-    virtual void downLoadFinished();
+    virtual void downloadFinished();
     /*!
      * Download reply error.
      */

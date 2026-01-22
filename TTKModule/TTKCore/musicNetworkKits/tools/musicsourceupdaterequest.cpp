@@ -14,7 +14,7 @@ MusicSourceUpdateRequest::MusicSourceUpdateRequest(QObject *parent)
 void MusicSourceUpdateRequest::startToRequest()
 {
     MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
     req->startToRequest(QSyncUtils::makeDataBucketUrl() + QUERY_VERSION_URL);
 }
 
@@ -41,7 +41,7 @@ bool MusicSourceUpdateRequest::isLastedVersion() const noexcept
     }
 }
 
-void MusicSourceUpdateRequest::downLoadFinished(const QByteArray &bytes)
+void MusicSourceUpdateRequest::downloadFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {
@@ -57,6 +57,6 @@ void MusicSourceUpdateRequest::downLoadFinished(const QByteArray &bytes)
         }
 
         m_rawData = json.toVariant().toMap();
-        Q_EMIT downLoadDataChanged({});
+        Q_EMIT downloadDataChanged({});
     }
 }

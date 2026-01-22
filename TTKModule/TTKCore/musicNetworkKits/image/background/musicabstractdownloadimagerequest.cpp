@@ -19,9 +19,9 @@ void MusicAbstractDownloadImageRequest::deleteAll()
     deleteLater();
 }
 
-void MusicAbstractDownloadImageRequest::downLoadDataFinished()
+void MusicAbstractDownloadImageRequest::downloadDataFinished()
 {
-    MusicAbstractNetwork::downLoadFinished();
+    MusicAbstractNetwork::downloadFinished();
     if(++m_index >= m_counter)
     {
         G_BACKGROUND_PTR->setArtistName(m_name);

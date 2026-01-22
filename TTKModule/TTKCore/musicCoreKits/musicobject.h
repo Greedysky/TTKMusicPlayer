@@ -54,6 +54,7 @@
 #define FPL_FILE_SUFFIX          "fpl"
 #define DBPL_FILE_SUFFIX         "dbpl"
 // file ext
+#define AAC_FILE_SUFFIX          "aac"
 #define MP3_FILE_SUFFIX          "mp3"
 #define APE_FILE_SUFFIX          "ape"
 #define FLAC_FILE_SUFFIX         "flac"
@@ -69,9 +70,8 @@
 #define SKN_FILE                 TTK_STR_CAT(TTK_DOT, SKN_FILE_SUFFIX)
 #define JPG_FILE                 TTK_STR_CAT(TTK_DOT, JPG_FILE_SUFFIX)
 #define PNG_FILE                 TTK_STR_CAT(TTK_DOT, PNG_FILE_SUFFIX)
-#define MP3_FILE                 TTK_STR_CAT(TTK_DOT, MP3_FILE_SUFFIX)
-#define TPL_FILE                 TTK_STR_CAT(TTK_DOT, TPL_FILE_SUFFIX)
 #define XML_FILE                 TTK_STR_CAT(TTK_DOT, XML_FILE_SUFFIX)
+#define TPL_FILE                 TTK_STR_CAT(TTK_DOT, TPL_FILE_SUFFIX)
 //
 #define LRC_FILE                 TTK_STR_CAT(TTK_DOT, LRC_FILE_SUFFIX)
 #define KRC_FILE                 TTK_STR_CAT(TTK_DOT, KRC_FILE_SUFFIX)
@@ -80,6 +80,7 @@
 #define YRC_FILE                 TTK_STR_CAT(TTK_DOT, YRC_FILE_SUFFIX)
 #define KSC_FILE                 TTK_STR_CAT(TTK_DOT, KSC_FILE_SUFFIX)
 // file ext
+#define AAC_FILE                 TTK_STR_CAT(TTK_DOT, AAC_FILE_SUFFIX)
 #define MP3_FILE                 TTK_STR_CAT(TTK_DOT, MP3_FILE_SUFFIX)
 #define APE_FILE                 TTK_STR_CAT(TTK_DOT, APE_FILE_SUFFIX)
 #define FLAC_FILE                TTK_STR_CAT(TTK_DOT, FLAC_FILE_SUFFIX)

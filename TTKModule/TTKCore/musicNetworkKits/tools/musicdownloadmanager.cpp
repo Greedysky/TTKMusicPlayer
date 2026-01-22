@@ -4,17 +4,17 @@
 #include "musicdownloadrecordwidget.h"
 #include "musiccloudtablewidget.h"
 
-void MusicDownLoadManager::connectMultiNetwork(QObject *object)
+void MusicDownloadManager::connectMultiNetwork(QObject *object)
 {
     m_objects << object;
     const QObject *to = G_CONNECTION_PTR->value(MusicDownloadStatusModule::className());
     if(to)
     {
-        connect(object, SIGNAL(downLoadDataChanged(QString)), to, SLOT(showDownLoadInfoFinished(QString)));
+        connect(object, SIGNAL(downloadDataChanged(QString)), to, SLOT(showDownloadInfoFinished(QString)));
     }
 }
 
-void MusicDownLoadManager::removeMultiNetwork(QObject *object)
+void MusicDownloadManager::removeMultiNetwork(QObject *object)
 {
     const int index = m_objects.indexOf(object);
     if(index != -1)
@@ -23,7 +23,7 @@ void MusicDownLoadManager::removeMultiNetwork(QObject *object)
     }
 }
 
-void MusicDownLoadManager::connectNetworkData(const MusicDownLoadData &data)
+void MusicDownloadManager::connectNetworkData(const MusicDownloadData &data)
 {
     QString className;
     switch(data.m_type)
@@ -45,12 +45,12 @@ void MusicDownLoadManager::connectNetworkData(const MusicDownLoadData &data)
     m_datas << data;
 }
 
-void MusicDownLoadManager::reconnectNetworkData(const MusicDownLoadData &data)
+void MusicDownloadManager::reconnectNetworkData(const MusicDownloadData &data)
 {
     const int index = m_datas.indexOf(data);
     if(index != -1)
     {
-        MusicDownLoadData *p = &m_datas[index];
+        MusicDownloadData *p = &m_datas[index];
         disconnect(p->m_object, SIGNAL(createDownloadItem(QString, qint64)), data.m_object, SLOT(createDownloadItem(QString, qint64)));
         disconnect(p->m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), data.m_object, SLOT(downloadProgressChanged(float, QString, qint64)));
 
@@ -59,7 +59,7 @@ void MusicDownLoadManager::reconnectNetworkData(const MusicDownLoadData &data)
     }
 }
 
-void MusicDownLoadManager::removeNetworkData(const MusicDownLoadData &data)
+void MusicDownloadManager::removeNetworkData(const MusicDownloadData &data)
 {
     const int index = m_datas.indexOf(data);
     if(index != -1)
@@ -68,11 +68,11 @@ void MusicDownLoadManager::removeNetworkData(const MusicDownLoadData &data)
     }
 }
 
-void MusicDownLoadManager::downloadProgressChanged(float percent, const QString &total, qint64 time)
+void MusicDownloadManager::downloadProgressChanged(float percent, const QString &total, qint64 time)
 {
     Q_UNUSED(total);
     if(percent >= 100)
     {
-        removeNetworkData(MusicDownLoadData(time));
+        removeNetworkData(MusicDownloadData(time));
     }
 }

@@ -353,7 +353,7 @@ void MusicScreenSaverWidget::switchButtonState()
     MusicApplicationModule::instance()->applyParameter();
 }
 
-void MusicScreenSaverWidget::downLoadFinished(const QString &bytes)
+void MusicScreenSaverWidget::downloadDataFinished(const QString &bytes)
 {
     QVector<bool> statusVector(parseSettingParameter());
     if(bytes.contains(SS_WALLNAIL_NAME))
@@ -386,7 +386,7 @@ void MusicScreenSaverWidget::currentItemClicked(int index, bool status)
 void MusicScreenSaverWidget::initialize()
 {
     m_networkRequest = new MusicDownloadQueueRequest(TTK::Download::Background, this);
-    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+    connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), SLOT(downloadDataFinished(QString)));
 
     MusicDownloadQueueDataList datas;
     for(int index = 0; index < SS_COUNT; ++index)

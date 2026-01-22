@@ -18,15 +18,15 @@ void MusicKGDownloadBackgroundRequest::startToRequest()
 
     TTKEventLoop loop;
     MusicKGQueryRequest query(this), *req = &query;
-    connect(req, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(m_name);
     loop.exec();
 
     if(req->isEmpty())
     {
-        TTK_INFO_STREAM(metaObject()->className() << "downLoadFinished");
-        Q_EMIT downLoadDataChanged({});
+        TTK_INFO_STREAM(metaObject()->className() << "downloadFinished");
+        Q_EMIT downloadDataChanged({});
         deleteAll();
         return;
     }
@@ -37,15 +37,15 @@ void MusicKGDownloadBackgroundRequest::startToRequest()
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKGDownloadBackgroundRequest::downLoadFinished()
+void MusicKGDownloadBackgroundRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractDownloadImageRequest::downLoadFinished();
+    MusicAbstractDownloadImageRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -73,7 +73,7 @@ void MusicKGDownloadBackgroundRequest::downLoadFinished()
     }
 
     TTK_INFO_STREAM(metaObject()->className() << "download image size" << m_counter);
-    Q_EMIT downLoadDataChanged(QString::number(m_counter));
+    Q_EMIT downloadDataChanged(QString::number(m_counter));
     //
     if(m_counter == 0)
     {
@@ -103,7 +103,7 @@ void MusicKGDownloadBackgroundRequest::parseFromBackgroundProperty(const QVarian
             }
 
             MusicDownloadDataRequest *req = new MusicDownloadDataRequest(url, QString("%1%2-%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(foundCount()).arg(SKN_FILE), TTK::Download::Background, this);
-            connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
+            connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(downloadDataFinished()));
             req->startToRequest();
         }
     }

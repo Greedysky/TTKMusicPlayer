@@ -21,7 +21,7 @@ void MusicDownloadBackgroundRequest::startToRequest()
     findAllPlugins();
 }
 
-void MusicDownloadBackgroundRequest::downLoadFinished(const QString &bytes)
+void MusicDownloadBackgroundRequest::downloadDataFinished(const QString &bytes)
 {
     if(bytes.isEmpty())
     {
@@ -55,7 +55,7 @@ void MusicDownloadBackgroundRequest::findAllPlugins()
 
     if(req)
     {
-        connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+        connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(downloadDataFinished(QString)));
         //
         req->setRemainCount(MAX_IMAGE_COUNT - m_findCount);
         req->startToRequest();

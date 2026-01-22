@@ -73,7 +73,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &bytes);
+    void downloadFinished(const QByteArray &bytes);
 
 private:
     MusicDJRadioProgramRequest *m_networkRequest;

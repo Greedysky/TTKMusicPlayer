@@ -42,7 +42,7 @@ void MusicConnectionPool::connect(const QString &from, const QString &to)
     }
     else if(from == MusicLrcLocalLinkWidget::className() && to == MusicDownloadStatusModule::className())
     {
-        QObject::connect(first, SIGNAL(currentLrcChanged(QString)), second, SLOT(showDownLoadInfoFinished(QString)));
+        QObject::connect(first, SIGNAL(currentLrcChanged(QString)), second, SLOT(showDownloadInfoFinished(QString)));
     }
     else if(from == MusicVideoQualityPopWidget::className() && to == MusicVideoSearchTableWidget::className())
     {

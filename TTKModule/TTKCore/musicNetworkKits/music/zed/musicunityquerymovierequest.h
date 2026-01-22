@@ -67,7 +67,7 @@ private Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadUnityFinished();
+    void downloadUnityFinished();
 
 private:
     /*!

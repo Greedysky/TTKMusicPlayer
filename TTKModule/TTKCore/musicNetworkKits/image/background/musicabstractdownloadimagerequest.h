@@ -57,7 +57,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadDataFinished();
+    void downloadDataFinished();
 
 protected:
     int m_remainCount;

@@ -46,17 +46,17 @@ Q_SIGNALS:
     /*!
      * Send download data from net.
      */
-    void downLoadItemsChanged(const MusicSkinRemoteGroup &bytes);
+    void downloadItemsChanged(const MusicSkinRemoteGroup &bytes);
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished(const QByteArray &bytes) override final;
+    virtual void downloadFinished(const QByteArray &bytes) override final;
     /*!
      * Download data from net finished.
      */
-    void downLoadItemsFinished(const QByteArray &bytes);
+    void downloadItemsFinished(const QByteArray &bytes);
 
 };
 

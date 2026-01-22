@@ -51,13 +51,13 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
+    virtual void downloadFinished() override final;
 
 private Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadSingleFinished();
+    void downloadSingleFinished();
 
 private:
     /*!
@@ -93,7 +93,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
+    virtual void downloadFinished() override final;
 
 private:
     /*!

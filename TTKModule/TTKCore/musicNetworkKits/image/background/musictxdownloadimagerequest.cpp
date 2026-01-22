@@ -41,15 +41,15 @@ void MusicTXDownloadBackgroundRequest::startToRequest()
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.post(request, TTK::Algorithm::mdII(TX_SEARCH_DATA_URL, false).arg(m_name).toUtf8());
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicTXDownloadBackgroundRequest::downLoadFinished()
+void MusicTXDownloadBackgroundRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractDownloadImageRequest::downLoadFinished();
+    MusicAbstractDownloadImageRequest::downloadFinished();
     QString id;
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -87,19 +87,19 @@ void MusicTXDownloadBackgroundRequest::downLoadFinished()
     if(id.isEmpty())
     {
         TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
-        Q_EMIT downLoadDataChanged({});
+        Q_EMIT downloadDataChanged({});
         deleteAll();
         return;
     }
 
-    downLoadUrl(id);
+    downloadUrl(id);
 }
 
-void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
+void MusicTXDownloadBackgroundRequest::downloadUrlFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicAbstractDownloadImageRequest::downLoadFinished();
+    MusicAbstractDownloadImageRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QStringList items;
@@ -114,14 +114,14 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
             if(m_counter < m_remainCount && !url.isEmpty())
             {
                 MusicDownloadDataRequest *req = new MusicDownloadDataRequest(url, QString("%1%2-%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(foundCount()).arg(SKN_FILE), TTK::Download::Background, this);
-                connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
+                connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(downloadDataFinished()));
                 req->startToRequest();
             }
         }
     }
 
     TTK_INFO_STREAM(metaObject()->className() << "download image size" << m_counter);
-    Q_EMIT downLoadDataChanged(QString::number(m_counter));
+    Q_EMIT downloadDataChanged(QString::number(m_counter));
     //
     if(m_counter == 0)
     {
@@ -129,7 +129,7 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
     }
 }
 
-void MusicTXDownloadBackgroundRequest::downLoadUrl(const QString &id)
+void MusicTXDownloadBackgroundRequest::downloadUrl(const QString &id)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << id);
 
@@ -141,6 +141,6 @@ void MusicTXDownloadBackgroundRequest::downLoadUrl(const QString &id)
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadUrlFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadUrlFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }

@@ -39,7 +39,7 @@ void MusicKGQueryArtistListRequest::startToPage(int offset)
     ReqKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
@@ -50,11 +50,11 @@ void MusicKGQueryArtistListRequest::startToSearch(const QString &value)
     MusicQueryArtistListRequest::startToSearch(m_queryValue);
 }
 
-void MusicKGQueryArtistListRequest::downLoadFinished()
+void MusicKGQueryArtistListRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicQueryArtistListRequest::downLoadFinished();
+    MusicQueryArtistListRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -101,6 +101,6 @@ void MusicKGQueryArtistListRequest::downLoadFinished()
         }
     }
 
-//    Q_EMIT downLoadDataChanged({});
+//    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

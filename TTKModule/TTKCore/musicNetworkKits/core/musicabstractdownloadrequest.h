@@ -26,18 +26,18 @@
 /*! @brief The class of the abstract download data.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAbstractDownLoadRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicAbstractDownloadRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor provide download url save local path and download type.
      */
-    MusicAbstractDownLoadRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent = nullptr);
+    MusicAbstractDownloadRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent = nullptr);
     /*!
      * Object destructor.
      */
-    ~MusicAbstractDownLoadRequest();
+    ~MusicAbstractDownloadRequest();
 
     /*!
      * Release the network object.
@@ -54,7 +54,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downloadFinished() override;
     /*!
      * Get download received and total data.
      */

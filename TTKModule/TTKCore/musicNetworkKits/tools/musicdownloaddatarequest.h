@@ -24,7 +24,7 @@
 /*! @brief The class of the download the type of data.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadDataRequest : public MusicAbstractDownLoadRequest
+class TTK_MODULE_EXPORT MusicDownloadDataRequest : public MusicAbstractDownloadRequest
 {
     Q_OBJECT
 public:
@@ -61,7 +61,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downloadFinished() override;
     /*!
      * Get download received and total data.
      */

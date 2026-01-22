@@ -184,7 +184,7 @@ void MusicFileInformationWidget::openDynamicImage()
         m_ui->dynamicPixButton->setText(tr("Static"));
 
         MusicWYCoverSourceRequest *req = new MusicWYCoverSourceRequest(this);
-        connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+        connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(downloadDataFinished(QString)));
         req->startToRequest(QFileInfo(m_path).baseName());
     }
     else
@@ -215,7 +215,7 @@ void MusicFileInformationWidget::currentTabChanged(int index)
     }
 }
 
-void MusicFileInformationWidget::downLoadFinished(const QString &bytes)
+void MusicFileInformationWidget::downloadDataFinished(const QString &bytes)
 {
     if(bytes.isEmpty())
     {

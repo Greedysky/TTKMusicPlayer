@@ -10,15 +10,15 @@ MusicCoverSourceRequest::MusicCoverSourceRequest(QObject *parent)
 void MusicCoverSourceRequest::startToRequest(const QString &url)
 {
     MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadRawDataFinished(QByteArray)));
+    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadRawDataFinished(QByteArray)));
     req->startToRequest(url);
 }
 
-void MusicCoverSourceRequest::downLoadRawDataFinished(const QByteArray &bytes)
+void MusicCoverSourceRequest::downloadRawDataFinished(const QByteArray &bytes)
 {
-    MusicCoverRequest::downLoadFinished();
+    MusicCoverRequest::downloadFinished();
 
-    Q_EMIT downLoadRawDataChanged(bytes);
+    Q_EMIT downloadRawDataChanged(bytes);
     deleteAll();
 }
 

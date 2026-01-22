@@ -27,11 +27,11 @@ void MusicAbstractQueryRequest::startToQueryResult(TTK::MusicSongInformation *in
     }
 }
 
-void MusicAbstractQueryRequest::downLoadFinished()
+void MusicAbstractQueryRequest::downloadFinished()
 {
     Q_EMIT clearItems();
     m_items.clear();
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
 }
 
 QString MusicAbstractQueryRequest::serverToString() const

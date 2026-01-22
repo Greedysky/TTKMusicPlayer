@@ -94,14 +94,14 @@ Q_SIGNALS:
     /*!
      * Send download data from net.
      */
-    void downLoadDataChanged(const MusicSkinRemoteGroupList &bytes);
+    void downloadDataChanged(const MusicSkinRemoteGroupList &bytes);
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      * Subclass should implement this function.
      */
-    virtual void downLoadFinished(const QByteArray &bytes) = 0;
+    virtual void downloadFinished(const QByteArray &bytes) = 0;
 
 };
 

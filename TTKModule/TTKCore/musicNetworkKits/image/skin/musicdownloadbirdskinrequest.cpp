@@ -13,18 +13,18 @@ MusicDownloadBirdSkinRequest::MusicDownloadBirdSkinRequest(QObject *parent)
 void MusicDownloadBirdSkinRequest::startToRequest()
 {
     MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
     req->startToRequest(TTK::Algorithm::mdII(MAIN_URL, false));
 }
 
 void MusicDownloadBirdSkinRequest::startToRequest(const QString &id)
 {
     MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-    connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadItemsFinished(QByteArray)));
+    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadItemsFinished(QByteArray)));
     req->startToRequest(TTK::Algorithm::mdII(QUERY_URL, false).arg(id));
 }
 
-void MusicDownloadBirdSkinRequest::downLoadFinished(const QByteArray &bytes)
+void MusicDownloadBirdSkinRequest::downloadFinished(const QByteArray &bytes)
 {
     MusicSkinRemoteGroupList groups;
 
@@ -53,10 +53,10 @@ void MusicDownloadBirdSkinRequest::downLoadFinished(const QByteArray &bytes)
         }
     }
 
-    Q_EMIT downLoadDataChanged(groups);
+    Q_EMIT downloadDataChanged(groups);
 }
 
-void MusicDownloadBirdSkinRequest::downLoadItemsFinished(const QByteArray &bytes)
+void MusicDownloadBirdSkinRequest::downloadItemsFinished(const QByteArray &bytes)
 {
     MusicSkinRemoteGroup group;
 
@@ -98,5 +98,5 @@ void MusicDownloadBirdSkinRequest::downLoadItemsFinished(const QByteArray &bytes
         }
     }
 
-    Q_EMIT downLoadItemsChanged(group);
+    Q_EMIT downloadItemsChanged(group);
 }

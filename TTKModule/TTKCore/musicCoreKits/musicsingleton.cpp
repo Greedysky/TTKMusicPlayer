@@ -36,14 +36,14 @@ MusicSingleManager* makeMusicSingleManager()
     return TTKSingleton<MusicSingleManager>::instance();
 }
 
-MusicDownLoadManager* makeMusicDownLoadManager()
+MusicDownloadManager* makeMusicDownloadManager()
 {
-    return TTKSingleton<MusicDownLoadManager>::instance();
+    return TTKSingleton<MusicDownloadManager>::instance();
 }
 
-MusicDownLoadQueryFactory* makeMusicDownLoadQueryFactory()
+MusicDownloadQueryFactory* makeMusicDownloadQueryFactory()
 {
-    return TTKSingleton<MusicDownLoadQueryFactory>::instance();
+    return TTKSingleton<MusicDownloadQueryFactory>::instance();
 }
 
 MusicNetworkThread* makeMusicNetworkThread()

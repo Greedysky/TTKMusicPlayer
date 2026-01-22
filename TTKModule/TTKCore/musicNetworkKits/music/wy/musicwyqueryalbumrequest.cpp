@@ -21,7 +21,7 @@ void MusicWYQueryAlbumRequest::startToPage(int offset)
                       QString("{}"));
 
     m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
@@ -29,7 +29,7 @@ void MusicWYQueryAlbumRequest::startToQueryResult(TTK::MusicSongInformation *inf
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     TTK_NETWORK_QUERY_CHECK();
     ReqWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
@@ -38,11 +38,11 @@ void MusicWYQueryAlbumRequest::startToQueryResult(TTK::MusicSongInformation *inf
     MusicQueryAlbumRequest::startToQueryResult(info, bitrate);
 }
 
-void MusicWYQueryAlbumRequest::downLoadFinished()
+void MusicWYQueryAlbumRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -121,7 +121,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }
 
@@ -148,15 +148,15 @@ void MusicWYQueryArtistAlbumRequest::startToPage(int offset)
                       TTK::Algorithm::mdII(WY_ARTIST_ALBUM_DATA_URL, false).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicWYQueryArtistAlbumRequest::downLoadFinished()
+void MusicWYQueryArtistAlbumRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicPageQueryRequest::downLoadFinished();
+    MusicPageQueryRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -191,6 +191,6 @@ void MusicWYQueryArtistAlbumRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});
+    Q_EMIT downloadDataChanged({});
     deleteAll();
 }

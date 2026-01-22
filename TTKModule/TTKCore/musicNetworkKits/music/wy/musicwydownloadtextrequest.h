@@ -24,14 +24,14 @@
 /*! @brief The class of the download the type of wangyi txt.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWYDownLoadTextRequest : public MusicAbstractDownLoadRequest
+class TTK_MODULE_EXPORT MusicWYDownloadTextRequest : public MusicAbstractDownloadRequest
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor provide download url save local path and download type.
      */
-    MusicWYDownLoadTextRequest(const QString &url, const QString &path, QObject *parent = nullptr);
+    MusicWYDownloadTextRequest(const QString &url, const QString &path, QObject *parent = nullptr);
 
     /*!
      * Start to download text data.
@@ -42,7 +42,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
+    virtual void downloadFinished() override final;
 
 };
 

@@ -43,7 +43,7 @@ private Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadRawDataFinished(const QByteArray &bytes);
+    void downloadRawDataFinished(const QByteArray &bytes);
 
 private:
     bool m_decodeUrl;
@@ -54,14 +54,14 @@ private:
 /*! @brief The class of the kuwo cover data download request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKWDownLoadCoverRequest : public MusicAbstractDownLoadRequest
+class TTK_MODULE_EXPORT MusicKWDownloadCoverRequest : public MusicAbstractDownloadRequest
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor provide download url save local path and download type.
      */
-    MusicKWDownLoadCoverRequest(const QString &url, const QString &path, QObject *parent = nullptr);
+    MusicKWDownloadCoverRequest(const QString &url, const QString &path, QObject *parent = nullptr);
 
     /*!
      * Start to download text data.
@@ -72,7 +72,7 @@ private Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
+    virtual void downloadFinished() override final;
 
 };
 

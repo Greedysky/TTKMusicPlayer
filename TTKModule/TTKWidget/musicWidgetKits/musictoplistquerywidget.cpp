@@ -13,7 +13,7 @@ MusicToplistQueryWidget::MusicToplistQueryWidget(QWidget *parent)
     MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeToplistRequest(this);
     m_queryTableWidget->setQueryInput(req);
 
-    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(queryAllFinished()));
     connect(req, SIGNAL(createToplistItem(MusicResultDataItem)), SLOT(createToplistItem(MusicResultDataItem)));
 }
 
@@ -183,7 +183,7 @@ void MusicToplistQueryWidget::createToplistItem(const MusicResultDataItem &item)
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
         MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(req, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
         req->startToRequest(item.m_coverUrl);
     }
 }

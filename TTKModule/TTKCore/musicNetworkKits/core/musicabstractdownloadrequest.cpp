@@ -2,7 +2,7 @@
 #include "musicdownloadmanager.h"
 #include "musiccoreutils.h"
 
-MusicAbstractDownLoadRequest::MusicAbstractDownLoadRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent)
+MusicAbstractDownloadRequest::MusicAbstractDownloadRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent)
     : MusicAbstractNetwork(parent),
       m_url(url),
       m_savePath(path),
@@ -22,7 +22,7 @@ MusicAbstractDownLoadRequest::MusicAbstractDownLoadRequest(const QString &url, c
     connect(&m_speedTimer, SIGNAL(timeout()), SLOT(updateDownloadSpeed()));
 }
 
-MusicAbstractDownLoadRequest::~MusicAbstractDownLoadRequest()
+MusicAbstractDownloadRequest::~MusicAbstractDownloadRequest()
 {
     if(m_speedTimer.isActive())
     {
@@ -31,7 +31,7 @@ MusicAbstractDownLoadRequest::~MusicAbstractDownLoadRequest()
     G_DOWNLOAD_MANAGER_PTR->removeMultiNetwork(this);
 }
 
-void MusicAbstractDownLoadRequest::deleteAll()
+void MusicAbstractDownloadRequest::deleteAll()
 {
     MusicAbstractNetwork::deleteAll();
     delete m_file;
@@ -39,19 +39,19 @@ void MusicAbstractDownLoadRequest::deleteAll()
     deleteLater();
 }
 
-void MusicAbstractDownLoadRequest::downLoadFinished()
+void MusicAbstractDownloadRequest::downloadFinished()
 {
-    MusicAbstractNetwork::downLoadFinished();
+    MusicAbstractNetwork::downloadFinished();
     m_speedTimer.stop();
 }
 
-void MusicAbstractDownLoadRequest::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
+void MusicAbstractDownloadRequest::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
     m_currentReceived = bytesReceived;
     m_totalSize = bytesTotal;
 }
 
-void MusicAbstractDownLoadRequest::updateDownloadSpeed()
+void MusicAbstractDownloadRequest::updateDownloadSpeed()
 {
     const int delta = m_currentReceived - m_hasReceived;
     ///limit speed
@@ -66,7 +66,7 @@ void MusicAbstractDownLoadRequest::updateDownloadSpeed()
     m_hasReceived = m_currentReceived;
 }
 
-QString MusicAbstractDownLoadRequest::mapCurrentQueryData() const
+QString MusicAbstractDownloadRequest::mapCurrentQueryData() const
 {
     switch(m_downloadType)
     {

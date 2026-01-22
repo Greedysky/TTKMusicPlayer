@@ -50,7 +50,7 @@ private Q_SLOTS:
     /*!
      * Download image data from net finished.
      */
-    void downLoadImageFinished(const QByteArray &bytes);
+    void downloadImageFinished(const QByteArray &bytes);
 
 private:
     /*!

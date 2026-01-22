@@ -1,16 +1,16 @@
 #include "musickwdownloadtextrequest.h"
 
-MusicKWDownLoadTextRequest::MusicKWDownLoadTextRequest(const QString &url, const QString &path, QObject *parent)
-    : MusicAbstractDownLoadRequest(url, path, TTK::Download::Lrc, parent)
+MusicKWDownloadTextRequest::MusicKWDownloadTextRequest(const QString &url, const QString &path, QObject *parent)
+    : MusicAbstractDownloadRequest(url, path, TTK::Download::Lrc, parent)
 {
 
 }
 
-void MusicKWDownLoadTextRequest::startToRequest()
+void MusicKWDownloadTextRequest::startToRequest()
 {
     if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) || m_url.isEmpty())
     {
-        Q_EMIT downLoadDataChanged("The kuwo text file create failed");
+        Q_EMIT downloadDataChanged("The kuwo text file create failed");
         TTK_ERROR_STREAM(metaObject()->className() << "file create failed");
         deleteAll();
         return;
@@ -24,14 +24,14 @@ void MusicKWDownLoadTextRequest::startToRequest()
     TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWDownLoadTextRequest::downLoadFinished()
+void MusicKWDownloadTextRequest::downloadFinished()
 {
-    MusicAbstractDownLoadRequest::downLoadFinished();
+    MusicAbstractDownloadRequest::downloadFinished();
     if(m_reply && m_file && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
@@ -74,6 +74,6 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(mapCurrentQueryData());
+    Q_EMIT downloadDataChanged(mapCurrentQueryData());
     deleteAll();
 }

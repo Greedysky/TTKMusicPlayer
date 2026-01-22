@@ -17,7 +17,7 @@ void MusicTranslationRequest::startToRequest()
     findAllPlugins();
 }
 
-void MusicTranslationRequest::downLoadDataFinished(const QString &bytes)
+void MusicTranslationRequest::downloadDataFinished(const QString &bytes)
 {
     if(bytes.isEmpty())
     {
@@ -25,7 +25,7 @@ void MusicTranslationRequest::downLoadDataFinished(const QString &bytes)
         return;
     }
 
-    Q_EMIT downLoadDataChanged(bytes);
+    Q_EMIT downloadDataChanged(bytes);
     deleteLater();
 }
 
@@ -43,7 +43,7 @@ void MusicTranslationRequest::findAllPlugins()
 
     if(req)
     {
-        connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished(QString)));
+        connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(downloadDataFinished(QString)));
         //
         req->setHeader("name", header("name"));
         req->startToRequest(header("data").toString());

@@ -55,7 +55,7 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     connect(nextTimeButton, SIGNAL(clicked()), SLOT(close()));
 
     MusicSourceUpdateRequest *req = new MusicSourceUpdateRequest(this);
-    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(downloadFinished()));
     req->startToRequest();
 }
 
@@ -70,7 +70,7 @@ void MusicSourceUpdateNotifyWidget::updateSourceClicked()
     MusicSourceUpdateWidget().exec();
 }
 
-void MusicSourceUpdateNotifyWidget::downLoadFinished()
+void MusicSourceUpdateNotifyWidget::downloadFinished()
 {
     MusicSourceUpdateRequest *req = TTKObjectCast(MusicSourceUpdateRequest*, sender());
     if(!req)
@@ -124,7 +124,7 @@ MusicSourceUpdateWidget::~MusicSourceUpdateWidget()
 void MusicSourceUpdateWidget::start()
 {
     MusicSourceUpdateRequest *req = new MusicSourceUpdateRequest(this);
-    connect(req, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
+    connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(downloadFinished()));
     req->startToRequest();
 }
 
@@ -133,7 +133,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
     TTK::Url::openUrl(TTK::Algorithm::mdII(RELEASE_DATA_URL, false), false);
 }
 
-void MusicSourceUpdateWidget::downLoadFinished()
+void MusicSourceUpdateWidget::downloadFinished()
 {
     MusicSourceUpdateRequest *req = TTKObjectCast(MusicSourceUpdateRequest*, sender());
     if(!req)
