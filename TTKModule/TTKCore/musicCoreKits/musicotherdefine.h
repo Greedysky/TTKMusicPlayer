@@ -24,10 +24,10 @@
 // user author name
 #define TTK_AUTHOR_NAME       "Greedysky"
 
-#define TTK_COLOR_FILE        QDir::tempPath() + "color.jpg"
-#define TTK_IMAGE_FILE        QDir::tempPath() + "image_cache"
-#define TTK_RECORD_FILE       QDir::tempPath() + "record.raw"
-#define TTK_RECORD_DATA_FILE  QDir::tempPath() + "record_data.wav"
+#define TTK_COLOR_FILE        QDir::tempPath() + TTK_SEPARATOR + "color.jpg"
+#define TTK_IMAGE_FILE        QDir::tempPath() + TTK_SEPARATOR + "image_cache"
+#define TTK_RECORD_FILE       QDir::tempPath() + TTK_SEPARATOR + "record.raw"
+#define TTK_RECORD_DATA_FILE  QDir::tempPath() + TTK_SEPARATOR + "record_data.wav"
 
 #define MIN_ITEM_COUNT        4
 #define MAX_IMAGE_COUNT       10

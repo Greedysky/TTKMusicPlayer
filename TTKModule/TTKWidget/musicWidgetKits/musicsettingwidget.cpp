@@ -434,13 +434,13 @@ void MusicSettingWidget::otherPluginManagerChanged()
 void MusicSettingWidget::changeDesktopLrcWidget()
 {
     selectFunctionTableIndex(1, 0);
-    setScrollWidgetPageIndex(SettingType::DesktopLrc);
+    setScrollWidgetPageIndex(SettingType::Desktop);
 }
 
 void MusicSettingWidget::changeInteriorLrcWidget()
 {
     selectFunctionTableIndex(1, 1);
-    setScrollWidgetPageIndex(SettingType::InteriorLrc);
+    setScrollWidgetPageIndex(SettingType::Interior);
 }
 
 void MusicSettingWidget::changeDownloadWidget()
@@ -586,16 +586,16 @@ void MusicSettingWidget::saveParameterSettings()
     QStringList lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     lastPlayIndex[0] = QString::number(m_ui->lastPlayCheckBox->isChecked());
 
+    G_NETWORK_PTR->setBlockNetwork(m_ui->closeNetWorkCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::LanguageIndex, m_ui->languageComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::StartUpMode, m_ui->autoStartCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::StartUpPlayMode, m_ui->autoPlayCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, lastPlayIndex);
     G_SETTING_PTR->setValue(MusicSettingManager::CloseEventMode, m_ui->quitRadioBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, m_ui->quitWindowRadioBox->isChecked());
-    G_NETWORK_PTR->setBlockNetwork(m_ui->closeNetWorkCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationMode, m_ui->setDefaultPlayerCheckBox->isChecked());
-
     G_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, hotkeyEnabled);
+
     if(hotkeyEnabled)
     {
         for(int i = 0; i < m_hotKeyEdits.count(); ++i)

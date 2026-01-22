@@ -89,7 +89,7 @@ protected:
     /*!
      * Sncasecmp by input and size n.
      */
-    int sncasecmp(char *s1, char *s2, size_t n);
+    int sncasecmp(const char *s1, const char *s2, size_t n);
     /*!
      * Decompress the krc file data to normal data.
      */
@@ -97,7 +97,7 @@ protected:
     /*!
      * Check the input string is filtered or not.
      */
-    int isfilter(char *tok);
+    int isfilter(const char *tok);
     /*!
      * Create lrc by input data and length.
      */

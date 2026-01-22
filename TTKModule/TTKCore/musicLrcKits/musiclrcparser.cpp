@@ -121,7 +121,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     return true;
 }
 
-int MusicLrcFromKrc::sncasecmp(char *s1, char *s2, size_t n)
+int MusicLrcFromKrc::sncasecmp(const char *s1, const char *s2, size_t n)
 {
     uint c1, c2;
     while(n)
@@ -156,33 +156,33 @@ int MusicLrcFromKrc::decompression(uchar *src, size_t srcsize, size_t *dstsize)
     return 0;
 }
 
-int MusicLrcFromKrc::isfilter(char *tok)
+int MusicLrcFromKrc::isfilter(const char *tok)
 {
-    if(!sncasecmp(tok, TTKConstCast(char*, TTKString("[id").c_str()), 3))
+    if(!sncasecmp(tok, "[id", 3))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, TTKConstCast(char*, TTKString("[by").c_str()), 3))
+    else if(!sncasecmp(tok, "[by", 3))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, TTKConstCast(char*, TTKString("[hash").c_str()), 5))
+    else if(!sncasecmp(tok, "[hash", 5))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, TTKConstCast(char*, TTKString("[al").c_str()), 3))
+    else if(!sncasecmp(tok, "[al", 3))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, TTKConstCast(char*, TTKString("[sign").c_str()), 5))
+    else if(!sncasecmp(tok, "[sign", 5))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, TTKConstCast(char*, TTKString("[total").c_str()), 6))
+    else if(!sncasecmp(tok, "[total", 6))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, TTKConstCast(char*, TTKString("[offset").c_str()), 7))
+    else if(!sncasecmp(tok, "[offset", 7))
     {
         return 1;
     }

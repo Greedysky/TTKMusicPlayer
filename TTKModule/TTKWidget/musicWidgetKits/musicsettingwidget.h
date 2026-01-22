@@ -108,8 +108,8 @@ public:
         Download,      /*!< Download setting type */
         Spectrum,      /*!< Spectrum setting type */
         Other,         /*!< Other setting type */
-        DesktopLrc,    /*!< DesktopLrc setting type */
-        InteriorLrc,   /*!< InteriorLrc setting type */
+        Desktop,       /*!< Desktop setting type */
+        Interior,      /*!< Interior setting type */
         SoundEffect,   /*!< SoundEffect setting type */
         Audio,         /*!< Audio setting type */
         Network,       /*!< Network setting type */
