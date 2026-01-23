@@ -1,0 +1,56 @@
+# Author: Greedysky <greedysky@163.com>
+
+name: ubuntu
+
+on: workflow_call
+
+jobs:
+  build:
+    name: Build on Qt${{matrix.qt_major}}(${{matrix.os}})
+    strategy:
+      matrix:
+        qt: [qt5]
+        os: [ubuntu-22.04]
+        include:
+          - qt: qt5
+            qt_major: 5
+            qt_version: 5.9.9
+
+    env:
+      QT_VERSION: ${{matrix.qt_version}}
+
+    runs-on: ${{matrix.os}}
+    steps:
+      - name: Clone qmmp module
+        run: git clone -b plugins https://github.com/Greedysky/TTKMusicPlayer.git
+        working-directory: ${{runner.workspace}}
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{env.QT_VERSION}}
+          target: desktop
+          cache: 'true'
+
+      - name: Install qmmp library
+        run: |
+          wget https://launchpad.net/~forkotov02/+archive/ubuntu/ppa/+files/qmmp_1.7.9-1ubuntu1~jammy0_amd64.deb -O qmmp_amd64.deb
+          7z x qmmp_amd64.deb
+          zstd -d data.tar.zst
+          7z x data.tar
+          sudo cp -r usr /
+
+      - name: Clone TTKQmmp modules
+        run: |
+          python qmmp_ttk_clone.py
+        working-directory: ${{github.workspace}}/scripts
+
+      - name: Build TTKQmmp modules
+        run: |
+          mkdir -p ../../qmmp-lib/qt5/lib/qmmp/pkgconfig
+          ln -s /usr/lib/qmmp/pkgconfig/qmmp-1.pc ${{env.QT_ROOT_DIR}}/lib/pkgconfig/qmmp-1.pc
+          ln -s /usr/lib/qmmp/pkgconfig/qmmp-1.pc ../../qmmp-lib/qt5/lib/qmmp/pkgconfig/qmmp-1.pc
+          export PKG_CONFIG_PATH=/usr/lib/qmmp/pkgconfig:$PKG_CONFIG_PATH
+          python qmmp_ttk_build_qt5.py -ci
+        working-directory: ${{github.workspace}}/scripts
+

@@ -21,7 +21,7 @@ class BuildModule(QmmpTTKBaseModule):
             # 进入插件子目录
             os.chdir(self._source_dir + module)
             # 编译
-            os.system(self.get_home_directory() + "/Software/Qt/5.9.9/5.9.9/gcc_64/bin/qmake")
+            os.system(self.get_home_directory() + "/Qt/5.9.9/gcc_64/bin/qmake")
             status = os.system("make -j6")
             if status != 0:
                 os.system(rm_str)
