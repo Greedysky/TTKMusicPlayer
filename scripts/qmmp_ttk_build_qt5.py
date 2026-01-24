@@ -14,7 +14,9 @@ class BuildModule(QmmpTTKBaseModule):
     def run(self):
         rm_str = "rm .qmake.stash Makefile *.so"
         # 引入Qmmp环境配置
+        print (os.environ['PKG_CONFIG_PATH'])
         os.environ['PKG_CONFIG_PATH'] = self.get_source_directory() + "/qmmp-lib/qt5/lib/qmmp/pkgconfig"
+        os.system("pkg-config --list-all | grep qmmp")
         # 遍历所有插件模块
         for module in self._modules:
             print ("Qmmp plugin module now is " + module)

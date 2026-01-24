@@ -38,7 +38,9 @@ jobs:
           7z x qmmp_amd64.deb
           zstd -d data.tar.zst
           7z x data.tar
-          sudo cp -r usr /
+          sed -i "s/\/usr/\/home\/runner\/work\/TTKMusicPlayer\/usr/g" usr/lib/qmmp/pkgconfig/qmmp-1.pc
+          cat usr/lib/qmmp/pkgconfig/qmmp-1.pc
+        working-directory: ${{runner.workspace}}
 
       - name: Clone TTKQmmp modules
         run: |
@@ -48,9 +50,10 @@ jobs:
       - name: Build TTKQmmp modules
         run: |
           mkdir -p ../../qmmp-lib/qt5/lib/qmmp/pkgconfig
-          ln -s /usr/lib/qmmp/pkgconfig/qmmp-1.pc ${{env.QT_ROOT_DIR}}/lib/pkgconfig/qmmp-1.pc
-          ln -s /usr/lib/qmmp/pkgconfig/qmmp-1.pc ../../qmmp-lib/qt5/lib/qmmp/pkgconfig/qmmp-1.pc
-          export PKG_CONFIG_PATH=/usr/lib/qmmp/pkgconfig:$PKG_CONFIG_PATH
+          ln -s ${{runner.workspace}}/usr/lib/qmmp/pkgconfig/qmmp-1.pc ${{env.QT_ROOT_DIR}}/lib/pkgconfig/qmmp-1.pc
+          ln -s ${{runner.workspace}}/usr/lib/qmmp/pkgconfig/qmmp-1.pc ../../qmmp-lib/qt5/lib/qmmp/pkgconfig/qmmp-1.pc
+          export PKG_CONFIG_PATH=${{runner.workspace}}/usr/lib/qmmp/pkgconfig:$PKG_CONFIG_PATH
+          pkg-config --list-all
           python qmmp_ttk_build_qt5.py -ci
         working-directory: ${{github.workspace}}/scripts
 
