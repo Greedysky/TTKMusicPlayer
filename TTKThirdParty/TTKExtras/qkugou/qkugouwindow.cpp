@@ -4,8 +4,13 @@
 #ifdef TTK_MINIBLINK
 #  include "miniblink/miniblink.h"
 #elif defined TTK_WEBKIT
-#  include <QWebView>
-#  include <QWebFrame>
+#  if TTK_QT_VERSION_CHECK(5,0,0)
+#    include <QtWebKitWidgets/QWebView>
+#    include <QtWebKitWidgets/QWebFrame>
+#  else
+#    include <QtWebKit/QWebView>
+#    include <QtWebKit/QWebFrame>
+#  endif
 #elif defined TTK_WEBENGINE
 #  include <QWebEngineView>
 #  include <QWebEngineSettings>
