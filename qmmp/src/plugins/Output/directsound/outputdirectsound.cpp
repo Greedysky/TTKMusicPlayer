@@ -333,7 +333,7 @@ void VolumeDirectSound::setVolume(const VolumeSettings &vol)
         {
             voldB = 20.0 * std::log(maxVol / 100.0) / std::log(10);
             int balance = (vol.right - vol.left) * 100.0 / maxVol;
-            pandB = balance ? 20.0 * std::log((100.0 - std::fabs(balance)) /100.0) / std::log(10) : 0;
+            pandB = balance ? 20.0 * std::log((100.0 - std::fabs(balance)) / 100.0) / std::log(10) : 0;
             if(balance > 0)
                 pandB = -pandB;
         }

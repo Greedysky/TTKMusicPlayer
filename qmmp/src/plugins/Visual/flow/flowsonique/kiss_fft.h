@@ -113,7 +113,7 @@ void kiss_fft_cleanup(void);
 int kiss_fft_next_fast_size(int n);
 
 /* for real ffts, we need an even size */
-#define kiss_fftr_next_fast_size_real(n) (kiss_fft_next_fast_size( ((n)+1)>>1)<<1)
+#define kiss_fftr_next_fast_size_real(n) (kiss_fft_next_fast_size( ((n) + 1) >> 1) << 1)
 
 #ifdef __cplusplus
 } 

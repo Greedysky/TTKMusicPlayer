@@ -122,7 +122,7 @@ int DecoderOpus::bitrate() const
 
 void DecoderOpus::seek(qint64 time)
 {
-    op_pcm_seek(m_opusfile, time*48);
+    op_pcm_seek(m_opusfile, time * 48);
 }
 
 qint64 DecoderOpus::read(unsigned char *data, qint64 maxSize)

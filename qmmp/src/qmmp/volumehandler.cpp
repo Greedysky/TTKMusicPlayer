@@ -143,7 +143,7 @@ void VolumeHandler::apply(Buffer *b, int chan)
             for(size_t i = 0; i < b->samples; i += 2)
             {
                 b->data[i] *= m_scaleLeft;
-                b->data[i+1] *= m_scaleRight;
+                b->data[i + 1] *= m_scaleRight;
             }
         }
         m_mutex.unlock();

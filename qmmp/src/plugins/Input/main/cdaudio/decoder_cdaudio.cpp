@@ -154,7 +154,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &path, TrackInfo
         CDATrack t;
         t.first_sector = cdio_get_track_lsn(pcdrom_drive->p_cdio, i);
         t.last_sector = cdio_get_track_last_lsn(pcdrom_drive->p_cdio, i);
-        t.info.setDuration((t.last_sector - t.first_sector +1) * 1000 / 75);
+        t.info.setDuration((t.last_sector - t.first_sector + 1) * 1000 / 75);
         t.info.setValue(Qmmp::TRACK, i);
         t.info.setPath(QString("cdda://%1#%2").arg(device_path).arg(i));
 

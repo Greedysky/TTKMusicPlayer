@@ -266,14 +266,14 @@ qint64 DecoderWavPack::read(unsigned char *data, qint64 maxSize)
 
 const QString DecoderWavPack::nextURL() const
 {
-    if(m_parser && m_track +1 <= m_parser->count())
+    if(m_parser && m_track + 1 <= m_parser->count())
         return m_parser->url(m_track + 1);
     return QString();
 }
 
 void DecoderWavPack::next()
 {
-    if(m_parser && m_track +1 <= m_parser->count())
+    if(m_parser && m_track + 1 <= m_parser->count())
     {
         m_track++;
         m_offset = m_parser->duration(m_track);

@@ -146,7 +146,7 @@ int DecoderFFapCUE::bitrate() const
 
 const QString DecoderFFapCUE::nextURL() const
 {
-    if(m_track +1 <= m_parser->count())
+    if(m_track + 1 <= m_parser->count())
         return m_parser->url(m_track + 1);
     else
         return QString();
@@ -154,7 +154,7 @@ const QString DecoderFFapCUE::nextURL() const
 
 void DecoderFFapCUE::next()
 {
-    if(m_track +1 <= m_parser->count())
+    if(m_track + 1 <= m_parser->count())
     {
         m_track++;
         m_duration = m_parser->duration(m_track);

@@ -83,10 +83,10 @@ bool DecoderMPC::initialize()
     configure(data()->info.sample_freq, data()->info.channels, Qmmp::PCM_FLOAT);
 
     QMap<Qmmp::ReplayGainKey, double> rg_info; //replay gain information
-    rg_info[Qmmp::REPLAYGAIN_ALBUM_GAIN] = data()->info.gain_album/256.0;
-    rg_info[Qmmp::REPLAYGAIN_TRACK_GAIN] = data()->info.gain_title/256.0;
-    rg_info[Qmmp::REPLAYGAIN_ALBUM_PEAK] = std::pow(10, data()->info.peak_album/256.0/20.0);
-    rg_info[Qmmp::REPLAYGAIN_TRACK_PEAK] = std::pow(10, data()->info.peak_title/256.0/20.0);
+    rg_info[Qmmp::REPLAYGAIN_ALBUM_GAIN] = data()->info.gain_album / 256.0;
+    rg_info[Qmmp::REPLAYGAIN_TRACK_GAIN] = data()->info.gain_title / 256.0;
+    rg_info[Qmmp::REPLAYGAIN_ALBUM_PEAK] = std::pow(10, data()->info.peak_album / 256.0 / 20.0);
+    rg_info[Qmmp::REPLAYGAIN_TRACK_PEAK] = std::pow(10, data()->info.peak_title / 256.0 / 20.0);
     setReplayGainInfo(rg_info);
 
     m_totalTime = mpc_streaminfo_get_length(&data()->info) * 1000;

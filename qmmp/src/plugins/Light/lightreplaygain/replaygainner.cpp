@@ -183,8 +183,8 @@ void ReplayGainner::run()
         {
             for(uint i = 0; i < (samples >> 1); ++i)
             {
-                out_left[i] = float_buf[i*2]*32768.0;
-                out_right[i] = float_buf[i*2+1]*32768.0;
+                out_left[i] = float_buf[i * 2] * 32768.0;
+                out_right[i] = float_buf[i * 2 + 1] * 32768.0;
                 max = qMax(std::fabs(out_left[i]), max);
                 max = qMax(std::fabs(out_right[i]), max);
             }
@@ -193,7 +193,7 @@ void ReplayGainner::run()
         {
             for(uint i = 0; i < samples; ++i)
             {
-                out_left[i] = float_buf[i]*32768.0;
+                out_left[i] = float_buf[i] * 32768.0;
                 max = qMax(std::fabs(out_left[i]), max);
             }
         }
@@ -227,7 +227,7 @@ void ReplayGainner::run()
     else
     {
         m_gain = GetTitleGain(m_handle);
-        m_peak = max/32768.0;
+        m_peak = max / 32768.0;
         emit progress(100);
         qDebug("ReplayGainner: [%s] peak=%f, gain=%f", qPrintable(name), m_peak, m_gain);
         qDebug("ReplayGainner: [%s] finished with success ", qPrintable(name));

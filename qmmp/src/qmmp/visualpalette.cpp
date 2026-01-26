@@ -46,9 +46,9 @@ static void createGradientTable()
         __globalTableGolors__[i] = 0xFF0000;
         if(n < numbers)
         {
-            __globalTableGolors__[i] = ((uint32_t)((__globalGolors__[n].red()) + f * ((__globalGolors__[n+1].red()) - (__globalGolors__[n].red()))) & 0xFF) << 16 |
-                                       ((uint32_t)((__globalGolors__[n].green()) + f * ((__globalGolors__[n+1].green()) - (__globalGolors__[n].green()))) & 0xFF) << 8 |
-                                       ((uint32_t)((__globalGolors__[n].blue()) + f * ((__globalGolors__[n+1].blue()) - (__globalGolors__[n].blue()))) & 0xFF) << 0;
+            __globalTableGolors__[i] = ((uint32_t)((__globalGolors__[n].red()) + f * ((__globalGolors__[n + 1].red()) - (__globalGolors__[n].red()))) & 0xFF) << 16 |
+                                       ((uint32_t)((__globalGolors__[n].green()) + f * ((__globalGolors__[n + 1].green()) - (__globalGolors__[n].green()))) & 0xFF) << 8 |
+                                       ((uint32_t)((__globalGolors__[n].blue()) + f * ((__globalGolors__[n + 1].blue()) - (__globalGolors__[n].blue()))) & 0xFF) << 0;
         }
         else if(n == numbers)
         {

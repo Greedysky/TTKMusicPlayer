@@ -73,8 +73,8 @@ bool OutputWaveOut::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat f
     fmt.wBitsPerSample  = 16;
     fmt.nChannels       = map.count();
     fmt.nSamplesPerSec  = (unsigned long)(freq);
-    fmt.nBlockAlign     = fmt.nChannels * fmt.wBitsPerSample/8;
-    fmt.nAvgBytesPerSec = fmt.nSamplesPerSec * fmt.nChannels * fmt.wBitsPerSample/8;
+    fmt.nBlockAlign     = fmt.nChannels * fmt.wBitsPerSample / 8;
+    fmt.nAvgBytesPerSec = fmt.nSamplesPerSec * fmt.nChannels * fmt.wBitsPerSample / 8;
 
     switch(waveOutOpen (&dev, deviceID, &fmt, (DWORD_PTR)wave_callback, 0, CALLBACK_FUNCTION))
     {
@@ -227,7 +227,7 @@ void OutputWaveOut::uninitialize()
 /***** MIXER *****/
 void VolumeWaveOut::setVolume(const VolumeSettings &vol)
 {
-    DWORD data = (vol.right*0xFFFF/100 << 16) | vol.left*0xFFFF/100;
+    DWORD data = (vol.right * 0xFFFF / 100 << 16) | vol.left * 0xFFFF / 100;
     waveOutSetVolume(nullptr, data);
 }
 

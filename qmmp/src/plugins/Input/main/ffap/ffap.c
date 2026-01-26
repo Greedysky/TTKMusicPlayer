@@ -90,9 +90,9 @@ static inline uint32_t bytestream_get_be32 (const uint8_t **ptr) {
 /** Total size of all predictor histories */
 #define PREDICTOR_SIZE 50
 
-#define YDELAYA (18 + PREDICTOR_ORDER*4)
-#define YDELAYB (18 + PREDICTOR_ORDER*3)
-#define XDELAYA (18 + PREDICTOR_ORDER*2)
+#define YDELAYA (18 + PREDICTOR_ORDER * 4)
+#define YDELAYB (18 + PREDICTOR_ORDER * 3)
+#define XDELAYA (18 + PREDICTOR_ORDER * 2)
 #define XDELAYB (18 + PREDICTOR_ORDER)
 
 #define YADAPTCOEFFSA 18
@@ -1241,7 +1241,7 @@ static int32_t
 
 static inline int16_t clip_int16(int a)
 {
-    if((a+32768) & ~65535) return (a>>31) ^ 32767;
+    if((a + 32768) & ~65535) return (a >> 31) ^ 32767;
         else                    return a;
 }
 
@@ -1250,19 +1250,19 @@ static void bswap_buf(uint32_t *dst, const uint32_t *src, int w){
 
     for(i = 0; i + 8 <= w; i += 8)
     {
-        dst[i+0]= bswap_32(src[i+0]);
-        dst[i+1]= bswap_32(src[i+1]);
-        dst[i+2]= bswap_32(src[i+2]);
-        dst[i+3]= bswap_32(src[i+3]);
-        dst[i+4]= bswap_32(src[i+4]);
-        dst[i+5]= bswap_32(src[i+5]);
-        dst[i+6]= bswap_32(src[i+6]);
-        dst[i+7]= bswap_32(src[i+7]);
+        dst[i + 0]= bswap_32(src[i + 0]);
+        dst[i + 1]= bswap_32(src[i + 1]);
+        dst[i + 2]= bswap_32(src[i + 2]);
+        dst[i + 3]= bswap_32(src[i + 3]);
+        dst[i + 4]= bswap_32(src[i + 4]);
+        dst[i + 5]= bswap_32(src[i + 5]);
+        dst[i + 6]= bswap_32(src[i + 6]);
+        dst[i + 7]= bswap_32(src[i + 7]);
     }
 
     for(; i < w; ++i)
     {
-        dst[i+0]= bswap_32(src[i+0]);
+        dst[i + 0]= bswap_32(src[i + 0]);
     }
 }
 
@@ -1420,7 +1420,7 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
     int i, n;
     int blockstodecode;
     int bytes_used;
-    int samplesize = decoder->bps/8 * s->channels;
+    int samplesize = decoder->bps / 8 * s->channels;
     if(decoder->bps == 24)
         samplesize = 4 * s->channels;
 

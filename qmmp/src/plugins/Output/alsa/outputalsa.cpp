@@ -55,8 +55,8 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     /* load settings from config */
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("ALSA");
-    uint buffer_time = settings.value("buffer_time", 500).toUInt()*1000;
-    uint period_time = settings.value("period_time", 100).toUInt()*1000;
+    uint buffer_time = settings.value("buffer_time", 500).toUInt() * 1000;
+    uint period_time = settings.value("period_time", 100).toUInt() * 1000;
     bool use_pause = settings.value("use_snd_pcm_pause", false).toBool();
     settings.endGroup();
 
