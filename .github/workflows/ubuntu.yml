@@ -93,6 +93,7 @@ jobs:
           export PKG_CONFIG_PATH=${{runner.workspace}}/install/gcc/libadlmidi/lib/pkgconfig:$PKG_CONFIG_PATH
           export PKG_CONFIG_PATH=${{runner.workspace}}/install/gcc/libadplug/lib/pkgconfig:$PKG_CONFIG_PATH
           export PKG_CONFIG_PATH=${{runner.workspace}}/install/gcc/libopenmpt/lib/pkgconfig:$PKG_CONFIG_PATH
+          export PKG_CONFIG_PATH=${{runner.workspace}}/install/gcc/liboptimfrog/lib/pkgconfig:$PKG_CONFIG_PATH
           export PKG_CONFIG_PATH=${{runner.workspace}}/usr/lib/${{matrix.qmmp_name}}/pkgconfig:$PKG_CONFIG_PATH
           python qmmp_ttk_build_git.py
           bash build.sh
