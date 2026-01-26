@@ -190,10 +190,8 @@ jobs:
       - name: Build library for liboptimfrog
         run: |
           7z x OptimFROG_5100.7z -oliboptimfrog
-          cd liboptimfrog/linux64/SDK
-          mkdir -p liboptimfrog/include
-          mv Library liboptimfrog/lib && mv OptimFROG liboptimfrog/include
-          mv liboptimfrog ${{env.INSTALL_PATH}}/liboptimfrog
+          cd liboptimfrog/linux64
+          sh install.sh ${{env.INSTALL_PATH}}/liboptimfrog
         working-directory: ${{runner.workspace}}
 
       - name: Build library for libopus
