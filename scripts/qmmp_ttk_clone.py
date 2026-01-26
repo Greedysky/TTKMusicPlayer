@@ -8,7 +8,7 @@ from qmmp_ttk_base import QmmpTTKBaseModule
 
 class GitCloneModule(QmmpTTKBaseModule):
     def __init__(self): 
-        QmmpTTKBaseModule.__init__(self, False)
+        QmmpTTKBaseModule.__init__(self)
 
     def run(self):
         # 遍历所有插件模块

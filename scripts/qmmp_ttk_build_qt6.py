@@ -3,13 +3,12 @@
 #Author : Greedysky
 
 import os
-import argparse
 
 from qmmp_ttk_base import QmmpTTKBaseModule
 
 class BuildModule(QmmpTTKBaseModule):
-    def __init__(self, mode = False): 
-        QmmpTTKBaseModule.__init__(self, mode)
+    def __init__(self): 
+        QmmpTTKBaseModule.__init__(self)
 
     def run(self):
         rm_str = "rm .qmake.stash Makefile *.so"
@@ -35,10 +34,6 @@ class BuildModule(QmmpTTKBaseModule):
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-ci', action='store_true')
-
-    args = parser.parse_args()
-    module = BuildModule(args.ci)
+    module = BuildModule()
     module.run()
 

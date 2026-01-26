@@ -1,6 +1,6 @@
 # Author: Greedysky <greedysky@163.com>
 
-name: ubuntu
+name: ttk-qmmp
 
 on: workflow_call
 
@@ -9,15 +9,42 @@ jobs:
     name: Build on Qt${{matrix.qt_major}}(${{matrix.os}})
     strategy:
       matrix:
-        qt: [qt5]
-        os: [ubuntu-22.04]
         include:
           - qt: qt5
+            os: ubuntu-22.04
             qt_major: 5
-            qt_version: 5.9.9
+            qt_version: 5.15.2
+            qmmp_name: qmmp
+            qmmp_module: qmmp-1
+            qmmp_version: 1.7.9
+            qmmp_deb_path: qmmp_1.7.9-1ubuntu1~jammy0
 
-    env:
-      QT_VERSION: ${{matrix.qt_version}}
+          - qt: qt5
+            os: ubuntu-24.04
+            qt_major: 5
+            qt_version: 5.15.2
+            qmmp_name: qmmp
+            qmmp_module: qmmp-1
+            qmmp_version: 1.7.9
+            qmmp_deb_path: qmmp_1.7.9-1ubuntu1~noble0 
+
+          - qt: qt6
+            os: ubuntu-22.04
+            qt_major: 6
+            qt_version: 6.9.3
+            qmmp_name: qmmp-qt6
+            qmmp_module: qmmp
+            qmmp_version: 2.3.1
+            qmmp_deb_path: qmmp-qt6_2.3.1-1ubuntu1~jammy0
+
+          - qt: qt6
+            os: ubuntu-24.04
+            qt_major: 6
+            qt_version: 6.9.3
+            qmmp_name: qmmp-qt6
+            qmmp_module: qmmp
+            qmmp_version: 2.3.1
+            qmmp_deb_path: qmmp-qt6_2.3.1-1ubuntu1~noble0
 
     runs-on: ${{matrix.os}}
     steps:
@@ -28,18 +55,32 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: ${{env.QT_VERSION}}
+          version: ${{matrix.qt_version}}
           target: desktop
           cache: 'true'
 
+      - name: Install thirdParty dependencies
+        run: |
+          wget https://github.com/Greedysky/TTKMusicPlayer/releases/download/continuous-build/thirdParty-libraries-${{matrix.os}}-x64.7z -O thirdParty-libraries.7z
+          7z x thirdParty-libraries.7z
+          mkdir install
+          mv gcc install
+          mv install/gcc/libadlmidi/lib/libADLMIDI_static.a install/gcc/libadlmidi/lib/libADLMIDI.a
+          mv install/gcc/libadplug/lib/libbinio_static.a install/gcc/libadplug/lib/libbinio.a
+          mv install/gcc/libadplug/lib/libadplug_static.a install/gcc/libadplug/lib/libadplug.a
+          mv install/gcc/libopenmpt/lib/libopenmpt_static.a install/gcc/libopenmpt/lib/libopenmpt.a
+        working-directory: ${{runner.workspace}}
+
       - name: Install qmmp library
         run: |
-          wget https://launchpad.net/~forkotov02/+archive/ubuntu/ppa/+files/qmmp_1.7.9-1ubuntu1~jammy0_amd64.deb -O qmmp_amd64.deb
-          7z x qmmp_amd64.deb
+          wget https://launchpad.net/~forkotov02/+archive/ubuntu/ppa/+files/${{matrix.qmmp_deb_path}}_amd64.deb -O qmmp_amd64.deb
+          ar x qmmp_amd64.deb
           zstd -d data.tar.zst
           7z x data.tar
-          sed -i "s/\/usr/\/home\/runner\/work\/TTKMusicPlayer\/usr/g" usr/lib/qmmp/pkgconfig/qmmp-1.pc
-          cat usr/lib/qmmp/pkgconfig/qmmp-1.pc
+          cd usr/lib/${{matrix.qmmp_name}}
+          rm lib${{matrix.qmmp_module}}.so
+          ln -s lib${{matrix.qmmp_module}}.so.${{matrix.qmmp_version}} lib${{matrix.qmmp_module}}.so
+          sed -i "s/\/usr/\/home\/runner\/work\/TTKMusicPlayer\/usr/g" pkgconfig/${{matrix.qmmp_module}}.pc
         working-directory: ${{runner.workspace}}
 
       - name: Clone TTKQmmp modules
@@ -49,11 +90,11 @@ jobs:
 
       - name: Build TTKQmmp modules
         run: |
-          mkdir -p ../../qmmp-lib/qt5/lib/qmmp/pkgconfig
-          ln -s ${{runner.workspace}}/usr/lib/qmmp/pkgconfig/qmmp-1.pc ${{env.QT_ROOT_DIR}}/lib/pkgconfig/qmmp-1.pc
-          ln -s ${{runner.workspace}}/usr/lib/qmmp/pkgconfig/qmmp-1.pc ../../qmmp-lib/qt5/lib/qmmp/pkgconfig/qmmp-1.pc
-          export PKG_CONFIG_PATH=${{runner.workspace}}/usr/lib/qmmp/pkgconfig:$PKG_CONFIG_PATH
-          pkg-config --list-all
-          python qmmp_ttk_build_qt5.py -ci
+          export PKG_CONFIG_PATH=${{runner.workspace}}/install/gcc/libadlmidi/lib/pkgconfig:$PKG_CONFIG_PATH
+          export PKG_CONFIG_PATH=${{runner.workspace}}/install/gcc/libadplug/lib/pkgconfig:$PKG_CONFIG_PATH
+          export PKG_CONFIG_PATH=${{runner.workspace}}/install/gcc/libopenmpt/lib/pkgconfig:$PKG_CONFIG_PATH
+          export PKG_CONFIG_PATH=${{runner.workspace}}/usr/lib/${{matrix.qmmp_name}}/pkgconfig:$PKG_CONFIG_PATH
+          python qmmp_ttk_build_git.py
+          bash build.sh
         working-directory: ${{github.workspace}}/scripts
 
