@@ -1,12 +1,7 @@
+#include "outputalsa.h"
+
 #include <QSettings>
 #include <QSocketNotifier>
-
-#include <stdio.h>
-#include <stdint.h>
-#include <string.h>
-#include <iostream>
-
-#include "outputalsa.h"
 
 OutputALSA::OutputALSA()
     : Output()

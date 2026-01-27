@@ -11,6 +11,11 @@ unix{
 
 unix:!mac{
     SUBDIRS += alsa oss oss4
+
+    PIPEWIRE_PKG = $$system(ls /usr/lib/x86_64-linux-gnu/pkgconfig | grep libpipewire)
+    !isEmpty(PIPEWIRE_PKG){
+        SUBDIRS += pipewire
+    }
 }
 
 equals(QT_MAJOR_VERSION, 6){

@@ -54,11 +54,13 @@ void OuterBlurWave::start()
     Visual::start();
     //load last color settings
     readSettings();
+    m_view->setVisible(true);
 }
 
 void OuterBlurWave::stop()
 {
     Visual::stop();
+    m_view->setVisible(false);
 }
 
 void OuterBlurWave::readSettings()
@@ -72,7 +74,7 @@ void OuterBlurWave::readSettings()
 
 void OuterBlurWave::paintEvent(QPaintEvent *)
 {
-    if(m_rows == 0)
+    if(m_rows == 0 || m_view->isHidden())
     {
         return;
     }

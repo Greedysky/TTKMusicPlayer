@@ -1,6 +1,7 @@
+#include "outputpulseaudio.h"
+
 #include <cmath>
 #include <QSettings>
-#include "outputpulseaudio.h"
 
 OutputPulseAudio *OutputPulseAudio::instance = nullptr;
 VolumePulseAudio *OutputPulseAudio::volumeControl = nullptr;
