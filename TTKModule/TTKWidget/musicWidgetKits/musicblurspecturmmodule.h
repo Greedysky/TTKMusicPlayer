@@ -40,10 +40,6 @@ public:
     ~MusicBlurSpecturmModule();
 
     /*!
-     * Set ripple spectrum show or not.
-     */
-    void setVisible(bool v);
-    /*!
      * Set ripple spectrum show.
      */
     void show();
@@ -54,7 +50,12 @@ public:
     /*!
      * Update ripple spectrum paramters.
      */
-    void update(bool up);
+    void update(bool v);
+    /*!
+     * Set ripple spectrum show or not.
+     */
+    void setVisible(bool v);
+
     /*!
      * Init ripple spectrum paramters.
      */
