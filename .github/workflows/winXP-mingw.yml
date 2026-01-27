@@ -152,20 +152,14 @@ jobs:
       - name: Add output path for install package
         shell: bash
         run: |
-          sed -i "11d" "${{github.workspace}}/TTKUtils/ttk.iss"
-          sed -i "11i#define OutputPath \"${{env.QT_ROOT_DIR}}/../../install/\"" "${{github.workspace}}/TTKUtils/ttk.iss"
-        working-directory: ${{runner.workspace}}
-
-      - name: Install Inno Setup 6
-        run: |
-          curl -L https://github.com/Greedysky/Resource/releases/download/1.0.0.0/InnoSetup.7z -o InnoSetup.7z
-          7z x InnoSetup.7z -oInnoSetup
+          sed -i "11d" "${{github.workspace}}/TTKUtils/iss/ttk_utf8.iss"
+          sed -i "11i#define OutputPath \"${{env.QT_ROOT_DIR}}/../../install/\"" "${{github.workspace}}/TTKUtils/iss/ttk_utf8.iss"
         working-directory: ${{runner.workspace}}
 
       - name: Build ttk music player install package
         run: |
           # reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "${{runner.workspace}}/InnoSetup/iscc.exe" /t REG_SZ /d "WIN7RTM RUNASADMIN" /f
-          ${{runner.workspace}}/InnoSetup/iscc.exe ${{github.workspace}}/TTKUtils/ttk.iss
+          iscc ${{github.workspace}}/TTKUtils/iss/ttk_utf8.iss
           mv v${{env.TTK_VERSION}}.exe ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-mingw-x86.exe
         working-directory: ${{runner.workspace}}/install
 

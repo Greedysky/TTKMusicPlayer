@@ -62,7 +62,7 @@ Name: "{group}\卸载{#MyAppNameZh}"; Filename: "{uninstallexe}"
 
 ; 中文汉化语言包
 ; [Languages]
-; Name: "chinese"; MessagesFile: "_resourcesPath_\ChineseSimp.isl"
+; Name: "chinese"; MessagesFile: "{#ResourcesBase}ChineseSimp.isl"
 
 [Code]
 // for dll
@@ -178,26 +178,26 @@ function ShouldSkipPage(PageID: Integer): Boolean;
 // 关闭按钮
 procedure CancelBtnOnClick(hBtn:HWND);
   begin
-    WizardForm.CancelButton.Click;
+    WizardForm.CancelButton.OnClick(WizardForm);
   end;
 
 // 浏览文件夹按钮
 procedure btnBrowserclick(hBtn:HWND);
   begin
-    WizardForm.DirBrowseButton.Click;
+    WizardForm.DirBrowseButton.OnClick(WizardForm);
     pathEdit.text := WizardForm.DirEdit.text;
   end;
 
 // 路径选择器 change
 procedure pathEditChange(Sender: TObject);
   begin
-    WizardForm.DirEdit.text:=pathEdit.Text ;
+    WizardForm.DirEdit.text:=pathEdit.Text;
   end;
 
 // 立即安装等按钮的操作就是不断地下一步
 procedure nextSetpBtnClick(hBtn:HWND);
   begin
-    WizardForm.NextButton.Click;
+    WizardForm.NextButton.OnClick(WizardForm);
   end;
 
 // 安装的进度条
@@ -257,7 +257,7 @@ procedure btnShowLicenseClick(hBtn:HWND);
       BtnSetVisibility(btnBrowser,true)
       pathEdit.show
       BtnSetVisibility(btnBack,false)
-    end
+    end;
       ImgApplyChanges(WizardForm.Handle)
   end;
 
@@ -290,7 +290,7 @@ procedure btnCustomSetupClick(hBtn:HWND);
       BtnSetVisibility(btnBack,false)
       BtnSetVisibility(checkboxShellLink,false)
       BtnSetVisibility(checkboxTaskbarpin,false)
-    end
+    end;
       ImgApplyChanges(WizardForm.Handle)
   end;
   
@@ -305,7 +305,7 @@ procedure checkboxLicenseClick(hBtn:HWND);
     begin
       BtnSetEnabled(btnSetup,false)
       BtnSetEnabled(customSetup,false)
-    end
+    end;
   end;
   
 // 安装系统检测
@@ -319,14 +319,14 @@ procedure MyGetWindowsVersion(); // 获取 Windows 版本
     begin
         systemVersion := 1;
         Exit;
-    end
+    end;
     
     //Windows 8 系统检测
     if (Pos('Windows 8', ProductName) > 0)then
     begin
         systemVersion := 2;
         Exit;
-    end
+    end;
     
     systemVersion := 0;
   end;
@@ -346,7 +346,7 @@ procedure InitializeWizard();
     WizardForm.Width:=650;
     WizardForm.Height:=450;
     // WizardForm.Color:=clWhite;
-    WizardForm.OnMouseDown:=@WizardMouseDown
+    WizardForm.OnMouseDown:=@WizardMouseDown;
     isWelcomePage:=true;
     // WizardForm.InnerNotebook.Hide;
     // wizardform.Color:=TransparentColor;
@@ -442,7 +442,7 @@ procedure DeinitializeSetup();
     if BtngetChecked(checkboxAutoRun)=true then
     begin
       Exec(ExpandConstant('{app}\{#MyAppExeName}'),'','',SW_SHOW, ewNoWait,RCode);
-    end
+    end;
 
     gdipShutdown;
   end;
@@ -490,7 +490,7 @@ procedure CurPageChanged(CurPageID: Integer);
         WizardForm.Width:=650;
         WizardForm.Height:=450;
         WizardForm.Show;
-      end
+      end;
 
     if CurPageID = wpInstalling then
       begin
@@ -506,7 +506,7 @@ procedure CurPageChanged(CurPageID: Integer);
 
         BtnSetVisibility(btnSetup,false);
         BtnSetVisibility(customSetup,false);
-      end
+      end;
             
     if CurPageID = wpFinished then
       begin
@@ -531,7 +531,7 @@ procedure CurPageChanged(CurPageID: Integer);
             DeleteFile(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'));
           end;
           CreateShellLink(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'),'快捷方式',ExpandConstant('{app}\{#MyAppExeName}'),ExpandConstant(''),ExpandConstant('{app}'),ExpandConstant('{app}\{#ResourcesIcon}'),0,SW_SHOWNORMAL);
-        end
+        end;
 
         // 固定到任务栏
         if BtngetChecked(checkboxTaskbarpin)=true then
@@ -539,10 +539,9 @@ procedure CurPageChanged(CurPageID: Integer);
           if systemVersion>0 then
           begin
             ShellExec(ExpandConstant('taskbarpin'), ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'), '', '', SW_SHOWNORMAL, ewNoWait, ResultCode);
-          end
-        end
-        
-      end
+          end;
+        end;
+      end;
 
     ImgApplyChanges(WizardForm.Handle)
   end;

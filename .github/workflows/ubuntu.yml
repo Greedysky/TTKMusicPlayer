@@ -66,6 +66,7 @@ jobs:
           sudo apt install libfuse2 p7zip-full
           sudo apt install texinfo rename
           sudo apt install portaudio19-dev
+          sudo apt install libpipewire-0.3-dev
           sudo apt install libnss3
 
       - name: Create thirdParty dir
