@@ -14,7 +14,7 @@
 #define SourceFolder SourceBase + "*"
 
 #define ResourcesIcon "qicon.dll"
-#define ResourcesBase "resource\"
+#define ResourcesBase "..\resource\"
 #define SetupIconFilePath ResourcesBase + ResourcesIcon
 #define ResourcesPath ResourcesBase + "*"
 
