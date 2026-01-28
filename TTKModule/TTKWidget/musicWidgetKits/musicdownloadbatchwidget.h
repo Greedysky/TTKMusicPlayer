@@ -104,6 +104,11 @@ public:
     ~MusicDownloadBatchTableWidget();
 
     /*!
+     * Download is running now.
+     */
+    inline bool isRunning() const noexcept { return m_timer->isActive() || m_index != -1; }
+
+    /*!
      * Create cell item by input data.
      */
     void addCellItem(MusicAbstractQueryRequest *request, const TTK::MusicSongInformation &info);
@@ -121,8 +126,20 @@ public Q_SLOTS:
      * Start to download data.
      */
     void startToRequest();
+    /*!
+     * Thread run timeout.
+     */
+    void timeout();
 
 private:
+    /*!
+     * Generate timer's .
+     */
+    void generateTimer();
+
+private:
+    int m_index;
+    QTimer *m_timer;
     QList<MusicDownloadBatchTableItem*> m_items;
 
 };
@@ -148,6 +165,12 @@ public:
      * Set current name to search and download data.
      */
     void initialize(MusicAbstractQueryRequest *request, const TTKIntList &items);
+
+public Q_SLOTS:
+    /*!
+     * Override close function.
+     */
+    void close();
 
 private:
     Ui::MusicDownloadBatchWidget *m_ui;

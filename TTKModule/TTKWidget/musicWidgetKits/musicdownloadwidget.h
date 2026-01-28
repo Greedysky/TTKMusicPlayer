@@ -188,8 +188,8 @@ private:
 
     bool m_exitRequired;
     Ui::MusicDownloadWidget *m_ui;
-    MusicAbstractQueryRequest *m_networkRequest;
     TTK::MusicSongInformation m_info;
+    MusicAbstractQueryRequest *m_networkRequest;
     MusicAbstractQueryRequest::QueryType m_queryType;
 
 };

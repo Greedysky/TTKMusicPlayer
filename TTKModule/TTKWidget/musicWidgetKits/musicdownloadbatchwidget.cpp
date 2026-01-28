@@ -1,5 +1,7 @@
 #include "musicdownloadbatchwidget.h"
 #include "ui_musicdownloadbatchwidget.h"
+#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 
 MusicDownloadBatchTableItem:: MusicDownloadBatchTableItem(QWidget *parent)
     : QWidget(parent),
@@ -149,7 +151,8 @@ void MusicDownloadBatchTableItem::startToRequestMovie()
 
 
 MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent)
+    : MusicAbstractTableWidget(parent),
+      m_index(-1)
 {
     setColumnCount(1);
 
@@ -163,10 +166,17 @@ MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
 #if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
     TTK::Widget::setTransparent(this, QColor(220, 220, 220));
 #endif
+
+    TTK::initRandom();
+
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
 }
 
 MusicDownloadBatchTableWidget::~MusicDownloadBatchTableWidget()
 {
+    m_timer->stop();
+    delete m_timer;
     removeItems();
 }
 
@@ -204,10 +214,33 @@ void MusicDownloadBatchTableWidget::currentQualityChanged(int index)
 
 void MusicDownloadBatchTableWidget::startToRequest()
 {
-    for(MusicDownloadBatchTableItem *item : qAsConst(m_items))
+    if(m_timer->isActive() || m_items.isEmpty())
     {
-        item->startToRequest();
+        return;
     }
+
+    m_index = 0;
+    generateTimer();
+    MusicToastLabel::popup(tr("Downloading now"));
+}
+
+void MusicDownloadBatchTableWidget::timeout()
+{
+    if(m_index >= m_items.count())
+    {
+        m_index = -1;
+        m_timer->stop();
+        MusicToastLabel::popup(tr("All download finished"));
+        return;
+    }
+
+    generateTimer();
+    m_items[m_index++]->startToRequest();
+}
+
+void MusicDownloadBatchTableWidget::generateTimer()
+{
+    m_timer->start((5 + TTK::random(5)) * TTK_DN_S2MS); // (5-10)s
 }
 
 
@@ -236,8 +269,8 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
 #ifdef Q_OS_UNIX
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
-
     connect(m_ui->downloadButton, SIGNAL(clicked()), m_ui->tableWidget, SLOT(startToRequest()));
+    connect(m_ui->downloadButton, SIGNAL(clicked(bool)), m_ui->downloadButton, SLOT(setEnabled(bool)));
 }
 
 MusicDownloadBatchWidget::~MusicDownloadBatchWidget()
@@ -262,5 +295,21 @@ void MusicDownloadBatchWidget::initialize(MusicAbstractQueryRequest *request, co
     {
         m_ui->tableWidget->addCellItem(request, info);
     }
+
     m_ui->songCountLabel->setText(tr("All Songs Count %1").arg(infos.count()));
+}
+
+void MusicDownloadBatchWidget::close()
+{
+    if(m_ui->tableWidget->isRunning())
+    {
+        MusicMessageBox message;
+        message.setText(tr("Downloading now, are you sure to close?"));
+        if(!message.exec())
+        {
+           return;
+        }
+    }
+
+    MusicAbstractMoveDialog::close();
 }
