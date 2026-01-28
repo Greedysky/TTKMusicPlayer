@@ -73,7 +73,7 @@ public Q_SLOTS:
      */
     void stop();
     /*!
-     * Thread run now.
+     * Thread run timeout.
      */
     void timeout();
 

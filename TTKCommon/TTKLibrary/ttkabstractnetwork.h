@@ -117,22 +117,22 @@ protected:
 namespace TTK
 {
     /*!
-     * Make request User-Agent header.
+     * Set request User-Agent header.
      */
-    TTK_MODULE_EXPORT void makeUserAgentHeader(QNetworkRequest *request, const QByteArray &data = {}) noexcept;
+    TTK_MODULE_EXPORT void setUserAgentHeader(QNetworkRequest *request, const QByteArray &data = {}) noexcept;
     /*!
-     * Make request Content-Type header.
+     * Set request Content-Type header.
      */
-    TTK_MODULE_EXPORT void makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data = {}) noexcept;
+    TTK_MODULE_EXPORT void setContentTypeHeader(QNetworkRequest *request, const QByteArray &data = {}) noexcept;
+    /*!
+     * Set request ssl configuration.
+     */
+    TTK_MODULE_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone) noexcept;
 
     /*!
      * Fetch download file size by url.
      */
     TTK_MODULE_EXPORT qint64 fetchFileSizeByUrl(const QString &url);
-    /*!
-     * Set request ssl configuration.
-     */
-    TTK_MODULE_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone) noexcept;
 
     /*!
      * Sync network query for get.

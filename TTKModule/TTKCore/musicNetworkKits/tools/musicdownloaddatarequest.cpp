@@ -37,7 +37,7 @@ void MusicDownloadDataRequest::startToRequest(const QString &url)
     QNetworkRequest request;
     request.setUrl(url);
     TTK::setSslConfiguration(&request);
-    TTK::makeContentTypeHeader(&request);
+    TTK::setContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), this, SLOT(downloadFinished()));

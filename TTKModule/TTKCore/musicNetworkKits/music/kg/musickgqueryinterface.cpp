@@ -10,7 +10,7 @@ void ReqKGInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
     request->setRawHeader("Cookie", TTK::Algorithm::mdII(KG_COOKIE_URL, false).toUtf8());
 
     TTK::setSslConfiguration(request);
-    TTK::makeContentTypeHeader(request);
+    TTK::setContentTypeHeader(request);
 }
 
 QString ReqKGInterface::makeSongArtist(const QString &name)

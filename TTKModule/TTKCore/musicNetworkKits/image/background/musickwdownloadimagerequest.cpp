@@ -18,7 +18,7 @@ void MusicKWDownloadBackgroundRequest::startToRequest()
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(m_name));
     TTK::setSslConfiguration(&request);
-    TTK::makeContentTypeHeader(&request);
+    TTK::setContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));

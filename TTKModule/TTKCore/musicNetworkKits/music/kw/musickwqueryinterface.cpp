@@ -6,8 +6,8 @@
 void ReqKWInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
 {
     TTK::setSslConfiguration(request);
-    TTK::makeUserAgentHeader(request);
-    TTK::makeContentTypeHeader(request);
+    TTK::setUserAgentHeader(request);
+    TTK::setContentTypeHeader(request);
 }
 
 QString ReqKWInterface::makeSongArtist(const QString &name)

@@ -70,7 +70,7 @@ void MusicACRIdentifyRequest::startToRequest(const QString &path, const QVariant
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(ACR_QUERY_URL, false));
     TTK::setSslConfiguration(&request);
-    TTK::makeContentTypeHeader(&request, contentType.toUtf8());
+    TTK::setContentTypeHeader(&request, contentType.toUtf8());
 
     m_reply = m_manager.post(request, body);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
@@ -160,7 +160,7 @@ void MusicXFIdentifyRequest::startToRequest(const QString &path, const QVariantM
     request.setRawHeader("X-Appid", accessKey.toUtf8());
     request.setRawHeader("X-CheckSum", md5);
     TTK::setSslConfiguration(&request);
-    TTK::makeContentTypeHeader(&request);
+    TTK::setContentTypeHeader(&request);
 
     m_reply = m_manager.post(request, TTK::Algorithm::mdII(XF_QUERY_DATA, false).arg(data.toBase64().constData()).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));

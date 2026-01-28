@@ -34,7 +34,7 @@ void MusicWYTranslationRequest::startToRequest(const QString &data)
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(req->items().first().m_songId));
     TTK::setSslConfiguration(&request);
-    TTK::makeContentTypeHeader(&request);
+    TTK::setContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));

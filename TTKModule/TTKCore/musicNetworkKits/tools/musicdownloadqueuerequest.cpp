@@ -15,7 +15,7 @@ MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDat
 {
     m_request = new QNetworkRequest;
     TTK::setSslConfiguration(m_request);
-    TTK::makeContentTypeHeader(m_request);
+    TTK::setContentTypeHeader(m_request);
 }
 
 MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDataList &datas, TTK::Download type, QObject *parent)

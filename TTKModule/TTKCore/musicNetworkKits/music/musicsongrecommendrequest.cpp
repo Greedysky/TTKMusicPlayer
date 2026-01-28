@@ -76,7 +76,7 @@ void MusicSongRecommendRequest::startToSearch(const QString &value)
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(ReqLQInterface::LQ_RECOMMEND_URL, false));
     TTK::setSslConfiguration(&request);
-    TTK::makeContentTypeHeader(&request);
+    TTK::setContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));

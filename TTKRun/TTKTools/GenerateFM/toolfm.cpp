@@ -22,7 +22,7 @@ void ToolQTFM::startToRequest()
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(QT_BASE_URL, false));
     TTK::setSslConfiguration(&request);
-    TTK::makeContentTypeHeader(&request, "application/json;charset=utf-8");
+    TTK::setContentTypeHeader(&request, "application/json;charset=utf-8");
 
     m_reply = m_manager.post(request, TTK::Algorithm::mdII(QT_CATEGORY_URL, false).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
@@ -84,7 +84,7 @@ void ToolQTFM::startToListRequest(int id, MusicFMChannelList *channels)
         QNetworkRequest request;
         request.setUrl(TTK::Algorithm::mdII(QT_BASE_URL, false));
         TTK::setSslConfiguration(&request);
-        TTK::makeContentTypeHeader(&request, "application/json;charset=utf-8");
+        TTK::setContentTypeHeader(&request, "application/json;charset=utf-8");
 
         const QByteArray &parameter = TTK::Algorithm::mdII(QT_CHANNEL_URL, false).arg(id).arg(++m_pageIndex + 1).toUtf8();
         const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
@@ -143,7 +143,7 @@ void ToolXIFM::startToRequest()
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(XI_SONG_URL, false));
     TTK::setSslConfiguration(&request);
-    TTK::makeContentTypeHeader(&request, "charset=utf-8");
+    TTK::setContentTypeHeader(&request, "charset=utf-8");
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));

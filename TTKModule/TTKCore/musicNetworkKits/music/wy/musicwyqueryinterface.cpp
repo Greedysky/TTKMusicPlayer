@@ -45,7 +45,7 @@ void ReqWYInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
     request->setRawHeader("Cookie", TTK::Algorithm::mdII(WY_COOKIE_URL, false).arg(*WY_USER_DATA(), TTK::Algorithm::mdII(WY_RAND_URL, MDII_UA_KEY, false)).toUtf8());
 
     TTK::setSslConfiguration(request);
-    TTK::makeContentTypeHeader(request);
+    TTK::setContentTypeHeader(request);
 }
 
 QString ReqWYInterface::makeSongArtist(const QString &in, const QString &name)

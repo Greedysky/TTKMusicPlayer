@@ -45,7 +45,7 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
             QNetworkRequest request;
             request.setUrl(TTK::Algorithm::mdII(ReqYYTInterface::MOVIE_URL, false));
             TTK::setSslConfiguration(&request);
-            TTK::makeContentTypeHeader(&request, "application/json");
+            TTK::setContentTypeHeader(&request, "application/json");
 
             TTK_INFO_STREAM("parse song property in yyt module");
 

@@ -71,14 +71,26 @@ void TTKAbstractNetwork::sslErrorsString(QNetworkReply *reply, const QList<QSslE
 
 
 
-void TTK::makeUserAgentHeader(QNetworkRequest *request, const QByteArray &data) noexcept
+void TTK::setUserAgentHeader(QNetworkRequest *request, const QByteArray &data) noexcept
 {
     request->setRawHeader("User-Agent", data.isEmpty() ? QByteArray("Mozilla/5.0 (X11; Linux x86_64; rv:141.0) Gecko/20100101 Firefox/141.0") : data);
 }
 
-void TTK::makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data) noexcept
+void TTK::setContentTypeHeader(QNetworkRequest *request, const QByteArray &data) noexcept
 {
     request->setRawHeader("Content-Type", data.isEmpty() ? QByteArray("application/x-www-form-urlencoded") : data);
+}
+
+void TTK::setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode) noexcept
+{
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request->sslConfiguration();
+    sslConfig.setPeerVerifyMode(mode);
+    request->setSslConfiguration(sslConfig);
+#else
+    Q_UNUSED(request);
+    Q_UNUSED(mode);
+#endif
 }
 
 qint64 TTK::fetchFileSizeByUrl(const QString &url)
@@ -88,7 +100,7 @@ qint64 TTK::fetchFileSizeByUrl(const QString &url)
     QNetworkRequest request;
     request.setUrl(url);
     TTK::setSslConfiguration(&request);
-    TTK::makeContentTypeHeader(&request);
+    TTK::setContentTypeHeader(&request);
 
     TTKEventLoop loop;
     QNetworkAccessManager manager;
@@ -112,18 +124,6 @@ qint64 TTK::fetchFileSizeByUrl(const QString &url)
 
     reply->deleteLater();
     return size;
-}
-
-void TTK::setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode) noexcept
-{
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request->sslConfiguration();
-    sslConfig.setPeerVerifyMode(mode);
-    request->setSslConfiguration(sslConfig);
-#else
-    Q_UNUSED(request);
-    Q_UNUSED(mode);
-#endif
 }
 
 QByteArray TTK::syncNetworkQueryForGet(QNetworkRequest *request)

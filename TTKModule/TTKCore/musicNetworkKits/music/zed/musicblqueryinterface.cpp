@@ -10,7 +10,7 @@ void ReqBLInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
     request->setRawHeader("Cookie", TTK::Algorithm::mdII(BL_COOKIE_URL, false).toUtf8());
 
     TTK::setSslConfiguration(request);
-    TTK::makeContentTypeHeader(request);
+    TTK::setContentTypeHeader(request);
 }
 
 void ReqBLInterface::parseFromMovieInfo(TTK::MusicSongInformation *info, QString &cid)
