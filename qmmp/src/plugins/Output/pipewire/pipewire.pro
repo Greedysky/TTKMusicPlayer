@@ -8,6 +8,8 @@ HEADERS += outputpipewirefactory.h \
 SOURCES += outputpipewirefactory.cpp \
            outputpipewire.cpp
 
-PKGCONFIG += libpipewire-0.3 libspa-0.2
+INCLUDEPATH += /usr/include/pipewire-0.3 /usr/include/spa-0.2
 
 QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
+
+LIBS += -lpipewire-0.3
