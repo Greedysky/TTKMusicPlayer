@@ -156,7 +156,7 @@ void MusicPlaylistQueryWidget::setCurrentValue(const QString &value)
     m_networkRequest->startToSearchByID({});
 }
 
-void MusicPlaylistQueryWidget::setCurrentID(const QString &id)
+void MusicPlaylistQueryWidget::setCurrentKey(const QString &id)
 {
     setCurrentValue(id);
 

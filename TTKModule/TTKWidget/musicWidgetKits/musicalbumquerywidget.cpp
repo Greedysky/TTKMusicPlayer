@@ -24,7 +24,7 @@ void MusicAlbumQueryWidget::setCurrentValue(const QString &value)
     m_networkRequest->startToSearch(value);
 }
 
-void MusicAlbumQueryWidget::setCurrentID(const QString &id)
+void MusicAlbumQueryWidget::setCurrentKey(const QString &id)
 {
     MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
     m_queryTableWidget->setQueryInput(req);
@@ -74,7 +74,7 @@ void MusicAlbumQueryWidget::queryAllFinished()
             if(m_value.contains(info.m_songName))
             {
                 hasItem = true;
-                setCurrentID(info.m_albumId);
+                setCurrentKey(info.m_albumId);
                 break;
             }
         }

@@ -292,7 +292,7 @@ void MusicWebDJRadioWidget::programItemClicked(const QString &rid, const QString
     }
     else
     {
-        m_queryWidget->setCurrentID(rid);
+        m_queryWidget->setCurrentKey(rid);
     }
 
     addWidget(m_queryWidget);

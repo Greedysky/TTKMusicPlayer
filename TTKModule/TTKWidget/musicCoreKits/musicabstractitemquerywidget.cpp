@@ -53,7 +53,7 @@ void MusicAbstractItemQueryWidget::setCurrentValue(const QString &value)
     m_value = value;
 }
 
-void MusicAbstractItemQueryWidget::setCurrentID(const QString &id)
+void MusicAbstractItemQueryWidget::setCurrentKey(const QString &id)
 {
     Q_UNUSED(id);
 }

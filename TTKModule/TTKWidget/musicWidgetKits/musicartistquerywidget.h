@@ -92,9 +92,9 @@ public:
      */
     virtual void setCurrentValue(const QString &value) override final;
     /*!
-     * Set current id to search founds.
+     * Set current key to search founds.
      */
-    virtual void setCurrentID(const QString &id) override final;
+    virtual void setCurrentKey(const QString &id) override final;
     /*!
      * Resize widget bound by resize called.
      */
@@ -143,9 +143,9 @@ public:
      */
     virtual void setCurrentValue(const QString &value) override final;
     /*!
-     * Set current id to search founds.
+     * Set current key to search founds.
      */
-    virtual void setCurrentID(const QString &id) override final;
+    virtual void setCurrentKey(const QString &id) override final;
     /*!
      * Resize widget bound by resize called.
      */
@@ -194,9 +194,9 @@ public:
      */
     virtual void setCurrentValue(const QString &value) override final;
     /*!
-     * Set current id to search founds.
+     * Set current key to search founds.
      */
-    virtual void setCurrentID(const QString &id) override final;
+    virtual void setCurrentKey(const QString &id) override final;
     /*!
      * Resize widget bound by resize called.
      */

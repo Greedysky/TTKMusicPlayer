@@ -620,7 +620,7 @@ void MusicRightAreaWidget::showAlbumFound(const QString &text, const QString &id
 {
     functionClicked(MusicRightAreaWidget::AlbumWidget);
     MusicAlbumQueryWidget *w = TTKObjectCast(MusicAlbumQueryWidget*, m_currentWidget);
-    id.isEmpty() ? w->setCurrentValue(text) : w->setCurrentID(id);
+    id.isEmpty() ? w->setCurrentValue(text) : w->setCurrentKey(id);
 }
 
 void MusicRightAreaWidget::showArtistSearchFound()
@@ -663,14 +663,14 @@ void MusicRightAreaWidget::showArtistFound(const QString &text, const QString &i
 {
     functionClicked(MusicRightAreaWidget::ArtistWidget);
     MusicArtistQueryWidget *w = TTKObjectCast(MusicArtistQueryWidget*, m_currentWidget);
-    id.isEmpty() ? w->setCurrentValue(text) : w->setCurrentID(id);
+    id.isEmpty() ? w->setCurrentValue(text) : w->setCurrentKey(id);
 }
 
 void MusicRightAreaWidget::showPlaylistFound(const QString &id)
 {
     functionClicked(MusicRightAreaWidget::PlaylistWidget);
     MusicPlaylistQueryWidget *w = TTKObjectCast(MusicPlaylistQueryWidget*, m_currentWidget);
-    w->setCurrentID(id);
+    w->setCurrentKey(id);
 }
 
 void MusicRightAreaWidget::showPlaylistCategoryFound(const QString &id, const QString &value)

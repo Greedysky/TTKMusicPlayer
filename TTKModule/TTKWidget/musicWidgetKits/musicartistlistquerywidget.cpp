@@ -64,7 +64,7 @@ void MusicArtistListQueryWidget::setCurrentValue(const QString &value)
     m_networkRequest->startToSearch({});
 }
 
-void MusicArtistListQueryWidget::setCurrentID(const QString &id)
+void MusicArtistListQueryWidget::setCurrentKey(const QString &id)
 {
     setCurrentValue(id);
 }

@@ -123,7 +123,7 @@ void MusicArtistMvsQueryWidget::setCurrentValue(const QString &value)
     m_networkRequest->startToSearch(value);
 }
 
-void MusicArtistMvsQueryWidget::setCurrentID(const QString &id)
+void MusicArtistMvsQueryWidget::setCurrentKey(const QString &id)
 {
     setCurrentValue(id);
 }
@@ -217,7 +217,7 @@ void MusicArtistAlbumsQueryWidget::setCurrentValue(const QString &value)
     m_networkRequest->startToSearch(value);
 }
 
-void MusicArtistAlbumsQueryWidget::setCurrentID(const QString &id)
+void MusicArtistAlbumsQueryWidget::setCurrentKey(const QString &id)
 {
     setCurrentValue(id);
 }
@@ -307,7 +307,7 @@ void MusicArtistQueryWidget::setCurrentValue(const QString &value)
     m_networkRequest->startToSearch(TTK::generateSongArtist(value));
 }
 
-void MusicArtistQueryWidget::setCurrentID(const QString &id)
+void MusicArtistQueryWidget::setCurrentKey(const QString &id)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(id);
     MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeArtistRequest(this);
@@ -404,7 +404,7 @@ void MusicArtistQueryWidget::queryAllFinished()
             if(m_value.contains(info.m_artistName))
             {
                 hasItem = true;
-                setCurrentID(info.m_artistId);
+                setCurrentKey(info.m_artistId);
                 break;
             }
         }

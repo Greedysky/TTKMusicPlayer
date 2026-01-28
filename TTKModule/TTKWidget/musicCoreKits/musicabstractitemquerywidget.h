@@ -48,9 +48,9 @@ public:
      */
     virtual void setCurrentValue(const QString &value);
     /*!
-     * Set current id to search founds.
+     * Set current key to search founds.
      */
-    virtual void setCurrentID(const QString &id);
+    virtual void setCurrentKey(const QString &id);
 
 public Q_SLOTS:
     /*!

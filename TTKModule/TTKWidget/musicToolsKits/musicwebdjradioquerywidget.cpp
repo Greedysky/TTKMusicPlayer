@@ -118,7 +118,7 @@ void MusicWebDJRadioQueryWidget::setCurrentValue(const QString &value)
     m_networkRequest->startToSearchByID(value);
 }
 
-void MusicWebDJRadioQueryWidget::setCurrentID(const QString &id)
+void MusicWebDJRadioQueryWidget::setCurrentKey(const QString &id)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(id);
     MusicResultDataItem item;
