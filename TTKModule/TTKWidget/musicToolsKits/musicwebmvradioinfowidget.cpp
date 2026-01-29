@@ -177,6 +177,7 @@ void MusicWebMVRadioInfoWidget::createLabels()
 
     QWidget *firstTopFuncWidget = new QWidget(function);
     QHBoxLayout *firstTopFuncLayout = new QHBoxLayout(firstTopFuncWidget);
+    firstTopFuncLayout->setContentsMargins(9, 9, 0, 9);
 
     QLabel *firstLabel = new QLabel(function);
     firstLabel->setText(tr("<font color=#158FE1> MVRadio > %1 </font>").arg(m_currentPlaylistItem.m_name));

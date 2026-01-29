@@ -109,7 +109,7 @@ void MusicWebDJRadioCategoryWidget::resizeWindow()
             m_gridLayout->removeWidget(widget);
         }
 
-        const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
+        const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
         for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i], i / lineNumber, i % lineNumber, Qt::AlignCenter);
@@ -125,7 +125,7 @@ void MusicWebDJRadioCategoryWidget::createCategoryItems()
         connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SIGNAL(currentCategoryClicked(MusicResultDataItem)));
         label->setResultDataItem(item);
 
-        const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
+        const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
         m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
         m_resizeWidgets << label;
     }

@@ -8,7 +8,7 @@
 
 static constexpr int WIDTH_LABEL_SIZE = 150;
 static constexpr int HEIGHT_LABEL_SIZE = 100;
-static constexpr int LINE_SPACING_SIZE = 200;
+static constexpr int LINE_SPACING_SIZE = 150;
 
 MusicWebMVRadioQueryItemWidget::MusicWebMVRadioQueryItemWidget(QWidget *parent)
     : QLabel(parent)
@@ -145,10 +145,10 @@ void MusicWebMVRadioQueryWidget::resizeWidget()
             m_gridLayout->removeWidget(widget.m_label);
         }
 
-        const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
+        const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
         for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
-            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignCenter);
+            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
         }
     }
 }
@@ -169,7 +169,7 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
         QVBoxLayout *mainLayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout = new QHBoxLayout(containTopWidget);
-        containTopLayout->setContentsMargins(30, 0, 30, 0);
+        containTopLayout->setContentsMargins(10, 10, 0, 0);
         m_categoryButton = new MusicWebMVRadioQueryCategoryPopWidget(m_mainWindow);
         m_categoryButton->setCategory(MUSIC_MOVIE_RADIO, this);
         containTopLayout->addWidget(m_categoryButton);
@@ -195,8 +195,8 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
     connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentRadioClicked(MusicResultDataItem)));
     label->setResultDataItem(item);
 
-    const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
-    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
+    const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
+    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignLeft);
 
     m_resizeWidgets.append({label, label->font()});
 }

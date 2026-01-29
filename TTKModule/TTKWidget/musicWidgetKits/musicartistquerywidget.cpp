@@ -12,7 +12,7 @@
 
 static constexpr int WIDTH_LABEL_SIZE = 150;
 static constexpr int HEIGHT_LABEL_SIZE = 200;
-static constexpr int LINE_SPACING_SIZE = 200;
+static constexpr int LINE_SPACING_SIZE = 150;
 
 MusicArtistAlbumsItemWidget::MusicArtistAlbumsItemWidget(QWidget *parent)
     : QLabel(parent)
@@ -102,6 +102,7 @@ MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
 
     QWidget *function = new QWidget(m_mainWindow);
     m_gridLayout = new QGridLayout(function);
+    m_gridLayout->setContentsMargins(0, 0, 0, 0);
     function->setLayout(m_gridLayout);
     m_mainWindow->layout()->addWidget(function);
     m_container->show();
@@ -137,10 +138,10 @@ void MusicArtistMvsQueryWidget::resizeWidget()
             m_gridLayout->removeWidget(widget.m_label);
         }
 
-        const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
+        const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
         for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
-            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignCenter);
+            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
         }
     }
 }
@@ -160,8 +161,8 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultDataItem &i
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
     label->setResultDataItem(item);
 
-    const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
-    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
+    const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
+    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignLeft);
 
     m_resizeWidgets.append({label, label->font()});
 }
@@ -196,6 +197,7 @@ MusicArtistAlbumsQueryWidget::MusicArtistAlbumsQueryWidget(QWidget *parent)
 
     QWidget *function = new QWidget(m_mainWindow);
     m_gridLayout = new QGridLayout(function);
+    m_gridLayout->setContentsMargins(0, 0, 0, 0);
     function->setLayout(m_gridLayout);
     m_mainWindow->layout()->addWidget(function);
     m_container->show();
@@ -231,10 +233,10 @@ void MusicArtistAlbumsQueryWidget::resizeWidget()
             m_gridLayout->removeWidget(widget.m_label);
         }
 
-        const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
+        const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
         for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
-            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignCenter);
+            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
         }
     }
 }
@@ -254,8 +256,8 @@ void MusicArtistAlbumsQueryWidget::createArtistAlbumsItem(const MusicResultDataI
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
     label->setResultDataItem(item);
 
-    const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
-    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
+    const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
+    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignLeft);
 
     m_resizeWidgets.append({label, label->font()});
 }

@@ -8,7 +8,7 @@
 
 static constexpr int WIDTH_LABEL_SIZE = 150;
 static constexpr int HEIGHT_LABEL_SIZE = 200;
-static constexpr int LINE_SPACING_SIZE = 200;
+static constexpr int LINE_SPACING_SIZE = 150;
 
 MusicWebDJRadioQueryItemWidget::MusicWebDJRadioQueryItemWidget(QWidget *parent)
     : QLabel(parent)
@@ -140,10 +140,10 @@ void MusicWebDJRadioQueryWidget::resizeWidget()
             m_gridLayout->removeWidget(widget.m_label);
         }
 
-        const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
+        const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
         for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
-            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignCenter);
+            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
         }
     }
 }
@@ -164,8 +164,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
         QVBoxLayout *mainLayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout = new QHBoxLayout(containTopWidget);
-        containTopLayout->setContentsMargins(30, 0, 30, 0);
-        containTopLayout->addStretch(1);
+        containTopLayout->setContentsMargins(10, 10, 0, 0);
 
         QPushButton *backButton = new QPushButton(tr("Back"), containTopWidget);
         backButton->setFixedSize(90, 30);
@@ -173,6 +172,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
         backButton->setCursor(QCursor(Qt::PointingHandCursor));
         connect(backButton, SIGNAL(clicked()), this, SIGNAL(backToMainMenu()));
         containTopLayout->addWidget(backButton);
+        containTopLayout->addStretch(1);
 #ifdef Q_OS_UNIX
         backButton->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -207,8 +207,8 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
     connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentRadioClicked(MusicResultDataItem)));
     label->setResultDataItem(item);
 
-    const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
-    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
+    const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
+    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignLeft);
 
     m_resizeWidgets.append({label, label->font()});
 }

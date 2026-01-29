@@ -11,7 +11,7 @@
 
 static constexpr int WIDTH_LABEL_SIZE = 150;
 static constexpr int HEIGHT_LABEL_SIZE = 200;
-static constexpr int LINE_SPACING_SIZE = 200;
+static constexpr int LINE_SPACING_SIZE = 150;
 
 MusicPlaylistQueryItemWidget::MusicPlaylistQueryItemWidget(QWidget *parent)
     : QLabel(parent)
@@ -179,10 +179,10 @@ void MusicPlaylistQueryWidget::resizeWidget()
             m_gridLayout->removeWidget(widget.m_label);
         }
 
-        const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
+        const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
         for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
-            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignCenter);
+            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
         }
     }
 }
@@ -203,7 +203,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
         QVBoxLayout *mainLayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout = new QHBoxLayout(containTopWidget);
-        containTopLayout->setContentsMargins(30, 0, 30, 0);
+        containTopLayout->setContentsMargins(10, 0, 10, 0);
         m_categoryButton = new MusicPlaylistFoundCategoryPopWidget(m_mainWindow);
         m_categoryButton->setCategory(m_networkRequest->queryServer(), this);
         containTopLayout->addWidget(m_categoryButton);
@@ -228,7 +228,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);
-        m_gridLayout->setVerticalSpacing(35);
+        m_gridLayout->setVerticalSpacing(20);
         containWidget->setLayout(m_gridLayout);
 
         mainLayout->addWidget(containTopWidget);
@@ -252,8 +252,8 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
     connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentPlaylistClicked(MusicResultDataItem)));
     label->setResultDataItem(item);
 
-    const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
-    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
+    const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
+    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignLeft);
 
     m_resizeWidgets.append({label, label->font()});
 }

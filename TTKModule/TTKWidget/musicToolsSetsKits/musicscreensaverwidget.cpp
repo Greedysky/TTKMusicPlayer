@@ -174,7 +174,7 @@ void MusicScreenSaverListWidget::addCellItem(QObject *object, const QString &pat
     item->setFilePath(path);
     item->setStatus(index, status);
 
-    m_gridLayout->addWidget(item, m_items.count() / 4, m_items.count() % 4, Qt::AlignLeft | Qt::AlignTop);
+    m_gridLayout->addWidget(item, m_items.count() / 4, m_items.count() % 4);
     m_items << item;
 }
 
@@ -189,7 +189,7 @@ void MusicScreenSaverListWidget::resizeWindow()
     const int lineNumber = width() / LINE_SPACING_SIZE;
     for(int i = 0; i < m_items.count(); ++i)
     {
-        m_gridLayout->addWidget(m_items[i], i / lineNumber, i % lineNumber, Qt::AlignLeft | Qt::AlignTop);
+        m_gridLayout->addWidget(m_items[i], i / lineNumber, i % lineNumber);
     }
 }
 
