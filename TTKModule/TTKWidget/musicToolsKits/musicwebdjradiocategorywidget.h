@@ -19,55 +19,9 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkclickedlabel.h"
 #include "musicabstractitemquerywidget.h"
 
-class QGridLayout;
 class MusicDJRadioCategoryRequest;
-
-/*! @brief The class of the music dj radio category item widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicWebDJRadioCategoryItemWidget : public TTKClickedLabel
-{
-    Q_OBJECT
-public:
-    /*!
-     * Object constructor.
-     */
-    explicit MusicWebDJRadioCategoryItemWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicWebDJRadioCategoryItemWidget();
-
-    /*!
-     * Set media results item.
-     */
-    void setResultDataItem(const MusicResultDataItem &item);
-
-Q_SIGNALS:
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked(const MusicResultDataItem &item);
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    void downloadFinished(const QByteArray &bytes);
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked();
-
-private:
-    QLabel *m_iconLabel, *m_nameLabel;
-    MusicResultDataItem m_itemData;
-
-};
-
 
 /*! @brief The class of the music dj radio category widget.
  * @author Greedysky <greedysky@163.com>

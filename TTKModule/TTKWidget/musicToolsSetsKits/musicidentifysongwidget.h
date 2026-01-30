@@ -95,7 +95,7 @@ private:
     void createDetectedFailedWidget();
 
     QTimer *m_timer;
-    QStackedWidget *m_mainWindow;
+    QStackedWidget *m_mainWidget;
     QLabel *m_detectedLabel, *m_lrcLabel;
     QMovie *m_detectedMovie;
     QPushButton *m_detectedButton;

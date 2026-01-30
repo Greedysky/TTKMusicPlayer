@@ -54,9 +54,9 @@ public:
     ~MusicVideoSearchTableWidget();
 
     /*!
-     * Start to search query by text.
+     * Start to search query by value.
      */
-    virtual void startToSearchByText(const QString &text) override final;
+    virtual void startToSearchByValue(const QString &value) override final;
     /*!
      * Download query result data.
      */

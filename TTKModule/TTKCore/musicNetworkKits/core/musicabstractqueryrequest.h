@@ -38,7 +38,8 @@ public:
     {
         WY,     /*!< wangyi query server */
         KW,     /*!< kuwo query server */
-        KG      /*!< kugou query server */
+        KG,     /*!< kugou query server */
+        OT      /*!< other query server */
     };
 
     enum class QueryType

@@ -204,10 +204,10 @@ private:
      * Create current third widget.
      */
     void createThirdWidget();
+
     /*!
      * Check input valid or not.
      */
-
     bool checkInputValid();
     /*!
      * Set controller enable or disable.

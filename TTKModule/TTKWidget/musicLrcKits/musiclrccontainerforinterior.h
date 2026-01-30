@@ -189,9 +189,9 @@ private:
     virtual void resizeEvent(QResizeEvent *event) override final;
 
     /*!
-     * Init function label widget.
+     * Create function label widget.
      */
-    void initFunctionLabel();
+    void createFunctionLabel();
     /*!
      * Create color menu.
      */

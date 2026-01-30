@@ -52,10 +52,10 @@ public:
     MusicAbstractQueryRequest *queryInput() const;
 
     /*!
-     * Start to search query by text.
+     * Start to search query by value.
      * Subclass should implement this function.
      */
-    virtual void startToSearchByText(const QString &text) = 0;
+    virtual void startToSearchByValue(const QString &value) = 0;
     /*!
      * Download query result data.
      * Subclass should implement this function.

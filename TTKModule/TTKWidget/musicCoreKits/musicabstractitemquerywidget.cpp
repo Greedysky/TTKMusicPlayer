@@ -7,7 +7,7 @@ MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
       m_iconLabel(nullptr),
       m_statusLabel(nullptr),
       m_infoLabel(nullptr),
-      m_queryTableWidget(nullptr),
+      m_tableWidget(nullptr),
       m_networkRequest(nullptr),
       m_shareType(MusicSongSharingWidget::Module::Null)
 {
@@ -15,21 +15,21 @@ MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    m_mainWindow = new QWidget(this);
-    m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#%1{ %2 }").arg(m_mainWindow->objectName(), TTK::UI::BackgroundStyle10));
+    m_mainWidget= new QWidget(this);
+    m_mainWidget->setObjectName("MainWidget");
+    m_mainWidget->setStyleSheet(QString("#%1{ %2 }").arg(m_mainWidget->objectName(), TTK::UI::BackgroundStyle10));
 
-    m_statusLabel = new QLabel(tr("Loading now ... "), m_mainWindow);
-    m_statusLabel->setStyleSheet(TTK::UI::FontStyle04 + TTK::UI::FontStyle01);
+    m_statusLabel = new QLabel(tr("Loading now ... "), m_mainWidget);
+    m_statusLabel->setStyleSheet(TTK::UI::FontStyle05 + TTK::UI::FontStyle01);
 
-    QVBoxLayout *mLayout = new QVBoxLayout(m_mainWindow);
+    QVBoxLayout *mLayout = new QVBoxLayout(m_mainWidget);
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
-    m_mainWindow->setLayout(mLayout);
+    m_mainWidget->setLayout(mLayout);
 
     m_container = new QStackedWidget(this);
     m_container->hide();
 
-    layout->addWidget(m_mainWindow);
+    layout->addWidget(m_mainWidget);
     setLayout(layout);
 }
 
@@ -43,8 +43,8 @@ MusicAbstractItemQueryWidget::~MusicAbstractItemQueryWidget()
     delete m_statusLabel;
     delete m_infoLabel;
     delete m_songButton;
-    delete m_queryTableWidget;
-    delete m_mainWindow;
+    delete m_tableWidget;
+    delete m_mainWidget;
     delete m_networkRequest;
 }
 
@@ -86,8 +86,8 @@ void MusicAbstractItemQueryWidget::downloadFinished(const QByteArray &bytes)
 
 void MusicAbstractItemQueryWidget::playAllButtonClicked()
 {
-    m_queryTableWidget->checkedItemsState(true);
-    m_queryTableWidget->downloadDataFrom(true);
+    m_tableWidget->checkedItemsState(true);
+    m_tableWidget->downloadDataFrom(true);
 }
 
 void MusicAbstractItemQueryWidget::shareButtonClicked()
@@ -97,7 +97,7 @@ void MusicAbstractItemQueryWidget::shareButtonClicked()
     item.m_name = m_currentPlaylistItem.m_name;
     item.m_cover = m_currentPlaylistItem.m_coverUrl;
 
-    const MusicAbstractQueryRequest *req = m_queryTableWidget->queryInput();
+    const MusicAbstractQueryRequest *req = m_tableWidget->queryInput();
     if(req)
     {
         item.m_server  = req->queryServer();
@@ -110,17 +110,17 @@ void MusicAbstractItemQueryWidget::shareButtonClicked()
 
 void MusicAbstractItemQueryWidget::playButtonClicked()
 {
-    m_queryTableWidget->downloadDataFrom(true);
+    m_tableWidget->downloadDataFrom(true);
 }
 
 void MusicAbstractItemQueryWidget::downloadButtonClicked()
 {
-    m_queryTableWidget->downloadBatchData();
+    m_tableWidget->downloadBatchData();
 }
 
 void MusicAbstractItemQueryWidget::addButtonClicked()
 {
-    m_queryTableWidget->downloadDataFrom(false);
+    m_tableWidget->downloadDataFrom(false);
 }
 
 void MusicAbstractItemQueryWidget::mousePressEvent(QMouseEvent *event)
@@ -138,7 +138,7 @@ void MusicAbstractItemQueryWidget::mouseReleaseEvent(QMouseEvent *event)
     Q_UNUSED(event);
 }
 
-void MusicAbstractItemQueryWidget::initFirstWidget()
+void MusicAbstractItemQueryWidget::createFirstWidget()
 {
     QWidget *songWidget = new QWidget(this);
     QVBoxLayout *vLayout = new QVBoxLayout(songWidget);
@@ -178,38 +178,40 @@ void MusicAbstractItemQueryWidget::initFirstWidget()
     middleFuncLayout->addWidget(addButton);
     middleFuncLayout->addWidget(downloadButton);
 
-    connect(allCheckBox, SIGNAL(clicked(bool)), m_queryTableWidget, SLOT(checkedItemsState(bool)));
+    connect(allCheckBox, SIGNAL(clicked(bool)), m_tableWidget, SLOT(checkedItemsState(bool)));
     connect(playButton, SIGNAL(clicked()), SLOT(playButtonClicked()));
     connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
     connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
 
     vLayout->addWidget(middleFuncWidget);
-    vLayout->addWidget(m_queryTableWidget);
+    vLayout->addWidget(m_tableWidget);
     vLayout->addStretch(1);
     songWidget->setLayout(vLayout);
 
-    m_queryTableWidget->show();
+    m_tableWidget->show();
     m_container->addWidget(songWidget);
 }
 
-void MusicAbstractItemQueryWidget::initSecondWidget()
+void MusicAbstractItemQueryWidget::createSecondWidget()
 {
     QWidget *songWidget = new QWidget(m_container);
     QVBoxLayout *vLayout = new QVBoxLayout(songWidget);
     vLayout->setSpacing(0);
     vLayout->setContentsMargins(0, 0, 0, 0);
+
     m_infoLabel = new QLabel(this);
     m_infoLabel->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     m_infoLabel->setWordWrap(true);
     m_infoLabel->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle03);
     vLayout->addWidget(m_infoLabel);
+
     songWidget->setLayout(vLayout);
     m_container->addWidget(songWidget);
 }
 
 void MusicAbstractItemQueryWidget::setSongCountText()
 {
-    const MusicAbstractQueryRequest *req = m_queryTableWidget->queryInput();
+    const MusicAbstractQueryRequest *req = m_tableWidget->queryInput();
     if(!req)
     {
         return;

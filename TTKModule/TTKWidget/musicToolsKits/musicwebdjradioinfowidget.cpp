@@ -1,7 +1,6 @@
 #include "musicwebdjradioinfowidget.h"
 #include "musicdjradioprogramcategoryrequest.h"
-#include "musicdownloadqueryfactory.h"
-#include "musiccoverrequest.h"
+#include "musiccoversourcerequest.h"
 
 MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent)
@@ -9,11 +8,11 @@ MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
     delete m_statusLabel;
     m_statusLabel = nullptr;
 
-    m_queryTableWidget = new MusicItemQueryTableWidget(this);
-    m_queryTableWidget->hide();
+    m_tableWidget = new MusicItemQueryTableWidget(this);
+    m_tableWidget->hide();
 
     MusicAbstractQueryRequest *req = new MusicDJRadioProgramCategoryRequest(this);
-    m_queryTableWidget->setQueryInput(req);
+    m_tableWidget->setQueryInput(req);
 
     connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(queryAllFinished()));
     connect(req, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createProgramCategoryItem(MusicResultDataItem)));
@@ -22,12 +21,12 @@ MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
 void MusicWebDJRadioInfoWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    m_queryTableWidget->startToSearchByText(value);
+    m_tableWidget->startToSearchByValue(value);
 }
 
 void MusicWebDJRadioInfoWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeSection();
+    m_tableWidget->resizeSection();
 
     if(!m_resizeWidgets.isEmpty())
     {
@@ -62,7 +61,7 @@ void MusicWebDJRadioInfoWidget::createProgramCategoryItem(const MusicResultDataI
     {
         if(TTK::isCoverValid(item.m_coverUrl))
         {
-            MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+            MusicCoverRequest *req = new MusicCoverSourceRequest(this);
             connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
             req->startToRequest(item.m_coverUrl);
         }
@@ -89,15 +88,15 @@ void MusicWebDJRadioInfoWidget::createProgramCategoryItem(const MusicResultDataI
 
 void MusicWebDJRadioInfoWidget::createLabels()
 {
-    initFirstWidget();
+    createFirstWidget();
     m_container->show();
 
-    layout()->removeWidget(m_mainWindow);
+    layout()->removeWidget(m_mainWidget);
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWindow);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWidget);
     layout()->addWidget(scrollArea);
 
-    QWidget *function = new QWidget(m_mainWindow);
+    QWidget *function = new QWidget(m_mainWidget);
     function->setStyleSheet(TTK::UI::CheckBoxStyle01 + TTK::UI::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
@@ -184,7 +183,7 @@ void MusicWebDJRadioInfoWidget::createLabels()
     grid->addStretch(1);
 
     function->setLayout(grid);
-    m_mainWindow->layout()->addWidget(function);
+    m_mainWidget->layout()->addWidget(function);
 
     m_resizeWidgets.append({nameLabel, nameLabel->font()});
     m_resizeWidgets.append({singerLabel, singerLabel->font()});

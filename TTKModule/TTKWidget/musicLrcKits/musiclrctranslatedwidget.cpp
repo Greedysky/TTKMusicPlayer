@@ -23,7 +23,7 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
 
     m_titleName = new QLabel(topWidget);
     m_titleName->setAlignment(Qt::AlignCenter);
-    m_titleName->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04 + TTK::UI::FontStyle01);
+    m_titleName->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle05 + TTK::UI::FontStyle01);
     topWidgetLayout->addWidget(m_titleName);
 
     QPushButton *closeButton = new QPushButton(this);

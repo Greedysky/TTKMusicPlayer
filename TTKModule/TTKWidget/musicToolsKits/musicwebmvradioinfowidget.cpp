@@ -1,7 +1,6 @@
 #include "musicwebmvradioinfowidget.h"
 #include "musicmvradioprogramrequest.h"
-#include "musicdownloadqueryfactory.h"
-#include "musiccoverrequest.h"
+#include "musiccoversourcerequest.h"
 #include "musicdownloadwidget.h"
 #include "musicrightareawidget.h"
 
@@ -92,11 +91,11 @@ MusicWebMVRadioInfoWidget::MusicWebMVRadioInfoWidget(QWidget *parent)
     delete m_statusLabel;
     m_statusLabel = nullptr;
 
-    m_queryTableWidget = new MusicWebMVRadioInfoTableWidget(this);
-    m_queryTableWidget->hide();
+    m_tableWidget = new MusicWebMVRadioInfoTableWidget(this);
+    m_tableWidget->hide();
 
     MusicAbstractQueryRequest *req = new MusicMVRadioProgramRequest(this);
-    m_queryTableWidget->setQueryInput(req);
+    m_tableWidget->setQueryInput(req);
 
     connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(queryAllFinished()));
     connect(req, SIGNAL(createMVRadioItem(MusicResultDataItem)), SLOT(createMVRadioProgramItem(MusicResultDataItem)));
@@ -105,12 +104,12 @@ MusicWebMVRadioInfoWidget::MusicWebMVRadioInfoWidget(QWidget *parent)
 void MusicWebMVRadioInfoWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    m_queryTableWidget->startToSearchByText(value);
+    m_tableWidget->startToSearchByValue(value);
 }
 
 void MusicWebMVRadioInfoWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeSection();
+    m_tableWidget->resizeSection();
 
     if(!m_resizeWidgets.isEmpty())
     {
@@ -139,7 +138,7 @@ void MusicWebMVRadioInfoWidget::createMVRadioProgramItem(const MusicResultDataIt
     {
         if(TTK::isCoverValid(item.m_coverUrl))
         {
-            MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+            MusicCoverRequest *req = new MusicCoverSourceRequest(this);
             connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
             req->startToRequest(item.m_coverUrl);
         }
@@ -158,20 +157,20 @@ void MusicWebMVRadioInfoWidget::createMVRadioProgramItem(const MusicResultDataIt
 
 void MusicWebMVRadioInfoWidget::downloadMVsButtonClicked()
 {
-    m_queryTableWidget->downloadBatchData();
+    m_tableWidget->downloadBatchData();
 }
 
 void MusicWebMVRadioInfoWidget::createLabels()
 {
-    initThirdWidget();
+    createThirdWidget();
     m_container->show();
 
-    layout()->removeWidget(m_mainWindow);
+    layout()->removeWidget(m_mainWidget);
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWindow);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWidget);
     layout()->addWidget(scrollArea);
 
-    QWidget *function = new QWidget(m_mainWindow);
+    QWidget *function = new QWidget(m_mainWidget);
     function->setStyleSheet(TTK::UI::CheckBoxStyle01 + TTK::UI::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
@@ -251,13 +250,13 @@ void MusicWebMVRadioInfoWidget::createLabels()
     grid->addStretch(1);
 
     function->setLayout(grid);
-    m_mainWindow->layout()->addWidget(function);
+    m_mainWidget->layout()->addWidget(function);
 
     m_resizeWidgets.append({nameLabel, nameLabel->font()});
     m_resizeWidgets.append({typeLabel, typeLabel->font()});
 }
 
-void MusicWebMVRadioInfoWidget::initThirdWidget()
+void MusicWebMVRadioInfoWidget::createThirdWidget()
 {
     QWidget *songWidget = new QWidget(this);
     QVBoxLayout *vLayout = new QVBoxLayout(songWidget);
@@ -285,14 +284,14 @@ void MusicWebMVRadioInfoWidget::initThirdWidget()
     middleFuncLayout->addWidget(allCheckBox);
     middleFuncLayout->addStretch(1);
     middleFuncLayout->addWidget(downloadButton);
-    connect(allCheckBox, SIGNAL(clicked(bool)), m_queryTableWidget, SLOT(checkedItemsState(bool)));
+    connect(allCheckBox, SIGNAL(clicked(bool)), m_tableWidget, SLOT(checkedItemsState(bool)));
     connect(downloadButton, SIGNAL(clicked()), SLOT(downloadMVsButtonClicked()));
 
     vLayout->addWidget(middleFuncWidget);
-    vLayout->addWidget(m_queryTableWidget);
+    vLayout->addWidget(m_tableWidget);
     vLayout->addStretch(1);
     songWidget->setLayout(vLayout);
 
-    m_queryTableWidget->show();
+    m_tableWidget->show();
     m_container->addWidget(songWidget);
 }

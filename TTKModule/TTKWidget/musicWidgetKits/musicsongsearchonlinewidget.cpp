@@ -26,7 +26,7 @@ MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
     headerView->resizeSection(8, 26);
 }
 
-void MusicSongSearchTableWidget::startToSearchByText(const QString &text)
+void MusicSongSearchTableWidget::startToSearchByValue(const QString &value)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -44,16 +44,17 @@ void MusicSongSearchTableWidget::startToSearchByText(const QString &text)
     manager.readBuffer(records);
 
     MusicSearchRecord record;
-    record.m_name = text;
+    record.m_name = value;
     record.m_timestamp = QString::number(TTKDateTime::currentTimestamp());
     records.insert(0, record);
 
     manager.reset();
     manager.writeBuffer(records);
 
-    MusicItemSearchTableWidget::startToSearchByText(text);
+    setLoadingStatus(true);
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
 
-    m_networkRequest->startToSearch(text);
+    m_networkRequest->startToSearch(value);
 }
 
 void MusicSongSearchTableWidget::downloadQueryResult(int row)
@@ -68,7 +69,7 @@ void MusicSongSearchTableWidget::downloadQueryResult(int row)
     widget->show();
 }
 
-void MusicSongSearchTableWidget::startToSearchByID(const QString &text)
+void MusicSongSearchTableWidget::startToSearchByID(const QString &id)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -76,8 +77,10 @@ void MusicSongSearchTableWidget::startToSearchByID(const QString &text)
         return;
     }
 
-    MusicItemSearchTableWidget::startToSearchByText(text);
-    m_networkRequest->startToSearchByID(text);
+    setLoadingStatus(true);
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
+
+    m_networkRequest->startToSearchByID(id);
 }
 
 void MusicSongSearchTableWidget::resizeSection() const
@@ -325,7 +328,7 @@ MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
     delete m_tableWidget;
 }
 
-void MusicSongSearchOnlineWidget::startToSearchByText(const QString &name)
+void MusicSongSearchOnlineWidget::startToSearchByValue(const QString &name)
 {
     setResizeLabelText(name);
     if(!m_resizeWidgets.isEmpty())
@@ -333,7 +336,7 @@ void MusicSongSearchOnlineWidget::startToSearchByText(const QString &name)
         TTKObjectCast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
     }
 
-    m_tableWidget->startToSearchByText(name);
+    m_tableWidget->startToSearchByValue(name);
 }
 
 void MusicSongSearchOnlineWidget::startToSearchByID(const QString &name)

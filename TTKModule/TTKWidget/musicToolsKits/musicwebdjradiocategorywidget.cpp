@@ -1,71 +1,6 @@
 #include "musicwebdjradiocategorywidget.h"
 #include "musicdjradiocategoryrequest.h"
-#include "musicdownloadqueryfactory.h"
-#include "musiccoverrequest.h"
-#include "musicwidgetheaders.h"
-
-static constexpr int WIDTH_LABEL_SIZE = 60;
-static constexpr int HEIGHT_LABEL_SIZE = 105;
-static constexpr int LINE_SPACING_SIZE = 105;
-
-MusicWebDJRadioCategoryItemWidget::MusicWebDJRadioCategoryItemWidget(QWidget *parent)
-    : TTKClickedLabel(parent)
-{
-    setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
-
-    m_iconLabel = new QLabel(this);
-    m_iconLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, WIDTH_LABEL_SIZE);
-
-    m_nameLabel = new QLabel(this);
-    m_nameLabel->setGeometry(0, 65, WIDTH_LABEL_SIZE, 25);
-    m_nameLabel->setAlignment(Qt::AlignCenter);
-    m_nameLabel->setText(TTK_DEFAULT_STR);
-
-    connect(this, SIGNAL(clicked()), SLOT(currentItemClicked()));
-}
-
-MusicWebDJRadioCategoryItemWidget::~MusicWebDJRadioCategoryItemWidget()
-{
-    delete m_iconLabel;
-    delete m_nameLabel;
-}
-
-void MusicWebDJRadioCategoryItemWidget::setResultDataItem(const MusicResultDataItem &item)
-{
-    m_itemData = item;
-    m_nameLabel->setToolTip(item.m_name);
-    m_nameLabel->setText(TTK::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
-
-    if(TTK::isCoverValid(item.m_coverUrl))
-    {
-        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
-        req->startToRequest(item.m_coverUrl);
-    }
-}
-
-void MusicWebDJRadioCategoryItemWidget::downloadFinished(const QByteArray &bytes)
-{
-    if(bytes.isEmpty())
-    {
-        TTK_ERROR_STREAM("Input byte data is empty");
-        return;
-    }
-
-    QPixmap pix;
-    pix.loadFromData(bytes);
-    if(!pix.isNull())
-    {
-        m_iconLabel->setPixmap(pix.copy(0, 0, WIDTH_LABEL_SIZE, WIDTH_LABEL_SIZE));
-    }
-}
-
-void MusicWebDJRadioCategoryItemWidget::currentItemClicked()
-{
-    Q_EMIT currentItemClicked(m_itemData);
-}
-
-
+#include "musicqueryitemwidget.h"
 
 MusicWebDJRadioCategoryWidget::MusicWebDJRadioCategoryWidget(QWidget *parent)
     : QWidget(parent)
@@ -109,7 +44,8 @@ void MusicWebDJRadioCategoryWidget::resizeWindow()
             m_gridLayout->removeWidget(widget);
         }
 
-        const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
+        const int lineSize = MusicLabelQueryItemWidget::LINE_SPACING_SIZE;
+        const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
         for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i], i / lineNumber, i % lineNumber, Qt::AlignCenter);
@@ -121,11 +57,12 @@ void MusicWebDJRadioCategoryWidget::createCategoryItems()
 {
     for(const MusicResultDataItem &item : m_networkRequest->items())
     {
-        MusicWebDJRadioCategoryItemWidget *label = new MusicWebDJRadioCategoryItemWidget(this);
+        MusicLabelQueryItemWidget *label = new MusicLabelQueryItemWidget(this);
         connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SIGNAL(currentCategoryClicked(MusicResultDataItem)));
         label->setResultDataItem(item);
 
-        const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
+        const int lineSize = MusicLabelQueryItemWidget::LINE_SPACING_SIZE;
+        const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
         m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
         m_resizeWidgets << label;
     }

@@ -29,6 +29,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_CORE_KITS_HEADER_FILES
   ${TTK_WIDGET_CORE_DIR}/musicabstractsongslisttablewidget.h
   ${TTK_WIDGET_CORE_DIR}/musicwidgetrenderer.h
   ${TTK_WIDGET_CORE_DIR}/musicfillitemtablewidget.h
+  ${TTK_WIDGET_CORE_DIR}/musicqueryitemwidget.h
   ${TTK_WIDGET_CORE_DIR}/musicquerytablewidget.h
   ${TTK_WIDGET_CORE_DIR}/musicitemsearchtablewidget.h
   ${TTK_WIDGET_CORE_DIR}/musicitemquerytablewidget.h
@@ -74,6 +75,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_CORE_KITS_SOURCE_FILES
   ${TTK_WIDGET_CORE_DIR}/musicabstractsongslisttablewidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicwidgetrenderer.cpp
   ${TTK_WIDGET_CORE_DIR}/musicfillitemtablewidget.cpp
+  ${TTK_WIDGET_CORE_DIR}/musicqueryitemwidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicquerytablewidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicitemsearchtablewidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicitemquerytablewidget.cpp

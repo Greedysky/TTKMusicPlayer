@@ -162,9 +162,9 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Init the first widget.
+     * Create the first widget.
      */
-    void initFirstWidget();
+    void createFirstWidget();
 
     MusicWebDJRadioCategoryWidget *m_categoryWidget;
     MusicWebDJRadioProgramWidget *m_recommendWidget, *m_programWidget;

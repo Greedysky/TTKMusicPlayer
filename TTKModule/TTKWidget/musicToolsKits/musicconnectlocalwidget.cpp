@@ -22,8 +22,8 @@ MusicConnectLocalWidget::MusicConnectLocalWidget(QWidget *parent)
     vBox->addWidget(m_stackedWidget);
     setLayout(vBox);
 
-    initFirstWidget();
-    initSecondWidget();
+    createFirstWidget();
+    createSecondWidget();
 
     m_stackedWidget->setCurrentIndex(0);
 }
@@ -35,12 +35,12 @@ MusicConnectLocalWidget::~MusicConnectLocalWidget()
     delete m_stackedWidget;
 }
 
-void MusicConnectLocalWidget::initFirstWidget()
+void MusicConnectLocalWidget::createFirstWidget()
 {
     QWidget *firstWidget = new QWidget(this);
     QVBoxLayout *vBox = new QVBoxLayout(firstWidget);
     QLabel *textLabel = new QLabel(tr("Please choose the way"), firstWidget);
-    textLabel->setStyleSheet(TTK::UI::FontStyle04 + TTK::UI::ColorStyle02);
+    textLabel->setStyleSheet(TTK::UI::FontStyle05 + TTK::UI::ColorStyle02);
 
     QPushButton *firButton = new QPushButton(tr("Mobile Media"), firstWidget);
     firButton->setStyleSheet(TTK::UI::PushButtonStyle08 + TTK::UI::PushButtonStyle13);
@@ -75,7 +75,7 @@ void MusicConnectLocalWidget::initFirstWidget()
     m_stackedWidget->addWidget(firstWidget);
 }
 
-void MusicConnectLocalWidget::initSecondWidget()
+void MusicConnectLocalWidget::createSecondWidget()
 {
     QWidget *secondWidget = new QWidget(this);
     QVBoxLayout *vBox = new QVBoxLayout(secondWidget);

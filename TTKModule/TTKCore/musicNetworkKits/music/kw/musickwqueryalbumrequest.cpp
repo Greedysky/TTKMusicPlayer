@@ -167,8 +167,8 @@ void MusicKWQueryArtistAlbumRequest::downloadFinished()
 
                     MusicResultDataItem item;
                     item.m_id = value["albumid"].toString();
-                    item.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["pic"].toString(), {});
                     item.m_name = value["name"].toString();
+                    item.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["pic"].toString(), {});
                     item.m_time = value["pub"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
                     Q_EMIT createAlbumItem(item);
                 }

@@ -1,5 +1,5 @@
-#ifndef MUSICITEMQUERYTABLEWIDGET_H
-#define MUSICITEMQUERYTABLEWIDGET_H
+#ifndef MUSICMAINRECOMMENDWIDGET_H
+#define MUSICMAINRECOMMENDWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,23 +19,27 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicitemsearchtablewidget.h"
+#include <QLabel>
+#include "musicquerytablewidget.h"
 
-/*! @brief The class of the query item table widget.
+class QGridLayout;
+class MusicNewAlbumsRecommendRequest;
+
+/*! @brief The class of the new song recommend query item table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicItemQueryTableWidget : public MusicQueryTableWidget
+class TTK_MODULE_EXPORT MusicNewSongRecommendQueryTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicItemQueryTableWidget(QWidget *parent = nullptr);
+    explicit MusicNewSongRecommendQueryTableWidget(QWidget *parent = nullptr);
     /*!
      * Object destructor.
      */
-    ~MusicItemQueryTableWidget();
+    ~MusicNewSongRecommendQueryTableWidget();
 
     /*!
      * Start to search query by value.
@@ -46,14 +50,6 @@ public:
      */
     virtual void downloadQueryResult(int row) override;
 
-    /*!
-     * Download data from net and just play or not.
-     */
-    void downloadDataFrom(bool play);
-    /*!
-     * Download batch data from net.
-     */
-    void downloadBatchData();
     /*!
      * Resize section bound by resize called.
      */
@@ -80,17 +76,12 @@ public Q_SLOTS:
      * Create search result items.
      */
     virtual void createResultItem(const MusicResultInfoItem &result) override;
-    /*!
-     * Menu action type changed.
-     */
-    void menuActionChanged(QAction *action);
 
 private:
     /*!
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Add search media to play list by index.
      */
@@ -102,4 +93,83 @@ private:
 
 };
 
-#endif // MUSICITEMQUERYTABLEWIDGET_H
+
+/*! @brief The class of the new album recommend query widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicNewAlbumsRecommendQueryWidget : public QLabel
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicNewAlbumsRecommendQueryWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicNewAlbumsRecommendQueryWidget();
+
+public Q_SLOTS:
+    /*!
+     * Create the current album info item.
+     */
+    void createAlbumItem(const MusicResultDataItem &item);
+
+private:
+    QGridLayout *m_gridLayout;
+    QWidgetList m_resizeWidgets;
+    MusicNewAlbumsRecommendRequest *m_networkRequest;
+
+};
+
+
+/*! @brief The class of the system tray menu widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicMainRecommendWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicMainRecommendWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicMainRecommendWidget();
+
+private:
+    /*!
+     * Create current top widget.
+     */
+    void createTopWidget();
+    /*!
+     * Create current container widget.
+     */
+    void createContainerWidget();
+    /*!
+     * Create current container top widget.
+     */
+    void createContainerTopWidget();
+    /*!
+     * Create current container middle top widget.
+     */
+    void createContainerMiddleTopWidget();
+    /*!
+     * Create current container middle widget.
+     */
+    void createContainerMiddleWidget();
+    /*!
+     * Create current container middle bottom widget.
+     */
+    void createContainerMiddleBottomWidget();
+
+    QWidget *m_mainWidget, *m_container;
+    MusicNewSongRecommendQueryTableWidget *m_newSongsWidget;
+    MusicNewAlbumsRecommendQueryWidget *m_newAlbumsWidget;
+
+};
+
+#endif // MUSICMAINRECOMMENDWIDGET_H

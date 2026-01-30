@@ -22,7 +22,7 @@ MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
     removeItems();
 }
 
-void MusicLrcSearchTableWidget::startToSearchByText(const QString &text)
+void MusicLrcSearchTableWidget::startToSearchByValue(const QString &value)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -30,11 +30,12 @@ void MusicLrcSearchTableWidget::startToSearchByText(const QString &text)
         return;
     }
 
-    MusicItemSearchTableWidget::startToSearchByText(text);
+    setLoadingStatus(true);
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
     connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), SIGNAL(resolvedSuccess()));
 
     m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Lrc);
-    m_networkRequest->startToSearch(text);
+    m_networkRequest->startToSearch(value);
 }
 
 void MusicLrcSearchTableWidget::downloadQueryResult(int row)

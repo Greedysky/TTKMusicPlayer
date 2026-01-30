@@ -27,21 +27,21 @@ void MusicSimilarQueryTableWidget::createResultItem(const MusicResultInfoItem &r
 MusicSimilarQueryWidget::MusicSimilarQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent)
 {
-    m_queryTableWidget = new MusicSimilarQueryTableWidget(this);
-    m_queryTableWidget->hide();
+    m_tableWidget = new MusicSimilarQueryTableWidget(this);
+    m_tableWidget->hide();
 }
 
 void MusicSimilarQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    m_queryTableWidget->setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
-    m_queryTableWidget->startToSearchByText(TTK::generateSongTitle(value));
+    m_tableWidget->setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
+    m_tableWidget->startToSearchByValue(TTK::generateSongTitle(value));
     createLabels();
 }
 
 void MusicSimilarQueryWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeSection();
+    m_tableWidget->resizeSection();
 }
 
 void MusicSimilarQueryWidget::createLabels()
@@ -49,15 +49,15 @@ void MusicSimilarQueryWidget::createLabels()
     delete m_statusLabel;
     m_statusLabel = nullptr;
 
-    initFirstWidget();
+    createFirstWidget();
     m_container->show();
 
-    layout()->removeWidget(m_mainWindow);
+    layout()->removeWidget(m_mainWidget);
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWindow);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWidget);
     layout()->addWidget(scrollArea);
 
-    QWidget *function = new QWidget(m_mainWindow);
+    QWidget *function = new QWidget(m_mainWidget);
     function->setStyleSheet(TTK::UI::CheckBoxStyle01 + TTK::UI::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
@@ -67,5 +67,5 @@ void MusicSimilarQueryWidget::createLabels()
     //
     grid->addWidget(m_container);
 
-    m_mainWindow->layout()->addWidget(function);
+    m_mainWidget->layout()->addWidget(function);
 }

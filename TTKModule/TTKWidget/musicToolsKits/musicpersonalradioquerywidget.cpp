@@ -1,20 +1,19 @@
 #include "musicpersonalradioquerywidget.h"
 #include "musicwyqueryplaylistrequest.h"
-#include "musicdownloadqueryfactory.h"
-#include "musiccoverrequest.h"
+#include "musiccoversourcerequest.h"
 
 MusicPersonalRadioQueryWidget::MusicPersonalRadioQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent)
 {
-    m_queryTableWidget = new MusicItemQueryTableWidget(this);
+    m_tableWidget = new MusicItemQueryTableWidget(this);
 
-    initFirstWidget();
+    createFirstWidget();
 }
 
 void MusicPersonalRadioQueryWidget::setCurrentValue(const QString &value)
 {
     MusicQueryPlaylistRequest *req = new MusicWYQueryPlaylistRequest(this);
-    m_queryTableWidget->setQueryInput(req);
+    m_tableWidget->setQueryInput(req);
 
     MusicResultDataItem item;
     item.m_id = value;
@@ -26,7 +25,7 @@ void MusicPersonalRadioQueryWidget::setCurrentValue(const QString &value)
 
 void MusicPersonalRadioQueryWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeSection();
+    m_tableWidget->resizeSection();
 
     if(!m_resizeWidgets.isEmpty())
     {
@@ -58,14 +57,14 @@ void MusicPersonalRadioQueryWidget::setResultDataItem(const MusicResultDataItem 
     m_currentPlaylistItem = item;
     MusicAbstractItemQueryWidget::setCurrentValue(item.m_id);
 
-    m_queryTableWidget->startToSearchByText(item.m_id);
+    m_tableWidget->startToSearchByValue(item.m_id);
 
-    layout()->removeWidget(m_mainWindow);
+    layout()->removeWidget(m_mainWidget);
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWindow);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWidget);
     layout()->addWidget(scrollArea);
 
-    QWidget *function = new QWidget(m_mainWindow);
+    QWidget *function = new QWidget(m_mainWidget);
     function->setStyleSheet(TTK::UI::CheckBoxStyle01);
     QVBoxLayout *grid = new QVBoxLayout(function);
     //
@@ -78,7 +77,7 @@ void MusicPersonalRadioQueryWidget::setResultDataItem(const MusicResultDataItem 
 
     if(TTK::isCoverValid(item.m_coverUrl))
     {
-        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        MusicCoverRequest *req = new MusicCoverSourceRequest(this);
         connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
         req->startToRequest(item.m_coverUrl);
     }
@@ -141,7 +140,7 @@ void MusicPersonalRadioQueryWidget::setResultDataItem(const MusicResultDataItem 
     grid->addStretch(1);
 
     function->setLayout(grid);
-    m_mainWindow->layout()->addWidget(function);
+    m_mainWidget->layout()->addWidget(function);
 
     m_resizeWidgets.append({nameLabel, nameLabel->font()});
     m_resizeWidgets.append({creatorLabel, creatorLabel->font()});

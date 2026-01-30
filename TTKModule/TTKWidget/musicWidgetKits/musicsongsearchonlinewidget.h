@@ -38,9 +38,9 @@ public:
     explicit MusicSongSearchTableWidget(QWidget *parent = nullptr);
 
     /*!
-     * Start to search query by text.
+     * Start to search query by value.
      */
-    virtual void startToSearchByText(const QString &text) override final;
+    virtual void startToSearchByValue(const QString &value) override final;
     /*!
      * Download query result data.
      */
@@ -49,7 +49,7 @@ public:
     /*!
      * Start to search query by given id.
      */
-    void startToSearchByID(const QString &text);
+    void startToSearchByID(const QString &id);
     /*!
      * Resize section bound by resize called.
      */
@@ -113,9 +113,9 @@ public:
     ~MusicSongSearchOnlineWidget();
 
     /*!
-     * Start to search query by text.
+     * Start to search query by value.
      */
-    void startToSearchByText(const QString &name);
+    void startToSearchByValue(const QString &name);
     /*!
      * Start to search query by given id.
      */

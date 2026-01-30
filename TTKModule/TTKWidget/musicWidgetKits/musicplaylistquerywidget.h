@@ -22,60 +22,9 @@
 #include "musiccategoryconfigmanager.h"
 #include "musicabstractitemquerywidget.h"
 
-class QGridLayout;
 class MusicPageQueryWidget;
 class MusicPlaylistQueryInfoWidget;
 class MusicPlaylistFoundCategoryPopWidget;
-
-/*! @brief The class of the playlist music item widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicPlaylistQueryItemWidget : public QLabel
-{
-    Q_OBJECT
-public:
-    /*!
-     * Object constructor.
-     */
-    explicit MusicPlaylistQueryItemWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicPlaylistQueryItemWidget();
-
-    /*!
-     * Set media results item.
-     */
-    void setResultDataItem(const MusicResultDataItem &item);
-
-Q_SIGNALS:
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked(const MusicResultDataItem &item);
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    void downloadFinished(const QByteArray &bytes);
-    /*!
-     * Image render finished.
-     */
-    void renderFinished(const QPixmap &data);
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked();
-
-private:
-    MusicResultDataItem m_itemData;
-    QPushButton *m_topListenButton, *m_playButton;
-    QLabel *m_iconLabel, *m_nameLabel, *m_creatorLabel;
-
-};
-
-
 
 /*! @brief The class of the playlist music query widget.
  * @author Greedysky <greedysky@163.com>

@@ -29,8 +29,8 @@ void MusicDownloadManager::connectNetworkData(const MusicDownloadData &data)
     switch(data.m_type)
     {
         case TTK::Record::NormalDownload: className = MusicDownloadRecordTableWidget::className(); break;
-        case TTK::Record::CloudDownload:  className = MusicCloudDownloadTableWidget::className(); break;
-        case TTK::Record::CloudUpload:    className = MusicCloudUploadTableWidget::className(); break;
+        case TTK::Record::CloudDownload: className = MusicCloudDownloadTableWidget::className(); break;
+        case TTK::Record::CloudUpload: className = MusicCloudUploadTableWidget::className(); break;
         default: break;
     }
 

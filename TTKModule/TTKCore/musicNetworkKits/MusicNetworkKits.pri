@@ -98,6 +98,7 @@ HEADERS += \
     $$PWD/music/zed/musicunityquerymovierequest.h \
     $$PWD/music/musicsongrecommendrequest.h \
     $$PWD/music/musicsongsuggestrequest.h \
+    $$PWD/music/musicmainrecommendrequest.h \
     $$PWD/radio/fm/musicfmconfigmanager.h \
     $$PWD/radio/fm/musicfmradiosongrequest.h \
     $$PWD/radio/dj/musicabstractdjradiorequest.h \
@@ -196,6 +197,7 @@ SOURCES += \
     $$PWD/music/zed/musicunityquerymovierequest.cpp \
     $$PWD/music/musicsongrecommendrequest.cpp \
     $$PWD/music/musicsongsuggestrequest.cpp \
+    $$PWD/music/musicmainrecommendrequest.cpp \
     $$PWD/radio/fm/musicfmconfigmanager.cpp \
     $$PWD/radio/fm/musicfmradiosongrequest.cpp \
     $$PWD/radio/dj/musicabstractdjradiorequest.cpp \

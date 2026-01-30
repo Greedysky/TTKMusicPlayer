@@ -1,9 +1,8 @@
 #include "musicwebdjradiowidget.h"
 #include "musicwebdjradiocategorywidget.h"
 #include "musicwebdjradioquerywidget.h"
-#include "musicdownloadqueryfactory.h"
-#include "musiccoverrequest.h"
-#include "musicwidgetheaders.h"
+#include "musiccoversourcerequest.h"
+#include "ttkclickedlabel.h"
 
 MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -117,7 +116,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
 
     if(TTK::isCoverValid(data.m_coverUrl))
     {
-        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        MusicCoverRequest *req = new MusicCoverSourceRequest(this);
         connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
         req->setHeader("id", index);
         req->startToRequest(data.m_coverUrl);
@@ -218,7 +217,7 @@ MusicWebDJRadioWidget::MusicWebDJRadioWidget(QWidget *parent)
     setObjectName(MusicWebDJRadioWidget::metaObject()->className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle10));
 
-    initFirstWidget();
+    createFirstWidget();
 }
 
 MusicWebDJRadioWidget::~MusicWebDJRadioWidget()
@@ -304,7 +303,7 @@ void MusicWebDJRadioWidget::currentCategoryClicked(const MusicResultDataItem &it
     programItemClicked("-1", item.m_id);
 }
 
-void MusicWebDJRadioWidget::initFirstWidget()
+void MusicWebDJRadioWidget::createFirstWidget()
 {
     QWidget *w = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(w);

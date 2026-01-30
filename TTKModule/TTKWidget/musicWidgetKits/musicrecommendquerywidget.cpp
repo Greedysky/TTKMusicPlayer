@@ -3,26 +3,24 @@
 #include "musicitemquerytablewidget.h"
 #include "musicimageutils.h"
 
-using MusicRecommendQueryTableWidget = MusicItemQueryTableWidget;
-
 MusicRecommendQueryWidget::MusicRecommendQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent)
 {
-    m_queryTableWidget = new MusicRecommendQueryTableWidget(this);
-    m_queryTableWidget->hide();
+    m_tableWidget = new MusicItemQueryTableWidget(this);
+    m_tableWidget->hide();
 }
 
 void MusicRecommendQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    m_queryTableWidget->setQueryInput(new MusicSongRecommendRequest(this));
-    m_queryTableWidget->startToSearchByText(TTK::generateSongTitle(value));
+    m_tableWidget->setQueryInput(new MusicSongRecommendRequest(this));
+    m_tableWidget->startToSearchByValue(TTK::generateSongTitle(value));
     createLabels();
 }
 
 void MusicRecommendQueryWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeSection();
+    m_tableWidget->resizeSection();
 }
 
 void MusicRecommendQueryWidget::createLabels()
@@ -30,15 +28,15 @@ void MusicRecommendQueryWidget::createLabels()
     delete m_statusLabel;
     m_statusLabel = nullptr;
 
-    initFirstWidget();
+    createFirstWidget();
     m_container->show();
 
-    layout()->removeWidget(m_mainWindow);
+    layout()->removeWidget(m_mainWidget);
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWindow);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWidget);
     layout()->addWidget(scrollArea);
 
-    QWidget *function = new QWidget(m_mainWindow);
+    QWidget *function = new QWidget(m_mainWidget);
     function->setStyleSheet(TTK::UI::CheckBoxStyle01 + TTK::UI::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
@@ -68,5 +66,5 @@ void MusicRecommendQueryWidget::createLabels()
     painter.drawPixmap(54, 34, QPixmap(":/image/lb_recmd_date_mask"));
     iconLabel->setPixmap(pix);
 
-    m_mainWindow->layout()->addWidget(function);
+    m_mainWidget->layout()->addWidget(function);
 }

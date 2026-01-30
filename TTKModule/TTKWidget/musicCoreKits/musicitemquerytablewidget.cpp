@@ -26,7 +26,7 @@ MusicItemQueryTableWidget::~MusicItemQueryTableWidget()
     removeItems();
 }
 
-void MusicItemQueryTableWidget::startToSearchByText(const QString &text)
+void MusicItemQueryTableWidget::startToSearchByValue(const QString &value)
 {
     if(!G_NETWORK_PTR->isOnline())
     {
@@ -34,7 +34,7 @@ void MusicItemQueryTableWidget::startToSearchByText(const QString &text)
         return;
     }
 
-    m_networkRequest->startToSearch(text);
+    m_networkRequest->startToSearch(value);
 }
 
 void MusicItemQueryTableWidget::downloadQueryResult(int row)
@@ -172,6 +172,7 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
 void MusicItemQueryTableWidget::itemCellEntered(int row, int column)
 {
     MusicQueryTableWidget::itemCellEntered(row, column);
+
     if(column == 5 || column == 6 || column == 7)
     {
         setCursor(QCursor(Qt::PointingHandCursor));

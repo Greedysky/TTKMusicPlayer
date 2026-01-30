@@ -67,6 +67,11 @@ void MusicQueryTableWidget::createFinishedItem()
 {
     setLoadingStatus(false);
 
+    if(!m_labelDelegate)
+    {
+        return;
+    }
+
     setRowCount(rowCount() + 1);
     const int count = rowCount() - 1;
 

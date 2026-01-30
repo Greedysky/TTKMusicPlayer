@@ -86,25 +86,25 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override final;
     virtual void mouseReleaseEvent(QMouseEvent *event) override final;
     /*!
-     * Init the first widget.
+     * Create the first widget.
      */
-    void initFirstWidget();
+    void createFirstWidget();
     /*!
-     * Init the second widget.
+     * Create the second widget.
      */
-    void initSecondWidget();
+    void createSecondWidget();
     /*!
      * Set song label count text.
      */
     void setSongCountText();
 
     QString m_value;
-    QWidget *m_mainWindow;
+    QWidget *m_mainWidget;
     QPushButton *m_songButton;
     QLabel *m_iconLabel, *m_statusLabel, *m_infoLabel;
     QStackedWidget *m_container;
     MusicResultDataItem m_currentPlaylistItem;
-    MusicItemQueryTableWidget *m_queryTableWidget;
+    MusicItemQueryTableWidget *m_tableWidget;
     MusicAbstractQueryRequest *m_networkRequest;
     MusicSongSharingWidget::Module m_shareType;
 

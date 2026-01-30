@@ -107,9 +107,9 @@ private:
      */
     void createLabels();
     /*!
-     * Init the third widget.
+     * Create the third widget.
      */
-    void initThirdWidget();
+    void createThirdWidget();
 
 };
 

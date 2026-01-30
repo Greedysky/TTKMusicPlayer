@@ -24,10 +24,10 @@ MusicIdentifySongWidget::MusicIdentifySongWidget(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    m_mainWindow = new QStackedWidget(this);
-    m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#%1{ %2 }").arg(m_mainWindow->objectName(), TTK::UI::BackgroundStyle10));
-    layout->addWidget(m_mainWindow);
+    m_mainWidget = new QStackedWidget(this);
+    m_mainWidget->setObjectName("MainWidget");
+    m_mainWidget->setStyleSheet(QString("#%1{ %2 }").arg(m_mainWidget->objectName(), TTK::UI::BackgroundStyle10));
+    layout->addWidget(m_mainWidget);
     setLayout(layout);
 
     m_timer = new QTimer(this);
@@ -54,7 +54,7 @@ MusicIdentifySongWidget::~MusicIdentifySongWidget()
     delete m_detectedButton;
     delete m_detectedLabel;
     delete m_detectedMovie;
-    delete m_mainWindow;
+    delete m_mainWidget;
 }
 
 void MusicIdentifySongWidget::initialize()
@@ -104,7 +104,7 @@ void MusicIdentifySongWidget::detectedButtonClicked()
 
 void MusicIdentifySongWidget::reDetectButtonClicked()
 {
-    m_mainWindow->setCurrentIndex(0);
+    m_mainWidget->setCurrentIndex(0);
     if(m_player)
     {
         m_player->stop();
@@ -209,8 +209,8 @@ void MusicIdentifySongWidget::positionChanged(qint64 position)
 
 void MusicIdentifySongWidget::createDetectedWidget()
 {
-    QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);
+    QWidget *widget = new QWidget(m_mainWidget);
+    widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle05);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
 
     m_detectedMovie = new QMovie(":/toolSets/lb_radar", {}, widget);
@@ -247,16 +247,16 @@ void MusicIdentifySongWidget::createDetectedWidget()
     widgetLayout->addWidget(text, 0, Qt::AlignCenter);
     widget->setLayout(widgetLayout);
     //
-    m_mainWindow->addWidget(widget);
-    m_mainWindow->setCurrentWidget(widget);
+    m_mainWidget->addWidget(widget);
+    m_mainWidget->setCurrentWidget(widget);
 }
 
 void MusicIdentifySongWidget::createDetectedSuccessedWidget()
 {
-    if(m_mainWindow->count() > 1)
+    if(m_mainWidget->count() > 1)
     {
         delete m_lrcLabel;
-        delete m_mainWindow->widget(1);
+        delete m_mainWidget->widget(1);
     }
     else
     {
@@ -267,8 +267,8 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     }
     const MusicSongIdentifyData &songIdentify = m_networkRequest->items().first();
 
-    QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);
+    QWidget *widget = new QWidget(m_mainWidget);
+    widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle05);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
     //
     QWidget *infoWidget = new QWidget(widget);
@@ -405,19 +405,19 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     widgetLayout->addStretch(1);
     widget->setLayout(widgetLayout);
     //
-    m_mainWindow->addWidget(widget);
-    m_mainWindow->setCurrentWidget(widget);
+    m_mainWidget->addWidget(widget);
+    m_mainWidget->setCurrentWidget(widget);
 }
 
 void MusicIdentifySongWidget::createDetectedFailedWidget()
 {
-    if(m_mainWindow->count() > 1)
+    if(m_mainWidget->count() > 1)
     {
-        delete m_mainWindow->widget(1);
+        delete m_mainWidget->widget(1);
     }
 
-    QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);
+    QWidget *widget = new QWidget(m_mainWidget);
+    widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle05);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
 
     QLabel *iconLabel = new QLabel(widget);
@@ -448,6 +448,6 @@ void MusicIdentifySongWidget::createDetectedFailedWidget()
     widgetLayout->addStretch(1);
     widget->setLayout(widgetLayout);
     //
-    m_mainWindow->addWidget(widget);
-    m_mainWindow->setCurrentWidget(widget);
+    m_mainWidget->addWidget(widget);
+    m_mainWidget->setCurrentWidget(widget);
 }

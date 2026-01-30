@@ -22,7 +22,7 @@ MusicVideoSearchTableWidget::~MusicVideoSearchTableWidget()
     removeItems();
 }
 
-void MusicVideoSearchTableWidget::startToSearchByText(const QString &text)
+void MusicVideoSearchTableWidget::startToSearchByValue(const QString &value)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -34,7 +34,7 @@ void MusicVideoSearchTableWidget::startToSearchByText(const QString &text)
     setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
 
     m_singleRadioMode = false;
-    m_networkRequest->startToSearch(text);
+    m_networkRequest->startToSearch(value);
 }
 
 void MusicVideoSearchTableWidget::downloadQueryResult(int row)

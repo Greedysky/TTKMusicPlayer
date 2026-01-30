@@ -34,7 +34,6 @@ public:
     enum Module
     {
         None,   /*!< KuGou none */
-        Song,   /*!< KuGou song */
         Radio,  /*!< KuGou radio */
         Movie,  /*!< Kugou movie */
         Single  /*!< KuGou single */
@@ -50,23 +49,11 @@ public:
      */
     void setUrl(const QString &url);
 
-Q_SIGNALS:
-    /*!
-     * Switch to selected item style.
-     */
-    void buttonClicked(int index);
-
 public Q_SLOTS:
     /*!
      * Set web index refresh.
      */
     void refresh();
-
-private Q_SLOTS:
-    /*!
-     * Kugou song index changed.
-     */
-    void kugouSongIndexChanged(int index);
 
 private:
     /*!
@@ -77,10 +64,6 @@ private:
      * Create web view widget.
      */
     void createWebViewer(Module type);
-    /*!
-     * Create kugou song widget.
-     */
-    void createKugouSongWidget(bool power);
 
 private:
     TTK_DECLARE_PRIVATE(QKugouWindow)

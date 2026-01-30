@@ -42,6 +42,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_HEADER_FILES
   ${TTK_WIDGET_DIR}/musicsongsharingwidget.h
   ${TTK_WIDGET_DIR}/musicsourceupdatewidget.h
   ${TTK_WIDGET_DIR}/musicglobalhotkeyedit.h
+  ${TTK_WIDGET_DIR}/musicmainrecommendwidget.h
   ${TTK_WIDGET_DIR}/musicsimilarquerywidget.h
   ${TTK_WIDGET_DIR}/musicvolumepopwidget.h
   ${TTK_WIDGET_DIR}/musicmorefunctionspopwidget.h
@@ -95,6 +96,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_SOURCE_FILES
   ${TTK_WIDGET_DIR}/musicsongsharingwidget.cpp
   ${TTK_WIDGET_DIR}/musicsourceupdatewidget.cpp
   ${TTK_WIDGET_DIR}/musicglobalhotkeyedit.cpp
+  ${TTK_WIDGET_DIR}/musicmainrecommendwidget.cpp
   ${TTK_WIDGET_DIR}/musicsimilarquerywidget.cpp
   ${TTK_WIDGET_DIR}/musicvolumepopwidget.cpp
   ${TTK_WIDGET_DIR}/musicmorefunctionspopwidget.cpp

@@ -19,49 +19,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkclickedlabel.h"
-#include "musicabstractitemquerywidget.h"
 #include "musiccategoryconfigmanager.h"
+#include "musicabstractitemquerywidget.h"
 
-class QGridLayout;
 class MusicPageQueryWidget;
 class MusicArtistListQueryCategoryPopWidget;
-
-/*! @brief The class of the artist list music item widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicArtistListQueryItemWidget : public TTKClickedLabel
-{
-    Q_OBJECT
-public:
-    /*!
-     * Object constructor.
-     */
-    explicit MusicArtistListQueryItemWidget(QWidget *parent = nullptr);
-
-    /*!
-     * Set media results item.
-     */
-    void setResultDataItem(const MusicResultDataItem &item);
-
-Q_SIGNALS:
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked(const MusicResultDataItem &item);
-
-public Q_SLOTS:
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked();
-
-private:
-    MusicResultDataItem m_itemData;
-
-};
-
-
 
 /*! @brief The class of the artist list music query widget.
  * @author Greedysky <greedysky@163.com>

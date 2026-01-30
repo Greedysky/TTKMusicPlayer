@@ -42,6 +42,7 @@ HEADERS += \
     $$PWD/musicsongsharingwidget.h \
     $$PWD/musicsourceupdatewidget.h \
     $$PWD/musicglobalhotkeyedit.h \
+    $$PWD/musicmainrecommendwidget.h \
     $$PWD/musicsimilarquerywidget.h \
     $$PWD/musicvolumepopwidget.h \
     $$PWD/musicmorefunctionspopwidget.h \
@@ -94,6 +95,7 @@ SOURCES += \
     $$PWD/musicsongsharingwidget.cpp \
     $$PWD/musicsourceupdatewidget.cpp \
     $$PWD/musicglobalhotkeyedit.cpp \
+    $$PWD/musicmainrecommendwidget.cpp \
     $$PWD/musicsimilarquerywidget.cpp \
     $$PWD/musicvolumepopwidget.cpp \
     $$PWD/musicmorefunctionspopwidget.cpp \

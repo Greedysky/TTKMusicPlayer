@@ -45,18 +45,17 @@ public:
     enum FunctionModule
     {
         // kugou main submoudle
-        KugGouSongWidget,       /*!< Insert kugou song widget */
+        MainRecommendWidget,    /*!< Insert main recommend widget */
         KugGouRadioWidget,      /*!< Insert kugou radio widget */
         kugouPlaylistWidget,    /*!< Insert kugou playlist widget */
         kugouMovieWidget,       /*!< Insert kugou movie widget */
         VideoWidget,            /*!< Insert video widget */
         LrcWidget,              /*!< Insert lrc display widget */
-        // kugou song submoudle
-        RecommendWidget,        /*!< Insert recommend found widget */
+        // other moudle
+        SongRecommendWidget,    /*!< Insert song recommend found widget */
         ToplistWidget,          /*!< Insert toplist found widget */
         ArtistCategoryWidget,   /*!< Insert artist category found widget */
         PlaylistCategoryWidget, /*!< Insert playlist category found widget */
-        // other moudle
         SearchWidget,           /*!< Insert search display widget */
         SearchSingleWidget,     /*!< Insert search single display widget */
         SimilarWidget,          /*!< Insert similar found widget */

@@ -240,7 +240,7 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
 {
     switchToSearchTable();
     m_searchEdit->editor()->setText(name);
-    m_tableWidget->startToSearchByText(name);
+    m_tableWidget->startToSearchByValue(name);
 }
 
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)

@@ -34,7 +34,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     containerLayout->setContentsMargins(0, 0, 0, 0);
 
     m_searchLabel = new QLabel(containerWidget);
-    m_searchLabel->setStyleSheet(TTK::UI::FontStyle04);
+    m_searchLabel->setStyleSheet(TTK::UI::FontStyle05);
     m_searchEdit = new MusicItemSearchEdit(containerWidget);
     m_searchEdit->setFixedHeight(40);
 

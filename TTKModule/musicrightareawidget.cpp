@@ -17,6 +17,7 @@
 #if !TTK_QT_VERSION_CHECK(6,0,0) || TTK_QT_VERSION_CHECK(6,2,0)
 #  include "musicidentifysongwidget.h"
 #endif
+#include "musicmainrecommendwidget.h"
 #include "musicsimilarquerywidget.h"
 #include "musicalbumquerywidget.h"
 #include "musicartistquerywidget.h"
@@ -46,9 +47,9 @@ MusicRightAreaWidget *MusicRightAreaWidget::m_instance = nullptr;
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent),
       m_lowPowerMode(false),
-      m_funcIndex(KugGouSongWidget),
+      m_funcIndex(MainRecommendWidget),
       m_lastWidgetIndex(0),
-      m_lastFuncIndex(KugGouSongWidget),
+      m_lastFuncIndex(MainRecommendWidget),
       m_currentWidget(nullptr),
       m_permanentWidget(nullptr),
       m_videoPlayerWidget(nullptr),
@@ -293,7 +294,7 @@ void MusicRightAreaWidget::applyParameter()
     if(config != m_lowPowerMode)
     {
         m_lowPowerMode = config;
-        if(m_funcIndex == KugGouSongWidget || m_funcIndex == KugGouRadioWidget || m_funcIndex == kugouMovieWidget || m_funcIndex == KuiSheWidget)
+        if(m_funcIndex == KugGouRadioWidget || m_funcIndex == kugouMovieWidget || m_funcIndex == KuiSheWidget)
         {
             functionClicked(m_funcIndex);
         }
@@ -368,9 +369,11 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 
     switch(m_funcIndex)
     {
-        case KugGouSongWidget: //insert kugou song widget
+        case MainRecommendWidget: //insert main recommend widget
         {
-            createkWebWindow(QKugouWindow::Song);
+            MusicMainRecommendWidget *widget = new MusicMainRecommendWidget(this);
+            m_ui->functionsContainer->addWidget(m_currentWidget = widget);
+            m_ui->functionsContainer->setCurrentWidget(widget);
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
@@ -418,7 +421,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicTopAreaWidget::instance()->backgroundThemeDownloadFinished();
             break;
         }
-        case RecommendWidget: //insert recommend found widget
+        case SongRecommendWidget: //insert song recommend found widget
         {
             MusicRecommendQueryWidget *widget = new MusicRecommendQueryWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
@@ -461,11 +464,11 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             if(!searchedString.isEmpty() && searchedString != tr("Please input search words"))
             {
                 m_ui->songSearchEdit->setText(searchedString);
-                m_ui->songSearchWidget->startToSearchByText(searchedString);
+                m_ui->songSearchWidget->startToSearchByValue(searchedString);
             }
             else
             {
-                functionClicked(MusicRightAreaWidget::KugGouSongWidget);
+                functionClicked(MusicRightAreaWidget::MainRecommendWidget);
                 MusicToastLabel::popup(tr("Please enter input search text first"));
                 break;
             }
@@ -714,7 +717,7 @@ void MusicRightAreaWidget::showSongMainWidget()
 #ifdef Q_OS_UNIX
     m_ui->functionsContainer->setCurrentIndex(MUSIC_LRC_PAGE);
 #endif
-    functionClicked(MusicRightAreaWidget::KugGouSongWidget);
+    functionClicked(MusicRightAreaWidget::MainRecommendWidget);
     G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, pre);
 }
 
@@ -944,7 +947,6 @@ void MusicRightAreaWidget::createkWebWindow(int type)
 
     QWidget *widget = new QKugouWindow(module, this);
     connect(m_ui->refreshButton, SIGNAL(clicked()), widget, SLOT(refresh()));
-    connect(widget, SIGNAL(buttonClicked(int)), this, SLOT(functionClicked(int)));
 
     m_ui->functionsContainer->addWidget(m_currentWidget = widget);
     m_ui->functionsContainer->setCurrentWidget(widget);

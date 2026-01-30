@@ -83,6 +83,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_HEADER_FILES
   ${TTK_CORE_NETWORK_DIR}/music/zed/musicunityquerymovierequest.h
   ${TTK_CORE_NETWORK_DIR}/music/musicsongrecommendrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/musicsongsuggestrequest.h
+  ${TTK_CORE_NETWORK_DIR}/music/musicmainrecommendrequest.h
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmconfigmanager.h
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongrequest.h
   ${TTK_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.h
@@ -182,6 +183,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_SOURCE_FILES
   ${TTK_CORE_NETWORK_DIR}/music/zed/musicunityquerymovierequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/musicsongrecommendrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/musicsongsuggestrequest.cpp
+  ${TTK_CORE_NETWORK_DIR}/music/musicmainrecommendrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmconfigmanager.cpp
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.cpp

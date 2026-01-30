@@ -21,54 +21,6 @@
 
 #include "musicabstractitemquerywidget.h"
 
-/*! @brief The class of the artist albums item widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicArtistAlbumsItemWidget : public QLabel
-{
-    Q_OBJECT
-public:
-    /*!
-     * Object constructor.
-     */
-    explicit MusicArtistAlbumsItemWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicArtistAlbumsItemWidget();
-
-    /*!
-     * Set media results item.
-     */
-    void setResultDataItem(const MusicResultDataItem &item);
-
-Q_SIGNALS:
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked(const QString &id);
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    void downloadFinished(const QByteArray &bytes);
-    /*!
-     * Image render finished.
-     */
-    void renderFinished(const QPixmap &data);
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked();
-
-private:
-    MusicResultDataItem m_itemData;
-    QPushButton *m_playButton;
-    QLabel *m_iconLabel, *m_nameLabel, *m_updateLabel;
-
-};
-
 class MusicPageQueryWidget;
 
 /*! @brief The class of the artist mvs query widget.
@@ -108,7 +60,7 @@ public Q_SLOTS:
     /*!
      * Current item clicked.
      */
-    void currentItemClicked(const QString &id);
+    void currentItemClicked(const MusicResultDataItem &item);
     /*!
      * Page widget button has changed.
      */
@@ -159,7 +111,7 @@ public Q_SLOTS:
     /*!
      * Current item clicked.
      */
-    void currentItemClicked(const QString &id);
+    void currentItemClicked(const MusicResultDataItem &item);
     /*!
      * Page widget button has changed.
      */

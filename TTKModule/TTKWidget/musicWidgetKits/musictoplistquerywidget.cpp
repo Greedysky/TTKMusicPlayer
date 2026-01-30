@@ -7,11 +7,11 @@ MusicToplistQueryWidget::MusicToplistQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent),
       m_categoryButton(nullptr)
 {
-    m_queryTableWidget = new MusicItemQueryTableWidget(this);
-    m_queryTableWidget->hide();
+    m_tableWidget = new MusicItemQueryTableWidget(this);
+    m_tableWidget->hide();
 
     MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeToplistRequest(this);
-    m_queryTableWidget->setQueryInput(req);
+    m_tableWidget->setQueryInput(req);
 
     connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(queryAllFinished()));
     connect(req, SIGNAL(createToplistItem(MusicResultDataItem)), SLOT(createToplistItem(MusicResultDataItem)));
@@ -25,13 +25,13 @@ MusicToplistQueryWidget::~MusicToplistQueryWidget()
 void MusicToplistQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    m_queryTableWidget->queryInput()->startToSearch({});
+    m_tableWidget->queryInput()->startToSearch({});
     createLabels();
 }
 
 void MusicToplistQueryWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeSection();
+    m_tableWidget->resizeSection();
 
     if(!m_resizeWidgets.isEmpty())
     {
@@ -61,15 +61,15 @@ void MusicToplistQueryWidget::createLabels()
     delete m_statusLabel;
     m_statusLabel = nullptr;
 
-    initFirstWidget();
+    createFirstWidget();
     m_container->show();
 
-    layout()->removeWidget(m_mainWindow);
+    layout()->removeWidget(m_mainWidget);
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWindow);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWidget);
     layout()->addWidget(scrollArea);
 
-    QWidget *function = new QWidget(m_mainWindow);
+    QWidget *function = new QWidget(m_mainWidget);
     function->setStyleSheet(TTK::UI::CheckBoxStyle01 + TTK::UI::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
@@ -81,7 +81,7 @@ void MusicToplistQueryWidget::createLabels()
     QHBoxLayout *categoryWidgetLayout = new QHBoxLayout(categoryWidget);
 
     m_categoryButton = new MusicToplistQueryCategoryPopWidget(categoryWidget);
-    m_categoryButton->setCategory(m_queryTableWidget->queryInput()->queryServer(), this);
+    m_categoryButton->setCategory(m_tableWidget->queryInput()->queryServer(), this);
 
     categoryWidgetLayout->addWidget(m_categoryButton);
     categoryWidgetLayout->addStretch(1);
@@ -149,7 +149,7 @@ void MusicToplistQueryWidget::createLabels()
     grid->addStretch(1);
 
     function->setLayout(grid);
-    m_mainWindow->layout()->addWidget(function);
+    m_mainWidget->layout()->addWidget(function);
 
     m_resizeWidgets.append({nameLabel, nameLabel->font()});
     m_resizeWidgets.append({playCountLabel, playCountLabel->font()});
@@ -197,6 +197,6 @@ void MusicToplistQueryWidget::categoryChanged(const MusicResultsCategoryItem &ca
         m_categoryButton->closeMenu();
 
         m_songButton->setText(tr("SongItems"));
-        m_queryTableWidget->queryInput()->startToSearch(category.m_key);
+        m_tableWidget->queryInput()->startToSearch(category.m_key);
     }
 }

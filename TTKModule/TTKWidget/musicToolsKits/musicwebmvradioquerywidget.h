@@ -19,67 +19,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractitemquerywidget.h"
 #include "musiccategoryconfigmanager.h"
+#include "musicabstractitemquerywidget.h"
 
 class MusicWebMVRadioInfoWidget;
 class MusicWebMVRadioQueryCategoryPopWidget;
-
-/*! @brief The class of the music mv query item widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicWebMVRadioQueryItemWidget : public QLabel
-{
-    Q_OBJECT
-public:
-    /*!
-     * Object constructor.
-     */
-    explicit MusicWebMVRadioQueryItemWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicWebMVRadioQueryItemWidget();
-
-    /*!
-     * Set media results item.
-     */
-    void setResultDataItem(const MusicResultDataItem &item);
-
-Q_SIGNALS:
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked(const MusicResultDataItem &item);
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    void downloadFinished(const QByteArray &bytes);
-    /*!
-     * Image render finished.
-     */
-    void renderFinished(const QPixmap &data);
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked();
-
-private:
-    /*!
-     * Override the widget event.
-     */
-    virtual void enterEvent(QtEnterEvent *event) override final;
-    virtual void leaveEvent(QEvent *event) override final;
-
-    MusicResultDataItem m_itemData;
-    QPushButton *m_playButton;
-    QLabel *m_iconLabel, *m_nameLabel;
-
-};
-
-
 
 /*! @brief The class of the music mv query widget.
  * @author Greedysky <greedysky@163.com>

@@ -1,38 +1,10 @@
 #include "musicartistlistquerywidget.h"
-#include "musicdownloadqueryfactory.h"
-#include "musictinyuiobject.h"
 #include "musicartistlistquerycategorypopwidget.h"
+#include "musicdownloadqueryfactory.h"
 #include "musicpagequerywidget.h"
 #include "musicrightareawidget.h"
 #include "ttkclickedgroup.h"
-
-static constexpr int WIDTH_LABEL_SIZE = 150;
-static constexpr int HEIGHT_LABEL_SIZE = 25;
-static constexpr int LINE_SPACING_SIZE = 150;
-
-MusicArtistListQueryItemWidget::MusicArtistListQueryItemWidget(QWidget *parent)
-    : TTKClickedLabel(parent)
-{
-    setAlignment(Qt::AlignCenter);
-    setStyleSheet(TTK::UI::ColorStyle02);
-    setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
-
-    connect(this, SIGNAL(clicked()), SLOT(currentItemClicked()));
-}
-
-void MusicArtistListQueryItemWidget::setResultDataItem(const MusicResultDataItem &item)
-{
-    m_itemData = item;
-    setToolTip(item.m_name);
-    setText(TTK::Widget::elidedText(font(), toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
-}
-
-void MusicArtistListQueryItemWidget::currentItemClicked()
-{
-    Q_EMIT currentItemClicked(m_itemData);
-}
-
-
+#include "musicqueryitemwidget.h"
 
 MusicArtistListQueryWidget::MusicArtistListQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent),
@@ -43,9 +15,9 @@ MusicArtistListQueryWidget::MusicArtistListQueryWidget(QWidget *parent)
       m_categoryButton(nullptr)
 {
     m_container->show();
-    layout()->removeWidget(m_mainWindow);
+    layout()->removeWidget(m_mainWidget);
     layout()->addWidget(m_container);
-    m_container->addWidget(m_mainWindow);
+    m_container->addWidget(m_mainWidget);
 
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeArtistListRequest(this);
     connect(m_networkRequest, SIGNAL(createArtistListItem(MusicResultDataItem)), SLOT(createArtistListItem(MusicResultDataItem)));
@@ -78,7 +50,8 @@ void MusicArtistListQueryWidget::resizeWidget()
             m_gridLayout->removeWidget(widget.m_label);
         }
 
-        const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
+        const int lineSize = MusicTextQueryItemWidget::LINE_SPACING_SIZE;
+        const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
         for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignCenter);
@@ -93,17 +66,18 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         delete m_statusLabel;
         m_statusLabel = nullptr;
 
-        m_container->removeWidget(m_mainWindow);
+        m_container->removeWidget(m_mainWidget);
         QScrollArea *scrollArea = new QScrollArea(this);
-        TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWindow);
+        TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWidget);
         m_container->addWidget(scrollArea);
 
         m_initialized = true;
-        QVBoxLayout *mainLayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
-        QWidget *containTopWidget = new QWidget(m_mainWindow);
+        QVBoxLayout *mainLayout = TTKObjectCast(QVBoxLayout*, m_mainWidget->layout());
+        QWidget *containTopWidget = new QWidget(m_mainWidget);
         QVBoxLayout *containTopLayout = new QVBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
-        m_categoryButton = new MusicArtistListQueryCategoryPopWidget(m_mainWindow);
+
+        m_categoryButton = new MusicArtistListQueryCategoryPopWidget(m_mainWidget);
         m_categoryButton->setCategory(m_networkRequest->queryServer(), this);
         containTopLayout->addWidget(m_categoryButton);
         //
@@ -137,11 +111,11 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         containTopLayout->addWidget(containNumberWidget);
         containTopWidget->setLayout(containTopLayout);
 
-        QFrame *line = new QFrame(m_mainWindow);
+        QFrame *line = new QFrame(m_mainWidget);
         line->setFrameShape(QFrame::HLine);
         line->setStyleSheet(TTK::UI::ColorStyle12);
 
-        QWidget *containWidget = new QWidget(m_mainWindow);
+        QWidget *containWidget = new QWidget(m_mainWidget);
         m_gridLayout = new QGridLayout(containWidget);
         m_gridLayout->setVerticalSpacing(15);
         containWidget->setLayout(m_gridLayout);
@@ -150,10 +124,10 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         mainLayout->addWidget(line);
         mainLayout->addWidget(containWidget);
 
-        m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
+        m_pageQueryWidget = new MusicPageQueryWidget(m_mainWidget);
         connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        mainLayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, m_networkRequest->pageTotalSize()));
+        mainLayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWidget, m_networkRequest->pageTotalSize()));
         mainLayout->addStretch(1);
     }
 
@@ -163,11 +137,12 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         m_pageQueryWidget->reset(m_networkRequest->pageTotalSize());
     }
 
-    MusicArtistListQueryItemWidget *label = new MusicArtistListQueryItemWidget(this);
+    MusicTextQueryItemWidget *label = new MusicTextQueryItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentArtistListClicked(MusicResultDataItem)));
     label->setResultDataItem(item);
 
-    const int lineNumber = (QUERY_WIDGET_WIDTH - LINE_SPACING_SIZE / 2) / LINE_SPACING_SIZE;
+    const int lineSize = MusicTextQueryItemWidget::LINE_SPACING_SIZE;
+    const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
 
     m_resizeWidgets.append({label, label->font()});

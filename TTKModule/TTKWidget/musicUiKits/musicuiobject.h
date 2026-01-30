@@ -115,6 +115,9 @@ namespace TTK
         static const QString BackgroundStyle12 = " \
             background-color:rgb(254, 249, 229);";
 
+        static const QString BackgroundStyle13 = " \
+            background-color:rgb(21, 143, 225);";
+
         ///border
         static const QString BorderStyle01 = " \
             border:none;";
@@ -145,9 +148,12 @@ namespace TTK
             font-size:15px;";
 
         static const QString FontStyle04 = " \
-            font-size:20px;";
+            font-size:18px;";
 
         static const QString FontStyle05 = " \
+            font-size:20px;";
+
+        static const QString FontStyle06 = " \
             font-size:25px;";
 
         ///Custom

@@ -12,11 +12,11 @@ MusicPlaylistQueryInfoWidget::MusicPlaylistQueryInfoWidget(QWidget *parent)
       m_commentsWidget(nullptr)
 {
     m_shareType = MusicSongSharingWidget::Module::Playlist;
-    m_queryTableWidget = new MusicItemQueryTableWidget(this);
+    m_tableWidget = new MusicItemQueryTableWidget(this);
     m_container->show();
 
-    initFirstWidget();
-    initSecondWidget();
+    createFirstWidget();
+    createSecondWidget();
 }
 
 MusicPlaylistQueryInfoWidget::~MusicPlaylistQueryInfoWidget()
@@ -26,7 +26,7 @@ MusicPlaylistQueryInfoWidget::~MusicPlaylistQueryInfoWidget()
 
 void MusicPlaylistQueryInfoWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeSection();
+    m_tableWidget->resizeSection();
 
     if(!m_resizeWidgets.isEmpty())
     {
@@ -55,14 +55,14 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     setCurrentValue(item.m_id);
 
     m_infoLabel->setText(item.m_description);
-    m_queryTableWidget->startToSearchByText(item.m_id);
+    m_tableWidget->startToSearchByValue(item.m_id);
 
-    layout()->removeWidget(m_mainWindow);
+    layout()->removeWidget(m_mainWidget);
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWindow);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWidget);
     layout()->addWidget(scrollArea);
 
-    QWidget *function = new QWidget(m_mainWindow);
+    QWidget *function = new QWidget(m_mainWidget);
     function->setStyleSheet(TTK::UI::CheckBoxStyle01);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
@@ -156,7 +156,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
 
     QLabel *numberLabel = new QLabel(topRightWidget);
     numberLabel->setAlignment(Qt::AlignCenter);
-    numberLabel->setStyleSheet(TTK::UI::FontStyle05 + TTK::UI::ColorStyle11);
+    numberLabel->setStyleSheet(TTK::UI::FontStyle06 + TTK::UI::ColorStyle11);
 
     const int number = 7 + TTK::random(3);
     numberLabel->setText(QString("%1.%2").arg(number).arg(TTK::random(10)));
@@ -227,7 +227,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     grid->addStretch(1);
 
     function->setLayout(grid);
-    m_mainWindow->layout()->addWidget(function);
+    m_mainWidget->layout()->addWidget(function);
 
     m_resizeWidgets.append({nameLabel, nameLabel->font()});
     m_resizeWidgets.append({creatorLabel, creatorLabel->font()});
@@ -239,15 +239,15 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
 
 void MusicPlaylistQueryInfoWidget::setQueryInput(MusicAbstractQueryRequest *query)
 {
-    m_queryTableWidget->setQueryInput(query);
+    m_tableWidget->setQueryInput(query);
     connect(query, SIGNAL(downloadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
 void MusicPlaylistQueryInfoWidget::setCurrentIndex(int index)
 {
-    if(m_queryTableWidget)
+    if(m_tableWidget)
     {
-        m_queryTableWidget->hide();
+        m_tableWidget->hide();
     }
 
     if(m_infoLabel)
@@ -258,9 +258,9 @@ void MusicPlaylistQueryInfoWidget::setCurrentIndex(int index)
     delete m_commentsWidget;
     m_commentsWidget = nullptr;
 
-    if(index == 0 && m_queryTableWidget)
+    if(index == 0 && m_tableWidget)
     {
-        m_queryTableWidget->show();
+        m_tableWidget->show();
     }
     else if(index == 1 && m_infoLabel)
     {

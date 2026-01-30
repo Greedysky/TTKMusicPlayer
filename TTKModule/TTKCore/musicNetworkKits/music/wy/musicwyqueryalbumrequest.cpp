@@ -60,6 +60,7 @@ void MusicWYQueryAlbumRequest::downloadFinished()
                 item.m_time = TTKDateTime::format(albumValue["publishTime"].toULongLong(), TTK_DATE_FORMAT);
                 item.m_category = albumValue["language"].toString();
 
+                const QString &time = TTKDateTime::format(albumValue["publishTime"].toULongLong(), TTK_YEAR_FORMAT);
                 const QVariantList &datas = value["songs"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -99,7 +100,7 @@ void MusicWYQueryAlbumRequest::downloadFinished()
                     info.m_coverUrl = albumObject["picUrl"].toString();
                     info.m_lrcUrl = TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["dt"].toInt());
-                    info.m_year.clear();
+                    info.m_year = time;
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
@@ -182,8 +183,8 @@ void MusicWYQueryArtistAlbumRequest::downloadFinished()
 
                     MusicResultDataItem item;
                     item.m_id = value["id"].toString();
-                    item.m_coverUrl = ReqWYInterface::makeCoverPixmapUrl(value["picUrl"].toString());
                     item.m_name = value["name"].toString();
+                    item.m_coverUrl = ReqWYInterface::makeCoverPixmapUrl(value["picUrl"].toString());
                     item.m_time = TTKDateTime::format(value["publishTime"].toULongLong(), TTK_DATE2_FORMAT);
                     Q_EMIT createAlbumItem(item);
                 }

@@ -59,7 +59,7 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     }
     vBoxLayout->addWidget(m_layoutWidget);
 
-    initFunctionLabel();
+    createFunctionLabel();
     createNoLrcCurrentInfo();
 
     m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(tr("No song is playing now"));
@@ -600,7 +600,7 @@ void MusicLrcContainerForInterior::resizeEvent(QResizeEvent *event)
     resizeWindow();
 }
 
-void MusicLrcContainerForInterior::initFunctionLabel()
+void MusicLrcContainerForInterior::createFunctionLabel()
 {
     m_functionLabel = new QWidget(this);
     m_functionLabel->setFixedHeight(40);

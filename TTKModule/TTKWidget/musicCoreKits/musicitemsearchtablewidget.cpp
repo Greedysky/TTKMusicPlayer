@@ -13,13 +13,6 @@ MusicItemSearchTableWidget::~MusicItemSearchTableWidget()
     delete m_searchActions;
 }
 
-void MusicItemSearchTableWidget::startToSearchByText(const QString &text)
-{
-    Q_UNUSED(text);
-    setLoadingStatus(true);
-    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
-}
-
 void MusicItemSearchTableWidget::searchActionClicked(QAction *action)
 {
     const int row = currentRow();

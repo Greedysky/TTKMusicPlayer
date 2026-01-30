@@ -70,13 +70,13 @@ private Q_SLOTS:
 
 private:
     /*!
-     * Init main widget.
+     * Create main widget.
      */
-    void initFirstWidget();
+    void createFirstWidget();
     /*!
-     * Init connect to wireless widget.
+     * Create connect to wireless widget.
      */
-    void initSecondWidget();
+    void createSecondWidget();
     /*!
      * Update device label display.
      */

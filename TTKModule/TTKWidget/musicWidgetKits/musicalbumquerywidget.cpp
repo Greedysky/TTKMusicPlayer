@@ -10,8 +10,8 @@ MusicAlbumQueryWidget::MusicAlbumQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent)
 {
     m_shareType = MusicSongSharingWidget::Module::Album;
-    m_queryTableWidget = new MusicItemQueryTableWidget(this);
-    m_queryTableWidget->hide();
+    m_tableWidget = new MusicItemQueryTableWidget(this);
+    m_tableWidget->hide();
 
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), SLOT(queryAllFinished()));
@@ -27,8 +27,8 @@ void MusicAlbumQueryWidget::setCurrentValue(const QString &value)
 void MusicAlbumQueryWidget::setCurrentKey(const QString &id)
 {
     MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
-    m_queryTableWidget->setQueryInput(req);
-    m_queryTableWidget->startToSearchByText(id);
+    m_tableWidget->setQueryInput(req);
+    m_tableWidget->startToSearchByValue(id);
 
     connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(queryAlbumFinished()));
     connect(req, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createAlbumItem(MusicResultDataItem)));
@@ -36,7 +36,7 @@ void MusicAlbumQueryWidget::setCurrentKey(const QString &id)
 
 void MusicAlbumQueryWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeSection();
+    m_tableWidget->resizeSection();
 
     if(!m_resizeWidgets.isEmpty())
     {
@@ -88,7 +88,7 @@ void MusicAlbumQueryWidget::queryAllFinished()
 
 void MusicAlbumQueryWidget::queryAlbumFinished()
 {
-    const MusicAbstractQueryRequest *req = m_queryTableWidget->queryInput();
+    const MusicAbstractQueryRequest *req = m_tableWidget->queryInput();
     if(!req)
     {
         return;
@@ -161,15 +161,15 @@ void MusicAlbumQueryWidget::createLabels()
     delete m_statusLabel;
     m_statusLabel = nullptr;
 
-    initFirstWidget();
+    createFirstWidget();
     m_container->show();
 
-    layout()->removeWidget(m_mainWindow);
+    layout()->removeWidget(m_mainWidget);
     QScrollArea *scrollArea = new QScrollArea(this);
-    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWindow);
+    TTK::Widget::generateVScrollAreaStyle(scrollArea, m_mainWidget);
     layout()->addWidget(scrollArea);
 
-    QWidget *function = new QWidget(m_mainWindow);
+    QWidget *function = new QWidget(m_mainWidget);
     function->setStyleSheet(TTK::UI::CheckBoxStyle01 + TTK::UI::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
@@ -247,7 +247,7 @@ void MusicAlbumQueryWidget::createLabels()
 
     QLabel *numberLabel = new QLabel(topRightWidget);
     numberLabel->setAlignment(Qt::AlignCenter);
-    numberLabel->setStyleSheet(TTK::UI::FontStyle05 + TTK::UI::ColorStyle11);
+    numberLabel->setStyleSheet(TTK::UI::FontStyle06 + TTK::UI::ColorStyle11);
 
     const int number = 7 + TTK::random(3);
     numberLabel->setText(QString("%1.%2").arg(number).arg(TTK::random(10)));
@@ -300,7 +300,7 @@ void MusicAlbumQueryWidget::createLabels()
     grid->addStretch(1);
 
     function->setLayout(grid);
-    m_mainWindow->layout()->addWidget(function);
+    m_mainWidget->layout()->addWidget(function);
 
     m_resizeWidgets.append({firstLabel, firstLabel->font()});
     m_resizeWidgets.append({albumLabel, albumLabel->font()});
