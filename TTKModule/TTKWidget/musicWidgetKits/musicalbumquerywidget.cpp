@@ -34,29 +34,31 @@ void MusicAlbumQueryWidget::setCurrentKey(const QString &id)
     connect(req, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createAlbumItem(MusicResultDataItem)));
 }
 
-void MusicAlbumQueryWidget::resizeWidget()
+void MusicAlbumQueryWidget::resizeGeometry()
 {
-    m_tableWidget->resizeSection();
+    m_tableWidget->resizeGeometry();
 
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
-
-        TTKResizeWidget *data = &m_resizeWidgets[1];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width + 30));
-
-        data = &m_resizeWidgets[2];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[3];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[4];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[5];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        return;
     }
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
+
+    TTKResizeWidget *data = &m_resizeWidgets[1];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width + 30));
+
+    data = &m_resizeWidgets[2];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[3];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[4];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[5];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 }
 
 void MusicAlbumQueryWidget::queryAllFinished()
@@ -111,49 +113,51 @@ void MusicAlbumQueryWidget::createAlbumItem(const MusicResultDataItem &item)
 
     createLabels();
 
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        if(TTK::isCoverValid(item.m_coverUrl))
-        {
-            MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-            connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
-            req->startToRequest(item.m_coverUrl);
-        }
-
-        QStringList list{item.m_count, item.m_category, item.m_description, item.m_time};
-        for(int i = 0; i < list.count(); ++i)
-        {
-            if(list[i].isEmpty())
-            {
-                list[i] = TTK_DEFAULT_STR;
-            }
-        }
-
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
-
-        TTKResizeWidget *data = &m_resizeWidgets[0];
-        data->m_label->setText(tr("<font color=#158FE1> Alubm > %1 </font>").arg(list[0]));
-
-        data = &m_resizeWidgets[1];
-        data->m_label->setToolTip(list[0]);
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width + 30));
-
-        data = &m_resizeWidgets[2];
-        data->m_label->setToolTip(tr("Singer: %1").arg(item.m_name));
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[3];
-        data->m_label->setToolTip(tr("Language: %1").arg(list[1]));
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[4];
-        data->m_label->setToolTip(tr("Company: %1").arg(list[2]));
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[5];
-        data->m_label->setToolTip(tr("Year: %1").arg(list[3]));
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        return;
     }
+
+    if(TTK::isCoverValid(item.m_coverUrl))
+    {
+        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
+        req->startToRequest(item.m_coverUrl);
+    }
+
+    QStringList list{item.m_count, item.m_category, item.m_description, item.m_time};
+    for(int i = 0; i < list.count(); ++i)
+    {
+        if(list[i].isEmpty())
+        {
+            list[i] = TTK_DEFAULT_STR;
+        }
+    }
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
+
+    TTKResizeWidget *data = &m_resizeWidgets[0];
+    data->m_label->setText(tr("<font color=#158FE1> Alubm > %1 </font>").arg(list[0]));
+
+    data = &m_resizeWidgets[1];
+    data->m_label->setToolTip(list[0]);
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width + 30));
+
+    data = &m_resizeWidgets[2];
+    data->m_label->setToolTip(tr("Singer: %1").arg(item.m_name));
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[3];
+    data->m_label->setToolTip(tr("Language: %1").arg(list[1]));
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[4];
+    data->m_label->setToolTip(tr("Company: %1").arg(list[2]));
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[5];
+    data->m_label->setToolTip(tr("Year: %1").arg(list[3]));
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 }
 
 void MusicAlbumQueryWidget::createLabels()

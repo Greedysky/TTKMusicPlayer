@@ -96,10 +96,11 @@ public:
      * Get current lrc size.
      */
     int lrcSize() const noexcept;
+
     /*!
      * Resize window bound by resize called.
      */
-    void resizeWindow();
+    void resizeGeometry();
 
     /*!
      * Create float play widget.
@@ -186,7 +187,6 @@ private:
     virtual void mouseReleaseEvent(QMouseEvent *event) override final;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override final;
     virtual void paintEvent(QPaintEvent *event) override final;
-    virtual void resizeEvent(QResizeEvent *event) override final;
 
     /*!
      * Create function label widget.

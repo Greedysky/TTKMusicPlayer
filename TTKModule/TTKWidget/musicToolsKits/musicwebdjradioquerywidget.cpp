@@ -42,26 +42,28 @@ void MusicWebDJRadioQueryWidget::setCurrentKey(const QString &id)
     currentRadioClicked(item);
 }
 
-void MusicWebDJRadioQueryWidget::resizeWidget()
+void MusicWebDJRadioQueryWidget::resizeGeometry()
 {
     if(m_infoWidget)
     {
-        m_infoWidget->resizeWidget();
+        m_infoWidget->resizeGeometry();
     }
 
-    if(!m_resizeWidgets.isEmpty() && m_gridLayout)
+    if(m_resizeWidgets.isEmpty() || !m_gridLayout)
     {
-        for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
-        {
-            m_gridLayout->removeWidget(widget.m_label);
-        }
+        return;
+    }
 
-        const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
-        const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
-        for(int i = 0; i < m_resizeWidgets.count(); ++i)
-        {
-            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
-        }
+    for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
+    {
+        m_gridLayout->removeWidget(widget.m_label);
+    }
+
+    const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
+    const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
+    for(int i = 0; i < m_resizeWidgets.count(); ++i)
+    {
+        m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
     }
 }
 
@@ -129,7 +131,6 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
     const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
     const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignLeft);
-
     m_resizeWidgets.append({label, label->font()});
 }
 

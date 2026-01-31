@@ -59,7 +59,7 @@ public:
     /*!
      * Resize window bound by resize called.
      */
-    void resizeWindow();
+    void resizeGeometry();
     /*!
      * Resize geometry bound by resize called.
      */

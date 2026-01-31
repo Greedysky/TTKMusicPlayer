@@ -203,12 +203,6 @@ bool MusicBottomAreaWidget::isLrcWidgetShowFullScreen() const
     return !m_lrcWidgetShowFullScreen;
 }
 
-void MusicBottomAreaWidget::resizeWindow()
-{
-    const int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - 155 - m_ui->lrcDisplayAllButton->height() - 40;
-    m_ui->lrcDisplayAllButton->move(m_ui->lrcDisplayAllButton->x(), height / 2);
-}
-
 void MusicBottomAreaWidget::applyParameter()
 {
     setSystemCloseConfig(G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toBool());
@@ -222,6 +216,12 @@ void MusicBottomAreaWidget::applyParameter()
     {
         m_blurModule->update(false);
     }
+}
+
+void MusicBottomAreaWidget::resizeWidgetGeometry()
+{
+    const int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - 155 - m_ui->lrcDisplayAllButton->height() - 40;
+    m_ui->lrcDisplayAllButton->move(m_ui->lrcDisplayAllButton->x(), height / 2);
 }
 
 void MusicBottomAreaWidget::lrcWidgetShowFullScreen()

@@ -24,26 +24,28 @@ MusicPlaylistQueryInfoWidget::~MusicPlaylistQueryInfoWidget()
     delete m_commentsWidget;
 }
 
-void MusicPlaylistQueryInfoWidget::resizeWidget()
+void MusicPlaylistQueryInfoWidget::resizeGeometry()
 {
-    m_tableWidget->resizeSection();
+    m_tableWidget->resizeGeometry();
 
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN;
-
-        TTKResizeWidget *data = &m_resizeWidgets[0];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 200 + width));
-
-        data = &m_resizeWidgets[1];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180 + width));
-
-        data = &m_resizeWidgets[2];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 210 + width));
-
-        data = &m_resizeWidgets[3];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 160 + width));
+        return;
     }
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN;
+
+    TTKResizeWidget *data = &m_resizeWidgets[0];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 200 + width));
+
+    data = &m_resizeWidgets[1];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180 + width));
+
+    data = &m_resizeWidgets[2];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 210 + width));
+
+    data = &m_resizeWidgets[3];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 160 + width));
 }
 
 void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &item, QObject *obj)
@@ -234,7 +236,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     m_resizeWidgets.append({tagsLabel, tagsLabel->font()});
     m_resizeWidgets.append({updateLabel, updateLabel->font()});
 
-    resizeWidget();
+    resizeGeometry();
 }
 
 void MusicPlaylistQueryInfoWidget::setQueryInput(MusicAbstractQueryRequest *query)

@@ -49,7 +49,7 @@ public:
     /*!
      * Resize section bound by resize called.
      */
-    void resizeSection() const;
+    void resizeGeometry() const;
 
 Q_SIGNALS:
     /*!
@@ -104,7 +104,7 @@ public:
     /*!
      * Resize window bound by resize called.
      */
-    void resizeWindow();
+    void resizeGeometry();
 
 private:
     TTK::Program m_type;
@@ -136,7 +136,7 @@ public:
     /*!
      * Resize widget bound by resize called.
      */
-    virtual void resizeWidget() override final;
+    virtual void resizeGeometry() override final;
 
 public Q_SLOTS:
     /*!

@@ -33,7 +33,7 @@ MusicSongDailyWidget::~MusicSongDailyWidget()
     delete m_networkRequest;
 }
 
-void MusicSongDailyWidget::resizeWidget()
+void MusicSongDailyWidget::resizeGeometry()
 {
     if(m_image.isNull())
     {
@@ -99,11 +99,11 @@ void MusicSongDailyWidget::downloadImageFinished(const QByteArray &bytes)
     m_note->setText(m_networkRequest->note());
     m_content->setText(m_networkRequest->content());
 
-    resizeWidget();
+    resizeGeometry();
 }
 
 void MusicSongDailyWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    resizeWidget();
+    resizeGeometry();
 }

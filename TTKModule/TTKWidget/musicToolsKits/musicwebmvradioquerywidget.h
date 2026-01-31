@@ -48,7 +48,7 @@ public:
     /*!
      * Resize widget bound by resize called.
      */
-    virtual void resizeWidget() override final;
+    virtual void resizeGeometry() override final;
 
 public Q_SLOTS:
     /*!

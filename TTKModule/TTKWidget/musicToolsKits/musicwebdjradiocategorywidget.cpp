@@ -35,21 +35,23 @@ void MusicWebDJRadioCategoryWidget::initialize()
     m_networkRequest->startToRequest();
 }
 
-void MusicWebDJRadioCategoryWidget::resizeWindow()
+void MusicWebDJRadioCategoryWidget::resizeGeometry()
 {
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        for(QWidget *widget : qAsConst(m_resizeWidgets))
-        {
-            m_gridLayout->removeWidget(widget);
-        }
+        return;
+    }
 
-        const int lineSize = MusicLabelQueryItemWidget::LINE_SPACING_SIZE;
-        const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
-        for(int i = 0; i < m_resizeWidgets.count(); ++i)
-        {
-            m_gridLayout->addWidget(m_resizeWidgets[i], i / lineNumber, i % lineNumber, Qt::AlignCenter);
-        }
+    for(QWidget *widget : qAsConst(m_resizeWidgets))
+    {
+        m_gridLayout->removeWidget(widget);
+    }
+
+    const int lineSize = MusicLabelQueryItemWidget::LINE_SPACING_SIZE;
+    const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
+    for(int i = 0; i < m_resizeWidgets.count(); ++i)
+    {
+        m_gridLayout->addWidget(m_resizeWidgets[i], i / lineNumber, i % lineNumber, Qt::AlignCenter);
     }
 }
 

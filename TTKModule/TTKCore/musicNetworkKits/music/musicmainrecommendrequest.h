@@ -86,4 +86,76 @@ public Q_SLOTS:
 
 };
 
+
+/*! @brief The class of the playlist recommend data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicPlaylistRecommendRequest : public MusicAbstractQueryRequest
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicPlaylistRecommendRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by input data.
+     */
+    virtual void startToSearch(const QString &value) override final;
+    /*!
+     * Start to download query result data.
+     */
+    virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
+
+Q_SIGNALS:
+    /*!
+     * Create the current playlist item.
+     */
+    void createPlaylistItem(const MusicResultDataItem &item);
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downloadFinished() override final;
+
+};
+
+
+/*! @brief The class of the playlist high quality recommend data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicPlaylistHighqualityRecommendRequest : public MusicAbstractQueryRequest
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicPlaylistHighqualityRecommendRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by input data.
+     */
+    virtual void startToSearch(const QString &value) override final;
+    /*!
+     * Start to download query result data.
+     */
+    virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
+
+Q_SIGNALS:
+    /*!
+     * Create the current playlist item.
+     */
+    void createPlaylistItem(const MusicResultDataItem &item);
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downloadFinished() override final;
+
+};
+
 #endif // MUSICMAINRECOMMENDREQUEST_H

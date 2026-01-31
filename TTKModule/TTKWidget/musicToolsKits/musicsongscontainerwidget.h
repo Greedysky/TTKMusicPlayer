@@ -291,7 +291,7 @@ private:
     /*!
      * Resize window bound by resize called.
      */
-    void resizeWindow();
+    void resizeGeometry();
     /*!
      * Update current played rows.
      */

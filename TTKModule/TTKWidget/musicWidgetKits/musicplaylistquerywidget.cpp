@@ -53,26 +53,28 @@ void MusicPlaylistQueryWidget::setCurrentKey(const QString &id)
     currentPlaylistClicked(item);
 }
 
-void MusicPlaylistQueryWidget::resizeWidget()
+void MusicPlaylistQueryWidget::resizeGeometry()
 {
     if(m_infoWidget)
     {
-        m_infoWidget->resizeWidget();
+        m_infoWidget->resizeGeometry();
     }
 
-    if(!m_resizeWidgets.isEmpty() && m_gridLayout)
+    if(m_resizeWidgets.isEmpty() || !m_gridLayout)
     {
-        for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
-        {
-            m_gridLayout->removeWidget(widget.m_label);
-        }
+        return;
+    }
 
-        const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
-        const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
-        for(int i = 0; i < m_resizeWidgets.count(); ++i)
-        {
-            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
-        }
+    for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
+    {
+        m_gridLayout->removeWidget(widget.m_label);
+    }
+
+    const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
+    const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
+    for(int i = 0; i < m_resizeWidgets.count(); ++i)
+    {
+        m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
     }
 }
 
@@ -102,12 +104,10 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
         const QStringList titles{tr("Recommend"), tr("Top"), tr("Hot"), tr("New")};
         for(const QString &data : qAsConst(titles))
         {
-            QLabel *l = new QLabel(data, containTopWidget);
-            l->setStyleSheet(QString("QLabel::hover{ %1 }").arg(TTK::UI::ColorStyle07));
             QFrame *hline = new QFrame(containTopWidget);
             hline->setFrameShape(QFrame::VLine);
             hline->setStyleSheet(TTK::UI::ColorStyle12);
-            containTopLayout->addWidget(l);
+            containTopLayout->addWidget(new QLabel(data, containTopWidget));
             containTopLayout->addWidget(hline);
         }
         containTopWidget->setLayout(containTopLayout);
@@ -147,7 +147,6 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
     const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
     const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignLeft);
-
     m_resizeWidgets.append({label, label->font()});
 }
 

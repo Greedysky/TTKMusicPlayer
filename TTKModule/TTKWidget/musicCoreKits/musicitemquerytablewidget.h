@@ -45,6 +45,10 @@ public:
      * Download query result data.
      */
     virtual void downloadQueryResult(int row) override;
+    /*!
+     * Resize widget bound by resize called.
+     */
+    virtual void resizeGeometry() override final;
 
     /*!
      * Download data from net and just play or not.
@@ -54,10 +58,6 @@ public:
      * Download batch data from net.
      */
     void downloadBatchData();
-    /*!
-     * Resize section bound by resize called.
-     */
-    void resizeSection() const;
 
 public Q_SLOTS:
     /*!
@@ -89,7 +89,6 @@ private:
     /*!
      * Override the widget event.
      */
-    virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Add search media to play list by index.

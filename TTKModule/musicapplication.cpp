@@ -984,8 +984,8 @@ void MusicApplication::resizeEvent(QResizeEvent *event)
     {
         G_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, size());
         m_topAreaWidget->backgroundThemeChangedByResize();
-        m_rightAreaWidget->resizeWindow();
-        m_bottomAreaWidget->resizeWindow();
+        m_rightAreaWidget->resizeWidgetGeometry();
+        m_bottomAreaWidget->resizeWidgetGeometry();
         TTKAbstractMoveResizeWidget::resizeEvent(event);
     }
     else

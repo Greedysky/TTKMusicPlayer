@@ -46,7 +46,7 @@ public:
     /*!
      * Resize window bound by resize called.
      */
-    void resizeWindow();
+    void resizeGeometry();
 
 Q_SIGNALS:
     /*!

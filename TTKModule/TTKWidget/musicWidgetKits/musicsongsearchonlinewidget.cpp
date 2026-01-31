@@ -69,21 +69,7 @@ void MusicSongSearchTableWidget::downloadQueryResult(int row)
     widget->show();
 }
 
-void MusicSongSearchTableWidget::startToSearchByID(const QString &id)
-{
-    if(!G_NETWORK_PTR->isOnline())   //no network connection
-    {
-        removeItems();
-        return;
-    }
-
-    setLoadingStatus(true);
-    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
-
-    m_networkRequest->startToSearchByID(id);
-}
-
-void MusicSongSearchTableWidget::resizeSection() const
+void MusicSongSearchTableWidget::resizeGeometry()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerView = horizontalHeader();
@@ -102,6 +88,20 @@ void MusicSongSearchTableWidget::resizeSection() const
         it = item(i, 3);
         it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(3) - 31));
     }
+}
+
+void MusicSongSearchTableWidget::startToSearchByID(const QString &id)
+{
+    if(!G_NETWORK_PTR->isOnline())   //no network connection
+    {
+        removeItems();
+        return;
+    }
+
+    setLoadingStatus(true);
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
+
+    m_networkRequest->startToSearchByID(id);
 }
 
 void MusicSongSearchTableWidget::itemCellEntered(int row, int column)
@@ -350,10 +350,10 @@ void MusicSongSearchOnlineWidget::startToSearchByID(const QString &name)
     m_tableWidget->startToSearchByID(name);
 }
 
-void MusicSongSearchOnlineWidget::resizeWindow()
+void MusicSongSearchOnlineWidget::resizeGeometry()
 {
     setResizeLabelText(m_textLabel->toolTip());
-    m_tableWidget->resizeSection();
+    m_tableWidget->resizeGeometry();
 }
 
 void MusicSongSearchOnlineWidget::buttonClicked(int index)

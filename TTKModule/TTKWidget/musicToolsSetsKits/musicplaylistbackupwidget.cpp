@@ -235,7 +235,7 @@ MusicPlaylistBackupWidget::~MusicPlaylistBackupWidget()
     delete m_tableWidget;
 }
 
-void MusicPlaylistBackupWidget::resizeWidget()
+void MusicPlaylistBackupWidget::resizeGeometry()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     const int offset = width - WINDOW_WIDTH_MIN;

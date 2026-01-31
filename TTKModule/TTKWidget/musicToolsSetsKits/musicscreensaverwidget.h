@@ -144,7 +144,7 @@ public:
     /*!
      * Resize window bound by resize called.
      */
-    void resizeWindow();
+    void resizeGeometry();
 
 private:
     /*!
@@ -175,10 +175,11 @@ public:
      * Apply settings parameters.
      */
     void applyParameter();
+
     /*!
      * Resize widget bound by resize called.
      */
-    virtual void resizeWidget() override final;
+    virtual void resizeGeometry() override final;
 
 public:
     /*!

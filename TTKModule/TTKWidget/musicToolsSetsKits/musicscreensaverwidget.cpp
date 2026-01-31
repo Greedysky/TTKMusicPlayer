@@ -178,7 +178,7 @@ void MusicScreenSaverListWidget::addCellItem(QObject *object, const QString &pat
     m_items << item;
 }
 
-void MusicScreenSaverListWidget::resizeWindow()
+void MusicScreenSaverListWidget::resizeGeometry()
 {
     for(MusicScreenSaverListItem *item : qAsConst(m_items))
     {
@@ -196,7 +196,7 @@ void MusicScreenSaverListWidget::resizeWindow()
 void MusicScreenSaverListWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    resizeWindow();
+    resizeGeometry();
 }
 
 
@@ -319,9 +319,9 @@ QVector<bool> MusicScreenSaverWidget::parseSettingParameter()
     return statusVector;
 }
 
-void MusicScreenSaverWidget::resizeWidget()
+void MusicScreenSaverWidget::resizeGeometry()
 {
-    m_backgroundList->resizeWindow();
+    m_backgroundList->resizeGeometry();
 }
 
 void MusicScreenSaverWidget::inputDataChanged()

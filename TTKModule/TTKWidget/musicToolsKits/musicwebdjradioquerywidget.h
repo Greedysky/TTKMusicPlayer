@@ -51,7 +51,7 @@ public:
     /*!
      * Resize widget bound by resize called.
      */
-    virtual void resizeWidget() override final;
+    virtual void resizeGeometry() override final;
 
 Q_SIGNALS:
     /*!

@@ -156,13 +156,13 @@ public:
     void movieRadioSearchByID(const QVariant &data);
 
     /*!
-     * Resize window bound by resize called.
-     */
-    void resizeWindow();
-    /*!
      * Apply settings parameters.
      */
     void applyParameter();
+    /*!
+     * Resize window bound by resize called.
+     */
+    void resizeWidgetGeometry();
 
 public Q_SLOTS:
     /*!

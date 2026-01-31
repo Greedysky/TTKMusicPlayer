@@ -107,20 +107,22 @@ void MusicWebMVRadioInfoWidget::setCurrentValue(const QString &value)
     m_tableWidget->startToSearchByValue(value);
 }
 
-void MusicWebMVRadioInfoWidget::resizeWidget()
+void MusicWebMVRadioInfoWidget::resizeGeometry()
 {
-    m_tableWidget->resizeSection();
+    m_tableWidget->resizeGeometry();
 
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
-
-        TTKResizeWidget *data = &m_resizeWidgets[0];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[1];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        return;
     }
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
+
+    TTKResizeWidget *data = &m_resizeWidgets[0];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[1];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 }
 
 void MusicWebMVRadioInfoWidget::queryAllFinished()
@@ -134,25 +136,27 @@ void MusicWebMVRadioInfoWidget::createMVRadioProgramItem(const MusicResultDataIt
 
     createLabels();
 
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        if(TTK::isCoverValid(item.m_coverUrl))
-        {
-            MusicCoverRequest *req = new MusicCoverSourceRequest(this);
-            connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
-            req->startToRequest(item.m_coverUrl);
-        }
-
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
-
-        TTKResizeWidget *data = &m_resizeWidgets[0];
-        data->m_label->setToolTip(item.m_name);
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[1];
-        data->m_label->setToolTip(tr("Type: %1").arg(item.m_nickName));
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        return;
     }
+
+    if(TTK::isCoverValid(item.m_coverUrl))
+    {
+        MusicCoverRequest *req = new MusicCoverSourceRequest(this);
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
+        req->startToRequest(item.m_coverUrl);
+    }
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
+
+    TTKResizeWidget *data = &m_resizeWidgets[0];
+    data->m_label->setToolTip(item.m_name);
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[1];
+    data->m_label->setToolTip(tr("Type: %1").arg(item.m_nickName));
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 }
 
 void MusicWebMVRadioInfoWidget::downloadMVsButtonClicked()

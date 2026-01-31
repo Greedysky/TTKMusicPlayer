@@ -38,6 +38,7 @@ MusicSquareQueryItemWidget::MusicSquareQueryItemWidget(QWidget *parent)
 
     m_valueLabel = new QLabel(this);
     m_valueLabel->setGeometry(0, 175, WIDTH_LABEL_SIZE, 25);
+    m_valueLabel->setStyleSheet(TTK::UI::ColorStyle03);
     m_valueLabel->setText("-");
 }
 

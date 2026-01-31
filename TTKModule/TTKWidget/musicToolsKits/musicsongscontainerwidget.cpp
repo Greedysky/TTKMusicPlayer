@@ -998,12 +998,12 @@ void MusicSongsContainerWidget::showFloatWidget()
     {
         m_functionWidget = new MusicSongsListFunctionWidget(this);
         connect(m_functionWidget, SIGNAL(deleteSelfObject()), SLOT(deleteFunctionWidget()));
-        resizeWindow();
+        resizeGeometry();
         m_functionWidget->show();
     }
     else
     {
-        resizeWindow();
+        resizeGeometry();
         m_functionWidget->active();
     }
 }
@@ -1058,7 +1058,7 @@ void MusicSongsContainerWidget::showSearchWidget()
     if(m_songSearchWidget == nullptr)
     {
         m_songSearchWidget = new MusicSongSearchDialog(this);
-        resizeWindow();
+        resizeGeometry();
     }
 
     m_songSearchWidget->setVisible(!m_songSearchWidget->isVisible());
@@ -1091,7 +1091,7 @@ void MusicSongsContainerWidget::deleteFunctionWidget()
 void MusicSongsContainerWidget::resizeEvent(QResizeEvent *event)
 {
     MusicSongsToolBoxWidget::resizeEvent(event);
-    resizeWindow();
+    resizeGeometry();
 }
 
 void MusicSongsContainerWidget::dragEnterEvent(QDragEnterEvent *event)
@@ -1312,7 +1312,7 @@ void MusicSongsContainerWidget::setInputModule(QObject *object) const
     connect(object, SIGNAL(addToPlayedList(int)), SLOT(addToPlayedList(int)));
 }
 
-void MusicSongsContainerWidget::resizeWindow()
+void MusicSongsContainerWidget::resizeGeometry()
 {
     if(m_functionWidget)
     {

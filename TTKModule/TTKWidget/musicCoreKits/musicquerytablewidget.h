@@ -29,7 +29,7 @@ class MusicGifLabelWidget;
 /*! @brief The class of the query table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicQueryTableWidget : public MusicFillItemTableWidget
+class TTK_MODULE_EXPORT MusicQueryTableWidget : public MusicFillItemTableWidget, public TTKAbstractResizeInterface
 {
     Q_OBJECT
 public:
@@ -61,6 +61,10 @@ public:
      * Subclass should implement this function.
      */
     virtual void downloadQueryResult(int row) = 0;
+    /*!
+     * Resize widget bound by resize called.
+     */
+    virtual void resizeGeometry() override { }
 
 Q_SIGNALS:
     /*!

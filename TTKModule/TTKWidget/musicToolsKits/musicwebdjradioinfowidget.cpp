@@ -24,26 +24,28 @@ void MusicWebDJRadioInfoWidget::setCurrentValue(const QString &value)
     m_tableWidget->startToSearchByValue(value);
 }
 
-void MusicWebDJRadioInfoWidget::resizeWidget()
+void MusicWebDJRadioInfoWidget::resizeGeometry()
 {
-    m_tableWidget->resizeSection();
+    m_tableWidget->resizeGeometry();
 
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
-
-        TTKResizeWidget *data = &m_resizeWidgets[0];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[1];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[2];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[3];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        return;
     }
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
+
+    TTKResizeWidget *data = &m_resizeWidgets[0];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[1];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[2];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[3];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 }
 
 void MusicWebDJRadioInfoWidget::queryAllFinished()
@@ -57,33 +59,35 @@ void MusicWebDJRadioInfoWidget::createProgramCategoryItem(const MusicResultDataI
 
     createLabels();
 
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        if(TTK::isCoverValid(item.m_coverUrl))
-        {
-            MusicCoverRequest *req = new MusicCoverSourceRequest(this);
-            connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
-            req->startToRequest(item.m_coverUrl);
-        }
-
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
-
-        TTKResizeWidget *data = &m_resizeWidgets[0];
-        data->m_label->setToolTip(item.m_name);
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[1];
-        data->m_label->setToolTip(tr("Singer: %1").arg(item.m_nickName));
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[2];
-        data->m_label->setToolTip(tr("PlayCount: %1").arg(item.m_count));
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[3];
-        data->m_label->setToolTip(tr("UpdateTime: %1").arg(item.m_time));
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        return;
     }
+
+    if(TTK::isCoverValid(item.m_coverUrl))
+    {
+        MusicCoverRequest *req = new MusicCoverSourceRequest(this);
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
+        req->startToRequest(item.m_coverUrl);
+    }
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
+
+    TTKResizeWidget *data = &m_resizeWidgets[0];
+    data->m_label->setToolTip(item.m_name);
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[1];
+    data->m_label->setToolTip(tr("Singer: %1").arg(item.m_nickName));
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[2];
+    data->m_label->setToolTip(tr("PlayCount: %1").arg(item.m_count));
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[3];
+    data->m_label->setToolTip(tr("UpdateTime: %1").arg(item.m_time));
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 }
 
 void MusicWebDJRadioInfoWidget::createLabels()

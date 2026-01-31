@@ -94,7 +94,7 @@ void MusicLocalManagerStatisticTableWidget::addCellItem(const MusicSongStatistic
     }
 }
 
-void MusicLocalManagerStatisticTableWidget::resizeSection() const
+void MusicLocalManagerStatisticTableWidget::resizeGeometry() const
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerView = horizontalHeader();
@@ -192,7 +192,7 @@ void MusicLocalManagerSongsTableWidget::addCellItems(const MusicSongInfoItemList
     }
 }
 
-void MusicLocalManagerSongsTableWidget::resizeSection() const
+void MusicLocalManagerSongsTableWidget::resizeGeometry() const
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerView = horizontalHeader();
@@ -340,10 +340,10 @@ MusicLocalManagerWidget::~MusicLocalManagerWidget()
     delete m_statisticTableWidget;
 }
 
-void MusicLocalManagerWidget::resizeWidget()
+void MusicLocalManagerWidget::resizeGeometry()
 {
-    m_songTableWidget->resizeSection();
-    m_statisticTableWidget->resizeSection();
+    m_songTableWidget->resizeGeometry();
+    m_statisticTableWidget->resizeGeometry();
     m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() + 120 - m_loadingLabel->height()) / 2);
 }
 
@@ -484,7 +484,7 @@ void MusicLocalManagerWidget::itemDoubleClicked(int row, int column)
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    resizeWidget();
+    resizeGeometry();
 }
 
 void MusicLocalManagerWidget::updateStatisticWidget(int index, const MusicSongInfoItemList &items)

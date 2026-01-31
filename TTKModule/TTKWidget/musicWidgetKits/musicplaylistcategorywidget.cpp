@@ -137,7 +137,7 @@ MusicPlaylistCategoryItem::~MusicPlaylistCategoryItem()
     delete m_gridLayout;
 }
 
-void MusicPlaylistCategoryItem::resizeWindow()
+void MusicPlaylistCategoryItem::resizeGeometry()
 {
     for(QWidget *item : qAsConst(m_items))
     {
@@ -166,7 +166,7 @@ void MusicPlaylistCategoryItem::buttonClicked(int index)
 void MusicPlaylistCategoryItem::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    resizeWindow();
+    resizeGeometry();
 }
 
 
@@ -181,11 +181,11 @@ MusicPlaylistCategoryWidget::~MusicPlaylistCategoryWidget()
     qDeleteAll(m_items);
 }
 
-void MusicPlaylistCategoryWidget::resizeWidget()
+void MusicPlaylistCategoryWidget::resizeGeometry()
 {
     for(MusicPlaylistCategoryItem *item : qAsConst(m_items))
     {
-        item->resizeWindow();
+        item->resizeGeometry();
     }
 }
 

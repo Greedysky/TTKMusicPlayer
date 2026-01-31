@@ -157,7 +157,7 @@ bool MusicVideoPlayWidget::isPopupMode() const
     return !m_blockOption;
 }
 
-void MusicVideoPlayWidget::resizeWindow()
+void MusicVideoPlayWidget::resizeGeometry()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     const int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
@@ -353,7 +353,7 @@ void MusicVideoPlayWidget::leaveTimeout()
 void MusicVideoPlayWidget::resizeEvent(QResizeEvent *event)
 {
     TTKAbstractMoveWidget::resizeEvent(event);
-    resizeWindow();
+    resizeGeometry();
 
     m_leaverTimer->stop();
     m_leaverAnimation->stop();

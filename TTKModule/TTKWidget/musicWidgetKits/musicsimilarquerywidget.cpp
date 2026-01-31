@@ -39,9 +39,9 @@ void MusicSimilarQueryWidget::setCurrentValue(const QString &value)
     createLabels();
 }
 
-void MusicSimilarQueryWidget::resizeWidget()
+void MusicSimilarQueryWidget::resizeGeometry()
 {
-    m_tableWidget->resizeSection();
+    m_tableWidget->resizeGeometry();
 }
 
 void MusicSimilarQueryWidget::createLabels()

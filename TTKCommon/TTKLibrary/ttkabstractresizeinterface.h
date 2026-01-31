@@ -36,7 +36,7 @@ public:
      * Resize widget bound by resize called.
      * Subclass should implement this function.
      */
-    virtual void resizeWidget() = 0;
+    virtual void resizeGeometry() = 0;
 
 };
 

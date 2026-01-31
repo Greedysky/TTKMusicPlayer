@@ -92,7 +92,7 @@ bool MusicCloudManagerTableWidget::initialize()
     return true;
 }
 
-void MusicCloudManagerTableWidget::resizeSection() const
+void MusicCloudManagerTableWidget::resizeGeometry() const
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerView = horizontalHeader();
@@ -689,15 +689,17 @@ void MusicCloudManagerWidget::initialize() const
     m_tableWidget->initialize();
 }
 
-void MusicCloudManagerWidget::resizeWidget()
+void MusicCloudManagerWidget::resizeGeometry()
 {
-    m_tableWidget->resizeSection();
+    m_tableWidget->resizeGeometry();
 
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-        m_resizeWidgets[0]->setFixedWidth(480 + width - WINDOW_WIDTH_MIN);
+        return;
     }
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    m_resizeWidgets[0]->setFixedWidth(480 + width - WINDOW_WIDTH_MIN);
 }
 
 void MusicCloudManagerWidget::updataSizeLabel(qint64 size)
@@ -724,5 +726,5 @@ void MusicCloudManagerWidget::uploadFilesToServer()
 void MusicCloudManagerWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    resizeWidget();
+    resizeGeometry();
 }

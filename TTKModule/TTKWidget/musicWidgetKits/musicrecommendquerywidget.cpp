@@ -18,9 +18,9 @@ void MusicRecommendQueryWidget::setCurrentValue(const QString &value)
     createLabels();
 }
 
-void MusicRecommendQueryWidget::resizeWidget()
+void MusicRecommendQueryWidget::resizeGeometry()
 {
-    m_tableWidget->resizeSection();
+    m_tableWidget->resizeGeometry();
 }
 
 void MusicRecommendQueryWidget::createLabels()

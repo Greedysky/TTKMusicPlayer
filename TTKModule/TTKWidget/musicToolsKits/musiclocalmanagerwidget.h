@@ -62,7 +62,7 @@ public:
     /*!
      * Resize section bound by resize called.
      */
-    void resizeSection() const;
+    void resizeGeometry() const;
 
 };
 
@@ -90,7 +90,7 @@ public:
     /*!
      * Resize section bound by resize called.
      */
-    void resizeSection() const;
+    void resizeGeometry() const;
 
 public Q_SLOTS:
     /*!
@@ -128,7 +128,7 @@ public:
     /*!
      * Resize widget bound by resize called.
      */
-    virtual void resizeWidget() override final;
+    virtual void resizeGeometry() override final;
 
 private Q_SLOTS:
     /*!

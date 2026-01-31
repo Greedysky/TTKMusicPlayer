@@ -49,6 +49,23 @@ void MusicItemQueryTableWidget::downloadQueryResult(int row)
     widget->show();
 }
 
+void MusicItemQueryTableWidget::resizeGeometry()
+{
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    QHeaderView *headerView = horizontalHeader();
+    headerView->resizeSection(1, 342 + (width - WINDOW_WIDTH_MIN) / 2.0);
+    headerView->resizeSection(2, 110 + (width - WINDOW_WIDTH_MIN) / 2.0);
+
+    for(int i = 0; i < rowCount(); ++i)
+    {
+        QTableWidgetItem *it = item(i, 1);
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 31));
+
+        it = item(i, 2);
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 31));
+    }
+}
+
 void MusicItemQueryTableWidget::itemDoubleClicked(int row, int column)
 {
     if(column <= 0 || row < 0 || row >= rowCount() - 1)
@@ -95,23 +112,6 @@ void MusicItemQueryTableWidget::downloadBatchData()
     widget.exec();
 }
 
-void MusicItemQueryTableWidget::resizeSection() const
-{
-    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    QHeaderView *headerView = horizontalHeader();
-    headerView->resizeSection(1, 342 + (width - WINDOW_WIDTH_MIN) / 2.0);
-    headerView->resizeSection(2, 110 + (width - WINDOW_WIDTH_MIN) / 2.0);
-
-    for(int i = 0; i < rowCount(); ++i)
-    {
-        QTableWidgetItem *it = item(i, 1);
-        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(1) - 31));
-
-        it = item(i, 2);
-        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerView->sectionSize(2) - 31));
-    }
-}
-
 void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
 {
     const int row = currentRow();
@@ -133,12 +133,6 @@ void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
         case 6: MusicRightAreaWidget::instance()->showSongSearchedFound(item(row, 1)->toolTip()); break;
         default: break;
     }
-}
-
-void MusicItemQueryTableWidget::resizeEvent(QResizeEvent *event)
-{
-    MusicQueryTableWidget::resizeEvent(event);
-    resizeSection();
 }
 
 void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)

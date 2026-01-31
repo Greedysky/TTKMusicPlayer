@@ -23,23 +23,25 @@ void MusicPersonalRadioQueryWidget::setCurrentValue(const QString &value)
     connect(req, SIGNAL(downloadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
-void MusicPersonalRadioQueryWidget::resizeWidget()
+void MusicPersonalRadioQueryWidget::resizeGeometry()
 {
-    m_tableWidget->resizeSection();
+    m_tableWidget->resizeGeometry();
 
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN;
-
-        TTKResizeWidget *data = &m_resizeWidgets[0];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 200 + width));
-
-        data = &m_resizeWidgets[1];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180 + width));
-
-        data = &m_resizeWidgets[2];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 320 + width));
+        return;
     }
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN;
+
+    TTKResizeWidget *data = &m_resizeWidgets[0];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 200 + width));
+
+    data = &m_resizeWidgets[1];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180 + width));
+
+    data = &m_resizeWidgets[2];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 320 + width));
 }
 
 void MusicPersonalRadioQueryWidget::queryAllFinished()
@@ -146,5 +148,5 @@ void MusicPersonalRadioQueryWidget::setResultDataItem(const MusicResultDataItem 
     m_resizeWidgets.append({creatorLabel, creatorLabel->font()});
     m_resizeWidgets.append({descriptionLabel, descriptionLabel->font()});
 
-    resizeWidget();
+    resizeGeometry();
 }

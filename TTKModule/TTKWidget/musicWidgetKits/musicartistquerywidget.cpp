@@ -45,21 +45,23 @@ void MusicArtistMvsQueryWidget::setCurrentKey(const QString &id)
     setCurrentValue(id);
 }
 
-void MusicArtistMvsQueryWidget::resizeWidget()
+void MusicArtistMvsQueryWidget::resizeGeometry()
 {
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
-        {
-            m_gridLayout->removeWidget(widget.m_label);
-        }
+        return;
+    }
 
-        const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
-        const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
-        for(int i = 0; i < m_resizeWidgets.count(); ++i)
-        {
-            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
-        }
+    for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
+    {
+        m_gridLayout->removeWidget(widget.m_label);
+    }
+
+    const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
+    const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
+    for(int i = 0; i < m_resizeWidgets.count(); ++i)
+    {
+        m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
     }
 }
 
@@ -83,7 +85,6 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultDataItem &i
     const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
     const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignLeft);
-
     m_resizeWidgets.append({label, label->font()});
 }
 
@@ -144,21 +145,23 @@ void MusicArtistAlbumsQueryWidget::setCurrentKey(const QString &id)
     setCurrentValue(id);
 }
 
-void MusicArtistAlbumsQueryWidget::resizeWidget()
+void MusicArtistAlbumsQueryWidget::resizeGeometry()
 {
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
-        {
-            m_gridLayout->removeWidget(widget.m_label);
-        }
+        return;
+    }
 
-        const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
-        const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
-        for(int i = 0; i < m_resizeWidgets.count(); ++i)
-        {
-            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
-        }
+    for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
+    {
+        m_gridLayout->removeWidget(widget.m_label);
+    }
+
+    const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
+    const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
+    for(int i = 0; i < m_resizeWidgets.count(); ++i)
+    {
+        m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignLeft);
     }
 }
 
@@ -182,7 +185,6 @@ void MusicArtistAlbumsQueryWidget::createArtistAlbumsItem(const MusicResultDataI
     const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
     const int lineNumber = (QUERY_WIDGET_WIDTH - lineSize / 2) / lineSize;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignLeft);
-
     m_resizeWidgets.append({label, label->font()});
 }
 
@@ -244,33 +246,35 @@ void MusicArtistQueryWidget::setCurrentKey(const QString &id)
     connect(req, SIGNAL(createArtistItem(MusicResultDataItem)), SLOT(createArtistItem(MusicResultDataItem)));
 }
 
-void MusicArtistQueryWidget::resizeWidget()
+void MusicArtistQueryWidget::resizeGeometry()
 {
-    m_tableWidget->resizeSection();
-
-    if(!m_resizeWidgets.isEmpty())
-    {
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
-
-        TTKResizeWidget *data = &m_resizeWidgets[1];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[2];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
-
-        data = &m_resizeWidgets[3];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-    }
+    m_tableWidget->resizeGeometry();
 
     if(m_artistAlbums)
     {
-        m_artistAlbums->resizeWidget();
+        m_artistAlbums->resizeGeometry();
     }
 
     if(m_artistMvs)
     {
-        m_artistMvs->resizeWidget();
+        m_artistMvs->resizeGeometry();
     }
+
+    if(m_resizeWidgets.isEmpty())
+    {
+        return;
+    }
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
+
+    TTKResizeWidget *data = &m_resizeWidgets[1];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[2];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
+
+    data = &m_resizeWidgets[3];
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 }
 
 void MusicArtistQueryWidget::setCurrentIndex(int index)
@@ -367,34 +371,36 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
 
     createLabels();
 
-    if(!m_resizeWidgets.isEmpty())
+    if(m_resizeWidgets.isEmpty())
     {
-        if(TTK::isCoverValid(item.m_coverUrl))
-        {
-            MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-            connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
-            req->startToRequest(item.m_coverUrl);
-        }
-
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
-
-        TTKResizeWidget *data = &m_resizeWidgets[0];
-        data->m_label->setText(tr("<font color=#158FE1> Artist > %1 </font>").arg(item.m_name));
-
-        data = &m_resizeWidgets[1];
-        data->m_label->setToolTip(item.m_name);
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[2];
-        data->m_label->setToolTip(tr("NickName: %1").arg(item.m_nickName));
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
-
-        data = &m_resizeWidgets[3];
-        data->m_label->setToolTip(tr("Birth: %1").arg(item.m_time));
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        m_infoLabel->setText(item.m_description);
+        return;
     }
+
+    if(TTK::isCoverValid(item.m_coverUrl))
+    {
+        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
+        req->startToRequest(item.m_coverUrl);
+    }
+
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
+
+    TTKResizeWidget *data = &m_resizeWidgets[0];
+    data->m_label->setText(tr("<font color=#158FE1> Artist > %1 </font>").arg(item.m_name));
+
+    data = &m_resizeWidgets[1];
+    data->m_label->setToolTip(item.m_name);
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    data = &m_resizeWidgets[2];
+    data->m_label->setToolTip(tr("NickName: %1").arg(item.m_nickName));
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
+
+    data = &m_resizeWidgets[3];
+    data->m_label->setToolTip(tr("Birth: %1").arg(item.m_time));
+    data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+
+    m_infoLabel->setText(item.m_description);
 }
 
 void MusicArtistQueryWidget::createLabels()

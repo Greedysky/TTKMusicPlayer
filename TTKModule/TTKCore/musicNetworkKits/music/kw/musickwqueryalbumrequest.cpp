@@ -85,7 +85,7 @@ void MusicKWQueryAlbumRequest::downloadFinished()
 
                     info.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["web_albumpic_short"].toString(), info.m_songId);
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
-                    info.m_duration = TTK_DEFAULT_STR;
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
                     info.m_year.clear();
                     info.m_trackNumber = "0";
 

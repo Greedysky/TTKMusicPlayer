@@ -23,7 +23,6 @@
 #include "musicquerytablewidget.h"
 
 class QGridLayout;
-class MusicNewAlbumsRecommendRequest;
 
 /*! @brief The class of the new song recommend query item table widget.
  * @author Greedysky <greedysky@163.com>
@@ -48,12 +47,11 @@ public:
     /*!
      * Download query result data.
      */
-    virtual void downloadQueryResult(int row) override;
-
+    virtual void downloadQueryResult(int row) override final;
     /*!
-     * Resize section bound by resize called.
+     * Resize widget bound by resize called.
      */
-    void resizeSection() const;
+    virtual void resizeGeometry() override final;
 
 public Q_SLOTS:
     /*!
@@ -78,10 +76,6 @@ public Q_SLOTS:
     virtual void createResultItem(const MusicResultInfoItem &result) override;
 
 private:
-    /*!
-     * Override the widget event.
-     */
-    virtual void resizeEvent(QResizeEvent *event) override final;
     /*!
      * Add search media to play list by index.
      */
@@ -110,6 +104,11 @@ public:
      */
     ~MusicNewAlbumsRecommendQueryWidget();
 
+    /*!
+     * Resize widget bound by resize called.
+     */
+    void resizeGeometry();
+
 public Q_SLOTS:
     /*!
      * Create the current album info item.
@@ -119,7 +118,46 @@ public Q_SLOTS:
 private:
     QGridLayout *m_gridLayout;
     QWidgetList m_resizeWidgets;
-    MusicNewAlbumsRecommendRequest *m_networkRequest;
+    MusicAbstractQueryRequest *m_networkRequest;
+
+};
+
+
+/*! @brief The class of the platlist recommend query widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicPlaylistRecommendQueryWidget : public QLabel
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicPlaylistRecommendQueryWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicPlaylistRecommendQueryWidget();
+
+    /*!
+     * Set network query input.
+     */
+    void setQueryInput(MusicAbstractQueryRequest *query);
+    /*!
+     * Resize widget bound by resize called.
+     */
+    void resizeGeometry();
+
+public Q_SLOTS:
+    /*!
+     * Create the current playlist info item.
+     */
+    void createPlaylistItem(const MusicResultDataItem &item);
+
+private:
+    QGridLayout *m_gridLayout;
+    QWidgetList m_resizeWidgets;
+    MusicAbstractQueryRequest *m_networkRequest;
 
 };
 
@@ -127,7 +165,7 @@ private:
 /*! @brief The class of the system tray menu widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicMainRecommendWidget : public QWidget
+class TTK_MODULE_EXPORT MusicMainRecommendWidget : public QWidget, public TTKAbstractResizeInterface
 {
     Q_OBJECT
 public:
@@ -139,6 +177,11 @@ public:
      * Object destructor.
      */
     ~MusicMainRecommendWidget();
+
+    /*!
+     * Resize widget bound by resize called.
+     */
+    virtual void resizeGeometry() override final;
 
 private:
     /*!
@@ -167,8 +210,11 @@ private:
     void createContainerMiddleBottomWidget();
 
     QWidget *m_mainWidget, *m_container;
+    QWidget *m_topFrame, *m_middleFrame, *m_bottomFrame;
     MusicNewSongRecommendQueryTableWidget *m_newSongsWidget;
     MusicNewAlbumsRecommendQueryWidget *m_newAlbumsWidget;
+    MusicPlaylistRecommendQueryWidget *m_highPlaylistWidget;
+    MusicPlaylistRecommendQueryWidget *m_playlistWidget;
 
 };
 

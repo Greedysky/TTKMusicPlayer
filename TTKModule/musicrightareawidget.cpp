@@ -254,29 +254,6 @@ void MusicRightAreaWidget::movieRadioSearchByID(const QVariant &data)
     TTK_SIGNLE_SHOT(showMovieSearchRadioFound, TTK_SLOT);
 }
 
-void MusicRightAreaWidget::resizeWindow()
-{
-    m_ui->songSearchWidget->resizeWindow();
-    m_interiorLrc->resizeWindow();
-
-    TTKAbstractResizeInterface *currentWidget = TTKDynamicCast(TTKAbstractResizeInterface*, m_currentWidget);
-    if(currentWidget)
-    {
-        currentWidget->resizeWidget();
-    }
-
-    TTKAbstractResizeInterface *permanentWidget = TTKDynamicCast(TTKAbstractResizeInterface*, m_permanentWidget);
-    if(permanentWidget)
-    {
-        permanentWidget->resizeWidget();
-    }
-
-    if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopupMode())
-    {
-        m_videoPlayerWidget->resizeWindow();
-    }
-}
-
 void MusicRightAreaWidget::applyParameter()
 {
     m_desktopLrc->applyParameter();
@@ -303,6 +280,29 @@ void MusicRightAreaWidget::applyParameter()
     if(TTKObjectCast(MusicScreenSaverWidget*, m_currentWidget))
     {
         TTKObjectCast(MusicScreenSaverWidget*, m_currentWidget)->applyParameter();
+    }
+}
+
+void MusicRightAreaWidget::resizeWidgetGeometry()
+{
+    m_ui->songSearchWidget->resizeGeometry();
+    m_interiorLrc->resizeGeometry();
+
+    TTKAbstractResizeInterface *currentWidget = TTKDynamicCast(TTKAbstractResizeInterface*, m_currentWidget);
+    if(currentWidget)
+    {
+        currentWidget->resizeGeometry();
+    }
+
+    TTKAbstractResizeInterface *permanentWidget = TTKDynamicCast(TTKAbstractResizeInterface*, m_permanentWidget);
+    if(permanentWidget)
+    {
+        permanentWidget->resizeGeometry();
+    }
+
+    if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopupMode())
+    {
+        m_videoPlayerWidget->resizeGeometry();
     }
 }
 

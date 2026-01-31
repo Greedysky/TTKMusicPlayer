@@ -45,15 +45,15 @@ public:
      * Download query result data.
      */
     virtual void downloadQueryResult(int row) override final;
+    /*!
+     * Resize widget bound by resize called.
+     */
+    virtual void resizeGeometry() override final;
 
     /*!
      * Start to search query by given id.
      */
     void startToSearchByID(const QString &id);
-    /*!
-     * Resize section bound by resize called.
-     */
-    void resizeSection() const;
 
 public Q_SLOTS:
     /*!
@@ -120,10 +120,11 @@ public:
      * Start to search query by given id.
      */
     void startToSearchByID(const QString &name);
+
     /*!
      * Resize window bound by resize called.
      */
-    void resizeWindow();
+    void resizeGeometry();
 
 public Q_SLOTS:
     /*!

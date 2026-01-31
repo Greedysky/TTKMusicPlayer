@@ -168,7 +168,7 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
     }
     G_SETTING_PTR->setValue(MusicSettingManager::LrcSize, size);
 
-    resizeWindow();
+    resizeGeometry();
     setItemStyleSheet();
     start();
 }
@@ -178,7 +178,7 @@ int MusicLrcContainerForInterior::lrcSize() const noexcept
     return G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
 }
 
-void MusicLrcContainerForInterior::resizeWindow()
+void MusicLrcContainerForInterior::resizeGeometry()
 {
     int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
@@ -592,12 +592,6 @@ void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
 
     v = m_lrcAnalysis->findTime(v);
     painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION / 2, TTKTime::formatDuration(v));
-}
-
-void MusicLrcContainerForInterior::resizeEvent(QResizeEvent *event)
-{
-    MusicLrcContainer::resizeEvent(event);
-    resizeWindow();
 }
 
 void MusicLrcContainerForInterior::createFunctionLabel()
