@@ -1,6 +1,15 @@
 #include "musicmainrecommendrequest.h"
 #include "musicwyqueryinterface.h"
 
+static constexpr const char *NEW_SONG_URL = "SnJhQ3VyZzNwU0ZnYlo2ME9BRVFjdmp0aGNTTldyL2c2RmtES3dFSkY4b0NFZGUwWDRteFpDS0F0SUozOU9nR0RVVE9lTUFwMEhNPQ==";
+static constexpr const char *NEW_SONG_DATA_URL = "UnNXcXM0ODFxamFPVmFWeEM3Tm0xL1dZNlZTdDBib3QzejhwUXlsNEg4OGI2aDl4";
+static constexpr const char *NEW_ALBUM_URL = "VC9sOTJXRzdLc0dYWWVtbmdsSUJnNFlYeDFqZ2gyd3Y5c1ZNdjBEeldpR25qSExSWWJqdVRkWmdoSmM9";
+static constexpr const char *NEW_ALBUM_DATA_URL = "N1VpQldOeUpVZFp3REZNczdrOHZXK0JpbjJkYjEveENIQmdaYlNhOWkyWUlrRWVYSnhCZTdBRS9SenFVVG11d0JHVXZ0NW1kTEdaeG4xeFc=";
+static constexpr const char *PLAYLIST_URL = "Z3N3cXVjb1ZoV2pxRVY1d1RoSStuMXp3MGsreUVPRVNtQjVNMUR2WXgwWHJrTHBlODYxcFJpUnozbGlCNTBzYkF4eFRNMDd0dHk2eEF3WkVnc3hVdlE9PQ==";
+static constexpr const char *PLAYLIST_DATA_URL = "dEZwUWp1MTJ6a2xaNytOOWZ5U1h1dFB5V0pUbkl6TXR0d3BmazkvYTM3ND0=";
+static constexpr const char *PLAYLIST_HQ_URL = "bUZ0V2JxeUFxWFF6U3MxVUcrZklyUGhPc245MEF2TVlHVnNGdnZNVjZTWVJ6RmN1ZGZZNGFScWJsWCt3b1h6YnhYSFA4ZVQ2SC85N1Y4eFp3ZVhjNkZuUlNHTT0=";
+static constexpr const char *PLAYLIST_HQ_DATA_URL = "MUlkMGR1NU00VzZJbjh1algwclpzY1NNTngzREN3TEoxUExOWVVmbDdPUTZlKzJOeFkwUjdGeUlRaDNGd2JoSzhBcEdtVk5paVc1VnFOdEE=";
+
 MusicNewSongsRecommendRequest::MusicNewSongsRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
@@ -17,8 +26,8 @@ void MusicNewSongsRecommendRequest::startToSearch(const QString &value)
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                       TTK::Algorithm::mdII("SnJhQ3VyZzNwU0ZnYlo2ME9BRVFjdmp0aGNTTldyL2c2RmtES3dFSkY4b0NFZGUwWDRteFpDS0F0SUozOU9nR0RVVE9lTUFwMEhNPQ==", false),
-                       TTK::Algorithm::mdII("ZTlMYXk1aGFqNHl0ZElzc0liZjZCbmJsSzVVL1ZNbEltODJxZXpIS1pvST0=", false));
+                       TTK::Algorithm::mdII(NEW_SONG_URL, false),
+                       TTK::Algorithm::mdII(NEW_SONG_DATA_URL, false).arg(0));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
@@ -122,6 +131,8 @@ void MusicNewSongsRecommendRequest::downloadFinished()
 MusicNewAlbumsRecommendRequest::MusicNewAlbumsRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
+    m_pageSize = 8;
+    m_pageIndex = 0;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -133,8 +144,8 @@ void MusicNewAlbumsRecommendRequest::startToSearch(const QString &value)
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                       TTK::Algorithm::mdII("VC9sOTJXRzdLc0dYWWVtbmdsSUJnNFlYeDFqZ2gyd3Y5c1ZNdjBEeldpR25qSExSWWJqdVRkWmdoSmM9", false),
-                       TTK::Algorithm::mdII("SUt5RXJmaFJJbWVNeXJRY3FidVlpdmJDK1U3ZTA0a0pvaXNLRWdhd05sTW9vVklrcldNclJvbGhKTEgwOVBGN0puU3NURXNORFFVPQ==", false));
+                       TTK::Algorithm::mdII(NEW_ALBUM_URL, false),
+                       TTK::Algorithm::mdII(NEW_ALBUM_DATA_URL, false).arg(value).arg(m_pageIndex).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
@@ -223,8 +234,8 @@ void MusicPlaylistRecommendRequest::startToSearch(const QString &value)
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                       TTK::Algorithm::mdII("Z3N3cXVjb1ZoV2pxRVY1d1RoSStuMXp3MGsreUVPRVNtQjVNMUR2WXgwWHJrTHBlODYxcFJpUnozbGlCNTBzYkF4eFRNMDd0dHk2eEF3WkVnc3hVdlE9PQ==", false),
-                       TTK::Algorithm::mdII("ZzVpb3g5TFJVc0NoVjNXem5ybHduQ0pTR1JaMm9ZeWQ5dUJQNlA4Z0VLUT0=", false));
+                       TTK::Algorithm::mdII(PLAYLIST_URL, false),
+                       TTK::Algorithm::mdII(PLAYLIST_DATA_URL, false).arg(8));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
@@ -301,8 +312,8 @@ void MusicPlaylistHighqualityRecommendRequest::startToSearch(const QString &valu
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                       "https://interface.music.163.com/weapi/playlist/highquality/list",
-                       "{\"cat\": \"全部\",\"lasttime\": 0,\"limit\": 8,\"total\": true}");
+                       TTK::Algorithm::mdII(PLAYLIST_HQ_URL, false),
+                       TTK::Algorithm::mdII(PLAYLIST_HQ_DATA_URL, false).arg("全部").arg(0).arg(8));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));

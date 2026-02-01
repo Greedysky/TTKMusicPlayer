@@ -135,6 +135,12 @@ void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
     }
 }
 
+void MusicItemQueryTableWidget::resizeEvent(QResizeEvent *event)
+{
+    MusicQueryTableWidget::resizeEvent(event);
+    resizeGeometry();
+}
+
 void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicQueryTableWidget::contextMenuEvent(event);

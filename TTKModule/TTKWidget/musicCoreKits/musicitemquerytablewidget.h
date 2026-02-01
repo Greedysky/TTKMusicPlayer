@@ -89,6 +89,7 @@ private:
     /*!
      * Override the widget event.
      */
+    virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Add search media to play list by index.

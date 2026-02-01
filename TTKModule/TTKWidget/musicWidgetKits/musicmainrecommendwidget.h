@@ -210,7 +210,6 @@ private:
     void createContainerMiddleBottomWidget();
 
     QWidget *m_mainWidget, *m_container;
-    QWidget *m_topFrame, *m_middleFrame, *m_bottomFrame;
     MusicNewSongRecommendQueryTableWidget *m_newSongsWidget;
     MusicNewAlbumsRecommendQueryWidget *m_newAlbumsWidget;
     MusicPlaylistRecommendQueryWidget *m_highPlaylistWidget;
