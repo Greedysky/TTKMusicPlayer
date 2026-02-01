@@ -65,6 +65,8 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
         return true;
     else if(filters.contains("*.tak") && formats.contains("tak"))
         return true;
+    else if(filters.contains("*.dsf") && formats.contains("dsf"))
+        return true;
     else if(filters.contains("*.spx") && (formats.contains("spx") || formats.contains("ogg")))
         return true;
     else if(filters.contains("*.adx") && formats.contains("adx"))
