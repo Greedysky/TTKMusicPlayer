@@ -70,19 +70,24 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
 
     QWidget *firstTopFuncWidget = new QWidget(function);
     QHBoxLayout *firstTopFuncLayout = new QHBoxLayout(firstTopFuncWidget);
+    grid->addWidget(firstTopFuncWidget);
 
     QLabel *firstLabel = new QLabel(function);
     firstLabel->setText(tr("<font color=#158FE1> Playlist > %1 </font>").arg(item.m_name));
-
-    QPushButton *backButton = new QPushButton(tr("Back"));
-    backButton->setFixedSize(90, 30);
-    backButton->setStyleSheet(TTK::UI::PushButtonStyle03);
-    backButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(backButton, SIGNAL(clicked()), obj, SLOT(backToPlaylistMenu()));
-
     firstTopFuncLayout->addWidget(firstLabel);
-    firstTopFuncLayout->addWidget(backButton);
-    grid->addWidget(firstTopFuncWidget);
+
+    if(obj)
+    {
+        QPushButton *backButton = new QPushButton(tr("Back"));
+#ifdef Q_OS_UNIX
+        backButton->setFocusPolicy(Qt::NoFocus);
+#endif
+        backButton->setFixedSize(90, 30);
+        backButton->setStyleSheet(TTK::UI::PushButtonStyle03);
+        backButton->setCursor(QCursor(Qt::PointingHandCursor));
+        connect(backButton, SIGNAL(clicked()), obj, SLOT(backToPlaylistMenu()));
+        firstTopFuncLayout->addWidget(backButton);
+    }
     //
     QWidget *topFuncWidget = new QWidget(function);
     QHBoxLayout *topFuncLayout = new QHBoxLayout(topFuncWidget);
@@ -217,7 +222,6 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     QtButtonGroupConnect(buttonGroup, this, setCurrentIndex, TTK_SLOT);
 
 #ifdef Q_OS_UNIX
-    backButton->setFocusPolicy(Qt::NoFocus);
     playAllButton->setFocusPolicy(Qt::NoFocus);
     shareButton->setFocusPolicy(Qt::NoFocus);
     m_songButton->setFocusPolicy(Qt::NoFocus);

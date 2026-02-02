@@ -68,7 +68,7 @@ public Q_SLOTS:
     /*!
      * Current play list clicked.
      */
-    void currentPlaylistClicked(const MusicResultDataItem &item);
+    void currentItemClicked(const MusicResultDataItem &item, bool single = false);
     /*!
      * Set current index to playlist menu page.
      */

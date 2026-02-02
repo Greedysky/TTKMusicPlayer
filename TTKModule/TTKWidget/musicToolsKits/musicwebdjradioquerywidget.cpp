@@ -39,7 +39,7 @@ void MusicWebDJRadioQueryWidget::setCurrentKey(const QString &id)
     MusicAbstractItemQueryWidget::setCurrentValue(id);
     MusicResultDataItem item;
     item.m_id = id;
-    currentRadioClicked(item);
+    currentItemClicked(item);
 }
 
 void MusicWebDJRadioQueryWidget::resizeGeometry()
@@ -123,7 +123,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
     }
 
     MusicSquareQueryItemWidget *label = new MusicSquareQueryItemWidget(this);
-    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentRadioClicked(MusicResultDataItem)));
+    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentItemClicked(MusicResultDataItem)));
     label->setShowTime(false);
     label->setShowCount(false);
     label->setResultDataItem(item, new MusicCoverSourceRequest(this));
@@ -134,7 +134,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
     m_resizeWidgets.append({label, label->font()});
 }
 
-void MusicWebDJRadioQueryWidget::currentRadioClicked(const MusicResultDataItem &item)
+void MusicWebDJRadioQueryWidget::currentItemClicked(const MusicResultDataItem &item)
 {
     delete m_infoWidget;
     m_infoWidget = new MusicWebDJRadioInfoWidget(this);

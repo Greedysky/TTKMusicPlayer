@@ -223,8 +223,7 @@ bool MusicNewSongRecommendQueryTableWidget::downloadDataFrom(TTK::MusicSongInfor
         item.m_id = m_networkRequest->queryServer() + item.m_id;
     }
 
-    TTK_INFO_STREAM(item.m_name);
-//    MusicSongsContainerWidget::instance()->addSongBufferToPlaylist(item);
+    MusicSongsContainerWidget::instance()->addSongBufferToPlaylist(item);
     return true;
 }
 
@@ -262,7 +261,12 @@ void MusicNewAlbumsRecommendQueryWidget::resizeGeometry()
     }
 
     const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
-    const int lineNumber = (QUERY_WIDGET_WIDTH  - lineSize / 2) / lineSize / 2;
+    int lineNumber = (QUERY_WIDGET_WIDTH  - lineSize / 2) / lineSize / 2;
+    if(lineNumber > m_networkRequest->pageSize() / 2)
+    {
+        lineNumber = m_networkRequest->pageSize() / 2;
+    }
+
     for(int i = 0; i < m_resizeWidgets.count(); ++i)
     {
         if(i < 2 * lineNumber)
@@ -273,16 +277,27 @@ void MusicNewAlbumsRecommendQueryWidget::resizeGeometry()
     }
 }
 
+void MusicNewAlbumsRecommendQueryWidget::currentItemClicked(const MusicResultDataItem &item)
+{
+    MusicRightAreaWidget::instance()->albumSearchByID(item.m_id);
+}
+
 void MusicNewAlbumsRecommendQueryWidget::createAlbumItem(const MusicResultDataItem &item)
 {
     MusicSquareQueryItemWidget *label = new MusicSquareQueryItemWidget(this);
+    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentItemClicked(MusicResultDataItem)));
     label->hide();
     label->setShowTime(false);
     label->setShowCount(false);
     label->setResultDataItem(item, new MusicCoverSourceRequest(this));
 
     const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
-    const int lineNumber = (QUERY_WIDGET_WIDTH  - lineSize / 2) / lineSize / 2;
+    int lineNumber = (QUERY_WIDGET_WIDTH  - lineSize / 2) / lineSize / 2;
+    if(lineNumber > m_networkRequest->pageSize() / 2)
+    {
+        lineNumber = m_networkRequest->pageSize() / 2;
+    }
+
     if(m_resizeWidgets.count() < 2 * lineNumber)
     {
         label->show();
@@ -319,6 +334,7 @@ void MusicPlaylistRecommendQueryWidget::setQueryInput(MusicAbstractQueryRequest 
 void MusicPlaylistRecommendQueryWidget::createPlaylistItem(const MusicResultDataItem &item)
 {
     MusicSquareQueryItemWidget *label = new MusicSquareQueryItemWidget(this);
+    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentItemClicked(MusicResultDataItem)));
     label->hide();
     label->setShowTime(false);
     label->setShowCount(false);
@@ -333,6 +349,11 @@ void MusicPlaylistRecommendQueryWidget::createPlaylistItem(const MusicResultData
     }
 
     m_resizeWidgets.append(label);
+}
+
+void MusicPlaylistRecommendQueryWidget::currentItemClicked(const MusicResultDataItem &item)
+{
+    MusicRightAreaWidget::instance()->showPlaylistFound(item.m_id);
 }
 
 void MusicPlaylistRecommendQueryWidget::resizeGeometry()

@@ -298,7 +298,7 @@ void MusicWebDJRadioWidget::programItemClicked(const QString &rid, const QString
     setCurrentWidget(m_queryWidget);
 }
 
-void MusicWebDJRadioWidget::currentCategoryClicked(const MusicResultDataItem &item)
+void MusicWebDJRadioWidget::currentItemClicked(const MusicResultDataItem &item)
 {
     programItemClicked("-1", item.m_id);
 }
@@ -362,7 +362,7 @@ void MusicWebDJRadioWidget::createFirstWidget()
     layout->addWidget(line);
     //
     m_categoryWidget = new MusicWebDJRadioCategoryWidget(this);
-    connect(m_categoryWidget, SIGNAL(currentCategoryClicked(MusicResultDataItem)), SLOT(currentCategoryClicked(MusicResultDataItem)));
+    connect(m_categoryWidget, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentItemClicked(MusicResultDataItem)));
     layout->addWidget(m_categoryWidget);
 
     addWidget(w);

@@ -52,7 +52,7 @@ Q_SIGNALS:
     /*!
      * Current category clicked.
      */
-    void currentCategoryClicked(const MusicResultDataItem &item);
+    void currentItemClicked(const MusicResultDataItem &item);
 
 public Q_SLOTS:
     /*!

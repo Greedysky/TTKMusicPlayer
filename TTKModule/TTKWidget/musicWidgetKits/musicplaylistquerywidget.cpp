@@ -46,11 +46,9 @@ void MusicPlaylistQueryWidget::setCurrentValue(const QString &value)
 
 void MusicPlaylistQueryWidget::setCurrentKey(const QString &id)
 {
-    setCurrentValue(id);
-
     MusicResultDataItem item;
     item.m_id = id;
-    currentPlaylistClicked(item);
+    currentItemClicked(item, true);
 }
 
 void MusicPlaylistQueryWidget::resizeGeometry()
@@ -139,7 +137,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
     }
 
     MusicSquareQueryItemWidget *label = new MusicSquareQueryItemWidget(this);
-    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentPlaylistClicked(MusicResultDataItem)));
+    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentItemClicked(MusicResultDataItem)));
     label->setShowTime(false);
     label->setShowCount(true);
     label->setResultDataItem(item, G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this));
@@ -150,7 +148,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
     m_resizeWidgets.append({label, label->font()});
 }
 
-void MusicPlaylistQueryWidget::currentPlaylistClicked(const MusicResultDataItem &item)
+void MusicPlaylistQueryWidget::currentItemClicked(const MusicResultDataItem &item, bool single)
 {
     delete m_infoWidget;
     m_infoWidget = new MusicPlaylistQueryInfoWidget(this);
@@ -163,7 +161,7 @@ void MusicPlaylistQueryWidget::currentPlaylistClicked(const MusicResultDataItem 
     }
 
     m_infoWidget->setQueryInput(req);
-    m_infoWidget->setResultDataItem(info, this);
+    m_infoWidget->setResultDataItem(info, single ? nullptr : this);
     m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(1);
 }

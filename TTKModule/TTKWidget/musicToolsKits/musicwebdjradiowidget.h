@@ -158,7 +158,7 @@ public Q_SLOTS:
     /*!
      * Current category clicked.
      */
-    void currentCategoryClicked(const MusicResultDataItem &item);
+    void currentItemClicked(const MusicResultDataItem &item);
 
 private:
     /*!

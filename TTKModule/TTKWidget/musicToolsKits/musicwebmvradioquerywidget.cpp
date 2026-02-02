@@ -99,7 +99,7 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
     }
 
     MusicRectQueryItemWidget *label = new MusicRectQueryItemWidget(this);
-    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentRadioClicked(MusicResultDataItem)));
+    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentItemClicked(MusicResultDataItem)));
     label->setResultDataItem(item);
 
     const int lineSize = MusicRectQueryItemWidget::LINE_SPACING_SIZE;
@@ -108,7 +108,7 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
     m_resizeWidgets.append({label, label->font()});
 }
 
-void MusicWebMVRadioQueryWidget::currentRadioClicked(const MusicResultDataItem &item)
+void MusicWebMVRadioQueryWidget::currentItemClicked(const MusicResultDataItem &item)
 {
     delete m_infoWidget;
     m_infoWidget = new MusicWebMVRadioInfoWidget(this);

@@ -140,7 +140,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
     }
 
     MusicTextQueryItemWidget *label = new MusicTextQueryItemWidget(this);
-    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentArtistListClicked(MusicResultDataItem)));
+    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentItemClicked(MusicResultDataItem)));
     label->setResultDataItem(item);
 
     const int lineSize = MusicTextQueryItemWidget::LINE_SPACING_SIZE;
@@ -149,7 +149,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
     m_resizeWidgets.append({label, label->font()});
 }
 
-void MusicArtistListQueryWidget::currentArtistListClicked(const MusicResultDataItem &item)
+void MusicArtistListQueryWidget::currentItemClicked(const MusicResultDataItem &item)
 {
     MusicRightAreaWidget::instance()->artistSearchByID(item.m_id);
 }

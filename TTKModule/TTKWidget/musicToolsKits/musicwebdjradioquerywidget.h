@@ -67,7 +67,7 @@ public Q_SLOTS:
     /*!
      * Current radio clicked.
      */
-    void currentRadioClicked(const MusicResultDataItem &item);
+    void currentItemClicked(const MusicResultDataItem &item);
     /*!
      * Set current index to main menu page.
      */

@@ -60,7 +60,7 @@ void MusicWebDJRadioCategoryWidget::createCategoryItems()
     for(const MusicResultDataItem &item : m_networkRequest->items())
     {
         MusicLabelQueryItemWidget *label = new MusicLabelQueryItemWidget(this);
-        connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SIGNAL(currentCategoryClicked(MusicResultDataItem)));
+        connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SIGNAL(currentItemClicked(MusicResultDataItem)));
         label->setResultDataItem(item);
 
         const int lineSize = MusicLabelQueryItemWidget::LINE_SPACING_SIZE;

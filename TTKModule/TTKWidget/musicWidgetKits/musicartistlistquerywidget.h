@@ -62,7 +62,7 @@ public Q_SLOTS:
     /*!
      * Current artist list clicked.
      */
-    void currentArtistListClicked(const MusicResultDataItem &item);
+    void currentItemClicked(const MusicResultDataItem &item);
     /*!
      * Current category changed.
      */

@@ -114,6 +114,10 @@ public Q_SLOTS:
      * Create the current album info item.
      */
     void createAlbumItem(const MusicResultDataItem &item);
+    /*!
+     * Current album item clicked.
+     */
+    void currentItemClicked(const MusicResultDataItem &item);
 
 private:
     QGridLayout *m_gridLayout;
@@ -153,6 +157,10 @@ public Q_SLOTS:
      * Create the current playlist info item.
      */
     void createPlaylistItem(const MusicResultDataItem &item);
+    /*!
+     * Current playlist item clicked.
+     */
+    void currentItemClicked(const MusicResultDataItem &item);
 
 private:
     QGridLayout *m_gridLayout;

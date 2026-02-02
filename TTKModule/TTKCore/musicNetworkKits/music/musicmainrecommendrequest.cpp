@@ -286,7 +286,7 @@ void MusicPlaylistRecommendRequest::downloadFinished()
                     item.m_name = value["name"].toString();
                     item.m_count = value["playCount"].toString();
                     item.m_time = TTKDateTime::format(value["trackNumberUpdateTime"].toULongLong(), TTK_DATE_FORMAT);
-                    item.m_category.clear();
+                    item.m_nickName = "热门歌单推荐";
                     Q_EMIT createPlaylistItem(item);
                 }
             }
@@ -365,23 +365,6 @@ void MusicPlaylistHighqualityRecommendRequest::downloadFinished()
                     item.m_count = value["playCount"].toString();
                     item.m_description = value["description"].toString();
                     item.m_time = TTKDateTime::format(value["updateTime"].toULongLong(), TTK_DATE_FORMAT);
-                    item.m_category.clear();
-
-                    const QVariantList &tags = value["tags"].toList();
-                    for(const QVariant &var : qAsConst(tags))
-                    {
-                        if(var.isNull())
-                        {
-                            continue;
-                        }
-
-                        item.m_category.append(var.toString() + "|");
-                    }
-
-                    if(!item.m_category.isEmpty())
-                    {
-                        item.m_category.insert(0, "|");
-                    }
 
                     value = value["creator"].toMap();
                     item.m_nickName = value["nickname"].toString();
