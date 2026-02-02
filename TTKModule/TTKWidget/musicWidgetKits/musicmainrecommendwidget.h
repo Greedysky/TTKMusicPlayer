@@ -88,60 +88,28 @@ private:
 };
 
 
-/*! @brief The class of the new album recommend query widget.
+/*! @brief The class of the item recommend query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicNewAlbumsRecommendQueryWidget : public QLabel
+class TTK_MODULE_EXPORT MusicItemRecommendQueryWidget : public QLabel
 {
     Q_OBJECT
 public:
+    enum Module
+    {
+        Album,
+        Artist,
+        Playlist
+    };
+
     /*!
      * Object constructor.
      */
-    explicit MusicNewAlbumsRecommendQueryWidget(QWidget *parent = nullptr);
+    explicit MusicItemRecommendQueryWidget(Module module, QWidget *parent = nullptr);
     /*!
      * Object destructor.
      */
-    ~MusicNewAlbumsRecommendQueryWidget();
-
-    /*!
-     * Resize widget bound by resize called.
-     */
-    void resizeGeometry();
-
-public Q_SLOTS:
-    /*!
-     * Create the current album info item.
-     */
-    void createAlbumItem(const MusicResultDataItem &item);
-    /*!
-     * Current album item clicked.
-     */
-    void currentItemClicked(const MusicResultDataItem &item);
-
-private:
-    QGridLayout *m_gridLayout;
-    QWidgetList m_resizeWidgets;
-    MusicAbstractQueryRequest *m_networkRequest;
-
-};
-
-
-/*! @brief The class of the platlist recommend query widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicPlaylistRecommendQueryWidget : public QLabel
-{
-    Q_OBJECT
-public:
-    /*!
-     * Object constructor.
-     */
-    explicit MusicPlaylistRecommendQueryWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicPlaylistRecommendQueryWidget();
+    ~MusicItemRecommendQueryWidget();
 
     /*!
      * Set network query input.
@@ -154,15 +122,16 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Create the current playlist info item.
+     * Create the current item info.
      */
-    void createPlaylistItem(const MusicResultDataItem &item);
+    void createItem(const MusicResultDataItem &item);
     /*!
      * Current playlist item clicked.
      */
     void currentItemClicked(const MusicResultDataItem &item);
 
 private:
+    Module m_module;
     QGridLayout *m_gridLayout;
     QWidgetList m_resizeWidgets;
     MusicAbstractQueryRequest *m_networkRequest;
@@ -219,9 +188,10 @@ private:
 
     QWidget *m_mainWidget, *m_container;
     MusicNewSongRecommendQueryTableWidget *m_newSongsWidget;
-    MusicNewAlbumsRecommendQueryWidget *m_newAlbumsWidget;
-    MusicPlaylistRecommendQueryWidget *m_highPlaylistWidget;
-    MusicPlaylistRecommendQueryWidget *m_playlistWidget;
+    MusicItemRecommendQueryWidget *m_newAlbumsWidget;
+    MusicItemRecommendQueryWidget *m_artistsWidget;
+    MusicItemRecommendQueryWidget *m_hqPlaylistWidget;
+    MusicItemRecommendQueryWidget *m_playlistWidget;
 
 };
 

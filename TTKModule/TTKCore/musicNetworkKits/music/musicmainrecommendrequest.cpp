@@ -5,6 +5,8 @@ static constexpr const char *NEW_SONG_URL = "SnJhQ3VyZzNwU0ZnYlo2ME9BRVFjdmp0aGN
 static constexpr const char *NEW_SONG_DATA_URL = "UnNXcXM0ODFxamFPVmFWeEM3Tm0xL1dZNlZTdDBib3QzejhwUXlsNEg4OGI2aDl4";
 static constexpr const char *NEW_ALBUM_URL = "VC9sOTJXRzdLc0dYWWVtbmdsSUJnNFlYeDFqZ2gyd3Y5c1ZNdjBEeldpR25qSExSWWJqdVRkWmdoSmM9";
 static constexpr const char *NEW_ALBUM_DATA_URL = "N1VpQldOeUpVZFp3REZNczdrOHZXK0JpbjJkYjEveENIQmdaYlNhOWkyWUlrRWVYSnhCZTdBRS9SenFVVG11d0JHVXZ0NW1kTEdaeG4xeFc=";
+static constexpr const char *ARTIST_URL = "c1l3a204QlJmWnJ0WVhxOTZlNU9RdWJVeGZRWDIvaU83RWxWTTIrRW84aExRajVWWEZXMnJmZlowRFpmWFdEV2NoM29IQT09";
+static constexpr const char *ARTIST_DATA_URL = "TG9pYmlKeWRiaG45TFlHalhUNWtzYUxDUEZZL0VVdGJEOFlTTkFuaWdmb3hDempSRUMwNkJmSkdpeFU9";
 static constexpr const char *PLAYLIST_URL = "Z3N3cXVjb1ZoV2pxRVY1d1RoSStuMXp3MGsreUVPRVNtQjVNMUR2WXgwWHJrTHBlODYxcFJpUnozbGlCNTBzYkF4eFRNMDd0dHk2eEF3WkVnc3hVdlE9PQ==";
 static constexpr const char *PLAYLIST_DATA_URL = "dEZwUWp1MTJ6a2xaNytOOWZ5U1h1dFB5V0pUbkl6TXR0d3BmazkvYTM3ND0=";
 static constexpr const char *PLAYLIST_HQ_URL = "bUZ0V2JxeUFxWFF6U3MxVUcrZklyUGhPc245MEF2TVlHVnNGdnZNVjZTWVJ6RmN1ZGZZNGFScWJsWCt3b1h6YnhYSFA4ZVQ2SC85N1Y4eFp3ZVhjNkZuUlNHTT0=";
@@ -27,7 +29,7 @@ void MusicNewSongsRecommendRequest::startToSearch(const QString &value)
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                        TTK::Algorithm::mdII(NEW_SONG_URL, false),
-                       TTK::Algorithm::mdII(NEW_SONG_DATA_URL, false).arg(0));
+                       TTK::Algorithm::mdII(NEW_SONG_DATA_URL, false).arg(value));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
@@ -194,7 +196,6 @@ void MusicNewAlbumsRecommendRequest::downloadFinished()
                     item.m_id = value["id"].toString();
                     item.m_name = TTK::String::charactersReplace(value["name"].toString());
                     item.m_coverUrl = value["picUrl"].toString();
-                    item.m_time = TTKDateTime::format(value["publishTime"].toULongLong(), TTK_YEAR_FORMAT);
                     item.m_nickName.clear();
 
                     const QVariantList &artistsArray = value["artists"].toList();
@@ -220,9 +221,88 @@ void MusicNewAlbumsRecommendRequest::downloadFinished()
 }
 
 
+MusicArtistsRecommendRequest::MusicArtistsRecommendRequest(QObject *parent)
+    : MusicAbstractQueryRequest(parent)
+{
+    m_pageSize = 8;
+    m_pageIndex = 0;
+    m_queryServer = QUERY_WY_INTERFACE;
+}
+
+void MusicArtistsRecommendRequest::startToSearch(const QString &value)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
+
+    deleteAll();
+
+    QNetworkRequest request;
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
+                       TTK::Algorithm::mdII(ARTIST_URL, false),
+                       TTK::Algorithm::mdII(ARTIST_DATA_URL, false).arg(m_pageIndex).arg(m_pageSize));
+
+    m_reply = m_manager.post(request, parameter);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicArtistsRecommendRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
+
+    MusicPageQueryRequest::downloadFinished();
+    TTK_NETWORK_QUERY_CHECK();
+    ReqWYInterface::parseFromSongProperty(info, bitrate);
+    TTK_NETWORK_QUERY_CHECK();
+
+    fetchUrlPathSize(&info->m_songProps, info->m_duration);
+    MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
+}
+
+void MusicArtistsRecommendRequest::downloadFinished()
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
+
+    MusicAbstractQueryRequest::downloadFinished();
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
+    {
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
+        {
+            QVariantMap value = json.toVariant().toMap();
+            if(value["code"].toInt() == 200 && value.contains("artists"))
+            {
+                const QVariantList &datas = value["artists"].toList();
+                for(const QVariant &var : qAsConst(datas))
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    MusicResultDataItem item;
+                    item.m_coverUrl = value["picUrl"].toString();
+                    item.m_id = value["id"].toString();
+                    item.m_name = value["name"].toString();
+                    Q_EMIT createArtistItem(item);
+                }
+            }
+        }
+    }
+
+    Q_EMIT downloadDataChanged({});
+    deleteAll();
+}
+
+
 MusicPlaylistRecommendRequest::MusicPlaylistRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
+    m_pageSize = 8;
+    m_pageIndex = 0;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -235,7 +315,7 @@ void MusicPlaylistRecommendRequest::startToSearch(const QString &value)
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                        TTK::Algorithm::mdII(PLAYLIST_URL, false),
-                       TTK::Algorithm::mdII(PLAYLIST_DATA_URL, false).arg(8));
+                       TTK::Algorithm::mdII(PLAYLIST_DATA_URL, false).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
@@ -284,8 +364,6 @@ void MusicPlaylistRecommendRequest::downloadFinished()
                     item.m_coverUrl = value["picUrl"].toString();
                     item.m_id = value["id"].toString();
                     item.m_name = value["name"].toString();
-                    item.m_count = value["playCount"].toString();
-                    item.m_time = TTKDateTime::format(value["trackNumberUpdateTime"].toULongLong(), TTK_DATE_FORMAT);
                     item.m_nickName = "热门歌单推荐";
                     Q_EMIT createPlaylistItem(item);
                 }
@@ -298,13 +376,15 @@ void MusicPlaylistRecommendRequest::downloadFinished()
 }
 
 
-MusicPlaylistHighqualityRecommendRequest::MusicPlaylistHighqualityRecommendRequest(QObject *parent)
+MusicPlaylistHQRecommendRequest::MusicPlaylistHQRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
+    m_pageSize = 8;
+    m_pageIndex = 0;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicPlaylistHighqualityRecommendRequest::startToSearch(const QString &value)
+void MusicPlaylistHQRecommendRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
@@ -313,14 +393,14 @@ void MusicPlaylistHighqualityRecommendRequest::startToSearch(const QString &valu
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                        TTK::Algorithm::mdII(PLAYLIST_HQ_URL, false),
-                       TTK::Algorithm::mdII(PLAYLIST_HQ_DATA_URL, false).arg("全部").arg(0).arg(8));
+                       TTK::Algorithm::mdII(PLAYLIST_HQ_DATA_URL, false).arg(value).arg(m_pageIndex).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicPlaylistHighqualityRecommendRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+void MusicPlaylistHQRecommendRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
@@ -333,7 +413,7 @@ void MusicPlaylistHighqualityRecommendRequest::startToQueryResult(TTK::MusicSong
     MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
 }
 
-void MusicPlaylistHighqualityRecommendRequest::downloadFinished()
+void MusicPlaylistHQRecommendRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
@@ -362,9 +442,6 @@ void MusicPlaylistHighqualityRecommendRequest::downloadFinished()
                     item.m_coverUrl = value["coverImgUrl"].toString();
                     item.m_id = value["id"].toString();
                     item.m_name = value["name"].toString();
-                    item.m_count = value["playCount"].toString();
-                    item.m_description = value["description"].toString();
-                    item.m_time = TTKDateTime::format(value["updateTime"].toULongLong(), TTK_DATE_FORMAT);
 
                     value = value["creator"].toMap();
                     item.m_nickName = value["nickname"].toString();

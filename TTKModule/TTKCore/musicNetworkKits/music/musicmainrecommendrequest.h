@@ -87,6 +87,42 @@ public Q_SLOTS:
 };
 
 
+/*! @brief The class of the top artists recommend data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicArtistsRecommendRequest : public MusicAbstractQueryRequest
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicArtistsRecommendRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by input data.
+     */
+    virtual void startToSearch(const QString &value) override final;
+    /*!
+     * Start to download query result data.
+     */
+    virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
+
+Q_SIGNALS:
+    /*!
+     * Create the current artist item.
+     */
+    void createArtistItem(const MusicResultDataItem &item);
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downloadFinished() override final;
+
+};
+
+
 /*! @brief The class of the playlist recommend data from net.
  * @author Greedysky <greedysky@163.com>
  */
@@ -126,14 +162,14 @@ public Q_SLOTS:
 /*! @brief The class of the playlist high quality recommend data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPlaylistHighqualityRecommendRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicPlaylistHQRecommendRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicPlaylistHighqualityRecommendRequest(QObject *parent = nullptr);
+    explicit MusicPlaylistHQRecommendRequest(QObject *parent = nullptr);
 
     /*!
      * Start to search data by input data.

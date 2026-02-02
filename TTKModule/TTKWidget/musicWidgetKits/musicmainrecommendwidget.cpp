@@ -228,88 +228,9 @@ bool MusicNewSongRecommendQueryTableWidget::downloadDataFrom(TTK::MusicSongInfor
 }
 
 
-MusicNewAlbumsRecommendQueryWidget::MusicNewAlbumsRecommendQueryWidget(QWidget *parent)
-    : QLabel(parent)
-{
-    m_gridLayout = new QGridLayout(this);
-    m_gridLayout->setContentsMargins(0, 0, 0, 0);
-    m_gridLayout->setVerticalSpacing(5);
-    setLayout(m_gridLayout);
-
-    m_networkRequest = new MusicNewAlbumsRecommendRequest(this);
-    connect(m_networkRequest, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createAlbumItem(MusicResultDataItem)));
-    m_networkRequest->startToSearch("ALL");
-}
-
-MusicNewAlbumsRecommendQueryWidget::~MusicNewAlbumsRecommendQueryWidget()
-{
-    delete m_gridLayout;
-    delete m_networkRequest;
-}
-
-void MusicNewAlbumsRecommendQueryWidget::resizeGeometry()
-{
-    if(m_resizeWidgets.isEmpty() || !m_gridLayout)
-    {
-        return;
-    }
-
-    for(QWidget *widget : qAsConst(m_resizeWidgets))
-    {
-        widget->hide();
-        m_gridLayout->removeWidget(widget);
-    }
-
-    const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
-    int lineNumber = (QUERY_WIDGET_WIDTH  - lineSize / 2) / lineSize / 2;
-    if(lineNumber > m_networkRequest->pageSize() / 2)
-    {
-        lineNumber = m_networkRequest->pageSize() / 2;
-    }
-
-    for(int i = 0; i < m_resizeWidgets.count(); ++i)
-    {
-        if(i < 2 * lineNumber)
-        {
-            m_gridLayout->addWidget(m_resizeWidgets[i], i / lineNumber, i % lineNumber, Qt::AlignLeft | Qt::AlignTop);
-            m_resizeWidgets[i]->show();
-        }
-    }
-}
-
-void MusicNewAlbumsRecommendQueryWidget::currentItemClicked(const MusicResultDataItem &item)
-{
-    MusicRightAreaWidget::instance()->albumSearchByID(item.m_id);
-}
-
-void MusicNewAlbumsRecommendQueryWidget::createAlbumItem(const MusicResultDataItem &item)
-{
-    MusicSquareQueryItemWidget *label = new MusicSquareQueryItemWidget(this);
-    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentItemClicked(MusicResultDataItem)));
-    label->hide();
-    label->setShowTime(false);
-    label->setShowCount(false);
-    label->setResultDataItem(item, new MusicCoverSourceRequest(this));
-
-    const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
-    int lineNumber = (QUERY_WIDGET_WIDTH  - lineSize / 2) / lineSize / 2;
-    if(lineNumber > m_networkRequest->pageSize() / 2)
-    {
-        lineNumber = m_networkRequest->pageSize() / 2;
-    }
-
-    if(m_resizeWidgets.count() < 2 * lineNumber)
-    {
-        label->show();
-        m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignLeft | Qt::AlignTop);
-    }
-
-    m_resizeWidgets.append(label);
-}
-
-
-MusicPlaylistRecommendQueryWidget::MusicPlaylistRecommendQueryWidget(QWidget *parent)
+MusicItemRecommendQueryWidget::MusicItemRecommendQueryWidget(Module module, QWidget *parent)
     : QLabel(parent),
+      m_module(module),
       m_networkRequest(nullptr)
 {
     m_gridLayout = new QGridLayout(this);
@@ -318,45 +239,73 @@ MusicPlaylistRecommendQueryWidget::MusicPlaylistRecommendQueryWidget(QWidget *pa
     setLayout(m_gridLayout);
 }
 
-MusicPlaylistRecommendQueryWidget::~MusicPlaylistRecommendQueryWidget()
+MusicItemRecommendQueryWidget::~MusicItemRecommendQueryWidget()
 {
     delete m_gridLayout;
     delete m_networkRequest;
 }
 
-void MusicPlaylistRecommendQueryWidget::setQueryInput(MusicAbstractQueryRequest *query)
+void MusicItemRecommendQueryWidget::setQueryInput(MusicAbstractQueryRequest *query)
 {
     m_networkRequest = query;
-    connect(m_networkRequest, SIGNAL(createPlaylistItem(MusicResultDataItem)), SLOT(createPlaylistItem(MusicResultDataItem)));
-    m_networkRequest->startToSearch("0");
+    switch(m_module)
+    {
+        case Module::Album: connect(m_networkRequest, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createItem(MusicResultDataItem))); break;
+        case Module::Artist: connect(m_networkRequest, SIGNAL(createArtistItem(MusicResultDataItem)), SLOT(createItem(MusicResultDataItem))); break;
+        case Module::Playlist: connect(m_networkRequest, SIGNAL(createPlaylistItem(MusicResultDataItem)), SLOT(createItem(MusicResultDataItem))); break;
+    }
 }
 
-void MusicPlaylistRecommendQueryWidget::createPlaylistItem(const MusicResultDataItem &item)
+void MusicItemRecommendQueryWidget::createItem(const MusicResultDataItem &item)
 {
     MusicSquareQueryItemWidget *label = new MusicSquareQueryItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentItemClicked(MusicResultDataItem)));
     label->hide();
     label->setShowTime(false);
     label->setShowCount(false);
+    label->setValueLabel(m_module != Module::Artist);
     label->setResultDataItem(item, new MusicCoverSourceRequest(this));
 
     const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
     const int lineNumber = (QUERY_WIDGET_WIDTH  - lineSize / 2) / lineSize;
+    int row = 0, col = 0;
+
+    if(m_module != Module::Album)
+    {
+        row = 0;
+        col = m_resizeWidgets.count();
+    }
+    else
+    {
+        int rowNumber = lineNumber;
+        if(rowNumber > m_networkRequest->pageSize())
+        {
+            rowNumber = m_networkRequest->pageSize();
+        }
+
+        row = m_resizeWidgets.count() / (rowNumber / 2);
+        col = m_resizeWidgets.count() % (rowNumber / 2);
+    }
+
     if(m_resizeWidgets.count() < lineNumber)
     {
         label->show();
-        m_gridLayout->addWidget(label, 0, m_resizeWidgets.count(), Qt::AlignLeft | Qt::AlignTop);
+        m_gridLayout->addWidget(label, row, col, Qt::AlignLeft | Qt::AlignTop);
     }
-
     m_resizeWidgets.append(label);
 }
 
-void MusicPlaylistRecommendQueryWidget::currentItemClicked(const MusicResultDataItem &item)
+void MusicItemRecommendQueryWidget::currentItemClicked(const MusicResultDataItem &item)
 {
-    MusicRightAreaWidget::instance()->showPlaylistFound(item.m_id);
+    switch(m_module)
+    {
+        case Module::Album: MusicRightAreaWidget::instance()->albumSearchByID(item.m_id); break;
+        case Module::Artist: MusicRightAreaWidget::instance()->artistSearchByID(item.m_id); break;
+        case Module::Playlist: MusicRightAreaWidget::instance()->showPlaylistFound(item.m_id); break;
+    }
 }
 
-void MusicPlaylistRecommendQueryWidget::resizeGeometry()
+void MusicItemRecommendQueryWidget::resizeGeometry()
 {
     if(m_resizeWidgets.isEmpty() || !m_gridLayout)
     {
@@ -371,11 +320,32 @@ void MusicPlaylistRecommendQueryWidget::resizeGeometry()
 
     const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
     const int lineNumber = (QUERY_WIDGET_WIDTH  - lineSize / 2) / lineSize;
+    int row = 0, col = 0, rowNumber = 0;
+
+    if(m_module != Module::Album)
+    {
+        row = TTK_RN_MAX;
+        col = lineNumber;
+        rowNumber = lineNumber;
+    }
+    else
+    {
+        rowNumber = lineNumber / 2;
+        if(rowNumber > m_networkRequest->pageSize() / 2)
+        {
+            rowNumber = m_networkRequest->pageSize() / 2;
+        }
+
+        row = rowNumber;
+        col = rowNumber;
+        rowNumber = 2 * rowNumber;
+    }
+
     for(int i = 0; i < m_resizeWidgets.count(); ++i)
     {
-        if(i < lineNumber)
+        if(i < rowNumber)
         {
-            m_gridLayout->addWidget(m_resizeWidgets[i], 0, i % lineNumber, Qt::AlignLeft | Qt::AlignTop);
+            m_gridLayout->addWidget(m_resizeWidgets[i], i / row, i % col, Qt::AlignLeft | Qt::AlignTop);
             m_resizeWidgets[i]->show();
         }
     }
@@ -408,7 +378,8 @@ MusicMainRecommendWidget::~MusicMainRecommendWidget()
 {
     delete m_newSongsWidget;
     delete m_newAlbumsWidget;
-    delete m_highPlaylistWidget;
+    delete m_artistsWidget;
+    delete m_hqPlaylistWidget;
     delete m_playlistWidget;
     delete m_container;
     delete m_mainWidget;
@@ -418,7 +389,8 @@ void MusicMainRecommendWidget::resizeGeometry()
 {
     m_newSongsWidget->resizeGeometry();
     m_newAlbumsWidget->resizeGeometry();
-    m_highPlaylistWidget->resizeGeometry();
+    m_artistsWidget->resizeGeometry();
+    m_hqPlaylistWidget->resizeGeometry();
     m_playlistWidget->resizeGeometry();
 }
 
@@ -475,7 +447,7 @@ void MusicMainRecommendWidget::createTopWidget()
 void MusicMainRecommendWidget::createContainerWidget()
 {
     m_container = new QWidget(m_mainWidget);
-    m_container->setFixedHeight(1100);
+    m_container->setFixedHeight(1250);
 
     QVBoxLayout *layout = new QVBoxLayout(m_container);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -494,7 +466,7 @@ void MusicMainRecommendWidget::createContainerWidget()
     createContainerTopWidget();
     createContainerMiddleTopWidget();
     createContainerMiddleWidget();
-//    createContainerMiddleBottomWidget();
+    createContainerMiddleBottomWidget();
 
     layout->addStretch(1);
 }
@@ -535,10 +507,6 @@ void MusicMainRecommendWidget::createContainerTopWidget()
     leftTopLayout->addWidget(leftTopText);
     leftTopLayout->addStretch(1);
 
-//    QPushButton *leftTopBtton = new QPushButton("更多", leftTopWidget);
-//    leftTopBtton->setStyleSheet(TTK::UI::PushButtonStyle02);
-//    leftTopLayout->addWidget(leftTopBtton);
-
     QWidget *leftMiddle = new QWidget(leftWidget);
     leftMiddle->setFixedHeight(1);
     leftMiddle->setStyleSheet(TTK::UI::BackgroundStyle03);
@@ -574,15 +542,51 @@ void MusicMainRecommendWidget::createContainerTopWidget()
     rightTopLayout->addWidget(rightTopText);
     rightTopLayout->addStretch(1);
 
-//    QPushButton *rightTopBtton = new QPushButton("更多", rightTopWidget);
-//    rightTopBtton->setStyleSheet(TTK::UI::PushButtonStyle02);
-//    rightTopLayout->addWidget(rightTopBtton);
-
-    m_newAlbumsWidget = new MusicNewAlbumsRecommendQueryWidget(rightWidget);
+    m_newAlbumsWidget = new MusicItemRecommendQueryWidget(MusicItemRecommendQueryWidget::Album, rightWidget);
     rightLayout->addWidget(m_newAlbumsWidget);
+
+    MusicAbstractQueryRequest *req = new MusicNewAlbumsRecommendRequest(this);
+    m_newAlbumsWidget->setQueryInput(req);
+    req->startToSearch("ALL");
 }
 
 void MusicMainRecommendWidget::createContainerMiddleTopWidget()
+{
+    QWidget *widget = new QWidget(m_mainWidget);
+//    widget->setStyleSheet("background:red");
+    widget->setFixedHeight(260);
+    m_container->layout()->addWidget(widget);
+
+    QVBoxLayout *layout = new QVBoxLayout(widget);
+    layout->setContentsMargins(0, 0, 0, 0);
+    widget->setLayout(layout);
+
+    QWidget *topWidget = new QWidget(widget);
+    topWidget->setFixedHeight(35);
+    layout->addWidget(topWidget);
+
+    QHBoxLayout *topLayout = new QHBoxLayout(topWidget);
+    topLayout->setContentsMargins(0, 0, 0, 0);
+    topWidget->setLayout(topLayout);
+
+    QWidget *topFrame = new QWidget(topWidget);
+    topFrame->setFixedSize(3, 30);
+    topFrame->setStyleSheet(TTK::UI::BackgroundStyle13);
+    topLayout->addWidget(topFrame, 0, Qt::AlignVCenter);
+
+    QLabel *topText = new QLabel("热门歌手", topWidget);
+    topText->setStyleSheet(TTK::UI::FontStyle04);
+    topLayout->addWidget(topText);
+
+    m_artistsWidget = new MusicItemRecommendQueryWidget(MusicItemRecommendQueryWidget::Artist, widget);
+    layout->addWidget(m_artistsWidget);
+
+    MusicAbstractQueryRequest *req = new MusicArtistsRecommendRequest(this);
+    m_artistsWidget->setQueryInput(req);
+    req->startToSearch({});
+}
+
+void MusicMainRecommendWidget::createContainerMiddleWidget()
 {
     QWidget *widget = new QWidget(m_mainWidget);
     widget->setFixedHeight(260);
@@ -609,12 +613,15 @@ void MusicMainRecommendWidget::createContainerMiddleTopWidget()
     topText->setStyleSheet(TTK::UI::FontStyle04);
     topLayout->addWidget(topText);
 
-    m_highPlaylistWidget = new MusicPlaylistRecommendQueryWidget(widget);
-    m_highPlaylistWidget->setQueryInput(new MusicPlaylistHighqualityRecommendRequest(this));
-    layout->addWidget(m_highPlaylistWidget);
+    m_hqPlaylistWidget = new MusicItemRecommendQueryWidget(MusicItemRecommendQueryWidget::Playlist, widget);
+    layout->addWidget(m_hqPlaylistWidget);
+
+    MusicAbstractQueryRequest *req = new MusicPlaylistHQRecommendRequest(this);
+    m_hqPlaylistWidget->setQueryInput(req);
+    req->startToSearch("全部");
 }
 
-void MusicMainRecommendWidget::createContainerMiddleWidget()
+void MusicMainRecommendWidget::createContainerMiddleBottomWidget()
 {
     QWidget *widget = new QWidget(m_mainWidget);
     widget->setFixedHeight(260);
@@ -641,45 +648,10 @@ void MusicMainRecommendWidget::createContainerMiddleWidget()
     topText->setStyleSheet(TTK::UI::FontStyle04);
     topLayout->addWidget(topText);
 
-    m_playlistWidget = new MusicPlaylistRecommendQueryWidget(widget);
-    m_playlistWidget->setQueryInput(new MusicPlaylistRecommendRequest(this));
+    m_playlistWidget = new MusicItemRecommendQueryWidget(MusicItemRecommendQueryWidget::Playlist, widget);
     layout->addWidget(m_playlistWidget);
-}
 
-void MusicMainRecommendWidget::createContainerMiddleBottomWidget()
-{
-    QWidget *widget = new QWidget(m_mainWidget);
-    widget->setFixedHeight(300);
-    m_container->layout()->addWidget(widget);
-
-    QVBoxLayout *layout = new QVBoxLayout(widget);
-    layout->setContentsMargins(0, 0, 0, 0);
-    layout->setSpacing(0);
-    widget->setLayout(layout);
-
-    QWidget *topWidget = new QWidget(widget);
-    topWidget->setFixedHeight(35);
-    layout->addWidget(topWidget);
-
-    QHBoxLayout *topLayout = new QHBoxLayout(topWidget);
-    topLayout->setContentsMargins(0, 0, 0, 0);
-    topWidget->setLayout(topLayout);
-
-    QWidget *topFrame = new QWidget(topWidget);
-    topFrame->setFixedSize(3, 30);
-    topFrame->setStyleSheet(TTK::UI::BackgroundStyle13);
-    topLayout->addWidget(topFrame, 0, Qt::AlignVCenter);
-
-    QLabel *topText = new QLabel("推荐MV", topWidget);
-    topText->setStyleSheet(TTK::UI::FontStyle04);
-    topLayout->addWidget(topText);
-
-    QWidget *middle = new QWidget(widget);
-    middle->setFixedHeight(1);
-    middle->setStyleSheet(TTK::UI::BackgroundStyle03);
-    layout->addWidget(middle);
-
-    QWidget *bottom = new QWidget(widget);
-    bottom->setStyleSheet("background:rgb(12,65,88)");
-    layout->addWidget(bottom);
+    MusicAbstractQueryRequest *req = new MusicPlaylistRecommendRequest(this);
+    m_playlistWidget->setQueryInput(req);
+    req->startToSearch({});
 }
