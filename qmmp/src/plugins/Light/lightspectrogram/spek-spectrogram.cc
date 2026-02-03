@@ -336,22 +336,22 @@ void LightSpectrogram::showSettings()
         widget->setFixedSize(140, 280);
         widget->move(0, (height() - widget->height()) / 2);
 
-        QButtonGroup *group = new QButtonGroup(widget);
+        QButtonGroup *buttonGroup = new QButtonGroup(widget);
 #if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
-        connect(group, SIGNAL(idClicked(int)), SLOT(settingButtonClicked(int)));
+        connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(settingButtonClicked(int)));
 #else
-        connect(group, SIGNAL(buttonClicked(int)), SLOT(settingButtonClicked(int)));
+        connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(settingButtonClicked(int)));
 #endif
         QGridLayout *layout = new QGridLayout(widget);
         widget->setLayout(layout);
 
-        makeSettingButtons(group, layout, 0, "c", tr("Change the audio channel"));
-        makeSettingButtons(group, layout, 1, "f", tr("Change the DFT window function"));
-        makeSettingButtons(group, layout, 2, "l", tr("Change the lower limit of the dynamic range in dBFS"));
-        makeSettingButtons(group, layout, 3, "p", tr("Change the palette"));
-        makeSettingButtons(group, layout, 4, "s", tr("Change the audio stream"));
-        makeSettingButtons(group, layout, 5, "u", tr("Change the upper limit of the dynamic range in dBFS"));
-        makeSettingButtons(group, layout, 6, "w", tr("Change the DFT window size"));
+        makeSettingButtons(buttonGroup, layout, 0, "c", tr("Change the audio channel"));
+        makeSettingButtons(buttonGroup, layout, 1, "f", tr("Change the DFT window function"));
+        makeSettingButtons(buttonGroup, layout, 2, "l", tr("Change the lower limit of the dynamic range in dBFS"));
+        makeSettingButtons(buttonGroup, layout, 3, "p", tr("Change the palette"));
+        makeSettingButtons(buttonGroup, layout, 4, "s", tr("Change the audio stream"));
+        makeSettingButtons(buttonGroup, layout, 5, "u", tr("Change the upper limit of the dynamic range in dBFS"));
+        makeSettingButtons(buttonGroup, layout, 6, "w", tr("Change the DFT window size"));
 
         widget->show();
         m_widget.reset(widget);
