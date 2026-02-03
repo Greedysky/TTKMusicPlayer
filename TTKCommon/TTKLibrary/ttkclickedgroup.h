@@ -37,7 +37,7 @@ public:
     /*!
      * Map the clicked widget.
      */
-    void mapped(QWidget *widget);
+    void addWidget(QWidget *widget, int id = -1);
 
 Q_SIGNALS:
     /*!
@@ -52,7 +52,13 @@ private Q_SLOTS:
     void update();
 
 private:
-    QWidgetList m_container;
+    struct Data
+    {
+        int m_id;
+        QWidget *m_widget;
+    };
+
+    QList<Data> m_container;
 
 };
 

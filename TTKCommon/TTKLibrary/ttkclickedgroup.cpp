@@ -6,9 +6,9 @@ TTKClickedGroup::TTKClickedGroup(QObject *parent)
 
 }
 
-void TTKClickedGroup::mapped(QWidget *widget)
+void TTKClickedGroup::addWidget(QWidget *widget, int id)
 {
-    m_container << widget;
+    m_container.append({id, widget});
     connect(widget, SIGNAL(clicked()), this, SLOT(update()));
 }
 
@@ -23,9 +23,10 @@ void TTKClickedGroup::update()
     int index = -1;
     for(int i = 0; i < m_container.count(); ++i)
     {
-        if(m_container[i] == widget)
+        const Data &data = m_container[i];
+        if(data.m_widget == widget)
         {
-            index = i;
+            index = data.m_id == -1 ? i : data.m_id;
             break;
         }
     }

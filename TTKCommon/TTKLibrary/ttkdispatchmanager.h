@@ -77,13 +77,13 @@ private:
     ~TTKDispatchManager();
 
 private:
-    struct TTKDispatchItem
+    struct Data
     {
         int m_times;
         TTKDispatchManager::Module m_type;
         TTKVariantList m_args;
 
-        TTKDispatchItem() noexcept
+        Data() noexcept
             : m_times(0),
               m_type(TTKDispatchManager::Module::Null)
         {
@@ -104,7 +104,7 @@ private:
 private:
     QMutex m_mutex;
     QTimer *m_timer;
-    QList<TTKDispatchItem*> m_observer;
+    QList<Data*> m_observer;
 
 };
 
