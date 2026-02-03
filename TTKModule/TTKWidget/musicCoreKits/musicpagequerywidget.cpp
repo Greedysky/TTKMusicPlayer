@@ -43,7 +43,7 @@ QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
         label->setFont(font);
         label->setStyleSheet(TTK::UI::ColorStyle04);
         label->setFixedWidth(TTK::Widget::fontTextWidth(font, label->text()));
-        clickedGroup->mapped(label);
+        clickedGroup->addWidget(label);
     }
 
     m_pageItems[MAX_PAGE_SIZE]->hide();

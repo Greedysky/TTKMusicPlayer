@@ -186,45 +186,45 @@ void MusicWebFMRadioWidget::itemDoubleClicked(int row, int column)
 
 void MusicWebFMRadioWidget::addCelltItems()
 {
-    struct ToolItem
+    struct Data
     {
         QString m_icon;
         QString m_name;
 
-        ToolItem() = default;
-        ToolItem(const QString &icon, const QString &name) noexcept
+        Data() = default;
+        Data(const QString &icon, const QString &name) noexcept
             : m_icon(icon),
               m_name(name)
         {
 
         }
     };
-    TTK_DECLARE_LIST(ToolItem);
+    TTK_DECLARE_LIST(Data);
 
-    ToolItemList pairs;
-    pairs << ToolItem(":/radio/lb_radio_1", tr("FMRadio"))
-          << ToolItem(":/radio/lb_radio_2", tr("TKRadio"))
-          << ToolItem(":/radio/lb_radio_3", tr("DJRadio"))
-          << ToolItem(":/radio/lb_radio_4", tr("MVRadio"))
-          << ToolItem(":/radio/lb_radio_5", tr("PVRadio"))
-          << ToolItem(":/radio/lb_radio_6", tr("TRRadio"))
-          << ToolItem(":/radio/lb_radio_7", tr("TMRadio"))
-          << ToolItem(":/radio/lb_radio_8", tr("VPRadio"))
-          << ToolItem(":/radio/lb_radio_9", tr("NWRadio"))
-          << ToolItem(":/radio/lb_radio_10", tr("FNRadio"))
-          << ToolItem(":/radio/lb_radio_11", tr("MYRadio"))
-          << ToolItem(":/radio/lb_radio_12", tr("FVRadio"))
-          << ToolItem(":/radio/lb_radio_13", tr("WWRadio"))
-          << ToolItem(":/radio/lb_radio_14", tr("HCRadio"))
-          << ToolItem(":/radio/lb_radio_15", tr("RHRadio"))
-          << ToolItem(":/radio/lb_radio_16", tr("HSRadio"))
-          << ToolItem(":/radio/lb_radio_17", tr("EARadio"))
-          << ToolItem(":/radio/lb_radio_18", tr("CNRadio"))
-          << ToolItem(":/radio/lb_radio_19", tr("JPRadio"))
-          << ToolItem(":/radio/lb_radio_20", tr("KRRadio"))
-          << ToolItem(":/radio/lb_radio_21", tr("CTRadio"));
+    DataList pairs;
+    pairs << Data(":/radio/lb_radio_1", tr("FMRadio"))
+          << Data(":/radio/lb_radio_2", tr("TKRadio"))
+          << Data(":/radio/lb_radio_3", tr("DJRadio"))
+          << Data(":/radio/lb_radio_4", tr("MVRadio"))
+          << Data(":/radio/lb_radio_5", tr("PVRadio"))
+          << Data(":/radio/lb_radio_6", tr("TRRadio"))
+          << Data(":/radio/lb_radio_7", tr("TMRadio"))
+          << Data(":/radio/lb_radio_8", tr("VPRadio"))
+          << Data(":/radio/lb_radio_9", tr("NWRadio"))
+          << Data(":/radio/lb_radio_10", tr("FNRadio"))
+          << Data(":/radio/lb_radio_11", tr("MYRadio"))
+          << Data(":/radio/lb_radio_12", tr("FVRadio"))
+          << Data(":/radio/lb_radio_13", tr("WWRadio"))
+          << Data(":/radio/lb_radio_14", tr("HCRadio"))
+          << Data(":/radio/lb_radio_15", tr("RHRadio"))
+          << Data(":/radio/lb_radio_16", tr("HSRadio"))
+          << Data(":/radio/lb_radio_17", tr("EARadio"))
+          << Data(":/radio/lb_radio_18", tr("CNRadio"))
+          << Data(":/radio/lb_radio_19", tr("JPRadio"))
+          << Data(":/radio/lb_radio_20", tr("KRRadio"))
+          << Data(":/radio/lb_radio_21", tr("CTRadio"));
 
-    for(const ToolItem &pair : qAsConst(pairs))
+    for(const Data &pair : qAsConst(pairs))
     {
         const int index = rowCount();
         setRowCount(index + 1);

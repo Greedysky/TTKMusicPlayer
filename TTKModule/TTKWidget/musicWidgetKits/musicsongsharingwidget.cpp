@@ -52,7 +52,7 @@ MusicSongSharingWidget::~MusicSongSharingWidget()
     delete m_ui;
 }
 
-void MusicSongSharingWidget::initialize(Module type, const MusicSongSharingWidget::Item &data)
+void MusicSongSharingWidget::initialize(Module type, const MusicSongSharingWidget::Data &data)
 {
     m_type = type;
     m_data = data;

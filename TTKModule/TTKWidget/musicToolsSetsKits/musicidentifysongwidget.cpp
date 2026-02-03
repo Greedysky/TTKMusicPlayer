@@ -159,7 +159,7 @@ void MusicIdentifySongWidget::showSongShareWidget()
 {
     if(!m_info.m_artistName.isEmpty())
     {
-        MusicSongSharingWidget::Item item;
+        MusicSongSharingWidget::Data item;
         item.m_name = m_info.m_songName;
 
         MusicSongSharingWidget widget(this);

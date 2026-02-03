@@ -56,14 +56,14 @@ private:
     void setShutdown();
 
 private:
-    struct MusicTimeData
+    struct Data
     {
         int m_index;
         int m_hour;
         int m_minute;
         bool m_state;
 
-        MusicTimeData() noexcept
+        Data() noexcept
             : m_index(-1),
               m_hour(-1),
               m_minute(-1),
@@ -72,11 +72,11 @@ private:
 
         }
     };
-    TTK_DECLARE_LIST(MusicTimeData);
+    TTK_DECLARE_LIST(Data);
 
 private:
     QTimer m_timer;
-    MusicTimeDataList m_timeDatas;
+    DataList m_timeDatas;
 
 };
 

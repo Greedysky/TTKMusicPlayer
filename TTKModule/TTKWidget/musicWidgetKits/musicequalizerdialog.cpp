@@ -137,7 +137,7 @@ void MusicEqualizerDialog::initialize()
         TTKClickedSlider *slider = sliders[i];
         slider->setRange(-15, 15);
         slider->setStyleSheet(TTK::UI::SliderStyle04);
-        clickedGroup->mapped(slider);
+        clickedGroup->addWidget(slider);
         connect(slider, SIGNAL(valueChanged(int)), SLOT(sliderValueChanged()));
     }
 

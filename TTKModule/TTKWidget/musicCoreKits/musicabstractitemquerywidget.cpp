@@ -92,7 +92,7 @@ void MusicAbstractItemQueryWidget::playAllButtonClicked()
 
 void MusicAbstractItemQueryWidget::shareButtonClicked()
 {
-    MusicSongSharingWidget::Item item;
+    MusicSongSharingWidget::Data item;
     item.m_id = m_currentPlaylistItem.m_id;
     item.m_name = m_currentPlaylistItem.m_name;
     item.m_cover = m_currentPlaylistItem.m_coverUrl;

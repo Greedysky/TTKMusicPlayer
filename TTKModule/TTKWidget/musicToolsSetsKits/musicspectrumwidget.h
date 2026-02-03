@@ -77,7 +77,7 @@ public Q_SLOTS:
     void fullscreenByUser(QWidget *widget, bool state);
 
 private:
-    struct MusicSpectrum
+    struct Data
     {
         enum class Module
         {
@@ -93,7 +93,7 @@ private:
         QWidget *m_object;
         Module m_type;
     };
-    TTK_DECLARE_LIST(MusicSpectrum);
+    TTK_DECLARE_LIST(Data);
 
 private:
     /*!
@@ -104,23 +104,23 @@ private:
     /*!
      * Create spectrum widget.
      */
-    void createSpectrumWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout);
+    void createSpectrumWidget(Data::Module spectrum, bool &state, const QString &name, QLayout *layout);
     /*!
      * Create flow widget.
      */
-    void createFlowWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout);
+    void createFlowWidget(Data::Module spectrum, bool &state, const QString &name, QLayout *layout);
     /*!
      * Create florid widget.
      */
-    void createFloridWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout);
+    void createFloridWidget(Data::Module spectrum, bool &state, const QString &name, QLayout *layout);
     /*!
      * Create module widget.
      */
-    void createModuleWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout, bool florid);
+    void createModuleWidget(Data::Module spectrum, bool &state, const QString &name, QLayout *layout, bool florid);
     /*!
      * Create light widget.
      */
-    void createLightWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout, const QString &url = {});
+    void createLightWidget(Data::Module spectrum, bool &state, const QString &name, QLayout *layout, const QString &url = {});
     /*!
      * Find spectrum widget index by name.
      */
@@ -135,7 +135,7 @@ private:
     QLayout *m_spectrumLayout;
     QString m_lastFlowName;
     QString m_lastFloridName;
-    MusicSpectrumList m_spectrums;
+    DataList m_spectrums;
 
 };
 

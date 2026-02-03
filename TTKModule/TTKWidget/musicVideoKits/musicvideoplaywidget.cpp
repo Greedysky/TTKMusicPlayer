@@ -329,7 +329,7 @@ void MusicVideoPlayWidget::shareButtonClicked()
         return;
     }
 
-    MusicSongSharingWidget::Item item;
+    MusicSongSharingWidget::Data item;
     item.m_id = id;
     item.m_name = name;
     item.m_cover = m_videoItem.m_cover;

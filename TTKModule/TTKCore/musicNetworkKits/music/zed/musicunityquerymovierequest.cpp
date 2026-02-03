@@ -56,7 +56,7 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
         case 1:
         {
             QNetworkRequest request;
-            request.setUrl(TTK::Algorithm::mdII(BL_MOVIE_URL, false).arg(m_queryValue).arg(m_pageIndex));
+            request.setUrl(TTK::Algorithm::mdII(BL_MOVIE_URL, false).arg(m_queryValue).arg(offset));
             ReqBLInterface::makeRequestRawHeader(&request);
 
             TTK_INFO_STREAM("parse song property in bl module");

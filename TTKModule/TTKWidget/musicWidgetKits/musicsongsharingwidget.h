@@ -68,7 +68,7 @@ public:
         Null        /*!< null type */
     };
 
-    struct Item
+    struct Data
     {
         QString m_id;
         QString m_name;
@@ -88,7 +88,7 @@ public:
     /*!
      * Set current data to share.
      */
-    void initialize(Module type, const MusicSongSharingWidget::Item &data);
+    void initialize(Module type, const MusicSongSharingWidget::Data &data);
 
 public Q_SLOTS:
     /*!
@@ -122,7 +122,7 @@ private:
     Ui::MusicSongSharingWidget *m_ui;
     Module m_type;
     QRCodeQWidget *m_qrCodeWidget;
-    MusicSongSharingWidget::Item m_data;
+    MusicSongSharingWidget::Data m_data;
 
 };
 

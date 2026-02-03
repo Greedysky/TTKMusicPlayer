@@ -1,6 +1,6 @@
 #include "musicfplconfigmanager.h"
 
-struct FPLTrackChunk
+struct Data
 {
     uint unk1;		// not sure??
     uint file_ofz;	// filename string offset
@@ -53,10 +53,10 @@ bool MusicFPLConfigManager::readBuffer(MusicSongItemList &items)
     uint keyRunner[512];
     double duration = 0.0f;
 
-    FPLTrackChunk chunkRunner;
+    Data chunkRunner;
     for(size_t i = 0; i < plSize && !m_file.atEnd(); ++i)
     {
-        m_file.read((char*)&chunkRunner, sizeof(FPLTrackChunk));
+        m_file.read((char*)&chunkRunner, sizeof(Data));
         // keys_dex sanity check
         if(chunkRunner.keys_dex > 512)
         {

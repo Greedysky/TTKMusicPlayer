@@ -122,7 +122,7 @@ void MusicSpectrumLayoutWidget::addCellItems(const SpectrumInfoList &items)
         MusicSpectrumLayoutItem *item = new MusicSpectrumLayoutItem(this);
         item->addCellItem(info.first, info.second);
 
-        clickedGroup->mapped(item);
+        clickedGroup->addWidget(item);
         m_containLayout->addWidget(item);
         m_items << item;
     }

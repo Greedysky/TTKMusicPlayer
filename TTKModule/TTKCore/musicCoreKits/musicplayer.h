@@ -178,7 +178,7 @@ private:
     qint64 m_duration;
     int m_durationTimes;
 
-    struct Enhance
+    struct Data
     {
         TTK::Enhance m_type = TTK::Enhance::Off;
         int m_volume3D = 0;

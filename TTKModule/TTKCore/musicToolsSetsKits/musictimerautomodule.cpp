@@ -16,7 +16,7 @@
 MusicTimerAutoModule::MusicTimerAutoModule(QObject *parent)
     : QObject(parent)
 {
-    MusicTimeData play, stop, shutdown;
+    Data play, stop, shutdown;
     play.m_index = 0;
     stop.m_index = 1;
     shutdown.m_index = 2;
@@ -70,7 +70,7 @@ void MusicTimerAutoModule::timeout()
 
     for(int i = 0; i < m_timeDatas.count(); ++i)
     {
-        MusicTimeData *pair = &m_timeDatas[i];
+        Data *pair = &m_timeDatas[i];
         if(pair->m_state && hour == pair->m_hour && minute == pair->m_minute)
         {
             switch(pair->m_index)

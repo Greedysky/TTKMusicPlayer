@@ -45,7 +45,7 @@ void MusicAlbumQueryWidget::resizeGeometry()
 
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
 
-    TTKResizeWidget *data = &m_resizeWidgets[1];
+    Data *data = &m_resizeWidgets[1];
     data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width + 30));
 
     data = &m_resizeWidgets[2];
@@ -136,7 +136,7 @@ void MusicAlbumQueryWidget::createAlbumItem(const MusicResultDataItem &item)
 
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
 
-    TTKResizeWidget *data = &m_resizeWidgets[0];
+    Data *data = &m_resizeWidgets[0];
     data->m_label->setText(tr("<font color=#158FE1> Alubm > %1 </font>").arg(list[0]));
 
     data = &m_resizeWidgets[1];

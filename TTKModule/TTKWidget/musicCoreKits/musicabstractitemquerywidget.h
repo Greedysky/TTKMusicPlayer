@@ -108,12 +108,12 @@ protected:
     MusicAbstractQueryRequest *m_networkRequest;
     MusicSongSharingWidget::Module m_shareType;
 
-    struct TTKResizeWidget
+    struct Data
     {
         QLabel *m_label;
         QFont m_font;
     };
-    QList<TTKResizeWidget> m_resizeWidgets;
+    QList<Data> m_resizeWidgets;
 
 };
 

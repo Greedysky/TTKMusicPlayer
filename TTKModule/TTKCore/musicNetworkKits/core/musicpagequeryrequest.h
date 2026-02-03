@@ -56,13 +56,28 @@ public:
      */
     inline int pageSize() const noexcept { return m_pageSize; }
     /*!
+     * Set the each page max size.
+     */
+    inline void setPageSize(int page) noexcept { m_pageSize = page; }
+
+    /*!
      * Return the total number.
      */
     inline int totalSize() const noexcept { return m_totalSize; }
     /*!
+     * Set the total number.
+     */
+    inline void setTotalSize(int size) noexcept { m_totalSize = size; }
+
+    /*!
      * Return the page index number.
      */
     inline int pageIndex() const noexcept { return m_pageIndex; }
+    /*!
+     * Set the page index number.
+     */
+    inline void setPageIndex(int index) noexcept { m_pageIndex = index; }
+
     /*!
      * Return the page index valid or not.
      */

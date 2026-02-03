@@ -11,7 +11,7 @@
 /*! @brief The class of the music meta.
  * @author Greedysky <greedysky@163.com>
  */
-struct MusicMeta
+struct Data
 {
     QString m_path;
     QPixmap m_cover;
@@ -257,9 +257,9 @@ MusicSongMeta::MusicSongMeta(const MusicSongMeta &other) noexcept
     m_offset = other.m_offset;
     m_path = other.m_path;
 
-    for(const MusicMeta *meta : qAsConst(m_songMetas))
+    for(const Data *meta : qAsConst(m_songMetas))
     {
-        m_songMetas << new MusicMeta(*meta);
+        m_songMetas << new Data(*meta);
     }
 }
 
@@ -281,9 +281,9 @@ MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other) noexcept
     m_offset = other.m_offset;
     m_path = other.m_path;
 
-    for(const MusicMeta *meta : qAsConst(m_songMetas))
+    for(const Data *meta : qAsConst(m_songMetas))
     {
-        m_songMetas << new MusicMeta(*meta);
+        m_songMetas << new Data(*meta);
     }
 
     return *this;
@@ -324,11 +324,11 @@ void MusicSongMeta::clearSongMeta() noexcept
     m_offset = -1;
 }
 
-MusicMeta *MusicSongMeta::songMeta() noexcept
+Data *MusicSongMeta::songMeta() noexcept
 {
     if(m_songMetas.isEmpty())
     {
-        m_songMetas << new MusicMeta;
+        m_songMetas << new Data;
         m_offset = 0;
     }
 
@@ -361,7 +361,7 @@ bool MusicSongMeta::readInformation()
 
         for(TrackInfo *info : qAsConst(infos))
         {
-            MusicMeta *meta = new MusicMeta;
+            Data *meta = new Data;
             meta->m_path = info->path();
             meta->m_metaData[TagMeta::URL] = files.isEmpty() ? m_path : files.first();
 
@@ -453,7 +453,7 @@ bool MusicSongMeta::readInformation()
             delete model;
         }
 
-        for(MusicMeta *meta : qAsConst(m_songMetas))
+        for(Data *meta : qAsConst(m_songMetas))
         {
             if(!cover.isNull())
             {

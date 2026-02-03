@@ -133,25 +133,34 @@ void MusicNewSongsRecommendRequest::downloadFinished()
 MusicNewAlbumsRecommendRequest::MusicNewAlbumsRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = 8;
+    m_pageSize = SONG_PAGE_SIZE;
     m_pageIndex = 0;
     m_queryServer = QUERY_WY_INTERFACE;
+}
+
+void MusicNewAlbumsRecommendRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
+
+    deleteAll();
+    m_pageIndex = offset;
+
+    QNetworkRequest request;
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
+                       TTK::Algorithm::mdII(NEW_ALBUM_URL, false),
+                       TTK::Algorithm::mdII(NEW_ALBUM_DATA_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
+
+    m_reply = m_manager.post(request, parameter);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicNewAlbumsRecommendRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
-    deleteAll();
-
-    QNetworkRequest request;
-    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                       TTK::Algorithm::mdII(NEW_ALBUM_URL, false),
-                       TTK::Algorithm::mdII(NEW_ALBUM_DATA_URL, false).arg(value).arg(m_pageIndex).arg(m_pageSize));
-
-    m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+    m_queryValue = value;
+    startToPage(0);
 }
 
 void MusicNewAlbumsRecommendRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
@@ -181,6 +190,8 @@ void MusicNewAlbumsRecommendRequest::downloadFinished()
             QVariantMap value = json.toVariant().toMap();
             if(value["code"].toInt() == 200 && value.contains("albums"))
             {
+                m_totalSize = value["total"].toInt();
+
                 const QVariantList &datas = value["albums"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -224,25 +235,35 @@ void MusicNewAlbumsRecommendRequest::downloadFinished()
 MusicArtistsRecommendRequest::MusicArtistsRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = 8;
+    m_pageSize = SONG_PAGE_SIZE;
     m_pageIndex = 0;
     m_queryServer = QUERY_WY_INTERFACE;
+    m_totalSize = 100;
+}
+
+void MusicArtistsRecommendRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
+
+    deleteAll();
+    m_pageIndex = offset;
+
+    QNetworkRequest request;
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
+                       TTK::Algorithm::mdII(ARTIST_URL, false),
+                       TTK::Algorithm::mdII(ARTIST_DATA_URL, false).arg(m_pageSize * offset).arg(m_pageSize));
+
+    m_reply = m_manager.post(request, parameter);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicArtistsRecommendRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
-    deleteAll();
-
-    QNetworkRequest request;
-    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                       TTK::Algorithm::mdII(ARTIST_URL, false),
-                       TTK::Algorithm::mdII(ARTIST_DATA_URL, false).arg(m_pageIndex).arg(m_pageSize));
-
-    m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+    m_queryValue = value;
+    startToPage(0);
 }
 
 void MusicArtistsRecommendRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
@@ -301,9 +322,10 @@ void MusicArtistsRecommendRequest::downloadFinished()
 MusicPlaylistRecommendRequest::MusicPlaylistRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = 8;
+    m_pageSize = SONG_PAGE_SIZE;
     m_pageIndex = 0;
     m_queryServer = QUERY_WY_INTERFACE;
+    m_totalSize = 100;
 }
 
 void MusicPlaylistRecommendRequest::startToSearch(const QString &value)
@@ -379,7 +401,7 @@ void MusicPlaylistRecommendRequest::downloadFinished()
 MusicPlaylistHQRecommendRequest::MusicPlaylistHQRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = 8;
+    m_pageSize = SONG_PAGE_SIZE;
     m_pageIndex = 0;
     m_queryServer = QUERY_WY_INTERFACE;
 }

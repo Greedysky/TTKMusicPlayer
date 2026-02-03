@@ -63,7 +63,7 @@ void MusicPlaylistQueryWidget::resizeGeometry()
         return;
     }
 
-    for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
+    for(const Data &widget : qAsConst(m_resizeWidgets))
     {
         m_gridLayout->removeWidget(widget.m_label);
     }

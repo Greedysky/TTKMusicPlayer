@@ -20,9 +20,21 @@
  ***************************************************************************/
 
 #include <QLabel>
+#include <QStackedWidget>
 #include "musicquerytablewidget.h"
 
 class QGridLayout;
+class TTKClickedGroup;
+class MusicPageQueryWidget;
+
+enum RecommendModule
+{
+    Song,
+    Album,
+    Artist,
+    Playlist,
+    PlaylistHQ
+};
 
 /*! @brief The class of the new song recommend query item table widget.
  * @author Greedysky <greedysky@163.com>
@@ -91,21 +103,14 @@ private:
 /*! @brief The class of the item recommend query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicItemRecommendQueryWidget : public QLabel
+class TTK_MODULE_EXPORT MusicItemRecommendQueryWidget : public QWidget
 {
     Q_OBJECT
 public:
-    enum Module
-    {
-        Album,
-        Artist,
-        Playlist
-    };
-
     /*!
      * Object constructor.
      */
-    explicit MusicItemRecommendQueryWidget(Module module, QWidget *parent = nullptr);
+    explicit MusicItemRecommendQueryWidget(RecommendModule module, QWidget *parent = nullptr);
     /*!
      * Object destructor.
      */
@@ -131,7 +136,7 @@ public Q_SLOTS:
     void currentItemClicked(const MusicResultDataItem &item);
 
 private:
-    Module m_module;
+    RecommendModule m_module;
     QGridLayout *m_gridLayout;
     QWidgetList m_resizeWidgets;
     MusicAbstractQueryRequest *m_networkRequest;
@@ -139,7 +144,58 @@ private:
 };
 
 
-/*! @brief The class of the system tray menu widget.
+/*! @brief The class of the item more recommend query widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicItemMoreRecommendQueryWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicItemMoreRecommendQueryWidget(RecommendModule module, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicItemMoreRecommendQueryWidget();
+
+    /*!
+     * Resize widget bound by resize called.
+     */
+    void resizeGeometry();
+
+public Q_SLOTS:
+    /*!
+     * Page widget button has changed.
+     */
+    void buttonClicked(int index);
+    /*!
+     * Current category changed.
+     */
+    void categoryChanged(int index);
+    /*!
+     * Create the current item info.
+     */
+    void createItem(const MusicResultDataItem &item);
+    /*!
+     * Current playlist item clicked.
+     */
+    void currentItemClicked(const MusicResultDataItem &item);
+
+private:
+    RecommendModule m_module;
+    QWidget *m_mainWidget;
+    QGridLayout *m_gridLayout;
+    QWidgetList m_resizeWidgets;
+    TTKClickedGroup *m_areasGroup;
+    MusicPageQueryWidget *m_pageQueryWidget;
+    MusicAbstractQueryRequest *m_networkRequest;
+
+};
+
+
+/*! @brief The class of the main recommend widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicMainRecommendWidget : public QWidget, public TTKAbstractResizeInterface
@@ -160,38 +216,55 @@ public:
      */
     virtual void resizeGeometry() override final;
 
+private Q_SLOTS:
+    /*!
+     * Change area item to more.
+     */
+    void areaItemChangedToMore(int id);
+    /*!
+     * Change more item to area.
+     */
+    void moreItemChangedToArea();
+
 private:
     /*!
-     * Create current top widget.
+     * Create home widget.
+     */
+    void createHomeWidget();
+    /*!
+     * Create top widget.
      */
     void createTopWidget();
     /*!
-     * Create current container widget.
+     * Create container widget.
      */
     void createContainerWidget();
     /*!
-     * Create current container top widget.
+     * Create container top widget.
      */
     void createContainerTopWidget();
     /*!
-     * Create current container middle top widget.
+     * Create container middle top widget.
      */
     void createContainerMiddleTopWidget();
     /*!
-     * Create current container middle widget.
+     * Create container middle widget.
      */
     void createContainerMiddleWidget();
     /*!
-     * Create current container middle bottom widget.
+     * Create container middle bottom widget.
      */
     void createContainerMiddleBottomWidget();
 
-    QWidget *m_mainWidget, *m_container;
+    QStackedWidget *m_mainWidget;
+    TTKClickedGroup *m_areasGroup;
+    QWidget *m_homeWidget, *m_homeContainer;
     MusicNewSongRecommendQueryTableWidget *m_newSongsWidget;
     MusicItemRecommendQueryWidget *m_newAlbumsWidget;
     MusicItemRecommendQueryWidget *m_artistsWidget;
     MusicItemRecommendQueryWidget *m_hqPlaylistWidget;
     MusicItemRecommendQueryWidget *m_playlistWidget;
+    MusicItemMoreRecommendQueryWidget *m_itemMoreWidget;
 
 };
 

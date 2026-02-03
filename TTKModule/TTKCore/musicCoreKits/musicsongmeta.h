@@ -22,7 +22,7 @@
 #include "musicglobaldefine.h"
 #include <qmmp/tagmeta.h>
 
-struct MusicMeta;
+struct Data;
 
 /*! @brief The class of the music song meta.
  * @author Greedysky <greedysky@163.com>
@@ -194,7 +194,7 @@ private:
     /*!
      * Get media song meta pointer.
      */
-    MusicMeta *songMeta() noexcept;
+    Data *songMeta() noexcept;
     /*!
      * Format legal data string.
      */
@@ -210,7 +210,7 @@ private:
 
     int m_offset;
     QString m_path;
-    QList<MusicMeta*> m_songMetas;
+    QList<Data*> m_songMetas;
 
 };
 

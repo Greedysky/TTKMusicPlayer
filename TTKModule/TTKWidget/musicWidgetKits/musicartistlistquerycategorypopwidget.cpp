@@ -36,7 +36,7 @@ void MusicArtistListQueryCategoryItem::setCategory(const MusicResultsCategory &c
         label->setStyleSheet(QString("QLabel::hover{ %1 }").arg(TTK::UI::ColorStyle07));
         label->setFixedSize(200, ITEM_LABEL_HEIGHT);
 
-        clickedGroup->mapped(label);
+        clickedGroup->addWidget(label);
         itemLayout->addWidget(label, i / ITEM_MAX_COLUMN, i % ITEM_MAX_COLUMN, Qt::AlignLeft);
     }
 

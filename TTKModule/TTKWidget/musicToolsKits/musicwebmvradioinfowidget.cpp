@@ -118,7 +118,7 @@ void MusicWebMVRadioInfoWidget::resizeGeometry()
 
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
 
-    TTKResizeWidget *data = &m_resizeWidgets[0];
+    Data *data = &m_resizeWidgets[0];
     data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
     data = &m_resizeWidgets[1];
@@ -150,7 +150,7 @@ void MusicWebMVRadioInfoWidget::createMVRadioProgramItem(const MusicResultDataIt
 
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 390;
 
-    TTKResizeWidget *data = &m_resizeWidgets[0];
+    Data *data = &m_resizeWidgets[0];
     data->m_label->setToolTip(item.m_name);
     data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 

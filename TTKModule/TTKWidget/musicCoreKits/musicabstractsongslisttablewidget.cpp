@@ -135,7 +135,7 @@ void MusicAbstractSongsListTableWidget::showSongSharedWidget()
         return;
     }
 
-    MusicSongSharingWidget::Item item;
+    MusicSongSharingWidget::Data item;
     item.m_name = currentSongName();
 
     MusicSongSharingWidget widget;
@@ -182,7 +182,7 @@ void MusicAbstractSongsListTableWidget::showPlayedSongSharedWidget()
         return;
     }
 
-    MusicSongSharingWidget::Item item;
+    MusicSongSharingWidget::Data item;
     item.m_name = songName(m_playRowIndex);
 
     MusicSongSharingWidget widget;

@@ -109,13 +109,13 @@ MusicPlaylistCategoryItem::MusicPlaylistCategoryItem(CategoryProperty *category,
 
             const QString &icon = property.m_type == CategoryProperty::New ? "lb_new" : "lb_hot";
             label = new CategoryMultiItem(items[i].m_value, ":/playlist/" + icon, item);
-            clickedGroup->mapped(TTKStaticCast(CategoryMultiItem*, label)->m_item);
+            clickedGroup->addWidget(TTKStaticCast(CategoryMultiItem*, label)->m_item);
         }
 
         if(!label)
         {
             label = new CategorySingleItem(items[i].m_value, item);
-            clickedGroup->mapped(label);
+            clickedGroup->addWidget(label);
         }
 
         label->setProperty("key", items[i].m_key);

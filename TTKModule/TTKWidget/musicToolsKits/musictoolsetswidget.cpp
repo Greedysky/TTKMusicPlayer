@@ -47,34 +47,34 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
 
 void MusicToolSetsWidget::addCelltItems()
 {
-    struct ToolItem
+    struct Data
     {
         QString m_icon;
         QString m_name;
 
-        ToolItem() = default;
-        ToolItem(const QString &icon, const QString &name) noexcept
+        Data() = default;
+        Data(const QString &icon, const QString &name) noexcept
             : m_icon(icon),
               m_name(name)
         {
 
         }
     };
-    TTK_DECLARE_LIST(ToolItem);
+    TTK_DECLARE_LIST(Data);
 
-    ToolItemList pairs;
-    pairs << ToolItem(":/tools/lb_bell", tr("Bell"))
-          << ToolItem(":/tools/lb_timer", tr("Timing"))
-          << ToolItem(":/tools/lb_transform", tr("Transform"))
-          << ToolItem(":/tools/lb_spectrum", tr("Spectrum"))
-          << ToolItem(":/tools/lb_connections" ,tr("Connection"))
-          << ToolItem(":/tools/lb_gain", tr("Gain"))
-          << ToolItem(":/tools/lb_dlna", tr("DLNA"))
-          << ToolItem(":/tools/lb_detect", tr("Identify"))
-          << ToolItem(":/tools/lb_screen_saver", tr("Saver"))
-          << ToolItem(":/tools/lb_playlist", tr("Playlist"));
+    DataList pairs;
+    pairs << Data(":/tools/lb_bell", tr("Bell"))
+          << Data(":/tools/lb_timer", tr("Timing"))
+          << Data(":/tools/lb_transform", tr("Transform"))
+          << Data(":/tools/lb_spectrum", tr("Spectrum"))
+          << Data(":/tools/lb_connections" ,tr("Connection"))
+          << Data(":/tools/lb_gain", tr("Gain"))
+          << Data(":/tools/lb_dlna", tr("DLNA"))
+          << Data(":/tools/lb_detect", tr("Identify"))
+          << Data(":/tools/lb_screen_saver", tr("Saver"))
+          << Data(":/tools/lb_playlist", tr("Playlist"));
 
-    for(const ToolItem &pair : qAsConst(pairs))
+    for(const Data &pair : qAsConst(pairs))
     {
         QListWidgetItem *item = new QListWidgetItem(QIcon(pair.m_icon), pair.m_name, m_ui->listItemWidget);
         item->setForeground(QColor(TTK::UI::Color01));

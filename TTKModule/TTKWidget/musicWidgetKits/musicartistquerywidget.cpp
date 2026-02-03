@@ -52,7 +52,7 @@ void MusicArtistMvsQueryWidget::resizeGeometry()
         return;
     }
 
-    for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
+    for(const Data &widget : qAsConst(m_resizeWidgets))
     {
         m_gridLayout->removeWidget(widget.m_label);
     }
@@ -152,7 +152,7 @@ void MusicArtistAlbumsQueryWidget::resizeGeometry()
         return;
     }
 
-    for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
+    for(const Data &widget : qAsConst(m_resizeWidgets))
     {
         m_gridLayout->removeWidget(widget.m_label);
     }
@@ -267,7 +267,7 @@ void MusicArtistQueryWidget::resizeGeometry()
 
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
 
-    TTKResizeWidget *data = &m_resizeWidgets[1];
+    Data *data = &m_resizeWidgets[1];
     data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
     data = &m_resizeWidgets[2];
@@ -385,7 +385,7 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
 
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN + 180;
 
-    TTKResizeWidget *data = &m_resizeWidgets[0];
+    Data *data = &m_resizeWidgets[0];
     data->m_label->setText(tr("<font color=#158FE1> Artist > %1 </font>").arg(item.m_name));
 
     data = &m_resizeWidgets[1];

@@ -5,7 +5,7 @@ static constexpr int SAVE_FILE_ERROR = -2;
 static constexpr int WRITE_FILE_ERROR = -3;
 static constexpr int REWRITE_FILE_ERROR = -4;
 
-struct WavHeader
+struct Data
 {
     char riffName[4];
     ulong riffLength;
@@ -99,7 +99,7 @@ MusicAudioRecorderModule::~MusicAudioRecorderModule()
 
 int MusicAudioRecorderModule::addWavHeader(const char *fileName) const
 {
-    WavHeader fileHeader;
+    Data fileHeader;
     fileHeader.riffName[0] = 'R';
     fileHeader.riffName[1] = 'I';
     fileHeader.riffName[2] = 'F';

@@ -17,7 +17,7 @@ static bool checkModule(const QString &module)
 }
 
 
-struct ServerModule
+struct Data
 {
     QString m_ua;
     QString m_url;
@@ -277,7 +277,7 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
                 continue;
             }
 
-            ServerModule v;
+            Data v;
             v.m_ua = value["ua"].toString();
             v.m_quality = qualityMap[QString::number(bitrate)].toString();
 
