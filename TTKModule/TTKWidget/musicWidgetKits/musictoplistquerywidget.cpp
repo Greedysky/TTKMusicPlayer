@@ -134,6 +134,9 @@ void MusicToplistQueryWidget::createLabels()
     m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
+#ifdef Q_OS_UNIX
+    m_songButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     hLayout->addWidget(m_songButton);
     hLayout->addStretch(1);
@@ -143,9 +146,6 @@ void MusicToplistQueryWidget::createLabels()
     buttonGroup->addButton(m_songButton, 0);
     QtButtonGroupConnect(buttonGroup, m_container, setCurrentIndex, TTK_SLOT);
 
-#ifdef Q_OS_UNIX
-    m_songButton->setFocusPolicy(Qt::NoFocus);
-#endif
     grid->addWidget(functionWidget);
     grid->addWidget(m_container);
     grid->addStretch(1);

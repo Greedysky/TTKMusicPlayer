@@ -12,6 +12,57 @@ void TTKClickedGroup::addWidget(QWidget *widget, int id)
     connect(widget, SIGNAL(clicked()), this, SLOT(update()));
 }
 
+void TTKClickedGroup::removeWidget(QWidget *widget)
+{
+    m_container.removeOne({-1, widget});
+}
+
+QList<QWidget*> TTKClickedGroup::items() const
+{
+    QWidgetList widgets;
+    for(const Data &data : qAsConst(m_container))
+    {
+        widgets.append(data.m_widget);
+    }
+    return widgets;
+}
+
+QWidget *TTKClickedGroup::widget(int id) const
+{
+    for(const Data &data : qAsConst(m_container))
+    {
+        if(data.m_id == id)
+        {
+            return data.m_widget;
+        }
+    }
+    return nullptr;
+}
+
+void TTKClickedGroup::setId(QWidget *widget, int id)
+{
+    for(Data &data : m_container)
+    {
+        if(data.m_widget == widget)
+        {
+            data.m_id = id;
+            break;
+        }
+    }
+}
+
+int TTKClickedGroup::id(QWidget *widget) const
+{
+    for(const Data &data : qAsConst(m_container))
+    {
+        if(data.m_widget == widget)
+        {
+            return data.m_id;
+        }
+    }
+    return -1;
+}
+
 void TTKClickedGroup::update()
 {
     QWidget *widget = TTKObjectCast(QWidget*, sender());

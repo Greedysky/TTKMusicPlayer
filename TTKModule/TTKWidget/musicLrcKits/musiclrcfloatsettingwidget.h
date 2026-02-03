@@ -75,9 +75,9 @@ private:
     virtual void enterEvent(QtEnterEvent *) override final {}
     virtual void leaveEvent(QEvent *event) override final;
     /*!
-     * Create pushButton by given index.
+     * Create button labels.
      */
-    QPushButton *createPushButton(int index);
+    QLabel *createButtonLabel(int index);
 
 };
 

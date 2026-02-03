@@ -8,7 +8,6 @@
 #include "ttktabbutton.h"
 
 #include <QTimer>
-#include <QButtonGroup>
 #if TTK_QT_VERSION_CHECK(5,0,0)
 #  include <QStandardPaths>
 #else

@@ -2,8 +2,8 @@
 #include "musiclrccontainerforinterior.h"
 #include "musicinteriorfloatuiobject.h"
 #include "musiclrchelper.h"
-
-#include <QButtonGroup>
+#include "ttkclickedgroup.h"
+#include "ttkclickedlabel.h"
 
 MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     : MusicAbstractFloatWidget(parent)
@@ -29,12 +29,12 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     sizeLabel->setGeometry(10, 70, 70, 20);
     backLabel->setGeometry(10, 115, 70, 20);
 
-    QButtonGroup *buttonGroup = new QButtonGroup(this);
-    buttonGroup->addButton(createPushButton(0), 0);
-    buttonGroup->addButton(createPushButton(1), 8);
-    buttonGroup->addButton(createPushButton(2), 1);
-    buttonGroup->addButton(createPushButton(3), 7);
-    QtButtonGroupConnect(buttonGroup, parent, changeCurrentLrcColor, TTK_SLOT);
+    TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
+    clickedGroup->addWidget(createButtonLabel(0), 0);
+    clickedGroup->addWidget(createButtonLabel(1), 8);
+    clickedGroup->addWidget(createButtonLabel(2), 1);
+    clickedGroup->addWidget(createButtonLabel(3), 7);
+    connect(clickedGroup, SIGNAL(clicked(int)), parent, SLOT(changeCurrentLrcColor(int)));
 
     QPushButton *sizeBigerButton = new QPushButton(this);
     QPushButton *sizeSmallerButton = new QPushButton(this);
@@ -80,24 +80,10 @@ void MusicLrcFloatSettingWidget::resizeGeometry(int width, int height)
     setGeometry(m_rectLeave);
 }
 
-QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
+void MusicLrcFloatSettingWidget::show()
 {
-    QPushButton *button = new QPushButton(this);
-    switch(index)
-    {
-        case 0: button->setIcon(QIcon(":/color/lb_yellow")); break;
-        case 1: button->setIcon(QIcon(":/color/lb_indigo")); break;
-        case 2: button->setIcon(QIcon(":/color/lb_blue")); break;
-        case 3: button->setIcon(QIcon(":/color/lb_orange")); break;
-        default: break;
-    }
-
-    button->setGeometry(80 + index * 20, 25, 16, 16);
-    button->setCursor(QCursor(Qt::PointingHandCursor));
-#ifdef Q_OS_UNIX
-    button->setFocusPolicy(Qt::NoFocus);
-#endif
-    return button;
+    MusicAbstractFloatWidget::show();
+    animationEnter();
 }
 
 void MusicLrcFloatSettingWidget::lrcSizeUpChanged()
@@ -136,14 +122,24 @@ void MusicLrcFloatSettingWidget::lrcArtBackgroundChanged()
     }
 }
 
-void MusicLrcFloatSettingWidget::show()
-{
-    MusicAbstractFloatWidget::show();
-    animationEnter();
-}
-
 void MusicLrcFloatSettingWidget::leaveEvent(QEvent *)
 {
     animationLeave();
     TTK_SIGNLE_SHOT(m_animation->duration(), this, widgetClose, TTK_SIGNAL);
+}
+
+QLabel *MusicLrcFloatSettingWidget::createButtonLabel(int index)
+{
+    TTKClickedLabel *label = new TTKClickedLabel(this);
+    switch(index)
+    {
+        case 0: label->setPixmap(QPixmap(":/color/lb_yellow")); break;
+        case 1: label->setPixmap(QPixmap(":/color/lb_indigo")); break;
+        case 2: label->setPixmap(QPixmap(":/color/lb_blue")); break;
+        case 3: label->setPixmap(QPixmap(":/color/lb_orange")); break;
+        default: break;
+    }
+
+    label->setGeometry(80 + index * 20, 25, 16, 16);
+    return label;
 }

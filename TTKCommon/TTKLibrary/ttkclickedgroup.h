@@ -35,9 +35,31 @@ public:
     explicit TTKClickedGroup(QObject *parent = nullptr);
 
     /*!
-     * Map the clicked widget.
+     * Add the clicked widget.
      */
     void addWidget(QWidget *widget, int id = -1);
+    /*!
+     * Remove the clicked widget.
+     */
+    void removeWidget(QWidget *widget);
+
+    /*!
+     * Get all container items.
+     */
+    QList<QWidget*> items() const;
+    /*!
+     * Get item widget by id.
+     */
+    QWidget *widget(int id) const;
+
+    /*!
+     * Set widget item id.
+     */
+    void setId(QWidget *widget, int id);
+    /*!
+     * Get widget item id.
+     */
+    int id(QWidget *widget) const;
 
 Q_SIGNALS:
     /*!
@@ -56,6 +78,11 @@ private:
     {
         int m_id;
         QWidget *m_widget;
+
+        inline bool operator ==(const Data &other) const noexcept
+        {
+            return m_widget == other.m_widget;
+        }
     };
 
     QList<Data> m_container;
