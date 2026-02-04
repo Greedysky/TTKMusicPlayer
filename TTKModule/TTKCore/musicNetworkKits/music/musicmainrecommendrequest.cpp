@@ -134,7 +134,6 @@ MusicNewAlbumsRecommendRequest::MusicNewAlbumsRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
     m_pageSize = SONG_PAGE_SIZE;
-    m_pageIndex = 0;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -236,7 +235,6 @@ MusicArtistsRecommendRequest::MusicArtistsRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
     m_pageSize = SONG_PAGE_SIZE;
-    m_pageIndex = 0;
     m_queryServer = QUERY_WY_INTERFACE;
     m_totalSize = 100;
 }
@@ -323,16 +321,16 @@ MusicPlaylistRecommendRequest::MusicPlaylistRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
     m_pageSize = SONG_PAGE_SIZE;
-    m_pageIndex = 0;
     m_queryServer = QUERY_WY_INTERFACE;
-    m_totalSize = 100;
+    m_totalSize = m_pageSize;
 }
 
-void MusicPlaylistRecommendRequest::startToSearch(const QString &value)
+void MusicPlaylistRecommendRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
 
     deleteAll();
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
@@ -342,6 +340,14 @@ void MusicPlaylistRecommendRequest::startToSearch(const QString &value)
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicPlaylistRecommendRequest::startToSearch(const QString &value)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
+
+    m_queryValue = value;
+    startToPage(0);
 }
 
 void MusicPlaylistRecommendRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
@@ -402,24 +408,48 @@ MusicPlaylistHQRecommendRequest::MusicPlaylistHQRecommendRequest(QObject *parent
     : MusicAbstractQueryRequest(parent)
 {
     m_pageSize = SONG_PAGE_SIZE;
-    m_pageIndex = 0;
     m_queryServer = QUERY_WY_INTERFACE;
+}
+
+void MusicPlaylistHQRecommendRequest::startToPage(int offset)
+{
+    if(offset == 0)
+    {
+        if(--m_pageIndex < 0)
+        {
+            m_pageIndex = 0;
+        }
+    }
+    else if(m_more && m_updateTime.contains(m_pageIndex + 1))
+    {
+        ++m_pageIndex;
+    }
+
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << m_pageIndex);
+
+    deleteAll();
+    const qint64 time = m_updateTime[m_pageIndex];
+
+    QNetworkRequest request;
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
+                       TTK::Algorithm::mdII(PLAYLIST_HQ_URL, false),
+                       TTK::Algorithm::mdII(PLAYLIST_HQ_DATA_URL, false).arg(m_queryValue).arg(time).arg(m_pageSize));
+
+    m_reply = m_manager.post(request, parameter);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicPlaylistHQRecommendRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
-    deleteAll();
-
-    QNetworkRequest request;
-    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                       TTK::Algorithm::mdII(PLAYLIST_HQ_URL, false),
-                       TTK::Algorithm::mdII(PLAYLIST_HQ_DATA_URL, false).arg(value).arg(m_pageIndex).arg(m_pageSize));
-
-    m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+    m_more = true;
+    m_updateTime.clear();
+    m_updateTime[0] = 0;
+    m_pageIndex = 0;
+    m_queryValue = value;
+    startToPage(0);
 }
 
 void MusicPlaylistHQRecommendRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
@@ -449,6 +479,15 @@ void MusicPlaylistHQRecommendRequest::downloadFinished()
             QVariantMap value = json.toVariant().toMap();
             if(value["code"].toInt() == 200 && value.contains("playlists"))
             {
+                m_totalSize = value["total"].toInt();
+                if(m_totalSize > m_pageSize * 2)
+                {
+                    m_totalSize = m_pageSize * 2;
+                }
+
+                m_more = value["more"].toBool();
+                m_updateTime[m_pageIndex + 1] = value["lasttime"].toLongLong();
+
                 const QVariantList &datas = value["playlists"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

@@ -132,13 +132,7 @@ void MusicWebMVRadioQueryWidget::categoryChanged(const MusicResultsCategoryItem 
         m_categoryButton->setText(category.m_value);
         m_categoryButton->closeMenu();
 
-        while(!m_resizeWidgets.isEmpty())
-        {
-            QWidget *w = m_resizeWidgets.takeLast().m_label;
-            m_gridLayout->removeWidget(w);
-            delete w;
-        }
-
+        removeItems(m_gridLayout);
         m_networkRequest->startToSearch(category.m_key);
     }
 }

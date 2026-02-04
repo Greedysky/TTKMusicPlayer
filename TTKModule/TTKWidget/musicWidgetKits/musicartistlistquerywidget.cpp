@@ -170,26 +170,14 @@ void MusicArtistListQueryWidget::categoryChanged(const MusicResultsCategoryItem 
 
 void MusicArtistListQueryWidget::buttonClicked(int index)
 {
-    while(!m_resizeWidgets.isEmpty())
-    {
-        QWidget *w = m_resizeWidgets.takeLast().m_label;
-        m_gridLayout->removeWidget(w);
-        delete w;
-    }
-
+    removeItems(m_gridLayout);
     m_pageQueryWidget->page(index, m_networkRequest->pageTotalSize());
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }
 
 void MusicArtistListQueryWidget::numberButtonClicked(int index)
 {
-    while(!m_resizeWidgets.isEmpty())
-    {
-        QWidget *w = m_resizeWidgets.takeLast().m_label;
-        m_gridLayout->removeWidget(w);
-        delete w;
-    }
-
+    removeItems(m_gridLayout);
     m_categoryChanged = true;
     m_networkRequest->startToSearch(QString("%1%2%3").arg(m_categoryId, TTK_SPLITER).arg(index));
 }

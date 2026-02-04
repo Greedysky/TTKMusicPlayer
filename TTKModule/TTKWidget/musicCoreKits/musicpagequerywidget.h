@@ -43,6 +43,7 @@ public:
      * Create page items.
      */
     QWidget* createPageWidget(QWidget *parent, int total);
+
     /*!
      * Reset page to origin.
      */

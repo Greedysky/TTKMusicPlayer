@@ -129,7 +129,7 @@ public Q_SLOTS:
     /*!
      * Create the current item info.
      */
-    void createItem(const MusicResultDataItem &item);
+    void createResultItem(const MusicResultDataItem &item);
     /*!
      * Current playlist item clicked.
      */
@@ -177,13 +177,23 @@ public Q_SLOTS:
     /*!
      * Create the current item info.
      */
-    void createItem(const MusicResultDataItem &item);
+    void createResultItem(const MusicResultDataItem &item);
     /*!
      * Current playlist item clicked.
      */
     void currentItemClicked(const MusicResultDataItem &item);
 
 private:
+    /*!
+     * Init widget and parameter.
+     */
+    void initialize();
+    /*!
+     * Remove all items.
+     */
+    void removeItems(QLayout *layout);
+
+    bool m_categoryChanged;
     RecommendModule m_module;
     QWidget *m_mainWidget;
     QGridLayout *m_gridLayout;

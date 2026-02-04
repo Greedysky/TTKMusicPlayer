@@ -86,6 +86,10 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override final;
     virtual void mouseReleaseEvent(QMouseEvent *event) override final;
     /*!
+     * Remove all items.
+     */
+    void removeItems(QLayout *layout);
+    /*!
      * Create the first widget.
      */
     void createFirstWidget();

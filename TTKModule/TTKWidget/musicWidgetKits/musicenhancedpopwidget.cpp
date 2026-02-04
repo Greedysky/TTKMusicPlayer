@@ -157,7 +157,7 @@ void MusicEnhancedPopWidget::buttonAnimationChanged(bool state)
 
 void MusicEnhancedPopWidget::helpButtonClicked()
 {
-    MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::KuiSheWidget);
+    MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::KugouKuiSheWidget);
     m_menu->close();
 }
 

@@ -144,6 +144,10 @@ public:
     explicit MusicPlaylistRecommendRequest(QObject *parent = nullptr);
 
     /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+    /*!
      * Start to search data by input data.
      */
     virtual void startToSearch(const QString &value) override final;
@@ -180,6 +184,10 @@ public:
     explicit MusicPlaylistHQRecommendRequest(QObject *parent = nullptr);
 
     /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+    /*!
      * Start to search data by input data.
      */
     virtual void startToSearch(const QString &value) override final;
@@ -199,6 +207,10 @@ public Q_SLOTS:
      * Download data from net finished.
      */
     virtual void downloadFinished() override final;
+
+private:
+    bool m_more;
+    QHash<int, qint64> m_updateTime;
 
 };
 

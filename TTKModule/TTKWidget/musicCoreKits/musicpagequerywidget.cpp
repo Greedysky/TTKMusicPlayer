@@ -146,7 +146,7 @@ void MusicPageQueryWidget::page(int index, int total)
             m_currentPage = index;
             break;
         }
-        case 10:
+        case 10:    // <<
         {
             page -= MAX_PAGE_SIZE;
             TTKClickedLabel *label = m_pageItems[MAX_PAGE_SIZE];
@@ -170,7 +170,7 @@ void MusicPageQueryWidget::page(int index, int total)
             m_pageItems[MAX_PAGE_SIZE + 1]->show();
             break;
         }
-        case 11:
+        case 11:    // >>
         {
             page += MAX_PAGE_SIZE;
             TTKClickedLabel *label = m_pageItems[MAX_PAGE_SIZE + 1];

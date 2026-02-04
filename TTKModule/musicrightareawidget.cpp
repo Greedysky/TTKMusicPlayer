@@ -271,7 +271,7 @@ void MusicRightAreaWidget::applyParameter()
     if(config != m_lowPowerMode)
     {
         m_lowPowerMode = config;
-        if(m_funcIndex == KugGouRadioWidget || m_funcIndex == kugouMovieWidget || m_funcIndex == KuiSheWidget)
+        if(m_funcIndex == KugouRadioWidget || m_funcIndex == KugouMovieWidget || m_funcIndex == KugouKuiSheWidget)
         {
             functionClicked(m_funcIndex);
         }
@@ -316,20 +316,20 @@ void MusicRightAreaWidget::functionGoBack()
     m_funcIndex = m_lastFuncIndex;
     const int index = TTKStaticCast(int, m_funcIndex);
 
-    if(0 <= index && index <= LrcWidget)
+    if(KugouRadioWidget <= index && index <= LrcWidget)
     {
-        if(index != kugouPlaylistWidget)
+        if(index != PlaylistWidget)
         {
             m_ui->functionOptionWidget->switchToSelectedItemStyle(index);
         }
         else
         {
             disconnect(m_ui->functionOptionWidget, SIGNAL(buttonClicked(int)), this, SLOT(functionClicked(int)));
-            m_ui->functionOptionWidget->switchToSelectedItemStyle(kugouPlaylistWidget);
+            m_ui->functionOptionWidget->switchToSelectedItemStyle(PlaylistWidget);
             connect(m_ui->functionOptionWidget, SIGNAL(buttonClicked(int)), this, SLOT(functionClicked(int)));
 
             functionInitialize();
-            m_ui->functionOptionWidget->select(kugouPlaylistWidget);
+            m_ui->functionOptionWidget->select(PlaylistWidget);
             m_ui->functionsContainer->setCurrentIndex(m_lastWidgetIndex);
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
         }
@@ -362,7 +362,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         return;
     }
 
-    if(0 <= index && index < LrcWidget)
+    if(MainRecommendWidget <= index && index < LrcWidget)
     {
         m_ui->functionOptionWidget->select(index);
     }
@@ -377,13 +377,13 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
-        case KugGouRadioWidget: //insert kugou radio widget
+        case KugouRadioWidget: //insert kugou radio widget
         {
             createkWebWindow(QKugouWindow::Radio);
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
-        case kugouPlaylistWidget: //insert kugou playlist widget
+        case PlaylistWidget: //insert playlist widget
         {
             MusicPlaylistQueryWidget *widget = new MusicPlaylistQueryWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
@@ -392,7 +392,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
-        case kugouMovieWidget: //insert kugou movie widget
+        case KugouMovieWidget: //insert kugou movie widget
         {
             createkWebWindow(QKugouWindow::Movie);
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
@@ -507,7 +507,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
-        case PlaylistWidget: //insert playlist found widget
+        case PlaylistInfoWidget: //insert playlist found widget
         {
             MusicPlaylistQueryWidget *widget = new MusicPlaylistQueryWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
@@ -544,7 +544,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 #endif
             break;
         }
-        case KuiSheWidget: //insert kugou kuishe widget
+        case KugouKuiSheWidget: //insert kugou kuishe widget
         {
             createkWebWindow(QKugouWindow::Single);
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
@@ -671,14 +671,14 @@ void MusicRightAreaWidget::showArtistFound(const QString &text, const QString &i
 
 void MusicRightAreaWidget::showPlaylistFound(const QString &id)
 {
-    functionClicked(MusicRightAreaWidget::PlaylistWidget);
+    functionClicked(MusicRightAreaWidget::PlaylistInfoWidget);
     MusicPlaylistQueryWidget *w = TTKObjectCast(MusicPlaylistQueryWidget*, m_currentWidget);
     w->setCurrentKey(id);
 }
 
 void MusicRightAreaWidget::showPlaylistCategoryFound(const QString &id, const QString &value)
 {
-    functionClicked(MusicRightAreaWidget::PlaylistWidget);
+    functionClicked(MusicRightAreaWidget::PlaylistInfoWidget);
     MusicPlaylistQueryWidget *w = TTKObjectCast(MusicPlaylistQueryWidget*, m_currentWidget);
     w->setCurrentCategory({id, value});
 }

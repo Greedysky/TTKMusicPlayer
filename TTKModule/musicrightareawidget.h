@@ -46,9 +46,9 @@ public:
     {
         // kugou main submoudle
         MainRecommendWidget,    /*!< Insert main recommend widget */
-        KugGouRadioWidget,      /*!< Insert kugou radio widget */
-        kugouPlaylistWidget,    /*!< Insert kugou playlist widget */
-        kugouMovieWidget,       /*!< Insert kugou movie widget */
+        KugouRadioWidget,       /*!< Insert kugou radio widget */
+        PlaylistWidget,         /*!< Insert kugou playlist widget */
+        KugouMovieWidget,       /*!< Insert kugou movie widget */
         VideoWidget,            /*!< Insert video widget */
         LrcWidget,              /*!< Insert lrc display widget */
         // other moudle
@@ -61,11 +61,11 @@ public:
         SimilarWidget,          /*!< Insert similar found widget */
         AlbumWidget,            /*!< Insert album found widget */
         ArtistWidget,           /*!< Insert artist found widget */
-        PlaylistWidget,         /*!< Insert playlist found widget */
+        PlaylistInfoWidget,     /*!< Insert playlist found widget */
         SongDailyWidget,        /*!< Insert song daily widget */
         AdvancedSearchWidget,   /*!< Insert advanced search widget */
         IndentifyWidget,        /*!< Insert indentify songs widget */
-        KuiSheWidget,           /*!< Insert kugou kuishe widget */
+        KugouKuiSheWidget,      /*!< Insert kugou kuishe widget */
         WebDJRadioWidget,       /*!< Insert web dj radio widget */
         WebMVRadioWidget,       /*!< Insert web mv radio widget */
         WebPVRadioWidget,       /*!< Insert web pv radio widget */

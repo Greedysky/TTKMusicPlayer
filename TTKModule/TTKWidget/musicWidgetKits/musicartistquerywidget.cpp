@@ -95,13 +95,7 @@ void MusicArtistMvsQueryWidget::currentItemClicked(const MusicResultDataItem &it
 
 void MusicArtistMvsQueryWidget::buttonClicked(int index)
 {
-    while(!m_resizeWidgets.isEmpty())
-    {
-        QWidget *w = m_resizeWidgets.takeLast().m_label;
-        m_gridLayout->removeWidget(w);
-        delete w;
-    }
-
+    removeItems(m_gridLayout);
     m_pageQueryWidget->page(index, m_networkRequest->pageTotalSize());
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }
@@ -195,13 +189,7 @@ void MusicArtistAlbumsQueryWidget::currentItemClicked(const MusicResultDataItem 
 
 void MusicArtistAlbumsQueryWidget::buttonClicked(int index)
 {
-    while(!m_resizeWidgets.isEmpty())
-    {
-        QWidget *w = m_resizeWidgets.takeLast().m_label;
-        m_gridLayout->removeWidget(w);
-        delete w;
-    }
-
+    removeItems(m_gridLayout);
     m_pageQueryWidget->page(index, m_networkRequest->pageTotalSize());
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }

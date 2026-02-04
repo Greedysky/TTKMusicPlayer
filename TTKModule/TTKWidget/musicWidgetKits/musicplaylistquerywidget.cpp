@@ -180,26 +180,14 @@ void MusicPlaylistQueryWidget::categoryChanged(const MusicResultsCategoryItem &c
         m_categoryButton->setText(category.m_value);
         m_categoryButton->closeMenu();
 
-        while(!m_resizeWidgets.isEmpty())
-        {
-            QWidget *w = m_resizeWidgets.takeLast().m_label;
-            m_gridLayout->removeWidget(w);
-            delete w;
-        }
-
+        removeItems(m_gridLayout);
         m_networkRequest->startToSearchByID(category.m_key);
     }
 }
 
 void MusicPlaylistQueryWidget::buttonClicked(int index)
 {
-    while(!m_resizeWidgets.isEmpty())
-    {
-        QWidget *w = m_resizeWidgets.takeLast().m_label;
-        m_gridLayout->removeWidget(w);
-        delete w;
-    }
-
+    removeItems(m_gridLayout);
     m_pageQueryWidget->page(index, m_networkRequest->pageTotalSize());
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }

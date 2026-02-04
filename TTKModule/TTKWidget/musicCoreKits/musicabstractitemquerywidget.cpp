@@ -35,10 +35,7 @@ MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
 
 MusicAbstractItemQueryWidget::~MusicAbstractItemQueryWidget()
 {
-    while(!m_resizeWidgets.isEmpty())
-    {
-        delete m_resizeWidgets.takeLast().m_label;
-    }
+    removeItems(nullptr);
     delete m_iconLabel;
     delete m_statusLabel;
     delete m_infoLabel;
@@ -136,6 +133,19 @@ void MusicAbstractItemQueryWidget::mouseMoveEvent(QMouseEvent *event)
 void MusicAbstractItemQueryWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
+}
+
+void MusicAbstractItemQueryWidget::removeItems(QLayout *layout)
+{
+    while(!m_resizeWidgets.isEmpty())
+    {
+        QWidget *w = m_resizeWidgets.takeLast().m_label;
+        if(layout)
+        {
+            layout->removeWidget(w);
+        }
+        delete w;
+    }
 }
 
 void MusicAbstractItemQueryWidget::createFirstWidget()
