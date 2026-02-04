@@ -3,7 +3,7 @@
 MusicKGQueryArtistListRequest::MusicKGQueryArtistListRequest(QObject *parent)
     : MusicQueryArtistListRequest(parent)
 {
-    m_pageSize = TTK_HIGH_LEVEL; // ARTIST_LIST_PAGE_SIZE
+    m_pageSize = TTK_HIGH_LEVEL; // TTK_PAGE_SIZE_100
     m_queryServer = QUERY_KG_INTERFACE;
 }
 

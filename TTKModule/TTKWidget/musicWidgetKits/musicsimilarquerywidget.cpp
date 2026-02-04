@@ -14,7 +14,7 @@ MusicSimilarQueryTableWidget::~MusicSimilarQueryTableWidget()
 
 void MusicSimilarQueryTableWidget::createResultItem(const MusicResultInfoItem &result)
 {
-    if(rowCount() >= (SONG_PAGE_SIZE / 2))
+    if(rowCount() >= (TTK_PAGE_SIZE_30 / 2))
     {
         return;
     }

@@ -29,7 +29,6 @@ class MusicPageQueryWidget;
 
 enum RecommendModule
 {
-    Song,
     Album,
     Artist,
     Playlist,

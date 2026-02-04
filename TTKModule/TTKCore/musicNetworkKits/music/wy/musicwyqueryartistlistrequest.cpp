@@ -3,7 +3,7 @@
 MusicWYQueryArtistListRequest::MusicWYQueryArtistListRequest(QObject *parent)
     : MusicQueryArtistListRequest(parent)
 {
-    m_pageSize = ARTIST_LIST_PAGE_SIZE;
+    m_pageSize = TTK_PAGE_SIZE_100;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 

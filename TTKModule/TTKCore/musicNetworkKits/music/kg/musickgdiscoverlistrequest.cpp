@@ -15,7 +15,7 @@ void MusicKGDiscoverListRequest::startToSearch()
     m_item.clear();
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KG_TOPLIST_URL, false).arg(6666).arg(0).arg(TOPLIST_PAGE_SIZE));
+    request.setUrl(TTK::Algorithm::mdII(KG_TOPLIST_URL, false).arg(6666).arg(0).arg(TTK_PAGE_SIZE_30));
     ReqKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);

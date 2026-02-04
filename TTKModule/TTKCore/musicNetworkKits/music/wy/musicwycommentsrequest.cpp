@@ -4,7 +4,7 @@
 MusicWYSongCommentsRequest::MusicWYSongCommentsRequest(QObject *parent)
     : MusicCommentsRequest(parent)
 {
-    m_pageSize = COMMENT_PAGE_SIZE;
+    m_pageSize = TTK_PAGE_SIZE_20;
 }
 
 void MusicWYSongCommentsRequest::startToPage(int offset)
@@ -92,7 +92,7 @@ void MusicWYSongCommentsRequest::downloadFinished()
 MusicWYPlaylistCommentsRequest::MusicWYPlaylistCommentsRequest(QObject *parent)
     : MusicCommentsRequest(parent)
 {
-    m_pageSize = COMMENT_PAGE_SIZE;
+    m_pageSize = TTK_PAGE_SIZE_20;
 }
 
 void MusicWYPlaylistCommentsRequest::startToPage(int offset)

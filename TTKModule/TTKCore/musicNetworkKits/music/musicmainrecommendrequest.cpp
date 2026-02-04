@@ -133,7 +133,7 @@ void MusicNewSongsRecommendRequest::downloadFinished()
 MusicNewAlbumsRecommendRequest::MusicNewAlbumsRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = SONG_PAGE_SIZE;
+    m_pageSize = TTK_PAGE_SIZE_30;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -234,7 +234,7 @@ void MusicNewAlbumsRecommendRequest::downloadFinished()
 MusicArtistsRecommendRequest::MusicArtistsRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = SONG_PAGE_SIZE;
+    m_pageSize = TTK_PAGE_SIZE_30;
     m_queryServer = QUERY_WY_INTERFACE;
     m_totalSize = 100;
 }
@@ -320,7 +320,7 @@ void MusicArtistsRecommendRequest::downloadFinished()
 MusicPlaylistRecommendRequest::MusicPlaylistRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = SONG_PAGE_SIZE;
+    m_pageSize = TTK_PAGE_SIZE_30;
     m_queryServer = QUERY_WY_INTERFACE;
     m_totalSize = m_pageSize;
 }
@@ -407,7 +407,7 @@ void MusicPlaylistRecommendRequest::downloadFinished()
 MusicPlaylistHQRecommendRequest::MusicPlaylistHQRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = SONG_PAGE_SIZE;
+    m_pageSize = TTK_PAGE_SIZE_30;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 

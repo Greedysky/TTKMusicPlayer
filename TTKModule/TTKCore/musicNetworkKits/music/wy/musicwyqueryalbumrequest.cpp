@@ -3,7 +3,7 @@
 MusicWYQueryAlbumRequest::MusicWYQueryAlbumRequest(QObject *parent)
     : MusicQueryAlbumRequest(parent)
 {
-    m_pageSize = SONG_PAGE_SIZE;
+    m_pageSize = TTK_PAGE_SIZE_30;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -131,7 +131,7 @@ void MusicWYQueryAlbumRequest::downloadFinished()
 MusicWYQueryArtistAlbumRequest::MusicWYQueryArtistAlbumRequest(QObject *parent)
     : MusicQueryAlbumRequest(parent)
 {
-    m_pageSize = ARTIST_ATTR_PAGE_SIZE;
+    m_pageSize = TTK_PAGE_SIZE_12;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 

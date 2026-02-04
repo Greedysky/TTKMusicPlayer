@@ -64,7 +64,7 @@ void ReqLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, cons
 MusicSongRecommendRequest::MusicSongRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_totalSize = SONG_PAGE_SIZE * 2;
+    m_totalSize = TTK_PAGE_SIZE_30 * 2;
 }
 
 void MusicSongRecommendRequest::startToSearch(const QString &value)

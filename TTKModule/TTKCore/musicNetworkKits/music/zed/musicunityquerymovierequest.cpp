@@ -27,7 +27,7 @@ MusicUnityQueryMovieRequest::MusicUnityQueryMovieRequest(QObject *parent)
       m_pluginSelector(0),
       m_value("0")
 {
-    m_pageSize = SONG_PAGE_SIZE;
+    m_pageSize = TTK_PAGE_SIZE_30;
 }
 
 void MusicUnityQueryMovieRequest::startToPage(int offset)

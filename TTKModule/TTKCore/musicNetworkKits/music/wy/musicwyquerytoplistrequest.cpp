@@ -3,7 +3,7 @@
 MusicWYQueryToplistRequest::MusicWYQueryToplistRequest(QObject *parent)
     : MusicQueryToplistRequest(parent)
 {
-    m_pageSize = TTK_HIGH_LEVEL; // TOPLIST_PAGE_SIZE
+    m_pageSize = TTK_HIGH_LEVEL; // TTK_PAGE_SIZE_30
     m_queryServer = QUERY_WY_INTERFACE;
 }
 

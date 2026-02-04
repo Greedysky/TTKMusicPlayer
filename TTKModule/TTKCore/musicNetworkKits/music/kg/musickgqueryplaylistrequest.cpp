@@ -3,7 +3,7 @@
 MusicKGQueryPlaylistRequest::MusicKGQueryPlaylistRequest(QObject *parent)
     : MusicQueryPlaylistRequest(parent)
 {
-    m_pageSize = SONG_PAGE_SIZE;
+    m_pageSize = TTK_PAGE_SIZE_30;
     m_queryServer = QUERY_KG_INTERFACE;
 }
 

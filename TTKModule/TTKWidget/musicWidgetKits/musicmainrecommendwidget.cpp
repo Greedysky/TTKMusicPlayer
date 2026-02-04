@@ -880,11 +880,10 @@ void MusicMainRecommendWidget::createContainerTopWidget()
     leftTopFrame->setStyleSheet(TTK::UI::BackgroundStyle13);
     leftTopLayout->addWidget(leftTopFrame);
 
-    TTKClickedLabel *leftTopLabel = new TTKClickedLabel(tr("New Songs"), leftTopWidget);
+    QLabel *leftTopLabel = new QLabel(tr("New Songs"), leftTopWidget);
     leftTopLabel->setStyleSheet(TTK::UI::FontStyle04);
     leftTopLayout->addWidget(leftTopLabel);
     leftTopLayout->addStretch(1);
-    m_areasGroup->addWidget(leftTopLabel, RecommendModule::Song);
 
     QWidget *leftMiddle = new QWidget(leftWidget);
     leftMiddle->setFixedHeight(1);
