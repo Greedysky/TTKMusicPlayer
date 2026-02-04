@@ -522,11 +522,11 @@ void MusicItemMoreRecommendQueryWidget::initialize()
     m_mainWidget->layout()->addWidget(topWidget);
 
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
-    topWidgetLayout->setContentsMargins(0, 20, 12, 20);
+    topWidgetLayout->setContentsMargins(0, 20, 12, 10);
     topWidget->setLayout(topWidgetLayout);
 
     QWidget *frame = new QWidget(topWidget);
-    frame->setFixedSize(3, 30);
+    frame->setFixedSize(3, 36);
     frame->setStyleSheet(TTK::UI::BackgroundStyle13);
     topWidgetLayout->addWidget(frame);
 
@@ -537,7 +537,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
 
     TTKClickedLabel *backButton = new TTKClickedLabel("<<", topWidget);
     backButton->setAlignment(Qt::AlignBottom);
-    backButton->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle01 + TTK::UI::FontStyle04);
+    backButton->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle01 + TTK::UI::FontStyle03);
     topWidgetLayout->addWidget(backButton, 0, Qt::AlignBottom);
     connect(backButton, SIGNAL(clicked()), parent(), SLOT(moreItemChangedToArea()));
 
@@ -568,7 +568,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
             topWidgetLayout->insertWidget(3, allButton);
 
             QWidget *frame1 = new QWidget(topWidget);
-            frame1->setFixedSize(2, topWidget->height() / 3);
+            frame1->setFixedSize(2, topWidget->height() / 4);
             frame1->setStyleSheet(TTK::UI::BackgroundStyle03);
             topWidgetLayout->insertWidget(4, frame1, 0, Qt::AlignBottom);
 
@@ -578,7 +578,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
             topWidgetLayout->insertWidget(5, zhButton);
 
             QWidget *frame2 = new QWidget(topWidget);
-            frame2->setFixedSize(2, topWidget->height() / 3);
+            frame2->setFixedSize(2, topWidget->height() / 4);
             frame2->setStyleSheet(TTK::UI::BackgroundStyle03);
             topWidgetLayout->insertWidget(6, frame2, 0, Qt::AlignBottom);
 
@@ -588,7 +588,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
             topWidgetLayout->insertWidget(7, eaButton);
 
             QWidget *frame3 = new QWidget(topWidget);
-            frame3->setFixedSize(2, topWidget->height() / 3);
+            frame3->setFixedSize(2, topWidget->height() / 4);
             frame3->setStyleSheet(TTK::UI::BackgroundStyle03);
             topWidgetLayout->insertWidget(8, frame3, 0, Qt::AlignBottom);
 
@@ -598,7 +598,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
             topWidgetLayout->insertWidget(9, krButton);
 
             QWidget *frame4 = new QWidget(topWidget);
-            frame4->setFixedSize(2, topWidget->height() / 3);
+            frame4->setFixedSize(2, topWidget->height() / 4);
             frame4->setStyleSheet(TTK::UI::BackgroundStyle03);
             topWidgetLayout->insertWidget(10, frame4, 0, Qt::AlignBottom);
 
@@ -644,7 +644,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
             topWidgetLayout->insertWidget(3, allButton);
 
             QWidget *frame1 = new QWidget(topWidget);
-            frame1->setFixedSize(2, topWidget->height() / 3);
+            frame1->setFixedSize(2, topWidget->height() / 4);
             frame1->setStyleSheet(TTK::UI::BackgroundStyle03);
             topWidgetLayout->insertWidget(4, frame1, 0, Qt::AlignBottom);
 
@@ -654,7 +654,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
             topWidgetLayout->insertWidget(5, zhButton);
 
             QWidget *frame2 = new QWidget(topWidget);
-            frame2->setFixedSize(2, topWidget->height() / 3);
+            frame2->setFixedSize(2, topWidget->height() / 4);
             frame2->setStyleSheet(TTK::UI::BackgroundStyle03);
             topWidgetLayout->insertWidget(6, frame2, 0, Qt::AlignBottom);
 
@@ -664,7 +664,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
             topWidgetLayout->insertWidget(7, eaButton);
 
             QWidget *frame3 = new QWidget(topWidget);
-            frame3->setFixedSize(2, topWidget->height() / 3);
+            frame3->setFixedSize(2, topWidget->height() / 4);
             frame3->setStyleSheet(TTK::UI::BackgroundStyle03);
             topWidgetLayout->insertWidget(8, frame3, 0, Qt::AlignBottom);
 
@@ -674,7 +674,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
             topWidgetLayout->insertWidget(9, krButton);
 
             QWidget *frame4 = new QWidget(topWidget);
-            frame4->setFixedSize(2, topWidget->height() / 3);
+            frame4->setFixedSize(2, topWidget->height() / 4);
             frame4->setStyleSheet(TTK::UI::BackgroundStyle03);
             topWidgetLayout->insertWidget(10, frame4, 0, Qt::AlignBottom);
 
