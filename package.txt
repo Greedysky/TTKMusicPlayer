@@ -1,4 +1,4 @@
-///Update time 2026-01-26
+///Update time 2026-02-05
 
 adplug-2.4.0	https://github.com/adplug/adplug
 enca-1.21	https://github.com/Project-OSS-Revival/enca
@@ -48,7 +48,7 @@ ttk-1.2.12
 -liborganya	 https://github.com/xbmc/audiodecoder.organya
                  https://bitbucket.org/wothke/webpixel
 -libpsf		 https://github.com/sasq64/musicplayer
--libqoa		 https://github.com/phoboslab/qoa fb57da0a3638751cfb325039a7950ea5cf0583ea
+-libqoa		 https://github.com/phoboslab/qoa 7abe23987a11d60dfcf1a37a095af834dde245ac
 -libs98		 https://github.com/sasq64/musicplayer
 -libsc68-2.2.1	 https://sourceforge.net/projects/sc68
 -libsonic	 https://github.com/waywardgeek/sonic d2cdb40fbdc82b464be364a50b34e8dd82b6c80a
@@ -57,7 +57,7 @@ ttk-1.2.12
 -libstsound	 https://github.com/arnaud-carre/StSound
 -libtfmx-1.0.1	 https://github.com/mschwendt/libtfmxaudiodecoder
 -libuade-3.05	 http://www.zakalwe.fi/uade/
-                 https://gitlab.com/uade-music-player/uade 602c3e908772bb96a274e9eb14fe8c874183421c
+                 https://gitlab.com/uade-music-player/uade 8b1acadb1aa2ad832ffe9d4b6ce742cb0a27f20b
 -libv2m-20250811 https://github.com/jgilje/v2m-player
 -libxgm		 https://github.com/digital-sound-antiques/libkss
                  https://github.com/jprjr/libnezplug
