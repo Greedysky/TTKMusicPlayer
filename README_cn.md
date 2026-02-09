@@ -46,9 +46,9 @@ API 文档
 
 下载
 --------
-Gitee镜像下载地址: **<u>https://gitee.com/Greedysky/TTKMusicplayer</u>**
+Gitee镜像下载地址: **<u>https://gitee.com/Greedysky/TTKMusicPlayer</u>**
 
-Github镜像下载地址: **<u>https://github.com/Greedysky/TTKMusicplayer</u>**
+Github镜像下载地址: **<u>https://github.com/Greedysky/TTKMusicPlayer</u>**
 
 Qmmp原版下载地址: **<u>https://qmmp.ylsoftware.com</u>**
 
