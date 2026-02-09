@@ -159,7 +159,7 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
         case 1: MusicRightAreaWidget::instance()->showArtistFound({}, key); break;
         case 2: MusicRightAreaWidget::instance()->showAlbumFound({}, key); break;
         case 3: MusicRightAreaWidget::instance()->showPlaylistFound(key); break;
-        case 4: MusicRightAreaWidget::instance()->showVideoSearchedFound({}, key); break;
+        case 4: MusicRightAreaWidget::instance()->showMovieSearchedFound({}, key); break;
         default: break;
     }
 }

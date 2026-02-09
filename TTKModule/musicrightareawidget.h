@@ -138,22 +138,6 @@ public:
      * Show setting widget.
      */
     void showSettingWidget() const;
-    /*!
-     * Song artist search function.
-     */
-    void artistSearchByID(const QString &id);
-    /*!
-     * Song album search function.
-     */
-    void albumSearchByID(const QString &id);
-    /*!
-     * Song movie search function.
-     */
-    void movieSearchByID(const QString &id);
-    /*!
-     * Song movie radio search function.
-     */
-    void movieRadioSearchByID(const QVariant &data);
 
     /*!
      * Apply settings parameters.
@@ -188,26 +172,6 @@ public Q_SLOTS:
      */
     void showAlbumFound(const QString &text, const QString &id);
     /*!
-     * Song artist search function.
-     */
-    void showArtistSearchFound();
-    /*!
-     * Song album search function.
-     */
-    void showAlbumSearchFound();
-    /*!
-     * Song movie search function.
-     */
-    void showMovieSearchFound();
-    /*!
-     * Song movie search radio function.
-     */
-    void showMovieSearchRadioFound();
-    /*!
-     * Song personal search radio function.
-     */
-    void showPersonalRadioFound(const QString &id);
-    /*!
      * Song artist function that by string.
      */
     void showArtistFound(const QString &text, const QString &id);
@@ -220,6 +184,18 @@ public Q_SLOTS:
      */
     void showPlaylistCategoryFound(const QString &id, const QString &value);
     /*!
+     * Song movie search radio function.
+     */
+    void showMovieRadioFound(const QVariant &data);
+    /*!
+     * Video button clicked by name to search.
+     */
+    void showMovieSearchedFound(const QString &name, const QString &id);
+    /*!
+     * Song personal search radio function.
+     */
+    void showPersonalRadioFound(const QString &id);
+    /*!
      * Song research button searched by name.
      */
     void showSongSearchedFound(const QString &text);
@@ -227,14 +203,10 @@ public Q_SLOTS:
      * Song search by given id.
      */
     void showSingleSearchedFound(const QString &id);
-    /*!
-     * Video button clicked by name to search.
-     */
-    void showVideoSearchedFound(const QString &name, const QString &id);
 
 public Q_SLOTS:
     /*!
-     * Song load song index widget.
+     * Song main widget.
      */
     void showSongMainWidget();
     /*!
@@ -297,14 +269,13 @@ private:
     void createkWebWindow(int type);
 
     Ui::MusicApplication *m_ui;
-    QVariant m_rawData;
     bool m_lowPowerMode;
     FunctionMode m_modeIndex;
     FunctionMode m_lastModeIndex;
     int m_lastWidgetIndex;
     QWidget *m_currentWidget;
     MusicSettingWidget *m_settingWidget;
-    MusicVideoPlayWidget *m_videoPlayerWidget;
+    MusicVideoPlayWidget *m_videoWidget;
     MusicLrcAnalysis *m_lrcAnalysis;
     MusicLrcContainerForInterior *m_interiorLrc;
     MusicLrcContainerForDesktop *m_desktopLrc;

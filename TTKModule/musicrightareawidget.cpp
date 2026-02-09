@@ -1,4 +1,4 @@
-#include "musicrightareawidget.h"
+﻿#include "musicrightareawidget.h"
 #include "ui_musicapplication.h"
 #include "musicapplication.h"
 #include "musiclrccontainerfordesktop.h"
@@ -51,7 +51,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
       m_lastModeIndex(m_modeIndex),
       m_lastWidgetIndex(0),
       m_currentWidget(nullptr),
-      m_videoPlayerWidget(nullptr),
+      m_videoWidget(nullptr),
       m_interiorLrc(nullptr),
       m_desktopLrc(nullptr),
       m_wallpaperLrc(nullptr)
@@ -73,10 +73,10 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
     delete m_desktopLrc;
     delete m_wallpaperLrc;
 
-    if(m_videoPlayerWidget)
+    if(m_videoWidget)
     {
-        m_videoPlayerWidget->setVisible(false); //Fix bug on linux
-        delete m_videoPlayerWidget;
+        m_videoWidget->setVisible(false); //Fix bug on linux
+        delete m_videoWidget;
     }
 }
 
@@ -229,30 +229,6 @@ void MusicRightAreaWidget::showSettingWidget() const
     m_settingWidget->exec();
 }
 
-void MusicRightAreaWidget::artistSearchByID(const QString &id)
-{
-    m_rawData = id;
-    TTK_SIGNLE_SHOT(showArtistSearchFound, TTK_SLOT);
-}
-
-void MusicRightAreaWidget::albumSearchByID(const QString &id)
-{
-    m_rawData = id;
-    TTK_SIGNLE_SHOT(showAlbumSearchFound, TTK_SLOT);
-}
-
-void MusicRightAreaWidget::movieSearchByID(const QString &id)
-{
-    m_rawData = id;
-    TTK_SIGNLE_SHOT(showMovieSearchFound, TTK_SLOT);
-}
-
-void MusicRightAreaWidget::movieRadioSearchByID(const QVariant &data)
-{
-    m_rawData = data;
-    TTK_SIGNLE_SHOT(showMovieSearchRadioFound, TTK_SLOT);
-}
-
 void MusicRightAreaWidget::applyParameter()
 {
     m_desktopLrc->applyParameter();
@@ -293,9 +269,9 @@ void MusicRightAreaWidget::resizeWidgetGeometry()
         currentWidget->resizeGeometry();
     }
 
-    if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopupMode())
+    if(m_videoWidget && !m_videoWidget->isPopupMode())
     {
-        m_videoPlayerWidget->resizeGeometry();
+        m_videoWidget->resizeGeometry();
     }
 }
 
@@ -395,16 +371,16 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         }
         case VideoWidget: //insert video widget
         {
-            if(!m_videoPlayerWidget)
+            if(!m_videoWidget)
             {
-                m_videoPlayerWidget = new MusicVideoPlayWidget(this);
-                connect(m_videoPlayerWidget, SIGNAL(popupButtonClicked(bool)), SLOT(videoSetPopup(bool)));
-                connect(m_videoPlayerWidget, SIGNAL(fullscreenButtonClicked(bool)), SLOT(videoFullscreen(bool)));
+                m_videoWidget = new MusicVideoPlayWidget(this);
+                connect(m_videoWidget, SIGNAL(popupButtonClicked(bool)), SLOT(videoSetPopup(bool)));
+                connect(m_videoWidget, SIGNAL(fullscreenButtonClicked(bool)), SLOT(videoFullscreen(bool)));
             }
 
-            m_videoPlayerWidget->popupMode(false);
-            m_ui->functionsContainer->addWidget(m_videoPlayerWidget);
-            m_ui->functionsContainer->setCurrentWidget(m_videoPlayerWidget);
+            m_videoWidget->popupMode(false);
+            m_ui->functionsContainer->addWidget(m_videoWidget);
+            m_ui->functionsContainer->setCurrentWidget(m_videoWidget);
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
@@ -621,42 +597,6 @@ void MusicRightAreaWidget::showAlbumFound(const QString &text, const QString &id
     id.isEmpty() ? w->setCurrentValue(text) : w->setCurrentKey(id);
 }
 
-void MusicRightAreaWidget::showArtistSearchFound()
-{
-    showArtistFound({}, m_rawData.toString());
-}
-
-void MusicRightAreaWidget::showAlbumSearchFound()
-{
-    showAlbumFound({}, m_rawData.toString());
-}
-
-void MusicRightAreaWidget::showMovieSearchFound()
-{
-    showVideoSearchedFound({}, m_rawData.toString());
-}
-
-void MusicRightAreaWidget::showMovieSearchRadioFound()
-{
-    if(m_videoPlayerWidget && m_videoPlayerWidget->isPopupMode())
-    {
-        m_videoPlayerWidget->raise();
-    }
-    else
-    {
-        functionClicked(MusicRightAreaWidget::VideoWidget);
-    }
-
-    m_videoPlayerWidget->videoResearchButtonSearched(m_rawData);
-}
-
-void MusicRightAreaWidget::showPersonalRadioFound(const QString &id)
-{
-    functionClicked(MusicRightAreaWidget::WebPVRadioWidget);
-    MusicPersonalRadioQueryWidget *w = TTKObjectCast(MusicPersonalRadioQueryWidget*, m_currentWidget);
-    w->setCurrentValue(id);
-}
-
 void MusicRightAreaWidget::showArtistFound(const QString &text, const QString &id)
 {
     functionClicked(MusicRightAreaWidget::ArtistWidget);
@@ -678,6 +618,41 @@ void MusicRightAreaWidget::showPlaylistCategoryFound(const QString &id, const QS
     w->setCurrentCategory({id, value});
 }
 
+void MusicRightAreaWidget::showMovieRadioFound(const QVariant &data)
+{
+    if(m_videoWidget && m_videoWidget->isPopupMode())
+    {
+        m_videoWidget->raise();
+    }
+    else
+    {
+        functionClicked(MusicRightAreaWidget::VideoWidget);
+    }
+
+    m_videoWidget->videoResearchButtonSearched(data);
+}
+
+void MusicRightAreaWidget::showMovieSearchedFound(const QString &name, const QString &id)
+{
+    if(m_videoWidget && m_videoWidget->isPopupMode())
+    {
+        m_videoWidget->raise();
+    }
+    else
+    {
+        functionClicked(MusicRightAreaWidget::VideoWidget);
+    }
+
+    id.isEmpty() ? m_videoWidget->videoResearchButtonSearched(name) : m_videoWidget->startToSearchByID(id);
+}
+
+void MusicRightAreaWidget::showPersonalRadioFound(const QString &id)
+{
+    functionClicked(MusicRightAreaWidget::WebPVRadioWidget);
+    MusicPersonalRadioQueryWidget *w = TTKObjectCast(MusicPersonalRadioQueryWidget*, m_currentWidget);
+    w->setCurrentValue(id);
+}
+
 void MusicRightAreaWidget::showSongSearchedFound(const QString &text)
 {
     m_ui->songSearchEdit->setText(text.trimmed());
@@ -688,20 +663,6 @@ void MusicRightAreaWidget::showSingleSearchedFound(const QString &id)
 {
     functionClicked(MusicRightAreaWidget::SearchSingleWidget);
     m_ui->songSearchWidget->startToSearchByID(id);
-}
-
-void MusicRightAreaWidget::showVideoSearchedFound(const QString &name, const QString &id)
-{
-    if(m_videoPlayerWidget && m_videoPlayerWidget->isPopupMode())
-    {
-        m_videoPlayerWidget->raise();
-    }
-    else
-    {
-        functionClicked(MusicRightAreaWidget::VideoWidget);
-    }
-
-    id.isEmpty() ? m_videoPlayerWidget->videoResearchButtonSearched(name) : m_videoPlayerWidget->startToSearchByID(id);
 }
 
 void MusicRightAreaWidget::showSongMainWidget()
@@ -764,12 +725,12 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
 
 void MusicRightAreaWidget::videoSetPopup(bool popup)
 {
-    if(!m_videoPlayerWidget)
+    if(!m_videoWidget)
     {
         return;
     }
 
-    m_videoPlayerWidget->popupMode(popup);
+    m_videoWidget->popupMode(popup);
     if(popup)
     {
         m_ui->functionsContainer->addWidget(m_currentWidget);
@@ -788,10 +749,10 @@ void MusicRightAreaWidget::videoSetPopup(bool popup)
 
 void MusicRightAreaWidget::videoActiveWindow()
 {
-    if(m_videoPlayerWidget)
+    if(m_videoWidget)
     {
         MusicApplication::instance()->activateWindow();
-        m_videoPlayerWidget->activateWindow();
+        m_videoWidget->activateWindow();
     }
 }
 
@@ -800,16 +761,16 @@ void MusicRightAreaWidget::videoNeedToClose()
     functionClicked(MusicRightAreaWidget::LrcWidget);
     m_ui->functionOptionWidget->switchToSelectedItemStyle(MusicRightAreaWidget::LrcWidget);
 
-    delete m_videoPlayerWidget;
-    m_videoPlayerWidget = nullptr;
+    delete m_videoWidget;
+    m_videoWidget = nullptr;
 }
 
 void MusicRightAreaWidget::videoFullscreen(bool full)
 {
-    if(m_videoPlayerWidget)
+    if(m_videoWidget)
     {
-        m_videoPlayerWidget->resizeGeometry(full);
-        m_videoPlayerWidget->setBlockOption(full);
+        m_videoWidget->resizeGeometry(full);
+        m_videoWidget->setBlockOption(full);
     }
 }
 

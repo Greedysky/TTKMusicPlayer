@@ -20,6 +20,7 @@ MusicWebMVRadioInfoTableWidget::~MusicWebMVRadioInfoTableWidget()
 void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
 {
     MusicQueryTableWidget::itemCellClicked(row, column);
+
     switch(column)
     {
         case 5:
@@ -31,7 +32,7 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
                 return;
             }
 
-            MusicRightAreaWidget::instance()->movieRadioSearchByID(QVariant::fromValue<TTK::MusicSongInformation>(songInfos[row]));
+            MusicRightAreaWidget::instance()->showMovieRadioFound(QVariant::fromValue<TTK::MusicSongInformation>(songInfos[row]));
             break;
         }
         case 7: downloadQueryResult(row); break;

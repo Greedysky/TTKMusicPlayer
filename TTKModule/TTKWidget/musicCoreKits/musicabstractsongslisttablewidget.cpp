@@ -105,7 +105,7 @@ void MusicAbstractSongsListTableWidget::showMovieQueryWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->showVideoSearchedFound(currentSongName(), {});
+    MusicRightAreaWidget::instance()->showMovieSearchedFound(currentSongName(), {});
 }
 
 void MusicAbstractSongsListTableWidget::showAlbumQueryWidget()
@@ -162,7 +162,7 @@ void MusicAbstractSongsListTableWidget::showPlayedMovieQueryWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->showVideoSearchedFound(songName(m_playRowIndex), {});
+    MusicRightAreaWidget::instance()->showMovieSearchedFound(songName(m_playRowIndex), {});
 }
 
 void MusicAbstractSongsListTableWidget::showPlayedSimilarQueryWidget()

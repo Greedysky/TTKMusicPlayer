@@ -299,14 +299,19 @@ void MusicItemRecommendQueryWidget::createResultItem(const MusicResultDataItem &
 
 void MusicItemRecommendQueryWidget::currentItemClicked(const MusicResultDataItem &item)
 {
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, 0);
+
     switch(m_module)
     {
-        case RecommendModule::Album: MusicRightAreaWidget::instance()->albumSearchByID(item.m_id); break;
-        case RecommendModule::Artist: MusicRightAreaWidget::instance()->artistSearchByID(item.m_id); break;
+        case RecommendModule::Album: MusicRightAreaWidget::instance()->showAlbumFound({}, item.m_id); break;
+        case RecommendModule::Artist: MusicRightAreaWidget::instance()->showArtistFound({}, item.m_id); break;
         case RecommendModule::Playlist:
         case RecommendModule::PlaylistHQ: MusicRightAreaWidget::instance()->showPlaylistFound(item.m_id); break;
         default: break;
     }
+
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, index);
 }
 
 void MusicItemRecommendQueryWidget::resizeGeometry()
@@ -505,14 +510,19 @@ void MusicItemMoreRecommendQueryWidget::createResultItem(const MusicResultDataIt
 
 void MusicItemMoreRecommendQueryWidget::currentItemClicked(const MusicResultDataItem &item)
 {
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, 0);
+
     switch(m_module)
     {
-        case RecommendModule::Album: MusicRightAreaWidget::instance()->albumSearchByID(item.m_id); break;
-        case RecommendModule::Artist: MusicRightAreaWidget::instance()->artistSearchByID(item.m_id); break;
+        case RecommendModule::Album: MusicRightAreaWidget::instance()->showAlbumFound({}, item.m_id); break;
+        case RecommendModule::Artist: MusicRightAreaWidget::instance()->showArtistFound({}, item.m_id); break;
         case RecommendModule::Playlist:
         case RecommendModule::PlaylistHQ: MusicRightAreaWidget::instance()->showPlaylistFound(item.m_id); break;
         default: break;
     }
+
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, index);
 }
 
 void MusicItemMoreRecommendQueryWidget::initialize()

@@ -329,7 +329,7 @@ void MusicLrcContainerForInterior::showSongMovieWidget()
     {
         MusicBottomAreaWidget::instance()->lrcWidgetShowFullScreen();
     }
-    MusicRightAreaWidget::instance()->showVideoSearchedFound(m_currentSongName, {});
+    MusicRightAreaWidget::instance()->showMovieSearchedFound(m_currentSongName, {});
 }
 
 void MusicLrcContainerForInterior::updateAnimationLrc()
