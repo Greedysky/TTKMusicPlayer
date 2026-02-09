@@ -1,4 +1,4 @@
-///Update time 2026-02-05
+///Update time 2026-02-09
 
 adplug-2.4.0	https://github.com/adplug/adplug
 enca-1.21	https://github.com/Project-OSS-Revival/enca
@@ -55,7 +55,7 @@ ttk-1.2.12
 -libsoundmon	 http://www.brianpostma.com (unfortunately down now)
                  https://github.com/arnaud-neny/rePlayer
 -libstsound	 https://github.com/arnaud-carre/StSound
--libtfmx-1.0.1	 https://github.com/mschwendt/libtfmxaudiodecoder
+-libtfmx-1.0.2	 https://github.com/mschwendt/libtfmxaudiodecoder
 -libuade-3.05	 http://www.zakalwe.fi/uade/
                  https://gitlab.com/uade-music-player/uade 8b1acadb1aa2ad832ffe9d4b6ce742cb0a27f20b
 -libv2m-20250811 https://github.com/jgilje/v2m-player
