@@ -42,7 +42,7 @@ class TTK_MODULE_EXPORT MusicRightAreaWidget : public QWidget
 {
     Q_OBJECT
 public:
-    enum FunctionModule
+    enum FunctionMode
     {
         // kugou main submoudle
         MainRecommendWidget,    /*!< Insert main recommend widget */
@@ -299,11 +299,10 @@ private:
     Ui::MusicApplication *m_ui;
     QVariant m_rawData;
     bool m_lowPowerMode;
-    FunctionModule m_funcIndex;
+    FunctionMode m_modeIndex;
+    FunctionMode m_lastModeIndex;
     int m_lastWidgetIndex;
-    FunctionModule m_lastFuncIndex;
     QWidget *m_currentWidget;
-    QWidget *m_permanentWidget;
     MusicSettingWidget *m_settingWidget;
     MusicVideoPlayWidget *m_videoPlayerWidget;
     MusicLrcAnalysis *m_lrcAnalysis;

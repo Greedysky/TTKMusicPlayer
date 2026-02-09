@@ -47,11 +47,10 @@ MusicRightAreaWidget *MusicRightAreaWidget::m_instance = nullptr;
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent),
       m_lowPowerMode(false),
-      m_funcIndex(MainRecommendWidget),
+      m_modeIndex(MainRecommendWidget),
+      m_lastModeIndex(m_modeIndex),
       m_lastWidgetIndex(0),
-      m_lastFuncIndex(MainRecommendWidget),
       m_currentWidget(nullptr),
-      m_permanentWidget(nullptr),
       m_videoPlayerWidget(nullptr),
       m_interiorLrc(nullptr),
       m_desktopLrc(nullptr),
@@ -271,9 +270,9 @@ void MusicRightAreaWidget::applyParameter()
     if(config != m_lowPowerMode)
     {
         m_lowPowerMode = config;
-        if(m_funcIndex == KugouRadioWidget || m_funcIndex == KugouMovieWidget || m_funcIndex == KugouKuiSheWidget)
+        if(m_modeIndex == KugouRadioWidget || m_modeIndex == KugouMovieWidget || m_modeIndex == KugouKuiSheWidget)
         {
-            functionClicked(m_funcIndex);
+            functionClicked(m_modeIndex);
         }
     }
 
@@ -294,12 +293,6 @@ void MusicRightAreaWidget::resizeWidgetGeometry()
         currentWidget->resizeGeometry();
     }
 
-    TTKAbstractResizeInterface *permanentWidget = TTKDynamicCast(TTKAbstractResizeInterface*, m_permanentWidget);
-    if(permanentWidget)
-    {
-        permanentWidget->resizeGeometry();
-    }
-
     if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopupMode())
     {
         m_videoPlayerWidget->resizeGeometry();
@@ -313,8 +306,8 @@ void MusicRightAreaWidget::functionGoBack()
         return;
     }
 
-    m_funcIndex = m_lastFuncIndex;
-    const int index = TTKStaticCast(int, m_funcIndex);
+    m_modeIndex = m_lastModeIndex;
+    const int index = TTKStaticCast(int, m_modeIndex);
 
     if(KugouRadioWidget <= index && index <= LrcWidget)
     {
@@ -331,6 +324,7 @@ void MusicRightAreaWidget::functionGoBack()
             functionInitialize();
             m_ui->functionOptionWidget->select(PlaylistWidget);
             m_ui->functionsContainer->setCurrentIndex(m_lastWidgetIndex);
+            m_currentWidget = m_ui->functionsContainer->currentWidget();
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
         }
     }
@@ -338,6 +332,7 @@ void MusicRightAreaWidget::functionGoBack()
     {
         functionInitialize();
         m_ui->functionsContainer->setCurrentIndex(m_lastWidgetIndex);
+        m_currentWidget = m_ui->functionsContainer->currentWidget();
         MusicTopAreaWidget::instance()->backgroundTransparentChanged();
     }
 
@@ -346,18 +341,18 @@ void MusicRightAreaWidget::functionGoBack()
 
 void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 {
-    m_lastFuncIndex = m_funcIndex;
+    m_lastModeIndex = m_modeIndex;
     m_lastWidgetIndex = m_ui->functionsContainer->currentIndex();
-    m_funcIndex = TTKStaticCast(FunctionModule, index);
+    m_modeIndex = TTKStaticCast(FunctionMode, index);
 
     functionCleanup();
     functionInitialize();
 
     if(widget)
     {
-        m_permanentWidget = widget;
-        m_ui->functionsContainer->addWidget(m_permanentWidget);
-        m_ui->functionsContainer->setCurrentWidget(m_permanentWidget);
+        m_currentWidget = widget;
+        m_ui->functionsContainer->addWidget(m_currentWidget);
+        m_ui->functionsContainer->setCurrentWidget(m_currentWidget);
         MusicTopAreaWidget::instance()->backgroundTransparentChanged();
         return;
     }
@@ -367,7 +362,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         m_ui->functionOptionWidget->select(index);
     }
 
-    switch(m_funcIndex)
+    switch(m_modeIndex)
     {
         case MainRecommendWidget: //insert main recommend widget
         {
@@ -880,7 +875,7 @@ void MusicRightAreaWidget::functionInitialize()
         MusicApplication::instance()->windowConciseChanged();
     }
 
-    if(m_funcIndex == LrcWidget) ///lrc option
+    if(m_modeIndex == LrcWidget) ///lrc option
     {
         m_ui->functionOptionWidget->reset(false);
         m_ui->stackedFunctionWidget->transparent(true);
@@ -891,10 +886,8 @@ void MusicRightAreaWidget::functionInitialize()
         m_ui->stackedFunctionWidget->transparent(false);
     }
 
-    m_permanentWidget = nullptr;
-
     m_ui->lrcDisplayAllButton->setVisible(false);
-    if(m_interiorLrc->lrcDisplayExpand() && m_funcIndex != LrcWidget)
+    if(m_interiorLrc->lrcDisplayExpand() && m_modeIndex != LrcWidget)
     {
         lrcDisplayAllClicked();
     }
