@@ -332,14 +332,14 @@ void MusicFunctionToolBoxWidget::addCellItem(QWidget *item, const QString &text)
     }
 
     // Add item and make sure it stretches the remaining space.
-    MusicToolBoxWidgetItem widgetItem;
-    widgetItem.m_itemWidget = initialItem(item, text);
-    widgetItem.m_itemIndex = m_itemIndexRaise++;
-    m_items.append(widgetItem);
+    Data data;
+    data.m_itemWidget = initialItem(item, text);
+    data.m_itemIndex = m_itemIndexRaise++;
+    m_items.append(data);
 
     m_currentIndex = m_items.count() - 1;
 
-    m_layout->addWidget(widgetItem.m_itemWidget);
+    m_layout->addWidget(data.m_itemWidget);
     m_layout->addStretch(5);
 }
 
@@ -360,16 +360,16 @@ void MusicFunctionToolBoxWidget::removeItem(QWidget *item)
 
 void MusicFunctionToolBoxWidget::swapItem(int start, int end)
 {
-    const MusicToolBoxWidgetItem &widgetItem = m_items.takeAt(start);
-    m_items.insert(end, widgetItem);
+    const Data &data = m_items.takeAt(start);
+    m_items.insert(end, data);
 
-    m_layout->removeWidget(widgetItem.m_itemWidget);
+    m_layout->removeWidget(data.m_itemWidget);
     const int count = m_layout->count();
     if(count > 1)
     {
         m_layout->removeItem(m_layout->itemAt(count - 1));
     }
-    m_layout->insertWidget(end, widgetItem.m_itemWidget);
+    m_layout->insertWidget(end, data.m_itemWidget);
     m_layout->addStretch(5);
 }
 

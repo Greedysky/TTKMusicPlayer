@@ -1105,14 +1105,14 @@ void MusicSongsContainerWidget::dragMoveEvent(QDragMoveEvent *event)
 {
     MusicSongsToolBoxWidget::dragMoveEvent(event);
 
-    for(const MusicToolBoxWidgetItem &item : qAsConst(m_items))
+    for(const Data &data : qAsConst(m_items))
     {
-        if(!TTK::playlistRowValid(item.m_itemIndex))
+        if(!TTK::playlistRowValid(data.m_itemIndex))
         {
             continue;
         }
 
-        item.m_itemWidget->isActive();
+        data.m_itemWidget->isActive();
     }
 
     event->setDropAction(Qt::CopyAction);
@@ -1140,17 +1140,17 @@ void MusicSongsContainerWidget::dropEvent(QDropEvent *event)
     }
 
     bool contains = false;
-    for(const MusicToolBoxWidgetItem &item : qAsConst(m_items))
+    for(const Data &data : qAsConst(m_items))
     {
-        if(!TTK::playlistRowValid(item.m_itemIndex))
+        if(!TTK::playlistRowValid(data.m_itemIndex))
         {
             continue;
         }
 
-        if(item.m_itemWidget->isExpand() || item.m_itemWidget->isActive())
+        if(data.m_itemWidget->isExpand() || data.m_itemWidget->isActive())
         {
             contains = true;
-            importSongsByPath(files, foundMappedIndex(item.m_itemIndex));
+            importSongsByPath(files, foundMappedIndex(data.m_itemIndex));
             break;
         }
     }
