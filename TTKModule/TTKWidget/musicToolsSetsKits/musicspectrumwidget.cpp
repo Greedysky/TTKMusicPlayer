@@ -72,9 +72,9 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 MusicSpectrumWidget::~MusicSpectrumWidget()
 {
     TTK_REMOVE_SINGLE_WIDGET(this);
-    for(const Data &spem : qAsConst(m_spectrums))
+    for(const Data &data : qAsConst(m_spectrums))
     {
-        TTK::TTKQmmp::setVisualEnabled(spem.m_module, false, this);
+        TTK::TTKQmmp::setVisualEnabled(data.m_module, false, this);
     }
     delete m_ui;
 }
@@ -254,8 +254,8 @@ void MusicSpectrumWidget::createSpectrumWidget(Data::Module spectrum, bool &stat
         const int index = findSpectrumWidget(name);
         if(index != -1)
         {
-            const Data &spem = m_spectrums.takeAt(index);
-            layout->removeWidget(spem.m_object);
+            const Data &data = m_spectrums.takeAt(index);
+            layout->removeWidget(data.m_object);
             TTK::TTKQmmp::setVisualEnabled(name, false, this);
         }
     }
@@ -283,8 +283,8 @@ void MusicSpectrumWidget::createModuleWidget(Data::Module spectrum, bool &state,
     const int index = findSpectrumWidget(*module);
     if(index != -1)
     {
-        const Data &spem = m_spectrums.takeAt(index);
-        layout->removeWidget(spem.m_object);
+        const Data &data = m_spectrums.takeAt(index);
+        layout->removeWidget(data.m_object);
         TTK::TTKQmmp::setVisualEnabled(*module, false, this);
     }
 
@@ -387,9 +387,9 @@ void MusicSpectrumWidget::createLightWidget(Data::Module spectrum, bool &state, 
         const int index = findSpectrumWidget(name);
         if(index != -1)
         {
-            const Data &spem = m_spectrums.takeAt(index);
-            layout->removeWidget(spem.m_object);
-            delete spem.m_object;
+            const Data &data = m_spectrums.takeAt(index);
+            layout->removeWidget(data.m_object);
+            delete data.m_object;
         }
     }
 }

@@ -257,9 +257,9 @@ MusicSongMeta::MusicSongMeta(const MusicSongMeta &other) noexcept
     m_offset = other.m_offset;
     m_path = other.m_path;
 
-    for(const Data *meta : qAsConst(m_songMetas))
+    for(const Data *data : qAsConst(m_songMetas))
     {
-        m_songMetas << new Data(*meta);
+        m_songMetas << new Data(*data);
     }
 }
 
@@ -281,11 +281,10 @@ MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other) noexcept
     m_offset = other.m_offset;
     m_path = other.m_path;
 
-    for(const Data *meta : qAsConst(m_songMetas))
+    for(const Data *data : qAsConst(m_songMetas))
     {
-        m_songMetas << new Data(*meta);
+        m_songMetas << new Data(*data);
     }
-
     return *this;
 }
 
@@ -361,22 +360,22 @@ bool MusicSongMeta::readInformation()
 
         for(TrackInfo *info : qAsConst(infos))
         {
-            Data *meta = new Data;
-            meta->m_path = info->path();
-            meta->m_metaData[TagMeta::URL] = files.isEmpty() ? m_path : files.first();
+            Data *data = new Data;
+            data->m_path = info->path();
+            data->m_metaData[TagMeta::URL] = files.isEmpty() ? m_path : files.first();
 
-            meta->m_metaData[TagMeta::SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
-            meta->m_metaData[TagMeta::BITRATE] = info->value(Qmmp::BITRATE);
-            meta->m_metaData[TagMeta::CHANNEL] = info->value(Qmmp::CHANNELS);
-            meta->m_metaData[TagMeta::FORMAT] = info->value(Qmmp::FORMAT_NAME);
+            data->m_metaData[TagMeta::SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
+            data->m_metaData[TagMeta::BITRATE] = info->value(Qmmp::BITRATE);
+            data->m_metaData[TagMeta::CHANNEL] = info->value(Qmmp::CHANNELS);
+            data->m_metaData[TagMeta::FORMAT] = info->value(Qmmp::FORMAT_NAME);
 
-            meta->m_metaData[TagMeta::TITLE] = info->value(Qmmp::TITLE);
-            meta->m_metaData[TagMeta::ARTIST] = info->value(Qmmp::ARTIST);
-            meta->m_metaData[TagMeta::ALBUM] = info->value(Qmmp::ALBUM);
-            meta->m_metaData[TagMeta::YEAR] = info->value(Qmmp::YEAR);
-            meta->m_metaData[TagMeta::COMMENT] = info->value(Qmmp::COMMENT);
-            meta->m_metaData[TagMeta::TRACK] = info->value(Qmmp::TRACK);
-            meta->m_metaData[TagMeta::GENRE] = info->value(Qmmp::GENRE);
+            data->m_metaData[TagMeta::TITLE] = info->value(Qmmp::TITLE);
+            data->m_metaData[TagMeta::ARTIST] = info->value(Qmmp::ARTIST);
+            data->m_metaData[TagMeta::ALBUM] = info->value(Qmmp::ALBUM);
+            data->m_metaData[TagMeta::YEAR] = info->value(Qmmp::YEAR);
+            data->m_metaData[TagMeta::COMMENT] = info->value(Qmmp::COMMENT);
+            data->m_metaData[TagMeta::TRACK] = info->value(Qmmp::TRACK);
+            data->m_metaData[TagMeta::GENRE] = info->value(Qmmp::GENRE);
 
             length = info->duration();
             if(length == 0)
@@ -384,13 +383,13 @@ bool MusicSongMeta::readInformation()
                 const int bitrate = info->value(Qmmp::BITRATE).toInt();
                 if(bitrate > 0)
                 {
-                    length = QFileInfo(meta->m_metaData[TagMeta::URL]).size() * 8.0f / bitrate;
+                    length = QFileInfo(data->m_metaData[TagMeta::URL]).size() * 8.0f / bitrate;
                 }
             }
 
-            meta->m_metaData[TagMeta::LENGTH] = TTKTime::formatDuration(length);
+            data->m_metaData[TagMeta::LENGTH] = TTKTime::formatDuration(length);
 
-            m_songMetas << meta;
+            m_songMetas << data;
             m_offset = m_songMetas.count() - 1;
         }
 
@@ -453,25 +452,25 @@ bool MusicSongMeta::readInformation()
             delete model;
         }
 
-        for(Data *meta : qAsConst(m_songMetas))
+        for(Data *data : qAsConst(m_songMetas))
         {
             if(!cover.isNull())
             {
-                meta->m_cover = cover;
+                data->m_cover = cover;
             }
 
             if(!lyrics.isEmpty())
             {
-                meta->m_lyrics = lyrics;
+                data->m_lyrics = lyrics;
             }
 
             if(!rating.isEmpty())
             {
-                meta->m_metaData[TagMeta::RATING] = rating;
+                data->m_metaData[TagMeta::RATING] = rating;
             }
 
-            const QString &format = "Format: " + meta->m_metaData[TagMeta::FORMAT] + TTK_LINEFEED;
-            meta->m_metaData[TagMeta::DESCRIPTION] = format + description;
+            const QString &format = "Format: " + data->m_metaData[TagMeta::FORMAT] + TTK_LINEFEED;
+            data->m_metaData[TagMeta::DESCRIPTION] = format + description;
         }
     }
 

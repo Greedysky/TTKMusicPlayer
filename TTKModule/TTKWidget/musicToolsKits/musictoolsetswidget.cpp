@@ -51,32 +51,24 @@ void MusicToolSetsWidget::addCelltItems()
     {
         QString m_icon;
         QString m_name;
-
-        Data() = default;
-        Data(const QString &icon, const QString &name) noexcept
-            : m_icon(icon),
-              m_name(name)
-        {
-
-        }
     };
     TTK_DECLARE_LIST(Data);
 
-    DataList pairs;
-    pairs << Data(":/tools/lb_bell", tr("Bell"))
-          << Data(":/tools/lb_timer", tr("Timing"))
-          << Data(":/tools/lb_transform", tr("Transform"))
-          << Data(":/tools/lb_spectrum", tr("Spectrum"))
-          << Data(":/tools/lb_connections" ,tr("Connection"))
-          << Data(":/tools/lb_gain", tr("Gain"))
-          << Data(":/tools/lb_dlna", tr("DLNA"))
-          << Data(":/tools/lb_detect", tr("Identify"))
-          << Data(":/tools/lb_screen_saver", tr("Saver"))
-          << Data(":/tools/lb_playlist", tr("Playlist"));
+    DataList datas;
+    datas.append({":/tools/lb_bell", tr("Bell")});
+    datas.append({":/tools/lb_timer", tr("Timing")});
+    datas.append({":/tools/lb_transform", tr("Transform")});
+    datas.append({":/tools/lb_spectrum", tr("Spectrum")});
+    datas.append({":/tools/lb_connections" ,tr("Connection")});
+    datas.append({":/tools/lb_gain", tr("Gain")});
+    datas.append({":/tools/lb_dlna", tr("DLNA")});
+    datas.append({":/tools/lb_detect", tr("Identify")});
+    datas.append({":/tools/lb_screen_saver", tr("Saver")});
+    datas.append({":/tools/lb_playlist", tr("Playlist")});;
 
-    for(const Data &pair : qAsConst(pairs))
+    for(const Data &data : qAsConst(datas))
     {
-        QListWidgetItem *item = new QListWidgetItem(QIcon(pair.m_icon), pair.m_name, m_ui->listItemWidget);
+        QListWidgetItem *item = new QListWidgetItem(QIcon(data.m_icon), data.m_name, m_ui->listItemWidget);
         item->setForeground(QColor(TTK::UI::Color01));
         item->setSizeHint(QSize(80, 90));
         m_ui->listItemWidget->addItem(item);

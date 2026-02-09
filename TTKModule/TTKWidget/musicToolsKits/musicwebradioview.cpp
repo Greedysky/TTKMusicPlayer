@@ -190,41 +190,33 @@ void MusicWebFMRadioWidget::addCelltItems()
     {
         QString m_icon;
         QString m_name;
-
-        Data() = default;
-        Data(const QString &icon, const QString &name) noexcept
-            : m_icon(icon),
-              m_name(name)
-        {
-
-        }
     };
     TTK_DECLARE_LIST(Data);
 
-    DataList pairs;
-    pairs << Data(":/radio/lb_radio_1", tr("FMRadio"))
-          << Data(":/radio/lb_radio_2", tr("TKRadio"))
-          << Data(":/radio/lb_radio_3", tr("DJRadio"))
-          << Data(":/radio/lb_radio_4", tr("MVRadio"))
-          << Data(":/radio/lb_radio_5", tr("PVRadio"))
-          << Data(":/radio/lb_radio_6", tr("TRRadio"))
-          << Data(":/radio/lb_radio_7", tr("TMRadio"))
-          << Data(":/radio/lb_radio_8", tr("VPRadio"))
-          << Data(":/radio/lb_radio_9", tr("NWRadio"))
-          << Data(":/radio/lb_radio_10", tr("FNRadio"))
-          << Data(":/radio/lb_radio_11", tr("MYRadio"))
-          << Data(":/radio/lb_radio_12", tr("FVRadio"))
-          << Data(":/radio/lb_radio_13", tr("WWRadio"))
-          << Data(":/radio/lb_radio_14", tr("HCRadio"))
-          << Data(":/radio/lb_radio_15", tr("RHRadio"))
-          << Data(":/radio/lb_radio_16", tr("HSRadio"))
-          << Data(":/radio/lb_radio_17", tr("EARadio"))
-          << Data(":/radio/lb_radio_18", tr("CNRadio"))
-          << Data(":/radio/lb_radio_19", tr("JPRadio"))
-          << Data(":/radio/lb_radio_20", tr("KRRadio"))
-          << Data(":/radio/lb_radio_21", tr("CTRadio"));
+    DataList datas;
+    datas.append({":/radio/lb_radio_1", tr("FMRadio")});
+    datas.append({":/radio/lb_radio_2", tr("TKRadio")});
+    datas.append({":/radio/lb_radio_3", tr("DJRadio")});
+    datas.append({":/radio/lb_radio_4", tr("MVRadio")});
+    datas.append({":/radio/lb_radio_5", tr("PVRadio")});
+    datas.append({":/radio/lb_radio_6", tr("TRRadio")});
+    datas.append({":/radio/lb_radio_7", tr("TMRadio")});
+    datas.append({":/radio/lb_radio_8", tr("VPRadio")});
+    datas.append({":/radio/lb_radio_9", tr("NWRadio")});
+    datas.append({":/radio/lb_radio_10", tr("FNRadio")});
+    datas.append({":/radio/lb_radio_11", tr("MYRadio")});
+    datas.append({":/radio/lb_radio_12", tr("FVRadio")});
+    datas.append({":/radio/lb_radio_13", tr("WWRadio")});
+    datas.append({":/radio/lb_radio_14", tr("HCRadio")});
+    datas.append({":/radio/lb_radio_15", tr("RHRadio")});
+    datas.append({":/radio/lb_radio_16", tr("HSRadio")});
+    datas.append({":/radio/lb_radio_17", tr("EARadio")});
+    datas.append({":/radio/lb_radio_18", tr("CNRadio")});
+    datas.append({":/radio/lb_radio_19", tr("JPRadio")});
+    datas.append({":/radio/lb_radio_20", tr("KRRadio")});
+    datas.append({":/radio/lb_radio_21", tr("CTRadio")});
 
-    for(const Data &pair : qAsConst(pairs))
+    for(const Data &data : qAsConst(datas))
     {
         const int index = rowCount();
         setRowCount(index + 1);
@@ -234,11 +226,11 @@ void MusicWebFMRadioWidget::addCelltItems()
         setItem(index, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setIcon(TTK::Image::roundedPixmap(QPixmap(pair.m_icon), QPixmap(":/image/lb_mask_50"), iconSize()));
+        item->setIcon(TTK::Image::roundedPixmap(QPixmap(data.m_icon), QPixmap(":/image/lb_mask_50"), iconSize()));
         setItem(index, 1, item);
 
                           item = new QTableWidgetItem;
-        item->setText(pair.m_name);
+        item->setText(data.m_name);
         item->setForeground(QColor(TTK::UI::Color02));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(index, 2, item);

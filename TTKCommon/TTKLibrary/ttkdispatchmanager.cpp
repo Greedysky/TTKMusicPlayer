@@ -27,57 +27,57 @@ void TTKDispatchManager::setInterval(int msec)
 
 void TTKDispatchManager::dispatch(Module type)
 {
-    Data *item = new Data;
-    item->m_type = type;
-    m_observer << item;
+    Data *data = new Data;
+    data->m_type = type;
+    m_observer << data;
 }
 
 void TTKDispatchManager::dispatch(Module type, const TTKVariantList &args)
 {
-    Data *item = new Data;
-    item->m_type = type;
-    item->m_args << args;
-    m_observer << item;
+    Data *data = new Data;
+    data->m_type = type;
+    data->m_args << args;
+    m_observer << data;
 }
 
 void TTKDispatchManager::dispatch(Module type, void *funcs)
 {
-    Data *item = new Data;
-    item->m_type = type;
-    item->m_args << QVariant::fromValue<void*>(funcs);
-    m_observer << item;
+    Data *data = new Data;
+    data->m_type = type;
+    data->m_args << QVariant::fromValue<void*>(funcs);
+    m_observer << data;
 }
 
 void TTKDispatchManager::dispatch(Module type, const QVariant &arg1)
 {
-    Data *item = new Data;
-    item->m_type = type;
-    item->m_args << arg1;
-    m_observer << item;
+    Data *data = new Data;
+    data->m_type = type;
+    data->m_args << arg1;
+    m_observer << data;
 }
 
 void TTKDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2)
 {
-    Data *item = new Data;
-    item->m_type = type;
-    item->m_args << arg1 << arg2;
-    m_observer << item;
+    Data *data = new Data;
+    data->m_type = type;
+    data->m_args << arg1 << arg2;
+    m_observer << data;
 }
 
 void TTKDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3)
 {
-    Data *item = new Data;
-    item->m_type = type;
-    item->m_args << arg1 << arg2 << arg3;
-    m_observer << item;
+    Data *data = new Data;
+    data->m_type = type;
+    data->m_args << arg1 << arg2 << arg3;
+    m_observer << data;
 }
 
 void TTKDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3, const QVariant &arg4)
 {
-    Data *item = new Data;
-    item->m_type = type;
-    item->m_args << arg1 << arg2 << arg3 << arg4;
-    m_observer << item;
+    Data *data = new Data;
+    data->m_type = type;
+    data->m_args << arg1 << arg2 << arg3 << arg4;
+    m_observer << data;
 }
 
 void TTKDispatchManager::activeFunctions()
@@ -89,15 +89,15 @@ void TTKDispatchManager::activeFunctions()
         return;
     }
 
-    Data *item = m_observer.takeLast();
+    Data *data = m_observer.takeLast();
     bool state = true;
-    switch(item->m_type)
+    switch(data->m_type)
     {
         case Module::FileRemove:
         {
-            if(!item->m_args.isEmpty())
+            if(!data->m_args.isEmpty())
             {
-                const QString &path = item->m_args.first().toString();
+                const QString &path = data->m_args.first().toString();
                 state = path.isEmpty() ? false : QFile::remove(path);
             }
             break;
@@ -107,18 +107,18 @@ void TTKDispatchManager::activeFunctions()
 
     if(state)
     {
-        delete item;
+        delete data;
     }
     else
     {
-        item->m_times++;
-        if(item->isValid())
+        data->m_times++;
+        if(data->isValid())
         {
-            m_observer << item;
+            m_observer << data;
         }
         else
         {
-            delete item;
+            delete data;
         }
     }
     m_mutex.unlock();

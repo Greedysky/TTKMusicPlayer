@@ -52,9 +52,9 @@ void MusicArtistMvsQueryWidget::resizeGeometry()
         return;
     }
 
-    for(const Data &widget : qAsConst(m_resizeWidgets))
+    for(const Data &data : qAsConst(m_resizeWidgets))
     {
-        m_gridLayout->removeWidget(widget.m_label);
+        m_gridLayout->removeWidget(data.m_label);
     }
 
     const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
@@ -146,9 +146,9 @@ void MusicArtistAlbumsQueryWidget::resizeGeometry()
         return;
     }
 
-    for(const Data &widget : qAsConst(m_resizeWidgets))
+    for(const Data &data : qAsConst(m_resizeWidgets))
     {
-        m_gridLayout->removeWidget(widget.m_label);
+        m_gridLayout->removeWidget(data.m_label);
     }
 
     const int lineSize = MusicSquareQueryItemWidget::LINE_SPACING_SIZE;
