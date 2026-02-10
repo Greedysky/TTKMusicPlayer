@@ -1,5 +1,5 @@
-#ifndef MUSICKGQUERYREQUEST_H
-#define MUSICKGQUERYREQUEST_H
+#ifndef MUSICKWQUERYSONGREQUEST_H
+#define MUSICKWQUERYSONGREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,20 +19,20 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicqueryrequest.h"
-#include "musickgqueryinterface.h"
+#include "musicquerysongrequest.h"
+#include "musickwqueryinterface.h"
 
-/*! @brief The class of the kugou query download data from net.
+/*! @brief The class of the kuwo query song data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKGQueryRequest : public MusicQueryRequest
+class TTK_MODULE_EXPORT MusicKWQuerySongRequest : public MusicQuerySongRequest
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicKGQueryRequest(QObject *parent = nullptr);
+    explicit MusicKWQuerySongRequest(QObject *parent = nullptr);
 
     /*!
      * Start to search data by offset page.
@@ -61,4 +61,34 @@ private Q_SLOTS:
 
 };
 
-#endif // MUSICKGQUERYREQUEST_H
+
+/*! @brief The class of the kuwo query new song data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicKWQueryNewSongRequest : public MusicQuerySongRequest
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicKWQueryNewSongRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+    /*!
+     * Start to download query result data.
+     */
+    virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downloadFinished() override final;
+
+};
+
+#endif // MUSICKWQUERYSONGREQUEST_H

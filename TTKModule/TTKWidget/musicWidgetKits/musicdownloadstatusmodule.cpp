@@ -34,7 +34,7 @@ void MusicDownloadStatusModule::checkMetaDataValid(bool mode)
         return;
     }
 
-    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeSongRequest(this);
     req->setHeader("mode", mode);
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(m_parent->currentFileName());

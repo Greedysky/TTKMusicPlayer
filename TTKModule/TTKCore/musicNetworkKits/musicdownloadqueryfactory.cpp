@@ -1,8 +1,8 @@
 #include "musicdownloadqueryfactory.h"
 //
-#include "musicwyqueryrequest.h"
-#include "musickgqueryrequest.h"
-#include "musickwqueryrequest.h"
+#include "musicwyquerysongrequest.h"
+#include "musickgquerysongrequest.h"
+#include "musickwquerysongrequest.h"
 //
 #include "musicwyquerymovierequest.h"
 #include "musickgquerymovierequest.h"
@@ -48,16 +48,31 @@
 #include "musickwdownloadimagerequest.h"
 #include "musicdownloadbackgroundrequest.h"
 
-MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeQueryRequest(QObject *parent)
+MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeSongRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *req = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
     switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
-        case MusicAbstractQueryRequest::QueryServer::WY: req = new MusicWYQueryRequest(parent); break;
-        case MusicAbstractQueryRequest::QueryServer::KW: req = new MusicKWQueryRequest(parent); break;
-        case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryRequest(parent); break;
-        default: req = new MusicWYQueryRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::WY: req = new MusicWYQuerySongRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KW: req = new MusicKWQuerySongRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQuerySongRequest(parent); break;
+        default: req = new MusicWYQuerySongRequest(parent); break;
+    }
+    TTK_INFO_STREAM("MusicQueryrequest server:" << req->queryServer());
+    return req;
+}
+
+MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeNewSongRequest(QObject *parent)
+{
+    MusicAbstractQueryRequest *req = nullptr;
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
+    {
+        case MusicAbstractQueryRequest::QueryServer::WY: req = new MusicWYQueryNewSongRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KW: req = new MusicKWQueryNewSongRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryNewSongRequest(parent); break;
+        default: req = new MusicWYQueryNewSongRequest(parent); break;
     }
     TTK_INFO_STREAM("MusicQueryrequest server:" << req->queryServer());
     return req;
@@ -93,6 +108,21 @@ MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeAlbumRequest(QObject *
     return req;
 }
 
+MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeNewAlbumRequest(QObject *parent)
+{
+    MusicAbstractQueryRequest *req = nullptr;
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
+    {
+        case MusicAbstractQueryRequest::QueryServer::WY: req = new MusicWYQueryNewAlbumRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KW: req = new MusicKWQueryNewAlbumRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryNewAlbumRequest(parent); break;
+        default: req = new MusicWYQueryNewAlbumRequest(parent); break;
+    }
+    TTK_INFO_STREAM("MusicQueryAlbumRequest server:" << req->queryServer());
+    return req;
+}
+
 MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeArtistRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *req = nullptr;
@@ -118,6 +148,21 @@ MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeArtistListRequest(QObj
         case MusicAbstractQueryRequest::QueryServer::KW: req = new MusicKWQueryArtistListRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryArtistListRequest(parent); break;
         default: req = new MusicWYQueryArtistListRequest(parent); break;
+    }
+    TTK_INFO_STREAM("MusicQueryArtistListRequest server:" << req->queryServer());
+    return req;
+}
+
+MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeHotArtistListRequest(QObject *parent)
+{
+    MusicAbstractQueryRequest *req = nullptr;
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
+    {
+        case MusicAbstractQueryRequest::QueryServer::WY: req = new MusicWYQueryHotArtistListRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KW: req = new MusicKWQueryHotArtistListRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryHotArtistListRequest(parent); break;
+        default: req = new MusicWYQueryHotArtistListRequest(parent); break;
     }
     TTK_INFO_STREAM("MusicQueryArtistListRequest server:" << req->queryServer());
     return req;
@@ -178,6 +223,36 @@ MusicAbstractQueryRequest *MusicDownloadQueryFactory::makePlaylistRequest(QObjec
         case MusicAbstractQueryRequest::QueryServer::KW: req = new MusicKWQueryPlaylistRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryPlaylistRequest(parent); break;
         default: req = new MusicWYQueryPlaylistRequest(parent); break;
+    }
+    TTK_INFO_STREAM("MusicQueryPlaylistRequest server:" << req->queryServer());
+    return req;
+}
+
+MusicAbstractQueryRequest *MusicDownloadQueryFactory::makePlaylistRecommendRequest(QObject *parent)
+{
+    MusicAbstractQueryRequest *req = nullptr;
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
+    {
+        case MusicAbstractQueryRequest::QueryServer::WY: req = new MusicWYQueryPlaylistRecommendRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KW: req = new MusicKWQueryPlaylistRecommendRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryPlaylistRecommendRequest(parent); break;
+        default: req = new MusicWYQueryPlaylistRecommendRequest(parent); break;
+    }
+    TTK_INFO_STREAM("MusicQueryPlaylistRequest server:" << req->queryServer());
+    return req;
+}
+
+MusicAbstractQueryRequest *MusicDownloadQueryFactory::makePlaylistHighRequest(QObject *parent)
+{
+    MusicAbstractQueryRequest *req = nullptr;
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
+    {
+        case MusicAbstractQueryRequest::QueryServer::WY: req = new MusicWYQueryPlaylistHighRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KW: req = new MusicKWQueryPlaylistHighRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryPlaylistHighRequest(parent); break;
+        default: req = new MusicWYQueryPlaylistHighRequest(parent); break;
     }
     TTK_INFO_STREAM("MusicQueryPlaylistRequest server:" << req->queryServer());
     return req;

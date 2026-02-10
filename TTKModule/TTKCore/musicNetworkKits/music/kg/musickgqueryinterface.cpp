@@ -4,6 +4,12 @@
 static constexpr const char *KG_UA_URL = "cGhYNDZVdmNaVG5KZk50NVFvcUJyYWVQdmdNTkFTMmM=";
 static constexpr const char *KG_COOKIE_URL = "M1BlYjdvWUlwdHJIYXgzeGpUVDlWbnB6ZGZPaUxWVzhKdEZ2RHBHR1RBckFUbG82ZzlOOHRnMW0wUUZpVmdDNGNQMFFjTXd1OVhidmwvdHh6NjNkZ08reXEzWUl0ZXl3d21Ka3ErM1Q1eEp3WUs0YkYvV3dWVUFDSVd3YmI3c3U3c09pZTlIM1FQRFUyMG43Z2ZqRXJVTHhubkhjRC9EN3hVbzhia1QzdUZQU3orRzZZRmRncGZLazhkMD0=";
 
+static constexpr const char *KG_SONG_PATH_V1_URL = "c0FiK1UzOWFtRGNobi9oYlo1WmpEbWUwRzR0UStHd1lkZFFRakxkSGlMZmpHMmoxOWc4NGtGa3NJRUtiVXJEYlJqYzNYNmRHNlZ0dUZIR05Rb0RZcUgyb2lFMm5pNU9KaDhMeHNkQnJzcWJqeHhwQWdpUXBPV1ZEQ05RT0kvNE5IWG9qZ2hYYk9BMG8yQ25qbzFYUGFYeUVMWVk9";
+static constexpr const char *KG_SONG_PATH_V2_URL = "Q3dWL3pJbVlWTDY1Nk0vT3BkYWNGNC9ObWEyVmtyQ3lqVFlUZjE1VjU2V0ZhZFN2L1hFUXlob1JxM2Zjak9KcjBPZGE1QkxQRlhUaFpEMWxQNDMzbmdjWG5kMVNxRy9zR0tvVXB5SDlZUHl1OVUzaGlVM2NHUTBTY0l4cG1GNjY0alYzdmI5eU1ldXB2KzFzU2JHMkgrTHdxaUdSL3pwY0o1bk9kSk1GcG4yK2JVSndqUFRYNXRTbkk5VHBQcVM0Y256ZElxV1BCcy80NGpXaXNvWWZvQT09";
+static constexpr const char *KG_SONG_PATH_V3_URL = "b1VyUUJFN3l5RG0wZkhxZ2RHazUyRDVraGNXK21oODUvVWZCUHJ0TWx0VFJsdEwyemdzd0JmdnFRNFJQRitRb1NIVkZuTWZmUjlya2UrWi9pQ0Z0MjVFV2FZU1lDU3lieXBOb0RaVXVVcU5DR0xEYlQySXFHbXhKWjZ5ZkFuOEJmNzdGQ0tTNVFGMkg3eldDR3VqOUUxQWJKNzh6YWZPZzkyYUtKeFNORnB6bVlzZ1grYWduWXNBN1BDdENrb0ZEMklhSDVacmhBNkZiRWFPUDh6VXFIcnMzQUZqY0FYaG5ZbytGZkJUTnpJNTlLRHVZZitkYVlDVXR3Slh5U1IrSU9TbmF5TUxJZ0dJeGRxL0EwaDB2Qm1RUnBnTHM2bVdFQUsyRzZqeC83bTBjQ1RsSlB3dEVLcFlqdUU2c095aGN1cVJhR1E9PQ==";
+static constexpr const char *KG_SONG_PATH_V3_DATA_URL = "V1RsSGgvREcwWDBLNGdHeE5weEdoRWZCYVFhL2RlZDRBTUcxQXJqZlFIRXhsQzkzaldUclNodG1kSDJtekJXSjVlVGtEYUU1bkxYcTBrRjM1dHd0dFhhM2ZZd1B4N255Wk5MYWRBTWQwclF2dEIwenlLcFNVSXZGY1RZRXNVcDcwSUdJaVlQNmh1RnNQQVpMTVRrZ003YmI4RmcwTS9Jc1lFZ2VvbnFNYU1ZN0RMUVNwVkFoZFhsOVk1UXJGanpNbUpZWmpjdlZUQjlVc3FraENVMGF4SFIvOEVSS0o4ZVBEWC9iME52Q3lWNDdKYTFadXlCQ20rM0JueWtZVjBCZGdtM2NMakRSQzl3YlZRZEFPQnRvZEU3aHhiVnZ0aEJNemtUWWE5amFOaVk3RVBGdFBkSzRPQTRsYklZYTltNy9rRUNVc3dMZmI4WT0=";
+static constexpr const char *KG_ALBUM_INFO_URL = "ejhjT0JOd0RyMWtmaTdTa2x4REdsMXlucDkyYk8wT3RTZ21DOVVTeU15MFQ1Z1k0SVJ6bHdiY2hNVURKRE91NGdWSWc2NTJNZEsyNnF0b0YrK0E0TSs3UjRKam40VmhqM0JxTWI1dmtyR1ZQWk1tOGFnR1NGcnAzVzJ4M3dvZWU2YlhMR0IvZWVSND0=";
+
 void ReqKGInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
 {
     request->setRawHeader("User-Agent", TTK::Algorithm::mdII(KG_UA_URL, MDII_UA_KEY, false).toUtf8());
@@ -16,6 +22,12 @@ void ReqKGInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
 QString ReqKGInterface::makeSongArtist(const QString &name)
 {
     return TTK::String::charactersReplace(name).replace("+", ";");
+}
+
+QString ReqKGInterface::makeSongArtist(const QString &in, const QString &name)
+{
+    const QString &artistName = TTK::String::charactersReplace(name);
+    return in.isEmpty() ? artistName : (in + ";" + artistName);
 }
 
 void ReqKGInterface::parseFromSongAlbumLrc(TTK::MusicSongInformation *info)

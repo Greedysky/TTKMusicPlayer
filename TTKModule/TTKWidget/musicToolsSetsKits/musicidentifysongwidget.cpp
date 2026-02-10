@@ -285,7 +285,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     textLabel->setAlignment(Qt::AlignCenter);
     //
     TTKEventLoop loop;
-    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeSongRequest(this);
     connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->startToSearch(textLabel->text().trimmed());
     loop.exec();

@@ -42,9 +42,9 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_HEADER_FILES
   ${TTK_CORE_NETWORK_DIR}/music/core/musicqueryplaylistrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/core/musicquerytoplistrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/core/musicquerymovierequest.h
-  ${TTK_CORE_NETWORK_DIR}/music/core/musicqueryrequest.h
+  ${TTK_CORE_NETWORK_DIR}/music/core/musicquerysongrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgqueryinterface.h
-  ${TTK_CORE_NETWORK_DIR}/music/kg/musickgqueryrequest.h
+  ${TTK_CORE_NETWORK_DIR}/music/kg/musickgquerysongrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgqueryalbumrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgqueryartistrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgqueryplaylistrequest.h
@@ -54,7 +54,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_HEADER_FILES
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgdiscoverlistrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgcommentsrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwqueryinterface.h
-  ${TTK_CORE_NETWORK_DIR}/music/kw/musickwqueryrequest.h
+  ${TTK_CORE_NETWORK_DIR}/music/kw/musickwquerysongrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwqueryalbumrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwqueryartistrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwqueryplaylistrequest.h
@@ -66,7 +66,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_HEADER_FILES
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwcommentsrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwcoverrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyqueryinterface.h
-  ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyqueryrequest.h
+  ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyquerysongrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyqueryalbumrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyqueryartistrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyqueryplaylistrequest.h
@@ -83,7 +83,6 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_HEADER_FILES
   ${TTK_CORE_NETWORK_DIR}/music/zed/musicunityquerymovierequest.h
   ${TTK_CORE_NETWORK_DIR}/music/musicsongrecommendrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/musicsongsuggestrequest.h
-  ${TTK_CORE_NETWORK_DIR}/music/musicmainrecommendrequest.h
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmconfigmanager.h
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongrequest.h
   ${TTK_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.h
@@ -142,9 +141,9 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_SOURCE_FILES
   ${TTK_CORE_NETWORK_DIR}/music/core/musicqueryplaylistrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/core/musicquerytoplistrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/core/musicquerymovierequest.cpp
-  ${TTK_CORE_NETWORK_DIR}/music/core/musicqueryrequest.cpp
+  ${TTK_CORE_NETWORK_DIR}/music/core/musicquerysongrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgqueryinterface.cpp
-  ${TTK_CORE_NETWORK_DIR}/music/kg/musickgqueryrequest.cpp
+  ${TTK_CORE_NETWORK_DIR}/music/kg/musickgquerysongrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgqueryalbumrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgqueryartistrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgqueryplaylistrequest.cpp
@@ -154,7 +153,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_SOURCE_FILES
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgdiscoverlistrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/kg/musickgcommentsrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwqueryinterface.cpp
-  ${TTK_CORE_NETWORK_DIR}/music/kw/musickwqueryrequest.cpp
+  ${TTK_CORE_NETWORK_DIR}/music/kw/musickwquerysongrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwqueryalbumrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwqueryartistrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwqueryplaylistrequest.cpp
@@ -166,7 +165,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_SOURCE_FILES
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwcommentsrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/kw/musickwcoverrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyqueryinterface.cpp
-  ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyqueryrequest.cpp
+  ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyquerysongrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyqueryalbumrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyqueryartistrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/wy/musicwyqueryplaylistrequest.cpp
@@ -183,7 +182,6 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_SOURCE_FILES
   ${TTK_CORE_NETWORK_DIR}/music/zed/musicunityquerymovierequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/musicsongrecommendrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/musicsongsuggestrequest.cpp
-  ${TTK_CORE_NETWORK_DIR}/music/musicmainrecommendrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmconfigmanager.cpp
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.cpp

@@ -22,7 +22,7 @@
 #include "musickwqueryinterface.h"
 #include "musicquerytoplistrequest.h"
 
-/*! @brief The class of the kuwo query toplist download data from net.
+/*! @brief The class of the kuwo query toplist data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryToplistRequest : public MusicQueryToplistRequest

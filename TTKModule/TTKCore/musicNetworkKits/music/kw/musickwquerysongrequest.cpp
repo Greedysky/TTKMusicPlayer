@@ -1,13 +1,15 @@
-#include "musickwqueryrequest.h"
+#include "musickwquerysongrequest.h"
 
-MusicKWQueryRequest::MusicKWQueryRequest(QObject *parent)
-    : MusicQueryRequest(parent)
+static constexpr const char *KG_NEW_SONG_URL = "SU5LT3ZXSExhQ2FEWWpFRmJxa1k1cjB6WktRc2IrNENiclo3KzVqUlBaNVRORzVoNHhlU2VheVA4VFhlaGxWaVg3SFJLQ0FmNWQ0dFdIQVVUTUxIUmU4RkJyTDRxSC9DL3kvZ0crZmZYWTlOR21WRlU0WFZaa1BFN3NGcVlIcXlXamUyWmg0UjlnT2hLVVU2bzdTb0QxaGQ3QmhkNWJXMStTTlFJVmFQK1c5TDZnclU=";
+
+MusicKWQuerySongRequest::MusicKWQuerySongRequest(QObject *parent)
+    : MusicQuerySongRequest(parent)
 {
     m_pageSize = TTK_PAGE_SIZE_30;
     m_queryServer = QUERY_KW_INTERFACE;
 }
 
-void MusicKWQueryRequest::startToPage(int offset)
+void MusicKWQuerySongRequest::startToPage(int offset)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
 
@@ -16,7 +18,7 @@ void MusicKWQueryRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
+    request.setUrl(TTK::Algorithm::mdII(KW_SEARCH_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
     ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -24,7 +26,7 @@ void MusicKWQueryRequest::startToPage(int offset)
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWQueryRequest::startToSearchByID(const QString &value)
+void MusicKWQuerySongRequest::startToSearchByID(const QString &value)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
@@ -39,7 +41,7 @@ void MusicKWQueryRequest::startToSearchByID(const QString &value)
     QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+void MusicKWQuerySongRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
@@ -49,10 +51,10 @@ void MusicKWQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, in
     TTK_NETWORK_QUERY_CHECK();
 
     fetchUrlPathSize(&info->m_songProps, info->m_duration);
-    MusicQueryRequest::startToQueryResult(info, bitrate);
+    MusicQuerySongRequest::startToQueryResult(info, bitrate);
 }
 
-void MusicKWQueryRequest::downloadFinished()
+void MusicKWQuerySongRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
@@ -63,6 +65,7 @@ void MusicKWQueryRequest::downloadFinished()
         const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll().replace("'", "\""), &ok);
         if(QJsonParseError::NoError == ok.error)
         {
+            TTK_INFO_STREAM(json.toJson());
             QVariantMap value = json.toVariant().toMap();
             if(value.contains("abslist"))
             {
@@ -92,7 +95,7 @@ void MusicKWQueryRequest::downloadFinished()
                     info.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["web_albumpic_short"].toString(), info.m_songId);
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * TTK_DN_S2MS);
-                    info.m_year = value["RELEASEDATE"].toString();
+                    info.m_year.clear();
                     info.m_trackNumber = "0";
 
                     if(m_queryMode != QueryMode::Meta)
@@ -114,11 +117,11 @@ void MusicKWQueryRequest::downloadFinished()
     deleteAll();
 }
 
-void MusicKWQueryRequest::downloadSingleFinished()
+void MusicKWQuerySongRequest::downloadSingleFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
-    MusicQueryRequest::downloadFinished();
+    MusicQuerySongRequest::downloadFinished();
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
@@ -153,6 +156,111 @@ void MusicKWQueryRequest::downloadSingleFinished()
 
                 Q_EMIT createResultItem({info, serverToString()});
                 m_items << info;
+            }
+        }
+    }
+
+    Q_EMIT downloadDataChanged({});
+    deleteAll();
+}
+
+
+
+MusicKWQueryNewSongRequest::MusicKWQueryNewSongRequest(QObject *parent)
+    : MusicQuerySongRequest(parent)
+{
+    m_queryServer = QUERY_KW_INTERFACE;
+    m_pageSize = 1;
+    m_totalSize = 13;
+}
+
+void MusicKWQueryNewSongRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
+
+    deleteAll();
+
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(KG_NEW_SONG_URL, false).arg(offset).arg(m_totalSize));
+    ReqKWInterface::makeRequestRawHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicKWQueryNewSongRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
+
+    MusicPageQueryRequest::downloadFinished();
+    TTK_NETWORK_QUERY_CHECK();
+    ReqKWInterface::parseFromSongProperty(info, bitrate);
+    TTK_NETWORK_QUERY_CHECK();
+
+    fetchUrlPathSize(&info->m_songProps, info->m_duration);
+    MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
+}
+
+void MusicKWQueryNewSongRequest::downloadFinished()
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
+
+    MusicAbstractQueryRequest::downloadFinished();
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
+    {
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
+        {
+            QVariantMap value = json.toVariant().toMap();
+            if(value.contains("musiclist"))
+            {
+                const QVariantList &datas = value["musiclist"].toList();
+                for(const QVariant &var : qAsConst(datas))
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    if(!pageValid())
+                    {
+                        break;
+                    }
+
+                    ++m_pageIndex;
+
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    TTK::MusicSongInformation info;
+                    info.m_songId = value["id"].toString();
+                    info.m_songName = TTK::String::charactersReplace(value["name"].toString());
+
+                    info.m_artistId = value["artistid"].toString();
+                    info.m_artistName = ReqKWInterface::makeSongArtist(value["artist"].toString());
+
+                    info.m_albumId = value["albumid"].toString();
+                    info.m_albumName = TTK::String::charactersReplace(value["album"].toString());
+
+                    info.m_coverUrl = value["albumpic"].toString().replace("/120/", "/400/");
+                    info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
+                    info.m_year = value["firstrecordtime"].toString().section(TTK_DEFAULT_STR, 0, 0);
+                    info.m_trackNumber = "0";
+
+                    if(m_queryMode != QueryMode::Meta)
+                    {
+                        TTK_NETWORK_QUERY_CHECK();
+                        ReqKWInterface::parseFromSongProperty(&info, value["formats"].toString());
+                        TTK_NETWORK_QUERY_CHECK();
+
+                        Q_EMIT createResultItem({info, serverToString()});
+                    }
+
+                    m_items << info;
+                }
             }
         }
     }

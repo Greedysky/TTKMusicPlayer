@@ -1,5 +1,8 @@
 #include "musickgquerymovierequest.h"
 
+static constexpr const char *KG_MOVIE_URL = "SXBFRzlFelBDNXoybnRvamNoc2R3QTdlZ0syWXN3MjY3N1puUHZIZjJXRGYxUzBkS2xEKzdCR1NkTTA9";
+static constexpr const char *KG_ARTIST_MOVIE_URL = "M3E4VGoxSkNEWXh4WjJSY1FRRTdGb3RJOUQ2MXI0M3hDS0Mvd1BzeFBzS3VFNGlqU0pQei9KTzhBU1VkZHZ6WUc4dDFyclhDZG55Q2Y2d1Z1YnA0QzIrYnl2d3ZKMnlQZEp5ajlnPT0=";
+
 namespace ReqKGInterface
 {
     /*!
@@ -164,7 +167,7 @@ void MusicKGQueryMovieRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(TTK::Algorithm::mdII(KG_SEARCH_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
     ReqKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -312,7 +315,7 @@ void MusicKGQueryArtistMovieRequest::downloadFinished()
         if(QJsonParseError::NoError == ok.error)
         {
             QVariantMap value = json.toVariant().toMap();
-            if(value.contains("data") && value["errcode"].toInt() == 0)
+            if(value["errcode"].toInt() == 0 && value.contains("data"))
             {
                 value = value["data"].toMap();
                 m_totalSize = value["total"].toInt();

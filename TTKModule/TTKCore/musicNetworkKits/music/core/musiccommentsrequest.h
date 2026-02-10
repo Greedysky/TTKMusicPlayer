@@ -21,7 +21,7 @@
 
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class of the query song comments download data from net.
+/*! @brief The class of the query song comments data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicCommentsRequest : public MusicPageQueryRequest

@@ -31,7 +31,7 @@ void MusicLrcSearchTableWidget::startToSearchByValue(const QString &value)
     }
 
     setLoadingStatus(true);
-    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeSongRequest(this));
     connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), SIGNAL(resolvedSuccess()));
 
     m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Lrc);

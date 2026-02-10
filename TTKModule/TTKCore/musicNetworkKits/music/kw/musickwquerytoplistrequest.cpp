@@ -1,5 +1,7 @@
 #include "musickwquerytoplistrequest.h"
 
+static constexpr const char *KW_TOPLIST_INFO_URL = "Wkl6YXI0QWdzcXRyaUVCbzdLM2lhR3FZUDFZUVNLUDdvLzdpL1AwbjBlWGxrNWcxdGxBWVBiWjNlMldnNFB6cnBWT2ozOWJwZEQ4Q3dHM0RnVy9DSTVHL202RT0=";
+
 MusicKWQueryToplistRequest::MusicKWQueryToplistRequest(QObject *parent)
     : MusicQueryToplistRequest(parent)
 {

@@ -21,7 +21,7 @@
 
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class of the query toplist download data from net.
+/*! @brief The class of the query toplist data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicQueryToplistRequest : public MusicAbstractQueryRequest

@@ -21,7 +21,7 @@
 
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class of the query artist list download data from net.
+/*! @brief The class of the query artist list data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicQueryArtistListRequest : public MusicAbstractQueryRequest

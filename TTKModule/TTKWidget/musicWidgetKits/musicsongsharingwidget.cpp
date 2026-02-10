@@ -80,7 +80,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
         case Module::Song:
         {
             TTKEventLoop loop;
-            MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+            MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeSongRequest(this);
             connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
             req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
             req->startToSearch(m_ui->sharedName->text().trimmed());

@@ -21,7 +21,7 @@
 
 #include "musicquerymovierequest.h"
 
-/*! @brief The class of the unity query mv download data from net.
+/*! @brief The class of the unity query mv data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicUnityQueryMovieRequest : public MusicQueryMovieRequest

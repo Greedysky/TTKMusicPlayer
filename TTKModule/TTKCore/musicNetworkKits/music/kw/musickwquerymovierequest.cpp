@@ -2,6 +2,11 @@
 
 #include "qalgorithm/deswrapper.h"
 
+static constexpr const char *KW_MOVIE_URL = "TjhtdUUydHowZVp1d2RsUVl1UGg0QWkzTjhqZ1NGTWVLNmxqZytTQzV5T291VytwcUpSczNPMGdQV1U9";
+static constexpr const char *KW_MOVIE_COVER_URL = "c0IyUURSczNib2MzV0w5b3FEZ1dQTEZOeHliNWtWMVh0RWo1MFhoeHF3MjdUbThqb0Rta0JBPT0=";
+static constexpr const char *KW_MOVIE_ATTR_URL = "cnkyNURUa0E0RkpHdVZWamlOZDRVaGVNcVViSHUrSnNZZjBLZWIveGF5bkVEMldMeXFITk1NaVYvNGNkZFYwaURlelNUQzRvQTdRaklLeUNTLzZJMngxYWJha1ZxY1hLQmFtb2ZRenBsSlViZ05DZmpza0YwZ0pCRjMvSVh1RkNFN094NkZaNWY5TjRHK2NNU1pNQ1E3MGxENWpQRXVYb1pKNjRkRW9CbzlxRTBYYWZXRlFzMW52Um11U2J0M3EvdHRFR0pONGtMeDY2Zm16ME92akNZL2QxL2RZY2lXZGFuRk4raTBjSWx0emc0b2R2bG9LTFVMMCtKQThsTzZzS0NSdzArOWQxanNnY2pkTERxYkd0YXc9PQ==";
+static constexpr const char *KW_ARTIST_MOVIE_URL = "ODRPczVoSnVTb2dObm12Ujd5b3VsMGEvcDR0SDRXbXRLQVpqZW5NT2Voazh2YnRGK0N4eUxYL2xkNnFyWDZJNG9IK0tnbHhWUUdpNGlHbldtMjhYRFRtdGVXeFYxQjlUWHd5V1B2Y1lwbERlTnlmaGZTQzRNQXB3VkdsemhDWWcrbUs2dy9SWUJQb0tRY29rMGhpWk9HalZ6QlUzMjZtdw==";
+
 namespace ReqKWInterface
 {
     /*!
@@ -148,7 +153,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
+    request.setUrl(TTK::Algorithm::mdII(KW_SEARCH_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
     ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);

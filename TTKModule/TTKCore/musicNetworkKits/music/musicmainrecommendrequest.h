@@ -21,35 +21,6 @@
 
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class of the new songs recommend data from net.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicNewSongsRecommendRequest : public MusicAbstractQueryRequest
-{
-    Q_OBJECT
-public:
-    /*!
-     * Object constructor.
-     */
-    explicit MusicNewSongsRecommendRequest(QObject *parent = nullptr);
-
-    /*!
-     * Start to search data by input data.
-     */
-    virtual void startToSearch(const QString &value) override final;
-    /*!
-     * Start to download query result data.
-     */
-    virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    virtual void downloadFinished() override final;
-
-};
-
 
 /*! @brief The class of the new albums recommend data from net.
  * @author Greedysky <greedysky@163.com>

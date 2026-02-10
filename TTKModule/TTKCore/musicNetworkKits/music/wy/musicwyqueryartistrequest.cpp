@@ -1,5 +1,9 @@
 #include "musicwyqueryartistrequest.h"
 
+static constexpr const char *WY_ARTIST_URL = "YmhRbVZDYy8rbytiRWc5cXc2MUVUdEFKRmw2eFhTVmhqWTZ6MmRVNEMzbVg0Q3BFQVF4d0VYUktBMk1aVUNVb3ZaNk5VL3BYRjBZPQ==";
+static constexpr const char *WY_ARTIST_INFO_URL = "RnJtNVNTT01ncFI2cDJMRTMrSFFwWFBWVEEzQnZNYmg4TEJrRjZCeHorTE13aVNCNUxScGo2QzNzVUNKNzhKbkI2VjNKUT09";
+static constexpr const char *WY_ARTIST_INFO_DATA_URL = "dmt4VnNDdWErYjRYUXBnOWdubVBIQT09";
+
 MusicWYQueryArtistRequest::MusicWYQueryArtistRequest(QObject *parent)
     : MusicQueryArtistRequest(parent)
 {
@@ -102,12 +106,14 @@ void MusicWYQueryArtistRequest::downloadFinished()
                     if(!m_artistFound)
                     {
                         m_artistFound = true;
-                        MusicResultDataItem item;
-                        TTK_NETWORK_QUERY_CHECK();
-                        queryArtistIntro(&item);
-                        TTK_NETWORK_QUERY_CHECK();
 
+                        MusicResultDataItem item;
                         item.m_nickName.clear();
+                        item.m_id = info.m_artistId;
+                        item.m_name = info.m_artistName;
+                        item.m_coverUrl = info.m_coverUrl;
+                        item.m_time = TTKDateTime::format(artistObject["publishTime"].toLongLong(), TTK_DATE_FORMAT);
+
                         const QVariantList &aliasArray = artistObject["alias"].toList();
                         for(const QVariant &aliasValue : qAsConst(aliasArray))
                         {
@@ -125,13 +131,12 @@ void MusicWYQueryArtistRequest::downloadFinished()
                         }
                         else
                         {
-                            item.m_nickName = TTK_DEFAULT_STR;
+                            item.m_nickName = info.m_artistName;
                         }
 
-                        item.m_id = info.m_artistId;
-                        item.m_name = info.m_artistName;
-                        item.m_coverUrl = info.m_coverUrl;
-                        item.m_time = TTKDateTime::format(artistObject["publishTime"].toLongLong(), TTK_DATE_FORMAT);
+                        TTK_NETWORK_QUERY_CHECK();
+                        queryArtistIntro(&item);
+                        TTK_NETWORK_QUERY_CHECK();
                         Q_EMIT createArtistItem(item);
                     }
 

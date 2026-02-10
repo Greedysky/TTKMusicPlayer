@@ -1,8 +1,9 @@
 #include "musicwycoverrequest.h"
-#include "musicwyqueryrequest.h"
+#include "musicwyquerysongrequest.h"
 
 static constexpr const char *WY_COVER_URL = "VUFVWVFwcE90dTIzME9XR2NsY3JYYldmTmpWZEJWZ0k5d0U1UXZUN1Jobz0=";
 static constexpr const char *WY_COVER_DATA_URL = "STE3dncrRTVPdVBiRVlZaHk5M2FRRXhQamM4PQ==";
+static constexpr const char *WY_COVER_BASE_URL = "cmNsdVp5dFI1TG5VMVg1N2w1bnZwOEx0TGlUazZuZ1JFMkg0dVcvS0ZKbExPL2d0UW9kT0RaZHNhMzFXcjZiVytiZmtLY2hvYjk0bVEyZDhWaldiTmx6V0pmaz0=";
 
 MusicWYCoverSourceRequest::MusicWYCoverSourceRequest(QObject *parent)
     : MusicCoverRequest(parent)
@@ -13,7 +14,7 @@ MusicWYCoverSourceRequest::MusicWYCoverSourceRequest(QObject *parent)
 void MusicWYCoverSourceRequest::startToRequest(const QString &url)
 {
     TTKEventLoop loop;
-    MusicWYQueryRequest query(this), *req = &query;
+    MusicWYQuerySongRequest query(this), *req = &query;
     connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(url);
@@ -29,7 +30,7 @@ void MusicWYCoverSourceRequest::startToRequest(const QString &url)
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_SONG_PATH_V3_URL, false),
+                      TTK::Algorithm::mdII(WY_COVER_BASE_URL, false),
                       TTK::Algorithm::mdII(WY_COVER_URL, false),
                       TTK::Algorithm::mdII(WY_COVER_DATA_URL, false).arg(req->items().first().m_songId));
 

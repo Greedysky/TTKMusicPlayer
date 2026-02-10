@@ -22,7 +22,7 @@
 #include "musickwqueryinterface.h"
 #include "musicqueryalbumrequest.h"
 
-/*! @brief The class of the kuwo query album download data from net.
+/*! @brief The class of the kuwo query album data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryAlbumRequest : public MusicQueryAlbumRequest
@@ -52,7 +52,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the kuwo query artist album download data from net.
+/*! @brief The class of the kuwo query artist album data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryArtistAlbumRequest : public MusicQueryAlbumRequest
@@ -63,6 +63,32 @@ public:
      * Object constructor.
      */
     explicit MusicKWQueryArtistAlbumRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downloadFinished() override final;
+
+};
+
+
+/*! @brief The class of the kuwo query new album data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicKWQueryNewAlbumRequest : public MusicQueryAlbumRequest
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicKWQueryNewAlbumRequest(QObject *parent = nullptr);
 
     /*!
      * Start to search data by offset page.

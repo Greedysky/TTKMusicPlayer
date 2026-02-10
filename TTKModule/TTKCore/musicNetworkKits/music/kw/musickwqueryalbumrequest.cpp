@@ -1,5 +1,9 @@
 #include "musickwqueryalbumrequest.h"
 
+static constexpr const char *KW_ALBUM_URL = "Nk5uY2lGelFqNHpteXVuekpQdFhpcWkvUnVRUWdZc1FOdUpXQkdYSWs3VmtDZU1PN29ZcUQ4dTNvczBhSmFMdkRLOGFJNnljSWJNc1QreU1TSU1SRldnN0RnRzlzWFBrUlNIbGlJUzFFelRsNzFoRUJEVkNLbHRzUnAwSzdtdEc2UFRmZEhSV0lvNVVSVXdjamhLT1dvTWxyZEE3aXlvQWFtQTg3Wmtrb05pZ0RIbXU5V3dxeWZLL3hQaFM5WmdKekRaRVhDL3VISVk9";
+static constexpr const char *KW_ARTIST_ALBUM_URL = "YXNXaDl6TXNjWHhxeG9UeG9aaWR4aUhQRmpBR25VZ1NFQkZPbGNkdndGT09TbjRYV2ZzTHJJbUtmQjVvRVphQmltaFVUaG50M1dWTXZlWVJUOVNZVkJiVzF0amNVT3FJR09BRUUvVTU2Y1E5QTRiQ1M2SU5ES2MvdWpMeDFiT0dxWDErMkZpVyt5ZnNOeTc1K2dyRG5QVS9NVTRyN0hpNUUyVWVjZz09";
+static constexpr const char *KW_NEW_ALBUM_URL = "SU5LT3ZXSExhQ2FEWWpFRmJxa1k1cjB6WktRc2IrNENiclo3KzVqUlBaNVRORzVoNHhlU2VheVA4VFhlaGxWaVg3SFJLQ0FmNWQ0dFdIQVVUTUxIUmU4RkJyTDRxSC9DL3kvZ0crZmZYWTlOR21WRlU0WFZaa1BFN3NGcVlIcXlXamUyWmg0UjlnT2hLVVU2bzdTb0QxaGQ3QmhkNWJXMStTTlFJVmFQK1c5TDZnclU=";
+
 MusicKWQueryAlbumRequest::MusicKWQueryAlbumRequest(QObject *parent)
     : MusicQueryAlbumRequest(parent)
 {
@@ -170,6 +174,73 @@ void MusicKWQueryArtistAlbumRequest::downloadFinished()
                     item.m_name = value["name"].toString();
                     item.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["pic"].toString(), {});
                     item.m_time = value["pub"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
+                    Q_EMIT createAlbumItem(item);
+                }
+            }
+        }
+    }
+
+    Q_EMIT downloadDataChanged({});
+    deleteAll();
+}
+
+
+
+MusicKWQueryNewAlbumRequest::MusicKWQueryNewAlbumRequest(QObject *parent)
+    : MusicQueryAlbumRequest(parent)
+{
+    m_pageSize = TTK_PAGE_SIZE_30;
+    m_queryServer = QUERY_KW_INTERFACE;
+}
+
+void MusicKWQueryNewAlbumRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
+
+    deleteAll();
+    m_pageIndex = offset;
+
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(KW_NEW_ALBUM_URL, false).arg(offset).arg(m_pageSize));
+    ReqKWInterface::makeRequestRawHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicKWQueryNewAlbumRequest::downloadFinished()
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
+
+    MusicAbstractQueryRequest::downloadFinished();
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
+    {
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
+        {
+            QVariantMap value = json.toVariant().toMap();
+            if(value.contains("musiclist"))
+            {
+                m_totalSize = value["total"].toInt();
+
+                const QVariantList &datas = value["musiclist"].toList();
+                for(const QVariant &var : qAsConst(datas))
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    MusicResultDataItem item;
+                    item.m_id = value["albumid"].toString();
+                    item.m_name = value["name"].toString();
+                    item.m_coverUrl = value["albumpic"].toString().replace("/120/", "/400/");
+                    item.m_nickName = value["artist"].toString();
                     Q_EMIT createAlbumItem(item);
                 }
             }

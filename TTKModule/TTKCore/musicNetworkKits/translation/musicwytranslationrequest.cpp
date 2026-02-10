@@ -1,6 +1,6 @@
 #include "musicwytranslationrequest.h"
 #include "musicwyqueryinterface.h"
-#include "musicwyqueryrequest.h"
+#include "musicwyquerysongrequest.h"
 #include "musicotherdefine.h"
 
 MusicWYTranslationRequest::MusicWYTranslationRequest(QObject *parent)
@@ -17,7 +17,7 @@ void MusicWYTranslationRequest::startToRequest(const QString &data)
     MusicAbstractNetwork::deleteAll();
 
     TTKEventLoop loop;
-    MusicWYQueryRequest query(this), *req = &query;
+    MusicWYQuerySongRequest query(this), *req = &query;
     connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(QFileInfo(header("name").toString()).baseName());

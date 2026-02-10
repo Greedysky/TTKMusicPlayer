@@ -22,7 +22,7 @@
 #include "musicwyqueryinterface.h"
 #include "musicqueryartistrequest.h"
 
-/*! @brief The class of the wangyi query artist download data from net.
+/*! @brief The class of the wangyi query artist data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryArtistRequest : public MusicQueryArtistRequest

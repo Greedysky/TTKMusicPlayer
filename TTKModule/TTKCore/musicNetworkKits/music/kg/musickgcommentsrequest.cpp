@@ -1,5 +1,8 @@
 #include "musickgcommentsrequest.h"
-#include "musickgqueryrequest.h"
+#include "musickgquerysongrequest.h"
+
+static constexpr const char *KG_COMMENT_SONG_URL = "WklSbmRxMm50MkdJOS91Y0Q1b09ET0IwMlZtNTVKRitGS3BCdkxyUkJXeHkwVGNMeVFZa29weTVEa2VFSFEzUGQvQi9DanNLNnVmcDhEdzU0bUYrMUtpOWNNaXhOTUlUWFF3RG9JSlFhbEpIMndaWS90c2xBb1Q4SWY2dG91NjYxNCtoZDJ3czI5ZU54U2ZlcTdjcGpVNTd1dFR6MGh0Tk5mNGVLT2VXRHFHb1RNZmVaR0NhU1R2VTFhZ25yTVFI";
+static constexpr const char *KG_COMMENT_PLAYLIST_URL = "TEZ4NXdPYnM4MkNJSTZMNUVjU2h5cGFvY0FzWmI2Lzc1RGM5UUJTRTdVcVZEQndyMGRQZ0x0cXJlb1E0dXVqRUZSWXRoSUR4V1lRUVRLQjVuNkdyUDdFZ2x1ZitLZml2eThxU2R2TEJHYUM5a1hDak5GSS9weStvb2JYRXhKL3hkMGVMdmVVbm5DOFEwL3BTMjd6N1VvY1pXYzRlcWdpNFJKVmZqa1hEOTRWUitrVEE3UTBWcEMwMllsMXJZSjV4S1FQSE9wWTlsdmtXQ1pYaA==";
 
 MusicKGSongCommentsRequest::MusicKGSongCommentsRequest(QObject *parent)
     : MusicCommentsRequest(parent)
@@ -29,7 +32,7 @@ void MusicKGSongCommentsRequest::startToSearch(const QString &value)
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
     TTKEventLoop loop;
-    MusicKGQueryRequest query(this), *req = &query;
+    MusicKGQuerySongRequest query(this), *req = &query;
     connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(value);

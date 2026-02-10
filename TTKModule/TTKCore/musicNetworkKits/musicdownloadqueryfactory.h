@@ -36,9 +36,13 @@ class TTK_MODULE_EXPORT MusicDownloadQueryFactory
     TTK_DECLARE_SINGLETON_CLASS(MusicDownloadQueryFactory)
 public:
     /*!
-     * Make query request object by type.
+     * Make song request object by type.
      */
-    MusicAbstractQueryRequest *makeQueryRequest(QObject *parent);
+    MusicAbstractQueryRequest *makeSongRequest(QObject *parent);
+    /*!
+     * Make new song request object by type.
+     */
+    MusicAbstractQueryRequest *makeNewSongRequest(QObject *parent);
     /*!
      * Make movie request object by type.
      */
@@ -48,6 +52,10 @@ public:
      */
     MusicAbstractQueryRequest *makeAlbumRequest(QObject *parent);
     /*!
+     * Make new album request object by type.
+     */
+    MusicAbstractQueryRequest *makeNewAlbumRequest(QObject *parent);
+    /*!
      * Make artist request object by type.
      */
     MusicAbstractQueryRequest *makeArtistRequest(QObject *parent);
@@ -55,6 +63,10 @@ public:
      * Make artist category request object by type.
      */
     MusicAbstractQueryRequest *makeArtistListRequest(QObject *parent);
+    /*!
+     * Make hot artist category request object by type.
+     */
+    MusicAbstractQueryRequest *makeHotArtistListRequest(QObject *parent);
     /*!
      * Make artist album request object by type.
      */
@@ -71,6 +83,14 @@ public:
      * Make playlist request object by type.
      */
     MusicAbstractQueryRequest *makePlaylistRequest(QObject *parent);
+    /*!
+     * Make playlist recommend request object by type.
+     */
+    MusicAbstractQueryRequest *makePlaylistRecommendRequest(QObject *parent);
+    /*!
+     * Make playlist high request object by type.
+     */
+    MusicAbstractQueryRequest *makePlaylistHighRequest(QObject *parent);
     /*!
      * Make song comment request object by type.
      */

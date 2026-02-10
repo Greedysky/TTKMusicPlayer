@@ -22,7 +22,7 @@
 #include "musickgqueryinterface.h"
 #include "musicqueryplaylistrequest.h"
 
-/*! @brief The class of the kugou query playlist download data from net.
+/*! @brief The class of the kugou query playlist data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryPlaylistRequest : public MusicQueryPlaylistRequest
@@ -62,6 +62,74 @@ private Q_SLOTS:
      * Download data from net finished.
      */
     void downloadDetailsFinished();
+
+};
+
+
+/*! @brief The class of the kugou query playlist recommend data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicKGQueryPlaylistRecommendRequest : public MusicQueryPlaylistRequest
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicKGQueryPlaylistRecommendRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+    /*!
+     * Start to search data by input data.
+     */
+    virtual void startToSearch(const QString &value) override final;
+    /*!
+     * Start to query playlist info.
+     */
+    virtual void startToQueryInfo(MusicResultDataItem &item) override final;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downloadFinished() override final;
+
+};
+
+
+/*! @brief The class of the kugou query playlist high quality data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicKGQueryPlaylistHighRequest : public MusicQueryPlaylistRequest
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicKGQueryPlaylistHighRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+    /*!
+     * Start to search data by input data.
+     */
+    virtual void startToSearch(const QString &value) override final;
+    /*!
+     * Start to query playlist info.
+     */
+    virtual void startToQueryInfo(MusicResultDataItem &item) override final;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downloadFinished() override final;
 
 };
 

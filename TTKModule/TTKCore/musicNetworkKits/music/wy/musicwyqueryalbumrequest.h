@@ -22,7 +22,7 @@
 #include "musicwyqueryinterface.h"
 #include "musicqueryalbumrequest.h"
 
-/*! @brief The class of the wangyi query album download data from net.
+/*! @brief The class of the wangyi query album data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryAlbumRequest : public MusicQueryAlbumRequest
@@ -52,7 +52,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the wangyi query artist album download data from net.
+/*! @brief The class of the wangyi query artist album data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryArtistAlbumRequest : public MusicQueryAlbumRequest
@@ -63,6 +63,32 @@ public:
      * Object constructor.
      */
     explicit MusicWYQueryArtistAlbumRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downloadFinished() override final;
+
+};
+
+
+/*! @brief The class of the wangyi query new album data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicWYQueryNewAlbumRequest : public MusicQueryAlbumRequest
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicWYQueryNewAlbumRequest(QObject *parent = nullptr);
 
     /*!
      * Start to search data by offset page.

@@ -144,7 +144,7 @@ void MusicDownloadWidget::initialize(const QString &name)
 {
     if(!m_networkRequest)
     {
-       m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+       m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeSongRequest(this);
        connect(m_networkRequest, SIGNAL(downloadDataChanged(QString)), SLOT(downloadNormalFinished()));
     }
 

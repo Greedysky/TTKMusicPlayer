@@ -1,5 +1,5 @@
-#ifndef MUSICQUERYREQUEST_H
-#define MUSICQUERYREQUEST_H
+#ifndef MUSICQUERYSONGREQUEST_H
+#define MUSICQUERYSONGREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -21,17 +21,17 @@
 
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class of the query download data from net.
+/*! @brief The class of the query song data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicQueryRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicQuerySongRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicQueryRequest(QObject *parent = nullptr);
+    explicit MusicQuerySongRequest(QObject *parent = nullptr);
 
     /*!
      * Start to search data by input data.
@@ -40,4 +40,4 @@ public:
 
 };
 
-#endif // MUSICQUERYREQUEST_H
+#endif // MUSICQUERYSONGREQUEST_H

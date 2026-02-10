@@ -22,7 +22,7 @@
 #include "musickgqueryinterface.h"
 #include "musicquerytoplistrequest.h"
 
-/*! @brief The class of the kugou query toplist download data from net.
+/*! @brief The class of the kugou query toplist data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryToplistRequest : public MusicQueryToplistRequest

@@ -1,5 +1,5 @@
 #include "musicmainrecommendwidget.h"
-#include "musicmainrecommendrequest.h"
+#include "musicdownloadqueryfactory.h"
 #include "musicrightareawidget.h"
 #include "musicqueryitemwidget.h"
 #include "musictoastlabel.h"
@@ -251,7 +251,7 @@ void MusicItemRecommendQueryWidget::setQueryInput(MusicAbstractQueryRequest *que
     switch(m_module)
     {
         case RecommendModule::Album: connect(m_networkRequest, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createResultItem(MusicResultDataItem))); break;
-        case RecommendModule::Artist: connect(m_networkRequest, SIGNAL(createArtistItem(MusicResultDataItem)), SLOT(createResultItem(MusicResultDataItem))); break;
+        case RecommendModule::Artist: connect(m_networkRequest, SIGNAL(createArtistListItem(MusicResultDataItem)), SLOT(createResultItem(MusicResultDataItem))); break;
         case RecommendModule::Playlist:
         case RecommendModule::PlaylistHQ: connect(m_networkRequest, SIGNAL(createPlaylistItem(MusicResultDataItem)), SLOT(createResultItem(MusicResultDataItem))); break;
         default: break;
@@ -299,9 +299,6 @@ void MusicItemRecommendQueryWidget::createResultItem(const MusicResultDataItem &
 
 void MusicItemRecommendQueryWidget::currentItemClicked(const MusicResultDataItem &item)
 {
-    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, 0);
-
     switch(m_module)
     {
         case RecommendModule::Album: MusicRightAreaWidget::instance()->showAlbumFound({}, item.m_id); break;
@@ -310,8 +307,6 @@ void MusicItemRecommendQueryWidget::currentItemClicked(const MusicResultDataItem
         case RecommendModule::PlaylistHQ: MusicRightAreaWidget::instance()->showPlaylistFound(item.m_id); break;
         default: break;
     }
-
-    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, index);
 }
 
 void MusicItemRecommendQueryWidget::resizeGeometry()
@@ -454,23 +449,9 @@ void MusicItemMoreRecommendQueryWidget::categoryChanged(int index)
         case RecommendModule::Playlist: break;
         case RecommendModule::PlaylistHQ:
         {
-            QString key;
-            switch(index)
-            {
-                case 0: key = "全部"; break;
-                case 1: key = "华语"; break;
-                case 2: key = "欧美"; break;
-                case 3: key = "韩语"; break;
-                case 4: key = "日语"; break;
-                default: break;
-            }
-
-            if(!key.isEmpty())
-            {
-                removeItems(m_gridLayout);
-                m_categoryChanged = true;
-                m_networkRequest->startToSearch(key);
-            }
+            removeItems(m_gridLayout);
+            m_categoryChanged = true;
+            m_networkRequest->startToSearch(QString::number(index));
             break;
         }
         default: break;
@@ -510,9 +491,6 @@ void MusicItemMoreRecommendQueryWidget::createResultItem(const MusicResultDataIt
 
 void MusicItemMoreRecommendQueryWidget::currentItemClicked(const MusicResultDataItem &item)
 {
-    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, 0);
-
     switch(m_module)
     {
         case RecommendModule::Album: MusicRightAreaWidget::instance()->showAlbumFound({}, item.m_id); break;
@@ -521,8 +499,6 @@ void MusicItemMoreRecommendQueryWidget::currentItemClicked(const MusicResultData
         case RecommendModule::PlaylistHQ: MusicRightAreaWidget::instance()->showPlaylistFound(item.m_id); break;
         default: break;
     }
-
-    G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, index);
 }
 
 void MusicItemMoreRecommendQueryWidget::initialize()
@@ -617,7 +593,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
             m_areasGroup->addWidget(jpButton, 4);
             topWidgetLayout->insertWidget(11, jpButton);
 
-            m_networkRequest = new MusicNewAlbumsRecommendRequest(this);
+            m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeNewAlbumRequest(this);
             connect(m_networkRequest, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createResultItem(MusicResultDataItem)));
             m_networkRequest->startToSearch("ALL");
             break;
@@ -626,8 +602,8 @@ void MusicItemMoreRecommendQueryWidget::initialize()
         {
             label->setText(tr("Popular Artists"));
 
-            m_networkRequest = new MusicArtistsRecommendRequest(this);
-            connect(m_networkRequest, SIGNAL(createArtistItem(MusicResultDataItem)), SLOT(createResultItem(MusicResultDataItem)));
+            m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeHotArtistListRequest(this);
+            connect(m_networkRequest, SIGNAL(createArtistListItem(MusicResultDataItem)), SLOT(createResultItem(MusicResultDataItem)));
             m_networkRequest->startToSearch({});
             break;
         }
@@ -635,7 +611,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
         {
             label->setText(tr("Recommended Playlist"));
 
-            m_networkRequest = new MusicPlaylistRecommendRequest(this);
+            m_networkRequest = G_DOWNLOAD_QUERY_PTR->makePlaylistRecommendRequest(this);
             connect(m_networkRequest, SIGNAL(createPlaylistItem(MusicResultDataItem)), SLOT(createResultItem(MusicResultDataItem)));
             m_networkRequest->startToSearch({});
             break;
@@ -693,7 +669,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
             m_areasGroup->addWidget(jpButton, 4);
             topWidgetLayout->insertWidget(11, jpButton);
 
-            m_networkRequest = new MusicPlaylistHQRecommendRequest(this);
+            m_networkRequest = G_DOWNLOAD_QUERY_PTR->makePlaylistHighRequest(this);
             connect(m_networkRequest, SIGNAL(createPlaylistItem(MusicResultDataItem)), SLOT(createResultItem(MusicResultDataItem)));
             m_networkRequest->startToSearch("全部");
             break;
@@ -902,7 +878,7 @@ void MusicMainRecommendWidget::createContainerTopWidget()
 
     m_newSongsWidget = new MusicNewSongRecommendQueryTableWidget(leftWidget);
     leftLayout->addWidget(m_newSongsWidget);
-    m_newSongsWidget->setQueryInput(new MusicNewSongsRecommendRequest(m_newSongsWidget));
+    m_newSongsWidget->setQueryInput(G_DOWNLOAD_QUERY_PTR->makeNewSongRequest(m_newSongsWidget));
     m_newSongsWidget->startToSearchByValue("0");
 
     QWidget *rightWidget = new QWidget(widget);
@@ -934,7 +910,7 @@ void MusicMainRecommendWidget::createContainerTopWidget()
     m_newAlbumsWidget = new MusicItemRecommendQueryWidget(RecommendModule::Album, rightWidget);
     rightLayout->addWidget(m_newAlbumsWidget);
 
-    MusicAbstractQueryRequest *req = new MusicNewAlbumsRecommendRequest(this);
+    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeNewAlbumRequest(m_newAlbumsWidget);
     m_newAlbumsWidget->setQueryInput(req);
     req->setPageSize(8);
     req->startToSearch("ALL");
@@ -972,7 +948,7 @@ void MusicMainRecommendWidget::createContainerMiddleTopWidget()
     m_artistsWidget = new MusicItemRecommendQueryWidget(RecommendModule::Artist, widget);
     layout->addWidget(m_artistsWidget);
 
-    MusicAbstractQueryRequest *req = new MusicArtistsRecommendRequest(this);
+    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makeHotArtistListRequest(m_artistsWidget);
     m_artistsWidget->setQueryInput(req);
     req->setPageSize(8);
     req->startToSearch({});
@@ -1010,10 +986,10 @@ void MusicMainRecommendWidget::createContainerMiddleWidget()
     m_hqPlaylistWidget = new MusicItemRecommendQueryWidget(RecommendModule::PlaylistHQ, widget);
     layout->addWidget(m_hqPlaylistWidget);
 
-    MusicAbstractQueryRequest *req = new MusicPlaylistHQRecommendRequest(this);
+    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makePlaylistHighRequest(m_hqPlaylistWidget);
     m_hqPlaylistWidget->setQueryInput(req);
     req->setPageSize(8);
-    req->startToSearch("全部");
+    req->startToSearch("0");
 }
 
 void MusicMainRecommendWidget::createContainerMiddleBottomWidget()
@@ -1048,7 +1024,7 @@ void MusicMainRecommendWidget::createContainerMiddleBottomWidget()
     m_playlistWidget = new MusicItemRecommendQueryWidget(RecommendModule::Playlist, widget);
     layout->addWidget(m_playlistWidget);
 
-    MusicAbstractQueryRequest *req = new MusicPlaylistRecommendRequest(this);
+    MusicAbstractQueryRequest *req = G_DOWNLOAD_QUERY_PTR->makePlaylistRecommendRequest(m_playlistWidget);
     m_playlistWidget->setQueryInput(req);
     req->setPageSize(8);
     req->startToSearch({});

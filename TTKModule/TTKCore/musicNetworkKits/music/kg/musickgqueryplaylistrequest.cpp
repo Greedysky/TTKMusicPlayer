@@ -1,5 +1,11 @@
 #include "musickgqueryplaylistrequest.h"
 
+static constexpr const char *KG_PLAYLIST_URL = "VXJlbFlzWElZQ25iMzhicGJIVWJqRGpMdnJJU0tlZXdUTlVpWUJkN0xxR1Qya3dud3dLY2JSaWphWTF6QUw5RDJFK3hlZWhxdGhrRWFhQkpJUFhxOGUrY1J2d1NQVGZNM29pOXVXU3h0V1hrR0RIMnhHK2JYZz09";
+static constexpr const char *KG_PLAYLIST_INFO_URL = "NHZmb0FWT2NGVmkrQ01QNFBYTXM3RGFMbkJrb3VtQXExWXBLK2JIRW5VZEQ1YUN1eEM4Y1l3U09Lb20zWDlKTHBSZXhEdHhveHdLbWFMWnhMR3FnL2c0TTk4SUFMbFdDVDFScVF1UXZMS3BrYVpqdnFURmRUUElxcXlFd3FNVTJNRDhPQ0E9PQ==";
+static constexpr const char *KG_PLAYLIST_DETAIL_URL = "cEt0bHpiRkFKMTFZbzUyQ1prK1RCMjBqWnRRMGRKY2FqYnVSRllPZHMwcmoyVkZ3WG8vTWhMVUR0ZTdIZUszYmdybXBUdEVxOHdiSEM3Nmw=";
+static constexpr const char *KG_PLAYLIST_RECOMMED_URL = "OTV1T3MyeFp6T2w4dXpEaTM4d3RKMzZhaHdJZVhsSCtHSTYyUXIwNWFXeEJsVVJ2cTlPcnhLQWlDZGk5c0oxZW1WUGxUQlpMV0NtL2R4WkpkVzVIYmQzd3lWejYwUXIrelVQWXU4NUI3dGM5aTNoZA==";
+static constexpr const char *KG_PLAYLIST_HQ_URL = KG_PLAYLIST_RECOMMED_URL;
+
 MusicKGQueryPlaylistRequest::MusicKGQueryPlaylistRequest(QObject *parent)
     : MusicQueryPlaylistRequest(parent)
 {
@@ -202,4 +208,178 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
     }
 
     Q_EMIT downloadDataChanged({});
+}
+
+
+
+MusicKGQueryPlaylistRecommendRequest::MusicKGQueryPlaylistRecommendRequest(QObject *parent)
+    : MusicQueryPlaylistRequest(parent)
+{
+    m_pageSize = TTK_PAGE_SIZE_30;
+    m_queryServer = QUERY_KG_INTERFACE;
+    m_totalSize = m_pageSize;
+}
+
+void MusicKGQueryPlaylistRecommendRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
+
+    deleteAll();
+    m_pageIndex = offset;
+
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(KG_PLAYLIST_RECOMMED_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
+    ReqKGInterface::makeRequestRawHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicKGQueryPlaylistRecommendRequest::startToSearch(const QString &value)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
+
+    m_queryValue = "1084";
+    startToPage(0);
+}
+
+void MusicKGQueryPlaylistRecommendRequest::startToQueryInfo(MusicResultDataItem &item)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << item.m_id);
+}
+
+void MusicKGQueryPlaylistRecommendRequest::downloadFinished()
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
+
+    MusicAbstractQueryRequest::downloadFinished();
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
+    {
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
+        {
+            QVariantMap value = json.toVariant().toMap();
+            if(value["errcode"].toInt() == 0 && value.contains("data"))
+            {
+                value = value["data"].toMap();
+                m_totalSize = value["total"].toInt();
+
+                const QVariantList &datas = value["info"].toList();
+                for(const QVariant &var : qAsConst(datas))
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    MusicResultDataItem item;
+                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
+                    item.m_id = value["specialid"].toString();
+                    item.m_name = value["specialname"].toString();
+                    item.m_count = value["playcount"].toString();
+                    item.m_nickName = value["username"].toString();
+                    Q_EMIT createPlaylistItem(item);
+                }
+            }
+        }
+    }
+
+    Q_EMIT downloadDataChanged({});
+    deleteAll();
+}
+
+
+
+MusicKGQueryPlaylistHighRequest::MusicKGQueryPlaylistHighRequest(QObject *parent)
+    : MusicQueryPlaylistRequest(parent)
+{
+    m_pageSize = TTK_PAGE_SIZE_30;
+    m_queryServer = QUERY_KG_INTERFACE;
+}
+
+void MusicKGQueryPlaylistHighRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
+
+    deleteAll();
+    m_pageIndex = offset;
+
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(KG_PLAYLIST_HQ_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
+    ReqKGInterface::makeRequestRawHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicKGQueryPlaylistHighRequest::startToSearch(const QString &value)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
+
+    switch(value.toInt())
+    {
+        case 0: m_queryValue = ""; break;
+        case 1: m_queryValue = "84"; break;
+        case 2: m_queryValue = "20"; break;
+        case 3: m_queryValue = "23"; break;
+        case 4: m_queryValue = "21"; break;
+        default: break;
+    }
+
+    startToPage(0);
+}
+
+void MusicKGQueryPlaylistHighRequest::startToQueryInfo(MusicResultDataItem &item)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << item.m_id);
+}
+
+void MusicKGQueryPlaylistHighRequest::downloadFinished()
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
+
+    MusicAbstractQueryRequest::downloadFinished();
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
+    {
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
+        {
+            QVariantMap value = json.toVariant().toMap();
+            if(value["errcode"].toInt() == 0 && value.contains("data"))
+            {
+                value = value["data"].toMap();
+                m_totalSize = value["total"].toInt();
+
+                const QVariantList &datas = value["info"].toList();
+                for(const QVariant &var : qAsConst(datas))
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    MusicResultDataItem item;
+                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
+                    item.m_id = value["specialid"].toString();
+                    item.m_name = value["specialname"].toString();
+                    item.m_count = value["playcount"].toString();
+                    item.m_nickName = value["username"].toString();
+                    Q_EMIT createPlaylistItem(item);
+                }
+            }
+        }
+    }
+
+    Q_EMIT downloadDataChanged({});
+    deleteAll();
 }

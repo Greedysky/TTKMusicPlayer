@@ -22,7 +22,7 @@
 #include "musickwqueryinterface.h"
 #include "musicunityquerymovierequest.h"
 
-/*! @brief The class of the kuwo query mv download data from net.
+/*! @brief The class of the kuwo query mv data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryMovieRequest : public MusicUnityQueryMovieRequest
@@ -62,7 +62,7 @@ private Q_SLOTS:
 };
 
 
-/*! @brief The class of the kuwo query artist mv download data from net.
+/*! @brief The class of the kuwo query artist mv data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryArtistMovieRequest : public MusicQueryMovieRequest

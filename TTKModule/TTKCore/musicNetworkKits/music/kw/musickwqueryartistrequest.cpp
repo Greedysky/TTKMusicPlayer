@@ -1,5 +1,8 @@
 #include "musickwqueryartistrequest.h"
 
+static constexpr const char *KW_ARTIST_URL = "YnB5eU5EYWZlV2ROblZIWllJbVJzK0ppMVJqMGxiNVcwM0RaQzVqWE9xdURua0tJWng4OEVaSit1ck5VeGh4SkZ1OGN0SHRaQWNNQS9URXRCM0FVdlZOWDkwcDgzOXZ1Q0JIcGlMMEdyZGlWTUlITE1pZmJOY1YyNmFwS2o5NE1NM3ZDY25RRERlLzEzb1U3NFpKV2lYSGhpOFNINTdDd1ZZWHV4bkUzL0JXY2ZHSkpPYitEazY2QzhiRT0=";
+static constexpr const char *KW_ARTIST_INFO_URL = "QW1leS9malJmT2gvWE41OURPbUREVGE5M2Q5ZzlpdUFPWWdreFVaSm0va2p4QlcvblZwdVVJaElwMUZhN1VvbHAvMytVYW44NmNFczl1UjM=";
+
 MusicKWQueryArtistRequest::MusicKWQueryArtistRequest(QObject *parent)
     : MusicQueryArtistRequest(parent)
 {
@@ -87,13 +90,14 @@ void MusicKWQueryArtistRequest::downloadFinished()
                     if(!m_artistFound)
                     {
                         m_artistFound = true;
+
                         MusicResultDataItem item;
+                        item.m_id = info.m_artistId;
+                        item.m_name = info.m_artistName;
+
                         TTK_NETWORK_QUERY_CHECK();
                         queryArtistIntro(&item);
                         TTK_NETWORK_QUERY_CHECK();
-
-                        item.m_id = info.m_artistId;
-                        item.m_name = info.m_artistName;
                         Q_EMIT createArtistItem(item);
                     }
 
@@ -132,7 +136,7 @@ void MusicKWQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) cons
 
         if(item->m_nickName.isEmpty())
         {
-            item->m_nickName = TTK_DEFAULT_STR;
+            item->m_nickName = item->m_name;
         }
     }
 }

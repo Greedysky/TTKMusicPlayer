@@ -22,7 +22,7 @@
 #include "musicwyqueryinterface.h"
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class of the wangyi query program category download data from net.
+/*! @brief The class of the wangyi query program category data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDJRadioProgramCategoryRequest : public MusicAbstractQueryRequest

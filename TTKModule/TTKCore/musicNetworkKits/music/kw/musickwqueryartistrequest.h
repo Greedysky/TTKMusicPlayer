@@ -22,7 +22,7 @@
 #include "musickwqueryinterface.h"
 #include "musicqueryartistrequest.h"
 
-/*! @brief The class of the kuwo query artist download data from net.
+/*! @brief The class of the kuwo query artist data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryArtistRequest : public MusicQueryArtistRequest

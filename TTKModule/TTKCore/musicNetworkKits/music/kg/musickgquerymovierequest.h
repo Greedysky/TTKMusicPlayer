@@ -22,7 +22,7 @@
 #include "musickgqueryinterface.h"
 #include "musicunityquerymovierequest.h"
 
-/*! @brief The class of the kugou query mv download data from net.
+/*! @brief The class of the kugou query mv data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryMovieRequest : public MusicUnityQueryMovieRequest
@@ -62,7 +62,7 @@ private Q_SLOTS:
 };
 
 
-/*! @brief The class of the kugou query artist mv download data from net.
+/*! @brief The class of the kugou query artist mv data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryArtistMovieRequest : public MusicQueryMovieRequest

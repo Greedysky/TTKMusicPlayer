@@ -1,5 +1,14 @@
 #include "musicwyquerymovierequest.h"
 
+static constexpr const char *WY_MOVIE_URL = "dFowcHhjYXk3UWRkZlo2eW40NkY2TEU4VzRoMC84TFh4Wm93N1hCbWk5V21WQnZnYzIrVUhvYmVtK0xtUW90cGpidHBqdz09";
+static constexpr const char *WY_MOVIE_DATA_URL = "dmt4VnNDdWErYjRYUXBnOWdubVBIQT09";
+static constexpr const char *WY_VIDEO_INFO_URL = "VGVNaXVsNW9GSTA0d1VYMnFlRnhuVFoyd1BTV0U0Y1RMWGxON25tTlZ4S2lxSUthSFkvSXFOcFB1MjE1eG4xVFBhUXpITWVEZkVrbU5uNk0=";
+static constexpr const char *WY_VIDEO_INFO_DATA_URL = "MTFxaHNCYnNQYnh5YWFMQUpadk9sWmRCY3FJPQ==";
+static constexpr const char *WY_VIDEO_PATH_URL = "VjZLL2tEVlFnYjhQclRPMDVnblZiNmE4Q0NDMzBqa3ZaeStjallYbkdBbllYU2YxSWE0OFFIRXppVDRLeEtsM2g4OTROdz09";
+static constexpr const char *WY_VIDEO_PATH_DATA_URL = "OE8vNmRpSVV6VXg4OGRKL0s5OStEdFQ4K1R2SGJlblZnSGljeVllZ1RQUW5ES1JONWIvdVhNSWdtZGc9";
+static constexpr const char *WY_ARTIST_MOVIE_URL = "eFdablNDbDlZVzVvYlo4UU9waEFVRlluRUFzdXA4TXFzVE9RMllXWVdQUXE2WjlsRi9DMzc0VlNXQlU9";
+static constexpr const char *WY_ARTIST_MOVIE_DATA_URL = "OE95dm9DdmtycVlzcnZaaWRhRFpHYjNBenl0bmFKM0ZLa1lVaFFVenBFQnZ5N2RoNE5VR3N5TzlDTitNTjFiUk9vdDZ4QndxSHY2QjVzcFlPM0laTlplUEt0bz0=";
+
 namespace ReqWYInterface
 {
     /*!
@@ -72,8 +81,8 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
-                      TTK::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(1014).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize).toUtf8());
+                      TTK::Algorithm::mdII(WY_SEARCH_URL, false),
+                      TTK::Algorithm::mdII(WY_SEARCH_DATA_URL, false).arg(1014).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize).toUtf8());
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));

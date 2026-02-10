@@ -52,7 +52,7 @@ void MusicSongSearchTableWidget::startToSearchByValue(const QString &value)
     manager.writeBuffer(records);
 
     setLoadingStatus(true);
-    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeSongRequest(this));
 
     m_networkRequest->startToSearch(value);
 }
@@ -99,7 +99,7 @@ void MusicSongSearchTableWidget::startToSearchByID(const QString &id)
     }
 
     setLoadingStatus(true);
-    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeSongRequest(this));
 
     m_networkRequest->startToSearchByID(id);
 }

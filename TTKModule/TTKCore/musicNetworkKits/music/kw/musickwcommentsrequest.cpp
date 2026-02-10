@@ -1,5 +1,8 @@
 #include "musickwcommentsrequest.h"
-#include "musickwqueryrequest.h"
+#include "musickwquerysongrequest.h"
+
+static constexpr const char *KW_COMMENT_SONG_URL = "eHgyZzQyMWprWUpacGhVdmZjT0tUN2Y3bVF1NFRlR3BZQmpFWU1sRFo1MEd6Ky8rNlBjMUtQbkk2Vm5kd2JsM2t4ZUY3ZDNrY2xnV2IzdlMvUEdLU2RYL1ZFNHA4a2tDMDhmYU5KZ3lMSEdEQWo5bFJYdjBnSTdUVlRqdGFTazk=";
+static constexpr const char *KW_COMMENT_PLAYLIST_URL = "S2ptTE9jUTZCK1B5cEVwM0RwT0NwTlQ1bXpWR3JQeXhZbTkrdjlGR3Q0OWZGa2lpeGRYMkowZk82Ly9OS0tka2dPd1YreFkyV0Y3b3pYcHNiNVM0SU1uWEFmSVlYQytCR0d2NU52Q0NINENXT3pwVEV1WjlVTE9pYUxKT0NINE4=";
 
 MusicKWSongCommentsRequest::MusicKWSongCommentsRequest(QObject *parent)
     : MusicCommentsRequest(parent)
@@ -29,7 +32,7 @@ void MusicKWSongCommentsRequest::startToSearch(const QString &value)
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
     TTKEventLoop loop;
-    MusicKWQueryRequest query(this), *req = &query;
+    MusicKWQuerySongRequest query(this), *req = &query;
     connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(value);

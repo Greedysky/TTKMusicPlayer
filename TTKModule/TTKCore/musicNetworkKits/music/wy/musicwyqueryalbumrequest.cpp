@@ -1,5 +1,11 @@
 #include "musicwyqueryalbumrequest.h"
 
+static constexpr const char *WY_ALBUM_URL = "QzJrMDNKTGlpVHpvY2taYm5BSWZGVTZWM09xYW5STDdXRFE5eTEzczhLZHB1RWljWlIxOVhRUXVDcmpuVjJsQnhqcmZRZE9UU0JZPQ==";
+static constexpr const char *WY_ARTIST_ALBUM_URL = "dEJpSTdiaUh3R1hnRGVDUlpCNzJKRnBqNWZHY2xLVmhUcWQ0WW1PUVY0NjlONmRvMmtGaWZiMDBscjAvd0dxZg==";
+static constexpr const char *WY_ARTIST_ALBUM_DATA_URL = "Smx6dWVoWEJJOGEvdlZvRTNtcUFEVEJzWjI5NzB4bUM1anV4Z2lXa1N4RHRtTW5ZRllEeGpHSzN0VmxTTzJ4ZU93dW9Edz09";
+static constexpr const char *WY_NEW_ALBUM_URL = "VC9sOTJXRzdLc0dYWWVtbmdsSUJnNFlYeDFqZ2gyd3Y5c1ZNdjBEeldpR25qSExSWWJqdVRkWmdoSmM9";
+static constexpr const char *WY_NEW_ALBUM_DATA_URL = "N1VpQldOeUpVZFp3REZNczdrOHZXK0JpbjJkYjEveENIQmdaYlNhOWkyWUlrRWVYSnhCZTdBRS9SenFVVG11d0JHVXZ0NW1kTEdaeG4xeFc=";
+
 MusicWYQueryAlbumRequest::MusicWYQueryAlbumRequest(QObject *parent)
     : MusicQueryAlbumRequest(parent)
 {
@@ -186,6 +192,86 @@ void MusicWYQueryArtistAlbumRequest::downloadFinished()
                     item.m_name = value["name"].toString();
                     item.m_coverUrl = ReqWYInterface::makeCoverPixmapUrl(value["picUrl"].toString());
                     item.m_time = TTKDateTime::format(value["publishTime"].toULongLong(), TTK_DATE2_FORMAT);
+                    Q_EMIT createAlbumItem(item);
+                }
+            }
+        }
+    }
+
+    Q_EMIT downloadDataChanged({});
+    deleteAll();
+}
+
+
+
+MusicWYQueryNewAlbumRequest::MusicWYQueryNewAlbumRequest(QObject *parent)
+    : MusicQueryAlbumRequest(parent)
+{
+    m_pageSize = TTK_PAGE_SIZE_30;
+    m_queryServer = QUERY_WY_INTERFACE;
+}
+
+void MusicWYQueryNewAlbumRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << offset);
+
+    deleteAll();
+    m_pageIndex = offset;
+
+    QNetworkRequest request;
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
+                       TTK::Algorithm::mdII(WY_NEW_ALBUM_URL, false),
+                       TTK::Algorithm::mdII(WY_NEW_ALBUM_DATA_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
+
+    m_reply = m_manager.post(request, parameter);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicWYQueryNewAlbumRequest::downloadFinished()
+{
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
+
+    MusicAbstractQueryRequest::downloadFinished();
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
+    {
+        QJsonParseError ok;
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
+        {
+            QVariantMap value = json.toVariant().toMap();
+            if(value["code"].toInt() == 200 && value.contains("albums"))
+            {
+                m_totalSize = value["total"].toInt();
+
+                const QVariantList &datas = value["albums"].toList();
+                for(const QVariant &var : qAsConst(datas))
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    MusicResultDataItem item;
+                    item.m_id = value["id"].toString();
+                    item.m_name = TTK::String::charactersReplace(value["name"].toString());
+                    item.m_coverUrl = value["picUrl"].toString();
+                    item.m_nickName.clear();
+
+                    const QVariantList &artistsArray = value["artists"].toList();
+                    for(const QVariant &artistValue : qAsConst(artistsArray))
+                    {
+                        if(artistValue.isNull())
+                        {
+                            continue;
+                        }
+
+                        const QVariantMap &artistObject = artistValue.toMap();
+                        item.m_nickName = ReqWYInterface::makeSongArtist(item.m_nickName, artistObject["name"].toString());
+                    }
                     Q_EMIT createAlbumItem(item);
                 }
             }

@@ -3,6 +3,13 @@
 
 #include "qalgorithm/deswrapper.h"
 
+static constexpr const char *KW_SONG_PATH_V1_URL = "eVZwd0d3aGhUSmNoNHBHZTFFYldyOGZjY0trcldsMlphUWtNL0thR3AyTjRkU0xyZGJuSlBGQTBueURhaDM3bTVrNUE5S0I5dWpjcWRHeTNaanJPUXc1YkNOQm9pNlJrbVFFTWI3YVdpcFFWS2tUSGNoSk5RUDl3WDhSZlZaUzd2TnRpaDBTS0psbVE0Tmk5YlJHQXdtY2tGaGlERmU4RnFXSGVZdWFWeGo4dUFpbm4zWUJTemlFYVhkREM0Q0pSNytUK05VYlBVcUdVRnhLSUJ3TXg3ZEc2UzBxVGVMOFZqdnJJN1E9PQ==";
+static constexpr const char *KW_SONG_PATH_V2_URL = "VlpjeWIxQkZNbDdkNHA3eUFRMHVnNmVVanpITWJ6MEp1T1ZraElNc2JXaGIvVytMcmFNZVFKNEQ2UXRrcHZyV2dXTjJqQT09";
+static constexpr const char *KW_SONG_PATH_V2_DATA_URL = "NUVnZE5SbWFmNHRGemdTeHd6RHlwYjF2TllaR1R5TkNKRUt6NWpxcDVEcW9JdkREN0QzRmNGOVM0R0lQK29wTTZwaHBHa3FkR3dWbEx6M3ZHVnZBM1NseWF1eUoyN0wwZmQwT3BJaXFzbWcraDlISnAyVnN0VTdGT3ZxZWlicVFGcjFkYWc3QlJ0czlGdFVrTW1WeTd3U1c1S0wwQjRrNDM0S0EySU9pOVg4QmVYSW5GUUIwWWcwMlM5Sng2YVIvYmpYL0xib2NnRlFLV3A2aXBJMWxEalNMNVpnPQ==";
+static constexpr const char *KW_SONG_PATH_V3_URL = "UElteEluQm8zUnRXTERvMkkwYTVhNitEUG9rRVA0Wk80VFFOb3dKL1ZsNldLc1RDVFJQZ3llaTN1MXhzL3NSM3ovaVhTTld5L1NpTE9hdTlBM3NuNjBQbWpOTT0=";
+static constexpr const char *KW_ALBUM_COVER_URL = "NkhRaDluWTFxV2wvTEl6ZkszRmRUa1MvS0JlQUl6MDJVUkpqcjFnYzJ4djZ0b0xmcjhzZHJnV0xscW89";
+static constexpr const char *KW_ARTIST_COVER_URL = "YW4xU3FFQnprWG11R0J5QjVGREFHdy9Yd0w3dEZZcFJIWm5FMXQ5QkJJN0EzQTd4TnBwR1BQZ0d5Qzg9";
+
 void ReqKWInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
 {
     TTK::setSslConfiguration(request);
@@ -13,6 +20,17 @@ void ReqKWInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
 QString ReqKWInterface::makeSongArtist(const QString &name)
 {
     return TTK::String::charactersReplace(name).replace("&", ";").replace("+", ";");
+}
+
+QString ReqKWInterface::makeSongArtist(const QString &in, const QString &name)
+{
+    const QString &artistName = TTK::String::charactersReplace(name);
+    return in.isEmpty() ? artistName : (in + ";" + artistName);
+}
+
+QString ReqKWInterface::makeArtistPixmapUrl(const QString &url)
+{
+    return TTK::Algorithm::mdII(KW_ARTIST_COVER_URL, false) + url.section('/', 1);
 }
 
 QString ReqKWInterface::makeCoverPixmapUrl(const QString &url, const QString &id)

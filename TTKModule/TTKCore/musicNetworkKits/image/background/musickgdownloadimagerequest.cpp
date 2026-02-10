@@ -1,6 +1,6 @@
 #include "musickgdownloadimagerequest.h"
 #include "musicdownloaddatarequest.h"
-#include "musickgqueryrequest.h"
+#include "musickgquerysongrequest.h"
 
 static constexpr const char *ART_BACKGROUND_URL = "ZkhTYXV4MmpWQy9hUU16NC8xZ01kRWNJZEFGQmNicVF1ek5OeGpkdzIxeDVLYU1MUzVtbGh0aVhzZVArM0FvNVgrL1lSeGdWY2hxalNadEpxZk81RG5nais2ZUlJSUtuelFvUi9OdEtnYkNFbStvT21PSDBnSzdXeVdzL3k5NWNDU3dwdjNURkJZZz0=";
 
@@ -17,7 +17,7 @@ void MusicKGDownloadBackgroundRequest::startToRequest()
     MusicAbstractNetwork::deleteAll();
 
     TTKEventLoop loop;
-    MusicKGQueryRequest query(this), *req = &query;
+    MusicKGQuerySongRequest query(this), *req = &query;
     connect(req, SIGNAL(downloadDataChanged(QString)), &loop, SLOT(quit()));
     req->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     req->startToSearch(m_name);

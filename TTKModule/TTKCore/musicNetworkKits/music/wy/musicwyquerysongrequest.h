@@ -1,5 +1,5 @@
-#ifndef MUSICKWQUERYREQUEST_H
-#define MUSICKWQUERYREQUEST_H
+#ifndef MUSICWYQUERYSONGREQUEST_H
+#define MUSICWYQUERYSONGREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,20 +19,20 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicqueryrequest.h"
-#include "musickwqueryinterface.h"
+#include "musicquerysongrequest.h"
+#include "musicwyqueryinterface.h"
 
-/*! @brief The class of the kuwo query download data from net.
+/*! @brief The class of the wangyi query song data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKWQueryRequest : public MusicQueryRequest
+class TTK_MODULE_EXPORT MusicWYQuerySongRequest : public MusicQuerySongRequest
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicKWQueryRequest(QObject *parent = nullptr);
+    explicit MusicWYQuerySongRequest(QObject *parent = nullptr);
 
     /*!
      * Start to search data by offset page.
@@ -61,4 +61,34 @@ private Q_SLOTS:
 
 };
 
-#endif // MUSICKWQUERYREQUEST_H
+
+/*! @brief The class of the wangyi query new song data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicWYQueryNewSongRequest : public MusicQuerySongRequest
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicWYQueryNewSongRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+    /*!
+     * Start to download query result data.
+     */
+    virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downloadFinished() override final;
+
+};
+
+#endif // MUSICWYQUERYSONGREQUEST_H

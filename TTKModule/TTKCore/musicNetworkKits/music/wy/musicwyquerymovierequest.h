@@ -22,7 +22,7 @@
 #include "musicwyqueryinterface.h"
 #include "musicunityquerymovierequest.h"
 
-/*! @brief The class of the wangyi query mv download data from net.
+/*! @brief The class of the wangyi query mv data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryMovieRequest : public MusicUnityQueryMovieRequest
@@ -72,7 +72,7 @@ private:
 };
 
 
-/*! @brief The class of the wangyi query artist mv download data from net.
+/*! @brief The class of the wangyi query artist mv data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryArtistMovieRequest : public MusicQueryMovieRequest

@@ -22,7 +22,7 @@
 #include "musickwqueryinterface.h"
 #include "musicqueryartistlistrequest.h"
 
-/*! @brief The class of the kuwo query artist list download data from net.
+/*! @brief The class of the kuwo query artist list data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryArtistListRequest : public MusicQueryArtistListRequest
@@ -33,6 +33,32 @@ public:
      * Object constructor.
      */
     explicit MusicKWQueryArtistListRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downloadFinished() override final;
+
+};
+
+
+/*! @brief The class of the kuwo query hot artist list data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicKWQueryHotArtistListRequest : public MusicQueryArtistListRequest
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicKWQueryHotArtistListRequest(QObject *parent = nullptr);
 
     /*!
      * Start to search data by offset page.
