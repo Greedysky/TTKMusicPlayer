@@ -58,7 +58,7 @@ void ReqKGInterface::parseFromSongAlbumLrc(TTK::MusicSongInformation *info)
             info->m_songName = TTK::String::charactersReplace(value["songname"].toString());
             info->m_artistId = value["singerid"].toString();
             info->m_artistName = ReqKGInterface::makeSongArtist(value["singername"].toString());
-            info->m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
+            info->m_coverUrl = value["imgurl"].toString().replace("{size}", "500");
             info->m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(value["songname"].toString(), info->m_songId).arg(value["duration"].toInt() * TTK_DN_S2MS);
         }
     }
@@ -76,6 +76,7 @@ void ReqKGInterface::parseFromSongAlbumInfo(TTK::MusicSongInformation *info, con
 
     info->m_albumId = item.m_id;
     info->m_albumName = item.m_name;
+    info->m_year = item.m_time.section(TTK_DEFAULT_STR, 0, 0);
 }
 
 void ReqKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *item, const QString &hash, const QString &album)

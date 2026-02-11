@@ -94,12 +94,12 @@ void MusicWYQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
         if(value["code"].toInt() == 200 && value.contains("playlist"))
         {
             value = value["playlist"].toMap();
-            item.m_coverUrl = value["coverImgUrl"].toString();
             item.m_name = value["name"].toString();
             item.m_title = value["detailPageTitle"].toString();
             item.m_count = value["playCount"].toString();
             item.m_description = value["description"].toString();
             item.m_time = TTKDateTime::format(value["updateTime"].toULongLong(), TTK_DATE_FORMAT);
+            item.m_coverUrl = value["coverImgUrl"].toString();
             item.m_category.clear();
 
             const QVariantList &tags = value["tags"].toList();
@@ -152,10 +152,10 @@ void MusicWYQueryPlaylistRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem item;
-                    item.m_coverUrl = value["coverImgUrl"].toString();
                     item.m_id = value["id"].toString();
                     item.m_name = value["name"].toString();
                     item.m_count = value["playCount"].toString();
+                    item.m_coverUrl = value["coverImgUrl"].toString();
 
                     value = value["creator"].toMap();
                     item.m_nickName = value["nickname"].toString();
@@ -222,7 +222,7 @@ void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
                     info.m_albumId = albumObject["id"].toString();
                     info.m_albumName = TTK::String::charactersReplace(albumObject["name"].toString());
 
-                    info.m_coverUrl = albumObject["picUrl"].toString();
+                    info.m_coverUrl = ReqWYInterface::makeCoverPixmapUrl(albumObject["pic_str"].toString());
                     info.m_lrcUrl = TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["dt"].toInt());
                     info.m_year = TTKDateTime::format(value["publishTime"].toULongLong(), TTK_YEAR_FORMAT);
@@ -308,9 +308,9 @@ void MusicWYQueryPlaylistRecommendRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem item;
-                    item.m_coverUrl = value["picUrl"].toString();
                     item.m_id = value["id"].toString();
                     item.m_name = value["name"].toString();
+                    item.m_coverUrl = value["picUrl"].toString();
                     item.m_nickName = "热门歌单推荐";
                     Q_EMIT createPlaylistItem(item);
                 }
@@ -421,9 +421,9 @@ void MusicWYQueryPlaylistHighRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem item;
-                    item.m_coverUrl = value["coverImgUrl"].toString();
                     item.m_id = value["id"].toString();
                     item.m_name = value["name"].toString();
+                    item.m_coverUrl = value["coverImgUrl"].toString();
 
                     value = value["creator"].toMap();
                     item.m_nickName = value["nickname"].toString();

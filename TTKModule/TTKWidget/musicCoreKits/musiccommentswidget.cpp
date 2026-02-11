@@ -127,9 +127,12 @@ void MusicCommentsItem::addCellItem(const MusicResultDataItem &item)
     m_starLabel->setText(QString("(%1)").arg(item.m_count));
     m_userCommit->setText(item.m_description);
 
-    MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
-    req->startToRequest(item.m_coverUrl);
+    if(TTK::isCoverValid(item.m_coverUrl))
+    {
+        MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
+        req->startToRequest(item.m_coverUrl);
+    }
 }
 
 void MusicCommentsItem::downloadFinished(const QByteArray &bytes)

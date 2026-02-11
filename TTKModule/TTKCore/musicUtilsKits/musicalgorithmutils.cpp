@@ -3,9 +3,10 @@
 
 #include <QCryptographicHash>
 
-QByteArray TTK::Algorithm::md5(const QByteArray &data)
+QByteArray TTK::Algorithm::md5(const QByteArray &data, bool base64)
 {
-    return QCryptographicHash::hash(data, QCryptographicHash::Md5).toHex().toLower();
+    const QByteArray &v = QCryptographicHash::hash(data, QCryptographicHash::Md5);
+    return base64 ? v.toBase64() : v.toHex().toLower();
 }
 
 QByteArray TTK::Algorithm::sha1(const QByteArray &data)

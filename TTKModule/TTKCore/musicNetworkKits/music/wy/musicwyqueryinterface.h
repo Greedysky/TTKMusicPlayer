@@ -46,7 +46,7 @@ namespace ReqWYInterface
     /*!
      * Make cover pixmap url.
      */
-    QString makeCoverPixmapUrl(const QString &url);
+    QString makeCoverPixmapUrl(const QString &id);
 
     /*!
      * Make token query request.

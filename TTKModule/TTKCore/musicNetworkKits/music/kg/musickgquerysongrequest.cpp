@@ -31,6 +31,7 @@ void MusicKGQuerySongRequest::startToSearchByID(const QString &value)
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
     deleteAll();
+    m_queryValue = value;
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(value));
@@ -86,13 +87,7 @@ void MusicKGQuerySongRequest::downloadFinished()
                     info.m_songId = value["hash"].toString();
                     info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
 
-                    info.m_artistName = ReqKGInterface::makeSongArtist(value["singername"].toString());
-
-                    info.m_albumId = value["album_id"].toString();
-                    info.m_albumName = TTK::String::charactersReplace(value["album_name"].toString());
-
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-                    info.m_year.clear();
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
@@ -136,7 +131,7 @@ void MusicKGQuerySongRequest::downloadSingleFinished()
                 value = value["data"].toMap();
 
                 TTK::MusicSongInformation info;
-                info.m_songId = value["hash"].toString();
+                info.m_songId = m_queryValue;
                 info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
 
                 info.m_artistId = value["singerid"].toString();
@@ -156,18 +151,20 @@ void MusicKGQuerySongRequest::downloadSingleFinished()
                     TTK_NETWORK_QUERY_CHECK();
                 }
 
-                info.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
+                info.m_coverUrl = value["imgurl"].toString().replace("{size}", "500");
                 info.m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(info.m_songName, info.m_songId).arg(value["duration"].toInt() * TTK_DN_S2MS);
                 info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-                info.m_year.clear();
                 info.m_trackNumber = "0";
 
                 TTK_NETWORK_QUERY_CHECK();
                 ReqKGInterface::parseFromSongProperty(&info, value["extra"].toMap());
                 TTK_NETWORK_QUERY_CHECK();
 
-                Q_EMIT createResultItem({info, serverToString()});
-                m_items << info;
+                if(!info.m_songName.isEmpty())
+                {
+                    Q_EMIT createResultItem({info, serverToString()});
+                    m_items << info;
+                }
             }
         }
     }
@@ -272,7 +269,7 @@ void MusicKGQueryNewSongRequest::downloadFinished()
                     info.m_albumId = value["album_id"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["remark"].toString());
 
-                    info.m_coverUrl = value["cover"].toString().replace("{size}", "480");
+                    info.m_coverUrl = value["cover"].toString().replace("{size}", "500");
                     info.m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(info.m_songName, info.m_songId).arg(value["duration"].toInt() * TTK_DN_S2MS);
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
                     info.m_year = TTKDateTime::format(value["addtime"].toULongLong(), TTK_YEAR_FORMAT);

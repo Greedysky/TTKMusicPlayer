@@ -80,7 +80,6 @@ void MusicKGQueryToplistRequest::downloadFinished()
                     info.m_albumId = value["album_id"].toString();
 
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-                    info.m_year.clear();
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
@@ -90,6 +89,11 @@ void MusicKGQueryToplistRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
                     ReqKGInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
+
+                    if(info.m_songName.isEmpty())
+                    {
+                        continue;
+                    }
 
                     Q_EMIT createResultItem({info, serverToString()});
                     m_items << info;
@@ -144,9 +148,9 @@ void MusicKGQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
                 }
 
                 item.m_name = value["rankname"].toString();
-                item.m_coverUrl = value["banner7url"].toString().replace("{size}", "400");
                 item.m_count = value["play_times"].toString();
                 item.m_description = value["intro"].toString();
+                item.m_coverUrl = value["banner7url"].toString().replace("{size}", "500");
                 Q_EMIT createToplistItem(item);
                 return;
             }

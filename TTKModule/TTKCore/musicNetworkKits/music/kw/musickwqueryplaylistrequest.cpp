@@ -85,12 +85,12 @@ void MusicKWQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
         const QVariantMap &value = json.toVariant().toMap();
         if(!value.isEmpty())
         {
-            item.m_coverUrl = value["pic"].toString();
             item.m_name = value["title"].toString();
             item.m_count = value["playnum"].toString();
             item.m_description = value["info"].toString();
             item.m_time = TTKDateTime::format(value["ctime"].toULongLong() * TTK_DN_S2MS, TTK_DATE_FORMAT);
             item.m_nickName = value["uname"].toString();
+            item.m_coverUrl = value["pic"].toString();
         }
     }
 }
@@ -173,7 +173,7 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
                     info.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["web_albumpic_short"].toString(), info.m_songId);
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-                    info.m_year.clear();
+                    info.m_year = value["firstrecordtime"].toString().section(TTK_DEFAULT_STR, 0, 0);
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
@@ -205,22 +205,11 @@ void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
             if(value["result"].toString() == "ok")
             {
                 MusicResultDataItem item;
-                item.m_coverUrl = value["pic"].toString();
                 item.m_id = value["id"].toString();
                 item.m_name = value["title"].toString();
                 item.m_count = value["playnum"].toString();
-                item.m_description = value["info"].toString();
-                item.m_time = TTKDateTime::format(value["ctime"].toULongLong() * TTK_DN_S2MS, TTK_DATE_FORMAT);
                 item.m_nickName = value["uname"].toString();
-                item.m_category = value["tag"].toString();
-
-                if(!item.m_category.isEmpty())
-                {
-                    item.m_category.replace(",", "|");
-                    item.m_category.insert(0, "|");
-                    item.m_category.append("|");
-                }
-
+                item.m_coverUrl = value["pic"].toString();
                 Q_EMIT createPlaylistItem(item);
             }
         }
@@ -308,11 +297,11 @@ void MusicKWQueryPlaylistRecommendRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem item;
-                    item.m_coverUrl = value["img"].toString();
                     item.m_id = value["id"].toString();
                     item.m_name = value["name"].toString();
                     item.m_count = value["listencnt"].toString();
                     item.m_nickName = value["uname"].toString();
+                    item.m_coverUrl = value["img"].toString();
                     Q_EMIT createPlaylistItem(item);
                 }
             }
@@ -399,11 +388,11 @@ void MusicKWQueryPlaylistHighRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem item;
-                    item.m_coverUrl = value["img"].toString();
                     item.m_id = value["id"].toString();
                     item.m_name = value["name"].toString();
                     item.m_count = value["listencnt"].toString();
                     item.m_nickName = value["uname"].toString();
+                    item.m_coverUrl = value["img"].toString();
                     Q_EMIT createPlaylistItem(item);
                 }
             }

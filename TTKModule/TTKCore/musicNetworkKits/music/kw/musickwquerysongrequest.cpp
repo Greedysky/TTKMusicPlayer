@@ -65,7 +65,6 @@ void MusicKWQuerySongRequest::downloadFinished()
         const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll().replace("'", "\""), &ok);
         if(QJsonParseError::NoError == ok.error)
         {
-            TTK_INFO_STREAM(json.toJson());
             QVariantMap value = json.toVariant().toMap();
             if(value.contains("abslist"))
             {
@@ -147,7 +146,7 @@ void MusicKWQuerySongRequest::downloadSingleFinished()
                 info.m_coverUrl = value["pic"].toString();
                 info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                 info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-                info.m_year = value["releaseDate"].toString();
+                info.m_year = value["releaseDate"].toString().section(TTK_DEFAULT_STR, 0, 0);
                 info.m_trackNumber = value["track"].toString();
 
                 TTK_NETWORK_QUERY_CHECK();
@@ -244,7 +243,7 @@ void MusicKWQueryNewSongRequest::downloadFinished()
                     info.m_albumId = value["albumid"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["album"].toString());
 
-                    info.m_coverUrl = value["albumpic"].toString().replace("/120/", "/400/");
+                    info.m_coverUrl = value["albumpic"].toString().replace("/120/", "/500/");
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
                     info.m_year = value["firstrecordtime"].toString().section(TTK_DEFAULT_STR, 0, 0);

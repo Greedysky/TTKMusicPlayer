@@ -57,12 +57,11 @@ void MusicKWQueryAlbumRequest::downloadFinished()
             {
                 MusicResultDataItem item;
                 item.m_id = value["albumid"].toString();
-                item.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["pic"].toString(), {});
-                const QString &albumName = value["name"].toString();
-                item.m_count = albumName;
+                item.m_count = value["name"].toString();
                 item.m_description = value["company"].toString();
                 item.m_time = value["pub"].toString();
                 item.m_category = value["lang"].toString();
+                item.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["pic"].toString(), {});
 
                 m_totalSize = value["songnum"].toInt();
 
@@ -85,12 +84,12 @@ void MusicKWQueryAlbumRequest::downloadFinished()
                     info.m_artistName = ReqKWInterface::makeSongArtist(value["artist"].toString());
 
                     info.m_albumId = item.m_id;
-                    info.m_albumName = TTK::String::charactersReplace(albumName);
+                    info.m_albumName = TTK::String::charactersReplace(item.m_count);
 
-                    info.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["web_albumpic_short"].toString(), info.m_songId);
+                    info.m_coverUrl = item.m_coverUrl;
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-                    info.m_year.clear();
+                    info.m_year = value["releasedate"].toString().section(TTK_DEFAULT_STR, 0, 0);
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
@@ -172,8 +171,8 @@ void MusicKWQueryArtistAlbumRequest::downloadFinished()
                     MusicResultDataItem item;
                     item.m_id = value["albumid"].toString();
                     item.m_name = value["name"].toString();
-                    item.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["pic"].toString(), {});
                     item.m_time = value["pub"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
+                    item.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["pic"].toString(), {});
                     Q_EMIT createAlbumItem(item);
                 }
             }
@@ -239,8 +238,8 @@ void MusicKWQueryNewAlbumRequest::downloadFinished()
                     MusicResultDataItem item;
                     item.m_id = value["albumid"].toString();
                     item.m_name = value["name"].toString();
-                    item.m_coverUrl = value["albumpic"].toString().replace("/120/", "/400/");
                     item.m_nickName = value["artist"].toString();
+                    item.m_coverUrl = value["albumpic"].toString().replace("/120/", "/500/");
                     Q_EMIT createAlbumItem(item);
                 }
             }

@@ -61,9 +61,21 @@ QString ReqWYInterface::makeSongArtist(const QString &in, const QString &name)
     return in.isEmpty() ? artistName : (in + ";" + artistName);
 }
 
-QString ReqWYInterface::makeCoverPixmapUrl(const QString &url)
+QString ReqWYInterface::makeCoverPixmapUrl(const QString &id)
 {
-    return url + TTK::Algorithm::mdII("dCt3T2JSbmJ2LzFuOUZBalAwTnUvNkRpc3dZPQ==", false);
+    static QByteArray magic = TTK::Algorithm::mdII("VHRXTE1NUmM3eGtOR25EWGpSYk1kVUg2U3A4Y2pmTkk=", false).toUtf8();
+
+    QByteArray result;
+    const QByteArray &v = id.toUtf8();
+    for(int i = 0; i < v.length(); i++)
+    {
+        result[i] = v[i] ^ magic[i % magic.length()];
+    }
+
+    result = TTK::Algorithm::md5(result, true);
+    result.replace('/', '_');
+    result.replace('+', "-");
+    return TTK::Algorithm::mdII("QWU4T2xhNmVNaDFVd1hKZ3JvUkJ5d1BCUHE2OU5CazV5TktERlBFaUYxQWhIMGVrUXBVWXl3PT0=", false).arg(result.constData(), id);
 }
 
 QByteArray ReqWYInterface::makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &data)

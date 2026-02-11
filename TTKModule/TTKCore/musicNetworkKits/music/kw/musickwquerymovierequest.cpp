@@ -318,12 +318,12 @@ void MusicKWQueryArtistMovieRequest::downloadFinished()
 
                     MusicResultDataItem item;
                     item.m_id = value["musicid"].toString();
+                    item.m_name = value["name"].toString();
                     item.m_coverUrl = value["pic"].toString();
                     if(!TTK::String::isNetworkUrl(item.m_coverUrl))
                     {
                         item.m_coverUrl = TTK::Algorithm::mdII(KW_MOVIE_COVER_URL, false) + item.m_coverUrl;
                     }
-                    item.m_name = value["name"].toString();
                     item.m_time.clear();
                     Q_EMIT createMovieItem(item);
                 }

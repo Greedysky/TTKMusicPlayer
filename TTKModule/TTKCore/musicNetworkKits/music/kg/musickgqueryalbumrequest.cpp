@@ -55,7 +55,7 @@ void MusicKGQueryAlbumRequest::downloadFinished()
             QVariantMap value = json.toVariant().toMap();
             if(value.contains("data"))
             {
-                QString albumName;
+                QString year, albumName;
                 value = value["data"].toMap();
                 m_totalSize = value["total"].toInt();
 
@@ -76,7 +76,6 @@ void MusicKGQueryAlbumRequest::downloadFinished()
                     info.m_albumId = value["album_id"].toString();
 
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-                    info.m_year.clear();
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
@@ -94,6 +93,8 @@ void MusicKGQueryAlbumRequest::downloadFinished()
                         TTK_NETWORK_QUERY_CHECK();
 
                         albumName = item.m_name;
+                        year = item.m_time.section(TTK_DEFAULT_STR, 0, 0);
+
                         item.m_count = item.m_name;
                         item.m_id = info.m_albumId;
                         item.m_name = info.m_artistName;
@@ -101,6 +102,12 @@ void MusicKGQueryAlbumRequest::downloadFinished()
                         Q_EMIT createAlbumItem(item);
                     }
 
+                    if(info.m_songName.isEmpty())
+                    {
+                        continue;
+                    }
+
+                    info.m_year = year;
                     info.m_albumName = albumName;
                     Q_EMIT createResultItem({info, serverToString()});
                     m_items << info;
@@ -170,8 +177,8 @@ void MusicKGQueryArtistAlbumRequest::downloadFinished()
                     MusicResultDataItem item;
                     item.m_id = value["albumid"].toString();
                     item.m_name = value["albumname"].toString();
-                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
-                    item.m_time = TTK::String::split(value["publishtime"].toString().replace(TTK_DEFAULT_STR, TTK_DOT), TTK_SPACE).first();
+                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "500");
+                    item.m_time = value["publishtime"].toString().replace(TTK_DEFAULT_STR, TTK_DOT).section(TTK_SPACE, 0, 0);
                     Q_EMIT createAlbumItem(item);
                 }
             }
@@ -238,7 +245,7 @@ void MusicKGQueryNewAlbumRequest::downloadFinished()
                     MusicResultDataItem item;
                     item.m_id = value["albumid"].toString();
                     item.m_name = value["albumname"].toString();
-                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
+                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "500");
                     item.m_nickName = value["singername"].toString();
                     Q_EMIT createAlbumItem(item);
                 }

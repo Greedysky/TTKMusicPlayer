@@ -145,8 +145,8 @@ void MusicMVRadioProgramRequest::downloadFinished()
                         if(!contains && value["fmId"].toString() == m_queryValue)
                         {
                             contains = true;
-                            item.m_name = value["fmName"].toString();
                             item.m_id = value["fmId"].toString();
+                            item.m_name = value["fmName"].toString();
                             item.m_coverUrl = value["imgUrlMv"].toString();
                             Q_EMIT createMVRadioItem(item);
 

@@ -93,7 +93,7 @@ void MusicWYQueryArtistRequest::downloadFinished()
                     info.m_albumId = albumObject["id"].toString();
                     info.m_albumName = TTK::String::charactersReplace(albumObject["name"].toString());
 
-                    info.m_coverUrl = coverUrl;
+                    info.m_coverUrl = ReqWYInterface::makeCoverPixmapUrl(albumObject["pic_str"].toString());
                     info.m_lrcUrl = TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["dt"].toInt());
                     info.m_year.clear();
@@ -111,7 +111,7 @@ void MusicWYQueryArtistRequest::downloadFinished()
                         item.m_nickName.clear();
                         item.m_id = info.m_artistId;
                         item.m_name = info.m_artistName;
-                        item.m_coverUrl = info.m_coverUrl;
+                        item.m_coverUrl = coverUrl;
                         item.m_time = TTKDateTime::format(artistObject["publishTime"].toLongLong(), TTK_DATE_FORMAT);
 
                         const QVariantList &aliasArray = artistObject["alias"].toList();

@@ -161,7 +161,7 @@ void MusicToplistQueryWidget::createLabels()
 
 void MusicToplistQueryWidget::createToplistItem(const MusicResultDataItem &item)
 {
-    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
+    if(TTK::isCoverValid(item.m_coverUrl))
     {
         MusicCoverRequest *req = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));

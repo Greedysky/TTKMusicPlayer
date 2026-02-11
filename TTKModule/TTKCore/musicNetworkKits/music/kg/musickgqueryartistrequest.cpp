@@ -77,7 +77,7 @@ void MusicKGQueryArtistRequest::downloadFinished()
                     info.m_albumName = TTK::String::charactersReplace(value["album_name"].toString());
 
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-                    info.m_year.clear();
+                    info.m_year = value["publish_date"].toString().section(TTK_DEFAULT_STR, 0, 0);
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();

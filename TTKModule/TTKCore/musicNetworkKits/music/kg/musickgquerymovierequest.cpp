@@ -333,8 +333,8 @@ void MusicKGQueryArtistMovieRequest::downloadFinished()
 
                     MusicResultDataItem item;
                     item.m_id = value["hash"].toString();
-                    item.m_coverUrl = value["imgurl"].toString();
                     item.m_name = value["filename"].toString();
+                    item.m_coverUrl = value["imgurl"].toString();
                     item.m_time.clear();
                     Q_EMIT createMovieItem(item);
                 }

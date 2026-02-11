@@ -163,9 +163,9 @@ void MusicKGQueryHotArtistListRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem item;
-                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
                     item.m_id = value["singerid"].toString();
                     item.m_name = value["singername"].toString();
+                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "500");
                     Q_EMIT createArtistListItem(item);
                 }
             }

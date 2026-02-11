@@ -82,12 +82,12 @@ void MusicKGQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
         if(value["errcode"].toInt() == 0 && value.contains("data"))
         {
             value = value["data"].toMap();
-            item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
             item.m_name = value["specialname"].toString();
             item.m_count = value["playcount"].toString();
             item.m_description = value["intro"].toString();
             item.m_time = value["publishtime"].toString();
             item.m_nickName = value["nickname"].toString();
+            item.m_coverUrl = value["imgurl"].toString().replace("{size}", "500");
             item.m_category.clear();
 
             const QVariantList &tags = value["tags"].toList();
@@ -140,11 +140,11 @@ void MusicKGQueryPlaylistRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem item;
-                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     item.m_id = value["specialid"].toString();
                     item.m_name = value["specialname"].toString();
                     item.m_count = value["playcount"].toString();
                     item.m_nickName = value["username"].toString();
+                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "500");
                     Q_EMIT createPlaylistItem(item);
                 }
             }
@@ -189,7 +189,6 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
                     info.m_albumId = value["album_id"].toString();
 
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-                    info.m_year.clear();
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
@@ -199,6 +198,11 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
                     TTK_NETWORK_QUERY_CHECK();
                     ReqKGInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
+
+                    if(info.m_songName.isEmpty())
+                    {
+                        continue;
+                    }
 
                     Q_EMIT createResultItem({info, serverToString()});
                     m_items << info;
@@ -278,11 +282,11 @@ void MusicKGQueryPlaylistRecommendRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem item;
-                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     item.m_id = value["specialid"].toString();
                     item.m_name = value["specialname"].toString();
                     item.m_count = value["playcount"].toString();
                     item.m_nickName = value["username"].toString();
+                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "500");
                     Q_EMIT createPlaylistItem(item);
                 }
             }
@@ -369,11 +373,11 @@ void MusicKGQueryPlaylistHighRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem item;
-                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     item.m_id = value["specialid"].toString();
                     item.m_name = value["specialname"].toString();
                     item.m_count = value["playcount"].toString();
                     item.m_nickName = value["username"].toString();
+                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "500");
                     Q_EMIT createPlaylistItem(item);
                 }
             }

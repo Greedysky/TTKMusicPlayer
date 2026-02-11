@@ -77,7 +77,7 @@ void MusicFMRadioSongRequest::downloadFinished()
                     info.m_coverUrl = albumObject["picUrl"].toString();
                     info.m_lrcUrl = TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
-                    info.m_year.clear();
+                    info.m_year = TTKDateTime::format(albumObject["publishTime"].toLongLong(), TTK_YEAR_FORMAT);
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();

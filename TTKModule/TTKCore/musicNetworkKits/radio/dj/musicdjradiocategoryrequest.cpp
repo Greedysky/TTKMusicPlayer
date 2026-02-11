@@ -48,8 +48,8 @@ void MusicDJRadioCategoryRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem item;
-                    item.m_name = value["name"].toString();
                     item.m_id = value["id"].toString();
+                    item.m_name = value["name"].toString();
                     item.m_coverUrl = value["picMacUrl"].toString();
                     m_items << item;
                 }

@@ -45,8 +45,8 @@ void MusicMVRadioCategoryRequest::downloadFinished()
                             TTK_NETWORK_QUERY_CHECK();
 
                             MusicResultDataItem item;
-                            item.m_name = value["fmName"].toString();
                             item.m_id = value["fmId"].toString();
+                            item.m_name = value["fmName"].toString();
                             item.m_coverUrl = value["imgUrlMv"].toString();
                             Q_EMIT createMVRadioItem(item);
                         }
