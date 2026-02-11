@@ -48,7 +48,7 @@ void MusicLineBackgroundWidget::paintEvent(QPaintEvent *event)
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
+    painter.setPen(QPen(Qt::black, 0.1, Qt::SolidLine));
 
     if(!m_transparent)
     {
@@ -103,7 +103,7 @@ void MusicAbstractAnimationWidget::paintEvent(QPaintEvent *event)
 
         QPainter painter(this);
         painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-        painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
+        painter.setPen(QPen(Qt::black, 0.1, Qt::SolidLine));
 
         int offset = m_perWidth - (m_container[0]->width() + m_pix.width()) / 2;
             offset = m_isAnimation ? (offset + m_x) : (offset + m_curIndex * m_perWidth);

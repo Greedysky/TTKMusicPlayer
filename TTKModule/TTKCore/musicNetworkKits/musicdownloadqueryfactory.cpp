@@ -59,7 +59,7 @@ MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeSongRequest(QObject *p
         case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQuerySongRequest(parent); break;
         default: req = new MusicWYQuerySongRequest(parent); break;
     }
-    TTK_INFO_STREAM("MusicQueryrequest server:" << req->queryServer());
+    TTK_INFO_STREAM("MusicQuerySongRequest server:" << req->queryServer());
     return req;
 }
 
@@ -74,7 +74,7 @@ MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeNewSongRequest(QObject
         case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryNewSongRequest(parent); break;
         default: req = new MusicWYQueryNewSongRequest(parent); break;
     }
-    TTK_INFO_STREAM("MusicQueryrequest server:" << req->queryServer());
+    TTK_INFO_STREAM("MusicQueryNewSongRequest server:" << req->queryServer());
     return req;
 }
 
@@ -119,7 +119,7 @@ MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeNewAlbumRequest(QObjec
         case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryNewAlbumRequest(parent); break;
         default: req = new MusicWYQueryNewAlbumRequest(parent); break;
     }
-    TTK_INFO_STREAM("MusicQueryAlbumRequest server:" << req->queryServer());
+    TTK_INFO_STREAM("MusicQueryNewAlbumRequest server:" << req->queryServer());
     return req;
 }
 
@@ -164,7 +164,7 @@ MusicAbstractQueryRequest *MusicDownloadQueryFactory::makeHotArtistListRequest(Q
         case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryHotArtistListRequest(parent); break;
         default: req = new MusicWYQueryHotArtistListRequest(parent); break;
     }
-    TTK_INFO_STREAM("MusicQueryArtistListRequest server:" << req->queryServer());
+    TTK_INFO_STREAM("MusicQueryHotArtistListRequest server:" << req->queryServer());
     return req;
 }
 
@@ -239,7 +239,7 @@ MusicAbstractQueryRequest *MusicDownloadQueryFactory::makePlaylistRecommendReque
         case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryPlaylistRecommendRequest(parent); break;
         default: req = new MusicWYQueryPlaylistRecommendRequest(parent); break;
     }
-    TTK_INFO_STREAM("MusicQueryPlaylistRequest server:" << req->queryServer());
+    TTK_INFO_STREAM("MusicQueryPlaylistRecommendRequest server:" << req->queryServer());
     return req;
 }
 
@@ -254,7 +254,7 @@ MusicAbstractQueryRequest *MusicDownloadQueryFactory::makePlaylistHighRequest(QO
         case MusicAbstractQueryRequest::QueryServer::KG: req = new MusicKGQueryPlaylistHighRequest(parent); break;
         default: req = new MusicWYQueryPlaylistHighRequest(parent); break;
     }
-    TTK_INFO_STREAM("MusicQueryPlaylistRequest server:" << req->queryServer());
+    TTK_INFO_STREAM("MusicQueryPlaylistHighRequest server:" << req->queryServer());
     return req;
 }
 

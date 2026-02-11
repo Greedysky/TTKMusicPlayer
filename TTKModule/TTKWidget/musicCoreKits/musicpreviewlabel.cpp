@@ -35,21 +35,15 @@ void MusicColorPreviewLabel::paintEvent(QPaintEvent *)
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
 
-    const int h = height() - 4 * 2;
-    m_linearGradient.setFinalStop(0, height());
-
-    painter.setFont(font());
     painter.setBrush(Qt::white);
     painter.drawRect(0, 0, width(), height());
 
-    painter.setPen(QPen(Qt::black, 0));
-    painter.drawRect(0, 0, width() - 1, height() - 1);
+    const int h = height() - 4 * 2;
+    painter.drawText(h + 2 * 4, 4, width() - h - 3 * 4, h, Qt::AlignCenter, text());
 
+    m_linearGradient.setFinalStop(0, height());
     painter.setBrush(m_linearGradient);
     painter.drawRect(4, 4, h, h);
-
-    painter.setPen(QPen(Qt::black, 0));
-    painter.drawText(h + 2 * 4, 4, width() - h - 3 * 4, h, Qt::AlignCenter, text());
 }
 
 

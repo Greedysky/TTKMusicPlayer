@@ -174,12 +174,12 @@ void MusicFunctionToolBoxTopWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
+    painter.setPen(QPen(Qt::black, 0.1, Qt::SolidLine));
     painter.drawLine(0, height(), width(), height());
 
     if(m_isDrawMoveState)
     {
-        painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 1, Qt::SolidLine));
+        painter.setPen(QPen(Qt::black, 1, Qt::SolidLine));
         if(m_isDrawTopState)
         {
             painter.drawLine(0, 0, width(), 0);

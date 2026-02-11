@@ -671,7 +671,7 @@ void MusicItemMoreRecommendQueryWidget::initialize()
 
             m_networkRequest = G_DOWNLOAD_QUERY_PTR->makePlaylistHighRequest(this);
             connect(m_networkRequest, SIGNAL(createPlaylistItem(MusicResultDataItem)), SLOT(createResultItem(MusicResultDataItem)));
-            m_networkRequest->startToSearch("全部");
+            m_networkRequest->startToSearch("0");
             break;
         }
         default: break;
