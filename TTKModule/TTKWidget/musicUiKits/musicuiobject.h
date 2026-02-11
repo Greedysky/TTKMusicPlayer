@@ -311,6 +311,9 @@ namespace TTK
             QLabel{ color:#FFFFFF; } \
             QToolTip{ color:#666666; }";
 
+        static const QString LabelStyle03 = " \
+            QToolTip{ border:1px solid black; background:white; color:#666666; }";
+
         ///LineEdit
         static const QString LineEditStyle01 = " \
             QLineEdit{ font-size:12px; color:#666666; font-weight:normal; border:1px solid gray; } \

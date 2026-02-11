@@ -1,6 +1,6 @@
 #include "musickgquerysongrequest.h"
 
-static constexpr const char *KG_NEW_SONG_URL = "aTdvazN1ZzN3cWFqc2VlZzlNSE9GZW1Mdks2VkJlTlR2cVBMV2hud0ZPL2pURWZPSkVZUmxIQ1NuZ0ZYS0lzc0pwZE5ENGxFSEU4WVVoRlFrUGdIYTNwdVg4WlJlOWlQNnBLLzV0QW1VcE9ZUXV3TEFiREVzbGFmSjRFUnZxN2ZXOEFsSUJGcW4zOD0=";
+static constexpr const char *KG_NEW_SONG_URL = KG_TOPLIST_URL;
 
 MusicKGQuerySongRequest::MusicKGQuerySongRequest(QObject *parent)
     : MusicQuerySongRequest(parent)
@@ -190,7 +190,7 @@ void MusicKGQueryNewSongRequest::startToPage(int offset)
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KG_NEW_SONG_URL, false).arg(m_totalSize));
+    request.setUrl(TTK::Algorithm::mdII(KG_NEW_SONG_URL, false).arg(74534).arg(0).arg(m_totalSize));
     ReqKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -269,7 +269,7 @@ void MusicKGQueryNewSongRequest::downloadFinished()
                     info.m_albumId = value["album_id"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["remark"].toString());
 
-                    info.m_coverUrl = value["cover"].toString().replace("{size}", "500");
+                    info.m_coverUrl = value["album_sizable_cover"].toString().replace("{size}", "500");
                     info.m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(info.m_songName, info.m_songId).arg(value["duration"].toInt() * TTK_DN_S2MS);
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
                     info.m_year = TTKDateTime::format(value["addtime"].toULongLong(), TTK_YEAR_FORMAT);

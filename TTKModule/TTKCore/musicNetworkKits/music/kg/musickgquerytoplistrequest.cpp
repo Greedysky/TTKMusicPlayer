@@ -76,24 +76,37 @@ void MusicKGQueryToplistRequest::downloadFinished()
 
                     TTK::MusicSongInformation info;
                     info.m_songId = value["hash"].toString();
+                    info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
+
+                    const QVariantList &artistsArray = value["authors"].toList();
+                    for(const QVariant &artistValue : qAsConst(artistsArray))
+                    {
+                        if(artistValue.isNull())
+                        {
+                            continue;
+                        }
+
+                        const QVariantMap &artistObject = artistValue.toMap();
+                        if(info.m_artistId.isEmpty())
+                        {
+                            info.m_artistId = artistObject["author_id"].toString();
+                        }
+
+                        info.m_artistName = ReqKGInterface::makeSongArtist(info.m_artistName, artistObject["author_name"].toString());
+                    }
 
                     info.m_albumId = value["album_id"].toString();
+                    info.m_albumName = TTK::String::charactersReplace(value["remark"].toString());
 
+                    info.m_coverUrl = value["album_sizable_cover"].toString().replace("{size}", "500");
+                    info.m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(info.m_songName, info.m_songId).arg(value["duration"].toInt() * TTK_DN_S2MS);
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
+                    info.m_year = TTKDateTime::format(value["addtime"].toULongLong(), TTK_YEAR_FORMAT);
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    ReqKGInterface::parseFromSongAlbumLrc(&info);
-                    TTK_NETWORK_QUERY_CHECK();
-                    ReqKGInterface::parseFromSongAlbumInfo(&info, value["album_audio_id"].toString());
-                    TTK_NETWORK_QUERY_CHECK();
                     ReqKGInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
-
-                    if(info.m_songName.isEmpty())
-                    {
-                        continue;
-                    }
 
                     Q_EMIT createResultItem({info, serverToString()});
                     m_items << info;

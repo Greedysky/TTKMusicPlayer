@@ -13,6 +13,7 @@
 MusicNewSongRecommendQueryTableWidget::MusicNewSongRecommendQueryTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
 {
+    setStyleSheet(styleSheet() + TTK::UI::LabelStyle03);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setColumnCount(5);
 
@@ -71,7 +72,7 @@ void MusicNewSongRecommendQueryTableWidget::resizeGeometry()
 
 void MusicNewSongRecommendQueryTableWidget::itemDoubleClicked(int row, int column)
 {
-    if(column <= 0 || row < 0 || row >= rowCount() - 1)
+    if(column < 0 || row < 0 || row >= rowCount() - 1)
     {
         return;
     }
