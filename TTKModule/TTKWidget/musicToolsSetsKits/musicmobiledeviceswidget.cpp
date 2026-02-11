@@ -3,6 +3,8 @@
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
 
+#include <QTimer>
+
 MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
     : TTKClickedLabel(parent)
 {
@@ -20,8 +22,10 @@ MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
     m_closeButton->setToolTip(tr("Close"));
     m_closeButton->setGeometry(235, 2, 28, 22);
 
-    connect(m_closeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(m_closeButton, SIGNAL(clicked()), SLOT(hide()));
     connect(this, SIGNAL(clicked()), SLOT(showMobileManager()));
+
+    QTimer::singleShot(10 * TTK_DN_S2MS, this, SLOT(hide()));
 }
 
 MusicMobileDevicesWidget::~MusicMobileDevicesWidget()
