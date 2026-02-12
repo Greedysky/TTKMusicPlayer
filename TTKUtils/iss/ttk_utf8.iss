@@ -2,7 +2,7 @@
 
 #define MyAppNameZh "天天酷音"
 #define MyAppNameEN "TTKMusicPlayer"
-#define MyAppVersion "4.2.0.0"
+#define MyAppVersion "4.3.0.0"
 #define MyAppPublisher "Greedysky Studio"
 #define MyAppCopyright "Copyright (C) 2015 - 2026 Greedysky Studio"
 #define MyAppURL "https://github.com/Greedysky/TTKMusicPlayer"
