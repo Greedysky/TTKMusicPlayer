@@ -69,7 +69,7 @@ QString ReqWYInterface::makeCoverPixmapUrl(const QString &id)
     const QByteArray &v = id.toUtf8();
     for(int i = 0; i < v.length(); i++)
     {
-        result[i] = v[i] ^ magic[i % magic.length()];
+        result.append(v[i] ^ magic[i % magic.length()]);
     }
 
     result = TTK::Algorithm::md5(result, true);
