@@ -53,7 +53,7 @@ jobs:
 
       - name: Install thirdParty dependencies
         run: |
-          curl -L https://github.com/Greedysky/TTKMusicPlayer/releases/download/continuous-build/thirdParty-libraries-win-mingw492-x86.7z -o thirdParty-libraries.7z
+          curl -L https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/thirdParty-libraries-win-mingw492-x86.7z -o thirdParty-libraries.7z
           7z x thirdParty-libraries.7z
         working-directory: ${{github.workspace}}/extra
 
@@ -167,7 +167,7 @@ jobs:
         run: |
           # add portable configuration
           cp ${{github.workspace}}/TTKUtils/ttk_portable ${{env.TTK_MODULE}}
-          "便携模式运行 TTKMusicPlayer.exe`r`n删除 ttk_portable 禁用便携模式" > ${{env.TTK_MODULE}}/说明.txt
+          "便携模式运行 ${{env.TTK_MODULE}}.exe`r`n删除 ttk_portable 禁用便携模式" > ${{env.TTK_MODULE}}/说明.txt
           # add portable binary package
           7z a ${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-winXP-mingw-x86.7z ${{env.TTK_MODULE}}
         working-directory: ${{runner.workspace}}/install

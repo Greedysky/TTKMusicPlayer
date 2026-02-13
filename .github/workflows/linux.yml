@@ -75,7 +75,7 @@ jobs:
 
       - name: Install thirdParty dependencies
         run: |
-          wget https://github.com/Greedysky/TTKMusicPlayer/releases/download/continuous-build/thirdParty-libraries-${{matrix.os}}-x64.7z -O thirdParty-libraries.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/thirdParty-libraries-${{matrix.os}}-x64.7z -O thirdParty-libraries.7z
           7z x thirdParty-libraries.7z
         working-directory: ${{github.workspace}}/extra
 
