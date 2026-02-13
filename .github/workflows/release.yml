@@ -1,0 +1,69 @@
+# Author: Greedysky <greedysky@163.com>
+
+name: CI-Release
+
+on: workflow_call
+
+env:
+  TTK_MODULE: TTKMusicPlayer
+  TTK_VERSION: 4.3.0.0
+
+jobs:
+  build:
+    name: Update release packages
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build package
+        run: |
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-document.7z -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-document.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt5-x64 -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt5-x64.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt5-x64.AppImage -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt5-x64.AppImage
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt6-x64.7z -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt6-x64.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt6-x64.AppImage -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt6-x64.AppImage
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt5-x64.7z -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt5-x64.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt5-x64.deb -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt5-x64.deb
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt6-x64.7z -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt6-x64.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt6-x64.deb -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt6-x64.deb
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt5-x64.7z -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt5-x64.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt5-x64.deb -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt5-x64.deb
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt6-x64.7z -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt6-x64.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt6-x64.deb -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt6-x64.deb
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win10-mingw-x64.7z -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win10-mingw-x64.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win10-mingw-x64.exe -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win10-mingw-x64.exe
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x64.7z -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x64.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x64.exe -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x64.exe
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x86.7z -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x86.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x86.exe -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x86.exe
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-winXP-mingw-x86.7z -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-winXP-mingw-x86.7z
+          wget https://github.com/Greedysky/${{env.TTK_MODULE}}/releases/download/continuous-build/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-winXP-mingw-x86.exe -O ${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-winXP-mingw-x86.exe
+        working-directory: ${{github.workspace}}
+
+      - name: Archive artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{env.TTK_TTK_VERSION}}
+          token: ${{secrets.GITHUB_TOKEN}}
+          generate_release_notes: false
+          files: |
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-document.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt5-x64.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt5-x64.AppImage
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt6-x64.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-linux-qt6-x64.AppImage
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt5-x64.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt5-x64.deb
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt6-x64.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-22.04-qt6-x64.deb
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt5-x64.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt5-x64.deb
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt6-x64.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-ubuntu-24.04-qt6-x64.deb
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win10-mingw-x64.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win10-mingw-x64.exe
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x64.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x64.exe
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x86.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-win7-mingw-x86.exe
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-winXP-mingw-x86.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_TTK_VERSION}}-winXP-mingw-x86.exe
