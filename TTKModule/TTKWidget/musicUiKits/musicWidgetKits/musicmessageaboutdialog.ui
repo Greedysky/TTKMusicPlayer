@@ -94,7 +94,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>15</x>
-      <y>200</y>
+      <y>205</y>
       <width>455</width>
       <height>100</height>
      </rect>
