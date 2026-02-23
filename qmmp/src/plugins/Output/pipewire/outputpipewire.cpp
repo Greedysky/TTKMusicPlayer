@@ -248,6 +248,9 @@ bool OutputPipeWire::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat 
 
 qint64 OutputPipeWire::latency()
 {
+#if !PW_CHECK_VERSION(0,3,50)
+    return (m_buffer_at / m_stride + m_frames) * 1000 / sampleRate();
+#else
     const quint32 freq = sampleRate();
     qint64 delayMs = (m_buffer_at + m_spaBufferSize) / m_stride * 1000 / freq;
     struct pw_time ts;
@@ -263,8 +266,8 @@ qint64 OutputPipeWire::latency()
             delayMs += ts.delay * SPA_MSEC_PER_SEC * ts.rate.num / ts.rate.denom;
         }
     }
-
     return delayMs;
+#endif
 }
 
 qint64 OutputPipeWire::writeAudio(unsigned char *data, qint64 maxSize)
