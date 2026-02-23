@@ -8,8 +8,30 @@
   #define PW_KEY_NODE_RATE "node.rate"
 #endif
 
+#if !PW_CHECK_VERSION(1,0,4)
+#include <time.h>
+static uint64_t pw_stream_get_nsec(struct pw_stream *stream)
+{
+    Q_UNUSED(stream);
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return SPA_TIMESPEC_TO_NSEC(&ts);
+}
+#endif
+
+#if !PW_CHECK_VERSION(0,3,50)
+static inline int pw_stream_get_time_n(struct pw_stream *stream,
+                                       struct pw_time *time, size_t size)
+{
+    Q_UNUSED(size);
+    return pw_stream_get_time(stream, time);
+}
+#endif
+
 OutputPipeWire *OutputPipeWire::instance = nullptr;
 VolumePipeWire *OutputPipeWire::volumeControl = nullptr;
+
+constexpr qint64 pipewireBufferSize = 500; //ms
 
 OutputPipeWire::OutputPipeWire(): Output()
 {
@@ -132,7 +154,7 @@ bool OutputPipeWire::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat 
     }
 
     m_stride = AudioParameters::sampleSize(format) * map.count();
-    m_frames = qBound(64, static_cast<int>(std::ceil(2048.0 * freq / 48000.0)), 8192);
+    m_frames = pipewireBufferSize * 48000 / 1000;
     m_bufferSize = m_frames * m_stride;
     m_buffer = new unsigned char[m_bufferSize];
 
@@ -226,7 +248,23 @@ bool OutputPipeWire::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat 
 
 qint64 OutputPipeWire::latency()
 {
-    return (m_buffer_at / m_stride + m_frames) * 1000 / sampleRate();
+    const quint32 freq = sampleRate();
+    qint64 delayMs = (m_buffer_at + m_spaBufferSize) / m_stride * 1000 / freq;
+    struct pw_time ts;
+
+    if(pw_stream_get_time_n(m_stream, &ts, sizeof(ts)) == 0) //1.1.0
+    {
+        delayMs -= qBound(0LL, qint64(pw_stream_get_nsec(m_stream) - ts.now) / SPA_NSEC_PER_MSEC, delayMs); //1.1.0
+        delayMs += ts.queued * SPA_MSEC_PER_SEC / freq;
+        delayMs += ts.buffered * SPA_MSEC_PER_SEC / freq;
+
+        if(ts.rate.denom > 0)
+        {
+            delayMs += ts.delay * SPA_MSEC_PER_SEC * ts.rate.num / ts.rate.denom;
+        }
+    }
+
+    return delayMs;
 }
 
 qint64 OutputPipeWire::writeAudio(unsigned char *data, qint64 maxSize)
@@ -377,12 +415,13 @@ void OutputPipeWire::onProcess(void *data)
     struct spa_buffer *buf = b->buffer;
 
     uint32_t size = qMin(buf->datas[0].maxsize, uint32_t(o->m_buffer_at));
+    o->m_spaBufferSize = size;
     memcpy(buf->datas[0].data, o->m_buffer, size);
     o->m_buffer_at -= size;
     memmove(o->m_buffer, o->m_buffer + size, o->m_buffer_at);
 
     b->buffer->datas[0].chunk->offset = 0;
-    b->buffer->datas[0].chunk->size = o->m_bufferSize;
+    b->buffer->datas[0].chunk->size = size;
     b->buffer->datas[0].chunk->stride = o->m_stride;
 
     pw_stream_queue_buffer(o->m_stream, b);
