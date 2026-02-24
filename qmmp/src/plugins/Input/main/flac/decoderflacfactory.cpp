@@ -19,11 +19,11 @@ bool DecoderFLACFactory::canDecode(QIODevice *input) const
         if(input->isSequential())
         {
             const int peekSize = header.completeTagSize() + sizeof(buf);
-            char peekBuf[peekSize];
-            if(input->peek(peekBuf, peekSize) != peekSize)
+            std::vector<char> peekBuf(peekSize);
+            if(input->peek(peekBuf.data(), peekSize) != peekSize)
                 return false;
 
-            memcpy(buf, peekBuf + header.completeTagSize(), sizeof(buf));
+            memcpy(buf, peekBuf.data() + header.completeTagSize(), sizeof(buf));
         }
         else
         {
