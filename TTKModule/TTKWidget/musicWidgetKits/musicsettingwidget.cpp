@@ -19,6 +19,7 @@
 #include "musicmessagebox.h"
 #include "musicrulesanalysis.h"
 #include "ttkversion.h"
+#include "ttkeventfilter.h"
 #include "ttkfileassociation.h"
 
 #include <qmmp/qmmpsettings.h>
@@ -811,6 +812,7 @@ void MusicSettingWidget::initNormalSettingWidget()
     m_ui->quitWindowRadioBox->setEnabled(false);
 #endif
     TTK::Widget::generateComboBoxStyle(m_ui->languageComboBox);
+    m_ui->languageComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->languageComboBox));
     m_ui->languageComboBox->addItems({tr("0"), tr("1"), tr("2")});
 
     connect(m_ui->globalHotkeyBox, SIGNAL(clicked(bool)), SLOT(globalHotkeyBoxChanged(bool)));
@@ -852,6 +854,10 @@ void MusicSettingWidget::initDownloadWidget()
     TTK::Widget::generateComboBoxStyle(m_ui->downloadServerComboBox);
     TTK::Widget::generateComboBoxStyle(m_ui->downloadLimitSpeedComboBox);
     TTK::Widget::generateComboBoxStyle(m_ui->uploadLimitSpeedComboBox);
+    m_ui->downloadSpinBox->installEventFilter(new TTKWheelEventFilter(m_ui->downloadSpinBox));
+    m_ui->downloadServerComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->downloadServerComboBox));
+    m_ui->downloadLimitSpeedComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->downloadLimitSpeedComboBox));
+    m_ui->uploadLimitSpeedComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->uploadLimitSpeedComboBox));
 
     m_ui->downloadSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
     m_ui->downloadSpinBox->setRange(1024, 5 * 1024);
@@ -968,6 +974,10 @@ void MusicSettingWidget::initDesktopLrcWidget()
     TTK::Widget::generateComboBoxStyle(m_ui->DfontSizeComboBox);
     TTK::Widget::generateComboBoxStyle(m_ui->DfontTypeComboBox);
     TTK::Widget::generateComboBoxStyle(m_ui->DfontDefaultColorComboBox);
+    m_ui->DfontComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->DfontComboBox));
+    m_ui->DfontSizeComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->DfontSizeComboBox));
+    m_ui->DfontTypeComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->DfontTypeComboBox));
+    m_ui->DfontDefaultColorComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->DfontDefaultColorComboBox));
 
     m_ui->DfontComboBox->addItems(QtFontFamilies());
     m_ui->DfontSizeComboBox->addItems(MusicLrcHelper().desktopLrcSize());
@@ -1004,6 +1014,10 @@ void MusicSettingWidget::initInteriorLrcWidget()
     TTK::Widget::generateComboBoxStyle(m_ui->fontSizeComboBox);
     TTK::Widget::generateComboBoxStyle(m_ui->fontTypeComboBox);
     TTK::Widget::generateComboBoxStyle(m_ui->fontDefaultColorComboBox);
+    m_ui->fontComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->fontComboBox));
+    m_ui->fontSizeComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->fontSizeComboBox));
+    m_ui->fontTypeComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->fontTypeComboBox));
+    m_ui->fontDefaultColorComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->fontDefaultColorComboBox));
 
     m_ui->fontComboBox->addItems(QtFontFamilies());
     m_ui->fontSizeComboBox->addItems(MusicLrcHelper().interiorLrcSize());
@@ -1035,6 +1049,9 @@ void MusicSettingWidget::initInteriorLrcWidget()
 void MusicSettingWidget::initSoundEffectWidget()
 {
     TTK::Widget::generateComboBoxStyle(m_ui->outputTypeComboBox);
+    m_ui->outputTypeComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->outputTypeComboBox));
+    m_ui->fadeInSpinBox->installEventFilter(new TTKWheelEventFilter(m_ui->fadeInSpinBox));
+    m_ui->fadeOutSpinBox->installEventFilter(new TTKWheelEventFilter(m_ui->fadeOutSpinBox));
 #if TTK_QT_VERSION_CHECK(6,2,0)
     for(const QAudioDevice &device : QMediaDevices::audioInputs())
     {
@@ -1080,6 +1097,12 @@ void MusicSettingWidget::initAudioSettingWidget()
 {
     TTK::Widget::generateComboBoxStyle(m_ui->replayGainModeComboBox);
     TTK::Widget::generateComboBoxStyle(m_ui->bitDepthComboBox);
+    m_ui->replayGainModeComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->replayGainModeComboBox));
+    m_ui->preampSpinBox->installEventFilter(new TTKWheelEventFilter(m_ui->preampSpinBox));
+    m_ui->defaultGainSpinBox->installEventFilter(new TTKWheelEventFilter(m_ui->defaultGainSpinBox));
+    m_ui->volumeStepSpinBox->installEventFilter(new TTKWheelEventFilter(m_ui->volumeStepSpinBox));
+    m_ui->bufferSizeSpinBox->installEventFilter(new TTKWheelEventFilter(m_ui->bufferSizeSpinBox));
+    m_ui->bitDepthComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->bitDepthComboBox));
 
     m_ui->preampSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
     m_ui->defaultGainSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
@@ -1112,6 +1135,7 @@ void MusicSettingWidget::initNetworkWidget()
     m_ui->proxyAreaEdit->setStyleSheet(TTK::UI::LineEditStyle01);
 
     TTK::Widget::generateComboBoxStyle(m_ui->proxyTypeComboBox);
+    m_ui->proxyTypeComboBox->installEventFilter(new TTKWheelEventFilter(m_ui->proxyTypeComboBox));
 
     m_ui->proxyTypeTestButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->proxyTypeTestButton->setCursor(QCursor(Qt::PointingHandCursor));

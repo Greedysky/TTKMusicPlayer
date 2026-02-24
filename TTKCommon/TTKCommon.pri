@@ -47,6 +47,7 @@ win32{
             $$PWD/TTKLibrary/ttkdefer.h \
             $$PWD/TTKLibrary/ttkdispatchmanager.h \
             $$PWD/TTKLibrary/ttkdumper.h \
+            $$PWD/TTKLibrary/ttkeventfilter.h \
             $$PWD/TTKLibrary/ttkeventloop.h \
             $$PWD/TTKLibrary/ttkfileassociation.h \
             $$PWD/TTKLibrary/ttkfileinterface.h \

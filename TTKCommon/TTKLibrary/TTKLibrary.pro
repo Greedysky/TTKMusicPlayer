@@ -85,6 +85,7 @@ HEADERS += \
     $$PWD/ttkdesktopscreen.h \
     $$PWD/ttkdispatchmanager.h \
     $$PWD/ttkdumper.h \
+    $$PWD/ttkeventfilter.h \
     $$PWD/ttkeventloop.h \
     $$PWD/ttkfileassociation.h \
     $$PWD/ttkfileinterface.h \
@@ -130,6 +131,7 @@ SOURCES += \
     $$PWD/ttkdesktopscreen.cpp \
     $$PWD/ttkdispatchmanager.cpp \
     $$PWD/ttkdumper.cpp \
+    $$PWD/ttkeventfilter.cpp \
     $$PWD/ttkeventloop.cpp \
     $$PWD/ttkfileassociation.cpp \
     $$PWD/ttkglobalinterface.cpp \

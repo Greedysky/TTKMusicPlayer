@@ -48,6 +48,7 @@ set(HEADER_FILES
   ${TTK_COMMON_LIB_DIR}/ttkdesktopscreen.h
   ${TTK_COMMON_LIB_DIR}/ttkdispatchmanager.h
   ${TTK_COMMON_LIB_DIR}/ttkdumper.h
+  ${TTK_COMMON_LIB_DIR}/ttkeventfilter.h
   ${TTK_COMMON_LIB_DIR}/ttkeventloop.h
   ${TTK_COMMON_LIB_DIR}/ttkfileassociation.h
   ${TTK_COMMON_LIB_DIR}/ttkfileinterface.h
@@ -96,6 +97,7 @@ set(SOURCE_FILES
   ${TTK_COMMON_LIB_DIR}/ttkdesktopscreen.cpp
   ${TTK_COMMON_LIB_DIR}/ttkdispatchmanager.cpp
   ${TTK_COMMON_LIB_DIR}/ttkdumper.cpp
+  ${TTK_COMMON_LIB_DIR}/ttkeventfilter.cpp
   ${TTK_COMMON_LIB_DIR}/ttkeventloop.cpp
   ${TTK_COMMON_LIB_DIR}/ttkfileassociation.cpp
   ${TTK_COMMON_LIB_DIR}/ttkglobalinterface.cpp

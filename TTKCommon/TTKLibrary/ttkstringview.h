@@ -256,7 +256,7 @@ public:
             return TTKBaseStringView::npos;
         }
 
-        size_type c[256] = { 0 };
+        size_type c[256] = {0};
         for(size_type i = m; i > 0; --i)
         {
             c[int(s[i - 1])] = i;

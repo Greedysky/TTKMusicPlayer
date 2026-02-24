@@ -30,9 +30,9 @@ TTKAbstractMoveResizeWidget::TTKAbstractMoveResizeWidget(bool transparent, QWidg
     setMouseTracking(true);
 }
 
-bool TTKAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
+bool TTKAbstractMoveResizeWidget::eventFilter(QObject *watched, QEvent *event)
 {
-    QWidget::eventFilter(object, event);
+    QWidget::eventFilter(watched, event);
     if(QEvent::MouseMove == event->type())
     {
         QMouseEvent *mouseEvent = TTKStaticCast(QMouseEvent*, event);

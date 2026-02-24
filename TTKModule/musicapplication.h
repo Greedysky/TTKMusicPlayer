@@ -301,7 +301,7 @@ private:
     virtual void mouseMoveEvent(QMouseEvent *event) override final;
     virtual void mouseReleaseEvent(QMouseEvent *event) override final;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override final;
-    virtual bool eventFilter(QObject *object, QEvent *event) override final;
+    virtual bool eventFilter(QObject *watched, QEvent *event) override final;
 
     /*!
      * Generate playlist items.

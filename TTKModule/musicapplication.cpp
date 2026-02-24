@@ -1082,13 +1082,13 @@ void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
     }
 }
 
-bool MusicApplication::eventFilter(QObject *object, QEvent *event)
+bool MusicApplication::eventFilter(QObject *watched, QEvent *event)
 {
-    if(object == m_ui->centerWidget && (QEvent::ContextMenu == event->type() || QEvent::MouseButtonPress == event->type()))
+    if(watched == m_ui->centerWidget && (QEvent::ContextMenu == event->type() || QEvent::MouseButtonPress == event->type()))
     {
         return true;
     }
-    return TTKAbstractMoveResizeWidget::eventFilter(object, event);
+    return TTKAbstractMoveResizeWidget::eventFilter(watched, event);
 }
 
 void MusicApplication::generatePlaylistItems()
