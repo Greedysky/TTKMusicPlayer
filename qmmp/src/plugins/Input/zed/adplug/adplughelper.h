@@ -69,7 +69,7 @@ private:
     QString m_path;
     Copl *m_opl = nullptr;
     CPlayer *m_player = nullptr;
-    short m_buf[16384] = { 0 };
+    short m_buf[16384] = {0};
     size_t m_remaining = 0;
     int m_sampleRate = 44100;
 

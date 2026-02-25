@@ -398,7 +398,7 @@ void DecoderFFmpeg::fillBuffer()
             {
                 if(read_error != AVERROR_EOF)
                 {
-                    char errbuf[AV_ERROR_MAX_STRING_SIZE] = { 0 };
+                    char errbuf[AV_ERROR_MAX_STRING_SIZE] = {0};
                     av_strerror(read_error, errbuf, sizeof(errbuf));
                     qWarning("DecoderFFmpeg: av_read_frame error: %s", errbuf);
                 }
@@ -429,7 +429,7 @@ void DecoderFFmpeg::fillBuffer()
         {
             if(!m_eof)
             {
-                char errbuf[AV_ERROR_MAX_STRING_SIZE] = { 0 };
+                char errbuf[AV_ERROR_MAX_STRING_SIZE] = {0};
                 av_strerror(send_error, errbuf, sizeof(errbuf));
                 qWarning("DecoderFFmpeg: avcodec_send_packet error: %s", errbuf);
                 av_strerror(recv_error, errbuf, sizeof(errbuf));

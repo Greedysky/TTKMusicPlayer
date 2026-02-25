@@ -15,6 +15,7 @@ unix:!mac{
     PIPEWIRE_PKG = $$system(ls /usr/lib/x86_64-linux-gnu/pkgconfig | grep libpipewire)
     !isEmpty(PIPEWIRE_PKG){
         SUBDIRS += pipewire
+        message("Found pipewire module")
     }
 }
 

@@ -94,7 +94,7 @@ bool DecoderWavPack::initialize()
 {
     m_chan = 0;
     m_totalTime = 0;
-    char err[80] = { 0 };
+    char err[80] = {0};
 
     if(!m_wv_input)
     {

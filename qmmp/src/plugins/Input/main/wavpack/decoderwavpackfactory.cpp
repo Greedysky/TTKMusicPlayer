@@ -44,7 +44,7 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
         return QList<TrackInfo*>() << info;
     }
 
-    char err[80] = { 0 };
+    char err[80] = {0};
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
     WavpackContext *ctx = WavpackOpenFileInput(qUtf8Printable(filePath), err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
 #else
@@ -70,7 +70,7 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
 
     if(parts & TrackInfo::ReplayGainInfo)
     {
-        char value[200] = { 0 };
+        char value[200] = {0};
         WavpackGetTagItem(ctx, "REPLAYGAIN_TRACK_GAIN", value, sizeof(value));
         info->setValue(Qmmp::REPLAYGAIN_TRACK_GAIN, value);
         WavpackGetTagItem(ctx, "REPLAYGAIN_TRACK_PEAK", value, sizeof(value));
@@ -106,7 +106,7 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
             return QList<TrackInfo*>();
         }
 
-        char value[200] = { 0 };
+        char value[200] = {0};
         WavpackGetTagItem(ctx, "Album", value, sizeof(value));
         info->setValue(Qmmp::ALBUM, QString::fromUtf8(value));
         WavpackGetTagItem(ctx, "Artist", value, sizeof(value));

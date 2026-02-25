@@ -29,6 +29,7 @@ The TTKMusicplayer qmmp plugins
  * null
  * oss
  * oss4
+ * pipewire
  * portaudio
  * pulseaudio
  * qtmultimedia

@@ -119,7 +119,7 @@ int OutputWriter::sampleSize() const
     return AudioParameters::sampleSize(m_format);
 }
 
-void OutputWriter::dispatchVisual (Buffer *buffer)
+void OutputWriter::dispatchVisual(Buffer *buffer)
 {
     if(!buffer)
         return;
