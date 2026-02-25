@@ -36,4 +36,34 @@ protected:
 
 };
 
+
+/*! @brief The class of the ttk mouse event filter.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT TTKMouseEventFilter : public QObject
+{
+    Q_OBJECT
+public:
+    explicit TTKMouseEventFilter(QObject *parent = nullptr);
+
+protected:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override final;
+
+};
+
+
+/*! @brief The class of the ttk context menu event filter.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT TTKContextMenuEventFilter : public QObject
+{
+    Q_OBJECT
+public:
+    explicit TTKContextMenuEventFilter(QObject *parent = nullptr);
+
+protected:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override final;
+
+};
+
 #endif // TTKEVENTFILTER_H
