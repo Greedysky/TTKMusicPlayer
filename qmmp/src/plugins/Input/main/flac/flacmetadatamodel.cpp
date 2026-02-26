@@ -160,7 +160,6 @@ QString FLACMetaDataModel::cue() const
 
 void FLACMetaDataModel::setCue(const QString &content)
 {
-    m_tag->removeFields("CUESHEET");
     m_tag->addField("CUESHEET", QStringToTString(content), true);
     m_file->save();
 }
@@ -276,7 +275,7 @@ void VorbisCommentModel::setValue(Qmmp::MetaData key, const QString &value)
         return;
     case Qmmp::DISCNUMBER:
         value == "0" ?
-        m_tag->removeFields("DISCNUMBER"):
+        m_tag->removeFields("DISCNUMBER") :
         m_tag->addField("DISCNUMBER", str, true);
     }
 }

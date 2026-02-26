@@ -208,7 +208,7 @@ void VorbisCommentModel::setValue(Qmmp::MetaData key, const QString &value)
         return;
     case Qmmp::DISCNUMBER:
         value == "0" ?
-        m_tag->removeFields("DISCNUMBER"):
+        m_tag->removeFields("DISCNUMBER") :
         m_tag->addField("DISCNUMBER", str, true);
     }
 }
