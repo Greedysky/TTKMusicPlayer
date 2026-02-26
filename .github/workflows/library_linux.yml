@@ -302,7 +302,7 @@ jobs:
 
       - name: Build library for libttk
         run: |
-          7z x ttk-1.2.12.7z -olibttk
+          7z x ttk-1.2.13.7z -olibttk
           cd libttk
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libttk -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"

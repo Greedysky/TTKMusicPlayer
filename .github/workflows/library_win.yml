@@ -406,7 +406,7 @@ jobs:
 
       - name: Build library for libttk
         run: |
-          7z x ttk-1.2.12.7z -olibttk
+          7z x ttk-1.2.13.7z -olibttk
           cd libttk
           mkdir build && cd build
           cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_INSTALL_PATH}}/libttk -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3"
