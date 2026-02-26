@@ -389,7 +389,7 @@ jobs:
       - name: Build library for libxmp
         shell: msys2 {0}
         run: |
-          7z x libxmp-4.6.3-patch.7z -olibxmp
+          7z x libxmp-4.7.0-patch.7z -olibxmp
           cd libxmp
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           ./configure --prefix=${{env.UNIX_INSTALL_PATH}}/libxmp CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared --disable-depackers --disable-prowizard

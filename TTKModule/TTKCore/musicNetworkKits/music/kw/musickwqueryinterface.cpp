@@ -279,18 +279,18 @@ static void parseSongPropertyUnity(TTK::MusicSongInformation *info, const QStrin
 
 static void parseSongProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::DownloadServerPriority).toBool())
+    const bool v = G_SETTING_PTR->value(MusicSettingManager::DownloadServerPriority).toBool();
+    if(v)
     {
         parseSongPropertyUnity(info, format, bitrate);
-        parseSongPropertyV1(info, suffix, format, bitrate);
-        parseSongPropertyV2(info, suffix, format, bitrate);
-        parseSongPropertyV3(info, suffix, format, bitrate);
     }
-    else
+
+    parseSongPropertyV1(info, suffix, format, bitrate);
+    parseSongPropertyV2(info, suffix, format, bitrate);
+    parseSongPropertyV3(info, suffix, format, bitrate);
+
+    if(!v)
     {
-        parseSongPropertyV1(info, suffix, format, bitrate);
-        parseSongPropertyV2(info, suffix, format, bitrate);
-        parseSongPropertyV3(info, suffix, format, bitrate);
         parseSongPropertyUnity(info, format, bitrate);
     }
 }

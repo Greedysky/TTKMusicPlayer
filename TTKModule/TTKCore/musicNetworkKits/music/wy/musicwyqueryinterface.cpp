@@ -293,18 +293,18 @@ static void parseSongPropertyUnity(TTK::MusicSongInformation *info, int bitrate)
 
 static void parseSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::DownloadServerPriority).toBool())
+    const bool v = G_SETTING_PTR->value(MusicSettingManager::DownloadServerPriority).toBool();
+    if(v)
     {
         parseSongPropertyUnity(info, bitrate);
-        parseSongPropertyV1(info, bitrate);
-        parseSongPropertyV2(info, bitrate);
-        parseSongPropertyV3(info, bitrate);
     }
-    else
+
+    parseSongPropertyV1(info, bitrate);
+    parseSongPropertyV2(info, bitrate);
+    parseSongPropertyV3(info, bitrate);
+
+    if(!v)
     {
-        parseSongPropertyV1(info, bitrate);
-        parseSongPropertyV2(info, bitrate);
-        parseSongPropertyV3(info, bitrate);
         parseSongPropertyUnity(info, bitrate);
     }
 }

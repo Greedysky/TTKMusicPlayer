@@ -286,7 +286,7 @@ jobs:
 
       - name: Build library for libxmp
         run: |
-          7z x libxmp-4.6.3-patch.7z -olibxmp
+          7z x libxmp-4.7.0-patch.7z -olibxmp
           cd libxmp
           ./configure --prefix=${{env.INSTALL_PATH}}/libxmp CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --disable-depackers --disable-prowizard
           make -j2 && make install
