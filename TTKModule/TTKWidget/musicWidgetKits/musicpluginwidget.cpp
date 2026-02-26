@@ -1,8 +1,7 @@
 #include "musicpluginwidget.h"
 #include "ui_musicqmmppluginwidget.h"
 #include "ui_musicserverpluginwidget.h"
-#include "musicitemdelegate.h"
-#include "musicsettingmanager.h"
+#include "musicabstractqueryrequest.h"
 #include "musicpluginproperty.h"
 
 #include "qjson/json.h"
@@ -466,8 +465,8 @@ void MusicServerPluginTableWidget::addCellItems()
             const bool option = value["option"].toBool();
             const QString &user = value["user"].toString();
             const QString &name = value["name"].toString();
+            const QString &time = value["time"].toString();
             const QString &version = value["version"].toString();
-            const QString &tips = value["description"].toString();
 
             QTableWidgetItem *item = new QTableWidgetItem;
             item->setData(TTK_CHECKED_ROLE, option ? Qt::Checked : Qt::Unchecked);
@@ -477,9 +476,34 @@ void MusicServerPluginTableWidget::addCellItems()
             item->setText(name);
             if(G_SETTING_PTR->value(MusicSettingManager::UserPermission).toBool())
             {
-                item->setToolTip(tips);
-                item->setText(user + TTK_SPACE + version);
+                const QString &title = user + TTK_SPACE + version;
+                const QString &tips = value["description"].toString();
+
+                QStringList servers;
+                for(const QString &server : value["server"].toMap().keys())
+                {
+                    if(server == QUERY_WY_INTERFACE)
+                    {
+                        servers << tr("WangYi");
+                    }
+                    else if(server == QUERY_KW_INTERFACE)
+                    {
+                        servers << tr("KuWo");
+                    }
+                    else if(server == QUERY_KG_INTERFACE)
+                    {
+                        servers << tr("KuGou");
+                    }
+                }
+
+                item->setText(title + TTK_SPACE + "(" + time + ")");
+                item->setToolTip(title + TTK_LINEFEED +
+                                 tips + TTK_LINEFEED +
+                                 tr("Update time %1").arg(time) + TTK_LINEFEED +
+                                 tr("Supported server (%1)").arg(servers.isEmpty() ? tr("Unknown") : servers.join(", ")));
+
             }
+
             item->setForeground(option ? QColor(0xE6, 0x73, 0x00) : Qt::gray);
             QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
             setItem(index++, 1, item);

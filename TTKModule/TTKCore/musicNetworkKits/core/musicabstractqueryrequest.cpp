@@ -37,17 +37,17 @@ void MusicAbstractQueryRequest::downloadFinished()
 QString MusicAbstractQueryRequest::serverToString() const
 {
     const QString &v = tr("Current used server from %1");
-    if(m_queryServer.contains(QUERY_KG_INTERFACE))
+    if(m_queryServer.contains(QUERY_WY_INTERFACE))
     {
-        return v.arg(tr("KG"));
+        return v.arg(tr("WangYi"));
     }
     else if(m_queryServer.contains(QUERY_KW_INTERFACE))
     {
-        return v.arg(tr("KW"));
+        return v.arg(tr("KuWo"));
     }
-    else if(m_queryServer.contains(QUERY_WY_INTERFACE))
+    else if(m_queryServer.contains(QUERY_KG_INTERFACE))
     {
-        return v.arg(tr("WY"));
+        return v.arg(tr("KuGou"));
     }
     else if(!m_queryServer.isEmpty())
     {

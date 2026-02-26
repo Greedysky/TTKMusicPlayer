@@ -868,9 +868,9 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadLimitSpeedComboBox->addItems(downloadSpeed);
     m_ui->uploadLimitSpeedComboBox->addItems(downloadSpeed);
 
-    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_wangyiyun"), tr("WangYi Music"));
-    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("KuWo Music"));
-    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("KuGou Music"));
+    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_wangyiyun"), tr("WangYi"));
+    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("KuWo"));
+    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("KuGou"));
     m_ui->downloadServerPluginButton->setIcon(QIcon(":/toolSets/btn_plugins_normal"));
 
     const QStringList &rules = MusicRulesAnalysis::rules();
