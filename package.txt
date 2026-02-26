@@ -10,8 +10,8 @@ libADLMIDI-1.6.1	https://github.com/Wohlstand/libADLMIDI
 libbinio-1.5	https://github.com/adplug/libbinio
 libbs2b-3.1.0	https://sourceforge.net/projects/bs2b
 libcddb-1.3.2	https://sourceforge.net/projects/libcddb
-libcdio-paranoia-release-10.2-2.0.2	http://ftp.gnu.org/gnu/libcdio
-libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
+libcdio-paranoia-release-10.2-2.0.2	https://github.com/libcdio/libcdio-paranoia
+libcdio-release-2.1.0	https://github.com/libcdio/libcdio
 libmpg123-1.33.4	https://sourceforge.net/projects/mpg123
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.6	https://ftp.osuosl.org/pub/xiph/releases/ogg
@@ -29,14 +29,14 @@ opusfile-0.12	https://www.opus-codec.org/downloads
 soxr-0.1.3	https://sourceforge.net/projects/soxr
 speex-1.2.1	https://ftp.osuosl.org/pub/xiph/releases/speex
 sunvox-2.1.4d	https://warmplace.ru/soft/sunvox/sunvox_lib.php
-taglib-1.13.1(v2.1.1)	https://github.com/taglib/taglib
+taglib-1.13.1(v2.2)	https://github.com/taglib/taglib
 wavpack-5.9.0	https://github.com/dbry/WavPack
 libxmp-4.7.0.patch	https://github.com/libxmp/libxmp
-zlib-1.3.1	https://github.com/madler/zlib
-7zip-25.01	https://www.7-zip.org/download.html
+zlib-1.3.2	https://github.com/madler/zlib
+7zip-26.00	https://www.7-zip.org/download.html
 
-ttk-1.2.12
--libasap-7.0.0	 https://sourceforge.net/projects/asap
+ttk-1.2.13
+-libasap-8.0.0	 https://sourceforge.net/projects/asap
 -libayfly	 https://github.com/l29ah/ayfly
 -libdca		 https://github.com/DeaDBeeF-Player/deadbeef/tree/master/plugins/dca
 -libbuzzic	 https://github.com/arnaud-neny/rePlayer

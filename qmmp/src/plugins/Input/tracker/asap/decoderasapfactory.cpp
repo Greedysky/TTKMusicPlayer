@@ -20,7 +20,7 @@ DecoderProperties DecoderAsapFactory::properties() const
     properties.name = tr("Asap Plugin");
     properties.shortName = "asap";
     properties.filters << "*.cm3" << "*.cmc" << "*.cmr" << "*.cms";
-    properties.filters << "*.dlt" << "*.dmc";
+    properties.filters << "*.d8" << "*.d15" << "*.dlt" << "*.dmc";
     properties.filters << "*.fc";
     properties.filters << "*.md1" << "*.md2" << "*.mpd" << "*.mpt" << "*.rmt";
     properties.filters << "*.sap";
