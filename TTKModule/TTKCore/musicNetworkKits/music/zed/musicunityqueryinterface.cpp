@@ -271,7 +271,6 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
     QFile file(APPCACHE_DIR_FULL + QUERY_PLUGINS_URL);
     if(file.open(QIODevice::ReadOnly))
     {
-        TTK_INFO_STREAM("Load server unity plugins using local resource config");
         bytes = file.readAll();
         file.close();
     }
@@ -333,20 +332,30 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
             }
 
             QNetworkRequest request;
-            if(v.m_module != QUERY_MODULE_E)
+            if(value.contains("body"))
             {
-                v.m_url = TTK::Algorithm::mdII(value[v.m_module].toString(), false).arg(serverMap[type].toString(), id, v.m_quality);
-            }
-            else
-            {
-                if(!value.contains("body"))
-                {
-                    continue;
-                }
-
                 TTK::setContentTypeHeader(&request, "application/json");
                 v.m_url = TTK::Algorithm::mdII(value[v.m_module].toString(), false);
                 v.m_body = TTK::Algorithm::mdII(value["body"].toString(), false).arg(serverMap[type].toString(), id, v.m_quality);
+            }
+            else
+            {
+                const QVariant &object = value[v.m_module];
+                switch(QtVariantType(object))
+                {
+                    case QMetaType::QString:
+                    {
+                        v.m_url = TTK::Algorithm::mdII(value[v.m_module].toString(), false).arg(serverMap[type].toString(), id, v.m_quality);
+                        break;
+                    }
+                    case QMetaType::QVariantMap:
+                    {
+                        const QVariantMap &modules = object.toMap();
+                        v.m_url = TTK::Algorithm::mdII(modules[type].toString(), false).arg(id, v.m_quality);
+                        break;
+                    }
+                    default: break;
+                }
             }
 
             if(v.m_url.isEmpty())

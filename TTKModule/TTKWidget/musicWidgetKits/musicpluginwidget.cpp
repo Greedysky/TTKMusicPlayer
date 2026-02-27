@@ -360,7 +360,6 @@ void MusicServerPluginTableWidget::save() const
     QFile file(APPCACHE_DIR_FULL + QUERY_PLUGINS_URL);
     if(file.open(QIODevice::ReadOnly))
     {
-        TTK_INFO_STREAM("Load server unity plugins ok");
         bytes = file.readAll();
         file.close();
     }
@@ -436,7 +435,6 @@ void MusicServerPluginTableWidget::addCellItems()
     QFile file(APPCACHE_DIR_FULL + QUERY_PLUGINS_URL);
     if(file.open(QIODevice::ReadOnly))
     {
-        TTK_INFO_STREAM("Load server unity plugins ok");
         bytes = file.readAll();
         file.close();
     }
@@ -501,7 +499,6 @@ void MusicServerPluginTableWidget::addCellItems()
                                  tips + TTK_LINEFEED +
                                  tr("Update time %1").arg(time) + TTK_LINEFEED +
                                  tr("Supported server (%1)").arg(servers.isEmpty() ? tr("Unknown") : servers.join(", ")));
-
             }
 
             item->setForeground(option ? QColor(0xE6, 0x73, 0x00) : Qt::gray);
