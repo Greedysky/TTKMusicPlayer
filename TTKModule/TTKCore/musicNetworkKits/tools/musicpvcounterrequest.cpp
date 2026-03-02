@@ -13,7 +13,7 @@ MusicPVCounterRequest::MusicPVCounterRequest(QObject *parent)
 void MusicPVCounterRequest::startToRequest()
 {
     QByteArray bytes;
-    QFile file(APPCACHE_DIR_FULL + QUERY_COUNTER_URL);
+    QFile file(APPDATA_DIR_FULL + QUERY_COUNTER_URL);
     if(file.open(QIODevice::ReadOnly))
     {
         TTK_INFO_STREAM("PV counter using local resource config");

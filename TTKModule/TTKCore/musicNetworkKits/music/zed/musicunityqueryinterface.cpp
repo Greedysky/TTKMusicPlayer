@@ -8,17 +8,6 @@ static constexpr const char *QUERY_MODULE_D = "D";
 static constexpr const char *QUERY_MODULE_E = "E";
 static constexpr const char *QUERY_PLUGINS_URL = "resource/plugins";
 
-static bool checkModule(const QString &module)
-{
-    return module == QUERY_MODULE_X ||
-           module == QUERY_MODULE_A ||
-           module == QUERY_MODULE_B ||
-           module == QUERY_MODULE_C ||
-           module == QUERY_MODULE_D ||
-           module == QUERY_MODULE_E;
-}
-
-
 struct Data
 {
     QString m_ua;
@@ -27,6 +16,13 @@ struct Data
     QString m_quality;
     QString m_module;
 };
+
+static bool checkModule(const QString &module)
+{
+    return module == QUERY_MODULE_X || module == QUERY_MODULE_A || module == QUERY_MODULE_B ||
+           module == QUERY_MODULE_C || module == QUERY_MODULE_D || module == QUERY_MODULE_E;
+}
+
 
 static void parseSongPropertyX(QNetworkRequest *request, TTK::MusicSongInformation *info, int bitrate)
 {
@@ -268,7 +264,7 @@ static void parseSongPropertyE(QNetworkRequest *request, const QString &body, TT
 void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &type, const QString &id, int bitrate)
 {
     QByteArray bytes;
-    QFile file(APPCACHE_DIR_FULL + QUERY_PLUGINS_URL);
+    QFile file(APPDATA_DIR_FULL + QUERY_PLUGINS_URL);
     if(file.open(QIODevice::ReadOnly))
     {
         bytes = file.readAll();

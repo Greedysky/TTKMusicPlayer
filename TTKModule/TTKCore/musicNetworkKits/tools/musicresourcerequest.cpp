@@ -31,7 +31,7 @@ void MusicResourceRequest::downloadFinished()
     MusicAbstractNetwork::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        const QDir dir(APPCACHE_DIR_FULL);
+        const QDir dir(APPDATA_DIR_FULL);
         if(!dir.exists(QUERY_RESOURCE_DIR))
         {
             dir.mkdir(QUERY_RESOURCE_DIR);
@@ -46,7 +46,7 @@ void MusicResourceRequest::downloadFinished()
             {
                 const QVariantMap &value = var.toMap();
                 const QString &key = value["key"].toString();
-                const QString &path = APPCACHE_DIR_FULL + key;
+                const QString &path = APPDATA_DIR_FULL + key;
 
                 if(QDateTime::fromString(value["time"].toString(), TTK_DATE_FORMAT) > QFileInfo(path).lastModified())
                 {

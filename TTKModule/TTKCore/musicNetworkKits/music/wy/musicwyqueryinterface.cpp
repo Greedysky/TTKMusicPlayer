@@ -34,7 +34,7 @@ void ReqWYInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
 {
     if(WY_USER_DATA()->isEmpty())
     {
-        QFile file(APPCACHE_DIR_FULL + WY_USER_URL);
+        QFile file(APPDATA_DIR_FULL + WY_USER_URL);
         if(file.open(QIODevice::ReadOnly))
         {
             *WY_USER_DATA() = QString::fromUtf8(file.readAll());
