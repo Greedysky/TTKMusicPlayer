@@ -1,6 +1,6 @@
 #include "ttkabstractnetwork.h"
 #if !TTK_QT_VERSION_CHECK(5,8,0)
-#include <QBuffer>
+#  include <QBuffer>
 #endif
 
 TTKAbstractNetwork::TTKAbstractNetwork(QObject *parent)
@@ -16,10 +16,8 @@ TTKAbstractNetwork::TTKAbstractNetwork(QObject *parent)
 
 TTKAbstractNetwork::~TTKAbstractNetwork()
 {
-    m_interrupt = true;
+    TTKAbstractNetwork::deleteAll();
     m_stateCode = TTK::NetworkCode::Error;
-
-    deleteAll();
 }
 
 void TTKAbstractNetwork::deleteAll()
