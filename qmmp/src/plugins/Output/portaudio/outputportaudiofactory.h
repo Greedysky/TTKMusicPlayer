@@ -24,7 +24,7 @@
 /**
     @author Greedysky <greedysky@163.com>
 */
-class OutputPortAudioFactory : public QObject, OutputFactory
+class OutputPortAudioFactory : public QObject, private OutputFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.OutputFactoryInterface.1.0")

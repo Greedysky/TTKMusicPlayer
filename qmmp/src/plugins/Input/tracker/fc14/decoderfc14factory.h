@@ -24,7 +24,7 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class DecoderFC14Factory : public QObject, DecoderFactory
+class DecoderFC14Factory : public QObject, private DecoderFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.DecoderFactoryInterface.1.0")

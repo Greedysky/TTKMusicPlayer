@@ -24,7 +24,7 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class VisualPlusXRaysFactory : public QObject, public VisualFactory
+class VisualPlusXRaysFactory : public QObject, private VisualFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")

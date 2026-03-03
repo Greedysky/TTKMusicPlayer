@@ -28,7 +28,7 @@ struct AVFormatContext;
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class DecoderFFmpegFactory : public QObject, DecoderFactory
+class DecoderFFmpegFactory : public QObject, private DecoderFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.DecoderFactoryInterface.1.0")

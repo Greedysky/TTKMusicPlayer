@@ -24,7 +24,7 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class EffectCrystalizerFactory : public QObject, public EffectFactory
+class EffectCrystalizerFactory : public QObject, private EffectFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.EffectFactoryInterface.1.0")

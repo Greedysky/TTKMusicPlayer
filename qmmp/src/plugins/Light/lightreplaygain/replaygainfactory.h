@@ -26,7 +26,7 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class LightReplaygGainFactory : public QObject, public LightFactory
+class LightReplaygGainFactory : public QObject, private LightFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.LightFactoryInterface.1.0")

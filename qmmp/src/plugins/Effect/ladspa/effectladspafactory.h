@@ -26,7 +26,7 @@
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class EffectLADSPAFactory : public QObject, public EffectFactory
+class EffectLADSPAFactory : public QObject, private EffectFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.EffectFactoryInterface.1.0")

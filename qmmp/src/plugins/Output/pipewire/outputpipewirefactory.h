@@ -23,7 +23,7 @@
 
 #include <qmmp/outputfactory.h>
 
-class OutputPipeWireFactory : public QObject, OutputFactory
+class OutputPipeWireFactory : public QObject, private OutputFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.OutputFactoryInterface.1.0")

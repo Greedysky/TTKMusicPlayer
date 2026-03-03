@@ -26,7 +26,7 @@
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class OutputOSS4Factory : public QObject, OutputFactory
+class OutputOSS4Factory : public QObject, private OutputFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.OutputFactoryInterface.1.0")

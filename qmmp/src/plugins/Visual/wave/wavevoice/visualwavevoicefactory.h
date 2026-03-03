@@ -24,7 +24,7 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class VisualWaveVoiceFactory : public QObject, public VisualFactory
+class VisualWaveVoiceFactory : public QObject, private VisualFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")

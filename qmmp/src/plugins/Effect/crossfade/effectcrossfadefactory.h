@@ -26,7 +26,7 @@
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class EffectCrossfadeFactory : public QObject, public EffectFactory
+class EffectCrossfadeFactory : public QObject, private EffectFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.EffectFactoryInterface.1.0")
