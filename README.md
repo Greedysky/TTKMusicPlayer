@@ -14,7 +14,7 @@ Usage
 --------
 **TTKMusicPlayer imitates Kugou music, uses of qmmp core library, based on Qt for windows and linux.**
 
-**Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Greedysky/TTKMusicPlayer/wiki</u> )**
+**Compiler tutorial I have written in the wiki([See here](https://github.com/Greedysky/TTKMusicPlayer/wiki)).**
 
 ### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
 
@@ -94,7 +94,7 @@ TTKMusicPlayer can meet your most demands
  * 7z Archive File(*.7z *.xz *.bz2 *.gz *.tar *.zip *.wim *.ar *.arj *.cab *.chm *.cpio *.cramfs *.dmg *.ext *.fat *.gpt *.hfs *.ihex *.iso *.lzh *.lzma *.mbr *.msi *.nsis *.ntfs *.qcow2 *.rar *.rpm *.squashfs *.udf *.uefi *.vdi *.vhd *.vmdk *.xar *.z)
  * AdLib Sound File(*.a2m *.adl *.adlib *.agd *.amd *.as3m *.bam *.bmf *.cff *.cmf *.d00 *.dfm *.dmo *.dro *.dtm *.got *.ha2 *.hsc *.hsq *.hsp *.imf *.ims *.jbm *.laa *.lds *.m *.mad *.mdi *.mkj *.msc *.mtk *.mus *.rac *.rad *.raw *.rix *.s3m *.sa2 *.sat *.sdb *.sng *.sop *.sqx *.xad *.xms *.xsm *.vgm *.vgz *.wlf *.ksm *.rol *.sci)
  * XMP File(*.abk *.dsym *.emod *.fnk *.gtk *.ims *.liq *.mfp *.mgt *.rtm *.tcb *.xmf)
- * Another Slight Atari File(*.cm3 *.cmc *.cmr *.cms *.d8 *.d15 *.dlt *.dmc *.fc *.md1 *.md2 *.mpd *.mpt *.rmt *.sap *.tm2 *.tm8 *.tmc)
+ * Another Slight Atari File(*.cm3 *.cmc *.cmr *.cms *.dlt *.dmc *.fc *.md1 *.md2 *.mpd *.mpt *.rmt *.sap *.tm2 *.tm8 *.tmc)
  * DTS Coherent Acoustics File(*.dts *.cpt)
  * Future Composer File(*.fc *.fc13 *.fc14 *.fc3 *.fc4 *.smod)
  * OptimFrog File(*.ofr *.ofs)
