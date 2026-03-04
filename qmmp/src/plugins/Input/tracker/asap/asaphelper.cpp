@@ -1,5 +1,30 @@
 #include "asaphelper.h"
 
+typedef struct
+{
+    int (*load)(const ASAPFileLoader *self, const char *filename, uint8_t *buffer, int length);
+} ASAPFileLoaderVtbl;
+
+struct ASAPFileLoader
+{
+    const ASAPFileLoaderVtbl* vtbl;
+
+    static int load(const ASAPFileLoader *self, const char *filename, uint8_t *buffer, int length)
+    {
+        Q_UNUSED(self);
+
+        QFile file(filename);
+        if(!file.open(QIODevice::ReadOnly))
+        {
+            qWarning("AsapHelper: open file failed");
+            return -1;
+        }
+
+        return file.size() > length ? - 1 : file.read((char*)buffer, length);
+    }
+};
+
+
 AsapHelper::AsapHelper(const QString &path)
     : m_path(path)
 {
@@ -21,20 +46,13 @@ void AsapHelper::deinit()
 
 bool AsapHelper::initialize()
 {
-    QFile file(m_path);
-    if(!file.open(QIODevice::ReadOnly))
-    {
-        qWarning("AsapHelper: open file failed");
-        return false;
-    }
-
-    const QByteArray &buffer = file.readAll();
-    file.close();
-
     m_input = ASAP_New();
     ASAP_DetectSilence(m_input, 5);
 
-    if(!ASAP_Load(m_input, QmmpPrintable(m_path), (unsigned char *)buffer.constData(), buffer.length()))
+    const ASAPFileLoaderVtbl vtbl = { ASAPFileLoader::load };
+    const ASAPFileLoader loader = { &vtbl };
+
+    if(!ASAP_LoadFiles(m_input, QmmpPrintable(m_path), &loader))
     {
         qWarning("AsapHelper: ASAP_Load error");
         return false;
@@ -62,6 +80,7 @@ bool AsapHelper::initialize()
         cibool loops[32];
         char title[128];
     };*/
+
     ASAPInfo *info =(ASAPInfo *)ASAP_GetInfo(m_input);
     if(!ASAP_PlaySong(m_input, ASAPInfo_GetDefaultSong(info), 360000))
     {
