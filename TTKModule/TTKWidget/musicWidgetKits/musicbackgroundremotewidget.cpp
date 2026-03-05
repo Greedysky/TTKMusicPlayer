@@ -178,40 +178,31 @@ void MusicBackgroundOnlineWidget::initialize()
     }
 }
 
-QWidget* MusicBackgroundOnlineWidget::createFunctionsWidget(bool revert, QWidget *object)
+QWidget* MusicBackgroundOnlineWidget::createFunctionsWidget(QWidget *container, QWidget *parent)
 {
-    if(!m_functionsWidget)
+    if(m_functionsWidget)
     {
-        m_functionsWidget = new QWidget(object);
-        m_functionsWidget->setGeometry(24, 70, 585, 25);
-        m_functionsWidget->hide();
-
-        QHBoxLayout *hbox = new QHBoxLayout(m_functionsWidget);
-        hbox->setContentsMargins(9, 0, 0, 9);
-        hbox->addStretch(1);
-
-        m_typeBox = new QComboBox(m_functionsWidget);
-        m_typeBox->setFixedSize(100, 20);
-        m_typeBox->addItem(tr("Select One"));
-        m_typeBox->hide();
-        TTK::Widget::generateComboBoxStyle(m_typeBox);
-
-        m_functionsWidget->setLayout(hbox);
-        connect(m_typeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTypeChanged(int)));
+        return m_functionsWidget;
     }
 
-    QHBoxLayout *layout = TTKObjectCast(QHBoxLayout*, m_functionsWidget->layout());
-    if(revert)
-    {
-        layout->removeWidget(m_typeBox);
-        m_typeBox->hide();
-    }
-    else
-    {
-        layout->addWidget(m_typeBox);
-        m_typeBox->show();
-    }
+    m_functionsWidget = new QWidget(parent);
+    m_functionsWidget->setGeometry(24, 70, 585, 25);
 
+    const QRect &rect = container->geometry();
+    container->setGeometry(QRect(rect.x(), rect.y() + m_functionsWidget->height(), rect.width(), rect.height() - m_functionsWidget->height()));
+
+    QHBoxLayout *hbox = new QHBoxLayout(m_functionsWidget);
+    hbox->setContentsMargins(9, 0, 0, 9);
+    hbox->addStretch(1);
+
+    m_typeBox = new QComboBox(m_functionsWidget);
+    m_typeBox->setFixedSize(100, 20);
+    m_typeBox->addItem(tr("Select One"));
+    hbox->addWidget(m_typeBox);
+    TTK::Widget::generateComboBoxStyle(m_typeBox);
+
+    m_functionsWidget->setLayout(hbox);
+    connect(m_typeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTypeChanged(int)));
     return m_functionsWidget;
 }
 

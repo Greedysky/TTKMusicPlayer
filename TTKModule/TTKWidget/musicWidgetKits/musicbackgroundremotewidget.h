@@ -136,7 +136,8 @@ public:
     /*!
      * Create functions widget.
      */
-    QWidget* createFunctionsWidget(bool revert, QWidget *object = nullptr);
+    QWidget* createFunctionsWidget(QWidget *container, QWidget *parent);
+
     /*!
      * Output remote skin.
      */

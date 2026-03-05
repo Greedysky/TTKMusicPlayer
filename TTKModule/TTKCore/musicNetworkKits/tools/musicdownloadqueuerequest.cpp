@@ -148,13 +148,16 @@ void MusicDownloadQueueRequest::startOrderQueue()
         return;
     }
 
-    if(QFile::exists(m_queue.first().m_path))
+    const MusicDownloadQueueData &data = m_queue.first();
+    const QFileInfo fin(data.m_path);
+    if(fin.exists() && fin.size() > 0)
     {
-        Q_EMIT downloadDataChanged(m_queue.takeFirst().m_path);
+        Q_EMIT downloadDataChanged(data.m_path);
+        m_queue.removeFirst();
         startOrderQueue();
     }
     else if(G_NETWORK_PTR->isOnline())
     {
-        startDownload(m_queue.first().m_url);
+        startDownload(data.m_url);
     }
 }
