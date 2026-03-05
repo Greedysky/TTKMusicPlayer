@@ -5357,7 +5357,7 @@ Copyright© 2015 - 2026 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicfuntionanimationwidget.cpp" line="263"/>
         <source>Online</source>
-        <translation>在線</translation>
+        <translation>更多</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicfuntionanimationwidget.cpp" line="263"/>

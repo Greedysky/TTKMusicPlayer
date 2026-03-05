@@ -125,7 +125,8 @@ protected:
     virtual void paintEvent(QPaintEvent *event) override;
 
     QPixmap m_pix;
-    int m_curIndex, m_preIndex, m_x;
+    int m_value;
+    int m_currentIndex, m_previousIndex;
     float m_perWidth, m_totalWidth;
     bool m_isAnimation, m_showState, m_showLine;
 
