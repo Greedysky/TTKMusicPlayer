@@ -26,7 +26,6 @@
 #include <QMap>
 #include <QIODevice>
 #include "trackinfo.h"
-#include "abstractengine.h"
 #include "metadatamodel.h"
 
 class AbstractEngine;

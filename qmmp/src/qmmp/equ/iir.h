@@ -31,8 +31,6 @@
 #ifndef IIR_H
 #define IIR_H
 
-//#include <glib.h>
-//#include "main.h"
 #include "iir_cfs.h"
 
 /*

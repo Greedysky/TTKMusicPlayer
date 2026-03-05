@@ -4,6 +4,7 @@
 #include "audioconverter.h"
 #include "channelconverter_p.h"
 #include "volumehandler.h"
+#include "qmmpsettings.h"
 #include "outputwriter_p.h"
 
 extern "C" {

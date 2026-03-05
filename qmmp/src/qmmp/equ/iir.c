@@ -27,7 +27,6 @@
      removed glib dependency
 */
 
-#include <math.h>
 #include "iir.h"
 
 /* Coefficients */
