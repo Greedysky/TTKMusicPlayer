@@ -205,7 +205,7 @@ void MusicSongMeta::setCover(const QByteArray &data)
 {
     if(data.isEmpty())
     {
-        TTK_ERROR_STREAM("Input byte data is empty");
+        TTK_ERROR_STREAM("Input image data buffer byte is empty");
         return;
     }
 #if TTK_VERSION >= TTK_VERSION_CHECK(2,5,3,0)

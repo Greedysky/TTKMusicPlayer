@@ -114,7 +114,7 @@ void MusicCloudManagerTableWidget::downloadKeyFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {
-        TTK_ERROR_STREAM("Input byte data is empty");
+        TTK_ERROR_STREAM("Input json data buffer byte is empty");
     }
     else
     {

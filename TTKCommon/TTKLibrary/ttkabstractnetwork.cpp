@@ -38,6 +38,12 @@ void TTKAbstractNetwork::downloadFinished()
 void TTKAbstractNetwork::replyError(QNetworkReply::NetworkError error)
 {
     TTK_ERROR_STREAM("Abnormal network connection, module" << this << "code" << error);
+    QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
+    if(reply)
+    {
+        TTK_ERROR_STREAM("Abnormal network url is" << reply->request().url());
+    }
+
     Q_EMIT downloadDataChanged({});
     deleteAll();
 }

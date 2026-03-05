@@ -10,12 +10,12 @@
 #include "musicsettingmanager.h"
 #include "musicextractmanager.h"
 
-static constexpr int CURRENT_ITEMS_COUNT = 58;
+static constexpr int MAX_ITEMS_COUNT = 58;
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicBackgroundSkinDialog),
-      m_stackThemeIndex(CURRENT_ITEMS_COUNT)
+      m_stackThemeIndex(MAX_ITEMS_COUNT)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -393,13 +393,13 @@ int MusicBackgroundSkinDialog::cpoyFileToLocalIndex()
     findThemeListByPath(USER_THEME_DIR_FULL, items);
     std::sort(items.begin(), items.end(), std::greater<int>());
 
-    int index = CURRENT_ITEMS_COUNT;
+    int index = MAX_ITEMS_COUNT;
     if(!items.isEmpty())
     {
         index = items.first();
-        if(index < CURRENT_ITEMS_COUNT)
+        if(index < MAX_ITEMS_COUNT)
         {
-            index = CURRENT_ITEMS_COUNT;
+            index = MAX_ITEMS_COUNT;
         }
     }
 

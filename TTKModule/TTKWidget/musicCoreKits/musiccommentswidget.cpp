@@ -139,7 +139,7 @@ void MusicCommentsItem::downloadFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {
-        TTK_ERROR_STREAM("Input byte data is empty");
+        TTK_ERROR_STREAM("Input image data buffer byte is empty");
         return;
     }
 

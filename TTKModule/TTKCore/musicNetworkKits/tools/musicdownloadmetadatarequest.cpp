@@ -75,14 +75,7 @@ void MusicDownloadMetaDataRequest::downloadFinished(const QByteArray &bytes)
 
         if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool())
         {
-            if(bytes.isEmpty())
-            {
-                TTK_ERROR_STREAM("Input byte data is empty");
-            }
-            else
-            {
-                meta.setCover(bytes);
-            }
+            meta.setCover(bytes);
         }
         meta.save();
         TTK_INFO_STREAM("Write tag has finished");
