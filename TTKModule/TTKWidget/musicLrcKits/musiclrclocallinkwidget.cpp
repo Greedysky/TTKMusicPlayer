@@ -6,8 +6,6 @@
 #include "musicfileutils.h"
 #include "musicnetworkdefines.h"
 
-#include <QDir>
-
 MusicLrcLocalLinkTableWidget::MusicLrcLocalLinkTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {

@@ -7,8 +7,6 @@
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
 
-#include <QDir>
-
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     : QWidget(parent),
       m_tryTimes(3),
