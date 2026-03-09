@@ -1,5 +1,4 @@
 #include <QTimer>
-#include <QDir>
 #include <QSettings>
 #include "qmmpsettings.h"
 #include "output.h"

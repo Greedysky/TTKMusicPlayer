@@ -1,4 +1,3 @@
-#include <QDir>
 #include "audioparameters.h"
 #include "qmmpsettings.h"
 #include "buffer.h"

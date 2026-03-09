@@ -1,5 +1,4 @@
 #include <QSettings>
-#include <QDir>
 #include <QPluginLoader>
 #include <QApplication>
 #include "enginefactory.h"

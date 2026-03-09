@@ -1,4 +1,4 @@
-#include <QDir>
+#include <QStringList>
 #include <algorithm>
 #include "qmmpplugincache_p.h"
 #include "fileinputsource_p.h"

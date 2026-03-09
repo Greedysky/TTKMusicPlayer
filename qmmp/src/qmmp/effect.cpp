@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <QStringList>
-#include <QDir>
 #include "qmmpaudioengine_p.h"
 #include "qmmpplugincache_p.h"
 #include "effectfactory.h"

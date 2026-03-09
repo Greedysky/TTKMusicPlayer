@@ -1,6 +1,5 @@
 #include <QApplication>
 #include <QSettings>
-#include <QDir>
 #include "qmmpevents_p.h"
 #include "qmmpaudioengine_p.h"
 #include "decoderfactory.h"
