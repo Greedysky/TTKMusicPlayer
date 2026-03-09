@@ -67,6 +67,7 @@ QString ReqWYInterface::makeCoverPixmapUrl(const QString &id)
 
     QByteArray result;
     const QByteArray &v = id.toUtf8();
+
     for(int i = 0; i < v.length(); i++)
     {
         result.append(v[i] ^ magic[i % magic.length()]);

@@ -61,9 +61,9 @@
   <widget class="QPushButton" name="customSkin">
    <property name="geometry">
     <rect>
-     <x>535</x>
+     <x>530</x>
      <y>369</y>
-     <width>70</width>
+     <width>75</width>
      <height>25</height>
     </rect>
    </property>
