@@ -17,7 +17,8 @@ static Data CATEGORY_ITEMS[] = {
     {{100, 30}, {600, 370}, 6, 50, 75},   // PlayList
     {{200, 30}, {600, 370}, 2, 100, 200}, // TopList
     {{100, 30}, {600, 370}, 2, 100, 200}, // ArtistList
-    {{150, 30}, {480, 220}, 2, 100, 200}  // MovieList
+    {{150, 30}, {480, 220}, 2, 100, 200}, // MovieList
+    {{100, 20}, {520, 250}, 5, 80, 75}    // SkinList
 };
 static constexpr int ITEM_LABEL_HEIGHT = 20;
 
@@ -78,11 +79,11 @@ MusicResultsCategoryPopWidget::MusicResultsCategoryPopWidget(MusicCategoryConfig
 
 void MusicResultsCategoryPopWidget::setCategory(const QString &server, QObject *obj)
 {
-    MusicResultsCategoryList categorys;
+    MusicResultsCategoryList categories;
     MusicCategoryConfigManager manager(server);
     if(manager.fromFile(m_category))
     {
-        manager.readBuffer(categorys);
+        manager.readBuffer(categories);
     }
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
@@ -95,7 +96,7 @@ void MusicResultsCategoryPopWidget::setCategory(const QString &server, QObject *
     TTK::Widget::generateVScrollAreaStyle(scrollArea, containWidget);
     layout->addWidget(scrollArea);
 
-    for(const MusicResultsCategory &category : qAsConst(categorys))
+    for(const MusicResultsCategory &category : qAsConst(categories))
     {
         MusicResultsCategoryPopItem *item = new MusicResultsCategoryPopItem(this);
         connect(item, SIGNAL(categoryChanged(MusicResultsCategoryItem)), obj, SLOT(categoryChanged(MusicResultsCategoryItem)));

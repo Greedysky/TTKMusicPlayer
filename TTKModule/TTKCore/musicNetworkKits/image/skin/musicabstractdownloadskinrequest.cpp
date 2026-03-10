@@ -14,4 +14,5 @@ void MusicAbstractDownloadSkinRequest::startToRequest()
 void MusicAbstractDownloadSkinRequest::startToRequest(const QString &id)
 {
     Q_UNUSED(id);
+    startToRequest();
 }

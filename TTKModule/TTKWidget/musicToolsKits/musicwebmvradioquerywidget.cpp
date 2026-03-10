@@ -126,13 +126,15 @@ void MusicWebMVRadioQueryWidget::backToMainMenuClicked()
 
 void MusicWebMVRadioQueryWidget::categoryChanged(const MusicResultsCategoryItem &category)
 {
-    if(m_categoryButton)
+    if(!m_categoryButton)
     {
-        m_value.clear();
-        m_categoryButton->setText(category.m_value);
-        m_categoryButton->closeMenu();
-
-        removeItems(m_gridLayout);
-        m_networkRequest->startToSearch(category.m_key);
+        return;
     }
+
+    m_value.clear();
+    m_categoryButton->setText(category.m_value);
+    m_categoryButton->closeMenu();
+
+    removeItems(m_gridLayout);
+    m_networkRequest->startToSearch(category.m_key);
 }

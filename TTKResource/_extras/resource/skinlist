@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TTKMusicPlayer>
+    <tag value="主题一">
+        <value key="时尚" value="时尚"/>
+        <value key="景观" value="景观"/>
+        <value key="动漫" value="动漫"/>
+        <value key="动物" value="动物"/>
+        <value key="人文" value="人文"/>
+        <value key="影视" value="影视"/>
+        <value key="节日" value="节日"/>
+        <value key="游戏" value="游戏"/>
+        <value key="动态" value="动态"/>
+    </tag>
+    <tag value="主题二">
+        <value key="36" value="4K专区"/>
+        <value key="6" value="美女模特"/>
+        <value key="30" value="爱情美图"/>
+        <value key="9" value="风景大片"/>
+        <value key="15" value="小清新"/>
+        <value key="26" value="动漫卡通"/>
+        <value key="11" value="明星风尚"/>
+        <value key="14" value="萌宠动物"/>
+        <value key="5" value="游戏壁纸"/>
+        <value key="12" value="汽车天下"/>
+        <value key="10" value="炫酷时尚"/>
+        <value key="29" value="月历壁纸"/>
+        <value key="7" value="影视剧照"/>
+        <value key="13" value="节日美图"/>
+        <value key="22" value="军事天地"/>
+        <value key="16" value="劲爆体育"/>
+        <value key="18" value="BABY秀"/>
+        <value key="35" value="文字控"/>
+    </tag>
+</TTKMusicPlayer>

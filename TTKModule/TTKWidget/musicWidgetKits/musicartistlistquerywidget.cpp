@@ -156,16 +156,18 @@ void MusicArtistListQueryWidget::currentItemClicked(const MusicResultDataItem &i
 
 void MusicArtistListQueryWidget::categoryChanged(const MusicResultsCategoryItem &category)
 {
-    if(m_categoryButton)
+    if(!m_categoryButton)
     {
-        m_value.clear();
-        m_categoryId = category.m_key;
-
-        m_categoryButton->setText(category.m_value);
-        m_categoryButton->closeMenu();
-
-        numberButtonClicked(TTK_NORMAL_LEVEL);
+        return;
     }
+
+    m_value.clear();
+    m_categoryId = category.m_key;
+
+    m_categoryButton->setText(category.m_value);
+    m_categoryButton->closeMenu();
+
+    numberButtonClicked(TTK_NORMAL_LEVEL);
 }
 
 void MusicArtistListQueryWidget::buttonClicked(int index)

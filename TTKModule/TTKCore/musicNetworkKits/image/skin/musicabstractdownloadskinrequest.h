@@ -22,10 +22,6 @@
 #include "ttkabstractxml.h"
 #include "musicglobaldefine.h"
 
-static constexpr const char *SKIN_BING_DIR = "Bing";
-static constexpr const char *SKIN_THUNDER_DIR = "Thunder/";
-static constexpr const char *SKIN_BIRD_DIR = "Bird/";
-
 /*! @brief The class of the remote skin item.
  * @author Greedysky <greedysky@163.com>
  */
@@ -57,13 +53,21 @@ TTK_DECLARE_LIST(MusicSkinRemoteItem);
  */
 struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
 {
+    enum Type
+    {
+        Bing,
+        Thunder,
+        BirdPaper
+    };
+
     QString m_id;
-    QString m_group;
+    QString m_name;
+    Type m_type;
     MusicSkinRemoteItemList m_items;
 
     inline bool isValid() const noexcept
     {
-        return !(m_group.isEmpty() && m_id.isEmpty() && m_items.isEmpty());
+        return !(m_name.isEmpty() && m_id.isEmpty() && m_items.isEmpty());
     }
 };
 TTK_DECLARE_LIST(MusicSkinRemoteGroup);

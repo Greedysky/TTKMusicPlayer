@@ -42,12 +42,6 @@ public:
      */
     virtual void startToRequest(const QString &id) override final;
 
-Q_SIGNALS:
-    /*!
-     * Send download data from net.
-     */
-    void downloadItemsChanged(const MusicSkinRemoteGroup &bytes);
-
 public Q_SLOTS:
     /*!
      * Download data from net finished.

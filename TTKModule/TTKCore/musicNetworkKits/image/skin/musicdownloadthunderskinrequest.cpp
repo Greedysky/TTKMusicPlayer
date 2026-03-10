@@ -17,8 +17,9 @@ bool MusicThunderSkinConfigManager::readBuffer(MusicSkinRemoteGroupList &items)
     {
         MusicSkinRemoteGroup group;
         QDomNode node = nodes.item(i);
-        group.m_id = TTK_DEFAULT_STR;
-        group.m_group = QString("%1%2").arg(SKIN_THUNDER_DIR, node.toElement().attribute("name"));
+        group.m_id = node.toElement().attribute("name");
+        group.m_name = group.m_id;
+        group.m_type = MusicSkinRemoteGroup::Thunder;
 
         const QDomNodeList &groupNodes = node.childNodes();
         for(int j = 0; j < groupNodes.count(); ++j)

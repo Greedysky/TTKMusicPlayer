@@ -6,7 +6,7 @@ static constexpr const char *QUERY_MODULE_B = "B";
 static constexpr const char *QUERY_MODULE_C = "C";
 static constexpr const char *QUERY_MODULE_D = "D";
 static constexpr const char *QUERY_MODULE_E = "E";
-static constexpr const char *QUERY_PLUGINS_URL = "resource/plugins";
+static constexpr const char *QUERY_PLUGINS_URL = "plugins";
 
 struct Data
 {
@@ -264,7 +264,7 @@ static void parseSongPropertyE(QNetworkRequest *request, const QString &body, TT
 void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &type, const QString &id, int bitrate)
 {
     QByteArray bytes;
-    QFile file(APPDATA_DIR_FULL + QUERY_PLUGINS_URL);
+    QFile file(RESOURCE_DIR_FULL + QUERY_PLUGINS_URL);
     if(file.open(QIODevice::ReadOnly))
     {
         bytes = file.readAll();

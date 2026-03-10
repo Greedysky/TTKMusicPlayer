@@ -19,11 +19,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musiccategoryconfigmanager.h"
 #include "musicabstractitemquerywidget.h"
 
 class MusicPageQueryWidget;
 class MusicPlaylistQueryInfoWidget;
+struct MusicResultsCategoryItem;
 class MusicResultsCategoryPopWidget;
 
 /*! @brief The class of the playlist music query widget.
@@ -45,7 +45,7 @@ public:
     /*!
      * Set current category to search founds.
      */
-    void setCurrentCategory(const MusicResultsCategoryItem &category);
+    void setCurrentCategory(const QString &id, const QString &value);
 
     /*!
      * Set current value to search founds.

@@ -2,7 +2,7 @@
 
 #include "qsync/qsyncutils.h"
 
-static constexpr const char *QUERY_COUNTER_URL = "resource/counter";
+static constexpr const char *QUERY_COUNTER_URL = "counter";
 
 MusicPVCounterRequest::MusicPVCounterRequest(QObject *parent)
     : MusicAbstractNetwork(parent)
@@ -13,7 +13,7 @@ MusicPVCounterRequest::MusicPVCounterRequest(QObject *parent)
 void MusicPVCounterRequest::startToRequest()
 {
     QByteArray bytes;
-    QFile file(APPDATA_DIR_FULL + QUERY_COUNTER_URL);
+    QFile file(RESOURCE_DIR_FULL + QUERY_COUNTER_URL);
     if(file.open(QIODevice::ReadOnly))
     {
         TTK_INFO_STREAM("PV counter using local resource config");
@@ -24,7 +24,7 @@ void MusicPVCounterRequest::startToRequest()
     {
         TTK_INFO_STREAM("PV counter using network resource config");
         QNetworkRequest request;
-        request.setUrl(QSyncUtils::makeDataBucketUrl() + QUERY_COUNTER_URL);
+        request.setUrl(QSyncUtils::makeDataBucketUrl() + RESOURCE_DIR + QUERY_COUNTER_URL);
         bytes = TTK::syncNetworkQueryForGet(&request);
     }
 

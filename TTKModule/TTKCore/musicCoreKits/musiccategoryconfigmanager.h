@@ -55,6 +55,7 @@ public:
         TopList,         /*!< TopList category */
         ArtistList,      /*!< ArtistList category */
         MovieList,       /*!< MovieList category */
+        SkinList,        /*!< SkinList category */
     };
 
     /*!

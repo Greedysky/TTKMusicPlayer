@@ -19,10 +19,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musiccategoryconfigmanager.h"
 #include "musicabstractitemquerywidget.h"
 
 class MusicWebMVRadioInfoWidget;
+struct MusicResultsCategoryItem;
 class MusicResultsCategoryPopWidget;
 
 /*! @brief The class of the music mv query widget.

@@ -20,8 +20,8 @@
  ***************************************************************************/
 
 #include "musicabstractitemquerywidget.h"
-#include "musiccategoryconfigmanager.h"
 
+struct MusicResultsCategoryItem;
 class MusicResultsCategoryPopWidget;
 
 /*! @brief The class of the toplist music query widget.

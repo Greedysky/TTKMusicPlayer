@@ -4,6 +4,7 @@
 #include "musicplaylist.h"
 #include "ttktime.h"
 
+#include <QUrl>
 #include <QBuffer>
 #include <QDBusMessage>
 #include <qmmp/soundcore.h>

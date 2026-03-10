@@ -8,7 +8,7 @@
 
 #include <QScrollBar>
 
-#define FMRADIO_PATH RESOURCE_DIR_FULL + "fmlist"
+#define QUERY_FMRADIO_URL RESOURCE_DIR_FULL + "fmlist"
 
 MusicTTKFMRadioInformationWidget::MusicTTKFMRadioInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -211,17 +211,17 @@ void MusicTTKFMRadioPlayWidget::closeEvent(QCloseEvent *event)
     delete m_player;
     m_player = nullptr;
 
-    MusicFMCategoryList categorys;
+    MusicFMCategoryList categories;
     MusicFMConfigManager manager;
-    if(m_statusChanged && manager.fromFile(FMRADIO_PATH))
+    if(m_statusChanged && manager.fromFile(QUERY_FMRADIO_URL))
     {
-        manager.readBuffer(categorys);
+        manager.readBuffer(categories);
 
-        if(!categorys.isEmpty())
+        if(!categories.isEmpty())
         {
-            categorys.last().m_items = m_favItems;
+            categories.last().m_items = m_favItems;
             manager.reset();
-            manager.writeBuffer(categorys);
+            manager.writeBuffer(categories);
         }
     }
 
@@ -230,17 +230,17 @@ void MusicTTKFMRadioPlayWidget::closeEvent(QCloseEvent *event)
 
 void MusicTTKFMRadioPlayWidget::initialize()
 {
-    MusicFMCategoryList categorys;
+    MusicFMCategoryList categories;
     {
         MusicFMConfigManager manager;
-        if(manager.fromFile(FMRADIO_PATH))
+        if(manager.fromFile(QUERY_FMRADIO_URL))
         {
-            manager.readBuffer(categorys);
+            manager.readBuffer(categories);
         }
     }
 
     int index = 0;
-    for(const MusicFMCategory &category : qAsConst(categorys))
+    for(const MusicFMCategory &category : qAsConst(categories))
     {
         QTreeWidgetItem *item = new QTreeWidgetItem(m_ui->itemTree);
         item->setData(0, TTK_DISPLAY_ROLE, category.m_category);
@@ -255,9 +255,9 @@ void MusicTTKFMRadioPlayWidget::initialize()
         m_items << category.m_items;
     }
 
-    if(!categorys.isEmpty())
+    if(!categories.isEmpty())
     {
-        m_favItems = categorys.last().m_items;
+        m_favItems = categories.last().m_items;
     }
 
     createCoreModule();

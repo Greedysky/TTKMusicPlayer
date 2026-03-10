@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QComboBox>
 #include "musicbackgroundlistwidget.h"
 #include "musicabstractdownloadskinrequest.h"
 
-class QPushButton;
 class MusicDownloadQueueRequest;
+struct MusicResultsCategoryItem;
+class MusicResultsCategoryPopWidget;
 
 /*! @brief The class of the remote background widget.
  * @author Greedysky <greedysky@163.com>
@@ -61,15 +61,14 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downloadFinished(const MusicSkinRemoteGroupList &bytes);
+    virtual void downloadFinished(const MusicSkinRemoteGroupList &bytes) = 0;
 
 protected:
     /*!
-     * Start to download background data by suffix.
+     * Start to download background data by type.
      */
-    void startToRequest(const QString &suffix);
+    void startToRequest(MusicSkinRemoteGroup::Type type);
 
-    int m_tryTimes;
     int m_currentIndex;
     MusicSkinRemoteGroupList m_groups;
     MusicBackgroundListWidget *m_backgroundList;
@@ -108,6 +107,9 @@ public Q_SLOTS:
      */
     virtual void downloadFinished(const MusicSkinRemoteGroupList &bytes) override final;
 
+private:
+    int m_tryTimes;
+
 };
 
 
@@ -145,17 +147,18 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Remote background type selected by index.
+     * Current category changed.
      */
-    void currentTypeChanged(int index);
+    void categoryChanged(const MusicResultsCategoryItem &category);
     /*!
      * Download data from net finished.
      */
     virtual void downloadFinished(const MusicSkinRemoteGroupList &bytes) override final;
 
 private:
-    QComboBox *m_typeBox;
     QWidget *m_functionsWidget;
+    MusicResultsCategoryPopWidget *m_categoryButton;
+    QList<MusicAbstractDownloadSkinRequest*> m_downloadRequests;
 
 };
 

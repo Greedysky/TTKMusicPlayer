@@ -49,6 +49,7 @@ void MusicConfigModule::checkDirectoryExist() const
     directoryExist(TTK_ART_DIR_FULL);
     directoryExist(TTK_BACKGROUND_DIR_FULL);
 
+    directoryExist(TTK_RESOURCE_DIR_FULL);
     directoryExist(TTK_USER_THEME_DIR_FULL);
 
     directoryExist(TTK_THEME_DIR_FULL);
@@ -70,6 +71,7 @@ void MusicConfigModule::checkFileNeededExist() const
     copyFile(":/data/artistlist", TTK_RESOURCE_DIR_FULL + "artistlist");
     copyFile(":/data/movielist", TTK_RESOURCE_DIR_FULL + "movielist");
     copyFile(":/data/fmlist", TTK_RESOURCE_DIR_FULL + "fmlist");
+    copyFile(":/data/skinlist", TTK_RESOURCE_DIR_FULL + "skinlist");
 
 #ifdef Q_OS_UNIX
     if(!QFile::exists(MAIN_DIR_FULL + "ttk_runtime"))

@@ -11,6 +11,7 @@
         <file alias="artistlist">../TTKResource/_extras/resource/artistlist</file>
         <file alias="movielist">../TTKResource/_extras/resource/movielist</file>
         <file alias="fmlist">../TTKResource/_extras/resource/fmlist</file>
+        <file alias="skinlist">../TTKResource/_extras/resource/skinlist</file>
         <file alias="TTKRoutine.sh">../TTKResource/_extras/TTKRoutine.sh</file>
         <file alias="TTKRoutineCopy.sh">../TTKResource/_extras/TTKRoutineCopy.sh</file>
         <file alias="TTKConsole.sh">../TTKResource/_extras/TTKConsole.sh</file>

@@ -3,13 +3,11 @@
 #include "musicdownloadbingskinrequest.h"
 #include "musicdownloadthunderskinrequest.h"
 #include "musicdownloadbirdskinrequest.h"
+#include "musicresultscategorypopwidget.h"
 #include "musicextractmanager.h"
-#include "musicwidgetheaders.h"
-#include "musicwidgetutils.h"
 
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     : QWidget(parent),
-      m_tryTimes(3),
       m_currentIndex(-1),
       m_downloadRequest(nullptr)
 {
@@ -48,6 +46,7 @@ void MusicBackgroundRemoteWidget::downloadDataChanged(const QString &bytes)
 
     MusicBackgroundImage image;
     outputRemoteSkin(image, bytes);
+
     if(!image.isValid())
     {
         image.m_pix = QPixmap(":/image/lb_none_image");
@@ -56,19 +55,23 @@ void MusicBackgroundRemoteWidget::downloadDataChanged(const QString &bytes)
     m_backgroundList->updateItem(image, bytes);
 }
 
-void MusicBackgroundRemoteWidget::downloadFinished(const MusicSkinRemoteGroupList &bytes)
-{
-    m_groups = bytes;
-}
-
-void MusicBackgroundRemoteWidget::startToRequest(const QString &prefix)
+void MusicBackgroundRemoteWidget::startToRequest(MusicSkinRemoteGroup::Type type)
 {
     if(m_groups.isEmpty())
     {
         return;
     }
 
-    const QString &path = QString("%1%2").arg(CACHE_DIR_FULL, m_groups[m_currentIndex].m_group);
+    QString prefix;
+    switch(type)
+    {
+        case MusicSkinRemoteGroup::Bing: prefix = "Bing"; break;
+        case MusicSkinRemoteGroup::Thunder: prefix = "Thunder"; break;
+        case MusicSkinRemoteGroup::BirdPaper: prefix = "BirdPaper"; break;
+        default: break;
+    }
+
+    const QString &path = QString("%1%2/%3").arg(CACHE_DIR_FULL, prefix, m_groups[m_currentIndex].m_name);
     QDir().mkpath(path);
 
     m_backgroundList->clearItems();
@@ -79,7 +82,7 @@ void MusicBackgroundRemoteWidget::startToRequest(const QString &prefix)
         m_backgroundList->addCellItem(":/image/lb_none_image", false);
         MusicDownloadQueueData data;
         data.m_url = item.m_url;
-        data.m_path = QString("%1/%2%3").arg(path).arg(item.m_index).arg(prefix);
+        data.m_path = QString("%1/%2%3").arg(path).arg(item.m_index).arg(TKM_FILE);
         datas << data;
     }
 
@@ -90,7 +93,8 @@ void MusicBackgroundRemoteWidget::startToRequest(const QString &prefix)
 
 
 MusicBackgroundDailyWidget::MusicBackgroundDailyWidget(QWidget *parent)
-    : MusicBackgroundRemoteWidget(parent)
+    : MusicBackgroundRemoteWidget(parent),
+      m_tryTimes(3)
 {
     m_currentIndex = 0;
     m_backgroundList->setType(MusicBackgroundListWidget::DailyModule);
@@ -106,7 +110,7 @@ void MusicBackgroundDailyWidget::initialize()
     }
     else
     {
-        startToRequest(TKM_FILE);
+        startToRequest(MusicSkinRemoteGroup::Bing);
     }
 }
 
@@ -138,16 +142,16 @@ void MusicBackgroundDailyWidget::downloadFinished(const MusicSkinRemoteGroupList
         return;
     }
 
-    MusicBackgroundRemoteWidget::downloadFinished(bytes);
-    startToRequest(TKM_FILE);
+    m_groups = bytes;
+    startToRequest(MusicSkinRemoteGroup::Bing);
 }
 
 
 
 MusicBackgroundOnlineWidget::MusicBackgroundOnlineWidget(QWidget *parent)
     : MusicBackgroundRemoteWidget(parent),
-      m_typeBox(nullptr),
-      m_functionsWidget(nullptr)
+      m_functionsWidget(nullptr),
+      m_categoryButton(nullptr)
 {
     m_backgroundList->setType(MusicBackgroundListWidget::OnlineModule);
 }
@@ -155,24 +159,54 @@ MusicBackgroundOnlineWidget::MusicBackgroundOnlineWidget(QWidget *parent)
 MusicBackgroundOnlineWidget::~MusicBackgroundOnlineWidget()
 {
     delete m_functionsWidget;
+    qDeleteAll(m_downloadRequests);
 }
 
 void MusicBackgroundOnlineWidget::initialize()
 {
-    if(m_typeBox->count() != 0)
+    m_backgroundList->clearItems();
+
+    if(!m_downloadRequests.isEmpty())
     {
-        m_typeBox->setCurrentIndex(0);
+        return;
     }
 
-    if(!m_downloadRequest)
+    MusicAbstractDownloadSkinRequest *req = nullptr;
+
+    req = new MusicDownloadThunderSkinRequest(this);
+    connect(req, SIGNAL(downloadDataChanged(MusicSkinRemoteGroupList)), SLOT(downloadFinished(MusicSkinRemoteGroupList)));
+    m_downloadRequests << req;
+
+    req = new MusicDownloadBirdSkinRequest(this);
+    connect(req, SIGNAL(downloadDataChanged(MusicSkinRemoteGroupList)), SLOT(downloadFinished(MusicSkinRemoteGroupList)));
+    m_downloadRequests << req;
+
+    MusicResultsCategoryList categories;
+    MusicCategoryConfigManager manager(TTK_APP_NAME);
+    if(manager.fromFile(MusicCategoryConfigManager::Category::SkinList))
     {
-        m_downloadRequest = new MusicDownloadThunderSkinRequest(this);
-        connect(m_downloadRequest, SIGNAL(downloadDataChanged(MusicSkinRemoteGroupList)), SLOT(downloadFinished(MusicSkinRemoteGroupList)));
-        m_downloadRequest->startToRequest();
+        manager.readBuffer(categories);
     }
-    else
+
+    for(int i = 0; i < categories.count(); ++i)
     {
-        m_backgroundList->clearItems();
+        for(const MusicResultsCategoryItem &item : qAsConst(categories[i].m_items))
+        {
+            MusicSkinRemoteGroup group;
+            group.m_id = item.m_key;
+            group.m_name = item.m_value;
+
+            if(i == 0 /*MusicSkinRemoteGroup::Thunder*/)
+            {
+                group.m_type = MusicSkinRemoteGroup::Thunder;
+            }
+            else if(i == 1 /*MusicSkinRemoteGroup::BirdPaper*/)
+            {
+                group.m_type = MusicSkinRemoteGroup::BirdPaper;
+            }
+
+            m_groups << group;
+        }
     }
 }
 
@@ -191,16 +225,13 @@ QWidget* MusicBackgroundOnlineWidget::createFunctionsWidget(QWidget *container, 
 
     QHBoxLayout *hbox = new QHBoxLayout(m_functionsWidget);
     hbox->setContentsMargins(9, 0, 0, 9);
+
+    m_categoryButton = new MusicResultsCategoryPopWidget(MusicCategoryConfigManager::Category::SkinList, m_functionsWidget);
+    m_categoryButton->setCategory(TTK_APP_NAME, this);
+    hbox->addWidget(m_categoryButton);
     hbox->addStretch(1);
 
-    m_typeBox = new QComboBox(m_functionsWidget);
-    m_typeBox->setFixedSize(100, 20);
-    m_typeBox->addItem(tr("Select One"));
-    hbox->addWidget(m_typeBox);
-    TTK::Widget::generateComboBoxStyle(m_typeBox);
-
     m_functionsWidget->setLayout(hbox);
-    connect(m_typeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTypeChanged(int)));
     return m_functionsWidget;
 }
 
@@ -212,20 +243,60 @@ void MusicBackgroundOnlineWidget::outputRemoteSkin(MusicBackgroundImage &image, 
     }
 
     const int index = QFileInfo(data).baseName().toInt();
-    MusicSkinRemoteItemList &items = m_groups[m_currentIndex].m_items;
-    if(index >= 0 || index < items.count())
+    const MusicSkinRemoteGroup &group = m_groups[m_currentIndex];
+    const MusicSkinRemoteItemList &items = group.m_items;
+
+    if(index < 0 || index >= items.count())
     {
-        MusicSkinRemoteItem &item = items[index];
-        image.m_item.m_name = item.m_name;
-        image.m_item.m_useCount = item.m_useCount;
-        MusicExtractManager::outputThunderSkin(image.m_pix, data);
+        return;
+    }
+
+    const MusicSkinRemoteItem &item = items[index];
+    image.m_item.m_name = item.m_name;
+    image.m_item.m_useCount = item.m_useCount;
+
+    switch(group.m_type)
+    {
+        case MusicSkinRemoteGroup::Thunder:
+        {
+            MusicExtractManager::outputThunderSkin(image.m_pix, data);
+            break;
+        }
+        case MusicSkinRemoteGroup::BirdPaper:
+        {
+            image.m_pix = QPixmap(data);
+            break;
+        }
+        default: break;
     }
 }
 
-void MusicBackgroundOnlineWidget::currentTypeChanged(int index)
+void MusicBackgroundOnlineWidget::categoryChanged(const MusicResultsCategoryItem &category)
 {
-    index -= 1; // remove first index because it is tips
-    if(index < 0 || index >= m_groups.count())
+    if(!m_categoryButton)
+    {
+        return;
+    }
+
+    int index = -1;
+    MusicSkinRemoteGroup::Type type;
+    bool hasItems = false;
+
+    for(int i = 0; i < m_groups.count(); ++i)
+    {
+        const MusicSkinRemoteGroup &group = m_groups[i];
+        if(group.m_id == category.m_key && group.m_name == category.m_value)
+        {
+            index = i;
+            type = group.m_type;
+            hasItems = !group.m_items.isEmpty();
+            break;
+        }
+    }
+
+    m_categoryButton->closeMenu();
+
+    if(index == -1)
     {
         return;
     }
@@ -236,27 +307,69 @@ void MusicBackgroundOnlineWidget::currentTypeChanged(int index)
     }
 
     m_currentIndex = index;
-    startToRequest(TKM_FILE);
+
+    if(hasItems)
+    {
+        startToRequest(type);
+    }
+    else
+    {
+        switch(type)
+        {
+            case MusicSkinRemoteGroup::Thunder:
+            {
+                m_downloadRequests[0]->startToRequest();
+                break;
+            }
+            case MusicSkinRemoteGroup::BirdPaper:
+            {
+                m_downloadRequests[1]->startToRequest(category.m_key);
+                break;
+            }
+            default: break;
+        }
+    }
 }
+
 
 void MusicBackgroundOnlineWidget::downloadFinished(const MusicSkinRemoteGroupList &bytes)
 {
-    if(bytes.isEmpty() && m_tryTimes-- > 0)
+    if(bytes.isEmpty())
     {
-        TTK_INFO_STREAM("Retry to request online skin data");
-        m_downloadRequest->startToRequest();
         return;
     }
 
-    MusicBackgroundRemoteWidget::downloadFinished(bytes);
-    m_typeBox->blockSignals(true);
-
-    for(int i = 0; i < bytes.count(); ++i)
+    const MusicSkinRemoteGroup &first = bytes.first();
+    switch(first.m_type)
     {
-        QString title(m_groups[i].m_group);
-        m_typeBox->addItem(title.remove(SKIN_THUNDER_DIR));
-    }
+        case MusicSkinRemoteGroup::Thunder:
+        {
+            for(MusicSkinRemoteGroup &group : m_groups)
+            {
+                if(group.m_type != MusicSkinRemoteGroup::Thunder)
+                {
+                    continue;
+                }
 
-    m_typeBox->setCurrentIndex(0);
-    m_typeBox->blockSignals(false);
+                for(const MusicSkinRemoteGroup &byte : qAsConst(bytes))
+                {
+                    if(group.m_name == byte.m_name)
+                    {
+                        group.m_items = byte.m_items;
+                        break;
+                    }
+                }
+            }
+
+            startToRequest(MusicSkinRemoteGroup::Thunder);
+            break;
+        }
+        case MusicSkinRemoteGroup::BirdPaper:
+        {
+            m_groups[m_currentIndex] = first;
+            startToRequest(MusicSkinRemoteGroup::BirdPaper);
+            break;
+        }
+        default: break;
+    }
 }

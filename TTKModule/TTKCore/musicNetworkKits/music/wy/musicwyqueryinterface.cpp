@@ -4,7 +4,7 @@
 
 #include "qalgorithm/aeswrapper.h"
 
-static constexpr const char *WY_USER_URL = "resource/user";
+static constexpr const char *QUERY_USER_URL = "user";
 static constexpr const char *WY_UA_URL = "Vkloais0Z0Q4Smp1aElYSXFUVy96SXdoZ2VsTURzdDBpZEZjT21jMy9PRE1DMzdwQ0p5MllueTkrRGdzb2VkdlJMemJhWEFReHlUUk9uSEtMTHRLUzRxS3psczJiRW9LZ3BQbHh1Z3lGRlhEQk5JbVVGb1NDN1JzTDhZMjBybllLcndKSHlSNC94QzRJWXlL";
 static constexpr const char *WY_COOKIE_URL = "eU5NVy9LRm5jWE9pdUU1MzNQNi9OcjVUbi9vSGhYcGVaQWc0NjlPbCt1WnNDbDlONDg1SSthTi9JUDQ1YVpsRg==";
 static constexpr const char *WY_USER1_URL = "VzJpdUVPQ0xkZnp4VENJWjVIVFhQYzZKbnYrSU9pRTFmWXNkcXFaSWorRDRWMjJxUGdZaklZUDNzZXNweXJuczJMeGc2TVFRSEk4SkxCYkxXQ2FFUHpBbENUcjRZZ3RVNGpwRUloVkhVSWhSem50NTM3ZjFGMXdQVXFWN01mNE1GZUg2WFk3anl1Z1hxVkc0eXM3ZFZCVkpGNDZlNVA1MmhvYzZ6UT09";
@@ -34,7 +34,7 @@ void ReqWYInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
 {
     if(WY_USER_DATA()->isEmpty())
     {
-        QFile file(APPDATA_DIR_FULL + WY_USER_URL);
+        QFile file(RESOURCE_DIR_FULL + QUERY_USER_URL);
         if(file.open(QIODevice::ReadOnly))
         {
             *WY_USER_DATA() = QString::fromUtf8(file.readAll());

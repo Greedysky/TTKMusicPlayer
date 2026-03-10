@@ -3,7 +3,6 @@
 
 #include "qsync/qsyncutils.h"
 
-static constexpr const char *QUERY_RESOURCE_DIR = "resource";
 static constexpr const char *QUERY_RESOURCE_URL = "resource.json";
 
 MusicResourceRequest::MusicResourceRequest(QObject *parent)
@@ -31,12 +30,6 @@ void MusicResourceRequest::downloadFinished()
     MusicAbstractNetwork::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        const QDir dir(APPDATA_DIR_FULL);
-        if(!dir.exists(QUERY_RESOURCE_DIR))
-        {
-            dir.mkdir(QUERY_RESOURCE_DIR);
-        }
-
         QJsonParseError ok;
         const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
         if(QJsonParseError::NoError == ok.error)

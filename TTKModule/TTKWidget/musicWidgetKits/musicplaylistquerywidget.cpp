@@ -32,10 +32,10 @@ MusicPlaylistQueryWidget::~MusicPlaylistQueryWidget()
     delete m_pageQueryWidget;
 }
 
-void MusicPlaylistQueryWidget::setCurrentCategory(const MusicResultsCategoryItem &category)
+void MusicPlaylistQueryWidget::setCurrentCategory(const QString &id, const QString &value)
 {
-    MusicAbstractItemQueryWidget::setCurrentValue(category.m_value);
-    m_networkRequest->startToSearchByID(category.m_key);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
+    m_networkRequest->startToSearchByID(id);
 }
 
 void MusicPlaylistQueryWidget::setCurrentValue(const QString &value)
@@ -173,16 +173,18 @@ void MusicPlaylistQueryWidget::backToPlaylistMenu()
 
 void MusicPlaylistQueryWidget::categoryChanged(const MusicResultsCategoryItem &category)
 {
-    if(m_categoryButton)
+    if(!m_categoryButton)
     {
-        m_value.clear();
-        m_categoryChanged = true;
-        m_categoryButton->setText(category.m_value);
-        m_categoryButton->closeMenu();
-
-        removeItems(m_gridLayout);
-        m_networkRequest->startToSearchByID(category.m_key);
+        return;
     }
+
+    m_value.clear();
+    m_categoryChanged = true;
+    m_categoryButton->setText(category.m_value);
+    m_categoryButton->closeMenu();
+
+    removeItems(m_gridLayout);
+    m_networkRequest->startToSearchByID(category.m_key);
 }
 
 void MusicPlaylistQueryWidget::buttonClicked(int index)

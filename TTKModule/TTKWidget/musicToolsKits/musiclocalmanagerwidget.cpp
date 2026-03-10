@@ -392,7 +392,7 @@ void MusicLocalManagerWidget::refreshItems()
 
     m_loadingLabel->execute(true);
     const QStringList &files = TTK::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
-    m_sizeLabel->setText(tr("   (Songs Totol: %1)").arg(files.size()));
+    m_sizeLabel->setText(tr("   (Songs Totol: %1)").arg(files.count()));
 
     int count = 0;
     MusicSongMeta meta;
@@ -419,7 +419,7 @@ void MusicLocalManagerWidget::refreshItems()
         m_containerItems << info;
 
         qApp->processEvents();
-        m_loadingLabel->setValue(++count * 100.0f / files.size());
+        m_loadingLabel->setValue(++count * 100.0f / files.count());
     }
 
     m_songTableWidget->addCellItems(m_containerItems);

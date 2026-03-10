@@ -194,13 +194,15 @@ void MusicToplistQueryWidget::createToplistItem(const MusicResultDataItem &item)
 
 void MusicToplistQueryWidget::categoryChanged(const MusicResultsCategoryItem &category)
 {
-    if(m_categoryButton)
+    if(!m_categoryButton)
     {
-        m_categoryButton->setToolTip(category.m_value);
-        m_categoryButton->setText(TTK::Widget::elidedText(m_categoryButton->font(), category.m_value, Qt::ElideRight, m_categoryButton->width() - 20));
-        m_categoryButton->closeMenu();
-
-        m_songButton->setText(tr("SongItems"));
-        m_tableWidget->queryInput()->startToSearch(category.m_key);
+        return;
     }
+
+    m_categoryButton->setToolTip(category.m_value);
+    m_categoryButton->setText(TTK::Widget::elidedText(m_categoryButton->font(), category.m_value, Qt::ElideRight, m_categoryButton->width() - 20));
+    m_categoryButton->closeMenu();
+
+    m_songButton->setText(tr("SongItems"));
+    m_tableWidget->queryInput()->startToSearch(category.m_key);
 }

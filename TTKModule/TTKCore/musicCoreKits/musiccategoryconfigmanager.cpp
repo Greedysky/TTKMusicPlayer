@@ -17,6 +17,7 @@ bool MusicCategoryConfigManager::fromFile(Category type)
         case Category::TopList: v = RESOURCE_DIR_FULL + "toplist"; break;
         case Category::ArtistList: v = RESOURCE_DIR_FULL + "artistlist"; break;
         case Category::MovieList: v = RESOURCE_DIR_FULL + "movielist"; break;
+        case Category::SkinList: v = RESOURCE_DIR_FULL + "skinlist"; break;
         default: break;
     }
 

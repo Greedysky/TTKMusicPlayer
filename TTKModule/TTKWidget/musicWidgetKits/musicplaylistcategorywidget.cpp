@@ -247,22 +247,22 @@ void MusicPlaylistCategoryWidget::initialize()
     default: break;
     }
 
-    MusicResultsCategoryList categorys;
+    MusicResultsCategoryList categories;
     MusicCategoryConfigManager manager(server);
     if(manager.fromFile(MusicCategoryConfigManager::Category::PlayList))
     {
-        manager.readBuffer(categorys);
+        manager.readBuffer(categories);
     }
 
-    if(items.count() != categorys.count() - 1)
+    if(items.count() != categories.count() - 1)
     {
         TTK_ERROR_STREAM("Playlist tags is not the same from category");
         return;
     }
 
-    for(int i = 0; i < categorys.count() - 1; ++i)
+    for(int i = 0; i < categories.count() - 1; ++i)
     {
-        items[i].m_category = categorys[i + 1];
+        items[i].m_category = categories[i + 1];
 
         MusicPlaylistCategoryItem *item = new MusicPlaylistCategoryItem(&items[i], this);
         containLayout->addWidget(item);

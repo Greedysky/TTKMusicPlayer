@@ -333,7 +333,7 @@ void MusicQmmpPluginWidget::loadPluginsInfo()
 }
 
 
-static constexpr const char *QUERY_PLUGINS_URL = "resource/plugins";
+static constexpr const char *QUERY_PLUGINS_URL = "plugins";
 
 MusicServerPluginTableWidget::MusicServerPluginTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
@@ -357,7 +357,7 @@ MusicServerPluginTableWidget::MusicServerPluginTableWidget(QWidget *parent)
 void MusicServerPluginTableWidget::save() const
 {
     QByteArray bytes;
-    QFile file(APPDATA_DIR_FULL + QUERY_PLUGINS_URL);
+    QFile file(RESOURCE_DIR_FULL + QUERY_PLUGINS_URL);
     if(file.open(QIODevice::ReadOnly))
     {
         bytes = file.readAll();
@@ -432,7 +432,7 @@ void MusicServerPluginTableWidget::checkedItemsStatus(bool checked)
 void MusicServerPluginTableWidget::addCellItems()
 {
     QByteArray bytes;
-    QFile file(APPDATA_DIR_FULL + QUERY_PLUGINS_URL);
+    QFile file(RESOURCE_DIR_FULL + QUERY_PLUGINS_URL);
     if(file.open(QIODevice::ReadOnly))
     {
         bytes = file.readAll();

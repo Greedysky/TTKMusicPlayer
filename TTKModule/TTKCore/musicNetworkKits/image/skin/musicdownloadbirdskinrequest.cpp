@@ -47,7 +47,8 @@ void MusicDownloadBirdSkinRequest::downloadFinished(const QByteArray &bytes)
 
                 MusicSkinRemoteGroup group;
                 group.m_id = value["old_id"].toString();
-                group.m_group = QString("%1%2").arg(SKIN_BIRD_DIR, value["category"].toString());
+                group.m_name = value["category"].toString();
+                group.m_type = MusicSkinRemoteGroup::BirdPaper;
                 groups << group;
             }
         }
@@ -59,6 +60,7 @@ void MusicDownloadBirdSkinRequest::downloadFinished(const QByteArray &bytes)
 void MusicDownloadBirdSkinRequest::downloadItemsFinished(const QByteArray &bytes)
 {
     MusicSkinRemoteGroup group;
+    group.m_type = MusicSkinRemoteGroup::BirdPaper;
 
     QJsonParseError ok;
     const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
@@ -67,6 +69,7 @@ void MusicDownloadBirdSkinRequest::downloadItemsFinished(const QByteArray &bytes
         QVariantMap value = json.toVariant().toMap();
         if(value.contains("data"))
         {
+            int index = 0;
             value = value["data"].toMap();
 
             const QVariantList &datas = value["list"].toList();
@@ -81,13 +84,14 @@ void MusicDownloadBirdSkinRequest::downloadItemsFinished(const QByteArray &bytes
 
                 MusicSkinRemoteItem item;
                 item.m_name = value["tag"].toString();
-                item.m_index = value["id"].toInt();
-                item.m_useCount = item.m_index;
+                item.m_index = index++;
+                item.m_useCount = value["id"].toInt();
                 item.m_url = value["url"].toString();
 
                 if(group.m_id.isEmpty())
                 {
                     group.m_id = value["class_id"].toString();
+                    group.m_name = value["category"].toString();
                 }
 
                 if(item.isValid())
@@ -98,5 +102,5 @@ void MusicDownloadBirdSkinRequest::downloadItemsFinished(const QByteArray &bytes
         }
     }
 
-    Q_EMIT downloadItemsChanged(group);
+    Q_EMIT downloadDataChanged({group});
 }

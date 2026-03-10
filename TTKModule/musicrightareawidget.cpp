@@ -615,7 +615,7 @@ void MusicRightAreaWidget::showPlaylistCategoryFound(const QString &id, const QS
 {
     functionClicked(MusicRightAreaWidget::PlaylistInfoWidget);
     MusicPlaylistQueryWidget *w = TTKObjectCast(MusicPlaylistQueryWidget*, m_currentWidget);
-    w->setCurrentCategory({id, value});
+    w->setCurrentCategory(id, value);
 }
 
 void MusicRightAreaWidget::showMovieRadioFound(const QVariant &data)
