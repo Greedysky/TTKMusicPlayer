@@ -22,7 +22,8 @@
 #include <stdint.h>
 #include "qmmp_export.h"
 
-namespace VisualPalette {
+namespace VisualPalette
+{
 enum Palette
 {
     PALETTE_SPECTRUM,

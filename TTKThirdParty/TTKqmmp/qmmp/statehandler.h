@@ -27,7 +27,7 @@
 #else
 #  include <QRecursiveMutex>
 #endif
-#include "abstractengine.h"
+#include "trackinfo.h"
 #include "audioparameters.h"
 
 /*! @brief The StateHandler class allows one to track information about playback progress.

@@ -25,7 +25,6 @@
 #include <QThread>
 #include <QStringList>
 #include "enginefactory.h"
-#include "qmmpsettings.h"
 
 class QIODevice;
 class InputSource;

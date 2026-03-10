@@ -37,7 +37,7 @@ public:
 
 private:
     bool m_disabled = true;
-    int m_reorder_array[9] = { 0 };
+    int m_reorder_array[9] = {0};
     float *m_tmp_buf = nullptr;
     size_t m_tmp_size  = 0;
     ChannelMap m_out_map, m_in_map;

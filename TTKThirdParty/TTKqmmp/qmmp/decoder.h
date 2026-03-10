@@ -86,7 +86,7 @@ public:
      * By default this function does nothing.
      * Reimplemet it if your decoder can play next track without stop/start cycle.
      */
-    virtual const QString nextURL() const;
+    virtual QString nextURL() const;
     /*!
      * Returns detected audio parameters.
      */

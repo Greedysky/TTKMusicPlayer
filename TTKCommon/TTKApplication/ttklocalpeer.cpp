@@ -28,7 +28,8 @@ static PProcessIdToSessionId pProcessIdToSessionId = 0;
 #  include <unistd.h>
 #endif
 
-namespace TTKLockedPrivate {
+namespace TTKLockedPrivate
+{
 #include "ttklockedfile.cpp"
 #if defined(Q_OS_WIN)
 #  include "ttklockedfile_win.cpp"

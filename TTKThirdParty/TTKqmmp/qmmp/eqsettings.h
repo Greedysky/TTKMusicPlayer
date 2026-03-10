@@ -102,7 +102,7 @@ public:
     bool operator!=(const EqSettings &s) const;
 
 private:
-    double m_gains[31] = { 0 };
+    double m_gains[31] = {0};
     double m_preamp = 0;
     bool m_is_enabled = false;
     int m_bands = 0;
