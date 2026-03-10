@@ -179,7 +179,7 @@ int DecoderFFmpegM4b::bitrate() const
     return m_decoder->bitrate();
 }
 
-const QString DecoderFFmpegM4b::nextURL() const
+QString DecoderFFmpegM4b::nextURL() const
 {
     if(m_track + 1 <= m_chapters.count())
         return m_chapters[m_track].url;

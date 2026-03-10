@@ -264,7 +264,7 @@ qint64 DecoderWavPack::read(unsigned char *data, qint64 maxSize)
     return wavpack_decode(data, maxSize);
 }
 
-const QString DecoderWavPack::nextURL() const
+QString DecoderWavPack::nextURL() const
 {
     if(m_parser && m_track + 1 <= m_parser->count())
         return m_parser->url(m_track + 1);

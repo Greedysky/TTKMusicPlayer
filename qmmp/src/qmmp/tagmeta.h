@@ -48,10 +48,23 @@ public:
         DESCRIPTION  /*!< Description */
     };
 
+    /*!
+     * Object constructor.
+     */
     TagMeta() = default;
+    /*!
+     * Object constructor.
+     * @param file - meta file path.
+     */
     explicit TagMeta(const QString &file);
 
+    /*!
+     * Read meta info from file.
+     */
     bool read();
+    /*!
+     * Write meta info to file.
+     */
     bool write(Type tag, const QString &value, int id3v2Version);
 
 protected:

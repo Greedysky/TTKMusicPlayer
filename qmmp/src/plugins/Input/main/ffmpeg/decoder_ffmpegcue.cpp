@@ -157,7 +157,7 @@ int DecoderFFmpegCue::bitrate() const
     return m_decoder->bitrate();
 }
 
-const QString DecoderFFmpegCue::nextURL() const
+QString DecoderFFmpegCue::nextURL() const
 {
     if(m_track + 1 <= m_parser->count())
         return m_parser->url(m_track + 1);

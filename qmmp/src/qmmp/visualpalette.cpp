@@ -379,7 +379,8 @@ static uint32_t mono(double level)
 }
 
 
-namespace VisualPalette {
+namespace VisualPalette
+{
 uint32_t renderPalette(Palette palette, double level)
 {
     switch(palette)

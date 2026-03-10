@@ -41,7 +41,7 @@ public:
     virtual int bitrate() const override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
     virtual void seek(qint64 time) override final;
-    virtual const QString nextURL() const override final;
+    virtual QString nextURL() const override final;
     virtual void next() override final;
 
 private:

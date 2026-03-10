@@ -41,7 +41,7 @@ void Decoder::next()
 
 }
 
-const QString Decoder::nextURL() const
+QString Decoder::nextURL() const
 {
     return QString();
 }

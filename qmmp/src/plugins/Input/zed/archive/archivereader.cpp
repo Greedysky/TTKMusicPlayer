@@ -10,7 +10,8 @@
 
 #define ARCHIVE_PATH    (Qmmp::ttkPluginPath() + "/archive.tkx")
 
-namespace archive {
+namespace archive
+{
 static QString unpackPath()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);

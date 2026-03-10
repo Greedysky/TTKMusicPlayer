@@ -32,7 +32,6 @@ struct QMMP_EXPORT VolumeSettings
 {
     int left = 0;  /*!< Volume of the left channel. It should be \b 0..100. */
     int right = 0; /*!< Volume of the left channel It should be \b 0..100. */
-
 };
 
 inline bool operator==(const VolumeSettings &v1, const VolumeSettings &v2)

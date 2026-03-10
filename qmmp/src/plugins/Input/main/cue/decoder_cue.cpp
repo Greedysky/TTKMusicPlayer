@@ -139,7 +139,7 @@ int DecoderCUE::bitrate() const
     return m_decoder->bitrate();
 }
 
-const QString DecoderCUE::nextURL() const
+QString DecoderCUE::nextURL() const
 {
     if(m_track + 1 <= m_cueFile->count() && m_cueFile->dataFilePath(m_track) == m_cueFile->dataFilePath(m_track + 1))
         return m_cueFile->url(m_track + 1);

@@ -25,8 +25,8 @@
 #include "qmmp.h"
 
 /*! @brief This class represents audio channel mapping.
-+ * @author Ilya Kotov <forkotov02@ya.ru>
-+ */
+ * @author Ilya Kotov <forkotov02@ya.ru>
+ */
 class QMMP_EXPORT ChannelMap : public QList<Qmmp::ChannelPosition>
 {
 public:
