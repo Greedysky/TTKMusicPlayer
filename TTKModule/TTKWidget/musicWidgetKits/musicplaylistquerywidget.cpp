@@ -4,7 +4,7 @@
 #include "musicqueryplaylistrequest.h"
 #include "musicplaylistqueryinfowidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicplaylistquerycategorypopwidget.h"
+#include "musicresultscategorypopwidget.h"
 
 MusicPlaylistQueryWidget::MusicPlaylistQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent),
@@ -94,7 +94,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
         QHBoxLayout *containTopLayout = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(10, 0, 10, 0);
 
-        m_categoryButton = new MusicPlaylistFoundCategoryPopWidget(m_mainWidget);
+        m_categoryButton = new MusicResultsCategoryPopWidget(MusicCategoryConfigManager::Category::PlayList, m_mainWidget);
         m_categoryButton->setCategory(m_networkRequest->queryServer(), this);
         containTopLayout->addWidget(m_categoryButton);
         containTopLayout->addStretch(1);

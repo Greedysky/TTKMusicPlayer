@@ -1,5 +1,5 @@
 #include "musicartistlistquerywidget.h"
-#include "musicartistlistquerycategorypopwidget.h"
+#include "musicresultscategorypopwidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicpagequerywidget.h"
 #include "musicrightareawidget.h"
@@ -79,7 +79,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         QVBoxLayout *containTopLayout = new QVBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
 
-        m_categoryButton = new MusicArtistListQueryCategoryPopWidget(m_mainWidget);
+        m_categoryButton = new MusicResultsCategoryPopWidget(MusicCategoryConfigManager::Category::ArtistList, m_mainWidget);
         m_categoryButton->setCategory(m_networkRequest->queryServer(), this);
         containTopLayout->addWidget(m_categoryButton);
         //

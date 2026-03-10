@@ -23,7 +23,7 @@
 #include "musicabstractitemquerywidget.h"
 
 class MusicWebMVRadioInfoWidget;
-class MusicWebMVRadioQueryCategoryPopWidget;
+class MusicResultsCategoryPopWidget;
 
 /*! @brief The class of the music mv query widget.
  * @author Greedysky <greedysky@163.com>
@@ -72,7 +72,7 @@ private:
     bool m_initialized;
     QGridLayout *m_gridLayout;
     MusicWebMVRadioInfoWidget *m_infoWidget;
-    MusicWebMVRadioQueryCategoryPopWidget *m_categoryButton;
+    MusicResultsCategoryPopWidget *m_categoryButton;
 
 };
 

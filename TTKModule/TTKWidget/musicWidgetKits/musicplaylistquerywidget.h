@@ -24,7 +24,7 @@
 
 class MusicPageQueryWidget;
 class MusicPlaylistQueryInfoWidget;
-class MusicPlaylistFoundCategoryPopWidget;
+class MusicResultsCategoryPopWidget;
 
 /*! @brief The class of the playlist music query widget.
  * @author Greedysky <greedysky@163.com>
@@ -87,7 +87,7 @@ private:
     QGridLayout *m_gridLayout;
     MusicPageQueryWidget *m_pageQueryWidget;
     MusicPlaylistQueryInfoWidget *m_infoWidget;
-    MusicPlaylistFoundCategoryPopWidget *m_categoryButton;
+    MusicResultsCategoryPopWidget *m_categoryButton;
 
 };
 

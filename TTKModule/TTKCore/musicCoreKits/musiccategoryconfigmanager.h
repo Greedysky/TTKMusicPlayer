@@ -60,7 +60,7 @@ public:
     /*!
      * Object constructor.
      */
-    explicit MusicCategoryConfigManager(const QString &key);
+    explicit MusicCategoryConfigManager(const QString &server);
 
     /*!
      * Read datas from xml file by given name.
@@ -73,7 +73,7 @@ public:
     virtual bool readBuffer(MusicResultsCategoryList &items) override final;
 
 private:
-    QString m_type;
+    QString m_queryServer;
 
 };
 

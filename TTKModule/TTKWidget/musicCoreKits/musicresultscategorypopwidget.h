@@ -1,5 +1,5 @@
-#ifndef MUSICPLAYLISTQUERYCATEGORYPOPWIDGET_H
-#define MUSICPLAYLISTQUERYCATEGORYPOPWIDGET_H
+#ifndef MUSICRESULTSCATEGORYPOPWIDGET_H
+#define MUSICRESULTSCATEGORYPOPWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -22,22 +22,22 @@
 #include "musictoolmenuwidget.h"
 #include "musiccategoryconfigmanager.h"
 
-/*! @brief The class of the playlist music query category item.
+/*! @brief The class of the results category pop item.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPlaylistQueryCategoryItem : public QWidget
+class TTK_MODULE_EXPORT MusicResultsCategoryPopItem : public QWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicPlaylistQueryCategoryItem(QWidget *parent = nullptr);
+    explicit MusicResultsCategoryPopItem(QWidget *parent = nullptr);
 
     /*!
      * Set current category.
      */
-    void setCategory(const MusicResultsCategory &category);
+    void setCategory(MusicCategoryConfigManager::Category type, const MusicResultsCategory &category);
 
 Q_SIGNALS:
     /*!
@@ -58,17 +58,17 @@ private:
 
 
 
-/*! @brief The class of the playlist music found category pop widget.
+/*! @brief The class of the results category pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPlaylistFoundCategoryPopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicResultsCategoryPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicPlaylistFoundCategoryPopWidget(QWidget *parent = nullptr);
+    explicit MusicResultsCategoryPopWidget(MusicCategoryConfigManager::Category category, QWidget *parent = nullptr);
 
     /*!
      * Set current category by input server.
@@ -91,6 +91,9 @@ private:
      */
     void initialize();
 
+private:
+    MusicCategoryConfigManager::Category m_category;
+
 };
 
-#endif // MUSICPLAYLISTQUERYCATEGORYPOPWIDGET_H
+#endif // MUSICRESULTSCATEGORYPOPWIDGET_H

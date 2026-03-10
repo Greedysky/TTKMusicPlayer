@@ -34,7 +34,6 @@ HEADERS += \
     $$PWD/musicwebdjradioquerywidget.h \
     $$PWD/musicwebdjradioinfowidget.h \
     $$PWD/musicwebmvradioquerywidget.h \
-    $$PWD/musicwebmvradioquerycategorypopwidget.h \
     $$PWD/musicwebmvradioinfowidget.h \
     $$PWD/musicwebradioview.h \
     $$PWD/musiccloudsharedsongwidget.h \
@@ -60,7 +59,6 @@ SOURCES += \
     $$PWD/musicwebdjradioquerywidget.cpp \
     $$PWD/musicwebdjradioinfowidget.cpp \
     $$PWD/musicwebmvradioquerywidget.cpp \
-    $$PWD/musicwebmvradioquerycategorypopwidget.cpp \
     $$PWD/musicwebmvradioinfowidget.cpp \
     $$PWD/musicwebradioview.cpp \
     $$PWD/musiccloudsharedsongwidget.cpp \

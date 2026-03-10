@@ -57,6 +57,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_CORE_KITS_HEADER_FILES
   ${TTK_WIDGET_CORE_DIR}/musiccommentswidget.h
   ${TTK_WIDGET_CORE_DIR}/musicfunctiontoolboxwidget.h
   ${TTK_WIDGET_CORE_DIR}/musicsongitemselectedareawidget.h
+  ${TTK_WIDGET_CORE_DIR}/musicresultscategorypopwidget.h
   ${TTK_WIDGET_CORE_DIR}/musictimesliderwidget.h
   ${TTK_WIDGET_CORE_DIR}/musicpagequerywidget.h
   ${TTK_WIDGET_CORE_DIR}/musicinputdialog.h
@@ -103,6 +104,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_CORE_KITS_SOURCE_FILES
   ${TTK_WIDGET_CORE_DIR}/musiccommentswidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicfunctiontoolboxwidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicsongitemselectedareawidget.cpp
+  ${TTK_WIDGET_CORE_DIR}/musicresultscategorypopwidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musictimesliderwidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicpagequerywidget.cpp
   ${TTK_WIDGET_CORE_DIR}/musicinputdialog.cpp

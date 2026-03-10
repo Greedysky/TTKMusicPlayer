@@ -57,8 +57,8 @@ TTK_DECLARE_LIST(MusicSkinRemoteItem);
  */
 struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
 {
-    QString m_group;
     QString m_id;
+    QString m_group;
     MusicSkinRemoteItemList m_items;
 
     inline bool isValid() const noexcept

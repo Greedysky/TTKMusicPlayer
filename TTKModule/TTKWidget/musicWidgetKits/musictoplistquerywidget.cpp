@@ -1,7 +1,7 @@
 #include "musictoplistquerywidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musiccoverrequest.h"
-#include "musictoplistquerycategorypopwidget.h"
+#include "musicresultscategorypopwidget.h"
 
 MusicToplistQueryWidget::MusicToplistQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent),
@@ -82,7 +82,7 @@ void MusicToplistQueryWidget::createLabels()
     QWidget *categoryWidget = new QWidget(function);
     QHBoxLayout *categoryWidgetLayout = new QHBoxLayout(categoryWidget);
 
-    m_categoryButton = new MusicToplistQueryCategoryPopWidget(categoryWidget);
+    m_categoryButton = new MusicResultsCategoryPopWidget(MusicCategoryConfigManager::Category::TopList, categoryWidget);
     m_categoryButton->setCategory(m_tableWidget->queryInput()->queryServer(), this);
 
     categoryWidgetLayout->addWidget(m_categoryButton);

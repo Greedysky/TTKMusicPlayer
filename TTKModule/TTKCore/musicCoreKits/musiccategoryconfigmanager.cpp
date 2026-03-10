@@ -1,9 +1,9 @@
 #include "musiccategoryconfigmanager.h"
 #include "musicobject.h"
 
-MusicCategoryConfigManager::MusicCategoryConfigManager(const QString &key)
+MusicCategoryConfigManager::MusicCategoryConfigManager(const QString &server)
     : TTKAbstractXml(),
-      m_type(key)
+      m_queryServer(server)
 {
 
 }
@@ -25,7 +25,7 @@ bool MusicCategoryConfigManager::fromFile(Category type)
 
 bool MusicCategoryConfigManager::readBuffer(MusicResultsCategoryList &items)
 {
-    const QDomNodeList &nodes = m_document->elementsByTagName(m_type);
+    const QDomNodeList &nodes = m_document->elementsByTagName(m_queryServer);
     for(int i = 0; i < nodes.count(); ++i)
     {
         const QDomNodeList &tagNodes = nodes.item(i).childNodes();

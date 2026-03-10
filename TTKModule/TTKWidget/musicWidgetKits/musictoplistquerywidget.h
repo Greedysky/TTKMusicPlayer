@@ -22,7 +22,7 @@
 #include "musicabstractitemquerywidget.h"
 #include "musiccategoryconfigmanager.h"
 
-class MusicToplistQueryCategoryPopWidget;
+class MusicResultsCategoryPopWidget;
 
 /*! @brief The class of the toplist music query widget.
  * @author Greedysky <greedysky@163.com>
@@ -69,7 +69,7 @@ private:
      */
     void createLabels();
 
-    MusicToplistQueryCategoryPopWidget *m_categoryButton;
+    MusicResultsCategoryPopWidget *m_categoryButton;
 
 };
 

@@ -32,8 +32,6 @@
 #define MIN_ITEM_COUNT        4
 #define MAX_IMAGE_COUNT       10
 
-#define MUSIC_MOVIE_RADIO     QUERY_KG_INTERFACE
-
 #define MUSIC_PLAY_NOW        "play_now"
 #define MUSIC_PLAY_LATER      "play_later"
 

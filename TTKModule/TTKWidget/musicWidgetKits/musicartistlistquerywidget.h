@@ -23,7 +23,7 @@
 #include "musicabstractitemquerywidget.h"
 
 class MusicPageQueryWidget;
-class MusicArtistListQueryCategoryPopWidget;
+class MusicResultsCategoryPopWidget;
 
 /*! @brief The class of the artist list music query widget.
  * @author Greedysky <greedysky@163.com>
@@ -81,7 +81,7 @@ private:
     QString m_categoryId;
     QGridLayout *m_gridLayout;
     MusicPageQueryWidget *m_pageQueryWidget;
-    MusicArtistListQueryCategoryPopWidget *m_categoryButton;
+    MusicResultsCategoryPopWidget *m_categoryButton;
 
 };
 

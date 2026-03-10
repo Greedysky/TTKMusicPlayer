@@ -57,16 +57,13 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_HEADER_FILES
   ${TTK_WIDGET_DIR}/musicqualitywidget.h
   ${TTK_WIDGET_DIR}/musicplayedlistpopwidget.h
   ${TTK_WIDGET_DIR}/musicplaylistcategorywidget.h
-  ${TTK_WIDGET_DIR}/musicplaylistquerycategorypopwidget.h
   ${TTK_WIDGET_DIR}/musicplaylistquerycommentswidget.h
   ${TTK_WIDGET_DIR}/musicfuntionanimationwidget.h
   ${TTK_WIDGET_DIR}/musictoplistquerywidget.h
-  ${TTK_WIDGET_DIR}/musictoplistquerycategorypopwidget.h
   ${TTK_WIDGET_DIR}/musicdownloadbatchwidget.h
   ${TTK_WIDGET_DIR}/musicadvancedsearchedwidget.h
   ${TTK_WIDGET_DIR}/musicrecommendquerywidget.h
   ${TTK_WIDGET_DIR}/musicartistlistquerywidget.h
-  ${TTK_WIDGET_DIR}/musicartistlistquerycategorypopwidget.h
   ${TTK_WIDGET_DIR}/musicblurspecturmmodule.h
   ${TTK_WIDGET_DIR}/musicpluginwidget.h
   ${TTK_WIDGET_DIR}/musicfileassociationwidget.h
@@ -111,16 +108,13 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_SOURCE_FILES
   ${TTK_WIDGET_DIR}/musicqualitywidget.cpp
   ${TTK_WIDGET_DIR}/musicplayedlistpopwidget.cpp
   ${TTK_WIDGET_DIR}/musicplaylistcategorywidget.cpp
-  ${TTK_WIDGET_DIR}/musicplaylistquerycategorypopwidget.cpp
   ${TTK_WIDGET_DIR}/musicplaylistquerycommentswidget.cpp
   ${TTK_WIDGET_DIR}/musicfuntionanimationwidget.cpp
   ${TTK_WIDGET_DIR}/musictoplistquerywidget.cpp
-  ${TTK_WIDGET_DIR}/musictoplistquerycategorypopwidget.cpp
   ${TTK_WIDGET_DIR}/musicdownloadbatchwidget.cpp
   ${TTK_WIDGET_DIR}/musicadvancedsearchedwidget.cpp
   ${TTK_WIDGET_DIR}/musicrecommendquerywidget.cpp
   ${TTK_WIDGET_DIR}/musicartistlistquerywidget.cpp
-  ${TTK_WIDGET_DIR}/musicartistlistquerycategorypopwidget.cpp
   ${TTK_WIDGET_DIR}/musicblurspecturmmodule.cpp
   ${TTK_WIDGET_DIR}/musicpluginwidget.cpp
   ${TTK_WIDGET_DIR}/musicfileassociationwidget.cpp

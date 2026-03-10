@@ -1,26 +1,41 @@
-#include "musicwebmvradioquerycategorypopwidget.h"
+#include "musicresultscategorypopwidget.h"
 #include "musicwidgetutils.h"
 #include "musicwidgetheaders.h"
 #include "ttkclickedgroup.h"
 #include "ttkclickedlabel.h"
 
-static constexpr int ITEM_MAX_COLUMN = 2;
+struct Data
+{
+    QSize m_buttonSize;
+    QSize m_containerSize;
+    int m_column;
+    int m_nameSize;
+    int m_valueSize;
+};
+
+static Data CATEGORY_ITEMS[] = {
+    {{100, 30}, {600, 370}, 6, 50, 75},   // PlayList
+    {{200, 30}, {600, 370}, 2, 100, 200}, // TopList
+    {{100, 30}, {600, 370}, 2, 100, 200}, // ArtistList
+    {{150, 30}, {480, 220}, 2, 100, 200}  // MovieList
+};
 static constexpr int ITEM_LABEL_HEIGHT = 20;
 
-MusicWebMVRadioQueryCategoryItem::MusicWebMVRadioQueryCategoryItem(QWidget *parent)
+MusicResultsCategoryPopItem::MusicResultsCategoryPopItem(QWidget *parent)
     : QWidget(parent)
 {
     setStyleSheet({});
 }
 
-void MusicWebMVRadioQueryCategoryItem::setCategory(const MusicResultsCategory &category)
+void MusicResultsCategoryPopItem::setCategory(MusicCategoryConfigManager::Category type, const MusicResultsCategory &category)
 {
     m_category = category;
+    const Data &data = CATEGORY_ITEMS[TTKStaticCast(int, type)];
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     QLabel *label = new QLabel(category.m_category, this);
     label->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle03);
-    label->setFixedSize(100, ITEM_LABEL_HEIGHT);
+    label->setFixedSize(data.m_nameSize, ITEM_LABEL_HEIGHT);
     layout->addWidget(label, 0, Qt::AlignTop);
 
     QWidget *item = new QWidget(this);
@@ -30,14 +45,14 @@ void MusicWebMVRadioQueryCategoryItem::setCategory(const MusicResultsCategory &c
     TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-    for(int i = 0; i < m_category.m_items.count(); ++i)
+    for(int i = 0; i < category.m_items.count(); ++i)
     {
-        TTKClickedLabel *label = new TTKClickedLabel(m_category.m_items[i].m_value, item);
+        TTKClickedLabel *label = new TTKClickedLabel(category.m_items[i].m_value, item);
         label->setStyleSheet(QString("QLabel::hover{ %1 }").arg(TTK::UI::ColorStyle07));
-        label->setFixedSize(200, ITEM_LABEL_HEIGHT);
+        label->setFixedSize(data.m_valueSize, ITEM_LABEL_HEIGHT);
 
         clickedGroup->addWidget(label);
-        itemLayout->addWidget(label, i / ITEM_MAX_COLUMN, i % ITEM_MAX_COLUMN, Qt::AlignLeft);
+        itemLayout->addWidget(label, i / data.m_column, i % data.m_column, Qt::AlignLeft);
     }
 
     item->setLayout(itemLayout);
@@ -45,7 +60,7 @@ void MusicWebMVRadioQueryCategoryItem::setCategory(const MusicResultsCategory &c
     setLayout(layout);
 }
 
-void MusicWebMVRadioQueryCategoryItem::buttonClicked(int index)
+void MusicResultsCategoryPopItem::buttonClicked(int index)
 {
     if(0 <= index && index < m_category.m_items.count())
     {
@@ -54,17 +69,18 @@ void MusicWebMVRadioQueryCategoryItem::buttonClicked(int index)
 }
 
 
-MusicWebMVRadioQueryCategoryPopWidget::MusicWebMVRadioQueryCategoryPopWidget(QWidget *parent)
-    : MusicToolMenuWidget(parent)
+MusicResultsCategoryPopWidget::MusicResultsCategoryPopWidget(MusicCategoryConfigManager::Category category, QWidget *parent)
+    : MusicToolMenuWidget(parent),
+      m_category(category)
 {
     initialize();
 }
 
-void MusicWebMVRadioQueryCategoryPopWidget::setCategory(const QString &server, QObject *obj)
+void MusicResultsCategoryPopWidget::setCategory(const QString &server, QObject *obj)
 {
     MusicResultsCategoryList categorys;
     MusicCategoryConfigManager manager(server);
-    if(manager.fromFile(MusicCategoryConfigManager::Category::MovieList))
+    if(manager.fromFile(m_category))
     {
         manager.readBuffer(categorys);
     }
@@ -81,36 +97,44 @@ void MusicWebMVRadioQueryCategoryPopWidget::setCategory(const QString &server, Q
 
     for(const MusicResultsCategory &category : qAsConst(categorys))
     {
-        MusicWebMVRadioQueryCategoryItem *item = new MusicWebMVRadioQueryCategoryItem(this);
+        MusicResultsCategoryPopItem *item = new MusicResultsCategoryPopItem(this);
         connect(item, SIGNAL(categoryChanged(MusicResultsCategoryItem)), obj, SLOT(categoryChanged(MusicResultsCategoryItem)));
-        item->setCategory(category);
+        item->setCategory(m_category, category);
         containLayout->addWidget(item);
     }
     m_containWidget->setLayout(layout);
 }
 
-void MusicWebMVRadioQueryCategoryPopWidget::closeMenu()
+void MusicResultsCategoryPopWidget::closeMenu()
 {
     m_menu->close();
 }
 
-void MusicWebMVRadioQueryCategoryPopWidget::popupMenu()
+void MusicResultsCategoryPopWidget::popupMenu()
 {
     m_menu->exec(mapToGlobal(QPoint(0, 0)));
 }
 
-void MusicWebMVRadioQueryCategoryPopWidget::initialize()
+void MusicResultsCategoryPopWidget::initialize()
 {
-    setFixedSize(150, 30);
+    const Data &data = CATEGORY_ITEMS[TTKStaticCast(int, m_category)];
+
+    setFixedSize(data.m_buttonSize);
     setTranslucentBackground();
-    setText(tr("All"));
+
+    switch(m_category)
+    {
+        case MusicCategoryConfigManager::Category::TopList: setText(tr("Default")); break;
+        case MusicCategoryConfigManager::Category::MovieList: setText(tr("Hot")); break;
+        default: setText(tr("All")); break;
+    }
 
     const QString &style = TTK::UI::BorderStyle02 + TTK::UI::BackgroundStyle10;
-    setObjectName(MusicWebMVRadioQueryCategoryPopWidget::metaObject()->className());
+    setObjectName(MusicResultsCategoryPopWidget::metaObject()->className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), style));
 
     m_menu->setStyleSheet(TTK::UI::MenuStyle05);
-    m_containWidget->setFixedSize(480, 200);
+    m_containWidget->setFixedSize(data.m_containerSize);
     m_containWidget->setObjectName("ContainWidget");
     m_containWidget->setStyleSheet(QString("#%1{ %2 }").arg(m_containWidget->objectName(), style));
 }

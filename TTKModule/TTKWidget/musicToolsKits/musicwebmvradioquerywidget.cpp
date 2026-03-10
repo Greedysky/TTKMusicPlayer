@@ -1,5 +1,5 @@
 #include "musicwebmvradioquerywidget.h"
-#include "musicwebmvradioquerycategorypopwidget.h"
+#include "musicresultscategorypopwidget.h"
 #include "musicwebmvradioinfowidget.h"
 #include "musicmvradiocategoryrequest.h"
 #include "musicqueryitemwidget.h"
@@ -77,8 +77,8 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
         QHBoxLayout *containTopLayout = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(10, 10, 0, 0);
 
-        m_categoryButton = new MusicWebMVRadioQueryCategoryPopWidget(m_mainWidget);
-        m_categoryButton->setCategory(MUSIC_MOVIE_RADIO, this);
+        m_categoryButton = new MusicResultsCategoryPopWidget(MusicCategoryConfigManager::Category::MovieList, m_mainWidget);
+        m_categoryButton->setCategory(QUERY_KG_INTERFACE, this);
         containTopLayout->addWidget(m_categoryButton);
         containTopLayout->addStretch(1);
         containTopWidget->setLayout(containTopLayout);

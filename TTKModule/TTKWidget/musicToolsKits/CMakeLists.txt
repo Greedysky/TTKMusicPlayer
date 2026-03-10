@@ -34,7 +34,6 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_TOOLS_KITS_HEADER_FILES
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioquerywidget.h
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioinfowidget.h
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerywidget.h
-  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerycategorypopwidget.h
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioinfowidget.h
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.h
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.h
@@ -61,7 +60,6 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_TOOLS_KITS_SOURCE_FILES
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioquerywidget.cpp
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioinfowidget.cpp
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerywidget.cpp
-  ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerycategorypopwidget.cpp
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioinfowidget.cpp
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.cpp
   ${TTK_WIDGET_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.cpp

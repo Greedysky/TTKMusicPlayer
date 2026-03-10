@@ -57,16 +57,13 @@ HEADERS += \
     $$PWD/musicqualitywidget.h \
     $$PWD/musicplayedlistpopwidget.h \
     $$PWD/musicplaylistcategorywidget.h \
-    $$PWD/musicplaylistquerycategorypopwidget.h \
     $$PWD/musicplaylistquerycommentswidget.h \
     $$PWD/musicfuntionanimationwidget.h \
     $$PWD/musictoplistquerywidget.h \
-    $$PWD/musictoplistquerycategorypopwidget.h \
     $$PWD/musicdownloadbatchwidget.h \
     $$PWD/musicadvancedsearchedwidget.h \
     $$PWD/musicrecommendquerywidget.h \
     $$PWD/musicartistlistquerywidget.h \
-    $$PWD/musicartistlistquerycategorypopwidget.h \
     $$PWD/musicblurspecturmmodule.h \
     $$PWD/musicpluginwidget.h \
     $$PWD/musicfileassociationwidget.h
@@ -110,16 +107,13 @@ SOURCES += \
     $$PWD/musicqualitywidget.cpp \
     $$PWD/musicplayedlistpopwidget.cpp \
     $$PWD/musicplaylistcategorywidget.cpp \
-    $$PWD/musicplaylistquerycategorypopwidget.cpp \
     $$PWD/musicplaylistquerycommentswidget.cpp \
     $$PWD/musicfuntionanimationwidget.cpp \
     $$PWD/musictoplistquerywidget.cpp \
-    $$PWD/musictoplistquerycategorypopwidget.cpp \
     $$PWD/musicdownloadbatchwidget.cpp \
     $$PWD/musicadvancedsearchedwidget.cpp \
     $$PWD/musicrecommendquerywidget.cpp \
     $$PWD/musicartistlistquerywidget.cpp \
-    $$PWD/musicartistlistquerycategorypopwidget.cpp \
     $$PWD/musicblurspecturmmodule.cpp \
     $$PWD/musicpluginwidget.cpp \
     $$PWD/musicfileassociationwidget.cpp

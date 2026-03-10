@@ -257,7 +257,7 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
         data.m_url = prop.m_url;
         data.m_id = info.m_songId;
         data.m_cover = info.m_coverUrl;
-        data.m_server = MUSIC_MOVIE_RADIO;
+        data.m_server = QUERY_KG_INTERFACE;
         mediaUrlPathChanged(data);
     }
 }
