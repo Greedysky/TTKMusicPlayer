@@ -1,7 +1,7 @@
 #include "musicbpdownloadimagerequest.h"
 #include "musicdownloaddatarequest.h"
 
-static constexpr const char *ART_BACKGROUND_URL = "L2tVRE5IY2RSOVcyNysvc3RBNVNjS3pmUlNwNjlOTW8xYmlnT2sxNVJUc0VTQk1CTGtoL2Z3SG1nbDNiOWRaR1dPL1BxQ3ZOSmVUdG91TEZaUVJhNjVyb2Znd2xBYWtYYTV6bURubXFqdFFIV293cg==";
+static constexpr const char *ART_BACKGROUND_URL = "YW5BZ0xna3l5TXpiaFgyb3FqOTduMk1QK1E5WnQvMHBWMnlEZUk2L1BMcDRXMnZNUWZMNWQyQU5CNStXOVJic0FQMzlZQk8yc09PS1hEQzZ0RnZmcUJHdUhIRnZaWWZz";
 
 MusicBPDownloadBackgroundRequest::MusicBPDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
     : MusicAbstractDownloadImageRequest(name, path, parent)
@@ -53,7 +53,9 @@ void MusicBPDownloadBackgroundRequest::downloadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     const QString &name = value["tag"].toString();
-                    if(m_counter < m_remainCount && !name.isEmpty() && (name.contains(m_name) || m_name.contains(name)))
+                    const QString &id = value["class_id"].toString();
+
+                    if(m_counter < m_remainCount && !name.isEmpty() && id == "11" && (name.contains(m_name) || m_name.contains(name)))
                     {
                         const QString &url = value["url"].toString();
                         if(url.isEmpty())

@@ -2,7 +2,7 @@
 #include "musicdatasourcerequest.h"
 
 static constexpr const char *MAIN_URL = "Q1VDQlUvWGpxVXBjclBxZHR2MUpGaWZoeUJpUlZYRDBsYkwyV3VyRzNIY1hpWnQweTFLNWNpaCtoenp5SkR6Sg==";
-static constexpr const char *QUERY_URL = "MlVINmI0aGlvRXpvQVcwSklUUDRyVFVFdUExT0Rib3VuZlQ5QThRWTNyQUl4RkdlYmJLTmdrb2hVN21JZ2RZRHNYV1d3b09pcWRMcmM3d09SWWdIUlVwQ2NjSHhiSVg5V2R5ZmgyaEMyMVk9";
+static constexpr const char *QUERY_URL = "QmpGK1IwRDg4UFNQZGdza3FMSndaSG9XM2VBYm9NTGtydjNmMlcvMkx2OGlySVFHMGsvWEVHU1d3MklHNTFUa0NPOWRacFF5dG44NW5Uc1lVb2VUajRXTGwvS1VOb25iLytVT2hGUWhhbWc9";
 
 MusicDownloadBirdSkinRequest::MusicDownloadBirdSkinRequest(QObject *parent)
     : MusicAbstractDownloadSkinRequest(parent)
