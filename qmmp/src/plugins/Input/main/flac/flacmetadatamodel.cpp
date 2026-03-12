@@ -13,36 +13,39 @@ FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
     {
         m_stream = new TagLib::FileStream(QStringToFileName(m_path), readOnly);
 #if TAGLIB_MAJOR_VERSION >= 2
-        TagLib::FLAC::File *f = new TagLib::FLAC::File(&stream);
+        m_nativeFlacFile = new TagLib::FLAC::File(m_stream);
 #else
-        TagLib::FLAC::File *f = new TagLib::FLAC::File(m_stream, TagLib::ID3v2::FrameFactory::instance());
+        m_nativeFlacFile = new TagLib::FLAC::File(m_stream, TagLib::ID3v2::FrameFactory::instance());
 #endif
-        m_tag = f->xiphComment();
-        m_file = f;
-        setDialogHints(dialogHints() | MetaDataModel::IsCueEditable);
+        m_tag = m_nativeFlacFile->xiphComment();
+
+        if(m_nativeFlacFile->isValid())
+        {
+            m_tags << new VorbisCommentModel(m_nativeFlacFile);
+            setDialogHints(dialogHints() | MetaDataModel::IsCueEditable);
+            setReadOnly(m_nativeFlacFile->readOnly());
+        }
     }
     else if(m_path.endsWith(".oga", Qt::CaseInsensitive))
     {
         m_stream = new TagLib::FileStream(QStringToFileName(m_path), readOnly);
-        TagLib::Ogg::FLAC::File *f = new TagLib::Ogg::FLAC::File(m_stream);
-        m_tag = f->tag();
-        m_file = f;
-    }
+        m_oggFlacFile = new TagLib::Ogg::FLAC::File(m_stream);
+        m_tag = m_oggFlacFile->tag();
 
-    if(m_file)
-        setReadOnly(m_file->readOnly());
-
-    if(m_file && m_file->isValid() && !path.startsWith("flac://"))
-    {
-        m_tags << new VorbisCommentModel(m_tag, m_file);
+        if(m_oggFlacFile->isValid())
+        {
+            m_tags << new VorbisCommentModel(m_oggFlacFile);
+            setDialogHints(dialogHints() | MetaDataModel::IsCueEditable);
+            setReadOnly(m_oggFlacFile->readOnly());
+        }
     }
 }
 
 FLACMetaDataModel::~FLACMetaDataModel()
 {
     qDeleteAll(m_tags);
-    delete m_file;
-    m_file = nullptr;
+    delete m_nativeFlacFile;
+    delete m_oggFlacFile;
     delete m_stream;
 }
 
@@ -53,14 +56,13 @@ QList<TagModel*> FLACMetaDataModel::tags() const
 
 QImage FLACMetaDataModel::cover() const
 {
-    TagLib::FLAC::File *flacFile = dynamic_cast<TagLib::FLAC::File*>(m_file);
     TagLib::List<TagLib::FLAC::Picture *> list;
 
-    if(flacFile)
+    if(m_nativeFlacFile)
     {
-        list = flacFile->pictureList(); //native flac
+        list = m_nativeFlacFile->pictureList(); //native flac
     }
-    else if(m_tag && !m_tag->isEmpty())
+    else if(m_tag)
     {
         list = m_tag->pictureList(); //ogg flac
     }
@@ -86,7 +88,6 @@ void FLACMetaDataModel::setCover(const QImage &img)
 {
     removeCover();
 
-    TagLib::FLAC::File *flacFile = dynamic_cast<TagLib::FLAC::File*>(m_file);
     TagLib::FLAC::Picture *picture = new TagLib::FLAC::Picture();
     picture->setType(TagLib::FLAC::Picture::FrontCover);
 
@@ -100,37 +101,41 @@ void FLACMetaDataModel::setCover(const QImage &img)
     picture->setDescription("TTK");
     picture->setData(TagLib::ByteVector(data.constData(), data.size()));
 
-    if(flacFile)
+    if(m_nativeFlacFile)
     {
-        flacFile->addPicture(picture);
-        flacFile->save();
+        m_nativeFlacFile->addPicture(picture);
+        m_nativeFlacFile->save();
     }
-    else if(m_tag && m_file)
+    else if(m_oggFlacFile && m_tag)
     {
         m_tag->addPicture(picture);
-        m_file->save();
+        m_oggFlacFile->save();
     }
 }
 
 void FLACMetaDataModel::removeCover()
 {
-    TagLib::FLAC::File *flacFile = dynamic_cast<TagLib::FLAC::File*>(m_file);
-    bool save = false;
-
-    if(flacFile)
+    if(m_nativeFlacFile)
     {
-        const TagLib::List<TagLib::FLAC::Picture *> list = flacFile->pictureList(); //native flac
+        bool save = false;
+        const TagLib::List<TagLib::FLAC::Picture *> list = m_nativeFlacFile->pictureList(); //native flac
         for(TagLib::FLAC::Picture *p : qAsConst(list))
         {
             if(p->type() == TagLib::FLAC::Picture::FrontCover)
             {
-                flacFile->removePicture(p, false);
+                m_nativeFlacFile->removePicture(p, false);
                 save = true;
             }
         }
+
+        if(save)
+        {
+            m_nativeFlacFile->save();
+        }
     }
-    else if(m_tag && !m_tag->isEmpty())
+    else if(m_oggFlacFile && m_tag && !m_tag->isEmpty())
     {
+        bool save = false;
         const TagLib::List<TagLib::FLAC::Picture *> list = m_tag->pictureList(); //ogg flac
         for(TagLib::FLAC::Picture *p : qAsConst(list))
         {
@@ -140,34 +145,59 @@ void FLACMetaDataModel::removeCover()
                 save = true;
             }
         }
-    }
 
-    if(save)
-    {
-        m_file->save();
+        if(save)
+        {
+            m_oggFlacFile->save();
+        }
     }
 }
 
 QString FLACMetaDataModel::cue() const
 {
-    if(m_tag->fieldListMap().contains("CUESHEET"))
+    if(m_tag && m_tag->fieldListMap().contains("CUESHEET"))
     {
         return QString::fromUtf8(m_tag->fieldListMap()["CUESHEET"].toString().toCString(true));
     }
-
     return QString();
 }
 
 void FLACMetaDataModel::setCue(const QString &content)
 {
-    m_tag->addField("CUESHEET", QStringToTString(content), true);
-    m_file->save();
+    if(!m_tag && m_nativeFlacFile)
+    {
+        m_tag = m_nativeFlacFile->xiphComment(true);
+    }
+
+    if(m_tag)
+    {
+        m_tag->addField("CUESHEET", QStringToTString(content), true);
+    }
+
+    if(m_nativeFlacFile)
+    {
+        m_nativeFlacFile->save();
+    }
+    else if(m_oggFlacFile)
+    {
+        m_oggFlacFile->save();
+    }
 }
 
 void FLACMetaDataModel::removeCue()
 {
-    m_tag->removeFields("CUESHEET");
-    m_file->save();
+    if(m_tag)
+    {
+        m_tag->removeFields("CUESHEET");
+        if(m_nativeFlacFile)
+        {
+            m_nativeFlacFile->save();
+        }
+        else if(m_oggFlacFile)
+        {
+            m_oggFlacFile->save();
+        }
+    }
 }
 
 QString FLACMetaDataModel::lyrics() const
@@ -185,10 +215,18 @@ QString FLACMetaDataModel::lyrics() const
 }
 
 
-VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::XiphComment *tag, TagLib::File *file)
+VorbisCommentModel::VorbisCommentModel(TagLib::FLAC::File *file)
     : TagModel(TagModel::Save),
-      m_file(file),
-      m_tag(tag)
+      m_nativeFlacFile(file),
+      m_tag(file->xiphComment())
+{
+
+}
+
+VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::FLAC::File *file)
+    : TagModel(TagModel::Save),
+      m_oggFlacFile(file),
+      m_tag(file->tag())
 {
 
 }
@@ -201,7 +239,10 @@ QString VorbisCommentModel::name() const
 QString VorbisCommentModel::value(Qmmp::MetaData key) const
 {
     if(!m_tag)
+    {
         return QString();
+    }
+
     switch((int) key)
     {
     case Qmmp::TITLE:
@@ -239,8 +280,15 @@ QString VorbisCommentModel::value(Qmmp::MetaData key) const
 
 void VorbisCommentModel::setValue(Qmmp::MetaData key, const QString &value)
 {
+    if(!m_tag && m_nativeFlacFile)
+    {
+        m_tag = m_nativeFlacFile->xiphComment(true);
+    }
+
     if(!m_tag)
+    {
         return;
+    }
 
     TagLib::String str = QStringToTString(value);
 
@@ -282,6 +330,12 @@ void VorbisCommentModel::setValue(Qmmp::MetaData key, const QString &value)
 
 void VorbisCommentModel::save()
 {
-    if(m_file)
-        m_file->save();
+    if(m_nativeFlacFile)
+    {
+         m_nativeFlacFile->save();
+    }
+    else if(m_oggFlacFile)
+    {
+         m_oggFlacFile->save();
+    }
 }

@@ -3,8 +3,8 @@
 #include <taglib/attachedpictureframe.h>
 #include <taglib/textidentificationframe.h>
 
-SndFileMetaDataModel::SndFileMetaDataModel(const QString &path, bool readOnly) :
-    MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
+SndFileMetaDataModel::SndFileMetaDataModel(const QString &path, bool readOnly)
+    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
 {
     m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
 
