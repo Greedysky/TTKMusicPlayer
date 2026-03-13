@@ -20,6 +20,7 @@ void MusicWYDownloadTextRequest::startToRequest()
 
     QNetworkRequest request;
     request.setUrl(m_url);
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 

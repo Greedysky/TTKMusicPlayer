@@ -79,8 +79,7 @@ void MusicKWDownloadCoverRequest::startToRequest()
 
     QNetworkRequest request;
     request.setUrl(m_url);
-    TTK::setSslConfiguration(&request);
-    TTK::setContentTypeHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));

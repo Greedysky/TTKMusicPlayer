@@ -69,6 +69,7 @@ void MusicACRIdentifyRequest::startToRequest(const QString &path, const QVariant
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(ACR_QUERY_URL, false));
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request, contentType.toUtf8());
 
@@ -159,6 +160,7 @@ void MusicXFIdentifyRequest::startToRequest(const QString &path, const QVariantM
     request.setRawHeader("X-Param", audioBody);
     request.setRawHeader("X-Appid", accessKey.toUtf8());
     request.setRawHeader("X-CheckSum", md5);
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 

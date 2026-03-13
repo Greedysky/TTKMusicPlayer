@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include "ttkabstractxml.h"
 #include "musicabstractdownloadskinrequest.h"
 
 /*! @brief The class of the thunder skin XML config manager.
@@ -35,7 +36,7 @@ public:
     /*!
      * Read datas from buffer.
      */
-    virtual bool readBuffer(MusicSkinRemoteGroupList &items) override final;
+    virtual bool readBuffer(MusicSkinRemoteGroupList &groups) override final;
 
 };
 
@@ -61,7 +62,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downloadFinished(const QByteArray &bytes) override final;
+    virtual void downloadFinished() override final;
 
 };
 

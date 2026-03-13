@@ -22,6 +22,7 @@ void MusicBingTranslationRequest::startToRequest(const QString &data)
     {
         QNetworkRequest request;
         request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false));
+        TTK::setUserAgentHeader(&request);
         TTK::setSslConfiguration(&request);
         TTK::setContentTypeHeader(&request);
 
@@ -63,9 +64,9 @@ void MusicBingTranslationRequest::startToRequest(const QString &data)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(TRANSLATION_URL, false).arg(ig));
+    TTK::setUserAgentHeader(&request, TTK::Algorithm::mdII(UA_URL, false).toUtf8());
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
-    TTK::setUserAgentHeader(&request, TTK::Algorithm::mdII(UA_URL, false).toUtf8());
 
     auto v = TTK::Algorithm::mdII(PARAM_URL, false).arg(key, token, mapToString(Language::Auto), mapToString(Language::Chinese), data).toUtf8();
     m_reply = m_manager.post(request, TTK::Url::urlPrettyEncode(v));

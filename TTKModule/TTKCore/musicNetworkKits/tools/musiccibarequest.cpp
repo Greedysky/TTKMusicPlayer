@@ -13,6 +13,7 @@ void MusicCiBaRequest::startToRequest()
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false).arg(QDate::currentDate().toString(TTK_DATE_FORMAT)));
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 

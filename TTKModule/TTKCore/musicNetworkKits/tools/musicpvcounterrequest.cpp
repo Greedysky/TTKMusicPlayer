@@ -25,6 +25,7 @@ void MusicPVCounterRequest::startToRequest()
         TTK_INFO_STREAM("PV counter using network resource config");
         QNetworkRequest request;
         request.setUrl(QSyncUtils::makeDataBucketUrl() + RESOURCE_DIR + QUERY_COUNTER_URL);
+        TTK::setUserAgentHeader(&request);
         bytes = TTK::syncNetworkQueryForGet(&request);
     }
 
@@ -37,6 +38,7 @@ void MusicPVCounterRequest::startToRequest()
 
     QNetworkRequest request;
     request.setUrl(QString::fromUtf8(bytes));
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 

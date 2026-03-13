@@ -1,21 +1,26 @@
 #include "musicsourceupdaterequest.h"
-#include "musicdatasourcerequest.h"
 
 #include "qsync/qsyncutils.h"
 
 static constexpr const char *QUERY_VERSION_URL = "version";
 
 MusicSourceUpdateRequest::MusicSourceUpdateRequest(QObject *parent)
-    : QObject(parent)
+    : MusicAbstractNetwork(parent)
 {
 
 }
 
 void MusicSourceUpdateRequest::startToRequest()
 {
-    MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
-    req->startToRequest(QSyncUtils::makeDataBucketUrl() + QUERY_VERSION_URL);
+    QNetworkRequest request;
+    request.setUrl(QSyncUtils::makeDataBucketUrl() + QUERY_VERSION_URL);
+    TTK::setUserAgentHeader(&request);
+    TTK::setSslConfiguration(&request);
+    TTK::setContentTypeHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 QString MusicSourceUpdateRequest::version() const noexcept
@@ -41,22 +46,21 @@ bool MusicSourceUpdateRequest::isLastedVersion() const noexcept
     }
 }
 
-void MusicSourceUpdateRequest::downloadFinished(const QByteArray &bytes)
+void MusicSourceUpdateRequest::downloadFinished()
 {
-    if(bytes.isEmpty())
-    {
-        TTK_ERROR_STREAM("Input json data buffer byte is empty");
-    }
-    else
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
+
+    MusicAbstractNetwork::downloadFinished();
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
-        const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
-        if(QJsonParseError::NoError != ok.error)
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
+        if(QJsonParseError::NoError == ok.error)
         {
-            return;
+            m_rawData = json.toVariant().toMap();
         }
-
-        m_rawData = json.toVariant().toMap();
-        Q_EMIT downloadDataChanged({});
     }
+
+    Q_EMIT downloadDataChanged({});
+    deleteAll();
 }

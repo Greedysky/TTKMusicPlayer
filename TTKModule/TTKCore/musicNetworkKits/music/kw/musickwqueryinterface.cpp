@@ -12,8 +12,8 @@ static constexpr const char *KW_ARTIST_COVER_URL = "YW4xU3FFQnprWG11R0J5QjVGREFH
 
 void ReqKWInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
 {
-    TTK::setSslConfiguration(request);
     TTK::setUserAgentHeader(request);
+    TTK::setSslConfiguration(request);
     TTK::setContentTypeHeader(request);
 }
 

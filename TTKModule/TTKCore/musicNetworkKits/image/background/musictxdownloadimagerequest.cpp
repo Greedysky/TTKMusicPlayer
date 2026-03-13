@@ -37,6 +37,7 @@ void MusicTXDownloadBackgroundRequest::startToRequest()
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(TX_SEARCH_URL, false));
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 
@@ -137,6 +138,7 @@ void MusicTXDownloadBackgroundRequest::downloadUrl(const QString &id)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(id));
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 

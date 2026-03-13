@@ -51,8 +51,7 @@ QByteArray QAlgorithm::Aes::decryptECB(const QByteArray &in, const QByteArray &k
                         AES_DECRYPT);
     }
 
-    const char padding = result.at(result.size() - 1);
-    return result.left(result.size() - padding);
+    return result;
 }
 
 QByteArray QAlgorithm::Aes::encryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv, bool hex)
@@ -92,8 +91,5 @@ QByteArray QAlgorithm::Aes::decryptCBC(const QByteArray &in, const QByteArray &k
     const QByteArray &input = hex ? QByteArray::fromHex(in) : QByteArray::fromBase64(in);
 
     AES_cbc_encrypt((const unsigned char *)input.data(), (unsigned char *)buffer, input.length(), &aes, (unsigned char *)iv.data(), AES_DECRYPT);
-
-    QByteArray result(buffer);
-    const char padding = result.at(result.size() - 1);
-    return result.left(result.size() - padding);
+    return buffer;
 }

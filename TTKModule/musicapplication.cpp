@@ -23,8 +23,6 @@
 #include "musicinputdialog.h"
 #include "ttkversion.h"
 
-#include "qalgorithm/aeswrapper.h"
-
 MusicApplication *MusicApplication::m_instance = nullptr;
 
 MusicApplication::MusicApplication(QWidget *parent)

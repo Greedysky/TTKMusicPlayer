@@ -19,14 +19,13 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QVariantMap>
 #include "ttkversion.h"
-#include "musicglobaldefine.h"
+#include "musicabstractnetwork.h"
 
 /*! @brief The class of the source data query update request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSourceUpdateRequest : public QObject
+class TTK_MODULE_EXPORT MusicSourceUpdateRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
 public:
@@ -54,20 +53,11 @@ public:
      */
     bool isLastedVersion() const noexcept;
 
-Q_SIGNALS:
-    /*!
-     * Send download data from net.
-     */
-    void downloadDataChanged(const QString &bytes);
-
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downloadFinished(const QByteArray &bytes);
-
-private:
-    QVariantMap m_rawData;
+    virtual void downloadFinished() override final;
 
 };
 

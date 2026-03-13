@@ -16,8 +16,8 @@ void MusicDataSourceRequest::startToRequest(const QString &url)
 {
     QNetworkRequest request;
     request.setUrl(url);
-    TTK::setSslConfiguration(&request);
     TTK::setUserAgentHeader(&request);
+    TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);

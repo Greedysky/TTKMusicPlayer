@@ -15,6 +15,7 @@ void ReqKGInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
     request->setRawHeader("User-Agent", TTK::Algorithm::mdII(KG_UA_URL, MDII_UA_KEY, false).toUtf8());
     request->setRawHeader("Cookie", TTK::Algorithm::mdII(KG_COOKIE_URL, false).toUtf8());
 
+    TTK::setUserAgentHeader(request);
     TTK::setSslConfiguration(request);
     TTK::setContentTypeHeader(request);
 }

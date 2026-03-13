@@ -46,8 +46,9 @@ HEADERS += \
     $$PWD/image/background/musictxdownloadimagerequest.h \
     $$PWD/image/skin/musicabstractdownloadskinrequest.h \
     $$PWD/image/skin/musicdownloadbingskinrequest.h \
-    $$PWD/image/skin/musicdownloadbirdskinrequest.h \
+    $$PWD/image/skin/musicdownloadbirdpaperskinrequest.h \
     $$PWD/image/skin/musicdownloadthunderskinrequest.h \
+    $$PWD/image/skin/musicdownloadtimelineskinrequest.h \
     $$PWD/music/core/musiccommentsrequest.h \
     $$PWD/music/core/musiccoverrequest.h \
     $$PWD/music/core/musicdiscoverlistrequest.h \
@@ -144,8 +145,9 @@ SOURCES += \
     $$PWD/image/background/musictxdownloadimagerequest.cpp \
     $$PWD/image/skin/musicabstractdownloadskinrequest.cpp \
     $$PWD/image/skin/musicdownloadbingskinrequest.cpp \
-    $$PWD/image/skin/musicdownloadbirdskinrequest.cpp \
+    $$PWD/image/skin/musicdownloadbirdpaperskinrequest.cpp \
     $$PWD/image/skin/musicdownloadthunderskinrequest.cpp \
+    $$PWD/image/skin/musicdownloadtimelineskinrequest.cpp \
     $$PWD/music/core/musiccommentsrequest.cpp \
     $$PWD/music/core/musiccoverrequest.cpp \
     $$PWD/music/core/musicdiscoverlistrequest.cpp \

@@ -1,5 +1,5 @@
-#ifndef MUSICNETWORKOPERATOR_H
-#define MUSICNETWORKOPERATOR_H
+#ifndef MUSICDOWNLOADBIRDPAPERSKINREQUEST_H
+#define MUSICDOWNLOADBIRDPAPERSKINREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,31 +19,39 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractnetwork.h"
+#include "musicabstractdownloadskinrequest.h"
 
-/*! @brief The class of the music network operator.
+/*! @brief The class of the download birdpaper skin background.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicNetworkOperator : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicDownloadBirdPaperSkinRequest : public MusicAbstractDownloadSkinRequest
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicNetworkOperator(QObject *parent = nullptr);
+    explicit MusicDownloadBirdPaperSkinRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download operator data.
+     * Start to download skin data.
      */
-    void startToRequest();
+    virtual void startToRequest() override final;
+    /*!
+     * Start to download skin data.
+     */
+    virtual void startToRequest(const QString &id) override final;
 
-private Q_SLOTS:
+public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
     virtual void downloadFinished() override final;
+    /*!
+     * Download data from net finished.
+     */
+    void downloadItemsFinished();
 
 };
 
-#endif // MUSICNETWORKOPERATOR_H
+#endif // MUSICDOWNLOADBIRDPAPERSKINREQUEST_H

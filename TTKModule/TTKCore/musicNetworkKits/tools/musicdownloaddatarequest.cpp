@@ -36,6 +36,7 @@ void MusicDownloadDataRequest::startToRequest(const QString &url)
 
     QNetworkRequest request;
     request.setUrl(url);
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 

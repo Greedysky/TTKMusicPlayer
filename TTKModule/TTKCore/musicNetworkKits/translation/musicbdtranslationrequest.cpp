@@ -16,6 +16,7 @@ void MusicBDTranslationRequest::startToRequest(const QString &data)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(TRANSLATION_URL, false).arg(mapToString(Language::Auto), mapToString(Language::Chinese), data));
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 

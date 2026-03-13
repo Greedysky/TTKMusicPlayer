@@ -17,6 +17,7 @@ void MusicBPDownloadBackgroundRequest::startToRequest()
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(ART_BACKGROUND_URL, false));
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 

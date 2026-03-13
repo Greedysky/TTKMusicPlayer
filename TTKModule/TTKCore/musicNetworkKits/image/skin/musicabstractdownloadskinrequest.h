@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkabstractxml.h"
 #include "musicglobaldefine.h"
+#include "musicabstractnetwork.h"
 
 /*! @brief The class of the remote skin item.
  * @author Greedysky <greedysky@163.com>
@@ -57,7 +57,8 @@ struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
     {
         Bing,
         Thunder,
-        BirdPaper
+        BirdPaper,
+        TimeLine
     };
 
     QString m_id;
@@ -76,7 +77,7 @@ TTK_DECLARE_LIST(MusicSkinRemoteGroup);
 /*! @brief The class of the download skin remote background.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAbstractDownloadSkinRequest : public QObject
+class TTK_MODULE_EXPORT MusicAbstractDownloadSkinRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
 public:
@@ -99,13 +100,6 @@ Q_SIGNALS:
      * Send download data from net.
      */
     void downloadDataChanged(const MusicSkinRemoteGroupList &bytes);
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     * Subclass should implement this function.
-     */
-    virtual void downloadFinished(const QByteArray &bytes) = 0;
 
 };
 

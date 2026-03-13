@@ -1,5 +1,4 @@
 #include "musicdownloadthunderskinrequest.h"
-#include "musicdatasourcerequest.h"
 
 static constexpr int MAX_SIZE = 30;
 static constexpr const char *QUERY_URL = "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ==";
@@ -10,7 +9,7 @@ MusicThunderSkinConfigManager::MusicThunderSkinConfigManager()
 
 }
 
-bool MusicThunderSkinConfigManager::readBuffer(MusicSkinRemoteGroupList &items)
+bool MusicThunderSkinConfigManager::readBuffer(MusicSkinRemoteGroupList &groups)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("group");
     for(int i = 0; i < nodes.count(); ++i)
@@ -60,7 +59,7 @@ bool MusicThunderSkinConfigManager::readBuffer(MusicSkinRemoteGroupList &items)
 
         if(group.isValid())
         {
-            items << group;
+            groups << group;
         }
     }
 
@@ -76,19 +75,32 @@ MusicDownloadThunderSkinRequest::MusicDownloadThunderSkinRequest(QObject *parent
 
 void MusicDownloadThunderSkinRequest::startToRequest()
 {
-    MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
-    req->startToRequest(TTK::Algorithm::mdII(QUERY_URL, false));
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false));
+    TTK::setUserAgentHeader(&request);
+    TTK::setSslConfiguration(&request);
+    TTK::setContentTypeHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicDownloadThunderSkinRequest::downloadFinished(const QByteArray &bytes)
+void MusicDownloadThunderSkinRequest::downloadFinished()
 {
-    MusicSkinRemoteGroupList items;
-    MusicThunderSkinConfigManager manager;
-    if(manager.fromByteArray(bytes))
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
+
+    MusicSkinRemoteGroupList groups;
+    MusicAbstractDownloadSkinRequest::downloadFinished();
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        manager.readBuffer(items);
+        MusicThunderSkinConfigManager manager;
+        if(manager.fromByteArray(m_reply->readAll()))
+        {
+            manager.readBuffer(groups);
+        }
     }
 
-    Q_EMIT downloadDataChanged(items);
+    Q_EMIT downloadDataChanged(groups);
+    deleteAll();
 }

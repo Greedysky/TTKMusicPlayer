@@ -21,6 +21,7 @@ void ToolQTFM::startToRequest()
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(QT_BASE_URL, false));
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request, "application/json;charset=utf-8");
 
@@ -83,6 +84,7 @@ void ToolQTFM::startToListRequest(int id, MusicFMChannelList *channels)
     {
         QNetworkRequest request;
         request.setUrl(TTK::Algorithm::mdII(QT_BASE_URL, false));
+        TTK::setUserAgentHeader(&request);
         TTK::setSslConfiguration(&request);
         TTK::setContentTypeHeader(&request, "application/json;charset=utf-8");
 
@@ -142,6 +144,7 @@ void ToolXIFM::startToRequest()
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(XI_SONG_URL, false));
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request, "charset=utf-8");
 

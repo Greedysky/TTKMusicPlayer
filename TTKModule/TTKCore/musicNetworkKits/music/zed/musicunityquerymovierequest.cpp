@@ -44,6 +44,7 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
         {
             QNetworkRequest request;
             request.setUrl(TTK::Algorithm::mdII(ReqYYTInterface::MOVIE_URL, false));
+            TTK::setUserAgentHeader(&request);
             TTK::setSslConfiguration(&request);
             TTK::setContentTypeHeader(&request, "application/json");
 

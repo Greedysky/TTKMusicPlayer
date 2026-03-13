@@ -19,6 +19,7 @@ void MusicYDTranslationRequest::startToRequest(const QString &data)
     {
         QNetworkRequest request;
         request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false));
+        TTK::setUserAgentHeader(&request);
         TTK::setSslConfiguration(&request);
         TTK::setContentTypeHeader(&request);
 
@@ -40,6 +41,7 @@ void MusicYDTranslationRequest::startToRequest(const QString &data)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(TRANSLATION_URL, false).arg(sid, mapToString(Language::Chinese), data));
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 

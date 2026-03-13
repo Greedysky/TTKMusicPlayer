@@ -15,6 +15,7 @@ void MusicResourceRequest::startToRequest()
 {
     QNetworkRequest request;
     request.setUrl(QSyncUtils::makeDataBucketUrl() + QUERY_RESOURCE_URL);
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 

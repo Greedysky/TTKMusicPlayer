@@ -9,6 +9,7 @@ void ReqBLInterface::makeRequestRawHeader(QNetworkRequest *request) noexcept
 {
     request->setRawHeader("Cookie", TTK::Algorithm::mdII(BL_COOKIE_URL, false).toUtf8());
 
+    TTK::setUserAgentHeader(request);
     TTK::setSslConfiguration(request);
     TTK::setContentTypeHeader(request);
 }

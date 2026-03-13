@@ -14,8 +14,9 @@ MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDat
       m_isAbort(false)
 {
     m_request = new QNetworkRequest;
+    TTK::setUserAgentHeader(m_request);
+    TTK::setUserAgentHeader(m_request);
     TTK::setSslConfiguration(m_request);
-    TTK::setContentTypeHeader(m_request);
 }
 
 MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDataList &datas, TTK::Download type, QObject *parent)
@@ -76,8 +77,18 @@ void MusicDownloadQueueRequest::downloadFinished()
     m_file->close();
     m_isDownload = false;
 
+    const QVariant &redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     MusicAbstractNetwork::deleteAll();
-    Q_EMIT downloadDataChanged(m_queue.takeFirst().m_path);
+
+    if(redirection.isValid())
+    {
+        m_file->remove();
+        m_queue.first().m_url = redirection.toString();
+    }
+    else
+    {
+        Q_EMIT downloadDataChanged(m_queue.takeFirst().m_path);
+    }
 
     startOrderQueue();
 }
@@ -135,6 +146,7 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
 
     m_speedTimer.start();
     m_request->setUrl(url);
+
     m_reply = m_manager.get(*m_request);
     connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
     connect(m_reply, SIGNAL(readyRead()), SLOT(handleReadyRead()));

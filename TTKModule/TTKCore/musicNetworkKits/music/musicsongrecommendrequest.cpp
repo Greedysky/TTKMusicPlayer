@@ -75,6 +75,7 @@ void MusicSongRecommendRequest::startToSearch(const QString &value)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(ReqLQInterface::LQ_RECOMMEND_URL, false));
+    TTK::setUserAgentHeader(&request);
     TTK::setSslConfiguration(&request);
     TTK::setContentTypeHeader(&request);
 

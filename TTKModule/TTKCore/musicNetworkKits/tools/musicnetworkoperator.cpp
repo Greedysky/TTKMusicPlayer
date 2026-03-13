@@ -1,32 +1,36 @@
 #include "musicnetworkoperator.h"
-#include "musicdatasourcerequest.h"
 
 static constexpr const char *IP_CHECK_URL = "ZlhkcnFzd1RabVhCZXNWM1pnbk5hT1ErL2RpMUNjK0hYQ3FXUHdCOVNGSlpDU2ZmNTZnekhHUlo3WkwrUWhtQXljNitUcjJmZ0RId004OFc5QlVibjhvRGlRSzY3QXlVbmZHNFV3bkhZdGZMU2JTZ3lJTkNhOGZJUlNhcmlBUmcvRUVrQWc9PQ==";
 
 MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
-    : QObject(parent)
+    : MusicAbstractNetwork(parent)
 {
 
 }
 
 void MusicNetworkOperator::startToRequest()
 {
-    MusicDataSourceRequest *req = new MusicDataSourceRequest(this);
-    connect(req, SIGNAL(downloadRawDataChanged(QByteArray)), SLOT(downloadFinished(QByteArray)));
-    req->startToRequest(TTK::Algorithm::mdII(IP_CHECK_URL, false));
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(IP_CHECK_URL, false));
+    TTK::setUserAgentHeader(&request);
+    TTK::setSslConfiguration(&request);
+    TTK::setContentTypeHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicNetworkOperator::downloadFinished(const QByteArray &bytes)
+void MusicNetworkOperator::downloadFinished()
 {
+    TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
+
     QString line;
-    if(bytes.isEmpty())
-    {
-        TTK_ERROR_STREAM("Input byte data is empty");
-    }
-    else
+    MusicAbstractNetwork::downloadFinished();
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJsonParseError ok;
-        const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+        const QJsonDocument &json = QJsonDocument::fromJson(m_reply->readAll(), &ok);
         if(QJsonParseError::NoError == ok.error)
         {
             QVariantMap value = json.toVariant().toMap();
@@ -38,6 +42,7 @@ void MusicNetworkOperator::downloadFinished(const QByteArray &bytes)
         }
     }
 
-    Q_EMIT queryNetworkOperatorFinished(line);
+    Q_EMIT downloadDataChanged(line);
+    deleteAll();
     deleteLater();
 }

@@ -360,6 +360,7 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
             }
 
             request.setUrl(v.m_url);
+            TTK::setUserAgentHeader(&request);
             TTK::setSslConfiguration(&request);
 
             const QVariantMap &headerMap = value["headers"].toMap();
@@ -374,7 +375,7 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
             found = true;
             if(!v.m_ua.isEmpty())
             {
-                request.setRawHeader("User-Agent", TTK::Algorithm::mdII(v.m_ua, false).toUtf8());
+                TTK::setUserAgentHeader(&request, TTK::Algorithm::mdII(v.m_ua, false).toUtf8());
             }
 
             if(v.m_module == QUERY_MODULE_X)

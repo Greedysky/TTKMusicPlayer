@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADBIRDSKINREQUEST_H
-#define MUSICDOWNLOADBIRDSKINREQUEST_H
+#ifndef MUSICDOWNLOADTIMELINESKINREQUEST_H
+#define MUSICDOWNLOADTIMELINESKINREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -21,37 +21,37 @@
 
 #include "musicabstractdownloadskinrequest.h"
 
-/*! @brief The class of the download birdpaper skin background.
+/*! @brief The class of the download timeline skin background.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadBirdSkinRequest : public MusicAbstractDownloadSkinRequest
+class TTK_MODULE_EXPORT MusicDownloadTimeLineSkinRequest : public MusicAbstractDownloadSkinRequest
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicDownloadBirdSkinRequest(QObject *parent = nullptr);
+    explicit MusicDownloadTimeLineSkinRequest(QObject *parent = nullptr);
 
     /*!
      * Start to download skin data.
      */
     virtual void startToRequest() override final;
+
     /*!
      * Start to download skin data.
      */
-    virtual void startToRequest(const QString &id) override final;
+    virtual void startToRequest(const QString &id);
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downloadFinished(const QByteArray &bytes) override final;
-    /*!
-     * Download data from net finished.
-     */
-    void downloadItemsFinished(const QByteArray &bytes);
+    virtual void downloadFinished() override final;
+
+private:
+    QString m_topic;
 
 };
 
-#endif // MUSICDOWNLOADBIRDSKINREQUEST_H
+#endif // MUSICDOWNLOADTIMELINESKINREQUEST_H
