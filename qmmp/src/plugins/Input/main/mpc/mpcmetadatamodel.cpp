@@ -68,7 +68,8 @@ QString MPCFileTagModel::value(Qmmp::MetaData key) const
     {
         const bool utf = m_codec->name().contains("UTF");
         TagLib::String str;
-        switch((int) key)
+
+        switch(key)
         {
         case Qmmp::TITLE:
             str = m_tag->title();
@@ -123,7 +124,7 @@ void MPCFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
 
     TagLib::String str = TagLib::String(m_codec->fromUnicode(value).constData(), type);
 
-    switch((int) key)
+    switch(key)
     {
     case Qmmp::TITLE:
         m_tag->setTitle(str);
@@ -150,7 +151,7 @@ void MPCFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
 
 bool MPCFileTagModel::exists() const
 {
-    return (m_tag != nullptr);
+    return m_tag != nullptr;
 }
 
 void MPCFileTagModel::create()

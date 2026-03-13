@@ -135,7 +135,8 @@ QString VorbisCommentModel::value(Qmmp::MetaData key) const
 {
     if(!m_tag)
         return QString();
-    switch((int) key)
+
+    switch(key)
     {
     case Qmmp::TITLE:
         return TStringToQString(m_tag->title());
@@ -177,7 +178,7 @@ void VorbisCommentModel::setValue(Qmmp::MetaData key, const QString &value)
 
     TagLib::String str = QStringToTString(value);
 
-    switch((int) key)
+    switch(key)
     {
     case Qmmp::TITLE:
         m_tag->setTitle(str);

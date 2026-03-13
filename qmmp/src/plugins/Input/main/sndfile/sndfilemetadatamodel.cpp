@@ -232,24 +232,24 @@ void SndFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
     }
 
     //save additional tags
-    TagLib::ByteVector id3v2_key;
+    TagLib::ByteVector id3v2;
     if(key == Qmmp::ALBUMARTIST)
-        id3v2_key = "TPE2"; //album artist
+        id3v2 = "TPE2"; //album artist
     else if(key == Qmmp::COMPOSER)
-        id3v2_key = "TCOM"; //composer
+        id3v2 = "TCOM"; //composer
     else if(key == Qmmp::DISCNUMBER)
-        id3v2_key = "TPOS";  //disc number
+        id3v2 = "TPOS";  //disc number
 
-    if(!id3v2_key.isEmpty())
+    if(!id3v2.isEmpty())
     {
         if(value.isEmpty())
-            m_tag->removeFrames(id3v2_key);
-        else if(!m_tag->frameListMap()[id3v2_key].isEmpty())
-            m_tag->frameListMap()[id3v2_key].front()->setText(str);
+            m_tag->removeFrames(id3v2);
+        else if(!m_tag->frameListMap()[id3v2].isEmpty())
+            m_tag->frameListMap()[id3v2].front()->setText(str);
         else
         {
             TagLib::ID3v2::TextIdentificationFrame *frame;
-            frame = new TagLib::ID3v2::TextIdentificationFrame(id3v2_key, TagLib::String::UTF8);
+            frame = new TagLib::ID3v2::TextIdentificationFrame(id3v2, TagLib::String::UTF8);
             frame->setText(str);
             m_tag->addFrame(frame);
         }
@@ -259,7 +259,7 @@ void SndFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
 
 bool SndFileTagModel::exists() const
 {
-    return (m_tag != nullptr);
+    return m_tag != nullptr;
 }
 
 void SndFileTagModel::create()

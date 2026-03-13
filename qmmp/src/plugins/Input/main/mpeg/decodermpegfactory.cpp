@@ -203,11 +203,10 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
 
         for(const QMap<Qmmp::MetaData, QString> &tags : qAsConst(metaData))
         {
-            for(int i = Qmmp::TITLE; i <= Qmmp::DISCNUMBER; ++i)
+            for(auto it = tags.begin(); it != tags.end(); ++it)
             {
-                Qmmp::MetaData key = static_cast<Qmmp::MetaData>(i);
-                if(info->value(key).length() < tags.value(key).length())
-                    info->setValue(key, tags.value(key));
+                if(info->value(it.key()).length() < it.value().length())
+                    info->setValue(it.key(), it.value());
             }
         }
     }

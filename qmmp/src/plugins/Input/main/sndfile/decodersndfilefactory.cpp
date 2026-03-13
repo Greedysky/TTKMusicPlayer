@@ -16,34 +16,33 @@
 
 static QMap<Qmmp::MetaData, QString> id3v2toMetaData(TagLib::ID3v2::Tag *tag)
 {
-    QMap<Qmmp::MetaData, QString> metaData;
-    metaData.insert(Qmmp::ARTIST, TStringToQString(tag->artist()));
-    metaData.insert(Qmmp::ALBUM, TStringToQString(tag->album()));
-    metaData.insert(Qmmp::COMMENT, TStringToQString(tag->comment()));
-    metaData.insert(Qmmp::GENRE, TStringToQString(tag->genre()));
-    metaData.insert(Qmmp::TITLE, TStringToQString(tag->title()));
-    metaData.insert(Qmmp::YEAR, QString::number(tag->year()));
-    metaData.insert(Qmmp::TRACK, QString::number(tag->track()));
+    QMap<Qmmp::MetaData, QString> tags;
+    tags.insert(Qmmp::ARTIST, TStringToQString(tag->artist()));
+    tags.insert(Qmmp::ALBUM, TStringToQString(tag->album()));
+    tags.insert(Qmmp::COMMENT, TStringToQString(tag->comment()));
+    tags.insert(Qmmp::GENRE, TStringToQString(tag->genre()));
+    tags.insert(Qmmp::TITLE, TStringToQString(tag->title()));
+    tags.insert(Qmmp::YEAR, QString::number(tag->year()));
+    tags.insert(Qmmp::TRACK, QString::number(tag->track()));
 
     if(!tag->frameListMap()["TPE2"].isEmpty())
     {
         TagLib::String albumArtist = tag->frameListMap()["TPE2"].front()->toString();
-        metaData.insert(Qmmp::ALBUMARTIST, TStringToQString(albumArtist));
+        tags.insert(Qmmp::ALBUMARTIST, TStringToQString(albumArtist));
     }
 
     if(!tag->frameListMap()["TCOM"].isEmpty())
     {
         TagLib::String composer = tag->frameListMap()["TCOM"].front()->toString();
-        metaData.insert(Qmmp::COMPOSER, TStringToQString(composer));
+        tags.insert(Qmmp::COMPOSER, TStringToQString(composer));
     }
 
     if(!tag->frameListMap()["TPOS"].isEmpty())
     {
         TagLib::String disc = tag->frameListMap()["TPOS"].front()->toString();
-        metaData.insert(Qmmp::DISCNUMBER, TStringToQString(disc));
+        tags.insert(Qmmp::DISCNUMBER, TStringToQString(disc));
     }
-
-    return metaData;
+    return tags;
 }
 
 bool DecoderSndFileFactory::canDecode(QIODevice *input) const

@@ -233,7 +233,8 @@ QString MpegFileTagModel::value(Qmmp::MetaData key) const
     {
         const bool utf = m_codec->name().contains("UTF");
         TagLib::String str;
-        switch((int) key)
+
+        switch(key)
         {
         case Qmmp::TITLE:
             str = m_tag->title();
@@ -310,26 +311,26 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
         }
 
         //save additional tags
-        TagLib::ByteVector id3v2_key;
+        TagLib::ByteVector id3v2;
         if(key == Qmmp::ALBUMARTIST)
-            id3v2_key = "TPE2"; //album artist
+            id3v2 = "TPE2"; //album artist
         else if(key == Qmmp::COMPOSER)
-            id3v2_key = "TCOM"; //composer
+            id3v2 = "TCOM"; //composer
         else if(key == Qmmp::DISCNUMBER)
-            id3v2_key = "TPOS"; //disc number
+            id3v2 = "TPOS"; //disc number
 
-        if(!id3v2_key.isEmpty())
+        if(!id3v2.isEmpty())
         {
             TagLib::String composer = TagLib::String(m_codec->fromUnicode(value).constData(), type);
             TagLib::ID3v2::Tag *id3v2_tag = static_cast<TagLib::ID3v2::Tag*>(m_tag);
             if(value.isEmpty())
-                id3v2_tag->removeFrames(id3v2_key);
-            else if(!id3v2_tag->frameListMap()[id3v2_key].isEmpty())
-                id3v2_tag->frameListMap()[id3v2_key].front()->setText(composer);
+                id3v2_tag->removeFrames(id3v2);
+            else if(!id3v2_tag->frameListMap()[id3v2].isEmpty())
+                id3v2_tag->frameListMap()[id3v2].front()->setText(composer);
             else
             {
                 TagLib::ID3v2::TextIdentificationFrame *frame;
-                frame = new TagLib::ID3v2::TextIdentificationFrame(id3v2_key, type);
+                frame = new TagLib::ID3v2::TextIdentificationFrame(id3v2, type);
                 frame->setText(composer);
                 id3v2_tag->addFrame(frame);
             }
@@ -357,7 +358,7 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
         }
     }
 
-    switch((int) key)
+    switch(key)
     {
     case Qmmp::TITLE:
         m_tag->setTitle(str);
@@ -384,7 +385,7 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
 
 bool MpegFileTagModel::exists() const
 {
-    return (m_tag != nullptr);
+    return m_tag != nullptr;
 }
 
 void MpegFileTagModel::create()

@@ -108,7 +108,8 @@ QString WavPackFileTagModel::value(Qmmp::MetaData key) const
 {
     char value[200];
     memset(value,0,sizeof(value));
-    switch((int) key)
+
+    switch(key)
     {
     case Qmmp::TITLE:
         WavpackGetTagItem(m_ctx, "Title", value, sizeof(value));
@@ -147,7 +148,8 @@ void WavPackFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
 {
     int length = value.toUtf8().length();
     char *v = value.toUtf8().data();
-    switch((int) key)
+
+    switch(key)
     {
     case Qmmp::TITLE:
         WavpackAppendTagItem(m_ctx, "Title", v, length);

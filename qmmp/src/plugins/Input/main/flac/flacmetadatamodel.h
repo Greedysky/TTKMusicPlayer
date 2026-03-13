@@ -62,8 +62,8 @@ private:
 class VorbisCommentModel : public TagModel
 {
 public:
-    VorbisCommentModel(TagLib::FLAC::File *file);
-    VorbisCommentModel(TagLib::Ogg::FLAC::File *file);
+    explicit VorbisCommentModel(TagLib::FLAC::File *file);
+    explicit VorbisCommentModel(TagLib::Ogg::FLAC::File *file);
 
     virtual QString name() const override final;
     virtual QString value(Qmmp::MetaData key) const override final;
@@ -74,6 +74,28 @@ private:
     TagLib::Ogg::XiphComment *m_tag;
     TagLib::FLAC::File *m_nativeFlacFile = nullptr;
     TagLib::Ogg::FLAC::File *m_oggFlacFile = nullptr;
+
+};
+
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
+class ID3v2TagModel : public TagModel
+{
+public:
+    explicit ID3v2TagModel(TagLib::FLAC::File *file);
+
+    virtual QString name() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
+    virtual bool exists() const override final;
+    virtual void create() override final;
+    virtual void remove() override final;
+    virtual void save() override final;
+
+private:
+    TagLib::FLAC::File *m_file;
+    TagLib::ID3v2::Tag *m_tag;
 
 };
 

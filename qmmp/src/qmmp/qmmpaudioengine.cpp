@@ -239,8 +239,8 @@ void QmmpAudioEngine::stop()
 
     clearDecoders();
     reset();
-    while(!m_effects.isEmpty()) //delete effects
-        delete m_effects.takeFirst();
+    qDeleteAll(m_effects); //delete effects
+    m_effects.clear();
     m_replayGain = nullptr;
     m_dithering = nullptr;
 }
