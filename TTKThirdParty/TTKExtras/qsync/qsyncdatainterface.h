@@ -48,7 +48,7 @@ protected Q_SLOTS:
     /*!
      * Get handle error.
      */
-    void replyError(QNetworkReply::NetworkError error);
+    void replyError(QNetworkReply::NetworkError code);
 
 protected:
     /*!

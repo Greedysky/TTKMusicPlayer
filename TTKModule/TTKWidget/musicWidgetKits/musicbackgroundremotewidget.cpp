@@ -276,6 +276,10 @@ void MusicBackgroundOnlineWidget::outputRemoteSkin(MusicBackgroundImage &image, 
         case MusicSkinRemoteGroup::TimeLine:
         {
             image.m_pix = QPixmap(data);
+            if(image.m_pix.height() > 1200)
+            {
+                image.m_pix = image.m_pix.scaled(image.m_pix.size() / 2, Qt::KeepAspectRatio);
+            }
             break;
         }
         default: break;

@@ -6,9 +6,9 @@ MusicAbstractNetwork::MusicAbstractNetwork(QObject *parent)
 
 }
 
-void MusicAbstractNetwork::replyError(QNetworkReply::NetworkError error)
+void MusicAbstractNetwork::replyError(QNetworkReply::NetworkError code)
 {
-    TTK_ERROR_STREAM("Abnormal network connection, module" << this << "code" << error);
+    TTK_ERROR_STREAM("Abnormal network connection, module" << this << "code" << code);
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply)
     {

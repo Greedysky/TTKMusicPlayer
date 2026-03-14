@@ -33,9 +33,8 @@ void MusicDataSourceRequest::downloadFinished()
         const QVariant &redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
         if(redirection.isValid())
         {
-            const QString &url = redirection.toString();
             MusicAbstractNetwork::deleteAll();
-            startToRequest(url);
+            startToRequest(TTK::fetchResolvedUrl(m_reply->url().toString(), redirection.toString()));
         }
         else
         {

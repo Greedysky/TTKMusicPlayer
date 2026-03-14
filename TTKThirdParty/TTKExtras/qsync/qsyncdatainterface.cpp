@@ -15,9 +15,9 @@ QSyncDataInterface::QSyncDataInterface(QSyncDataInterfacePrivate &pvt, QNetworkA
     d->m_manager = networkManager;
 }
 
-void QSyncDataInterface::replyError(QNetworkReply::NetworkError error)
+void QSyncDataInterface::replyError(QNetworkReply::NetworkError code)
 {
-    TTK_ERROR_STREAM("Sync network error, code is " << error);
+    TTK_ERROR_STREAM("Sync network error, code is " << code);
 }
 
 QString QSyncDataInterface::urlPathEncode(const QString &data) const

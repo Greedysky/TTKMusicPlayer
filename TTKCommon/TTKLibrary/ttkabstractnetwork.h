@@ -88,7 +88,7 @@ public Q_SLOTS:
     /*!
      * Download reply error.
      */
-    virtual void replyError(QNetworkReply::NetworkError error);
+    virtual void replyError(QNetworkReply::NetworkError code);
 #ifndef QT_NO_SSL
     /*!
      * Download ssl reply error.
@@ -133,6 +133,10 @@ namespace TTK
      * Fetch download file size by url.
      */
     TTK_MODULE_EXPORT qint64 fetchFileSizeByUrl(const QString &url);
+    /*!
+     * Returns the result of the merge of this URL with relative. This URL is used as a base to convert relative to an absolute URL.
+     */
+    TTK_MODULE_EXPORT QString fetchResolvedUrl(const QString &url, const QString &redirection);
 
     /*!
      * Sync network query for get.

@@ -2,7 +2,7 @@
 
 #include "qalgorithm/aeswrapper.h"
 
-static constexpr const char *QUERY_URL = "bkRaMGo0WEhveVlwbEV6a0FDbEsrNmNGVHVrZTh1VmFDZTBmdElkZ0ZCYXk2dDJMaXF3MUlrV2JndmlpUWVudkF5UVVaMklvSXQydGI3cFhaTFRtaUV2VUZBcz0=";
+static constexpr const char *QUERY_URL = "M1JaOE5SaGtNaUlXTFpWaEFXR3RqRXdPYTJLT2JTbDh3c1JEeE1JbUxaSWJKTzRCaHVyaXVKTkVFWkh1UURXam04Zkl5YVBsc1FqbVJXL1VxNXJkd2g4M3F5dXV1Qmc4NEVXVkpRPT0=";
 
 MusicDownloadTimeLineSkinRequest::MusicDownloadTimeLineSkinRequest(QObject *parent)
     : MusicAbstractDownloadSkinRequest(parent)
@@ -18,6 +18,21 @@ void MusicDownloadTimeLineSkinRequest::startToRequest()
 void MusicDownloadTimeLineSkinRequest::startToRequest(const QString &id)
 {
     m_topic = id;
+
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false).arg(id).arg(TTKDateTime::currentTimestamp()));
+    request.setRawHeader(TTK::Algorithm::mdII("MzVmOTV3TEdxd2QyUkNNeFQyVTZrQ0tTRU4wPQ==", false).toUtf8(), {});
+    request.setRawHeader(TTK::Algorithm::mdII("UVBiT0kwemtON3E5d3RCUFlsemo5Zz09", false).toUtf8(), {});
+    request.setRawHeader(TTK::Algorithm::mdII("QkpiVE1qLzVMOStsT2hmdVJSZnAvRlRHeWRVPQ==", false).toUtf8(), TTK::Algorithm::mdII("Z1d3dnM2dkxhWHNxdkFQbFFRTjVVUT09", false).toUtf8());
+    request.setRawHeader(TTK::Algorithm::mdII("TUF0cmhudmg3ZGU0ZXgxSmRRK2E0QUpOSWdFPQ==", false).toUtf8(), TTK::Algorithm::mdII("MHljMDBxdThkNzU3SWNWZDhqNzlrL1BnVXYvbUtHdzIzWTJQSE11WlhOblJRY09X", false).toUtf8());
+
+    TTK::setUserAgentHeader(&request);
+    TTK::setSslConfiguration(&request);
+    TTK::setContentTypeHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downloadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicDownloadTimeLineSkinRequest::downloadFinished()

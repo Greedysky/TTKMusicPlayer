@@ -46,7 +46,7 @@ public Q_SLOTS:
     /*!
      * Download reply error.
      */
-    virtual void replyError(QNetworkReply::NetworkError error) override;
+    virtual void replyError(QNetworkReply::NetworkError code) override;
 #ifndef QT_NO_SSL
     /*!
      * Download ssl reply error.

@@ -35,9 +35,9 @@ void TTKAbstractNetwork::downloadFinished()
     m_interrupt = false;
 }
 
-void TTKAbstractNetwork::replyError(QNetworkReply::NetworkError error)
+void TTKAbstractNetwork::replyError(QNetworkReply::NetworkError code)
 {
-    TTK_ERROR_STREAM("Abnormal network connection, module" << this << "code" << error);
+    TTK_ERROR_STREAM("Abnormal network connection, module" << this << "code" << code);
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply)
     {
@@ -124,11 +124,17 @@ qint64 TTK::fetchFileSizeByUrl(const QString &url)
     const QVariant &redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     if(redirection.isValid())
     {
-        size = fetchFileSizeByUrl(redirection.toString());
+        size = TTK::fetchFileSizeByUrl(TTK::fetchResolvedUrl(url, redirection.toString()));
     }
 
     reply->deleteLater();
     return size;
+}
+
+QString TTK::fetchResolvedUrl(const QString &url, const QString &redirection)
+{
+    const bool v = redirection.startsWith(HTTP_PROTOCOL) || redirection.startsWith(HTTPS_PROTOCOL);
+    return v ? redirection : (url.section(TTK_SEPARATOR, 0, 2) + redirection);
 }
 
 QByteArray TTK::syncNetworkQueryForGet(QNetworkRequest *request)
@@ -150,7 +156,7 @@ QByteArray TTK::syncNetworkQueryForGet(QNetworkRequest *request)
     if(redirection.isValid())
     {
         reply->deleteLater();
-        return redirection.toString().toUtf8();
+        return TTK::fetchResolvedUrl(request->url().toString(), redirection.toString()).toUtf8();
     }
 
     const QByteArray bytes(reply->readAll());

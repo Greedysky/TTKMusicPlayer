@@ -77,10 +77,11 @@ void MusicDownloadDataRequest::downloadFinished()
     {
         MusicAbstractNetwork::deleteAll();
         m_redirection = true;
+
         if(m_file->open(QIODevice::WriteOnly))
         {
             m_file->resize(0);
-            startToRequest(redirection.toString());
+            startToRequest(TTK::fetchResolvedUrl(m_reply->url().toString(), redirection.toString()));
         }
         return;
     }

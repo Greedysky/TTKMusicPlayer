@@ -81,16 +81,16 @@ public Q_SLOTS:
      * Download reply error.
      */
     void handleError(QNetworkReply::NetworkError code);
+    /*!
+     * Start to download data in order.
+     */
+    void startOrderQueue();
 
 private:
     /*!
      * Start to download data from net.
      */
     void startDownload(const QString &url);
-    /*!
-     * Start to download data in order.
-     */
-    void startOrderQueue();
 
     bool m_isDownload, m_isAbort;
     MusicDownloadQueueDataList m_queue;
