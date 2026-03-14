@@ -170,7 +170,8 @@ void HttpStreamReader::handleFinished()
     const QVariant &redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     if(redirection.isValid())
     {
-        m_url = redirection.toString();
+        const QString &v = redirection.toString();
+        m_url = (v.startsWith("http://") || v.startsWith("https://")) ? v : (m_url.section("/", 0, 2) + v);
         m_reply->deleteLater();
         run();
         return;
@@ -190,9 +191,9 @@ void HttpStreamReader::handleFinished()
     }
 }
 
-void HttpStreamReader::handleError(QNetworkReply::NetworkError status)
+void HttpStreamReader::handleError(QNetworkReply::NetworkError code)
 {
-    qDebug("HttpStreamReader: replyError %d", status);
+    qDebug("HttpStreamReader: replyError %d", code);
     setErrorString(m_reply->errorString());
     m_path.clear();
     emit error();

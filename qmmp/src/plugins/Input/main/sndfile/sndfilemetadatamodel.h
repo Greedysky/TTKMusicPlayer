@@ -56,9 +56,8 @@ private:
 class SndFileTagModel : public TagModel
 {
 public:
-    SndFileTagModel(TagLib::RIFF::WAV::File *file);
-    SndFileTagModel(TagLib::RIFF::AIFF::File *file);
-    ~SndFileTagModel() = default;
+    explicit SndFileTagModel(TagLib::RIFF::WAV::File *file);
+    explicit SndFileTagModel(TagLib::RIFF::AIFF::File *file);
 
     virtual QString name() const override final;
     virtual QString value(Qmmp::MetaData key) const override final;

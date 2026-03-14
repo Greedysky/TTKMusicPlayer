@@ -59,7 +59,7 @@ signals:
 private slots:
     void handleReadyRead();
     void handleFinished();
-    void handleError(QNetworkReply::NetworkError status);
+    void handleError(QNetworkReply::NetworkError code);
 
 protected:
     virtual qint64 readData(char *, qint64) override final;
