@@ -45,10 +45,10 @@ QList<TrackInfo*> DecoderArchiveFactory::createPlayList(const QString &path, Tra
                 continue;
             }
 
-            QList<TrackInfo*> list = factory->createPlayList(file, parts, nullptr);
-            if(!list.isEmpty())
+            QList<TrackInfo*> infos = factory->createPlayList(file, parts, nullptr);
+            if(!infos.isEmpty())
             {
-                playlist << list;
+                playlist << infos;
                 break;
             }
         }

@@ -57,13 +57,14 @@ CueFile::CueFile(const QString &path)
     {
         QString dataFilePath = getDirtyPath(m_path, QFileInfo(m_path).dir().filePath(dataFileName));
         m_dataFiles.insert(dataFileName, dataFilePath);
-        QList<TrackInfo*> pl = MetaDataManager::instance()->createPlayList(dataFilePath, TrackInfo::Properties);
-        if(!pl.isEmpty())
+
+        QList<TrackInfo*> playlist = MetaDataManager::instance()->createPlayList(dataFilePath, TrackInfo::Properties);
+        if(!playlist.isEmpty())
         {
-            setProperties(dataFileName, pl.first()->properties());
-            setDuration(dataFileName, pl.first()->duration());
-            qDeleteAll(pl);
-            pl.clear();
+            setProperties(dataFileName, playlist.first()->properties());
+            setDuration(dataFileName, playlist.first()->duration());
+            qDeleteAll(playlist);
+            playlist.clear();
         }
     }
 
