@@ -1,5 +1,4 @@
 #include <cmath>
-#include <limits.h>
 #include <QtEndian>
 #include "audioconverter.h"
 

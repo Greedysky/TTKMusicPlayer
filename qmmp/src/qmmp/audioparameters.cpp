@@ -1,4 +1,3 @@
-#include <QMap>
 #include "audioparameters.h"
 
 AudioParameters::AudioParameters(const AudioParameters &other)

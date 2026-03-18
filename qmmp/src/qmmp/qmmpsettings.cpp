@@ -1,5 +1,4 @@
 #include <QSettings>
-#include <QApplication>
 #include "metadatamanager.h"
 #include "qmmpsettings.h"
 

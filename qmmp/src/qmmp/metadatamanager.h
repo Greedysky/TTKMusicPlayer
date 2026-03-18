@@ -24,7 +24,6 @@
 #include <QDir>
 #include <QCache>
 #include <QImage>
-#include <QStringList>
 #if QT_VERSION < QT_VERSION_CHECK(5,14,0)
 #  include <QMutex>
 #else

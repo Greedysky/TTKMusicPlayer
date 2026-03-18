@@ -1,7 +1,4 @@
 #include <QSettings>
-#include <QPluginLoader>
-#include <QApplication>
-#include "enginefactory.h"
 #include "qmmpaudioengine_p.h"
 #include "qmmpplugincache_p.h"
 #include "abstractengine.h"

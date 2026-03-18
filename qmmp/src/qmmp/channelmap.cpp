@@ -1,5 +1,5 @@
-#include <QStringList>
 #include <QHash>
+#include <QStringList>
 #include "channelmap.h"
 
 Qmmp::ChannelPosition ChannelMap::m_internal_map[9] = { Qmmp::CHAN_FRONT_LEFT,

@@ -1,5 +1,4 @@
 #include <cmath>
-#include "buffer.h"
 #include "replaygain_p.h"
 
 void ReplayGain::setReplayGainInfo(const QMap<Qmmp::ReplayGainKey, double> &info)

@@ -1,9 +1,9 @@
 #include "florid.h"
+#include "soundcore.h"
 
 #include <QMenu>
 #include <QBitmap>
 #include <QPainter>
-#include <soundcore.h>
 
 RoundAnimationLabel::RoundAnimationLabel(QWidget *parent)
     : QWidget(parent)

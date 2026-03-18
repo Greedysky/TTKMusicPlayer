@@ -22,6 +22,7 @@
 #define QMMPPLUGINCACHE_P_H
 
 #include <QSettings>
+#include <QStringList>
 #include "qmmp_export.h"
 
 class DecoderFactory;

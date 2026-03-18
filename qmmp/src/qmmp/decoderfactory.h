@@ -22,7 +22,6 @@
 #define DECODERFACTORY_H
 
 #include <QIODevice>
-#include <QStringList>
 #include "decoder.h"
 #include "metadatamodel.h"
 #include "trackinfo.h"

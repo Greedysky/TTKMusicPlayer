@@ -1,7 +1,3 @@
-#include "audioparameters.h"
-#include "qmmpsettings.h"
-#include "buffer.h"
-#include "volumehandler.h"
 #include "qmmpplugincache_p.h"
 #include "output.h"
 

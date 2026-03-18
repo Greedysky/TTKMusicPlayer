@@ -1,7 +1,3 @@
-#include <QFileInfo>
-#include <QBuffer>
-#include <QMutexLocker>
-#include <QCoreApplication>
 #include <QImageReader>
 #include "decoder.h"
 #include "decoderfactory.h"

@@ -1,19 +1,14 @@
-#include <QMetaType>
-#include <QIODevice>
+#include <QFileInfo>
 #include "replaygain_p.h"
-#include "effect.h"
-#include "buffer.h"
 #include "decoder.h"
 #include "outputwriter_p.h"
 #include "decoderfactory.h"
-#include "effectfactory.h"
 #include "inputsource.h"
 #include "statehandler.h"
 #include "audioconverter.h"
 #include "qmmpaudioengine_p.h"
 #include "channelconverter_p.h"
 #include "dithering_p.h"
-#include "metadatamanager.h"
 
 #define TRANSPORT_TIMEOUT 5000 //ms
 

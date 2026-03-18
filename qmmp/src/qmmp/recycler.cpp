@@ -1,7 +1,5 @@
 #include "recycler_p.h"
 #include "qmmpsettings.h"
-#include "audioparameters.h"
-#include "buffer.h"
 
 Recycler::~Recycler()
 {

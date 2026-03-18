@@ -1,8 +1,5 @@
-#include <algorithm>
-#include <QStringList>
 #include "qmmpaudioengine_p.h"
 #include "qmmpplugincache_p.h"
-#include "effectfactory.h"
 #include "effect.h"
 
 void Effect::configure(quint32 freq, ChannelMap map)

@@ -1,7 +1,4 @@
-#include <QStringList>
 #include <QApplication>
-#include <QMutexLocker>
-#include <QMetaType>
 #include "soundcore.h"
 #include "qmmpevents_p.h"
 #include "statehandler.h"

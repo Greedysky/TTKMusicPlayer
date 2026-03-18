@@ -21,7 +21,6 @@
 #ifndef DECODER_H
 #define DECODER_H
 
-#include <QStringList>
 #include <QMap>
 #include <QIODevice>
 #include "audioparameters.h"

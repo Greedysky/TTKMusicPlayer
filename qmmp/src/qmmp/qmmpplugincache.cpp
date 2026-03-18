@@ -1,7 +1,6 @@
 #include <QDateTime>
 #include <QFileInfo>
 #include <QPluginLoader>
-#include <QApplication>
 #include "decoderfactory.h"
 #include "outputfactory.h"
 #include "enginefactory.h"

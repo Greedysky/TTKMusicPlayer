@@ -23,7 +23,6 @@
 
 #include <QMutex>
 #include <QThread>
-#include <QStringList>
 #include "enginefactory.h"
 
 class QIODevice;

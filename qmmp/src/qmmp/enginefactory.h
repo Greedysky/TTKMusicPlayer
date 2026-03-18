@@ -21,7 +21,6 @@
 #ifndef EMGINEFACTORY_H
 #define EMGINEFACTORY_H
 
-#include <QStringList>
 #include <QList>
 #include <QMap>
 #include <QIODevice>

@@ -2,9 +2,7 @@
 #include <QTimer>
 #include <QCloseEvent>
 #include <QSettings>
-#include <QList>
 #include <QFileInfo>
-#include <QApplication>
 #include <QPluginLoader>
 #include "statehandler.h"
 #include "visualfactory.h"

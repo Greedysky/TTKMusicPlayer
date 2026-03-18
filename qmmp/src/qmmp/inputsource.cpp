@@ -1,5 +1,3 @@
-#include <QStringList>
-#include <algorithm>
 #include "qmmpplugincache_p.h"
 #include "fileinputsource_p.h"
 #include "emptyinputsource_p.h"

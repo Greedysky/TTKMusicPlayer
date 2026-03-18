@@ -1,9 +1,5 @@
-#include <QStringList>
-#include <QSettings>
 #include <QDir>
-#include <algorithm>
 #include "qmmpplugincache_p.h"
-#include "output.h"
 #include "decoderfactory.h"
 
 Decoder::Decoder(QIODevice *input)
