@@ -1,4 +1,4 @@
-///Update time 2026-03-11
+///Update time 2026-03-18
 
 adplug-2.4.0	https://github.com/adplug/adplug
 enca-1.21	https://github.com/Project-OSS-Revival/enca
@@ -51,13 +51,13 @@ ttk-1.2.13
 -libqoa		 https://github.com/phoboslab/qoa 7abe23987a11d60dfcf1a37a095af834dde245ac
 -libs98		 https://github.com/sasq64/musicplayer
 -libsc68-2.2.1	 https://sourceforge.net/projects/sc68
--libsonic	 https://github.com/waywardgeek/sonic d2cdb40fbdc82b464be364a50b34e8dd82b6c80a
+-libsonic	 https://github.com/waywardgeek/sonic b93885dcb70aae50c6f76b0fe4e0868f029a077e
 -libsoundmon	 http://www.brianpostma.com (unfortunately down now)
                  https://github.com/arnaud-neny/rePlayer
 -libstsound	 https://github.com/arnaud-carre/StSound
 -libtfmx-1.0.2	 https://github.com/mschwendt/libtfmxaudiodecoder
 -libuade-3.05	 http://www.zakalwe.fi/uade/
-                 https://gitlab.com/uade-music-player/uade 8b1acadb1aa2ad832ffe9d4b6ce742cb0a27f20b
+                 https://gitlab.com/uade-music-player/uade 1a29d25e9180199d4d6fa555b5c96b1ffa949e51
 -libv2m-20250811 https://github.com/jgilje/v2m-player
 -libxgm		 https://github.com/digital-sound-antiques/libkss
                  https://github.com/jprjr/libnezplug
