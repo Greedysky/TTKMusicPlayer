@@ -33,19 +33,18 @@ Decoder *DecoderStSoundFactory::create(const QString &path, QIODevice *input)
     return new DecoderStSound(path);
 }
 
-QList<TrackInfo*> DecoderStSoundFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderStSoundFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     StSoundHelper helper(path);
     if(!helper.initialize())
     {
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     if(parts & TrackInfo::MetaData)
@@ -64,7 +63,8 @@ QList<TrackInfo*> DecoderStSoundFactory::createPlayList(const QString &path, Tra
         info->setValue(Qmmp::FORMAT_NAME, "StSound YM");
         info->setDuration(helper.totalTime());
     }
-    return QList<TrackInfo*>() << info;
+
+    return {raw};
 }
 
 MetaDataModel* DecoderStSoundFactory::createMetaDataModel(const QString &path, bool readOnly)

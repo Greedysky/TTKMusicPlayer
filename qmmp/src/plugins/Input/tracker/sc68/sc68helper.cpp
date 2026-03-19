@@ -117,9 +117,9 @@ qint64 SC68Helper::read(unsigned char *data, qint64 maxSize)
     return initSize - maxSize;
 }
 
-QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
+QList<TrackInfo> SC68Helper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo*> playlist;
+    QList<TrackInfo> playlist;
     if(!m_input)
     {
         return playlist;
@@ -140,7 +140,7 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
             continue;
         }
 
-        TrackInfo *info = new TrackInfo();
+        TrackInfo raw, *info = &raw;
         if(parts & TrackInfo::MetaData)
         {
             // add metainfo
@@ -183,8 +183,9 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
 
         info->setPath("sc68://" + cleanPath() + QString("#%1").arg(i));
         info->setDuration(tag.trk.time_ms > 0 ? tag.trk.time_ms : (2 * 60));
-        playlist << info;
+        playlist << raw;
     }
+
     return playlist;
 }
 

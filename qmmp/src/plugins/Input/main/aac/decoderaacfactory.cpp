@@ -27,27 +27,25 @@ Decoder *DecoderAACFactory::create(const QString &path, QIODevice *input)
     return new DecoderAAC(input);
 }
 
-QList<TrackInfo*> DecoderAACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderAACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     QFile file(path);
     if(!file.open(QIODevice::ReadOnly))
     {
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     AACFile aac_file(&file, parts & TrackInfo::MetaData);
     if(!aac_file.isValid())
     {
         file.close();
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     if(parts & TrackInfo::MetaData)
@@ -66,7 +64,7 @@ QList<TrackInfo*> DecoderAACFactory::createPlayList(const QString &path, TrackIn
     }
 
     file.close();
-    return QList<TrackInfo*>() << info;
+    return {raw};
 }
 
 MetaDataModel* DecoderAACFactory::createMetaDataModel(const QString &path, bool readOnly)

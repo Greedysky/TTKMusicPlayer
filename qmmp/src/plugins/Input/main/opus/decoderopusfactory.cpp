@@ -25,12 +25,12 @@ Decoder *DecoderOpusFactory::create(const QString &path, QIODevice *input)
     return new DecoderOpus(input);
 }
 
-QList<TrackInfo*> DecoderOpusFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderOpusFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     TagLib::Ogg::Opus::File fileRef(QStringToFileName(path));
@@ -78,7 +78,8 @@ QList<TrackInfo*> DecoderOpusFactory::createPlayList(const QString &path, TrackI
         if(items.contains("REPLAYGAIN_ALBUM_PEAK"))
             info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].front()));
     }
-    return QList<TrackInfo*>() << info;
+
+    return {raw};
 }
 
 MetaDataModel* DecoderOpusFactory::createMetaDataModel(const QString &path, bool readOnly)

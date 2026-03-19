@@ -100,9 +100,9 @@ qint64 UADEHelper::read(unsigned char *data, qint64 maxSize)
     return uade_read(data, maxSize, m_state);
 }
 
-QList<TrackInfo*> UADEHelper::createPlayList(TrackInfo::Parts parts)
+QList<TrackInfo> UADEHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo*> playlist;
+    QList<TrackInfo> playlist;
     const struct uade_song_info *tag = uade_get_song_info(m_state);
     if(!tag)
     {
@@ -126,7 +126,7 @@ QList<TrackInfo*> UADEHelper::createPlayList(TrackInfo::Parts parts)
 
     for(int i = min; i <= max; ++i)
     {
-        TrackInfo *info = new TrackInfo();
+        TrackInfo raw, *info = &raw;
         if(parts & TrackInfo::MetaData)
         {
             info->setValue(Qmmp::TITLE, title);
@@ -144,8 +144,9 @@ QList<TrackInfo*> UADEHelper::createPlayList(TrackInfo::Parts parts)
 
         info->setPath("uade://" + cleanPath() + QString("#%1").arg(i));
         info->setDuration(totalTime());
-        playlist << info;
+        playlist << raw;
     }
+
     return playlist;
 }
 

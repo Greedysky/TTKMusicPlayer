@@ -1,34 +1,78 @@
 #include "trackinfo.h"
 
+class TrackInfoPrivate : public QSharedData
+{
+public:
+    TrackInfoPrivate(const QString &path)
+        : QSharedData(),
+          path(path)
+    {
+
+    }
+
+    void clear(TrackInfo::Parts parts)
+    {
+        if(parts & TrackInfo::MetaData)
+            metaData.clear();
+        if(parts & TrackInfo::Properties)
+            properties.clear();
+        if(parts & TrackInfo::ReplayGainInfo)
+            replayGainInfo.clear();
+        parts &= ~parts;
+    }
+
+    QMap<Qmmp::MetaData, QString> metaData;
+    QMap<Qmmp::TrackProperty, QString> properties;
+    QMap<Qmmp::ReplayGainKey, double> replayGainInfo;
+    TrackInfo::Parts parts = TrackInfo::Parts();
+    QString path;
+    qint64 duration = 0;
+
+};
+
+
 TrackInfo::TrackInfo(const QString &path)
-    : m_path(path)
+    : d(new TrackInfoPrivate(path))
 {
 
 }
 
 TrackInfo::TrackInfo(const TrackInfo &other)
+    : d(other.d)
 {
-    *this = other;
+
+}
+
+TrackInfo::TrackInfo(TrackInfo &&other) noexcept
+{
+    swap(other);
+}
+
+TrackInfo::~TrackInfo()
+{
+
 }
 
 TrackInfo &TrackInfo::operator=(const TrackInfo &info)
 {
-    setDuration(info.duration());
-    setValues(info.metaData());
-    setValues(info.properties());
-    setValues(info.replayGainInfo());
-    setPath(info.path());
+    d = info.d;
+    return *this;
+}
+
+TrackInfo &TrackInfo::operator=(TrackInfo &&info) noexcept
+{
+    swap(info);
     return *this;
 }
 
 bool TrackInfo::operator==(const TrackInfo &info) const
 {
-    return m_duration == info.duration() &&
-            m_path == info.path() &&
-            m_metaData == info.metaData() &&
-            m_properties == info.properties() &&
-            m_replayGainInfo == info.replayGainInfo() &&
-            m_parts == info.parts();
+    return d->duration == info.duration() &&
+           d->path == info.path() &&
+           d->metaData == info.metaData () &&
+           d->properties == info.properties() &&
+           d->replayGainInfo == info.replayGainInfo() &&
+           d->parts == info.parts();
 }
 
 bool TrackInfo::operator!=(const TrackInfo &info) const
@@ -38,67 +82,67 @@ bool TrackInfo::operator!=(const TrackInfo &info) const
 
 qint64 TrackInfo::duration() const
 {
-    return m_duration;
+    return d->duration;
 }
 
 bool TrackInfo::isEmpty() const
 {
-    return m_metaData.isEmpty() && m_properties.isEmpty() && m_replayGainInfo.isEmpty() && m_path.isEmpty();
+    return d->metaData.isEmpty() && d->properties.isEmpty() && d->replayGainInfo.isEmpty() && d->path.isEmpty();
 }
 
 const QString &TrackInfo::path() const
 {
-    return m_path;
+    return d->path;
 }
 
-const QString TrackInfo::value(Qmmp::MetaData key) const
+QString TrackInfo::value(Qmmp::MetaData key) const
 {
-    return m_metaData.value(key);
+    return d->metaData.value(key);
 }
 
-const QString TrackInfo::value(Qmmp::TrackProperty key) const
+ QString TrackInfo::value(Qmmp::TrackProperty key) const
 {
-    return m_properties.value(key);
+    return d->properties.value(key);
 }
 
 double TrackInfo::value(Qmmp::ReplayGainKey key) const
 {
-    return m_replayGainInfo.value(key);
+    return d->replayGainInfo.value(key);
 }
 
 const QMap<Qmmp::MetaData, QString> &TrackInfo::metaData() const
 {
-    return m_metaData;
+    return d->metaData;
 }
 
 const QMap<Qmmp::TrackProperty, QString> &TrackInfo::properties() const
 {
-    return m_properties;
+    return d->properties;
 }
 
 const QMap<Qmmp::ReplayGainKey, double> &TrackInfo::replayGainInfo() const
 {
-    return m_replayGainInfo;
+    return d->replayGainInfo;
 }
 
 TrackInfo::Parts TrackInfo::parts() const
 {
-    return m_parts;
+    return d->parts;
 }
 
 void TrackInfo::setDuration(qint64 duration)
 {
-    m_duration = duration;
+    d->duration = duration;
 }
 
 void TrackInfo::setValue(Qmmp::MetaData key, const QVariant &value)
 {
     QString strValue = value.toString().trimmed();
     if(strValue.isEmpty() || strValue == "0")
-        m_metaData.remove(key);
+        d->metaData.remove(key);
     else
-        m_metaData[key] = strValue;
-    m_metaData.isEmpty() ? (m_parts &= ~MetaData) : (m_parts |= MetaData);
+        d->metaData[key] = strValue;
+    d->metaData.isEmpty() ? (d->parts &= ~MetaData) : (d->parts |= MetaData);
 }
 
 void TrackInfo::setValue(Qmmp::MetaData key, const char *value)
@@ -110,10 +154,10 @@ void TrackInfo::setValue(Qmmp::TrackProperty key, const QVariant &value)
 {
     QString strValue = value.toString();
     if(strValue.isEmpty() || strValue == "0")
-        m_properties.remove(key);
+        d->properties.remove(key);
     else
-        m_properties[key] = strValue;
-    m_properties.isEmpty() ? (m_parts &= ~Properties) : (m_parts |= Properties);
+        d->properties[key] = strValue;
+    d->properties.isEmpty() ? (d->parts &= ~Properties) : (d->parts |= Properties);
 }
 
 void TrackInfo::setValue(Qmmp::TrackProperty key, const char *value)
@@ -124,10 +168,10 @@ void TrackInfo::setValue(Qmmp::TrackProperty key, const char *value)
 void TrackInfo::setValue(Qmmp::ReplayGainKey key, double value)
 {
     if(qFuzzyIsNull(value))
-        m_replayGainInfo.remove(key);
+        d->replayGainInfo.remove(key);
     else
-        m_replayGainInfo[key] = value;
-    m_replayGainInfo.isEmpty() ? (m_parts &= ~ReplayGainInfo) : (m_parts |= ReplayGainInfo);
+        d->replayGainInfo[key] = value;
+    d->replayGainInfo.isEmpty() ? (d->parts &= ~ReplayGainInfo) : (d->parts |= ReplayGainInfo);
 }
 
 void TrackInfo::setValue(Qmmp::ReplayGainKey key, const QString &value)
@@ -143,19 +187,16 @@ void TrackInfo::setValue(Qmmp::ReplayGainKey key, const QString &value)
 
 void TrackInfo::setValues(const QMap<Qmmp::MetaData, QString> &metaData)
 {
-   m_metaData.clear();
-   updateValues(metaData);
+    updateValues(metaData);
 }
 
 void TrackInfo::setValues(const QMap<Qmmp::TrackProperty, QString> &properties)
 {
-    m_properties.clear();
     updateValues(properties);
 }
 
 void TrackInfo::setValues(const QMap<Qmmp::ReplayGainKey, double> &replayGainInfo)
 {
-    m_replayGainInfo.clear();
     updateValues(replayGainInfo);
 }
 
@@ -185,25 +226,24 @@ void TrackInfo::updateValues(const QMap<Qmmp::ReplayGainKey, double> &replayGain
 
 void TrackInfo::setPath(const QString &path)
 {
-    m_path = path;
+    d->path = path;
 }
 
 void TrackInfo::clear(Parts parts)
 {
-    if(parts & MetaData)
-        m_metaData.clear();
-    if(parts & Properties)
-        m_properties.clear();
-    if(parts & ReplayGainInfo)
-        m_replayGainInfo.clear();
-    m_parts &= ~parts;
+    d->clear(parts);
 }
 
 void TrackInfo::clear()
 {
-    clear(AllParts);
-    m_path.clear();
-    m_duration = 0;
+    d->clear(AllParts);
+    d->path.clear();
+    d->duration = 0;
+}
+
+void TrackInfo::swap(TrackInfo &other)
+{
+    d.swap(other.d);
 }
 
 QString TrackInfo::pathFromUrl(const QString &url, int *track)

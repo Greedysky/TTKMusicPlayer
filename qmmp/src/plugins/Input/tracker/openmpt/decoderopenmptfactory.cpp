@@ -46,27 +46,25 @@ Decoder *DecoderOpenMPTFactory::create(const QString &path, QIODevice *input)
     return new DecoderOpenMPT(input);
 }
 
-QList<TrackInfo*> DecoderOpenMPTFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderOpenMPTFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     QFile file(path);
     if(!file.open(QIODevice::ReadOnly))
     {
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     OpenMPTHelper helper(&file);
     if(!helper.initialize())
     {
         file.close();
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     if(parts & TrackInfo::MetaData)
@@ -80,6 +78,7 @@ QList<TrackInfo*> DecoderOpenMPTFactory::createPlayList(const QString &path, Tra
         {
             info->setValue(Qmmp::TITLE, helper.title());
         }
+
         info->setValue(Qmmp::ARTIST, helper.artist());
         info->setValue(Qmmp::YEAR, helper.year());
         info->setValue(Qmmp::COMMENT, helper.comment());
@@ -96,7 +95,7 @@ QList<TrackInfo*> DecoderOpenMPTFactory::createPlayList(const QString &path, Tra
     }
 
     file.close();
-    return QList<TrackInfo*>() << info;
+    return {raw};
 }
 
 MetaDataModel *DecoderOpenMPTFactory::createMetaDataModel(const QString &path, bool readOnly)

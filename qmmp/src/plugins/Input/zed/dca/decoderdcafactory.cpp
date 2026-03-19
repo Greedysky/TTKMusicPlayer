@@ -32,19 +32,18 @@ Decoder *DecoderDCAFactory::create(const QString &path, QIODevice *input)
     return new DecoderDCA(path);
 }
 
-QList<TrackInfo*> DecoderDCAFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderDCAFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     DCAHelper helper(path);
     if(!helper.initialize())
     {
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     if(parts & TrackInfo::Properties)
@@ -56,7 +55,8 @@ QList<TrackInfo*> DecoderDCAFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::FORMAT_NAME, "DTS");
         info->setDuration(helper.totalTime());
     }
-    return QList<TrackInfo*>() << info;
+
+    return {raw};
 }
 
 MetaDataModel* DecoderDCAFactory::createMetaDataModel(const QString &path, bool readOnly)

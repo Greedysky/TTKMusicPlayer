@@ -52,7 +52,7 @@ public:
     inline QString ripper() const { return m_ripper; }
     inline QString converter() const { return m_converter; }
 
-    QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
+    QList<TrackInfo> createPlayList(TrackInfo::Parts parts);
     QString cleanPath() const;
 
 private:

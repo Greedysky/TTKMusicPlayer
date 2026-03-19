@@ -33,19 +33,18 @@ Decoder *DecoderBuzzicFactory::create(const QString &path, QIODevice *input)
     return new DecoderBuzzic(path);
 }
 
-QList<TrackInfo*> DecoderBuzzicFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderBuzzicFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     BuzzicHelper helper(path);
     if(!helper.initialize())
     {
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     if(parts & TrackInfo::Properties)
@@ -57,7 +56,8 @@ QList<TrackInfo*> DecoderBuzzicFactory::createPlayList(const QString &path, Trac
         info->setValue(Qmmp::FORMAT_NAME, "Buzzic");
         info->setDuration(helper.totalTime());
     }
-    return QList<TrackInfo*>() << info;
+
+    return {raw};
 }
 
 MetaDataModel* DecoderBuzzicFactory::createMetaDataModel(const QString &path, bool readOnly)

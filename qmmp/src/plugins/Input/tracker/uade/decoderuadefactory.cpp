@@ -33,33 +33,30 @@ Decoder *DecoderUADEFactory::create(const QString &path, QIODevice *input)
     return new DecoderUADE(path);
 }
 
-QList<TrackInfo*> DecoderUADEFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
+QList<TrackInfo> DecoderUADEFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
 {
     if(path.contains("://")) //is it one track?
     {
         int track = -1;
         const QString &filePath = TrackInfo::pathFromUrl(path, &track);
 
-        QList<TrackInfo*> playlist = createPlayList(filePath, parts, ignoredPaths);
+        QList<TrackInfo> playlist = createPlayList(filePath, parts, ignoredPaths);
         if(playlist.isEmpty() || track <= 0 || track > playlist.count())
         {
-            qDeleteAll(playlist);
             playlist.clear();
             return playlist;
         }
 
-        TrackInfo *info = playlist.takeAt(track - 1);
-        qDeleteAll(playlist);
-        playlist.clear();
-        return playlist << info;
+        return {playlist.takeAt(track - 1)};
     }
 
     UADEHelper helper(path);
     if(!helper.initialize())
     {
         qWarning("DecoderUADEFactory: unable to open file");
-        return QList<TrackInfo*>();
+        return {};
     }
+
     return helper.createPlayList(parts);
 }
 

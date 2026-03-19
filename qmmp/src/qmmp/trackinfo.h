@@ -23,8 +23,11 @@
 
 #include <QMap>
 #include <QVariant>
+#include <QSharedDataPointer>
 #include "qmmp.h"
 #include "regularexpression.h"
+
+class TrackInfoPrivate;
 
 /*! @brief The TrackInfo class stores metadata and other information about track.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -33,18 +36,18 @@ class QMMP_EXPORT TrackInfo
 {
 public:
     /*!
-     * Constructs a new empty TrackInfo object.
-     */
-    TrackInfo() = default;
-    /*!
      * Constructs a new empty TrackInfo that with file \b path (local path or URL).
      */
-    explicit TrackInfo(const QString &path);
+    explicit TrackInfo(const QString &path = QString());
     /*!
      * Constructs a new TrackInfo that is a copy of the given \b other
      */
     TrackInfo(const TrackInfo &other);
-
+    TrackInfo(TrackInfo &&other) noexcept;
+    /*!
+     * Destructor.
+     */
+    ~TrackInfo();
     /*!
      * This enum describes stored parts of track information.
      */
@@ -61,6 +64,7 @@ public:
      * Makes a copy of the given \b info
      */
     TrackInfo &operator=(const TrackInfo &info);
+    TrackInfo &operator=(TrackInfo &&info) noexcept;
     /*!
      * Returns \b true if this FileInfo object refers to \b info; otherwise returns \b false.
      */
@@ -84,11 +88,11 @@ public:
     /*!
      * Returns the metdata string associated with the given \b key.
      */
-    const QString value(Qmmp::MetaData key) const;
+    QString value(Qmmp::MetaData key) const;
     /*!
      * Returns the track property string associated with the given \b key.
      */
-    const QString value(Qmmp::TrackProperty key) const;
+    QString value(Qmmp::TrackProperty key) const;
     /*!
      * Returns the ReplayGain value associated with the given \b key.
      */
@@ -175,6 +179,11 @@ public:
     void clear();
 
     /*!
+     * Swap TrackInfo.
+     */
+    void swap(TrackInfo &other);
+
+    /*!
      * Extracts path and track number \b track from URL \b url.
      * Returns unchanged \b url if it does not contain strings "#" or "://"
      * URL example: "scheme:///path#track"
@@ -182,12 +191,7 @@ public:
     static QString pathFromUrl(const QString &url, int *track = nullptr);
 
 private:
-    QMap<Qmmp::MetaData, QString> m_metaData;
-    QMap<Qmmp::TrackProperty, QString> m_properties;
-    QMap<Qmmp::ReplayGainKey, double> m_replayGainInfo;
-    Parts m_parts = Parts();
-    QString m_path;
-    qint64 m_duration = 0;
+    QSharedDataPointer<TrackInfoPrivate> d;
 
 };
 

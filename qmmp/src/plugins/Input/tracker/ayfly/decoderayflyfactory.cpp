@@ -39,19 +39,18 @@ Decoder *DecoderAyflyFactory::create(const QString &path, QIODevice *input)
     return new DecoderAyfly(path);
 }
 
-QList<TrackInfo*> DecoderAyflyFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderAyflyFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     AyflyHelper helper(path);
     if(!helper.initialize())
     {
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     if(parts & TrackInfo::MetaData)
@@ -69,7 +68,8 @@ QList<TrackInfo*> DecoderAyflyFactory::createPlayList(const QString &path, Track
         info->setValue(Qmmp::FORMAT_NAME, "AY/YM");
         info->setDuration(helper.totalTime());
     }
-    return QList<TrackInfo*>() << info;
+
+    return {raw};
 }
 
 MetaDataModel* DecoderAyflyFactory::createMetaDataModel(const QString &path, bool readOnly)

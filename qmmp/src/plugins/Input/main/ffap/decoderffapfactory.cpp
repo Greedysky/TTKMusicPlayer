@@ -29,7 +29,7 @@ Decoder *DecoderFFapFactory::create(const QString &path, QIODevice *input)
         return new DecoderFFap(path, input);
 }
 
-QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderFFapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     int track = -1; //cue track
     QString filePath = path;
@@ -40,10 +40,10 @@ QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackI
         parts = TrackInfo::AllParts; //extract all metadata for single cue track
     }
 
-    TrackInfo *info = new TrackInfo(filePath);
+    TrackInfo raw(filePath), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     TagLib::FileStream stream(QStringToFileName(filePath), true);
@@ -82,7 +82,6 @@ QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackI
             parser.setDuration(info->duration());
             parser.setProperties(info->properties());
             parser.setUrl("ape", filePath);
-            delete info;
             return parser.createPlayList(track);
         }
 
@@ -100,7 +99,8 @@ QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackI
         if(!(fld = tag->itemListMap()["COMPOSER"]).isEmpty())
             info->setValue(Qmmp::COMPOSER, TStringToQString(fld.toString()));
     }
-    return QList<TrackInfo*>() << info;
+
+    return {raw};
 }
 
 MetaDataModel* DecoderFFapFactory::createMetaDataModel(const QString &path, bool readOnly)

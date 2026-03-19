@@ -91,12 +91,12 @@ Decoder *DecoderMPEGFactory::create(const QString &path, QIODevice *input)
     return new DecoderMPG123(input);
 }
 
-QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderMPEGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     TagLib::FileStream stream(QStringToFileName(path), true);
@@ -280,7 +280,8 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
                 info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK,TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].values()[0]));
         }
     }
-    return QList<TrackInfo*>() << info;
+
+    return {raw};
 }
 
 MetaDataModel* DecoderMPEGFactory::createMetaDataModel(const QString &path, bool readOnly)

@@ -246,7 +246,7 @@ Decoder *DecoderFFmpegFactory::create(const QString &path, QIODevice *input)
         return new DecoderFFmpeg(path, input);
 }
 
-QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderFFmpegFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     int trackNumber = -1; //cue/m4b track
     QString filePath = path;
@@ -257,10 +257,10 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
         parts = TrackInfo::AllParts; //extract all metadata for single  cue/m4b track
     }
 
-    TrackInfo *info = new TrackInfo(filePath);
+    TrackInfo raw(filePath), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     AVFormatContext *in = nullptr;
@@ -271,8 +271,7 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
 #endif
     {
         qDebug("DecoderFFmpegFactory: unable to open file");
-        delete info;
-        return  QList<TrackInfo*>();
+        return {};
     }
 
     avformat_find_stream_info(in, nullptr);
@@ -316,14 +315,12 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
             parser.setUrl("ffmpeg", filePath);
 
             avformat_close_input(&in);
-            delete info;
             return parser.createPlayList(trackNumber);
         }
         else if(trackNumber > 0 && path.startsWith("ffmpeg://")) //invalid track
         {
             avformat_close_input(&in);
-            delete info;
-            return QList<TrackInfo*>();
+            return {};
         }
 
         AVDictionaryEntry *album = av_dict_get(in->metadata,"album",nullptr,0);
@@ -373,33 +370,31 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
 
         if(in->nb_chapters > 1 && filePath.endsWith(".m4b", Qt::CaseInsensitive))
         {
-            QList<TrackInfo*> playlist = createPlayListFromChapters(in, info, trackNumber);
+            QList<TrackInfo> playlist = createPlayListFromChapters(in, info, trackNumber);
             avformat_close_input(&in);
-            delete info;
             return playlist;
         }
         else if(trackNumber > 0 && path.startsWith("m4b://")) //invalid chapter
         {
             avformat_close_input(&in);
-            delete info;
-            return QList<TrackInfo*>();
+            return {};
         }
     }
 
     avformat_close_input(&in);
-    return QList<TrackInfo*>() << info;
+    return {raw};
 }
 
-QList<TrackInfo*> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *in, TrackInfo *extraInfo, int trackNumber)
+QList<TrackInfo> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *in, TrackInfo *extraInfo, int trackNumber)
 {
-    QList<TrackInfo*> playlist;
+    QList<TrackInfo> playlist;
     for(unsigned int i = 1; i <= in->nb_chapters; ++i)
     {
         if((trackNumber > 0) && (int(i) != trackNumber))
             continue;
 
         AVChapter *chapter = in->chapters[i - 1];
-        TrackInfo *info = new TrackInfo(QString("m4b://%1#%2").arg(extraInfo->path()).arg(i));
+        TrackInfo raw(QString("m4b://%1#%2").arg(extraInfo->path()).arg(i)), *info = &raw;
         info->setDuration((chapter->end - chapter->start) * av_q2d(chapter->time_base) * 1000);
         info->setValues(extraInfo->properties());
         info->setValues(extraInfo->metaData());
@@ -409,7 +404,7 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatConte
         if(title)
             info->setValue(Qmmp::TITLE, QString::fromUtf8(title->value).trimmed());
 
-        playlist << info;
+        playlist << raw;
     }
 
     return playlist;

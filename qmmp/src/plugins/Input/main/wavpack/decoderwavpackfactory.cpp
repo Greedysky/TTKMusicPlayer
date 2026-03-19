@@ -27,7 +27,7 @@ Decoder *DecoderWavPackFactory::create(const QString &path, QIODevice *input)
     return new DecoderWavPack(path, input);
 }
 
-QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderWavPackFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     int track = -1; //cue track
     QString filePath = path;
@@ -38,10 +38,10 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
         parts = TrackInfo::AllParts; //extract all metadata for single cue track
     }
 
-    TrackInfo *info = new TrackInfo(filePath);
+    TrackInfo raw(filePath), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     char err[80] = {0};
@@ -53,8 +53,7 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
     if(!ctx)
     {
         qWarning("DecoderWavPackFactory: error: %s", err);
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     if(parts & TrackInfo::Properties)
@@ -95,15 +94,13 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
             parser.setUrl("wvpack", filePath);
 
             WavpackCloseFile(ctx);
-            delete info;
             return parser.createPlayList(track);
         }
 
         if(track > 0)
         {
             WavpackCloseFile(ctx);
-            delete info;
-            return QList<TrackInfo*>();
+            return {};
         }
 
         char value[200] = {0};
@@ -130,7 +127,7 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
     }
 
     WavpackCloseFile(ctx);
-    return QList<TrackInfo*>() << info;
+    return {raw};
 }
 
 MetaDataModel* DecoderWavPackFactory::createMetaDataModel(const QString &path, bool readOnly)

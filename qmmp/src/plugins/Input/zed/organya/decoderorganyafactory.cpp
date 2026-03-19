@@ -32,19 +32,18 @@ Decoder *DecoderOrganyaFactory::create(const QString &path, QIODevice *input)
     return new DecoderOrganya(path);
 }
 
-QList<TrackInfo*> DecoderOrganyaFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderOrganyaFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     OrganyaHelper helper(path);
     if(!helper.initialize())
     {
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     if(parts & TrackInfo::Properties)
@@ -56,7 +55,8 @@ QList<TrackInfo*> DecoderOrganyaFactory::createPlayList(const QString &path, Tra
         info->setValue(Qmmp::FORMAT_NAME, "Cave Story's org");
         info->setDuration(helper.totalTime());
     }
-    return QList<TrackInfo*>() << info;
+
+    return {raw};
 }
 
 MetaDataModel* DecoderOrganyaFactory::createMetaDataModel(const QString &path, bool readOnly)

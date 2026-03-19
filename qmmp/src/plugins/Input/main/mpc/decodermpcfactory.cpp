@@ -26,12 +26,12 @@ Decoder *DecoderMPCFactory::create(const QString &path, QIODevice *input)
     return new DecoderMPC(input);
 }
 
-QList<TrackInfo*> DecoderMPCFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderMPCFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     TagLib::FileStream stream(QStringToFileName(path), true);
@@ -65,7 +65,8 @@ QList<TrackInfo*> DecoderMPCFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::FORMAT_NAME, QString("Musepack SV%1").arg(ap->mpcVersion()));
         info->setDuration(ap->lengthInMilliseconds());
     }
-    return QList<TrackInfo*>() << info;
+
+    return {raw};
 }
 
 MetaDataModel* DecoderMPCFactory::createMetaDataModel(const QString &path, bool readOnly)

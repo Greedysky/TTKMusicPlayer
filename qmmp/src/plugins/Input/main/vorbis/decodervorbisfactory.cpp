@@ -25,12 +25,12 @@ Decoder *DecoderVorbisFactory::create(const QString &path, QIODevice *input)
     return new DecoderVorbis(input);
 }
 
-QList<TrackInfo*> DecoderVorbisFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderVorbisFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     TagLib::FileStream stream(QStringToFileName(path), true);
@@ -80,7 +80,8 @@ QList<TrackInfo*> DecoderVorbisFactory::createPlayList(const QString &path, Trac
         if(items.contains("REPLAYGAIN_ALBUM_PEAK"))
             info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].front()));
     }
-    return QList<TrackInfo*>() << info;
+
+    return {raw};
 }
 
 MetaDataModel* DecoderVorbisFactory::createMetaDataModel(const QString &path, bool readOnly)

@@ -53,18 +53,20 @@ Decoder *DecoderXMPFactory::create(const QString &path, QIODevice *input)
     return new DecoderXMP(path);
 }
 
-QList<TrackInfo*> DecoderXMPFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderXMPFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList<TrackInfo*> plyalist;
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
+    if(parts == TrackInfo::Parts())
+    {
+        return {raw};
+    }
 
     xmp_context ctx = xmp_create_context();
     if(xmp_load_module(ctx, QmmpPrintable(path)) != 0)
     {
         qWarning("DecoderXMPFactory: unable to load module");
         xmp_free_context(ctx);
-        delete info;
-        return plyalist;
+        return {};
     }
 
     xmp_module_info mi;
@@ -88,7 +90,7 @@ QList<TrackInfo*> DecoderXMPFactory::createPlayList(const QString &path, TrackIn
 
     xmp_release_module(ctx);
     xmp_free_context(ctx);
-    return plyalist << info;
+    return {raw};
 }
 
 MetaDataModel* DecoderXMPFactory::createMetaDataModel(const QString &path, bool readOnly)

@@ -258,9 +258,9 @@ qint64 VgmstreamHelper::read(unsigned char *data, qint64 maxSize)
     return samples * size;
 }
 
-QList<TrackInfo*> VgmstreamHelper::createPlayList(TrackInfo::Parts parts)
+QList<TrackInfo> VgmstreamHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo*> playlist;
+    QList<TrackInfo> playlist;
     if(!m_info)
     {
         return playlist;
@@ -278,7 +278,7 @@ QList<TrackInfo*> VgmstreamHelper::createPlayList(TrackInfo::Parts parts)
 
     for(int i = 1; i <= songs; ++i)
     {
-        TrackInfo *info = new TrackInfo();
+        TrackInfo raw, *info = &raw;
         if(parts & TrackInfo::MetaData)
         {
             info->setValue(Qmmp::TRACK, i);
@@ -336,8 +336,9 @@ QList<TrackInfo*> VgmstreamHelper::createPlayList(TrackInfo::Parts parts)
 
         info->setPath("vgm://" + cleanPath() + QString("#%1").arg(i));
         info->setDuration(totalTime());
-        playlist << info;
+        playlist << raw;
     }
+
     return playlist;
 }
 

@@ -561,12 +561,10 @@ void QmmpAudioEngine::attachMetaData(Decoder *decoder, DecoderFactory *factory, 
     if(fin.isFile() || factory->properties().protocols.contains(scheme))
     {
         QStringList ignoredPaths;
-        QList<TrackInfo*> playlist = factory->createPlayList(path, TrackInfo::AllParts, &ignoredPaths);
+        QList<TrackInfo> playlist = factory->createPlayList(path, TrackInfo::AllParts, &ignoredPaths);
         if(!playlist.isEmpty())
         {
-            TrackInfo *info = playlist.takeFirst();
-            qDeleteAll(playlist);
-            playlist.clear();
+            TrackInfo raw(playlist.takeFirst()), *info = &raw;
             decoder->addMetaData(info->metaData());
             if(info->parts() & TrackInfo::ReplayGainInfo)
                 decoder->setReplayGainInfo(info->replayGainInfo());
@@ -575,7 +573,6 @@ void QmmpAudioEngine::attachMetaData(Decoder *decoder, DecoderFactory *factory, 
             if(fin.isFile() && info->value(Qmmp::FILE_SIZE).isEmpty())
                 info->setValue(Qmmp::FILE_SIZE, fin.size());
             decoder->setProperties(info->properties());
-            delete info;
         }
     }
     else

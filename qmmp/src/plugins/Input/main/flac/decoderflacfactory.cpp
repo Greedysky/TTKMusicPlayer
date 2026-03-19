@@ -62,7 +62,7 @@ Decoder *DecoderFLACFactory::create(const QString &path, QIODevice *input)
     return new DecoderFLAC(path, input);
 }
 
-QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     int track = -1; //cue track
     QString filePath = path;
@@ -73,10 +73,10 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
         parts = TrackInfo::AllParts; //extract all metadata for single cue track
     }
 
-    TrackInfo *info = new TrackInfo(filePath);
+    TrackInfo raw(filePath), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     TagLib::Ogg::XiphComment *tag = nullptr;
@@ -105,8 +105,7 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
     }
     else
     {
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     if((parts & TrackInfo::Properties) && ap)
@@ -160,17 +159,13 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
 
             delete flacFile;
             delete oggFlacFile;
-
-            delete info;
             return parser.createPlayList(track);
         }
         else if(track > 0) //cue track is not available
         {
             delete flacFile;
             delete oggFlacFile;
-
-            delete info;
-            return QList<TrackInfo*>();
+            return {};
         }
 
         info->setValue(Qmmp::ALBUM, TStringToQString(tag->album()));
@@ -232,7 +227,7 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
 
     delete flacFile;
     delete oggFlacFile;
-    return QList<TrackInfo*>() << info;
+    return {raw};
 }
 
 MetaDataModel* DecoderFLACFactory::createMetaDataModel(const QString &path, bool readOnly)

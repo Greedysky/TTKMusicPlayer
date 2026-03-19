@@ -137,12 +137,12 @@ Decoder *DecoderSndFileFactory::create(const QString &path, QIODevice *input)
     return new DecoderSndFile(input);
 }
 
-QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderSndFileFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     TagLib::FileStream stream(QStringToFileName(path), true);
@@ -170,7 +170,7 @@ QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, Tra
             info->setDuration(file.audioProperties()->lengthInMilliseconds());
         }
 
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     if(TagLib::RIFF::WAV::File::isSupported(&stream))
@@ -192,7 +192,7 @@ QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, Tra
             info->setDuration(file.audioProperties()->lengthInMilliseconds());
         }
 
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     //fallback
@@ -206,8 +206,7 @@ QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, Tra
 #endif
     if(!sndfile)
     {
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     if(parts & TrackInfo::MetaData)
@@ -264,7 +263,7 @@ QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, Tra
     }
 
     sf_close(sndfile);
-    return QList<TrackInfo*>() << info;
+    return {raw};
 }
 
 MetaDataModel* DecoderSndFileFactory::createMetaDataModel(const QString &path, bool readOnly)

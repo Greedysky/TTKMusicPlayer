@@ -36,19 +36,18 @@ Decoder *DecoderFC14Factory::create(const QString &path, QIODevice *input)
     return new DecoderFC14(path);
 }
 
-QList<TrackInfo*> DecoderFC14Factory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo> DecoderFC14Factory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo*>() << info;
+        return {raw};
     }
 
     FC14Helper helper(path);
     if(!helper.initialize())
     {
-        delete info;
-        return QList<TrackInfo*>();
+        return {};
     }
 
     if(parts & TrackInfo::MetaData)
@@ -65,7 +64,8 @@ QList<TrackInfo*> DecoderFC14Factory::createPlayList(const QString &path, TrackI
         info->setValue(Qmmp::FORMAT_NAME, "Future Composer");
         info->setDuration(helper.totalTime());
     }
-    return QList<TrackInfo*>() << info;
+
+    return {raw};
 }
 
 MetaDataModel* DecoderFC14Factory::createMetaDataModel(const QString &path, bool readOnly)
