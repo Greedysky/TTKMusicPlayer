@@ -187,13 +187,13 @@ bool KenHelper::initialize()
 
     if(!m_input)
     {
-        qWarning("KenHelper: load file suffix error");
+        qWarning("KenHelper: load file suffix error, %s", qPrintable(m_path));
         return false;
     }
 
     if(!m_input->load(m_path))
     {
-       qWarning("KenHelper: unable to open file");
+       qWarning("KenHelper: unable to open file, %s", qPrintable(m_path));
        return false;
     }
     return true;

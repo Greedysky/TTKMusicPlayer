@@ -33,7 +33,7 @@ bool DecoderAAC::initialize()
 
     if(!input())
     {
-        qWarning("DecoderAAC: cannot initialize.  No input.");
+        qWarning("DecoderAAC: cannot initialize. No input.");
         return false;
     }
 

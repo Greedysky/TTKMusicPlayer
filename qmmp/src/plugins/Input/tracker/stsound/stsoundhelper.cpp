@@ -42,7 +42,7 @@ bool StSoundHelper::initialize()
     {
         delete m_input;
         m_input = nullptr;
-        qWarning("StSoundHelper: failed to open: %s", QmmpPrintable(m_path));
+        qWarning("StSoundHelper: open file failed, %s", qPrintable(m_path));
         return false;
     }
     return true;

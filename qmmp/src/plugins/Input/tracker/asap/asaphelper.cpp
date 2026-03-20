@@ -16,7 +16,7 @@ struct ASAPFileLoader
         QFile file(filename);
         if(!file.open(QIODevice::ReadOnly))
         {
-            qWarning("AsapHelper: open file failed");
+            qWarning("AsapHelper: open file failed, %s", filename);
             return -1;
         }
 
@@ -54,7 +54,7 @@ bool AsapHelper::initialize()
 
     if(!ASAP_LoadFiles(m_input, QmmpPrintable(m_path), &loader))
     {
-        qWarning("AsapHelper: ASAP_Load error");
+        qWarning("AsapHelper: ASAP_Load error, %s", qPrintable(m_path));
         return false;
     }
 

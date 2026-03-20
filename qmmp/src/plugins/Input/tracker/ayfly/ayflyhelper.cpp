@@ -30,7 +30,7 @@ bool AyflyHelper::initialize()
     QFile file(m_path);
     if(!file.open(QIODevice::ReadOnly))
     {
-        qWarning("AyflyHelper: open file failed");
+        qWarning("AyflyHelper: open file failed, %s", qPrintable(m_path));
         return false;
     }
 
@@ -39,14 +39,14 @@ bool AyflyHelper::initialize()
 
     if(!ay_initsongindirect((unsigned char *)buffer.constData(), sampleRate(), buffer.length()))
     {
-        qWarning("AyflyHelper: ay_initsongindirect error");
+        qWarning("AyflyHelper: ay_initsongindirect error, %s", qPrintable(m_path));
         return false;
     }
 
     m_input = ay_initsong(QmmpPrintable(m_path), sampleRate());
     if(!m_input)
     {
-        qWarning("AyflyHelper: ay_initsong error");
+        qWarning("AyflyHelper: ay_initsong error, %s", qPrintable(m_path));
         return false;
     }
 

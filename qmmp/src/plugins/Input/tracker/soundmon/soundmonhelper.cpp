@@ -21,7 +21,7 @@ bool SoundMonHelper::initialize()
     QFile file(m_path);
     if(!file.open(QIODevice::ReadOnly))
     {
-        qWarning("SoundMonHelper: open file failed");
+        qWarning("SoundMonHelper: open file failed, %s", qPrintable(m_path));
         return false;
     }
 
@@ -31,7 +31,7 @@ bool SoundMonHelper::initialize()
     m_input = new Player((BYTE*)buffer.constData(), buffer.length());
     if(!m_input->Load())
     {
-        qWarning("SoundMonHelper: Load error");
+        qWarning("SoundMonHelper: Load error, %s", qPrintable(m_path));
         return false;
     }
     return true;

@@ -24,7 +24,7 @@ bool FC14Helper::initialize()
     QFile file(m_path);
     if(!file.open(QIODevice::ReadOnly))
     {
-        qWarning("FC14Helper: open file failed");
+        qWarning("FC14Helper: open file failed, %s", qPrintable(m_path));
         return false;
     }
 
@@ -38,7 +38,7 @@ bool FC14Helper::initialize()
     if(!fc14dec_init(m_input, (void*)buffer.constData(), buffer.length(), 0))
 #endif
     {
-        qWarning("FC14Helper: fc14dec_init error");
+        qWarning("FC14Helper: fc14dec_init error, %s", qPrintable(m_path));
         return false;
     }
 

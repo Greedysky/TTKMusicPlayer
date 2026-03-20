@@ -58,7 +58,7 @@ bool DecoderMPC::initialize()
 
     if(!input())
     {
-        qWarning("DecoderMPC: cannot initialize.  No input.");
+        qWarning("DecoderMPC: cannot initialize. No input.");
         return false;
     }
 

@@ -28,7 +28,7 @@ bool TFMXHelper::initialize()
     QFile file(path);
     if(!file.open(QIODevice::ReadOnly))
     {
-        qWarning("TFMXHelper: open file failed");
+        qWarning("TFMXHelper: open file failed, %s", qPrintable(path));
         return false;
     }
 
@@ -55,7 +55,7 @@ bool TFMXHelper::initialize()
     const int track = m_path.section("#", -1).toInt() - 1;
     if(!tfmxdec_init(m_input, (void*)buffer.constData(), buffer.length(), track < 0 ? 0 : track))
     {
-        qWarning("TFMXHelper: tfmxdec_init error");
+        qWarning("TFMXHelper: tfmxdec_init error, %s", qPrintable(path));
         return false;
     }
     return true;

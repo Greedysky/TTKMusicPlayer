@@ -24,7 +24,7 @@ bool HivelyHelper::initialize()
     QFile file(m_path);
     if(!file.open(QIODevice::ReadOnly))
     {
-        qWarning("HivelyHelper: open file failed");
+        qWarning("HivelyHelper: open file failed, %s", qPrintable(m_path));
         return false;
     }
 
@@ -35,7 +35,7 @@ bool HivelyHelper::initialize()
     m_input = hvl_ParseTune((unsigned char *)buffer.constData(), buffer.length(), sampleRate(), 0);
     if(!m_input)
     {
-        qWarning("HivelyHelper: hvl_LoadTune error");
+        qWarning("HivelyHelper: hvl_LoadTune error, %s", qPrintable(m_path));
         return false;
     }
 

@@ -38,7 +38,7 @@ bool DecoderSID::initialize()
     m_tune.load(QmmpPrintable(filePath));
     if(!m_tune.getInfo())
     {
-        qWarning("DecoderSID: unable to load tune, error: %s", m_tune.statusString());
+        qWarning("DecoderSID: unable to load tune, error: %s, %s", m_tune.statusString(), qPrintable(filePath));
         return false;
     }
 

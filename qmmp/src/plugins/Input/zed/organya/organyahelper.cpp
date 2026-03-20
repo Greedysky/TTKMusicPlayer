@@ -194,13 +194,13 @@ bool OrganyaHelper::initialize()
 
     if(!m_input)
     {
-        qWarning("OrganyaHelper: load file suffix error");
+        qWarning("OrganyaHelper: load file suffix error, %s", qPrintable(m_path));
         return false;
     }
 
     if(!m_input->load(m_path))
     {
-       qWarning("OrganyaHelper: unable to open file");
+       qWarning("OrganyaHelper: unable to open file, %s", qPrintable(m_path));
        return false;
     }
 

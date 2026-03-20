@@ -30,7 +30,7 @@ bool OpenMPTHelper::initialize()
             const QByteArray &buffer = ArchiveReader::unpack(path);
             if(buffer.isEmpty())
             {
-                qWarning("OpenMPTHelper: input buffer is empty");
+                qWarning("OpenMPTHelper: input buffer is empty, %s", qPrintable(path));
                 return false;
             }
 

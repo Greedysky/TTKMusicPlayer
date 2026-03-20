@@ -36,13 +36,13 @@ bool XSFHelper::initialize()
 
     if(!m_input)
     {
-        qWarning("XSFHelper: load file suffix error");
+        qWarning("XSFHelper: load file suffix error, %s", qPrintable(m_path));
         return false;
     }
 
     if(!m_input->load(QmmpPrintable(m_path), m_meta))
     {
-       qWarning("XSFHelper: unable to open file");
+       qWarning("XSFHelper: unable to open file, %s", qPrintable(m_path));
        return false;
     }
     return true;

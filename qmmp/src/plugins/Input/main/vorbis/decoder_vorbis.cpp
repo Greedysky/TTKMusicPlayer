@@ -70,7 +70,7 @@ bool DecoderVorbis::initialize()
 
     if(!input())
     {
-        qWarning("DecoderVorbis: cannot initialize.  No input");
+        qWarning("DecoderVorbis: cannot initialize. No input");
         return false;
     }
 

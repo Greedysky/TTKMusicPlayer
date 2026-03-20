@@ -138,7 +138,7 @@ bool VgmstreamHelper::initialize()
     libstreamfile_t *sf = vfs_open(QmmpPrintable(path));
     if(!sf)
     {
-        qWarning("VgmstreamHelper: unable to open file");
+        qWarning("VgmstreamHelper: unable to open file, %s", qPrintable(path));
         return false;
     }
 

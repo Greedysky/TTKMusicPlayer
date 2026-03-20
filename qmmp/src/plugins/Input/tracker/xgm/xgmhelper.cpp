@@ -63,7 +63,7 @@ bool KssReader::load()
     QFile file(path);
     if(!file.open(QIODevice::ReadOnly))
     {
-//        qWarning("KssReader: open file failed");
+//        qWarning("KssReader: open file failed, %s", qPrintable(path));
         return false;
     }
 
@@ -73,7 +73,7 @@ bool KssReader::load()
     m_kss = KSS_bin2kss((uint8_t*)buffer.constData(), buffer.length(), QmmpPrintable(path));
     if(!m_kss)
     {
-//        qWarning("KssReader: KSS_bin2kss failed");
+//        qWarning("KssReader: KSS_bin2kss failed, %s", qPrintable(path));
         return false;
     }
 
@@ -239,10 +239,12 @@ NEZplugReader::~NEZplugReader()
 
 bool NEZplugReader::load()
 {
-    QFile file(cleanPath());
+    const QString &path = cleanPath();
+
+    QFile file(path);
     if(!file.open(QIODevice::ReadOnly))
     {
-//        qWarning("NEZplugReader: open file failed");
+//        qWarning("NEZplugReader: open file failed, %s", qPrintable(path));
         return false;
     }
 
@@ -258,7 +260,7 @@ bool NEZplugReader::load()
 
     if(NEZLoad(m_input, (uint8_t*)buffer.constData(), buffer.length()))
     {
-//        qWarning("NEZplugReader: NEZLoad failed");
+//        qWarning("NEZplugReader: NEZLoad failed, %s", qPrintable(path));
         return false;
     }
 
@@ -391,10 +393,12 @@ JaytraxReader::~JaytraxReader()
 
 bool JaytraxReader::load()
 {
-    QFile file(cleanPath());
+    const QString &path = cleanPath();
+
+    QFile file(path);
     if(!file.open(QIODevice::ReadOnly))
     {
-//        qWarning("JaytraxReader: open file failed");
+//        qWarning("JaytraxReader: open file failed, %s", qPrintable(path));
         return false;
     }
 
@@ -403,7 +407,7 @@ bool JaytraxReader::load()
 
     if(jxsfile_readSongMem((uint8_t*)buffer.constData(), buffer.length(), &m_song) != 0)
     {
-//        qWarning("JaytraxReader: jxsfile_readSongMem failed");
+//        qWarning("JaytraxReader: jxsfile_readSongMem failed, %s", qPrintable(path));
         return false;
     }
 
@@ -529,7 +533,7 @@ bool PacReader::load()
     m_input = pac_open(QmmpPrintable(cleanPath()));
     if(!m_input)
     {
-//        qWarning("PacReader: pac_open failed");
+//        qWarning("PacReader: pac_open failed, %s", qPrintable(cleanPath()));
         return false;
     }
 

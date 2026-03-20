@@ -54,7 +54,7 @@ bool V2MHelper::initialize()
     QFile file(m_path);
     if(!file.open(QIODevice::ReadOnly))
     {
-        qWarning("V2MHelper: open file failed");
+        qWarning("V2MHelper: open file failed, %s", qPrintable(m_path));
         return false;
     }
 
@@ -63,14 +63,14 @@ bool V2MHelper::initialize()
 
     if(buffer.isEmpty())
     {
-        qWarning("V2MHelper: input buffer is empty");
+        qWarning("V2MHelper: input buffer is empty, %s", qPrintable(m_path));
         return false;
     }
 
     int convlen;
     if(loadAndConvert((unsigned char *)buffer.constData(), buffer.length(), &m_tune, &convlen) < 0)
     {
-        qWarning("V2MHelper: load_and_convert error");
+        qWarning("V2MHelper: load_and_convert error, %s", qPrintable(m_path));
         return false;
     }
 

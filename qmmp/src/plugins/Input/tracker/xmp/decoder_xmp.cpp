@@ -74,7 +74,7 @@ bool DecoderXMP::initialize()
     const int err = xmp_load_module(m_ctx, QmmpPrintable(m_path));
     if(err != 0)
     {
-        qWarning("DecoderXMP: unable to load module file, error = %d", err);
+        qWarning("DecoderXMP: unable to load module file, error = %d, %s", err, qPrintable(m_path));
         xmp_free_context(m_ctx);
         m_ctx = nullptr;
         return false;

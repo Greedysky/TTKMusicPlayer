@@ -336,13 +336,13 @@ bool XMDXHelper::initialize()
 
     if(!m_input)
     {
-        qWarning("XMDXHelper: load file suffix error");
+        qWarning("XMDXHelper: load file suffix error, %s", qPrintable(m_path));
         return false;
     }
 
     if(!m_input->load(m_path))
     {
-       qWarning("XMDXHelper: unable to open file");
+       qWarning("XMDXHelper: unable to open file, %s", qPrintable(m_path));
        return false;
     }
     return true;

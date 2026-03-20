@@ -24,7 +24,7 @@ bool BuzzicHelper::initialize()
     QFile file(m_path);
     if(!file.open(QIODevice::ReadOnly))
     {
-        qWarning("BuzzicHelper: open file failed");
+        qWarning("BuzzicHelper: open file failed, %s", qPrintable(m_path));
         return false;
     }
 
@@ -34,7 +34,7 @@ bool BuzzicHelper::initialize()
     m_input = Buzzic2Load((unsigned char *)buffer.constData(), buffer.length());
     if(!m_input)
     {
-        qWarning("BuzzicHelper: failed to Buzzic2Load");
+        qWarning("BuzzicHelper: failed to Buzzic2Load, %s", qPrintable(m_path));
         return false;
     }
 

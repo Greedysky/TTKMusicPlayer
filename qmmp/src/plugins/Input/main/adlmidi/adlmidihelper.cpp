@@ -26,7 +26,7 @@ bool AdlMidiHelper::initialize()
     m_input = adl_init(sampleRate());
     if(adl_openFile(m_input, QmmpPrintable(m_path)) < 0)
     {
-        qWarning("AdlMidiHelper: adl_openFile error");
+        qWarning("AdlMidiHelper: adl_openFile error, %s", qPrintable(m_path));
         return false;
     }
 

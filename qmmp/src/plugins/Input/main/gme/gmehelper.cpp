@@ -29,7 +29,7 @@ Music_Emu *GMEHelper::load(const QString &path, int sample_rate)
     gme_type_t file_type;
     if((err = gme_identify_file(QmmpPrintable(m_path), &file_type)))
     {
-        qWarning("GMEHelper: %s", err);
+        qWarning("GMEHelper: %s, %s", err, qPrintable(m_path));
         return nullptr;
     }
 
@@ -47,7 +47,7 @@ Music_Emu *GMEHelper::load(const QString &path, int sample_rate)
 
     if((err = gme_load_file(m_emu, QmmpPrintable(m_path))))
     {
-        qWarning("GMEHelper: %s", err);
+        qWarning("GMEHelper: %s, %s", err, qPrintable(m_path));
         return nullptr;
     }
 

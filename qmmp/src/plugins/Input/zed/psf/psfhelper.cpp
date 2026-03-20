@@ -29,7 +29,7 @@ bool PSFHelper::initialize()
     QFile file(m_path);
     if(!file.open(QIODevice::ReadOnly))
     {
-        qWarning("PSFHelper: open file failed");
+        qWarning("PSFHelper: open file failed, %s", qPrintable(m_path));
         return false;
     }
 
@@ -48,7 +48,7 @@ bool PSFHelper::initialize()
     m_input = ao_start(m_type, QmmpPrintable(m_path), (uint8 *)m_data, size);
     if(!m_input)
     {
-        qWarning("PSFHelper: unable to open file");
+        qWarning("PSFHelper: unable to open file, %s", qPrintable(m_path));
         return false;
     }
 

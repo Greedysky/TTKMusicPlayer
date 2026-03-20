@@ -28,7 +28,7 @@ bool DecoderCUE::initialize()
     m_cueFile = new CueFile(m_path);
     if(m_cueFile->count() == 0)
     {
-        qWarning("DecoderCUE: invalid cue file");
+        qWarning("DecoderCUE: invalid cue file, %s", qPrintable(m_path));
         return false;
     }
 

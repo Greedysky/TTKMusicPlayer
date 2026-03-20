@@ -317,7 +317,7 @@ bool DCAHelper::initialize()
     m_info->file = stdio_open(QmmpPrintable(m_path));
     if(!m_info->file)
     {
-        qWarning("DCAHelper: open file failed");
+        qWarning("DCAHelper: open file failed, %s", qPrintable(m_path));
         return false;
     }
 

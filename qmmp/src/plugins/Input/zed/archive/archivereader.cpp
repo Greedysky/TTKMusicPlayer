@@ -35,6 +35,7 @@ QStringList ArchiveReader::list(const QString &path)
     const QString &unpack = archive::unpackPath();
     if(unpack.isEmpty())
     {
+        qWarning("ArchiveReader: unpack is empty, %s", qPrintable(path));
         return {};
     }
 
@@ -69,6 +70,7 @@ bool ArchiveReader::unpack(const QString &path)
     const QString &unpack = archive::unpackPath();
     if(unpack.isEmpty())
     {
+        qWarning("ArchiveReader: unpack is empty, %s", qPrintable(path));
         return false;
     }
 
@@ -84,7 +86,7 @@ bool ArchiveReader::unpack(const QString &path)
 
         if(size > maxSize * 1024 * 1024)
         {
-            qDebug("ArchiveReader: file size is large");
+            qDebug("ArchiveReader: file size is large, %s", qPrintable(path));
             return false;
         }
     }

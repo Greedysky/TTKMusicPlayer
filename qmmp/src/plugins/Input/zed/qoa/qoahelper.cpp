@@ -24,7 +24,7 @@ bool QOAHelper::initialize()
     m_input = qoaplay_open(qPrintable(m_path));
     if(!m_input)
     {
-        qWarning("QOAHelper: failed to qoaplay_open");
+        qWarning("QOAHelper: failed to qoaplay_open, %s", qPrintable(m_path));
         return false;
     }
     return true;

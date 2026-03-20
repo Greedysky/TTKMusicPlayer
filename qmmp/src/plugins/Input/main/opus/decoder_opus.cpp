@@ -62,7 +62,7 @@ bool DecoderOpus::initialize()
 
     if(!input())
     {
-        qWarning("DecoderOpus: cannot initialize.  No input");
+        qWarning("DecoderOpus: cannot initialize. No input");
         return false;
     }
 
