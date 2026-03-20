@@ -63,16 +63,16 @@ public:
     /*!
      * Makes a copy of the given \b info
      */
-    TrackInfo &operator=(const TrackInfo &info);
-    TrackInfo &operator=(TrackInfo &&info) noexcept;
+    TrackInfo &operator=(const TrackInfo &other);
+    TrackInfo &operator=(TrackInfo &&other) noexcept;
     /*!
      * Returns \b true if this FileInfo object refers to \b info; otherwise returns \b false.
      */
-    bool operator==(const TrackInfo &info) const;
+    bool operator==(const TrackInfo &other) const;
     /*!
      * Returns \b false if this FileInfo object refers to \b info; otherwise returns \b true.
      */
-    bool operator!=(const TrackInfo &info) const;
+    bool operator!=(const TrackInfo &other) const;
     /*!
      * Returnds file duration in milliseconds.
      */

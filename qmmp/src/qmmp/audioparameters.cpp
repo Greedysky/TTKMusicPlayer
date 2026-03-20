@@ -24,7 +24,8 @@ AudioParameters::AudioParameters(const AudioParameters &other)
     operator=(other);
 }
 
-AudioParameters::AudioParameters(AudioParameters &&other)
+AudioParameters::AudioParameters(AudioParameters &&other) noexcept
+    : d(nullptr)
 {
     std::swap(d, other.d);
 }
@@ -44,31 +45,31 @@ AudioParameters::~AudioParameters()
     delete d;
 }
 
-AudioParameters &AudioParameters::operator=(const AudioParameters &p)
+AudioParameters &AudioParameters::operator=(const AudioParameters &other)
 {
-    d->srate = p.sampleRate();
-    d->chanMap = p.channelMap();
-    d->format = p.format();
-    d->sampleSize = p.sampleSize();
-    d->validBitsPerSample = p.validBitsPerSample();
+    d->srate = other.sampleRate();
+    d->chanMap = other.channelMap();
+    d->format = other.format();
+    d->sampleSize = other.sampleSize();
+    d->validBitsPerSample = other.validBitsPerSample();
     return *this;
 }
 
-AudioParameters &AudioParameters::operator=(AudioParameters &&p)
+AudioParameters &AudioParameters::operator=(AudioParameters &&other) noexcept
 {
-    std::swap(d, p.d);
+    std::swap(d, other.d);
     return *this;
 }
 
-bool AudioParameters::operator==(const AudioParameters &p) const
+bool AudioParameters::operator==(const AudioParameters &other) const
 {
-    return d->srate == p.sampleRate() && d->chanMap == p.channelMap() && d->format == p.format() &&
-           d->validBitsPerSample == p.validBitsPerSample();
+    return d->srate == other.sampleRate() && d->chanMap == other.channelMap() && d->format == other.format() &&
+           d->validBitsPerSample == other.validBitsPerSample();
 }
 
-bool AudioParameters::operator!=(const AudioParameters &p) const
+bool AudioParameters::operator!=(const AudioParameters &other) const
 {
-    return !operator==(p);
+    return !operator==(other);
 }
 
 quint32 AudioParameters::sampleRate() const

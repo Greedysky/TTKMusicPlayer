@@ -53,31 +53,31 @@ TrackInfo::~TrackInfo()
 
 }
 
-TrackInfo &TrackInfo::operator=(const TrackInfo &info)
+TrackInfo &TrackInfo::operator=(const TrackInfo &other)
 {
-    d = info.d;
+    d = other.d;
     return *this;
 }
 
-TrackInfo &TrackInfo::operator=(TrackInfo &&info) noexcept
+TrackInfo &TrackInfo::operator=(TrackInfo &&other) noexcept
 {
-    swap(info);
+    swap(other);
     return *this;
 }
 
-bool TrackInfo::operator==(const TrackInfo &info) const
+bool TrackInfo::operator==(const TrackInfo &other) const
 {
-    return d->duration == info.duration() &&
-           d->path == info.path() &&
-           d->metaData == info.metaData () &&
-           d->properties == info.properties() &&
-           d->replayGainInfo == info.replayGainInfo() &&
-           d->parts == info.parts();
+    return d->duration == other.duration() &&
+           d->path == other.path() &&
+           d->metaData == other.metaData () &&
+           d->properties == other.properties() &&
+           d->replayGainInfo == other.replayGainInfo() &&
+           d->parts == other.parts();
 }
 
-bool TrackInfo::operator!=(const TrackInfo &info) const
+bool TrackInfo::operator!=(const TrackInfo &other) const
 {
-    return !operator==(info);
+    return !operator==(other);
 }
 
 qint64 TrackInfo::duration() const

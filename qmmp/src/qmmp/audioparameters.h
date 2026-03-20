@@ -60,20 +60,20 @@ public:
      * Constructs a copy of \b other.
      */
     AudioParameters(const AudioParameters &other);
-    AudioParameters(AudioParameters &&other);
+    AudioParameters(AudioParameters &&other) noexcept;
     /*!
      * Assigns audio parameters \b p to this parameters.
      */
-    AudioParameters &operator=(const AudioParameters &p);
-    AudioParameters &operator=(AudioParameters &&p);
+    AudioParameters &operator=(const AudioParameters &other);
+    AudioParameters &operator=(AudioParameters &&other) noexcept;
     /*!
      * Returns \b true if parameters \b p is equal to this parameters; otherwise returns \b false.
      */
-    bool operator==(const AudioParameters &p) const;
+    bool operator==(const AudioParameters &other) const;
     /*!
      * Returns \b true if parameters \b p is not equal to this parameters; otherwise returns \b false.
      */
-    bool operator!=(const AudioParameters &p) const;
+    bool operator!=(const AudioParameters &other) const;
     /*!
      * Returns sample rate in Hz.
      */

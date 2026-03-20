@@ -18,7 +18,8 @@ EqSettings::EqSettings(const EqSettings &other)
     operator=(other);
 }
 
-EqSettings::EqSettings(EqSettings &&other)
+EqSettings::EqSettings(EqSettings &&other) noexcept
+    : d(nullptr)
 {
     std::swap(d, other.d);
 }
@@ -79,33 +80,33 @@ void EqSettings::setTwoPasses(bool enabled)
     d->twoPasses = enabled;
 }
 
-EqSettings &EqSettings::operator=(const EqSettings &s)
+EqSettings &EqSettings::operator=(const EqSettings &other)
 {
-    for(int i = 0; i < s.d->bands; ++i)
-        d->gains[i] = s.d->gains[i];
-    d->preamp = s.d->preamp;
-    d->isEnabled = s.d->isEnabled;
-    d->bands = s.d->bands;
-    d->twoPasses = s.d->twoPasses;
+    for(int i = 0; i < other.d->bands; ++i)
+        d->gains[i] = other.d->gains[i];
+    d->preamp = other.d->preamp;
+    d->isEnabled = other.d->isEnabled;
+    d->bands = other.d->bands;
+    d->twoPasses = other.d->twoPasses;
     return *this;
 }
 
-EqSettings &EqSettings::operator=(EqSettings &&s)
+EqSettings &EqSettings::operator=(EqSettings &&other) noexcept
 {
-    std::swap(d, s.d);
+    std::swap(d, other.d);
     return *this;
 }
 
-bool EqSettings::operator==(const EqSettings &s) const
+bool EqSettings::operator==(const EqSettings &other) const
 {
     for(int i = 0; i < d->bands; ++i)
     {
-        if(d->gains[i] != s.d->gains[i])
+        if(d->gains[i] != other.d->gains[i])
             return false;
     }
 
-    return d->preamp == s.d->preamp && d->isEnabled == s.d->isEnabled &&
-           d->bands == s.d->bands && d->twoPasses == s.d->twoPasses;
+    return d->preamp == other.d->preamp && d->isEnabled == other.d->isEnabled &&
+           d->bands == other.d->bands && d->twoPasses == other.d->twoPasses;
 }
 
 bool EqSettings::operator!=(const EqSettings &s) const
