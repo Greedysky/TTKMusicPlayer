@@ -21,10 +21,10 @@
 #ifndef METADATAMODEL_H
 #define METADATAMODEL_H
 
-#include <QCoreApplication>
 #include <QPixmap>
 #include <QVariant>
-#include <QFlags>
+#include <QFileInfo>
+#include <QCoreApplication>
 #include "tagmodel.h"
 #include "regularexpression.h"
 

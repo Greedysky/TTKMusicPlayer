@@ -21,10 +21,9 @@
 #ifndef DECODERFACTORY_H
 #define DECODERFACTORY_H
 
-#include <QIODevice>
 #include "decoder.h"
-#include "metadatamodel.h"
 #include "trackinfo.h"
+#include "metadatamodel.h"
 
 /*! @brief Structure to store input plugin properties.
  * @author Ilya Kotov <forkotov02@ya.ru>

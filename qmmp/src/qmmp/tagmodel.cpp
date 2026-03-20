@@ -1,9 +1,22 @@
 #include "tagmodel.h"
 
-TagModel::TagModel(ModelCaps f)
-    : m_f(f)
+class TagModelPrivate
 {
+public:
+     TagModel::ModelCaps caps = TagModel::DefaultCaps;
 
+};
+
+
+TagModel::TagModel(ModelCaps f)
+    : d(new TagModelPrivate)
+{
+    d->caps = f;
+}
+
+TagModel::~TagModel()
+{
+    delete d;
 }
 
 void TagModel::setValue(Qmmp::MetaData key, int value)
@@ -29,7 +42,7 @@ QList<Qmmp::MetaData> TagModel::keys() const
 
 TagModel::ModelCaps TagModel::caps() const
 {
-    return m_f;
+    return d->caps;
 }
 
 bool TagModel::exists() const

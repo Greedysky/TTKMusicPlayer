@@ -29,7 +29,6 @@
 #define QMMP_VISUAL_NODE_SIZE 512 //samples
 
 class VisualFactory;
-class VisualBuffer;
 
 /*! @brief The Visual class provides the base interface class of visualizations.
  *  @author Ilya Kotov <forkotov02@ya.ru>
@@ -87,7 +86,7 @@ public:
     /*!
      * Returns a pointer to a list of created visual objects.
      */
-    static QList<Visual *> *visuals();
+    static const QList<Visual *> &visuals();
     /*!
      * Adds data for visualization.
      * @param pcm Audio data.
@@ -173,19 +172,6 @@ protected:
     int m_rows = 0, m_cols = 0;
     int *m_visualData = nullptr;
     QAction *m_screenAction = nullptr;
-
-private:
-    static void checkFactories();
-    static void createVisualization(VisualFactory *factory, QWidget *parent);
-
-    static QList<VisualFactory*> *m_factories;
-    static QHash<const VisualFactory*, QString> *m_files;
-    static QList<Visual*> m_visuals;
-    static QHash<VisualFactory*, Visual*> m_visualMap; //internal visualization
-    static QWidget *m_parentClass;
-    static QObject *m_receiver;
-    static const char *m_member;
-    static VisualBuffer m_buffer;
 
 };
 

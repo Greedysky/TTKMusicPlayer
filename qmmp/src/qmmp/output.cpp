@@ -1,42 +1,88 @@
 #include "qmmpplugincache_p.h"
 #include "output.h"
 
+class OutputPrivate
+{
+public:
+    static void loadPlugins()
+    {
+        if(cache)
+            return;
+
+        cache = new QList<QmmpPluginCache *>;
+        QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+        for(const QString &filePath : Qmmp::findPlugins("Output"))
+        {
+            QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
+            if(item->hasError())
+            {
+                delete item;
+                continue;
+            }
+            cache->append(item);
+        }
+        QmmpPluginCache::cleanup(&settings);
+    }
+
+    quint32 frequency = 0;
+    ChannelMap channelMap;
+    Qmmp::AudioFormat format = Qmmp::PCM_UNKNOWN;
+    int sampleSize = 0;
+
+    static QList<QmmpPluginCache*> *cache;
+
+};
+
+QList<QmmpPluginCache*> *OutputPrivate::cache = nullptr;
+
+
+Output::Output()
+    : d(new OutputPrivate)
+{
+
+}
+
+Output::~Output()
+{
+
+}
+
 void Output::configure(quint32 freq, ChannelMap map, Qmmp::AudioFormat format)
 {
-    m_frequency = freq;
-    m_chan_map = map;
-    m_format = format;
-    m_sample_size = AudioParameters::sampleSize(format);
+    d->frequency = freq;
+    d->channelMap = map;
+    d->format = format;
+    d->sampleSize = AudioParameters::sampleSize(format);
 }
 
 AudioParameters Output::audioParameters() const
 {
-    return AudioParameters(m_frequency, m_chan_map, m_format);
+    return AudioParameters(d->frequency, d->channelMap, d->format);
 }
 
 quint32 Output::sampleRate() const
 {
-    return m_frequency;
+    return d->frequency;
 }
 
 int Output::channels() const
 {
-    return m_chan_map.count();
+    return d->channelMap.count();
 }
 
 const ChannelMap &Output::channelMap() const
 {
-    return m_chan_map;
+    return d->channelMap;
 }
 
 Qmmp::AudioFormat Output::format() const
 {
-    return m_format;
+    return d->format;
 }
 
 int Output::sampleSize() const
 {
-    return m_sample_size;
+    return d->sampleSize;
 }
 
 void Output::suspend()
@@ -54,34 +100,11 @@ void Output::setTrackInfo(const TrackInfo &info)
     Q_UNUSED(info);
 }
 
-// static methods
-QList<QmmpPluginCache*> *Output::m_cache = nullptr;
-
-void Output::loadPlugins()
-{
-    if(m_cache)
-        return;
-
-    m_cache = new QList<QmmpPluginCache *>;
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    for(const QString &filePath : Qmmp::findPlugins("Output"))
-    {
-        QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
-        if(item->hasError())
-        {
-            delete item;
-            continue;
-        }
-        m_cache->append(item);
-    }
-    QmmpPluginCache::cleanup(&settings);
-}
-
 Output *Output::create()
 {
-    loadPlugins();
+    OutputPrivate::loadPlugins();
     Output *output = nullptr;
-    if(m_cache->isEmpty())
+    if(OutputPrivate::cache->isEmpty())
     {
         qDebug("Output: unable to find output plugins");
         return output;
@@ -94,9 +117,9 @@ Output *Output::create()
 
 QList<OutputFactory *> Output::factories()
 {
-    loadPlugins();
+    OutputPrivate::loadPlugins();
     QList<OutputFactory *> list;
-    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    for(QmmpPluginCache *item : qAsConst(*OutputPrivate::cache))
     {
         if(item->outputFactory())
             list.append(item->outputFactory());
@@ -106,8 +129,8 @@ QList<OutputFactory *> Output::factories()
 
 QString Output::file(const OutputFactory *factory)
 {
-    loadPlugins();
-    for(const QmmpPluginCache *item : qAsConst(*m_cache))
+    OutputPrivate::loadPlugins();
+    for(const QmmpPluginCache *item : qAsConst(*OutputPrivate::cache))
     {
         if(item->shortName() == factory->properties().shortName)
             return item->file();
@@ -117,7 +140,7 @@ QString Output::file(const OutputFactory *factory)
 
 void Output::setCurrentFactory(const OutputFactory *factory)
 {
-    loadPlugins();
+    OutputPrivate::loadPlugins();
     if(file(factory).isEmpty())
         return;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
@@ -126,7 +149,7 @@ void Output::setCurrentFactory(const OutputFactory *factory)
 
 OutputFactory *Output::currentFactory()
 {
-    loadPlugins();
+    OutputPrivate::loadPlugins();
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
 #ifdef QMMP_DEFAULT_OUTPUT
@@ -142,12 +165,12 @@ OutputFactory *Output::currentFactory()
     QString name = settings.value("Output/current_plugin", "oss4").toString();
 #  endif
 #endif
-    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    for(QmmpPluginCache *item : qAsConst(*OutputPrivate::cache))
     {
         if(item->shortName() == name && item->outputFactory())
             return item->outputFactory();
     }
-    if(!m_cache->isEmpty())
-        return m_cache->at(0)->outputFactory();
+    if(!OutputPrivate::cache->isEmpty())
+        return OutputPrivate::cache->at(0)->outputFactory();
     return nullptr;
 }

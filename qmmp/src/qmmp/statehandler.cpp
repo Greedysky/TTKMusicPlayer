@@ -2,88 +2,126 @@
 #include "soundcore.h"
 #include "qmmpevents_p.h"
 #include "statehandler.h"
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+#  include <QMutex>
+#else
+#  include <QRecursiveMutex>
+#endif
 
 #define TICK_INTERVAL 250
 #define PREFINISH_TIME 7000
 
-StateHandler* StateHandler::m_instance = nullptr;
+class StateHandlerPrivate
+{
+public:
+    StateHandlerPrivate(StateHandler *q)
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+        : mutex(QMutex::Recursive)
+#endif
+    {
+        if(instance)
+            qFatal("StateHandler: only one instance is allowed");
+
+        instance = q;
+    }
+
+    ~StateHandlerPrivate()
+    {
+        instance = nullptr;
+    }
+
+    qint64 elapsed = -1;
+    qint64 duration = 0;
+    bool sendAboutToFinish = true;
+    int bitrate = 0;
+    TrackInfo info;
+    QHash <QString, QString> streamInfo;
+    Qmmp::State state = Qmmp::Stopped;
+    AudioParameters audioParameters;
+#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
+    mutable QMutex mutex;
+#else
+    mutable QRecursiveMutex mutex;
+#endif
+
+    static StateHandler *instance;
+
+};
+
+StateHandler* StateHandlerPrivate::instance = nullptr;
+
 
 StateHandler::StateHandler(QObject *parent)
-    : QObject(parent)
-#if QT_VERSION < QT_VERSION_CHECK(5,14,0)
-    , m_mutex(QMutex::Recursive)
-#endif
+    : QObject(parent),
+      d(new StateHandlerPrivate(this))
 {
-    if(m_instance)
-        qFatal("StateHandler: only one instance is allowed");
     qRegisterMetaType<AudioParameters>("AudioParameters");
-    m_instance = this;
 }
 
 StateHandler::~StateHandler()
 {
-    m_instance = nullptr;
+    delete d;
 }
 
 void StateHandler::dispatch(qint64 elapsed, int bitrate)
 {
-    m_mutex.lock();
-    if(std::abs(m_elapsed - elapsed) > TICK_INTERVAL)
+    d->mutex.lock();
+    if(std::abs(d->elapsed - elapsed) > TICK_INTERVAL)
     {
-        m_elapsed = elapsed;
+        d->elapsed = elapsed;
         emit elapsedChanged(elapsed);
-        if(m_bitrate != bitrate)
+        if(d->bitrate != bitrate)
         {
-            m_bitrate = bitrate;
+            d->bitrate = bitrate;
             emit bitrateChanged(bitrate);
         }
         if((SoundCore::instance()->duration() > PREFINISH_TIME)
-                 && (m_duration - m_elapsed < PREFINISH_TIME)
-                 && m_sendAboutToFinish)
+                 && (d->duration - d->elapsed < PREFINISH_TIME)
+                 && d->sendAboutToFinish)
         {
-            m_sendAboutToFinish = false;
-            if(m_duration - m_elapsed > PREFINISH_TIME / 2)
+            d->sendAboutToFinish = false;
+            if(d->duration - d->elapsed > PREFINISH_TIME / 2)
                 qApp->postEvent(parent(), new QEvent(EVENT_NEXT_TRACK_REQUEST));
         }
     }
-    m_mutex.unlock();
+    d->mutex.unlock();
 }
 
 void StateHandler::dispatch(const AudioParameters &p)
 {
-    m_mutex.lock();
-    if(m_audioParameters != p)
+    d->mutex.lock();
+    if(d->audioParameters != p)
     {
-        m_audioParameters = p;
+        d->audioParameters = p;
         emit audioParametersChanged(p);
     }
-    m_mutex.unlock();
+    d->mutex.unlock();
 }
 
 void StateHandler::dispatch(qint64 length)
 {
-    m_mutex.lock();
-    m_duration = length;
-    m_mutex.unlock();
+    d->mutex.lock();
+    d->duration = length;
+    d->mutex.unlock();
 }
 
 bool StateHandler::dispatch(const TrackInfo &info)
 {
-    QMutexLocker locker(&m_mutex);
+    QMutexLocker locker(&d->mutex);
     if(info.isEmpty())
     {
         qWarning("StateHandler: empty metadata");
         return false;
     }
-    if(m_state != Qmmp::Playing && m_state != Qmmp::Paused)
+    if(d->state != Qmmp::Playing && d->state != Qmmp::Paused)
     {
         qWarning("StateHandler: metadata is ignored");
         return false;
     }
 
-    if(m_info.isEmpty() || m_info.path() == info.path())
+    if(d->info.isEmpty() || d->info.path() == info.path())
     {
-        TrackInfo tmp = m_info;
+        TrackInfo tmp = d->info;
         tmp.setPath(info.path());
         if(info.parts() & TrackInfo::MetaData)
             tmp.setValues(info.metaData());
@@ -94,10 +132,10 @@ bool StateHandler::dispatch(const TrackInfo &info)
         if(info.duration() > 0)
             tmp.setDuration(info.duration());
 
-        if(m_info != tmp)
+        if(d->info != tmp)
         {
-            m_info = tmp;
-            qApp->postEvent(parent(), new TrackInfoEvent(m_info));
+            d->info = tmp;
+            qApp->postEvent(parent(), new TrackInfoEvent(d->info));
             return true;
         }
     }
@@ -106,7 +144,7 @@ bool StateHandler::dispatch(const TrackInfo &info)
 
 void StateHandler::dispatch(const QHash<QString, QString> &info)
 {
-    m_mutex.lock();
+    d->mutex.lock();
     QHash<QString, QString> tmp = info;
     const auto values = tmp.values();
     for(const QString &value : qAsConst(values)) //remove empty keys
@@ -114,94 +152,94 @@ void StateHandler::dispatch(const QHash<QString, QString> &info)
         if(value.isEmpty())
             tmp.remove(tmp.key(value));
     }
-    if(m_streamInfo != tmp)
+    if(d->streamInfo != tmp)
     {
-        m_streamInfo = tmp;
-        qApp->postEvent(parent(), new StreamInfoChangedEvent(m_streamInfo));
+        d->streamInfo = tmp;
+        qApp->postEvent(parent(), new StreamInfoChangedEvent(d->streamInfo));
     }
-    m_mutex.unlock();
+    d->mutex.unlock();
 }
 
 void StateHandler::dispatch(Qmmp::State state)
 {
-    m_mutex.lock();
+    d->mutex.lock();
     //clear
     static const QList<Qmmp::State> clearStates = { Qmmp::Stopped, Qmmp::NormalError, Qmmp::FatalError };
     if(clearStates.contains(state))
     {
-        m_elapsed = -1;
-        m_bitrate = 0;
-        m_info.clear();
-        m_streamInfo.clear();
-        m_sendAboutToFinish = true;
-        m_audioParameters = AudioParameters(44100, ChannelMap(2), Qmmp::PCM_UNKNOWN);
+        d->elapsed = -1;
+        d->bitrate = 0;
+        d->info.clear();
+        d->streamInfo.clear();
+        d->sendAboutToFinish = true;
+        d->audioParameters = AudioParameters(44100, ChannelMap(2), Qmmp::PCM_UNKNOWN);
     }
 
-    if(m_state != state)
+    if(d->state != state)
     {
         static const QStringList states = { "Playing", "Paused", "Stopped", "Buffering", "NormalError", "FatalError" };
         qDebug("StateHandler: Current state: %s; previous state: %s",
-               qPrintable(states.at(state)), qPrintable(states.at(m_state)));
+               qPrintable(states.at(state)), qPrintable(states.at(d->state)));
 
-        if(m_state == Qmmp::Stopped && state == Qmmp::Paused)
+        if(d->state == Qmmp::Stopped && state == Qmmp::Paused)
         {
             qDebug("StateHandler: Error switch state from %s to %s",
-                   qPrintable(states.at(m_state)), qPrintable(states.at(state)));
+                   qPrintable(states.at(d->state)), qPrintable(states.at(state)));
         }
         else
         {
-            Qmmp::State prevState = m_state;
-            m_state = state;
-            qApp->postEvent(parent(), new StateChangedEvent(m_state, prevState));
+            Qmmp::State prevState = d->state;
+            d->state = state;
+            qApp->postEvent(parent(), new StateChangedEvent(d->state, prevState));
         }
     }
-    m_mutex.unlock();
+    d->mutex.unlock();
 }
 
 void StateHandler::dispatchBuffer(int percent)
 {
-    if(m_state == Qmmp::Buffering)
+    if(d->state == Qmmp::Buffering)
         emit bufferingProgress(percent);
 }
 
 qint64 StateHandler::elapsed() const
 {
-    QMutexLocker locker(&m_mutex);
-    return m_elapsed;
+    QMutexLocker locker(&d->mutex);
+    return d->elapsed;
 }
 
 qint64 StateHandler::duration() const
 {
-    QMutexLocker locker(&m_mutex);
-    return m_duration;
+    QMutexLocker locker(&d->mutex);
+    return d->duration;
 }
 
 int StateHandler::bitrate() const
 {
-    QMutexLocker locker(&m_mutex);
-    return m_bitrate;
+    QMutexLocker locker(&d->mutex);
+    return d->bitrate;
 }
 
 AudioParameters StateHandler::audioParameters() const
 {
-    QMutexLocker locker(&m_mutex);
-    return m_audioParameters;
+    QMutexLocker locker(&d->mutex);
+    return d->audioParameters;
 }
 
 Qmmp::State StateHandler::state() const
 {
-    return m_state;
+    return d->state;
 }
 
 void StateHandler::sendNextTrackRequest()
 {
-    m_mutex.lock();
-    if(m_sendAboutToFinish)
+    d->mutex.lock();
+    if(d->sendAboutToFinish)
     {
-        m_sendAboutToFinish = false;
+        d->sendAboutToFinish = false;
         qApp->postEvent(parent(), new QEvent(EVENT_NEXT_TRACK_REQUEST));
     }
-    m_mutex.unlock();
+    d->mutex.unlock();
 }
 
 void StateHandler::sendFinished()
@@ -211,5 +249,5 @@ void StateHandler::sendFinished()
 
 StateHandler *StateHandler::instance()
 {
-    return m_instance;
+    return StateHandlerPrivate::instance;
 }

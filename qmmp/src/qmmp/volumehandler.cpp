@@ -1,33 +1,63 @@
 #include <QTimer>
+#include <atomic>
 #include <QSettings>
 #include "qmmpsettings.h"
+#include "volume.h"
 #include "output.h"
 #include "volumehandler.h"
 
-VolumeHandler *VolumeHandler::m_instance = nullptr;
-
-VolumeHandler::VolumeHandler(QObject *parent) : QObject(parent)
+class VolumeHandlerPrivate
 {
-    if(m_instance)
-        qFatal("VolumeHandler: only one instance is allowed!");
-    m_instance = this;
+public:
+    VolumeHandlerPrivate(VolumeHandler *q)
+    {
+        if(instance)
+            qFatal("VolumeHandler: only one instance is allowed!");
 
-    const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    m_settings.left = settings.value("Volume/left", 80).toInt();
-    m_settings.right = settings.value("Volume/right", 80).toInt();
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), SLOT(checkVolume()));
+        instance = q;
+
+        const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+        volumeSettings.left = settings.value("Volume/left", 80).toInt();
+        volumeSettings.right = settings.value("Volume/right", 80).toInt();
+        timer = new QTimer(q);
+        QObject::connect(timer, SIGNAL(timeout()), q, SLOT(checkVolume()));
+    }
+
+    ~VolumeHandlerPrivate()
+    {
+        instance = nullptr;
+        delete volume;
+
+        QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+        settings.setValue("Volume/left", volumeSettings.left);
+        settings.setValue("Volume/right", volumeSettings.right);
+    }
+
+    VolumeSettings volumeSettings;
+    bool prevBlock = false;
+    std::atomic_bool muted = ATOMIC_VAR_INIT(false);
+    std::atomic_bool apply = ATOMIC_VAR_INIT(false);
+    QMutex mutex;
+    double scaleLeft = 0, scaleRight = 0;
+    Volume *volume = nullptr;
+    QTimer *timer;
+    static VolumeHandler *instance;
+
+};
+
+VolumeHandler *VolumeHandlerPrivate::instance = nullptr;
+
+
+VolumeHandler::VolumeHandler(QObject *parent)
+    : QObject(parent),
+      d(new VolumeHandlerPrivate(this))
+{
     reload();
 }
 
 VolumeHandler::~VolumeHandler()
 {
-    m_instance = nullptr;
-    delete m_volume;
-
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.setValue("Volume/left", m_settings.left);
-    settings.setValue("Volume/right", m_settings.right);
+    delete d;
 }
 
 void VolumeHandler::setVolume(int left, int right)
@@ -35,18 +65,18 @@ void VolumeHandler::setVolume(int left, int right)
     VolumeSettings v;
     v.left = qBound(0, left, 100);
     v.right = qBound(0, right, 100);
-    if(m_volume)
+    if(d->volume)
     {
-        m_volume->setVolume(v);
+        d->volume->setVolume(v);
         checkVolume();
     }
-    else if(m_settings != v)
+    else if(d->volumeSettings != v)
     {
-        m_settings = v;
-        m_mutex.lock();
-        m_scaleLeft = double(m_settings.left) / 100.0;
-        m_scaleRight = double(m_settings.right) / 100.0;
-        m_mutex.unlock();
+        d->volumeSettings = v;
+        d->mutex.lock();
+        d->scaleLeft = double(d->volumeSettings.left) / 100.0;
+        d->scaleRight = double(d->volumeSettings.right) / 100.0;
+        d->mutex.unlock();
         checkVolume();
     }
 }
@@ -72,162 +102,162 @@ void VolumeHandler::setBalance(int balance)
 
 void VolumeHandler::setMuted(bool muted)
 {
-    if(m_muted == muted)
+    if(d->muted == muted)
         return;
 
-    if(m_volume && (m_volume->flags() & Volume::IsMuteSupported))
+    if(d->volume && (d->volume->flags() & Volume::IsMuteSupported))
     {
-        m_volume->setMuted(muted);
+        d->volume->setMuted(muted);
         checkVolume();
     }
-    else if(m_volume)
+    else if(d->volume)
     {
-        m_muted = muted;
-        m_apply = muted;
+        d->muted = muted;
+        d->apply = muted;
         emit mutedChanged(muted);
     }
     else
     {
-        m_muted = muted;
+        d->muted = muted;
         emit mutedChanged(muted);
     }
 }
 
 int VolumeHandler::left() const
 {
-    return m_settings.left;
+    return d->volumeSettings.left;
 }
 
 int VolumeHandler::right() const
 {
-    return m_settings.right;
+    return d->volumeSettings.right;
 }
 
 int VolumeHandler::volume() const
 {
-    return qMax(m_settings.right, m_settings.left);
+    return qMax(d->volumeSettings.right, d->volumeSettings.left);
 }
 
 int VolumeHandler::balance() const
 {
     int v = volume();
-    return v > 0 ? (m_settings.right - m_settings.left) * 100 / v : 0;
+    return v > 0 ? (d->volumeSettings.right - d->volumeSettings.left) * 100 / v : 0;
 }
 
 bool VolumeHandler::isMuted() const
 {
-    return m_muted;
+    return d->muted;
 }
 
 void VolumeHandler::apply(Buffer *b, int chan)
 {
-    if(m_apply)
+    if(d->apply)
     {
-        if(m_muted)
+        if(d->muted)
         {
             memset(b->data, 0, b->samples * sizeof(float));
             return;
         }
 
-        m_mutex.lock();
+        d->mutex.lock();
         if(chan == 1)
         {
             for(size_t i = 0; i < b->samples; ++i)
             {
-                b->data[i] *= qMax(m_scaleLeft, m_scaleRight);
+                b->data[i] *= qMax(d->scaleLeft, d->scaleRight);
             }
         }
         else
         {
             for(size_t i = 0; i < b->samples; i += 2)
             {
-                b->data[i] *= m_scaleLeft;
-                b->data[i + 1] *= m_scaleRight;
+                b->data[i] *= d->scaleLeft;
+                b->data[i + 1] *= d->scaleRight;
             }
         }
-        m_mutex.unlock();
+        d->mutex.unlock();
     }
 }
 
 VolumeHandler *VolumeHandler::instance()
 {
-    return m_instance;
+    return VolumeHandlerPrivate::instance;
 }
 
 void VolumeHandler::checkVolume()
 {
-    if(!m_volume) //soft volume
+    if(!d->volume) //soft volume
     {
         emit volumeChanged(volume());
         emit balanceChanged(balance());
         return;
     }
 
-    VolumeSettings v = m_volume->volume();
-    const bool muted = m_volume->flags() & Volume::IsMuteSupported ? m_volume->isMuted() : isMuted();
+    VolumeSettings v = d->volume->volume();
+    const bool muted = d->volume->flags() & Volume::IsMuteSupported ? d->volume->isMuted() : isMuted();
 
     v.left = qBound(0, v.left, 100);
     v.right = qBound(0, v.right, 100);
-    if(m_muted != muted || (m_prev_block && !signalsBlocked()))
+    if(d->muted != muted || (d->prevBlock && !signalsBlocked()))
     {
-        m_muted = muted;
-        emit mutedChanged(m_muted);
+        d->muted = muted;
+        emit mutedChanged(d->muted);
     }
 
-    if(m_settings != v) //volume has been changed
+    if(d->volumeSettings != v) //volume has been changed
     {
-        m_settings = v;
+        d->volumeSettings = v;
         emit volumeChanged(volume());
         emit balanceChanged(balance());
     }
-    else if(m_prev_block && !signalsBlocked()) //signals have been unblocked
+    else if(d->prevBlock && !signalsBlocked()) //signals have been unblocked
     {
         emit volumeChanged(volume());
         emit balanceChanged(balance());
     }
-    m_prev_block = signalsBlocked();
+    d->prevBlock = signalsBlocked();
 }
 
 void VolumeHandler::reload()
 {
-    m_timer->stop();
+    d->timer->stop();
     bool restore = false;
-    if(m_volume)
+    if(d->volume)
     {
         restore = true;
-        delete m_volume;
-        m_volume = nullptr;
+        delete d->volume;
+        d->volume = nullptr;
     }
-    m_apply = false;
+    d->apply = false;
 
     if(!QmmpSettings::instance()->useSoftVolume() && Output::currentFactory())
-        m_volume = Output::currentFactory()->createVolume();
+        d->volume = Output::currentFactory()->createVolume();
 
-    if(m_volume)
+    if(d->volume)
     {
         if(restore)
-            m_volume->setMuted(m_muted);
+            d->volume->setMuted(d->muted);
 
-        if(!(m_volume->flags() & Volume::IsMuteSupported) && m_muted)
-            m_apply = true;
+        if(!(d->volume->flags() & Volume::IsMuteSupported) && d->muted)
+            d->apply = true;
 
-        if(m_volume->flags() & Volume::HasNotifySignal)
+        if(d->volume->flags() & Volume::HasNotifySignal)
         {
             checkVolume();
-            connect(m_volume, SIGNAL(changed()), SLOT(checkVolume()));
+            connect(d->volume, SIGNAL(changed()), SLOT(checkVolume()));
         }
         else
         {
-            m_timer->start(150); // fallback to polling if change notification is not available.
+            d->timer->start(150); // fallback to polling if change notification is not available.
         }
     }
     else
     {
-        m_mutex.lock();
-        m_scaleLeft = double(m_settings.left) / 100.0;
-        m_scaleRight = double(m_settings.right) / 100.0;
-        m_mutex.unlock();
-        m_apply = true;
+        d->mutex.lock();
+        d->scaleLeft = double(d->volumeSettings.left) / 100.0;
+        d->scaleRight = double(d->volumeSettings.right) / 100.0;
+        d->mutex.unlock();
+        d->apply = true;
         blockSignals(true);
         checkVolume();
         blockSignals(false);

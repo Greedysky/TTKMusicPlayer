@@ -21,7 +21,6 @@
 #ifndef QMMPTEXTCODEC_H
 #define QMMPTEXTCODEC_H
 
-#include <QByteArray>
 #include <QStringList>
 #include "qmmp_export.h"
 
@@ -69,8 +68,7 @@ public:
     static QStringList availableCharsets();
 
 private:
-    QmmpTextCodecPrivate *d_ptr;
-    Q_DECLARE_PRIVATE(QmmpTextCodec)
+    QmmpTextCodecPrivate *d;
 
 };
 

@@ -216,6 +216,7 @@ public:
      * @param input text.
      */
     static QByteArray generatePrintable(const QString &text);
+
 };
 
 #endif

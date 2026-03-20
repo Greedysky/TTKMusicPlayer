@@ -7,34 +7,66 @@
 #include "qmmpsettings.h"
 #include "soundcore.h"
 
-SoundCore *SoundCore::m_instance = nullptr;
+class SoundCorePrivate
+{
+public:
+    SoundCorePrivate(SoundCore *q)
+    {
+        if(instance)
+            qFatal("SoundCore: only one instance is allowed");
+
+        instance = q;
+
+        handler = new StateHandler(q);
+        volumeControl = new VolumeHandler(q);
+
+        QObject::connect(handler, SIGNAL(elapsedChanged(qint64)), q, SIGNAL(elapsedChanged(qint64)));
+        QObject::connect(handler, SIGNAL(bitrateChanged(int)), q, SIGNAL(bitrateChanged(int)));
+        QObject::connect(handler, SIGNAL(audioParametersChanged(AudioParameters)), q, SIGNAL(audioParametersChanged(AudioParameters)));
+        QObject::connect(handler, SIGNAL(bufferingProgress(int)), q, SIGNAL(bufferingProgress(int)));
+        QObject::connect(QmmpSettings::instance(), SIGNAL(eqSettingsChanged()), q, SIGNAL(eqSettingsChanged()));
+        QObject::connect(QmmpSettings::instance(), SIGNAL(audioSettingsChanged()), volumeControl, SLOT(reload()));
+        QObject::connect(volumeControl, SIGNAL(volumeChanged(int)), q, SIGNAL(volumeChanged(int)));
+        QObject::connect(volumeControl, SIGNAL(balanceChanged(int)), q, SIGNAL(balanceChanged(int)));
+        QObject::connect(volumeControl, SIGNAL(mutedChanged(bool)), q, SIGNAL(mutedChanged(bool)));
+
+    }
+
+    enum NextEngineState
+    {
+        NO_ENGINE = 0,
+        SAME_ENGINE,
+        ANOTHER_ENGINE,
+        INVALID_SOURCE
+    };
+
+    QHash <QString, QString> streamInfo;
+    TrackInfo info;
+    QString path;
+    StateHandler *handler;
+    VolumeHandler *volumeControl;
+    AbstractEngine *engine = nullptr;
+    QQueue<InputSource *> sources;
+    NextEngineState nextState = NO_ENGINE;
+
+    static SoundCore *instance;
+
+};
+
+SoundCore *SoundCorePrivate::instance = nullptr;
+
 
 SoundCore::SoundCore(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      d(new SoundCorePrivate(this))
 {
-    if(m_instance)
-        qFatal("SoundCore: only one instance is allowed");
-    m_instance = this;
-
     qRegisterMetaType<Qmmp::State>("Qmmp::State");
-    m_handler = new StateHandler(this);
-    m_volumeControl = new VolumeHandler(this);
-
-    connect(m_handler, SIGNAL(elapsedChanged(qint64)), SIGNAL(elapsedChanged(qint64)));
-    connect(m_handler, SIGNAL(bitrateChanged(int)), SIGNAL(bitrateChanged(int)));
-    connect(m_handler, SIGNAL(audioParametersChanged(AudioParameters)), SIGNAL(audioParametersChanged(AudioParameters)));
-    connect(m_handler, SIGNAL(bufferingProgress(int)), SIGNAL(bufferingProgress(int)));
-    connect(QmmpSettings::instance(), SIGNAL(eqSettingsChanged()), SIGNAL(eqSettingsChanged()));
-    connect(QmmpSettings::instance(), SIGNAL(audioSettingsChanged()), m_volumeControl, SLOT(reload()));
-    connect(m_volumeControl, SIGNAL(volumeChanged(int)), SIGNAL(volumeChanged(int)));
-    connect(m_volumeControl, SIGNAL(balanceChanged(int)), SIGNAL(balanceChanged(int)));
-    connect(m_volumeControl, SIGNAL(mutedChanged(bool)), SIGNAL(mutedChanged(bool)));
 }
 
 SoundCore::~SoundCore()
 {
     stop();
-    m_instance = nullptr;
+    delete d;
 }
 
 bool SoundCore::play(const QString &source, bool queue, qint64 offset)
@@ -46,53 +78,53 @@ bool SoundCore::play(const QString &source, bool queue, qint64 offset)
 
     InputSource *s = InputSource::create(source, this);
     s->setOffset(offset);
-    m_sources.enqueue(s);
+    d->sources.enqueue(s);
 
     connect(s, SIGNAL(ready()), SLOT(startNextSource()));
     connect(s, SIGNAL(error()), SLOT(startNextSource()));
 
     if(!s->initialize())
     {
-        m_sources.removeAll(s);
+        d->sources.removeAll(s);
         s->deleteLater();
-        if(m_handler->state() == Qmmp::Stopped || m_handler->state() == Qmmp::Buffering)
-            m_handler->dispatch(Qmmp::NormalError);
+        if(d->handler->state() == Qmmp::Stopped || d->handler->state() == Qmmp::Buffering)
+            d->handler->dispatch(Qmmp::NormalError);
         return false;
     }
-    if(m_handler->state() == Qmmp::Stopped)
-        m_handler->dispatch(Qmmp::Buffering);
+    if(d->handler->state() == Qmmp::Stopped)
+        d->handler->dispatch(Qmmp::Buffering);
     return true;
 }
 
 void SoundCore::stop()
 {
     qApp->sendPostedEvents(this, 0);
-    m_path.clear();
-    qDeleteAll(m_sources);
-    m_sources.clear();
-    m_nextState = NO_ENGINE;
-    if(m_engine)
+    d->path.clear();
+    qDeleteAll(d->sources);
+    d->sources.clear();
+    d->nextState = SoundCorePrivate::NO_ENGINE;
+    if(d->engine)
     {
-        m_engine->stop();
+        d->engine->stop();
         qApp->sendPostedEvents(this, 0);
-        //m_engine->deleteLater();
-        //m_engine = 0;
+        //d->engine->deleteLater();
+        //d->engine = 0;
     }
-    m_volumeControl->reload();
+    d->volumeControl->reload();
     if(state() == Qmmp::NormalError || state() == Qmmp::FatalError || state() == Qmmp::Buffering)
         StateHandler::instance()->dispatch(Qmmp::Stopped); //clear error and buffering state
 }
 
 void SoundCore::pause()
 {
-    if(m_engine)
-        m_engine->pause();
+    if(d->engine)
+        d->engine->pause();
 }
 
 void SoundCore::seek(qint64 time)
 {
-    if(m_engine)
-        m_engine->seek(time);
+    if(d->engine)
+        d->engine->seek(time);
 }
 
 void SoundCore::seekRelative(qint64 offset)
@@ -104,17 +136,17 @@ void SoundCore::seekRelative(qint64 offset)
 
 bool SoundCore::nextTrackAccepted() const
 {
-    return m_nextState == SAME_ENGINE;
+    return d->nextState == SoundCorePrivate::SAME_ENGINE;
 }
 
 QString SoundCore::path() const
 {
-    return m_path;
+    return d->path;
 }
 
 qint64 SoundCore::duration() const
 {
-    return m_handler->duration();
+    return d->handler->duration();
 }
 
 EqSettings SoundCore::eqSettings() const
@@ -130,24 +162,24 @@ void SoundCore::setEqSettings(const EqSettings &settings)
 void SoundCore::setVolumePerChannel(int left, int right)
 {
     setMuted(false);
-    m_volumeControl->setVolume(left, right);
+    d->volumeControl->setVolume(left, right);
 }
 
 void SoundCore::setMuted(bool mute)
 {
-    m_volumeControl->setMuted(mute);
+    d->volumeControl->setMuted(mute);
 }
 
 void SoundCore::changeVolume(int delta)
 {
     setMuted(false);
-    m_volumeControl->changeVolume(delta);
+    d->volumeControl->changeVolume(delta);
 }
 
 void SoundCore::setVolume(int volume)
 {
     setMuted(false);
-    m_volumeControl->setVolume(volume);
+    d->volumeControl->setVolume(volume);
 }
 
 void SoundCore::volumeUp()
@@ -163,123 +195,128 @@ void SoundCore::volumeDown()
 void SoundCore::setBalance(int balance)
 {
     setMuted(false);
-    m_volumeControl->setBalance(balance);
+    d->volumeControl->setBalance(balance);
 }
 
 int SoundCore::leftVolume() const
 {
-    return m_volumeControl->left();
+    return d->volumeControl->left();
 }
 
 int SoundCore::rightVolume() const
 {
-    return m_volumeControl->right();
+    return d->volumeControl->right();
 }
 
 int SoundCore::volume() const
 {
-    return m_volumeControl->volume();
+    return d->volumeControl->volume();
 }
 
 int SoundCore::balance() const
 {
-    return m_volumeControl->balance();
+    return d->volumeControl->balance();
 }
 
 bool SoundCore::isMuted() const
 {
-    return m_volumeControl->isMuted();
+    return d->volumeControl->isMuted();
 }
 
 qint64 SoundCore::elapsed() const
 {
-    return m_handler->elapsed();
+    return d->handler->elapsed();
 }
 
 int SoundCore::bitrate() const
 {
-    return m_handler->bitrate();
+    return d->handler->bitrate();
 }
 
 AudioParameters SoundCore::audioParameters() const
 {
-    return m_handler->audioParameters();
+    return d->handler->audioParameters();
 }
 
 Qmmp::State SoundCore::state() const
 {
-    return m_handler->state();
+    return d->handler->state();
 }
 
 const QMap<Qmmp::MetaData, QString> &SoundCore::metaData() const
 {
-    return m_info.metaData();
+    return d->info.metaData();
 }
 
 QString SoundCore::metaData(Qmmp::MetaData key) const
 {
-    return m_info.value(key);
+    return d->info.value(key);
 }
 
 const QHash<QString, QString> &SoundCore::streamInfo() const
 {
-    return m_streamInfo;
+    return d->streamInfo;
 }
 
 const TrackInfo &SoundCore::trackInfo() const
 {
-    return m_info;
+    return d->info;
+}
+
+SoundCore* SoundCore::instance()
+{
+    return SoundCorePrivate::instance;
 }
 
 void SoundCore::startNextSource()
 {
-    if(m_sources.isEmpty())
+    if(d->sources.isEmpty())
         return;
 
-    InputSource *s = m_sources.dequeue();
-    m_path = s->path();
+    InputSource *s = d->sources.dequeue();
+    d->path = s->path();
 
     if(s->ioDevice() && !s->ioDevice()->isOpen() && !s->ioDevice()->open(QIODevice::ReadOnly))
     {
         qWarning("SoundCore: input error: %s", qPrintable(s->ioDevice()->errorString()));
-        m_path.clear();
+        d->path.clear();
         s->deleteLater();
-        m_nextState = INVALID_SOURCE;
-        if(m_handler->state() == Qmmp::Stopped || m_handler->state() == Qmmp::Buffering)
-            m_handler->dispatch(Qmmp::NormalError);
+        d->nextState = SoundCorePrivate::INVALID_SOURCE;
+        if(state() == Qmmp::Stopped || state() == Qmmp::Buffering)
+            d->handler->dispatch(Qmmp::NormalError);
         return;
     }
 
-    if(!m_engine)
+    if(!d->engine)
     {
-        if((m_engine = AbstractEngine::create(s, this)))
+        if((d->engine = AbstractEngine::create(s, this)))
         {
-            m_engine->play();
-            m_nextState = NO_ENGINE;
+            d->engine->play();
+            d->nextState = SoundCorePrivate::NO_ENGINE;
             return;
         }
 
         s->deleteLater();
-        m_handler->dispatch(Qmmp::NormalError);
+        d->handler->dispatch(Qmmp::NormalError);
         return;
     }
 
-    if(AbstractEngine::isEnabled(m_engine) && m_engine->enqueue(s))
+    if(AbstractEngine::isEnabled(d->engine) && d->engine->enqueue(s))
     {
         if(state() == Qmmp::Stopped || state() == Qmmp::Buffering)
         {
-            m_engine->play();
-            m_nextState = NO_ENGINE;
+            d->engine->play();
+            d->nextState = SoundCorePrivate::NO_ENGINE;
         }
         else
         {
-            m_nextState = SAME_ENGINE;
+            d->nextState = SoundCorePrivate::SAME_ENGINE;
         }
     }
     else
     {
-        m_sources.prepend(s); //try next engine
-        m_nextState = ANOTHER_ENGINE;
+        d->sources.prepend(s); //try next engine
+        d->nextState = SoundCorePrivate::ANOTHER_ENGINE;
         if(state() == Qmmp::Stopped || state() == Qmmp::Buffering)
         {
             startNextEngine();
@@ -289,40 +326,35 @@ void SoundCore::startNextSource()
 
 void SoundCore::startNextEngine()
 {
-    switch(m_nextState)
+    switch(d->nextState)
     {
-    case NO_ENGINE:
-    case SAME_ENGINE:
+    case SoundCorePrivate::NO_ENGINE:
+    case SoundCorePrivate::SAME_ENGINE:
     {
-        if(m_sources.isEmpty())
-            m_nextState = NO_ENGINE;
-        else if(!m_sources.first()->isReady() && state() == Qmmp::Stopped)
-            m_handler->dispatch(Qmmp::Buffering);
+        if(d->sources.isEmpty())
+            d->nextState = SoundCorePrivate::NO_ENGINE;
+        else if(!d->sources.first()->isReady() && state() == Qmmp::Stopped)
+            d->handler->dispatch(Qmmp::Buffering);
         break;
     }
-    case ANOTHER_ENGINE:
+    case SoundCorePrivate::ANOTHER_ENGINE:
     {
-        m_nextState = NO_ENGINE;
-        if(m_engine)
+        d->nextState = SoundCorePrivate::NO_ENGINE;
+        if(d->engine)
         {
-            m_engine->deleteLater();
-            m_engine = nullptr;
+            d->engine->deleteLater();
+            d->engine = nullptr;
         }
-        if(!m_sources.isEmpty())
+        if(!d->sources.isEmpty())
         {
-            m_handler->dispatch(Qmmp::Buffering);
+            d->handler->dispatch(Qmmp::Buffering);
             startNextSource();
         }
         break;
     }
-    case INVALID_SOURCE:
-        m_handler->dispatch(Qmmp::NormalError);
+    case SoundCorePrivate::INVALID_SOURCE:
+        d->handler->dispatch(Qmmp::NormalError);
     }
-}
-
-SoundCore* SoundCore::instance()
-{
-    return m_instance;
 }
 
 bool SoundCore::event(QEvent *e)
@@ -333,18 +365,18 @@ bool SoundCore::event(QEvent *e)
         emit stateChanged(st);
         if(st == Qmmp::Stopped)
         {
-            m_streamInfo.clear();
+            d->streamInfo.clear();
             startNextEngine();
         }
     }
     else if(e->type() == EVENT_STREAM_INFO_CHANGED)
     {
-        m_streamInfo = ((StreamInfoChangedEvent *) e)->streamInfo();
+        d->streamInfo = ((StreamInfoChangedEvent *) e)->streamInfo();
         emit streamInfoChanged();
     }
     else if(e->type() == EVENT_TRACK_INFO_CHANGED)
     {
-        m_info = ((TrackInfoEvent *) e)->trackInfo();
+        d->info = ((TrackInfoEvent *) e)->trackInfo();
         emit trackInfoChanged();
     }
     else if(e->type() == EVENT_NEXT_TRACK_REQUEST)

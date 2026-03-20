@@ -1,13 +1,83 @@
-#include <QAction>
 #include <QTimer>
+#include <QAction>
 #include <QCloseEvent>
 #include <QSettings>
 #include <QFileInfo>
 #include <QPluginLoader>
+#include "visual.h"
 #include "statehandler.h"
 #include "visualfactory.h"
 #include "visualbuffer_p.h"
-#include "visual.h"
+
+class VisualPrivate
+{
+public:
+    static void createVisualization(VisualFactory *factory, QWidget *parent)
+    {
+        Visual* visual = factory->create(parent);
+        if(receiver && member)
+            QObject::connect(visual, SIGNAL(closedByUser()), receiver, member);
+
+        visual->setWindowFlags(Qt::Window);
+        visualMap.insert(factory, visual);
+        const Qmmp::State st = StateHandler::instance()->state();
+        if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
+            visual->start();
+        visuals.append(visual);
+    //    visual->show();
+    }
+
+    static void checkFactories()
+    {
+        if(factories)
+        {
+            return;
+        }
+
+        factories = new QList<VisualFactory *>;
+        files = new QHash<const VisualFactory*, QString>;
+
+        for(const QString &filePath : Qmmp::findPlugins("Visual"))
+        {
+            QPluginLoader loader(filePath);
+            QObject *plugin = loader.instance();
+            if(loader.isLoaded())
+                qDebug("Visual: loaded plugin %s", qPrintable(QFileInfo(filePath).fileName()));
+            else
+                qWarning("Visual: %s", qPrintable(loader.errorString()));
+
+            VisualFactory *factory = nullptr;
+            if(plugin)
+                factory = qobject_cast<VisualFactory*>(plugin);
+
+            if(factory)
+            {
+                factories->append(factory);
+                files->insert(factory, filePath);
+            }
+        }
+    }
+
+    static QList<VisualFactory*> *factories;
+    static QHash<const VisualFactory*, QString> *files;
+    static QList<Visual*> visuals;
+    static QHash<VisualFactory*, Visual*> visualMap; //internal visualization
+    static QWidget *parentClass;
+    static QObject *receiver;
+    static const char *member;
+    static VisualBuffer buffer;
+
+};
+
+QList<VisualFactory*> *VisualPrivate::factories = nullptr;
+QHash <const VisualFactory*, QString> *VisualPrivate::files = nullptr;
+QList<Visual*> VisualPrivate::visuals;
+QHash<VisualFactory*, Visual*> VisualPrivate::visualMap;
+QWidget *VisualPrivate::parentClass = nullptr;
+QObject *VisualPrivate::receiver = nullptr;
+const char *VisualPrivate::member = nullptr;
+VisualBuffer VisualPrivate::buffer;
+
 
 Visual::Visual(QWidget *parent, Qt::WindowFlags f)
     : QWidget(parent, f)
@@ -44,20 +114,20 @@ void Visual::hideEvent(QHideEvent *)
 
 void Visual::closeEvent(QCloseEvent *event)
 {
-    m_visuals.removeAll(this);
-    if(event->spontaneous() && m_visualMap.key(this))
+    VisualPrivate::visuals.removeAll(this);
+    if(event->spontaneous() && VisualPrivate::visualMap.key(this))
     {
-        VisualFactory *factory = m_visualMap.key(this);
-        m_visualMap.remove(factory);
+        VisualFactory *factory = VisualPrivate::visualMap.key(this);
+        VisualPrivate::visualMap.remove(factory);
         Visual::setEnabled(factory, false);
         emit closedByUser();
     }
     else
     {
-        if(m_visualMap.key(this))
+        if(VisualPrivate::visualMap.key(this))
         {
-            VisualFactory *factory = m_visualMap.key(this);
-            m_visualMap.remove(factory);
+            VisualFactory *factory = VisualPrivate::visualMap.key(this);
+            VisualPrivate::visualMap.remove(factory);
         }
     }
     QWidget::closeEvent(event);
@@ -65,8 +135,8 @@ void Visual::closeEvent(QCloseEvent *event)
 
 bool Visual::takeData(float *left, float *right)
 {
-    m_buffer.mutex()->lock();
-    VisualNode *node = m_buffer.take();
+    VisualPrivate::buffer.mutex()->lock();
+    VisualNode *node = VisualPrivate::buffer.take();
     if(node)
     {
         if(left && right)
@@ -80,7 +150,7 @@ bool Visual::takeData(float *left, float *right)
                 left[i] = qBound(-1.0f, (node->data[0][i] + node->data[1][i]) / 2, 1.0f);
         }
     }
-    m_buffer.mutex()->unlock();
+    VisualPrivate::buffer.mutex()->unlock();
     return node != nullptr;
 }
 
@@ -96,32 +166,22 @@ void Visual::clear()
     update();
 }
 
-//static members
-QList<VisualFactory*> *Visual::m_factories = nullptr;
-QHash<const VisualFactory*, QString> *Visual::m_files = nullptr;
-QList<Visual*> Visual::m_visuals;
-QHash<VisualFactory*, Visual*> Visual::m_visualMap;
-QWidget *Visual::m_parentClass = nullptr;
-QObject *Visual::m_receiver = nullptr;
-const char *Visual::m_member = nullptr;
-VisualBuffer Visual::m_buffer;
-
 QList<VisualFactory *> Visual::factories()
 {
-    checkFactories();
-    return *m_factories;
+    VisualPrivate::checkFactories();
+    return *VisualPrivate::factories;
 }
 
 QString Visual::file(const VisualFactory *factory)
 {
-    checkFactories();
-    return m_files->value(factory);
+    VisualPrivate::checkFactories();
+    return VisualPrivate::files->value(factory);
 }
 
 void Visual::setEnabled(VisualFactory *factory, bool enable)
 {
-    checkFactories();
-    if(!m_factories->contains(factory))
+    VisualPrivate::checkFactories();
+    if(!VisualPrivate::factories->contains(factory))
         return;
 
     const QString &name = factory->properties().shortName;
@@ -132,19 +192,19 @@ void Visual::setEnabled(VisualFactory *factory, bool enable)
     {
         if(!visList.contains(name))
             visList << name;
-        if(!m_visualMap.value(factory) && m_parentClass)
+        if(!VisualPrivate::visualMap.value(factory) && VisualPrivate::parentClass)
         {
-            createVisualization(factory, m_parentClass);
+            VisualPrivate::createVisualization(factory, VisualPrivate::parentClass);
         }
     }
     else
     {
         visList.removeAll(name);
-        if(m_visualMap.value(factory))
+        if(VisualPrivate::visualMap.value(factory))
         {
-            m_visuals.removeAll(m_visualMap.value(factory));
-            m_visualMap.value(factory)->close();
-            m_visualMap.remove(factory);
+            VisualPrivate::visuals.removeAll(VisualPrivate::visualMap.value(factory));
+            VisualPrivate::visualMap.value(factory)->close();
+            VisualPrivate::visualMap.remove(factory);
         }
     }
     settings.setValue("Visualization/enabled_plugins", visList);
@@ -152,7 +212,7 @@ void Visual::setEnabled(VisualFactory *factory, bool enable)
 
 bool Visual::isEnabled(const VisualFactory *factory)
 {
-    checkFactories();
+    VisualPrivate::checkFactories();
     const QString &name = factory->properties().shortName;
     const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     const QStringList &visList = settings.value("Visualization/enabled_plugins").toStringList();
@@ -161,47 +221,47 @@ bool Visual::isEnabled(const VisualFactory *factory)
 
 void Visual::add(Visual *visual)
 {
-    if(!m_visuals.contains(visual))
+    if(!VisualPrivate::visuals.contains(visual))
     {
         const Qmmp::State st = StateHandler::instance() ? StateHandler::instance()->state() : Qmmp::Stopped;
         if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
             visual->start();
-        m_visuals.append(visual);
+        VisualPrivate::visuals.append(visual);
     }
 }
 
 void Visual::remove(Visual *visual)
 {
-    m_visuals.removeAll(visual);
+    VisualPrivate::visuals.removeAll(visual);
 }
 
 void Visual::initialize(QWidget *parent, QObject *receiver, const char *member)
 {
-    m_receiver = receiver;
-    m_member = member;
-    m_parentClass = parent;
+    VisualPrivate::receiver = receiver;
+    VisualPrivate::member = member;
+    VisualPrivate::parentClass = parent;
 
 //    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
 //    settings.setValue("Visualization/enabled_plugins", QStringList());
 }
 
-QList<Visual*>* Visual::visuals()
+const QList<Visual *> &Visual::visuals()
 {
-    return &m_visuals;
+    return VisualPrivate::visuals;
 }
 
 void Visual::addAudio(float *pcm, int samples, int channels, qint64 ts, qint64 delay)
 {
-    m_buffer.mutex()->lock();
-    m_buffer.add(pcm, samples, channels, ts, delay);
-    m_buffer.mutex()->unlock();
+    VisualPrivate::buffer.mutex()->lock();
+    VisualPrivate::buffer.add(pcm, samples, channels, ts, delay);
+    VisualPrivate::buffer.mutex()->unlock();
 }
 
 void Visual::clearBuffer()
 {
-    m_buffer.mutex()->lock();
-    m_buffer.clear();
-    m_buffer.mutex()->unlock();
+    VisualPrivate::buffer.mutex()->lock();
+    VisualPrivate::buffer.clear();
+    VisualPrivate::buffer.mutex()->unlock();
 }
 
 void Visual::start()
@@ -245,49 +305,4 @@ void Visual::updateVisual()
 void Visual::changeFullScreen(bool state)
 {
     emit fullscreenByUser(this, state);
-}
-
-void Visual::checkFactories()
-{
-    if(m_factories)
-    {
-        return;
-    }
-
-    m_factories = new QList<VisualFactory *>;
-    m_files = new QHash<const VisualFactory*, QString>;
-
-    for(const QString &filePath : Qmmp::findPlugins("Visual"))
-    {
-        QPluginLoader loader(filePath);
-        QObject *plugin = loader.instance();
-        if(loader.isLoaded())
-            qDebug("Visual: loaded plugin %s", qPrintable(QFileInfo(filePath).fileName()));
-        else
-            qWarning("Visual: %s", qPrintable(loader.errorString()));
-
-        VisualFactory *factory = nullptr;
-        if(plugin)
-            factory = qobject_cast<VisualFactory*>(plugin);
-
-        if(factory)
-        {
-            m_factories->append(factory);
-            m_files->insert(factory, filePath);
-        }
-    }
-}
-
-void Visual::createVisualization(VisualFactory *factory, QWidget *parent)
-{
-    Visual* visual = factory->create(parent);
-    if(m_receiver && m_member)
-        connect(visual, SIGNAL(closedByUser()), m_receiver, m_member);
-    visual->setWindowFlags(Qt::Window);
-    m_visualMap.insert(factory, visual);
-    const Qmmp::State st = StateHandler::instance()->state();
-    if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
-        visual->start();
-    m_visuals.append(visual);
-//    visual->show();
 }

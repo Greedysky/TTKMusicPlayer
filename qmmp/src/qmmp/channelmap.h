@@ -49,10 +49,6 @@ public:
      */
     QString toString() const;
 
-private:
-    static Qmmp::ChannelPosition m_internal_map[9];
-    void generateMap(int channels);
-
 };
 
 #endif

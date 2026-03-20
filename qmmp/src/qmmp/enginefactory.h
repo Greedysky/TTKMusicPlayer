@@ -21,9 +21,6 @@
 #ifndef EMGINEFACTORY_H
 #define EMGINEFACTORY_H
 
-#include <QList>
-#include <QMap>
-#include <QIODevice>
 #include "trackinfo.h"
 #include "metadatamodel.h"
 

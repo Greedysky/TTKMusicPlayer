@@ -3,11 +3,63 @@
 #include "emptyinputsource_p.h"
 #include "inputsource.h"
 
+class InputSourcePrivate
+{
+public:
+    InputSourcePrivate(const QString &source)
+        : path(source)
+    {
+
+    }
+
+    static void loadPlugins()
+    {
+        if(cache)
+            return;
+
+        cache = new QList<QmmpPluginCache*>;
+        QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+        for(const QString &filePath : Qmmp::findPlugins("Transports"))
+        {
+            QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
+            if(item->hasError())
+            {
+                delete item;
+                continue;
+            }
+            cache->append(item);
+        }
+
+        disabledNames = settings.value("Transports/disabled_plugins").toStringList();
+        QmmpPluginCache::cleanup(&settings);
+    }
+
+    QString path;
+    qint64 offset = -1;
+    QMap<Qmmp::MetaData, QString> metaData;
+    QMap<Qmmp::TrackProperty, QString> properties;
+    QHash<QString, QString> streamInfo;
+    bool hasMetaData = false, hasStreamInfo = false;
+
+    static QList<QmmpPluginCache*> *cache;
+    static QStringList disabledNames;
+
+};
+
+QStringList InputSourcePrivate::disabledNames;
+QList<QmmpPluginCache*> *InputSourcePrivate::cache = nullptr;
+
+
 InputSource::InputSource(const QString &source, QObject *parent)
     : QObject(parent),
-      m_path(source)
+      d(new InputSourcePrivate(source))
 {
 
+}
+
+InputSource::~InputSource()
+{
+    delete d;
 }
 
 bool InputSource::isWaiting() const
@@ -27,37 +79,37 @@ void InputSource::stop()
 
 QString InputSource::path() const
 {
-    return m_path;
+    return d->path;
 }
 
 qint64 InputSource::offset() const
 {
-    return m_offset;
+    return d->offset;
 }
 
 void InputSource::setOffset(qint64 offset)
 {
-    m_offset = offset;
+    d->offset = offset;
 }
 
 bool InputSource::hasMetaData() const
 {
-    return m_hasMetaData;
+    return d->hasMetaData;
 }
 
 QMap<Qmmp::MetaData, QString> InputSource::takeMetaData()
 {
-    m_hasMetaData = false;
-    return m_metaData;
+    d->hasMetaData = false;
+    return d->metaData;
 }
 
 void InputSource::setProperty(Qmmp::TrackProperty key, const QVariant &value)
 {
     QString strValue = value.toString();
     if(strValue.isEmpty() || strValue == "0")
-        m_properties.remove(key);
+        d->properties.remove(key);
     else
-        m_properties[key] = strValue;
+        d->properties[key] = strValue;
 }
 
 void InputSource::setProperties(const QMap<Qmmp::TrackProperty, QString> &properties)
@@ -70,39 +122,35 @@ void InputSource::setProperties(const QMap<Qmmp::TrackProperty, QString> &proper
 
 const QMap<Qmmp::TrackProperty, QString> &InputSource::properties() const
 {
-    return m_properties;
+    return d->properties;
 }
 
 void InputSource::addMetaData(const QMap<Qmmp::MetaData, QString> &metaData)
 {
-    m_metaData = metaData;
-    m_hasMetaData = true;
+    d->metaData = metaData;
+    d->hasMetaData = true;
 }
 
 void InputSource::addStreamInfo(const QHash<QString, QString> &info)
 {
-    m_streamInfo = info;
-    m_hasStreamInfo = true;
+    d->streamInfo = info;
+    d->hasStreamInfo = true;
 }
 
 bool InputSource::hasStreamInfo() const
 {
-    return m_hasStreamInfo;
+    return d->hasStreamInfo;
 }
 
 QHash<QString, QString> InputSource::takeStreamInfo()
 {
-    m_hasStreamInfo = false;
-    return m_streamInfo;
+    d->hasStreamInfo = false;
+    return d->streamInfo;
 }
-
-// static methods
-QStringList InputSource::m_disabledNames;
-QList<QmmpPluginCache*> *InputSource::m_cache = nullptr;
 
 InputSource *InputSource::create(const QString &url, QObject *parent)
 {
-    loadPlugins();
+    InputSourcePrivate::loadPlugins();
     if(!url.contains("://")) //local file path doesn't contain "://"
     {
         qDebug("InputSource: using file transport");
@@ -122,9 +170,9 @@ InputSource *InputSource::create(const QString &url, QObject *parent)
 
 QList<InputSourceFactory *> InputSource::factories()
 {
-    loadPlugins();
+    InputSourcePrivate::loadPlugins();
     QList<InputSourceFactory *> list;
-    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    for(QmmpPluginCache *item : qAsConst(*InputSourcePrivate::cache))
     {
         if(item->inputSourceFactory())
             list.append(item->inputSourceFactory());
@@ -134,11 +182,11 @@ QList<InputSourceFactory *> InputSource::factories()
 
 QList<InputSourceFactory *> InputSource::enabledFactories()
 {
-    loadPlugins();
+    InputSourcePrivate::loadPlugins();
     QList<InputSourceFactory *> list;
-    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    for(QmmpPluginCache *item : qAsConst(*InputSourcePrivate::cache))
     {
-        if(m_disabledNames.contains(item->shortName()))
+        if(InputSourcePrivate::disabledNames.contains(item->shortName()))
             continue;
         if(item->inputSourceFactory())
             list.append(item->inputSourceFactory());
@@ -148,20 +196,20 @@ QList<InputSourceFactory *> InputSource::enabledFactories()
 
 QString InputSource::file(const InputSourceFactory *factory)
 {
-    loadPlugins();
-    auto it = std::find_if(m_cache->constBegin(), m_cache->constEnd(),
+    InputSourcePrivate::loadPlugins();
+    auto it = std::find_if(InputSourcePrivate::cache->constBegin(), InputSourcePrivate::cache->constEnd(),
                            [factory](QmmpPluginCache *item) { return item->shortName() == factory->properties().shortName; } );
-    return it == m_cache->constEnd() ? QString() : (*it)->file();
+    return it == InputSourcePrivate::cache->constEnd() ? QString() : (*it)->file();
 }
 
 QStringList InputSource::protocols()
 {
-    loadPlugins();
+    InputSourcePrivate::loadPlugins();
     QStringList protocolList;
 
-    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    for(QmmpPluginCache *item : qAsConst(*InputSourcePrivate::cache))
     {
-        if(m_disabledNames.contains(item->shortName()))
+        if(InputSourcePrivate::disabledNames.contains(item->shortName()))
             continue;
 
         protocolList << item->protocols();
@@ -172,12 +220,12 @@ QStringList InputSource::protocols()
 
 QList<RegularExpression> InputSource::regExps()
 {
-    loadPlugins();
+    InputSourcePrivate::loadPlugins();
     QList<RegularExpression> regExpList;
 
-    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    for(QmmpPluginCache *item : qAsConst(*InputSourcePrivate::cache))
     {
-        if(m_disabledNames.contains(item->shortName()))
+        if(InputSourcePrivate::disabledNames.contains(item->shortName()))
             continue;
         if(item->inputSourceFactory())
             regExpList << item->inputSourceFactory()->properties().regExps;
@@ -187,10 +235,10 @@ QList<RegularExpression> InputSource::regExps()
 
 InputSourceFactory *InputSource::findByUrl(const QString &url)
 {
-    loadPlugins();
-    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    InputSourcePrivate::loadPlugins();
+    for(QmmpPluginCache *item : qAsConst(*InputSourcePrivate::cache))
     {
-        if(m_disabledNames.contains(item->shortName()))
+        if(InputSourcePrivate::disabledNames.contains(item->shortName()))
             continue;
 
         InputSourceFactory *factory = item->inputSourceFactory();
@@ -204,9 +252,9 @@ InputSourceFactory *InputSource::findByUrl(const QString &url)
         }
     }
 
-    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    for(QmmpPluginCache *item : qAsConst(*InputSourcePrivate::cache))
     {
-        if(m_disabledNames.contains(item->shortName()))
+        if(InputSourcePrivate::disabledNames.contains(item->shortName()))
             continue;
 
         InputSourceFactory *factory = item->inputSourceFactory();
@@ -220,7 +268,7 @@ InputSourceFactory *InputSource::findByUrl(const QString &url)
 
 void InputSource::setEnabled(InputSourceFactory *factory, bool enable)
 {
-    loadPlugins();
+    InputSourcePrivate::loadPlugins();
     if(!factories().contains(factory))
         return;
 
@@ -228,38 +276,17 @@ void InputSource::setEnabled(InputSourceFactory *factory, bool enable)
         return;
 
     if(enable)
-        m_disabledNames.removeAll(factory->properties().shortName);
+        InputSourcePrivate::disabledNames.removeAll(factory->properties().shortName);
     else
-        m_disabledNames.append(factory->properties().shortName);
+        InputSourcePrivate::disabledNames.append(factory->properties().shortName);
 
-    m_disabledNames.removeDuplicates();
+    InputSourcePrivate::disabledNames.removeDuplicates();
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.setValue("Transports/disabled_plugins", m_disabledNames);
+    settings.setValue("Transports/disabled_plugins", InputSourcePrivate::disabledNames);
 }
 
 bool InputSource::isEnabled(const InputSourceFactory *factory)
 {
-    loadPlugins();
-    return !m_disabledNames.contains(factory->properties().shortName);
-}
-
-void InputSource::loadPlugins()
-{
-    if(m_cache)
-        return;
-
-    m_cache = new QList<QmmpPluginCache*>;
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    for(const QString &filePath : Qmmp::findPlugins("Transports"))
-    {
-        QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
-        if(item->hasError())
-        {
-            delete item;
-            continue;
-        }
-        m_cache->append(item);
-    }
-    m_disabledNames = settings.value("Transports/disabled_plugins").toStringList();
-    QmmpPluginCache::cleanup(&settings);
+    InputSourcePrivate::loadPlugins();
+    return !InputSourcePrivate::disabledNames.contains(factory->properties().shortName);
 }

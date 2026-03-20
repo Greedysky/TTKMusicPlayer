@@ -44,6 +44,8 @@ inline bool operator!=(const VolumeSettings &v1, const VolumeSettings &v2)
     return v1.left != v2.left || v1.right != v2.right;
 }
 
+class VolumePrivate;
+
 /*! @brief The Volume class provides asbtract volume interface
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
@@ -63,9 +65,13 @@ public:
     Q_DECLARE_FLAGS(VolumeFlags, VolumeFlag)
 
     /*!
+     * Object constructor.
+     */
+    Volume();
+    /*!
      * Destructor.
      */
-    virtual ~Volume() = default;
+    virtual ~Volume();
 
     /*!
      * Setups volume levels.
@@ -98,7 +104,7 @@ signals:
     void changed();
 
 private:
-    bool m_mutedInternal = false;
+    VolumePrivate *d;
 
 };
 

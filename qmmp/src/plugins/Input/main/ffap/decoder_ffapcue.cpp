@@ -55,7 +55,7 @@ bool DecoderFFapCUE::initialize()
         return false;
     }
 
-    QMap<Qmmp::MetaData, QString> metaData = m_parser->info(m_track)->metaData();
+    QMap<Qmmp::MetaData, QString> metaData = m_parser->info(m_track).metaData();
     addMetaData(metaData); //send metadata
 
     m_duration = m_parser->duration(m_track);
@@ -80,8 +80,8 @@ bool DecoderFFapCUE::initialize()
 
     m_frameSize = audioParameters().sampleSize() * audioParameters().channels();
 
-    setReplayGainInfo(m_parser->info(m_track)->replayGainInfo()); //send ReplayGaing info
-    addMetaData(m_parser->info(m_track)->metaData()); //send metadata
+    setReplayGainInfo(m_parser->info(m_track).replayGainInfo()); //send ReplayGaing info
+    addMetaData(m_parser->info(m_track).metaData()); //send metadata
     return true;
 }
 
@@ -162,8 +162,8 @@ void DecoderFFapCUE::next()
         m_trackSize = audioParameters().sampleRate() *
                 audioParameters().channels() *
                 audioParameters().sampleSize() * m_duration / 1000;
-        addMetaData(m_parser->info(m_track)->metaData());
-        setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
+        addMetaData(m_parser->info(m_track).metaData());
+        setReplayGainInfo(m_parser->info(m_track).replayGainInfo());
         m_written = 0;
     }
 }

@@ -23,6 +23,8 @@
 
 #include "qmmp_export.h"
 
+class EqSettingsPrivate;
+
 /*! @brief The EqSettings class helps to work with equalizer settings.
      * @author Ilya Kotov <forkotov02@ya.ru>
      */
@@ -44,11 +46,16 @@ public:
      * Constructs a copy of \b other.
      */
     EqSettings(const EqSettings &other);
+    EqSettings(EqSettings &&other);
     /*!
      * Constructs an empty equalizer settings (0 dB, disabled)
      * @param bands - Number of bands (supported: 10, 15, 25, 31)
      */
     explicit EqSettings(Bands bands = EQ_BANDS_10);
+    /*!
+     * Destructor.
+     */
+    ~EqSettings();
 
     /*!
      * Returns \b true if equalizer is enabled, otherwise returns \b false.
@@ -92,6 +99,7 @@ public:
      * Assigns equalizer settings \b s to this settings.
      */
     EqSettings &operator=(const EqSettings &s);
+    EqSettings &operator=(EqSettings &&s);
     /*!
      * Returns \b true if equalizer settins \b s is equal to this settings; otherwise returns false.
      */
@@ -102,11 +110,7 @@ public:
     bool operator!=(const EqSettings &s) const;
 
 private:
-    double m_gains[31] = {0};
-    double m_preamp = 0;
-    bool m_is_enabled = false;
-    int m_bands = 0;
-    bool m_two_passes = false;
+    EqSettingsPrivate *d;
 
 };
 

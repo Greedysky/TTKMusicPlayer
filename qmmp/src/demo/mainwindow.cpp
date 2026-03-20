@@ -47,10 +47,10 @@ MainWindow::MainWindow(QWidget *parent) :
 //            Visual::setEnabled(var, true);
 //        }
 //    }
-//    const QList<Visual*> *vs = Visual::visuals();
-//    if(!vs->isEmpty() && vs->last())
+//    const QList<Visual*> &vs = Visual::visuals();
+//    if(!vs.isEmpty() && vs.last())
 //    {
-//        vs->last()->show();
+//        vs.last()->show();
 //    }
 }
 

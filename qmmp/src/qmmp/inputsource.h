@@ -22,12 +22,10 @@
 #define INPUTSOURCE_H
 
 #include <QIODevice>
-#include <QMap>
-#include <QHash>
 #include "qmmp.h"
 #include "inputsourcefactory.h"
 
-class QmmpPluginCache;
+class InputSourcePrivate;
 
 /*! @brief The InputSource class provides the base interface class of transports.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -42,6 +40,10 @@ public:
      * @param parent Parent object.
      */
     explicit InputSource(const QString &path, QObject *parent = nullptr);
+    /*!
+     * Destructor.
+     */
+    virtual ~InputSource();
 
     /*!
      * Returns QIODevice-based object for I/O operations.
@@ -184,16 +186,7 @@ signals:
     void error();
 
 private:
-    QString m_path;
-    qint64 m_offset = -1;
-    QMap<Qmmp::MetaData, QString> m_metaData;
-    QMap<Qmmp::TrackProperty, QString> m_properties;
-    QHash<QString, QString> m_streamInfo;
-    bool m_hasMetaData = false, m_hasStreamInfo = false;
-
-    static void loadPlugins();
-    static QList<QmmpPluginCache*> *m_cache;
-    static QStringList m_disabledNames;
+    InputSourcePrivate *d;
 
 };
 

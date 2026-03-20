@@ -24,11 +24,9 @@
 #include <QMap>
 #include <QIODevice>
 #include "audioparameters.h"
-#include "channelmap.h"
-#include "regularexpression.h"
 
-class QmmpPluginCache;
 class DecoderFactory;
+class DecoderPrivate;
 
 /*! @brief The Decoder class provides the base interface class of audio decoders.
  * @author Brad Hughes <bhughes@trolltech.com>
@@ -45,7 +43,7 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~Decoder() = default;
+    virtual ~Decoder();
 
     /*!
      * Prepares decoder for usage.
@@ -217,17 +215,7 @@ protected:
     void configure(const AudioParameters &p);
 
 private:
-    static void loadPlugins();
-    static void updateCache();
-    static QList<QmmpPluginCache*> *m_cache;
-    static QStringList m_disabledNames;
-
-    AudioParameters m_parameters;
-    QMap<Qmmp::TrackProperty, QString> m_properties;
-    QIODevice *m_input = nullptr;
-    bool m_hasMetaData = false;
-    QMap<Qmmp::MetaData, QString> m_metaData;
-    QMap<Qmmp::ReplayGainKey, double> m_rg; //replay gain information
+    DecoderPrivate *d;
 
 };
 

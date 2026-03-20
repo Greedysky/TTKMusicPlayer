@@ -22,17 +22,12 @@
 #define SOUNDCORE_H
 
 #include <QQueue>
-#include "decoder.h"
-#include "output.h"
-#include "visual.h"
-#include "audioparameters.h"
+#include <QStringList>
 #include "eqsettings.h"
 #include "trackinfo.h"
+#include "audioparameters.h"
 
-class VolumeHandler;
-class AbstractEngine;
-class InputSource;
-class StateHandler;
+class SoundCorePrivate;
 
 /*! \brief The SoundCore class provides a simple interface for audio playback.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -255,23 +250,7 @@ private slots:
 private:
     virtual bool event(QEvent *e) override final;
 
-    enum NextEngineState
-    {
-        NO_ENGINE = 0,
-        SAME_ENGINE,
-        ANOTHER_ENGINE,
-        INVALID_SOURCE
-    };
-
-    QHash<QString, QString> m_streamInfo;
-    TrackInfo m_info;
-    QString m_path;
-    static SoundCore* m_instance;
-    StateHandler *m_handler = nullptr;
-    VolumeHandler *m_volumeControl = nullptr;
-    AbstractEngine *m_engine = nullptr;
-    QQueue<InputSource *> m_sources;
-    NextEngineState m_nextState = NO_ENGINE;
+    SoundCorePrivate *d;
 
 };
 

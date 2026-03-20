@@ -21,14 +21,12 @@
 #ifndef EFFECT_H
 #define EFFECT_H
 
-#include <QList>
 #include <QStringList>
-#include "audioparameters.h"
-#include "channelmap.h"
 #include "buffer.h"
+#include "audioparameters.h"
 #include "effectfactory.h"
 
-class QmmpPluginCache;
+class EffectPrivate;
 
 /*! @brief The Effect class provides the base interface class of audio effects.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -39,11 +37,11 @@ public:
     /*!
      * Object contsructor.
      */
-    Effect() = default;
+    Effect();
     /*!
      * Destructor.
      */
-    virtual ~Effect() = default;
+    virtual ~Effect();
 
     /*!
      * Adds audio effect to the buffer \b b.
@@ -113,14 +111,7 @@ public:
     static EffectFactory *findFactory(const QString &shortName);
 
 private:
-    EffectFactory *m_factory = nullptr;
-    quint32 m_freq = 0;
-    int m_channels = 0;
-    ChannelMap m_chan_map;
-
-    static void loadPlugins();
-    static QList<QmmpPluginCache*> *m_cache;
-    static QStringList m_enabledNames;
+    EffectPrivate *d;
 
 };
 

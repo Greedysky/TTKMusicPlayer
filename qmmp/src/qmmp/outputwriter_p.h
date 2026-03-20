@@ -26,7 +26,6 @@
 #include <atomic>
 #include "recycler_p.h"
 #include "audioparameters.h"
-#include "channelmap.h"
 
 class QTimer;
 class QmmpSettings;

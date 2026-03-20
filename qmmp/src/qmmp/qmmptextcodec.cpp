@@ -27,11 +27,9 @@ public:
 
 
 QmmpTextCodec::QmmpTextCodec(const QByteArray &charset)
-    : d_ptr(new QmmpTextCodecPrivate)
+    : d(new QmmpTextCodecPrivate)
 {
-    Q_D(QmmpTextCodec);
     d->m_name = charset.toUpper();
-
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
     if(d->m_name == "UTF-8" || d->m_name == "UTF-16")
         return;
@@ -54,19 +52,16 @@ QmmpTextCodec::QmmpTextCodec(const QByteArray &charset)
 
 QmmpTextCodec::~QmmpTextCodec()
 {
-    delete d_ptr;
+    delete d;
 }
 
 QByteArray QmmpTextCodec::name() const
 {
-    Q_D(const QmmpTextCodec);
     return d->m_name;
 }
 
 QString QmmpTextCodec::toUnicode(const QByteArray &a) const
 {
-    Q_D(const QmmpTextCodec);
-
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
     if(d->m_name == "UTF-16")
         return QString::fromUtf16(reinterpret_cast<const char16_t*>(a.data()), a.size() / 2);
@@ -130,8 +125,6 @@ QString QmmpTextCodec::toUnicode(const char *chars) const
 
 QByteArray QmmpTextCodec::fromUnicode(const QString &str) const
 {
-    Q_D(const QmmpTextCodec);
-
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
     if(d->m_name == "UTF-16")
         return QByteArray(reinterpret_cast<const char*>(str.utf16()), str.size() * 2);

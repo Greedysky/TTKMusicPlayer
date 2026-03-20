@@ -27,7 +27,7 @@
 #include "qmmp.h"
 #include "eqsettings.h"
 
-class QTimer;
+class QmmpSettingsPrivate;
 
 /*! @brief The QmmpSettings class provides access to global settings.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -242,39 +242,7 @@ private slots:
     void sync();
 
 private:
-    void saveSettings();
-
-    //replaygain settings
-    QmmpSettings::ReplayGainMode m_rg_mode;
-    double m_rg_preamp;
-    double m_rg_defaut_gain;
-    bool m_rg_prevent_clipping;
-    //audio settings
-    bool m_aud_software_volume;
-    bool m_aud_dithering;
-    Qmmp::AudioFormat m_aud_format;
-    int m_volume_step;
-    bool m_average_bitrate;
-    //cover settings
-    QStringList m_cover_inc;
-    QStringList m_cover_exclude;
-    int m_cover_depth;
-    bool m_cover_use_files;
-    //network settings
-    bool m_proxy_enabled;
-    bool m_proxy_auth;
-    QUrl m_proxy_url;
-    ProxyType m_proxy_type;
-    //equalizer settings
-    EqSettings m_eq_settings;
-    //buffer size
-    int m_buffer_size;
-    //file type determination
-    bool m_determine_by_content;
-    //protect from multiple calls
-    bool m_saveSettings = false;
-
-    static QmmpSettings* m_instance;
+    QmmpSettingsPrivate *d;
 
 };
 

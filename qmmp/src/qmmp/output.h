@@ -21,16 +21,11 @@
 #ifndef OUTPUT_H
 #define OUTPUT_H
 
-#include <QList>
-#include <QIODevice>
 #include "outputfactory.h"
-#include "audioparameters.h"
 #include "trackinfo.h"
-#include "channelmap.h"
+#include "audioparameters.h"
 
-class QTimer;
-class QmmpSettings;
-class QmmpPluginCache;
+class OutputPrivate;
 
 /*! @brief The Output class provides the base interface class of audio outputs.
  * @author Brad Hughes <bhughes@trolltech.com>
@@ -42,11 +37,11 @@ public:
     /*!
      * Object contsructor.
      */
-    Output() = default;
+    Output();
     /*!
      * Destructor.
      */
-    virtual ~Output() = default;
+    virtual ~Output();
 
     /*!
      * Prepares object for usage and setups required audio parameters.
@@ -152,15 +147,8 @@ protected:
     void configure(quint32 freq, ChannelMap map, Qmmp::AudioFormat format);
 
 private:
-    quint32 m_frequency = 0;
-    ChannelMap m_chan_map;
-    Qmmp::AudioFormat m_format = Qmmp::PCM_UNKNOWN;
-    int m_sample_size = 0;
-
-    static void loadPlugins();
-    static QList<QmmpPluginCache*> *m_cache;
+    OutputPrivate *d;
 
 };
-
 
 #endif

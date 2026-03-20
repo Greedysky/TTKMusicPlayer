@@ -292,7 +292,7 @@ bool DecoderFLAC::initialize()
                         m_parser->setMetaData(i, Qmmp::DISCNUMBER, TStringToQString(fld.toString()));
                     }
                 }
-                addMetaData(m_parser->info(m_track)->metaData()); //send metadata
+                addMetaData(m_parser->info(m_track).metaData()); //send metadata
 
                 m_data->input = new QFile(filePath);
                 if(!m_data->input->open(QIODevice::ReadOnly))
@@ -429,7 +429,7 @@ bool DecoderFLAC::initialize()
         m_offset = m_parser->offset(m_track);
         length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().frameSize() * m_length / 1000;
-        setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
+        setReplayGainInfo(m_parser->info(m_track).replayGainInfo());
         seek(0);
     }
 
@@ -544,8 +544,8 @@ void DecoderFLAC::next()
         length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().channels() *
                           audioParameters().sampleSize() * m_length / 1000;
-        addMetaData(m_parser->info(m_track)->metaData());
-        setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
+        addMetaData(m_parser->info(m_track).metaData());
+        setReplayGainInfo(m_parser->info(m_track).replayGainInfo());
         m_totalBytes = 0;
     }
 }

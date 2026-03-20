@@ -91,8 +91,8 @@ bool DecoderFFmpegCue::initialize()
 
     m_frameSize = audioParameters().sampleSize() * audioParameters().channels();
 
-    setReplayGainInfo(m_parser->info(m_track)->replayGainInfo()); //send ReplayGaing info
-    addMetaData(m_parser->info(m_track)->metaData()); //send metadata
+    setReplayGainInfo(m_parser->info(m_track).replayGainInfo()); //send ReplayGaing info
+    addMetaData(m_parser->info(m_track).metaData()); //send metadata
     return true;
 }
 
@@ -175,8 +175,8 @@ void DecoderFFmpegCue::next()
         m_trackSize = audioParameters().sampleRate() *
                 audioParameters().channels() *
                 audioParameters().sampleSize() * m_duration / 1000;
-        addMetaData(m_parser->info(m_track)->metaData());
-        setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
+        addMetaData(m_parser->info(m_track).metaData());
+        setReplayGainInfo(m_parser->info(m_track).replayGainInfo());
         m_written = 0;
     }
 }

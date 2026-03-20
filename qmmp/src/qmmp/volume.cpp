@@ -1,13 +1,32 @@
 #include "volume.h"
 
+class VolumePrivate
+{
+public:
+    bool mutedInternal = false;
+
+};
+
+
+Volume::Volume()
+    : d(new VolumePrivate)
+{
+
+}
+
+Volume::~Volume()
+{
+    delete d;
+}
+
 bool Volume::isMuted() const
 {
-    return m_mutedInternal;
+    return d->mutedInternal;
 }
 
 void Volume::setMuted(bool mute)
 {
-    m_mutedInternal = mute;
+    d->mutedInternal = mute;
 }
 
 Volume::VolumeFlags Volume::flags() const
