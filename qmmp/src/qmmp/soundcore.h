@@ -21,7 +21,6 @@
 #ifndef SOUNDCORE_H
 #define SOUNDCORE_H
 
-#include <QQueue>
 #include <QStringList>
 #include "eqsettings.h"
 #include "trackinfo.h"

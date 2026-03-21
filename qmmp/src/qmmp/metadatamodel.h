@@ -28,6 +28,8 @@
 #include "tagmodel.h"
 #include "regularexpression.h"
 
+class MetaDataItemPrivate;
+
 /*! @brief Container of extra file/track property.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
@@ -41,6 +43,13 @@ public:
      * \param suffix Localized suffix of property (i.e. kbit, kbps, etc).
      */
     MetaDataItem(const QString &name, const QVariant &value, const QString &suffix = QString());
+    MetaDataItem(const MetaDataItem &other);
+    MetaDataItem(MetaDataItem &&other) noexcept;
+    ~MetaDataItem();
+
+    MetaDataItem &operator=(const MetaDataItem &other);
+    MetaDataItem &operator=(MetaDataItem &&other) noexcept;
+
     /*!
      * Returns localized name of property.
      */
@@ -54,9 +63,9 @@ public:
      */
     const QVariant &value() const;
     /*!
-     * Returns value of property.
+     * Changes property value.
      */
-    void setValue(const QString &value);
+    void setValue(const QVariant &value);
     /*!
      * Returns suffix of property.
      */
@@ -67,10 +76,11 @@ public:
     void setSuffix(const QString &suffix);
 
 private:
-    QString m_name, m_suffix;
-    QVariant m_value;
+    MetaDataItemPrivate *d;
 
 };
+
+class MetaDataModelPrivate;
 
 /*! @brief The MetaDataModel is the base interface class of metadata access.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -98,7 +108,7 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~MetaDataModel() = default;
+    virtual ~MetaDataModel();
 
     /*!
      * Returns extra properties of the media source (in addition to the \b Qmmp::TrackProperty values).
@@ -172,8 +182,7 @@ protected:
     void setReadOnly(bool readOnly);
 
 private:
-    bool m_readOnly;
-    DialogHints m_dialogHints;
+    MetaDataModelPrivate *d;
 
 };
 

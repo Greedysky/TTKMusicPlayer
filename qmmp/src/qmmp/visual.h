@@ -21,7 +21,6 @@
 #ifndef VISUAL_H
 #define VISUAL_H
 
-#include <QHash>
 #include <QWidget>
 #include "qmmp_export.h"
 
