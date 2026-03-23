@@ -72,6 +72,8 @@ ProjectMPlugin::ProjectMPlugin(QWidget *parent)
     QtAddAction(m_menu, tr("&Random Preset"), m_container, SLOT(randomPreset()), {"R"});
 #endif
     QtAddAction(m_menu, tr("&Lock Preset"), m_container, SLOT(lockPreset(bool)), {"L"})->setCheckable(true);
+
+    adjustMenuPosition(m_menu);
 }
 
 void ProjectMPlugin::contextMenuEvent(QContextMenuEvent *)

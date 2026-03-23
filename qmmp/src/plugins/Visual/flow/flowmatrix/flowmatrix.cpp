@@ -74,6 +74,8 @@ void FlowMatrix::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
     menu.addAction(m_screenAction);
+
+    adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 

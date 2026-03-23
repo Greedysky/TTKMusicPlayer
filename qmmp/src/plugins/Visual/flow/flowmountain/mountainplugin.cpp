@@ -92,6 +92,9 @@ void MountainPlugin::createMenu()
         act->setCheckable(true);
         positionMenu->addAction(act);
     }
+
+    adjustMenuPosition(m_menu);
+    adjustMenuPosition(positionMenu);
 }
 
 void MountainPlugin::createMoudle()

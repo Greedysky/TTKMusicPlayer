@@ -127,4 +127,7 @@ void GoomWidget::createMenu()
         act->setCheckable(true);
         refreshMenu->addAction(act);
     }
+
+    adjustMenuPosition(m_menu);
+    adjustMenuPosition(refreshMenu);
 }

@@ -27,6 +27,7 @@
 #define QMMP_VISUAL_INTERVAL  40
 #define QMMP_VISUAL_NODE_SIZE 512 //samples
 
+class QMenu;
 class VisualFactory;
 
 /*! @brief The Visual class provides the base interface class of visualizations.
@@ -164,6 +165,10 @@ protected:
      * Clear current visual data.
      */
     void clear();
+    /*!
+     * Adjust the menu position.
+     */
+    void adjustMenuPosition(QMenu *menu);
 
 protected:
     QTimer *m_timer = nullptr;

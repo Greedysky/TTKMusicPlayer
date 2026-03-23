@@ -54,6 +54,8 @@ SoniquePlugin::SoniquePlugin(QWidget *parent)
     QtAddAction(m_menu, tr("&Next Preset"), m_container, SLOT(nextPreset()), {"N"});
     QtAddAction(m_menu, tr("&Previous Preset"), m_container, SLOT(previousPreset()), {"P"});
     QtAddAction( m_menu, tr("&Random Preset"), m_container, SLOT(randomPreset()), {"R"});
+
+    adjustMenuPosition(m_menu);
 }
 
 void SoniquePlugin::contextMenuEvent(QContextMenuEvent *)

@@ -127,4 +127,7 @@ void FlowVUMeter::createMenu()
         act->setCheckable(true);
         rangeMenu->addAction(act);
     }
+
+    adjustMenuPosition(m_menu);
+    adjustMenuPosition(rangeMenu);
 }

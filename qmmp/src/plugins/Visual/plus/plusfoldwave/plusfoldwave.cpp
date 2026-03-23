@@ -108,6 +108,8 @@ void PlusFoldWave::contextMenuEvent(QContextMenuEvent *)
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
 
     menu.addAction(tr("Color"), this, SLOT(changeColor()));
+
+    adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 

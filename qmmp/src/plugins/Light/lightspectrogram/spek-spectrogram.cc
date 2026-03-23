@@ -35,6 +35,27 @@ enum
 static QString trim(QPainter *dc, const QString &s, int length, bool trim_end);
 static int bits_to_bands(int bits);
 
+static void adjustMenuPosition(QMenu *menu)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5,12,0)
+    QPixmap pix(15, 15);
+    pix.fill(Qt::transparent);
+
+    const QList<QAction*> actions(menu->actions());
+    if(!actions.empty())
+    {
+        QAction* action(actions.first());
+        if(action->icon().isNull())
+        {
+            action->setIcon(pix);
+        }
+    }
+#else
+    Q_UNUSED(menu);
+#endif
+}
+
+
 LightSpectrogram::LightSpectrogram(QWidget *parent)
     : Light(parent),
       m_audio(new Audio()), // TODO: refactor
@@ -86,6 +107,8 @@ void LightSpectrogram::contextMenuEvent(QContextMenuEvent *e)
     QMenu menu(this);
     menu.addAction(tr("Settings"), this, SLOT(showSettings()));
     menu.addAction(tr("Screenshot"), this, SLOT(saveScreenshot()));
+
+    adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 

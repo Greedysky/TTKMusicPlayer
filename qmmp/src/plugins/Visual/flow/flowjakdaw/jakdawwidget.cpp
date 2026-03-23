@@ -298,6 +298,11 @@ void JakdawWidget::createMenu()
         act->setCheckable(true);
         typeMenu->addAction(act);
     }
+
+    adjustMenuPosition(m_menu);
+    adjustMenuPosition(modeMenu);
+    adjustMenuPosition(colorMenu);
+    adjustMenuPosition(typeMenu);
 }
 
 void JakdawWidget::feedbackReset()

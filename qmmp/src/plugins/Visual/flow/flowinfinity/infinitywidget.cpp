@@ -261,6 +261,10 @@ void InfinityWidget::createMenu()
         act->setCheckable(true);
         colorMenu->addAction(act);
     }
+
+    adjustMenuPosition(m_menu);
+    adjustMenuPosition(effectMenu);
+    adjustMenuPosition(colorMenu);
 }
 
 void InfinityWidget::createModule()

@@ -56,7 +56,7 @@ static inline QRgb colorContrast(const QRgb color)
     return qRgb(v, v, v);
 }
 
-static inline QString formatDuration(qint64 ms)
+static QString formatDuration(qint64 ms)
 {
     if(ms <= 0)
     {
@@ -73,8 +73,29 @@ static inline QString formatDuration(qint64 ms)
     {
         v = QString("%1").arg(seconds % 3600 / 60, 2, 10, QChar('0'));
     }
+
     v += QString(":%1").arg(seconds % 60, 2, 10, QChar('0'));
     return v;
+}
+
+static void adjustMenuPosition(QMenu *menu)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5,12,0)
+    QPixmap pix(15, 15);
+    pix.fill(Qt::transparent);
+
+    const QList<QAction*> actions(menu->actions());
+    if(!actions.empty())
+    {
+        QAction* action(actions.first());
+        if(action->icon().isNull())
+        {
+            action->setIcon(pix);
+        }
+    }
+#else
+    Q_UNUSED(menu);
+#endif
 }
 
 namespace std
@@ -94,7 +115,6 @@ namespace std
         return b ? lcm(b, a % b) : a;
     }
 }
-
 
 
 LightWaveFormScanner::LightWaveFormScanner(QObject *parent)
@@ -659,6 +679,10 @@ void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
     colorMenu->addAction(tr("Ruler"))->setData(50);
     connect(colorMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
 
+    adjustMenuPosition(&menu);
+    adjustMenuPosition(displayMenu);
+    adjustMenuPosition(modeMenu);
+    adjustMenuPosition(colorMenu);
     menu.exec(QCursor::pos());
 }
 

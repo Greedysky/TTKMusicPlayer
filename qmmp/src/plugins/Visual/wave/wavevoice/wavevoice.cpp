@@ -229,6 +229,10 @@ void WaveVoice::createMenu()
         act->setCheckable(true);
         rangeMenu->addAction(act);
     }
+
+    adjustMenuPosition(m_menu);
+    adjustMenuPosition(typeMenu);
+    adjustMenuPosition(rangeMenu);
 }
 
 void WaveVoice::createPalette(int row)

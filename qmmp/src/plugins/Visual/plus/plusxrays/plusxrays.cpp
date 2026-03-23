@@ -119,6 +119,8 @@ void PlusXRays::contextMenuEvent(QContextMenuEvent *)
 
     menu.addAction(tr("Color"), this, SLOT(changeColor()));
     menu.addAction(m_gridAction);
+
+    adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 

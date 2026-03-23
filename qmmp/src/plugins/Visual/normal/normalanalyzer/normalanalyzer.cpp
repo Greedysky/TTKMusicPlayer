@@ -284,4 +284,9 @@ void NormalAnalyzer::createMenu()
 
     m_menu->addSeparator();
     m_menu->addAction(tr("Color"), this, SLOT(changeColor()));
+
+    adjustMenuPosition(m_menu);
+    adjustMenuPosition(refreshMenu);
+    adjustMenuPosition(analyzerMenu);
+    adjustMenuPosition(peakMenu);
 }

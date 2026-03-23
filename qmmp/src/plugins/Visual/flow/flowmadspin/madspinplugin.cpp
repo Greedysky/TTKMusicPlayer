@@ -61,6 +61,10 @@ void MadSpinPlugin::contextMenuEvent(QContextMenuEvent *)
     actionChecked(speedMenu.addAction(tr("Fastest")), 8200, speed);
     connect(&speedMenu, SIGNAL(triggered(QAction*)), this, SLOT(speedChanged(QAction*)));
     menu.addMenu(&speedMenu);
+
+    adjustMenuPosition(&menu);
+    adjustMenuPosition(&numMenu);
+    adjustMenuPosition(&speedMenu);
     menu.exec(QCursor::pos());
 }
 

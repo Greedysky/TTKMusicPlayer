@@ -83,6 +83,8 @@ void PlusBlurXRays::contextMenuEvent(QContextMenuEvent *)
     menu.addSeparator();
 
     menu.addAction(tr("Color"), this, SLOT(changeColor()));
+
+    adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 
