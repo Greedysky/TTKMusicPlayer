@@ -28,7 +28,7 @@ Decoder *DecoderCUEFactory::create(const QString &path, QIODevice *input)
     return new DecoderCUE(path);
 }
 
-QList<TrackInfo> DecoderCUEFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
+TrackInfoList DecoderCUEFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
 {
     Q_UNUSED(parts);
     CueFile cueFile(path);

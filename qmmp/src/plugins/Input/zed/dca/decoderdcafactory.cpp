@@ -32,7 +32,7 @@ Decoder *DecoderDCAFactory::create(const QString &path, QIODevice *input)
     return new DecoderDCA(path);
 }
 
-QList<TrackInfo> DecoderDCAFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderDCAFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

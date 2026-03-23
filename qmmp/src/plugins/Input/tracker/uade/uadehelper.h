@@ -46,7 +46,7 @@ public:
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
-    QList<TrackInfo> createPlayList(TrackInfo::Parts parts);
+    TrackInfoList createPlayList(TrackInfo::Parts parts);
     QString cleanPath() const;
 
     static QStringList filters();

@@ -72,7 +72,7 @@ public:
      * @param parts parts of metadata which should be extracted from file.
      * (useful to exclude cue data files from playlist).
      */
-    virtual QList<TrackInfo> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
+    virtual TrackInfoList createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
     /*!
      * Creats metadata object, which provides full access to file tags.
      * @param path File path.

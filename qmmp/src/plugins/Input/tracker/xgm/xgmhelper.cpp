@@ -27,7 +27,7 @@ public:
     virtual bool load() override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
     virtual void seek(qint64 time) override final;
-    virtual QList<TrackInfo> createPlayList(TrackInfo::Parts parts) override final;
+    virtual TrackInfoList createPlayList(TrackInfo::Parts parts) override final;
 
 private:
     int m_loop = 0;
@@ -163,9 +163,9 @@ qint64 KssReader::read(unsigned char *data, qint64 maxSize)
     return maxSize;
 }
 
-QList<TrackInfo> KssReader::createPlayList(TrackInfo::Parts parts)
+TrackInfoList KssReader::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     if(!m_input)
     {
         return playlist;
@@ -216,7 +216,7 @@ public:
     virtual bool load() override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
     virtual void seek(qint64 time) override final;
-    virtual QList<TrackInfo> createPlayList(TrackInfo::Parts parts) override final;
+    virtual TrackInfoList createPlayList(TrackInfo::Parts parts) override final;
 
 private:
     NEZ_PLAY *m_input = nullptr;
@@ -314,9 +314,9 @@ qint64 NEZplugReader::read(unsigned char *data, qint64 maxSize)
     return maxSize;
 }
 
-QList<TrackInfo> NEZplugReader::createPlayList(TrackInfo::Parts parts)
+TrackInfoList NEZplugReader::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     if(!m_input)
     {
         return playlist;
@@ -364,7 +364,7 @@ public:
     virtual bool load() override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
     virtual void seek(qint64 time) override final;
-    virtual QList<TrackInfo> createPlayList(TrackInfo::Parts parts) override final;
+    virtual TrackInfoList createPlayList(TrackInfo::Parts parts) override final;
 
 private:
     JT1Song *m_song = nullptr;
@@ -458,9 +458,9 @@ qint64 JaytraxReader::read(unsigned char *data, qint64 maxSize)
     return maxSize;
 }
 
-QList<TrackInfo> JaytraxReader::createPlayList(TrackInfo::Parts parts)
+TrackInfoList JaytraxReader::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     if(!m_input)
     {
         return playlist;
@@ -505,7 +505,7 @@ public:
     virtual bool load() override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
     virtual void seek(qint64 time) override final;
-    virtual QList<TrackInfo> createPlayList(TrackInfo::Parts parts) override final;
+    virtual TrackInfoList createPlayList(TrackInfo::Parts parts) override final;
 
 private:
     pac_module *m_input = nullptr;
@@ -552,9 +552,9 @@ qint64 PacReader::read(unsigned char *data, qint64 maxSize)
     return pac_read(m_input, data, maxSize / (channels() * depth() / 8));
 }
 
-QList<TrackInfo> PacReader::createPlayList(TrackInfo::Parts parts)
+TrackInfoList PacReader::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     if(!m_input)
     {
         return playlist;

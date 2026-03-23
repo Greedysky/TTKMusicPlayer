@@ -62,7 +62,7 @@ Decoder *DecoderFLACFactory::create(const QString &path, QIODevice *input)
     return new DecoderFLAC(path, input);
 }
 
-QList<TrackInfo> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     int track = -1; //cue track
     QString filePath = path;

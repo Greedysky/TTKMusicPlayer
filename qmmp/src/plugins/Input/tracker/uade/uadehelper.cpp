@@ -100,9 +100,9 @@ qint64 UADEHelper::read(unsigned char *data, qint64 maxSize)
     return uade_read(data, maxSize, m_state);
 }
 
-QList<TrackInfo> UADEHelper::createPlayList(TrackInfo::Parts parts)
+TrackInfoList UADEHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     const struct uade_song_info *tag = uade_get_song_info(m_state);
     if(!tag)
     {

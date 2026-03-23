@@ -191,9 +191,9 @@ void CueParser::loadData(const QByteArray &data, QmmpTextCodec *codec)
         qWarning("CueParser: invalid cue data");
 }
 
-QList<TrackInfo> CueParser::createPlayList(int track) const
+TrackInfoList CueParser::createPlayList(int track) const
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     if(track <= 0)
     {
         for(const CueParserPrivate::CUETrack *track : d->tracks)

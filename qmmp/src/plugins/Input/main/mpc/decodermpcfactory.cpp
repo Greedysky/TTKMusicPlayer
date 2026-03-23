@@ -26,7 +26,7 @@ Decoder *DecoderMPCFactory::create(const QString &path, QIODevice *input)
     return new DecoderMPC(input);
 }
 
-QList<TrackInfo> DecoderMPCFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderMPCFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

@@ -39,7 +39,7 @@ Decoder *DecoderAyflyFactory::create(const QString &path, QIODevice *input)
     return new DecoderAyfly(path);
 }
 
-QList<TrackInfo> DecoderAyflyFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderAyflyFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

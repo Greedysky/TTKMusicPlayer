@@ -25,7 +25,7 @@ Decoder *DecoderOpusFactory::create(const QString &path, QIODevice *input)
     return new DecoderOpus(input);
 }
 
-QList<TrackInfo> DecoderOpusFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderOpusFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

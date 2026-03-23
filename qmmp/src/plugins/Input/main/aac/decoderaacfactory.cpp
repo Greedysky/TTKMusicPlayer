@@ -27,7 +27,7 @@ Decoder *DecoderAACFactory::create(const QString &path, QIODevice *input)
     return new DecoderAAC(input);
 }
 
-QList<TrackInfo> DecoderAACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderAACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

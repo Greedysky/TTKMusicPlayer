@@ -32,7 +32,7 @@ Decoder *DecoderSoundMonFactory::create(const QString &path, QIODevice *input)
     return new DecoderSoundMon(path);
 }
 
-QList<TrackInfo> DecoderSoundMonFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderSoundMonFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

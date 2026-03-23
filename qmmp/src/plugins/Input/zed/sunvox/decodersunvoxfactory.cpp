@@ -33,7 +33,7 @@ Decoder *DecoderSunVoxFactory::create(const QString &path, QIODevice *input)
     return new DecoderSunVox(path);
 }
 
-QList<TrackInfo> DecoderSunVoxFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderSunVoxFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

@@ -38,7 +38,7 @@ Decoder *DecoderPSFFactory::create(const QString &path, QIODevice *input)
     return new DecoderPSF(path);
 }
 
-QList<TrackInfo> DecoderPSFFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderPSFFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

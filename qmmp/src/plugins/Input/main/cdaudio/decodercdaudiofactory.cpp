@@ -36,9 +36,9 @@ Decoder *DecoderCDAudioFactory::create(const QString &path, QIODevice *input)
     return new DecoderCDAudio(path);
 }
 
-QList<TrackInfo> DecoderCDAudioFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderCDAudioFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     if(path.contains("#"))
     {
         return playlist;

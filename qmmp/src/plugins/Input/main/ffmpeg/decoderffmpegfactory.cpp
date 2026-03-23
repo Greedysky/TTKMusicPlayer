@@ -246,7 +246,7 @@ Decoder *DecoderFFmpegFactory::create(const QString &path, QIODevice *input)
         return new DecoderFFmpeg(path, input);
 }
 
-QList<TrackInfo> DecoderFFmpegFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderFFmpegFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     int trackNumber = -1; //cue/m4b track
     QString filePath = path;
@@ -370,7 +370,7 @@ QList<TrackInfo> DecoderFFmpegFactory::createPlayList(const QString &path, Track
 
         if(in->nb_chapters > 1 && filePath.endsWith(".m4b", Qt::CaseInsensitive))
         {
-            QList<TrackInfo> playlist = createPlayListFromChapters(in, info, trackNumber);
+            TrackInfoList playlist = createPlayListFromChapters(in, info, trackNumber);
             avformat_close_input(&in);
             return playlist;
         }
@@ -385,9 +385,9 @@ QList<TrackInfo> DecoderFFmpegFactory::createPlayList(const QString &path, Track
     return {raw};
 }
 
-QList<TrackInfo> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *in, TrackInfo *extraInfo, int trackNumber)
+TrackInfoList DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *in, TrackInfo *extraInfo, int trackNumber)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     for(unsigned int i = 1; i <= in->nb_chapters; ++i)
     {
         if((trackNumber > 0) && (int(i) != trackNumber))

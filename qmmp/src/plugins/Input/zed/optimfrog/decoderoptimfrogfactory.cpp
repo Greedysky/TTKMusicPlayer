@@ -25,7 +25,7 @@ Decoder *DecoderOptimFROGFactory::create(const QString &path, QIODevice *input)
     return new DecoderOptimFROG(input);
 }
 
-QList<TrackInfo> DecoderOptimFROGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderOptimFROGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

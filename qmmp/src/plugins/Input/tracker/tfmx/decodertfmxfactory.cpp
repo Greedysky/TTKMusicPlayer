@@ -39,14 +39,14 @@ Decoder *DecoderTFMXFactory::create(const QString &path, QIODevice *input)
     return new DecoderTFMX(path);
 }
 
-QList<TrackInfo> DecoderTFMXFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
+TrackInfoList DecoderTFMXFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
 {
     if(path.contains("://")) //is it one track?
     {
         int track = -1;
         const QString &filePath = TrackInfo::pathFromUrl(path, &track);
 
-        QList<TrackInfo> playlist = createPlayList(filePath, parts, ignoredPaths);
+        TrackInfoList playlist = createPlayList(filePath, parts, ignoredPaths);
         if(playlist.isEmpty() || track <= 0 || track > playlist.count())
         {
             playlist.clear();

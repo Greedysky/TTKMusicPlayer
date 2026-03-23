@@ -52,7 +52,7 @@ public:
     inline int voices() const { return tfmxdec_voices(m_input); }
     inline int voice(int i) const { return tfmxdec_get_voice_volume(m_input, i); }
 
-    QList<TrackInfo> createPlayList(TrackInfo::Parts parts);
+    TrackInfoList createPlayList(TrackInfo::Parts parts);
     QString cleanPath() const;
 
     static QStringList filters();

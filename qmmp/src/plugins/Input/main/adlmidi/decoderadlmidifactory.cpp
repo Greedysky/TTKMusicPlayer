@@ -35,7 +35,7 @@ Decoder *DecoderAdlMidiFactory::create(const QString &path, QIODevice *input)
     return new DecoderAdlMidi(path);
 }
 
-QList<TrackInfo> DecoderAdlMidiFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderAdlMidiFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

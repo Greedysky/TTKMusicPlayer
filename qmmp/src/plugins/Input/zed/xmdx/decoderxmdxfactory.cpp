@@ -35,7 +35,7 @@ Decoder *DecoderXMDXFactory::create(const QString &path, QIODevice *input)
     return new DecoderXMDX(path);
 }
 
-QList<TrackInfo> DecoderXMDXFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderXMDXFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

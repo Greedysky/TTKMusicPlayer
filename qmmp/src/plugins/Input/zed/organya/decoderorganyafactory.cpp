@@ -32,7 +32,7 @@ Decoder *DecoderOrganyaFactory::create(const QString &path, QIODevice *input)
     return new DecoderOrganya(path);
 }
 
-QList<TrackInfo> DecoderOrganyaFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderOrganyaFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

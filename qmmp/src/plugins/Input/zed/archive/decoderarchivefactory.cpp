@@ -27,9 +27,9 @@ Decoder *DecoderArchiveFactory::create(const QString &path, QIODevice *input)
     return new DecoderArchive(path);
 }
 
-QList<TrackInfo> DecoderArchiveFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderArchiveFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     if(!ArchiveReader::unpack(path))
     {
         return playlist;
@@ -45,7 +45,7 @@ QList<TrackInfo> DecoderArchiveFactory::createPlayList(const QString &path, Trac
                 continue;
             }
 
-            QList<TrackInfo> infos = factory->createPlayList(file, parts, nullptr);
+            TrackInfoList infos = factory->createPlayList(file, parts, nullptr);
             if(!infos.isEmpty())
             {
                 playlist << infos;

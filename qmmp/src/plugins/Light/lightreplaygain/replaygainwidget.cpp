@@ -272,7 +272,7 @@ ReplayGainner *ReplayGainWidget::findScannerByUrl(const QString &url)
 
 QString ReplayGainWidget::albumName(const QString &url)
 {
-    const QList<TrackInfo> &playlist = MetaDataManager::instance()->createPlayList(url);
+    const TrackInfoList &playlist = MetaDataManager::instance()->createPlayList(url);
     return playlist.isEmpty() ? QString() : playlist.first().value(Qmmp::ALBUM);
 }
 

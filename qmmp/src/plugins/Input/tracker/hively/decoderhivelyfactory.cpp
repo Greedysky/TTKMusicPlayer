@@ -33,7 +33,7 @@ Decoder *DecoderHivelyFactory::create(const QString &path, QIODevice *input)
     return new DecoderHively(path);
 }
 
-QList<TrackInfo> DecoderHivelyFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderHivelyFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

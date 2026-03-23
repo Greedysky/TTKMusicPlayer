@@ -67,9 +67,9 @@ qint64 TFMXHelper::read(unsigned char *data, qint64 maxSize)
     return tfmxdec_song_end(m_input) ? 0 : maxSize;
 }
 
-QList<TrackInfo> TFMXHelper::createPlayList(TrackInfo::Parts parts)
+TrackInfoList TFMXHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     if(!m_input)
     {
         return playlist;

@@ -91,7 +91,7 @@ Decoder *DecoderMPEGFactory::create(const QString &path, QIODevice *input)
     return new DecoderMPG123(input);
 }
 
-QList<TrackInfo> DecoderMPEGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderMPEGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

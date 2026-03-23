@@ -258,9 +258,9 @@ qint64 VgmstreamHelper::read(unsigned char *data, qint64 maxSize)
     return samples * size;
 }
 
-QList<TrackInfo> VgmstreamHelper::createPlayList(TrackInfo::Parts parts)
+TrackInfoList VgmstreamHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     if(!m_info)
     {
         return playlist;

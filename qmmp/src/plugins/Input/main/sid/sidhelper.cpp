@@ -31,9 +31,9 @@ SidTune *SIDHelper::load(const QString &path)
     return m_tune;
 }
 
-QList<TrackInfo> SIDHelper::createPlayList(TrackInfo::Parts parts)
+TrackInfoList SIDHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     if(!m_tune || !m_tune->getInfo())
     {
         return playlist;

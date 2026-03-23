@@ -58,7 +58,7 @@ CueFile::CueFile(const QString &path)
         QString dataFilePath = getDirtyPath(m_path, QFileInfo(m_path).dir().filePath(dataFileName));
         m_dataFiles.insert(dataFileName, dataFilePath);
 
-        QList<TrackInfo> playlist = MetaDataManager::instance()->createPlayList(dataFilePath, TrackInfo::Properties);
+        TrackInfoList playlist = MetaDataManager::instance()->createPlayList(dataFilePath, TrackInfo::Properties);
         if(!playlist.isEmpty())
         {
             setProperties(dataFileName, playlist.first().properties());

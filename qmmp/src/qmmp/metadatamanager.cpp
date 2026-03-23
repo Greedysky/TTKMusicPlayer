@@ -123,9 +123,9 @@ MetaDataManager::~MetaDataManager()
     delete d;
 }
 
-QList<TrackInfo> MetaDataManager::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) const
+TrackInfoList MetaDataManager::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) const
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     DecoderFactory *fact = nullptr;
     EngineFactory *efact = nullptr;
     QStringList dummyList;

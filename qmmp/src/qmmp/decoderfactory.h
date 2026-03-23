@@ -75,7 +75,7 @@ public:
      * @param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search
      * (useful to exclude cue data files from playlist).
      */
-    virtual QList<TrackInfo> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
+    virtual TrackInfoList createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
     /*!
      * Creats metadata object, which provides full access to file tags.
      * @param path File path.

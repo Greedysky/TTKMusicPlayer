@@ -37,7 +37,7 @@ Decoder *DecoderAsapFactory::create(const QString &path, QIODevice *input)
     return new DecoderAsap(path);
 }
 
-QList<TrackInfo> DecoderAsapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderAsapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

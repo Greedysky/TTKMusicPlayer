@@ -29,7 +29,7 @@ Decoder *DecoderFFapFactory::create(const QString &path, QIODevice *input)
         return new DecoderFFap(path, input);
 }
 
-QList<TrackInfo> DecoderFFapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderFFapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     int track = -1; //cue track
     QString filePath = path;

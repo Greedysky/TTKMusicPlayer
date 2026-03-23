@@ -60,7 +60,7 @@ bool DecoderFFmpegM4b::initialize()
         return false;
     }
 
-    QList<TrackInfo> playlist = m_factory->createPlayList(filePath, TrackInfo::AllParts, nullptr);
+    TrackInfoList playlist = m_factory->createPlayList(filePath, TrackInfo::AllParts, nullptr);
     if(playlist.isEmpty() || playlist.count() != int(in->nb_chapters))
     {
         avformat_close_input(&in);

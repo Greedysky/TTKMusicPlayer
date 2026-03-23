@@ -137,7 +137,7 @@ Decoder *DecoderSndFileFactory::create(const QString &path, QIODevice *input)
     return new DecoderSndFile(input);
 }
 
-QList<TrackInfo> DecoderSndFileFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderSndFileFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

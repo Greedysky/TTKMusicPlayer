@@ -117,9 +117,9 @@ qint64 SC68Helper::read(unsigned char *data, qint64 maxSize)
     return initSize - maxSize;
 }
 
-QList<TrackInfo> SC68Helper::createPlayList(TrackInfo::Parts parts)
+TrackInfoList SC68Helper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo> playlist;
+    TrackInfoList playlist;
     if(!m_input)
     {
         return playlist;

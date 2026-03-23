@@ -195,6 +195,8 @@ private:
 
 };
 
+using TrackInfoList = QList<TrackInfo>;
+
 Q_DECLARE_OPERATORS_FOR_FLAGS(TrackInfo::Parts)
 
 

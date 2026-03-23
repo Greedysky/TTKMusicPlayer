@@ -53,12 +53,12 @@ Decoder *DecoderSIDFactory::create(const QString &path, QIODevice *input)
     return new DecoderSID(&m_db, path);
 }
 
-QList<TrackInfo> DecoderSIDFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderSIDFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     SIDHelper helper(&m_db);
     helper.load(path);
 
-    QList<TrackInfo> playlist = helper.createPlayList(parts);
+    TrackInfoList playlist = helper.createPlayList(parts);
     if(playlist.isEmpty())
     {
         return playlist;

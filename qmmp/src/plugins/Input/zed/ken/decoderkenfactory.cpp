@@ -33,7 +33,7 @@ Decoder *DecoderKenFactory::create(const QString &path, QIODevice *input)
     return new DecoderKen(path);
 }
 
-QList<TrackInfo> DecoderKenFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderKenFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

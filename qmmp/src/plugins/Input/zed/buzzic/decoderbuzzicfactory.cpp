@@ -33,7 +33,7 @@ Decoder *DecoderBuzzicFactory::create(const QString &path, QIODevice *input)
     return new DecoderBuzzic(path);
 }
 
-QList<TrackInfo> DecoderBuzzicFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderBuzzicFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

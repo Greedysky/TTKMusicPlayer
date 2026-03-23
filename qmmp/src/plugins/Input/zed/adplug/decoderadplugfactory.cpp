@@ -53,7 +53,7 @@ Decoder *DecoderAdPlugFactory::create(const QString &path, QIODevice *input)
     return new DecoderAdPlug(path);
 }
 
-QList<TrackInfo> DecoderAdPlugFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderAdPlugFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

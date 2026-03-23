@@ -25,7 +25,7 @@ Decoder *DecoderVorbisFactory::create(const QString &path, QIODevice *input)
     return new DecoderVorbis(input);
 }
 
-QList<TrackInfo> DecoderVorbisFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderVorbisFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())

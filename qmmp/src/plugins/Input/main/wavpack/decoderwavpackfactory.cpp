@@ -27,7 +27,7 @@ Decoder *DecoderWavPackFactory::create(const QString &path, QIODevice *input)
     return new DecoderWavPack(path, input);
 }
 
-QList<TrackInfo> DecoderWavPackFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderWavPackFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     int track = -1; //cue track
     QString filePath = path;

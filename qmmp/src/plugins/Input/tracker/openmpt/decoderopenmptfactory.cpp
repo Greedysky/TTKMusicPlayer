@@ -46,7 +46,7 @@ Decoder *DecoderOpenMPTFactory::create(const QString &path, QIODevice *input)
     return new DecoderOpenMPT(input);
 }
 
-QList<TrackInfo> DecoderOpenMPTFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+TrackInfoList DecoderOpenMPTFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo raw(path), *info = &raw;
     if(parts == TrackInfo::Parts())
