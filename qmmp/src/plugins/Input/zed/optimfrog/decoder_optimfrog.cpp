@@ -33,7 +33,7 @@ bool DecoderOptimFROG::initialize()
             format = Qmmp::PCM_S8;
             break;
         case 16:
-            format = Qmmp::PCM_S16LE;
+            format = Qmmp::PCM_S16;
             break;
         default:
             return false;

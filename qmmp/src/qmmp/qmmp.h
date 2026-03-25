@@ -162,7 +162,22 @@ public:
         PCM_S32BE,  /*!< Signed 32 bit Big Endian */
         PCM_U32LE,  /*!< Unsigned 32 bit Little Endian */
         PCM_U32BE,  /*!< Unsigned 32 bit Big Endian */
-        PCM_FLOAT   /*!< Float 32 bit Native Endian, range: -1.0 to 1.0 */
+        PCM_FLOAT,  /*!< Float 32 bit Native Endian, range: -1.0 to 1.0 */
+#if Q_BYTE_ORDER == Q_LITTLE_ENDIAN
+        PCM_S16 = PCM_S16LE,  /*!< Signed 16 bit Little Endian */
+        PCM_U16 = PCM_U16LE,  /*!< Unsigned 16 bit Little Endian */
+        PCM_S24 = PCM_S24LE,  /*!< Signed 24 bit Little Endian using low three bytes in 32-bit word */
+        PCM_U24 = PCM_U24LE,  /*!< Unsigned 24 bit Little Endian using low three bytes in 32-bit word */
+        PCM_S32 = PCM_S32LE,  /*!< Signed 32 bit Little Endian */
+        PCM_U32 = PCM_U32LE,  /*!< Unsigned 32 bit Little Endian */
+#else
+        PCM_S16 = PCM_S16BE,  /*!< Signed 16 bit Big Endian */
+        PCM_U16 = PCM_U16BE,  /*!< Unsigned 16 bit Big Endian */
+        PCM_S24 = PCM_S24BE,  /*!< Signed 24 bit Big Endian using low three bytes in 32-bit word */
+        PCM_U24 = PCM_U24BE,  /*!< Unsigned 24 bit Big Endian using low three bytes in 32-bit word */
+        PCM_S32 = PCM_S32BE,  /*!< Signed 32 bit Big Endian */
+        PCM_U32 = PCM_U32BE,  /*!< Unsigned 32 bit Big Endian */
+#endif
     };
 
     /*!

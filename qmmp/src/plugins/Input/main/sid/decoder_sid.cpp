@@ -123,7 +123,7 @@ bool DecoderSID::initialize()
     m_player->initMixer(true);
 #endif
 
-    configure(cfg.frequency, 2, Qmmp::PCM_S16LE);
+    configure(cfg.frequency, 2, Qmmp::PCM_S16);
     m_length_in_bytes = audioParameters().sampleRate() * audioParameters().frameSize() * m_length;
     qDebug("DecoderSID: initialize success");
     return true;

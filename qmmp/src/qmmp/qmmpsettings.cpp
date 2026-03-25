@@ -22,7 +22,7 @@ public:
         settings.endGroup();
         //audio settings
         audioSoftwareVolume = settings.value("Output/software_volume", true).toBool();
-        audioFormat = static_cast<Qmmp::AudioFormat>(settings.value("Output/format", Qmmp::PCM_S16LE).toInt());
+        audioFormat = static_cast<Qmmp::AudioFormat>(settings.value("Output/format", Qmmp::PCM_S16).toInt());
         audioDithering = settings.value("Output/dithering", true).toBool();
         volumeStep = settings.value("Output/volume_step", 10).toInt();
         averageBitrate = settings.value("Output/average_bitrate", false).toBool();

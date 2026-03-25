@@ -28,7 +28,7 @@ bool DecoderPSF::initialize()
         return false;
     }
 
-    configure(rate, channels, Qmmp::PCM_S16LE);
+    configure(rate, channels, Qmmp::PCM_S16);
     qDebug("DecoderPSF: initialize success");
     return true;
 }

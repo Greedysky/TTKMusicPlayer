@@ -28,7 +28,7 @@ bool DecoderStSound::initialize()
         return false;
     }
 
-    configure(rate, channels, Qmmp::PCM_S16LE);
+    configure(rate, channels, Qmmp::PCM_S16);
     qDebug("DecoderStSound: initialize success");
     return true;
 }

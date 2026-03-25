@@ -105,7 +105,7 @@ public:
     /*!
      * Sets audio settings.
      * @param soft_volume State of software volume.
-     * @param format Preferd output format. Supported values: Qmmp::PCM_S16LE, Qmmp::PCM_S24LE, Qmmp::PCM_S32LE.
+     * @param format Preferd output format. Supported values: Qmmp::PCM_S16, Qmmp::PCM_S24, Qmmp::PCM_S32.
      * @param use_dithering Enable/Disable audio dithering.
      */
     void setAudioSettings(bool soft_volume, Qmmp::AudioFormat format, bool use_dithering);

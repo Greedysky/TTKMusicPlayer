@@ -120,7 +120,7 @@ bool OutputWASAPI::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat fo
     }
     else
     {
-        format = Qmmp::PCM_S16LE;
+        format = Qmmp::PCM_S16;
         wfex.Format.wBitsPerSample  = 16;
         wfex.Samples.wValidBitsPerSample = 16;
         wfex.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;

@@ -98,7 +98,7 @@ bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForm
     }
     else
     {
-        format = Qmmp::PCM_S16LE;
+        format = Qmmp::PCM_S16;
         wfex.Format.wBitsPerSample  = 16;
         wfex.Samples.wValidBitsPerSample = 16;
         wfex.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
@@ -209,7 +209,7 @@ qint64 OutputDirectSound::writeAudio(unsigned char *data, qint64 maxSize)
 
     DWORD totalSize = size + size2; //total locked size
 
-    if(format() == Qmmp::PCM_S24LE)
+    if(format() == Qmmp::PCM_S24LE || format() == Qmmp::PCM_S24BE)
     {
         for(DWORD i = 0; i < totalSize / 4; ++i)
         {

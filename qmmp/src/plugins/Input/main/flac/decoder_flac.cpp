@@ -413,11 +413,11 @@ bool DecoderFLAC::initialize()
         configure(m_data->sample_rate, chmap, Qmmp::PCM_S8);
         break;
     case 16:
-        configure(m_data->sample_rate, chmap, Qmmp::PCM_S16LE);
+        configure(m_data->sample_rate, chmap, Qmmp::PCM_S16);
         break;
     case 24:
     case 32:
-        configure(m_data->sample_rate, chmap, Qmmp::PCM_S32LE);
+        configure(m_data->sample_rate, chmap, Qmmp::PCM_S32);
         break;
     default:
         return false;

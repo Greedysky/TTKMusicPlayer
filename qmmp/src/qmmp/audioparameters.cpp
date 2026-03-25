@@ -5,7 +5,7 @@ class AudioParametersPrivate
 public:
     quint32 srate = 0;
     ChannelMap chanMap;
-    Qmmp::AudioFormat format = Qmmp::PCM_S16LE;
+    Qmmp::AudioFormat format = Qmmp::PCM_S16;
     int sampleSize = 2;
     int validBitsPerSample = 16;
 

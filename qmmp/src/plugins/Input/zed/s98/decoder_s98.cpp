@@ -28,7 +28,7 @@ bool DecoderS98::initialize()
         return false;
     }
 
-    configure(rate, channels, Qmmp::PCM_S16LE);
+    configure(rate, channels, Qmmp::PCM_S16);
     qDebug("DecoderS98: initialize success");
     return true;
 }
