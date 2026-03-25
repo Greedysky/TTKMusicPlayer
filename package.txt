@@ -1,4 +1,4 @@
-///Update time 2026-03-18
+///Update time 2026-03-25
 
 adplug-2.4.0	https://github.com/adplug/adplug
 enca-1.21	https://github.com/Project-OSS-Revival/enca
@@ -15,7 +15,7 @@ libcdio-release-2.1.0	https://github.com/libcdio/libcdio
 libmpg123-1.33.4	https://sourceforge.net/projects/mpg123
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.6	https://ftp.osuosl.org/pub/xiph/releases/ogg
-libopenmpt-0.4.52	https://lib.openmpt.org/libopenmpt
+libopenmpt-0.4.54	https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1(v4.1.6)	https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
 libsidplayfp-2.3.1.patch(v2.16.1)	https://github.com/libsidplayfp/libsidplayfp
