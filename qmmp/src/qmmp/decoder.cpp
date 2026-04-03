@@ -32,11 +32,10 @@ public:
         disabledNames = settings.value("Decoder/disabled_plugins").toStringList();
         std::stable_sort(cache->begin(), cache->end(), _pluginCacheLessComparator);
         QmmpPluginCache::cleanup(&settings);
-
-        qAddPostRoutine(updateCache);
+        qAddPostRoutine(DecoderPrivate::cleanup);
     }
 
-    static void updateCache()
+    static void cleanup()
     {
         if(cache)
         {
@@ -45,6 +44,7 @@ public:
             {
                 item->update(&settings);
             }
+            qDeleteAll(*cache);
         }
     }
 

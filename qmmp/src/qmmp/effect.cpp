@@ -30,6 +30,15 @@ public:
 
         std::stable_sort(cache->begin(), cache->end(), _effectCacheCompareFunc);
         enabledNames = settings.value("Effect/enabled_plugins").toStringList();
+        qAddPostRoutine(EffectPrivate::cleanup);
+    }
+
+    static void cleanup()
+    {
+        if(cache)
+        {
+            qDeleteAll(*cache);
+        }
     }
 
     EffectFactory *factory = nullptr;

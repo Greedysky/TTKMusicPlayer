@@ -26,6 +26,15 @@ public:
 
         disabledNames = settings.value("Engine/disabled_plugins").toStringList();
         QmmpPluginCache::cleanup(&settings);
+        qAddPostRoutine(AbstractEnginePrivate::cleanup);
+    }
+
+    static void cleanup()
+    {
+        if(cache)
+        {
+            qDeleteAll(*cache);
+        }
     }
 
     QMutex mutex;

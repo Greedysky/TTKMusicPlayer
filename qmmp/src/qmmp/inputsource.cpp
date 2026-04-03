@@ -3,6 +3,8 @@
 #include "emptyinputsource_p.h"
 #include "inputsource.h"
 
+#include <QCoreApplication>
+
 class InputSourcePrivate
 {
 public:
@@ -32,6 +34,15 @@ public:
 
         disabledNames = settings.value("Transports/disabled_plugins").toStringList();
         QmmpPluginCache::cleanup(&settings);
+        qAddPostRoutine(InputSourcePrivate::cleanup);
+    }
+
+    static void cleanup()
+    {
+        if(cache)
+        {
+            qDeleteAll(*cache);
+        }
     }
 
     QString path;

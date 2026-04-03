@@ -1,6 +1,8 @@
 #include "qmmpplugincache_p.h"
 #include "output.h"
 
+#include <QCoreApplication>
+
 class OutputPrivate
 {
 public:
@@ -21,7 +23,17 @@ public:
             }
             cache->append(item);
         }
+
         QmmpPluginCache::cleanup(&settings);
+        qAddPostRoutine(OutputPrivate::cleanup);
+    }
+
+    static void cleanup()
+    {
+        if(cache)
+        {
+            qDeleteAll(*cache);
+        }
     }
 
     quint32 frequency = 0;
