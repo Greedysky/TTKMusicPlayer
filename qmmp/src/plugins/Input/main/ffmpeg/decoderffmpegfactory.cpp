@@ -149,7 +149,7 @@ DecoderProperties DecoderFFmpegFactory::properties() const
     if(!av_find_input_format("matroska") || !avcodec_find_decoder(AV_CODEC_ID_TRUEHD))
         filters.removeAll("*.mka");
     if(!av_find_input_format("webm") || (!avcodec_find_decoder(AV_CODEC_ID_OPUS) && !avcodec_find_decoder(AV_CODEC_ID_VORBIS)))
-        filters.remove("*.webm");
+        filters.removeAll("*.webm");
     if(!avcodec_find_decoder(AV_CODEC_ID_TWINVQ))
         filters.removeAll("*.vqf");
     if(!avcodec_find_decoder(AV_CODEC_ID_TAK))
@@ -232,8 +232,6 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         properties.contentTypes << "audio/webm";
     if(filters.contains("*.spx"))
         properties.contentTypes << "audio/speech";
-    if(filters.contains("*.webm"))
-        properties.contentTypes << "audio/webm";
 
     properties.protocols << "ffmpeg" << "m4b";
     properties.priority = 10;

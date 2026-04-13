@@ -12,7 +12,7 @@
 #include <taglib/textidentificationframe.h>
 
 MPEGMetaDataModel::MPEGMetaDataModel(const QString &path, bool readOnly)
-    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
+    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable | MetaDataModel::IsLyricsEditable)
 {
     m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
 #if TAGLIB_MAJOR_VERSION >= 2
@@ -151,11 +151,23 @@ QString MPEGMetaDataModel::lyrics() const
     for(const TagModel *tag : qAsConst(m_tags))
     {
         const MpegFileTagModel *mpegTag = static_cast<const MpegFileTagModel*>(tag);
-        const QString &lyrics = mpegTag->lyrics();
-        if(!lyrics.isEmpty())
-            return lyrics;
+        if(mpegTag->type() == TagLib::MPEG::File::ID3v2)
+            return mpegTag->lyrics();
     }
     return QString();
+}
+
+void MPEGMetaDataModel::setLyrics(const QString &content)
+{
+    for(TagModel *tag : qAsConst(m_tags))
+    {
+        MpegFileTagModel *mpegTag = static_cast<MpegFileTagModel*>(tag);
+        if(mpegTag->type() == TagLib::MPEG::File::ID3v2)
+        {
+            mpegTag->setLyrics(content);
+            return;
+        }
+    }
 }
 
 
@@ -299,16 +311,9 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
     else if(m_type == TagLib::MPEG::File::ID3v2)
     {
         if(m_codec->name().contains("UTF"))
-        {
-            TagLib::ID3v2::FrameFactory *factory = TagLib::ID3v2::FrameFactory::instance();
             type = TagLib::String::UTF8;
-            factory->setDefaultTextEncoding(type);
-        }
-        else
-        {
-            TagLib::ID3v2::FrameFactory *factory = TagLib::ID3v2::FrameFactory::instance();
-            factory->setDefaultTextEncoding(TagLib::String::Latin1);
-        }
+
+        TagLib::ID3v2::FrameFactory::instance()->setDefaultTextEncoding(type);
 
         //save additional tags
         TagLib::ByteVector id3v2;
@@ -417,6 +422,11 @@ void MpegFileTagModel::save()
         m_file->strip(m_type);
 }
 
+TagLib::MPEG::File::TagTypes MpegFileTagModel::type() const
+{
+    return m_type;
+}
+
 QString MpegFileTagModel::lyrics() const
 {
     if(m_tag && m_type == TagLib::MPEG::File::ID3v2)
@@ -432,4 +442,41 @@ QString MpegFileTagModel::lyrics() const
             return m_codec->toUnicode(items["SYLT"].front()->toString().toCString(utf));
     }
     return QString();
+}
+
+void MpegFileTagModel::setLyrics(const QString &content)
+{
+    if(m_type == TagLib::MPEG::File::ID3v2 && m_tag)
+    {
+        TagLib::ID3v2::Tag *id3v2_tag = static_cast<TagLib::ID3v2::Tag*>(m_tag);
+
+        if(content.isEmpty())
+        {
+            id3v2_tag->removeFrames("USLT");
+            id3v2_tag->removeFrames("SYLT");
+        }
+        else
+        {
+            id3v2_tag->removeFrames("SYLT");
+
+            TagLib::String::Type type = m_codec->name().contains("UTF") ?  TagLib::String::UTF8 : TagLib::String::Latin1;
+            TagLib::ID3v2::FrameFactory::instance()->setDefaultTextEncoding(type);
+            TagLib::String lyrics = TagLib::String(m_codec->fromUnicode(content).constData(), type);
+
+            if(!id3v2_tag->frameListMap()["USLT"].isEmpty())
+                id3v2_tag->frameListMap()["USLT"].front()->setText(lyrics);
+            else
+            {
+                TagLib::ID3v2::TextIdentificationFrame *frame = new TagLib::ID3v2::TextIdentificationFrame("USLT", type);
+                frame->setText(lyrics);
+                id3v2_tag->addFrame(frame);
+            }
+        }
+
+#if TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION <= 11
+        m_file->save(m_type, false, 4);
+#else
+        m_file->save(m_type, TagLib::File::StripNone, TagLib::ID3v2::v4, TagLib::File::DoNotDuplicate);
+#endif
+    }
 }

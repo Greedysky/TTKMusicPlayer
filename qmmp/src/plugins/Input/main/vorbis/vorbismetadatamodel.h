@@ -43,6 +43,8 @@ public:
     virtual void setCover(const QImage &img) override final;
     virtual void removeCover() override final;
     virtual QString lyrics() const override final;
+    virtual void setLyrics(const QString &content) override final;
+    virtual void removeLyrics() override final;
 
 private:
     QString m_path;

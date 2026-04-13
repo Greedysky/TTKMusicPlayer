@@ -43,6 +43,7 @@ public:
     virtual void setCover(const QImage &img) override final;
     virtual void removeCover() override final;
     virtual QString lyrics() const override final;
+    virtual void setLyrics(const QString &content) override final;
 
 private:
     QList<TagModel*> m_tags;
@@ -68,7 +69,9 @@ public:
     virtual void remove() override final;
     virtual void save() override final;
 
+    TagLib::MPEG::File::TagTypes type() const;
     QString lyrics() const;
+    void setLyrics(const QString &content);
 
 private:
     QmmpTextCodec *m_codec;

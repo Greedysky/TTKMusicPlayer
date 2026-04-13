@@ -9,6 +9,7 @@
 FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
 {
+    bool valid = false;
     m_path = path.contains("://") ? TrackInfo::pathFromUrl(path) : path;
 
     if(m_path.endsWith(".flac", Qt::CaseInsensitive))
@@ -25,7 +26,7 @@ FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
         {
             m_tags << new VorbisCommentModel(m_nativeFlacFile);
             m_tags << new ID3v2TagModel(m_nativeFlacFile);
-            setDialogHints(dialogHints() | MetaDataModel::IsCueEditable);
+            valid = true;
             setReadOnly(m_nativeFlacFile->readOnly());
         }
     }
@@ -38,9 +39,19 @@ FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
         if(m_oggFlacFile->isValid())
         {
             m_tags << new VorbisCommentModel(m_oggFlacFile);
-            setDialogHints(dialogHints() | MetaDataModel::IsCueEditable);
+            valid = true;
             setReadOnly(m_oggFlacFile->readOnly());
         }
+    }
+
+    if(valid)
+    {
+        MetaDataModel::DialogHints hints = dialogHints() | MetaDataModel::IsCueEditable;
+        if(!path.contains("://")) //hide lyrics editor for files with embedded CUE
+        {
+            hints |= MetaDataModel::IsLyricsEditable;
+        }
+        setDialogHints(hints);
     }
 }
 
@@ -215,6 +226,37 @@ QString FLACMetaDataModel::lyrics() const
             return TStringToQString(items["LYRICS"].front());
     }
     return QString();
+}
+
+void FLACMetaDataModel::setLyrics(const QString &content)
+{
+    if(!m_tag && m_nativeFlacFile)
+        m_tag = m_nativeFlacFile->xiphComment(true);
+
+    if(m_tag)
+    {
+        m_tag->addField("UNSYNCEDLYRICS", QStringToTString(content), true);
+        m_tag->removeFields("LYRICS");
+    }
+
+    if(m_nativeFlacFile)
+        m_nativeFlacFile->save();
+    else if(m_oggFlacFile)
+        m_oggFlacFile->save();
+}
+
+void FLACMetaDataModel::removeLyrics()
+{
+    if(m_tag)
+    {
+        m_tag->removeFields("UNSYNCEDLYRICS");
+        m_tag->removeFields("LYRICS");
+
+        if(m_nativeFlacFile)
+            m_nativeFlacFile->save();
+        else if(m_oggFlacFile)
+            m_oggFlacFile->save();
+    }
 }
 
 

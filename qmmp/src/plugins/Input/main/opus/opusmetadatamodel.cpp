@@ -3,7 +3,7 @@
 #include "opusmetadatamodel.h"
 
 OpusMetaDataModel::OpusMetaDataModel(const QString &path, bool readOnly)
-    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable),
+    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable | MetaDataModel::IsLyricsEditable),
       m_path(path)
 {
     m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
@@ -115,6 +115,30 @@ QString OpusMetaDataModel::lyrics() const
             return TStringToQString(items["LYRICS"].front());
     }
     return QString();
+}
+
+void OpusMetaDataModel::setLyrics(const QString &content)
+{
+    TagLib::Ogg::XiphComment *tag = m_file->tag();
+
+    if(tag)
+    {
+        tag->addField("UNSYNCEDLYRICS", QStringToTString(content), true);
+        tag->removeFields("LYRICS");
+        m_file->save();
+    }
+}
+
+void OpusMetaDataModel::removeLyrics()
+{
+    TagLib::Ogg::XiphComment *tag = m_file->tag();
+
+    if(tag)
+    {
+        tag->removeFields("UNSYNCEDLYRICS");
+        tag->removeFields("LYRICS");
+        m_file->save();
+    }
 }
 
 

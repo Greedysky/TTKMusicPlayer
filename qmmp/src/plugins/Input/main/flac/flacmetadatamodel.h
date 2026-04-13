@@ -45,6 +45,8 @@ public:
     virtual void setCue(const QString &content) override final;
     virtual void removeCue() override final;
     virtual QString lyrics() const override final;
+    virtual void setLyrics(const QString &content) override final;
+    virtual void removeLyrics() override final;
 
 private:
     QString m_path;

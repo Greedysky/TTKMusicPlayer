@@ -122,7 +122,7 @@ void SndFileMetaDataModel::removeCover()
 
 QString SndFileMetaDataModel::lyrics() const
 {
-    for(const TagModel *tag : std::as_const(m_tags))
+    for(const TagModel *tag : qAsConst(m_tags))
     {
         const SndFileTagModel *mpegTag = static_cast<const SndFileTagModel*>(tag);
         QString lyrics = mpegTag->lyrics();
