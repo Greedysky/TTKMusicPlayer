@@ -61,6 +61,8 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
         return true;
     else if(filters.contains("*.mka") && (formats.contains("mka") || formats.contains("matroska")))
         return true;
+    else if(filters.contains("*.webm") && formats.contains("webm") && (avcodec_find_decoder(AV_CODEC_ID_OPUS) || avcodec_find_decoder(AV_CODEC_ID_VORBIS)))
+        return true;
     else if(filters.contains("*.vqf") && formats.contains("vqf"))
         return true;
     else if(filters.contains("*.tak") && formats.contains("tak"))
@@ -88,8 +90,6 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
     else if(filters.contains("*.avr") && formats.contains("avr"))
         return true;
     else if(filters.contains("*.amr") && formats.contains("amr"))
-        return true;
-    else if(filters.contains("*.webm") && (formats.contains("webm") || formats.contains("matroska")))
         return true;
     else if(filters.contains("*.avi") && formats.contains("avi"))
         return true;
@@ -146,8 +146,10 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.ac3");
     if(!avcodec_find_decoder(AV_CODEC_ID_DTS))
         filters.removeAll("*.dts");
-    if(!avcodec_find_decoder(AV_CODEC_ID_TRUEHD))
+    if(!av_find_input_format("matroska") || !avcodec_find_decoder(AV_CODEC_ID_TRUEHD))
         filters.removeAll("*.mka");
+    if(!av_find_input_format("webm") || (!avcodec_find_decoder(AV_CODEC_ID_OPUS) && !avcodec_find_decoder(AV_CODEC_ID_VORBIS)))
+        filters.remove("*.webm");
     if(!avcodec_find_decoder(AV_CODEC_ID_TWINVQ))
         filters.removeAll("*.vqf");
     if(!avcodec_find_decoder(AV_CODEC_ID_TAK))
@@ -226,6 +228,8 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         properties.contentTypes << "audio/dts";
     if(filters.contains("*.mka"))
         properties.contentTypes << "audio/true-hd" << "audio/x-matroska";
+    if(filters.contains("*.webm"))
+        properties.contentTypes << "audio/webm";
     if(filters.contains("*.spx"))
         properties.contentTypes << "audio/speech";
     if(filters.contains("*.webm"))
