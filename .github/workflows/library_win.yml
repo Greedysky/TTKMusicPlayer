@@ -160,7 +160,7 @@ jobs:
       - name: Build library for libenca
         shell: msys2 {0}
         run: |
-          7z x enca-1.21.7z -olibenca
+          7z x enca-1.22.7z -olibenca
           cd libenca
           # remove build for bin and test
           sed -i "198s/=.*/= lib/g" Makefile.in

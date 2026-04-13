@@ -101,7 +101,7 @@ jobs:
 
       - name: Build library for libenca
         run: |
-          7z x enca-1.21.7z -olibenca
+          7z x enca-1.22.7z -olibenca
           cd libenca
           ./configure --prefix=${{env.INSTALL_PATH}}/libenca CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
