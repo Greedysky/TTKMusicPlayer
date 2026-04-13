@@ -38,6 +38,7 @@ struct QMMP_EXPORT EngineProperties
     QStringList contentTypes; /*!< Supported content types */
     QStringList protocols;    /*!< Supported protocols. Should be empty if plugin uses stream input. */
     bool hasSettings = false; /*!< Should be \b true if plugin has settings dialog, and \b false otherwise */
+    int priority = 0;         /*!< Audio engine priority. Engines with lowest value will be used first */
 };
 
 /*! @brief Engine plugin interface.

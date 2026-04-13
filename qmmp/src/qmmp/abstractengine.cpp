@@ -6,6 +6,12 @@
 class AbstractEnginePrivate
 {
 public:
+    //sort cache items by priority
+    static bool _pluginCacheLessComparator(const QmmpPluginCache* f1, const QmmpPluginCache* f2)
+    {
+        return f1->priority() < f2->priority();
+    }
+
     static void loadPlugins()
     {
         if(cache)
@@ -13,6 +19,7 @@ public:
 
         cache = new QList<QmmpPluginCache*>;
         QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+        QVariantHash priorities = settings.value("Engine/priorities").toHash();
         for(const QString &filePath : Qmmp::findPlugins("Engines"))
         {
             QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
@@ -21,10 +28,12 @@ public:
                 delete item;
                 continue;
             }
+            item->setPriority(priorities.value(item->shortName(), item->priority()).toInt());
             cache->append(item);
         }
 
         disabledNames = settings.value("Engine/disabled_plugins").toStringList();
+        std::stable_sort(cache->begin(), cache->end(), _pluginCacheLessComparator);
         QmmpPluginCache::cleanup(&settings);
         qAddPostRoutine(AbstractEnginePrivate::cleanup);
     }
@@ -224,4 +233,33 @@ QStringList AbstractEngine::protocols()
     }
     protocolList.removeDuplicates();
     return protocolList;
+}
+
+void AbstractEngine::setPriority(const EngineFactory *factory, int priority)
+{
+    AbstractEnginePrivate::loadPlugins();
+    for(QmmpPluginCache *item : qAsConst(*AbstractEnginePrivate::cache))
+    {
+        if(item->shortName() == factory->properties().shortName)
+        {
+            item->setPriority(priority);
+            QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+            QVariantHash priorities = settings.value("Engine/priorities").toHash();
+            priorities.insert(item->shortName(), priority);
+            settings.setValue("Engine/priorities", priorities);
+            std::stable_sort(AbstractEnginePrivate::cache->begin(), AbstractEnginePrivate::cache->end(), AbstractEnginePrivate::_pluginCacheLessComparator);
+            break;
+        }
+    }
+}
+
+int AbstractEngine::priority(const EngineFactory *factory)
+{
+    AbstractEnginePrivate::loadPlugins();
+    for(const QmmpPluginCache *item : qAsConst(*AbstractEnginePrivate::cache))
+    {
+        if(item->shortName() == factory->properties().shortName)
+            return item->priority();
+    }
+    return 0;
 }

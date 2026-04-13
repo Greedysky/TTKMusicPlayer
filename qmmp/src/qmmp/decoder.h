@@ -192,6 +192,16 @@ public:
      * @param factory Decoder plugin factory.
      */
     static bool isEnabled(const DecoderFactory* factory);
+    /*!
+     * Sets the input plugin priority.
+     * @param factory Decoder plugin factory, priority.
+     */
+    static void setPriority(const DecoderFactory *factory, int priority);
+    /*!
+     * Returns plugin priority.
+     * @param factory Decoder plugin factory.
+     */
+    static int priority(const DecoderFactory *factory);
 
 protected:
     /*!

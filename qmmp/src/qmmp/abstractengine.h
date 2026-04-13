@@ -121,6 +121,16 @@ public:
      * This fuction ignores disabled engines.
      */
     static QStringList protocols();
+    /*!
+     * Sets the input plugin priority.
+     * @param factory Engine plugin factory, priority.
+     */
+    static void setPriority(const EngineFactory *factory, int priority);
+    /*!
+     * Returns plugin priority.
+     * @param factory Engine plugin factory.
+     */
+    static int priority(const EngineFactory *factory);
 
 protected:
     /*!

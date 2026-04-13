@@ -18,6 +18,7 @@ public:
 
         cache = new QList<QmmpPluginCache*>;
         QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+        QVariantHash priorities = settings.value("Decoder/priorities").toHash();
         for(const QString &filePath : Qmmp::findPlugins("Input"))
         {
             QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
@@ -26,6 +27,7 @@ public:
                 delete item;
                 continue;
             }
+            item->setPriority(priorities.value(item->shortName(), item->priority()).toInt());
             cache->append(item);
         }
 
@@ -321,6 +323,35 @@ bool Decoder::isEnabled(const DecoderFactory *factory)
 {
     DecoderPrivate::loadPlugins();
     return !DecoderPrivate::disabledNames.contains(factory->properties().shortName);
+}
+
+void Decoder::setPriority(const DecoderFactory *factory, int priority)
+{
+    DecoderPrivate::loadPlugins();
+    for(QmmpPluginCache *item : qAsConst(*DecoderPrivate::cache))
+    {
+        if(item->shortName() == factory->properties().shortName)
+        {
+            item->setPriority(priority);
+            QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+            QVariantHash priorities = settings.value("Decoder/priorities").toHash();
+            priorities.insert(item->shortName(), priority);
+            settings.setValue("Decoder/priorities", priorities);
+            std::stable_sort(DecoderPrivate::cache->begin(), DecoderPrivate::cache->end(), DecoderPrivate::_pluginCacheLessComparator);
+            break;
+        }
+    }
+}
+
+int Decoder::priority(const DecoderFactory *factory)
+{
+    DecoderPrivate::loadPlugins();
+    for(const QmmpPluginCache *item : qAsConst(*DecoderPrivate::cache))
+    {
+        if(item->shortName() == factory->properties().shortName)
+            return item->priority();
+    }
+    return 0;
 }
 
 QList<DecoderFactory *> Decoder::factories()

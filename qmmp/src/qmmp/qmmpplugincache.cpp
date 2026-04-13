@@ -39,37 +39,37 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
 
     if(update)
     {
-        if(DecoderFactory *factory = decoderFactory())
+        if(decoderFactory())
         {
-            m_shortName = factory->properties().shortName;
-            m_priority = factory->properties().priority;
-            m_protocols = factory->properties().protocols;
-            m_filters = factory->properties().filters;
-            m_contentTypes = factory->properties().contentTypes;
+            m_shortName = m_decoderFactory->properties().shortName;
+            m_priority = m_decoderFactory->properties().priority;
+            m_protocols = m_decoderFactory->properties().protocols;
+            m_filters = m_decoderFactory->properties().filters;
+            m_contentTypes = m_decoderFactory->properties().contentTypes;
         }
-        else if(OutputFactory *factory = outputFactory())
+        else if(outputFactory())
         {
-            m_shortName = factory->properties().shortName;
+            m_shortName = m_outputFactory->properties().shortName;
             m_priority = 0;
         }
-        else if(EngineFactory *factory = engineFactory())
+        else if(engineFactory())
         {
-            m_shortName = factory->properties().shortName;
-            m_priority = 0;
-            m_protocols = factory->properties().protocols;
-            m_filters = factory->properties().filters;
-            m_contentTypes = factory->properties().contentTypes;
+            m_shortName = m_engineFactory->properties().shortName;
+            m_priority = m_engineFactory->properties().priority;
+            m_protocols = m_engineFactory->properties().protocols;
+            m_filters = m_engineFactory->properties().filters;
+            m_contentTypes = m_engineFactory->properties().contentTypes;
         }
-        else if(EffectFactory *factory = effectFactory())
+        else if(effectFactory())
         {
-            m_shortName = factory->properties().shortName;
-            m_priority = factory->properties().priority;
+            m_shortName = m_effectFactory->properties().shortName;
+            m_priority = m_effectFactory->properties().priority;
         }
-        else if(InputSourceFactory *factory = inputSourceFactory())
+        else if(inputSourceFactory())
         {
-            m_shortName = factory->properties().shortName;
+            m_shortName = m_inputSourceFactory->properties().shortName;
             m_priority = 0;
-            m_protocols = factory->properties().protocols;
+            m_protocols = m_inputSourceFactory->properties().protocols;
         }
         else
         {
@@ -90,6 +90,7 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
             qDebug("QmmpPluginCache: added cache item \"%s=%s\"", qPrintable(fin.fileName()), qPrintable(values.join(",")));
         }
     }
+
     settings->endGroup();
 }
 
@@ -127,6 +128,11 @@ const QStringList &QmmpPluginCache::protocols() const
 int QmmpPluginCache::priority() const
 {
     return m_priority;
+}
+
+void QmmpPluginCache::setPriority(int priority)
+{
+    m_priority = priority;
 }
 
 DecoderFactory *QmmpPluginCache::decoderFactory()
