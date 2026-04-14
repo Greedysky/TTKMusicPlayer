@@ -163,9 +163,9 @@ jobs:
           7z x enca-1.22.7z -olibenca
           cd libenca
           # remove build for bin and test
-          sed -i "198s/=.*/= lib/g" Makefile.in
-          sed -i "401s/=.*/= lib/g" Makefile.in
-          sed -i "402s/=.*/= lib/g" Makefile.in
+          sed -i "203s/=.*/= lib/g" Makefile.in
+          sed -i "423s/=.*/= lib/g" Makefile.in
+          sed -i "424s/=.*/= lib/g" Makefile.in
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           ./configure --prefix=${{env.UNIX_INSTALL_PATH}}/libenca CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared
           make -j2 && make install
