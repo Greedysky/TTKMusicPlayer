@@ -9,6 +9,7 @@
 #include <taglib/id3v2tag.h>
 #include <taglib/popularimeterframe.h>
 #include <taglib/attachedpictureframe.h>
+#include <taglib/unsynchronizedlyricsframe.h>
 #include <taglib/textidentificationframe.h>
 
 MPEGMetaDataModel::MPEGMetaDataModel(const QString &path, bool readOnly)
@@ -437,9 +438,6 @@ QString MpegFileTagModel::lyrics() const
         const bool utf = m_codec->name().contains("UTF");
         if(!items["USLT"].isEmpty())
             return m_codec->toUnicode(items["USLT"].front()->toString().toCString(utf));
-
-        else if(!items["SYLT"].isEmpty())
-            return m_codec->toUnicode(items["SYLT"].front()->toString().toCString(utf));
     }
     return QString();
 }
@@ -453,12 +451,9 @@ void MpegFileTagModel::setLyrics(const QString &content)
         if(content.isEmpty())
         {
             id3v2_tag->removeFrames("USLT");
-            id3v2_tag->removeFrames("SYLT");
         }
         else
         {
-            id3v2_tag->removeFrames("SYLT");
-
             TagLib::String::Type type = m_codec->name().contains("UTF") ?  TagLib::String::UTF8 : TagLib::String::Latin1;
             TagLib::ID3v2::FrameFactory::instance()->setDefaultTextEncoding(type);
             TagLib::String lyrics = TagLib::String(m_codec->fromUnicode(content).constData(), type);
@@ -467,7 +462,7 @@ void MpegFileTagModel::setLyrics(const QString &content)
                 id3v2_tag->frameListMap()["USLT"].front()->setText(lyrics);
             else
             {
-                TagLib::ID3v2::TextIdentificationFrame *frame = new TagLib::ID3v2::TextIdentificationFrame("USLT", type);
+                TagLib::ID3v2::UnsynchronizedLyricsFrame *frame = new TagLib::ID3v2::UnsynchronizedLyricsFrame(type);
                 frame->setText(lyrics);
                 id3v2_tag->addFrame(frame);
             }

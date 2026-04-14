@@ -26,11 +26,11 @@
 #include <QEvent>
 #include "trackinfo.h"
 
-#define EVENT_STATE_CHANGED (QEvent::Type(QEvent::User)) /*!< @internal */
-#define EVENT_NEXT_TRACK_REQUEST (QEvent::Type(QEvent::User + 1)) /*!< @internal */
-#define EVENT_FINISHED (QEvent::Type(QEvent::User + 2)) /*!< @internal */
-#define EVENT_TRACK_INFO_CHANGED (QEvent::Type(QEvent::User + 3)) /*!< @internal */
-#define EVENT_STREAM_INFO_CHANGED (QEvent::Type(QEvent::User + 4)) /*!< @internal */
+static constexpr QEvent::Type EVENT_STATE_CHANGED = static_cast<QEvent::Type>(QEvent::User + 1); /*!< @internal */
+static constexpr QEvent::Type EVENT_NEXT_TRACK_REQUEST = static_cast<QEvent::Type>(QEvent::User + 2); /*!< @internal */
+static constexpr QEvent::Type EVENT_FINISHED = static_cast<QEvent::Type>(QEvent::User + 3); /*!< @internal */
+static constexpr QEvent::Type EVENT_TRACK_INFO_CHANGED = static_cast<QEvent::Type>(QEvent::User + 4); /*!< @internal */
+static constexpr QEvent::Type EVENT_STREAM_INFO_CHANGED = static_cast<QEvent::Type>(QEvent::User + 5); /*!< @internal */
 
 /*! @internal
  * @author Ilya Kotov <forkotov02@ya.ru>

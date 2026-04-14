@@ -111,8 +111,6 @@ QString OpusMetaDataModel::lyrics() const
 
         if(!items["UNSYNCEDLYRICS"].isEmpty())
             return TStringToQString(items["UNSYNCEDLYRICS"].front());
-        else if(!items["LYRICS"].isEmpty())
-            return TStringToQString(items["LYRICS"].front());
     }
     return QString();
 }
@@ -124,7 +122,6 @@ void OpusMetaDataModel::setLyrics(const QString &content)
     if(tag)
     {
         tag->addField("UNSYNCEDLYRICS", QStringToTString(content), true);
-        tag->removeFields("LYRICS");
         m_file->save();
     }
 }
@@ -136,7 +133,6 @@ void OpusMetaDataModel::removeLyrics()
     if(tag)
     {
         tag->removeFields("UNSYNCEDLYRICS");
-        tag->removeFields("LYRICS");
         m_file->save();
     }
 }

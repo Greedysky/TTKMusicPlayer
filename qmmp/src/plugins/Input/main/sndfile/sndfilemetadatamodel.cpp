@@ -302,9 +302,6 @@ QString SndFileTagModel::lyrics() const
 
         if(!items["USLT"].isEmpty())
             return TStringToQString(items["USLT"].front()->toString());
-
-        if(!items["SYLT"].isEmpty())
-            return TStringToQString(items["SYLT"].front()->toString());
     }
 
     return QString();
