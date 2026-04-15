@@ -39,7 +39,6 @@ void MusicDownloadBingSkinRequest::downloadFinished()
             {
                 MusicSkinRemoteGroup group;
                 group.m_id = TTK_DEFAULT_STR;
-                group.m_name = TTK_DEFAULT_STR;
                 group.m_type = MusicSkinRemoteGroup::Bing;
 
                 const QVariantList &datas = value["images"].toList();
