@@ -66,9 +66,9 @@ void MusicBlurSpecturmModule::close()
 
 void MusicBlurSpecturmModule::update(bool v)
 {
-    v ? show() : close();
-
     TTK::TTKQmmp::updateBlurConfig();
+
+    v ? show() : close();
 }
 
 void MusicBlurSpecturmModule::setVisible(bool v)
