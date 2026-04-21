@@ -30,6 +30,7 @@
 #define QMMP_VERSION_STABLE 1
 
 #define QMMP_VERSION_INT (QMMP_VERSION_MAJOR<<16 | QMMP_VERSION_MINOR<<8 | QMMP_VERSION_PATCH)
+#define QMMP_VERSION_CHECK(major, minor, patch) ((major<<16)|(minor<<8)|(patch))
 
 /*!
  * Converts a \b QString to a \b TagLib::FileName
