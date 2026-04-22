@@ -225,7 +225,7 @@ jobs:
 
       - name: Build library for libgme
         run: |
-          7z x libgme-0.6.4.7z -olibgme
+          7z x libgme-0.6.5.7z -olibgme
           cd libgme
           mkdir build && cd build
           cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_INSTALL_PATH}}/libgme -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3" -DBUILD_SHARED_LIBS=OFF

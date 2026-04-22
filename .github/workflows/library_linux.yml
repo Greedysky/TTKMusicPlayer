@@ -155,7 +155,7 @@ jobs:
 
       - name: Build library for libgme
         run: |
-          7z x libgme-0.6.4.7z -olibgme
+          7z x libgme-0.6.5.7z -olibgme
           cd libgme
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libgme -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_SHARED_LIBS=OFF
