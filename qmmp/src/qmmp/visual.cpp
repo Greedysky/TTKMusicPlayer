@@ -64,7 +64,7 @@ public:
     static QList<Visual*> visuals;
     static QHash<VisualFactory*, Visual*> visualMap; //internal visualization
     static QWidget *parentClass;
-    static QObject *receiver;
+    static const QObject *receiver;
     static const char *member;
     static VisualBuffer buffer;
 
@@ -75,7 +75,7 @@ QHash <const VisualFactory*, QString> *VisualPrivate::files = nullptr;
 QList<Visual*> VisualPrivate::visuals;
 QHash<VisualFactory*, Visual*> VisualPrivate::visualMap;
 QWidget *VisualPrivate::parentClass = nullptr;
-QObject *VisualPrivate::receiver = nullptr;
+const QObject *VisualPrivate::receiver = nullptr;
 const char *VisualPrivate::member = nullptr;
 VisualBuffer VisualPrivate::buffer;
 
