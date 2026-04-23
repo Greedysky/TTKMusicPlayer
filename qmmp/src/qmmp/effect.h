@@ -51,8 +51,8 @@ public:
     /*!
      * Prepares object for usage.
      * Subclasses that reimplement this function must call the base implementation.
-     * @param srate Sample rate.
-     * @param map Map of channels.
+     * \param srate Sample rate.
+     * \param map Map of channels.
      */
     virtual void configure(quint32 srate, ChannelMap map);
     /*!
@@ -90,18 +90,18 @@ public:
     static QList<EffectFactory*> enabledFactories();
     /*!
      * Returns plugin file path.
-     * @param factory Effect plugin factory.
+     * \param factory Effect plugin factory.
      */
     static QString file(const EffectFactory *factory);
     /*!
      * Sets whether the effect plugin is enabled.
-     * @param factory Effect plugin factory.
-     * @param enable Plugin enable state (\b true - enable, \b false - disable)
+     * \param factory Effect plugin factory.
+     * \param enable Plugin enable state (\b true - enable, \b false - disable)
      */
     static void setEnabled(EffectFactory *factory, bool enable = true);
     /*!
      * Returns \b true if input plugin is enabled, otherwise returns \b false
-     * @param factory Effect plugin factory.
+     * \param factory Effect plugin factory.
      */
     static bool isEnabled(const EffectFactory* factory);
     /*!

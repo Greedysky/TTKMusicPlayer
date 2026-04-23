@@ -57,7 +57,7 @@ public:
 
     /*!
      * Constructor.
-     * @param parent Parent object.
+     * \param parent Parent object.
      * This functions is for internal usage only, use QmmpSettings::instance() instead.
      */
     explicit QmmpSettings(QObject *parent = nullptr);
@@ -84,10 +84,10 @@ public:
     bool replayGainPreventClipping() const;
     /*!
      * Sets ReplayGains settings.
-     * @param mode ReplayGain mode.
-     * @param preamp Preamp in dB.
-     * @param default_gain Default gain in dB.
-     * @param clip Clipping prevention state.
+     * \param mode ReplayGain mode.
+     * \param preamp Preamp in dB.
+     * \param default_gain Default gain in dB.
+     * \param clip Clipping prevention state.
      */
     void setReplayGainSettings(ReplayGainMode mode, double preamp, double default_gain, bool clip);
     /*!
@@ -104,9 +104,9 @@ public:
     bool useDithering() const;
     /*!
      * Sets audio settings.
-     * @param soft_volume State of software volume.
-     * @param format Preferd output format. Supported values: Qmmp::PCM_S16, Qmmp::PCM_S24, Qmmp::PCM_S32.
-     * @param use_dithering Enable/Disable audio dithering.
+     * \param soft_volume State of software volume.
+     * \param format Preferd output format. Supported values: Qmmp::PCM_S16, Qmmp::PCM_S24, Qmmp::PCM_S32.
+     * \param use_dithering Enable/Disable audio dithering.
      */
     void setAudioSettings(bool soft_volume, Qmmp::AudioFormat format, bool use_dithering);
     /*!
@@ -124,11 +124,11 @@ public:
     bool useCoverFiles() const;
     /*!
      * Sets cover search options.
-     * @param inc Include cover name filters
-     * @param exc Exclude cover name filters
-     * @param depth Depth of recursive cover file search.
+     * \param inc Include cover name filters
+     * \param exc Exclude cover name filters
+     * \param depth Depth of recursive cover file search.
      * Recursive cover file search can be disabled by setting \b depth to \b 0.
-     * @param use_files Use or not use files with covers.
+     * \param use_files Use or not use files with covers.
      * This parameter doesn't take effect in embedded covers.
      */
     void setCoverSettings(QStringList inc, QStringList exc, int depth, bool use_files);
@@ -150,10 +150,10 @@ public:
     ProxyType proxyType() const;
     /*!
      * Sets network settings.
-     * @param use_proxy Enables or disables global proxy.
-     * @param auth Enables or disables proxy authentication.
-     * @param type Proxy type.
-     * @param proxy Proxy url.
+     * \param use_proxy Enables or disables global proxy.
+     * \param auth Enables or disables proxy authentication.
+     * \param type Proxy type.
+     * \param proxy Proxy url.
      */
     void setNetworkSettings(bool use_proxy, bool auth, ProxyType type, const QUrl &proxy);
     /*!
@@ -166,7 +166,7 @@ public:
     void setEqSettings(const EqSettings &settings);
     /*!
      * Reads equalizer settings. Call this function before equalizer usage.
-     * @param bands Number of bands.
+     * \param bands Number of bands.
      */
     void readEqSettings(EqSettings::Bands bands = EqSettings::EQ_BANDS_10);
     /*!
@@ -175,7 +175,7 @@ public:
     int bufferSize() const;
     /*!
      * Sets buffer size.
-     * @param msec Buffer size in milliseconds.
+     * \param msec Buffer size in milliseconds.
      */
     void setBufferSize(int msec);
     /*!
@@ -189,7 +189,7 @@ public:
     int volumeStep() const;
     /*!
      * Enables/Disables average bitrate displaying.
-     * @param enabled State of the average bitrate displaying
+     * \param enabled State of the average bitrate displaying
      * (\b true - enabled, \b false - disabled). This function emits
      * \b audioSettingsChanged() signal.
      */
@@ -200,7 +200,7 @@ public:
     bool averageBitrate() const;
     /*!
      * Enables/Disables file type determination by content.
-     * @param enabled State of the content based type determination.
+     * \param enabled State of the content based type determination.
      * (\b true - enabled, \b false - disabled).
      */
     void setDetermineFileTypeByContent(bool enabled);

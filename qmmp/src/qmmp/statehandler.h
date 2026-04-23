@@ -35,7 +35,7 @@ class QMMP_EXPORT StateHandler : public QObject
 public:
     /*!
      * Object constructor.
-     * @param parent Parent object.
+     * \param parent Parent object.
      */
     explicit StateHandler(QObject *parent = nullptr);
     /*!
@@ -45,23 +45,23 @@ public:
 
     /*!
      * Sends information about playback progress.
-     * @param elapsed Current time (in milliseconds).
-     * @param bitrate Current bitrate (in kbps).
+     * \param elapsed Current time (in milliseconds).
+     * \param bitrate Current bitrate (in kbps).
      */
     void dispatch(qint64 elapsed, int bitrate);
     /*!
      * Sends information about audio parameters.
-     * @param p Output audio patameters.
+     * \param p Output audio patameters.
      */
     void dispatch(const AudioParameters &p);
     /*!
      * Sends information about song length
-     * @param duration track length in milliseconds
+     * \param duration track length in milliseconds
      */
     void dispatch(qint64 duration);
     /*!
      * Sends track information.
-     * @param info track information.
+     * \param info track information.
      */
     bool dispatch(const TrackInfo &info);
     /*!
@@ -74,7 +74,7 @@ public:
     void dispatch(Qmmp::State state);
     /*!
      * Sends buffering progress.
-     * @param percent Indicates the current percentage of buffering completed.
+     * \param percent Indicates the current percentage of buffering completed.
      */
     void dispatchBuffer(int percent);
     /*!
@@ -113,17 +113,17 @@ public:
 signals:
     /*!
      * Tracks elapesed time.
-     * @param time New track position in milliseconds.
+     * \param time New track position in milliseconds.
      */
     void elapsedChanged(qint64 time);
     /*!
      * Emitted when bitrate has changed.
-     * @param bitrate New bitrate (in kbps)
+     * \param bitrate New bitrate (in kbps)
      */
     void bitrateChanged(int bitrate);
     /*!
      * Emitted when audio parameters have changed.
-     * @param p New audio parameters for output.
+     * \param p New audio parameters for output.
      */
     void audioParametersChanged(const AudioParameters &p);
      /*!

@@ -37,7 +37,7 @@ class QMMP_EXPORT SoundCore : public QObject
 public:
     /*!
      * Object constructor.
-     * @param parent Parent object.
+     * \param parent Parent object.
      */
     explicit SoundCore(QObject *parent = nullptr);
     /*!
@@ -126,13 +126,13 @@ public:
 public slots:
     /*!
      * Sets volume.
-     * @param left - volume of the left channel \b [0..100].
-     * @param right - volume of the right channel \b [0..100].
+     * \param left - volume of the left channel \b [0..100].
+     * \param right - volume of the right channel \b [0..100].
      */
     void setVolumePerChannel(int left, int right);
     /*!
      * Mutes/Restores volume
-     * @param mute - state of volume (\b true - mute, \b false - restore)
+     * \param mute - state of volume (\b true - mute, \b false - restore)
      */
     void setMuted(bool mute);
     /*!
@@ -141,7 +141,7 @@ public slots:
     void changeVolume(int delta);
     /*!
      * Sets the volume of the left and right channels with keeping of the balance.
-     * @param volume volume of the left and right channels \b [0..100].
+     * \param volume volume of the left and right channels \b [0..100].
      */
     void setVolume(int volume);
     /*!
@@ -154,7 +154,7 @@ public slots:
     void volumeDown();
     /*!
      * Sets the balance between left and right channels.
-     * @param balance balance between left and right channels \b [-100..100].
+     * \param balance balance between left and right channels \b [-100..100].
      */
     void setBalance(int balance);
     /*!
@@ -177,7 +177,7 @@ public slots:
     void seek(qint64 time);
     /*!
      *  This function seeks relatively from the current playback position.
-     *  @param offset Offset from the current playback possition in millisecnds (positive or negative value).
+     *  \param offset Offset from the current playback possition in millisecnds (positive or negative value).
      */
     void seekRelative(qint64 offset);
 
@@ -189,17 +189,17 @@ signals:
     void bufferingProgress(int progress);
     /*!
      * Tracks elapesed time.
-     * @param time New track position in milliseconds.
+     * \param time New track position in milliseconds.
      */
     void elapsedChanged(qint64 time);
     /*!
      * Emitted when bitrate has changed.
-     * @param bitrate New bitrate (in kbps)
+     * \param bitrate New bitrate (in kbps)
      */
     void bitrateChanged(int bitrate);
     /*!
      * Emitted when audio parameters have changed.
-     * @param p New audio parameters for output.
+     * \param p New audio parameters for output.
      */
     void audioParametersChanged(const AudioParameters &p);
     /*!
@@ -220,17 +220,17 @@ signals:
     void finished();
     /*!
      * Emitted when volume has muted or restored
-     * @param muted new state of the volume (\b true - muted, \b false - unmuted)
+     * \param muted new state of the volume (\b true - muted, \b false - unmuted)
      */
     void mutedChanged(bool muted);
     /*!
      * Emitted when the highest volume of the left and right channels has changed.
-     * @param volume new value of the highest volume of the left and right channels.
+     * \param volume new value of the highest volume of the left and right channels.
      */
     void volumeChanged(int volume);
     /*!
      * Emitted when the balance between left and right channels has changed.
-     * @param balance new balance value.
+     * \param balance new balance value.
      */
     void balanceChanged(int balance);
     /*!

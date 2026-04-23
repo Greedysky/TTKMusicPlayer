@@ -102,8 +102,8 @@ public:
 
     /*!
      * Constructor.
-     * @param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
-     * @param hints Details dialog settings.
+     * \param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
+     * \param hints Details dialog settings.
      */
     explicit MetaDataModel(bool readOnly, DialogHints hints = DialogHints());
     /*!
@@ -133,7 +133,7 @@ public:
     virtual QImage cover() const;
     /*!
      * Sets cover.
-     * @param img Cover image.
+     * \param img Cover image.
      * Subclass should reimplement this function. Default implementation does nothing.
      */
     virtual void setCover(const QImage &img);
@@ -164,7 +164,7 @@ public:
     virtual QString lyrics() const;
     /*!
      * Sets lyrics.
-     * @param content Lyrics.
+     * \param content Lyrics.
      * Subclass should reimplement this function. Default implementation does nothing.
      */
     virtual void setLyrics(const QString &content);
@@ -189,7 +189,7 @@ protected:
     void setDialogHints(const DialogHints &hints);
     /*!
      * Enables/Disables read only mode (\b true - enabled, \b false - disable).
-     * @param readOnly read only mode (\b true - enabled, \b false - disable).
+     * \param readOnly read only mode (\b true - enabled, \b false - disable).
      */
     void setReadOnly(bool readOnly);
 
