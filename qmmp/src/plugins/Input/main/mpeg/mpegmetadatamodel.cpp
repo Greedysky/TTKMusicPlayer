@@ -173,7 +173,7 @@ void MPEGMetaDataModel::setLyrics(const QString &content)
 
 
 MpegFileTagModel::MpegFileTagModel(TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes type)
-    : TagModel(),
+    : TagModel(TagModel::CreateRemove),
       m_file(file),
       m_type(type)
 {

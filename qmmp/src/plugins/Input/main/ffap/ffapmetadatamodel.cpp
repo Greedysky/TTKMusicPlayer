@@ -56,7 +56,7 @@ QString FFapMetaDataModel::coverPath() const
 
 
 FFapFileTagModel::FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::TagTypes type)
-    : TagModel(),
+    : TagModel(TagModel::CreateRemove),
       m_file(file),
       m_type(type)
 {

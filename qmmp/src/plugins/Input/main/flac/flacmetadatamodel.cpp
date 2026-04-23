@@ -257,7 +257,7 @@ void FLACMetaDataModel::removeLyrics()
 
 
 VorbisCommentModel::VorbisCommentModel(TagLib::FLAC::File *file)
-    : TagModel(TagModel::Save),
+    : TagModel(),
       m_nativeFlacFile(file),
       m_tag(file->xiphComment())
 {
@@ -265,7 +265,7 @@ VorbisCommentModel::VorbisCommentModel(TagLib::FLAC::File *file)
 }
 
 VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::FLAC::File *file)
-    : TagModel(TagModel::Save),
+    : TagModel(),
       m_oggFlacFile(file),
       m_tag(file->tag())
 {
@@ -383,7 +383,7 @@ void VorbisCommentModel::save()
 
 
 ID3v2TagModel::ID3v2TagModel(TagLib::FLAC::File *file)
-    : TagModel(),
+    : TagModel(TagModel::CreateRemove),
       m_file(file),
       m_tag(file->ID3v2Tag())
 {

@@ -119,7 +119,7 @@ void VorbisMetaDataModel::removeLyrics()
 
 
 VorbisCommentModel::VorbisCommentModel(VorbisMetaDataModel *model)
-    : TagModel(TagModel::Save),
+    : TagModel(),
       m_model(model)
 {
 

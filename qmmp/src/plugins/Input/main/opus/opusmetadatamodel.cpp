@@ -139,7 +139,7 @@ void OpusMetaDataModel::removeLyrics()
 
 
 VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::Opus::File *file)
-    : TagModel(TagModel::Save),
+    : TagModel(),
       m_file(file),
       m_tag(file->tag())
 {

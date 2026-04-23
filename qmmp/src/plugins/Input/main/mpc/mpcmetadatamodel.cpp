@@ -27,7 +27,7 @@ QList<TagModel*> MPCMetaDataModel::tags() const
 
 
 MPCFileTagModel::MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes type)
-    : TagModel(),
+    : TagModel(TagModel::CreateRemove),
       m_file(file),
       m_type(type)
 {

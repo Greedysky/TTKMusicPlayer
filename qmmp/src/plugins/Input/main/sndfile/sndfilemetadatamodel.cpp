@@ -135,13 +135,14 @@ QString SndFileMetaDataModel::lyrics() const
 
 
 SndFileTagModel::SndFileTagModel(TagLib::RIFF::WAV::File *file)
-    : m_wavFile(file)
+    : TagModel(TagModel::CreateRemove),
+      m_wavFile(file)
 {
     m_tag = m_wavFile->ID3v2Tag();
 }
 
 SndFileTagModel::SndFileTagModel(TagLib::RIFF::AIFF::File *file)
-    : TagModel(TagModel::Save),
+    : TagModel(),
       m_aiffFile(file)
 {
     m_tag = m_aiffFile->tag();

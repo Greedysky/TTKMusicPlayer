@@ -64,7 +64,7 @@ public:
     virtual void save() override final;
 
 private:
-     WavpackContext *m_ctx;
+    WavpackContext *m_ctx;
 
 };
 

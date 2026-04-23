@@ -3,7 +3,7 @@
 class TagModelPrivate
 {
 public:
-     TagModel::ModelCaps caps = TagModel::DefaultCaps;
+    TagModel::ModelCaps caps = TagModel::ModelCaps();
 
 };
 
