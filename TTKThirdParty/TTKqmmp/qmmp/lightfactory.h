@@ -87,7 +87,7 @@ public:
     virtual LightProperties properties() const = 0;
     /*!
      * Creates Light provided by plugin.
-     * @param parent Parent object.
+     * \param parent Parent object.
      */
     virtual Light *create(QWidget *parent) = 0;
 

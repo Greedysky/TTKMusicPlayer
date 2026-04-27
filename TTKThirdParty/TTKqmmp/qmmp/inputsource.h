@@ -36,8 +36,8 @@ class QMMP_EXPORT InputSource : public QObject
 public:
     /*!
      * Object contsructor.
-     * @param path Input source path or url.
-     * @param parent Parent object.
+     * \param path Input source path or url.
+     * \param parent Parent object.
      */
     explicit InputSource(const QString &path, QObject *parent = nullptr);
     /*!
@@ -89,7 +89,7 @@ public:
     /*!
      * Informs input source object about new received metadata.
      * Call of this function is required for all non-local streams/files
-     * @param metaData Metadata map.
+     * \param metaData Metadata map.
      */
     void addMetaData(const QMap<Qmmp::MetaData, QString> &metaData);
     /*!
@@ -119,7 +119,7 @@ public:
     /*!
      * Informs input source object about received stream information (for example icy data).
      * Call of this function is required for all non-local streams/files
-     * @param info Stream information map.
+     * \param info Stream information map.
      */
     void addStreamInfo(const QHash<QString, QString> &info);
     /*!
@@ -133,8 +133,8 @@ public:
     QHash<QString, QString> takeStreamInfo();
     /*!
      * Creates InputSource object.
-     * @param path Input source path or url.
-     * @param parent Parent object.
+     * \param path Input source path or url.
+     * \param parent Parent object.
      * Returns \b 0 if the given url is not supported.
      */
     static InputSource *create(const QString &path, QObject *parent = nullptr);
@@ -148,7 +148,7 @@ public:
     static QList<InputSourceFactory *> enabledFactories();
     /*!
      * Returns plugin file path.
-     * @param factory Transport plugin factory.
+     * \param factory Transport plugin factory.
      */
     static QString file(const InputSourceFactory *factory);
     /*!
@@ -165,13 +165,13 @@ public:
     static InputSourceFactory *findByUrl(const QString &url);
     /*!
      * Sets whether the input plugin is enabled.
-     * @param factory Transport plugin factory.
-     * @param enable Plugin enable state (\b true - enable, \b false - disable)
+     * \param factory Transport plugin factory.
+     * \param enable Plugin enable state (\b true - enable, \b false - disable)
      */
     static void setEnabled(InputSourceFactory *factory, bool enable = true);
     /*!
      * Returns \b true if input plugin is enabled, otherwise returns \b false
-     * @param factory Decoder plugin factory.
+     * \param factory Decoder plugin factory.
      */
     static bool isEnabled(const InputSourceFactory* factory);
 

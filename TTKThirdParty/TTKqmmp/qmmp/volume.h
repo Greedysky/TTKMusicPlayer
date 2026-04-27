@@ -76,7 +76,7 @@ public:
     /*!
      * Setups volume levels.
      * Subclass should reimplement this fucntion.
-     * @param volume Structure with required volume levels.
+     * \param volume Structure with required volume levels.
      */
     virtual void setVolume(const VolumeSettings &volume) = 0;
     /*!
@@ -89,7 +89,7 @@ public:
     virtual bool isMuted() const;
     /*!
      * Mutes/Restores volume. Default implementation does nothing.
-     * @param mute - state of volume (\b true - mute, \b false - restore)
+     * \param mute - state of volume (\b true - mute, \b false - restore)
      */
     virtual void setMuted(bool mute);
     /*!

@@ -95,14 +95,15 @@ public:
     {
         IsCoverEditable = 0x1,      /*!< Enable cover editor. */
         CompletePropertyList = 0x2, /*!< Show properties from \b extraProperties() only (ignore other sources) */
-        IsCueEditable = 0x4         /*!< Enable CUE editor. */
+        IsCueEditable = 0x4,        /*!< Enable CUE editor. */
+        IsLyricsEditable = 0x08     /*!< Enable Lyrics editor. */
     };
     Q_DECLARE_FLAGS(DialogHints, DialogHint)
 
     /*!
      * Constructor.
-     * @param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
-     * @param hints Details dialog settings.
+     * \param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
+     * \param hints Details dialog settings.
      */
     explicit MetaDataModel(bool readOnly, DialogHints hints = DialogHints());
     /*!
@@ -132,7 +133,7 @@ public:
     virtual QImage cover() const;
     /*!
      * Sets cover.
-     * @param img Cover image.
+     * \param img Cover image.
      * Subclass should reimplement this function. Default implementation does nothing.
      */
     virtual void setCover(const QImage &img);
@@ -158,9 +159,20 @@ public:
      */
     virtual void removeCue();
     /*!
-     * Returns song lyrics. Default returns empty string.
+     * Returns song lyrics. Default implementation returns empty string.
      */
     virtual QString lyrics() const;
+    /*!
+     * Sets lyrics.
+     * \param content Lyrics.
+     * Subclass should reimplement this function. Default implementation does nothing.
+     */
+    virtual void setLyrics(const QString &content);
+    /*!
+     * Removes lyrics.
+     * Subclass should reimplement this function. Default implementation does nothing.
+     */
+    virtual void removeLyrics();
     /*!
      * Returns \b true if file is opened in read only mode. Otherwise returns \b false.
      */
@@ -177,7 +189,7 @@ protected:
     void setDialogHints(const DialogHints &hints);
     /*!
      * Enables/Disables read only mode (\b true - enabled, \b false - disable).
-     * @param readOnly read only mode (\b true - enabled, \b false - disable).
+     * \param readOnly read only mode (\b true - enabled, \b false - disable).
      */
     void setReadOnly(bool readOnly);
 

@@ -35,16 +35,16 @@ public:
     /*!
      * Extracts metadata and audio information from file \b path and returns a list of FileInfo items.
      * One file may contain several playlist items (for example: cda disk or flac with embedded cue)
-     * @param path Local file path or URL.
-     * @param parts parts of metadata which should be extracted from file.
-     * @param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search
+     * \param path Local file path or URL.
+     * \param parts parts of metadata which should be extracted from file.
+     * \param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search
      * (useful to exclude cue data files from playlist)
      */
     TrackInfoList createPlayList(const QString &path, TrackInfo::Parts parts = TrackInfo::AllParts, QStringList *ignoredPaths = nullptr) const;
     /*!
      * Creats metadata object, which provides full access to file tags.
-     * @param url File path or URL.
-     * @param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
+     * \param url File path or URL.
+     * \param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
      * @return MetaDataModel pointer or null pointer.
      */
     MetaDataModel* createMetaDataModel(const QString &url, bool readOnly) const;
@@ -86,7 +86,7 @@ public:
      * an empty string if the cover file is not available.
      * Unlike \b getCover and \b getCoverPath this function provides simple file search (without cache) and
      * should be used inside \b MetaDataModel reimplementation.
-     * @param fileName Path of the local audio file.
+     * \param fileName Path of the local audio file.
      */
     QString findCoverFile(const QString &fileName) const;
     /*!

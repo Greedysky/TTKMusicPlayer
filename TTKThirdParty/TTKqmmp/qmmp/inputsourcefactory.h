@@ -57,13 +57,13 @@ public:
     virtual InputSourceProperties properties() const = 0;
     /*!
      * Creates transport provided by plugin.
-     * @param url URL of the stream.
-     * @param parent Parent object.
+     * \param url URL of the stream.
+     * \param parent Parent object.
      */
     virtual InputSource *create(const QString &url, QObject *parent = nullptr) = 0;
     /*!
      * Creates settings dialog.
-     * @param parent Parent widget.
+     * \param parent Parent widget.
      * @return Settings dialog pointer.
      */
     virtual QDialog *createSettings(QWidget *parent) = 0;

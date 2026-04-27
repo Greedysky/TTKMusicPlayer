@@ -49,8 +49,8 @@ public:
 
     /*!
      * Prepares object for usage and setups required audio parameters.
-     * @param freq Sample rate.
-     * @param map Map of channels.
+     * \param freq Sample rate.
+     * \param map Map of channels.
      * @return initialization result (\b true - success, \b false - failure)
      */
     bool initialize(quint32 freq, ChannelMap map);

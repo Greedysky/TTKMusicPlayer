@@ -30,6 +30,7 @@
 #define QMMP_VERSION_STABLE 1
 
 #define QMMP_VERSION_INT (QMMP_VERSION_MAJOR<<16 | QMMP_VERSION_MINOR<<8 | QMMP_VERSION_PATCH)
+#define QMMP_VERSION_CHECK(major, minor, patch) ((major<<16)|(minor<<8)|(patch))
 
 /*!
  * Converts a \b QString to a \b TagLib::FileName
@@ -219,7 +220,7 @@ public:
     static QString pluginPath();
     /*!
      * Returns a list of found Qmmp plugins (full paths).
-     * @param prefix Plugin type or directory name (examples: Inpunt, Transport, Output).
+     * \param prefix Plugin type or directory name (examples: Inpunt, Transport, Output).
      */
     static QStringList findPlugins(const QString &prefix);
     /*!
@@ -228,7 +229,7 @@ public:
     static QString ttkPluginPath();
     /*!
      * Returns the decoded text by intput text.
-     * @param input text.
+     * \param input text.
      */
     static QByteArray generatePrintable(const QString &text);
 

@@ -43,8 +43,8 @@ public:
 
     /*!
      * Setups audio parameters of output interface.
-     * @param freq Sample rate.
-     * @param chan Number of channels.
+     * \param freq Sample rate.
+     * \param chan Number of channels.
      */
     void configure(quint32 freq, int chan);
     /*!

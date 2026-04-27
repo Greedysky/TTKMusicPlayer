@@ -49,7 +49,7 @@ public:
     EqSettings(EqSettings &&other) noexcept;
     /*!
      * Constructs an empty equalizer settings (0 dB, disabled)
-     * @param bands - Number of bands (supported: 10, 15, 25, 31)
+     * \param bands - Number of bands (supported: 10, 15, 25, 31)
      */
     explicit EqSettings(Bands bands = EQ_BANDS_10);
     /*!
@@ -83,8 +83,8 @@ public:
     void setEnabled(bool enabled = true);
     /*!
      * Sets gain of the equalizer channel.
-     * @param band Number of equalizer band.
-     * @param gain Channel gain (-20.0..20.0 dB)
+     * \param band Number of equalizer band.
+     * \param gain Channel gain (-20.0..20.0 dB)
      */
     void setGain(int band, double gain);
     /*!

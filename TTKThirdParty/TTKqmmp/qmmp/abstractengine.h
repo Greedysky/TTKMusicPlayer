@@ -37,7 +37,7 @@ class QMMP_EXPORT AbstractEngine : public QThread
 public:
     /*!
      * Object constructor.
-     * @param parent Parent object.
+     * \param parent Parent object.
      */
     explicit AbstractEngine(QObject *parent = nullptr);
     /*!
@@ -69,8 +69,8 @@ public:
     virtual void pause() = 0;
     /*!
      * Creates Engine object.
-     * @param s InputSource object.
-     * @param parent Parent object.
+     * \param s InputSource object.
+     * \param parent Parent object.
      * Returns \b 0 if the given source is not supported.
      */
     static AbstractEngine *create(InputSource *s, QObject *parent = nullptr);
@@ -96,24 +96,24 @@ public:
     static EngineFactory *findByFilePath(const QString &path);
     /*!
      * Sets whether the engine is enabled.
-     * @param factory Engine plugin factory.
-     * @param enable Plugin enable state (\b true - enable, \b false - disable)
+     * \param factory Engine plugin factory.
+     * \param enable Plugin enable state (\b true - enable, \b false - disable)
      */
     static void setEnabled(EngineFactory *factory, bool enable = true);
     /*!
      * Returns \b true if engine is enabled, otherwise returns \b false
      * This function uses \b QObject::objectName() function.
-     * @param factory Engine plugin factory.
+     * \param factory Engine plugin factory.
      */
     static bool isEnabled(const EngineFactory *factory);
     /*!
      * Returns \b true if engine is enabled, otherwise returns \b false
-     * @param engine Engine object.
+     * \param engine Engine object.
      */
     static bool isEnabled(const AbstractEngine *engine);
     /*!
      * Returns plugin file path.
-     * @param factory Engine plugin factory.
+     * \param factory Engine plugin factory.
      */
     static QString file(const EngineFactory *factory);
     /*!
@@ -121,6 +121,17 @@ public:
      * This fuction ignores disabled engines.
      */
     static QStringList protocols();
+    /*!
+     * Sets engine plugin prioroty.
+     * \param factory Engine plugin factory.
+     * \param priority Priority value (a higher value corresponds to a lower priority).
+     */
+    static void setPriority(const EngineFactory *factory, int priority);
+    /*!
+     * Returns plugin priority.
+     * \param factory Engine plugin factory.
+     */
+    static int priority(const EngineFactory *factory);
 
 protected:
     /*!

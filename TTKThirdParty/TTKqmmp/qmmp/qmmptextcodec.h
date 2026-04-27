@@ -34,7 +34,7 @@ class QMMP_EXPORT QmmpTextCodec
 public:
     /*!
      * Constructor.
-     * @param charset Conversion charset.
+     * \param charset Conversion charset.
      */
     QmmpTextCodec(const QByteArray &charset);
     /*!
@@ -48,17 +48,17 @@ public:
     QByteArray name() const;
     /*!
      * This function converts text encoding from coversion charset to unicode.
-     * @param a Text array.
+     * \param a Text array.
      */
     QString toUnicode(const QByteArray &a) const;
     /*!
      * This function converts text encoding from coversion charset to unicode.
-     * @param chars Text array.
+     * \param chars Text array.
      */
     QString toUnicode(const char *chars) const;
     /*!
      * This function converts text encoding from unicode to conversion charset.
-     * @param str Input string.
+     * \param str Input string.
      */
     QByteArray fromUnicode(const QString &str) const;
 

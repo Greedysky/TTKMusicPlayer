@@ -38,6 +38,7 @@ struct QMMP_EXPORT EngineProperties
     QStringList contentTypes; /*!< Supported content types */
     QStringList protocols;    /*!< Supported protocols. Should be empty if plugin uses stream input. */
     bool hasSettings = false; /*!< Should be \b true if plugin has settings dialog, and \b false otherwise */
+    int priority = 0;         /*!< Audio engine priority. Engines with lowest value will be used first */
 };
 
 /*! @brief Engine plugin interface.
@@ -61,22 +62,22 @@ public:
     virtual EngineProperties properties() const = 0;
     /*!
      * Creates engine object.
-     * @param parent Parent object File path
+     * \param parent Parent object File path
      */
     virtual AbstractEngine *create(QObject *parent = nullptr) = 0;
     /*!
      * Extracts metadata and audio information from file \b path and returns a list of FileInfo items.
      * One file may contain several playlist items (for example: cda disk or flac with embedded cue).
-     * @param fileName File path.
-     * @param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search.
-     * @param parts parts of metadata which should be extracted from file.
+     * \param fileName File path.
+     * \param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search.
+     * \param parts parts of metadata which should be extracted from file.
      * (useful to exclude cue data files from playlist).
      */
     virtual TrackInfoList createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
     /*!
      * Creats metadata object, which provides full access to file tags.
-     * @param path File path.
-     * @param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
+     * \param path File path.
+     * \param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
      * @return MetaDataModel pointer.
      */
     virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) = 0;

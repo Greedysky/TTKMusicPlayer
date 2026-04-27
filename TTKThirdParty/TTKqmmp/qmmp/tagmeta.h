@@ -54,7 +54,7 @@ public:
     TagMeta() = default;
     /*!
      * Object constructor.
-     * @param file - meta file path.
+     * \param file - meta file path.
      */
     explicit TagMeta(const QString &file);
 

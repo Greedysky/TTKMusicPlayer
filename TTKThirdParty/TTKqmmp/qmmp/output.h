@@ -46,9 +46,9 @@ public:
     /*!
      * Prepares object for usage and setups required audio parameters.
      * Subclass should reimplement this function.
-     * @param freq Sample rate.
-     * @param map Map of channels.
-     * @param format Audio format
+     * \param freq Sample rate.
+     * \param map Map of channels.
+     * \param format Audio format
      * @return initialization result (\b true - success, \b false - failure)
      */
     virtual bool initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format) = 0;
@@ -125,7 +125,7 @@ public:
     static QList<OutputFactory*> factories();
     /*!
      * Returns plugin file path.
-     * @param factory Output plugin factory.
+     * \param factory Output plugin factory.
      */
     static QString file(const OutputFactory *factory);
     /*!
@@ -140,9 +140,9 @@ public:
 protected:
     /*!
      * Use this function inside initialize() reimplementation to tell about accepted audio parameters.
-     * @param freq Sample rate.
-     * @param map Map of channels.
-     * @param format Audio format.
+     * \param freq Sample rate.
+     * \param map Map of channels.
+     * \param format Audio format.
      */
     void configure(quint32 freq, ChannelMap map, Qmmp::AudioFormat format);
 

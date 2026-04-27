@@ -53,7 +53,7 @@ public:
     virtual VisualProperties properties() const = 0;
     /*!
      * Creates visualization provided by plugin.
-     * @param parent Parent object.
+     * \param parent Parent object.
      */
     virtual Visual *create(QWidget *parent) = 0;
 
