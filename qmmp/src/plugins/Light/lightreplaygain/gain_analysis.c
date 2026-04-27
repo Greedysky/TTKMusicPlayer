@@ -191,7 +191,7 @@ int ResetSampleFrequency (GainHandle_t *handle, long samplefreq)
 int InitGainAnalysis (GainHandle_t **handle, long samplefreq )
 {
     *handle = malloc(sizeof(GainHandle_t));
-    if(ResetSampleFrequency(*handle, samplefreq) != INIT_GAIN_ANALYSIS_OK) {
+    if(!(*handle) || ResetSampleFrequency(*handle, samplefreq) != INIT_GAIN_ANALYSIS_OK) {
         return INIT_GAIN_ANALYSIS_ERROR;
     }
 

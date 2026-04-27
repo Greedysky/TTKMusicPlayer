@@ -20,33 +20,33 @@ public:
 
     iconv_t to = nullptr, from = nullptr;
 #else
-    QTextCodec *m_codec = nullptr;
+    QTextCodec *codec = nullptr;
 #endif
-    QByteArray m_name;
+    QByteArray name;
 };
 
 
 QmmpTextCodec::QmmpTextCodec(const QByteArray &charset)
     : d(new QmmpTextCodecPrivate)
 {
-    d->m_name = charset.toUpper();
+    d->name = charset.toUpper();
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-    if(d->m_name == "UTF-8" || d->m_name == "UTF-16")
+    if(d->name == "UTF-8" || d->name == "UTF-16")
         return;
 
-    if((d->to = iconv_open(d->m_name.constData(), "UTF-16")) == (iconv_t)(-1))
+    if((d->to = iconv_open(d->name.constData(), "UTF-16")) == (iconv_t)(-1))
     {
         qWarning("error: %s", strerror(errno));
         d->to = nullptr;
     }
 
-    if((d->from = iconv_open("UTF-16", d->m_name.constData())) == (iconv_t)(-1))
+    if((d->from = iconv_open("UTF-16", d->name.constData())) == (iconv_t)(-1))
     {
         qWarning("error: %s", strerror(errno));
         d->from = nullptr;
     }
 #else
-    d->m_codec = QTextCodec::codecForName(d->m_name);
+    d->codec = QTextCodec::codecForName(d->name);
 #endif
 }
 
@@ -57,15 +57,15 @@ QmmpTextCodec::~QmmpTextCodec()
 
 QByteArray QmmpTextCodec::name() const
 {
-    return d->m_name;
+    return d->name;
 }
 
 QString QmmpTextCodec::toUnicode(const QByteArray &a) const
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-    if(d->m_name == "UTF-16")
+    if(d->name == "UTF-16")
         return QString::fromUtf16(reinterpret_cast<const char16_t*>(a.data()), a.size() / 2);
-    if(!d->from || d->m_name == "UTF-8")
+    if(!d->from || d->name == "UTF-8")
         return QString::fromUtf8(a);
 
     size_t inBytesLeft = 0;
@@ -114,7 +114,7 @@ QString QmmpTextCodec::toUnicode(const QByteArray &a) const
 
     return QString::fromUtf16(reinterpret_cast<const char16_t*>(ba.constData()), (ba.size() - outBytesLeft) / 2);
 #else
-    return d->m_codec->toUnicode(a);
+    return d->codec->toUnicode(a);
 #endif
 }
 
@@ -126,9 +126,9 @@ QString QmmpTextCodec::toUnicode(const char *chars) const
 QByteArray QmmpTextCodec::fromUnicode(const QString &str) const
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-    if(d->m_name == "UTF-16")
+    if(d->name == "UTF-16")
         return QByteArray(reinterpret_cast<const char*>(str.utf16()), str.size() * 2);
-    if(!d->from || d->m_name == "UTF-8")
+    if(!d->from || d->name == "UTF-8")
         return str.toUtf8();
 
     size_t inBytesLeft = 0;
@@ -179,7 +179,7 @@ QByteArray QmmpTextCodec::fromUnicode(const QString &str) const
     ba.resize(ba.size() - outBytesLeft);
     return ba;
 #else
-    return d->m_codec->fromUnicode(str);
+    return d->codec->fromUnicode(str);
 #endif
 }
 

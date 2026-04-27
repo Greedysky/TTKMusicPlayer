@@ -100,7 +100,7 @@ public:
     /*!
      * Returns QIODevice-based input source assigned for this decoder.
      */
-    QIODevice *input();
+    QIODevice *input() const;
     /*!
      * Informs decoder about new received metadata.
      * Call of this function is required for all non-local streams/files

@@ -141,6 +141,12 @@ void ReplayGainWidget::scanFinished(const QString &url)
             GainHandle_t **a = (GainHandle_t **) malloc(items.count()*sizeof(GainHandle_t *));
             double album_peak = 0;
 
+            if(!a)
+            {
+                qWarning("ReplayGainWidget: unable to allocate memory");
+                break;
+            }
+
             for(int i = 0; i < items.count(); ++i)
             {
                 a[i] = items[i]->handle;

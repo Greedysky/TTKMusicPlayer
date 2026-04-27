@@ -127,7 +127,7 @@ void Decoder::addMetaData(const QMap<Qmmp::MetaData, QString> &metaData)
     d->hasMetaData = true;
 }
 
-QIODevice *Decoder::input()
+QIODevice *Decoder::input() const
 {
     return d->input;
 }

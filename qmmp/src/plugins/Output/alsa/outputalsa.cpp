@@ -226,6 +226,11 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     //create alsa prebuffer;
     m_prebuf_size = 2 * snd_pcm_frames_to_bytes(pcm_handle, m_chunk_size); //buffer for two periods
     m_prebuf = (uchar *)malloc(m_prebuf_size);
+    if(!m_prebuf)
+    {
+        qWarning("OutputALSA: Unable to allocate buffer");
+        return false;
+    }
     m_inited = true;
     return true;
 }

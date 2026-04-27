@@ -43,7 +43,14 @@ public:
      * \param data Content of CUE file.
      * \param codecName Codec name ("UTF-8" by default).
      */
-    CueParser(const QByteArray &data, const QByteArray &codecName = QByteArray());
+    CueParser(const QByteArray &data, const QByteArray &codecName = "UTF-8");
+    /*!
+     * Constructs CUE parser and parses given content.
+     * \param data Content of CUE file.
+     * \param size Size of \b data (in bytes).
+     * \param codecName Codec name ("UTF-8" by default).
+     */
+    CueParser(const char *data, qsizetype size, const QByteArray &codecName = "UTF-8");
     /*!
      * Object destructor.
      */

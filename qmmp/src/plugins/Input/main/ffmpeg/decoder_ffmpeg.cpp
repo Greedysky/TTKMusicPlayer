@@ -130,6 +130,12 @@ bool DecoderFFmpeg::initialize()
     m_input_buf = (uchar*)av_malloc(INPUT_BUFFER_SIZE + FF_INPUT_BUFFER_PADDING_SIZE);
 #endif
 
+    if(!m_input_buf)
+    {
+        qWarning("DecoderFFmpeg: unable to allocate input buffer");
+        return false;
+    }
+
     m_stream = avio_alloc_context(m_input_buf, INPUT_BUFFER_SIZE, 0, this, ffmpeg_read, nullptr, ffmpeg_seek);
     if(!m_stream)
     {
