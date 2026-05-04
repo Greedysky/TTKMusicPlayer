@@ -29,49 +29,40 @@ namespace TTK
     namespace UI
     {
         static constexpr const char *InteriorMicrophone = " \
-            QToolButton{ border:none; \
-            background-image:url(:/lrc/btn_microphone_normal); } \
+            QToolButton{ border:none; background-image:url(:/lrc/btn_microphone_normal); } \
             QToolButton:hover{ background-image:url(:/lrc/btn_microphone_hover); }";
 
         static constexpr const char *InteriorMicrophoneOn = " \
-            QToolButton{ border:none; \
-            background-image:url(:/lrc/btn_microphone_on_normal); } \
+            QToolButton{ border:none; background-image:url(:/lrc/btn_microphone_on_normal); } \
             QToolButton:hover{ background-image:url(:/lrc/btn_microphone_on_hover); }";
 
         static constexpr const char *InteriorTranslation = " \
-            QPushButton{ border:none; \
-            background-image:url(:/lrc/btn_translation_normal); } \
+            QPushButton{ border:none; background-image:url(:/lrc/btn_translation_normal); } \
             QPushButton:hover{ background-image:url(:/lrc/btn_translation_hover); }";
 
         static constexpr const char *InteriorMessage = " \
-            QPushButton{ border:none; \
-            background-image:url(:/lrc/btn_message_normal); } \
+            QPushButton{ border:none; background-image:url(:/lrc/btn_message_normal); } \
             QPushButton:hover{ background-image:url(:/lrc/btn_message_hover); }";
 
         static constexpr const char *InteriorMovie = " \
-            QPushButton{ border:none; \
-            background-image:url(:/lrc/btn_mv_normal); } \
+            QPushButton{ border:none; background-image:url(:/lrc/btn_mv_normal); } \
             QPushButton:hover{ background-image:url(:/lrc/btn_mv_hover); }";
 
         static constexpr const char *InteriorPhoto = " \
-            QPushButton{ border:none; \
-            background-image:url(:/lrc/btn_photo_normal); } \
+            QPushButton{ border:none; background-image:url(:/lrc/btn_photo_normal); } \
             QPushButton:hover{ background-image:url(:/lrc/btn_photo_hover); }";
 
         static constexpr const char *InteriorStar = " \
-            QPushButton{ border:none; \
-            background-image:url(:/lrc/btn_star_normal); } \
+            QPushButton{ border:none; background-image:url(:/lrc/btn_star_normal); } \
             QPushButton:hover{ background-image:url(:/lrc/btn_star_hover); } \
             QPushButton:pressed{ background-image:url(:/lrc/btn_star_clicked); }";
 
         static constexpr const char *InteriorMakeUp = " \
-            QPushButton{ border:none; \
-            background-image:url(:/lrc/lb_make_up_normal); } \
+            QPushButton{ border:none; background-image:url(:/lrc/lb_make_up_normal); } \
             QPushButton:hover{ background-image:url(:/lrc/lb_make_up_hover); }";
 
         static constexpr const char *InteriorMakeDown = " \
-            QPushButton{ border:none; \
-            background-image:url(:/lrc/lb_make_down_normal); } \
+            QPushButton{ border:none; background-image:url(:/lrc/lb_make_down_normal); } \
             QPushButton:hover{ background-image:url(:/lrc/lb_make_down_hover); }";
 
     }

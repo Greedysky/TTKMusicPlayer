@@ -218,8 +218,7 @@ namespace TTK
             QPushButton{ text-align:right; }";
 
         static const QString PushButtonStyle08 = " \
-            QPushButton{ border-radius:5px; font-size:20px; \
-            background:rgba(0, 0, 0, 50); } \
+            QPushButton{ border-radius:5px; font-size:20px; background:rgba(0, 0, 0, 50); } \
             QPushButton::hover{ background:rgba(0, 0, 0, 100); }";
 
         static const QString PushButtonStyle09 = " \
@@ -377,26 +376,20 @@ namespace TTK
 
         ///Slider
         static const QString SliderStyle01 = " \
-            QSlider::groove:horizontal{ \
-            background:#FFFEA1; height:3px; border-radius:1px; } \
+            QSlider::groove:horizontal{ background:#FFFEA1; height:3px; border-radius:1px; } \
             QSlider::sub-page:horizontal{ background:#FFFEA1; } \
             QSlider::add-page:horizontal{ background:#4E4F4F; } \
-            QSlider::handle:horizontal{ background:#FFFEA1; \
-            width:9px; margin-top:-3px; margin-bottom:-3px; border-radius:4px; }";
+            QSlider::handle:horizontal{ background:#FFFEA1; width:9px; margin-top:-3px; margin-bottom:-3px; border-radius:4px; }";
 
         static const QString SliderStyle02 = " \
-            QSlider::groove:vertical{ \
-            background: #FFFEA1; width:3px; border-radius:1px; } \
+            QSlider::groove:vertical{ background: #FFFEA1; width:3px; border-radius:1px; } \
             QSlider::sub-page:vertical{ background:#4E4F4F; } \
             QSlider::add-page:vertical{ background:#FFFEA1; } \
-            QSlider::handle:vertical{ background:#FFFEA1; \
-            height:9px; margin-left:-3px; margin-right:-3px; border-radius:4px; }";
+            QSlider::handle:vertical{ background:#FFFEA1; height:9px; margin-left:-3px; margin-right:-3px; border-radius:4px; }";
 
         static const QString SliderStyle03 = " \
-            QSlider::groove:vertical{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, \
-            stop:0 #B5B4B4, stop:1 #FCFCFC); width:3px; } \
-            QSlider::handle:vertical{ border-image:url(:/control/lb_slider_handle_normal); \
-            height:21px; margin-left:-8px; margin-right:-8px; } \
+            QSlider::groove:vertical{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #B5B4B4, stop:1 #FCFCFC); width:3px; } \
+            QSlider::handle:vertical{ border-image:url(:/control/lb_slider_handle_normal); height:21px; margin-left:-8px; margin-right:-8px; } \
             QSlider::handle:vertical:disabled{ border-image:url(:/control/lb_slider_disable); } \
             QSlider::handle:vertical:hover{ border-image:url(:/control/lb_slider_handle_hover); border:none; }";
 
@@ -406,10 +399,8 @@ namespace TTK
             QSlider::add-page:vertical{ background:white; border:1px solid #ACF; }";
 
         static const QString SliderStyle05 = " \
-            QSlider::groove:horizontal{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, \
-            stop:0 #B5B4B4, stop:1 #FCFCFC); height:4px; } \
-            QSlider::handle:horizontal{ border-image:url(:/control/lb_slider_handle_normal); \
-            width:21px; margin-top:-8px; margin-bottom:-8px; } \
+            QSlider::groove:horizontal{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #B5B4B4, stop:1 #FCFCFC); height:4px; } \
+            QSlider::handle:horizontal{ border-image:url(:/control/lb_slider_handle_normal); width:21px; margin-top:-8px; margin-bottom:-8px; } \
             QSlider::handle:horizontal:disabled{ border-image:url(:/control/lb_slider_disable); } \
             QSlider::handle:horizontal:hover{ border-image:url(:/control/lb_slider_handle_hover); border:none; }";
 
@@ -420,43 +411,36 @@ namespace TTK
 
         static const QString SliderStyle07 = " \
             QSlider::add-page:Horizontal{ background-color:rgba(120, 120, 120, 100); height:4px; } \
-            QSlider::sub-page:Horizontal{ background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, \
-            y2:0, stop:0 rgba(231, 80, 229, 255), stop:1 rgba(7, 208, 255, 255)); height:4px; } \
+            QSlider::sub-page:Horizontal{ background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(231, 80, 229, 255), stop:1 rgba(7, 208, 255, 255)); height:4px; } \
             QSlider::groove:Horizontal{ background:transparent; height:4px; } \
-            QSlider::handle:Horizontal{ border-image:url(':/image/lb_slider'); \
-            width:8px; height:6px; margin:-2px 0px -2px 0px; }";
+            QSlider::handle:Horizontal{ border-image:url(':/image/lb_slider'); width:8px; height:6px; margin:-2px 0px -2px 0px; }";
 
         static const QString SliderStyle08 = " \
             QSlider::groove:horizontal{ background-image:url(:/control/lb_volume_back); } \
             QSlider::sub-page:horizontal{ border-image:url(:/control/lb_volume_fore); } \
             QSlider::add-page:horizontal{ background-image:url(:/control/lb_volume_back); } \
-            QSlider::handle:horizontal{ margin:0px -2px 0px -2px; \
-            background-image:url(:/control/lb_volume_handle_normal); width:13px; } \
+            QSlider::handle:horizontal{ margin:0px -2px 0px -2px; background-image:url(:/control/lb_volume_handle_normal); width:13px; } \
             QSlider::handle:horizontal:hover{ background-image:url(:/control/lb_volume_handle_hover); }";
 
         static const QString SliderStyle09 = " \
             QSlider::groove:horizontal{ background-image:url(:/control/lb_volume_back); } \
             QSlider::sub-page:horizontal{ border-image:url(:/control/lb_make_fore); } \
             QSlider::add-page:horizontal{ border-image:url(:/control/lb_make_back); } \
-            QSlider::handle:horizontal{ margin:0px -1px 0px -1x; \
-            border-image:url(:/control/lb_make_slider_handle_normal); width:18px; } \
+            QSlider::handle:horizontal{ margin:0px -1px 0px -1x; border-image:url(:/control/lb_make_slider_handle_normal); width:18px; } \
             QSlider::handle:horizontal:hover{ border-image:url(:/control/lb_make_slider_handle_hover); } \
             QSlider::handle:horizontal:disabled{ border-image:url(:/control/lb_make_slider_disable); }";
 
         static const QString SliderStyle10 = " \
-            QSlider::groove:horizontal{ \
-            background:transparent; height:3px; border-radius:1px; } \
+            QSlider::groove:horizontal{ background:transparent; height:3px; border-radius:1px; } \
             QSlider::sub-page:horizontal{ background:rgba(255, 255, 255, 190); } \
             QSlider::add-page:horizontal{ background:rgba(255, 255, 255, 50); } \
-            QSlider::handle:horizontal{ background:rgba(255, 255, 255, 255); \
-            width:9px; margin-top:-3px; margin-bottom:-3px; border-radius:4px; }";
+            QSlider::handle:horizontal{ background:rgba(255, 255, 255, 255); width:9px; margin-top:-3px; margin-bottom:-3px; border-radius:4px; }";
 
         ///ComboBox
         static const QString ComboBoxStyle01 = " \
             QComboBox{ border:1px solid gray; color:#666666; } \
             QComboBox::hover{ border:1px solid rgb(22, 154, 243); } \
-            QComboBox::drop-down{ subcontrol-origin:padding; \
-            subcontrol-position:top right; width:20px; border-left:none; } \
+            QComboBox::drop-down{ subcontrol-origin:padding; subcontrol-position:top right; width:20px; border-left:none; } \
             QComboBox::down-arrow{ image:url(:/image/btn_down_arrow); } \
             QComboBox::disabled{ border:1px solid #BBBBBB; }";
 

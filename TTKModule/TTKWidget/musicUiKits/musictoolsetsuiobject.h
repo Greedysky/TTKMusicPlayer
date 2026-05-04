@@ -29,136 +29,109 @@ namespace TTK
     namespace UI
     {
         static constexpr const char *SongsDetectStartBtn = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_detect_normal); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_detect_normal); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_detect_hover); }";
 
         static constexpr const char *SongsDetectStopBtn = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_detect_stop_normal); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_detect_stop_normal); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_detect_stop_hover); }";
 
         static constexpr const char *SongsRedetectBtn = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_redetect_normal); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_redetect_normal); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_redetect_hover); } \
             QPushButton:disabled{ background-image:url(:/toolSets/btn_redetect_hover); }";
 
         static constexpr const char *SongsDetectDownloadBtn = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_detect_download_normal); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_detect_download_normal); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_detect_download_hover); } \
             QPushButton:disabled{ background-image:url(:/toolSets/btn_detect_download_disable); }";
 
         static constexpr const char *SongsDetectPlayBtn = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_detect_play_normal); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_detect_play_normal); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_detect_play_hover); } \
             QPushButton:disabled{ background-image:url(:/toolSets/btn_detect_play_disable); }";
 
         static constexpr const char *SongsDetectShareBtn = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_detect_share_normal); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_detect_share_normal); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_detect_share_hover); } \
             QPushButton:disabled{ background-image:url(:/toolSets/btn_detect_share_disable); }";
 
         static constexpr const char *SongsDetectUnloveBtn = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_detect_unlove_normal); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_detect_unlove_normal); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_detect_unlove_hover); } \
             QPushButton:disabled{ background-image:url(:/toolSets/btn_detect_unlove_disable); }";
 
         static constexpr const char *CheckTestDuplicate = " \
-            QToolButton{ border:none; \
-            background-image:url(:/toolSets/btn_duplicate_normal); } \
+            QToolButton{ border:none; background-image:url(:/toolSets/btn_duplicate_normal); } \
             QToolButton:hover{ background-image:url(:/toolSets/btn_duplicate_hover); }";
 
         static constexpr const char *CheckTestDuplicateClicked = " \
-            QToolButton{ border:none; \
-            background-image:url(:/toolSets/btn_duplicate_clicked); }";
+            QToolButton{ border:none; background-image:url(:/toolSets/btn_duplicate_clicked); }";
 
         static constexpr const char *CheckTestQuality = " \
-            QToolButton{ border:none; \
-            background-image:url(:/toolSets/btn_quality_normal); } \
+            QToolButton{ border:none; background-image:url(:/toolSets/btn_quality_normal); } \
             QToolButton:hover{ background-image:url(:/toolSets/btn_quality_hover); }";
 
         static constexpr const char *CheckTestQualityClicked = " \
-            QToolButton{ border:none; \
-            background-image:url(:/toolSets/btn_quality_clicked); }";
+            QToolButton{ border:none; background-image:url(:/toolSets/btn_quality_clicked); }";
 
         static constexpr const char *CheckTestRename = " \
-            QToolButton{ border:none; \
-            background-image:url(:/toolSets/btn_rename_normal); } \
+            QToolButton{ border:none; background-image:url(:/toolSets/btn_rename_normal); } \
             QToolButton:hover{ background-image:url(:/toolSets/btn_rename_hover); }";
 
         static constexpr const char *CheckTestRenameClicked = " \
-            QToolButton{ border:none; \
-            background-image:url(:/toolSets/btn_rename_clicked); }";
+            QToolButton{ border:none; background-image:url(:/toolSets/btn_rename_clicked); }";
 
         static constexpr const char *TimeToStop = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_timer_stop); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_timer_stop); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_timer_stop_hover); }";
 
         static constexpr const char *TimeToStopClicked = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_timer_stop_clicked); }";
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_timer_stop_clicked); }";
 
         static constexpr const char *TimeToPlay = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_timer_play); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_timer_play); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_timer_play_hover); }";
 
         static constexpr const char *TimeToPlayClicked = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_timer_play_clicked); }";
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_timer_play_clicked); }";
 
         static constexpr const char *TimeToDown = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_timer_down); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_timer_down); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_timer_down_hover); }";
 
         static constexpr const char *TimeToDownClicked = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_timer_down_clicked); }";
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_timer_down_clicked); }";
 
         static constexpr const char *TransferSong = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_import_song_normal); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_import_song_normal); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_import_song_hover); }";
 
         static constexpr const char *TransferRing = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_import_ring_normal); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_import_ring_normal); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_import_ring_hover); }";
 
         static constexpr const char *TransferChangedDev = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_change_dev_normal); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_change_dev_normal); } \
             QPushButton::menu-indicator{ image:none; } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_change_dev_hover); }";
 
         static constexpr const char *TransferRefreshDev = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_refresh_dev_normal); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_refresh_dev_normal); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_refresh_dev_hover); }";
 
         static constexpr const char *ScreenSaverOn = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_saver_on); }";
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_saver_on); }";
 
         static constexpr const char *ScreenSaverOff = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_saver_off); }";
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_saver_off); }";
 
         static constexpr const char *ScreenItemEnable = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_saver_enable); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_saver_enable); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_saver_enable_hover); }";
 
         static constexpr const char *ScreenItemDisable = " \
-            QPushButton{ border:none; \
-            background-image:url(:/toolSets/btn_saver_disable); } \
+            QPushButton{ border:none; background-image:url(:/toolSets/btn_saver_disable); } \
             QPushButton:hover{ background-image:url(:/toolSets/btn_saver_disable_hover); }";
 
     }

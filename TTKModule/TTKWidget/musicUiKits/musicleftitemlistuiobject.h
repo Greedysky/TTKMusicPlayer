@@ -29,49 +29,39 @@ namespace TTK
     namespace UI
     {
         static constexpr const char *ItemMusic = " \
-            QToolButton{ border:none; \
-            background-image:url(:/navigation/item_music_normal); } \
+            QToolButton{ border:none; background-image:url(:/navigation/item_music_normal); } \
             QToolButton:hover{ background-image:url(:/navigation/item_music_hover); }";
 
         static constexpr const char *ItemMusicClicked = " \
-            QToolButton{ border:none; \
-            background-image:url(:/navigation/item_music_clicked); }";
+            QToolButton{ border:none; background-image:url(:/navigation/item_music_clicked); }";
 
         static constexpr const char *ItemLocal = " \
-            QToolButton{ border:none; \
-            background-image:url(:/navigation/item_local_normal); } \
+            QToolButton{ border:none; background-image:url(:/navigation/item_local_normal); } \
             QToolButton:hover{ background-image:url(:/navigation/item_local_hover); }";
 
         static constexpr const char *ItemLocalClicked = " \
-            QToolButton{ border:none; \
-            background-image:url(:/navigation/item_local_clicked); }";
+            QToolButton{ border:none; background-image:url(:/navigation/item_local_clicked); }";
 
         static constexpr const char *ItemCloud = " \
-            QToolButton{ border:none; \
-            background-image:url(:/navigation/item_cloud_normal); } \
+            QToolButton{ border:none; background-image:url(:/navigation/item_cloud_normal); } \
             QToolButton:hover{ background-image:url(:/navigation/item_cloud_hover); }";
 
         static constexpr const char *ItemCloudClicked = " \
-            QToolButton{ border:none; \
-            background-image:url(:/navigation/item_cloud_clicked); }";
+            QToolButton{ border:none; background-image:url(:/navigation/item_cloud_clicked); }";
 
         static constexpr const char *ItemRadio = " \
-            QToolButton{ border:none; \
-            background-image:url(:/navigation/item_radio_normal); } \
+            QToolButton{ border:none; background-image:url(:/navigation/item_radio_normal); } \
             QToolButton:hover{ background-image:url(:/navigation/item_radio_hover); }";
 
         static constexpr const char *ItemRadioClicked = " \
-            QToolButton{ border:none; \
-            background-image:url(:/navigation/item_radio_clicked); }";
+            QToolButton{ border:none; background-image:url(:/navigation/item_radio_clicked); }";
 
         static constexpr const char *ItemDownload = " \
-            QToolButton{ border:none; \
-            background-image:url(:/navigation/item_download_normal); } \
+            QToolButton{ border:none; background-image:url(:/navigation/item_download_normal); } \
             QToolButton:hover{ background-image:url(:/navigation/item_download_hover); }";
 
         static constexpr const char *ItemDownloadClicked = " \
-            QToolButton{ border:none; \
-            background-image:url(:/navigation/item_download_clicked); }";
+            QToolButton{ border:none; background-image:url(:/navigation/item_download_clicked); }";
 
     }
 }
