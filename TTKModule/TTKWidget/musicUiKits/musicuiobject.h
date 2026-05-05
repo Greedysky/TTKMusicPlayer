@@ -442,7 +442,12 @@ namespace TTK
             QComboBox::hover{ border:1px solid rgb(22, 154, 243); } \
             QComboBox::drop-down{ subcontrol-origin:padding; subcontrol-position:top right; width:20px; border-left:none; } \
             QComboBox::down-arrow{ image:url(:/image/btn_down_arrow); } \
-            QComboBox::disabled{ border:1px solid #BBBBBB; }";
+            QComboBox::disabled{ border:1px solid #BBBBBB; }" +
+#if TTK_QT_VERSION_CHECK(6,8,0)
+            QString("QComboBox{ padding-left: 3px; }");
+#else
+            QString();
+#endif
 
         static const QString ComboBoxStyle02 = ComboBoxStyle01 + " \
             QComboBox{ border:none; } \
