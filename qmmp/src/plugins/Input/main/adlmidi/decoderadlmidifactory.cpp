@@ -67,7 +67,7 @@ TrackInfoList DecoderAdlMidiFactory::createPlayList(const QString &path, TrackIn
     return {raw};
 }
 
-MetaDataModel* DecoderAdlMidiFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderAdlMidiFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(readOnly);
     return new AdlMidiMetaDataModel(path);

@@ -63,7 +63,7 @@ TrackInfoList DecoderGMEFactory::createPlayList(const QString &path, TrackInfo::
     return helper.createPlayList(parts);
 }
 
-MetaDataModel* DecoderGMEFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderGMEFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);

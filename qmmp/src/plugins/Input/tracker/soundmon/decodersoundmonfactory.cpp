@@ -59,7 +59,7 @@ TrackInfoList DecoderSoundMonFactory::createPlayList(const QString &path, TrackI
     return {raw};
 }
 
-MetaDataModel* DecoderSoundMonFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderSoundMonFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);

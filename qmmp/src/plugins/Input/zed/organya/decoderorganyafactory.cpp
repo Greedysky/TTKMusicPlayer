@@ -59,7 +59,7 @@ TrackInfoList DecoderOrganyaFactory::createPlayList(const QString &path, TrackIn
     return {raw};
 }
 
-MetaDataModel* DecoderOrganyaFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderOrganyaFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);

@@ -65,7 +65,7 @@ TrackInfoList DecoderHivelyFactory::createPlayList(const QString &path, TrackInf
     return {raw};
 }
 
-MetaDataModel* DecoderHivelyFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderHivelyFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(readOnly);
     return new HivelyMetaDataModel(path);

@@ -60,7 +60,7 @@ TrackInfoList DecoderUADEFactory::createPlayList(const QString &path, TrackInfo:
     return helper.createPlayList(parts);
 }
 
-MetaDataModel* DecoderUADEFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderUADEFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(readOnly);
     return new UADEMetaDataModel(path);

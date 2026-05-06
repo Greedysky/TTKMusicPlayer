@@ -284,7 +284,7 @@ TrackInfoList DecoderMPEGFactory::createPlayList(const QString &path, TrackInfo:
     return {raw};
 }
 
-MetaDataModel* DecoderMPEGFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderMPEGFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
    return new MPEGMetaDataModel(path, readOnly);
 }

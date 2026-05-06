@@ -82,7 +82,7 @@ public:
      * @param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
      * @return MetaDataModel pointer.
      */
-    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) = 0;
+    virtual MetaDataModel *createMetaDataModel(const QString &path, bool readOnly) = 0;
     /*!
      * Creates settings dialog.
      * @param parent Parent widget.

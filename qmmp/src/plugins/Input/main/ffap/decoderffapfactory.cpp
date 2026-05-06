@@ -103,7 +103,7 @@ TrackInfoList DecoderFFapFactory::createPlayList(const QString &path, TrackInfo:
     return {raw};
 }
 
-MetaDataModel* DecoderFFapFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderFFapFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     return new FFapMetaDataModel(path, readOnly);
 }

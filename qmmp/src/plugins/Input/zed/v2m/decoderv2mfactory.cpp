@@ -61,7 +61,7 @@ TrackInfoList DecoderV2MFactory::createPlayList(const QString &path, TrackInfo::
     return {raw};
 }
 
-MetaDataModel* DecoderV2MFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderV2MFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);

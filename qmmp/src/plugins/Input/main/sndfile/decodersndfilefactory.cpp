@@ -266,7 +266,7 @@ TrackInfoList DecoderSndFileFactory::createPlayList(const QString &path, TrackIn
     return {raw};
 }
 
-MetaDataModel* DecoderSndFileFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderSndFileFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     return new SndFileMetaDataModel(path, readOnly);
 }

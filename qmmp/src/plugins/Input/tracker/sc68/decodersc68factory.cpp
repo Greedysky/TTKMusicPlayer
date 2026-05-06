@@ -60,7 +60,7 @@ TrackInfoList DecoderSC68Factory::createPlayList(const QString &path, TrackInfo:
     return helper.createPlayList(parts);
 }
 
-MetaDataModel* DecoderSC68Factory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderSC68Factory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(readOnly);
     return new SC68MetaDataModel(path);

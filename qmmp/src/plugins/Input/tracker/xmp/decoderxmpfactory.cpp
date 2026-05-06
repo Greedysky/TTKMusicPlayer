@@ -93,7 +93,7 @@ TrackInfoList DecoderXMPFactory::createPlayList(const QString &path, TrackInfo::
     return {raw};
 }
 
-MetaDataModel* DecoderXMPFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderXMPFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(readOnly);
     return new XMPMetaDataModel(path);

@@ -72,7 +72,7 @@ TrackInfoList DecoderPSFFactory::createPlayList(const QString &path, TrackInfo::
     return {raw};
 }
 
-MetaDataModel* DecoderPSFFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderPSFFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(readOnly);
     return new PSFMetaDataModel(path);

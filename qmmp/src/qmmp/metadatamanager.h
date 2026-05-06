@@ -47,7 +47,7 @@ public:
      * \param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
      * @return MetaDataModel pointer or null pointer.
      */
-    MetaDataModel* createMetaDataModel(const QString &url, bool readOnly) const;
+    MetaDataModel *createMetaDataModel(const QString &url, bool readOnly) const;
     /*!
      * Returns a list of file name filters with description, i.e. "MPEG Files (*.mp3 *.mpg)"
      */

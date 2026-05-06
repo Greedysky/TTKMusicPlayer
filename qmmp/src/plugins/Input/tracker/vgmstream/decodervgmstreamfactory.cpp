@@ -61,7 +61,7 @@ TrackInfoList DecoderVgmstreamFactory::createPlayList(const QString &path, Track
     return helper.createPlayList(parts);
 }
 
-MetaDataModel* DecoderVgmstreamFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderVgmstreamFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);

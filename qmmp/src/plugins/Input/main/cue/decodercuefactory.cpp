@@ -45,7 +45,7 @@ TrackInfoList DecoderCUEFactory::createPlayList(const QString &path, TrackInfo::
     return cueFile.createPlayList();
 }
 
-MetaDataModel* DecoderCUEFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderCUEFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     return path.startsWith("cue://") ? new CUEMetaDataModel(readOnly, path) : nullptr;
 }

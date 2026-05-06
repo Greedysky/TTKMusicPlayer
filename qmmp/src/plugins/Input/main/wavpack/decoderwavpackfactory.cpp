@@ -130,7 +130,7 @@ TrackInfoList DecoderWavPackFactory::createPlayList(const QString &path, TrackIn
     return {raw};
 }
 
-MetaDataModel* DecoderWavPackFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderWavPackFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     if(!path.contains("://") || path.startsWith("wvpack://"))
         return new WavPackMetaDataModel(path, readOnly);

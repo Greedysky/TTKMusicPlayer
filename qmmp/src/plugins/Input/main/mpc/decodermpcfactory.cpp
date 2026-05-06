@@ -69,7 +69,7 @@ TrackInfoList DecoderMPCFactory::createPlayList(const QString &path, TrackInfo::
     return {raw};
 }
 
-MetaDataModel* DecoderMPCFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderMPCFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     return new MPCMetaDataModel(path, readOnly);
 }

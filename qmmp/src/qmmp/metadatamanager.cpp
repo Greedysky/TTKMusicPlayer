@@ -175,7 +175,7 @@ TrackInfoList MetaDataManager::createPlayList(const QString &path, TrackInfo::Pa
     return playlist;
 }
 
-MetaDataModel* MetaDataManager::createMetaDataModel(const QString &path, bool readOnly) const
+MetaDataModel *MetaDataManager::createMetaDataModel(const QString &path, bool readOnly) const
 {
     DecoderFactory *fact = nullptr;
     EngineFactory *efact = nullptr;

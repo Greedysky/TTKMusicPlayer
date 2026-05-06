@@ -230,7 +230,7 @@ TrackInfoList DecoderFLACFactory::createPlayList(const QString &path, TrackInfo:
     return {raw};
 }
 
-MetaDataModel* DecoderFLACFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderFLACFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     if(!path.contains("://") || path.startsWith("flac://"))
         return new FLACMetaDataModel(path, readOnly);

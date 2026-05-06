@@ -79,7 +79,7 @@ TrackInfoList DecoderSIDFactory::createPlayList(const QString &path, TrackInfo::
     return playlist;
 }
 
-MetaDataModel* DecoderSIDFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderSIDFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);

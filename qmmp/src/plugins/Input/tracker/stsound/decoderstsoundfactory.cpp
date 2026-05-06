@@ -67,7 +67,7 @@ TrackInfoList DecoderStSoundFactory::createPlayList(const QString &path, TrackIn
     return {raw};
 }
 
-MetaDataModel* DecoderStSoundFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderStSoundFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(readOnly);
     return new StSoundMetaDataModel(path);

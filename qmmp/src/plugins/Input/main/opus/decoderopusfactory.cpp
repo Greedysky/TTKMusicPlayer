@@ -82,7 +82,7 @@ TrackInfoList DecoderOpusFactory::createPlayList(const QString &path, TrackInfo:
     return {raw};
 }
 
-MetaDataModel* DecoderOpusFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderOpusFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     return new OpusMetaDataModel(path, readOnly);
 }

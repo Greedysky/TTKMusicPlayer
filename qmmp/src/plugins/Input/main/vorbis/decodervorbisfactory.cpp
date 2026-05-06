@@ -84,7 +84,7 @@ TrackInfoList DecoderVorbisFactory::createPlayList(const QString &path, TrackInf
     return {raw};
 }
 
-MetaDataModel* DecoderVorbisFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderVorbisFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     return new VorbisMetaDataModel(path, readOnly);
 }

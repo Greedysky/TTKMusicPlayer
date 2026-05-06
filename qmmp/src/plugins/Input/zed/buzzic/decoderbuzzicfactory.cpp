@@ -60,7 +60,7 @@ TrackInfoList DecoderBuzzicFactory::createPlayList(const QString &path, TrackInf
     return {raw};
 }
 
-MetaDataModel* DecoderBuzzicFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderBuzzicFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(readOnly);
     return new BuzzicMetaDataModel(path);

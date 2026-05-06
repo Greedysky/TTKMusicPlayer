@@ -56,7 +56,7 @@ contains(CONFIG, V2M_PLUGIN){
     }
 }
 
-contains(QT_ARCH, "i386")|contains(QT_ARCH, "x86_64"){
+contains(QT_ARCH, "windows") | contains(QT_ARCH, "i386") | contains(QT_ARCH, "x86_64"){
     contains(CONFIG, OPTIMFROG_PLUGIN){
         SUBDIRS += optimfrog
     }

@@ -68,7 +68,7 @@ TrackInfoList DecoderXGMFactory::createPlayList(const QString &path, TrackInfo::
     return helper.createPlayList(parts);
 }
 
-MetaDataModel* DecoderXGMFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderXGMFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);

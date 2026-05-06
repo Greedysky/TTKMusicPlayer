@@ -67,7 +67,7 @@ TrackInfoList DecoderAACFactory::createPlayList(const QString &path, TrackInfo::
     return {raw};
 }
 
-MetaDataModel* DecoderAACFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderAACFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);

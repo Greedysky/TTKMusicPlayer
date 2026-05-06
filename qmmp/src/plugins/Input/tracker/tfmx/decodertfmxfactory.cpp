@@ -66,7 +66,7 @@ TrackInfoList DecoderTFMXFactory::createPlayList(const QString &path, TrackInfo:
     return helper.createPlayList(parts);
 }
 
-MetaDataModel* DecoderTFMXFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderTFMXFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(readOnly);
     return new TFMXMetaDataModel(path);

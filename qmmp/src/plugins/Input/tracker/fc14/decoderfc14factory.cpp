@@ -68,7 +68,7 @@ TrackInfoList DecoderFC14Factory::createPlayList(const QString &path, TrackInfo:
     return {raw};
 }
 
-MetaDataModel* DecoderFC14Factory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderFC14Factory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);

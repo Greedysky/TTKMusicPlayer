@@ -412,7 +412,7 @@ TrackInfoList DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *
     return playlist;
 }
 
-MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderFFmpegFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     return new FFmpegMetaDataModel(path, readOnly);
 }

@@ -71,7 +71,7 @@ TrackInfoList DecoderAsapFactory::createPlayList(const QString &path, TrackInfo:
     return {raw};
 }
 
-MetaDataModel* DecoderAsapFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderAsapFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);
