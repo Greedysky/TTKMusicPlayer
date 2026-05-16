@@ -1,8 +1,14 @@
 #include <sidplayfp/sidplayfp.h>
 #include <sidplayfp/SidTune.h>
 #include <sidplayfp/sidbuilder.h>
-#include <sidplayfp/builders/residfp.h>
-#include <sidplayfp/builders/resid.h>
+#if LIBSIDPLAYFP_VERSION_MAJ >= 3
+#  include <sidplayfp/builders/sidlite.h>
+#else
+#  include <sidplayfp/builders/resid.h>
+#endif
+#ifdef HAVE_RESIDFP_HEADER
+#  include <sidplayfp/builders/residfp.h>
+#endif
 #include <sidplayfp/SidInfo.h>
 #include <sidplayfp/SidTuneInfo.h>
 #include <sidplayfp/SidDatabase.h>
@@ -35,14 +41,15 @@ bool DecoderSID::initialize()
     int track = -1;
     const QString &filePath = TrackInfo::pathFromUrl(m_path, &track);
 
-    m_tune.load(QmmpPrintable(filePath));
-    if(!m_tune.getInfo())
+    m_tune = std::unique_ptr<SidTune>(new SidTune(nullptr));
+    m_tune->load(QmmpPrintable(filePath));
+    if(!m_tune->getInfo())
     {
-        qWarning("DecoderSID: unable to load tune, error: %s, %s", m_tune.statusString(), qPrintable(filePath));
+        qWarning("DecoderSID: unable to load tune, error: %s, %s", m_tune->statusString(), qPrintable(filePath));
         return false;
     }
 
-    int count = m_tune.getInfo()->songs();
+    int count = m_tune->getInfo()->songs();
     if(track == 0)
         track = count;
 
@@ -52,15 +59,15 @@ bool DecoderSID::initialize()
         return false;
     }
 
-    m_tune.selectSong(track);
-    if(!m_tune.getStatus())
+    m_tune->selectSong(track);
+    if(!m_tune->getStatus())
     {
-        qWarning("DecoderSID: error: %s", m_tune.statusString());
+        qWarning("DecoderSID: error: %s", m_tune->statusString());
         return false;
     }
 
     //send metadata for pseudo-protocol
-    const SidTuneInfo *tune_info = m_tune.getInfo();
+    const SidTuneInfo *tune_info = m_tune->getInfo();
     QMap<Qmmp::MetaData, QString> metadata;
     metadata.insert(Qmmp::TITLE,  tune_info->infoString(0));
     metadata.insert(Qmmp::ARTIST, tune_info->infoString(1));
@@ -75,7 +82,7 @@ bool DecoderSID::initialize()
     if(settings.value("use_hvsc", false).toBool())
     {
         char md5[SidTune::MD5_LENGTH + 1];
-        m_tune.createMD5(md5);
+        m_tune->createMD5(md5);
         m_length = m_db->length(md5, track) * 1000;
     }
 
@@ -86,25 +93,41 @@ bool DecoderSID::initialize()
 
     qDebug("DecoderSID: song length: %ld", m_length);
 
-    sidbuilder *rs = nullptr;
-    if(settings.value("engine", "residfp").toString() == "residfp")
+#if LIBSIDPLAYFP_VERSION_MAJ >= 3
+# ifdef HAVE_RESIDFP_HEADER
+    if(settings.value("engine", "sidlite").toString() == "residfp")
     {
-        rs = new ReSIDfpBuilder("ReSIDfp builder");
-        qDebug("DecoderSID: using ReSIDfp emulation");
+        m_builder = std::unique_ptr<ReSIDfpBuilder>(new ReSIDfpBuilder("ReSIDfp"));
     }
     else
+# endif
     {
-        rs = new ReSIDBuilder("ReSID builder");
-        qDebug("DecoderSID: using ReSID emulation");
+        m_builder = std::unique_ptr<SIDLiteBuilder>(new SIDLiteBuilder("SIDLite"));
     }
-    rs->create(m_player->info().maxsids());
+#else
+# ifdef HAVE_RESIDFP_HEADER
+    if(settings.value("engine", "residfp").toString() == "residfp")
+    {
+        m_builder = std::unique_ptr<ReSIDfpBuilder>(new ReSIDfpBuilder("ReSIDfp"));
+    }
+    else
+# endif
+    {
+        m_builder = std::unique_ptr<ReSIDBuilder>(new ReSIDBuilder("ReSID"));
+    }
+    m_builder->create(m_player->info().maxsids());
+#endif
+
+    qDebug("DecoderSID: using %s emulation", m_builder->name());
 
     SidConfig cfg = m_player->config();
-    cfg.frequency    = settings.value("sample_rate", 48000).toInt();
-    cfg.samplingMethod = (SidConfig::sampling_method_t)settings.value("resampling_method", SidConfig::INTERPOLATE).toInt();
-    cfg.playback     = SidConfig::STEREO;
-    cfg.sidEmulation = rs;
+    cfg.frequency = settings.value("sample_rate", 48000).toInt();
+    cfg.samplingMethod = static_cast<SidConfig::sampling_method_t>(settings.value("resampling_method", SidConfig::INTERPOLATE).toInt());
+    cfg.sidEmulation = m_builder.get();
+#if LIBSIDPLAYFP_VERSION_MAJ < 3
+    cfg.playback = SidConfig::STEREO;
     cfg.fastSampling = settings.value("fast_resampling", false).toBool();
+#endif
     settings.endGroup();
 
     if(!m_player->config(cfg))
@@ -113,7 +136,7 @@ bool DecoderSID::initialize()
         return false;
     }
 
-    if(!m_player->load(&m_tune))
+    if(!m_player->load(m_tune.get()))
     {
         qWarning("DecoderSID: unable to load tune, error: %s", m_player->error());
         return false;

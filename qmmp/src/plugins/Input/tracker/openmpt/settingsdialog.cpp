@@ -50,9 +50,9 @@ void SettingsDialog::accept()
 
 void SettingsDialog::setInterpolator(int interpolator)
 {
-    const int i = m_ui.interpolate_combo->findData(interpolator);
-    if(i != -1)
+    const int index = m_ui.interpolate_combo->findData(interpolator);
+    if(index != -1)
     {
-        m_ui.interpolate_combo->setCurrentIndex(i);
+        m_ui.interpolate_combo->setCurrentIndex(index);
     }
 }

@@ -21,11 +21,13 @@
 #ifndef DECODER_SID_H
 #define DECODER_SID_H
 
+#include <memory>
 #include <qmmp/decoder.h>
 
 class sidplayfp;
 class SidDatabase;
 class SidTune;
+class sidbuilder;
 
 /**
    @author Ilya Kotov <forkotov02@ya.ru>
@@ -50,7 +52,8 @@ private:
     qint64 m_length = 0;
     qint64 m_length_in_bytes = 0;
     qint64 m_read_bytes = 0;
-    SidTune m_tune;
+    std::unique_ptr<SidTune> m_tune;
+    std::unique_ptr<sidbuilder> m_builder;
 
 };
 

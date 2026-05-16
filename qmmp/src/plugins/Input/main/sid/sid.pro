@@ -14,6 +14,8 @@ SOURCES += decodersidfactory.cpp \
 
 FORMS += settingsdialog.ui
 
+DEFINES += HAVE_RESIDFP_HEADER
+
 INCLUDEPATH += $$EXTRA_LIB_PATH/libsidplayfp/include
 
 win32{
