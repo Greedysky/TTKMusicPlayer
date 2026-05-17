@@ -18,5 +18,11 @@
 
 cmake_minimum_required(VERSION 3.18.0)
 
-add_subdirectory(zlib)
+if(TTK_USE_SYSTEM_ZLIB)
+  find_package(ZLIB REQUIRED)
+  add_library(zlib INTERFACE)
+  target_link_libraries(zlib INTERFACE ZLIB::ZLIB)
+else()
+  add_subdirectory(zlib)
+endif()
 add_subdirectory(ttkzip)

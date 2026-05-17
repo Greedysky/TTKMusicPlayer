@@ -46,7 +46,7 @@
 #  include <stddef.h>
 #endif
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(__linux__) || defined(__unix__) || defined(__posix)
 #  include <unistd.h> /* close, read, write etc. */
 #endif
 
