@@ -8,3 +8,4 @@ else
 fi
 
 rm -f ${homepath}/.local/share/applications/TTKMusicPlayer.desktop
+rm -f ${homepath}/.local/share/metainfo/ttkmusicplayer.metainfo.xml

@@ -4,6 +4,9 @@ packpath="$1"
 iconpath="$2"
 execpath="$3"
 
+#make /share/applications dir
+mkdir -p `dirname $1`
+
 echo -n "[Desktop Entry]
 Type=Application
 Version=1.0

@@ -2,7 +2,7 @@
 
 packname=TTKMusicPlayer
 packvern=4.3.0.0
-rootpath=data/opt
+rootpath=data/opt/ttk
 datapath=data/DEBIAN
 
 fullname=$1
@@ -28,12 +28,12 @@ Description: TTK Music Player
 
 # create postinst file
 echo -n "#!/bin/bash
-sh /opt/${packname}/install.sh\n" > ${datapath}/postinst
+sh /opt/ttk/${packname}/install.sh\n" > ${datapath}/postinst
 chmod +x ${datapath}/postinst
 
 # create prerm file
 echo -n "#!/bin/bash
-sh /opt/${packname}/uninstall.sh\n" > ${datapath}/prerm
+sh /opt/ttk/${packname}/uninstall.sh\n" > ${datapath}/prerm
 chmod +x ${datapath}/prerm
 
 # create data path
