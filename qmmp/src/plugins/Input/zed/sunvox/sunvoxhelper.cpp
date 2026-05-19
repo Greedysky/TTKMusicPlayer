@@ -41,7 +41,12 @@
 #  define SUNVOX_CALL
 #  define LIBRARY_NAME  Qmmp::pluginPath() + "/../sunvox.dylib"
 #endif
-#define LIBRARY_TKNAME  Qmmp::pluginPath() + "/../sunvox.tkb"
+
+#ifdef Q_OS_WIN
+#  define LIBRARY_TKNAME  Qmmp::pluginPath() + "/../sunvox.tkb"
+#else
+#  define LIBRARY_TKNAME  "/tmp/sunvox.tkb"
+#endif
 
 typedef int (SUNVOX_CALL *_sv_audio_callback)(void* buf, int frames, int latency, uint32_t out_time);
 typedef int (SUNVOX_CALL *_sv_init)(const char *config, int freq, int channels, uint32_t flags);
