@@ -31,11 +31,11 @@ SettingsDialog::SettingsDialog(SidDatabase *db, QWidget *parent)
 
 
 #if LIBSIDPLAYFP_VERSION_MAJ >= 3
-    m_ui->emuComboBox->addItem("SIDLite", "sidlite");
-    m_ui->emuComboBox->addItem("ReSIDfp", "residfp");
-    index = m_ui->emuComboBox->findData(settings.value("engine", "sidlite").toString());
-    m_ui->emuComboBox->setCurrentIndex(qMax(index, 0));
-    m_ui->fastResampligCheckBox->setVisible(false);
+    m_ui.emuComboBox->addItem("SIDLite", "sidlite");
+    m_ui.emuComboBox->addItem("ReSIDfp", "residfp");
+    index = m_ui.emuComboBox->findData(settings.value("engine", "sidlite").toString());
+    m_ui.emuComboBox->setCurrentIndex(qMax(index, 0));
+    m_ui.fastResampligCheckBox->setVisible(false);
 #else
     m_ui.emuComboBox->addItem("ReSID", "resid");
     m_ui.emuComboBox->addItem("ReSIDfp", "residfp");
@@ -46,8 +46,8 @@ SettingsDialog::SettingsDialog(SidDatabase *db, QWidget *parent)
 
 //TODO use QFormLayout::setRowVisible
 #ifndef HAVE_RESIDFP_HEADER
-    m_ui->emulationLabel->setVisible(false);
-    m_ui->emuComboBox->setVisible(false);
+    m_ui.emulationLabel->setVisible(false);
+    m_ui.emuComboBox->setVisible(false);
 #endif
 
     m_ui.resamplingComboBox->addItem("Interpolate", SidConfig::INTERPOLATE);
