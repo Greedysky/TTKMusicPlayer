@@ -82,7 +82,7 @@ jobs:
           cd libbinio
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           autoreconf --install
-          ./configure --prefix=${{env.UNIX_INSTALL_PATH}}/libadplug CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --enable-maintainer-mode
+          ./configure --prefix=${{env.UNIX_INSTALL_PATH}}/libadplug CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared --enable-maintainer-mode
           make -j2 && make install
           find ${{env.UNIX_INSTALL_PATH}}/libadplug -type f -name "*.la" -exec rm {} +
         working-directory: ${{runner.workspace}}

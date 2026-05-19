@@ -42,7 +42,7 @@ jobs:
           7z x libbinio-1.5.7z -olibbinio
           cd libbinio
           autoreconf --install
-          ./configure --prefix=${{env.INSTALL_PATH}}/libadplug CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --enable-maintainer-mode
+          ./configure --prefix=${{env.INSTALL_PATH}}/libadplug CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --enable-maintainer-mode
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 
