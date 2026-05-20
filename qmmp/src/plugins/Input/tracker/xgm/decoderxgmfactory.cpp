@@ -26,8 +26,10 @@ DecoderProperties DecoderXGMFactory::properties() const
     properties.filters << "*.ay" << "*.gbr" << "*.gbs" << "*.hes" << "*.mus" << "*.nsd" << "*.nsf" << "*.nsfe" << "*.sgc";
     // jaytrax
     properties.filters << "*.jxs";
-    // pac
+    // SBStudio pac
     properties.filters << "*.pac";
+    // klystrack
+    properties.filters << "*.kt";
     properties.description = "MSX Related Music File";
     properties.protocols << "file" << "xgm";
     properties.hasSettings = true;

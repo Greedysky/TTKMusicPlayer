@@ -5,6 +5,7 @@
 #include <libxgm/nezplug/nezplug.h>
 #include <libxgm/jaytrax/jxs.h>
 #include <libxgm/sbstudio/pacP.h>
+#include <libxgm/klystrack/ksnd.h>
 
 AbstractReader::AbstractReader(const QString &path)
     : m_path(path)
@@ -496,11 +497,11 @@ TrackInfoList JaytraxReader::createPlayList(TrackInfo::Parts parts)
 }
 
 
-class PacReader : public AbstractReader
+class SBStudioReader : public AbstractReader
 {
 public:
-    PacReader(const QString &path);
-    ~PacReader();
+    SBStudioReader(const QString &path);
+    ~SBStudioReader();
 
     virtual bool load() override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
@@ -512,13 +513,13 @@ private:
 
 };
 
-PacReader::PacReader(const QString &path)
+SBStudioReader::SBStudioReader(const QString &path)
     : AbstractReader(path)
 {
 
 }
 
-PacReader::~PacReader()
+SBStudioReader::~SBStudioReader()
 {
     if(m_input)
     {
@@ -526,14 +527,14 @@ PacReader::~PacReader()
     }
 }
 
-bool PacReader::load()
+bool SBStudioReader::load()
 {
     pac_init(sampleRate(), depth(), channels());
 
     m_input = pac_open(QmmpPrintable(cleanPath()));
     if(!m_input)
     {
-//        qWarning("PacReader: pac_open failed, %s", qPrintable(cleanPath()));
+//        qWarning("SBStudioReader: pac_open failed, %s", qPrintable(cleanPath()));
         return false;
     }
 
@@ -542,17 +543,17 @@ bool PacReader::load()
     return true;
 }
 
-void PacReader::seek(qint64 time)
+void SBStudioReader::seek(qint64 time)
 {
     pac_seek(m_input, (time / 1000) * sampleRate(), SEEK_SET);
 }
 
-qint64 PacReader::read(unsigned char *data, qint64 maxSize)
+qint64 SBStudioReader::read(unsigned char *data, qint64 maxSize)
 {
     return pac_read(m_input, data, maxSize / (channels() * depth() / 8));
 }
 
-TrackInfoList PacReader::createPlayList(TrackInfo::Parts parts)
+TrackInfoList SBStudioReader::createPlayList(TrackInfo::Parts parts)
 {
     TrackInfoList playlist;
     if(!m_input)
@@ -583,6 +584,109 @@ TrackInfoList PacReader::createPlayList(TrackInfo::Parts parts)
 }
 
 
+class KlystrackReader : public AbstractReader
+{
+public:
+    KlystrackReader(const QString &path);
+    ~KlystrackReader();
+
+    virtual bool load() override final;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+    virtual void seek(qint64 time) override final;
+    virtual TrackInfoList createPlayList(TrackInfo::Parts parts) override final;
+
+private:
+    KSong *m_song = nullptr;
+    KPlayer *m_player = nullptr;
+
+};
+
+KlystrackReader::KlystrackReader(const QString &path)
+    : AbstractReader(path)
+{
+
+}
+
+KlystrackReader::~KlystrackReader()
+{
+    KSND_FreeSong(m_song);
+    KSND_FreePlayer(m_player);
+}
+
+bool KlystrackReader::load()
+{
+    const QString &path = cleanPath();
+
+    m_player = KSND_CreatePlayerUnregistered(sampleRate());
+    if(!m_player)
+    {
+//        qWarning("KlystrackReader: KSND_CreatePlayerUnregistered failed, %s", qPrintable(path));
+        return false;
+    }
+
+    m_song = KSND_LoadSong(m_player, QmmpPrintable(path));
+    if(!m_song)
+    {
+//        qWarning("KlystrackReader: KSND_LoadSong failed, %s", qPrintable(path));
+        return false;
+    }
+
+    KSND_SetPlayerQuality(m_player, 4);
+    KSND_PlaySong(m_player, m_song, 0);
+    m_length = KSND_GetPlayTime(m_song, KSND_GetSongLength(m_song));
+    return true;
+}
+
+void KlystrackReader::seek(qint64 time)
+{
+    KSND_PlaySong(m_player, m_song, time * 1.0 / m_length * KSND_GetSongLength(m_song));
+}
+
+qint64 KlystrackReader::read(unsigned char *data, qint64 maxSize)
+{
+    if(KSND_GetSongLength(m_song) - 1 <= KSND_GetPlayPosition(m_player))
+    {
+        return 0;
+    }
+
+    const int size = channels() * depth() / 8;
+    return KSND_FillBuffer(m_player, (short*)data, maxSize / size) * size;
+}
+
+TrackInfoList KlystrackReader::createPlayList(TrackInfo::Parts parts)
+{
+    TrackInfoList playlist;
+    if(!m_player)
+    {
+        return playlist;
+    }
+
+    TrackInfo raw, *info = &raw;
+    if(parts & TrackInfo::MetaData)
+    {
+        KSongInfo meta;
+        KSND_GetSongInfo(m_song, &meta);
+
+        info->setValue(Qmmp::TITLE, meta.song_title);
+        info->setValue(Qmmp::TRACK, 1);
+    }
+
+    if(parts & TrackInfo::Properties)
+    {
+        info->setValue(Qmmp::BITRATE, bitrate());
+        info->setValue(Qmmp::SAMPLERATE, sampleRate());
+        info->setValue(Qmmp::CHANNELS, channels());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, depth());
+        info->setValue(Qmmp::FORMAT_NAME, "klystrack");
+    }
+
+    info->setPath("xgm://" + cleanPath() + "#1");
+    info->setDuration(m_length);
+    playlist << raw;
+    return playlist;
+}
+
+
 XGMHelper::XGMHelper(const QString &path)
 {
 #define MAKE_GM_READER(T, path, d) \
@@ -597,7 +701,8 @@ XGMHelper::XGMHelper(const QString &path)
     MAKE_GM_READER(KssReader, path, "Kss");
     MAKE_GM_READER(NEZplugReader, path, "NEZplug++");
     MAKE_GM_READER(JaytraxReader, path, "Jaytrax");
-    MAKE_GM_READER(PacReader, path, "SBStudio PAC");
+    MAKE_GM_READER(SBStudioReader, path, "SBStudio PAC");
+    MAKE_GM_READER(KlystrackReader, path, "Klystrack");
 
 #undef MAKE_GM_READER
     qDebug("XGM: no reader found");
