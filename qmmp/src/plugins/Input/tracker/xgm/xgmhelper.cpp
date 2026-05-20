@@ -4,7 +4,7 @@
 #include <libxgm/kss/kssplay.h>
 #include <libxgm/nezplug/nezplug.h>
 #include <libxgm/jaytrax/jxs.h>
-#include <libxgm/pac/pacP.h>
+#include <libxgm/sbstudio/pacP.h>
 
 AbstractReader::AbstractReader(const QString &path)
     : m_path(path)
