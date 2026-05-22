@@ -116,6 +116,7 @@ TTKMusicPlayer can meet your most demands
  * TFMX Related Audio File(*.tfm *.tfmx *.mdat *.tfx *.hip *.hipc *.hip7 *.mcmd)
  * Jaytrax Audio File(*.jxs)
  * SBStudio PAC Audio File(*.pac)
+ * Klystrack Audio File(*.kt)
  * Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, jspf, asx, fpl, dbpl, csv, txt)
  * Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing Screenshots.
  * Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function.

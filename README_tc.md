@@ -116,6 +116,7 @@ TTKMusicPlayer的壹些特性
  * TFMX Related Audio File(*.tfm *.tfmx *.mdat *.tfx *.hip *.hipc *.hip7 *.mcmd)
  * Jaytrax Audio File(*.jxs)
  * SBStudio PAC Audio File(*.pac)
+ * Klystrack Audio File(*.kt)
  * 支持的播放列表格式(tkpl, m3u, m3u8, pls, wpl, xspf, jspf, asx, fpl, dbpl, csv, txt)
  * 華麗流星炫酷的界面設計，跨平臺有良好的性能表現。
  * 搜索和高速下載。歌曲搜索精度優化，智能節省帶寬，可以禁用網絡功能，支持多個國內音樂平臺曲庫。
