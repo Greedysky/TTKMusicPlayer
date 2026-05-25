@@ -48,12 +48,15 @@ TrackInfoList SIDHelper::createPlayList(TrackInfo::Parts parts)
         m_tune->selectSong(i + 1);
         TrackInfo raw, *info = &raw;
 
+        bool hasMetaData = false;
         if(parts & TrackInfo::MetaData)
         {
+            hasMetaData = true;
             const SidTuneInfo *tag = m_tune->getInfo();
             info->setValue(Qmmp::TITLE, tag->infoString(0));
             info->setValue(Qmmp::ARTIST, tag->infoString(1));
             info->setValue(Qmmp::COMMENT, tag->commentString(0));
+            info->setValue(Qmmp::FORMAT_NAME, QString::fromLatin1(tag->formatString()));
             info->setValue(Qmmp::TRACK, i);
         }
 
@@ -61,14 +64,17 @@ TrackInfoList SIDHelper::createPlayList(TrackInfo::Parts parts)
         {
             QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
             settings.beginGroup("SID");
-            const int sample_rate = settings.value("sample_rate", 44100).toInt();
+            const int sample_rate = settings.value("sample_rate", 48000).toInt();
             settings.endGroup();
 
             info->setValue(Qmmp::BITRATE, 8);
             info->setValue(Qmmp::SAMPLERATE, sample_rate);
             info->setValue(Qmmp::CHANNELS, 2);
             info->setValue(Qmmp::BITS_PER_SAMPLE, 16);
-            info->setValue(Qmmp::FORMAT_NAME, "SID");
+            if(!hasMetaData)
+            {
+                info->setValue(Qmmp::FORMAT_NAME, "SID");
+            }
 
             int length = m_db->length(md5, i) * 1000;
             if(length <= 0)

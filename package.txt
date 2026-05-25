@@ -1,4 +1,4 @@
-///Update time 2026-05-20
+///Update time 2026-05-25
 
 adplug-2.4.0	https://github.com/adplug/adplug
 enca-1.22	https://github.com/Project-OSS-Revival/enca
@@ -18,7 +18,7 @@ libogg-1.3.6	https://ftp.osuosl.org/pub/xiph/releases/ogg
 libopenmpt-0.4.54	https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1(v4.1.6)	https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
-libsidplayfp-2.3.1.patch(v3.0.0)	https://github.com/libsidplayfp/libsidplayfp
+libsidplayfp-2.3.1.patch(v3.0.1)	https://github.com/libsidplayfp/libsidplayfp
 libsndfile-1.2.2	https://github.com/libsndfile/libsndfile
 libvorbis-1.3.7	https://ftp.osuosl.org/pub/xiph/releases/vorbis
 mp3gain-1_5_2(v1_6_2)	http://mp3gain.sourceforge.net/download.php
@@ -55,7 +55,7 @@ ttk-1.2.13
 -libsoundmon	 http://www.brianpostma.com (unfortunately down now)
                  https://github.com/arnaud-neny/rePlayer
 -libstsound	 https://github.com/arnaud-carre/StSound
--libtfmx-1.0.7	 https://github.com/mschwendt/libtfmxaudiodecoder
+-libtfmx-1.0.9	 https://github.com/mschwendt/libtfmxaudiodecoder
 -libuade-3.05	 http://www.zakalwe.fi/uade/
                  https://gitlab.com/uade-music-player/uade 1a29d25e9180199d4d6fa555b5c96b1ffa949e51
 -libv2m-20250811 https://github.com/jgilje/v2m-player
@@ -71,5 +71,5 @@ ttk-1.2.13
 -libxsf		 https://gitlab.com/kode54/audacious-xsf
 
 extra
--vgmstream-r2083	https://github.com/vgmstream/vgmstream
+-vgmstream-r2117	https://github.com/vgmstream/vgmstream
 
