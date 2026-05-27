@@ -142,14 +142,11 @@ QPixmap TTKDesktopScreen::grabWidget(QWidget *widget, const QRect &rect)
 
 QPixmap TTKDesktopScreen::grabWindow(int x, int y, int w, int h)
 {
-    QWidget widget(nullptr, Qt::Desktop);
-    widget.setVisible(false);
-    widget.setGeometry(geometry());
 #if TTK_QT_VERSION_CHECK(5,0,0)
     QScreen *screen = QApplication::primaryScreen();
-    return screen ? screen->grabWindow(widget.winId(), x, y, w, h) : QPixmap();
+    return screen ? screen->grabWindow(0, x, y, w, h) : QPixmap();
 #else
-    return QPixmap::grabWindow(widget.winId(), x, y, w, h);
+    return QPixmap::grabWindow(0, x, y, w, h);
 #endif
 }
 
