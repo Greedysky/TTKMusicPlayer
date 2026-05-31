@@ -123,18 +123,26 @@ if(WIN32)
   list(APPEND QT_LINK_LIBS gdi32 psapi)
 elseif(UNIX AND NOT APPLE)
   set(XDG_SESSION_TYPE "$ENV{XDG_SESSION_TYPE}")
+
+  if(XDG_SESSION_TYPE STREQUAL "")
+    message(STATUS "From env XDG_SESSION_TYPE is empty")
+    execute_process(COMMAND printenv XDG_SESSION_TYPE OUTPUT_VARIABLE XDG_SESSION_TYPE OUTPUT_STRIP_TRAILING_WHITESPACE)
+  endif()
+
   message(STATUS "Detected linux platform name: ${XDG_SESSION_TYPE}")
 
-  add_definitions(-DTTK_LINUX_USE_WAYLAND)
-  list(APPEND HEADER_FILES ${TTK_COMMON_LIB_DIR}/ttkwaylandcompat.h)
-  list(APPEND SOURCE_FILES ${TTK_COMMON_LIB_DIR}/ttkwaylandcompat.cpp)
+  if(XDG_SESSION_TYPE MATCHES "wayland")
+    add_definitions(-DTTK_LINUX_USE_WAYLAND)
+    list(APPEND HEADER_FILES ${TTK_COMMON_LIB_DIR}/ttkwaylandcompat.h)
+    list(APPEND SOURCE_FILES ${TTK_COMMON_LIB_DIR}/ttkwaylandcompat.cpp)
+  endif()
 endif()
 
 if(TTK_QT_VERSION VERSION_EQUAL "4")
   qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
   qt4_add_resources(RCC_FILES ${QRC_FILES})
 
-  if(UNIX AND ${XDG_SESSION_TYPE} MATCHES "wayland")
+  if(UNIX AND NOT APPLE AND (XDG_SESSION_TYPE MATCHES "wayland"))
     list(APPEND QT_LINK_LIBS ${QT_QTDBUS_LIBRARY})
   endif()
 
@@ -143,7 +151,7 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "5")
   qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
   qt5_add_resources(RCC_FILES ${QRC_FILES})
 
-  if(UNIX AND ${XDG_SESSION_TYPE} MATCHES "wayland")
+  if(UNIX AND NOT APPLE AND (XDG_SESSION_TYPE MATCHES "wayland"))
     list(APPEND QT_LINK_LIBS Qt5::DBus)
   endif()
 
@@ -152,7 +160,7 @@ elseif(TTK_QT_VERSION VERSION_EQUAL "6")
   qt6_wrap_cpp(MOC_FILES ${HEADER_FILES})
   qt6_add_resources(RCC_FILES ${QRC_FILES})
 
-  if(UNIX AND ${XDG_SESSION_TYPE} MATCHES "wayland")
+  if(UNIX AND NOT APPLE AND (XDG_SESSION_TYPE MATCHES "wayland"))
     list(APPEND QT_LINK_LIBS Qt6::DBus)
   endif()
 
