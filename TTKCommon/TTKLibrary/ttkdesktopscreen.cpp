@@ -14,6 +14,9 @@
 #  include <X11/Xlib.h>
 #  include "ttkregularexpression.h"
 #endif
+#ifdef TTK_LINUX_USE_WAYLAND
+#  include "ttkwaylandcompat.h"
+#endif
 
 TTKDesktopScreen::TaskbarInfo TTKDesktopScreen::screenTaskbar(int index)
 {
@@ -142,6 +145,11 @@ QPixmap TTKDesktopScreen::grabWidget(QWidget *widget, const QRect &rect)
 
 QPixmap TTKDesktopScreen::grabWindow(int x, int y, int w, int h)
 {
+#if defined TTK_LINUX_USE_WAYLAND
+    TTKWaylandScreenshot shot;
+    return shot.grabWindow(currentGeometry().height(), x, y, w, h);
+#endif
+
 #if TTK_QT_VERSION_CHECK(5,0,0)
     QScreen *screen = QApplication::primaryScreen();
     return screen ? screen->grabWindow(0, x, y, w, h) : QPixmap();

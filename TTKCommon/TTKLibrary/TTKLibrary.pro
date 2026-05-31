@@ -44,6 +44,18 @@ win32:msvc{
     }
 }
 
+unix:!mac{
+    XDG_SESSION_TYPE = $$system(echo $XDG_SESSION_TYPE)
+    equals(XDG_SESSION_TYPE, wayland) { #wayland
+        QT += dbus
+        DEFINES += TTK_LINUX_USE_WAYLAND
+        message("Linux uses wayland session")
+
+        HEADERS += $$PWD/ttkwaylandcompat.h
+        SOURCES += $$PWD/ttkwaylandcompat.cpp
+    }
+}
+
 INCLUDEPATH += \
     $$PWD/.. \
     $$PWD/../base
