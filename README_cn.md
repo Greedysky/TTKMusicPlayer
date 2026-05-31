@@ -113,7 +113,7 @@ TTKMusicPlayer的一些特性
  * Ken Silverman's Audio File(*.kdm *.ksm *.sm *.snd)
  * XMDX Game Audio File(*.mdx *.pdx *.m *.mub *.muc *.vgs *.bgm *.mml)
  * Cave Story's org Audio File(*.org *.pttune *.ptcop)
- * TFMX Related Audio File(*.tfm *.tfmx *.mdat *.tfx *.hip *.hipc *.hip7 *.mcmd)
+ * TFMX Related Audio File(*.tfm *.tfmx *.mdat *.tfx *.hip *.hipc *.hip7 *.mcmd *.sog, *.soc, *.s7g)
  * Jaytrax Audio File(*.jxs)
  * SBStudio PAC Audio File(*.pac)
  * Klystrack Audio File(*.kt)

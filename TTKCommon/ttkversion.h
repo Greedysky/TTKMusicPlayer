@@ -100,7 +100,7 @@
  *
  * Cave Story's org Audio File(*.org *.pttune *.ptcop)
  *
- * TFMX Related Audio File(*.tfm *.tfmx *.mdat *.tfx *.hip *.hipc *.hip7 *.mcmd)
+ * TFMX Related Audio File(*.tfm *.tfmx *.mdat *.tfx *.hip *.hipc *.hip7 *.mcmd *.sog, *.soc, *.s7g)
  *
  * Jaytrax Audio File(*.jxs)
  *
