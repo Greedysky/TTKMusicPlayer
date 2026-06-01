@@ -129,6 +129,7 @@ jobs:
       - name: Build ttk music player project
         run: |
           cmake --version
+          export XDG_SESSION_TYPE=wayland
           cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/install -DTTK_QT_VERSION=${{matrix.qt_major}} -DTTK_QMMP_LIBRARY=${{runner.workspace}}/qmmp/${{env.TTK_VERSION}}/libTTKqmmp.so
           make -j2 && make install
         working-directory: ${{runner.workspace}}/build

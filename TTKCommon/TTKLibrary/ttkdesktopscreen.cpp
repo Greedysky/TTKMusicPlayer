@@ -145,7 +145,7 @@ QPixmap TTKDesktopScreen::grabWidget(QWidget *widget, const QRect &rect)
 
 QPixmap TTKDesktopScreen::grabWindow(int x, int y, int w, int h)
 {
-#if defined TTK_LINUX_USE_WAYLAND
+#ifdef TTK_LINUX_USE_WAYLAND
     TTKWaylandScreenshot shot;
     return shot.grabWindow(currentGeometry().height(), x, y, w, h);
 #endif
