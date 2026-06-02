@@ -147,7 +147,11 @@ QPixmap TTKDesktopScreen::grabWindow(int x, int y, int w, int h)
 {
 #ifdef TTK_LINUX_USE_WAYLAND
     TTKWaylandScreenshot shot;
-    return shot.grabWindow(currentGeometry().height(), x, y, w, h);
+    const QPixmap &pixmap = shot.grabWindow(currentGeometry().height(), x, y, w, h);
+    if(!pixmap.isNull())
+    {
+        return pixmap;
+    }
 #endif
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
