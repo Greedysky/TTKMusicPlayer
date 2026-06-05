@@ -145,6 +145,7 @@ QStringList TFMXHelper::filters()
         "*.tfmx",
         "*.fc", "*.fc13", "*.fc14", "*.fc3", "*.fc4", ".smod",
         "*.hip", "*.hipc", "*.hip7", "*.mcmd",
+        "*.sog", "*.soc", "*.s7g",
         // pair suffix section
         "*.mdat", // (mdat, smpl))
         "*.tfx",  // (tfx, (smp, sam))
