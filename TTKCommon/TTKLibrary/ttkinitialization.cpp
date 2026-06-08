@@ -67,7 +67,7 @@ void TTK::initialize(TTK::Attribute attr)
 #endif
     }
 
-#ifdef Q_OS_UNIX
+#ifdef Q_OS_LINUX
     if(attr & TTK::Attribute::UseXCB)
     {
         // froce using xcb on XWayland
@@ -83,7 +83,7 @@ void TTK::initialize(TTK::Attribute attr)
     {
 #  ifdef Q_OS_WIN
         qputenv("QT_MEDIA_BACKEND", "windows");
-#  elif defined Q_OS_UNIX
+#  elif defined Q_OS_LINUX
         qputenv("QT_MEDIA_BACKEND", "gstreamer");
 #  elif defined Q_OS_MAC
         qputenv("QT_MEDIA_BACKEND", "darwin");

@@ -123,7 +123,20 @@ void MusicRunTimeManager::execute() const
         status &= QFile::copy(path + "ssleay32.dll", PLUGINS_DIR_FULL + "ssleay32.dll");
     }
     TTK_INFO_STREAM("Install openssl library to plugin dir is" << (status ? "success" : "failed"));
-#elif defined Q_OS_UNIX
+#elif defined Q_OS_LINUX
+    QFont font;
+    font.setPixelSize(13);
+    qApp->setFont(font);
+
+    bool status = true;
+    if(!QFile::exists(PLUGINS_DIR_FULL + "libssl.so.1.0.0") || !QFile::exists(PLUGINS_DIR_FULL + "libcrypto.so.1.0.0"))
+    {
+        const QString &path = TTK::applicationPath();
+        status &= QFile::copy(path + "libssl.so.1.0.0", PLUGINS_DIR_FULL + "libssl.so.1.0.0");
+        status &= QFile::copy(path + "libcrypto.so.1.0.0", PLUGINS_DIR_FULL + "libcrypto.so.1.0.0");
+    }
+    TTK_INFO_STREAM("Install openssl library to plugin dir is" << (status ? "success" : "failed"));
+#elif defined Q_OS_MAC
     QFont font;
     font.setPixelSize(13);
     qApp->setFont(font);
