@@ -62,9 +62,10 @@ TrackInfoList DecoderXMPFactory::createPlayList(const QString &path, TrackInfo::
     }
 
     xmp_context ctx = xmp_create_context();
-    if(xmp_load_module(ctx, QmmpPrintable(path)) != 0)
+    const int err = xmp_load_module(ctx, QmmpPrintable(path));
+    if(err != 0)
     {
-        qWarning("DecoderXMPFactory: unable to load module");
+        qWarning("DecoderXMPFactory: unable to load module, error = %d", err);
         xmp_free_context(ctx);
         return {};
     }
