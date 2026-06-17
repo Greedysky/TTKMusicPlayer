@@ -1,4 +1,4 @@
-///Update time 2026-06-05
+///Update time 2026-06-17
 
 adplug-2.4.0	https://github.com/adplug/adplug
 enca-1.22	https://github.com/Project-OSS-Revival/enca
@@ -12,7 +12,7 @@ libbs2b-3.1.0	https://sourceforge.net/projects/bs2b
 libcddb-1.3.2	https://sourceforge.net/projects/libcddb
 libcdio-paranoia-release-10.2-2.0.2	https://github.com/libcdio/libcdio-paranoia
 libcdio-release-2.1.0	https://github.com/libcdio/libcdio
-libmpg123-1.33.5	https://sourceforge.net/projects/mpg123
+libmpg123-1.33.6	https://sourceforge.net/projects/mpg123
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.6	https://ftp.osuosl.org/pub/xiph/releases/ogg
 libopenmpt-0.4.54	https://lib.openmpt.org/libopenmpt
@@ -48,14 +48,14 @@ ttk-1.2.13
 -liborganya	 https://github.com/xbmc/audiodecoder.organya
                  https://bitbucket.org/wothke/webpixel
 -libpsf		 https://github.com/sasq64/musicplayer
--libqoa		 https://github.com/phoboslab/qoa 1bf9bc04673df55dc554021b768006836f69d53a
+-libqoa		 https://github.com/phoboslab/qoa af36bdf312f27f4c30def0f35997213c0f4ecb39
 -libs98		 https://github.com/sasq64/musicplayer
 -libsc68-2.2.1	 https://sourceforge.net/projects/sc68
 -libsonic	 https://github.com/waywardgeek/sonic b93885dcb70aae50c6f76b0fe4e0868f029a077e
 -libsoundmon	 http://www.brianpostma.com (unfortunately down now)
                  https://github.com/arnaud-neny/rePlayer
 -libstsound	 https://github.com/arnaud-carre/StSound
--libtfmx-1.0.9	 https://github.com/mschwendt/libtfmxaudiodecoder
+-libtfmx-1.0.13	 https://github.com/mschwendt/libtfmxaudiodecoder
 -libuade-3.05	 http://www.zakalwe.fi/uade/
                  https://gitlab.com/uade-music-player/uade 1a29d25e9180199d4d6fa555b5c96b1ffa949e51
 -libv2m-20250811 https://github.com/jgilje/v2m-player
