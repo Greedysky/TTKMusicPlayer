@@ -63,6 +63,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt update
           sudo apt install libfuse2 p7zip-full
           sudo apt install texinfo rename
           sudo apt install portaudio19-dev

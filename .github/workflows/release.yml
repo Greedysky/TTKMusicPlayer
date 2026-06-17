@@ -21,6 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt update
           sudo apt install libfuse2 p7zip-full
 
       - name: Build ubuntu 16.04 package

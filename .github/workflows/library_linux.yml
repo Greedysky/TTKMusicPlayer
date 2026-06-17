@@ -18,6 +18,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
+          sudo apt update
           sudo apt install libfuse2 p7zip-full
           sudo apt install texinfo rename
           sudo apt install libgl1-mesa-dev
@@ -173,7 +174,7 @@ jobs:
 
       - name: Build library for libmpg123
         run: |
-          7z x mpg123-1.33.5.7z -olibmpg123
+          7z x mpg123-1.33.6.7z -olibmpg123
           cd libmpg123
           ./configure --prefix=${{env.INSTALL_PATH}}/libmpg123 CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install

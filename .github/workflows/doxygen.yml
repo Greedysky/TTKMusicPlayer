@@ -18,6 +18,7 @@ jobs:
 
       - name: Build package
         run: |
+          sudo apt update
           sudo apt install graphviz doxygen
           doxygen Doxyfile
           # add main html page
