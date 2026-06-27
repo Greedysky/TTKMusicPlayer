@@ -4,8 +4,6 @@
 #include "musicabstractqueryrequest.h"
 #include "musicpluginproperty.h"
 
-#include "qjson/json.h"
-
 #include <qmmp/decoderfactory.h>
 #include <qmmp/effectfactory.h>
 #include <qmmp/visualfactory.h>
@@ -188,6 +186,7 @@ MusicQmmpPluginWidget::MusicQmmpPluginWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
+    m_ui->settingButton->setStyleSheet(TTK::UI::PushButtonStyle03);
 #if TTK_QT_VERSION_CHECK(5,0,0)
     m_ui->treeWidget->header()->setSectionsMovable(false);
     m_ui->treeWidget->header()->setSectionResizeMode(0, QHeaderView::Fixed);
@@ -222,7 +221,9 @@ MusicQmmpPluginWidget::MusicQmmpPluginWidget(QWidget *parent)
     m_ui->treeWidget->setColumnWidth(2, 140);
     m_ui->treeWidget->setColumnWidth(3, 30);
 
-    m_ui->settingButton->setStyleSheet(TTK::UI::PushButtonStyle03);
+    QPalette plt = m_ui->treeWidget->palette();
+    plt.setColor(QPalette::Highlight, QColor(87, 155, 232));
+    m_ui->treeWidget->setPalette(plt);
     m_ui->treeWidget->setStyleSheet(TTK::UI::GroupBoxStyle01 + TTK::UI::SpinBoxStyle01 + TTK::UI::SliderStyle06 +
                                     TTK::UI::RadioButtonStyle01 + TTK::UI::CheckBoxStyle01 + TTK::UI::ComboBoxStyle01 +
                                     TTK::UI::PushButtonStyle12 + TTK::UI::LineEditStyle01 + TTK::UI::ScrollBarStyle01);
