@@ -476,6 +476,10 @@ namespace TTK
             "QTableWidget{ selection-background-color:rgb(220, 220, 220); }";
 #endif
 
+        ///TreeWidget
+        static const QString TreeWidgetStyle01 = " \
+            QTreeWidget::item:selected{ background-color:rgb(87, 155, 232); }";
+
         ///TabWidget
         static const QString TabWidgetStyle01 = " \
             QTabWidget{ border:none; } \
