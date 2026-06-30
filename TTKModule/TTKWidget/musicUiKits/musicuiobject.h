@@ -478,9 +478,11 @@ namespace TTK
 
         ///TreeWidget
         static const QString TreeWidgetStyle01 = " \
-            QTreeWidget::branch:has-children:selected, QTreeWidget::branch:!has-children:selected{ background: rgb(87, 155, 232); } \
-            QTreeWidget::branch:closed:has-children:!has-siblings, QTreeWidget::branch:closed:has-children:has-siblings{ border-image:none; image:url(:/tiny/lb_arrow_up_normal); } \
-            QTreeWidget::branch:open:has-children:!has-siblings, QTreeWidget::branch:open:has-children:has-siblings{ border-image:none; image:url(:/tiny/lb_arrow_down_normal); }";
+            QTreeWidget::item:selected{ background:rgb(87, 155, 232); } \
+            QTreeWidget::branch:!has-children{ image:none; } \
+            QTreeWidget::branch:selected{ background:rgb(87, 155, 232); } \
+            QTreeWidget::branch:closed:has-children{ border-image:none; image:url(:/tiny/lb_arrow_up_normal); } \
+            QTreeWidget::branch:open:has-children{ border-image:none; image:url(:/tiny/lb_arrow_down_normal); }";
 
         ///TabWidget
         static const QString TabWidgetStyle01 = " \
