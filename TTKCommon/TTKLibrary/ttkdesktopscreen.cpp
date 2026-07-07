@@ -10,12 +10,10 @@
 #if !TTK_QT_VERSION_CHECK(5,0,0)
 #  include <QDesktopWidget>
 #endif
-#if defined Q_OS_LINUX
+#ifdef Q_OS_LINUX
 #  include <X11/Xlib.h>
-#  include "ttkregularexpression.h"
-#endif
-#ifdef TTK_LINUX_USE_WAYLAND
 #  include "ttkwaylandcompat.h"
+#  include "ttkregularexpression.h"
 #endif
 
 TTKDesktopScreen::TaskbarInfo TTKDesktopScreen::screenTaskbar(int index)
@@ -145,12 +143,15 @@ QPixmap TTKDesktopScreen::grabWidget(QWidget *widget, const QRect &rect)
 
 QPixmap TTKDesktopScreen::grabWindow(int x, int y, int w, int h)
 {
-#ifdef TTK_LINUX_USE_WAYLAND
-    TTKWaylandScreenshot shot;
-    const QPixmap &pixmap = shot.grabWindow(currentGeometry().height(), x, y, w, h);
-    if(!pixmap.isNull())
+#ifdef Q_OS_LINUX
+    if(qgetenv("XDG_SESSION_TYPE") == "wayland")
     {
-        return pixmap;
+        TTKWaylandScreenshot shot;
+        const QPixmap &pixmap = shot.grabWindow(currentGeometry().height(), x, y, w, h);
+        if(!pixmap.isNull())
+        {
+            return pixmap;
+        }
     }
 #endif
 
