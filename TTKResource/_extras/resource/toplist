@@ -9,9 +9,9 @@
             <value key="3778678" value="热歌榜"/>
         </tag>
         <tag value="全球媒体榜">
-            <value key="991319590" value="云音乐中文说唱榜"/>
             <value key="71384707" value="云音乐古典榜"/>
             <value key="1978921795" value="云音乐电音榜"/>
+            <value key="991319590" value="云音乐中文说唱榜"/>
             <value key="14028249541" value="云音乐全球说唱榜"/>
             <value key="13372522766" value="潮流风向榜"/>
             <value key="12911403728" value="音乐合伙人推荐榜"/>
@@ -118,7 +118,7 @@
             <value key="93" value="酷我飙升榜"/>
             <value key="17" value="酷我新歌榜"/>
             <value key="16" value="酷我热歌榜"/>
-            <value key="158" value="抖音热歌榜"/>
+            <value key="158" value="短视频酷我排行榜"/>
             <value key="176" value="万物DJ榜"/>
             <value key="145" value="会员畅听榜"/>
         </tag>
