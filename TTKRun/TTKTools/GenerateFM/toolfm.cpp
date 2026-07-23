@@ -1,4 +1,5 @@
 #include "toolfm.h"
+#include "musiccoreutils.h"
 
 static constexpr const char *QT_BASE_URL = "TDNBRFd3S3lvRnVBNzFCblJSQmRHRFhrdVNnQk9qMlBEbzdjWUpSdS95VT0=";
 static constexpr const char *QT_CATEGORY_URL = "N2VwdWNwUGxOL0ZWZCtrN3V6ekd4SUZqUXVQZ3p1Y2pyeEpsc01RZzR6blNnK0o5L3Q4NWRPRCswVzkrTURKV1VvdzMvQkJ4VEVrPQ==";
@@ -90,6 +91,8 @@ void ToolQTFM::startToListRequest(int id, MusicFMChannelList *channels)
 
         const QByteArray &parameter = TTK::Algorithm::mdII(QT_CHANNEL_URL, false).arg(id).arg(++m_pageIndex + 1).toUtf8();
         const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
+        TTK_INFO_STREAM(bytes);
+
         if(bytes.isEmpty())
         {
             return;
@@ -126,6 +129,10 @@ void ToolQTFM::startToListRequest(int id, MusicFMChannelList *channels)
                 }
             }
         }
+
+        // sleep
+        TTK::Core::sleep(5 * 1000);
+
     } while(pageValid());
 }
 
