@@ -6,6 +6,7 @@ static constexpr const char *QUERY_MODULE_B = "B";
 static constexpr const char *QUERY_MODULE_C = "C";
 static constexpr const char *QUERY_MODULE_D = "D";
 static constexpr const char *QUERY_MODULE_E = "E";
+static constexpr const char *QUERY_MODULE_F = "F";
 static constexpr const char *QUERY_PLUGINS_URL = "plugins";
 
 struct Data
@@ -20,10 +21,16 @@ struct Data
 static bool checkModule(const QString &module)
 {
     return module == QUERY_MODULE_X || module == QUERY_MODULE_A || module == QUERY_MODULE_B ||
-           module == QUERY_MODULE_C || module == QUERY_MODULE_D || module == QUERY_MODULE_E;
+           module == QUERY_MODULE_C || module == QUERY_MODULE_D || module == QUERY_MODULE_E ||
+           module == QUERY_MODULE_F;
 }
 
-
+/*
+{
+  "code": 0, // or "code": 200
+  "data": "xx" // or "url": "xx"
+}
+*/
 static void parseSongPropertyX(QNetworkRequest *request, TTK::MusicSongInformation *info, int bitrate)
 {
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(request);
@@ -65,6 +72,27 @@ static void parseSongPropertyX(QNetworkRequest *request, TTK::MusicSongInformati
     }
 }
 
+/*
+{
+  "code": 0, // or "code": 200
+  "data": "xx" // or "url": "xx"
+  "extra": {
+    "quality": {
+      "target": "xx",
+      "result": "xx"
+    }
+  }
+}
+or
+{
+  "code": 0, // or "code": 200
+  "data": "xx" // or "url": "xx"
+  "quality": {
+    "target": "xx",
+    "result": "xx"
+  }
+}
+*/
 static void parseSongPropertyA(QNetworkRequest *request, TTK::MusicSongInformation *info, int bitrate, const QString &quality)
 {
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(request);
@@ -114,6 +142,17 @@ static void parseSongPropertyA(QNetworkRequest *request, TTK::MusicSongInformati
     }
 }
 
+/*
+{
+  "data": "xx" // or "url": "xx"
+}
+or
+{
+  "data": "xx" // or "url": "xx"
+  "size": xx,
+  "br": xx
+}
+*/
 static void parseSongPropertyB(QNetworkRequest *request, TTK::MusicSongInformation *info, int bitrate)
 {
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(request);
@@ -128,7 +167,7 @@ static void parseSongPropertyB(QNetworkRequest *request, TTK::MusicSongInformati
     if(QJsonParseError::NoError == ok.error)
     {
         QVariantMap value = json.toVariant().toMap();
-        if(value.contains("url"))
+        if(value.contains("url") || value.contains("data"))
         {
             TTK::MusicSongProperty prop;
             prop.m_url = value["url"].toString();
@@ -155,6 +194,13 @@ static void parseSongPropertyB(QNetworkRequest *request, TTK::MusicSongInformati
     }
 }
 
+/*
+{
+  "code": 0, // or "code": 200
+  "data": "xx" // or "url": "xx"
+  "quality": "xx"
+}
+*/
 static void parseSongPropertyC(QNetworkRequest *request, TTK::MusicSongInformation *info, int bitrate, const QString &quality)
 {
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(request);
@@ -197,6 +243,9 @@ static void parseSongPropertyC(QNetworkRequest *request, TTK::MusicSongInformati
     }
 }
 
+/*
+url
+*/
 static void parseSongPropertyD(QNetworkRequest *request, TTK::MusicSongInformation *info, int bitrate)
 {
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(request);
@@ -219,6 +268,12 @@ static void parseSongPropertyD(QNetworkRequest *request, TTK::MusicSongInformati
     }
 }
 
+/*
+{
+  "code": 0, // or "code": 200
+  "data": "xx" // or "url": "xx"
+}
+*/
 static void parseSongPropertyE(QNetworkRequest *request, const QString &body, TTK::MusicSongInformation *info, int bitrate)
 {
     const QByteArray &bytes = TTK::syncNetworkQueryForPost(request, body.toUtf8());
@@ -235,6 +290,57 @@ static void parseSongPropertyE(QNetworkRequest *request, const QString &body, TT
         QVariantMap value = json.toVariant().toMap();
         if(value["code"].toInt() == 0 || value["code"].toInt() == 200)
         {
+            TTK::MusicSongProperty prop;
+            prop.m_url = value["url"].toString();
+            prop.m_size = TTK_DEFAULT_STR;
+            prop.m_format = bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX;
+            prop.m_bitrate = bitrate;
+
+            if(prop.isEmpty())
+            {
+                prop.m_url = value["data"].toString();
+            }
+
+            if(!prop.isEmpty())
+            {
+                found = true;
+                info->m_songProps.append(prop);
+            }
+        }
+    }
+
+    if(!found)
+    {
+        TTK_INFO_STREAM("Not found metainfo, buffer is" << bytes);
+    }
+}
+
+/*
+{
+  "code": 0, // or "code": 200
+  "data": {
+    "data": "xx" // or "url": "xx"
+  }
+}
+*/
+static void parseSongPropertyF(QNetworkRequest *request, const QString &body, TTK::MusicSongInformation *info, int bitrate)
+{
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(request, body.toUtf8());
+    if(bytes.isEmpty())
+    {
+        return;
+    }
+
+    bool found = false;
+    QJsonParseError ok;
+    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
+    if(QJsonParseError::NoError == ok.error)
+    {
+        QVariantMap value = json.toVariant().toMap();
+        if((value["code"].toInt() == 0 || value["code"].toInt() == 200) && value.contains("data"))
+        {
+            value = value["data"].toMap();
+
             TTK::MusicSongProperty prop;
             prop.m_url = value["url"].toString();
             prop.m_size = TTK_DEFAULT_STR;
@@ -407,6 +513,14 @@ void ReqUnityInterface::parseFromSongProperty(TTK::MusicSongInformation *info, c
             {
                 TTK_INFO_STREAM("Parse song in E module, url:" << v.m_url << v.m_body);
                 parseSongPropertyE(&request, v.m_body, info, bitrate);
+            }
+            else if(v.m_module == QUERY_MODULE_F)
+            {
+                v.m_url = v.m_url.arg(serverMap[type].toString());
+                request.setUrl(v.m_url);
+
+                TTK_INFO_STREAM("Parse song in F module, url:" << v.m_url << v.m_body);
+                parseSongPropertyF(&request, v.m_body, info, bitrate);
             }
         }
     }
