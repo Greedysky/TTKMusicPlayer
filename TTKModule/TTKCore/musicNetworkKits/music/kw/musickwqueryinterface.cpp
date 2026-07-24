@@ -6,7 +6,6 @@
 static constexpr const char *KW_SONG_PATH_V1_URL = "eVZwd0d3aGhUSmNoNHBHZTFFYldyOGZjY0trcldsMlphUWtNL0thR3AyTjRkU0xyZGJuSlBGQTBueURhaDM3bTVrNUE5S0I5dWpjcWRHeTNaanJPUXc1YkNOQm9pNlJrbVFFTWI3YVdpcFFWS2tUSGNoSk5RUDl3WDhSZlZaUzd2TnRpaDBTS0psbVE0Tmk5YlJHQXdtY2tGaGlERmU4RnFXSGVZdWFWeGo4dUFpbm4zWUJTemlFYVhkREM0Q0pSNytUK05VYlBVcUdVRnhLSUJ3TXg3ZEc2UzBxVGVMOFZqdnJJN1E9PQ==";
 static constexpr const char *KW_SONG_PATH_V2_URL = "VlpjeWIxQkZNbDdkNHA3eUFRMHVnNmVVanpITWJ6MEp1T1ZraElNc2JXaGIvVytMcmFNZVFKNEQ2UXRrcHZyV2dXTjJqQT09";
 static constexpr const char *KW_SONG_PATH_V2_DATA_URL = "NUVnZE5SbWFmNHRGemdTeHd6RHlwYjF2TllaR1R5TkNKRUt6NWpxcDVEcW9JdkREN0QzRmNGOVM0R0lQK29wTTZwaHBHa3FkR3dWbEx6M3ZHVnZBM1NseWF1eUoyN0wwZmQwT3BJaXFzbWcraDlISnAyVnN0VTdGT3ZxZWlicVFGcjFkYWc3QlJ0czlGdFVrTW1WeTd3U1c1S0wwQjRrNDM0S0EySU9pOVg4QmVYSW5GUUIwWWcwMlM5Sng2YVIvYmpYL0xib2NnRlFLV3A2aXBJMWxEalNMNVpnPQ==";
-static constexpr const char *KW_SONG_PATH_V3_URL = "UElteEluQm8zUnRXTERvMkkwYTVhNitEUG9rRVA0Wk80VFFOb3dKL1ZsNldLc1RDVFJQZ3llaTN1MXhzL3NSM3ovaVhTTld5L1NpTE9hdTlBM3NuNjBQbWpOTT0=";
 static constexpr const char *KW_ALBUM_COVER_URL = "NkhRaDluWTFxV2wvTEl6ZkszRmRUa1MvS0JlQUl6MDJVUkpqcjFnYzJ4djZ0b0xmcjhzZHJnV0xscW89";
 static constexpr const char *KW_ARTIST_COVER_URL = "YW4xU3FFQnprWG11R0J5QjVGREFHdy9Yd0w3dEZZcFJIWm5FMXQ5QkJJN0EzQTd4TnBwR1BQZ0d5Qzg9";
 
@@ -190,73 +189,6 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, const QString &
     }
 }
 
-static void parseSongPropertyV3(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
-{
-    for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
-    {
-        if(prop.m_bitrate == bitrate)
-        {
-            return;
-        }
-    }
-
-    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v3 module");
-
-    QString quality;
-    if((format.contains("MP3128") || format.contains("128kmp3")) && bitrate == TTK_BN_128)
-    {
-        quality = "128k";
-    }
-    else if((format.contains("MP3192") || format.contains("192kmp3")) && bitrate == TTK_BN_192)
-    {
-        quality = "192k";
-    }
-    else if((format.contains("MP3H") || format.contains("320kmp3")) && bitrate == TTK_BN_320)
-    {
-        quality = "320k";
-    }
-    else if((format.contains("FLAC") || format.contains("2000kflac")) && bitrate == TTK_BN_1000)
-    {
-        quality = "lossless";
-    }
-    else
-    {
-        return;
-    }
-
-    QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_SONG_PATH_V3_URL, false).arg(info->m_songId, quality));
-    ReqKWInterface::makeRequestRawHeader(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
-
-    QJsonParseError ok;
-    const QJsonDocument &json = QJsonDocument::fromJson(bytes, &ok);
-    if(QJsonParseError::NoError == ok.error)
-    {
-        QVariantMap value = json.toVariant().toMap();
-        if(value["code"].toInt() == 200 && value.contains("data"))
-        {
-            value = value["data"].toMap();
-            if(value.isEmpty())
-            {
-                return;
-            }
-
-            TTK::MusicSongProperty prop;
-            prop.m_url = value["url"].toString();
-            prop.m_size = value["size"].toString();
-            prop.m_format = suffix;
-            prop.m_bitrate = bitrate;
-            info->m_songProps.append(prop);
-        }
-    }
-}
-
 static void parseSongPropertyUnity(TTK::MusicSongInformation *info, const QString &format, int bitrate)
 {
     for(const TTK::MusicSongProperty &prop : qAsConst(info->m_songProps))
@@ -287,8 +219,6 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &su
 
     parseSongPropertyV1(info, suffix, format, bitrate);
     parseSongPropertyV2(info, suffix, format, bitrate);
-    parseSongPropertyV3(info, suffix, format, bitrate);
-
     if(!v)
     {
         parseSongPropertyUnity(info, format, bitrate);

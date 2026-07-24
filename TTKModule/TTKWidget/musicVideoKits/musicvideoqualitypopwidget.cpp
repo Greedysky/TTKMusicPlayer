@@ -105,8 +105,7 @@ int MusicVideoQualityPopWidget::findBitrateByUrl(const QString &url)
 
     for(const TTK::MusicSongProperty &prop : qAsConst(props))
     {
-        const QString &aurl = prop.m_url;
-        if(aurl == url)
+        if(prop.m_url == url)
         {
             return prop.m_bitrate;
         }

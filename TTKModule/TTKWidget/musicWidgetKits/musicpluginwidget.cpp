@@ -476,19 +476,29 @@ void MusicServerPluginTableWidget::addCellItems()
                 const QString &tips = value["description"].toString();
 
                 QStringList servers;
-                for(const QString &server : value["server"].toMap().keys())
+                const QVariantList &modules = value["modules"].toList();
+                for(const QVariant &var : qAsConst(modules))
                 {
-                    if(server == QUERY_WY_INTERFACE)
+                    if(var.isNull())
                     {
-                        servers << tr("WangYi");
+                        continue;
                     }
-                    else if(server == QUERY_KW_INTERFACE)
+
+                    const QVariantMap &module = var.toMap();
+                    for(const QString &server : module["server"].toMap().keys())
                     {
-                        servers << tr("KuWo");
-                    }
-                    else if(server == QUERY_KG_INTERFACE)
-                    {
-                        servers << tr("KuGou");
+                        if(server == QUERY_WY_INTERFACE)
+                        {
+                            servers << tr("WangYi");
+                        }
+                        else if(server == QUERY_KW_INTERFACE)
+                        {
+                            servers << tr("KuWo");
+                        }
+                        else if(server == QUERY_KG_INTERFACE)
+                        {
+                            servers << tr("KuGou");
+                        }
                     }
                 }
 
