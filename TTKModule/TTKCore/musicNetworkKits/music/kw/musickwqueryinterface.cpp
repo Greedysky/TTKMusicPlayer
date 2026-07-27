@@ -219,6 +219,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &su
 
     parseSongPropertyV1(info, suffix, format, bitrate);
     parseSongPropertyV2(info, suffix, format, bitrate);
+
     if(!v)
     {
         parseSongPropertyUnity(info, format, bitrate);
