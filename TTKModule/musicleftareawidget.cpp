@@ -10,7 +10,7 @@
 #include "musiccloudsharedsongwidget.h"
 #include "musicrightareawidget.h"
 
-MusicLeftAreaWidget *MusicLeftAreaWidget::m_instance = nullptr;
+MusicLeftAreaWidget* MusicLeftAreaWidget::m_instance = nullptr;
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     : QWidget(parent),
@@ -29,7 +29,7 @@ MusicLeftAreaWidget::~MusicLeftAreaWidget()
     delete m_stackedWidget;
 }
 
-MusicLeftAreaWidget *MusicLeftAreaWidget::instance()
+MusicLeftAreaWidget* MusicLeftAreaWidget::instance()
 {
     return m_instance;
 }

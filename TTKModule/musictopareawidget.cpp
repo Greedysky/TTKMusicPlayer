@@ -14,7 +14,7 @@
 #include "musictoolsetswidget.h"
 #include "musicimageutils.h"
 
-MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
+MusicTopAreaWidget* MusicTopAreaWidget::m_instance = nullptr;
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     : QWidget(parent),
@@ -36,7 +36,7 @@ MusicTopAreaWidget::~MusicTopAreaWidget()
     delete m_remoteWidget;
 }
 
-MusicTopAreaWidget *MusicTopAreaWidget::instance()
+MusicTopAreaWidget* MusicTopAreaWidget::instance()
 {
     return m_instance;
 }

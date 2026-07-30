@@ -55,7 +55,7 @@ public:
     /*!
      * Get class object instance.
      */
-    static MusicApplicationModule *instance();
+    static MusicApplicationModule* instance();
 
     /*!
      * Get current window is to top.

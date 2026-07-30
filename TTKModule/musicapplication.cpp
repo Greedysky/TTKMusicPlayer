@@ -23,7 +23,7 @@
 #include "musicinputdialog.h"
 #include "ttkversion.h"
 
-MusicApplication *MusicApplication::m_instance = nullptr;
+MusicApplication* MusicApplication::m_instance = nullptr;
 
 MusicApplication::MusicApplication(QWidget *parent)
     : TTKAbstractMoveResizeWidget(false, parent),
@@ -109,7 +109,7 @@ MusicApplication::~MusicApplication()
     delete m_ui;
 }
 
-MusicApplication *MusicApplication::instance()
+MusicApplication* MusicApplication::instance()
 {
     return m_instance;
 }

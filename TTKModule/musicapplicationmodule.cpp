@@ -34,7 +34,7 @@
 static constexpr int MARGIN_SIDE = 10;
 static constexpr const char *SYNC_HOST_URL = "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0=";
 
-MusicApplicationModule *MusicApplicationModule::m_instance = nullptr;
+MusicApplicationModule* MusicApplicationModule::m_instance = nullptr;
 
 MusicApplicationModule::MusicApplicationModule(QObject *parent)
     : QObject(parent),
@@ -87,7 +87,7 @@ MusicApplicationModule::~MusicApplicationModule()
     delete m_sourceUpdateRequest;
 }
 
-MusicApplicationModule *MusicApplicationModule::instance()
+MusicApplicationModule* MusicApplicationModule::instance()
 {
     return m_instance;
 }

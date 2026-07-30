@@ -56,7 +56,7 @@ public:
     /*!
      * Get class object instance.
      */
-    static MusicApplication *instance();
+    static MusicApplication* instance();
 
     /*!
      * Get current file name.

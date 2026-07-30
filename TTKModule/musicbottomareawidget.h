@@ -50,7 +50,7 @@ public:
     /*!
      * Get class object instance.
      */
-    static MusicBottomAreaWidget *instance();
+    static MusicBottomAreaWidget* instance();
 
     /*!
      * Set up app ui.

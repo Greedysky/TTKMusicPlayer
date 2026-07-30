@@ -8,7 +8,7 @@
 #include "musicrightareawidget.h"
 #include "musicblurspecturmmodule.h"
 
-MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
+MusicBottomAreaWidget* MusicBottomAreaWidget::m_instance = nullptr;
 
 MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     : QWidget(parent),
@@ -32,7 +32,7 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
     delete m_blurModule;
 }
 
-MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
+MusicBottomAreaWidget* MusicBottomAreaWidget::instance()
 {
     return m_instance;
 }

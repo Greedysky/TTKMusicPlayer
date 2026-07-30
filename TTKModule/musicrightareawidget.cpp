@@ -42,7 +42,7 @@
 static constexpr int MAX_CONTAINER_SIZE = 10;
 static constexpr int DEFAULT_CONTAINER_SIZE = 3;
 
-MusicRightAreaWidget *MusicRightAreaWidget::m_instance = nullptr;
+MusicRightAreaWidget* MusicRightAreaWidget::m_instance = nullptr;
 
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent),
@@ -80,7 +80,7 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
     }
 }
 
-MusicRightAreaWidget *MusicRightAreaWidget::instance()
+MusicRightAreaWidget* MusicRightAreaWidget::instance()
 {
     return m_instance;
 }

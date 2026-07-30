@@ -173,8 +173,8 @@ public:
     MusicSongMeta(const MusicSongMeta &other) noexcept;
     MusicSongMeta(MusicSongMeta &&other) noexcept;
 
-    MusicSongMeta& operator= (const MusicSongMeta &other) noexcept;
-    MusicSongMeta& operator= (MusicSongMeta &&other) noexcept;
+    MusicSongMeta& operator=(const MusicSongMeta &other) noexcept;
+    MusicSongMeta& operator=(MusicSongMeta &&other) noexcept;
 
 public:
     /*!

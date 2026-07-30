@@ -87,7 +87,7 @@ public:
     /*!
      * Get class object instance.
      */
-    static MusicRightAreaWidget *instance();
+    static MusicRightAreaWidget* instance();
 
     /*!
      * Set up app ui.

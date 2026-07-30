@@ -67,7 +67,7 @@ public:
     /*!
      * Get class object instance.
      */
-    static MusicPlayedListPopWidget *instance();
+    static MusicPlayedListPopWidget* instance();
 
     /*!
      * Set current play list.

@@ -46,7 +46,7 @@ public:
     /*!
      * Get class object instance.
      */
-    static MusicSongsContainerWidget *instance();
+    static MusicSongsContainerWidget* instance();
 
     /*!
      * Update media datas from container.

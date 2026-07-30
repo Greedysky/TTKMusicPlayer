@@ -33,7 +33,7 @@ void MusicPlayedListTopContainerWidget::paintEvent(QPaintEvent *event)
 
 
 
-MusicPlayedListPopWidget *MusicPlayedListPopWidget::m_instance = nullptr;
+MusicPlayedListPopWidget* MusicPlayedListPopWidget::m_instance = nullptr;
 
 MusicPlayedListPopWidget::MusicPlayedListPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent),
@@ -53,7 +53,7 @@ MusicPlayedListPopWidget::~MusicPlayedListPopWidget()
     qDeleteAll(m_labels);
 }
 
-MusicPlayedListPopWidget *MusicPlayedListPopWidget::instance()
+MusicPlayedListPopWidget* MusicPlayedListPopWidget::instance()
 {
     return m_instance;
 }

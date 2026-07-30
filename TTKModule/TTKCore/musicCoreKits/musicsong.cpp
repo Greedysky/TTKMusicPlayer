@@ -43,6 +43,66 @@ MusicSong::MusicSong(const QString &path, const QString &duration, const QString
     m_sizeStr = TTK::Number::sizeByteToLabel(m_size);
 }
 
+MusicSong::MusicSong(const MusicSong &other) noexcept
+    : m_sort(other.m_sort),
+      m_size(other.m_size),
+      m_addTime(other.m_addTime),
+      m_sizeStr(other.m_sizeStr),
+      m_addTimeStr(other.m_addTimeStr),
+      m_playCount(other.m_playCount),
+      m_name(other.m_name),
+      m_path(other.m_path),
+      m_format(other.m_format),
+      m_duration(other.m_duration)
+{
+
+}
+
+MusicSong::MusicSong(MusicSong &&other) noexcept
+    : m_sort(other.m_sort),
+      m_size(other.m_size),
+      m_addTime(other.m_addTime),
+      m_sizeStr(std::move(other.m_sizeStr)),
+      m_addTimeStr(std::move(other.m_addTimeStr)),
+      m_playCount(other.m_playCount),
+      m_name(std::move(other.m_name)),
+      m_path(std::move(other.m_path)),
+      m_format(std::move(other.m_format)),
+      m_duration(std::move(other.m_duration))
+{
+
+}
+
+MusicSong &MusicSong::operator=(const MusicSong &other) noexcept
+{
+    m_sort = other.m_sort;
+    m_size = other.m_size;
+    m_addTime = other.m_addTime;
+    m_sizeStr = other.m_sizeStr;
+    m_addTimeStr = other.m_addTimeStr;
+    m_playCount = other.m_playCount;
+    m_name = other.m_name;
+    m_path = other.m_path;
+    m_format = other.m_format;
+    m_duration = other.m_duration;
+    return *this;
+}
+
+MusicSong &MusicSong::operator=(MusicSong &&other) noexcept
+{
+    m_sort = other.m_sort;
+    m_size = other.m_size;
+    m_addTime = other.m_addTime;
+    m_sizeStr = std::move(other.m_sizeStr);
+    m_addTimeStr = std::move(other.m_addTimeStr);
+    m_playCount = other.m_playCount;
+    m_name = std::move(other.m_name);
+    m_path = std::move(other.m_path);
+    m_format = std::move(other.m_format);
+    m_duration = std::move(other.m_duration);
+    return *this;
+}
+
 QString MusicSong::title() const noexcept
 {
     return TTK::generateSongTitle(m_name);
@@ -53,12 +113,12 @@ QString MusicSong::artist() const noexcept
     return TTK::generateSongArtist(m_name);
 }
 
-bool MusicSong::operator== (const MusicSong &other) const noexcept
+bool MusicSong::operator==(const MusicSong &other) const noexcept
 {
     return TTK::trackRelatedPath(m_path) == TTK::trackRelatedPath(other.m_path);
 }
 
-bool MusicSong::operator< (const MusicSong &other) const noexcept
+bool MusicSong::operator<(const MusicSong &other) const noexcept
 {
     switch(m_sort)
     {
@@ -73,7 +133,7 @@ bool MusicSong::operator< (const MusicSong &other) const noexcept
     return false;
 }
 
-bool MusicSong::operator> (const MusicSong &other) const noexcept
+bool MusicSong::operator>(const MusicSong &other) const noexcept
 {
     switch(m_sort)
     {

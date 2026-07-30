@@ -51,7 +51,7 @@ MusicSongsContainerWidget::~MusicSongsContainerWidget()
     }
 }
 
-MusicSongsContainerWidget *MusicSongsContainerWidget::instance()
+MusicSongsContainerWidget* MusicSongsContainerWidget::instance()
 {
     return m_instance;
 }
@@ -369,6 +369,7 @@ void MusicSongsContainerWidget::updateDurationLabel(const QString &current, cons
     {
         return;
     }
+
     TTKObjectCast(MusicSongsListPlayTableWidget*, m_containerItems[m_playRowIndex].m_itemWidget)->updateDurationLabel(current, total);
 }
 

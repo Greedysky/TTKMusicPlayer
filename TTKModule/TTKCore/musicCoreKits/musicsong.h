@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 #include "ttktime.h"
+#include "ttklist.h"
 #include "musicsonghelper.h"
 
 /*! @brief The class of the music song info.
@@ -44,6 +45,11 @@ public:
     MusicSong() noexcept;
     explicit MusicSong(const QString &path, bool track = false);
     MusicSong(const QString &path, const QString &duration, const QString &name = {}, bool track = false);
+    MusicSong(const MusicSong &other) noexcept;
+    MusicSong(MusicSong &&other) noexcept;
+
+    MusicSong& operator=(const MusicSong &other) noexcept;
+    MusicSong& operator=(MusicSong &&other) noexcept;
 
     /*!
      * Get media title name.
@@ -120,9 +126,9 @@ public:
      */
     inline void setSort(const Sort s) noexcept { m_sort = s; }
 
-    bool operator== (const MusicSong &other) const noexcept;
-    bool operator< (const MusicSong &other) const noexcept;
-    bool operator> (const MusicSong &other) const noexcept;
+    bool operator==(const MusicSong &other) const noexcept;
+    bool operator<(const MusicSong &other) const noexcept;
+    bool operator>(const MusicSong &other) const noexcept;
 
 private:
     Sort m_sort;
@@ -149,6 +155,34 @@ struct TTK_MODULE_EXPORT MusicSongSort
     {
 
     }
+
+    MusicSongSort(const MusicSongSort &other) noexcept
+        : m_type(other.m_type),
+          m_order(other.m_order)
+    {
+
+    }
+
+    MusicSongSort(MusicSongSort &&other) noexcept
+        : m_type(other.m_type),
+          m_order(other.m_order)
+    {
+
+    }
+
+    MusicSongSort& operator=(const MusicSongSort &other) noexcept
+    {
+        m_type = other.m_type;
+        m_order = other.m_order;
+        return *this;
+    }
+
+    MusicSongSort& operator=(MusicSongSort &&other) noexcept
+    {
+        m_type = other.m_type;
+        m_order = other.m_order;
+        return *this;
+    }
 };
 
 
@@ -174,12 +208,56 @@ struct TTK_MODULE_EXPORT MusicSongItem
 
     }
 
+    MusicSongItem(const MusicSongItem &other) noexcept
+        : m_id(other.m_id),
+          m_itemIndex(other.m_itemIndex),
+          m_itemName(other.m_itemName),
+          m_sort(other.m_sort),
+          m_songs(other.m_songs),
+          m_itemWidget(other.m_itemWidget)
+    {
+
+    }
+
+    MusicSongItem(MusicSongItem &&other) noexcept
+        : m_id(other.m_id),
+          m_itemIndex(other.m_itemIndex),
+          m_itemName(std::move(other.m_itemName)),
+          m_sort(std::move(other.m_sort)),
+          m_songs(std::move(other.m_songs)),
+          m_itemWidget(other.m_itemWidget)
+    {
+
+    }
+
+    MusicSongItem& operator=(const MusicSongItem &other) noexcept
+    {
+        m_id = other.m_id;
+        m_itemIndex= other.m_itemIndex;
+        m_itemName = other.m_itemName;
+        m_sort = other.m_sort;
+        m_songs = other.m_songs;
+        m_itemWidget = other.m_itemWidget;
+        return *this;
+    }
+
+    MusicSongItem& operator=(MusicSongItem &&other) noexcept
+    {
+        m_id = other.m_id;
+        m_itemIndex= other.m_itemIndex;
+        m_itemName = std::move(other.m_itemName);
+        m_sort = std::move(other.m_sort);
+        m_songs = std::move(other.m_songs);
+        m_itemWidget = other.m_itemWidget;
+        return *this;
+    }
+
     inline bool operator<(const MusicSongItem &other) const noexcept
     {
         return m_itemIndex < other.m_itemIndex;
     }
 };
-TTK_DECLARE_LIST(MusicSongItem);
+using MusicSongItemList = TTKList<MusicSongItem>;
 
 
 /*! @brief The namespace of the playlist helper.

@@ -271,7 +271,7 @@ MusicSongMeta::MusicSongMeta(MusicSongMeta &&other) noexcept
 
 }
 
-MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other) noexcept
+MusicSongMeta& MusicSongMeta::operator=(const MusicSongMeta &other) noexcept
 {
     if(this == &other)
     {
@@ -288,7 +288,7 @@ MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other) noexcept
     return *this;
 }
 
-MusicSongMeta& MusicSongMeta::operator= (MusicSongMeta &&other) noexcept
+MusicSongMeta& MusicSongMeta::operator=(MusicSongMeta &&other) noexcept
 {
     if(this == &other)
     {
