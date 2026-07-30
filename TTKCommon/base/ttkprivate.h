@@ -65,7 +65,7 @@ public:
     /*!
      *  Set public pointer.
      */
-    inline void setPublic(PUB* pub) noexcept
+    inline void setPublic(PUB *pub) noexcept
     {
         m_qptr = pub;
     }
@@ -74,7 +74,7 @@ protected:
     /*!
      *  Get public pointer.
      */
-    inline PUB *_q() const noexcept
+    inline PUB* _q() const noexcept
     {
         return m_qptr;
     }
@@ -103,13 +103,13 @@ public:
 
     }
 
-    TTKPrivateInterface(PVT* pvt) noexcept
+    TTKPrivateInterface(PVT *pvt) noexcept
         : m_dptr(pvt)
     {
 
     }
 
-    TTKPrivateInterface(PVT* pvt, PUB* pub) noexcept
+    TTKPrivateInterface(PVT *pvt, PUB *pub) noexcept
         : m_dptr(pvt)
     {
         setPublic(pub);
@@ -126,7 +126,7 @@ public:
     /*!
      *  Set private pointer.
      */
-    inline void setPrivate(PVT* pvt) noexcept
+    inline void setPrivate(PVT *pvt) noexcept
     {
         delete m_dptr;
         m_dptr = pvt;
@@ -135,7 +135,7 @@ public:
     /*!
      *  Set public pointer.
      */
-    inline void setPublic(PUB* pub) noexcept
+    inline void setPublic(PUB *pub) noexcept
     {
         m_dptr->setPublic(pub);
     }
@@ -143,7 +143,7 @@ public:
     /*!
      *  Get private pointer.
      */
-    inline PVT *operator()() const noexcept
+    inline PVT* operator()() const noexcept
     {
         return TTKStaticCast(PVT*, m_dptr);
     }

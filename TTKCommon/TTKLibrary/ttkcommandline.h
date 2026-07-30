@@ -65,11 +65,11 @@ public:
      */
     inline QString description() const noexcept { return m_description; }
 
-    inline bool operator== (const TTKCommandLineOption &other) const noexcept
+    inline bool operator==(const TTKCommandLineOption &other) const noexcept
     {
         return m_first == other.m_first && m_second == other.m_second;
     }
-    inline bool operator!= (const TTKCommandLineOption &other) const noexcept
+    inline bool operator!=(const TTKCommandLineOption &other) const noexcept
     {
         return m_first != other.m_first || m_second != other.m_second;
     }

@@ -62,11 +62,11 @@ private:
     Type(const QString &v) : m_data(Type ## EnumObject.stringToKey(v)) {} \
     QString toString() const { return Type ## EnumObject.keyToString(m_data); } \
     int toInt() const { return m_data; } \
-    operator int () const { return m_data; } \
-    operator QString () const { return toString(); } \
-    Type& operator =(int v) { m_data = v; return *this; } \
-    Type& operator =(const Type &v) { m_data = v.m_data; return *this; } \
-    Type& operator =(const QString &v) { m_data = Type ## EnumObject.stringToKey(v); return *this; } \
+    operator int() const { return m_data; } \
+    operator QString() const { return toString(); } \
+    Type& operator=(int v) { m_data = v; return *this; } \
+    Type& operator=(const Type &v) { m_data = v.m_data; return *this; } \
+    Type& operator=(const QString &v) { m_data = Type ## EnumObject.stringToKey(v); return *this; } \
   private: \
     int m_data; \
   }

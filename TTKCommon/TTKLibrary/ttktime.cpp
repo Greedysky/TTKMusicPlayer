@@ -139,90 +139,90 @@ QString TTKTime::formatDuration(qint64 time) noexcept
     }
 }
 
-TTKTime& TTKTime::operator= (const TTKTime &other) noexcept
+TTKTime& TTKTime::operator=(const TTKTime &other) noexcept
 {
     makeCopy(other);
     return *this;
 }
 
-TTKTime& TTKTime::operator= (TTKTime &&other) noexcept
+TTKTime& TTKTime::operator=(TTKTime &&other) noexcept
 {
     makeCopy(other);
     return *this;
 }
 
-TTKTime& TTKTime::operator+= (const TTKTime &other) noexcept
+TTKTime& TTKTime::operator+=(const TTKTime &other) noexcept
 {
     fromValue(toValue() + other.toValue());
     return *this;
 }
 
-TTKTime& TTKTime::operator+= (const int other) noexcept
+TTKTime& TTKTime::operator+=(const int other) noexcept
 {
     fromValue(toValue() + other);
     return *this;
 }
 
-TTKTime& TTKTime::operator-= (const TTKTime &other) noexcept
+TTKTime& TTKTime::operator-=(const TTKTime &other) noexcept
 {
     fromValue(toValue() - other.toValue());
     return *this;
 }
 
-TTKTime& TTKTime::operator-= (const int other) noexcept
+TTKTime& TTKTime::operator-=(const int other) noexcept
 {
     fromValue(toValue() - other);
     return *this;
 }
 
-TTKTime& TTKTime::operator*= (const int other) noexcept
+TTKTime& TTKTime::operator*=(const int other) noexcept
 {
     fromValue(toValue() * other);
     return *this;
 }
 
-TTKTime& TTKTime::operator/= (const int other) noexcept
+TTKTime& TTKTime::operator/=(const int other) noexcept
 {
     fromValue(toValue() / other);
     return *this;
 }
 
-TTKTime TTKTime::operator+ (const TTKTime &other) noexcept
+TTKTime TTKTime::operator+(const TTKTime &other) noexcept
 {
     return TTKTime(toValue() + other.toValue());
 }
 
-TTKTime TTKTime::operator+ (const int other) noexcept
+TTKTime TTKTime::operator+(const int other) noexcept
 {
     return TTKTime(toValue() + other);
 }
 
-TTKTime TTKTime::operator- (const TTKTime &other) noexcept
+TTKTime TTKTime::operator-(const TTKTime &other) noexcept
 {
     return TTKTime(toValue() - other.toValue());
 }
 
-TTKTime TTKTime::operator- (const int other) noexcept
+TTKTime TTKTime::operator-(const int other) noexcept
 {
     return TTKTime(toValue() - other);
 }
 
-TTKTime TTKTime::operator* (const int other) noexcept
+TTKTime TTKTime::operator*(const int other) noexcept
 {
     return TTKTime(toValue() * other);
 }
 
-TTKTime TTKTime::operator/ (const int other) noexcept
+TTKTime TTKTime::operator/(const int other) noexcept
 {
     return TTKTime(toValue() / other);
 }
 
-bool TTKTime::operator== (const TTKTime &other) const noexcept
+bool TTKTime::operator==(const TTKTime &other) const noexcept
 {
     return toValue() == other.toValue();
 }
 
-bool TTKTime::operator!= (const TTKTime &other) const noexcept
+bool TTKTime::operator!=(const TTKTime &other) const noexcept
 {
     return toValue() != other.toValue();
 }

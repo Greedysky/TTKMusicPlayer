@@ -76,6 +76,7 @@ set(HEADER_FILES
   ${TTK_COMMON_LIB_DIR}/ttktree.h
   ${TTK_COMMON_LIB_DIR}/ttkunsortedmap.h
   ${TTK_COMMON_LIB_DIR}/ttkvariant.h
+  ${TTK_COMMON_LIB_DIR}/ttkdeque.h
 )
 
 set_property(GLOBAL PROPERTY TTK_LIBRARY_KITS_HEADER_FILES ${HEADER_FILES})

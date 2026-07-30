@@ -144,27 +144,27 @@ QString TTKRegularExpression::escape(const QString &str)
 }
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
-const QRegularExpression &TTKRegularExpression::value() const
+const QRegularExpression& TTKRegularExpression::value() const
 #else
-const QRegExp &TTKRegularExpression::value() const
+const QRegExp& TTKRegularExpression::value() const
 #endif
 {
     return m_regular;
 }
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
-TTKRegularExpression::operator QRegularExpression &()
+TTKRegularExpression::operator QRegularExpression&()
 #else
-TTKRegularExpression::operator QRegExp &()
+TTKRegularExpression::operator QRegExp&()
 #endif
 {
     return m_regular;
 }
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
-TTKRegularExpression::operator const QRegularExpression &() const
+TTKRegularExpression::operator const QRegularExpression&() const
 #else
-TTKRegularExpression::operator const QRegExp &() const
+TTKRegularExpression::operator const QRegExp&() const
 #endif
 {
     return m_regular;

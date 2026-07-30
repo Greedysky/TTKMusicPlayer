@@ -137,24 +137,24 @@ public:
      */
     static QString formatDuration(qint64 time) noexcept;
 
-    TTKTime& operator = (const TTKTime &other) noexcept;
-    TTKTime& operator = (TTKTime &&other) noexcept;
-    TTKTime& operator+= (const TTKTime &other) noexcept;
-    TTKTime& operator+= (const int other) noexcept;
-    TTKTime& operator-= (const TTKTime &other) noexcept;
-    TTKTime& operator-= (const int other) noexcept;
-    TTKTime& operator*= (const int other) noexcept;
-    TTKTime& operator/= (const int other) noexcept;
+    TTKTime& operator=(const TTKTime &other) noexcept;
+    TTKTime& operator=(TTKTime &&other) noexcept;
+    TTKTime& operator+=(const TTKTime &other) noexcept;
+    TTKTime& operator+=(const int other) noexcept;
+    TTKTime& operator-=(const TTKTime &other) noexcept;
+    TTKTime& operator-=(const int other) noexcept;
+    TTKTime& operator*=(const int other) noexcept;
+    TTKTime& operator/=(const int other) noexcept;
 
-    TTKTime  operator+ (const TTKTime &other) noexcept;
-    TTKTime  operator+ (const int other) noexcept;
-    TTKTime  operator- (const TTKTime &other) noexcept;
-    TTKTime  operator- (const int other) noexcept;
-    TTKTime  operator* (const int other) noexcept;
-    TTKTime  operator/ (const int other) noexcept;
+    TTKTime operator+(const TTKTime &other) noexcept;
+    TTKTime operator+(const int other) noexcept;
+    TTKTime operator-(const TTKTime &other) noexcept;
+    TTKTime operator-(const int other) noexcept;
+    TTKTime operator*(const int other) noexcept;
+    TTKTime operator/(const int other) noexcept;
 
-    bool operator== (const TTKTime &other) const noexcept;
-    bool operator!= (const TTKTime &other) const noexcept;
+    bool operator==(const TTKTime &other) const noexcept;
+    bool operator!=(const TTKTime &other) const noexcept;
 
     inline friend QDataStream& operator<<(QDataStream &stream, const TTKTime &other) noexcept
     {

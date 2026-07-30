@@ -79,7 +79,7 @@ private:
         int m_id;
         QWidget *m_widget;
 
-        inline bool operator ==(const Data &other) const noexcept
+        inline bool operator==(const Data &other) const noexcept
         {
             return m_widget == other.m_widget;
         }

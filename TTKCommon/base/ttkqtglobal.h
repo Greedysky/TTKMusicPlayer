@@ -153,7 +153,7 @@ inline T object_cast(const QObject *object) noexcept
 #define TTK_DISABLE_COPY(Class) \
 private: \
   Class(const Class &) TTK_DELETE; \
-  Class &operator=(const Class &) TTK_DELETE;
+  Class& operator=(const Class &) TTK_DELETE;
 
 // disable init and copy
 #define TTK_DISABLE_INIT_COPY(Class) \

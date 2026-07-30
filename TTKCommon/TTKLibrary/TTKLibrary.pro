@@ -118,7 +118,8 @@ HEADERS += \
     $$PWD/ttktoastlabel.h \
     $$PWD/ttktree.h \
     $$PWD/ttkunsortedmap.h \
-    $$PWD/ttkvariant.h
+    $$PWD/ttkvariant.h \
+    $$PWD/ttklist.h
 
 SOURCES += \
     $$PWD/ttkabstractmovedialog.cpp \

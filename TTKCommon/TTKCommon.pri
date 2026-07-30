@@ -74,6 +74,7 @@ win32{
             $$PWD/TTKLibrary/ttktoastlabel.h \
             $$PWD/TTKLibrary/ttktree.h \
             $$PWD/TTKLibrary/ttkunsortedmap.h \
-            $$PWD/TTKLibrary/ttkvariant.h
+            $$PWD/TTKLibrary/ttkvariant.h \
+            $$PWD/TTKLibrary/ttklist.h
     }
 }
