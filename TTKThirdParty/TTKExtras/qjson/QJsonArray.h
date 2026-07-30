@@ -64,14 +64,14 @@ public:
 	~QJsonArray();
 
 public:
-	QJsonArray &operator=(const QJsonArray &other);
+	QJsonArray& operator=(const QJsonArray &other);
 
 public:
 	bool operator!=(const QJsonArray &other) const;
 	bool operator==(const QJsonArray &other) const;
 	QJsonArray operator+(const QJsonValue &value) const;
-	QJsonArray &operator+=(const QJsonValue &value);
-	QJsonArray &operator<<(const QJsonValue &value);
+	QJsonArray& operator+=(const QJsonValue &value);
+	QJsonArray& operator<<(const QJsonValue &value);
 
 public:
 	const_iterator begin() const;

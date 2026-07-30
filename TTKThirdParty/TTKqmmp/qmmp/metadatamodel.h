@@ -47,8 +47,8 @@ public:
     MetaDataItem(MetaDataItem &&other) noexcept;
     ~MetaDataItem();
 
-    MetaDataItem &operator=(const MetaDataItem &other);
-    MetaDataItem &operator=(MetaDataItem &&other) noexcept;
+    MetaDataItem& operator=(const MetaDataItem &other);
+    MetaDataItem& operator=(MetaDataItem &&other) noexcept;
 
     /*!
      * Returns localized name of property.

@@ -54,7 +54,7 @@ public:
 	~QJsonDocument();
 
 public:
-	QJsonDocument &operator=(const QJsonDocument &other);
+	QJsonDocument& operator=(const QJsonDocument &other);
 
 public:
 	bool operator!=(const QJsonDocument &other) const;

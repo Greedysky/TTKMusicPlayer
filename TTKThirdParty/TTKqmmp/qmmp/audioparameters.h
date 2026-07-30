@@ -64,8 +64,8 @@ public:
     /*!
      * Assigns audio parameters \b p to this parameters.
      */
-    AudioParameters &operator=(const AudioParameters &other);
-    AudioParameters &operator=(AudioParameters &&other) noexcept;
+    AudioParameters& operator=(const AudioParameters &other);
+    AudioParameters& operator=(AudioParameters &&other) noexcept;
     /*!
      * Returns \b true if parameters \b p is equal to this parameters; otherwise returns \b false.
      */

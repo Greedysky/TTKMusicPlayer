@@ -98,8 +98,8 @@ public:
     /*!
      * Assigns equalizer settings \b s to this settings.
      */
-    EqSettings &operator=(const EqSettings &other);
-    EqSettings &operator=(EqSettings &&other) noexcept;
+    EqSettings& operator=(const EqSettings &other);
+    EqSettings& operator=(EqSettings &&other) noexcept;
     /*!
      * Returns \b true if equalizer settins \b s is equal to this settings; otherwise returns false.
      */

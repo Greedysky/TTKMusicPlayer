@@ -58,7 +58,7 @@ public:
     static void cleanup(QSettings *settings);
 
 private:
-    QObject *instance();
+    QObject* instance();
 
     QString m_path;
     QString m_shortName;

@@ -67,7 +67,7 @@ private:
 	QJsonValue(const void *);
 
 public:
-	QJsonValue &operator=(const QJsonValue &other);
+	QJsonValue& operator=(const QJsonValue &other);
 
 public:
 	bool operator!=(const QJsonValue &other) const;

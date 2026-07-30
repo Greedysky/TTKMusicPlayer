@@ -39,8 +39,8 @@ public:
 	operator QJsonValue() const;
 
 public:
-	QJsonValueRef &operator=(const QJsonValue &val);
-	QJsonValueRef &operator=(const QJsonValueRef &val);
+	QJsonValueRef& operator=(const QJsonValue &val);
+	QJsonValueRef& operator=(const QJsonValueRef &val);
 
 public:
 	QJsonValue::Type type() const;

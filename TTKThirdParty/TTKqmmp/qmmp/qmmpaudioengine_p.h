@@ -61,7 +61,7 @@ public:
     void addEffect(EffectFactory *factory);
     void removeEffect(EffectFactory *factory);
 
-    static QmmpAudioEngine *instance();
+    static QmmpAudioEngine* instance();
 
 private slots:
     void finish();

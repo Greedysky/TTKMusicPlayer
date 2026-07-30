@@ -58,7 +58,7 @@ public:
 #endif
 	QJsonObject(const QJsonObject &other);
 	~QJsonObject();
-	QJsonObject &operator=(const QJsonObject &other);
+	QJsonObject& operator=(const QJsonObject &other);
 
 public:
 	iterator begin();
