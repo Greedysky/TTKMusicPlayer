@@ -2,7 +2,7 @@
 
 #include <QSettings>
 
-CrystalizerPlugin *CrystalizerPlugin::m_instance = nullptr;
+CrystalizerPlugin* CrystalizerPlugin::m_instance = nullptr;
 
 CrystalizerPlugin::CrystalizerPlugin()
     : Effect()

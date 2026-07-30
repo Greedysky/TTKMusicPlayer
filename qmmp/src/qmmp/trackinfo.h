@@ -63,8 +63,8 @@ public:
     /*!
      * Makes a copy of the given \b info
      */
-    TrackInfo &operator=(const TrackInfo &other);
-    TrackInfo &operator=(TrackInfo &&other) noexcept;
+    TrackInfo& operator=(const TrackInfo &other);
+    TrackInfo& operator=(TrackInfo &&other) noexcept;
     /*!
      * Returns \b true if this FileInfo object refers to \b info; otherwise returns \b false.
      */

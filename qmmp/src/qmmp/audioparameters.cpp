@@ -45,7 +45,7 @@ AudioParameters::~AudioParameters()
     delete d;
 }
 
-AudioParameters &AudioParameters::operator=(const AudioParameters &other)
+AudioParameters&  AudioParameters::operator=(const AudioParameters &other)
 {
     d->srate = other.sampleRate();
     d->chanMap = other.channelMap();
@@ -55,7 +55,7 @@ AudioParameters &AudioParameters::operator=(const AudioParameters &other)
     return *this;
 }
 
-AudioParameters &AudioParameters::operator=(AudioParameters &&other) noexcept
+AudioParameters& AudioParameters::operator=(AudioParameters &&other) noexcept
 {
     std::swap(d, other.d);
     return *this;

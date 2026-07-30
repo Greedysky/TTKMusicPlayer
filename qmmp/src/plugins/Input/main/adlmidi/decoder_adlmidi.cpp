@@ -1,7 +1,7 @@
 #include "decoder_adlmidi.h"
 #include "adlmidihelper.h"
 
-DecoderAdlMidi *DecoderAdlMidi::m_instance = nullptr;
+DecoderAdlMidi* DecoderAdlMidi::m_instance = nullptr;
 
 DecoderAdlMidi::DecoderAdlMidi(const QString &path)
     : Decoder()
@@ -16,7 +16,7 @@ DecoderAdlMidi::~DecoderAdlMidi()
     delete m_helper;
 }
 
-DecoderAdlMidi *DecoderAdlMidi::instance()
+DecoderAdlMidi* DecoderAdlMidi::instance()
 {
     return m_instance;
 }

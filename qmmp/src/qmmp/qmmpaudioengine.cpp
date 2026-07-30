@@ -683,9 +683,9 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
 }
 
 //static members
-QmmpAudioEngine *QmmpAudioEngine::m_instance = nullptr;
+QmmpAudioEngine* QmmpAudioEngine::m_instance = nullptr;
 
-QmmpAudioEngine *QmmpAudioEngine::instance()
+QmmpAudioEngine* QmmpAudioEngine::instance()
 {
     return m_instance;
 }

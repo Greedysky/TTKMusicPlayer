@@ -203,7 +203,7 @@ bool QmmpPluginCache::hasError() const
     return m_error;
 }
 
-QObject *QmmpPluginCache::instance()
+QObject* QmmpPluginCache::instance()
 {
     if(m_error)
         return nullptr;

@@ -32,7 +32,7 @@ public:
     explicit DecoderAdlMidi(const QString &path);
     virtual ~DecoderAdlMidi();
 
-    static DecoderAdlMidi *instance();
+    static DecoderAdlMidi* instance();
 
     void readSettings();
 

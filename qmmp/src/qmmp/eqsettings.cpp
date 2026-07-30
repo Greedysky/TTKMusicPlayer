@@ -80,7 +80,7 @@ void EqSettings::setTwoPasses(bool enabled)
     d->twoPasses = enabled;
 }
 
-EqSettings &EqSettings::operator=(const EqSettings &other)
+EqSettings& EqSettings::operator=(const EqSettings &other)
 {
     for(int i = 0; i < other.d->bands; ++i)
         d->gains[i] = other.d->gains[i];
@@ -91,7 +91,7 @@ EqSettings &EqSettings::operator=(const EqSettings &other)
     return *this;
 }
 
-EqSettings &EqSettings::operator=(EqSettings &&other) noexcept
+EqSettings& EqSettings::operator=(EqSettings &&other) noexcept
 {
     std::swap(d, other.d);
     return *this;

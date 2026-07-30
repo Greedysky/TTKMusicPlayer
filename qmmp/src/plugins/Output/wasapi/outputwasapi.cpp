@@ -15,8 +15,8 @@
 #define AUDCLNT_STREAMFLAGS_AUTOCONVERTPCM 0x80000000
 #endif
 
-OutputWASAPI *OutputWASAPI::instance = nullptr;
-VolumeWASAPI *OutputWASAPI::volumeControl = nullptr;
+OutputWASAPI* OutputWASAPI::instance = nullptr;
+VolumeWASAPI* OutputWASAPI::volumeControl = nullptr;
 
 QList<OutputWASAPI::DSoundChannel> OutputWASAPI::m_wasapi_pos = {
    {Qmmp::CHAN_FRONT_LEFT, SPEAKER_FRONT_LEFT},

@@ -33,7 +33,7 @@ public:
     explicit DecoderXMP(const QString &path);
     virtual ~DecoderXMP();
 
-    static DecoderXMP *instance();
+    static DecoderXMP* instance();
 
     void readSettings();
 

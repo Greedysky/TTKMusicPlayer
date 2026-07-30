@@ -153,18 +153,18 @@ const QRegularExpression &RegularExpression::value() const
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-RegularExpression::operator QRegExp &()
+RegularExpression::operator QRegExp&()
 #else
-RegularExpression::operator QRegularExpression &()
+RegularExpression::operator QRegularExpression&()
 #endif
 {
     return m_regular;
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-RegularExpression::operator const QRegExp &() const
+RegularExpression::operator const QRegExp&() const
 #else
-RegularExpression::operator const QRegularExpression &() const
+RegularExpression::operator const QRegularExpression&() const
 #endif
 {
     return m_regular;

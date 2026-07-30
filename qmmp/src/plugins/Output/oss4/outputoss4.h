@@ -59,7 +59,7 @@ public:
 
     int fd() const;
 
-    static OutputOSS4 *instance();
+    static OutputOSS4* instance();
     static VolumeOSS4 *m_vc;
 
 private:

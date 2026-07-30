@@ -3,8 +3,8 @@
 #include <cmath>
 #include <QSettings>
 
-OutputPulseAudio *OutputPulseAudio::instance = nullptr;
-VolumePulseAudio *OutputPulseAudio::volumeControl = nullptr;
+OutputPulseAudio* OutputPulseAudio::instance = nullptr;
+VolumePulseAudio* OutputPulseAudio::volumeControl = nullptr;
 
 OutputPulseAudio::OutputPulseAudio()
     : Output()

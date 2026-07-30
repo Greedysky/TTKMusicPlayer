@@ -2,8 +2,8 @@
 
 #include <QSettings>
 
-OutputOSS4 *OutputOSS4::m_instance = nullptr;
-VolumeOSS4 *OutputOSS4::m_vc = nullptr;
+OutputOSS4* OutputOSS4::m_instance = nullptr;
+VolumeOSS4* OutputOSS4::m_vc = nullptr;
 Qmmp::ChannelPosition OutputOSS4::m_oss_pos[16] =
 {
     Qmmp::CHAN_NULL,         //0 = null
@@ -50,7 +50,7 @@ int OutputOSS4::fd() const
     return m_audio_fd;
 }
 
-OutputOSS4 *OutputOSS4::instance()
+OutputOSS4* OutputOSS4::instance()
 {
     return m_instance;
 }

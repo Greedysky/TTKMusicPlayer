@@ -28,8 +28,8 @@ static inline int pw_stream_get_time_n(struct pw_stream *stream,
 }
 #endif
 
-OutputPipeWire *OutputPipeWire::instance = nullptr;
-VolumePipeWire *OutputPipeWire::volumeControl = nullptr;
+OutputPipeWire* OutputPipeWire::instance = nullptr;
+VolumePipeWire* OutputPipeWire::volumeControl = nullptr;
 
 constexpr qint64 pipewireBufferSize = 500; //ms
 

@@ -85,11 +85,11 @@ public:
     //protect from multiple calls
     bool saveSettingsRequest = false;
 
-    static QmmpSettings* instance;
+    static QmmpSettings *instance;
 
 };
 
-QmmpSettings *QmmpSettingsPrivate::instance = nullptr;
+QmmpSettings* QmmpSettingsPrivate::instance = nullptr;
 
 
 QmmpSettings::QmmpSettings(QObject *parent)

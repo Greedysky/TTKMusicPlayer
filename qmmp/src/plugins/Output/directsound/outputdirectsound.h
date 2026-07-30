@@ -53,7 +53,7 @@ public:
     // volume control
     static OutputDirectSound *instance;
     static VolumeDirectSound *volumeControl;
-    IDirectSoundBuffer8 *secondaryBuffer();
+    IDirectSoundBuffer8* secondaryBuffer();
 
 private:
     // helper functions

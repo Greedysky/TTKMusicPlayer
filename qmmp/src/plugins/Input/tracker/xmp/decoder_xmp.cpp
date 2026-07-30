@@ -2,7 +2,7 @@
 
 #include <QSettings>
 
-DecoderXMP *DecoderXMP::m_instance = nullptr;
+DecoderXMP* DecoderXMP::m_instance = nullptr;
 
 DecoderXMP::DecoderXMP(const QString &path)
     : Decoder(nullptr),
@@ -17,7 +17,7 @@ DecoderXMP::~DecoderXMP()
     deinit();
 }
 
-DecoderXMP *DecoderXMP::instance()
+DecoderXMP* DecoderXMP::instance()
 {
     return m_instance;
 }

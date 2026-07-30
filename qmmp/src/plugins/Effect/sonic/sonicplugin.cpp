@@ -3,7 +3,7 @@
 #include <cmath>
 #include <QSettings>
 
-SonicPlugin *SonicPlugin::m_instance = nullptr;
+SonicPlugin* SonicPlugin::m_instance = nullptr;
 
 SonicPlugin::SonicPlugin()
     : Effect()

@@ -2,7 +2,7 @@
 
 #include <QSettings>
 
-MixerPlugin *MixerPlugin::m_instance = nullptr;
+MixerPlugin* MixerPlugin::m_instance = nullptr;
 
 MixerPlugin::MixerPlugin()
     : Effect()

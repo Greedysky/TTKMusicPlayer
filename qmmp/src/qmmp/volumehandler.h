@@ -98,7 +98,7 @@ public:
     /*!
      * Returns a pointer to the global VolumeHandler instance.
      */
-    static VolumeHandler *instance();
+    static VolumeHandler* instance();
 
 signals:
     /*!

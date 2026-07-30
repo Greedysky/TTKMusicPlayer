@@ -70,7 +70,7 @@ static float shaitan(float x)
 }
 
 
-SubwooferPlugin *SubwooferPlugin::m_instance = nullptr;
+SubwooferPlugin* SubwooferPlugin::m_instance = nullptr;
 
 SubwooferPlugin::SubwooferPlugin()
     : Effect()

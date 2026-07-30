@@ -10,7 +10,7 @@ static int rescale(int x, int old_scale, int new_scale)
     return (v + CH_SIGN(old_scale / 2, v)) / old_scale;
 }
 
-EchoPlugin *EchoPlugin::m_instance = nullptr;
+EchoPlugin* EchoPlugin::m_instance = nullptr;
 
 EchoPlugin::EchoPlugin()
     : Effect()

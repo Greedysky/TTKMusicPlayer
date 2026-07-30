@@ -45,7 +45,7 @@ public:
 
 };
 
-VolumeHandler *VolumeHandlerPrivate::instance = nullptr;
+VolumeHandler* VolumeHandlerPrivate::instance = nullptr;
 
 
 VolumeHandler::VolumeHandler(QObject *parent)
@@ -179,7 +179,7 @@ void VolumeHandler::apply(Buffer *b, int chan)
     }
 }
 
-VolumeHandler *VolumeHandler::instance()
+VolumeHandler* VolumeHandler::instance()
 {
     return VolumeHandlerPrivate::instance;
 }

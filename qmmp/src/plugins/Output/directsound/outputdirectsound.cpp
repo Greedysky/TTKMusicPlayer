@@ -7,8 +7,8 @@
 
 #define INPUT_BUFFER_SIZE (128 * 1024)
 
-OutputDirectSound *OutputDirectSound::instance = nullptr;
-VolumeDirectSound *OutputDirectSound::volumeControl = nullptr;
+OutputDirectSound* OutputDirectSound::instance = nullptr;
+VolumeDirectSound* OutputDirectSound::volumeControl = nullptr;
 QList<OutputDirectSound::DSoundChannel> OutputDirectSound::m_dsound_pos = {
    {Qmmp::CHAN_FRONT_LEFT, SPEAKER_FRONT_LEFT},
    {Qmmp::CHAN_FRONT_RIGHT, SPEAKER_FRONT_RIGHT},

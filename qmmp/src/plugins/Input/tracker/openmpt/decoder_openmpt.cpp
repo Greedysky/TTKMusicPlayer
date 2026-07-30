@@ -2,7 +2,7 @@
 
 #include <QSettings>
 
-DecoderOpenMPT *DecoderOpenMPT::m_instance = nullptr;
+DecoderOpenMPT* DecoderOpenMPT::m_instance = nullptr;
 
 DecoderOpenMPT::DecoderOpenMPT(QIODevice *input)
     : Decoder(input)
@@ -16,7 +16,7 @@ DecoderOpenMPT::~DecoderOpenMPT()
     delete m_helper;
 }
 
-DecoderOpenMPT *DecoderOpenMPT::instance()
+DecoderOpenMPT* DecoderOpenMPT::instance()
 {
     return m_instance;
 }

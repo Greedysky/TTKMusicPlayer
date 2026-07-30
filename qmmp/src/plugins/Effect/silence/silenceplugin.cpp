@@ -18,7 +18,7 @@ static float* alignFrame(int channels, float* begin, float* sample, bool end)
     return begin + (offset - offset % channels);
 }
 
-SilencePlugin *SilencePlugin::m_instance = nullptr;
+SilencePlugin* SilencePlugin::m_instance = nullptr;
 
 SilencePlugin::SilencePlugin()
     : Effect()

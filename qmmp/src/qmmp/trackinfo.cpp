@@ -53,13 +53,13 @@ TrackInfo::~TrackInfo()
 
 }
 
-TrackInfo &TrackInfo::operator=(const TrackInfo &other)
+TrackInfo& TrackInfo::operator=(const TrackInfo &other)
 {
     d = other.d;
     return *this;
 }
 
-TrackInfo &TrackInfo::operator=(TrackInfo &&other) noexcept
+TrackInfo& TrackInfo::operator=(TrackInfo &&other) noexcept
 {
     swap(other);
     return *this;

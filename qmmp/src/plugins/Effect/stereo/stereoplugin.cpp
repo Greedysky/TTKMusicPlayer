@@ -2,7 +2,7 @@
 
 #include <QSettings>
 
-StereoPlugin *StereoPlugin::m_instance = nullptr;
+StereoPlugin* StereoPlugin::m_instance = nullptr;
 
 StereoPlugin::StereoPlugin()
     : Effect()

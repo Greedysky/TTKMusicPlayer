@@ -31,7 +31,7 @@ public:
     explicit DecoderOpenMPT(QIODevice *input);
     virtual ~DecoderOpenMPT();
 
-    static DecoderOpenMPT *instance();
+    static DecoderOpenMPT* instance();
 
     void readSettings();
 

@@ -42,7 +42,7 @@ MetaDataItem::~MetaDataItem()
     delete d;
 }
 
-MetaDataItem &MetaDataItem::operator=(const MetaDataItem &other)
+MetaDataItem& MetaDataItem::operator=(const MetaDataItem &other)
 {
     d->name = other.d->name;
     d->value = other.d->value;
@@ -50,7 +50,7 @@ MetaDataItem &MetaDataItem::operator=(const MetaDataItem &other)
     return *this;
 }
 
-MetaDataItem &MetaDataItem::operator=(MetaDataItem &&other) noexcept
+MetaDataItem& MetaDataItem::operator=(MetaDataItem &&other) noexcept
 {
     std::swap(d, other.d);
     return *this;

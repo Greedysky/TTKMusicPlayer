@@ -3,7 +3,7 @@
 #include <cmath>
 #include <QSettings>
 
-BitcrusherPlugin *BitcrusherPlugin::m_instance = nullptr;
+BitcrusherPlugin* BitcrusherPlugin::m_instance = nullptr;
 
 BitcrusherPlugin::BitcrusherPlugin()
     : Effect()

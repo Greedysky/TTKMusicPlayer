@@ -9,7 +9,7 @@
 #define PATH_MAX 4096
 #endif
 
-LADSPAHost *LADSPAHost::m_instance = nullptr;
+LADSPAHost* LADSPAHost::m_instance = nullptr;
 
 /* Based on xmms_ladspa */
 

@@ -53,7 +53,7 @@ public:
 
 };
 
-SoundCore *SoundCorePrivate::instance = nullptr;
+SoundCore* SoundCorePrivate::instance = nullptr;
 
 
 SoundCore::SoundCore(QObject *parent)

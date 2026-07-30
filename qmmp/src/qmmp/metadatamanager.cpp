@@ -105,7 +105,7 @@ public:
 #endif
     QmmpSettings *settings = nullptr;
 
-    static MetaDataManager* instance;
+    static MetaDataManager *instance;
 
 };
 
@@ -320,7 +320,7 @@ void MetaDataManager::prepareForAnotherThread()
     AbstractEngine::enabledFactories();
 }
 
-MetaDataManager *MetaDataManager::instance()
+MetaDataManager* MetaDataManager::instance()
 {
     if(!MetaDataManagerPrivate::instance)
     {
