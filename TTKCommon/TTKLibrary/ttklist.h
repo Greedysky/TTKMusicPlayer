@@ -32,13 +32,13 @@ using TTKList = QList<T>;
 class TTKList
 {
 public:
-    using iterator = typename std::deque<T>::iterator;
-    using const_iterator = typename std::deque<T>::const_iterator;
-    typedef std::reverse_iterator<iterator> reverse_iterator;
-    typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+    using _Container = std::deque<T>;
 
 public:
-    using _Container = std::deque<T>;
+    using iterator = typename _Container::iterator;
+    using const_iterator = typename _Container::const_iterator;
+    using reverse_iterator = typename _Container::reverse_iterator;
+    using const_reverse_iterator = typename _Container::const_reverse_iterator;
 
 public:
     TTKList() = default;
@@ -59,9 +59,6 @@ public:
     }
 
     inline void swap(TTKList &other) noexcept { std::swap(m_data, other.m_data); }
-
-    inline bool operator==(const TTKList &other) const { return m_data == other.m_data; }
-    inline bool operator!=(const TTKList &other) const { return m_data != other.m_data; }
 
     inline int size() const noexcept { return static_cast<int>(m_data.size()); }
     inline bool isEmpty() const { return m_data.empty(); }
