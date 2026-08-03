@@ -27,6 +27,11 @@ ProjectM4Widget::~ProjectM4Widget()
 
 void ProjectM4Widget::addBuffer(float *left, float *right)
 {
+    if(!m_handle)
+    {
+        return;
+    }
+
     short buf[2][QMMP_VISUAL_NODE_SIZE];
     for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; ++i)
     {
