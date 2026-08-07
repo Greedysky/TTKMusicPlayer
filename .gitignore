@@ -16,6 +16,7 @@
 *.aps
 *.prl
 *.moc
+*.stash
 *moc_*
 qrc_*.cpp
 ui_*.h
