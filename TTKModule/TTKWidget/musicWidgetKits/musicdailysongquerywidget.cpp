@@ -1,29 +1,28 @@
-#include "musicrecommendquerywidget.h"
-#include "musicsongrecommendrequest.h"
+#include "musicdailysongquerywidget.h"
+#include "musicdailysongqueryrequest.h"
 #include "musicitemquerytablewidget.h"
-#include "musicimageutils.h"
 
-MusicRecommendQueryWidget::MusicRecommendQueryWidget(QWidget *parent)
+MusicDailySongQueryWidget::MusicDailySongQueryWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent)
 {
     m_tableWidget = new MusicItemQueryTableWidget(this);
     m_tableWidget->hide();
 }
 
-void MusicRecommendQueryWidget::setCurrentValue(const QString &value)
+void MusicDailySongQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    m_tableWidget->setQueryInput(new MusicSongRecommendRequest(this));
+    m_tableWidget->setQueryInput(new MusicDailySongQueryRequest(this));
     m_tableWidget->startToSearchByValue(TTK::generateSongTitle(value));
     createLabels();
 }
 
-void MusicRecommendQueryWidget::resizeGeometry()
+void MusicDailySongQueryWidget::resizeGeometry()
 {
     m_tableWidget->resizeGeometry();
 }
 
-void MusicRecommendQueryWidget::createLabels()
+void MusicDailySongQueryWidget::createLabels()
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;

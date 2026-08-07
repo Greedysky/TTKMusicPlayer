@@ -1,5 +1,5 @@
-#ifndef MUSICCIBAREQUEST_H
-#define MUSICCIBAREQUEST_H
+#ifndef MUSICDAILYTEXTWIDGET_H
+#define MUSICDAILYTEXTWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,44 +19,50 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractnetwork.h"
+#include <QLabel>
+#include "ttkabstractresizeinterface.h"
 
-/*! @brief The class of the ciba request.
+class QToolButton;
+class MusicDailyTextRequest;
+
+/*! @brief The class of the daily text widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCiBaRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicDailyTextWidget : public QFrame, public TTKAbstractResizeInterface
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicCiBaRequest(QObject *parent = nullptr);
+    explicit MusicDailyTextWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
+    ~MusicDailyTextWidget();
 
     /*!
-     * Start to download counter data.
+     * Resize widget bound by resize called.
      */
-    void startToRequest();
+    virtual void resizeGeometry() override final;
 
+private Q_SLOTS:
     /*!
-     * Get note data.
+     * Download image data from net finished.
      */
-    QString note() const noexcept;
-    /*!
-     * Get content data.
-     */
-    QString content() const noexcept;
-    /*!
-     * Get image data.
-     */
-    QString image() const noexcept;
+    void downloadImageFinished(const QByteArray &bytes);
 
-public Q_SLOTS:
+private:
     /*!
-     * Download data from net finished.
+     * Override the widget event.
      */
-    virtual void downloadFinished() override final;
+    virtual void resizeEvent(QResizeEvent *event) override final;
+
+    QLabel *m_container;
+    QLabel *m_note, *m_content;
+    QImage m_image;
+    MusicDailyTextRequest *m_networkRequest;
 
 };
 
-#endif // MUSICCIBAREQUEST_H
+#endif // MUSICDAILYTEXTWIDGET_H

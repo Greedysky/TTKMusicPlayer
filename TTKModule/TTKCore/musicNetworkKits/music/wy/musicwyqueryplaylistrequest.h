@@ -22,7 +22,7 @@
 #include "musicwyqueryinterface.h"
 #include "musicqueryplaylistrequest.h"
 
-/*! @brief The class of the wangyi query playlist data from net.
+/*! @brief The class of the wangyi query playlist data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryPlaylistRequest : public MusicQueryPlaylistRequest
@@ -70,7 +70,7 @@ private Q_SLOTS:
 };
 
 
-/*! @brief The class of the wangyi query playlist recommend data from net.
+/*! @brief The class of the wangyi query playlist recommend data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryPlaylistRecommendRequest : public MusicQueryPlaylistRequest
@@ -104,7 +104,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the wangyi query playlist high quality data from net.
+/*! @brief The class of the wangyi query playlist high quality data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryPlaylistHighRequest : public MusicQueryPlaylistRequest

@@ -1,13 +1,13 @@
-#include "musicsongdailywidget.h"
-#include "musiccibarequest.h"
+#include "musicdailytextwidget.h"
+#include "musicdailytextrequest.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
 #include "musicimageutils.h"
 
-MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
+MusicDailyTextWidget::MusicDailyTextWidget(QWidget *parent)
     : QFrame(parent)
 {
-    setObjectName(MusicSongDailyWidget::metaObject()->className());
+    setObjectName(MusicDailyTextWidget::metaObject()->className());
     setStyleSheet(QString("#%1{ %2 }").arg(objectName(), TTK::UI::BackgroundStyle10));
 
     m_container = new QLabel(this);
@@ -19,13 +19,13 @@ MusicSongDailyWidget::MusicSongDailyWidget(QWidget *parent)
     m_note = new QLabel(m_container);
     m_content = new QLabel(m_container);
 
-    m_networkRequest = new MusicCiBaRequest(this);
+    m_networkRequest = new MusicDailyTextRequest(this);
     connect(m_networkRequest, SIGNAL(downloadRawDataChanged(QByteArray)), this, SLOT(downloadImageFinished(QByteArray)));
 
     m_networkRequest->startToRequest();
 }
 
-MusicSongDailyWidget::~MusicSongDailyWidget()
+MusicDailyTextWidget::~MusicDailyTextWidget()
 {
     delete m_note;
     delete m_content;
@@ -33,7 +33,7 @@ MusicSongDailyWidget::~MusicSongDailyWidget()
     delete m_networkRequest;
 }
 
-void MusicSongDailyWidget::resizeGeometry()
+void MusicDailyTextWidget::resizeGeometry()
 {
     if(m_image.isNull())
     {
@@ -59,7 +59,7 @@ void MusicSongDailyWidget::resizeGeometry()
     m_container->setPixmap(QPixmap::fromImage(m_image).scaled(m_container->size(), Qt::KeepAspectRatioByExpanding));
 }
 
-void MusicSongDailyWidget::downloadImageFinished(const QByteArray &bytes)
+void MusicDailyTextWidget::downloadImageFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {
@@ -102,7 +102,7 @@ void MusicSongDailyWidget::downloadImageFinished(const QByteArray &bytes)
     resizeGeometry();
 }
 
-void MusicSongDailyWidget::resizeEvent(QResizeEvent *event)
+void MusicDailyTextWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
     resizeGeometry();

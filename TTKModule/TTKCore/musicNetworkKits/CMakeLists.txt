@@ -82,8 +82,8 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_HEADER_FILES
   ${TTK_CORE_NETWORK_DIR}/music/zed/musicbarragerequest.h
   ${TTK_CORE_NETWORK_DIR}/music/zed/musicunityqueryinterface.h
   ${TTK_CORE_NETWORK_DIR}/music/zed/musicunityquerymovierequest.h
-  ${TTK_CORE_NETWORK_DIR}/music/musicsongrecommendrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/musicsongsuggestrequest.h
+  ${TTK_CORE_NETWORK_DIR}/music/musicdailysongqueryrequest.h
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmconfigmanager.h
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongrequest.h
   ${TTK_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.h
@@ -106,7 +106,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_HEADER_FILES
   ${TTK_CORE_NETWORK_DIR}/tools/musicsourceupdaterequest.h
   ${TTK_CORE_NETWORK_DIR}/tools/musicresourcerequest.h
   ${TTK_CORE_NETWORK_DIR}/tools/musicpvcounterrequest.h
-  ${TTK_CORE_NETWORK_DIR}/tools/musiccibarequest.h
+  ${TTK_CORE_NETWORK_DIR}/tools/musicdailytextrequest.h
   ${TTK_CORE_NETWORK_DIR}/tools/musicdownloadmanager.h
   ${TTK_CORE_NETWORK_DIR}/translation/musicabstracttranslationrequest.h
   ${TTK_CORE_NETWORK_DIR}/translation/musictranslationrequest.h
@@ -182,8 +182,8 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_SOURCE_FILES
   ${TTK_CORE_NETWORK_DIR}/music/zed/musicbarragerequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/zed/musicunityqueryinterface.cpp
   ${TTK_CORE_NETWORK_DIR}/music/zed/musicunityquerymovierequest.cpp
-  ${TTK_CORE_NETWORK_DIR}/music/musicsongrecommendrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/musicsongsuggestrequest.cpp
+  ${TTK_CORE_NETWORK_DIR}/music/musicdailysongqueryrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmconfigmanager.cpp
   ${TTK_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.cpp
@@ -206,7 +206,7 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_SOURCE_FILES
   ${TTK_CORE_NETWORK_DIR}/tools/musicsourceupdaterequest.cpp
   ${TTK_CORE_NETWORK_DIR}/tools/musicresourcerequest.cpp
   ${TTK_CORE_NETWORK_DIR}/tools/musicpvcounterrequest.cpp
-  ${TTK_CORE_NETWORK_DIR}/tools/musiccibarequest.cpp
+  ${TTK_CORE_NETWORK_DIR}/tools/musicdailytextrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/tools/musicdownloadmanager.cpp
   ${TTK_CORE_NETWORK_DIR}/translation/musicabstracttranslationrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/translation/musictranslationrequest.cpp

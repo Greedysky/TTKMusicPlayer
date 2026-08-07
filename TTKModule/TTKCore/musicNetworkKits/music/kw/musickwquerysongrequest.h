@@ -22,7 +22,7 @@
 #include "musicquerysongrequest.h"
 #include "musickwqueryinterface.h"
 
-/*! @brief The class of the kuwo query song data from net.
+/*! @brief The class of the kuwo query song data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQuerySongRequest : public MusicQuerySongRequest
@@ -62,7 +62,7 @@ private Q_SLOTS:
 };
 
 
-/*! @brief The class of the kuwo query new song data from net.
+/*! @brief The class of the kuwo query new song data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryNewSongRequest : public MusicQuerySongRequest

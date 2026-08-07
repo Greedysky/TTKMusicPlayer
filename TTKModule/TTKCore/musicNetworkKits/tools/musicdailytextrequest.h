@@ -1,5 +1,5 @@
-#ifndef MUSICSONGDAILYWIDGET_H
-#define MUSICSONGDAILYWIDGET_H
+#ifndef MUSICDAILYTEXTREQUEST_H
+#define MUSICDAILYTEXTREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,50 +19,44 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QLabel>
-#include "ttkabstractresizeinterface.h"
+#include "musicabstractnetwork.h"
 
-class QToolButton;
-class MusicCiBaRequest;
-
-/*! @brief The class of the song daily widget.
+/*! @brief The class of the daily text request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongDailyWidget : public QFrame, public TTKAbstractResizeInterface
+class TTK_MODULE_EXPORT MusicDailyTextRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicSongDailyWidget(QWidget *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicSongDailyWidget();
+    explicit MusicDailyTextRequest(QObject *parent = nullptr);
 
     /*!
-     * Resize widget bound by resize called.
+     * Start to download counter data.
      */
-    virtual void resizeGeometry() override final;
+    void startToRequest();
 
-private Q_SLOTS:
     /*!
-     * Download image data from net finished.
+     * Get note data.
      */
-    void downloadImageFinished(const QByteArray &bytes);
-
-private:
+    QString note() const noexcept;
     /*!
-     * Override the widget event.
+     * Get content data.
      */
-    virtual void resizeEvent(QResizeEvent *event) override final;
+    QString content() const noexcept;
+    /*!
+     * Get image data.
+     */
+    QString image() const noexcept;
 
-    QLabel *m_container;
-    QLabel *m_note, *m_content;
-    QImage m_image;
-    MusicCiBaRequest *m_networkRequest;
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downloadFinished() override final;
 
 };
 
-#endif // MUSICSONGDAILYWIDGET_H
+#endif // MUSICDAILYTEXTREQUEST_H

@@ -38,7 +38,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_HEADER_FILES
   ${TTK_WIDGET_DIR}/musicdownloadwidget.h
   ${TTK_WIDGET_DIR}/musicdownloadmgmtwidget.h
   ${TTK_WIDGET_DIR}/musicdownloadstatusmodule.h
-  ${TTK_WIDGET_DIR}/musicsongdailywidget.h
+  ${TTK_WIDGET_DIR}/musicdailytextwidget.h
   ${TTK_WIDGET_DIR}/musicsongsharingwidget.h
   ${TTK_WIDGET_DIR}/musicsourceupdatewidget.h
   ${TTK_WIDGET_DIR}/musicglobalhotkeyedit.h
@@ -62,7 +62,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_HEADER_FILES
   ${TTK_WIDGET_DIR}/musictoplistquerywidget.h
   ${TTK_WIDGET_DIR}/musicdownloadbatchwidget.h
   ${TTK_WIDGET_DIR}/musicadvancedsearchedwidget.h
-  ${TTK_WIDGET_DIR}/musicrecommendquerywidget.h
+  ${TTK_WIDGET_DIR}/musicdailysongquerywidget.h
   ${TTK_WIDGET_DIR}/musicartistlistquerywidget.h
   ${TTK_WIDGET_DIR}/musicblurspecturmmodule.h
   ${TTK_WIDGET_DIR}/musicpluginwidget.h
@@ -89,7 +89,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_SOURCE_FILES
   ${TTK_WIDGET_DIR}/musicdownloadwidget.cpp
   ${TTK_WIDGET_DIR}/musicdownloadmgmtwidget.cpp
   ${TTK_WIDGET_DIR}/musicdownloadstatusmodule.cpp
-  ${TTK_WIDGET_DIR}/musicsongdailywidget.cpp
+  ${TTK_WIDGET_DIR}/musicdailytextwidget.cpp
   ${TTK_WIDGET_DIR}/musicsongsharingwidget.cpp
   ${TTK_WIDGET_DIR}/musicsourceupdatewidget.cpp
   ${TTK_WIDGET_DIR}/musicglobalhotkeyedit.cpp
@@ -113,7 +113,7 @@ set_property(GLOBAL PROPERTY TTK_WIDGET_KITS_SOURCE_FILES
   ${TTK_WIDGET_DIR}/musictoplistquerywidget.cpp
   ${TTK_WIDGET_DIR}/musicdownloadbatchwidget.cpp
   ${TTK_WIDGET_DIR}/musicadvancedsearchedwidget.cpp
-  ${TTK_WIDGET_DIR}/musicrecommendquerywidget.cpp
+  ${TTK_WIDGET_DIR}/musicdailysongquerywidget.cpp
   ${TTK_WIDGET_DIR}/musicartistlistquerywidget.cpp
   ${TTK_WIDGET_DIR}/musicblurspecturmmodule.cpp
   ${TTK_WIDGET_DIR}/musicpluginwidget.cpp

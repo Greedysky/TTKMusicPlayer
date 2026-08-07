@@ -22,7 +22,7 @@
 #include "musickwqueryinterface.h"
 #include "musicqueryplaylistrequest.h"
 
-/*! @brief The class of the kuwo query playlist data from net.
+/*! @brief The class of the kuwo query playlist data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryPlaylistRequest : public MusicQueryPlaylistRequest
@@ -80,7 +80,7 @@ private:
 };
 
 
-/*! @brief The class of the kuwo query playlist recommend data from net.
+/*! @brief The class of the kuwo query playlist recommend data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryPlaylistRecommendRequest : public MusicQueryPlaylistRequest
@@ -114,7 +114,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the kuwo query playlist high quality data from net.
+/*! @brief The class of the kuwo query playlist high quality data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryPlaylistHighRequest : public MusicQueryPlaylistRequest

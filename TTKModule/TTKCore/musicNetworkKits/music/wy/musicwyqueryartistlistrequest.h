@@ -22,7 +22,7 @@
 #include "musicwyqueryinterface.h"
 #include "musicqueryartistlistrequest.h"
 
-/*! @brief The class of the wangyi query artist list data from net.
+/*! @brief The class of the wangyi query artist list data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryArtistListRequest : public MusicQueryArtistListRequest
@@ -48,7 +48,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the wangyi query hot artist list data from net.
+/*! @brief The class of the wangyi query hot artist list data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryHotArtistListRequest : public MusicQueryArtistListRequest

@@ -1,15 +1,15 @@
-#include "musiccibarequest.h"
+#include "musicdailytextrequest.h"
 #include "musicdatasourcerequest.h"
 
 static constexpr const char *QUERY_URL = "N1ZCWXNTOWkvWEhnTjMxWmk2Y0JNMGZZMzlvTnc0RW1HTCs0bitBbnZzczRWQVcxeWxGaXBhM1QweDQ9";
 
-MusicCiBaRequest::MusicCiBaRequest(QObject *parent)
+MusicDailyTextRequest::MusicDailyTextRequest(QObject *parent)
     : MusicAbstractNetwork(parent)
 {
 
 }
 
-void MusicCiBaRequest::startToRequest()
+void MusicDailyTextRequest::startToRequest()
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false).arg(QDate::currentDate().toString(TTK_DATE_FORMAT)));
@@ -22,22 +22,22 @@ void MusicCiBaRequest::startToRequest()
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-QString MusicCiBaRequest::note() const noexcept
+QString MusicDailyTextRequest::note() const noexcept
 {
     return m_rawData["note"].toString();
 }
 
-QString MusicCiBaRequest::content() const noexcept
+QString MusicDailyTextRequest::content() const noexcept
 {
     return m_rawData["content"].toString();
 }
 
-QString MusicCiBaRequest::image() const noexcept
+QString MusicDailyTextRequest::image() const noexcept
 {
     return m_rawData["picture4"].toString();
 }
 
-void MusicCiBaRequest::downloadFinished()
+void MusicDailyTextRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 

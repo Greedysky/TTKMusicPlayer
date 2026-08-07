@@ -52,7 +52,7 @@ public:
         VideoWidget,            /*!< Insert video widget */
         LrcWidget,              /*!< Insert lrc display widget */
         // other moudle
-        SongRecommendWidget,    /*!< Insert song recommend found widget */
+        DailySongWidget,        /*!< Insert daily song found widget */
         ToplistWidget,          /*!< Insert toplist found widget */
         ArtistCategoryWidget,   /*!< Insert artist category found widget */
         PlaylistCategoryWidget, /*!< Insert playlist category found widget */
@@ -62,7 +62,7 @@ public:
         AlbumWidget,            /*!< Insert album found widget */
         ArtistWidget,           /*!< Insert artist found widget */
         PlaylistInfoWidget,     /*!< Insert playlist found widget */
-        SongDailyWidget,        /*!< Insert song daily widget */
+        DailyTextWidget,        /*!< Insert daily text widget */
         AdvancedSearchWidget,   /*!< Insert advanced search widget */
         IndentifyWidget,        /*!< Insert indentify songs widget */
         KugouKuiSheWidget,      /*!< Insert kugou kuishe widget */

@@ -22,7 +22,7 @@
 #include "musicquerysongrequest.h"
 #include "musicwyqueryinterface.h"
 
-/*! @brief The class of the wangyi query song data from net.
+/*! @brief The class of the wangyi query song data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQuerySongRequest : public MusicQuerySongRequest
@@ -62,7 +62,7 @@ private Q_SLOTS:
 };
 
 
-/*! @brief The class of the wangyi query new song data from net.
+/*! @brief The class of the wangyi query new song data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryNewSongRequest : public MusicQuerySongRequest

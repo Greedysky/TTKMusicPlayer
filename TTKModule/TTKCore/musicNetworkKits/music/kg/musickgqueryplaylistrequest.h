@@ -22,7 +22,7 @@
 #include "musickgqueryinterface.h"
 #include "musicqueryplaylistrequest.h"
 
-/*! @brief The class of the kugou query playlist data from net.
+/*! @brief The class of the kugou query playlist data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryPlaylistRequest : public MusicQueryPlaylistRequest
@@ -66,7 +66,7 @@ private Q_SLOTS:
 };
 
 
-/*! @brief The class of the kugou query playlist recommend data from net.
+/*! @brief The class of the kugou query playlist recommend data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryPlaylistRecommendRequest : public MusicQueryPlaylistRequest
@@ -100,7 +100,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the kugou query playlist high quality data from net.
+/*! @brief The class of the kugou query playlist high quality data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryPlaylistHighRequest : public MusicQueryPlaylistRequest

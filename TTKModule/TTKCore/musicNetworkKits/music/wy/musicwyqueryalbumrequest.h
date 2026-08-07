@@ -22,7 +22,7 @@
 #include "musicwyqueryinterface.h"
 #include "musicqueryalbumrequest.h"
 
-/*! @brief The class of the wangyi query album data from net.
+/*! @brief The class of the wangyi query album data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryAlbumRequest : public MusicQueryAlbumRequest
@@ -52,7 +52,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the wangyi query artist album data from net.
+/*! @brief The class of the wangyi query artist album data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryArtistAlbumRequest : public MusicQueryAlbumRequest
@@ -78,7 +78,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the wangyi query new album data from net.
+/*! @brief The class of the wangyi query new album data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryNewAlbumRequest : public MusicQueryAlbumRequest

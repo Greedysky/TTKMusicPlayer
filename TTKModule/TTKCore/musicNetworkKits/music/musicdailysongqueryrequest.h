@@ -1,5 +1,5 @@
-#ifndef MUSICRECOMMENDQUERYWIDGET_H
-#define MUSICRECOMMENDQUERYWIDGET_H
+#ifndef MUSICDAILYSONGQUERYREQUEST_H
+#define MUSICDAILYSONGQUERYREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,35 +19,35 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractitemquerywidget.h"
+#include "musicabstractqueryrequest.h"
 
-/*! @brief The class of the recommend music query widget.
+/*! @brief The class of the daily song query request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicRecommendQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicDailySongQueryRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicRecommendQueryWidget(QWidget *parent = nullptr);
+    explicit MusicDailySongQueryRequest(QObject *parent = nullptr);
 
     /*!
-     * Set current value to search founds.
+     * Start to search data by input data.
      */
-    virtual void setCurrentValue(const QString &value) override final;
+    virtual void startToSearch(const QString &value) override final;
     /*!
-     * Resize widget bound by resize called.
+     * Start to download query result data.
      */
-    virtual void resizeGeometry() override final;
+    virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
 
-private:
+public Q_SLOTS:
     /*!
-     * Create init interface lables.
+     * Download data from net finished.
      */
-    void createLabels();
+    virtual void downloadFinished() override final;
 
 };
 
-#endif // MUSICRECOMMENDQUERYWIDGET_H
+#endif // MUSICDAILYSONGQUERYREQUEST_H

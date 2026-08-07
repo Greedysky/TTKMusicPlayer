@@ -22,7 +22,7 @@
 #include "ttkabstractxml.h"
 #include "musicabstractdownloadimagerequest.h"
 
-/*! @brief The class of the tencent query info xml data from net.
+/*! @brief The class of the tencent query info xml data.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKAbstractXml, public TTKAbstractReadInterface<QStringList>

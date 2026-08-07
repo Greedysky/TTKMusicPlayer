@@ -38,7 +38,7 @@ HEADERS += \
     $$PWD/musicdownloadwidget.h \
     $$PWD/musicdownloadmgmtwidget.h \
     $$PWD/musicdownloadstatusmodule.h \
-    $$PWD/musicsongdailywidget.h \
+    $$PWD/musicdailytextwidget.h \
     $$PWD/musicsongsharingwidget.h \
     $$PWD/musicsourceupdatewidget.h \
     $$PWD/musicglobalhotkeyedit.h \
@@ -62,7 +62,7 @@ HEADERS += \
     $$PWD/musictoplistquerywidget.h \
     $$PWD/musicdownloadbatchwidget.h \
     $$PWD/musicadvancedsearchedwidget.h \
-    $$PWD/musicrecommendquerywidget.h \
+    $$PWD/musicdailysongquerywidget.h \
     $$PWD/musicartistlistquerywidget.h \
     $$PWD/musicblurspecturmmodule.h \
     $$PWD/musicpluginwidget.h \
@@ -88,7 +88,7 @@ SOURCES += \
     $$PWD/musicdownloadwidget.cpp \
     $$PWD/musicdownloadmgmtwidget.cpp \
     $$PWD/musicdownloadstatusmodule.cpp \
-    $$PWD/musicsongdailywidget.cpp \
+    $$PWD/musicdailytextwidget.cpp \
     $$PWD/musicsongsharingwidget.cpp \
     $$PWD/musicsourceupdatewidget.cpp \
     $$PWD/musicglobalhotkeyedit.cpp \
@@ -112,7 +112,7 @@ SOURCES += \
     $$PWD/musictoplistquerywidget.cpp \
     $$PWD/musicdownloadbatchwidget.cpp \
     $$PWD/musicadvancedsearchedwidget.cpp \
-    $$PWD/musicrecommendquerywidget.cpp \
+    $$PWD/musicdailysongquerywidget.cpp \
     $$PWD/musicartistlistquerywidget.cpp \
     $$PWD/musicblurspecturmmodule.cpp \
     $$PWD/musicpluginwidget.cpp \

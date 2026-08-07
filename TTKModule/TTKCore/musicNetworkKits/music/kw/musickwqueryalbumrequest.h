@@ -22,7 +22,7 @@
 #include "musickwqueryinterface.h"
 #include "musicqueryalbumrequest.h"
 
-/*! @brief The class of the kuwo query album data from net.
+/*! @brief The class of the kuwo query album data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryAlbumRequest : public MusicQueryAlbumRequest
@@ -52,7 +52,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the kuwo query artist album data from net.
+/*! @brief The class of the kuwo query artist album data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryArtistAlbumRequest : public MusicQueryAlbumRequest
@@ -78,7 +78,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the kuwo query new album data from net.
+/*! @brief The class of the kuwo query new album data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryNewAlbumRequest : public MusicQueryAlbumRequest

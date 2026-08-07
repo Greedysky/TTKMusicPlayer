@@ -97,8 +97,8 @@ HEADERS += \
     $$PWD/music/zed/musicbarragerequest.h \
     $$PWD/music/zed/musicunityqueryinterface.h \
     $$PWD/music/zed/musicunityquerymovierequest.h \
-    $$PWD/music/musicsongrecommendrequest.h \
     $$PWD/music/musicsongsuggestrequest.h \
+    $$PWD/music/musicdailysongqueryrequest.h \
     $$PWD/radio/fm/musicfmconfigmanager.h \
     $$PWD/radio/fm/musicfmradiosongrequest.h \
     $$PWD/radio/dj/musicabstractdjradiorequest.h \
@@ -121,7 +121,7 @@ HEADERS += \
     $$PWD/tools/musicsourceupdaterequest.h \
     $$PWD/tools/musicresourcerequest.h \
     $$PWD/tools/musicpvcounterrequest.h \
-    $$PWD/tools/musiccibarequest.h \
+    $$PWD/tools/musicdailytextrequest.h \
     $$PWD/tools/musicdownloadmanager.h \
     $$PWD/translation/musicabstracttranslationrequest.h \
     $$PWD/translation/musictranslationrequest.h \
@@ -196,8 +196,8 @@ SOURCES += \
     $$PWD/music/zed/musicbarragerequest.cpp \
     $$PWD/music/zed/musicunityqueryinterface.cpp \
     $$PWD/music/zed/musicunityquerymovierequest.cpp \
-    $$PWD/music/musicsongrecommendrequest.cpp \
     $$PWD/music/musicsongsuggestrequest.cpp \
+    $$PWD/music/musicdailysongqueryrequest.cpp \
     $$PWD/radio/fm/musicfmconfigmanager.cpp \
     $$PWD/radio/fm/musicfmradiosongrequest.cpp \
     $$PWD/radio/dj/musicabstractdjradiorequest.cpp \
@@ -220,7 +220,7 @@ SOURCES += \
     $$PWD/tools/musicsourceupdaterequest.cpp \
     $$PWD/tools/musicresourcerequest.cpp \
     $$PWD/tools/musicpvcounterrequest.cpp \
-    $$PWD/tools/musiccibarequest.cpp \
+    $$PWD/tools/musicdailytextrequest.cpp \
     $$PWD/tools/musicdownloadmanager.cpp \
     $$PWD/translation/musicabstracttranslationrequest.cpp \
     $$PWD/translation/musictranslationrequest.cpp \

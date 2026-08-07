@@ -22,7 +22,7 @@
 #include "musickgqueryinterface.h"
 #include "musicqueryalbumrequest.h"
 
-/*! @brief The class of the kugou query album data from net.
+/*! @brief The class of the kugou query album data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryAlbumRequest : public MusicQueryAlbumRequest
@@ -52,7 +52,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the kugou query artist album data from net.
+/*! @brief The class of the kugou query artist album data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryArtistAlbumRequest : public MusicQueryAlbumRequest
@@ -78,7 +78,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the kugou query new album data from net.
+/*! @brief The class of the kugou query new album data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryNewAlbumRequest : public MusicQueryAlbumRequest

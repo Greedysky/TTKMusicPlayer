@@ -22,7 +22,7 @@
 #include "musickgqueryinterface.h"
 #include "musicqueryartistlistrequest.h"
 
-/*! @brief The class of the kugou query artist list data from net.
+/*! @brief The class of the kugou query artist list data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryArtistListRequest : public MusicQueryArtistListRequest
@@ -52,7 +52,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the kugou query hot artist list data from net.
+/*! @brief The class of the kugou query hot artist list data request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryHotArtistListRequest : public MusicQueryArtistListRequest

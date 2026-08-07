@@ -1,4 +1,4 @@
-#include "musicsongrecommendrequest.h"
+#include "musicdailysongqueryrequest.h"
 
 /*! @brief The namespace of the lq request interface.
  * @author Greedysky <greedysky@163.com>
@@ -61,13 +61,13 @@ void ReqLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, cons
 
 
 
-MusicSongRecommendRequest::MusicSongRecommendRequest(QObject *parent)
+MusicDailySongQueryRequest::MusicDailySongQueryRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
     m_totalSize = TTK_PAGE_SIZE_30 * 2;
 }
 
-void MusicSongRecommendRequest::startToSearch(const QString &value)
+void MusicDailySongQueryRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << value);
 
@@ -84,7 +84,7 @@ void MusicSongRecommendRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicSongRecommendRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+void MusicDailySongQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__ << info->m_songId << bitrate << "kbps");
 
@@ -99,7 +99,7 @@ void MusicSongRecommendRequest::startToQueryResult(TTK::MusicSongInformation *in
     }
 }
 
-void MusicSongRecommendRequest::downloadFinished()
+void MusicDailySongQueryRequest::downloadFinished()
 {
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 

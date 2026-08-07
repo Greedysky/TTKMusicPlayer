@@ -793,7 +793,7 @@ void MusicMainRecommendWidget::createTopWidget()
 
     TTKClickedLabel *recommend = new TTKClickedLabel(tr("Recommend"), widget);
     recommend->setStyleSheet(TTK::UI::FontStyle03);
-    clickedGroup->addWidget(recommend, MusicRightAreaWidget::SongRecommendWidget);
+    clickedGroup->addWidget(recommend, MusicRightAreaWidget::DailySongWidget);
     topLayout->addWidget(recommend);
 
     TTKClickedLabel *toplist = new TTKClickedLabel(tr("Toplist"), widget);

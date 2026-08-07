@@ -23,14 +23,14 @@
 #include "musicartistquerywidget.h"
 #include "musictoplistquerywidget.h"
 #include "musicplaylistquerywidget.h"
-#include "musicrecommendquerywidget.h"
+#include "musicdailytextwidget.h"
+#include "musicdailysongquerywidget.h"
 #include "musicartistlistquerywidget.h"
 #include "musicadvancedsearchedwidget.h"
 #include "musicwebmvradioquerywidget.h"
 #include "musicplaylistbackupwidget.h"
 #include "musicplaylistcategorywidget.h"
 #include "musicpersonalradioquerywidget.h"
-#include "musicsongdailywidget.h"
 
 #ifdef Q_OS_WIN
 #  include "musicplatformmanager.h"
@@ -392,9 +392,9 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicTopAreaWidget::instance()->backgroundThemeDownloadFinished();
             break;
         }
-        case SongRecommendWidget: //insert song recommend found widget
+        case DailySongWidget: //insert daily song found widget
         {
-            MusicRecommendQueryWidget *widget = new MusicRecommendQueryWidget(this);
+            MusicDailySongQueryWidget *widget = new MusicDailySongQueryWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->setCurrentValue({});
@@ -486,9 +486,9 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
             break;
         }
-        case SongDailyWidget: //insert song daily widget
+        case DailyTextWidget: //insert daily text widget
         {
-            MusicSongDailyWidget *widget = new MusicSongDailyWidget(this);
+            MusicDailyTextWidget *widget = new MusicDailyTextWidget(this);
             m_ui->functionsContainer->addWidget(m_currentWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             MusicTopAreaWidget::instance()->backgroundTransparentChanged();
