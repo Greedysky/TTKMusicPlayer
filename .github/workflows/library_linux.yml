@@ -9,7 +9,7 @@ jobs:
     name: Build on gcc
     strategy:
       matrix:
-        os: [ubuntu-22.04, ubuntu-24.04]
+        os: [ubuntu-22.04, ubuntu-24.04, ubuntu-26.04]
 
     env:
       INSTALL_PATH: /home/runner/work/TTKMusicPlayer/install/gcc
@@ -217,10 +217,10 @@ jobs:
       - name: Build library for libprojectm
         run: |
           if [ ${{matrix.os}} == "ubuntu-22.04" ]; then
-            echo "projectm build for ubuntu 22.04"
+            echo "projectm build for <= ubuntu 22.04"
             7z x libprojectm-2.2.1.7z -olibprojectm
           else
-            echo "projectm build for ubuntu 24.04"
+            echo "projectm build for > ubuntu 24.04"
             7z x -snld libprojectm-2.2.1.7z -olibprojectm
           fi
           cd libprojectm
