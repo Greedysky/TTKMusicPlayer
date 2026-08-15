@@ -155,13 +155,13 @@ jobs:
           mv image/usr/lib image/usr/plugins image/usr/translations image/usr/bin/qt.conf ..
           rm -rf image
           # add dependency for nss and webkit
-          if [ ${{matrix.os}} == "ubuntu-24.04" ]; then
-            cp /usr/lib/x86_64-linux-gnu/libnssckbi.so ../lib
-            cp /usr/lib/x86_64-linux-gnu/libsoftokn3.so ../lib
-          else
-            cp /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so ../lib
-            cp /usr/lib/x86_64-linux-gnu/nss/libsoftokn3.so ../lib
-          fi
+          for libnss in libnssckbi.so libsoftokn3.so; do
+            if [ -f "/usr/lib/x86_64-linux-gnu/$libnss" ]; then
+              cp "/usr/lib/x86_64-linux-gnu/$libnss" ../lib
+            elif [ -f "/usr/lib/x86_64-linux-gnu/nss/$libnss" ]; then
+              cp "/usr/lib/x86_64-linux-gnu/nss/$libnss" ../lib
+            fi
+          done
           cp ${{env.QT_ROOT_DIR}}/resources/* .
           cp ${{env.QT_ROOT_DIR}}/libexec/QtWebEngineProcess .
           cd ../..
