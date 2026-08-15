@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         qt: [qt5, qt6]
-        os: [ubuntu-22.04, ubuntu-24.04]
+        os: [ubuntu-22.04, ubuntu-24.04, ubuntu-26.04]
         include:
           - qt: qt5
             qt_major: 5

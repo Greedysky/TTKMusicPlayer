@@ -107,6 +107,10 @@ jobs:
             ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-ubuntu-24.04-qt5-x64.deb
             ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-ubuntu-24.04-qt6-x64.7z
             ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-ubuntu-24.04-qt6-x64.deb
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-ubuntu-26.04-qt5-x64.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-ubuntu-26.04-qt5-x64.deb
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-ubuntu-26.04-qt6-x64.7z
+            ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-ubuntu-26.04-qt6-x64.deb
             ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-win10-mingw-x64.7z
             ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-win10-mingw-x64.exe
             ${{github.workspace}}/${{env.TTK_MODULE}}-${{env.TTK_VERSION}}-win7-mingw-x64.7z
