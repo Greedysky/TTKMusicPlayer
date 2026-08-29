@@ -31,7 +31,7 @@ jobs:
 
       - name: Build library for libadlmidi
         run: |
-          7z x libADLMIDI-1.6.1.7z -olibadlmidi
+          7z x libADLMIDI-1.6.2.7z -olibadlmidi
           cd libadlmidi
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libadlmidi -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DUSE_NUKED_EMULATOR=OFF -DUSE_OPAL_EMULATOR=OFF -DUSE_JAVA_EMULATOR=OFF -DUSE_ESFMU_EMULATOR=OFF -DUSE_MAME_EMULATOR=OFF -DUSE_YMFM_EMULATOR=OFF
@@ -110,7 +110,7 @@ jobs:
 
       - name: Build library for libfaad2
         run: |
-          7z x faad2-2.11.2.7z -olibfaad2
+          7z x faad2-2.11.3.7z -olibfaad2
           cd libfaad2
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
@@ -174,7 +174,7 @@ jobs:
 
       - name: Build library for libmpg123
         run: |
-          7z x mpg123-1.33.6.7z -olibmpg123
+          7z x mpg123-1.33.7.7z -olibmpg123
           cd libmpg123
           ./configure --prefix=${{env.INSTALL_PATH}}/libmpg123 CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared
           make -j2 && make install
@@ -182,7 +182,7 @@ jobs:
 
       - name: Build library for libopenmpt
         run: |
-          7z x libopenmpt-0.4.54.7z -olibopenmpt
+          7z x libopenmpt-0.4.56.7z -olibopenmpt
           cd libopenmpt
           ./configure --prefix=${{env.INSTALL_PATH}}/libopenmpt CFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3" --enable-static --disable-shared --without-zlib --without-mpg123 --without-ogg --without-vorbis --without-vorbisfile --without-pulseaudio --without-portaudio --without-portaudiocpp --without-sndfile --without-flac
           make -j2 && make install
