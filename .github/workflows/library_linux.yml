@@ -113,7 +113,7 @@ jobs:
           7z x faad2-2.11.3.7z -olibfaad2
           cd libfaad2
           mkdir build && cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3"
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-fPIC -O3" -DCMAKE_CXX_FLAGS="-fPIC -O3" -DBUILD_SHARED_LIBS=OFF
           make -j2 && make install
         working-directory: ${{runner.workspace}}
 

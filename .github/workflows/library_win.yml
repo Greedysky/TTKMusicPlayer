@@ -176,7 +176,7 @@ jobs:
           7z x faad2-2.11.3.7z -olibfaad2
           cd libfaad2
           mkdir build && cd build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_INSTALL_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3"
+          cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{env.WIN_INSTALL_PATH}}/libfaad2 -DCMAKE_C_FLAGS="-O3" -DCMAKE_CXX_FLAGS="-O3" -DBUILD_SHARED_LIBS=OFF
           mingw32-make -j2 && mingw32-make install
         working-directory: ${{runner.workspace}}
 
