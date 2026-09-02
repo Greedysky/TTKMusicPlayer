@@ -138,10 +138,9 @@ jobs:
       - name: Build library for libcdio
         shell: msys2 {0}
         run: |
-          7z x libcdio-2.1.0.7z -olibcdio
+          7z x libcdio-2.4.0.7z -olibcdio
           cd libcdio
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
-          ./autogen.sh
           ./configure --prefix=${{env.UNIX_INSTALL_PATH}}/libcdio CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared --disable-cxx --disable-example-progs --disable-cddb --without-cd-drive --without-cd-info --without-cdda-player --without-iso-info --without-iso-read --without-cd-read
           make -j2 && make install
         working-directory: ${{runner.workspace}}
@@ -343,7 +342,7 @@ jobs:
       - name: Build library for libsidplayfp
         shell: msys2 {0}
         run: |
-          7z x libsidplayfp-2.3.1.patch.7z -olibsidplayfp
+          7z x libsidplayfp-2.16.1.patch.7z -olibsidplayfp
           cd libsidplayfp
           export PATH=${{env.UNIX_MINGW_PATH}}:$PATH
           ./configure --prefix=${{env.UNIX_INSTALL_PATH}}/libsidplayfp CFLAGS="-O3" CXXFLAGS="-O3" --enable-static --disable-shared
