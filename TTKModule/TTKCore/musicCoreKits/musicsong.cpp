@@ -115,7 +115,7 @@ QString MusicSong::artist() const noexcept
 
 bool MusicSong::operator==(const MusicSong &other) const noexcept
 {
-    return TTK::trackRelatedPath(m_path) == TTK::trackRelatedPath(other.m_path);
+    return m_path == other.m_path;
 }
 
 bool MusicSong::operator<(const MusicSong &other) const noexcept
