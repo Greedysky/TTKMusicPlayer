@@ -171,6 +171,7 @@ void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time, bool 
             if(it)
             {
                 MusicCloudDataItem data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
+                data.m_data.m_name.clear();
                 data.m_state = MusicCloudDataItem::State::Successed;
                 it->setData(TTK_DATA_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
                 m_totalFileSzie += data.m_data.m_size;
