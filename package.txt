@@ -1,4 +1,4 @@
-///Update time 2026-09-02
+///Update time 2026-09-22
 
 adplug-2.4.0	https://github.com/adplug/adplug
 enca-1.22	https://github.com/Project-OSS-Revival/enca
@@ -6,7 +6,7 @@ faad2-2.11.3	https://github.com/knik0/faad2
 ffmpeg-3.4.14	http://ffmpeg.org/releases
 flac-1.5.0	https://ftp.osuosl.org/pub/xiph/releases/flac
 libgme-0.6.5	https://github.com/libgme/game-music-emu
-libADLMIDI-1.6.2	https://github.com/Wohlstand/libADLMIDI
+libADLMIDI-1.6.2.1	https://github.com/Wohlstand/libADLMIDI
 libbinio-1.5	https://github.com/adplug/libbinio
 libbs2b-3.1.0	https://sourceforge.net/projects/bs2b
 libcddb-1.3.2	https://sourceforge.net/projects/libcddb
@@ -29,11 +29,11 @@ opusfile-0.12	https://www.opus-codec.org/downloads
 soxr-0.1.3	https://sourceforge.net/projects/soxr
 speex-1.2.1	https://ftp.osuosl.org/pub/xiph/releases/speex
 sunvox-2.1.4d	https://warmplace.ru/soft/sunvox/sunvox_lib.php
-taglib-1.13.1(v2.3.1)	https://github.com/taglib/taglib
+taglib-1.13.1(v2.3.2)	https://github.com/taglib/taglib
 wavpack-5.9.0	https://github.com/dbry/WavPack
-libxmp-4.7.2.patch	https://github.com/libxmp/libxmp
+libxmp-4.7.3.patch	https://github.com/libxmp/libxmp
 zlib-1.3.2	https://github.com/madler/zlib
-7zip-26.02	https://www.7-zip.org/download.html
+7zip-26.03	https://www.7-zip.org/download.html
 
 ttk-1.2.13
 -libasap-8.0.0	 https://sourceforge.net/projects/asap
@@ -57,7 +57,7 @@ ttk-1.2.13
 -libstsound	 https://github.com/arnaud-carre/StSound
 -libtfmx-1.0.14	 https://github.com/mschwendt/libtfmxaudiodecoder
 -libuade-3.05	 http://www.zakalwe.fi/uade/
-                 https://gitlab.com/uade-music-player/uade d40dcc7ed539c106127ad255f67663d00b48a228
+                 https://gitlab.com/uade-music-player/uade 8d77cd773e10d33de44f2b6c52201bb54732b701
 -libv2m-20260725 https://github.com/jgilje/v2m-player
 -libxgm		 https://github.com/digital-sound-antiques/libkss
                  https://github.com/gcielniak/libnezplug
