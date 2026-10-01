@@ -33,7 +33,6 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_HEADER_FILES
   ${TTK_CORE_NETWORK_DIR}/image/skin/musicdownloadbingskinrequest.h
   ${TTK_CORE_NETWORK_DIR}/image/skin/musicdownloadbirdpaperskinrequest.h
   ${TTK_CORE_NETWORK_DIR}/image/skin/musicdownloadthunderskinrequest.h
-  ${TTK_CORE_NETWORK_DIR}/image/skin/musicdownloadtimelineskinrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/core/musiccommentsrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/core/musiccoverrequest.h
   ${TTK_CORE_NETWORK_DIR}/music/core/musicdiscoverlistrequest.h
@@ -133,7 +132,6 @@ set_property(GLOBAL PROPERTY TTK_CORE_NETWORK_KITS_SOURCE_FILES
   ${TTK_CORE_NETWORK_DIR}/image/skin/musicdownloadbingskinrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/image/skin/musicdownloadbirdpaperskinrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/image/skin/musicdownloadthunderskinrequest.cpp
-  ${TTK_CORE_NETWORK_DIR}/image/skin/musicdownloadtimelineskinrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/core/musiccommentsrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/core/musiccoverrequest.cpp
   ${TTK_CORE_NETWORK_DIR}/music/core/musicdiscoverlistrequest.cpp

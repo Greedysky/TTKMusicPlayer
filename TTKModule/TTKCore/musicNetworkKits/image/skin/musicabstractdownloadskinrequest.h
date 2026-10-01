@@ -57,8 +57,7 @@ struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
     {
         Bing,
         Thunder,
-        BirdPaper,
-        TimeLine
+        BirdPaper
     };
 
     QString m_id;
