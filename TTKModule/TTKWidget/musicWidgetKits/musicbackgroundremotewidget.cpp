@@ -3,6 +3,7 @@
 #include "musicdownloadbingskinrequest.h"
 #include "musicdownloadthunderskinrequest.h"
 #include "musicdownloadbirdpaperskinrequest.h"
+#include "musicdownload360paperskinrequest.h"
 #include "musicresultscategorypopwidget.h"
 #include "musicextractmanager.h"
 
@@ -68,6 +69,7 @@ void MusicBackgroundRemoteWidget::startToRequest(MusicSkinRemoteGroup::Type type
         case MusicSkinRemoteGroup::Bing: prefix = "Bing"; break;
         case MusicSkinRemoteGroup::Thunder: prefix = "Thunder"; break;
         case MusicSkinRemoteGroup::BirdPaper: prefix = "BirdPaper"; break;
+        case MusicSkinRemoteGroup::Paper360: prefix = "Paper360"; break;
         default: break;
     }
 
@@ -181,6 +183,10 @@ void MusicBackgroundOnlineWidget::initialize()
     connect(req, SIGNAL(downloadDataChanged(MusicSkinRemoteGroupList)), SLOT(downloadFinished(MusicSkinRemoteGroupList)));
     m_downloadRequests << req;
 
+    req = new MusicDownload360PaperSkinRequest(this);
+    connect(req, SIGNAL(downloadDataChanged(MusicSkinRemoteGroupList)), SLOT(downloadFinished(MusicSkinRemoteGroupList)));
+    m_downloadRequests << req;
+
     MusicResultsCategoryList categories;
     MusicCategoryConfigManager manager(TTK_APP_NAME);
     if(manager.fromFile(MusicCategoryConfigManager::Category::SkinList))
@@ -203,6 +209,10 @@ void MusicBackgroundOnlineWidget::initialize()
             else if(i == 1 /*MusicSkinRemoteGroup::BirdPaper*/)
             {
                 group.m_type = MusicSkinRemoteGroup::BirdPaper;
+            }
+            else if(i == 2 /*MusicSkinRemoteGroup::Paper360*/)
+            {
+                group.m_type = MusicSkinRemoteGroup::Paper360;
             }
 
             m_groups << group;
@@ -263,6 +273,7 @@ void MusicBackgroundOnlineWidget::outputRemoteSkin(MusicBackgroundImage &image, 
             break;
         }
         case MusicSkinRemoteGroup::BirdPaper:
+        case MusicSkinRemoteGroup::Paper360:
         {
             image.m_pix = QPixmap(data);
             if(image.m_pix.height() > 1200)
@@ -330,6 +341,11 @@ void MusicBackgroundOnlineWidget::categoryChanged(const MusicResultsCategoryItem
                 m_downloadRequests[1]->startToRequest(category.m_key);
                 break;
             }
+            case MusicSkinRemoteGroup::Paper360:
+            {
+                m_downloadRequests[2]->startToRequest(category.m_key);
+                break;
+            }
             default: break;
         }
     }
@@ -372,6 +388,12 @@ void MusicBackgroundOnlineWidget::downloadFinished(const MusicSkinRemoteGroupLis
         {
             m_groups[m_currentIndex] = first;
             startToRequest(MusicSkinRemoteGroup::BirdPaper);
+            break;
+        }
+        case MusicSkinRemoteGroup::Paper360:
+        {
+            m_groups[m_currentIndex] = first;
+            startToRequest(MusicSkinRemoteGroup::Paper360);
             break;
         }
         default: break;
