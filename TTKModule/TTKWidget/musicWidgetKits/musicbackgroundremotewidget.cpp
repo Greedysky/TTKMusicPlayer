@@ -66,10 +66,10 @@ void MusicBackgroundRemoteWidget::startToRequest(MusicSkinRemoteGroup::Type type
     QString prefix;
     switch(type)
     {
-        case MusicSkinRemoteGroup::Bing: prefix = "Bing"; break;
-        case MusicSkinRemoteGroup::Thunder: prefix = "Thunder"; break;
-        case MusicSkinRemoteGroup::BirdPaper: prefix = "BirdPaper"; break;
-        case MusicSkinRemoteGroup::Paper360: prefix = "Paper360"; break;
+        case MusicSkinRemoteGroup::Type::Bing: prefix = "Bing"; break;
+        case MusicSkinRemoteGroup::Type::Thunder: prefix = "Thunder"; break;
+        case MusicSkinRemoteGroup::Type::BirdPaper: prefix = "BirdPaper"; break;
+        case MusicSkinRemoteGroup::Type::QihooPaper: prefix = "QihooPaper"; break;
         default: break;
     }
 
@@ -112,7 +112,7 @@ void MusicBackgroundDailyWidget::initialize()
     }
     else
     {
-        startToRequest(MusicSkinRemoteGroup::Bing);
+        startToRequest(MusicSkinRemoteGroup::Type::Bing);
     }
 }
 
@@ -145,7 +145,7 @@ void MusicBackgroundDailyWidget::downloadFinished(const MusicSkinRemoteGroupList
     }
 
     m_groups = bytes;
-    startToRequest(MusicSkinRemoteGroup::Bing);
+    startToRequest(MusicSkinRemoteGroup::Type::Bing);
 }
 
 
@@ -202,17 +202,17 @@ void MusicBackgroundOnlineWidget::initialize()
             group.m_id = item.m_key;
             group.m_name = item.m_value;
 
-            if(i == 0 /*MusicSkinRemoteGroup::Thunder*/)
+            if(i == 0)
             {
-                group.m_type = MusicSkinRemoteGroup::Thunder;
+                group.m_type = MusicSkinRemoteGroup::Type::Thunder;
             }
-            else if(i == 1 /*MusicSkinRemoteGroup::BirdPaper*/)
+            else if(i == 1)
             {
-                group.m_type = MusicSkinRemoteGroup::BirdPaper;
+                group.m_type = MusicSkinRemoteGroup::Type::BirdPaper;
             }
-            else if(i == 2 /*MusicSkinRemoteGroup::Paper360*/)
+            else if(i == 2)
             {
-                group.m_type = MusicSkinRemoteGroup::Paper360;
+                group.m_type = MusicSkinRemoteGroup::Type::QihooPaper;
             }
 
             m_groups << group;
@@ -267,13 +267,13 @@ void MusicBackgroundOnlineWidget::outputRemoteSkin(MusicBackgroundImage &image, 
 
     switch(group.m_type)
     {
-        case MusicSkinRemoteGroup::Thunder:
+        case MusicSkinRemoteGroup::Type::Thunder:
         {
             MusicExtractManager::outputThunderSkin(image.m_pix, data);
             break;
         }
-        case MusicSkinRemoteGroup::BirdPaper:
-        case MusicSkinRemoteGroup::Paper360:
+        case MusicSkinRemoteGroup::Type::BirdPaper:
+        case MusicSkinRemoteGroup::Type::QihooPaper:
         {
             image.m_pix = QPixmap(data);
             if(image.m_pix.height() > 1200)
@@ -331,17 +331,17 @@ void MusicBackgroundOnlineWidget::categoryChanged(const MusicResultsCategoryItem
     {
         switch(type)
         {
-            case MusicSkinRemoteGroup::Thunder:
+            case MusicSkinRemoteGroup::Type::Thunder:
             {
                 m_downloadRequests[0]->startToRequest();
                 break;
             }
-            case MusicSkinRemoteGroup::BirdPaper:
+            case MusicSkinRemoteGroup::Type::BirdPaper:
             {
                 m_downloadRequests[1]->startToRequest(category.m_key);
                 break;
             }
-            case MusicSkinRemoteGroup::Paper360:
+            case MusicSkinRemoteGroup::Type::QihooPaper:
             {
                 m_downloadRequests[2]->startToRequest(category.m_key);
                 break;
@@ -362,11 +362,11 @@ void MusicBackgroundOnlineWidget::downloadFinished(const MusicSkinRemoteGroupLis
     const MusicSkinRemoteGroup &first = bytes.first();
     switch(first.m_type)
     {
-        case MusicSkinRemoteGroup::Thunder:
+        case MusicSkinRemoteGroup::Type::Thunder:
         {
             for(MusicSkinRemoteGroup &group : m_groups)
             {
-                if(group.m_type != MusicSkinRemoteGroup::Thunder)
+                if(group.m_type != MusicSkinRemoteGroup::Type::Thunder)
                 {
                     continue;
                 }
@@ -381,19 +381,19 @@ void MusicBackgroundOnlineWidget::downloadFinished(const MusicSkinRemoteGroupLis
                 }
             }
 
-            startToRequest(MusicSkinRemoteGroup::Thunder);
+            startToRequest(MusicSkinRemoteGroup::Type::Thunder);
             break;
         }
-        case MusicSkinRemoteGroup::BirdPaper:
+        case MusicSkinRemoteGroup::Type::BirdPaper:
         {
             m_groups[m_currentIndex] = first;
-            startToRequest(MusicSkinRemoteGroup::BirdPaper);
+            startToRequest(MusicSkinRemoteGroup::Type::BirdPaper);
             break;
         }
-        case MusicSkinRemoteGroup::Paper360:
+        case MusicSkinRemoteGroup::Type::QihooPaper:
         {
             m_groups[m_currentIndex] = first;
-            startToRequest(MusicSkinRemoteGroup::Paper360);
+            startToRequest(MusicSkinRemoteGroup::Type::QihooPaper);
             break;
         }
         default: break;

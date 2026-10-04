@@ -53,12 +53,12 @@ TTK_DECLARE_LIST(MusicSkinRemoteItem);
  */
 struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
 {
-    enum Type
+    enum class Type
     {
         Bing,
         Thunder,
         BirdPaper,
-        Paper360
+        QihooPaper
     };
 
     QString m_id;

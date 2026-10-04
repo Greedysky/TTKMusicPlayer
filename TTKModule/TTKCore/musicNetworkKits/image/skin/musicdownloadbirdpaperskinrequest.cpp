@@ -63,7 +63,7 @@ void MusicDownloadBirdPaperSkinRequest::downloadFinished()
                     MusicSkinRemoteGroup group;
                     group.m_id = value["old_id"].toString();
                     group.m_name = value["category"].toString();
-                    group.m_type = MusicSkinRemoteGroup::BirdPaper;
+                    group.m_type = MusicSkinRemoteGroup::Type::BirdPaper;
                     groups << group;
                 }
             }
@@ -79,7 +79,7 @@ void MusicDownloadBirdPaperSkinRequest::downloadItemsFinished()
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicSkinRemoteGroup group;
-    group.m_type = MusicSkinRemoteGroup::BirdPaper;
+    group.m_type = MusicSkinRemoteGroup::Type::BirdPaper;
 
     MusicAbstractDownloadSkinRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

@@ -65,7 +65,7 @@ void MusicDownload360PaperSkinRequest::downloadFinished()
                         MusicSkinRemoteGroup group;
                         group.m_id = value["id"].toString();
                         group.m_name = value["name"].toString();
-                        group.m_type = MusicSkinRemoteGroup::Paper360;
+                        group.m_type = MusicSkinRemoteGroup::Type::QihooPaper;
                         groups << group;
                     }
                 }
@@ -83,7 +83,7 @@ void MusicDownload360PaperSkinRequest::downloadFinished()
                         MusicSkinRemoteGroup group;
                         group.m_id = value["id"].toString();
                         group.m_name = value["name"].toString();
-                        group.m_type = MusicSkinRemoteGroup::Paper360;
+                        group.m_type = MusicSkinRemoteGroup::Type::QihooPaper;
                         groups << group;
                     }
                 }
@@ -100,7 +100,7 @@ void MusicDownload360PaperSkinRequest::downloadItemsFinished()
     TTK_INFO_STREAM(metaObject()->className() << __FUNCTION__);
 
     MusicSkinRemoteGroup group;
-    group.m_type = MusicSkinRemoteGroup::Paper360;
+    group.m_type = MusicSkinRemoteGroup::Type::QihooPaper;
 
     MusicAbstractDownloadSkinRequest::downloadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

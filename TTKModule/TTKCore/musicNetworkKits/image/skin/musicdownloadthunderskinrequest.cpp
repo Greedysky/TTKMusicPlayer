@@ -18,7 +18,7 @@ bool MusicThunderSkinConfigManager::readBuffer(MusicSkinRemoteGroupList &groups)
         QDomNode node = nodes.item(i);
         group.m_id = node.toElement().attribute("name");
         group.m_name = group.m_id;
-        group.m_type = MusicSkinRemoteGroup::Thunder;
+        group.m_type = MusicSkinRemoteGroup::Type::Thunder;
 
         const QDomNodeList &groupNodes = node.childNodes();
         for(int j = 0; j < groupNodes.count(); ++j)
