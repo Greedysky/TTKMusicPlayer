@@ -91,7 +91,7 @@ void ToolQTFM::startToListRequest(int id, MusicFMChannelList *channels)
 
         const QByteArray &parameter = TTK::Algorithm::mdII(QT_CHANNEL_URL, false).arg(id).arg(++m_pageIndex + 1).toUtf8();
         const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
-        TTK_INFO_STREAM(bytes);
+//        TTK_INFO_STREAM(bytes);
 
         if(bytes.isEmpty())
         {
@@ -131,7 +131,7 @@ void ToolQTFM::startToListRequest(int id, MusicFMChannelList *channels)
         }
 
         // sleep
-        TTK::Core::sleep(5 * 1000);
+//        TTK::Core::sleep(5 * 1000);
 
     } while(pageValid());
 }
