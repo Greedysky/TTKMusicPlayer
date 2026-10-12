@@ -6,7 +6,7 @@ on: workflow_call
 
 env:
   TTK_MODULE: TTKMusicPlayer
-  TTK_VERSION: 4.3.0.0
+  TTK_VERSION: 4.3.1.0
 
 jobs:
   build:

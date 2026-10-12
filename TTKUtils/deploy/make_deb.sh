@@ -1,7 +1,7 @@
 #!/bin/sh
 
 packname=TTKMusicPlayer
-packvern=4.3.0.0
+packvern=4.3.1.0
 rootpath=data/opt/ttk
 datapath=data/DEBIAN
 
