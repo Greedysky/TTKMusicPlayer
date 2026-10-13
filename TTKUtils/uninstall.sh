@@ -1,6 +1,10 @@
 #!/bin/sh
 
 username=`logname`
+if [ -z "${username}" ]; then
+  username=`whoami`
+fi
+
 if [ "${username}" = "root" ]; then
   homepath=/root
 else
