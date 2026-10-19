@@ -33,7 +33,7 @@ void ProjectM4Widget::addBuffer(float *left, float *right)
     }
 
     short buf[2][QMMP_VISUAL_NODE_SIZE];
-    for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; ++i)
+    for(int i = 0; i < QMMP_VISUAL_NODE_SIZE; ++i)
     {
         buf[i * 2] = left[i];
         buf[i * 2 + 1] = right[i];

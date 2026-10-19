@@ -231,7 +231,7 @@ void JakdawWidget::processData(float *left, float *)
 
     /* PCM Buffer */
     float pcm[QMMP_VISUAL_NODE_SIZE];
-    for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; ++i)
+    for(int i = 0; i < QMMP_VISUAL_NODE_SIZE; ++i)
     {
         pcm[i] = left[i] * 128.0;
     }
