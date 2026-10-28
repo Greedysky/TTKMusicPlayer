@@ -1,4 +1,4 @@
-///Update time 2026-10-16
+///Update time 2026-10-28
 
 adplug-2.4.0	https://github.com/adplug/adplug
 enca-1.22	https://github.com/Project-OSS-Revival/enca
@@ -71,5 +71,5 @@ ttk-1.2.13
 -libxsf		 https://gitlab.com/kode54/audacious-xsf
 
 extra
--vgmstream-r2117	https://github.com/vgmstream/vgmstream
+-vgmstream-r2168	https://github.com/vgmstream/vgmstream
 
