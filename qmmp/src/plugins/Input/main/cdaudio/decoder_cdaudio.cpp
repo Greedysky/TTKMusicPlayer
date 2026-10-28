@@ -339,11 +339,6 @@ bool DecoderCDAudio::readFromCache(QList<CDATrack> *tracks, uint disc_id)
     return true;
 }
 
-qint64 DecoderCDAudio::calculateTrackLength(lsn_t startlsn, lsn_t endlsn)
-{
-    return ((endlsn - startlsn + 1) * 1000) / 75;
-}
-
 void DecoderCDAudio::clearTrackCache()
 {
     m_track_cache.clear();

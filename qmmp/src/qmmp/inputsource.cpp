@@ -209,7 +209,7 @@ QString InputSource::file(const InputSourceFactory *factory)
 {
     InputSourcePrivate::loadPlugins();
     auto it = std::find_if(InputSourcePrivate::cache->constBegin(), InputSourcePrivate::cache->constEnd(),
-                           [factory](QmmpPluginCache *item) { return item->shortName() == factory->properties().shortName; } );
+                           [factory](const QmmpPluginCache *item) { return item->shortName() == factory->properties().shortName; } );
     return it == InputSourcePrivate::cache->constEnd() ? QString() : (*it)->file();
 }
 

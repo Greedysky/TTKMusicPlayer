@@ -70,7 +70,7 @@ bool DecoderFFmpegM4b::initialize()
 
     for(int i = 0; i < playlist.count(); ++i)
     {
-        AVChapter *chapter = in->chapters[i];
+        const AVChapter *chapter = in->chapters[i];
         ChapterInfo chapterInfo = {
             .info = playlist[i],
             .offset = chapter->start * chapter->time_base.num * 1000 / chapter->time_base.den,

@@ -45,7 +45,6 @@ public:
     virtual ~DecoderCDAudio();
 
     static QList<CDATrack> generateTrackList(const QString &path, TrackInfo::Parts parts = TrackInfo::AllParts);
-    static qint64 calculateTrackLength(lsn_t startlsn, lsn_t endlsn);
     static void clearTrackCache();
 
      // Standard Decoder API
