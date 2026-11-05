@@ -55,7 +55,7 @@ TrackInfoList DecoderMPCFactory::createPlayList(const QString &path, TrackInfo::
             info->setValue(Qmmp::COMPOSER, TStringToQString(fld.toString()));
     }
 
-    TagLib::MPC::Properties *ap = fileRef.audioProperties();
+    const TagLib::MPC::Properties *ap = fileRef.audioProperties();
     if((parts & TrackInfo::Properties) && ap)
     {
         info->setValue(Qmmp::BITRATE, ap->bitrate());

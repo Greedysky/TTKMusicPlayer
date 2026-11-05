@@ -95,7 +95,7 @@ bool DecoderVorbis::initialize()
     if((m_totalTime = ov_time_total(&oggfile, -1) * 1000) < 0)
         m_totalTime = 0;
 
-    vorbis_info *ogginfo = ov_info(&oggfile, -1);
+    const vorbis_info *ogginfo = ov_info(&oggfile, -1);
     if(ogginfo)
     {
         freq = ogginfo->rate;

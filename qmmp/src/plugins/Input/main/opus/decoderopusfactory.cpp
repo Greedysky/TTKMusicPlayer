@@ -54,7 +54,7 @@ TrackInfoList DecoderOpusFactory::createPlayList(const QString &path, TrackInfo:
             info->setValue(Qmmp::DISCNUMBER, TStringToQString(items["DISCNUMBER"].toString()));
     }
 
-    TagLib::Ogg::Opus::Properties *ap = fileRef.audioProperties();
+    const TagLib::Ogg::Opus::Properties *ap = fileRef.audioProperties();
     if((parts & TrackInfo::Properties) && ap)
     {
         info->setValue(Qmmp::BITRATE, ap->bitrate());

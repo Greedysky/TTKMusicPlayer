@@ -268,8 +268,8 @@ bool DecoderFLAC::initialize()
             TagLib::FLAC::File fileRef(&stream, TagLib::ID3v2::FrameFactory::instance());
 #endif
             //looking for cuesheet comment
-            TagLib::Ogg::XiphComment *tag = fileRef.xiphComment();
-            TagLib::FLAC::Properties *ap = fileRef.audioProperties();
+            const TagLib::Ogg::XiphComment *tag = fileRef.xiphComment();
+            const TagLib::FLAC::Properties *ap = fileRef.audioProperties();
 
             if(ap && tag && tag->fieldListMap().contains("CUESHEET"))
             {

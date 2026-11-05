@@ -6,7 +6,7 @@
 
 #define INT_TO_FLOAT(TYPE,SWAP,in,out,samples,offset,max) \
 { \
-    TYPE *in_ref = (TYPE *) (in); \
+    const TYPE *in_ref = (TYPE *) (in); \
     for(size_t i = 0, left = samples; i < samples;) \
     { \
         /* Vectorized path */ \

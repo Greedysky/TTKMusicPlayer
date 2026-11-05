@@ -218,7 +218,7 @@ QStringList InputSource::protocols()
     InputSourcePrivate::loadPlugins();
     QStringList protocolList;
 
-    for(QmmpPluginCache *item : qAsConst(*InputSourcePrivate::cache))
+    for(const QmmpPluginCache *item : qAsConst(*InputSourcePrivate::cache))
     {
         if(InputSourcePrivate::disabledNames.contains(item->shortName()))
             continue;

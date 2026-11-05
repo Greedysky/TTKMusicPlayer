@@ -56,7 +56,7 @@ TrackInfoList DecoderVorbisFactory::createPlayList(const QString &path, TrackInf
             info->setValue(Qmmp::DISCNUMBER, TStringToQString(items["DISCNUMBER"].toString()));
     }
 
-    TagLib::Vorbis::Properties *ap = fileRef.audioProperties();
+    const TagLib::Vorbis::Properties *ap = fileRef.audioProperties();
     if((parts & TrackInfo::Properties) && ap)
     {
         info->setValue(Qmmp::BITRATE, ap->bitrate());
