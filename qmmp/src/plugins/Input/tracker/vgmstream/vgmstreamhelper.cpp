@@ -334,7 +334,7 @@ TrackInfoList VgmstreamHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::FORMAT_NAME, "VGMStream");
         }
 
-        info->setPath("vgm://" + cleanPath() + QString("#%1").arg(i));
+        info->setPath(QString("vgm://%1#%2").arg(cleanPath()).arg(i));
         info->setDuration(totalTime());
         playlist << raw;
     }

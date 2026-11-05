@@ -199,7 +199,7 @@ TrackInfoList KssReader::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::FORMAT_NAME, reinterpret_cast<char*>(m_kss->idstr));
         }
 
-        info->setPath("xgm://" + cleanPath() + QString("#%1").arg(i));
+        info->setPath(QString("xgm://%1#%2").arg(cleanPath()).arg(i));
         info->setDuration(totalTime());
         playlist << raw;
     }
@@ -347,7 +347,7 @@ TrackInfoList NEZplugReader::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::FORMAT_NAME, NEZGetGameDetail(m_input));
         }
 
-        info->setPath("xgm://" + cleanPath() + QString("#%1").arg(i));
+        info->setPath(QString("xgm://%1#%2").arg(cleanPath()).arg(i));
         info->setDuration(NEZGetTrackLength(m_input, i));
         playlist << raw;
     }
@@ -488,7 +488,7 @@ TrackInfoList JaytraxReader::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::FORMAT_NAME, "Jaytrax");
         }
 
-        info->setPath("xgm://" + cleanPath() + QString("#%1").arg(i));
+        info->setPath(QString("xgm://%1#%2").arg(cleanPath()).arg(i));
         info->setDuration(jaytrax_getLength(m_input, i - 1, 1, sampleRate()) / sampleRate() * 1000);
         playlist << raw;
     }

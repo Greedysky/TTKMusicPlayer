@@ -41,7 +41,7 @@ public:
 private:
     Music_Emu *m_emu = nullptr;
     QString m_path;
-    int m_fade_length;
+    int m_fade_length = 0;
 
 };
 

@@ -124,7 +124,7 @@ TrackInfoList TFMXHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::FORMAT_NAME, tfmxdec_format_name(m_input));
         }
 
-        info->setPath("tfmx://" + cleanPath() + QString("#%1").arg(i));
+        info->setPath(QString("tfmx://%1#%2").arg(cleanPath()).arg(i));
         info->setDuration(duration);
         playlist << raw;
     }

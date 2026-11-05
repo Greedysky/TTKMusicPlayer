@@ -7,8 +7,6 @@ GMEHelper::GMEHelper()
     const QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     if(settings.value("GME/fadeout", false).toBool())
          m_fade_length = settings.value("GME/fadeout_length", 7000).toInt();
-    else
-         m_fade_length = 0;
 }
 
 GMEHelper::~GMEHelper()
@@ -102,7 +100,7 @@ TrackInfoList GMEHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::FORMAT_NAME, track_info->system);
         }
 
-        info->setPath("gme://" + m_path + QString("#%1").arg(i));
+        info->setPath(QString("gme://%1#%2").arg(m_path).arg(i));
         info->setDuration(track_info->length);
         gme_free_info(track_info);
         playlist << raw;

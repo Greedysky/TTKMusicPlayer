@@ -84,7 +84,7 @@ TrackInfoList SIDHelper::createPlayList(TrackInfo::Parts parts)
             info->setDuration(length);
         }
 
-        info->setPath("sid://" + m_path + QString("#%1").arg(i));
+        info->setPath(QString("sid://%1#%2").arg(m_path).arg(i));
         playlist << raw;
     }
 

@@ -181,7 +181,7 @@ TrackInfoList SC68Helper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::FORMAT_NAME, "SC68 Amiga");
         }
 
-        info->setPath("sc68://" + cleanPath() + QString("#%1").arg(i));
+        info->setPath(QString("sc68://%1#%2").arg(cleanPath()).arg(i));
         info->setDuration(tag.trk.time_ms > 0 ? tag.trk.time_ms : (2 * 60));
         playlist << raw;
     }

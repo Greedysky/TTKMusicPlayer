@@ -142,7 +142,7 @@ TrackInfoList UADEHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::FORMAT_NAME, "UADE");
         }
 
-        info->setPath("uade://" + cleanPath() + QString("#%1").arg(i));
+        info->setPath(QString("uade://%1#%2").arg(cleanPath()).arg(i));
         info->setDuration(totalTime());
         playlist << raw;
     }
