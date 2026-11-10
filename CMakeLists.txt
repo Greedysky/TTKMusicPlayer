@@ -302,7 +302,7 @@ message(STATUS "Found QT_INSTALL_DIR: " ${QT_INSTALL_DIR})
 message(STATUS "Found QT_INSTALL_LIBS: " ${QT_INSTALL_LIBS})
 message(STATUS "Found QT_INSTALL_BINS: " ${QT_INSTALL_BINS})
 
-find_program(QT_LRELEASE_EXECUTABLE NAMES lrelease lrelease6 lrelease-qt${TTK_QT_VERSION} PATHS ${QT_INSTALL_BINS})
+find_program(QT_LRELEASE_EXECUTABLE NAMES lrelease lrelease${TTK_QT_VERSION} lrelease-qt${TTK_QT_VERSION} PATHS ${QT_INSTALL_BINS})
 if(QT_LRELEASE_EXECUTABLE)
   message(STATUS "Found lrelease executable: " ${QT_LRELEASE_EXECUTABLE})
 else()
