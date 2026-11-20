@@ -115,7 +115,7 @@ static void parseSongPropertyV1(TTK::MusicSongInformation *info, int bitrate)
         }
     }
 
-    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v1 module");
+    TTK_INFO_STREAM("Parse song" << bitrate << "kbps property in v1 module");
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(WY_SONG_PATH_V1_URL, false).arg(bitrate * 1000).arg(info->m_songId));
@@ -164,7 +164,7 @@ static void parseSongPropertyV2(TTK::MusicSongInformation *info, int bitrate)
         }
     }
 
-    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v2 module");
+    TTK_INFO_STREAM("Parse song" << bitrate << "kbps property in v2 module");
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
@@ -219,7 +219,7 @@ static void parseSongPropertyV3(TTK::MusicSongInformation *info, int bitrate)
         }
     }
 
-    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in v3 module");
+    TTK_INFO_STREAM("Parse song" << bitrate << "kbps property in v3 module");
 
     QString format;
     switch(bitrate)
@@ -284,7 +284,7 @@ static void parseSongPropertyUnity(TTK::MusicSongInformation *info, int bitrate)
         }
     }
 
-    TTK_INFO_STREAM("parse song" << bitrate << "kbps property in unity module");
+    TTK_INFO_STREAM("Parse song" << bitrate << "kbps property in unity module");
 
     if(bitrate == TTK_BN_128 || bitrate == TTK_BN_320 || bitrate == TTK_BN_1000)
     {

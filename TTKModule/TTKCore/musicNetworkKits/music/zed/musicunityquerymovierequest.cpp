@@ -48,7 +48,7 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
             TTK::setSslConfiguration(&request);
             TTK::setContentTypeHeader(&request, "application/json");
 
-            TTK_INFO_STREAM("parse song property in yyt module");
+            TTK_INFO_STREAM("Parse song property in yyt module");
 
             m_queryServer = ReqYYTInterface::MODULE;
             m_reply = m_manager.post(request, TTK::Algorithm::mdII(ReqYYTInterface::MOVIE_DATA_URL, false).arg(m_queryValue, m_value).arg(m_pageSize).toUtf8());
@@ -60,7 +60,7 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
             request.setUrl(TTK::Algorithm::mdII(BL_MOVIE_URL, false).arg(m_queryValue).arg(offset));
             ReqBLInterface::makeRequestRawHeader(&request);
 
-            TTK_INFO_STREAM("parse song property in bl module");
+            TTK_INFO_STREAM("Parse song property in bl module");
 
             m_queryServer = ReqBLInterface::MODULE;
             m_reply = m_manager.get(request);

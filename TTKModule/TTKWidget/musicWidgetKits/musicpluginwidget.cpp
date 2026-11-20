@@ -460,7 +460,6 @@ void MusicServerPluginTableWidget::addCellItems()
             const QVariantMap &value = var.toMap();
             const bool option = value["option"].toBool();
             const QString &user = value["user"].toString();
-            const QString &name = value["name"].toString();
             const QString &time = value["time"].toString();
             const QString &version = value["version"].toString();
 
@@ -468,45 +467,48 @@ void MusicServerPluginTableWidget::addCellItems()
             item->setData(TTK_CHECKED_ROLE, option ? Qt::Checked : Qt::Unchecked);
             setItem(index, 0, item);
 
-                              item = new QTableWidgetItem;
-            item->setText(name);
+            QStringList servers;
+            const QVariantList &modules = value["modules"].toList();
+            for(const QVariant &var : qAsConst(modules))
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                const QVariantMap &module = var.toMap();
+                for(const QString &server : module["server"].toMap().keys())
+                {
+                    if(server == QUERY_WY_INTERFACE)
+                    {
+                        servers << tr("WangYi");
+                    }
+                    else if(server == QUERY_KW_INTERFACE)
+                    {
+                        servers << tr("KuWo");
+                    }
+                    else if(server == QUERY_KG_INTERFACE)
+                    {
+                        servers << tr("KuGou");
+                    }
+                }
+            }
+
+            item = new QTableWidgetItem;
+            const QString &label = tr("Update time %1").arg(time) + TTK_LINEFEED + tr("Supported server (%1)").arg(servers.isEmpty() ? tr("Unknown") : servers.join(", "));
+
             if(G_SETTING_PTR->value(MusicSettingManager::UserPermission).toBool())
             {
                 const QString &title = user + TTK_SPACE + version;
                 const QString &tips = value["description"].toString();
-
-                QStringList servers;
-                const QVariantList &modules = value["modules"].toList();
-                for(const QVariant &var : qAsConst(modules))
-                {
-                    if(var.isNull())
-                    {
-                        continue;
-                    }
-
-                    const QVariantMap &module = var.toMap();
-                    for(const QString &server : module["server"].toMap().keys())
-                    {
-                        if(server == QUERY_WY_INTERFACE)
-                        {
-                            servers << tr("WangYi");
-                        }
-                        else if(server == QUERY_KW_INTERFACE)
-                        {
-                            servers << tr("KuWo");
-                        }
-                        else if(server == QUERY_KG_INTERFACE)
-                        {
-                            servers << tr("KuGou");
-                        }
-                    }
-                }
-
                 item->setText(title + TTK_SPACE + "(" + time + ")");
-                item->setToolTip(title + TTK_LINEFEED +
-                                 tips + TTK_LINEFEED +
-                                 tr("Update time %1").arg(time) + TTK_LINEFEED +
-                                 tr("Supported server (%1)").arg(servers.isEmpty() ? tr("Unknown") : servers.join(", ")));
+                item->setToolTip(title + TTK_LINEFEED + tips + TTK_LINEFEED + label);
+            }
+            else
+            {
+                const QString &name = value["name"].toString();
+                item->setText(name + TTK_SPACE + "(" + time + ")");
+                item->setToolTip(label);
             }
 
             item->setForeground(option ? QColor(0xE6, 0x73, 0x00) : Qt::gray);
