@@ -138,7 +138,6 @@ void MusicApplicationModule::windowCloseAnimation()
         MusicApplication *w = MusicApplication::instance();
         w->setMinimumSize(0, 0); ///remove fixed size
 
-        m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("geometry");
         m_quitAnimation->setDuration(TTK_DN_S2MS / 4);
         m_quitAnimation->setStartValue(w->geometry());
@@ -151,7 +150,6 @@ void MusicApplicationModule::windowCloseAnimation()
         float v = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
               v = TTK::Image::boundValue<float>(1.0f, 0.35f, TTK_RN_MAX - v);
 
-        m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("windowOpacity");
         m_quitAnimation->setDuration(TTK_DN_S2MS);
         m_quitAnimation->setStartValue(v);

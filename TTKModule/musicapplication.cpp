@@ -291,6 +291,11 @@ TTK::PlayMode MusicApplication::playMode() const noexcept
 
 void MusicApplication::quitWindow()
 {
+    if(m_quitWindowMode)
+    {
+        return;
+    }
+
     TTK::Core::enableBreakPoint(true);
     //
     m_quitWindowMode = true;
